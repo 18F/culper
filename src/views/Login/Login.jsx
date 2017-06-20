@@ -4,17 +4,16 @@ import { connect } from 'react-redux'
 import { i18n } from '../../config'
 import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
-import { Text } from '../../components/Form'
+import { Text, Show } from '../../components/Form'
 
 class Login extends React.Component {
-
   constructor (props) {
     super(props)
     this.state = {
-      authenticated: false,
-      twofactor: false,
-      username: '',
-      password: ''
+      authenticated: this.props.authenticated,
+      twofactor: this.props.twofactor,
+      username: this.props.username,
+      password: this.props.password
     }
 
     this.onUsernameChange = this.onUsernameChange.bind(this)
@@ -93,6 +92,7 @@ class Login extends React.Component {
                 Password
               </label>
               <input id="password"
+                     name="password"
                      type="password"
                      placeholder={i18n.t('login.placeholder.password')}
                      value={this.state.password}
@@ -106,12 +106,14 @@ class Login extends React.Component {
           </form>
         </div>
 
-        <div id="oauth" className="login-oauth usa-width-one-whole hidden">
-          <span>Sign in with</span>
-          <LoginOAuth authenticated={this.state.authenticated}>
-            <i className="fa fa-github" aria-hidden="true"></i>
-          </LoginOAuth>
-        </div>
+        <Show when={this.props.oauth}>
+          <div id="oauth" className="login-oauth usa-width-one-whole">
+            <span>Sign in with</span>
+            <LoginOAuth authenticated={this.state.authenticated}>
+              <i className="fa fa-github" aria-hidden="true"></i>
+            </LoginOAuth>
+          </div>
+        </Show>
       </div>
     )
   }
@@ -139,7 +141,7 @@ class Login extends React.Component {
       <div className="login eapp-core" id="login">
         <div id="seal-header" className="seal-header text-center">
           <div className="content">
-            <img src="img/US-OfficeOfPersonnelManagement-Seal.svg" />
+            <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
             <h2>Welcome to the Questionnaire for National Security Positions</h2>
           </div>
         </div>
@@ -150,6 +152,14 @@ class Login extends React.Component {
       </div>
     )
   }
+}
+
+Login.defaultProps = {
+  oauth: false,
+  authenticated: false,
+  twofactor: false,
+  username: '',
+  password: ''
 }
 
 /**

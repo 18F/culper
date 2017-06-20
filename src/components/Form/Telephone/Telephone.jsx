@@ -49,6 +49,7 @@ export default class Telephone extends ValidationElement {
     }
 
     this.handleNumberTypeChange = this.handleNumberTypeChange.bind(this)
+    this.handleNoNumberChange = this.handleNoNumberChange.bind(this)
     this.handleError = this.handleError.bind(this)
     this.handleErrorDomestic = this.handleErrorDomestic.bind(this)
     this.handleErrorDomesticFirst = this.handleErrorDomesticFirst.bind(this)
@@ -105,8 +106,8 @@ export default class Telephone extends ValidationElement {
     })
   }
 
-  handleNumberTypeChange (event) {
-    this.setState({ numberType: event.target.value }, () => {
+  handleNumberTypeChange (cb) {
+    this.setState({ numberType: cb.value }, () => {
       this.onUpdate()
     })
   }
@@ -120,14 +121,40 @@ export default class Telephone extends ValidationElement {
     })
   }
 
-  handleNoNumberChange (e) {
+  handleNoNumberChange (cb) {
     this.setState({
-      noNumber: e.target.value,
+      noNumber: cb.value,
       timeOfDay: '',
       numberType: '',
       extension: '',
       ...defaultNumbers
     }, () => {
+      switch (this.state.type) {
+        case 'Domestic':
+          this.refs.domestic_first.refs.text.refs.input.focus()
+          this.refs.domestic_first.refs.text.refs.input.blur()
+          this.refs.domestic_second.refs.text.refs.input.focus()
+          this.refs.domestic_second.refs.text.refs.input.blur()
+          this.refs.domestic_third.refs.text.refs.input.focus()
+          this.refs.domestic_third.refs.text.refs.input.blur()
+          this.refs.domestic_extension.refs.text.refs.input.focus()
+          this.refs.domestic_extension.refs.text.refs.input.blur()
+          break
+        case 'DSN':
+          this.refs.dsn_first.refs.text.refs.input.focus()
+          this.refs.dsn_first.refs.text.refs.input.blur()
+          this.refs.dsn_second.refs.text.refs.input.focus()
+          this.refs.dsn_second.refs.text.refs.input.blur()
+          break
+        case 'International':
+          this.refs.int_first.refs.text.refs.input.focus()
+          this.refs.int_first.refs.text.refs.input.blur()
+          this.refs.int_second.refs.text.refs.input.focus()
+          this.refs.int_second.refs.text.refs.input.blur()
+          this.refs.int_extension.refs.text.refs.input.focus()
+          this.refs.int_extension.refs.text.refs.input.blur()
+          break
+      }
       this.onUpdate()
     })
   }
@@ -246,17 +273,13 @@ export default class Telephone extends ValidationElement {
     arr = arr.map(err => {
       return {
         code: `telephone.${code}.${err.code}`,
-        valid: err.valid
+        valid: err.valid,
+        uid: err.uid
       }
     })
 
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(value, this.props)
-      }
-    })))
+    return this.props.onError(value, arr)
   }
 
   dsn () {
@@ -304,7 +327,7 @@ export default class Telephone extends ValidationElement {
           <Radio name="nonumber"
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
-                 onChange={this.handleNoNumberChange.bind(this)}
+                 onUpdate={this.handleNoNumberChange}
                  onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
@@ -393,7 +416,7 @@ export default class Telephone extends ValidationElement {
           <Radio name="nonumber"
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
-                 onChange={this.handleNoNumberChange.bind(this)}
+                 onUpdate={this.handleNoNumberChange}
                  onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
@@ -462,7 +485,7 @@ export default class Telephone extends ValidationElement {
           <Radio name="nonumber"
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
-                 onChange={this.handleNoNumberChange.bind(this)}
+                 onUpdate={this.handleNoNumberChange}
                  onError={this.handleErrorNoNumber}
                  />
         </RadioGroup>
@@ -550,7 +573,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.cell')}
                    value="Cell"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
             <Radio name="numbertype-home"
@@ -558,7 +581,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.home')}
                    value="Home"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
             <Radio name="numbertype-work"
@@ -566,7 +589,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.work')}
                    value="Work"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
             <Radio name="numbertype-other"
@@ -574,7 +597,7 @@ export default class Telephone extends ValidationElement {
                    label={i18n.t('telephone.numberType.other')}
                    value="Other"
                    disabled={this.state.noNumber}
-                   onChange={this.handleNumberTypeChange}
+                   onUpdate={this.handleNumberTypeChange}
                    onError={this.handleErrorType}
                    />
           </RadioGroup>

@@ -258,7 +258,6 @@ class SubstanceUse extends SectionElement {
                        next="legal/police"
                        nextLabel={ i18n.t('legal.destination.police') }>
 
-            <hr />
             <DrugUses name="druguses"
                       {...this.props.DrugUses}
                       defaultState={false}
@@ -364,13 +363,11 @@ class SubstanceUse extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let substance = app.SubstanceUse || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   return {
-    Section: section,
     SubstanceUse: substance,
     NegativeImpacts: substance.NegativeImpacts || {},
     OrderedCounselings: substance.OrderedCounselings || {},
@@ -389,7 +386,8 @@ function mapStateToProps (state) {
 }
 
 SubstanceUse.defaultProps = {
-  defaultView: 'drugs/usage',
+  section: 'substance',
+  defaultView: (props) => { return 'drugs/usage' },
   store: 'SubstanceUse'
 }
 

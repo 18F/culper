@@ -1,7 +1,7 @@
 import { env } from '../config'
 import { reducer } from '../reducers/application'
 import SectionConstants from '../actions/SectionConstants'
-import { updateApplication } from '../actions/ApplicationActions'
+import { updateApplication, clearErrors } from '../actions/ApplicationActions'
 
 export const findPosition = (el) => {
   let currentTop = 0
@@ -37,6 +37,15 @@ export const historyMiddleware = store => next => action => {
 export const settingsMiddleware = store => next => action => {
   if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
     store.dispatch(updateApplication('Settings', 'mobileNavigation', false))
+  }
+
+  // Allow redux to continue the flow and executing the next middleware
+  next(action)
+}
+
+export const clearErrorsMiddleware = store => next => action => {
+  if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
+    store.dispatch(clearErrors(action.section, action.subsection))
   }
 
   // Allow redux to continue the flow and executing the next middleware

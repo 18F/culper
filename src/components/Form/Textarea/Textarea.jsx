@@ -54,17 +54,16 @@ export default class Textarea extends ValidationElement {
    * Execute validation checks on the value.
    */
   handleValidation (event) {
-    const value = this.state.value
-    if (value.length) {
-      const errors = this.props.onError(value, this.constructor.errors.map(err => {
-        return {
-          code: err.code,
-          valid: err.func(value, this.props)
-        }
-      })) || []
+    const value = `${this.state.value}`.trim()
+    const errors = this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: value.length ? err.func(value, this.props) : null,
+        uid: this.state.uid
+      }
+    })) || []
 
-      this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
-    }
+    this.setState({ error: errors.some(x => x.valid === false), valid: errors.every(x => x.valid === true) })
   }
 
   /**
@@ -132,6 +131,10 @@ export default class Textarea extends ValidationElement {
                   maxLength={this.props.maxlength}
                   pattern={this.props.pattern}
                   readOnly={this.props.readonly}
+                  autoCapitalize={this.props.autocapitalize}
+                  autoCorrect={this.props.autocorrect}
+                  autoComplete={this.props.autocomplete}
+                  spellCheck={this.props.spellcheck}
                   required={this.props.required}
                   value={this.state.value}
                   onChange={this.handleChange}
@@ -149,6 +152,10 @@ Textarea.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  spellcheck: true,
+  autocapitalize: true,
+  autocorrect: true,
+  autocomplete: true,
   onError: (value, arr) => { return arr }
 }
 
@@ -156,6 +163,9 @@ Textarea.errors = [
   {
     code: 'length',
     func: (value, props) => {
+      if (!value || !value.length) {
+        return null
+      }
       return value.length >= parseInt(props.minlength || 0) &&
         value.length <= parseInt(props.maxlength || 256)
     }
@@ -163,6 +173,9 @@ Textarea.errors = [
   {
     code: 'pattern',
     func: (value, props) => {
+      if (!value || !value.length) {
+        return null
+      }
       const re = new RegExp(props.pattern)
       return re.test(value)
     }

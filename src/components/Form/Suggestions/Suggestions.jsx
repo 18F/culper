@@ -99,7 +99,7 @@ export default class Suggestions extends React.Component {
       <div>
         {this.props.children}
         <div className="modal" onClick={this.dismissSuggestions}>
-          <div className="suggestions-wrap">
+          <div className="modal-wrap">
             <div className="suggestions modal-content" onClick={this.doNothing}>
               <a href="javascript:;;" title="Click to close" onClick={this.dismissSuggestions}>
                 <Svg src="/img/close-icon.svg" />

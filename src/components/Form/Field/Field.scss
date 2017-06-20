@@ -103,7 +103,7 @@
         }
 
         > .comments-button {
-          display: block;
+          display: inline-block;
 
           i {
             margin-left: 1rem;
@@ -144,7 +144,8 @@
           &.adjust-for-label,
           &.adjust-for-labels,
           &.adjust-for-datecontrol,
-          &.adjust-for-email {
+          &.adjust-for-email,
+          &.adjust-for-address.no-buttons {
             margin-top: 2.8rem;
           }
 

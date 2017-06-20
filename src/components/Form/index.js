@@ -37,6 +37,7 @@ import HairColor from './HairColor'
 import EyeColor from './EyeColor'
 import Sex from './Sex'
 import IntroHeader from './IntroHeader'
+import Introduction from './Introduction'
 import Branch from './Branch'
 import Reference from './Reference'
 import Show from './Show'
@@ -75,6 +76,7 @@ export {
   HairColor,
   EyeColor,
   Sex,
+  Introduction,
   IntroHeader,
   Branch,
   Reference,

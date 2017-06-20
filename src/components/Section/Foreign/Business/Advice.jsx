@@ -78,8 +78,7 @@ export default class Advice extends SubsectionElement {
                      appendTitle={i18n.t('foreign.business.advice.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.advice.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.advice.collection.append')}>
-            <Field title={i18n.t('foreign.business.advice.heading.description')}
-                   help="foreign.business.advice.help.description">
+            <Field title={i18n.t('foreign.business.advice.heading.description')}>
               <Textarea name="Description"
                         className="advice-description"
                         bind={true}
@@ -92,16 +91,14 @@ export default class Advice extends SubsectionElement {
                   bind={true}
                   />
 
-            <Field title={i18n.t('foreign.business.advice.heading.organization')}
-                   help="foreign.business.advice.help.organization">
+            <Field title={i18n.t('foreign.business.advice.heading.organization')}>
               <Text name="Organization"
                     className="advice-organization"
                     bind={true}
                     />
             </Field>
 
-            <Field title={i18n.t('foreign.business.advice.heading.country')}
-                   help="foreign.business.advice.help.country">
+            <Field title={i18n.t('foreign.business.advice.heading.country')}>
               <Country name="Country"
                        className="advice-country"
                        bind={true}
@@ -117,8 +114,7 @@ export default class Advice extends SubsectionElement {
                          />
             </Field>
 
-            <Field title={i18n.t('foreign.business.advice.heading.compensation')}
-                   help="foreign.business.advice.help.compensation">
+            <Field title={i18n.t('foreign.business.advice.heading.compensation')}>
               <Textarea name="Compensation"
                         className="advice-compensation"
                         bind={true}
