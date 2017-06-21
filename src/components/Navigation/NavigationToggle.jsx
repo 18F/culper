@@ -5,7 +5,7 @@ import { updateApplication } from '../../actions/ApplicationActions'
 import { logout } from '../../actions/AuthActions'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
-class NavigationToggle extends React.Component {
+export class NavigationToggle extends React.Component {
   constructor (props) {
     super(props)
     this.logout = this.logout.bind(this)

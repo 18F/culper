@@ -13,9 +13,9 @@ export default class SectionElement extends React.Component {
   }
 
   componentDidMount () {
-    let current = this.launch(this.props[this.props.store], this.props.Section.subsection, this.props.defaultView)
+    let current = this.launch(this.props[this.props.store], this.props.subsection, this.props.defaultView(this.props))
     if (current !== '') {
-      this.props.dispatch(push(`/form/${this.props.Section.section}/${current}`))
+      this.props.dispatch(push(`/form/${this.props.section}/${current}`))
     }
   }
 
@@ -32,25 +32,25 @@ export default class SectionElement extends React.Component {
   }
 
   handleTour (event) {
-    this.props.dispatch(push(`/form/${this.props.Section.section}/${this.props.defaultView}`))
+    this.props.dispatch(push(`/form/${this.props.section}/${this.props.defaultView(this.props)}`))
   }
 
   handleReview (event) {
-    this.props.dispatch(push(`/form/${this.props.Section.section}/review`))
+    this.props.dispatch(push(`/form/${this.props.section}/review`))
   }
 
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
-        section: this.props.Section.section,
-        subsection: this.props.Section.subsection,
+        section: this.props.section,
+        subsection: this.props.subsection,
         code: err.code,
         valid: err.valid,
         uid: err.uid
       }
     })
 
-    this.props.dispatch(reportErrors(this.props.Section.section, '', arr))
+    this.props.dispatch(reportErrors(this.props.section, '', arr))
     return arr
   }
 
@@ -60,7 +60,8 @@ export default class SectionElement extends React.Component {
 }
 
 SectionElement.defaultProps = {
-  Section: { section: '', subsection: '' },
-  defaultView: '',
+  section: '',
+  subsection: '',
+  defaultView: (props) => { return '' },
   store: ''
 }

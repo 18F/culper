@@ -186,14 +186,12 @@ class Relationships extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let section = state.section || {}
   let app = state.application || {}
   let relationships = app.Relationships || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
   let history = app.History || {}
   return {
-    Section: section,
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
     Marital: relationships.Marital || {},
@@ -207,7 +205,8 @@ function mapStateToProps (state) {
 }
 
 Relationships.defaultProps = {
-  defaultView: 'marital',
+  section: 'relationships',
+  defaultView: (props) => { return 'marital' },
   store: 'Relationships'
 }
 

@@ -55,17 +55,24 @@ export default class Field extends ValidationElement {
 
   handleError (value, arr = []) {
     let errors = [...this.state.errors]
+    if (arr.length === 0) {
+      if (errors.length && errors.some(err => err.valid === false)) {
+        this.scrollIntoView()
+      }
+      return
+    }
+
     for (const e of arr) {
-      const idx = errors.findIndex(x => x.code === e.code)
+      const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
       if (idx !== -1) {
-        errors[idx] = e
+        errors[idx] = { ...e }
       } else {
-        errors.push(e)
+        errors.push({ ...e })
       }
     }
 
     this.setState({ errors: errors }, () => {
-      if (arr.length && arr.some(err => !err.valid)) {
+      if (errors.length && errors.some(err => err.valid === false)) {
         this.scrollIntoView()
       }
     })
