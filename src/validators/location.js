@@ -1,9 +1,9 @@
 import { api } from '../services/api'
 
 export default class LocationValidator {
-  constructor (data) {
+  constructor (data = {}) {
     // Props
-    this.fields = data.fields
+    this.fields = data.fields || []
     this.domesticFields = data.domesticFields
     this.internationalFields = data.internationalFields
 
@@ -51,45 +51,6 @@ export default class LocationValidator {
     }
   }
 
-  validToggleableLocation () {
-    let valid = false
-
-    switch (this.domestic) {
-      case 'Yes':
-        for (let field of this.domesticFields) {
-          switch (field) {
-            case 'city':
-              valid = valid && this.validCity()
-              break
-            case 'state':
-              valid = valid && this.validState()
-              break
-            case 'county':
-              valid = valid && this.validCounty()
-              break
-            case 'country':
-              valid = valid && this.validCountry()
-              break
-          }
-        }
-        return valid
-      case 'No':
-        for (let field of this.internationalFields) {
-          switch (field) {
-            case 'city':
-              valid = valid && this.validCity()
-              break
-            case 'country':
-              valid = valid && this.validCountry()
-              break
-          }
-        }
-        return valid
-      default:
-        return valid
-    }
-  }
-
   hasAll (...keys) {
     for (let key of keys) {
       if (!this.fields[key]) {
@@ -107,9 +68,12 @@ export default class LocationValidator {
     return !!this.country
   }
 
+  validFields () {
+    return this.fields && !!this.fields.length
+  }
+
   validLocation () {
     let valid = true
-
     for (let field of this.fields) {
       switch (field) {
         case 'address':
@@ -178,6 +142,6 @@ export default class LocationValidator {
   }
 
   isValid () {
-    return this.validLocation()
+    return this.validFields() && this.validLocation()
   }
 }

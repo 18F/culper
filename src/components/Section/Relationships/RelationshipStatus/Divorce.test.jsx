@@ -27,7 +27,7 @@ describe('The Divorce component', () => {
     component.find('.birthplace .yes input').simulate('change')
     component.find('.telephone .home input').simulate('change')
     component.find('.recognized .month input').simulate('change', { target: { value: '12' } })
-    component.find('.location .city input').simulate('change')
+    component.find('.location.birthplace .city input').simulate('change')
     component.find('.date-divorced .month input').simulate('change', { target: { value: '12' } })
     component.find('.status .divorced input').simulate('change')
     component.find('.deceased .yes input').simulate('change')

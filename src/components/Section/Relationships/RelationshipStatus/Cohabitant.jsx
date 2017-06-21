@@ -200,6 +200,7 @@ export default class Cohabitant extends ValidationElement {
 
         <h3>{i18n.t('relationships.cohabitant.heading.birthplace')}</h3>
         <Location name="birthplace"
+                    className="birthplace"
                     label={i18n.t('relationships.cohabitant.label.birthplace')}
                     {...this.state.BirthPlace}
                     toggle={true}

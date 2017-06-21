@@ -93,11 +93,9 @@ describe('Foreign business sponsorship component validation', function () {
       {
         props: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            country: 'Germnay',
+            fields: ['city', 'country']
           }
         },
         expected: true
@@ -336,11 +334,9 @@ describe('Foreign business sponsorship component validation', function () {
                 state: 'VA'
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
                 city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202'
+                fields: ['city', 'country']
               },
               Citizenship: {
                 value: [{ name: 'Germany', value: 'Germany' }]
