@@ -48,18 +48,16 @@ export default class DateControl extends ValidationElement {
       disabled: props.disabled,
       value: props.value,
       estimated: props.estimated,
-      focus: props.focus,
       error: props.error,
       valid: props.valid,
       maxDate: props.maxDate,
       month: props.month || datePart('m', props.value),
       day: props.day || props.hideDay ? 1 : datePart('d', props.value),
       year: props.year || datePart('y', props.value),
-      foci: [false, false, false],
-      validity: [null, null, null],
-      errorCodes: []
+      errors: []
     }
 
+    this.storeErrors = this.storeErrors.bind(this)
     this.beforeChange = this.beforeChange.bind(this)
     this.handleError = this.handleError.bind(this)
     this.handleErrorMonth = this.handleErrorMonth.bind(this)
@@ -153,21 +151,7 @@ export default class DateControl extends ValidationElement {
         event.target.date = d
 
         // This will force a blur/validation
-        // if (d) {
-        //   this.refs.month.refs.autosuggest.input.focus()
-        //   this.refs.month.refs.autosuggest.input.blur()
-        //   this.refs.day.refs.number.refs.input.focus()
-        //   this.refs.day.refs.number.refs.input.blur()
-        //   this.refs.year.refs.number.refs.input.focus()
-        //   this.refs.year.refs.number.refs.input.blur()
-
-        //   if (changed.month) {
-        //     this.refs.month.refs.autosuggest.input.focus()
-        //   } else if (event.target.focus) {
-        //     event.target.focus()
-        //   }
-        // } else if (changed.year || changed.month) {
-        if (changed.year || changed.month) {
+        if (d && (changed.year || changed.month)) {
           this.refs.day.refs.number.refs.input.focus()
           this.refs.day.refs.number.refs.input.blur()
 
@@ -187,66 +171,6 @@ export default class DateControl extends ValidationElement {
             estimated: this.state.estimated,
             date: this.state.value
           })
-        }
-      })
-  }
-
-  /**
-   * Handle the focus event.
-   */
-  handleFocus (event) {
-    let month = this.state.foci[0]
-    let day = this.state.foci[1]
-    let year = this.state.foci[2]
-
-    if (event.target.name.indexOf('month') !== -1) {
-      month = true
-    }
-    if (event.target.name.indexOf('day') !== -1) {
-      day = true
-    }
-    if (event.target.name.indexOf('year') !== -1) {
-      year = true
-    }
-
-    this.setState(
-      {
-        focus: month || day || year,
-        foci: [month, day, year]
-      },
-      () => {
-        super.handleFocus(event)
-      })
-  }
-
-  /**
-   * Handle the blur event.
-   */
-  handleBlur (event) {
-    let month = this.state.foci[0]
-    let day = this.state.foci[1]
-    let year = this.state.foci[2]
-
-    if (event.target.name.indexOf('month') !== -1) {
-      month = false
-    }
-    if (event.target.name.indexOf('day') !== -1) {
-      day = false
-    }
-    if (event.target.name.indexOf('year') !== -1) {
-      year = false
-    }
-
-    this.setState(
-      {
-        focus: month || day || year,
-        foci: [month, day, year]
-      },
-      () => {
-        const focus = month && day && year
-        const inputs = this.state.month && this.state.day && this.state.year && this.state.year.length > 3
-        if (!focus || inputs) {
-          super.handleBlur(event)
         }
       })
   }
@@ -272,33 +196,58 @@ export default class DateControl extends ValidationElement {
       }
     })
 
-    // Get the full date if we can
-    const date = validDate(this.state.month, this.state.day, this.state.year)
-        ? new Date(this.state.year, this.state.month, this.state.day)
-        : null
+    // Introducing local state to the DateControl so it can determine
+    // if there were **any** errors found in other child components.
+    this.storeErrors(arr, () => {
+      // Get the full date if we can
+      const date = validDate(this.state.month, this.state.day, this.state.year)
+          ? new Date(this.state.year, this.state.month, this.state.day)
+          : null
 
-    const existingErr = arr.some(e => e.valid === false)
+      const existingErr = this.state.errors.some(e => e.valid === false)
 
-    // If it is not a valid date...
-    if (!date || existingErr) {
-      return this.props.onError(date, arr)
-    }
+      // If the date is valid and there are no child errors...
+      let local = [...arr]
+      if (date && !existingErr) {
+        // Prepare some properties for the error testing
+        const props = {
+          ...this.props,
+          ...this.state,
+          validator: new DateControlValidator(this.state, this.props)
+        }
 
-    // Prepare some properties for the error testing
-    const props = {
-      ...this.props,
-      ...this.state,
-      validator: new DateControlValidator(this.state, this.props)
-    }
-
-    // Take the original and concatenate our new error values to it
-    return this.props.onError(date, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(date, props),
-        uid: this.state.uid
+        // Call any `onError` binding with error checking specific to the `DateControl`
+        local = local.concat(this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: err.func(date, props),
+            uid: this.state.uid
+          }
+        }))
       }
-    })))
+
+      // Pass any local and child errors to bound functions
+      this.props.onError(date, local)
+    })
+
+    // Return the original array of errors to the child control
+    return arr
+  }
+
+  storeErrors (arr = [], callback) {
+    let errors = [...this.state.errors]
+    for (const e of arr) {
+      const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+      if (idx !== -1) {
+        errors[idx] = { ...e }
+      } else {
+        errors.push({ ...e })
+      }
+    }
+
+    this.setState({ errors: errors }, () => {
+      callback()
+    })
   }
 
   beforeChange (value) {
@@ -327,8 +276,6 @@ export default class DateControl extends ValidationElement {
                       required={this.props.required}
                       onChange={this.handleChange}
                       beforeChange={this.beforeChange}
-                      onFocus={this.handleFocus}
-                      onBlur={this.handleBlur}
                       onError={this.handleErrorMonth}
                       displayText={this.monthDisplayText}
                       tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}>
@@ -370,10 +317,7 @@ export default class DateControl extends ValidationElement {
                     step="1"
                     receiveProps="true"
                     value={this.state.day}
-                    focus={this.state.foci[1]}
                     onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onBlur={this.handleBlur}
                     onError={this.handleErrorDay}
                     tabBack={() => { this.refs.month.refs.autosuggest.input.focus() }}
                     tabNext={() => { this.refs.year.refs.number.refs.input.focus() }}
@@ -394,10 +338,7 @@ export default class DateControl extends ValidationElement {
                     step="1"
                     receiveProps="true"
                     value={this.state.year}
-                    focus={this.state.foci[2]}
                     onChange={this.handleChange}
-                    onFocus={this.handleFocus}
-                    onBlur={this.handleBlur}
                     onError={this.handleErrorYear}
                     tabBack={() => { this.refs.day.refs.number.refs.input.focus() }}
                     />
@@ -428,7 +369,6 @@ DateControl.defaultProps = {
   value: '',
   estimated: false,
   showEstimated: true,
-  focus: false,
   error: false,
   valid: false,
   hideDay: false,
