@@ -224,6 +224,14 @@ export default class DateControl extends ValidationElement {
             uid: this.state.uid
           }
         }))
+      } else {
+        local = local.concat(this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: null,
+            uid: this.state.uid
+          }
+        }))
       }
 
       // Pass any local and child errors to bound functions
