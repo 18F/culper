@@ -1,5 +1,6 @@
 import ForeignBusinessEmploymentValidator, { EmploymentValidator } from './foreignbusinessemployment'
 import { battery } from './helpers'
+import { Layouts } from '../components/Form/Location'
 
 describe('Foreign business employment component validation', function () {
   it('validate foreign business employment name', () => {
@@ -86,10 +87,9 @@ describe('Foreign business employment component validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           }
         },
         expected: true
@@ -188,10 +188,9 @@ describe('Foreign business employment component validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Address: {
-                  addressType: 'International',
-                  address: '1234 Some Rd',
                   city: 'Munich',
-                  country: 'Germany'
+                  country: 'Germany',
+                  layout: Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
                 },
                 Accepted: 'Yes',
                 Explanation: {

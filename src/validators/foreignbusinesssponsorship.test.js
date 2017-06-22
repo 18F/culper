@@ -69,11 +69,9 @@ describe('Foreign business sponsorship component validation', function () {
       {
         props: {
           Birthplace: {
-            domestic: 'Yes',
-            country: 'United States',
-            city: 'Arlington',
-            county: 'Arlington',
-            state: 'VA'
+            city: 'Munich',
+            country: 'Germnay',
+            layout: Layouts.CITY_COUNTRY
           }
         },
         expected: true
@@ -94,9 +92,11 @@ describe('Foreign business sponsorship component validation', function () {
       {
         props: {
           Address: {
+            addressType: 'United States',
+            address: '1234 Some Rd',
             city: 'Arlington',
-            country: 'Germnay',
-            layout: Layouts.CITY_COUNTRY
+            state: 'Virginia',
+            zipcode: '22202'
           }
         },
         expected: true
@@ -328,16 +328,16 @@ describe('Foreign business sponsorship component validation', function () {
                 applicable: true
               },
               Birthplace: {
-                domestic: 'Yes',
-                country: 'United States',
-                city: 'Arlington',
-                county: 'Arlington',
-                state: 'VA'
+                country: 'Germnay',
+                city: 'Munich',
+                layout: Layouts.CITY_COUNTRY
               },
               Address: {
-                country: 'United States',
+                addressType: 'United States',
+                address: '1234 Some Rd',
                 city: 'Arlington',
-                layout: Layouts.CITY_COUNTRY
+                state: 'Virginia',
+                zipcode: '22202'
               },
               Citizenship: {
                 value: [{ name: 'Germany', value: 'Germany' }]

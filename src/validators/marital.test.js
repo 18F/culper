@@ -1,4 +1,5 @@
 import MaritalValidator from './marital'
+import { Layouts } from '../components/Form/Location'
 
 describe('Marital validation', function () {
   it('validates divorce', () => {
@@ -45,11 +46,11 @@ describe('Marital validation', function () {
                 date: new Date('1/1/2016')
               },
               BirthPlace: {
-                domestic: 'Yes',
                 country: 'United States',
                 city: 'Arlington',
                 county: 'Arlington',
-                state: 'VA'
+                state: 'VA',
+                layout: Layouts.BIRTHPLACE
               },
               Telephone: {
                 noNumber: '',
@@ -158,11 +159,11 @@ describe('Marital validation', function () {
               date: new Date('1/1/2016')
             },
             BirthPlace: {
-              domestic: 'Yes',
               country: 'United States',
               city: 'Arlington',
               county: 'Arlington',
-              state: 'VA'
+              state: 'VA',
+              layout: Layouts.BIRTHPLACE
             },
             Address: {
               addressType: 'United States',

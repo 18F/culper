@@ -1,4 +1,5 @@
 import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
+import { Layouts } from '../components/Form/Location'
 
 describe('Cohabitant validation', function () {
   it('validates citizenship', () => {
@@ -91,11 +92,11 @@ describe('Cohabitant validation', function () {
             date: new Date('1/1/2016')
           },
           BirthPlace: {
-            domestic: 'Yes',
             country: 'United States',
             city: 'Arlington',
             county: 'Arlington',
-            state: 'VA'
+            state: 'VA',
+            layout: Layouts.BIRTHPLACE
           },
           SSN: {
             first: '111',
@@ -195,11 +196,11 @@ describe('Cohabitant validation', function () {
                   date: new Date('1/1/2016')
                 },
                 BirthPlace: {
-                  domestic: 'Yes',
                   country: 'United States',
                   city: 'Arlington',
                   county: 'Arlington',
-                  state: 'VA'
+                  state: 'VA',
+                  layout: Layouts.BIRTHPLACE
                 },
                 SSN: {
                   first: '111',
@@ -255,9 +256,9 @@ describe('Cohabitant validation', function () {
       {
         state: {
           BirthPlace: {
-            domestic: 'No',
             country: 'Germany',
-            city: 'Munich'
+            city: 'Munich',
+            layout: Layouts.BIRTHPLACE
           },
           ForeignBornDocument: {
             DocumentType: 'FS240',

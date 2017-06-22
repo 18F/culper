@@ -1,6 +1,6 @@
 import NameValidator from './name'
 import AddressValidator from './address'
-import BirthPlaceValidator from './birthplace'
+import LocationValidator from './location'
 import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
 
@@ -73,20 +73,21 @@ export class RelativeValidator {
   requiresCitizenshipDocumentation () {
     const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
     const citizen = this.citizen()
+    const international = ((this.birthplace || {}).country !== 'United States')
 
-    if (this.relation && relations.includes(this.relation) && citizen && this.birthplace.domestic === 'No' && this.isDeceased === 'Yes') {
+    if (this.relation && relations.includes(this.relation) && citizen && international && this.isDeceased === 'Yes') {
       return true
     }
 
-    if (this.address && this.address.addressType === 'United States' && this.birthplace.domestic === 'No' && citizen) {
+    if (this.address && this.address.addressType === 'United States' && international && citizen) {
       return true
     }
 
-    if (this.address && this.address.addressType === 'APOFPO' && this.birthplace.domestic === 'No' && citizen) {
+    if (this.address && this.address.addressType === 'APOFPO' && international && citizen) {
       return true
     }
 
-    if (this.birthplace && this.birthplace.domestic === 'No' && citizen) {
+    if (this.birthplace && international && citizen) {
       return true
     }
 
@@ -106,7 +107,7 @@ export class RelativeValidator {
   }
 
   validBirthplace () {
-    return !!this.birthplace && new BirthPlaceValidator(this.birthplace, { hideCounty: true }).isValid()
+    return !!this.birthplace && new LocationValidator(this.birthplace).isValid()
   }
 
   validCitizenship () {
