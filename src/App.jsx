@@ -55,12 +55,13 @@ class App extends React.Component {
     const logoutButton = this.props.authenticated && this.props.twofactor
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
+    const klassApp = `${this.designClass()} ${this.props.settings.modalOpen ? 'modal-open' : ''}`.trim()
     const klassTitle = `eapp-structure-right eapp-title ${this.props.settings.mobileNavigation ? 'mobile-hidden' : 'visible'}`.trim()
     const klassNavigation = `eapp-structure-left eapp-navigation ${this.props.settings.mobileNavigation ? 'mobile-visible' : 'mobile-hidden'}`.trim()
     const klassCore = `eapp-structure-right eapp-core ${this.props.settings.mobileNavigation ? 'mobile-hidden' : 'visible'}`.trim()
 
     return (
-      <div className={this.designClass()}>
+      <div className={klassApp}>
         <div id="scrollTo"></div>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
         <header className="usa-header usa-header-basic" role="banner">
@@ -143,7 +144,7 @@ class App extends React.Component {
 function mapStateToProps (state) {
   const auth = state.authentication
   const app = state.application || {}
-  const settings = app.Settings || { mobileNavigation: false }
+  const settings = app.Settings || { mobileNavigation: false, modalOpen: false }
 
   return {
     settings: settings,
