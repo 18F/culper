@@ -153,20 +153,21 @@ export default class DateControl extends ValidationElement {
         event.target.date = d
 
         // This will force a blur/validation
-        if (d) {
-          this.refs.month.refs.autosuggest.input.focus()
-          this.refs.month.refs.autosuggest.input.blur()
-          this.refs.day.refs.number.refs.input.focus()
-          this.refs.day.refs.number.refs.input.blur()
-          this.refs.year.refs.number.refs.input.focus()
-          this.refs.year.refs.number.refs.input.blur()
+        // if (d) {
+        //   this.refs.month.refs.autosuggest.input.focus()
+        //   this.refs.month.refs.autosuggest.input.blur()
+        //   this.refs.day.refs.number.refs.input.focus()
+        //   this.refs.day.refs.number.refs.input.blur()
+        //   this.refs.year.refs.number.refs.input.focus()
+        //   this.refs.year.refs.number.refs.input.blur()
 
-          if (changed.month) {
-            this.refs.month.refs.autosuggest.input.focus()
-          } else if (event.target.focus) {
-            event.target.focus()
-          }
-        } else if (changed.year || changed.month) {
+        //   if (changed.month) {
+        //     this.refs.month.refs.autosuggest.input.focus()
+        //   } else if (event.target.focus) {
+        //     event.target.focus()
+        //   }
+        // } else if (changed.year || changed.month) {
+        if (changed.year || changed.month) {
           this.refs.day.refs.number.refs.input.focus()
           this.refs.day.refs.number.refs.input.blur()
 
