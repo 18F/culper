@@ -1,4 +1,5 @@
 export default {
+  ADDRESS: 'Address',
   BIRTHPLACE: 'Birthplace',
   BIRTHPLACE_WITHOUT_COUNTY: 'Birthplace without County',
   STATE_CITY: 'State, City',

@@ -14,7 +14,6 @@ describe('The offense component', () => {
     expect(component.find('.offense-firearms').length).toEqual(1)
     expect(component.find('.offense-substances').length).toEqual(1)
     expect(component.find('.offense-address').length).toEqual(1)
-    expect(component.find('.offense-address').length).toEqual(1)
     expect(component.find('.offense-cited').length).toEqual(1)
     expect(component.find('.offense-citedby').length).toEqual(0)
     expect(component.find('.offense-agencyaddress .city').length).toEqual(0)

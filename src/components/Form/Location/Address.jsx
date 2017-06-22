@@ -22,6 +22,7 @@ export default class Address extends ValidationElement {
     this.updateCountry = this.updateCountry.bind(this)
     this.updateZipcode = this.updateZipcode.bind(this)
     this.updateAddressType = this.updateAddressType.bind(this)
+    this.addressTypeFunc = this.addressTypeFunc.bind(this)
   }
 
   updateStreet (event) {
@@ -45,7 +46,17 @@ export default class Address extends ValidationElement {
   }
 
   updateAddressType (cb) {
-    this.update({addressType: cb.value})
+    let country = ''
+    switch (cb.value) {
+      case 'United States':
+      case 'POSTOFFICE':
+        country = cb.value
+        break
+    }
+
+    this.update({
+      country: country
+    })
   }
 
   componentWillUnmount () {
@@ -55,7 +66,6 @@ export default class Address extends ValidationElement {
   update (updateValues) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
-        addressType: this.props.addressType,
         street: this.props.street,
         city: this.props.city,
         state: this.props.state,
@@ -79,15 +89,24 @@ export default class Address extends ValidationElement {
     //return this.props.onError(value, arr)
   //}
 
-  render () {
-    const klass = `address ${this.props.className || ''}`.trim()
+  addressTypeFunc (props) {
+    switch (true) {
+      case props.value === this.props.country:
+        return true
+      case props.value === 'International' && !['United States', 'POSTOFFICE'].includes(this.props.country):
+        return true
+      default:
+        return false
+    }
+  }
 
+  render () {
     return (
-      <div className={klass}>
+      <div className="address">
         <Show when={!this.props.disableToggle}>
           <div>
             <label>{this.props.label}</label>
-            <RadioGroup className="address-options" selectedValue={this.props.addressType}>
+            <RadioGroup className="address-options" selectedValueFunc={this.addressTypeFunc}>
               <Radio name="addressType"
                 label={i18n.m('address.options.us.label')}
                 value="United States"
@@ -100,7 +119,7 @@ export default class Address extends ValidationElement {
               />
               <Radio name="addressType"
                 label={i18n.m('address.options.apoFpo.label')}
-                value="APOFPO"
+                value="POSTOFFICE"
                 className="apofpo"
                 ignoreDeselect="true"
                 disabled={this.props.disabled}
@@ -123,7 +142,7 @@ export default class Address extends ValidationElement {
         </Show>
         <div className="fields">
           <div>
-            <Show when={this.props.addressType === 'United States'}>
+            <Show when={this.props.country === 'United States'}>
               <div>
                 <Street name="address"
                   className="mailing"
@@ -172,13 +191,13 @@ export default class Address extends ValidationElement {
                 </div>
               </div>
             </Show>
-            <Show when={this.props.addressType === 'International'}>
+            <Show when={!['United States', 'POSTOFFICE'].includes(this.props.country)}>
               <div>
                 <Street name="address"
                   label={i18n.t('address.international.street.label')}
                   placeholder={i18n.t('address.international.street.placeholder')}
                   className="mailing"
-                  value={this.props.address}
+                  value={this.props.street}
                   onChange={this.updateStreet}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
@@ -206,14 +225,14 @@ export default class Address extends ValidationElement {
                 />
               </div>
             </Show>
-            <Show when={this.props.addressType === 'APOFPO'}>
+            <Show when={this.props.country === 'POSTOFFICE'}>
               <div>
                 <Street name="address"
                   label={i18n.t('address.apoFpo.street.label')}
                   placeholder={i18n.t('address.apoFpo.street.placeholder')}
                   className="mailing"
-                  value={this.props.address}
-                  onChange={this.handleChange.bind(this, 'address')}
+                  value={this.props.street}
+                  onChange={this.updateStreet}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
@@ -224,7 +243,7 @@ export default class Address extends ValidationElement {
                     label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
                     value="APO"
                     disabled={this.props.disabled}
-                    onChange={this.handleChange.bind(this, 'city')}
+                    onChange={this.updateCity}
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                   />
@@ -232,7 +251,7 @@ export default class Address extends ValidationElement {
                     label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
                     value="FPO"
                     disabled={this.props.disabled}
-                    onChange={this.handleChange.bind(this, 'city')}
+                    onChange={this.updateCity}
                     onBlur={this.props.onBlur}
                     onFocus={this.props.onFocus}
                   />
@@ -243,7 +262,7 @@ export default class Address extends ValidationElement {
                     label={i18n.t('address.apoFpo.apoFpo.label')}
                     placeholder={i18n.t('address.apoFpo.apoFpo.placeholder')}
                     value={this.props.state}
-                    onChange={this.handleChange.bind(this, 'state')}
+                    onChange={this.updateState}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
                     onBlur={this.props.onBlur}
@@ -256,7 +275,7 @@ export default class Address extends ValidationElement {
                     label={i18n.t('address.apoFpo.zipcode.label')}
                     placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
                     value={this.props.zipcode}
-                    onChange={this.handleChange.bind(this, 'zipcode')}
+                    onChange={this.updateZipcode}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
                     onBlur={this.props.onBlur}

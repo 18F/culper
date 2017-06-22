@@ -79,11 +79,11 @@ export class RelativeValidator {
       return true
     }
 
-    if (this.address && this.address.addressType === 'United States' && international && citizen) {
+    if (this.address && this.address.country === 'United States' && international && citizen) {
       return true
     }
 
-    if (this.address && this.address.addressType === 'APOFPO' && international && citizen) {
+    if (this.address && this.address.country === 'APOFPO' && international && citizen) {
       return true
     }
 

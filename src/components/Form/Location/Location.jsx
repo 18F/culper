@@ -265,6 +265,15 @@ export default class Location extends ValidationElement {
             onUpdate={this.updateToggleableLocation}
           />
         )
+      case Location.ADDRESS:
+        return (
+          <Address
+            {...this.props}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateAddress}
+            onError={this.props.onError}
+          />
+        )
       case Location.STATE_CITY:
         return this.fields(['state', 'city'])
       case Location.STREET_CITY_COUNTRY:
@@ -393,6 +402,7 @@ Location.STATE_CITY = Layouts.STATE_CITY
 Location.STREET_CITY_COUNTRY = Layouts.STREET_CITY_COUNTRY
 Location.CITY_COUNTRY = Layouts.CITY_COUNTRY
 Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY = Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+Location.ADDRESS = Layouts.ADDRESS
 
 Location.defaultProps = {
   geocode: false,

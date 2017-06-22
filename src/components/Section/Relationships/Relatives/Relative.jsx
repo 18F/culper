@@ -614,7 +614,7 @@ export default class Relative extends ValidationElement {
 
         <Show when={!validator.citizen() && this.state.IsDeceased === 'No'}>
           <div>
-            <Show when={this.state.Address && this.state.Address.addressType === 'United States'}>
+            <Show when={this.state.Address && this.state.Address.country === 'United States'}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
                        comments={false}
@@ -708,7 +708,7 @@ export default class Relative extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.state.Address && this.state.Address.addressType === 'International'}>
+            <Show when={this.state.Address && !['United States', 'POSTOFFICE'].includes(this.state.Address.country)}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.firstcontact')}
                        help="relationships.relatives.help.firstcontact"

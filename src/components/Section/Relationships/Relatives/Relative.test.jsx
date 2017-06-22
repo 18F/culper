@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Relative from './Relative'
+import { Layouts } from '../../../Form/Location'
 
 describe('The relative component', () => {
   it('no error on empty', () => {
@@ -111,13 +112,13 @@ describe('The relative component', () => {
         ]
       },
       Birthplace: {
-        domestic: 'No',
         city: 'Munich',
-        country: 'Germany'
+        country: 'Germany',
+        layout: Layouts.BIRTHPLACE_WITHOUT_COUNTY
       },
       IsDeceased: 'No',
       Address: {
-        addressType: 'United States'
+        country: 'United States'
       }
     }
 
@@ -276,7 +277,7 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { domestic: 'Yes', city: 'Arlington', state: 'Virginia' },
+      Birthplace: { layout: Layouts.BIRTHPLACE_WITHOUT_COUNTY, city: 'Arlington', state: 'Virginia', country: 'United States' },
       Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
       IsDeceased: 'No',
       Address: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
@@ -285,6 +286,7 @@ describe('The relative component', () => {
       }
     }
     const component = mount(<Relative {...expected} />)
+    expect(component.find('.relative-address').length).toBe(1)
     component.find('.relative-address .domestic input').simulate('change')
     component.find('.relative-address .city input').simulate('change', { target: { name: 'city', value: 'City name' } })
     expect(component.find('.relative-document').length).toBeGreaterThan(0)
