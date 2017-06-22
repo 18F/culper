@@ -1,11 +1,9 @@
 import { api } from '../services/api'
+import Layouts from '../components/Form/Location/Layouts'
 
 export default class LocationValidator {
   constructor (data = {}) {
-    // Props
-    this.fields = data.fields || []
-    this.domesticFields = data.domesticFields
-    this.internationalFields = data.internationalFields
+    this.layout = data.layout
 
     // Data
     this.street = data.street
@@ -14,7 +12,6 @@ export default class LocationValidator {
     this.zipcode = data.zipcode
     this.county = data.county
     this.country = data.country
-    this.domestic = data.domestic
   }
 
   validAddress () {
@@ -37,29 +34,6 @@ export default class LocationValidator {
     return !!this.country
   }
 
-  validBirthPlace () {
-    switch (this.domestic) {
-      case 'Yes':
-        return this.validCity() &&
-          this.validState() &&
-          this.validCounty()
-      case 'No':
-        return this.validCity() &&
-          this.validCountry()
-      default:
-        return false
-    }
-  }
-
-  hasAll (...keys) {
-    for (let key of keys) {
-      if (!this.fields[key]) {
-        return false
-      }
-    }
-    return true
-  }
-
   isDomestic () {
     return this.country === 'United States'
   }
@@ -68,13 +42,41 @@ export default class LocationValidator {
     return !!this.country
   }
 
-  validFields () {
-    return this.fields && !!this.fields.length
+  validLocation () {
+    switch (this.layout) {
+      case Layouts.BIRTHPLACE:
+        if (this.isDomestic()) {
+          return this.validFields(['city', 'state', 'county'])
+        }
+        return this.validFields(['city', 'country'])
+      case Layouts.BIRTHPLACE_WITHOUT_COUNTY:
+        if (this.isDomestic()) {
+          return this.validFields(['city', 'state'])
+        }
+        return this.validFields(['city', 'country'])
+      case Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
+        if (this.isDomestic()) {
+          return this.validFields(['city', 'state', 'zipcode'])
+        }
+        return this.validFields(['city', 'country'])
+      case Layouts.STATE_CITY:
+        return this.validFields(['state', 'city'])
+      case Layouts.STREET_CITY_COUNTRY:
+        return this.validFields(['street', 'city', 'country'])
+      case Layouts.CITY_COUNTRY:
+        return this.validFields(['city', 'country'])
+      default:
+        return false
+
+    }
   }
 
-  validLocation () {
+  validFields (fields) {
+    if (!fields || !fields.length) {
+      return false
+    }
     let valid = true
-    for (let field of this.fields) {
+    for (let field of fields) {
       switch (field) {
         case 'address':
           valid = valid && this.validAddress()
@@ -91,12 +93,13 @@ export default class LocationValidator {
         case 'country':
           valid = valid && this.validCountry()
           break
-        case 'birthPlace':
-          valid = valid && this.validBirthPlace()
-          break
       }
     }
     return valid
+  }
+
+  isValid () {
+    return this.validLocation()
   }
 
   isSystemError (data) {
@@ -141,7 +144,4 @@ export default class LocationValidator {
     })
   }
 
-  isValid () {
-    return this.validFields() && this.validLocation()
-  }
 }

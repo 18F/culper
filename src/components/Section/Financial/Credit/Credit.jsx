@@ -112,10 +112,9 @@ export default class Credit extends SubsectionElement {
                    help="financial.credit.help.address"
                    adjustFor="label">
               <Location name="Location"
-                          fields={['state', 'city']}
+                          layout={Location.STATE_CITY}
                           className="credit-location"
                           bind={true}
-                          branch={false}
                           help=""
                           hideCounty={true}
                           domestic="Yes"

@@ -395,15 +395,13 @@ export default class Relative extends ValidationElement {
                validate={false}>
           <Location name="Birthplace"
                       label={i18n.t('relationships.relatives.label.birthplace')}
+                      layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
                       help=""
                       cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
                       countryPlaceholder={i18n.t('relationships.relatives.placeholder.country')}
                       hideCounty={true}
                       className="relative-birthplace"
                       {...this.state.Birthplace}
-                      toggle={true}
-                      domesticFields={['state', 'city']}
-                      internationalFields={['city', 'country']}
                       onError={this.props.onError}
                       onUpdate={this.updateBirthplace}
                       />

@@ -1,4 +1,5 @@
 import CreditValidator, { CreditItemValidator } from './credit'
+import { Layouts } from '../components/Form/Location'
 
 describe('credit component validation', function () {
   it('validate reason', () => {
@@ -89,10 +90,10 @@ describe('credit component validation', function () {
       {
         state: {
           Location: {
-            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States'
+            country: 'United States',
+            layout: Layouts.STATE_CITY
           }
         },
         expected: true
@@ -219,10 +220,10 @@ describe('credit component validation', function () {
                 extension: ''
               },
               Location: {
-                domestic: 'Yes',
                 city: 'Arlington',
                 state: 'Virginia',
-                country: 'United States'
+                country: 'United States',
+                layout: Layouts.STATE_CITY
               },
               Description: {
                 value: 'The description'

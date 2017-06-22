@@ -1,5 +1,6 @@
 import ForeignBusinessSponsorshipValidator, { SponsorshipValidator } from './foreignbusinesssponsorship'
 import { battery } from './helpers'
+import { Layouts } from '../components/Form/Location'
 
 describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship name', () => {
@@ -95,7 +96,7 @@ describe('Foreign business sponsorship component validation', function () {
           Address: {
             city: 'Arlington',
             country: 'Germnay',
-            fields: ['city', 'country']
+            layout: Layouts.CITY_COUNTRY
           }
         },
         expected: true
@@ -336,7 +337,7 @@ describe('Foreign business sponsorship component validation', function () {
               Address: {
                 country: 'United States',
                 city: 'Arlington',
-                fields: ['city', 'country']
+                layout: Layouts.CITY_COUNTRY
               },
               Citizenship: {
                 value: [{ name: 'Germany', value: 'Germany' }]

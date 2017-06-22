@@ -1,4 +1,5 @@
 import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
+import { Layouts } from '../components/Form/Location'
 
 describe('Foreign RealEstate Activity validation', function () {
   it('should validate list of indirect interests', function () {
@@ -34,11 +35,10 @@ describe('Foreign RealEstate Activity validation', function () {
                   value: 'Bar'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  street: '123 Some rd',
                   city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202'
+                  country: 'United States',
+                  layout: Layouts.STREET_CITY_COUNTRY
                 },
                 Acquired: {
                   day: '1',

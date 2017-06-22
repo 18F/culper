@@ -106,6 +106,7 @@ export default class Sponsorship extends SubsectionElement {
                    adjustFor="birthplace"
                    validate={false}>
               <Location name="Birthplace"
+                          layout={Location.CITY_COUNTRY}
                           fields={['city', 'country']}
                           help=""
                           label={i18n.t('foreign.business.sponsorship.label.birthplace')}

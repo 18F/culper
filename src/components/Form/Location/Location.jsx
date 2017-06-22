@@ -14,21 +14,10 @@ import { i18n } from '../../../config'
 import ToggleableLocation from './ToggleableLocation'
 import { LocationValidator } from '../../../validators'
 import { AddressSuggestion } from './AddressSuggestion'
-
-export const fieldsToValidate = (props) => {
-  switch (true) {
-    // If we've defined domestic and international props, then send up the appropriate fields
-    case (!!props.domesticFields.length && !!props.internationalFields.length):
-      if (props.country === 'United States') {
-        return props.domesticFields
-      }
-      return props.internationalFields
-    default:
-      return props.fields
-  }
-}
+import Layouts from './Layouts'
 
 export default class Location extends ValidationElement {
+
   constructor (props) {
     super(props)
     this.update = this.update.bind(this)
@@ -54,15 +43,13 @@ export default class Location extends ValidationElement {
 
   update (updateValues) {
     if (this.props.onUpdate) {
-      const fields = fieldsToValidate(this.props)
-      console.log(fields)
       this.props.onUpdate({
         street: this.props.street,
         city: this.props.city,
         zipcode: this.props.zipcode,
         state: this.props.state,
         country: this.props.country,
-        fields: fields,
+        layout: this.props.layout,
         validated: false,
         ...updateValues
       })
@@ -141,8 +128,8 @@ export default class Location extends ValidationElement {
     })
   }
 
-  fields () {
-    return this.props.fields.map(field => {
+  fields (fields) {
+    return fields.map(field => {
       switch (field) {
         case 'address':
           return (
@@ -243,6 +230,55 @@ export default class Location extends ValidationElement {
     })
   }
 
+  /**
+   * Maps fields to Location constant to determine layout
+   */
+  fieldMappings () {
+    switch (this.props.layout) {
+      case Location.BIRTHPLACE:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            domesticFields={['state', 'city', 'county']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+          />
+        )
+      case Location.BIRTHPLACE_WITHOUT_COUNTY:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            domesticFields={['state', 'city']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+          />
+        )
+      case Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
+        return (
+          <ToggleableLocation
+            {...this.props}
+            domesticFields={['city', 'stateZipcode']}
+            internationalFields={['city', 'country']}
+            onBlur={this.handleBlur}
+            onUpdate={this.updateToggleableLocation}
+          />
+        )
+      case Location.STATE_CITY:
+        return this.fields(['state', 'city'])
+      case Location.STREET_CITY_COUNTRY:
+        return this.fields(['street', 'city', 'country'])
+      case Location.CITY_COUNTRY:
+        return this.fields(['city', 'country'])
+      case null:
+      case undefined:
+      default:
+        console.warn('Location layout not specified. Add one please')
+        return null
+    }
+  }
+
   render () {
     const klass = `location ${this.props.className || ''}`.trim()
     return (
@@ -264,18 +300,7 @@ export default class Location extends ValidationElement {
             onSuggestion={this.onSuggestion.bind(this)}
             suggestionUseLabel={i18n.t('suggestions.address.use')}>
             <div>
-              <Show when={!this.props.toggle}>
-                <div>
-                  {this.fields()}
-                </div>
-              </Show>
-              <Show when={this.props.toggle}>
-                <ToggleableLocation
-                  {...this.props}
-                  onBlur={this.handleBlur}
-                  onUpdate={this.updateToggleableLocation}
-                />
-              </Show>
+              {this.fieldMappings()}
             </div>
           </Suggestions>
         </div>
@@ -362,10 +387,14 @@ export default class Location extends ValidationElement {
   }
 }
 
+Location.BIRTHPLACE = Layouts.BIRTHPLACE
+Location.BIRTHPLACE_WITHOUT_COUNTY = Layouts.BIRTHPLACE_WITHOUT_COUNTY
+Location.STATE_CITY = Layouts.STATE_CITY
+Location.STREET_CITY_COUNTRY = Layouts.STREET_CITY_COUNTRY
+Location.CITY_COUNTRY = Layouts.CITY_COUNTRY
+Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY = Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+
 Location.defaultProps = {
-  fields: [],
-  domesticFields: [],
-  internationalFields: [],
   geocode: false,
   cityLabel: i18n.t('address.us.city.label'),
   cityPlaceholder: i18n.t('address.us.city.placeholder'),
@@ -376,4 +405,3 @@ Location.defaultProps = {
 }
 
 Location.errors = []
-

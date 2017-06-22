@@ -97,14 +97,11 @@ export default class Contact extends SubsectionElement {
                    help="foreign.business.contact.help.location"
                    adjustFor="address">
               <Location name="Location"
+                          layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                           help=""
                           label={i18n.t('foreign.business.contact.label.location')}
                           cityPlaceholder={i18n.t('foreign.business.contact.placeholder.city')}
                           countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
-                          hideCounty={true}
-                          toggle={true}
-                          domesticFields={['city', 'stateZipcode']}
-                          internationalFields={['city', 'country']}
                           className="birthplace foreign-business-contact-location"
                           bind={true}
                           />

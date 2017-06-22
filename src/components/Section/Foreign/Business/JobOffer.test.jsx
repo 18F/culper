@@ -15,7 +15,7 @@ describe('The foreign business job offer component', () => {
     component.find('.employment-name .first input').simulate('change')
     component.find('.employment-description textarea').simulate('change')
     component.find('.employment-date .day input').simulate('change')
-    component.find('.employment-address .mailing input').simulate('change')
+    component.find('.employment-address .yes input').simulate('change')
     component.find('.employment-accepted .yes input').simulate('change')
     component.find('.employment-explanation textarea').simulate('change')
     expect(updates).toBe(14)

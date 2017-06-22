@@ -1,7 +1,7 @@
 import React from 'react'
-import BirthPlaceValidator from '../../../../validators/birthplace'
+import LocationValidator from '../../../../validators/birthplace'
 import SubsectionElement from '../../SubsectionElement'
-import { BirthPlace, Location } from '../../../Form'
+import { Location } from '../../../Form'
 
 export default class ApplicantBirthPlace extends SubsectionElement {
   render () {
@@ -10,9 +10,8 @@ export default class ApplicantBirthPlace extends SubsectionElement {
     return (
       <div className={klass}>
         <Location name="ssn"
-             toggle={true}
-             domesticFields={['state', 'city', 'county']}
-             internationalFields={['city', 'country']}
+             layout={Location.BIRTHPLACE}
+             label="Were you born in the United States?"
              {...this.props.value}
              onUpdate={this.props.onUpdate}
              onError={this.handleError}
@@ -29,7 +28,7 @@ ApplicantBirthPlace.defaultProps = {
   subsection: 'birthplace',
   dispatch: () => {},
   validator: (state, props) => {
-    return new BirthPlaceValidator(props.value, props).isValid()
+    return new LocationValidator(props.value, props).isValid()
   }
 }
 

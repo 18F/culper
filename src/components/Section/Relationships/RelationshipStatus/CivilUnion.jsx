@@ -204,12 +204,10 @@ export default class CivilUnion extends ValidationElement {
 
           <h3>{i18n.t('relationships.civilUnion.heading.birthplace')}</h3>
           <Location name="birthplace"
+                      layout={Location.BIRTHPLACE}
                       className="birthplace"
                       label={i18n.t('relationships.civilUnion.label.birthplace')}
                       {...this.state.BirthPlace}
-                      toggle={true}
-                      domesticFields={['state', 'city', 'county']}
-                      internationalFields={['city', 'country']}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       />

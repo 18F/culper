@@ -141,6 +141,7 @@ export default class RealEstateInterest extends ValidationElement {
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}
                adjustFor="address">
           <Location name="Address"
+                   layout={Location.STREET_CITY_COUNTRY}
                    fields={['street', 'city', 'country']}
                    label={i18n.t('foreign.activities.realestate.interest.label.address')}
                    {...this.props.Address}

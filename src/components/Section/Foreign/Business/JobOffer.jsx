@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Show,
-         Address, Textarea, Name, DateControl } from '../../../Form'
+         Address, Textarea, Name, DateControl, Location } from '../../../Form'
 
 export default class JobOffer extends ValidationElement {
   constructor (props) {
@@ -71,6 +71,7 @@ export default class JobOffer extends ValidationElement {
               className="employment-name"
               onUpdate={this.updateName}
               onError={this.props.onError}
+              {...this.props.Name}
               />
 
         <Field title={i18n.t('foreign.business.employment.heading.description')}>
@@ -78,6 +79,7 @@ export default class JobOffer extends ValidationElement {
                     className="employment-description"
                     onUpdate={this.updateDescription}
                     onError={this.props.onError}
+                    {...this.props.Description}
                     />
         </Field>
 
@@ -85,6 +87,7 @@ export default class JobOffer extends ValidationElement {
                help="foreign.business.employment.help.date"
                adjustFor="label">
           <DateControl name="Date"
+                       {...this.props.Date}
                        className="employment-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -93,7 +96,10 @@ export default class JobOffer extends ValidationElement {
 
         <Field title={i18n.t('foreign.business.employment.heading.address')}
                adjustFor="address">
-          <Address name="Address"
+          <Location name="Address"
+                   {...this.props.Address}
+                   label={'Did this occur in the United States?'}
+                   layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                    className="employment-address"
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
@@ -113,6 +119,7 @@ export default class JobOffer extends ValidationElement {
           <Field title={i18n.t('foreign.business.employment.label.explanation')}
                  titleSize="label">
             <Textarea name="Explanation"
+                      {...this.props.Explanation}
                       className="employment-explanation"
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}

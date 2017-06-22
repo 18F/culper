@@ -122,12 +122,10 @@ export default class Divorce extends React.Component {
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}>
           <Location name="birthplace"
+                      layout={Location.BIRTHPLACE}
                       label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
                       className="birthplace"
                       {...this.state.BirthPlace}
-                      toggle={true}
-                      domesticFields={['state', 'city', 'county']}
-                      internationalFields={['city', 'country']}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       />
