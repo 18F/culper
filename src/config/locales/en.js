@@ -2791,7 +2791,7 @@ const en = {
     us: {
       street: {
         label: 'Street',
-        placeholder: 'Enter mailing address'
+        placeholder: 'Enter street address'
       },
       city: {
         label: 'City',
