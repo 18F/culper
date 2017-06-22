@@ -38,7 +38,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
 
   handleError (value, arr) {
     const then = new Date(this.state.value)
-    if (isNaN(then.getFullYear()) || then.getFullYear() < 1000) {
+    if (isNaN(then.getFullYear()) || then.getFullYear() < 1000 || arr.some(x => x.valid === false)) {
       return super.handleError(value, arr)
     }
 
