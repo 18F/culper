@@ -897,10 +897,11 @@ describe('Relatives validation', function () {
             country: 'Germany'
           },
           CourtAddress: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            country: 'United States',
+            layout: Location.US_ADDRESS
           }
         },
         expected: true
@@ -1353,10 +1354,10 @@ describe('Relatives validation', function () {
             country: 'Germany'
           },
           EmployerAddress: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'United States',
+            layout: Location.STREET_CITY
           }
         },
         expected: true

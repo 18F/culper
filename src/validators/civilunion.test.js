@@ -34,11 +34,11 @@ describe('CivilUnion validation', function () {
           Separated: 'Yes',
           AddressSeparatedNotApplicable: false,
           AddressSeparated: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           },
           DateSeparated: {
             day: '1',
@@ -149,6 +149,14 @@ describe('CivilUnion validation', function () {
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
+            layout: Location.BIRTHPLACE
+          },
+          Location: {
+            country: 'United States',
+            city: 'Arlington',
+            state: 'Virginia',
+            county: 'Arlington',
+            zipcode: '22202',
             layout: Location.BIRTHPLACE
           },
           Address: {

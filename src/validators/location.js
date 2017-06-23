@@ -73,6 +73,8 @@ export default class LocationValidator {
         return this.validFields(['city', 'country'])
       case Layouts.US_ADDRESS:
         return this.validFields(['street', 'city', 'state', 'zipcode'])
+      case Layouts.STREET_CITY:
+        return this.validFields(['street', 'city'])
       default:
         return false
 

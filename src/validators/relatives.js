@@ -201,7 +201,7 @@ export class RelativeValidator {
       return true
     }
 
-    return new AddressValidator(this.courtAddress, null).isValid()
+    return new LocationValidator(this.courtAddress, null).isValid()
   }
 
   validDocument () {
@@ -289,7 +289,7 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.employerAddress && new AddressValidator(this.employerAddress, null).isValid()
+    return !!this.employerAddress && new LocationValidator(this.employerAddress).isValid()
   }
 
   validEmployerRelationship () {

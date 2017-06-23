@@ -1,6 +1,6 @@
 import AddressValidator from './address'
-import NameValidator from './name'
 import LocationValidator from './location'
+import NameValidator from './name'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
 import { validBranch, validSSN, validDateField, validPhoneNumber } from './helpers'
@@ -17,6 +17,7 @@ export default class CivilUnionValidator {
     this.otherNameNotApplicable = state.OtherNameNotApplicable
     this.datesUsed = state.DatesUsed
     this.citizenship = state.Citizenship
+    this.location = state.Location
     this.address = state.Address
     this.telephone = state.Telephone
     this.separated = state.Separated
@@ -49,7 +50,7 @@ export default class CivilUnionValidator {
 
     let addressValid = true
     if (!this.addressSeparatedNotApplicable) {
-      addressValid = new AddressValidator(this.addressSeparated).isValid()
+      addressValid = new LocationValidator(this.addressSeparated).isValid()
     }
 
     return validDateField(this.dateSeparated) && addressValid
@@ -71,6 +72,7 @@ export default class CivilUnionValidator {
       validSSN(this.ssn) &&
       validBranch(this.separated) &&
       new AddressValidator(this.address).isValid() &&
+      new LocationValidator(this.location).isValid() &&
       this.validSeparated() &&
       this.validCitizenship() &&
       !!this.divorced

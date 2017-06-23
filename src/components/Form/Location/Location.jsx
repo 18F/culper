@@ -280,6 +280,8 @@ export default class Location extends ValidationElement {
         return this.renderFields(['city', 'state', 'country'])
       case Location.US_ADDRESS:
         return this.renderFields(['street', 'city', 'stateZipcode'])
+      case Location.STREET_CITY:
+        return this.renderFields(['street', 'city'])
       case null:
       case undefined:
       default:
@@ -397,6 +399,7 @@ export default class Location extends ValidationElement {
 }
 
 Location.BIRTHPLACE = Layouts.BIRTHPLACE
+Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY = Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY
 Location.BIRTHPLACE_WITHOUT_COUNTY = Layouts.BIRTHPLACE_WITHOUT_COUNTY
 Location.CITY_STATE = Layouts.CITY_STATE
 Location.STREET_CITY_COUNTRY = Layouts.STREET_CITY_COUNTRY
@@ -405,6 +408,7 @@ Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY = Layouts.US_CITY_STATE_ZIP_INTERN
 Location.ADDRESS = Layouts.ADDRESS
 Location.CITY_STATE_COUNTRY = Layouts.CITY_STATE_COUNTRY
 Location.US_ADDRESS = Layouts.US_ADDRESS
+Location.STREET_CITY = Layouts.STREET_CITY
 
 Location.defaultProps = {
   geocode: false,

@@ -601,8 +601,9 @@ export default class Relative extends ValidationElement {
             <Field title={i18n.t('relationships.relatives.heading.us.address')}
                    titleSize="h3"
                    help="relationships.relatives.help.courtaddress"
-                   adjustFor="address">
-              <Address name="CourtAddress"
+                   adjustFor="labels">
+              <Location name="CourtAddress"
+                       layout={Location.US_ADDRESS}
                        className="relative-courtaddress"
                        {...this.state.CourtAddress}
                        onError={this.props.onError}
@@ -864,7 +865,8 @@ export default class Relative extends ValidationElement {
                                  or={i18n.m('relationships.relatives.para.or')}
                                  onError={this.props.onError}
                                  onUpdate={this.updateEmployerAddressNotApplicable}>
-                    <Address name="EmployerAddress"
+                    <Location name="EmployerAddress"
+                             layout={Location.STREET_CITY}
                              className="relative-employer-address"
                              {...this.state.EmployerAddress}
                              onError={this.props.onError}

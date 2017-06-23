@@ -2393,6 +2393,7 @@ const en = {
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Provide other names used',
         citizenship: 'Provide country(ies) of citizenship',
+        location: 'Provide location',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2412,7 +2413,9 @@ const en = {
         othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
       },
       label: {
-        birthplace: 'Was this person born in the United States of America?'
+        birthplace: 'Was this person born in the United States of America?',
+        location: 'Was this location in the United States?',
+        addressSeparated: 'Was this location in the United States?'
       },
       divorce: {
         heading: {
