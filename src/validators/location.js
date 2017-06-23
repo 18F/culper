@@ -14,8 +14,8 @@ export default class LocationValidator {
     this.country = data.country
   }
 
-  validAddress () {
-    return !!this.address
+  validStreet () {
+    return !!this.street
   }
 
   validCity () {
@@ -90,6 +90,9 @@ export default class LocationValidator {
       switch (field) {
         case 'address':
           valid = valid && this.validAddress()
+          break
+        case 'street':
+          valid = valid && this.validStreet()
           break
         case 'city':
           valid = valid && this.validCity()

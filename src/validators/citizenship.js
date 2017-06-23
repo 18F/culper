@@ -90,7 +90,7 @@ export default class CitizenshipValidator {
 
     return validGenericTextfield(this.residenceStatus) &&
       validDateField(this.entryDate) &&
-      new AddressValidator(this.entryLocation, null).isValid() &&
+      new LocationValidator(this.entryLocation, null).isValid() &&
       this.validCitizenships(this.priorCitizenship) &&
       validGenericTextfield(this.alienRegistrationNumber) &&
       validDateField(this.alienRegistrationExpiration) &&

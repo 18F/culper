@@ -358,7 +358,7 @@ describe('citizenship component validation', function () {
           },
           CertificateCourtAddress: {
             country: 'United States',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
             zipcode: '22202',
@@ -435,11 +435,10 @@ describe('citizenship component validation', function () {
             date: new Date('1/1/2016')
           },
           EntryLocation: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States',
+            layout: Location.CITY_STATE
           },
           PriorCitizenship: {
             value: ['Germany']
