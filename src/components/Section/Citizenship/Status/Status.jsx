@@ -187,7 +187,6 @@ export default class Status extends SubsectionElement {
     return (
       <div className="status">
         <Field title={i18n.t('citizenship.status.heading.citizenshipstatus')}
-               help="citizenship.status.help.citizenshipstatus"
                adjustFor="buttons">
           <RadioGroup className="citizenship-status"
                       selectedValue={this.state.CitizenshipStatus}>
@@ -232,7 +231,6 @@ export default class Status extends SubsectionElement {
         <Show when={this.state.CitizenshipStatus === 'ForeignBorn'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.abroad')}
-                   help="citizenship.status.help.abroad"
                    adjustFor="buttons"
                    comments={true}
                    commentsName="Explanation"
@@ -273,8 +271,7 @@ export default class Status extends SubsectionElement {
               </RadioGroup>
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentnumber.foreignborn')}
-                   help="citizenship.status.help.documentnumber">
+            <Field title={i18n.t('citizenship.status.heading.documentnumber.foreignborn')}>
               <Text name="DocumentNumber"
                     className="document-number"
                     {...this.state.DocumentNumber}
@@ -284,7 +281,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
-                   help="citizenship.status.help.documentissued"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="DocumentIssued"
@@ -296,7 +292,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.placeissued')}
-                   help="citizenship.status.help.placeissued"
                    adjustFor="address"
                    shrink={true}>
               <Address name="PlaceIssued"
@@ -315,8 +310,7 @@ export default class Status extends SubsectionElement {
                   onError={this.handleError}
                   />
 
-            <Field title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}
-                   help="citizenship.status.help.certificatenumber">
+            <Field title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}>
               <Text name="CertificateNumber"
                     className="certificate-number"
                     {...this.state.CertificateNumber}
@@ -326,7 +320,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.foreignborn')}
-                   help="citizenship.status.help.certificateissued"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="CertificateIssued"
@@ -350,14 +343,12 @@ export default class Status extends SubsectionElement {
                     labelSize="h3"
                     className="born-on-military-installation"
                     value={this.state.BornOnMilitaryInstallation}
-                    help="citizenship.status.help.bornonmilitaryinstallation"
                     onUpdate={this.updateBornOnMilitaryInstallation}
                     onError={this.handleError}
                     />
 
             <Show when={this.state.BornOnMilitaryInstallation === 'Yes'}>
-              <Field title={i18n.t('citizenship.status.heading.militarybase')}
-                     help="citizenship.status.help.militarybase">
+              <Field title={i18n.t('citizenship.status.heading.militarybase')}>
                 <Text name="MilitaryBase"
                       className="military-base"
                       {...this.state.MilitaryBase}

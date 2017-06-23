@@ -88,8 +88,7 @@ export default class PassportItem extends ValidationElement {
   render () {
     return (
       <div className="passport-item">
-        <Field title={i18n.t('citizenship.multiple.heading.passport.country')}
-               help="citizenship.multiple.help.passport.country">
+        <Field title={i18n.t('citizenship.multiple.heading.passport.country')}>
           <Country name="Country"
                    {...this.state.Country}
                    onUpdate={this.updateCountry}
@@ -98,7 +97,6 @@ export default class PassportItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.issued')}
-               help="citizenship.multiple.help.passport.issued"
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Issued"
@@ -155,7 +153,6 @@ export default class PassportItem extends ValidationElement {
                 labelSize="h3"
                 className="passport-used"
                 value={this.state.Used}
-                help="citizenship.multiple.help.passport.used"
                 onUpdate={this.updateUsed}
                 onError={this.props.onError}
                 />
