@@ -1,13 +1,41 @@
 @import 'eqip-colors';
 
 .saved-indicator {
-  text-align: center;
-  clear: both;
-  color: $eapp-grey-darker;
+  position: fixed;
+  right: 0;
+  bottom: 45vh;
   font-size: smaller;
-  margin: 3rem 8rem 0 4rem;
+  text-align: center;
+  color: $eapp-grey-darker;
+  background-color: #fff;
+  padding: 1rem 2rem;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+
+  &:active,
+  &:hover {
+    background-color: #fff;
+    color: $eapp-grey-darker;
+
+    i {
+      background-color: $eapp-blue-dark;
+    }
+  }
 
   i {
-    margin-right: 0.5rem;
+    display: block;
+    color: #fff;
+    background-color: $eapp-blue;
+    padding: 1.75rem;
+    border-radius: 50%;
+    font-size: 2.5rem;
+  }
+
+  strong {
+    display: block;
+  }
+
+  span.time {
+    display: block;
   }
 }

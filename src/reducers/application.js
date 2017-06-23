@@ -78,12 +78,7 @@ export default combineReducers({
   Psychological: reducer('Psychological'),
   SubstanceUse: reducer('SubstanceUse'),
   Completed: errorReducer('Completed'),
-  Errors: errorReducer('Errors'),
-  Saved: (state = {}) => {
-    // Store when things were last saved
-    state.date = new Date()
-    return state
-  }
+  Errors: errorReducer('Errors')
 })
 
 // Or alternative...
