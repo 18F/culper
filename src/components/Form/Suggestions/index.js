@@ -1,2 +1,3 @@
-import Suggestions from './Suggestions'
+import Suggestions, { applyFixedModal } from './Suggestions'
 export default Suggestions
+export { applyFixedModal }

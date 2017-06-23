@@ -12,6 +12,12 @@
     margin-top: 5vh !important;
     margin-bottom: 5vh !important;
 
+    @media only screen and (max-height: 850px) {
+      height: 100vh;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
     .introduction-legal {
       overflow-y: scroll;
       max-height: 55vh;
