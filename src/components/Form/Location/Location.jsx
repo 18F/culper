@@ -5,10 +5,7 @@ import MilitaryState from '../MilitaryState'
 import City from '../City'
 import Country from '../Country'
 import ZipCode from '../ZipCode'
-import RadioGroup from '../RadioGroup'
-import Radio from '../Radio'
 import Suggestions from '../Suggestions'
-import Show from '../Show'
 import Address from './Address'
 import { i18n } from '../../../config'
 import ToggleableLocation from './ToggleableLocation'
@@ -31,7 +28,7 @@ export default class Location extends ValidationElement {
     this.updateToggleableLocation = this.updateToggleableLocation.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
-    this.fields = this.fields.bind(this)
+    this.renderFields = this.renderFields.bind(this)
 
     // Instance field to prevent setState calls after unmount
     this.geocodeCancel = false
@@ -58,9 +55,7 @@ export default class Location extends ValidationElement {
 
   handleBlur (event) {
     super.handleBlur(event)
-
     const v = new LocationValidator(this.props)
-    console.log(v.isValid())
     if (!this.props.geocode || this.props.validated || !v.canGeocode()) {
       return
     }
@@ -128,7 +123,7 @@ export default class Location extends ValidationElement {
     })
   }
 
-  fields (fields) {
+  renderFields (fields) {
     return fields.map(field => {
       switch (field) {
         case 'address':
@@ -145,8 +140,8 @@ export default class Location extends ValidationElement {
             <Street name="street"
               key={field}
               className="street"
-              label={i18n.t('address.us.street.label')}
-              placeholder={i18n.t('address.us.street.placeholder')}
+              label={this.props.streetLabel}
+              placeholder={this.props.streetPlaceholder}
               value={this.props.street}
               onChange={this.updateStreet}
               onError={this.props.onError}
@@ -159,7 +154,7 @@ export default class Location extends ValidationElement {
             <City name="city"
               className="city"
               key={field}
-              label={i18n.t('address.us.city.label')}
+              label={this.props.cityLabel}
               placeholder={this.props.cityPlaceholder}
               value={this.props.city}
               onChange={this.updateCity}
@@ -173,8 +168,8 @@ export default class Location extends ValidationElement {
             <MilitaryState name="state"
               key={field}
               className="state"
-              label={i18n.t('address.us.state.label')}
-              placeholder={i18n.t('address.us.state.placeholder')}
+              label={this.props.stateLabel}
+              placeholder={this.props.statePlaceholder}
               value={this.props.state}
               includeStates="true"
               onChange={this.updateState}
@@ -189,8 +184,8 @@ export default class Location extends ValidationElement {
               <MilitaryState name="state"
                 key={`state-${field}`}
                 className="state"
-                label={i18n.t('address.us.state.label')}
-                placeholder={i18n.t('address.us.state.placeholder')}
+                label={this.props.stateLabel}
+                placeholder={this.props.statePlaceholder}
                 value={this.props.state}
                 includeStates="true"
                 onChange={this.updateState}
@@ -201,8 +196,8 @@ export default class Location extends ValidationElement {
               <ZipCode name="zipcode"
                 key={`zip-${field}`}
                 className="zipcode"
-                label={i18n.t('address.us.zipcode.label')}
-                placeholder={i18n.t('address.us.zipcode.placeholder')}
+                label={this.props.zipcodeLabel}
+                placeholder={this.props.zipcodePlaceholder}
                 value={this.props.zipcode}
                 onChange={this.updateZipcode}
                 onError={this.handleError}
@@ -216,8 +211,8 @@ export default class Location extends ValidationElement {
             <Country name="country"
               className="country"
               key={field}
-              label={i18n.t('address.international.country.label')}
-              placeholder={i18n.t('address.international.country.placeholder')}
+              label={this.props.countryLabel}
+              placeholder={this.props.countryPlaceholder}
               value={this.props.country}
               excludeUnitedStates="true"
               onChange={this.updateCountry}
@@ -274,12 +269,12 @@ export default class Location extends ValidationElement {
             onError={this.props.onError}
           />
         )
-      case Location.STATE_CITY:
-        return this.fields(['state', 'city'])
+      case Location.CITY_STATE:
+        return this.renderFields(['city', 'state'])
       case Location.STREET_CITY_COUNTRY:
-        return this.fields(['street', 'city', 'country'])
+        return this.renderFields(['street', 'city', 'country'])
       case Location.CITY_COUNTRY:
-        return this.fields(['city', 'country'])
+        return this.renderFields(['city', 'country'])
       case null:
       case undefined:
       default:
@@ -398,7 +393,7 @@ export default class Location extends ValidationElement {
 
 Location.BIRTHPLACE = Layouts.BIRTHPLACE
 Location.BIRTHPLACE_WITHOUT_COUNTY = Layouts.BIRTHPLACE_WITHOUT_COUNTY
-Location.STATE_CITY = Layouts.STATE_CITY
+Location.CITY_STATE = Layouts.CITY_STATE
 Location.STREET_CITY_COUNTRY = Layouts.STREET_CITY_COUNTRY
 Location.CITY_COUNTRY = Layouts.CITY_COUNTRY
 Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY = Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
@@ -406,8 +401,14 @@ Location.ADDRESS = Layouts.ADDRESS
 
 Location.defaultProps = {
   geocode: false,
+  streetLabel: i18n.t('address.us.street.label'),
+  streetPlaceholder: i18n.t('address.us.street.placeholder'),
+  stateLabel: i18n.t('address.us.state.label'),
+  statePlaceholder: i18n.t('address.us.state.placeholder'),
   cityLabel: i18n.t('address.us.city.label'),
   cityPlaceholder: i18n.t('address.us.city.placeholder'),
+  zipcodePlaceholder: i18n.t('address.us.zipcode.placeholder'),
+  zipcodeLabel: i18n.t('address.us.zipcode.label'),
   countyLabel: i18n.t('identification.birthplace.label.county'),
   countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
   countryLabel: i18n.t('identification.birthplace.label.country'),

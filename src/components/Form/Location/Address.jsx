@@ -59,10 +59,6 @@ export default class Address extends ValidationElement {
     })
   }
 
-  componentWillUnmount () {
-    this.handleAsyncValidation = null
-  }
-
   update (updateValues) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
@@ -75,19 +71,6 @@ export default class Address extends ValidationElement {
       })
     }
   }
-
-  //handleError (value, arr) {
-    //arr = arr.map(err => {
-      //return {
-        //code: `address.${err.code}`,
-        //valid: err.valid,
-        //uid: err.uid
-      //}
-    //})
-
-    //// Take the original and concatenate our new error values to it
-    //return this.props.onError(value, arr)
-  //}
 
   addressTypeFunc (props) {
     switch (true) {
@@ -146,8 +129,8 @@ export default class Address extends ValidationElement {
               <div>
                 <Street name="address"
                   className="mailing"
-                  label={i18n.t('address.us.street.label')}
-                  placeholder={i18n.t('address.us.street.placeholder')}
+                  label={this.props.streetLabel}
+                  placeholder={this.props.streetPlaceholder}
                   value={this.props.street}
                   onChange={this.updateStreet}
                   onError={this.handleError}
@@ -156,8 +139,8 @@ export default class Address extends ValidationElement {
                 />
                 <City name="city"
                   className="city"
-                  label={i18n.t('address.us.city.label')}
-                  placeholder={i18n.t('address.us.city.placeholder')}
+                  label={this.props.cityLabel}
+                  placeholder={this.props.cityPlaceholder}
                   value={this.props.city}
                   onChange={this.updateCity}
                   onError={this.handleError}
@@ -167,8 +150,8 @@ export default class Address extends ValidationElement {
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
                     className="state"
-                    label={i18n.t('address.us.state.label')}
-                    placeholder={i18n.t('address.us.state.placeholder')}
+                    label={this.props.stateLabel}
+                    placeholder={this.props.statePlaceholder}
                     value={this.props.state}
                     includeStates="true"
                     onChange={this.updateState}
@@ -180,8 +163,8 @@ export default class Address extends ValidationElement {
                     ref="us_zipcode"
                     key="us_zipcode"
                     className="zipcode"
-                    label={i18n.t('address.us.zipcode.label')}
-                    placeholder={i18n.t('address.us.zipcode.placeholder')}
+                    label={this.props.zipcodeLabel}
+                    placeholder={this.props.zipcodePlaceholder}
                     value={this.props.zipcode}
                     onChange={this.updateZipcode}
                     onError={this.handleError}
@@ -194,8 +177,8 @@ export default class Address extends ValidationElement {
             <Show when={!['United States', 'POSTOFFICE'].includes(this.props.country)}>
               <div>
                 <Street name="address"
-                  label={i18n.t('address.international.street.label')}
-                  placeholder={i18n.t('address.international.street.placeholder')}
+                  label={this.props.streetLabel}
+                  placeholder={this.props.streetPlaceholder}
                   className="mailing"
                   value={this.props.street}
                   onChange={this.updateStreet}
@@ -205,8 +188,8 @@ export default class Address extends ValidationElement {
                 />
                 <City name="city"
                   className="city"
-                  label={i18n.t('address.international.city.label')}
-                  placeholder={i18n.t('address.international.city.placeholder')}
+                  label={this.props.cityLabel}
+                  placeholder={this.props.cityPlaceholder}
                   value={this.props.city}
                   onChange={this.updateCity}
                   onError={this.handleError}
@@ -214,8 +197,8 @@ export default class Address extends ValidationElement {
                   onBlur={this.props.onBlur}
                 />
                 <Country name="country"
-                  label={i18n.t('address.international.country.label')}
-                  placeholder={i18n.t('address.international.country.placeholder')}
+                  label={this.props.countryLabel}
+                  placeholder={this.props.countryPlaceholder}
                   value={this.props.country}
                   excludeUnitedStates="true"
                   onChange={this.updateCountry}
@@ -293,9 +276,7 @@ export default class Address extends ValidationElement {
 Address.defaultProps = {
   label: i18n.t('address.label'),
   tab: (input) => { input.focus() },
-  addressType: 'United States',
   country: 'United States',
-  disableToggle: false,
   onError: (value, arr) => { return arr }
 }
 

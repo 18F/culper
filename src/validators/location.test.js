@@ -1,5 +1,5 @@
 import LocationValidator from './location'
-import Layouts from '../components/Form/Location/Layouts'
+import Location from '../components/Form/Location'
 
 describe('the location component', function () {
   it('should validate locations', function () {
@@ -10,7 +10,7 @@ describe('the location component', function () {
           state: 'VA',
           county: 'Arlington',
           country: 'United States',
-          layout: Layouts.BIRTHPLACE
+          layout: Location.BIRTHPLACE
         },
         expected: true
       },
@@ -18,7 +18,7 @@ describe('the location component', function () {
         data: {
           city: 'Munich',
           country: 'Germany',
-          layout: Layouts.BIRTHPLACE
+          layout: Location.BIRTHPLACE
         },
         expected: true
       },
@@ -27,7 +27,7 @@ describe('the location component', function () {
           city: 'A-Town',
           state: 'VA',
           country: 'United States',
-          layout: Layouts.BIRTHPLACE_WITHOUT_COUNTY
+          layout: Location.BIRTHPLACE_WITHOUT_COUNTY
         },
         expected: true
       },
@@ -35,7 +35,7 @@ describe('the location component', function () {
         data: {
           city: 'Munich',
           country: 'Germany States',
-          layout: Layouts.BIRTHPLACE_WITHOUT_COUNTY
+          layout: Location.BIRTHPLACE_WITHOUT_COUNTY
         },
         expected: true
       },
@@ -45,7 +45,7 @@ describe('the location component', function () {
           state: 'VA',
           zipcode: '22202',
           country: 'United States',
-          layout: Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+          layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
         },
         expected: true
       },
@@ -53,7 +53,7 @@ describe('the location component', function () {
         data: {
           city: 'Arlington',
           state: 'VA',
-          layout: Layouts.STATE_CITY
+          layout: Location.CITY_STATE
         },
         expected: true
       },
@@ -62,7 +62,7 @@ describe('the location component', function () {
           street: '123 Some rd',
           city: 'Arlington',
           country: 'Germany',
-          layout: Layouts.STREET_CITY_COUNTRY
+          layout: Location.STREET_CITY_COUNTRY
         },
         expected: true
       },
@@ -70,7 +70,7 @@ describe('the location component', function () {
         data: {
           city: 'Munich',
           country: 'Germany',
-          layout: Layouts.CITY_COUNTRY
+          layout: Location.CITY_COUNTRY
         },
         expected: true
       },
