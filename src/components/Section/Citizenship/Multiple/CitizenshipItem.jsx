@@ -123,7 +123,7 @@ export default class CitizenshipItem extends ValidationElement {
                 />
 
         <Show when={this.state.Current === 'Yes'}>
-          <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}
+          <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
             <Textarea name="CurrentExplanation"
                       {...this.state.CurrentExplanation}
                       className="citizenship-current-explanation"
