@@ -1,5 +1,5 @@
 import DivorceValidator from './divorce'
-import { Layouts } from '../components/Form/Location'
+import Location from '../components/Form/Location'
 
 describe('Divorce validation', function () {
   it('validates status', () => {
@@ -96,7 +96,7 @@ describe('Divorce validation', function () {
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
-            layout: Layouts.BIRTHPLACE
+            layout: Location.BIRTHPLACE
           },
           Telephone: {
             noNumber: '',

@@ -1,5 +1,5 @@
 import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
-import { Layouts } from '../components/Form/Location'
+import Location from '../components/Form/Location'
 
 describe('Foreign RealEstate Activity validation', function () {
   it('should validate list of indirect interests', function () {
@@ -38,7 +38,7 @@ describe('Foreign RealEstate Activity validation', function () {
                   street: '123 Some rd',
                   city: 'Arlington',
                   country: 'United States',
-                  layout: Layouts.STREET_CITY_COUNTRY
+                  layout: Location.STREET_CITY_COUNTRY
                 },
                 Acquired: {
                   day: '1',

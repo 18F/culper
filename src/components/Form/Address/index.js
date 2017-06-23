@@ -1,8 +1,7 @@
 import React from 'react'
 import Location from '../Location'
-import Address, { throttle } from './Address'
+import { throttle } from './Address'
 
-//export default Address
 export default class extends React.Component {
   render () {
     return (

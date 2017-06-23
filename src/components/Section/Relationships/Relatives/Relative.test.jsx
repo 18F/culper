@@ -1,7 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Relative from './Relative'
-import { Layouts } from '../../../Form/Location'
+import Location from '../../../Form/Location'
 
 describe('The relative component', () => {
   it('no error on empty', () => {
@@ -114,7 +114,7 @@ describe('The relative component', () => {
       Birthplace: {
         city: 'Munich',
         country: 'Germany',
-        layout: Layouts.BIRTHPLACE_WITHOUT_COUNTY
+        layout: Location.BIRTHPLACE_WITHOUT_COUNTY
       },
       IsDeceased: 'No',
       Address: {
@@ -277,7 +277,7 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { layout: Layouts.BIRTHPLACE_WITHOUT_COUNTY, city: 'Arlington', state: 'Virginia', country: 'United States' },
+      Birthplace: { layout: Location.BIRTHPLACE_WITHOUT_COUNTY, city: 'Arlington', state: 'Virginia', country: 'United States' },
       Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
       IsDeceased: 'No',
       Address: { addressType: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },

@@ -1,5 +1,5 @@
 import CivilUnionValidator from './civilunion'
-import { Layouts } from '../components/Form/Location'
+import Location from '../components/Form/Location'
 
 describe('CivilUnion validation', function () {
   it('validates separated', () => {
@@ -149,7 +149,7 @@ describe('CivilUnion validation', function () {
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
-            layout: Layouts.BIRTHPLACE
+            layout: Location.BIRTHPLACE
           },
           Address: {
             addressType: 'United States',

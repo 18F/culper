@@ -1,5 +1,5 @@
 import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
-import { Layouts } from '../components/Form/Location'
+import Location from '../components/Form/Location'
 
 describe('RealEstate Interest validation', function () {
   it('should validate interest types', function () {
@@ -34,7 +34,7 @@ describe('RealEstate Interest validation', function () {
             street: '123 Some rd',
             city: 'Arlington',
             country: 'United States',
-            layout: Layouts.STREET_CITY_COUNTRY
+            layout: Location.STREET_CITY_COUNTRY
           },
           Acquired: {
             day: '1',
