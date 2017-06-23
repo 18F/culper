@@ -85,6 +85,7 @@ export default class ToggleableLocation extends ValidationElement {
         case 'street':
           return (
             <Street name="street"
+              className="mailing"
               key={key}
               placeholder={this.props.streetPlaceholder}
               value={this.props.street}
@@ -97,6 +98,7 @@ export default class ToggleableLocation extends ValidationElement {
         case 'city':
           return (
             <City name="city"
+              className="city"
               key={key}
               label={i18n.t('address.us.city.label')}
               placeholder={this.props.cityPlaceholder}
@@ -237,5 +239,7 @@ const branchValue = (country) => {
 }
 
 ToggleableLocation.defaultProps = {
-  country: null
+  country: null,
+  domesticFields: [],
+  internationalFields: []
 }

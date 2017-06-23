@@ -103,7 +103,7 @@ export default class Address extends ValidationElement {
               <Radio name="addressType"
                 label={i18n.m('address.options.apoFpo.label')}
                 value="POSTOFFICE"
-                className="apofpo"
+                className="apofpo postoffice"
                 ignoreDeselect="true"
                 disabled={this.props.disabled}
                 onUpdate={this.updateAddressType}
@@ -223,6 +223,7 @@ export default class Address extends ValidationElement {
                 <label>{i18n.t('address.apoFpo.select.label')}</label>
                 <RadioGroup className="apofpo" selectedValue={this.props.city}>
                   <Radio name="apoFpoType"
+                    className="apo"
                     label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
                     value="APO"
                     disabled={this.props.disabled}
@@ -231,6 +232,7 @@ export default class Address extends ValidationElement {
                     onFocus={this.props.onFocus}
                   />
                   <Radio name="addressType"
+                    className="fpo"
                     label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
                     value="FPO"
                     disabled={this.props.disabled}
