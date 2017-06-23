@@ -50,8 +50,7 @@ export default class PrescriptionUse extends ValidationElement {
   render () {
     return (
       <div className="prescription-use">
-        <Field title={i18n.t('substance.drugs.prescription.heading.prescriptionName')}
-          help={'substance.drugs.prescription.help.prescriptionName'}>
+        <Field title={i18n.t('substance.drugs.prescription.heading.prescriptionName')}>
           <Text name="PrescriptionName"
             className="prescription-name"
             {...this.props.PrescriptionName}
@@ -71,8 +70,7 @@ export default class PrescriptionUse extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.prescription.heading.reason')}
-          help={'substance.drugs.prescription.help.reason'}>
+        <Field title={i18n.t('substance.drugs.prescription.heading.reason')}>
           <Textarea name="Reason"
             className="reason"
             {...this.props.Reason}
@@ -84,7 +82,6 @@ export default class PrescriptionUse extends ValidationElement {
         <h3>{i18n.t('substance.drugs.prescription.heading.useWhileEmployed')}</h3>
         <Branch name="UseWhileEmployed"
           className="use-while-employed"
-          help={'substance.drugs.prescription.help.useWhileEmployed'}
           value={this.props.UseWhileEmployed}
           onError={this.props.onError}
           onUpdate={this.updateUseWhileEmployed}>
@@ -93,7 +90,6 @@ export default class PrescriptionUse extends ValidationElement {
         <h3>{i18n.t('substance.drugs.prescription.heading.useWithClearance')}</h3>
         <Branch name="UseWithClearance"
           className="use-with-clearance"
-          help={'substance.drugs.prescription.help.useWithClearance'}
           value={this.props.UseWithClearance}
           onError={this.props.onError}
           onUpdate={this.updateUseWithClearance}>

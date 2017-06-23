@@ -38,8 +38,7 @@ export default class DrugPublicSafetyUse extends ValidationElement {
   render () {
     return (
       <div className="drug-public-safety-use">
-        <Field title={i18n.t('substance.drugs.publicSafety.heading.description')}
-          help={'substance.drugs.publicSafety.help.description'}>
+        <Field title={i18n.t('substance.drugs.publicSafety.heading.description')}>
           <Textarea name="Description"
             className="description"
             {...this.props.Description}
@@ -59,8 +58,7 @@ export default class DrugPublicSafetyUse extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.publicSafety.heading.estimatedUse')}
-          help={'substance.drugs.publicSafety.help.estimatedUse'}>
+        <Field title={i18n.t('substance.drugs.publicSafety.heading.estimatedUse')}>
           <Text name="EstimatedUse"
             className="estimated-use"
             {...this.props.EstimatedUse}

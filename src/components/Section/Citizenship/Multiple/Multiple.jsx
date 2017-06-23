@@ -95,7 +95,6 @@ export default class Multiple extends SubsectionElement {
                 labelSize="h3"
                 className="has-multiple"
                 value={this.state.HasMultiple}
-                help="citizenship.multiple.help.hasmultiple"
                 onUpdate={this.updateHasMultiple}
                 onError={this.handleError}
                 />
