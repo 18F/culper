@@ -80,6 +80,7 @@ export class ReceivedCounselingValidator {
       validGenericTextfield(this.agencyName) &&
       this.validCompletedTreatment() &&
       validDateField(this.treatmentBeganDate) &&
-      validDateField(this.treatmentEndDate)
+      validDateField(this.treatmentEndDate) &&
+      this.treatmentBeganDate.date < this.treatmentEndDate.date
   }
 }

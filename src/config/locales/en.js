@@ -600,6 +600,28 @@ const en = {
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
       }
+    },
+    treatment: {
+      began: {
+        max: {
+          title: 'There is a problem with the date',
+          message: 'The date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'The date should be on or after your date of birth.'
+        }
+      },
+      end: {
+        max: {
+          title: 'There is a problem with the date',
+          message: 'The date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'The date should be after the date treatment began.'
+        }
+      }
     }
     // order: {
     //   datecontrol: {
