@@ -77,7 +77,6 @@ export default class DrugInvolvement extends ValidationElement {
       <div className="drug-involvement">
         <Field title={i18n.t('substance.drugs.involvement.heading.drugType')}
                className="drug-type-involvement"
-               help={'substance.drugs.involvement.help.drugType'}
                adjustFor="labels">
           <DrugType name="DrugType"
                     {...this.props.DrugType}
@@ -100,8 +99,7 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.recentInvolvement')}
-               adjustFor="datecontrol"
-               help={'substance.drugs.involvement.help.recentInvolvement'}>
+               adjustFor="datecontrol">
           <DateControl name="RecentInvolvement"
                        className="recent-involvement"
                        {...this.props.RecentInvolvement}
@@ -112,8 +110,7 @@ export default class DrugInvolvement extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.involvement.heading.natureOfInvolvement')}
-               help={'substance.drugs.involvement.help.natureOfInvolvement'}>
+        <Field title={i18n.t('substance.drugs.involvement.heading.natureOfInvolvement')}>
           <Textarea name="NatureOfInvolvement"
                     className="nature-of-involvement"
                     {...this.props.NatureOfInvolvement}
@@ -122,8 +119,7 @@ export default class DrugInvolvement extends ValidationElement {
                     />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.involvement.heading.reasons')}
-               help={'substance.drugs.involvement.help.reasons'}>
+        <Field title={i18n.t('substance.drugs.involvement.heading.reasons')}>
           <Textarea name="Reasons"
                     className="reasons"
                     {...this.props.Reasons}
@@ -135,7 +131,6 @@ export default class DrugInvolvement extends ValidationElement {
         <h3>{i18n.t('substance.drugs.involvement.heading.involvementWhileEmployed')}</h3>
         <Branch name="InvolvementWhileEmployed"
                 className="involvement-while-employed"
-                help={'substance.drugs.involvement.help.involvementWhileEmployed'}
                 value={this.props.InvolvementWhileEmployed}
                 onError={this.props.onError}
                 onUpdate={this.updateInvolvementWhileEmployed}>
@@ -144,7 +139,6 @@ export default class DrugInvolvement extends ValidationElement {
         <h3>{i18n.t('substance.drugs.involvement.heading.involvementWithClearance')}</h3>
         <Branch name="InvolvementWithClearance"
                 className="involvement-with-clearance"
-                help={'substance.drugs.involvement.help.involvementWithClearance'}
                 value={this.props.InvolvementWithClearance}
                 onError={this.props.onError}
                 onUpdate={this.updateInvolvementWithClearance}>
@@ -153,7 +147,6 @@ export default class DrugInvolvement extends ValidationElement {
         <h3>{i18n.t('substance.drugs.involvement.heading.involvementInFuture')}</h3>
         <Branch name="InvolvementInFuture"
                 className="involvement-in-future"
-                help={'substance.drugs.involvement.help.involvementInFuture'}
                 value={this.props.InvolvementInFuture}
                 onError={this.props.onError}
                 onUpdate={this.updateInvolvementInFuture}>
@@ -161,8 +154,7 @@ export default class DrugInvolvement extends ValidationElement {
 
         <Show when={this.props.InvolvementInFuture === 'Yes'}>
           <Field title={i18n.t('substance.drugs.involvement.heading.explanation')}
-                 titleSize="h4"
-                 help={'substance.drugs.involvement.help.explanation'}>
+                 titleSize="h4">
             <Textarea name="Explanation"
                       className="explanation"
                       {...this.props.Explanation}

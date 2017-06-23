@@ -71,7 +71,6 @@ export default class DrugUse extends ValidationElement {
       <div className="drug-use">
         <Field title={i18n.t('substance.drugs.use.heading.drugType')}
           className="drug-type-use"
-          help={'substance.drugs.use.help.drugType'}
           adjustFor="labels">
           <DrugType name="DrugType"
             {...this.props.DrugType}
@@ -81,8 +80,7 @@ export default class DrugUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.firstUse')}
-          adjustFor="datecontrol"
-          help={'substance.drugs.use.help.firstUse'}>
+          adjustFor="datecontrol">
           <DateControl name="FirstUse"
                        className="first-use"
                        {...this.props.FirstUse}
@@ -94,8 +92,7 @@ export default class DrugUse extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.recentUse')}
-               adjustFor="datecontrol"
-               help={'substance.drugs.use.help.recentUse'}>
+               adjustFor="datecontrol">
           <DateControl name="RecentUse"
                        className="recent-use"
                        {...this.props.RecentUse}
@@ -106,8 +103,7 @@ export default class DrugUse extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.use.heading.natureOfUse')}
-               help={'substance.drugs.use.help.natureOfUse'}>
+        <Field title={i18n.t('substance.drugs.use.heading.natureOfUse')}>
           <Textarea name="NatureOfUse"
                     className="nature-of-use"
                     {...this.props.NatureOfUse}
@@ -119,7 +115,6 @@ export default class DrugUse extends ValidationElement {
         <h3>{i18n.t('substance.drugs.use.heading.useWhileEmployed')}</h3>
         <Branch name="UseWhileEmployed"
                 className="use-while-employed"
-                help={'substance.drugs.use.help.useWhileEmployed'}
                 value={this.props.UseWhileEmployed}
                 onError={this.props.onError}
                 onUpdate={this.updateUseWhileEmployed}>
@@ -128,7 +123,6 @@ export default class DrugUse extends ValidationElement {
         <h3>{i18n.t('substance.drugs.use.heading.useWithClearance')}</h3>
         <Branch name="UseWithClearance"
                 className="use-with-clearance"
-                help={'substance.drugs.use.help.useWithClearance'}
                 value={this.props.UseWithClearance}
                 onError={this.props.onError}
                 onUpdate={this.updateUseWithClearance}>
@@ -137,14 +131,12 @@ export default class DrugUse extends ValidationElement {
         <h3>{i18n.t('substance.drugs.use.heading.useInFuture')}</h3>
         <Branch name="UseInFuture"
                 className="use-in-future"
-                help={'substance.drugs.use.help.useInFuture'}
                 value={this.props.UseInFuture}
                 onError={this.props.onError}
                 onUpdate={this.updateUseInFuture}>
         </Branch>
 
-        <Field title={i18n.t('substance.drugs.use.heading.explanation')}
-               help={'substance.drugs.use.help.explanation'}>
+        <Field title={i18n.t('substance.drugs.use.heading.explanation')}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}

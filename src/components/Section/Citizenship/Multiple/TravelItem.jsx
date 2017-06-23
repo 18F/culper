@@ -34,8 +34,7 @@ export default class TravelItem extends ValidationElement {
   render () {
     return (
       <div className="citizenship-item">
-        <Field title={i18n.t('citizenship.multiple.heading.travel.country')}
-               help="citizenship.multiple.help.travel.country">
+        <Field title={i18n.t('citizenship.multiple.heading.travel.country')}>
           <Country name="Country"
                    {...this.state.Country}
                    onUpdate={this.updateCountry}

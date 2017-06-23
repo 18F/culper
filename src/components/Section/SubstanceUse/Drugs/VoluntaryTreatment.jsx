@@ -65,8 +65,7 @@ export default class VoluntaryTreatment extends ValidationElement {
       <div className="drug-voluntary-treatment">
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.drugType')}
-          className="drug-type-voluntary"
-          help={'substance.drugs.voluntary.help.drugType'}>
+          className="drug-type-voluntary">
           <DrugType name="DrugType"
             {...this.props.DrugType}
             onUpdate={this.updateDrugType}
@@ -75,7 +74,6 @@ export default class VoluntaryTreatment extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProvider')}
-               help={'substance.drugs.voluntary.help.treatmentProvider'}
                adjustFor="label">
           <Text name="TreatmentProvider"
                 label={i18n.t('substance.drugs.voluntary.para.treatmentProvider')}
@@ -120,7 +118,6 @@ export default class VoluntaryTreatment extends ValidationElement {
         <h3>{i18n.t('substance.drugs.voluntary.heading.treatmentCompleted')}</h3>
         <Branch name="TreatmentCompleted"
                 className="treatment-completed"
-                help={'substance.drugs.voluntary.help.treatmentCompleted'}
                 value={this.props.TreatmentCompleted}
                 onError={this.props.onError}
                 onUpdate={this.updateTreatmentCompleted}>
@@ -128,8 +125,7 @@ export default class VoluntaryTreatment extends ValidationElement {
 
         <Show when={this.props.TreatmentCompleted === 'No'}>
           <Field title={i18n.t('substance.drugs.voluntary.heading.noTreatmentExplanation')}
-                 titleSize="h4"
-                 help={'substance.drugs.voluntary.help.noTreatmentExplanation'}>
+                 titleSize="h4">
             <Textarea name="NoTreatmentExplanation"
                       className="no-treatment-explanation"
                       {...this.props.NoTreatmentExplanation}
