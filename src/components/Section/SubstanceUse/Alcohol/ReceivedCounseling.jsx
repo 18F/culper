@@ -98,10 +98,11 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   render () {
+    const maxDate = (this.props.TreatmentEndDate || {}).date || new Date()
+    const minDate = (this.props.TreatmentBeganDate || {}).date || null
     return (
       <div className="voluntary-counseling">
-        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
-               help={'substance.alcohol.receivedCounseling.help.treatmentProviderName'}>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}>
           <Text name="TreatmentProviderName"
                 className="treatment-provider-name"
                 {...this.props.TreatmentProviderName}
@@ -120,8 +121,7 @@ export default class ReceivedCounseling extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
-               help={'substance.alcohol.receivedCounseling.help.agencyName'}>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}>
           <Text name="AgencyName"
                 className="agency-name"
                 {...this.props.AgencyName}
@@ -158,6 +158,8 @@ export default class ReceivedCounseling extends ValidationElement {
           <DateControl name="TreatmentBeganDate"
                        className="treatment-began-date"
                        {...this.props.TreatmentBeganDate}
+                       prefix="treatment.began"
+                       maxDate={maxDate}
                        onUpdate={this.updateTreatmentBeganDate}
                        onError={this.props.onError}
                        />
@@ -170,6 +172,8 @@ export default class ReceivedCounseling extends ValidationElement {
                        className="treatment-end-date"
                        {...this.props.TreatmentEndDate}
                        receiveProps={this.props.PresentTreatmentEndDate || false}
+                       prefix="treatment.end"
+                       minDate={minDate}
                        disabled={this.props.PresentTreatmentEndDate}
                        onUpdate={this.updateTreatmentEndDate}
                        onError={this.props.onError}
@@ -186,7 +190,6 @@ export default class ReceivedCounseling extends ValidationElement {
 
         <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}</h3>
         <Branch name="CompletedTreatment"
-                help={'substance.alcohol.receivedCounseling.help.completedTreatment'}
                 className="completed-treatment"
                 value={this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
@@ -194,8 +197,7 @@ export default class ReceivedCounseling extends ValidationElement {
         </Branch>
 
         <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
-                 help={'substance.alcohol.receivedCounseling.help.noCompletedTreatment'}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}>
             <Textarea name="NoCompletedTreatmentExplanation"
                       className="no-completed-treatment"
                       {...this.props.NoCompletedTreatmentExplanation}
