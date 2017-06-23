@@ -16,12 +16,16 @@ export default class DateRange extends ValidationElement {
       present: props.present,
       presentClicked: false,
       trickleDown: false,
-      title: props.title || 'Date Range'
+      title: props.title || 'Date Range',
+      errors: []
     }
 
+    this.storeErrors = this.storeErrors.bind(this)
+    this.updatePresent = this.updatePresent.bind(this)
     this.handleError = this.handleError.bind(this)
     this.handleErrorFrom = this.handleErrorFrom.bind(this)
     this.handleErrorTo = this.handleErrorTo.bind(this)
+    this.handleErrorPresent = this.handleErrorPresent.bind(this)
   }
 
   componentWillReceiveProps (next) {
@@ -52,7 +56,7 @@ export default class DateRange extends ValidationElement {
     })
   }
 
-  handleChange (event) {
+  updatePresent (values) {
     // Get a handle to current state values as well as set the value for the current
     // element that triggered a change
     let futureState = {
@@ -78,8 +82,6 @@ export default class DateRange extends ValidationElement {
     }
 
     this.setState(futureState, () => {
-      super.handleChange(event)
-
       // This will force a blur/validation
       this.refs.to.refs.month.refs.autosuggest.input.focus()
       this.refs.to.refs.month.refs.autosuggest.input.blur()
@@ -100,12 +102,32 @@ export default class DateRange extends ValidationElement {
     })
   }
 
+  storeErrors (arr = [], callback) {
+    let errors = [...this.state.errors]
+    for (const e of arr) {
+      const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+      if (idx !== -1) {
+        errors[idx] = { ...e }
+      } else {
+        errors.push({ ...e })
+      }
+    }
+
+    this.setState({ errors: errors }, () => {
+      callback()
+    })
+  }
+
   handleErrorFrom (value, arr) {
     return this.handleError('from', value, arr)
   }
 
   handleErrorTo (value, arr) {
     return this.handleError('to', value, arr)
+  }
+
+  handleErrorPresent (value, arr) {
+    return this.handleError('present', value, arr)
   }
 
   handleError (code, value, arr) {
@@ -117,24 +139,40 @@ export default class DateRange extends ValidationElement {
       }
     })
 
-    if (this.state.from.date && this.state.to.date) {
-      // Prepare some properties for the error testing
-      const props = {
-        from: this.state.from,
-        to: this.state.to
+    // Introducing local state to the DateControl so it can determine
+    // if there were **any** errors found in other child components.
+    this.storeErrors(arr, () => {
+      const existingErr = this.state.errors.some(e => e.valid === false)
+      let local = [...arr]
+
+      if (!existingErr && this.state.from.date && this.state.to.date) {
+        // Prepare some properties for the error testing
+        const props = {
+          from: this.state.from,
+          to: this.state.to
+        }
+
+        local = local.concat(this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: err.func(null, props),
+            uid: this.state.uid
+          }
+        }))
+      } else {
+        local = local.concat(this.constructor.errors.map(err => {
+          return {
+            code: err.code,
+            valid: null,
+            uid: this.state.uid
+          }
+        }))
       }
 
-      // Take the original and concatenate our new error values to it
-      return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
-        return {
-          code: err.code,
-          valid: err.func(null, props),
-          uid: this.state.uid
-        }
-      })))
-    }
+      this.props.onError(value, local)
+    })
 
-    return this.props.onError(value, arr)
+    return arr
   }
 
   render () {
@@ -186,7 +224,8 @@ export default class DateRange extends ValidationElement {
                       label="Present"
                       value="present"
                       checked={this.state.present}
-                      onChange={this.handleChange}
+                      onUpdate={this.updatePresent}
+                      onError={this.handleErrorPresent}
                       />
           </div>
         </div>
