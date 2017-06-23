@@ -296,7 +296,7 @@ export default class Location extends ValidationElement {
       <div className={klass}>
         <div className="fields">
           <Suggestions
-            suggestions={this.state.geocodeResult.Suggestions}
+            suggestions={this.state.geocodeResult.Suggestions || []}
             renderSuggestion={this.renderSuggestion}
             dismissSuggestions={false}
             withSuggestions={true}
