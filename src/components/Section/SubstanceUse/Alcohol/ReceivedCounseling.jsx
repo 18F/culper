@@ -98,6 +98,8 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   render () {
+    const maxDate = (this.props.TreatmentEndDate || {}).date || new Date()
+    const minDate = (this.props.TreatmentBeganDate || {}).date || null
     return (
       <div className="voluntary-counseling">
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}>
@@ -156,6 +158,8 @@ export default class ReceivedCounseling extends ValidationElement {
           <DateControl name="TreatmentBeganDate"
                        className="treatment-began-date"
                        {...this.props.TreatmentBeganDate}
+                       prefix="treatment.began"
+                       maxDate={maxDate}
                        onUpdate={this.updateTreatmentBeganDate}
                        onError={this.props.onError}
                        />
@@ -168,6 +172,8 @@ export default class ReceivedCounseling extends ValidationElement {
                        className="treatment-end-date"
                        {...this.props.TreatmentEndDate}
                        receiveProps={this.props.PresentTreatmentEndDate || false}
+                       prefix="treatment.end"
+                       minDate={minDate}
                        disabled={this.props.PresentTreatmentEndDate}
                        onUpdate={this.updateTreatmentEndDate}
                        onError={this.props.onError}

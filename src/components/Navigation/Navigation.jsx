@@ -155,13 +155,13 @@ export const hasErrors = (route, props = {}) => {
     const se = props.errors[section]
     if (crumbs.length === 1) {
       return se.some(e =>
-                      e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                      e.valid === false)
+                     e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                     e.valid === false)
     } else if (crumbs.length > 1) {
       return se.some(e =>
-                      e.section.toLowerCase() === crumbs[0].toLowerCase() &&
-                      e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase() &&
-                      e.valid === false)
+                     e.section.toLowerCase() === crumbs[0].toLowerCase() &&
+                     e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0 &&
+                     e.valid === false)
     }
   }
 
@@ -174,20 +174,27 @@ export const hasErrors = (route, props = {}) => {
 export const isValid = (route, props = {}) => {
   const crumbs = route.replace('/form/', '').split('/')
 
+  // Find which node we should be checking against
+  let node = null
+  for (const crumb of crumbs) {
+    if (!node) {
+      node = navigation.find(x => x.url.toLowerCase() === crumb.toLowerCase())
+    } else if (node.subsections) {
+      node = node.subsections.find(x => x.url.toLowerCase() === crumb.toLowerCase())
+    }
+  }
+
   for (const section in props.completed) {
     if (section.toLowerCase() !== crumbs[0].toLowerCase()) {
       continue
     }
 
-    const se = props.completed[section]
-        .filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
-
-    if (crumbs.length === 1) {
-      return se.filter(e => e.valid === true).length >= validations(navigation.find(n => n.url === section), props)
-    } else if (crumbs.length > 1) {
-      const sse = se.filter(e => e.subsection.toLowerCase() === crumbs.slice(1, crumbs.length).join('/').toLowerCase())
-      return sse.length > 0 && sse.every(e => e.valid === true)
+    let completedSections = props.completed[section].filter(e => e.section.toLowerCase() === crumbs[0].toLowerCase())
+    if (crumbs.length > 1) {
+      completedSections = completedSections.filter(e => e.subsection.toLowerCase().indexOf(crumbs.slice(1, crumbs.length).join('/').toLowerCase()) === 0)
     }
+
+    return completedSections.filter(e => e.valid === true).length >= validations(node, props)
   }
 
   return false
