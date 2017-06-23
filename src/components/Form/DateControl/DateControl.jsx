@@ -207,7 +207,7 @@ export default class DateControl extends ValidationElement {
       const existingErr = this.state.errors.some(e => e.valid === false)
 
       // If the date is valid and there are no child errors...
-      let local = [...arr]
+      let local = []
       if (date && !existingErr) {
         // Prepare some properties for the error testing
         const props = {
@@ -217,26 +217,26 @@ export default class DateControl extends ValidationElement {
         }
 
         // Call any `onError` binding with error checking specific to the `DateControl`
-        local = local.concat(this.constructor.errors.map(err => {
+        local = this.constructor.errors.map(err => {
           return {
             code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: err.func(date, props),
             uid: this.state.uid
           }
-        }))
+        })
       } else {
-        local = local.concat(this.constructor.errors.map(err => {
+        local = this.constructor.errors.map(err => {
           return {
             code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: null,
             uid: this.state.uid
           }
-        }))
+        })
       }
 
       this.setState({ error: local.some(x => x.valid === false) }, () => {
         // Pass any local and child errors to bound functions
-        this.props.onError(date, local)
+        this.props.onError(date, [...arr].concat(local))
       })
     })
 
