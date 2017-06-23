@@ -96,7 +96,6 @@ export default class OrderedCounseling extends ValidationElement {
     return (
       <div className="ordered-counseling">
         <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.seekers')}
-               help={'substance.alcohol.orderedCounseling.help.seekers'}
                adjustFor="p">
           {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
           <CheckboxGroup className="seekers"
@@ -163,7 +162,6 @@ export default class OrderedCounseling extends ValidationElement {
         <Branch name="ActionTaken"
                 label={i18n.t('substance.alcohol.orderedCounseling.heading.actionTaken')}
                 labelSize="h3"
-                help="substance.alcohol.orderedCounseling.help.actionTaken"
                 className="action-taken"
                 value={this.props.ActionTaken}
                 onError={this.props.onError}
@@ -182,8 +180,7 @@ export default class OrderedCounseling extends ValidationElement {
                          onError={this.props.onError}
                          />
             </Field>
-            <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderName')}
-                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderName'}>
+            <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderName')}>
               <Text name="TreatmentProviderName"
                     className="treatment-provider-name"
                     {...this.props.TreatmentProviderName}
@@ -212,7 +209,6 @@ export default class OrderedCounseling extends ValidationElement {
             </Field>
 
             <Branch name="CompletedTreatment"
-                    help={'substance.alcohol.orderedCounseling.help.completedTreatment'}
                     label={i18n.t('substance.alcohol.orderedCounseling.heading.completedTreatment')}
                     labelSize="h3"
                     className="completed-treatment"
