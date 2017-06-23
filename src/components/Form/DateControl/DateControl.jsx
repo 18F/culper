@@ -152,14 +152,16 @@ export default class DateControl extends ValidationElement {
 
         // This will force a blur/validation
         if (d && (changed.year || changed.month)) {
-          this.refs.day.refs.number.refs.input.focus()
-          this.refs.day.refs.number.refs.input.blur()
+          window.setTimeout(() => {
+            this.refs.day.refs.number.refs.input.focus()
+            this.refs.day.refs.number.refs.input.blur()
 
-          if (changed.month) {
-            this.refs.month.refs.autosuggest.input.focus()
-          } else if (event.target.focus) {
-            event.target.focus()
-          }
+            if (changed.month) {
+              this.refs.month.refs.autosuggest.input.focus()
+            } else if (event.target.focus) {
+              event.target.focus()
+            }
+          }, 200)
         }
 
         if (this.props.onUpdate) {
@@ -395,18 +397,6 @@ DateControl.defaultProps = {
 }
 
 DateControl.errors = [
-  {
-    code: 'day.max',
-    func: (value, props) => {
-      if (!value || isNaN(value)) {
-        return null
-      }
-      if (value) {
-        return parseInt(props.day) <= daysInMonth(value.getMonth() + 1, value.getFullYear())
-      }
-      return parseInt(props.day) <= daysInMonth(parseInt(props.month), parseInt(props.year))
-    }
-  },
   {
     code: 'max',
     func: (value, props) => {
