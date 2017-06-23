@@ -7,6 +7,7 @@ export default class extends React.Component {
     return (
       <Location
         {...this.props}
+        geocode={true}
         layout={Location.ADDRESS}
       />
     )

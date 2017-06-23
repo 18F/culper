@@ -3,6 +3,7 @@ export default {
   BIRTHPLACE: 'Birthplace',
   BIRTHPLACE_WITHOUT_COUNTY: 'Birthplace without County',
   US_CITY_STATE_INTERNATIONAL_CITY: 'US City, State, International city',
+  US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY: 'US City, State, International city country',
   CITY_STATE: 'City, State',
   STREET_CITY_COUNTRY: 'Street, City, Country',
   CITY_COUNTRY: 'City, Country',
