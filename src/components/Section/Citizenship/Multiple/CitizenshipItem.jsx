@@ -64,8 +64,7 @@ export default class CitizenshipItem extends ValidationElement {
   render () {
     return (
       <div className="citizenship-item">
-        <Field title={i18n.t('citizenship.multiple.heading.citizenship.country')}
-               help="citizenship.multiple.help.citizenship.country">
+        <Field title={i18n.t('citizenship.multiple.heading.citizenship.country')}>
           <Country name="Country"
                    {...this.state.Country}
                    className="citizenship-country"
@@ -85,8 +84,7 @@ export default class CitizenshipItem extends ValidationElement {
                      />
         </Field>
 
-        <Field title={i18n.t('citizenship.multiple.heading.citizenship.how')}
-               help="citizenship.multiple.help.citizenship.how">
+        <Field title={i18n.t('citizenship.multiple.heading.citizenship.how')}>
           <Textarea name="How"
                     {...this.state.How}
                     className="citizenship-how"
@@ -100,14 +98,12 @@ export default class CitizenshipItem extends ValidationElement {
                 labelSize="h3"
                 className="citizenship-renounced"
                 value={this.state.Renounced}
-                help="citizenship.multiple.help.citizenship.renounced"
                 onUpdate={this.updateRenounced}
                 onError={this.props.onError}
                 />
 
         <Show when={this.state.Renounced === 'Yes'}>
-          <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}
-                 help="citizenship.multiple.help.citizenship.renouncedexplanation">
+          <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}>
             <Textarea name="RenouncedExplanation"
                       {...this.state.RenouncedExplanation}
                       className="citizenship-renounced-explanation"
@@ -122,14 +118,12 @@ export default class CitizenshipItem extends ValidationElement {
                 labelSize="h3"
                 className="citizenship-current"
                 value={this.state.Current}
-                help="citizenship.multiple.help.citizenship.current"
                 onUpdate={this.updateCurrent}
                 onError={this.props.onError}
                 />
 
         <Show when={this.state.Current === 'Yes'}>
           <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}
-                 help="citizenship.multiple.help.citizenship.currentexplanation">
             <Textarea name="CurrentExplanation"
                       {...this.state.CurrentExplanation}
                       className="citizenship-current-explanation"
