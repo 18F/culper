@@ -49,6 +49,7 @@ export default class LocationValidator {
           return this.validFields(['city', 'state', 'county'])
         }
         return this.validFields(['city', 'country'])
+      case Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
       case Layouts.BIRTHPLACE_WITHOUT_COUNTY:
         if (this.isDomestic()) {
           return this.validFields(['city', 'state'])
@@ -65,6 +66,13 @@ export default class LocationValidator {
         return this.validFields(['street', 'city', 'country'])
       case Layouts.CITY_COUNTRY:
         return this.validFields(['city', 'country'])
+      case Layouts.CITY_STATE_COUNTRY:
+        if (this.isDomestic()) {
+          return this.validFields(['city', 'state'])
+        }
+        return this.validFields(['city', 'country'])
+      case Layouts.US_ADDRESS:
+        return this.validFields(['street', 'city', 'state', 'zipcode'])
       default:
         return false
 

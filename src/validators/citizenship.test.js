@@ -1,4 +1,5 @@
 import CitizenshipValidator from './citizenship'
+import Location from '../components/Form/Location'
 
 describe('citizenship component validation', function () {
   it('can validate status', () => {
@@ -286,11 +287,10 @@ describe('citizenship component validation', function () {
             date: new Date('1/1/2016')
           },
           PlaceIssued: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            layout: Location.CITY_STATE_COUNTRY,
+            country: 'United States',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            state: 'Virginia'
           },
           DocumentName: {
             first: 'Foo',
@@ -338,11 +338,10 @@ describe('citizenship component validation', function () {
             date: new Date('1/1/2016')
           },
           EntryLocation: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            layout: Location.CITY_STATE
           },
           PriorCitizenship: {
             value: ['Germany']
@@ -358,11 +357,12 @@ describe('citizenship component validation', function () {
             value: 'court name'
           },
           CertificateCourtAddress: {
-            addressType: 'United States',
+            country: 'United States',
             address: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.US_ADDRESS
           },
           CertificateIssued: {
             day: '1',

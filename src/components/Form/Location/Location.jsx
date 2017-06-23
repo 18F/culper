@@ -240,6 +240,7 @@ export default class Location extends ValidationElement {
             onUpdate={this.updateToggleableLocation}
           />
         )
+      case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
       case Location.BIRTHPLACE_WITHOUT_COUNTY:
         return (
           <ToggleableLocation
@@ -275,6 +276,10 @@ export default class Location extends ValidationElement {
         return this.renderFields(['street', 'city', 'country'])
       case Location.CITY_COUNTRY:
         return this.renderFields(['city', 'country'])
+      case Location.CITY_STATE_COUNTRY:
+        return this.renderFields(['city', 'state', 'country'])
+      case Location.US_ADDRESS:
+        return this.renderFields(['street', 'city', 'stateZipcode'])
       case null:
       case undefined:
       default:
@@ -398,6 +403,8 @@ Location.STREET_CITY_COUNTRY = Layouts.STREET_CITY_COUNTRY
 Location.CITY_COUNTRY = Layouts.CITY_COUNTRY
 Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY = Layouts.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
 Location.ADDRESS = Layouts.ADDRESS
+Location.CITY_STATE_COUNTRY = Layouts.CITY_STATE_COUNTRY
+Location.US_ADDRESS = Layouts.US_ADDRESS
 
 Location.defaultProps = {
   geocode: false,

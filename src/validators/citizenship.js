@@ -1,5 +1,6 @@
 import AddressValidator from './address'
 import NameValidator from './name'
+import LocationValidator from './location'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class CitizenshipValidator {
@@ -44,7 +45,7 @@ export default class CitizenshipValidator {
     return this.validAbroadDocumentation() &&
       validGenericTextfield(this.documentNumber) &&
       validDateField(this.documentIssued) &&
-      new AddressValidator(this.placeIssued, null).isValid() &&
+      new LocationValidator(this.placeIssued).isValid() &&
       new NameValidator(this.documentName, null).isValid() &&
       validGenericTextfield(this.certificateNumber) &&
       validDateField(this.certificateIssued) &&
@@ -58,12 +59,12 @@ export default class CitizenshipValidator {
     }
 
     return validDateField(this.entryDate) &&
-      new AddressValidator(this.entryLocation, null).isValid() &&
+      new LocationValidator(this.entryLocation).isValid() &&
       this.validCitizenships(this.priorCitizenship) &&
       this.validAlienRegistration() &&
       validGenericTextfield(this.certificateNumber) &&
       validGenericTextfield(this.certificateCourtName) &&
-      new AddressValidator(this.certificateCourtAddress, null).isValid() &&
+      new LocationValidator(this.certificateCourtAddress, null).isValid() &&
       validDateField(this.certificateIssued) &&
       new NameValidator(this.certificateName, null).isValid() &&
       this.validBasis()

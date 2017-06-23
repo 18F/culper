@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { CitizenshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Field, RadioGroup, Radio,
-         Text, Name, Address, DateControl, Country } from '../../../Form'
+         Text, Name, Address, DateControl, Country, Location } from '../../../Form'
 
 /**
  * Convenience function to send updates along their merry way
@@ -299,7 +299,9 @@ export default class Status extends SubsectionElement {
                    help="citizenship.status.help.placeissued"
                    adjustFor="address"
                    shrink={true}>
-              <Address name="PlaceIssued"
+              <Location name="PlaceIssued"
+                       label={'Was this issued in the United States?'}
+                       layout={Location.CITY_STATE_COUNTRY}
                        className="place-issued"
                        {...this.state.PlaceIssued}
                        onUpdate={this.updatePlaceIssued}
@@ -387,7 +389,8 @@ export default class Status extends SubsectionElement {
                    help="citizenship.status.help.entrylocation"
                    adjustFor="address"
                    shrink={true}>
-              <Address name="EntryLocation"
+              <Location name="EntryLocation"
+                       layout={Location.CITY_STATE}
                        className="entry-location"
                        {...this.state.EntryLocation}
                        onUpdate={this.updateEntryLocation}
@@ -452,7 +455,8 @@ export default class Status extends SubsectionElement {
                    help="citizenship.status.help.certificatecourtaddress"
                    adjustFor="address"
                    shrink={true}>
-              <Address name="CertificateCourtAddress"
+              <Location name="CertificateCourtAddress"
+                       layout={Location.US_ADDRESS}
                        className="certificate-court-address"
                        {...this.state.CertificateCourtAddress}
                        onUpdate={this.updateCertificateCourtAddress}
