@@ -89,10 +89,10 @@ describe('The relative component', () => {
       },
       IsDeceased: 'No',
       Address: {
-        addressType: 'International',
-        address: '1234 Some Rd',
+        street: '1234 Some Rd',
         city: 'Munich',
-        country: 'Germany'
+        country: 'Germany',
+        layout: Location.ADDRESS
       }
     }
 
@@ -135,13 +135,14 @@ describe('The relative component', () => {
         ]
       },
       Birthplace: {
-        domestic: 'No',
         city: 'Munich',
-        country: 'Germany'
+        country: 'Germany',
+        layout: Location.BIRTHPLACE_WITHOUT_COUNTY
       },
       IsDeceased: 'No',
       Address: {
-        addressType: 'International'
+        country: 'Germany',
+        layout: Location.ADDRESS
       }
     }
 
@@ -158,13 +159,14 @@ describe('The relative component', () => {
         ]
       },
       Birthplace: {
-        domestic: 'No',
         city: 'Munich',
-        country: 'Germany'
+        country: 'Germany',
+        layout: Location.BIRTHPLACE_WITHOUT_COUNTY
       },
       IsDeceased: 'No',
       Address: {
-        addressType: 'International'
+        country: 'Germany',
+        layout: Location.ADDRESS
       },
       HasAffiliation: 'Yes'
     }
@@ -252,10 +254,10 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { domestic: 'No', city: 'Munich', country: 'Germany' },
+      Birthplace: { city: 'Munich', country: 'Germany', layout: Location.BIRTHPLACE_WITHOUT_COUNTY },
       Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
       IsDeceased: 'No',
-      Address: { addressType: 'International', address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
+      Address: { street: '1234 Some Rd', city: 'Munich', country: 'Germany', layout: Location.ADDRESS },
       onUpdate: (obj) => {
         updates++
       }
