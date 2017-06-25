@@ -1,4 +1,5 @@
 import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
+import Location from '../components/Form/Location'
 
 describe('Hospitalization validation', function () {
   it('should validate admission', function () {
@@ -36,11 +37,12 @@ describe('Hospitalization validation', function () {
             value: 'Place 1'
           },
           FacilityAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           TreatmentDate: {
             from: {
@@ -97,11 +99,12 @@ describe('Hospitalization validation', function () {
                   value: 'Place 1'
                 },
                 FacilityAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 TreatmentDate: {
                   from: {
@@ -133,11 +136,12 @@ describe('Hospitalization validation', function () {
                   value: 'Place 1'
                 },
                 FacilityAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 TreatmentDate: {
                   from: {
@@ -168,11 +172,12 @@ describe('Hospitalization validation', function () {
                 value: null
               },
               FacilityAddress: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               TreatmentDate: {
                 from: {
@@ -203,11 +208,12 @@ describe('Hospitalization validation', function () {
                 value: null
               },
               FacilityAddress: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Admission: 'Voluntary',
               Explanation: {

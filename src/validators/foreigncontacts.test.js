@@ -1,5 +1,6 @@
 import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('Foreign contacts component validation', function () {
   it('validate foreign national name', function () {
@@ -448,11 +449,12 @@ describe('Foreign contacts component validation', function () {
             applicable: true
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -530,11 +532,12 @@ describe('Foreign contacts component validation', function () {
             applicable: true
           },
           EmployerAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true

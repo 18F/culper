@@ -1,4 +1,5 @@
 import OffenseValidator from './offense'
+import Location from '../components/Form/Location'
 
 describe('Offense validation', function () {
   it('validates date', () => {
@@ -138,11 +139,12 @@ describe('Offense validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -239,11 +241,12 @@ describe('Offense validation', function () {
         state: {
           WasCited: 'Yes',
           AgencyAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -397,11 +400,12 @@ describe('Offense validation', function () {
           WasCited: 'Yes',
           WasCharged: 'Yes',
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -700,11 +704,12 @@ describe('Offense validation', function () {
           InvolvedFirearms: 'Yes',
           InvolvedSubstances: 'No',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           WasCited: 'No'
         },
@@ -767,11 +772,12 @@ describe('Offense validation', function () {
           InvolvedFirearms: 'No',
           InvolvedSubstances: 'No',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           WasCited: 'Yes',
           CitedBy: {
@@ -782,11 +788,12 @@ describe('Offense validation', function () {
             value: 'Some explanation'
           },
           AgencyAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
 
           WasSentenced: 'No',

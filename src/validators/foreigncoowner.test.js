@@ -1,4 +1,5 @@
 import ForeignCoOwnersValidator, { ForeignCoOwnerValidator } from './foreigncoowner'
+import Location from '../components/Form/Location'
 
 describe('CoOwner validation', function () {
   it('should validate countries', function () {
@@ -48,11 +49,12 @@ describe('CoOwner validation', function () {
             suffix: 'Jr'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Countries: {
             value: [{value: 'Germany'}]
@@ -100,11 +102,12 @@ describe('CoOwner validation', function () {
                   suffix: 'Jr'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 Countries: {
                   value: [{value: 'Germany'}]

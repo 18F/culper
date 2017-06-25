@@ -1,4 +1,5 @@
 import ConsultationValidator from './consultation'
+import Location from '../components/Form/Location'
 
 describe('Consultation validation', function () {
   it('validates competence', () => {
@@ -13,11 +14,12 @@ describe('Consultation validation', function () {
                   value: 'Circuit Court'
                 },
                 CourtAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 Disposition: {
                   value: 'Stuff'
@@ -68,11 +70,12 @@ describe('Consultation validation', function () {
               Consultation: {
                 CourtName: null,
                 CourtAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 Disposition: {
                   value: 'Stuff'

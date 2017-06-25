@@ -1,4 +1,5 @@
 import EmploymentValidator from './employment'
+import Location from '../components/Form/Location'
 
 describe('Employment component validation', function () {
   it('should validate active military, national guard and USPHS', function () {
@@ -27,11 +28,12 @@ describe('Employment component validation', function () {
             value: 'Station 1'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Telephone: {
             noNumber: '',
@@ -41,11 +43,12 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Email: {
               value: 'foo@local.dev'
@@ -122,11 +125,12 @@ describe('Employment component validation', function () {
             value: 'Station 1'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Telephone: {
             noNumber: '',
@@ -136,11 +140,12 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Email: {
               value: 'foo@local.dev'
@@ -226,11 +231,12 @@ describe('Employment component validation', function () {
             value: 'IT Support'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Additional: {
             List: [{ Has: 'No' }]
@@ -243,11 +249,12 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Email: {
               value: 'foo@local.dev'
@@ -324,11 +331,12 @@ describe('Employment component validation', function () {
             value: 'US'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Telephone: {
             noNumber: '',
@@ -338,11 +346,12 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Email: {
               value: 'foo@local.dev'
@@ -450,20 +459,22 @@ describe('Employment component validation', function () {
             value: 'Boss'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           PhysicalAddress: {
             HasDifferentAddress: 'Yes',
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             }
           },
           Telephone: {
@@ -518,11 +529,12 @@ describe('Employment component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             }
           },
           Reprimand: {
@@ -603,11 +615,12 @@ describe('Employment component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             }
           }
         },
@@ -749,11 +762,12 @@ describe('Employment component validation', function () {
           PhysicalAddress: {
             HasDifferentAddress: 'Yes',
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             }
           }
         },
@@ -796,11 +810,12 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -897,11 +912,12 @@ describe('Employment component validation', function () {
               value: 'homer@simpson.com'
             },
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Telephone: {
               noNumber: '',

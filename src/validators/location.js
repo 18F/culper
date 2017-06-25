@@ -1,8 +1,13 @@
 import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
 
+export const isInternational = (location) => {
+  return !['United States', 'POSTOFFICE'].includes(location.country)
+}
+
 export default class LocationValidator {
   constructor (data = {}) {
+    data = data || {}
     this.layout = data.layout
 
     // Data
@@ -12,6 +17,26 @@ export default class LocationValidator {
     this.zipcode = data.zipcode
     this.county = data.county
     this.country = data.country
+  }
+
+  canGeocode () {
+    switch (this.layout) {
+      case Layouts.ADDRESS:
+      case Layouts.US_ADDRESS:
+        return !this.isInternational() && this.validFields(['street', 'city', 'state', 'zipcode'])
+      default:
+        return false
+    }
+  }
+
+  geocode () {
+    return new Geocoder().geocode({
+      // TODO modify backend to use street instead of address
+      address: this.street,
+      city: this.city,
+      state: this.state,
+      zipcode: this.zipcode
+    })
   }
 
   validStreet () {
@@ -26,6 +51,13 @@ export default class LocationValidator {
     return !!this.state
   }
 
+  validZipcode () {
+    if (!this.zipcode) {
+      return false
+    }
+    return this.zipcode.length === 5
+  }
+
   validCounty () {
     return !!this.county
   }
@@ -38,8 +70,14 @@ export default class LocationValidator {
     return this.country === 'United States'
   }
 
+  isPostOffice () {
+    return this.country === 'POSTOFFICE'
+  }
+
   isInternational () {
-    return !!this.country
+    return !!this.country &&
+      !this.isDomestic() &&
+      !this.isPostOffice()
   }
 
   validLocation () {
@@ -75,6 +113,11 @@ export default class LocationValidator {
         return this.validFields(['street', 'city', 'state', 'zipcode'])
       case Layouts.STREET_CITY:
         return this.validFields(['street', 'city'])
+      case Layouts.ADDRESS:
+        if (this.isDomestic() || this.isPostOffice()) {
+          return this.validFields(['street', 'city', 'state', 'zipcode'])
+        }
+        return this.validFields(['street', 'city', 'country'])
       default:
         return false
 
@@ -88,9 +131,6 @@ export default class LocationValidator {
     let valid = true
     for (let field of fields) {
       switch (field) {
-        case 'address':
-          valid = valid && this.validAddress()
-          break
         case 'street':
           valid = valid && this.validStreet()
           break
@@ -99,6 +139,9 @@ export default class LocationValidator {
           break
         case 'state':
           valid = valid && this.validState()
+          break
+        case 'zipcode':
+          valid = valid && this.validZipcode()
           break
         case 'county':
           valid = valid && this.validCounty()
@@ -114,7 +157,9 @@ export default class LocationValidator {
   isValid () {
     return this.validLocation()
   }
+}
 
+export class Geocoder {
   isSystemError (data) {
     if (!data || !data.Errors || !data.Errors.length) {
       return false
@@ -127,20 +172,7 @@ export default class LocationValidator {
     return false
   }
 
-  canGeocode () {
-    if (!this.street || !this.city || !this.state || !this.zipcode || !this.country) {
-      return false
-    }
-    return true
-  }
-
-  geocode () {
-    const location = {
-      address: this.street,
-      city: this.city,
-      state: this.state,
-      zipcode: this.zipcode
-    }
+  geocode (location) {
     return new Promise((resolve, reject) => {
       api
         .validateAddress(location)
@@ -156,5 +188,5 @@ export default class LocationValidator {
         })
     })
   }
-
 }
+

@@ -1,4 +1,5 @@
 import NonCriminalCourtActionsValidator from './legalnoncriminalcourtactions'
+import Location from '../components/Form/Location'
 
 describe('received counseling component validation', function () {
   it('can validate list of court actions', () => {
@@ -20,11 +21,12 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 CourtAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 NatureOfAction: {
                   value: 'Nature of action'

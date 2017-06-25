@@ -1,97 +1,100 @@
 import { api } from '../services/api'
+import LocationValidator from './location'
 
-export default class AddressValidator {
-  constructor (state, props) {
-    if (!state) {
-      return
-    }
-    this.addressType = state.addressType
-    this.address = state.address
-    this.city = state.city
-    this.state = state.state
-    this.zipcode = state.zipcode
-    this.county = state.county
-    this.country = state.country
-  }
+export default LocationValidator
 
-  isValid () {
-    switch (this.addressType) {
-      case 'United States':
-        if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
-          return false
-        }
-        break
+//export default class AddressValidator {
+  //constructor (state, props) {
+    //if (!state) {
+      //return
+    //}
+    //this.addressType = state.addressType
+    //this.address = state.address
+    //this.city = state.city
+    //this.state = state.state
+    //this.zipcode = state.zipcode
+    //this.county = state.county
+    //this.country = state.country
+  //}
 
-      case 'International':
-        if (!this.address || !this.city || !this.country) {
-          return false
-        }
-        break
+  //isValid () {
+    //switch (this.addressType) {
+      //case 'United States':
+        //if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
+          //return false
+        //}
+        //break
 
-      case 'APOFPO':
-        if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
-          return false
-        }
-        break
+      //case 'International':
+        //if (!this.address || !this.city || !this.country) {
+          //return false
+        //}
+        //break
 
-      default:
-        return false
-    }
-    return true
-  }
+      //case 'APOFPO':
+        //if (!this.address || !this.city || !this.state || !this.validZipcode(this.zipcode)) {
+          //return false
+        //}
+        //break
 
-  validZipcode (zip) {
-    if (!zip) {
-      return false
-    }
-    return zip.length === 5
-  }
+      //default:
+        //return false
+    //}
+    //return true
+  //}
 
-  isDomestic () {
-    return this.addressType === 'United States'
-  }
+  //validZipcode (zip) {
+    //if (!zip) {
+      //return false
+    //}
+    //return zip.length === 5
+  //}
 
-  isApoFpo () {
-    return this.addressType === 'APOFPO'
-  }
+  //isDomestic () {
+    //return this.addressType === 'United States'
+  //}
 
-  prepareGeocode () {
-    let data = {}
-    if (this.isDomestic() || this.isApoFpo()) {
-      data = {
-        Address: this.address,
-        City: this.city,
-        State: this.state,
-        Zipcode: this.zipcode
-      }
-    }
-    return data
-  }
+  //isApoFpo () {
+    //return this.addressType === 'APOFPO'
+  //}
 
-  isSystemError (data) {
-    if (!data || !data.Errors || !data.Errors.length) {
-      return false
-    }
-    for (let e of data.Errors) {
-      if (e.Error.indexOf('error.geocode.system') !== -1) {
-        return true
-      }
-    }
-    return false
-  }
+  //prepareGeocode () {
+    //let data = {}
+    //if (this.isDomestic() || this.isApoFpo()) {
+      //data = {
+        //Address: this.address,
+        //City: this.city,
+        //State: this.state,
+        //Zipcode: this.zipcode
+      //}
+    //}
+    //return data
+  //}
 
-  geocode () {
-    const toGeocode = this.prepareGeocode()
-    return new Promise((resolve, reject) => {
-      api
-        .validateAddress(toGeocode)
-        .then((response) => {
-          const data = response.data
-          if (this.isSystemError(data)) {
-            return reject(data)
-          }
-          resolve(response.data)
-        })
-    })
-  }
-}
+  //isSystemError (data) {
+    //if (!data || !data.Errors || !data.Errors.length) {
+      //return false
+    //}
+    //for (let e of data.Errors) {
+      //if (e.Error.indexOf('error.geocode.system') !== -1) {
+        //return true
+      //}
+    //}
+    //return false
+  //}
+
+  //geocode () {
+    //const toGeocode = this.prepareGeocode()
+    //return new Promise((resolve, reject) => {
+      //api
+        //.validateAddress(toGeocode)
+        //.then((response) => {
+          //const data = response.data
+          //if (this.isSystemError(data)) {
+            //return reject(data)
+          //}
+          //resolve(response.data)
+        //})
+    //})
+  //}
+//}

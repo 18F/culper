@@ -1,4 +1,5 @@
 import PeopleValidator, { PersonValidator } from './people'
+import Location from '../components/Form/Location'
 
 describe('Person validator', function () {
   it('should validate relationship', function () {
@@ -94,11 +95,12 @@ describe('Person validator', function () {
             value: 'test@local.dev'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -172,11 +174,12 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 }
               }
             },
@@ -223,11 +226,12 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 }
               }
             },
@@ -274,11 +278,12 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 }
               }
             }
@@ -348,11 +353,12 @@ describe('Person validator', function () {
                 value: 'test@local.dev'
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               }
             }
           }],

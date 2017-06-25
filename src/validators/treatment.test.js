@@ -1,4 +1,5 @@
 import TreatmentValidator from './treatment'
+import Location from '../components/Form/Location'
 
 describe('Treatment validation', function () {
   it('validates treatment', () => {
@@ -9,11 +10,12 @@ describe('Treatment validation', function () {
             value: 'Circuit Court'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Phone: {
             noNumber: '',

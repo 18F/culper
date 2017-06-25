@@ -1,4 +1,4 @@
-import LocationValidator from './location'
+import LocationValidator, { Geocoder } from './location'
 import Location from '../components/Form/Location'
 
 describe('the location component', function () {
@@ -76,6 +76,24 @@ describe('the location component', function () {
       },
       {
         data: {
+          city: 'Arlington',
+          state: 'VA',
+          country: 'United States',
+          layout: Location.CITY_STATE_COUNTRY
+        },
+        expected: true
+      },
+      {
+        data: {
+          city: 'Munich',
+          state: '',
+          country: 'Germany',
+          layout: Location.CITY_STATE_COUNTRY
+        },
+        expected: true
+      },
+      {
+        data: {
           city: 'Munich',
           country: 'Germany',
           layout: ''
@@ -117,6 +135,122 @@ describe('the location component', function () {
 
     tests.forEach(test => {
       expect(new LocationValidator(test.data).validFields(test.fields)).toBe(test.expected)
+    })
+  })
+
+  it('should check if international', function () {
+    const tests = [
+      {
+        data: {
+          country: 'United States'
+        },
+        expected: false
+      },
+      {
+        data: {
+          country: 'POSTOFFICE'
+        },
+        expected: false
+      },
+      {
+        data: {
+          country: 'Germany'
+        },
+        expected: true
+      },
+      {
+        data: {},
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new LocationValidator(test.data).isInternational()).toBe(test.expected)
+    })
+  })
+
+  it('should check if it can geocode', function () {
+    const tests = [
+      {
+        data: {
+          street: '123 Some Rd',
+          city: 'Arlington',
+          state: 'VA',
+          zipcode: '22202',
+          county: 'Thecountry',
+          country: 'United States',
+          layout: Location.ADDRESS
+        },
+        expected: true
+      },
+      {
+        data: {
+          street: '123 Some Rd',
+          city: 'Arlington',
+          state: 'VA',
+          zipcode: '22202',
+          county: 'Thecountry',
+          country: 'United States',
+          layout: Location.US_ADDRESS
+        },
+        expected: true
+      },
+      {
+        data: {
+          street: '123 Some Rd',
+          city: 'Arlington',
+          country: 'United States'
+        },
+        expected: false
+      },
+      {
+        data: {
+          street: '123 Some Rd',
+          city: 'Arlington',
+          country: 'United States',
+          layout: Location.CITY_STATE_COUNTRY
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new LocationValidator(test.data).canGeocode()).toBe(test.expected)
+    })
+  })
+
+  it('should handle geocode errors', function () {
+    const tests = [
+      {
+        data: {
+          Errors: [
+            {
+              Error: 'error.geocode.system'
+            }
+          ]
+        },
+        expected: true
+      },
+      {
+        data: {
+          Errors: []
+        },
+        expected: false
+      },
+      {
+        data: {
+          Errors: [
+            {
+              Error: 'error.geocode.city'
+            }
+          ]
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new Geocoder(test.data).isSystemError(test.data)).toBe(test.expected)
     })
   })
 })

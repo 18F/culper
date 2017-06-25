@@ -1,6 +1,6 @@
 import NameValidator from './name'
 import AddressValidator from './address'
-import LocationValidator from './location'
+import LocationValidator, { isInternational } from './location'
 import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
 
@@ -83,7 +83,7 @@ export class RelativeValidator {
       return true
     }
 
-    if (this.address && this.address.country === 'APOFPO' && international && citizen) {
+    if (this.address && this.address.country === 'POSTOFFICE' && international && citizen) {
       return true
     }
 
@@ -241,7 +241,7 @@ export class RelativeValidator {
   }
 
   validFirstContact () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -249,7 +249,7 @@ export class RelativeValidator {
   }
 
   validLastContact () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -257,7 +257,7 @@ export class RelativeValidator {
   }
 
   validMethods () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -267,7 +267,7 @@ export class RelativeValidator {
   }
 
   validFrequency () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -277,7 +277,7 @@ export class RelativeValidator {
   }
 
   validEmployer () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -285,7 +285,7 @@ export class RelativeValidator {
   }
 
   validEmployerAddress () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -293,7 +293,7 @@ export class RelativeValidator {
   }
 
   validEmployerRelationship () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 

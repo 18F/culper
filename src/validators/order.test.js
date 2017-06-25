@@ -1,4 +1,5 @@
 import OrderValidator from './order'
+import Location from '../components/Form/Location'
 
 describe('Order validation', function () {
   it('validates court', () => {
@@ -9,11 +10,12 @@ describe('Order validation', function () {
             value: 'Circuit Court'
           },
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -75,11 +77,12 @@ describe('Order validation', function () {
                 value: 'Appeals Court'
               },
               CourtAddress: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Disposition: {
                 value: 'Stuff'
@@ -115,11 +118,12 @@ describe('Order validation', function () {
             value: 'Circuit Court'
           },
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Disposition: {
             value: 'Stuff'
