@@ -423,8 +423,8 @@ const en = {
       },
       country: {
         notfound: {
-          title: 'There is a problem with the Country',
-          message: 'Country name should be one of the available options.',
+          title: 'This country is not one of the options',
+          message: 'Please enter the country that your city of birth is in now.',
           note: ''
         }
       },
@@ -6457,7 +6457,7 @@ const en = {
       help: {
         outside: {
           title: 'Have you traveled outside the U.S.?',
-          message: 'If it was within the last seven years then click Yes.',
+          message: 'This includes many short trips to the same country.',
           note: ''
         },
         official: {
@@ -6477,8 +6477,8 @@ const en = {
         },
         days: {
           title: 'Need help with how many days?',
-          message: 'Provide how many days the visit lasted.',
-          note: ''
+          message: 'Let us know how long your travel was.',
+          note: 'Note: Many short trips means a gap between trips that is less than 6 months. For a travel gap longer than 6 months add another travel item.'
         },
         purpose: {
           title: 'Need help with the purpose?',
