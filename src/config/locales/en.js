@@ -7467,9 +7467,9 @@ const en = {
         },
         help: {
           occurred: {
-            title: 'Need help with the date the negative impact occurred?',
+            title: 'Need help with this date?',
             message: 'Provide the month/year when this negative impact occurred',
-            note: ''
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           circumstances: {
             title: 'Need help with the circumstances?',
@@ -7478,8 +7478,8 @@ const en = {
           },
           used: {
             title: 'Need help with the dates of involvement?',
-            message: 'Provide dates of involvement or use',
-            note: ''
+            message: 'Tell us the full date range of the involvement or use',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           }
         },
         collection: {
@@ -7531,8 +7531,8 @@ const en = {
           },
           counselingDates: {
             title: 'Need help with the counseling dates?',
-            message: 'Provide the dates when you were in counseling or treatment',
-            note: ''
+            message: 'Tell us the dates when you were in counseling or treatment',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           actionTaken: {
             title: 'Need help with action taken to seek counseling or treatment',
@@ -7545,13 +7545,13 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone number of the treatment provider',
+            title: 'Not sure of the treatment provider\'s telephone?',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the phone number.',
             note: ''
           },
           completedTreatment: {
@@ -7580,8 +7580,8 @@ const en = {
         help: {
           counselingDates: {
             title: 'Need help with the counseling dates?',
-            message: 'Provide the dates of counseling or treatment',
-            note: ''
+            message: 'Tell us the full range of counseling or treatment',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           treatmentProviderName: {
             title: 'Need help with the treatment provider name?',
@@ -7589,13 +7589,13 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone number of the treatment provider',
+            title: 'Not sure of the treatment provider\'s telephone?',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the phone number.',
             note: ''
           },
           completedTreatment: {
@@ -7636,9 +7636,9 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           agencyName: {
             title: 'Need help with the agency name?',
@@ -7646,18 +7646,18 @@ const en = {
             note: ''
           },
           agencyAddress: {
-            title: 'Need help with the agency address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the agency\'s address?',
+            message: 'Try looking up the agency\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentBeganDate: {
-            title: 'Need help with when treatment began?',
-            message: 'Provide the date counseling or treatment began',
+            title: 'Need help with this date?',
+            message: 'Tell us when the treatment started',
             note: ''
           },
           treatmentEndDate: {
-            title: 'Need help with when treatment ended?',
-            message: 'Provide the date counseling or treatment ended',
+            title: 'Need help with this date?',
+            message: 'Tell us when the treatment ended',
             note: ''
           },
           completedTreatment: {
@@ -7831,8 +7831,8 @@ const en = {
           },
           involvementDates: {
             title: 'Need help with the dates of involvement?',
-            message: 'Provide the dates of involvement/use',
-            note: ''
+            message: 'Tell us the full date range of your involvement.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           estimatedUse: {
             title: 'Need help with the estimated times used?',
@@ -7862,9 +7862,9 @@ const en = {
             note: ''
           },
           involvementDates: {
-            title: 'Need help with the dates of involvement?',
-            message: 'Provide the dates of involvement/use',
-            note: ''
+            title: 'Need help with the dates of involvement/use?',
+            message: 'Tell us the full date range of your involvement/use.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           estimatedUse: {
             title: 'Need help with the estimated times used?',
@@ -7901,8 +7901,8 @@ const en = {
           },
           involvementDates: {
             title: 'Need help with the dates of involvement?',
-            message: 'Provide the dates of involvement/use',
-            note: ''
+            message: 'Tell us the full date range of your involvement.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           useWhileEmployed: {
             title: 'Need help with the use?',
@@ -7973,19 +7973,19 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address of the treatment provider',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone of the treatment provider',
+            title: 'Need help with the treatment provider\'s telephone?',
+            message: 'Try looking up the provider\'s name, this could help you find the phone number.',
             note: ''
           },
           treatmentDates: {
             title: 'Need help with the treatment dates?',
-            message: 'Provide the dates of treatment',
-            note: ''
+            message: 'Tell us the full date range you were in treatment.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           treatmentCompleted: {
             title: 'Need help with the treatment completion?',
@@ -8040,19 +8040,19 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address of the treatment provider',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone of the treatment provider',
+            title: 'Need help with the treatment provider\'s telephone?',
+            message: 'Try looking up the provider\'s name, this could help you find the phone number.',
             note: ''
           },
           treatmentDates: {
             title: 'Need help with the treatment dates?',
-            message: 'Provide the dates of treatment',
-            note: ''
+            message: 'Tell us the full date range you were in treatment.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           treatmentCompleted: {
             title: 'Need help with the treatment completion?',
