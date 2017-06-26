@@ -17,6 +17,7 @@ export default class DateRange extends ValidationElement {
       presentClicked: false,
       trickleDown: false,
       title: props.title || 'Date Range',
+      error: false,
       errors: []
     }
 
@@ -143,7 +144,7 @@ export default class DateRange extends ValidationElement {
     // if there were **any** errors found in other child components.
     this.storeErrors(arr, () => {
       const existingErr = this.state.errors.some(e => e.valid === false)
-      let local = [...arr]
+      let local = []
 
       if (!existingErr && this.state.from.date && this.state.to.date) {
         // Prepare some properties for the error testing
@@ -152,24 +153,26 @@ export default class DateRange extends ValidationElement {
           to: this.state.to
         }
 
-        local = local.concat(this.constructor.errors.map(err => {
+        local = this.constructor.errors.map(err => {
           return {
             code: err.code,
             valid: err.func(null, props),
             uid: this.state.uid
           }
-        }))
+        })
       } else {
-        local = local.concat(this.constructor.errors.map(err => {
+        local = this.constructor.errors.map(err => {
           return {
             code: err.code,
             valid: null,
             uid: this.state.uid
           }
-        }))
+        })
       }
 
-      this.props.onError(value, local)
+      this.setState({ error: local.some(x => x.valid === false) }, () => {
+        this.props.onError(value, [...arr].concat(local))
+      })
     })
 
     return arr
@@ -177,6 +180,7 @@ export default class DateRange extends ValidationElement {
 
   render () {
     const klass = `daterange usa-grid ${this.props.className || ''}`.trim()
+    const klassTo = `to ${this.state.error ? 'usa-input-error' : ''}`.trim()
 
     return (
       <div className={klass}>
@@ -205,7 +209,7 @@ export default class DateRange extends ValidationElement {
           </div>
           <DateControl name="to"
                        ref="to"
-                       className="to"
+                       className={klassTo}
                        {...this.state.to}
                        estimated={this.state.estimated}
                        receiveProps={this.state.trickleDown || this.state.presentClicked}
