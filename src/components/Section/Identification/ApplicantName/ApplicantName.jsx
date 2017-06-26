@@ -2,7 +2,6 @@ import React from 'react'
 import NameValidator from '../../../../validators/name'
 import SubsectionElement from '../../SubsectionElement'
 import { Name } from '../../../Form'
-import  Location from '../../../Form/Location/Location'
 
 export default class ApplicantName extends SubsectionElement {
   render () {
@@ -16,9 +15,6 @@ export default class ApplicantName extends SubsectionElement {
               onUpdate={this.props.onUpdate}
               onError={this.handleError}
               />
-              <Location fields={['fullAddress']}
-                onUpdate={this.props.onUpdate}
-                {...this.props.value}/>
       </div>
     )
   }
