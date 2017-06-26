@@ -1,7 +1,7 @@
 import NameValidator from './name'
 import AddressValidator from './address'
+import LocationValidator from './location'
 import DateRangeValidator from './daterange'
-import BirthPlaceValidator from './birthplace'
 import { validGenericTextfield, validDateField, validNotApplicable, BranchCollection } from './helpers'
 
 export default class ForeignBusinessSponsorshipValidator {
@@ -65,11 +65,11 @@ export class SponsorshipValidator {
   }
 
   validBirthplace () {
-    return !!this.birthplace && new BirthPlaceValidator(this.birthplace, null).isValid()
+    return !!this.birthplace && new LocationValidator(this.birthplace).isValid()
   }
 
   validAddress () {
-    return !!this.address && new AddressValidator(this.address, null).isValid()
+    return !!this.address && new AddressValidator(this.address).isValid()
   }
 
   validCitizenship () {

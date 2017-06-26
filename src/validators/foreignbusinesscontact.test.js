@@ -1,5 +1,6 @@
 import ForeignBusinessContactValidator, { ContactValidator } from './foreignbusinesscontact'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('Foreign business contact component validation', function () {
   it('validate foreign business contact name', () => {
@@ -41,11 +42,11 @@ describe('Foreign business contact component validation', function () {
       {
         props: {
           Location: {
-            domestic: 'Yes',
             country: 'United States',
             city: 'Arlington',
-            county: 'Arlington',
-            state: 'VA'
+            zipcode: '22202',
+            state: 'VA',
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           }
         },
         expected: true
@@ -289,11 +290,11 @@ describe('Foreign business contact component validation', function () {
                 suffix: 'Jr'
               },
               Location: {
-                domestic: 'Yes',
                 country: 'United States',
                 city: 'Arlington',
-                county: 'Arlington',
-                state: 'VA'
+                zipcode: '22202',
+                state: 'VA',
+                layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
               },
               Date: {
                 day: '1',

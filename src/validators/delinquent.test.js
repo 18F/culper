@@ -1,4 +1,5 @@
 import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
+import Location from '../components/Form/Location'
 
 describe('delinquent component validation', function () {
   it('validate name', () => {
@@ -317,11 +318,12 @@ describe('delinquent component validation', function () {
       {
         state: {
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -462,11 +464,12 @@ describe('delinquent component validation', function () {
                 value: 'The court'
               },
               CourtAddress: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Description: {
                 value: 'The description'

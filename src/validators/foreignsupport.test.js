@@ -1,5 +1,6 @@
 import ForeignActivitiesSupportValidator, { SupportValidator } from './foreignsupport'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('Foreign activities support component validation', function () {
   it('validate foreign activities support name', () => {
@@ -41,10 +42,10 @@ describe('Foreign activities support component validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -191,10 +192,10 @@ describe('Foreign activities support component validation', function () {
                 suffix: 'Jr'
               },
               Address: {
-                addressType: 'International',
-                address: '1234 Some Rd',
+                street: '1234 Some Rd',
                 city: 'Munich',
-                country: 'Germany'
+                country: 'Germany',
+                layout: Location.ADDRESS
               },
               Relationship: {
                 value: 'this is the relationship'

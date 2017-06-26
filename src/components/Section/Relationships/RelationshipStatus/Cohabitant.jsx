@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN,
          MaidenName, DateRange, NotApplicable, ValidationElement,
-         Suggestions, Show, Country } from '../../../Form'
+         Suggestions, Show, Country, Location } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 
 export default class Cohabitant extends ValidationElement {
@@ -199,7 +199,9 @@ export default class Cohabitant extends ValidationElement {
         </Field>
 
         <h3>{i18n.t('relationships.cohabitant.heading.birthplace')}</h3>
-        <BirthPlace name="birthplace"
+        <Location name="birthplace"
+                    layout={Location.BIRTHPLACE}
+                    className="birthplace"
                     label={i18n.t('relationships.cohabitant.label.birthplace')}
                     {...this.state.BirthPlace}
                     onUpdate={this.updateBirthPlace}

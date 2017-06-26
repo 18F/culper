@@ -37,15 +37,16 @@ describe('The civil union component', () => {
     component.find('.othername input[name="OtherNameNotApplicable"]').simulate('change')
     component.find('.datesused .from .month input').simulate('change', { target: { value: '12' } })
     component.find('.entered .month input').simulate('change', { target: { value: '12' } })
+    component.find('.civilunion-location .yes input').simulate('change')
     component.find('.address .mailing input').simulate('change')
     component.find('.phonetype .cell input').simulate('change')
     component.find('.email input').simulate('change')
     component.find('.separated .yes input').simulate('change')
     component.find('.divorced .yes input').simulate('change')
     component.find('.dateseparated .month input').simulate('change', { target: { value: '12' } })
-    component.find('.address-separated .mailing input').simulate('change')
+    component.find('.address-separated .yes input').simulate('change')
     component.find('.address-separated input[name="OtherNameNotApplicable"]').simulate('change')
-    expect(updates).toBe(25)
+    expect(updates).toBe(26)
   })
 
   it('renders current address', () => {

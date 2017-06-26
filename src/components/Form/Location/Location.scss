@@ -1,8 +1,6 @@
 @import 'eqip-colors';
 
-.address {
-  display: inline-block;
-
+.location {
   input[type='text'] {
     text-transform: capitalize;
 
@@ -20,6 +18,10 @@
     }
   }
 
+  .branch {
+    margin-bottom: 0;
+  }
+
   .state-zip-wrap {
     display: table;
 
@@ -30,12 +32,6 @@
       padding-right: 2rem;
       vertical-align: top;
     }
-  }
-
-  .mailing,
-  .city,
-  .country {
-    margin-right: 1.5rem;
   }
 
   .domestic.block label > span > div,
@@ -70,17 +66,6 @@
     .highlight {
       background-color: $eapp-blue-lightest;
       font-weight: 600;
-    }
-  }
-}
-
-.help {
-  .address {
-    + .toggle {
-      display: inline-block;
-      vertical-align: top;
-      margin-top: 1.6rem;
-      margin-left: 0.8rem;
     }
   }
 }

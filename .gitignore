@@ -68,3 +68,6 @@ TAGS
 
 # Ignore Mac DS_Store files
 .DS_Store
+
+# ack
+.ackrc

@@ -1,4 +1,5 @@
 import CivilUnionValidator from './civilunion'
+import Location from '../components/Form/Location'
 
 describe('CivilUnion validation', function () {
   it('validates separated', () => {
@@ -33,11 +34,11 @@ describe('CivilUnion validation', function () {
           Separated: 'Yes',
           AddressSeparatedNotApplicable: false,
           AddressSeparated: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           },
           DateSeparated: {
             day: '1',
@@ -144,18 +145,27 @@ describe('CivilUnion validation', function () {
             date: new Date('1/1/2016')
           },
           BirthPlace: {
-            domestic: 'Yes',
             country: 'United States',
             city: 'Arlington',
             county: 'Arlington',
-            state: 'VA'
+            state: 'VA',
+            layout: Location.BIRTHPLACE
           },
-          Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+          Location: {
+            country: 'United States',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            county: 'Arlington',
+            zipcode: '22202',
+            layout: Location.BIRTHPLACE
+          },
+          Address: {
+            country: 'United States',
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Telephone: {
             noNumber: '',

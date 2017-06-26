@@ -1,6 +1,6 @@
 import NameValidator from './name'
 import AddressValidator from './address'
-import BirthPlaceValidator from './birthplace'
+import LocationValidator, { isInternational } from './location'
 import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
 
@@ -73,20 +73,21 @@ export class RelativeValidator {
   requiresCitizenshipDocumentation () {
     const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
     const citizen = this.citizen()
+    const international = ((this.birthplace || {}).country !== 'United States')
 
-    if (this.relation && relations.includes(this.relation) && citizen && this.birthplace.domestic === 'No' && this.isDeceased === 'Yes') {
+    if (this.relation && relations.includes(this.relation) && citizen && international && this.isDeceased === 'Yes') {
       return true
     }
 
-    if (this.address && this.address.addressType === 'United States' && this.birthplace.domestic === 'No' && citizen) {
+    if (this.address && this.address.country === 'United States' && international && citizen) {
       return true
     }
 
-    if (this.address && this.address.addressType === 'APOFPO' && this.birthplace.domestic === 'No' && citizen) {
+    if (this.address && this.address.country === 'POSTOFFICE' && international && citizen) {
       return true
     }
 
-    if (this.birthplace && this.birthplace.domestic === 'No' && citizen) {
+    if (this.birthplace && international && citizen) {
       return true
     }
 
@@ -106,7 +107,7 @@ export class RelativeValidator {
   }
 
   validBirthplace () {
-    return !!this.birthplace && new BirthPlaceValidator(this.birthplace, { hideCounty: true }).isValid()
+    return !!this.birthplace && new LocationValidator(this.birthplace).isValid()
   }
 
   validCitizenship () {
@@ -200,7 +201,7 @@ export class RelativeValidator {
       return true
     }
 
-    return new AddressValidator(this.courtAddress, null).isValid()
+    return new LocationValidator(this.courtAddress, null).isValid()
   }
 
   validDocument () {
@@ -240,7 +241,7 @@ export class RelativeValidator {
   }
 
   validFirstContact () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -248,7 +249,7 @@ export class RelativeValidator {
   }
 
   validLastContact () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -256,7 +257,7 @@ export class RelativeValidator {
   }
 
   validMethods () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -266,7 +267,7 @@ export class RelativeValidator {
   }
 
   validFrequency () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -276,7 +277,7 @@ export class RelativeValidator {
   }
 
   validEmployer () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
@@ -284,15 +285,15 @@ export class RelativeValidator {
   }
 
   validEmployerAddress () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 
-    return !!this.employerAddress && new AddressValidator(this.employerAddress, null).isValid()
+    return !!this.employerAddress && new LocationValidator(this.employerAddress).isValid()
   }
 
   validEmployerRelationship () {
-    if (this.address && this.address.addressType !== 'International') {
+    if (this.address && !isInternational(this.address)) {
       return true
     }
 

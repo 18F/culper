@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Hospitalizations from './Hospitalizations'
+import Location from '../../../Form/Location'
 
 describe('The Hospitalizations component', () => {
   it('Renders without errors', () => {
@@ -55,11 +56,12 @@ const List = [
         value: 'Dev'
       },
       Address: {
-        addressType: 'United States',
-        address: '1234 Some Rd',
+        country: 'United States',
+        street: '1234 Some Rd',
         city: 'Arlington',
         state: 'Virginia',
-        zipcode: '22202'
+        zipcode: '22202',
+        layout: Location.ADDRESS
       },
       Additional: {
         HasAdditionalActivity: 'No',
@@ -73,11 +75,12 @@ const List = [
       },
       Supervisor: {
         Address: {
-          addressType: 'United States',
-          address: '1234 Some Rd',
+          country: 'United States',
+          street: '1234 Some Rd',
           city: 'Arlington',
           state: 'Virginia',
-          zipcode: '22202'
+          zipcode: '22202',
+          layout: Location.ADDRESS
         },
         Email: {
           value: 'foo@local.dev'

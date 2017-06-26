@@ -1,5 +1,6 @@
 import ForeignBusinessVenturesValidator, { VenturesValidator } from './foreignbusinessventures'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('Foreign business ventures component validation', function () {
   it('validate foreign business ventures name', () => {
@@ -41,10 +42,10 @@ describe('Foreign business ventures component validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -303,10 +304,10 @@ describe('Foreign business ventures component validation', function () {
                 suffix: 'Jr'
               },
               Address: {
-                addressType: 'International',
-                address: '1234 Some Rd',
+                street: '1234 Some Rd',
                 city: 'Munich',
-                country: 'Germany'
+                country: 'Germany',
+                layout: Location.ADDRESS
               },
               Citizenship: {
                 value: [

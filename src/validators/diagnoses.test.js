@@ -1,4 +1,5 @@
 import DiagnosesValidator from './diagnoses'
+import Location from '../components/Form/Location'
 
 describe('Diagnoses validation', function () {
   it('validates treatment list', () => {
@@ -12,11 +13,12 @@ describe('Diagnoses validation', function () {
                 value: 'Circuit Court'
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Phone: {
                 noNumber: '',
@@ -89,11 +91,12 @@ describe('Diagnoses validation', function () {
                   value: 'Circuit Court'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 Phone: {
                   noNumber: '',
@@ -108,11 +111,12 @@ describe('Diagnoses validation', function () {
                   value: 'Circuit Court'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 Phone: {
                   noNumber: '',

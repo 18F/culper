@@ -5,14 +5,14 @@ export const AddressSummary = (props, unknown) => {
     return unknown
   }
 
-  const address1 = `${props.address || ''}`.trim()
+  const address1 = `${props.street || ''} ${props.street2 || ''}`.trim()
   let address2 = ''
 
-  if (props.addressType === 'United States') {
+  if (props.country === 'United States') {
     address2 = `${(props.city || '').toLowerCase()}, ${(props.state || '').toUpperCase()} ${props.zipcode || ''}`.trim()
-  } else if (props.addressType === 'APOFPO') {
+  } else if (props.country === 'POSTOFFICE') {
     address2 = `${(props.apoFpoType || '').toUpperCase()}, ${(props.apoFpo || '').toUpperCase()} ${props.zipcode || ''}`.trim()
-  } else if (props.addressType === 'International') {
+  } else if (props.country !== '') {
     address2 = `${(props.city || '').toLowerCase()}, ${(props.country || '').toLowerCase()}`.trim()
   }
 

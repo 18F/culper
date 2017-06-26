@@ -1,4 +1,5 @@
 import ResidenceValidator from './residence'
+import Location from '../components/Form/Location'
 
 describe('Residence component validation', function () {
   it('should validate role', function () {
@@ -60,11 +61,12 @@ describe('Residence component validation', function () {
           },
           Role: 'Military',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Reference: {
             FullName: {
@@ -95,11 +97,12 @@ describe('Residence component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             }
           }
         },

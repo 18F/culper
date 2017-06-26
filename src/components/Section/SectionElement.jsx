@@ -1,6 +1,6 @@
 import React from 'react'
 import { push } from '../../middleware/history'
-import { updateApplication, reportErrors } from '../../actions/ApplicationActions'
+import { updateApplication, reportErrors, save } from '../../actions/ApplicationActions'
 
 export default class SectionElement extends React.Component {
   constructor (props) {
@@ -29,6 +29,11 @@ export default class SectionElement extends React.Component {
     }
 
     return subsection
+  }
+
+  doSave () {
+    const d = new Date()
+    this.props.dispatch(save(d))
   }
 
   handleTour (event) {

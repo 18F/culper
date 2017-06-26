@@ -1,6 +1,6 @@
 import AddressValidator from './address'
+import LocationValidator from './location'
 import NameValidator from './name'
-import BirthPlaceValidator from './birthplace'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
 import { validBranch, validSSN, validDateField, validPhoneNumber } from './helpers'
@@ -17,6 +17,7 @@ export default class CivilUnionValidator {
     this.otherNameNotApplicable = state.OtherNameNotApplicable
     this.datesUsed = state.DatesUsed
     this.citizenship = state.Citizenship
+    this.location = state.Location
     this.address = state.Address
     this.telephone = state.Telephone
     this.separated = state.Separated
@@ -49,14 +50,14 @@ export default class CivilUnionValidator {
 
     let addressValid = true
     if (!this.addressSeparatedNotApplicable) {
-      addressValid = new AddressValidator(this.addressSeparated).isValid()
+      addressValid = new LocationValidator(this.addressSeparated).isValid()
     }
 
     return validDateField(this.dateSeparated) && addressValid
   }
 
   validForeignBornDocument () {
-    if (new BirthPlaceValidator(this.birthPlace).isValid() && this.birthPlace.country !== 'United States') {
+    if (new LocationValidator(this.birthPlace).isValid() && this.birthPlace.country !== 'United States') {
       return new ForeignBornDocument(this.foreignBornDocument).isValid()
     }
     return true
@@ -65,12 +66,13 @@ export default class CivilUnionValidator {
   isValid () {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
-      new BirthPlaceValidator(this.birthPlace).isValid() &&
+      new LocationValidator(this.birthPlace).isValid() &&
       this.validForeignBornDocument() &&
       validPhoneNumber(this.telephone) &&
       validSSN(this.ssn) &&
       validBranch(this.separated) &&
       new AddressValidator(this.address).isValid() &&
+      new LocationValidator(this.location).isValid() &&
       this.validSeparated() &&
       this.validCitizenship() &&
       !!this.divorced

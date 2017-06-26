@@ -43,9 +43,9 @@ import Reference from './Reference'
 import Show from './Show'
 import BranchCollection from './BranchCollection'
 import SSN from './SSN'
-import BirthPlace, { DomesticBirthPlace, InternationalBirthPlace } from './BirthPlace'
 import ForeignBornDocuments from './ForeignBornDocuments/ForeignBornDocuments'
 import Currency from './Currency'
+import Location from './Location'
 
 export {
   ValidationElement,
@@ -88,9 +88,7 @@ export {
   Accordion,
   Field,
   SSN,
-  BirthPlace,
-  DomesticBirthPlace,
-  InternationalBirthPlace,
   ForeignBornDocuments,
-  Currency
+  Currency,
+  Location
 }

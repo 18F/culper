@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import NameValidator from './name'
 import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
@@ -124,7 +124,7 @@ export class PassportItemValidator {
   }
 
   validLocation () {
-    return !!this.location && new AddressValidator(this.location, null).isValid()
+    return !!this.location && new LocationValidator(this.location).isValid()
   }
 
   validName () {

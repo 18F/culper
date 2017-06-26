@@ -5,7 +5,7 @@ import { ForeignBusinessSponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
          Text, Textarea, Country, DateControl, Address, Name,
-         BirthPlace, DateRange, NotApplicable } from '../../../Form'
+         BirthPlace, Location, DateRange, NotApplicable } from '../../../Form'
 
 export default class Sponsorship extends SubsectionElement {
   constructor (props) {
@@ -105,7 +105,9 @@ export default class Sponsorship extends SubsectionElement {
                    help="foreign.business.sponsorship.help.birthplace"
                    adjustFor="birthplace"
                    validate={false}>
-              <BirthPlace name="Birthplace"
+              <Location name="Birthplace"
+                          layout={Location.CITY_COUNTRY}
+                          fields={['city', 'country']}
                           help=""
                           label={i18n.t('foreign.business.sponsorship.label.birthplace')}
                           cityPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.city')}

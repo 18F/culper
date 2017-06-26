@@ -280,9 +280,15 @@ type USPSAddress struct {
 
 // FromGeoValues populates a USPSAddress using Values
 func (address *USPSAddress) FromGeoValues(geoValues Values) {
-	if geoValues.Address != "" {
-		address.Address2 = geoValues.Address
+	// Don't get mad at me, USPS makes Address1 the apartment/suite field and Address2
+	// the mailing address field
+	if geoValues.Street != "" {
+		address.Address2 = geoValues.Street
 	}
+	if geoValues.Street2 != "" {
+		address.Address1 = geoValues.Street2
+	}
+
 	if geoValues.City != "" {
 		address.City = geoValues.City
 	}
@@ -294,7 +300,8 @@ func (address *USPSAddress) FromGeoValues(geoValues Values) {
 // ToResult generates a Result struct and determines whether it is a partial match. A partial
 // match occurs when there's a mismatch in values between each corresponding field
 func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
-	result.Address = address.Address2
+	result.Street = address.Address2
+	result.Street2 = address.Address1
 	result.City = address.City
 	result.State = address.State
 	result.Zipcode = address.Zip5
@@ -304,7 +311,9 @@ func (address *USPSAddress) ToResult(geoValues Values) (result Result) {
 	switch {
 	case address.ReturnText != "":
 		fallthrough
-	case !strings.EqualFold(result.Address, geoValues.Address):
+	case !strings.EqualFold(result.Street, geoValues.Street):
+		fallthrough
+	case !strings.EqualFold(result.Street2, geoValues.Street2):
 		fallthrough
 	case !strings.EqualFold(result.City, geoValues.City):
 		fallthrough

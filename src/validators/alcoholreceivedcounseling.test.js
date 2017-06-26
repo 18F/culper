@@ -1,4 +1,5 @@
 import ReceivedCounselingsValidator, { ReceivedCounselingValidator } from './alcoholreceivedcounseling'
+import Location from '../components/Form/Location'
 
 describe('received counseling component validation', function () {
   it('can validate received counseling', () => {
@@ -7,11 +8,12 @@ describe('received counseling component validation', function () {
         state: {
           UseSameAddress: 'Yes',
           TreatmentProviderAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -20,11 +22,12 @@ describe('received counseling component validation', function () {
         state: {
           UseSameAddress: 'No',
           TreatmentProviderAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: false
@@ -56,11 +59,12 @@ describe('received counseling component validation', function () {
           },
           UseSameAddress: 'Yes',
           TreatmentProviderAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           TreatmentBeganDate: {
             day: '1',
@@ -133,11 +137,12 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 AgencyName: {
                   value: 'The agency name'
@@ -176,11 +181,12 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 AgencyName: {
                   value: 'The agency name'
@@ -219,11 +225,12 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 AgencyName: {
                   value: 'The agency name'
@@ -270,11 +277,12 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 AgencyName: {
                   value: 'The agency name'

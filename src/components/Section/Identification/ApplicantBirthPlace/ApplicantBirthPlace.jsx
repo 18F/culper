@@ -1,7 +1,8 @@
 import React from 'react'
-import BirthPlaceValidator from '../../../../validators/birthplace'
+import LocationValidator from '../../../../validators/birthplace'
 import SubsectionElement from '../../SubsectionElement'
-import { BirthPlace } from '../../../Form'
+import { Location } from '../../../Form'
+import { i18n } from '../../../../config'
 
 export default class ApplicantBirthPlace extends SubsectionElement {
   render () {
@@ -9,7 +10,9 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <BirthPlace name="ssn"
+        <Location name="birthplace"
+             layout={Location.BIRTHPLACE}
+             label={i18n.t('identification.birthplace.label.location')}
              {...this.props.value}
              onUpdate={this.props.onUpdate}
              onError={this.handleError}
@@ -26,7 +29,7 @@ ApplicantBirthPlace.defaultProps = {
   subsection: 'birthplace',
   dispatch: () => {},
   validator: (state, props) => {
-    return new BirthPlaceValidator(props.value, props).isValid()
+    return new LocationValidator(props.value, props).isValid()
   }
 }
 

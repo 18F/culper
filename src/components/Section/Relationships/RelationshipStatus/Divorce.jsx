@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, Field, DateControl, Show, RadioGroup, Radio, Telephone, Name, BirthPlace, NotApplicable } from '../../../Form'
+import { Address, Field, DateControl, Show, RadioGroup, Radio, Telephone, Name, BirthPlace, NotApplicable, Location } from '../../../Form'
 
 export default class Divorce extends React.Component {
   constructor (props) {
@@ -121,7 +121,8 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}>
-          <BirthPlace name="birthplace"
+          <Location name="birthplace"
+                      layout={Location.BIRTHPLACE}
                       label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
                       className="birthplace"
                       {...this.state.BirthPlace}

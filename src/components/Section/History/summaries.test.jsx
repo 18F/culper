@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { ResidenceCustomSummary, EmploymentCustomSummary, EducationCustomSummary, InjectGaps,
          ResidenceCaption, EmploymentCaption, EducationCaption } from './summaries'
+import Location from '../../Form/Location'
 
 describe('The summary components', () => {
   it('can display residence summary', () => {
@@ -9,11 +10,12 @@ describe('The summary components', () => {
       item: {
         Item: {
           Address: {
-            addressType: 'United States',
-            address: '742 Evergreen Terrace',
+            country: 'United States',
+            street: '742 Evergreen Terrace',
             city: 'Springfield',
             state: 'Nevada',
-            zip: '123456'
+            zip: '123456',
+            layout: Location.ADDRESS
           },
           Dates: {
             from: {

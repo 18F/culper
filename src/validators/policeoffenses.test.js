@@ -1,4 +1,5 @@
 import PoliceOffensesValidator from './policeoffenses'
+import Location from '../components/Form/Location'
 
 describe('Police record validation', function () {
   it('validates offenses', () => {
@@ -31,11 +32,12 @@ describe('Police record validation', function () {
                 InvolvedFirearms: 'No',
                 InvolvedSubstances: 'No',
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 WasCited: 'Yes',
                 CitedBy: {
@@ -46,11 +48,12 @@ describe('Police record validation', function () {
                   value: 'Some explanation'
                 },
                 AgencyAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
 
                 WasSentenced: 'No',

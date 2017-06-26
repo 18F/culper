@@ -27,11 +27,12 @@ describe('The VoluntaryTreatments component', () => {
             value: 'Provider'
           },
           TreatmentProviderAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           TreatmentProviderTelephone: {
             noNumber: '',
