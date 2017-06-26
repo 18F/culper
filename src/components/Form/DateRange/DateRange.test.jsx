@@ -56,6 +56,7 @@ describe('The date range component', () => {
     const component = mount(<DateRange {...expected} />)
     component.find('input[name="present"]').simulate('change')
     expect(updates).toBeGreaterThan(0)
+    expect(component.find('.to.usa-input-error').length).toBe(1)
   })
 
   it('loads data', () => {
