@@ -387,6 +387,7 @@ export default class Location extends ValidationElement {
   }
 }
 
+// Define all possible layouts for location fields
 Location.BIRTHPLACE = Layouts.BIRTHPLACE
 Location.COUNTRY = Layouts.COUNTRY
 Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY = Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY
