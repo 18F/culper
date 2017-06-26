@@ -5,7 +5,7 @@ export const AddressSummary = (props, unknown) => {
     return unknown
   }
 
-  const address1 = `${props.street || ''}`.trim()
+  const address1 = `${props.street || ''} ${props.street2 || ''}`.trim()
   let address2 = ''
 
   if (props.country === 'United States') {

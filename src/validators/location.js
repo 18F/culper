@@ -121,7 +121,6 @@ export default class LocationValidator {
         return this.validFields(['street', 'city', 'country'])
       default:
         return false
-
     }
   }
 

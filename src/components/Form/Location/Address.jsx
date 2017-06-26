@@ -52,6 +52,7 @@ export default class Address extends ValidationElement {
 
   updateAddressType (cb) {
     let country = ''
+    // POSTOFFICE is used for APO, FPO and DPO
     switch (cb.value) {
       case 'United States':
       case 'POSTOFFICE':
@@ -199,7 +200,7 @@ export default class Address extends ValidationElement {
                 />
                 <Street name="street2"
                   className="street2"
-                  placeholder={this.props.street2Placeholder}
+                  label={this.props.street2Label}
                   value={this.props.street2}
                   onChange={this.updateStreet2}
                   onError={this.handleError}

@@ -30,11 +30,12 @@ export default class ToggleableLocation extends ValidationElement {
   update (updateValues) {
     if (this.props.onUpdate) {
       this.props.onUpdate({
-        address: this.props.address,
+        street: this.props.street,
         city: this.props.city,
         zipcode: this.props.zipcode,
         state: this.props.state,
         country: this.props.country,
+        county: this.props.county,
         domestic: this.props.domestic,
         domesticFields: this.props.domesticFields,
         internationalFields: this.props.internationalFields,
@@ -44,7 +45,7 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   updateStreet (event) {
-    this.update({ address: event.target.value })
+    this.update({ street: event.target.value })
   }
 
   updateCity (event) {
@@ -85,7 +86,7 @@ export default class ToggleableLocation extends ValidationElement {
         case 'street':
           return (
             <Street name="street"
-              className="mailing"
+              className="mailing street"
               key={key}
               placeholder={this.props.streetPlaceholder}
               value={this.props.street}
@@ -227,14 +228,14 @@ export default class ToggleableLocation extends ValidationElement {
 
 const branchValue = (country) => {
   switch (country) {
-    // Neutral state
     case null:
+      // Neutral state
       return ''
     case 'United States':
       return 'Yes'
-    // For all other cases, country is an empty string (user intends to select country) or
-    // user has selected a country
     default:
+      // For all other cases, country is an empty string (user intends to select country) or
+      // user has selected a country
       return 'No'
   }
 }
