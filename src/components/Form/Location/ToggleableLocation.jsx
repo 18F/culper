@@ -169,11 +169,12 @@ export default class ToggleableLocation extends ValidationElement {
     })
 
     const internationalFields = this.props.internationalFields.map(field => {
+      const key = `domestic-${field}`
       switch (field) {
         case 'city':
           return (
             <City name="city"
-              key={`international-${field}`}
+              key={key}
               label={i18n.t('address.us.city.label')}
               placeholder={this.props.cityPlaceholder}
               value={this.props.city}
@@ -186,7 +187,7 @@ export default class ToggleableLocation extends ValidationElement {
         case 'country':
           return (
             <Country name="country"
-              key={`international-${field}`}
+              key={key}
               label={this.props.countryLabel}
               value={this.props.country}
               className="country"

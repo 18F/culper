@@ -13,7 +13,7 @@ describe('The AddressSuggestion component', () => {
           Zipcode: '22202'
         },
         current: {
-          address: '123 Some Rd',
+          street: '123 Some Rd',
           city: 'Arlington',
           state: 'VA',
           zipcode: '22202'
@@ -22,13 +22,13 @@ describe('The AddressSuggestion component', () => {
       },
       {
         suggestion: {
-          Address: '123 Some Rd',
+          street: '123 Some Rd',
           City: 'Arlington',
           State: 'VA',
           Zipcode: '22202'
         },
         current: {
-          address: '123 Some Road',
+          street: '123 Some Road',
           city: 'Arlington',
           state: 'VA',
           zipcode: '22202'
@@ -37,13 +37,13 @@ describe('The AddressSuggestion component', () => {
       },
       {
         suggestion: {
-          Address: '123 Some Rd',
+          street: '123 Some Rd',
           City: 'Arlington',
           State: 'VA',
           Zipcode: '22202'
         },
         current: {
-          address: '123 Some Road',
+          street: '123 Some Road',
           city: 'A-Town',
           state: 'MD',
           zipcode: '22201'

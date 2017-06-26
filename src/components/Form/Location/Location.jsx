@@ -24,7 +24,6 @@ export default class Location extends ValidationElement {
     this.updateCountry = this.updateCountry.bind(this)
     this.updateZipcode = this.updateZipcode.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
-    this.updateBirthPlace = this.updateBirthPlace.bind(this)
     this.updateToggleableLocation = this.updateToggleableLocation.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
@@ -34,7 +33,7 @@ export default class Location extends ValidationElement {
     this.geocodeCancel = false
 
     this.state = {
-      geocodeResult: {}
+      geocodeResult: props.geocodeResult || {}
     }
   }
 
@@ -93,16 +92,6 @@ export default class Location extends ValidationElement {
     this.update({zipcode: event.target.value})
   }
 
-  updateBirthPlace (birthPlace) {
-    this.update({
-      street: null,
-      city: birthPlace.city,
-      state: birthPlace.state,
-      county: birthPlace.county,
-      country: birthPlace.country
-    })
-  }
-
   updateAddress (address) {
     this.update({
       street: address.street,
@@ -126,15 +115,6 @@ export default class Location extends ValidationElement {
   renderFields (fields) {
     return fields.map(field => {
       switch (field) {
-        case 'address':
-          return (
-            <Address name="address"
-              {...this.props}
-              onBlur={this.handleBlur}
-              onUpdate={this.updateAddress}
-              onError={this.props.onError}
-            />
-          )
         case 'street':
           return (
             <Street name="street"
@@ -282,6 +262,8 @@ export default class Location extends ValidationElement {
         return this.renderFields(['street', 'city', 'stateZipcode'])
       case Location.STREET_CITY:
         return this.renderFields(['street', 'city'])
+      case Location.COUNTRY:
+        return this.renderFields(['country'])
       case null:
       case undefined:
       default:
@@ -399,6 +381,7 @@ export default class Location extends ValidationElement {
 }
 
 Location.BIRTHPLACE = Layouts.BIRTHPLACE
+Location.COUNTRY = Layouts.COUNTRY
 Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY = Layouts.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY
 Location.BIRTHPLACE_WITHOUT_COUNTY = Layouts.BIRTHPLACE_WITHOUT_COUNTY
 Location.CITY_STATE = Layouts.CITY_STATE

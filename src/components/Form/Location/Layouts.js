@@ -2,6 +2,7 @@ export default {
   ADDRESS: 'Address',
   BIRTHPLACE: 'Birthplace',
   BIRTHPLACE_WITHOUT_COUNTY: 'Birthplace without County',
+  COUNTRY: 'Country',
   US_CITY_STATE_INTERNATIONAL_CITY: 'US City, State, International city',
   US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY: 'US City, State, International city country',
   CITY_STATE: 'City, State',
