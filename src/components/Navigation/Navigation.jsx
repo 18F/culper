@@ -46,18 +46,30 @@ class Navigation extends React.Component {
 
       const subUrl = `${url}/${subsection.url}`
       const subClass = this.getClassName(subUrl, pathname)
-      const childSubsections = isActive(subUrl, pathname) && section.subsections
-            ? this.subsectionWalker(subsection, subUrl)
-            : []
+
+      // Collapsed state properties
+      let arrow = null
+      let childSubsections = []
+      if (subsection.subsections) {
+        if (isActive(subUrl, pathname)) {
+          childSubsections = this.subsectionWalker(subsection, subUrl)
+          arrow = <i className="fa fa-angle-up" aria-hidden="true"></i>
+        } else {
+          arrow = <i className="fa fa-angle-down" aria-hidden="true"></i>
+        }
+      }
 
       return (
         <div key={subsection.name} className="subsection" >
           <Link to={subUrl} className={subClass}>
-            <span className="name">{subsection.name}</span>
+            <span className="section-name">
+              {subsection.name}
+              {arrow}
+            </span>
             <span className="mini eapp-status-icon-valid"></span>
             <span className="mini eapp-status-icon-error"></span>
           </Link>
-          { childSubsections }
+          {childSubsections}
         </div>
       )
     })
@@ -75,24 +87,36 @@ class Navigation extends React.Component {
 
       const url = `/form/${section.url}`
       const sectionClass = this.getClassName(url, pathname)
-      const subsections = isActive(url, pathname)
-            ? this.subsectionWalker(section, url)
-            : []
+
+      // Collapsed state properties
+      let arrow = null
+      let subsections = []
+      if (section.subsections) {
+        if (isActive(url, pathname)) {
+          subsections = this.subsectionWalker(section, url)
+          arrow = <i className="fa fa-angle-up" aria-hidden="true"></i>
+        } else {
+          arrow = <i className="fa fa-angle-down" aria-hidden="true"></i>
+        }
+      }
 
       // Increment the section number
       sectionNum++
 
       return (
         <div key={section.name} className="section">
-          <span className="title">
+          <span className="section-title">
             <Link to={url} className={sectionClass}>
-              <span className="number">{sectionNum}</span>
-              <span className="name">{section.name}</span>
+              <span className="section-number">{sectionNum}</span>
+              <span className="section-name">
+                {section.name}
+                {arrow}
+              </span>
               <span className="eapp-status-icon-valid"></span>
               <span className="eapp-status-icon-error"></span>
             </Link>
           </span>
-          { subsections }
+          {subsections}
         </div>
       )
     })
