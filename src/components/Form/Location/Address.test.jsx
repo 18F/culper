@@ -12,11 +12,12 @@ describe('The Address component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<Address onUpdate={onUpdate} />)
-    component.find('.mailing input').simulate('change')
+    component.find('.street input').simulate('change')
+    component.find('.street2 input').simulate('change')
     component.find('.city input').simulate('change')
     component.find('.state input').simulate('change', { target: { value: 'Virginia' } })
     component.find('.zipcode input').simulate('change')
-    expect(updates).toBe(4)
+    expect(updates).toBe(5)
   })
 
   it('Performs APO/FPO updates', () => {

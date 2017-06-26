@@ -9,7 +9,10 @@ export function AddressSuggestion (props) {
   return (
     <div className="address-suggestion">
       <div>
-        <HighlightedField new={ suggestion.Address } current={current.street} />
+        <HighlightedField new={ suggestion.Street } current={current.street} />
+      </div>
+      <div>
+        <HighlightedField new={ suggestion.Street2 } current={current.street2} />
       </div>
       <div>
         <HighlightedField new={ suggestion.City } current={current.city} />, <HighlightedField new={ suggestion.State } current={current.state} /> <HighlightedField new={ suggestion.Zipcode } current={current.zipcode} />

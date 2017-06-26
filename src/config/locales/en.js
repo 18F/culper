@@ -2815,8 +2815,10 @@ const en = {
     },
     us: {
       street: {
-        label: 'Street',
-        placeholder: 'Enter street address'
+        label: 'Street address'
+      },
+      street2: {
+        label: 'Apt, suite, building, floor, etc.'
       },
       city: {
         label: 'City',

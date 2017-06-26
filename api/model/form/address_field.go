@@ -4,7 +4,8 @@ import "github.com/18F/e-QIP-prototype/api/geo"
 
 // AddressField contains complete address information for an entity
 type AddressField struct {
-	Address TextField
+	Street  TextField
+	Street2 TextField
 	City    CityField
 	State   StateField
 	Zipcode ZipcodeField
@@ -17,7 +18,7 @@ func (a AddressField) Valid() (bool, error) {
 
 	var stack ErrorStack
 
-	if ok, err := a.Address.Valid(); !ok {
+	if ok, err := a.Street.Valid(); !ok {
 		stack.Append("Address", err)
 	}
 
@@ -41,7 +42,8 @@ func (a AddressField) Valid() (bool, error) {
 	// Perform geocoding
 	results, err := geo.Geocode.Validate(
 		geo.Values{
-			Address: string(a.Address),
+			Street:  string(a.Street),
+			Street2: string(a.Street2),
 			City:    string(a.City),
 			State:   string(a.State),
 			Zipcode: string(a.Zipcode),

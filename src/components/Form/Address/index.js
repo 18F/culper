@@ -1,6 +1,5 @@
 import React from 'react'
 import Location from '../Location'
-import { throttle } from './Address'
 
 export default class extends React.Component {
   render () {
@@ -14,4 +13,3 @@ export default class extends React.Component {
   }
 }
 
-export { throttle }

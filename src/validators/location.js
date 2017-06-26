@@ -12,6 +12,7 @@ export default class LocationValidator {
 
     // Data
     this.street = data.street
+    this.street2 = data.street2
     this.city = data.city
     this.state = data.state
     this.zipcode = data.zipcode
@@ -31,8 +32,8 @@ export default class LocationValidator {
 
   geocode () {
     return new Geocoder().geocode({
-      // TODO modify backend to use street instead of address
-      address: this.street,
+      street: this.street,
+      street2: this.street2,
       city: this.city,
       state: this.state,
       zipcode: this.zipcode

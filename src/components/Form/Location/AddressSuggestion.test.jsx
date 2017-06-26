@@ -7,7 +7,7 @@ describe('The AddressSuggestion component', () => {
     const tests = [
       {
         suggestion: {
-          Address: '123 Some Rd',
+          Street: '123 Some Rd',
           City: 'Arlington',
           State: 'VA',
           Zipcode: '22202'
@@ -22,7 +22,7 @@ describe('The AddressSuggestion component', () => {
       },
       {
         suggestion: {
-          street: '123 Some Rd',
+          Street: '123 Some Rd',
           City: 'Arlington',
           State: 'VA',
           Zipcode: '22202'
@@ -37,7 +37,7 @@ describe('The AddressSuggestion component', () => {
       },
       {
         suggestion: {
-          street: '123 Some Rd',
+          Street: '123 Some Rd',
           City: 'Arlington',
           State: 'VA',
           Zipcode: '22202'

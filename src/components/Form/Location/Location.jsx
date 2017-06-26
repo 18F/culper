@@ -95,6 +95,7 @@ export default class Location extends ValidationElement {
   updateAddress (address) {
     this.update({
       street: address.street,
+      street2: address.street2,
       city: address.city,
       state: address.state,
       zipcode: address.zipcode,
@@ -349,7 +350,8 @@ export default class Location extends ValidationElement {
 
   onSuggestion (suggestion) {
     this.update({
-      street: suggestion.Address,
+      street: suggestion.Street,
+      street2: suggestion.Street2,
       city: suggestion.City,
       state: suggestion.State,
       zipcode: suggestion.Zipcode,
@@ -361,12 +363,13 @@ export default class Location extends ValidationElement {
   }
 
   suggestionDismissContent () {
-    const { street, city, state, zipcode } = this.props
+    const { street, street2, city, state, zipcode } = this.props
     return (
       <div>
         <h5>{i18n.t('error.geocode.original.title')}</h5>
         <div className="address-suggestion">
           <div>{ street }</div>
+          <div>{ street2 }</div>
           <div>{ city }, { state } { zipcode }</div>
         </div>
       </div>

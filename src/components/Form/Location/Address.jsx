@@ -17,6 +17,7 @@ export default class Address extends ValidationElement {
 
     this.update = this.update.bind(this)
     this.updateStreet = this.updateStreet.bind(this)
+    this.updateStreet2 = this.updateStreet2.bind(this)
     this.updateCity = this.updateCity.bind(this)
     this.updateState = this.updateState.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
@@ -27,6 +28,10 @@ export default class Address extends ValidationElement {
 
   updateStreet (event) {
     this.update({ street: event.target.value })
+  }
+
+  updateStreet2 (event) {
+    this.update({ street2: event.target.value })
   }
 
   updateCity (event) {
@@ -63,6 +68,7 @@ export default class Address extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         street: this.props.street,
+        street2: this.props.street2,
         city: this.props.city,
         state: this.props.state,
         country: this.props.country,
@@ -128,11 +134,19 @@ export default class Address extends ValidationElement {
             <Show when={this.props.country === 'United States'}>
               <div>
                 <Street name="address"
-                  className="mailing"
+                  className="mailing street"
                   label={this.props.streetLabel}
-                  placeholder={this.props.streetPlaceholder}
                   value={this.props.street}
                   onChange={this.updateStreet}
+                  onError={this.handleError}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                />
+                <Street name="street2"
+                  className="street2"
+                  label={this.props.street2Label}
+                  value={this.props.street2}
+                  onChange={this.updateStreet2}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
@@ -140,7 +154,6 @@ export default class Address extends ValidationElement {
                 <City name="city"
                   className="city"
                   label={this.props.cityLabel}
-                  placeholder={this.props.cityPlaceholder}
                   value={this.props.city}
                   onChange={this.updateCity}
                   onError={this.handleError}
@@ -151,7 +164,6 @@ export default class Address extends ValidationElement {
                   <MilitaryState name="state"
                     className="state"
                     label={this.props.stateLabel}
-                    placeholder={this.props.statePlaceholder}
                     value={this.props.state}
                     includeStates="true"
                     onChange={this.updateState}
@@ -164,7 +176,6 @@ export default class Address extends ValidationElement {
                     key="us_zipcode"
                     className="zipcode"
                     label={this.props.zipcodeLabel}
-                    placeholder={this.props.zipcodePlaceholder}
                     value={this.props.zipcode}
                     onChange={this.updateZipcode}
                     onError={this.handleError}
@@ -178,10 +189,18 @@ export default class Address extends ValidationElement {
               <div>
                 <Street name="address"
                   label={this.props.streetLabel}
-                  placeholder={this.props.streetPlaceholder}
                   className="mailing"
-                  value={this.props.street}
+                  value={this.props.street2}
                   onChange={this.updateStreet}
+                  onError={this.handleError}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                />
+                <Street name="street2"
+                  className="street2"
+                  placeholder={this.props.street2Placeholder}
+                  value={this.props.street2}
+                  onChange={this.updateStreet2}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
@@ -189,7 +208,6 @@ export default class Address extends ValidationElement {
                 <City name="city"
                   className="city"
                   label={this.props.cityLabel}
-                  placeholder={this.props.cityPlaceholder}
                   value={this.props.city}
                   onChange={this.updateCity}
                   onError={this.handleError}
@@ -198,7 +216,6 @@ export default class Address extends ValidationElement {
                 />
                 <Country name="country"
                   label={this.props.countryLabel}
-                  placeholder={this.props.countryPlaceholder}
                   value={this.props.country}
                   excludeUnitedStates="true"
                   onChange={this.updateCountry}
@@ -212,8 +229,7 @@ export default class Address extends ValidationElement {
               <div>
                 <Street name="address"
                   label={i18n.t('address.apoFpo.street.label')}
-                  placeholder={i18n.t('address.apoFpo.street.placeholder')}
-                  className="mailing"
+                  className="mailing street"
                   value={this.props.street}
                   onChange={this.updateStreet}
                   onError={this.handleError}
@@ -245,7 +261,6 @@ export default class Address extends ValidationElement {
                   <ApoFpo name="apoFpo"
                     className="state"
                     label={i18n.t('address.apoFpo.apoFpo.label')}
-                    placeholder={i18n.t('address.apoFpo.apoFpo.placeholder')}
                     value={this.props.state}
                     onChange={this.updateState}
                     onError={this.handleError}
@@ -258,7 +273,6 @@ export default class Address extends ValidationElement {
                     key="apo_zipcode"
                     className="zipcode"
                     label={i18n.t('address.apoFpo.zipcode.label')}
-                    placeholder={i18n.t('address.apoFpo.zipcode.placeholder')}
                     value={this.props.zipcode}
                     onChange={this.updateZipcode}
                     onError={this.handleError}
@@ -279,7 +293,9 @@ Address.defaultProps = {
   label: i18n.t('address.label'),
   tab: (input) => { input.focus() },
   country: 'United States',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  streetLabel: i18n.t('address.us.street.label'),
+  street2Label: i18n.t('address.us.street2.label')
 }
 
 Address.errors = []
