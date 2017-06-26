@@ -32,8 +32,7 @@ class Navigation extends React.Component {
       return null
     }
 
-    const location = env.History().getCurrentLocation()
-    const pathname = location.pathname
+    const pathname = this.props.location().pathname
 
     return section.subsections.map(subsection => {
       if (subsection.hidden) {
@@ -76,8 +75,7 @@ class Navigation extends React.Component {
   }
 
   render () {
-    const location = env.History().getCurrentLocation()
-    const pathname = location.pathname
+    const pathname = this.props.location().pathname
     let sectionNum = 0
 
     const nav = navigation.map((section) => {
@@ -127,6 +125,10 @@ class Navigation extends React.Component {
       </div>
     )
   }
+}
+
+Navigation.defaultProps = {
+  location: () => { return env.History().getCurrentLocation() }
 }
 
 function mapStateToProps (state) {
@@ -230,5 +232,6 @@ export const isValid = (route, props = {}) => {
  * class to items in the route hiearchy
  */
 export const isActive = (route, pathname) => {
+  console.log('pathname: ', pathname)
   return pathname.indexOf(route) !== -1
 }
