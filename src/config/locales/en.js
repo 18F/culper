@@ -2807,7 +2807,7 @@ const en = {
         label: 'In the<br>United States'
       },
       apoFpo: {
-        label: 'APO/FPO'
+        label: 'APO/FPO/DPO'
       },
       international: {
         label: 'Outside of the<br>United States'
@@ -2853,7 +2853,7 @@ const en = {
     },
     apoFpo: {
       select: {
-        label: 'Select APO or FPO'
+        label: 'Select APO, FPO or DPO'
       },
       street: {
         label: 'Address',
@@ -2872,7 +2872,7 @@ const en = {
         placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
-        label: 'APO/FPO State Code',
+        label: 'APO/FPO/DPO State Code',
         placeholder: 'Enter state code (AA, AE, AP)'
       },
       apoFpoType: {
@@ -2882,9 +2882,12 @@ const en = {
         fpo: {
           label: 'FPO'
         },
+        dpo: {
+          label: 'DPO'
+        },
         apoFpo: {
-          label: 'APO/FPO',
-          placeholder: 'Enter APO/FPO'
+          label: 'APO/FPO/DPO',
+          placeholder: 'Enter APO/FPO/DPO'
         }
       }
     }

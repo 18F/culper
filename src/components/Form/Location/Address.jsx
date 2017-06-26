@@ -60,7 +60,8 @@ export default class Address extends ValidationElement {
     }
 
     this.update({
-      country: country
+      country: country,
+      state: ''
     })
   }
 
@@ -240,7 +241,7 @@ export default class Address extends ValidationElement {
                 <RadioGroup className="apofpo" selectedValue={this.props.city}>
                   <Radio name="apoFpoType"
                     className="apo"
-                    label={i18n.t('address.apoFpo.apoFpoType.apo.label')}
+                    label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
                     value="APO"
                     disabled={this.props.disabled}
                     onChange={this.updateCity}
@@ -249,8 +250,17 @@ export default class Address extends ValidationElement {
                   />
                   <Radio name="addressType"
                     className="fpo"
-                    label={i18n.t('address.apoFpo.apoFpoType.fpo.label')}
+                    label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
                     value="FPO"
+                    disabled={this.props.disabled}
+                    onChange={this.updateCity}
+                    onBlur={this.props.onBlur}
+                    onFocus={this.props.onFocus}
+                  />
+                  <Radio name="addressType"
+                    className="dpo"
+                    label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
+                    value="DPO"
                     disabled={this.props.disabled}
                     onChange={this.updateCity}
                     onBlur={this.props.onBlur}

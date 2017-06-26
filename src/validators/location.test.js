@@ -287,12 +287,70 @@ describe('the location component', function () {
       })
   })
 
+  it('should handle geocode', async () => {
+    const test = {
+      state: {
+        country: 'United States',
+        street: '1234 Some Rd',
+        city: 'Arlington',
+        state: 'Virginia',
+        zipcode: '22202'
+      },
+      expected: {
+        Errors: [{
+          Error: 'error.geocode.partial'
+        }]
+      }
+    }
+
+    api.setToken('my-token')
+    const mock = new MockAdapter(api.proxySecured)
+    mock.onPost('/validate/address').reply(200, {
+      Errors: [{
+        Error: 'error.geocode.partial'
+      }]
+    })
+    return new LocationValidator(test.state, null)
+      .geocode()
+      .then(r => {
+      }).catch(r => {
+        expect(r).toEqual(test.expected)
+      })
+  })
+
+  it('should handle empty error', async () => {
+    const test = {
+      state: {
+        country: 'United States',
+        street: '1234 Some Rd',
+        city: 'Arlington',
+        state: 'Virginia',
+        zipcode: '22202'
+      },
+      expected: {
+        Errors: []
+      }
+    }
+
+    api.setToken('my-token')
+    const mock = new MockAdapter(api.proxySecured)
+    mock.onPost('/validate/address').reply(200, {
+      Errors: []
+    })
+    return new LocationValidator(test.state, null)
+      .geocode()
+      .then(r => {
+      }).catch(r => {
+        expect(r).toEqual(test.expected)
+      })
+  })
+
   it('should validate zipcode', function () {
     const tests = [
       {
         state: {
-          addressType: 'United States',
-          address: '1234 Some Rd',
+          country: 'United States',
+          street: '1234 Some Rd',
           city: 'Arlington',
           state: 'Virginia',
           zipcode: '2'
@@ -301,8 +359,8 @@ describe('the location component', function () {
       },
       {
         state: {
-          addressType: 'United States',
-          address: '1234 Some Rd',
+          country: 'United States',
+          street: '1234 Some Rd',
           city: 'Arlington',
           state: 'Virginia',
           zipcode: null
