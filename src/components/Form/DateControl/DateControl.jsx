@@ -291,7 +291,7 @@ export default class DateControl extends ValidationElement {
                       beforeChange={this.beforeChange}
                       onError={this.handleErrorMonth}
                       displayText={this.monthDisplayText}
-                      tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}>
+                      tabNext={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}>
               <option key="jan" value="1">January</option>
               <option key="feb" value="2">February</option>
               <option key="mar" value="3">March</option>
@@ -333,8 +333,8 @@ export default class DateControl extends ValidationElement {
                     error={this.state.error}
                     onChange={this.handleChange}
                     onError={this.handleErrorDay}
-                    tabBack={() => { this.refs.month.refs.autosuggest.input.focus() }}
-                    tabNext={() => { this.refs.year.refs.number.refs.input.focus() }}
+                    tabBack={() => { this.props.tab(this.refs.month.refs.autosuggest.input) }}
+                    tabNext={() => { this.props.tab(this.refs.year.refs.number.refs.input) }}
                     />
           </div>
           <div className="usa-form-group year">
@@ -355,7 +355,7 @@ export default class DateControl extends ValidationElement {
                     error={this.state.error}
                     onChange={this.handleChange}
                     onError={this.handleErrorYear}
-                    tabBack={() => { this.refs.day.refs.number.refs.input.focus() }}
+                    tabBack={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
                     />
           </div>
         </div>
@@ -393,7 +393,8 @@ DateControl.defaultProps = {
   prefix: '',
   maxDate: new Date(),
   minDate: null,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  tab: (el) => { el.focus() }
 }
 
 DateControl.errors = [
