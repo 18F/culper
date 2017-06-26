@@ -22,6 +22,11 @@
       background: $eapp-grey;
     }
 
+    .fa-angle-up, .fa-angle-down {
+      margin-left: 0.5rem;
+      color: $eapp-grey-darker;
+    }
+
     .fa-check-circle, .fa-exclamation-circle {
       display: none;
     }
@@ -69,11 +74,11 @@
     color: $eapp-blue;
     font-weight: $eapp-bold;
 
-    > .name {
+    > .section-name {
       color: $eapp-blue;
     }
 
-    .number {
+    .section-number {
       color: inherit;
     }
   }
@@ -81,11 +86,7 @@
   .has-errors {
     color: $eapp-red;
 
-    > i {
-      opacity: 1;
-    }
-
-    .number {
+    .section-number {
       color: inherit;
     }
 
@@ -95,7 +96,7 @@
   }
 
   .is-valid {
-    .number, i {
+    .section-number {
       color: $eapp-green !important;
     }
 
@@ -104,11 +105,13 @@
     }
   }
 
-  .name {
+  .section-name {
+    display: inline-block;
+    max-width: 90%;
     color: $eapp-grey-dark;
   }
 
-  .number {
+  .section-number {
     position: absolute;
     left: 0.4rem;
     display: block;
@@ -121,11 +124,13 @@
   .section {
     font-size: 1.9rem;
     border-bottom: 1px solid $eapp-grey-dark;
+
     > span > a {
       position: relative;
       border-left: 4px solid transparent;
       padding-left: 3.7rem;
     }
+
     > span > a.active {
       border-bottom: 1px solid $eapp-grey-dark;
     }
@@ -137,14 +142,9 @@
       padding: 1.7rem 2rem 1.7rem 0;
       line-height: 1.2;
       text-decoration: none;
-
-      i {
-        position: absolute;
-        right: 0;
-      }
     }
 
-    .title {
+    .section-title {
       .active {
         border-left-color: $eapp-blue;
       }
@@ -168,6 +168,7 @@
           border-left-color: $eapp-red;
         }
       }
+
       .subsection > * {
         padding-left: 2.8rem;
       }
