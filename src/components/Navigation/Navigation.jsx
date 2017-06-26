@@ -232,6 +232,5 @@ export const isValid = (route, props = {}) => {
  * class to items in the route hiearchy
  */
 export const isActive = (route, pathname) => {
-  console.log('pathname: ', pathname)
   return pathname.indexOf(route) !== -1
 }
