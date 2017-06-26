@@ -937,7 +937,7 @@ const en = {
       },
       para: {
         email: 'Email addresses may be used as contact method, and identify subject in records.',
-        phoneNumber: 'Provide at least two phone numbers (one is required). Additional numbers provided may assist in the completion of your background investigation.'
+        phoneNumber: 'Provide your phone numbers. At least one number is required, but providing additional numbers may assist in the completion of your background investigation.'
       },
       label: {
         email: 'Email address',
