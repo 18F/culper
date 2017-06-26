@@ -303,4 +303,34 @@ describe('The accordion component', () => {
     expect(items.length).toBe(2)
     expect(branch).toBe('')
   })
+
+  it('append button is not rendered if it has an addendum', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+    const expected = {
+      minimum: 1,
+      items: items,
+      appendTitle: 'Addendum title',
+      appendMessage: 'Addendum message'
+    }
+
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.append-button button').length).toEqual(0)
+    expect(component.find('.addendum').length).toEqual(1)
+  })
+
+  it('append button is rendered if there is no addendum', () => {
+    let items = [
+      { uuid: '1', open: false }
+    ]
+    const expected = {
+      minimum: 1,
+      items: items
+    }
+
+    const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
+    expect(component.find('.append-button button').length).toEqual(1)
+    expect(component.find('.addendum').length).toEqual(0)
+  })
 })

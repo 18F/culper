@@ -36,7 +36,7 @@ const navigation = [
     title: 'Your history',
     url: 'history',
     subsections: [
-      { name: 'Where have you lived', url: 'residence' },
+      { name: 'Where you have lived', url: 'residence' },
       { name: 'Employment activities', url: 'employment' },
       { name: 'Where you went to school', url: 'education' },
       { name: 'Former federal service', url: 'federal' },

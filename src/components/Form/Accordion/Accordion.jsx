@@ -377,6 +377,10 @@ export default class Accordion extends ValidationElement {
    * The append button is only displayed if there is no addendum.
    */
   appendButton () {
+    if (this.props.appendTitle || this.props.appendMessage) {
+      return null
+    }
+
     return (
       <button className="add usa-button-outline" onClick={this.add}>
         {this.props.appendLabel}
