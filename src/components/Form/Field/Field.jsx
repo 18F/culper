@@ -59,7 +59,7 @@ export default class Field extends ValidationElement {
       if (errors.length && errors.some(err => err.valid === false)) {
         this.scrollIntoView()
       }
-      return
+      return arr
     }
 
     for (const e of arr) {
@@ -76,6 +76,8 @@ export default class Field extends ValidationElement {
         this.scrollIntoView()
       }
     })
+
+    return arr
   }
 
   /**
@@ -218,22 +220,19 @@ export default class Field extends ValidationElement {
 
       let props = child.props || {}
       let extendedProps = { ...props }
+      let injected = false
 
       if (React.isValidElement(child)) {
         // Inject ourselves in to the validation callback
         if (props.onError) {
+          injected = true
           extendedProps.onError = (value, arr) => {
-            let childErrors = []
-            if (props.onError) {
-              childErrors = props.onError(value, arr)
-            }
-            this.handleError(value, childErrors)
-            return childErrors
+            return this.handleError(value, props.onError(value, arr))
           }
         }
       }
 
-      if (props.children) {
+      if (props.children && !injected) {
         const typeOfChildren = Object.prototype.toString.call(props.children)
         if (props.children && ['[object Object]', '[object Array]'].includes(typeOfChildren)) {
           extendedProps.children = this.children(props.children)
