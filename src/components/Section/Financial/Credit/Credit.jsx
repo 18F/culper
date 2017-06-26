@@ -116,10 +116,8 @@ export default class Credit extends SubsectionElement {
                           className="credit-location"
                           bind={true}
                           help=""
-                          hideCounty={true}
-                          domestic="Yes"
-                          statePlaceholder="Please enter state or territory within the United States"
-                          cityPlaceholder="Please enter the city"
+                          statePlaceholder={i18n.t('financial.credit.placeholder.state')}
+                          cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
                           />
             </Field>
 

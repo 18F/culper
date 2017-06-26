@@ -2,6 +2,7 @@ import React from 'react'
 import LocationValidator from '../../../../validators/birthplace'
 import SubsectionElement from '../../SubsectionElement'
 import { Location } from '../../../Form'
+import { i18n } from '../../../../config'
 
 export default class ApplicantBirthPlace extends SubsectionElement {
   render () {
@@ -9,9 +10,9 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <Location name="ssn"
+        <Location name="birthplace"
              layout={Location.BIRTHPLACE}
-             label="Were you born in the United States?"
+             label={i18n.t('identification.birthplace.label.location')}
              {...this.props.value}
              onUpdate={this.props.onUpdate}
              onError={this.handleError}

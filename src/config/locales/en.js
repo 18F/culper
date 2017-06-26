@@ -923,7 +923,8 @@ const en = {
         state: 'State or territory',
         city: 'City',
         county: 'County or province',
-        country: 'Country'
+        country: 'Country',
+        location: 'Were you born in the United States?'
       },
       placeholder: {
         state: 'Please enter state or territory within the United States',
@@ -1463,7 +1464,9 @@ const en = {
         description: 'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
       },
       placeholder: {
-        city: 'Please enter the city'
+        city: 'Please enter the city',
+        state: 'Please enter state or territory within the United States'
+
       },
       help: {
         branch: {
@@ -2847,7 +2850,8 @@ const en = {
     },
     us: {
       street: {
-        label: 'Street address'
+        label: 'Street address',
+        placeholder: 'Enter street address'
       },
       street2: {
         label: 'Apt, suite, building, floor, etc.'
@@ -5935,7 +5939,8 @@ const en = {
           accepted: 'Did you accept the offer?'
         },
         label: {
-          explanation: 'Explanation'
+          explanation: 'Explanation',
+          address: 'Did this occur in the United States?'
         },
         help: {
           branch: {

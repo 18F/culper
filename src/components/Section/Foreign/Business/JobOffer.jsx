@@ -98,7 +98,7 @@ export default class JobOffer extends ValidationElement {
                adjustFor="address">
           <Location name="Address"
                    {...this.props.Address}
-                   label={'Did this occur in the United States?'}
+                   label={i18n('foreign.business.employment.label.address')}
                    layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                    className="employment-address"
                    onUpdate={this.updateAddress}
