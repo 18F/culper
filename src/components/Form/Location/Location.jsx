@@ -41,9 +41,11 @@ export default class Location extends ValidationElement {
     if (this.props.onUpdate) {
       this.props.onUpdate({
         street: this.props.street,
+        street2: this.props.street2,
         city: this.props.city,
         zipcode: this.props.zipcode,
         state: this.props.state,
+        county: this.props.county,
         country: this.props.country,
         layout: this.props.layout,
         validated: false,

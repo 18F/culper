@@ -191,8 +191,8 @@ export default class Address extends ValidationElement {
               <div>
                 <Street name="address"
                   label={this.props.streetLabel}
-                  className="mailing"
-                  value={this.props.street2}
+                  className="mailing street"
+                  value={this.props.street}
                   onChange={this.updateStreet}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
