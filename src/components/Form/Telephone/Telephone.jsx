@@ -494,8 +494,9 @@ export default class Telephone extends ValidationElement {
   }
 
   render () {
+    const klass = `telephone ${this.props.className || ''}`.trim()
     return (
-      <div className="telephone">
+      <div className={klass}>
         <Show when={this.props.label}>
           <span>{this.props.label}</span>
         </Show>

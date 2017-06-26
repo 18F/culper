@@ -12,7 +12,8 @@ export default class ApplicantBirthDate extends SubsectionElement {
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
-      estimated: props.estimated
+      estimated: props.estimated,
+      error: false
     }
 
     this.onUpdate = this.onUpdate.bind(this)
@@ -38,22 +39,34 @@ export default class ApplicantBirthDate extends SubsectionElement {
 
   handleError (value, arr) {
     const then = new Date(this.state.value)
+    let local = []
     if (isNaN(then.getFullYear()) || then.getFullYear() < 1000 || arr.some(x => x.valid === false)) {
-      return super.handleError(value, arr)
+      local = this.constructor.errors.map(err => {
+        return {
+          code: err.code,
+          valid: null,
+          uid: this.state.uid
+        }
+      })
+    } else {
+      local = this.constructor.errors.map(err => {
+        return {
+          code: err.code,
+          valid: err.func(then, this.props),
+          uid: this.state.uid
+        }
+      })
     }
 
+    this.setState({ error: local.some(x => x.valid === false) })
+
     // Take the original and concatenate our new error values to it
-    return super.handleError(value, arr.concat(this.constructor.errors.map(err => {
-      return {
-        code: err.code,
-        valid: err.func(then, this.props),
-        uid: this.state.uid
-      }
-    })))
+    return super.handleError(value, arr.concat(local))
   }
 
   render () {
     const klass = `birthdate ${this.props.className || ''}`.trim()
+    const klassError = `${this.state.error ? 'usa-input-error' : ''}`.trim()
 
     return (
       <div className={klass}>
@@ -62,6 +75,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
                shrink={true}>
           <DateControl name={this.props.name}
                        value={this.state.value}
+                       className={klassError}
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate}
                        onError={this.handleError}
