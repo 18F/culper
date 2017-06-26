@@ -1,5 +1,7 @@
 import LocationValidator, { Geocoder } from './location'
 import Location from '../components/Form/Location'
+import { api } from '../services/api'
+import MockAdapter from 'axios-mock-adapter'
 
 describe('the location component', function () {
   it('should validate locations', function () {
@@ -251,6 +253,66 @@ describe('the location component', function () {
 
     tests.forEach(test => {
       expect(new Geocoder(test.data).isSystemError(test.data)).toBe(test.expected)
+    })
+  })
+
+  it('should handle system errors', async () => {
+    const test = {
+      state: {
+        addressType: 'United States',
+        address: '1234 Some Rd',
+        city: 'Arlington',
+        state: 'Virginia',
+        zipcode: '22202'
+      },
+      expected: {
+        Errors: [{
+          Error: 'error.geocode.system'
+        }]
+      }
+    }
+
+    api.setToken('my-token')
+    const mock = new MockAdapter(api.proxySecured)
+    mock.onPost('/validate/address').reply(200, {
+      Errors: [{
+        Error: 'error.geocode.system'
+      }]
+    })
+    return new LocationValidator(test.state, null)
+      .geocode()
+      .then(r => {
+      }).catch(r => {
+        expect(r).toEqual(test.expected)
+      })
+  })
+
+  it('should validate zipcode', function () {
+    const tests = [
+      {
+        state: {
+          addressType: 'United States',
+          address: '1234 Some Rd',
+          city: 'Arlington',
+          state: 'Virginia',
+          zipcode: '2'
+        },
+        expected: false
+      },
+      {
+        state: {
+          addressType: 'United States',
+          address: '1234 Some Rd',
+          city: 'Arlington',
+          state: 'Virginia',
+          zipcode: null
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new LocationValidator(test.state, null).validZipcode()).toEqual(test.expected)
     })
   })
 })
