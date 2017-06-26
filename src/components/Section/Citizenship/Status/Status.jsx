@@ -406,7 +406,7 @@ export default class Status extends SubsectionElement {
                     />
 
             <Show when={this.state.HasAlienRegistration === 'Yes'}>
-              <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}
+              <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}>
                 <Text name="AlienRegistrationNumber"
                       className="alien-registration-number"
                       {...this.state.AlienRegistrationNumber}
@@ -416,7 +416,7 @@ export default class Status extends SubsectionElement {
               </Field>
             </Show>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatenumber.naturalized')}
+            <Field title={i18n.t('citizenship.status.heading.certificatenumber.naturalized')}>
               <Text name="CertificateNumber"
                     className="certificate-number"
                     {...this.state.CertificateNumber}
@@ -425,7 +425,7 @@ export default class Status extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatecourtname')}
+            <Field title={i18n.t('citizenship.status.heading.certificatecourtname')}>
               <Text name="CertificateCourtName"
                     className="certificate-court-name"
                     {...this.state.CertificateCourtName}
