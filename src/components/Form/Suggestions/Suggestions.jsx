@@ -2,6 +2,26 @@ import React from 'react'
 import { newGuid } from '../ValidationElement'
 import Svg from '../Svg'
 
+export const applyFixedModal = (open) => {
+  if (!window || !window.document || !window.document.body) {
+    return
+  }
+
+  let klassBody = window.document.body.className
+
+  if (open) {
+    if (klassBody.indexOf('modal-open') === -1) {
+      klassBody += ' modal-open'
+    }
+  } else {
+    if (klassBody.indexOf('modal-open') !== -1) {
+      klassBody = klassBody.replace('modal-open', '')
+    }
+  }
+
+  window.document.body.className = klassBody.trim()
+}
+
 export default class Suggestions extends React.Component {
   constructor (props) {
     super(props)
@@ -14,10 +34,17 @@ export default class Suggestions extends React.Component {
     this.dismissSuggestions = this.dismissSuggestions.bind(this)
   }
 
+  componentWillReceiveProps (next) {
+    if (next.show || next.suggestions.length) {
+      applyFixedModal(true)
+    }
+  }
+
   /**
    * Use a suggestion given.
    */
   useSuggestion (suggestion) {
+    applyFixedModal(false)
     this.props.onSuggestion(suggestion)
   }
 
@@ -27,6 +54,7 @@ export default class Suggestions extends React.Component {
    */
   dismissSuggestions () {
     this.setState({ dismissSuggestions: true }, () => {
+      applyFixedModal(false)
       this.props.onDismiss()
     })
   }

@@ -5,6 +5,7 @@ import { updateApplication } from '../../../actions/ApplicationActions'
 import { logout } from '../../../actions/AuthActions'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import Branch from '../Branch'
+import { applyFixedModal } from '../Suggestions'
 
 export class Introduction extends React.Component {
   constructor (props) {
@@ -12,7 +13,15 @@ export class Introduction extends React.Component {
     this.updateBranch = this.updateBranch.bind(this)
   }
 
+  componentDidMount () {
+    if (!this.props.settings.acceptedTerms && !this.props.settings.modalOpen) {
+      applyFixedModal(true)
+    }
+  }
+
   updateBranch (values) {
+    applyFixedModal(false)
+
     if (values === 'No') {
       this.props.dispatch(updateApplication('Settings', 'acceptedTerms', ''))
       this.props.dispatch(logout())

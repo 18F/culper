@@ -1,5 +1,10 @@
 @import 'eqip-colors';
 
+.modal-open {
+  height: 100vh;
+  overflow-y: hidden !important;
+}
+
 .modal {
   position: fixed !important;
   z-index: 9999;

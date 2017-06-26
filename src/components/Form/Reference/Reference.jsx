@@ -92,6 +92,7 @@ export default class Reference extends ValidationElement {
         <h3>{i18n.t(`${prefix}reference.heading.name`)}</h3>
         <Name name="FullName"
               prefix={`${this.props.prefix}.name`}
+              className="reference-name"
               {...this.state.FullName}
               onUpdate={this.onUpdate.bind(this, 'FullName')}
               onError={this.props.onError}
@@ -102,6 +103,7 @@ export default class Reference extends ValidationElement {
                adjustFor="labels"
                shrink={true}>
           <DateControl name="LastContact"
+                       className="reference-last-contact"
                        {...this.state.LastContact}
                        onUpdate={this.onUpdate.bind(this, 'LastContact')}
                        onError={this.props.onError}
@@ -121,6 +123,7 @@ export default class Reference extends ValidationElement {
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
                          selectedValues={this.state.Relationship}>
             <Checkbox name="relationship-neighbor"
+                      className="reference-relationship-neighbor"
                       label={i18n.t(`${prefix}reference.label.relationship.neighbor`)}
                       value="Neighbor"
                       onChange={this.handleRelationshipChange}
@@ -130,6 +133,7 @@ export default class Reference extends ValidationElement {
               </div>
             </Checkbox>
             <Checkbox name="relationship-friend"
+                      className="reference-relationship-friend"
                       label={i18n.t(`${prefix}reference.label.relationship.friend`)}
                       value="Friend"
                       onChange={this.handleRelationshipChange}
@@ -139,6 +143,7 @@ export default class Reference extends ValidationElement {
               </div>
             </Checkbox>
             <Checkbox name="relationship-landlord"
+                      className="reference-relationship-landlord"
                       label={i18n.t(`${prefix}reference.label.relationship.landlord`)}
                       value="Landlord"
                       onChange={this.handleRelationshipChange}
@@ -148,6 +153,7 @@ export default class Reference extends ValidationElement {
               </div>
             </Checkbox>
             <Checkbox name="relationship-business"
+                      className="reference-relationship-business"
                       label={i18n.t(`${prefix}reference.label.relationship.business`)}
                       value="Business"
                       onChange={this.handleRelationshipChange}
@@ -157,6 +163,7 @@ export default class Reference extends ValidationElement {
               </div>
             </Checkbox>
             <Checkbox name="relationship-other"
+                      className="reference-relationship-other"
                       label={i18n.t(`${prefix}reference.label.relationship.other`)}
                       value="Other"
                       onChange={this.handleRelationshipChange}
@@ -185,6 +192,7 @@ export default class Reference extends ValidationElement {
                help={`${prefix}reference.help.phone`}
                adjustFor="labels">
           <Telephone name="Phone"
+                     className="reference-phone"
                      {...this.state.Phone}
                      onUpdate={this.onUpdate.bind(this, 'Phone')}
                      onError={this.props.onError}
@@ -214,6 +222,7 @@ export default class Reference extends ValidationElement {
                adjustFor="address">
           <p>{i18n.t(`${prefix}reference.para.address`)}</p>
           <Address name="Address"
+                   className="reference-address"
                    {...this.state.Address}
                    label={i18n.t(`${prefix}reference.label.address`)}
                    onUpdate={this.onUpdate.bind(this, 'Address')}

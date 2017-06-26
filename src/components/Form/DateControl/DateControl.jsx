@@ -152,14 +152,16 @@ export default class DateControl extends ValidationElement {
 
         // This will force a blur/validation
         if (d && (changed.year || changed.month)) {
-          this.refs.day.refs.number.refs.input.focus()
-          this.refs.day.refs.number.refs.input.blur()
+          window.setTimeout(() => {
+            this.refs.day.refs.number.refs.input.focus()
+            this.refs.day.refs.number.refs.input.blur()
 
-          if (changed.month) {
-            this.refs.month.refs.autosuggest.input.focus()
-          } else if (event.target.focus) {
-            event.target.focus()
-          }
+            if (changed.month) {
+              this.refs.month.refs.autosuggest.input.focus()
+            } else if (event.target.focus) {
+              event.target.focus()
+            }
+          }, 200)
         }
 
         if (this.props.onUpdate) {
@@ -207,7 +209,7 @@ export default class DateControl extends ValidationElement {
       const existingErr = this.state.errors.some(e => e.valid === false)
 
       // If the date is valid and there are no child errors...
-      let local = [...arr]
+      let local = []
       if (date && !existingErr) {
         // Prepare some properties for the error testing
         const props = {
@@ -217,25 +219,27 @@ export default class DateControl extends ValidationElement {
         }
 
         // Call any `onError` binding with error checking specific to the `DateControl`
-        local = local.concat(this.constructor.errors.map(err => {
+        local = this.constructor.errors.map(err => {
           return {
-            code: err.code,
+            code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: err.func(date, props),
             uid: this.state.uid
           }
-        }))
+        })
       } else {
-        local = local.concat(this.constructor.errors.map(err => {
+        local = this.constructor.errors.map(err => {
           return {
-            code: err.code,
+            code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: null,
             uid: this.state.uid
           }
-        }))
+        })
       }
 
-      // Pass any local and child errors to bound functions
-      this.props.onError(date, local)
+      this.setState({ error: local.some(x => x.valid === false) }, () => {
+        // Pass any local and child errors to bound functions
+        this.props.onError(date, [...arr].concat(local))
+      })
     })
 
     // Return the original array of errors to the child control
@@ -267,7 +271,7 @@ export default class DateControl extends ValidationElement {
   }
 
   render () {
-    let klass = `datecontrol ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
+    let klass = `datecontrol ${this.state.error ? 'usa-input-error' : ''} ${this.props.className || ''} ${this.props.hideDay ? 'day-hidden' : ''}`.trim()
     return (
       <div className={klass}>
         <div>
@@ -279,6 +283,7 @@ export default class DateControl extends ValidationElement {
                       maxlength="2"
                       receiveProps={this.props.receiveProps}
                       value={this.state.month}
+                      error={this.state.error}
                       disabled={this.state.disabled}
                       readonly={this.props.readonly}
                       required={this.props.required}
@@ -286,7 +291,7 @@ export default class DateControl extends ValidationElement {
                       beforeChange={this.beforeChange}
                       onError={this.handleErrorMonth}
                       displayText={this.monthDisplayText}
-                      tabNext={() => { this.refs.day.refs.number.refs.input.focus() }}>
+                      tabNext={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}>
               <option key="jan" value="1">January</option>
               <option key="feb" value="2">February</option>
               <option key="mar" value="3">March</option>
@@ -325,10 +330,11 @@ export default class DateControl extends ValidationElement {
                     step="1"
                     receiveProps="true"
                     value={this.state.day}
+                    error={this.state.error}
                     onChange={this.handleChange}
                     onError={this.handleErrorDay}
-                    tabBack={() => { this.refs.month.refs.autosuggest.input.focus() }}
-                    tabNext={() => { this.refs.year.refs.number.refs.input.focus() }}
+                    tabBack={() => { this.props.tab(this.refs.month.refs.autosuggest.input) }}
+                    tabNext={() => { this.props.tab(this.refs.year.refs.number.refs.input) }}
                     />
           </div>
           <div className="usa-form-group year">
@@ -346,9 +352,10 @@ export default class DateControl extends ValidationElement {
                     step="1"
                     receiveProps="true"
                     value={this.state.year}
+                    error={this.state.error}
                     onChange={this.handleChange}
                     onError={this.handleErrorYear}
-                    tabBack={() => { this.refs.day.refs.number.refs.input.focus() }}
+                    tabBack={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
                     />
           </div>
         </div>
@@ -386,24 +393,13 @@ DateControl.defaultProps = {
   prefix: '',
   maxDate: new Date(),
   minDate: null,
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  tab: (el) => { el.focus() }
 }
 
 DateControl.errors = [
   {
-    code: 'day.max',
-    func: (value, props) => {
-      if (!value || isNaN(value)) {
-        return null
-      }
-      if (value) {
-        return parseInt(props.day) <= daysInMonth(value.getMonth() + 1, value.getFullYear())
-      }
-      return parseInt(props.day) <= daysInMonth(parseInt(props.month), parseInt(props.year))
-    }
-  },
-  {
-    code: 'date.max',
+    code: 'max',
     func: (value, props) => {
       if (!value || isNaN(value)) {
         return null
@@ -412,7 +408,7 @@ DateControl.errors = [
     }
   },
   {
-    code: 'date.min',
+    code: 'min',
     func: (value, props) => {
       if (!value || isNaN(value)) {
         return null

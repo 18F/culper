@@ -35,12 +35,12 @@ const en = {
     complete: 'Sections complete'
   },
   saved: {
-    saved: 'Auto saved',
-    now: 'now',
-    second: 'second',
-    seconds: 'seconds',
-    minute: 'minute',
-    minutes: 'minutes',
+    saved: 'Saved',
+    now: 'Just now',
+    second: 'sec',
+    seconds: 'sec',
+    minute: 'min',
+    minutes: 'min',
     hour: 'hour',
     hours: 'hours',
     day: 'day',
@@ -423,8 +423,8 @@ const en = {
       },
       country: {
         notfound: {
-          title: 'There is a problem with the Country',
-          message: 'Country name should be one of the available options.',
+          title: 'This country is not one of the options',
+          message: 'Please enter the country that your city of birth is in now.',
           note: ''
         }
       },
@@ -599,6 +599,28 @@ const en = {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
+      }
+    },
+    treatment: {
+      began: {
+        max: {
+          title: 'There is a problem with the date',
+          message: 'The date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'The date should be on or after your date of birth.'
+        }
+      },
+      end: {
+        max: {
+          title: 'There is a problem with the date',
+          message: 'The date can\'t be in the future.'
+        },
+        min: {
+          title: 'There is a problem with the date',
+          message: 'The date should be after the date treatment began.'
+        }
       }
     }
     // order: {
@@ -915,7 +937,7 @@ const en = {
       },
       para: {
         email: 'Email addresses may be used as contact method, and identify subject in records.',
-        phoneNumber: 'Provide at least two phone numbers (one is required). Additional numbers provided may assist in the completion of your background investigation.'
+        phoneNumber: 'Provide your phone numbers. At least one number is required, but providing additional numbers may assist in the completion of your background investigation.'
       },
       label: {
         email: 'Email address',
@@ -6432,7 +6454,7 @@ const en = {
       help: {
         outside: {
           title: 'Have you traveled outside the U.S.?',
-          message: 'If it was within the last seven years then click Yes.',
+          message: 'This includes many short trips to the same country.',
           note: ''
         },
         official: {
@@ -6452,8 +6474,8 @@ const en = {
         },
         days: {
           title: 'Need help with how many days?',
-          message: 'Provide how many days the visit lasted.',
-          note: ''
+          message: 'Let us know how long your travel was.',
+          note: 'Note: Many short trips means a gap between trips that is less than 6 months. For a travel gap longer than 6 months add another travel item.'
         },
         purpose: {
           title: 'Need help with the purpose?',
