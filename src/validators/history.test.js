@@ -1,4 +1,5 @@
 import HistoryValidator from './history'
+import Location from '../components/Form/Location'
 
 describe('Employment component validation', function () {
   it('should validate entire history', function () {
@@ -31,11 +32,12 @@ describe('Employment component validation', function () {
                   value: 'Dev'
                 },
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 Additional: {
                   List: [{ Has: 'No' }]
@@ -48,11 +50,12 @@ describe('Employment component validation', function () {
                 },
                 Supervisor: {
                   Address: {
-                    addressType: 'United States',
-                    address: '1234 Some Rd',
+                    country: 'United States',
+                    street: '1234 Some Rd',
                     city: 'Arlington',
                     state: 'Virginia',
-                    zipcode: '22202'
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
                   },
                   Email: {
                     value: 'foo@local.dev'

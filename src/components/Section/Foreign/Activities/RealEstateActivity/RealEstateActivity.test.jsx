@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import RealEstateActivity from './RealEstateActivity'
+import Location from '../.././../../Form/Location'
 
 describe('The RealEstateActivity component', () => {
   it('Renders without errors', () => {
@@ -41,11 +42,12 @@ describe('The RealEstateActivity component', () => {
             RealEstateInterest: {
               InterestTypes: ['Yourself'],
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'VA',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               open: true
             }
@@ -60,10 +62,10 @@ describe('The RealEstateActivity component', () => {
             RealEstateInterest: {
               InterestTypes: ['Yourself'],
               Address: {
-                addressType: 'International',
-                address: '1 Rd',
+                street: '1 Rd',
                 city: 'Munich',
-                country: 'Germany'
+                country: 'Germany',
+                layout: Location.ADDRESS
               },
               open: true
             }
@@ -78,11 +80,12 @@ describe('The RealEstateActivity component', () => {
             RealEstateInterest: {
               InterestTypes: ['Yourself'],
               Address: {
-                addressType: 'United States',
-                address: '1 Rd',
+                country: 'United States',
+                street: '1 Rd',
                 city: 'APO',
                 state: 'AA',
-                zipcode: '22222'
+                zipcode: '22222',
+                layout: Location.ADDRESS
               },
               open: true
             }
@@ -123,11 +126,12 @@ describe('The RealEstateActivity component', () => {
               value: 'Bar'
             },
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202'
+              state: 'VA',
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Acquired: {
               day: '1',

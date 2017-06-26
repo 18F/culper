@@ -39,8 +39,8 @@ describe('The Hospitalization component', () => {
         value: 'Place 1'
       },
       FacilityAddress: {
-        addressType: 'United States',
-        address: '1234 Some Rd',
+        country: 'United States',
+        street: '1234 Some Rd',
         city: 'Arlington',
         state: 'Virginia',
         zipcode: '22202'

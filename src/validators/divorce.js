@@ -1,6 +1,6 @@
 import AddressValidator from './address'
 import NameValidator from './name'
-import BirthPlaceValidator from './birthplace'
+import LocationValidator from './location'
 import { validDateField, validPhoneNumber } from './helpers'
 
 export default class DivorceValidator {
@@ -37,7 +37,7 @@ export default class DivorceValidator {
   isValid () {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
-      new BirthPlaceValidator(this.birthplace).isValid() &&
+      new LocationValidator(this.birthplace).isValid() &&
       validPhoneNumber(this.telephone) &&
       validDateField(this.recognized) &&
       new AddressValidator(this.address).isValid() &&

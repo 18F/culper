@@ -1,4 +1,5 @@
 import OtherOffenseValidator from './otheroffense'
+import Location from '../components/Form/Location'
 
 describe('OtherOffense validation', function () {
   it('validates date', () => {
@@ -155,11 +156,12 @@ describe('OtherOffense validation', function () {
       {
         state: {
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -312,11 +314,12 @@ describe('OtherOffense validation', function () {
           InvolvedSubstances: 'No',
           ChargeType: 'Felony',
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           CourtDate: {
             day: '1',
@@ -380,11 +383,12 @@ describe('OtherOffense validation', function () {
           InvolvedSubstances: 'No',
           ChargeType: 'Felony',
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           CourtDate: {
             day: '1',

@@ -1,5 +1,6 @@
 import LegalTechnologyUnlawfulValidator, { UnlawfulValidator } from './legaltechnologyunlawful'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('Legal technology unlawful component validation', function () {
   it('validate date', () => {
@@ -58,11 +59,12 @@ describe('Legal technology unlawful component validation', function () {
       {
         props: {
           Location: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -136,11 +138,12 @@ describe('Legal technology unlawful component validation', function () {
                 value: 'this is an incident'
               },
               Location: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Action: {
                 value: 'this is an action'

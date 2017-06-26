@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, Branch, Show, Country, DateControl, Address, Name, Text, Accordion } from '../../../Form'
+import { ValidationElement, Field, Branch, Show, Country, DateControl, Location, Name, Text, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import { sendUpdate } from './Multiple'
 import TravelItem from './TravelItem'
@@ -90,6 +90,7 @@ export default class PassportItem extends ValidationElement {
       <div className="passport-item">
         <Field title={i18n.t('citizenship.multiple.heading.passport.country')}>
           <Country name="Country"
+                   className="passport-country"
                    {...this.state.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
@@ -108,9 +109,10 @@ export default class PassportItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.location')}
-               help="citizenship.multiple.help.passport.location"
-               adjustFor="address">
-          <Address name="Location"
+          adjustFor="labels"
+          help="citizenship.multiple.help.passport.location">
+          <Location name="Location"
+                   layout={Location.CITY_COUNTRY}
                    {...this.state.Location}
                    className="passport-location"
                    onUpdate={this.updateLocation}

@@ -35,12 +35,12 @@ const en = {
     complete: 'Sections complete'
   },
   saved: {
-    saved: 'Auto saved',
-    now: 'now',
-    second: 'second',
-    seconds: 'seconds',
-    minute: 'minute',
-    minutes: 'minutes',
+    saved: 'Saved',
+    now: 'Just now',
+    second: 'sec',
+    seconds: 'sec',
+    minute: 'min',
+    minutes: 'min',
     hour: 'hour',
     hours: 'hours',
     day: 'day',
@@ -434,6 +434,38 @@ const en = {
           message: 'APO/FPO state code must be 2 letters',
           note: 'Note: Typically the value is either AA, AE, or AP.'
         }
+      }
+    },
+    city: {
+      length: {
+        title: 'There is a problem with the City',
+        message: 'City name should be between 2 and 100 characters.',
+        note: ''
+      }
+    },
+    state: {
+      notfound: {
+        title: 'There is a problem with the State',
+        message: [
+          'State name must be one of the available options.',
+          '*and/or*',
+          'The state name is too long.'
+        ],
+        note: ''
+      }
+    },
+    county: {
+      length: {
+        title: 'There is a problem with the County',
+        message: 'County name must be between 2 and 100 characters',
+        note: ''
+      }
+    },
+    zipcode: {
+      pattern: {
+        title: 'There is a problem with the ZIP Code',
+        message: 'The ZIP Code should be either 5 or 9 digits.',
+        note: ''
       }
     },
     country: {
@@ -891,7 +923,8 @@ const en = {
         state: 'State or territory',
         city: 'City',
         county: 'County or province',
-        country: 'Country'
+        country: 'Country',
+        location: 'Were you born in the United States?'
       },
       placeholder: {
         state: 'Please enter state or territory within the United States',
@@ -1431,7 +1464,9 @@ const en = {
         description: 'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
       },
       placeholder: {
-        city: 'Please enter the city'
+        city: 'Please enter the city',
+        state: 'Please enter state or territory within the United States'
+
       },
       help: {
         branch: {
@@ -2415,6 +2450,7 @@ const en = {
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Provide other names used',
         citizenship: 'Provide country(ies) of citizenship',
+        location: 'Provide location',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2434,7 +2470,9 @@ const en = {
         othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
       },
       label: {
-        birthplace: 'Was this person born in the United States of America?'
+        birthplace: 'Was this person born in the United States of America?',
+        location: 'Was this location in the United States?',
+        addressSeparated: 'Was this location in the United States?'
       },
       divorce: {
         heading: {
@@ -2804,7 +2842,7 @@ const en = {
         label: 'In the<br>United States'
       },
       apoFpo: {
-        label: 'APO/FPO'
+        label: 'APO/FPO/DPO'
       },
       international: {
         label: 'Outside of the<br>United States'
@@ -2812,8 +2850,11 @@ const en = {
     },
     us: {
       street: {
-        label: 'Street',
+        label: 'Street address',
         placeholder: 'Enter street address'
+      },
+      street2: {
+        label: 'Apt, suite, building, floor, etc.'
       },
       city: {
         label: 'City',
@@ -2848,7 +2889,7 @@ const en = {
     },
     apoFpo: {
       select: {
-        label: 'Select APO or FPO'
+        label: 'Select APO, FPO or DPO'
       },
       street: {
         label: 'Address',
@@ -2867,7 +2908,7 @@ const en = {
         placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
-        label: 'APO/FPO State Code',
+        label: 'APO/FPO/DPO State Code',
         placeholder: 'Enter state code (AA, AE, AP)'
       },
       apoFpoType: {
@@ -2877,9 +2918,12 @@ const en = {
         fpo: {
           label: 'FPO'
         },
+        dpo: {
+          label: 'DPO'
+        },
         apoFpo: {
-          label: 'APO/FPO',
-          placeholder: 'Enter APO/FPO'
+          label: 'APO/FPO/DPO',
+          placeholder: 'Enter APO/FPO/DPO'
         }
       }
     }
@@ -5895,7 +5939,8 @@ const en = {
           accepted: 'Did you accept the offer?'
         },
         label: {
-          explanation: 'Explanation'
+          explanation: 'Explanation',
+          address: 'Did this occur in the United States?'
         },
         help: {
           branch: {

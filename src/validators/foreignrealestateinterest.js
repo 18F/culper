@@ -1,6 +1,6 @@
 import { validGenericTextfield, validGenericMonthYear, validNotApplicable } from './helpers'
 import ForeignCoOwnersValidator from './foreigncoowner'
-import AddressValidator from './address'
+import LocationValidator from './location'
 
 export default class ForeignRealEstateInterestValidator {
   constructor (state, props = {}) {
@@ -24,7 +24,7 @@ export default class ForeignRealEstateInterestValidator {
   }
 
   validAddress () {
-    return new AddressValidator(this.address).isValid()
+    return new LocationValidator(this.address).isValid()
   }
 
   validAcquired () {

@@ -1,4 +1,5 @@
 import RelativesValidator, { RelativeValidator } from './relatives'
+import Location from '../components/Form/Location'
 
 describe('Relatives validation', function () {
   it('validate relative relationship', () => {
@@ -133,7 +134,7 @@ describe('Relatives validation', function () {
             country: 'United States',
             city: 'Arlington',
             state: 'VA',
-            domestic: 'Yes'
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           }
         },
         expected: true
@@ -374,11 +375,12 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'Yes',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -403,10 +405,8 @@ describe('Relatives validation', function () {
           IsDeceased: 'Yes',
           Birthplace: {
             country: 'Germany',
-            city: 'Arlington',
-            county: 'Arlington',
-            state: '',
-            domestic: 'No'
+            city: 'Munich',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           }
         },
         expected: true
@@ -420,17 +420,16 @@ describe('Relatives validation', function () {
           },
           Birthplace: {
             country: 'Germany',
-            city: 'Arlington',
-            county: 'Arlington',
-            state: '',
-            domestic: 'No'
+            city: 'Munich',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -444,17 +443,16 @@ describe('Relatives validation', function () {
           },
           Birthplace: {
             country: 'Germany',
-            city: 'Arlington',
-            county: 'Arlington',
-            state: '',
-            domestic: 'No'
+            city: 'Munich',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           Address: {
-            addressType: 'APOFPO',
+            country: 'POSTOFFICE',
             address: '1234 Some Rd',
             state: 'APO',
             city: 'APO',
-            zipcode: '00000'
+            zipcode: '00000',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -468,10 +466,8 @@ describe('Relatives validation', function () {
           },
           Birthplace: {
             country: 'Germany',
-            city: 'Arlington',
-            county: 'Arlington',
-            state: '',
-            domestic: 'No'
+            city: 'Munich',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           }
         },
         expected: true
@@ -520,17 +516,17 @@ describe('Relatives validation', function () {
           Birthplace: {
             country: 'United States',
             city: 'Arlington',
-            county: 'Arlington',
             state: 'VA',
-            domestic: 'Yes'
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           CitizenshipDocumentation: 'DerivedAlien'
         },
@@ -545,16 +541,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Abroad: ''
         },
@@ -573,16 +569,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Abroad: ''
         },
@@ -601,16 +597,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Abroad: ''
         },
@@ -648,18 +644,19 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States'
+            country: 'United States',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -673,16 +670,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           DocumentNumber: {}
         },
@@ -697,16 +694,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           DocumentNumber: {
             value: '0000000000000'
@@ -747,17 +744,18 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States'
+            country: 'United States',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -771,16 +769,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           CourtName: {}
         },
@@ -795,16 +793,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           CourtName: {
             value: 'Court name'
@@ -844,18 +842,19 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'Yes',
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States'
+            country: 'United States',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -869,16 +868,16 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           CourtAddress: {}
         },
@@ -893,22 +892,25 @@ describe('Relatives validation', function () {
             ]
           },
           Birthplace: {
-            domestic: 'No',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            zipcode: '22202',
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           CourtAddress: {
-            addressType: 'International',
-            address: '1234 Some Rd',
-            city: 'Munich',
-            country: 'Germany'
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            zipcode: '22202',
+            state: 'Virginia',
+            country: 'United States',
+            layout: Location.US_ADDRESS
           }
         },
         expected: true
@@ -1094,11 +1096,12 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -1106,10 +1109,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           FirstContact: {}
         },
@@ -1118,10 +1121,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           FirstContact: {
             day: '1',
@@ -1144,11 +1147,12 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -1156,10 +1160,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           LastContact: {}
         },
@@ -1168,10 +1172,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           LastContact: {
             day: '1',
@@ -1194,11 +1198,12 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -1206,10 +1211,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Methods: []
         },
@@ -1218,10 +1223,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Methods: ['In person', 'Electronic']
         },
@@ -1239,11 +1244,12 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -1251,10 +1257,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Frequency: ''
         },
@@ -1263,10 +1269,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Frequency: 'Daily'
         },
@@ -1284,11 +1290,12 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -1296,10 +1303,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Employer: {}
         },
@@ -1308,10 +1315,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           Employer: {
             value: 'ACME'
@@ -1331,11 +1338,12 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -1343,10 +1351,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           EmployerAddress: {}
         },
@@ -1355,16 +1363,16 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           EmployerAddress: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'United States',
+            layout: Location.STREET_CITY
           }
         },
         expected: true
@@ -1381,11 +1389,12 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -1393,10 +1402,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           HasAffiliation: ''
         },
@@ -1405,10 +1414,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           HasAffiliation: 'No'
         },
@@ -1417,10 +1426,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           HasAffiliation: 'Yes',
           EmployerRelationship: {}
@@ -1430,10 +1439,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Address: {
-            addressType: 'International',
-            address: '1234 Some Rd',
+            street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany'
+            country: 'Germany',
+            layout: Location.ADDRESS
           },
           HasAffiliation: 'Yes',
           EmployerRelationship: {
@@ -1500,10 +1509,10 @@ describe('Relatives validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Birthplace: {
-                  domestic: 'Yes',
                   city: 'Arlington',
                   state: 'Virginia',
-                  country: 'United States'
+                  country: 'United States',
+                  layout: Location.BIRTHPLACE_WITHOUT_COUNTY
                 },
                 Citizenship: {
                   value: [
@@ -1552,11 +1561,12 @@ describe('Relatives validation', function () {
                 ],
                 IsDeceased: 'No',
                 Address: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 }
               }
             }

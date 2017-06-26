@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { CreditValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Telephone, BirthPlace, Text, Textarea } from '../../../Form'
+         Telephone, BirthPlace, Text, Textarea, Location } from '../../../Form'
 
 export default class Credit extends SubsectionElement {
   constructor (props) {
@@ -111,13 +111,12 @@ export default class Credit extends SubsectionElement {
             <Field title={i18n.t('financial.credit.heading.address')}
                    help="financial.credit.help.address"
                    adjustFor="label">
-              <BirthPlace name="Location"
+              <Location name="Location"
+                          layout={Location.CITY_STATE}
                           className="credit-location"
                           bind={true}
-                          branch={false}
                           help=""
-                          hideCounty={true}
-                          domestic="Yes"
+                          statePlaceholder={i18n.t('financial.credit.placeholder.state')}
                           cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
                           />
             </Field>

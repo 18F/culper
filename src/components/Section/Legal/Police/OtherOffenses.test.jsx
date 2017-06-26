@@ -1,9 +1,9 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import OtherOffenses from './OtherOffenses'
+import Location from '../../../Form/Location'
 
 describe('The offense component', () => {
-
   it('no error on empty', () => {
     const expected = {
       name: 'offense',
@@ -62,11 +62,12 @@ describe('The offense component', () => {
             InvolvedSubstances: 'No',
             CourtType: 'Felony',
             CourtAddress: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             CourtDate: {
               day: '1',

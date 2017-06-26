@@ -55,8 +55,8 @@ export default class City extends ValidationElement {
             value={this.state.value}
             onChange={this.handleChange}
             onError={this.handleError}
-            onFocus={this.props.Focus}
-            onBlur={this.props.Blur}
+            onFocus={this.props.onFocus}
+            onBlur={this.props.onBlur}
             />
     )
   }

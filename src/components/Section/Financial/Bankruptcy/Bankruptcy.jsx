@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, DateControl, Currency, Field,
-         Text, Textarea, Name, Address, Checkbox, NotApplicable, RadioGroup, Radio } from '../../../Form'
+         Text, Textarea, Name, Address, Checkbox, NotApplicable, RadioGroup, Radio, Location } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {

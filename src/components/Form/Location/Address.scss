@@ -1,0 +1,91 @@
+
+@import 'eqip-colors';
+
+.address {
+  display: inline-block;
+
+  input[type='text'] {
+    text-transform: capitalize;
+
+    &::-webkit-input-placeholder {
+      text-transform: none;
+    }
+    &:-moz-placeholder {
+      text-transform: none;
+    }
+    &::-moz-placeholder {
+      text-transform: none;
+    }
+    &:-ms-input-placeholder {
+      text-transform: none;
+    }
+  }
+
+  .state-zip-wrap {
+    display: table;
+
+    .state,
+    .apofpo,
+    .zipcode {
+      display: table-cell;
+      padding-right: 2rem;
+      vertical-align: top;
+    }
+  }
+
+  .mailing,
+  .street,
+  .street2,
+  .city,
+  .country {
+    margin-right: 1.5rem;
+  }
+
+  .domestic.block label > span > div,
+  .international.block label > span > div {
+    top: 25%;
+  }
+
+  .fields {
+    .blocks.apofpo {
+      label {
+        height: 6rem !important;
+        span > div {
+          top: 25% !important;
+        }
+      }
+    }
+
+    label {
+      position: relative !important;
+      top: 0 !important;
+    }
+  }
+
+  > label {
+    margin-top: 0.6rem;
+  }
+
+  .address-suggestion {
+    div {
+      line-height: 2rem;
+      text-transform: uppercase;
+    }
+
+    .highlight {
+      background-color: $eapp-blue-lightest;
+      font-weight: 600;
+    }
+  }
+}
+
+.help {
+  .address {
+    + .toggle {
+      display: inline-block;
+      vertical-align: top;
+      margin-top: 1.6rem;
+      margin-left: 0.8rem;
+    }
+  }
+}

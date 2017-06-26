@@ -1,4 +1,5 @@
 import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
+import Location from '../components/Form/Location'
 
 describe('taxes component validation', function () {
   it('validate agency', () => {
@@ -37,11 +38,12 @@ describe('taxes component validation', function () {
       {
         state: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -239,11 +241,12 @@ describe('taxes component validation', function () {
                 value: 'IRS'
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Date: {
                 day: '1',

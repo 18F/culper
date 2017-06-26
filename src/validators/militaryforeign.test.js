@@ -1,4 +1,5 @@
 import MilitaryForeignValidator, { ForeignServiceValidator } from './militaryforeign'
+import Location from '../components/Form/Location'
 
 describe('Military foreign validation', function () {
   it('handle whether subject has foreign military', () => {
@@ -105,10 +106,10 @@ describe('Military foreign validation', function () {
                         suffix: 'Jr'
                       },
                       Address: {
-                        addressType: 'International',
-                        address: '1234 Some Rd',
+                        street: '1234 Some Rd',
                         city: 'Munich',
-                        country: 'Germany'
+                        country: 'Germany',
+                        layout: Location.ADDRESS
                       },
                       Title: {
                         value: 'Mr.'
@@ -140,10 +141,10 @@ describe('Military foreign validation', function () {
                         suffix: 'Jr'
                       },
                       Address: {
-                        addressType: 'International',
-                        address: '1234 Some Rd',
+                        street: '1234 Some Rd',
                         city: 'Munich',
-                        country: 'Germany'
+                        country: 'Germany',
+                        layout: Location.ADDRESS
                       },
                       Title: {
                         value: null
@@ -215,10 +216,10 @@ describe('Military foreign validation', function () {
                 suffix: 'Jr'
               },
               Address: {
-                addressType: 'International',
-                address: '1234 Some Rd',
+                street: '1234 Some Rd',
                 city: 'Munich',
-                country: 'Germany'
+                country: 'Germany',
+                layout: Location.ADDRESS
               },
               Title: {
                 value: 'Test'

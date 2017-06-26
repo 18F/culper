@@ -93,4 +93,12 @@ describe('The navigation component', () => {
     expect(isValid('/form/citizenship', props)).toBe(true)
     expect(isValid('/form/citizenship/multiple', props)).toBe(true)
   })
+
+  it('displays proper arrows on subsections', () => {
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const location = () => { return { pathname: '/form/legal/associations/engaged-in-terrorism' } }
+    const component = mount(<Provider store={store}><Navigation location={location} /></Provider>)
+    expect(component.find('.fa-angle-up').length).toBe(2)
+    expect(component.find('.fa-angle-down').length).toBeGreaterThan(1)
+  })
 })

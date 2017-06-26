@@ -38,7 +38,7 @@ class Form extends React.Component {
         <div id="info">
           <Introduction dispatch={this.props.dispatch} />
           <Section section={this.props.params.section} subsection={subsection} />
-          <SavedIndicator interval="3000" />
+          <SavedIndicator interval="30000" />
         </div>
       </div>
     )

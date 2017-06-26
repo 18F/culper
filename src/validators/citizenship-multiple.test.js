@@ -1,5 +1,6 @@
 import CitizenshipMultipleValidator, { CitizenshipItemValidator, PassportItemValidator, TravelValidator } from './citizenship-multiple'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('citizenship multiple component validation', function () {
   it('can validate travel country', () => {
@@ -102,11 +103,9 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           Location: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            layout: Location.CITY_COUNTRY
           }
         },
         expected: true
@@ -511,11 +510,9 @@ describe('citizenship multiple component validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Location: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
                   city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202'
+                  layout: Location.CITY_COUNTRY
                 },
                 Name: {
                   first: 'Foo',
@@ -573,11 +570,9 @@ describe('citizenship multiple component validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Location: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
                   city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202'
+                  layout: Location.CITY_COUNTRY
                 },
                 Name: {
                   first: 'Foo',
@@ -671,11 +666,9 @@ describe('citizenship multiple component validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Location: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
                   city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202'
+                  layout: Location.CITY_COUNTRY
                 },
                 Name: {
                   first: 'Foo',

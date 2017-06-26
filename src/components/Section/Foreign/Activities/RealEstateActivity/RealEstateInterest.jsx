@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { Address, ValidationElement, Currency, Field, Text, DateControl, Textarea, NotApplicable, Checkbox, CheckboxGroup } from '../../../../Form'
+import { Address, ValidationElement, Currency, Field, Text, DateControl, Textarea, NotApplicable, Checkbox, CheckboxGroup, Location } from '../../../../Form'
 import CoOwners from '../CoOwners'
 
 export default class RealEstateInterest extends ValidationElement {
@@ -140,7 +140,9 @@ export default class RealEstateInterest extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}
                adjustFor="address">
-          <Address name="Address"
+          <Location name="Address"
+                   layout={Location.STREET_CITY_COUNTRY}
+                   fields={['street', 'city', 'country']}
                    label={i18n.t('foreign.activities.realestate.interest.label.address')}
                    {...this.props.Address}
                    onUpdate={this.updateAddress}

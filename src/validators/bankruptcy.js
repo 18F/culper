@@ -1,5 +1,6 @@
 import NameValidator from './name'
 import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericMonthYear, validGenericTextfield, validBranch } from './helpers'
 
 /**
@@ -94,7 +95,7 @@ export class BankruptcyItemValidator {
   }
 
   validCourtAddress () {
-    return new AddressValidator(this.courtAddress).isValid()
+    return new LocationValidator(this.courtAddress).isValid()
   }
 
   validCourtInvolved () {
