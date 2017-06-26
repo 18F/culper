@@ -436,6 +436,38 @@ const en = {
         }
       }
     },
+    city: {
+      length: {
+        title: 'There is a problem with the City',
+        message: 'City name should be between 2 and 100 characters.',
+        note: ''
+      }
+    },
+    state: {
+      notfound: {
+        title: 'There is a problem with the State',
+        message: [
+          'State name must be one of the available options.',
+          '*and/or*',
+          'The state name is too long.'
+        ],
+        note: ''
+      }
+    },
+    county: {
+      length: {
+        title: 'There is a problem with the County',
+        message: 'County name must be between 2 and 100 characters',
+        note: ''
+      }
+    },
+    zipcode: {
+      pattern: {
+        title: 'There is a problem with the ZIP Code',
+        message: 'The ZIP Code should be either 5 or 9 digits.',
+        note: ''
+      }
+    },
     country: {
       notfound: {
         title: 'There is a problem with the Country',

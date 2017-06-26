@@ -108,6 +108,7 @@ export default class Location extends ValidationElement {
     this.update({
       city: location.city,
       state: location.state,
+      zipcode: location.zipcode,
       county: location.county,
       country: location.country
     })
