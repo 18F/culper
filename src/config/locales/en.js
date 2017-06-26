@@ -35,12 +35,12 @@ const en = {
     complete: 'Sections complete'
   },
   saved: {
-    saved: 'Auto saved',
-    now: 'now',
-    second: 'second',
-    seconds: 'seconds',
-    minute: 'minute',
-    minutes: 'minutes',
+    saved: 'Saved',
+    now: 'Just now',
+    second: 'sec',
+    seconds: 'sec',
+    minute: 'min',
+    minutes: 'min',
     hour: 'hour',
     hours: 'hours',
     day: 'day',

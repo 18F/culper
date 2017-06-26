@@ -23,7 +23,7 @@ export const reducer = function (sectionName) {
   }
 }
 
-const errorReducer = function (sectionName) {
+export const errorReducer = function (sectionName) {
   return function (state = defaultState, action) {
     // Check that section matches intended section reducer. This is to prevent
     // merging of everything every time an action is dispatched. We only
@@ -78,12 +78,7 @@ export default combineReducers({
   Psychological: reducer('Psychological'),
   SubstanceUse: reducer('SubstanceUse'),
   Completed: errorReducer('Completed'),
-  Errors: errorReducer('Errors'),
-  Saved: (state = {}) => {
-    // Store when things were last saved
-    state.date = new Date()
-    return state
-  }
+  Errors: errorReducer('Errors')
 })
 
 // Or alternative...

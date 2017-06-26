@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { updateApplication } from '../../actions/ApplicationActions'
 import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
 
@@ -13,6 +14,11 @@ class SavedIndicator extends React.Component {
     }
 
     this.tick = this.tick.bind(this)
+    this.reset = this.reset.bind(this)
+  }
+
+  componentWillReceiveProps (next) {
+    this.setState({elapsed: 0})
   }
 
   componentDidMount () {
@@ -21,6 +27,11 @@ class SavedIndicator extends React.Component {
 
   componentWillUnmount () {
     window.clearInterval(this.timer)
+  }
+
+  reset (event) {
+    this.props.dispatch(updateApplication('Settings', 'saved', new Date()))
+    this.setState({elapsed: 0})
   }
 
   tick () {
@@ -59,7 +70,10 @@ class SavedIndicator extends React.Component {
       unit = timespan > 1 ? i18n.t('saved.minutes') : i18n.t('saved.minute')
     } else {
       timespan = Math.round(timespan)
-      unit = timespan > 1 ? i18n.t('saved.seconds') : i18n.t('saved.second')
+      if (timespan < 1) {
+        return i18n.t('saved.now')
+      }
+      unit = timespan === 1 ? i18n.t('saved.second') : i18n.t('saved.seconds')
     }
 
     return `${timespan} ${unit} ${i18n.t('saved.ago')}`
@@ -67,19 +81,22 @@ class SavedIndicator extends React.Component {
 
   render () {
     return (
-      <div className="saved-indicator">
+      <button className="saved-indicator" onClick={this.reset}>
         <i className="fa fa-floppy-o" aria-hidden="true"></i>
         <strong>{i18n.t('saved.saved')}</strong> <span className="time">{this.calculateTime()}</span>
-      </div>
+      </button>
     )
   }
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let saved = app.Saved || {}
+  const section = state.section || {}
+  const app = state.application || {}
+  const settings = app.Settings || {}
   return {
-    saved: saved.date
+    section: section,
+    app: app,
+    saved: settings.saved || new Date()
   }
 }
 
