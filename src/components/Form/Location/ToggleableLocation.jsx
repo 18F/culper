@@ -148,7 +148,7 @@ export default class ToggleableLocation extends ValidationElement {
                 value={this.props.state}
                 includeStates="true"
                 onChange={this.updateState}
-                onError={this.handleError}
+                onError={this.props.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
               />
@@ -159,7 +159,7 @@ export default class ToggleableLocation extends ValidationElement {
                 placeholder={i18n.t('address.us.zipcode.placeholder')}
                 value={this.props.zipcode}
                 onChange={this.updateZipcode}
-                onError={this.handleError}
+                onError={this.props.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
               />

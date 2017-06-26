@@ -219,6 +219,7 @@ export default class Location extends ValidationElement {
             internationalFields={['city', 'country']}
             onBlur={this.handleBlur}
             onUpdate={this.updateToggleableLocation}
+            onError={this.props.onError}
           />
         )
       case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
@@ -230,6 +231,7 @@ export default class Location extends ValidationElement {
             internationalFields={['city', 'country']}
             onBlur={this.handleBlur}
             onUpdate={this.updateToggleableLocation}
+            onError={this.props.onError}
           />
         )
       case Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
@@ -240,6 +242,7 @@ export default class Location extends ValidationElement {
             internationalFields={['city', 'country']}
             onBlur={this.handleBlur}
             onUpdate={this.updateToggleableLocation}
+            onError={this.props.onError}
           />
         )
       case Location.ADDRESS:
