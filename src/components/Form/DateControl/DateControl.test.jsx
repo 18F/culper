@@ -301,4 +301,46 @@ describe('The date component', () => {
     expect(component.find('.datecontrol').length).toBe(1)
     expect(component.find('.flags .estimated').length).toBe(0)
   })
+
+  it('can autotab forward', () => {
+    let tabbed = false
+    const expected = {
+      tab: () => { tabbed = true }
+    }
+
+    // Month
+    let component = mount(<DateControl {...expected} />)
+    component.find('.month input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(false)
+    component.find('.month input').simulate('keydown', { keyCode: 48, target: { value: '12' } })
+    expect(tabbed).toBe(true)
+
+    // Day
+    tabbed = false
+    component = mount(<DateControl {...expected} />)
+    component.find('.day input').simulate('keydown', { keyCode: 48, target: { value: '12' } })
+    expect(tabbed).toBe(true)
+  })
+
+  it('can autotab backward', () => {
+    let tabbed = false
+    const expected = {
+      tab: () => { tabbed = true }
+    }
+
+    // Year
+    let component = mount(<DateControl {...expected} />)
+    component.find('.year input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
+    expect(tabbed).toBe(false)
+    component.find('.year input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+
+    // Day
+    tabbed = false
+    component = mount(<DateControl {...expected} />)
+    component.find('.day input').simulate('keydown', { keyCode: 48, target: { value: '1' } })
+    expect(tabbed).toBe(false)
+    component.find('.day input').simulate('keydown', { keyCode: 8, target: { value: '' } })
+    expect(tabbed).toBe(true)
+  })
 })
