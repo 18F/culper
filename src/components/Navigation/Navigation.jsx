@@ -46,10 +46,9 @@ class Navigation extends React.Component {
 
       const subUrl = `${url}/${subsection.url}`
       const subClass = this.getClassName(subUrl, pathname)
-      let childSubsections = []
-      if (section.subsections) {
-        childSubsections = this.subsectionWalker(subsection, subUrl)
-      }
+      const childSubsections = isActive(subUrl, pathname) && section.subsections
+            ? this.subsectionWalker(subsection, subUrl)
+            : []
 
       return (
         <div key={subsection.name} className="subsection" >
@@ -76,7 +75,9 @@ class Navigation extends React.Component {
 
       const url = `/form/${section.url}`
       const sectionClass = this.getClassName(url, pathname)
-      const subsections = this.subsectionWalker(section, url)
+      const subsections = isActive(url, pathname)
+            ? this.subsectionWalker(section, url)
+            : []
 
       // Increment the section number
       sectionNum++
@@ -91,7 +92,7 @@ class Navigation extends React.Component {
               <span className="eapp-status-icon-error"></span>
             </Link>
           </span>
-          { isActive(url, pathname) ? subsections : '' }
+          { subsections }
         </div>
       )
     })
