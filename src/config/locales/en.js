@@ -1731,7 +1731,8 @@ const en = {
     destination: {
       review: 'Review Citizenship',
       status: 'Citizenship status',
-      multiple: 'Dual/multiple citizenship'
+      multiple: 'Dual/multiple citizenship',
+      passports: 'Foreign passports'
     },
     status: {
       heading: {
@@ -1946,7 +1947,7 @@ const en = {
 
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship & foreign passport information',
+        title: 'Dual/Multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
         citizenship: {
           country: 'Provide country of citizenship',
@@ -1959,6 +1960,7 @@ const en = {
         },
         hasforeignpassport: 'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
         passport: {
+          title: 'Foreign passport information',
           country: 'Provide the country in which the passport (or identity card) was issued',
           issued: 'Provide the date the passport (or identity card) was issued',
           location: 'Provide the place the passport (or identity card) was issued',

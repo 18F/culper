@@ -66,7 +66,8 @@ const navigation = [
     url: 'citizenship',
     subsections: [
       { name: 'Citizenship Status', url: 'status' },
-      { name: 'Dual/Multiple Citizenship', url: 'multiple' }
+      { name: 'Dual/Multiple Citizenship', url: 'multiple' },
+      { name: 'Foreign Passports', url: 'passports' }
     ]
   },
   {
