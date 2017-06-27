@@ -99,35 +99,35 @@ export default class Address extends ValidationElement {
             <label>{this.props.label}</label>
             <RadioGroup className="address-options" selectedValueFunc={this.addressTypeFunc}>
               <Radio name="addressType"
-                label={i18n.m('address.options.us.label')}
-                value="United States"
-                className="domestic"
-                ignoreDeselect="true"
-                disabled={this.props.disabled}
-                onUpdate={this.updateAddressType}
-                onBlur={this.props.onBlur}
-                onFocus={this.props.onFocus}
-              />
+                     label={i18n.m('address.options.us.label')}
+                     value="United States"
+                     className="domestic"
+                     ignoreDeselect="true"
+                     disabled={this.props.disabled}
+                     onUpdate={this.updateAddressType}
+                     onBlur={this.props.onBlur}
+                     onFocus={this.props.onFocus}
+                     />
               <Radio name="addressType"
-                label={i18n.m('address.options.apoFpo.label')}
-                value="POSTOFFICE"
-                className="apofpo postoffice"
-                ignoreDeselect="true"
-                disabled={this.props.disabled}
-                onUpdate={this.updateAddressType}
-                onBlur={this.props.onBlur}
-                onFocus={this.props.onFocus}
-              />
+                     label={i18n.m('address.options.apoFpo.label')}
+                     value="POSTOFFICE"
+                     className="apofpo postoffice"
+                     ignoreDeselect="true"
+                     disabled={this.props.disabled}
+                     onUpdate={this.updateAddressType}
+                     onBlur={this.props.onBlur}
+                     onFocus={this.props.onFocus}
+                     />
               <Radio name="addressType"
-                label={i18n.m('address.options.international.label')}
-                value="International"
-                className="international"
-                ignoreDeselect="true"
-                disabled={this.props.disabled}
-                onUpdate={this.updateAddressType}
-                onBlur={this.props.onBlur}
-                onFocus={this.props.onFocus}
-              />
+                     label={i18n.m('address.options.international.label')}
+                     value="International"
+                     className="international"
+                     ignoreDeselect="true"
+                     disabled={this.props.disabled}
+                     onUpdate={this.updateAddressType}
+                     onBlur={this.props.onBlur}
+                     onFocus={this.props.onFocus}
+                     />
             </RadioGroup>
           </div>
         </Show>
@@ -136,160 +136,162 @@ export default class Address extends ValidationElement {
             <Show when={this.props.country === 'United States'}>
               <div>
                 <Street name="address"
-                  className="mailing street"
-                  label={this.props.streetLabel}
-                  value={this.props.street}
-                  onChange={this.updateStreet}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                        className="mailing street"
+                        label={this.props.streetLabel}
+                        value={this.props.street}
+                        onChange={this.updateStreet}
+                        onError={this.handleError}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        />
                 <Street name="street2"
-                  className="street2"
-                  label={this.props.street2Label}
-                  value={this.props.street2}
-                  onChange={this.updateStreet2}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                        className="street2"
+                        label={this.props.street2Label}
+                        optional={true}
+                        value={this.props.street2}
+                        onChange={this.updateStreet2}
+                        onError={this.handleError}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        />
                 <City name="city"
-                  className="city"
-                  label={this.props.cityLabel}
-                  value={this.props.city}
-                  onChange={this.updateCity}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                      className="city"
+                      label={this.props.cityLabel}
+                      value={this.props.city}
+                      onChange={this.updateCity}
+                      onError={this.handleError}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                      />
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
-                    className="state"
-                    label={this.props.stateLabel}
-                    value={this.props.state}
-                    includeStates="true"
-                    onChange={this.updateState}
-                    onError={this.handleError}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                  />
+                                 className="state"
+                                 label={this.props.stateLabel}
+                                 value={this.props.state}
+                                 includeStates="true"
+                                 onChange={this.updateState}
+                                 onError={this.handleError}
+                                 onFocus={this.props.onFocus}
+                                 onBlur={this.props.onBlur}
+                                 />
                   <ZipCode name="zipcode"
-                    ref="us_zipcode"
-                    key="us_zipcode"
-                    className="zipcode"
-                    label={this.props.zipcodeLabel}
-                    value={this.props.zipcode}
-                    onChange={this.updateZipcode}
-                    onError={this.handleError}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                  />
+                           ref="us_zipcode"
+                           key="us_zipcode"
+                           className="zipcode"
+                           label={this.props.zipcodeLabel}
+                           value={this.props.zipcode}
+                           onChange={this.updateZipcode}
+                           onError={this.handleError}
+                           onFocus={this.props.onFocus}
+                           onBlur={this.props.onBlur}
+                           />
                 </div>
               </div>
             </Show>
             <Show when={!['United States', 'POSTOFFICE'].includes(this.props.country)}>
               <div>
                 <Street name="address"
-                  label={this.props.streetLabel}
-                  className="mailing street"
-                  value={this.props.street}
-                  onChange={this.updateStreet}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                        label={this.props.streetLabel}
+                        className="mailing street"
+                        value={this.props.street}
+                        onChange={this.updateStreet}
+                        onError={this.handleError}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        />
                 <Street name="street2"
-                  className="street2"
-                  label={this.props.street2Label}
-                  value={this.props.street2}
-                  onChange={this.updateStreet2}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                        className="street2"
+                        label={this.props.street2Label}
+                        optional={true}
+                        value={this.props.street2}
+                        onChange={this.updateStreet2}
+                        onError={this.handleError}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        />
                 <City name="city"
-                  className="city"
-                  label={this.props.cityLabel}
-                  value={this.props.city}
-                  onChange={this.updateCity}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                      className="city"
+                      label={this.props.cityLabel}
+                      value={this.props.city}
+                      onChange={this.updateCity}
+                      onError={this.handleError}
+                      onFocus={this.props.onFocus}
+                      onBlur={this.props.onBlur}
+                      />
                 <Country name="country"
-                  label={this.props.countryLabel}
-                  value={this.props.country}
-                  excludeUnitedStates="true"
-                  onChange={this.updateCountry}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                         label={this.props.countryLabel}
+                         value={this.props.country}
+                         excludeUnitedStates="true"
+                         onChange={this.updateCountry}
+                         onError={this.handleError}
+                         onFocus={this.props.onFocus}
+                         onBlur={this.props.onBlur}
+                         />
               </div>
             </Show>
             <Show when={this.props.country === 'POSTOFFICE'}>
               <div>
                 <Street name="address"
-                  label={i18n.t('address.apoFpo.street.label')}
-                  className="mailing street"
-                  value={this.props.street}
-                  onChange={this.updateStreet}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                />
+                        label={i18n.t('address.apoFpo.street.label')}
+                        className="mailing street"
+                        value={this.props.street}
+                        onChange={this.updateStreet}
+                        onError={this.handleError}
+                        onFocus={this.props.onFocus}
+                        onBlur={this.props.onBlur}
+                        />
                 <label>{i18n.t('address.apoFpo.select.label')}</label>
                 <RadioGroup className="apofpo" selectedValue={this.props.city}>
                   <Radio name="apoFpoType"
-                    className="apo"
-                    label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
-                    value="APO"
-                    disabled={this.props.disabled}
-                    onChange={this.updateCity}
-                    onBlur={this.props.onBlur}
-                    onFocus={this.props.onFocus}
-                  />
+                         className="apo"
+                         label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
+                         value="APO"
+                         disabled={this.props.disabled}
+                         onChange={this.updateCity}
+                         onBlur={this.props.onBlur}
+                         onFocus={this.props.onFocus}
+                         />
                   <Radio name="addressType"
-                    className="fpo"
-                    label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
-                    value="FPO"
-                    disabled={this.props.disabled}
-                    onChange={this.updateCity}
-                    onBlur={this.props.onBlur}
-                    onFocus={this.props.onFocus}
-                  />
+                         className="fpo"
+                         label={i18n.m('address.apoFpo.apoFpoType.fpo.label')}
+                         value="FPO"
+                         disabled={this.props.disabled}
+                         onChange={this.updateCity}
+                         onBlur={this.props.onBlur}
+                         onFocus={this.props.onFocus}
+                         />
                   <Radio name="addressType"
-                    className="dpo"
-                    label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
-                    value="DPO"
-                    disabled={this.props.disabled}
-                    onChange={this.updateCity}
-                    onBlur={this.props.onBlur}
-                    onFocus={this.props.onFocus}
-                  />
+                         className="dpo"
+                         label={i18n.m('address.apoFpo.apoFpoType.dpo.label')}
+                         value="DPO"
+                         disabled={this.props.disabled}
+                         onChange={this.updateCity}
+                         onBlur={this.props.onBlur}
+                         onFocus={this.props.onFocus}
+                         />
                 </RadioGroup>
                 <div className="state-zip-wrap">
                   <ApoFpo name="apoFpo"
-                    className="state"
-                    label={i18n.t('address.apoFpo.apoFpo.label')}
-                    value={this.props.state}
-                    onChange={this.updateState}
-                    onError={this.handleError}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
-                  />
-                  <ZipCode name="zipcode"
-                    ref="apo_zipcode"
-                    key="apo_zipcode"
-                    className="zipcode"
-                    label={i18n.t('address.apoFpo.zipcode.label')}
-                    value={this.props.zipcode}
-                    onChange={this.updateZipcode}
-                    onError={this.handleError}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                  />
+                          className="state"
+                          label={i18n.t('address.apoFpo.apoFpo.label')}
+                          value={this.props.state}
+                          onChange={this.updateState}
+                          onError={this.handleError}
+                          onFocus={this.props.onFocus}
+                          onBlur={this.props.onBlur}
+                          tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
+                    />
+                    <ZipCode name="zipcode"
+                             ref="apo_zipcode"
+                             key="apo_zipcode"
+                             className="zipcode"
+                             label={i18n.t('address.apoFpo.zipcode.label')}
+                             value={this.props.zipcode}
+                             onChange={this.updateZipcode}
+                             onError={this.handleError}
+                             onFocus={this.props.onFocus}
+                             onBlur={this.props.onBlur}
+                             />
                 </div>
               </div>
             </Show>
@@ -310,4 +312,3 @@ Address.defaultProps = {
 }
 
 Address.errors = []
-
