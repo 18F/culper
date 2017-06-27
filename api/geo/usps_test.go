@@ -17,7 +17,7 @@ func TestQuerySuccess(t *testing.T) {
 	}{
 		{
 			Values: Values{
-				Address: "123 Some Rd",
+				Street:  "123 Some Rd",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
@@ -25,7 +25,7 @@ func TestQuerySuccess(t *testing.T) {
 			XML: "testdata/valid_address.xml",
 			ExpectedResults: Results{
 				{
-					Address: "123 SOME RD",
+					Street:  "123 SOME RD",
 					City:    "ARLINGTON",
 					State:   "VA",
 					Zipcode: "22202",
@@ -35,7 +35,7 @@ func TestQuerySuccess(t *testing.T) {
 		},
 		{
 			Values: Values{
-				Address: "123 Some Road",
+				Street:  "123 Some Road",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
@@ -43,7 +43,7 @@ func TestQuerySuccess(t *testing.T) {
 			XML: "testdata/valid_address.xml",
 			ExpectedResults: Results{
 				{
-					Address: "123 SOME RD",
+					Street:  "123 SOME RD",
 					City:    "ARLINGTON",
 					State:   "VA",
 					Zipcode: "22202",
@@ -84,7 +84,7 @@ func TestQueryError(t *testing.T) {
 	}{
 		{
 			Values: Values{
-				Address: "123 Some Rd",
+				Street:  "123 Some Rd",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",

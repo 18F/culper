@@ -1,4 +1,5 @@
 import MaritalValidator from './marital'
+import Location from '../components/Form/Location'
 
 describe('Marital validation', function () {
   it('validates divorce', () => {
@@ -45,11 +46,11 @@ describe('Marital validation', function () {
                 date: new Date('1/1/2016')
               },
               BirthPlace: {
-                domestic: 'Yes',
                 country: 'United States',
                 city: 'Arlington',
                 county: 'Arlington',
-                state: 'VA'
+                state: 'VA',
+                layout: Location.BIRTHPLACE
               },
               Telephone: {
                 noNumber: '',
@@ -65,11 +66,12 @@ describe('Marital validation', function () {
                 date: new Date('1/1/2016')
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               }
             }
           }],
@@ -158,18 +160,19 @@ describe('Marital validation', function () {
               date: new Date('1/1/2016')
             },
             BirthPlace: {
-              domestic: 'Yes',
               country: 'United States',
               city: 'Arlington',
               county: 'Arlington',
-              state: 'VA'
+              state: 'VA',
+              layout: Location.BIRTHPLACE
             },
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Telephone: {
               noNumber: '',

@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Text from '../Text'
 
@@ -41,11 +42,24 @@ export default class Street extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
+  label () {
+    if (this.props.label && this.props.optional) {
+      return (
+        <span>
+          {this.props.label}
+          <span className="optional">{i18n.t('address.us.street2.optional')}</span>
+        </span>
+      )
+    }
+
+    return this.props.label
+  }
+
   render () {
     return (
       <Text name={this.props.name}
             className={this.props.className}
-            label={this.props.label}
+            label={this.label()}
             placeholder={this.props.placeholder}
             value={this.state.value}
             onChange={this.handleChange}
@@ -59,6 +73,8 @@ export default class Street extends ValidationElement {
 
 Street.defaultProps = {
   value: '',
+  label: '',
+  optional: false,
   onError: (value, arr) => { return arr }
 }
 

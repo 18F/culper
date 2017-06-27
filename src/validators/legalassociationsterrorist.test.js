@@ -1,5 +1,6 @@
 import LegalAssociationsTerroristValidator, { TerroristValidator } from './legalassociationsterrorist'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('Legal associations terrorist component validation', function () {
   it('validate organization', () => {
@@ -34,11 +35,12 @@ describe('Legal associations terrorist component validation', function () {
       {
         props: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -193,11 +195,12 @@ describe('Legal associations terrorist component validation', function () {
                 value: 'this is an organization'
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Dates: {
                 from: {

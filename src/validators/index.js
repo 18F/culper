@@ -35,6 +35,7 @@ import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
 import CitizenshipValidator from './citizenship'
 import CitizenshipMultipleValidator from './citizenship-multiple'
+import CitizenshipPassportsValidator from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
@@ -81,6 +82,7 @@ import LegalAssociationsEngagedValidator from './legalassociationsengaged'
 import LegalAssociationsAdvocatingValidator from './legalassociationsadvocating'
 import LegalAssociationsActivitiesValidator from './legalassociationsactivities'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
+import LocationValidator from './location'
 
 export {
   AddressValidator,
@@ -124,6 +126,7 @@ export {
   HospitalizationValidator,
   CitizenshipValidator,
   CitizenshipMultipleValidator,
+  CitizenshipPassportsValidator,
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,
@@ -169,5 +172,6 @@ export {
   LegalAssociationsEngagedValidator,
   LegalAssociationsAdvocatingValidator,
   LegalAssociationsActivitiesValidator,
-  LegalAssociationsTerrorismValidator
+  LegalAssociationsTerrorismValidator,
+  LocationValidator
 }

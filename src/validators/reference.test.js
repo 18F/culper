@@ -1,4 +1,5 @@
 import ReferenceValidator from './reference'
+import Location from '../components/Form/Location'
 
 describe('Reference component validation', function () {
   it('should validate reference', function () {
@@ -36,11 +37,12 @@ describe('Reference component validation', function () {
             applicable: true
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -81,11 +83,12 @@ describe('Reference component validation', function () {
             applicable: true
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true

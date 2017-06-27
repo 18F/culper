@@ -1,4 +1,5 @@
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
+import Location from '../components/Form/Location'
 
 describe('Bankruptcy component validation', function () {
   it('should validate has bankruptcy branch', function () {
@@ -60,11 +61,12 @@ describe('Bankruptcy component validation', function () {
               Bankruptcy: {
                 PetitionType: 'Chapter7',
                 CourtAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 CourtInvolved: {
                   value: 'Some Court'
@@ -112,11 +114,12 @@ describe('Bankruptcy component validation', function () {
               Bankruptcy: {
                 PetitionType: 'Chapter7',
                 CourtAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 CourtInvolved: {
                   value: 'Some Court'
@@ -208,11 +211,12 @@ describe('Bankruptcy component validation', function () {
       {
         props: {
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -377,11 +381,12 @@ describe('Bankruptcy component validation', function () {
         props: {
           PetitionType: 'Chapter7',
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           NameDebt: {
             first: 'Foo',
@@ -454,11 +459,12 @@ describe('Bankruptcy component validation', function () {
         props: {
           PetitionType: 'Chapter13',
           TrusteeAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Trustee: {
             value: 'John Doe'

@@ -1,4 +1,5 @@
 import EducationValidator, { EducationItemValidator } from './education'
+import Location from '../components/Form/Location'
 
 describe('Education component validation', function () {
   it('handle no education', () => {
@@ -83,11 +84,12 @@ describe('Education component validation', function () {
         state: {
           HasAttended: 'Yes',
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -176,11 +178,12 @@ describe('Education component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             }
           }
         },
@@ -378,11 +381,12 @@ describe('Education component validation', function () {
               Reference: null,
               Type: 'High School',
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Dates: {
                 from: {
@@ -416,11 +420,12 @@ describe('Education component validation', function () {
               Reference: null,
               Type: 'High School',
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Dates: {
                 from: {

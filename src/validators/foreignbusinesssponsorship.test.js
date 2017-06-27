@@ -1,5 +1,6 @@
 import ForeignBusinessSponsorshipValidator, { SponsorshipValidator } from './foreignbusinesssponsorship'
 import { battery } from './helpers'
+import Location from '../components/Form/Location'
 
 describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship name', () => {
@@ -68,11 +69,9 @@ describe('Foreign business sponsorship component validation', function () {
       {
         props: {
           Birthplace: {
-            domestic: 'Yes',
-            country: 'United States',
-            city: 'Arlington',
-            county: 'Arlington',
-            state: 'VA'
+            city: 'Munich',
+            country: 'Germnay',
+            layout: Location.CITY_COUNTRY
           }
         },
         expected: true
@@ -93,11 +92,12 @@ describe('Foreign business sponsorship component validation', function () {
       {
         props: {
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -168,11 +168,12 @@ describe('Foreign business sponsorship component validation', function () {
       {
         props: {
           Residence: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -217,11 +218,12 @@ describe('Foreign business sponsorship component validation', function () {
       {
         props: {
           OrganizationAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           OrganizationAddressNotApplicable: {
             applicable: true
@@ -329,18 +331,17 @@ describe('Foreign business sponsorship component validation', function () {
                 applicable: true
               },
               Birthplace: {
-                domestic: 'Yes',
-                country: 'United States',
-                city: 'Arlington',
-                county: 'Arlington',
-                state: 'VA'
+                country: 'Germnay',
+                city: 'Munich',
+                layout: Location.CITY_COUNTRY
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Citizenship: {
                 value: [{ name: 'Germany', value: 'Germany' }]
@@ -355,11 +356,12 @@ describe('Foreign business sponsorship component validation', function () {
                 present: false
               },
               Residence: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               Organization: {
                 value: 'this is the organization'
@@ -368,11 +370,12 @@ describe('Foreign business sponsorship component validation', function () {
                 applicable: true
               },
               OrganizationAddress: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               },
               OrganizationAddressNotApplicable: {
                 applicable: true

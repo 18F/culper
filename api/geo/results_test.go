@@ -105,7 +105,8 @@ func TestEmpty(t *testing.T) {
 
 func TestResultsString(t *testing.T) {
 	result := Result{
-		Address:   "123",
+		Street:    "123",
+		Street2:   "APT 1",
 		City:      "Arlington",
 		State:     "VA",
 		County:    "ATown",
@@ -114,8 +115,9 @@ func TestResultsString(t *testing.T) {
 		Partial:   false,
 		Error:     "",
 	}
-	expected := fmt.Sprintf("Street: %s\nCity: %s\nState: %s\nZipcode: %s\nCounty: %s\nCountry: %s\nPartial: %v\nFormatted: %s",
+	expected := fmt.Sprintf("Street: %s\nStreet2: %s\nCity: %s\nState: %s\nZipcode: %s\nCounty: %s\nCountry: %s\nPartial: %v\nFormatted: %s",
 		"123",
+		"APT 1",
 		"Arlington",
 		"VA",
 		"22202",

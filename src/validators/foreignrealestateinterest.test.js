@@ -1,4 +1,5 @@
 import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
+import Location from '../components/Form/Location'
 
 describe('RealEstate Interest validation', function () {
   it('should validate interest types', function () {
@@ -30,11 +31,10 @@ describe('RealEstate Interest validation', function () {
             value: 'Bar'
           },
           Address: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            street: '123 Some rd',
             city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202'
+            country: 'United States',
+            layout: Location.STREET_CITY_COUNTRY
           },
           Acquired: {
             day: '1',

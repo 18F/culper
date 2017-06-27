@@ -19,7 +19,7 @@ func TestAddressField(t *testing.T) {
 		{
 			XML: "../../geo/testdata/valid_address.xml",
 			Field: AddressField{
-				Address: "123 Some RD",
+				Street:  "123 Some RD",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
@@ -29,7 +29,7 @@ func TestAddressField(t *testing.T) {
 		{
 			XML: "../../geo/testdata/valid_address.xml",
 			Field: AddressField{
-				Address: "123 Some Road",
+				Street:  "123 Some Road",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",
@@ -39,7 +39,7 @@ func TestAddressField(t *testing.T) {
 		{
 			XML: "../../geo/testdata/empty.xml",
 			Field: AddressField{
-				Address: "",
+				Street:  "",
 				City:    "",
 				State:   "",
 				Zipcode: "",
@@ -51,7 +51,7 @@ func TestAddressField(t *testing.T) {
 		{
 			XML: "../../geo/testdata/address_error.xml",
 			Field: AddressField{
-				Address: "123",
+				Street:  "123",
 				City:    "Arlington",
 				State:   "VA",
 				Zipcode: "22202",

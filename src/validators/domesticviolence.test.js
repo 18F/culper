@@ -1,4 +1,5 @@
 import DomesticViolence, { DomesticViolenceItem } from './domesticviolence'
+import Location from '../components/Form/Location'
 
 describe('Domestic Violence validation', function () {
   it('can validate DomesticViolenceItem', () => {
@@ -9,11 +10,12 @@ describe('Domestic Violence validation', function () {
             value: '4th Circuit Court'
           },
           CourtAddress: {
-            addressType: 'United States',
-            address: '1234 Some Rd',
+            country: 'United States',
+            street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
-            zipcode: '22202'
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Explanation: {
             value: 'Some content'
@@ -44,11 +46,12 @@ describe('Domestic Violence validation', function () {
                   value: '4th Circuit Court'
                 },
                 CourtAddress: {
-                  addressType: 'United States',
-                  address: '1234 Some Rd',
+                  country: 'United States',
+                  street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
-                  zipcode: '22202'
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
                 Explanation: {
                   value: 'Some content'

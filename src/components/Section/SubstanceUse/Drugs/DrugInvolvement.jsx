@@ -86,8 +86,7 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.firstInvolvement')}
-               adjustFor="datecontrol"
-               help={'substance.drugs.involvement.help.firstInvolvement'}>
+               adjustFor="datecontrol">
           <DateControl name="FirstInvolvement"
                        className="first-involvement"
                        {...this.props.FirstInvolvement}

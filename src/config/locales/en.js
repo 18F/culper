@@ -436,6 +436,38 @@ const en = {
         }
       }
     },
+    city: {
+      length: {
+        title: 'There is a problem with the City',
+        message: 'City name should be between 2 and 100 characters.',
+        note: ''
+      }
+    },
+    state: {
+      notfound: {
+        title: 'There is a problem with the State',
+        message: [
+          'State name must be one of the available options.',
+          '*and/or*',
+          'The state name is too long.'
+        ],
+        note: ''
+      }
+    },
+    county: {
+      length: {
+        title: 'There is a problem with the County',
+        message: 'County name must be between 2 and 100 characters',
+        note: ''
+      }
+    },
+    zipcode: {
+      pattern: {
+        title: 'There is a problem with the ZIP Code',
+        message: 'The ZIP Code should be either 5 or 9 digits.',
+        note: ''
+      }
+    },
     country: {
       notfound: {
         title: 'There is a problem with the Country',
@@ -891,7 +923,8 @@ const en = {
         state: 'State or territory',
         city: 'City',
         county: 'County or province',
-        country: 'Country'
+        country: 'Country',
+        location: 'Were you born in the United States?'
       },
       placeholder: {
         state: 'Please enter state or territory within the United States',
@@ -1431,7 +1464,9 @@ const en = {
         description: 'As a result of this counseling provide a description of any action(s) you have taken to resolve your financial difficulties. If you have not taken any action(s) provide explanation.'
       },
       placeholder: {
-        city: 'Please enter the city'
+        city: 'Please enter the city',
+        state: 'Please enter state or territory within the United States'
+
       },
       help: {
         branch: {
@@ -1696,7 +1731,8 @@ const en = {
     destination: {
       review: 'Review Citizenship',
       status: 'Citizenship status',
-      multiple: 'Dual/multiple citizenship'
+      multiple: 'Dual/multiple citizenship',
+      passports: 'Foreign passports'
     },
     status: {
       heading: {
@@ -1816,7 +1852,7 @@ const en = {
         },
         certificateissued: {
           title: 'Need help with the date the certificate was issued?',
-          message: 'Provide the approximate date the certificate was issued',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         certificatename: {
@@ -1835,8 +1871,8 @@ const en = {
           note: ''
         },
         entrydate: {
-          title: 'Need help with the date of entry in to the U.S.?',
-          message: 'Provide the approximate date of entry',
+          title: 'Need help with your entry date to the U.S.?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         entrylocation: {
@@ -1845,8 +1881,8 @@ const en = {
           note: ''
         },
         priorcitizenship: {
-          title: 'Need help with prior citizenship(s)?',
-          message: 'Tell us all of the prior citizenships.',
+          title: 'Need help with this question?',
+          message: 'Tell us all of your prior citizenship(s).',
           note: 'Note: You can provide multiple citizenships in this question.'
         },
         hasalienregistration: {
@@ -1870,9 +1906,9 @@ const en = {
           note: ''
         },
         certificatecourtaddress: {
-          title: 'Need help with address of the court who issued the certificate?',
-          message: 'Provide the address of the court who issued the certificate',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         basis: {
           naturalized: {
@@ -1911,7 +1947,7 @@ const en = {
 
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship & foreign passport information',
+        title: 'Dual/Multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
         citizenship: {
           country: 'Provide country of citizenship',
@@ -1924,6 +1960,7 @@ const en = {
         },
         hasforeignpassport: 'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
         passport: {
+          title: 'Foreign passport information',
           country: 'Provide the country in which the passport (or identity card) was issued',
           issued: 'Provide the date the passport (or identity card) was issued',
           location: 'Provide the place the passport (or identity card) was issued',
@@ -1979,8 +2016,8 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'Provide the dates',
-            note: ''
+            message: 'Tell us the full date range you held this citizenship.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           how: {
             title: 'Need help with the how you acquired this citizenship?',
@@ -2415,6 +2452,7 @@ const en = {
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Provide other names used',
         citizenship: 'Provide country(ies) of citizenship',
+        location: 'Provide location',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2434,7 +2472,9 @@ const en = {
         othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
       },
       label: {
-        birthplace: 'Was this person born in the United States of America?'
+        birthplace: 'Was this person born in the United States of America?',
+        location: 'Was this location in the United States?',
+        addressSeparated: 'Was this location in the United States?'
       },
       divorce: {
         heading: {
@@ -2804,7 +2844,7 @@ const en = {
         label: 'In the<br>United States'
       },
       apoFpo: {
-        label: 'APO/FPO'
+        label: 'APO/FPO/DPO'
       },
       international: {
         label: 'Outside of the<br>United States'
@@ -2812,8 +2852,12 @@ const en = {
     },
     us: {
       street: {
-        label: 'Street',
+        label: 'Street address',
         placeholder: 'Enter street address'
+      },
+      street2: {
+        label: 'Apt, suite, building, floor, etc.',
+        optional: '(Optional)'
       },
       city: {
         label: 'City',
@@ -2848,7 +2892,7 @@ const en = {
     },
     apoFpo: {
       select: {
-        label: 'Select APO or FPO'
+        label: 'Select APO, FPO or DPO'
       },
       street: {
         label: 'Address',
@@ -2867,7 +2911,7 @@ const en = {
         placeholder: 'Enter ZIP Code'
       },
       apoFpo: {
-        label: 'APO/FPO State Code',
+        label: 'APO/FPO/DPO State Code',
         placeholder: 'Enter state code (AA, AE, AP)'
       },
       apoFpoType: {
@@ -2877,9 +2921,12 @@ const en = {
         fpo: {
           label: 'FPO'
         },
+        dpo: {
+          label: 'DPO'
+        },
         apoFpo: {
-          label: 'APO/FPO',
-          placeholder: 'Enter APO/FPO'
+          label: 'APO/FPO/DPO',
+          placeholder: 'Enter APO/FPO/DPO'
         }
       }
     }
@@ -5895,7 +5942,8 @@ const en = {
           accepted: 'Did you accept the offer?'
         },
         label: {
-          explanation: 'Explanation'
+          explanation: 'Explanation',
+          address: 'Did this occur in the United States?'
         },
         help: {
           branch: {
@@ -7467,9 +7515,9 @@ const en = {
         },
         help: {
           occurred: {
-            title: 'Need help with the date the negative impact occurred?',
+            title: 'Need help with this date?',
             message: 'Provide the month/year when this negative impact occurred',
-            note: ''
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           circumstances: {
             title: 'Need help with the circumstances?',
@@ -7478,8 +7526,8 @@ const en = {
           },
           used: {
             title: 'Need help with the dates of involvement?',
-            message: 'Provide dates of involvement or use',
-            note: ''
+            message: 'Tell us the full date range of the involvement or use',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           }
         },
         collection: {
@@ -7531,8 +7579,8 @@ const en = {
           },
           counselingDates: {
             title: 'Need help with the counseling dates?',
-            message: 'Provide the dates when you were in counseling or treatment',
-            note: ''
+            message: 'Tell us the dates when you were in counseling or treatment',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           actionTaken: {
             title: 'Need help with action taken to seek counseling or treatment',
@@ -7545,13 +7593,13 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone number of the treatment provider',
+            title: 'Not sure of the treatment provider\'s telephone?',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the phone number.',
             note: ''
           },
           completedTreatment: {
@@ -7580,8 +7628,8 @@ const en = {
         help: {
           counselingDates: {
             title: 'Need help with the counseling dates?',
-            message: 'Provide the dates of counseling or treatment',
-            note: ''
+            message: 'Tell us the full range of counseling or treatment',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           treatmentProviderName: {
             title: 'Need help with the treatment provider name?',
@@ -7589,13 +7637,13 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone number of the treatment provider',
+            title: 'Not sure of the treatment provider\'s telephone?',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the phone number.',
             note: ''
           },
           completedTreatment: {
@@ -7636,9 +7684,9 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           agencyName: {
             title: 'Need help with the agency name?',
@@ -7646,18 +7694,18 @@ const en = {
             note: ''
           },
           agencyAddress: {
-            title: 'Need help with the agency address?',
-            message: 'Provide the address where the counseling/treatment provider is located',
-            note: ''
+            title: 'Not sure of the agency\'s address?',
+            message: 'Try looking up the agency\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentBeganDate: {
-            title: 'Need help with when treatment began?',
-            message: 'Provide the date counseling or treatment began',
+            title: 'Need help with this date?',
+            message: 'Tell us when the treatment started',
             note: ''
           },
           treatmentEndDate: {
-            title: 'Need help with when treatment ended?',
-            message: 'Provide the date counseling or treatment ended',
+            title: 'Need help with this date?',
+            message: 'Tell us when the treatment ended',
             note: ''
           },
           completedTreatment: {
@@ -7831,8 +7879,8 @@ const en = {
           },
           involvementDates: {
             title: 'Need help with the dates of involvement?',
-            message: 'Provide the dates of involvement/use',
-            note: ''
+            message: 'Tell us the full date range of your involvement.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           estimatedUse: {
             title: 'Need help with the estimated times used?',
@@ -7862,9 +7910,9 @@ const en = {
             note: ''
           },
           involvementDates: {
-            title: 'Need help with the dates of involvement?',
-            message: 'Provide the dates of involvement/use',
-            note: ''
+            title: 'Need help with the dates of involvement/use?',
+            message: 'Tell us the full date range of your involvement/use.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           estimatedUse: {
             title: 'Need help with the estimated times used?',
@@ -7901,8 +7949,8 @@ const en = {
           },
           involvementDates: {
             title: 'Need help with the dates of involvement?',
-            message: 'Provide the dates of involvement/use',
-            note: ''
+            message: 'Tell us the full date range of your involvement.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           useWhileEmployed: {
             title: 'Need help with the use?',
@@ -7973,19 +8021,19 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address of the treatment provider',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone of the treatment provider',
+            title: 'Need help with the treatment provider\'s telephone?',
+            message: 'Try looking up the provider\'s name, this could help you find the phone number.',
             note: ''
           },
           treatmentDates: {
             title: 'Need help with the treatment dates?',
-            message: 'Provide the dates of treatment',
-            note: ''
+            message: 'Tell us the full date range you were in treatment.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           treatmentCompleted: {
             title: 'Need help with the treatment completion?',
@@ -8040,19 +8088,19 @@ const en = {
             note: ''
           },
           treatmentProviderAddress: {
-            title: 'Need help with the treatment provider address?',
-            message: 'Provide the address of the treatment provider',
-            note: ''
+            title: 'Not sure of the treatment provider\'s address?',
+            message: 'Try looking up the provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
-            title: 'Need help with the treatment provider telephone?',
-            message: 'Provide the telephone of the treatment provider',
+            title: 'Need help with the treatment provider\'s telephone?',
+            message: 'Try looking up the provider\'s name, this could help you find the phone number.',
             note: ''
           },
           treatmentDates: {
             title: 'Need help with the treatment dates?',
-            message: 'Provide the dates of treatment',
-            note: ''
+            message: 'Tell us the full date range you were in treatment.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           treatmentCompleted: {
             title: 'Need help with the treatment completion?',

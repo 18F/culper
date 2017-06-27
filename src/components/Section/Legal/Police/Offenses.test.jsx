@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Offenses from './Offenses'
+import Location from '../../../Form/Location'
 
 describe('The Offenses record component', () => {
   it('no error on empty', () => {
@@ -46,11 +47,12 @@ describe('The Offenses record component', () => {
             InvolvedFirearms: 'No',
             InvolvedSubstances: 'No',
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             WasCited: 'No'
           }
@@ -82,11 +84,12 @@ describe('The Offenses record component', () => {
             InvolvedFirearms: 'No',
             InvolvedSubstances: 'No',
             Address: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             WasCited: 'No'
           }

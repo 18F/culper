@@ -1,4 +1,5 @@
 import FederalServiceValidator from './federalservice'
+import Location from '../components/Form/Location'
 
 describe('Federal service component validation', function () {
   it('should validate employment entry', function () {
@@ -44,11 +45,12 @@ describe('Federal service component validation', function () {
                 present: false
               },
               Address: {
-                addressType: 'United States',
-                address: '1234 Some Rd',
+                country: 'United States',
+                street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
-                zipcode: '22202'
+                zipcode: '22202',
+                layout: Location.ADDRESS
               }
             }
           ]

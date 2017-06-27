@@ -19,7 +19,7 @@ describe('The RealEstateInterest component', () => {
     component.find({name: 'interest-type', value: 'Yourself'}).simulate('change')
     component.find({name: 'interest-type', value: 'Spouse'}).simulate('change')
     component.find('input[name="RealEstateType"]').simulate('change')
-    component.find('input[name="address"]').simulate('change')
+    component.find('.location .city input').simulate('change')
     component.find('.acquired input[name="month"]').simulate('change', { target: { value: '2' } })
     component.find('.acquired input[name="year"]').simulate('change', { target: { value: '2010' } })
     component.find('textarea[name="HowAcquired"]').simulate('change')

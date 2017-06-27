@@ -1,5 +1,5 @@
 import NameValidator from './name'
-import BirthPlaceValidator from './birthplace'
+import LocationValidator from './location'
 import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
 export default class ForeignBusinessContactValidator {
@@ -51,7 +51,7 @@ export class ContactValidator {
   }
 
   validLocation () {
-    return !!this.location && new BirthPlaceValidator(this.location, null).isValid()
+    return !!this.location && new LocationValidator(this.location).isValid()
   }
 
   validDate () {

@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import DomesticViolenceList from './DomesticViolenceList'
+import Location from '../../../Form/Location'
 
 describe('The DomesticViolenceList  component', () => {
   it('no error on empty', () => {
@@ -34,11 +35,12 @@ describe('The DomesticViolenceList  component', () => {
               value: '4th Circuit Court'
             },
             CourtAddress: {
-              addressType: 'United States',
-              address: '1234 Some Rd',
+              country: 'United States',
+              street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
-              zipcode: '22202'
+              zipcode: '22202',
+              layout: Location.ADDRESS
             },
             Explanation: {
               value: 'Some content'

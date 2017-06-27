@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Svg, BranchCollection,
          Name, Text, Textarea, Address, DateControl,
          Checkbox, CheckboxGroup, Radio, RadioGroup, Country,
-         Field, NotApplicable, BirthPlace
+         Field, NotApplicable, BirthPlace, Location
        } from '../../../Form'
 import { RelativeValidator } from '../../../../validators'
 import Alias from './Alias'
@@ -393,8 +393,9 @@ export default class Relative extends ValidationElement {
         <Field title={i18n.t('relationships.relatives.heading.birthplace')}
                adjustFor="label"
                validate={false}>
-          <BirthPlace name="Birthplace"
+          <Location name="Birthplace"
                       label={i18n.t('relationships.relatives.label.birthplace')}
+                      layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
                       help=""
                       cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
                       countryPlaceholder={i18n.t('relationships.relatives.placeholder.country')}
@@ -600,8 +601,9 @@ export default class Relative extends ValidationElement {
             <Field title={i18n.t('relationships.relatives.heading.us.address')}
                    titleSize="h3"
                    help="relationships.relatives.help.courtaddress"
-                   adjustFor="address">
-              <Address name="CourtAddress"
+                   adjustFor="labels">
+              <Location name="CourtAddress"
+                       layout={Location.US_ADDRESS}
                        className="relative-courtaddress"
                        {...this.state.CourtAddress}
                        onError={this.props.onError}
@@ -613,7 +615,7 @@ export default class Relative extends ValidationElement {
 
         <Show when={!validator.citizen() && this.state.IsDeceased === 'No'}>
           <div>
-            <Show when={this.state.Address && this.state.Address.addressType === 'United States'}>
+            <Show when={this.state.Address && this.state.Address.country === 'United States'}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
                        comments={false}
@@ -707,7 +709,7 @@ export default class Relative extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.state.Address && this.state.Address.addressType === 'International'}>
+            <Show when={this.state.Address && !['United States', 'POSTOFFICE'].includes(this.state.Address.country)}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.firstcontact')}
                        help="relationships.relatives.help.firstcontact"
@@ -863,7 +865,8 @@ export default class Relative extends ValidationElement {
                                  or={i18n.m('relationships.relatives.para.or')}
                                  onError={this.props.onError}
                                  onUpdate={this.updateEmployerAddressNotApplicable}>
-                    <Address name="EmployerAddress"
+                    <Location name="EmployerAddress"
+                             layout={Location.STREET_CITY}
                              className="relative-employer-address"
                              {...this.state.EmployerAddress}
                              onError={this.props.onError}
