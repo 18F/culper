@@ -18,4 +18,9 @@ describe('The Street component', () => {
     expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
+
+  it('displays optional text', () => {
+    const component = mount(<Street label="Apt, suite, building, floor, etc." optional={true} />)
+    expect(component.find('label').text()).toContain('(Optional)')
+  })
 })

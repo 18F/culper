@@ -26,14 +26,12 @@ export default class Multiple extends SubsectionElement {
     this.state = {
       HasMultiple: props.HasMultiple,
       Citizenships: props.Citizenships,
-      CitizenshipsBranch: props.CitizenshipsBranch,
-      Passports: props.Passports
+      CitizenshipsBranch: props.CitizenshipsBranch
     }
 
     this.onUpdate = this.onUpdate.bind(this)
     this.updateHasMultiple = this.updateHasMultiple.bind(this)
     this.updateCitizenships = this.updateCitizenships.bind(this)
-    this.updatePassports = this.updatePassports.bind(this)
   }
 
   onUpdate (name, values) {
@@ -51,10 +49,6 @@ export default class Multiple extends SubsectionElement {
     this.onUpdate('CitizenshipsBranch', values.branch)
   }
 
-  updatePassports (values) {
-    this.onUpdate('Passports', values)
-  }
-
   summaryCitizenships (item, index) {
     const itemProperties = (item || {}).Item || {}
     const country = itemProperties.Country && itemProperties.Country.value
@@ -65,22 +59,6 @@ export default class Multiple extends SubsectionElement {
     return (
       <span>
         <span className="index">{i18n.t('citizenship.multiple.collection.citizenship.summary.item')} {index + 1}:</span>
-        <span><strong>{country}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
-  }
-
-  summaryPassports (item, index) {
-    const itemProperties = (item || {}).Item || {}
-    const country = itemProperties.Country && itemProperties.Country.value
-          ? itemProperties.Country.value
-          : i18n.t('citizenship.multiple.collection.passport.summary.unknown')
-    const dates = DateSummary(itemProperties.Issued)
-
-    return (
-      <span>
-        <span className="index">{i18n.t('citizenship.multiple.collection.passport.summary.item')} {index + 1}:</span>
         <span><strong>{country}</strong></span>
         <span className="dates"><strong>{dates}</strong></span>
       </span>
@@ -113,16 +91,6 @@ export default class Multiple extends SubsectionElement {
             <CitizenshipItem name="Item" bind={true} />
           </Accordion>
         </Show>
-
-        <BranchCollection label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
-                          appendLabel={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
-                          help="citizenship.multiple.help.hasforeignpassport"
-                          className="has-foreignpassport"
-                          items={this.state.Passports}
-                          onUpdate={this.updatePassports}
-                          onError={this.handleError}>
-          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} />
-        </BranchCollection>
       </div>
     )
   }

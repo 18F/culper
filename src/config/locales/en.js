@@ -1731,7 +1731,8 @@ const en = {
     destination: {
       review: 'Review Citizenship',
       status: 'Citizenship status',
-      multiple: 'Dual/multiple citizenship'
+      multiple: 'Dual/multiple citizenship',
+      passports: 'Foreign passports'
     },
     status: {
       heading: {
@@ -1851,7 +1852,7 @@ const en = {
         },
         certificateissued: {
           title: 'Need help with the date the certificate was issued?',
-          message: 'Provide the approximate date the certificate was issued',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         certificatename: {
@@ -1870,8 +1871,8 @@ const en = {
           note: ''
         },
         entrydate: {
-          title: 'Need help with the date of entry in to the U.S.?',
-          message: 'Provide the approximate date of entry',
+          title: 'Need help with your entry date to the U.S.?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         entrylocation: {
@@ -1880,8 +1881,8 @@ const en = {
           note: ''
         },
         priorcitizenship: {
-          title: 'Need help with prior citizenship(s)?',
-          message: 'Tell us all of the prior citizenships.',
+          title: 'Need help with this question?',
+          message: 'Tell us all of your prior citizenship(s).',
           note: 'Note: You can provide multiple citizenships in this question.'
         },
         hasalienregistration: {
@@ -1905,9 +1906,9 @@ const en = {
           note: ''
         },
         certificatecourtaddress: {
-          title: 'Need help with address of the court who issued the certificate?',
-          message: 'Provide the address of the court who issued the certificate',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         basis: {
           naturalized: {
@@ -1946,7 +1947,7 @@ const en = {
 
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship & foreign passport information',
+        title: 'Dual/Multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
         citizenship: {
           country: 'Provide country of citizenship',
@@ -1959,6 +1960,7 @@ const en = {
         },
         hasforeignpassport: 'Have you EVER been issued a passport (or identity card for travel) by a country other than the U.S.?',
         passport: {
+          title: 'Foreign passport information',
           country: 'Provide the country in which the passport (or identity card) was issued',
           issued: 'Provide the date the passport (or identity card) was issued',
           location: 'Provide the place the passport (or identity card) was issued',
@@ -2014,8 +2016,8 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'Provide the dates',
-            note: ''
+            message: 'Tell us the full date range you held this citizenship.',
+            note: 'Note: If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.'
           },
           how: {
             title: 'Need help with the how you acquired this citizenship?',
@@ -2854,7 +2856,8 @@ const en = {
         placeholder: 'Enter street address'
       },
       street2: {
-        label: 'Apt, suite, building, floor, etc.'
+        label: 'Apt, suite, building, floor, etc.',
+        optional: '(Optional)'
       },
       city: {
         label: 'City',

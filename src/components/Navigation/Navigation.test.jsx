@@ -83,7 +83,8 @@ describe('The navigation component', () => {
         identification: [],
         citizenship: [
           { section: 'citizenship', subsection: 'status', valid: true },
-          { section: 'citizenship', subsection: 'multiple', valid: true }
+          { section: 'citizenship', subsection: 'multiple', valid: true },
+          { section: 'citizenship', subsection: 'passports', valid: true }
         ]
       }
     }
@@ -92,6 +93,7 @@ describe('The navigation component', () => {
     expect(isValid('/form/identification', props)).toBe(false)
     expect(isValid('/form/citizenship', props)).toBe(true)
     expect(isValid('/form/citizenship/multiple', props)).toBe(true)
+    expect(isValid('/form/citizenship/passports', props)).toBe(true)
   })
 
   it('displays proper arrows on subsections', () => {
