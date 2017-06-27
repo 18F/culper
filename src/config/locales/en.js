@@ -2856,7 +2856,8 @@ const en = {
         placeholder: 'Enter street address'
       },
       street2: {
-        label: 'Apt, suite, building, floor, etc.'
+        label: 'Apt, suite, building, floor, etc.',
+        optional: '(Optional)'
       },
       city: {
         label: 'City',
