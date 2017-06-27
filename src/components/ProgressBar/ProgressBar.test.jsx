@@ -30,7 +30,7 @@ describe('The progress bar component', () => {
         citizenship: [
           { section: 'citizenship', subsection: 'status', valid: true },
           { section: 'citizenship', subsection: 'multiple', valid: true },
-          { section: 'citizenship', subsection: 'passorts', valid: true }
+          { section: 'citizenship', subsection: 'passports', valid: true }
         ]
       }
     }
