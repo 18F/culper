@@ -109,8 +109,7 @@ export default class PassportItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.location')}
-          adjustFor="labels"
-          help="citizenship.multiple.help.passport.location">
+          adjustFor="labels">
           <Location name="Location"
                    layout={Location.CITY_COUNTRY}
                    {...this.state.Location}
@@ -138,7 +137,6 @@ export default class PassportItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.expiration')}
-               help="citizenship.multiple.help.passport.expiration"
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Expiration"
