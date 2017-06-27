@@ -110,8 +110,8 @@ class Military extends SectionElement {
           </SectionView>
 
           <SectionView name="selective"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       back="citizenship/passports"
+                       backLabel={i18n.t('citizenship.destination.passports')}
                        next="military/history"
                        nextLabel={i18n.t('military.destination.history')}>
             <h2>{i18n.t('military.selective.heading.born')}</h2>

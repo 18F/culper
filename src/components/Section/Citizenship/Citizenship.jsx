@@ -8,6 +8,7 @@ import { hideSelectiveService } from '../../../validators/selectiveservice'
 import { IntroHeader } from '../../Form'
 import Status from './Status'
 import Multiple from './Multiple'
+import Passports from './Multiple/Passports'
 
 class Citizenship extends SectionElement {
   render () {
@@ -31,8 +32,8 @@ class Citizenship extends SectionElement {
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop="true"
-                       back="citizenship/multiple"
-                       backLabel={i18n.t('citizenship.destination.multiple')}
+                       back="citizenship/passports"
+                       backLabel={i18n.t('citizenship.destination.passports')}
                        next="military"
                        nextLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.history')}>
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
@@ -51,6 +52,15 @@ class Citizenship extends SectionElement {
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
+                      onError={this.handleError}
+                      />
+
+            <hr/>
+            <h2>{i18n.t('citizenship.multiple.heading.passport.title')}</h2>
+            <Passports name="passports"
+                      {...this.props.Passports}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.handleUpdate.bind(this, 'Passports')}
                       onError={this.handleError}
                       />
           </SectionView>
@@ -72,13 +82,26 @@ class Citizenship extends SectionElement {
           <SectionView name="multiple"
                        back="citizenship/status"
                        backLabel={i18n.t('citizenship.destination.status')}
-                       next="citizenship/review"
-                       nextLabel={i18n.t('citizenship.destination.review')}>
+                       next="citizenship/passports"
+                       nextLabel={i18n.t('citizenship.destination.passports')}>
             <h2>{i18n.t('citizenship.multiple.heading.title')}</h2>
             <Multiple name="multiple"
                       {...this.props.Multiple}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
+                      onError={this.handleError}
+                      />
+          </SectionView>
+          <SectionView name="passports"
+                       back="citizenship/multiple"
+                       backLabel={i18n.t('citizenship.destination.multiple')}
+                       next="citizenship/review"
+                       nextLabel={i18n.t('citizenship.destination.review')}>
+            <h2>{i18n.t('citizenship.multiple.heading.passport.title')}</h2>
+            <Passports name="passports"
+                      {...this.props.Passports}
+                      dispatch={this.props.dispatch}
+                      onUpdate={this.handleUpdate.bind(this, 'Passports')}
                       onError={this.handleError}
                       />
           </SectionView>
@@ -98,6 +121,7 @@ function mapStateToProps (state) {
     Citizenship: citizenship,
     Status: citizenship.Status || {},
     Multiple: citizenship.Multiple || {},
+    Passports: citizenship.Passports || {},
     Errors: errors.citizenship || [],
     Completed: completed.citizenship || []
   }
