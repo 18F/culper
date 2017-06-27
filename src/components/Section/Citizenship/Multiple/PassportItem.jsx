@@ -128,8 +128,7 @@ export default class PassportItem extends ValidationElement {
               onError={this.props.onError}
               />
 
-        <Field title={i18n.t('citizenship.multiple.heading.passport.number')}
-               help="citizenship.multiple.help.passport.number">
+        <Field title={i18n.t('citizenship.multiple.heading.passport.number')}>
           <Text name="Number"
                 {...this.state.Number}
                 className="passport-number"

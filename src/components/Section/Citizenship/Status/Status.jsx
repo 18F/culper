@@ -377,7 +377,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
-                   help="citizenship.status.help.entrylocation"
                    adjustFor="address"
                    shrink={true}>
               <Location name="EntryLocation"
@@ -405,14 +404,12 @@ export default class Status extends SubsectionElement {
                     labelSize="h3"
                     className="has-alien-registration"
                     value={this.state.HasAlienRegistration}
-                    help="citizenship.status.help.hasalienregistration"
                     onUpdate={this.updateHasAlienRegistration}
                     onError={this.handleError}
                     />
 
             <Show when={this.state.HasAlienRegistration === 'Yes'}>
-              <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}
-                     help="citizenship.status.help.alienregistrationnumber">
+              <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}>
                 <Text name="AlienRegistrationNumber"
                       className="alien-registration-number"
                       {...this.state.AlienRegistrationNumber}
@@ -422,8 +419,7 @@ export default class Status extends SubsectionElement {
               </Field>
             </Show>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatenumber.naturalized')}
-                   help="citizenship.status.help.certificatenumber">
+            <Field title={i18n.t('citizenship.status.heading.certificatenumber.naturalized')}>
               <Text name="CertificateNumber"
                     className="certificate-number"
                     {...this.state.CertificateNumber}
@@ -432,8 +428,7 @@ export default class Status extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatecourtname')}
-                   help="citizenship.status.help.certificatecourtname">
+            <Field title={i18n.t('citizenship.status.heading.certificatecourtname')}>
               <Text name="CertificateCourtName"
                     className="certificate-court-name"
                     {...this.state.CertificateCourtName}
@@ -476,7 +471,6 @@ export default class Status extends SubsectionElement {
                   />
 
             <Field title={i18n.t('citizenship.status.heading.basis.naturalized')}
-                   help="citizenship.status.help.basis.naturalized"
                    adjustFor="big-buttons"
                    comments={true}
                    commentsName="Explanation"
@@ -507,8 +501,7 @@ export default class Status extends SubsectionElement {
 
         <Show when={this.state.CitizenshipStatus === 'Derived'}>
           <div>
-            <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.derived')}
-                    help="citizenship.status.help.alienregistrationnumber">
+            <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.derived')}>
               <Text name="AlienRegistrationNumber"
                     className="alien-registration-number"
                     {...this.state.AlienRegistrationNumber}
@@ -517,8 +510,7 @@ export default class Status extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.permanentresidentcardnumber')}
-                    help="citizenship.status.help.permanentresidentcardnumber">
+            <Field title={i18n.t('citizenship.status.heading.permanentresidentcardnumber')}>
               <Text name="PermanentResidentCardNumber"
                     className="permanent-resident-card-number"
                     {...this.state.PermanentResidentCardNumber}
@@ -527,8 +519,7 @@ export default class Status extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.certificatenumber.derived')}
-                   help="citizenship.status.help.certificatenumber">
+            <Field title={i18n.t('citizenship.status.heading.certificatenumber.derived')}>
               <Text name="CertificateNumber"
                     className="certificate-number"
                     {...this.state.CertificateNumber}
@@ -558,7 +549,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.basis.derived')}
-                   help="citizenship.status.help.basis.derived"
                    adjustFor="big-buttons"
                    comments={true}
                    commentsName="Explanation"
@@ -589,8 +579,7 @@ export default class Status extends SubsectionElement {
 
         <Show when={this.state.CitizenshipStatus === 'NotCitizen'}>
           <div>
-            <Field title={i18n.t('citizenship.status.heading.residencestatus')}
-                   help="citizenship.status.help.residencestatus">
+            <Field title={i18n.t('citizenship.status.heading.residencestatus')}>
               <Text name="ResidenceStatus"
                     className="residence-status"
                     {...this.state.ResidenceStatus}
@@ -612,7 +601,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
-                   help="citizenship.status.help.entrylocation"
                    adjustFor="address"
                    shrink={true}>
               <Address name="EntryLocation"
@@ -634,8 +622,7 @@ export default class Status extends SubsectionElement {
                        />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.notcitizen')}
-                    help="citizenship.status.help.alienregistrationnumber">
+            <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.notcitizen')}>
               <Text name="AlienRegistrationNumber"
                     className="alien-registration-number"
                     {...this.state.AlienRegistrationNumber}
@@ -645,7 +632,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.alienregistrationexpiration')}
-                   help="citizenship.status.help.alienregistrationexpiration"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="AlienRegistrationExpiration"
@@ -657,7 +643,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documenttype')}
-                   help="citizenship.status.help.documenttype"
                    adjustFor="buttons"
                    comments={true}
                    commentsName="Explanation"
@@ -705,8 +690,7 @@ export default class Status extends SubsectionElement {
               </RadioGroup>
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentnumber.notcitizen')}
-                   help="citizenship.status.help.documentnumber">
+            <Field title={i18n.t('citizenship.status.heading.documentnumber.notcitizen')}>
               <Text name="DocumentNumber"
                     className="document-number"
                     {...this.state.DocumentNumber}
@@ -724,7 +708,6 @@ export default class Status extends SubsectionElement {
                   />
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
-                   help="citizenship.status.help.documentissued"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="DocumentIssued"
@@ -736,7 +719,6 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentexpiration')}
-                   help="citizenship.status.help.documentexpiration"
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="DocumentExpiration"
