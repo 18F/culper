@@ -182,7 +182,7 @@ const completeTravel = (promise) => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[href="#/form/' + section + '"]'
+  const selector = '.section a[href="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -191,12 +191,25 @@ const navigateToSection = (section) => {
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.section a[href="#/form/' + section + '/' + subsection + '"]'
+  const crumbs = subsection.split('/')
+  for (let i = 0; i < crumbs.length; i++) {
+    let path = ''
+    for (let j = 0; j < (i + 1); j++) {
+      if (path.length) {
+        path += '/'
+      }
+      path += crumbs[j]
+    }
+
+    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
+    client
+      .assert.visible(selector)
+      .click(selector)
+      .pause(3000)
+      .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
+  }
+
   return client
-    .assert.visible(selector)
-    .click(selector)
-    .pause(3000)
-    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
 }
 
 const navigateToNext = () => {
