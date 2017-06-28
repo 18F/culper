@@ -35,6 +35,8 @@ defineSupportCode(({Given, Then, When}) => {
     switch (subsection) {
     case 'residence':
       return completeResidence(promise)
+    case 'employment':
+      return completeEmployment(promise)
     default:
       return promise
     }
@@ -65,6 +67,39 @@ const completeResidence = (promise) => {
     .then(() => { return setDomesticTelephone('.residence .telephone', '703', '111', '2222', 'Cell') })
     .then(() => { return setText('.residence .reference-email input', 'test@test.com') })
     .then(() => { return setDomesticAddress('.residence .reference-address .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+}
+
+const completeEmployment = (promise) => {
+  return promise
+    .then(() => { return setOption('.employment .employment-activity-nongovernment.block label') })
+    .then(() => { return setText('.employment .field .text.employment input', 'Test Employer') })
+    .then(() => { return setText('.employment .field .text.employment-title input', 'Lead Tester') })
+    .then(() => { return setOption('.employment .employment-status.option-list .block label') })
+    .then(() => { return setText('.employment .daterange .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.employment .daterange .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.employment .daterange .datecontrol.from .year input', getCurrentYear()-range) })
+    .then(() => { return setOption('.employment .daterange .from-present .block label') })
+    .then(() => { return checkValue('.history .stats .fraction .completed', range) })
+    .then(() => { return setDomesticAddress('.employment .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setDomesticTelephone('.employment .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setText('.employment .supervisor .field input', 'Test Supervisor') })
+    .then(() => { return setText('.employment .supervisor .field .supervisor-title input', 'Lead Supervisor') })
+    .then(() => { return setText('.employment .supervisor .field .supervisor-email input', 'supervisor@test.com') })
+    .then(() => { return setDomesticAddress('.employment .supervisor-address .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setDomesticTelephone('.employment .telephone.supervisor-telephone', '703', '333', '4444', 'Cell') })
+    .then(() => { return setOption('.employment .activity .field .no.block label') })
+    .then(() => { return setText('.employment .reason-leaving .reason-description textarea', 'Reason for leaving text 1') })
+    .then(() => { return setOption('.employment .reason-leaving .field .yes.block label') })
+    .then(() => { return setOption('.employment .reason-leaving .employment-left.option-list .block label') })
+    .then(() => { return setText('.employment .reason-leaving .explanation-left textarea', 'Reason for leaving text 2') })
+    .then(() => { return setText('.employment .date-left .datecontrol .month input', '1') })
+    .then(() => { return setText('.employment .date-left .datecontrol .day input', '1') })
+    .then(() => { return setText('.employment .date-left .datecontrol .year input', getCurrentYear()) })
+    .then(() => { return setOption('.employment .reason-leaving .field .no.block label') })
+    .then(() => { return setOption('.employment .reprimand-branch .field .yes.block label') })
+    .then(() => { return setText('.employment .reprimand-branch .explanation-left textarea', 'Reason for reprimand text') })
+    .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .month input', '1') })
+    .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .year input', getCurrentYear()) })
 }
 
 const navigateToSection = (section) => {
