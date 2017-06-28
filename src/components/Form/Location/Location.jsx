@@ -415,8 +415,8 @@ Location.defaultProps = {
   zipcodeLabel: i18n.t('address.us.zipcode.label'),
   countyLabel: i18n.t('identification.birthplace.label.county'),
   countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
-  countryLabel: i18n.t('identification.birthplace.label.country'),
-  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country')
+  countryLabel: i18n.t('address.international.country.label'),
+  countryPlaceholder: i18n.t('address.international.country.placeholder')
 }
 
 Location.errors = []
