@@ -4,13 +4,14 @@ import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Textarea, Country, DateControl, Name, BirthPlace, Location } from '../../../Form'
+         Textarea, Country, DateControl, Name, Location } from '../../../Form'
 import SubsequentContacts from './SubsequentContacts'
 
 export default class Contact extends SubsectionElement {
   constructor (props) {
     super(props)
 
+    this.update = this.update.bind(this)
     this.updateHasForeignContact = this.updateHasForeignContact.bind(this)
     this.updateList = this.updateList.bind(this)
   }
@@ -33,7 +34,9 @@ export default class Contact extends SubsectionElement {
 
   updateHasForeignContact (values) {
     this.update([
-      { name: 'HasForeignContact', value: values }
+      { name: 'HasForeignContact', value: values },
+      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
     ])
   }
 
@@ -70,6 +73,7 @@ export default class Contact extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.contact.help.branch"
                 value={this.props.HasForeignContact}
+                warning={true}
                 onUpdate={this.updateHasForeignContact}
                 onError={this.handleError}>
           {i18n.m('foreign.business.contact.para.branch')}

@@ -2,51 +2,48 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, BranchCollection } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import CitizenshipItem from './CitizenshipItem'
-import PassportItem from './PassportItem'
-
-/**
- * Convenience function to send updates along their merry way
- */
-export const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
 
 export default class Multiple extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasMultiple: props.HasMultiple,
-      Citizenships: props.Citizenships,
-      CitizenshipsBranch: props.CitizenshipsBranch
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateHasMultiple = this.updateHasMultiple.bind(this)
     this.updateCitizenships = this.updateCitizenships.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
-    })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        Citizenships: this.props.Citizenships,
+        CitizenshipsBranch: this.props.CitizenshipsBranch,
+        HasMultiple: this.props.HasMultiple
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateHasMultiple (values) {
-    this.onUpdate('HasMultiple', values)
+    this.update([
+      { name: 'HasMultiple', value: values },
+      { name: 'Citizenships', value: values === 'Yes' ? this.props.Citizenships : [] },
+      { name: 'CitizenshipsBranch', value: values === 'Yes' ? this.props.CitizenshipsBranch : '' }
+    ])
   }
 
   updateCitizenships (values) {
-    this.onUpdate('Citizenships', values.items)
-    this.onUpdate('CitizenshipsBranch', values.branch)
+    this.update([
+      { name: 'Citizenships', value: values.items },
+      { name: 'CitizenshipsBranch', value: values.branch }
+    ])
   }
 
   summaryCitizenships (item, index) {
@@ -72,16 +69,17 @@ export default class Multiple extends SubsectionElement {
                 label={i18n.t('citizenship.multiple.heading.hasmultiple')}
                 labelSize="h3"
                 className="has-multiple"
-                value={this.state.HasMultiple}
+                value={this.props.HasMultiple}
+                warning={true}
                 onUpdate={this.updateHasMultiple}
                 onError={this.handleError}
                 />
 
-        <Show when={this.state.HasMultiple === 'Yes'}>
+        <Show when={this.props.HasMultiple === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.Citizenships}
+                     items={this.props.Citizenships}
                      defaultState={this.props.defaultState}
-                     branch={this.state.CitizenshipsBranch}
+                     branch={this.props.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onError={this.handleError}
                      summary={this.summaryCitizenships}
@@ -106,7 +104,7 @@ Multiple.defaultProps = {
   subsection: 'multiple',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipMultipleValidator(state, props).isValid()
+    return new CitizenshipMultipleValidator(props, props).isValid()
   },
   defaultState: true
 }

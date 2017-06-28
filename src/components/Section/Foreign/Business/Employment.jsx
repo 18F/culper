@@ -10,35 +10,40 @@ export default class Employment extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignEmployment: props.HasForeignEmployment,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
+    this.update = this.update.bind(this)
     this.updateHasForeignEmployment = this.updateHasForeignEmployment.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignEmployment: this.state.HasForeignEmployment,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        List: this.props.List,
+        ListBranch: this.props.ListBranch,
+        HasForeignEmployment: this.props.HasForeignEmployment
       }
-    })
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateHasForeignEmployment (value) {
-    this.onUpdate('HasForeignEmployment', value)
+    this.update([
+      { name: 'HasForeignEmployment', value: value },
+      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
+    ])
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   summary (item, index) {
@@ -61,16 +66,17 @@ export default class Employment extends SubsectionElement {
         <Branch name="has_foreign_employment"
                 label={i18n.t('foreign.business.employment.heading.title')}
                 labelSize="h3"
-                value={this.state.HasForeignEmployment}
+                value={this.props.HasForeignEmployment}
+                warning={true}
                 onUpdate={this.updateHasForeignEmployment}
                 onError={this.handleError}
                 />
 
-        <Show when={this.state.HasForeignEmployment === 'Yes'}>
+        <Show when={this.props.HasForeignEmployment === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.List}
+                     items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -94,7 +100,7 @@ Employment.defaultProps = {
   subsection: 'business/employment',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessEmploymentValidator(state, props).isValid()
+    return new ForeignBusinessEmploymentValidator(props, props).isValid()
   },
   defaultState: true
 }

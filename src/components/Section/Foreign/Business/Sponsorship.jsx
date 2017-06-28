@@ -5,7 +5,7 @@ import { ForeignBusinessSponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
          Text, Textarea, Country, DateControl, Address, Name,
-         BirthPlace, Location, DateRange, NotApplicable } from '../../../Form'
+         Location, DateRange, NotApplicable } from '../../../Form'
 
 export default class Sponsorship extends SubsectionElement {
   constructor (props) {
@@ -33,7 +33,9 @@ export default class Sponsorship extends SubsectionElement {
 
   updateHasForeignSponsorship (values) {
     this.update([
-      { name: 'HasForeignSponsorship', value: values }
+      { name: 'HasForeignSponsorship', value: values },
+      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
     ])
   }
 
@@ -66,6 +68,7 @@ export default class Sponsorship extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.sponsorship.help.branch"
                 value={this.props.HasForeignSponsorship}
+                warning={true}
                 onUpdate={this.updateHasForeignSponsorship}
                 onError={this.handleError}>
         </Branch>

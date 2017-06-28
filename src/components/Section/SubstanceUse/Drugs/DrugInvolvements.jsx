@@ -33,7 +33,11 @@ export default class DrugInvolvements extends SubsectionElement {
   }
 
   updateInvolved (values) {
-    this.update({Involved: values})
+    this.update({
+      Involved: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -61,23 +65,24 @@ export default class DrugInvolvements extends SubsectionElement {
       <div className="drug-involvements">
         <h2>{i18n.m('substance.drugs.heading.drugInvolvement')}</h2>
         <Branch name="Involved"
-          className="involved"
-          value={this.props.Involved}
-          onError={this.handleError}
-          onUpdate={this.updateInvolved}>
+                className="involved"
+                value={this.props.Involved}
+                warning={true}
+                onError={this.handleError}
+                onUpdate={this.updateInvolved}>
         </Branch>
 
         <Show when={this.props.Involved === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            summary={this.summary}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            description={i18n.t('substance.drugs.involvement.collection.description')}
-            appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
-            appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     description={i18n.t('substance.drugs.involvement.collection.description')}
+                     appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
+                     appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}>
             <DrugInvolvement name="DrugInvolvement" bind={true} />
           </Accordion>
         </Show>

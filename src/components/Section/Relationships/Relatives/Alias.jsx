@@ -6,45 +6,52 @@ export default class Alias extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Name: props.Name,
-      MaidenName: props.MaidenName,
-      Dates: props.Dates,
-      Reason: props.Reason
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateMaidenName = this.updateMaidenName.bind(this)
     this.updateDates = this.updateDates.bind(this)
     this.updateReason = this.updateReason.bind(this)
   }
 
-  onUpdate (name, values, fn) {
-    this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          ...this.state
-        })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        Name: this.props.Name,
+        MaidenName: this.props.MaidenName,
+        Dates: this.props.Dates,
+        Reason: this.props.Reason
       }
-    })
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateName (values) {
-    this.onUpdate('Name', values)
+    this.update([
+      { name: 'Name', value: values }
+    ])
   }
 
   updateMaidenName (values) {
-    this.onUpdate('MaidenName', values)
+    this.update([
+      { name: 'MaidenName', value: values }
+    ])
   }
 
   updateDates (values) {
-    this.onUpdate('Dates', values)
+    this.update([
+      { name: 'Dates', value: values }
+    ])
   }
 
   updateReason (values) {
-    this.onUpdate('Reason', values)
+    this.update([
+      { name: 'Reason', value: values }
+    ])
   }
 
   render () {
@@ -54,7 +61,7 @@ export default class Alias extends ValidationElement {
         {i18n.m('relationships.relatives.para.alias')}
         <Name name="Name"
               className="alias-name"
-              {...this.state.Name}
+              {...this.props.Name}
               onUpdate={this.updateName}
               onError={this.props.onError}
               />
@@ -64,7 +71,7 @@ export default class Alias extends ValidationElement {
                   label={i18n.t('relationships.relatives.heading.alias.maiden')}
                   labelSize="h4"
                   className="alias-maiden"
-                  value={this.state.MaidenName}
+                  value={this.props.MaidenName}
                   onUpdate={this.updateMaidenName}
                   onError={this.props.onError}>
           </Branch>
@@ -75,7 +82,7 @@ export default class Alias extends ValidationElement {
                shrink={true}>
           <DateRange name="Dates"
                      className="alias-dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      />
@@ -85,7 +92,7 @@ export default class Alias extends ValidationElement {
                titleSize="h4">
           <Textarea name="Reason"
                     className="alias-reason"
-                    {...this.state.Reason}
+                    {...this.props.Reason}
                     onUpdate={this.updateReason}
                     onError={this.props.onError}
                     />

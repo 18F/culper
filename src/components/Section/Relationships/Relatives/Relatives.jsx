@@ -5,44 +5,34 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import Relative from './Relative'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export default class Relatives extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, values, fn) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
-
-      if (fn) {
-        fn()
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        List: this.props.List,
+        ListBranch: this.props.ListBranch
       }
-    })
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   /**
@@ -72,9 +62,9 @@ export default class Relatives extends SubsectionElement {
         {i18n.m('relationships.relatives.para.opportunity')}
 
         <Accordion minimum="1"
-                   items={this.state.List}
+                   items={this.props.List}
                    defaultState={this.props.defaultState}
-                   branch={this.state.ListBranch}
+                   branch={this.props.ListBranch}
                    onUpdate={this.updateList}
                    onError={this.handleError}
                    summary={this.summary}
@@ -98,7 +88,7 @@ Relatives.defaultProps = {
   subsection: 'relatives',
   dispatch: () => {},
   validator: (state, props) => {
-    return new RelativesValidator(state, props).isValid()
+    return new RelativesValidator(props, props).isValid()
   },
   defaultState: true
 }

@@ -14,20 +14,20 @@ export default class OtherNames extends SubsectionElement {
       HasOtherNames: props.HasOtherNames
     }
 
-    this.onUpdate = this.onUpdate.bind(this)
-    this.myDispatch = this.myDispatch.bind(this)
+    this.updateBranch = this.updateBranch.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (value) {
+  updateBranch (value) {
     this.setState({ HasOtherNames: value }, () => {
-      this.myDispatch({
-        items: value === 'No' ? [] : this.state.List,
+      this.updateList({
+        items: value === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
   }
 
-  myDispatch (values) {
+  updateList (values) {
     this.setState({ List: values.items }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
@@ -64,14 +64,15 @@ export default class OtherNames extends SubsectionElement {
         <Branch name="has_othernames"
                 value={this.state.HasOtherNames}
                 help="identification.othernames.branch.help"
-                onUpdate={this.onUpdate}
+                warning={true}
+                onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasOtherNames === 'Yes'}>
           <Accordion minimum="1"
                      items={this.state.List}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.myDispatch}
+                     onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}

@@ -9,35 +9,39 @@ export default class Advice extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignAdvice: props.HasForeignAdvice,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateHasForeignAdvice = this.updateHasForeignAdvice.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignAdvice: this.state.HasForeignAdvice,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        List: this.props.List,
+        ListBranch: this.props.ListBranch,
+        HasForeignAdvice: this.props.HasForeignAdvice
       }
-    })
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateHasForeignAdvice (value) {
-    this.onUpdate('HasForeignAdvice', value)
+    this.update([
+      { name: 'HasForeignAdvice', value: value },
+      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
+    ])
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update([
+      { name: 'List', value: values.items },
+      { name: 'ListBranch', value: values.branch }
+    ])
   }
 
   summary (item, index) {
@@ -60,17 +64,18 @@ export default class Advice extends SubsectionElement {
                 label={i18n.t('foreign.business.advice.heading.title')}
                 labelSize="h3"
                 adjustFor="p"
-                value={this.state.HasForeignAdvice}
+                value={this.props.HasForeignAdvice}
+                warning={true}
                 onUpdate={this.updateHasForeignAdvice}
                 onError={this.handleError}>
           {i18n.m('foreign.business.advice.para.branch')}
         </Branch>
 
-        <Show when={this.state.HasForeignAdvice === 'Yes'}>
+        <Show when={this.props.HasForeignAdvice === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.List}
+                     items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -137,7 +142,7 @@ Advice.defaultProps = {
   subsection: 'business/advice',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessAdviceValidator(state, props).isValid()
+    return new ForeignBusinessAdviceValidator(props, props).isValid()
   },
   defaultState: true
 }

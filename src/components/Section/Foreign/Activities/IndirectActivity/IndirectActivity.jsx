@@ -39,7 +39,9 @@ export default class IndirectActivity extends SubsectionElement {
 
   updateHasInterests (values) {
     this.update([
-      { name: 'HasInterests', value: values }
+      { name: 'HasInterests', value: values },
+      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
     ])
   }
 
@@ -77,6 +79,7 @@ export default class IndirectActivity extends SubsectionElement {
                 label={i18n.t('foreign.activities.indirect.heading.title')}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasInterests}>
         </Branch>

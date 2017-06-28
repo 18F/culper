@@ -32,7 +32,9 @@ export default class Voting extends SubsectionElement {
 
   updateHasForeignVoting (values) {
     this.update([
-      { name: 'HasForeignVoting', value: values }
+      { name: 'HasForeignVoting', value: values },
+      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
     ])
   }
 
@@ -65,6 +67,7 @@ export default class Voting extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.voting.help.branch"
                 value={this.props.HasForeignVoting}
+                warning={true}
                 onUpdate={this.updateHasForeignVoting}
                 onError={this.handleError}>
         </Branch>

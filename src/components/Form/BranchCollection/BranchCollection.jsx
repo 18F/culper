@@ -90,6 +90,7 @@ export default class BranchCollection extends React.Component {
               labelSize={props.labelSize}
               help={props.help}
               value={props.value}
+              warning={props.warning}
               onUpdate={props.onUpdate}
               onError={props.onError}>
         {props.children}
@@ -117,6 +118,7 @@ export default class BranchCollection extends React.Component {
               labelSize: this.props.labelSize,
               help: this.props.help,
               value: null,
+              warning: false,
               children: this.props.content,
               onUpdate: this.onDefaultBranchClick.bind(this),
               onError: this.props.onError
@@ -139,6 +141,7 @@ export default class BranchCollection extends React.Component {
               labelSize: this.props.labelSize,
               help: this.props.help,
               value: 'No',
+              warning: false,
               children: this.props.content,
               onUpdate: this.onBranchClick.bind(this, item, 0),
               onError: this.props.onError
@@ -156,6 +159,7 @@ export default class BranchCollection extends React.Component {
           label: this.props.label,
           labelSize: this.props.labelSize,
           value: item[this.props.valueKey],
+          warning: true,
           help: this.props.help,
           children: this.props.content,
           onUpdate: this.onBranchClick.bind(this, item, index),
@@ -169,6 +173,7 @@ export default class BranchCollection extends React.Component {
         labelSize: this.props.appendSize,
         help: this.props.help,
         value: item[this.props.valueKey],
+        warning: true,
         children: this.props.appendContent,
         onUpdate: this.onBranchClick.bind(this, item, index),
         onError: this.props.onError
@@ -189,7 +194,8 @@ export default class BranchCollection extends React.Component {
         help: this.props.help,
         onUpdate: this.onLastBranchClick.bind(this),
         children: this.appendContent,
-        value: null
+        value: null,
+        warning: false
       })
     }
 

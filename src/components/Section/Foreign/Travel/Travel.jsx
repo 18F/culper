@@ -74,6 +74,7 @@ export default class Travel extends SubsectionElement {
                 className="foreign-travel-outside"
                 help="foreign.travel.help.outside"
                 value={this.props.HasForeignTravelOutside}
+                warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}
                 onError={this.handleError}>
         </Branch>

@@ -34,7 +34,11 @@ export default class OrderedCounselings extends SubsectionElement {
   }
 
   updateHasBeenOrdered (values) {
-    this.update({HasBeenOrdered: values})
+    this.update({
+      HasBeenOrdered: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -89,6 +93,7 @@ export default class OrderedCounselings extends SubsectionElement {
         <Branch name="HasBeenOrdered"
                 className="has-been-ordered"
                 value={this.props.HasBeenOrdered}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasBeenOrdered}>
         </Branch>

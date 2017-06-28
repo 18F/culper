@@ -10,21 +10,28 @@ export default class ConferenceContacts extends ValidationElement {
       List: props.List
     }
 
+    this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List
-        })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        List: this.props.List
       }
-    })
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateList (items) {
-    this.onUpdate('List', items)
+    this.update([
+      { name: 'List', value: items }
+    ])
   }
 
   render () {

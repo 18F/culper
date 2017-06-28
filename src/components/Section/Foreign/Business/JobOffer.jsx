@@ -7,15 +7,6 @@ export default class JobOffer extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Name: props.Name,
-      Description: props.Description,
-      Date: props.Date,
-      Address: props.Address,
-      Accepted: props.Accepted,
-      Explanation: props.Explanation
-    }
-
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateDescription = this.updateDescription.bind(this)
@@ -25,42 +16,59 @@ export default class JobOffer extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  update (field, values) {
+  update (queue) {
     if (this.props.onUpdate) {
-      this.props.onUpdate({
+      let obj = {
         Name: this.props.Name,
         Description: this.props.Description,
         Date: this.props.Date,
         Address: this.props.Address,
         Accepted: this.props.Accepted,
-        Explanation: this.props.Explanation,
-        [field]: values
-      })
+        Explanation: this.props.Explanation
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
     }
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update([
+      { name: 'Name', value: values }
+    ])
   }
 
   updateDescription (values) {
-    this.update('Description', values)
+    this.update([
+      { name: 'Description', value: values }
+    ])
   }
 
   updateDate (values) {
-    this.update('Date', values)
+    this.update([
+      { name: 'Date', value: values }
+    ])
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update([
+      { name: 'Address', value: values }
+    ])
   }
 
   updateAccepted (values) {
-    this.update('Accepted', values)
+    this.update([
+      { name: 'Accepted', value: values }
+    ])
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update([
+      { name: 'Explanation', value: values }
+    ])
   }
 
   render () {

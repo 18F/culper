@@ -12,11 +12,11 @@ export default class Radio extends ValidationElement {
       focus: props.focus,
       error: props.error,
       valid: props.valid,
-      native: props.native
+      native: props.native,
+      clicked: false
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleClick = this.handleClick.bind(this)
     this.handleError = this.handleError.bind(this)
   }
 
@@ -32,9 +32,12 @@ export default class Radio extends ValidationElement {
   handleChange (event) {
     event.persist()
 
-    const called = this.state.value === ''
-    this.setState({ checked: event.target.checked }, () => {
-      if (!called && this.props.onUpdate) {
+    const clicked = this.state.clicked
+    const futureChecked = !this.state.checked
+    const futureValue = futureChecked ? this.props.value : ''
+
+    this.setState({ checked: futureChecked, value: futureValue }, () => {
+      if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
           value: this.state.value,
@@ -47,29 +50,6 @@ export default class Radio extends ValidationElement {
       // HACK: Race condition was found where the majority of the time the `handleError` would
       // beat the storage routines causing things not to show as valid.
       window.setTimeout(() => { this.handleError(this.state.value) }, 200)
-    })
-  }
-
-  /**
-   * Handle the click event.
-   */
-  handleClick (event) {
-    if (this.props.ignoreDeselect) {
-      return
-    }
-
-    event.persist()
-    const futureChecked = !this.state.checked
-    const futureValue = futureChecked ? this.props.value : ''
-
-    this.setState({ checked: futureChecked, value: futureValue }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: this.state.value,
-          checked: this.state.checked
-        })
-      }
     })
   }
 
@@ -193,7 +173,6 @@ export default class Radio extends ValidationElement {
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
-                 onClick={this.handleClick}
                  checked={this.state.checked}
                  />
           <label htmlFor={this.state.uid}>
@@ -219,7 +198,6 @@ export default class Radio extends ValidationElement {
                  onChange={this.handleChange}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
-                 onClick={this.handleClick}
                  checked={this.state.checked}
                  />
           {this.props.children}

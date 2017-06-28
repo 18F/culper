@@ -2,31 +2,11 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, DateControl, Text, Textarea, Field } from '../../../Form'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export default class Procedure extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Date: props.Date,
-      Offenses: props.Offenses,
-      Name: props.Name,
-      Court: props.Court,
-      Outcome: props.Outcome
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateDate = this.updateDate.bind(this)
     this.updateOffenses = this.updateOffenses.bind(this)
     this.updateName = this.updateName.bind(this)
@@ -34,30 +14,52 @@ export default class Procedure extends ValidationElement {
     this.updateOutcome = this.updateOutcome.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
-    })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        Date: this.props.Date,
+        Offenses: this.props.Offenses,
+        Name: this.props.Name,
+        Court: this.props.Court,
+        Outcome: this.props.Outcome
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateDate (value) {
-    this.onUpdate('Date', value)
+    this.update([
+      { name: 'Date', value: value }
+    ])
   }
 
   updateOffenses (value) {
-    this.onUpdate('Offenses', value)
+    this.update([
+      { name: 'Offenses', value: value }
+    ])
   }
 
   updateName (value) {
-    this.onUpdate('Name', value)
+    this.update([
+      { name: 'Name', value: value }
+    ])
   }
 
   updateCourt (value) {
-    this.onUpdate('Court', value)
+    this.update([
+      { name: 'Court', value: value }
+    ])
   }
 
   updateOutcome (value) {
-    this.onUpdate('Outcome', value)
+    this.update([
+      { name: 'Outcome', value: value }
+    ])
   }
 
   render () {
@@ -68,7 +70,7 @@ export default class Procedure extends ValidationElement {
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Date"
-                       {...this.state.Date}
+                       {...this.props.Date}
                        className="procedure-date"
                        hideDay={true}
                        onUpdate={this.updateDate}
@@ -78,7 +80,7 @@ export default class Procedure extends ValidationElement {
 
         <Field title={i18n.t('military.disciplinary.heading.offenses')}>
           <Textarea name="Offenses"
-                    {...this.state.Offenses}
+                    {...this.props.Offenses}
                     className="procedure-offenses"
                     onUpdate={this.updateOffenses}
                     onError={this.props.onError}
@@ -88,7 +90,7 @@ export default class Procedure extends ValidationElement {
         <Field title={i18n.t('military.disciplinary.heading.name')}
                adjustFor="p">
           <Text name="Name"
-                {...this.state.Name}
+                {...this.props.Name}
                 label={i18n.m('military.disciplinary.label.name')}
                 className="procedure-name"
                 maxlength="100"
@@ -100,7 +102,7 @@ export default class Procedure extends ValidationElement {
         <Field title={i18n.t('military.disciplinary.heading.court')}
                adjustFor="p">
           <Textarea name="Court"
-                    {...this.state.Court}
+                    {...this.props.Court}
                     label={i18n.t('military.disciplinary.label.court')}
                     className="procedure-court"
                     onUpdate={this.updateCourt}
@@ -111,7 +113,7 @@ export default class Procedure extends ValidationElement {
         <Field title={i18n.t('military.disciplinary.heading.outcome')}
                adjustFor="labels">
           <Text name="Outcome"
-                {...this.state.Outcome}
+                {...this.props.Outcome}
                 label={i18n.t('military.disciplinary.label.outcome')}
                 className="procedure-outcome"
                 maxlength="100"

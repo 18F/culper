@@ -6,19 +6,6 @@ export default class Divorce extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Name: props.Name,
-      Birthdate: props.Birthdate,
-      BirthPlace: props.BirthPlace,
-      Telephone: props.Telephone,
-      Recognized: props.Recognized,
-      Address: props.Address,
-      DateDivorced: props.DateDivorced,
-      Status: props.Status,
-      Deceased: props.Deceased,
-      DeceasedAddress: props.DeceasedAddress
-    }
-
     this.updateName = this.updateName.bind(this)
     this.updateBirthdate = this.updateBirthdate.bind(this)
     this.updateBirthPlace = this.updateBirthPlace.bind(this)
@@ -32,68 +19,93 @@ export default class Divorce extends React.Component {
     this.updateDeceasedAddressNotApplicable = this.updateDeceasedAddressNotApplicable.bind(this)
   }
 
-  update (field, values) {
-    this.setState({[field]: values}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Name: this.state.Name,
-          Birthdate: this.state.Birthdate,
-          BirthPlace: this.state.BirthPlace,
-          Telephone: this.state.Telephone,
-          Recognized: this.state.Recognized,
-          Address: this.state.Address,
-          DateDivorced: this.state.DateDivorced,
-          Status: this.state.Status,
-          Deceased: this.state.Deceased,
-          DeceasedAddress: this.state.DeceasedAddress,
-          DeceasedAddressNotApplicable: this.state.DeceasedAddressNotApplicable
-        })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        Name: this.props.Name,
+        Birthdate: this.props.Birthdate,
+        BirthPlace: this.props.BirthPlace,
+        Telephone: this.props.Telephone,
+        Recognized: this.props.Recognized,
+        Address: this.props.Address,
+        DateDivorced: this.props.DateDivorced,
+        Status: this.props.Status,
+        Deceased: this.props.Deceased,
+        DeceasedAddress: this.props.DeceasedAddress
       }
-    })
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update([
+      { name: 'Name', value: values }
+    ])
   }
 
   updateBirthdate (values) {
-    this.update('Birthdate', values)
+    this.update([
+      { name: 'Birthdate', value: values }
+    ])
   }
 
   updateBirthPlace (values) {
-    this.update('BirthPlace', values)
+    this.update([
+      { name: 'BirthPlace', value: values }
+    ])
   }
 
   updateTelephone (values) {
-    this.update('Telephone', values)
+    this.update([
+      { name: 'Telephone', value: values }
+    ])
   }
 
   updateRecognized (values) {
-    this.update('Recognized', values)
+    this.update([
+      { name: 'Recognized', value: values }
+    ])
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update([
+      { name: 'Address', value: values }
+    ])
   }
 
   updateDateDivorced (values) {
-    this.update('DateDivorced', values)
+    this.update([
+      { name: 'DateDivorced', value: values }
+    ])
   }
 
   updateStatus (values) {
-    this.update('Status', values.value)
+    this.update([
+      { name: 'Status', value: values.value }
+    ])
   }
 
   updateDeceased (values) {
-    this.update('Deceased', values.value)
+    this.update([
+      { name: 'Deceased', value: values.value }
+    ])
   }
 
   updateDeceasedAddress (values) {
-    this.update('DeceasedAddress', values)
+    this.update([
+      { name: 'DeceasedAddress', value: values }
+    ])
   }
 
   updateDeceasedAddressNotApplicable (values) {
-    this.update('DeceasedAddressNotApplicable', !values.applicable)
+    this.update([
+      { name: 'DeceasedAddressNotApplicable', value: !values.applicable }
+    ])
   }
 
   render () {
@@ -102,7 +114,7 @@ export default class Divorce extends React.Component {
         <Field title={i18n.t('relationships.civilUnion.heading.name')}
                adjustFor="labels">
           <Name name="Name"
-                {...this.state.Name}
+                {...this.props.Name}
                 onUpdate={this.updateName}
                 onError={this.props.onError}
                 />
@@ -114,7 +126,7 @@ export default class Divorce extends React.Component {
                adjustFor="labels">
           <DateControl name="birthdate"
                        className="birthdate"
-                       {...this.state.Birthdate}
+                       {...this.props.Birthdate}
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
                        />
@@ -125,7 +137,7 @@ export default class Divorce extends React.Component {
                       layout={Location.BIRTHPLACE}
                       label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
                       className="birthplace"
-                      {...this.state.BirthPlace}
+                      {...this.props.BirthPlace}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       />
@@ -136,7 +148,7 @@ export default class Divorce extends React.Component {
                adjustFor="telephone"
                shrink={true}>
           <Telephone name="Telephone"
-                     {...this.state.Telephone}
+                     {...this.props.Telephone}
                      onUpdate={this.updateTelephone}
                      onError={this.props.onError}
                      />
@@ -148,7 +160,7 @@ export default class Divorce extends React.Component {
                adjustFor="labels">
           <DateControl name="Recognized"
                        className="recognized"
-                       {...this.state.Recognized}
+                       {...this.props.Recognized}
                        onUpdate={this.updateRecognized}
                        onError={this.props.onError}
                        />
@@ -160,7 +172,7 @@ export default class Divorce extends React.Component {
                adjustFor="labels">
           <Address name="address"
                    className="location"
-                   {...this.state.Address}
+                   {...this.props.Address}
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
                    />
@@ -172,7 +184,7 @@ export default class Divorce extends React.Component {
                adjustFor="labels">
           <DateControl name="DateDivorced"
                        className="date-divorced"
-                       {...this.state.DateDivorced}
+                       {...this.props.DateDivorced}
                        onUpdate={this.updateDateDivorced}
                        onError={this.props.onError}
                        />
@@ -180,7 +192,7 @@ export default class Divorce extends React.Component {
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.status')}
                className="status">
-          <RadioGroup name="status" selectedValue={this.state.Status}>
+          <RadioGroup name="status" selectedValue={this.props.Status}>
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
@@ -205,10 +217,10 @@ export default class Divorce extends React.Component {
           </RadioGroup>
         </Field>
 
-        <Show when={['Divorced', 'Annulled'].includes(this.state.Status)}>
+        <Show when={['Divorced', 'Annulled'].includes(this.props.Status)}>
           <div>
             <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceased')} className="deceased">
-              <RadioGroup name="deceased" selectedValue={this.state.Deceased}>
+              <RadioGroup name="deceased" selectedValue={this.props.Deceased}>
                 <Radio
                   className="yes"
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.yes')}
@@ -235,18 +247,18 @@ export default class Divorce extends React.Component {
               </RadioGroup>
             </Field>
 
-            <Show when={this.state.Deceased === 'Yes'}>
+            <Show when={this.props.Deceased === 'Yes'}>
               <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
                                className="deceased-notapplicable"
-                               applicable={this.state.DeceasedAddressNotApplicable}
+                               applicable={this.props.DeceasedAddressNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
                                or={i18n.m('relationships.civilUnion.notApplicable.or')}
                                onError={this.props.onError}
                                onUpdate={this.updateDeceasedAddressNotApplicable}>
                   <Address
                     className="address-deceased"
-                    {...this.state.DeceasedAddress}
+                    {...this.props.DeceasedAddress}
                     onUpdate={this.updateDeceasedAddress}
                     onError={this.props.onError}
                     />

@@ -1,24 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Name, DateRange, Field, NotApplicable, Telephone, Email, Text, Address, Show, CheckboxGroup, Checkbox, Svg } from '../../../Form'
+import { Name, DateRange, Field, NotApplicable, Telephone, Email,
+         Text, Address, Show, CheckboxGroup, Checkbox, Svg } from '../../../Form'
 
 export default class Person extends React.Component {
   constructor (props) {
     super(props)
-
-    this.state = {
-      Name: props.Name,
-      Dates: props.Dates,
-      Rank: props.Rank,
-      RankNotApplicable: props.RankNotApplicable,
-      Relationship: props.Relationship,
-      RelationshipOther: props.RelationshipOther,
-      MobileTelephone: props.MobileTelephone,
-      OtherTelephone: props.OtherTelephone,
-      Email: props.Email,
-      EmailNotApplicable: props.EmailNotApplicable,
-      Address: props.Address
-    }
 
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
@@ -34,45 +21,57 @@ export default class Person extends React.Component {
     this.updateAddress = this.updateAddress.bind(this)
   }
 
-  update (name, values, fn) {
-    this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Name: this.state.Name,
-          Dates: this.state.Dates,
-          Rank: this.state.Rank,
-          RankNotApplicable: this.state.RankNotApplicable,
-          Relationship: this.state.Relationship,
-          RelationshipOther: this.state.RelationshipOther,
-          MobileTelephone: this.state.MobileTelephone,
-          OtherTelephone: this.state.OtherTelephone,
-          Email: this.state.Email,
-          EmailNotApplicable: this.state.EmailNotApplicable,
-          Address: this.state.Address
-        })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        Name: this.props.Name,
+        Dates: this.props.Dates,
+        Rank: this.props.Rank,
+        RankNotApplicable: this.props.RankNotApplicable,
+        Relationship: this.props.Relationship,
+        RelationshipOther: this.props.RelationshipOther,
+        MobileTelephone: this.props.MobileTelephone,
+        OtherTelephone: this.props.OtherTelephone,
+        Email: this.props.Email,
+        EmailNotApplicable: this.props.EmailNotApplicable,
+        Address: this.props.Address
       }
-    })
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update([
+      { name: 'Name', value: values }
+    ])
   }
 
   updateDates (values) {
-    this.update('Dates', values)
+    this.update([
+      { name: 'Dates', value: values }
+    ])
   }
 
   updateRank (values) {
-    this.update('Rank', values)
+    this.update([
+      { name: 'Rank', value: values }
+    ])
   }
 
   updateRankNotApplicable (values) {
-    this.update('RankNotApplicable', values)
+    this.update([
+      { name: 'RankNotApplicable', value: values }
+    ])
   }
 
   updateRelationship (event) {
     let relations = event.target.value
-    let selected = [...this.state.Relationship]
+    let selected = [...this.props.Relationship]
 
     if (selected.includes(relations)) {
       // Remove the relationship if it was previously selected
@@ -81,31 +80,45 @@ export default class Person extends React.Component {
       // Add the new relationship
       selected.push(relations)
     }
-    this.update('Relationship', selected)
+    this.update([
+      { name: 'Relationship', value: selected }
+    ])
   }
 
   updateRelationshipOther (values) {
-    this.update('RelationshipOther', values)
+    this.update([
+      { name: 'RelationshipOther', value: values }
+    ])
   }
 
   updateMobileTelephone (values) {
-    this.update('MobileTelephone', values)
+    this.update([
+      { name: 'MobileTelephone', value: values }
+    ])
   }
 
   updateOtherTelephone (values) {
-    this.update('OtherTelephone', values)
+    this.update([
+      { name: 'OtherTelephone', value: values }
+    ])
   }
 
   updateEmail (values) {
-    this.update('Email', values)
+    this.update([
+      { name: 'Email', value: values }
+    ])
   }
 
   updateEmailNotApplicable (values) {
-    this.update('EmailNotApplicable', values)
+    this.update([
+      { name: 'EmailNotApplicable', value: values }
+    ])
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update([
+      { name: 'Address', value: values }
+    ])
   }
 
   render () {
@@ -116,7 +129,7 @@ export default class Person extends React.Component {
                >
           <DateRange name="Dates"
                      className="known-dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      />
@@ -125,7 +138,7 @@ export default class Person extends React.Component {
         <h3>{i18n.t('relationships.people.person.heading.name')}</h3>
         <Name name="Name"
               className="name"
-              {...this.state.Name}
+              {...this.props.Name}
               onUpdate={this.updateName}
               onError={this.props.onError}
               />
@@ -134,14 +147,14 @@ export default class Person extends React.Component {
                >
           <NotApplicable name="RankNotApplicable"
                          className="rank-notapplicable"
-                         {...this.state.RankNotApplicable}
+                         {...this.props.RankNotApplicable}
                          label={i18n.t('relationships.people.person.label.rankNotApplicable')}
                          or={i18n.m('relationships.people.person.label.or')}
                          onError={this.props.onError}
                          onUpdate={this.updateRankNotApplicable}>
             <Text name="Rank"
                   className="rank"
-                  {...this.state.Rank}
+                  {...this.props.Rank}
                   onUpdate={this.updateRank}
                   onError={this.props.onError}
                   />
@@ -154,7 +167,7 @@ export default class Person extends React.Component {
                shrink={true}>
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
-                         selectedValues={this.state.Relationship}>
+                         selectedValues={this.props.Relationship}>
             <Checkbox name="relationship-neighbor"
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
                       value="Neighbor"
@@ -202,12 +215,12 @@ export default class Person extends React.Component {
             </Checkbox>
           </CheckboxGroup>
 
-          <Show when={this.state.Relationship.includes('Other')}>
+          <Show when={this.props.Relationship.includes('Other')}>
             <Text name="RelationshipOther"
                   label={i18n.t(`relationships.people.person.label.relationship.explanation`)}
                   maxlength="100"
                   className="relationship-other"
-                  {...this.state.RelationshipOther}
+                  {...this.props.RelationshipOther}
                   onUpdate={this.updateRelationshipOther}
                   onError={this.props.onError}
                   />
@@ -217,7 +230,7 @@ export default class Person extends React.Component {
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
                className="mobile-telephone">
           <Telephone name="MobileTelephone"
-                     {...this.state.MobileTelephone}
+                     {...this.props.MobileTelephone}
                      onUpdate={this.updateMobileTelephone}
                      onError={this.props.onError}
                      />
@@ -226,7 +239,7 @@ export default class Person extends React.Component {
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
                className="other-telephone">
           <Telephone name="OtherTelephone"
-                     {...this.state.OtherTelephone}
+                     {...this.props.OtherTelephone}
                      onUpdate={this.updateOtherTelephone}
                      onError={this.props.onError}
                      />
@@ -236,14 +249,14 @@ export default class Person extends React.Component {
                >
           <NotApplicable name="EmailNotApplicable"
                          className="email-notapplicable"
-                         {...this.state.EmailNotApplicable}
+                         {...this.props.EmailNotApplicable}
                          label={i18n.t('relationships.people.person.label.emailNotApplicable')}
                          or={i18n.m('relationships.people.person.label.or')}
                          onError={this.props.onError}
                          onUpdate={this.updateEmailNotApplicable}>
             <Email name="Email"
                    className="email"
-                   {...this.state.Email}
+                   {...this.props.Email}
                    onUpdate={this.updateEmail}
                    onError={this.props.onError}
                    />
@@ -256,7 +269,7 @@ export default class Person extends React.Component {
           <Address name="Address"
                    label={i18n.t('relationships.people.person.label.address')}
                    className="address"
-                   {...this.state.Address}
+                   {...this.props.Address}
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
                    />

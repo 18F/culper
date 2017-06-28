@@ -7,17 +7,7 @@ export default class CitizenshipItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Country: props.Country,
-      Dates: props.Dates,
-      How: props.How,
-      Renounced: props.Renounced,
-      RenouncedExplanation: props.RenouncedExplanation,
-      Current: props.Current,
-      CurrentExplanation: props.CurrentExplanation
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateDates = this.updateDates.bind(this)
     this.updateHow = this.updateHow.bind(this)
@@ -27,38 +17,66 @@ export default class CitizenshipItem extends ValidationElement {
     this.updateCurrentExplanation = this.updateCurrentExplanation.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
-    })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        Country: this.props.Country,
+        Dates: this.props.Dates,
+        How: this.props.How,
+        Renounced: this.props.Renounced,
+        RenouncedExplanation: this.props.RenouncedExplanation,
+        Current: this.props.Current,
+        CurrentExplanation: this.props.CurrentExplanation
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateCountry (values) {
-    this.onUpdate('Country', values)
+    this.update([
+      { name: 'Country', value: values }
+    ])
   }
 
   updateDates (values) {
-    this.onUpdate('Dates', values)
+    this.update([
+      { name: 'Dates', value: values }
+    ])
   }
 
   updateHow (values) {
-    this.onUpdate('How', values)
+    this.update([
+      { name: 'How', value: values }
+    ])
   }
 
   updateRenounced (values) {
-    this.onUpdate('Renounced', values)
+    this.update([
+      { name: 'Renounced', value: values }
+    ])
   }
 
   updateRenouncedExplanation (values) {
-    this.onUpdate('RenouncedExplanation', values)
+    this.update([
+      { name: 'RenouncedExplanation', value: values }
+    ])
   }
 
   updateCurrent (values) {
-    this.onUpdate('Current', values)
+    this.update([
+      { name: 'Current', value: values }
+    ])
   }
 
   updateCurrentExplanation (values) {
-    this.onUpdate('CurrentExplanation', values)
+    this.update([
+      { name: 'CurrentExplanation', value: values }
+    ])
   }
 
   render () {
@@ -66,7 +84,7 @@ export default class CitizenshipItem extends ValidationElement {
       <div className="citizenship-item">
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.country')}>
           <Country name="Country"
-                   {...this.state.Country}
+                   {...this.props.Country}
                    className="citizenship-country"
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
@@ -77,7 +95,7 @@ export default class CitizenshipItem extends ValidationElement {
                help="citizenship.multiple.help.citizenship.dates"
                adjustFor="daterange">
           <DateRange name="Dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      className="citizenship-dates"
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -86,7 +104,7 @@ export default class CitizenshipItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.how')}>
           <Textarea name="How"
-                    {...this.state.How}
+                    {...this.props.How}
                     className="citizenship-how"
                     onUpdate={this.updateHow}
                     onError={this.props.onError}
@@ -97,15 +115,15 @@ export default class CitizenshipItem extends ValidationElement {
                 label={i18n.t('citizenship.multiple.heading.citizenship.renounced')}
                 labelSize="h3"
                 className="citizenship-renounced"
-                value={this.state.Renounced}
+                value={this.props.Renounced}
                 onUpdate={this.updateRenounced}
                 onError={this.props.onError}
                 />
 
-        <Show when={this.state.Renounced === 'Yes'}>
+        <Show when={this.props.Renounced === 'Yes'}>
           <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}>
             <Textarea name="RenouncedExplanation"
-                      {...this.state.RenouncedExplanation}
+                      {...this.props.RenouncedExplanation}
                       className="citizenship-renounced-explanation"
                       onUpdate={this.updateRenouncedExplanation}
                       onError={this.props.onError}
@@ -117,15 +135,15 @@ export default class CitizenshipItem extends ValidationElement {
                 label={i18n.t('citizenship.multiple.heading.citizenship.current')}
                 labelSize="h3"
                 className="citizenship-current"
-                value={this.state.Current}
+                value={this.props.Current}
                 onUpdate={this.updateCurrent}
                 onError={this.props.onError}
                 />
 
-        <Show when={this.state.Current === 'Yes'}>
+        <Show when={this.props.Current === 'Yes'}>
           <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
             <Textarea name="CurrentExplanation"
-                      {...this.state.CurrentExplanation}
+                      {...this.props.CurrentExplanation}
                       className="citizenship-current-explanation"
                       onUpdate={this.updateCurrentExplanation}
                       onError={this.props.onError}

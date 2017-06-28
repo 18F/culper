@@ -32,7 +32,9 @@ export default class Political extends SubsectionElement {
 
   updateHasForeignPolitical (values) {
     this.update([
-      { name: 'HasForeignPolitical', value: values }
+      { name: 'HasForeignPolitical', value: values },
+      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
     ])
   }
 
@@ -67,6 +69,7 @@ export default class Political extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.political.help.branch"
                 value={this.props.HasForeignPolitical}
+                warning={true}
                 onUpdate={this.updateHasForeignPolitical}
                 onError={this.handleError}>
         </Branch>

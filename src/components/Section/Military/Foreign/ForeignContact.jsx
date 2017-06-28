@@ -2,31 +2,11 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { Name, Address, DateRange, Text, Field } from '../../../Form'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export default class ForeignContact extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Name: props.Name,
-      Address: props.Address,
-      Title: props.Title,
-      Dates: props.Dates,
-      Frequency: props.Frequency
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
     this.updateTitle = this.updateTitle.bind(this)
@@ -34,30 +14,52 @@ export default class ForeignContact extends React.Component {
     this.updateFrequency = this.updateFrequency.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
-    })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        Name: this.props.Name,
+        Address: this.props.Address,
+        Title: this.props.Title,
+        Dates: this.props.Dates,
+        Frequency: this.props.Frequency
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateName (value) {
-    this.onUpdate('Name', value)
+    this.update([
+      { name: 'Name', value: value }
+    ])
   }
 
   updateAddress (value) {
-    this.onUpdate('Address', value)
+    this.update([
+      { name: 'Address', value: value }
+    ])
   }
 
   updateTitle (value) {
-    this.onUpdate('Title', value)
+    this.update([
+      { name: 'Title', value: value }
+    ])
   }
 
   updateDates (value) {
-    this.onUpdate('Dates', value)
+    this.update([
+      { name: 'Dates', value: value }
+    ])
   }
 
   updateFrequency (value) {
-    this.onUpdate('Frequency', value)
+    this.update([
+      { name: 'Frequency', value: value }
+    ])
   }
 
   render () {
@@ -66,7 +68,7 @@ export default class ForeignContact extends React.Component {
         <h3>{i18n.t('military.foreign.heading.contact.name')}</h3>
         <Name name="Name"
               className="foreign-contact-name"
-              {...this.state.Name}
+              {...this.props.Name}
               onUpdate={this.updateName}
               onError={this.props.onError}
               />
@@ -76,7 +78,7 @@ export default class ForeignContact extends React.Component {
                shrink={true}>
           <Address name="Address"
                    className="foreign-contact-address"
-                   {...this.state.Address}
+                   {...this.props.Address}
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
                    />
@@ -84,7 +86,7 @@ export default class ForeignContact extends React.Component {
 
         <Field title={i18n.t('military.foreign.heading.contact.title')}>
           <Text name="Title"
-                {...this.state.Title}
+                {...this.props.Title}
                 className="foreign-contact-title"
                 maxlength="100"
                 onUpdate={this.updateTitle}
@@ -98,7 +100,7 @@ export default class ForeignContact extends React.Component {
                shrink={true}>
           <DateRange name="Dates"
                      className="foreign-contact-dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      />
@@ -107,7 +109,7 @@ export default class ForeignContact extends React.Component {
         <Field title={i18n.t('military.foreign.heading.contact.frequency')}
                help="military.foreign.help.contact.frequency">
           <Text name="Frequency"
-                {...this.state.Frequency}
+                {...this.props.Frequency}
                 className="foreign-contact-frequency"
                 maxlength="100"
                 onUpdate={this.updateFrequency}

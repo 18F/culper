@@ -5,15 +5,8 @@ import { ValidationElement, Branch, Textarea, DateRange, Field, NotApplicable } 
 export default class Sentence extends ValidationElement {
   constructor (props) {
     super(props)
-    this.state = {
-      Description: props.Description,
-      ExceedsYear: props.ExceedsYear,
-      Incarcerated: props.Incarcerated,
-      IncarcerationDates: props.IncarcerationDates,
-      ProbationDates: props.ProbationDates,
-      IncarcerationDatesNA: props.IncarcerationDatesNA,
-      ProbationDatesNA: props.ProbationDatesNA
-    }
+
+    this.update = this.update.bind(this)
     this.updateDescription = this.updateDescription.bind(this)
     this.updateExceedsYear = this.updateExceedsYear.bind(this)
     this.updateIncarcerated = this.updateIncarcerated.bind(this)
@@ -23,46 +16,59 @@ export default class Sentence extends ValidationElement {
     this.updateProbationDatesNA = this.updateProbationDatesNA.bind(this)
   }
 
-  update (name, values) {
-    this.setState({ [name]: values }, () => {
-      this.props.onUpdate({
-        Description: this.state.Description,
-        ExceedsYear: this.state.ExceedsYear,
-        Incarcerated: this.state.Incarcerated,
-        IncarcerationDates: this.state.IncarcerationDates,
-        IncarcerationDatesNA: this.state.IncarcerationDatesNA,
-        ProbationDates: this.state.ProbationDates,
-        ProbationDatesNA: this.state.ProbationDatesNA
-      })
+  update (queue) {
+    this.props.onUpdate({
+      Description: this.props.Description,
+      ExceedsYear: this.props.ExceedsYear,
+      Incarcerated: this.props.Incarcerated,
+      IncarcerationDates: this.props.IncarcerationDates,
+      ProbationDates: this.props.ProbationDates,
+      IncarcerationDatesNA: this.props.IncarcerationDatesNA,
+      ProbationDatesNA: this.props.ProbationDatesNA,
+      ...queue
     })
   }
 
   updateDescription (values) {
-    this.update('Description', values)
+    this.update({
+      Description: values
+    })
   }
 
   updateExceedsYear (values) {
-    this.update('ExceedsYear', values)
+    this.update({
+      ExceedsYear: values
+    })
   }
 
   updateIncarcerated (values) {
-    this.update('Incarcerated', values)
+    this.update({
+      Incarcerated: values
+    })
   }
 
   updateIncarcerationDates (values) {
-    this.update('IncarcerationDates', values)
+    this.update({
+      IncarcerationDates: values
+    })
   }
 
   updateProbationDates (values) {
-    this.update('ProbationDates', values)
+    this.update({
+      ProbationDates: values
+    })
   }
 
   updateIncarcerationDatesNA (values) {
-    this.update('IncarcerationDatesNA', values)
+    this.update({
+      IncarcerationDatesNA: values
+    })
   }
 
   updateProbationDatesNA (values) {
-    this.update('ProbationDatesNA', values)
+    this.update({
+      ProbationDatesNA: values
+    })
   }
 
   render () {
@@ -139,6 +145,6 @@ export default class Sentence extends ValidationElement {
 }
 
 Sentence.defaultProps = {
-  onUpdate: () => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

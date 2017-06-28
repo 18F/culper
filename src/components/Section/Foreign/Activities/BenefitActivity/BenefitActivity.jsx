@@ -39,7 +39,9 @@ export default class BenefitActivity extends SubsectionElement {
 
   updateHasBenefits (values) {
     this.update([
-      { name: 'HasBenefits', value: values }
+      { name: 'HasBenefits', value: values },
+      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
     ])
   }
 
@@ -56,6 +58,7 @@ export default class BenefitActivity extends SubsectionElement {
                 label={i18n.t('foreign.activities.benefit.heading.title')}
                 labelSize="h3"
                 value={this.props.HasBenefits}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasBenefits}>
         </Branch>

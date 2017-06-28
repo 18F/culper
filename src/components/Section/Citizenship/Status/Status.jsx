@@ -5,51 +5,11 @@ import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Field, RadioGroup, Radio,
          Text, Name, Address, DateControl, Country, Location } from '../../../Form'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export default class Status extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      CitizenshipStatus: props.CitizenshipStatus,
-      AbroadDocumentation: props.AbroadDocumentation,
-      Explanation: props.Explanation,
-      DocumentNumber: props.DocumentNumber,
-      DocumentIssued: props.DocumentIssued,
-      PlaceIssued: props.PlaceIssued,
-      DocumentName: props.DocumentName,
-      CertificateNumber: props.CertificateNumber,
-      CertificateIssued: props.CertificateIssued,
-      CertificateName: props.CertificateName,
-      BornOnMilitaryInstallation: props.BornOnMilitaryInstallation,
-      MilitaryBase: props.MilitaryBase,
-      EntryDate: props.EntryDate,
-      EntryLocation: props.EntryLocation,
-      PriorCitizenship: props.PriorCitizenship,
-      HasAlienRegistration: props.HasAlienRegistration,
-      AlienRegistrationNumber: props.AlienRegistrationNumber,
-      AlienRegistrationExiration: props.AlienRegistrationExiration,
-      CertificateCourtName: props.CertificateCourtName,
-      CertificateCourtAddress: props.CertificateCourtAddress,
-      Basis: props.Basis,
-      PermanentResidentCardNumber: props.PermanentResidentCardNumber,
-      ResidenceStatus: props.ResidenceStatus,
-      DocumentType: props.DocumentType,
-      DocumentExpiration: props.DocumentExpiration
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateCitizenshipStatus = this.updateCitizenshipStatus.bind(this)
     this.updateAbroadDocumentation = this.updateAbroadDocumentation.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
@@ -77,110 +37,192 @@ export default class Status extends SubsectionElement {
     this.updateDocumentExpiration = this.updateDocumentExpiration.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
-    })
+  update (queue) {
+    if (this.props.onUpdate) {
+      let obj = {
+        CitizenshipStatus: this.props.CitizenshipStatus,
+        AbroadDocumentation: this.props.AbroadDocumentation,
+        Explanation: this.props.Explanation,
+        DocumentNumber: this.props.DocumentNumber,
+        DocumentIssued: this.props.DocumentIssued,
+        PlaceIssued: this.props.PlaceIssued,
+        DocumentName: this.props.DocumentName,
+        CertificateNumber: this.props.CertificateNumber,
+        CertificateIssued: this.props.CertificateIssued,
+        CertificateName: this.props.CertificateName,
+        BornOnMilitaryInstallation: this.props.BornOnMilitaryInstallation,
+        MilitaryBase: this.props.MilitaryBase,
+        EntryDate: this.props.EntryDate,
+        EntryLocation: this.props.EntryLocation,
+        PriorCitizenship: this.props.PriorCitizenship,
+        HasAlienRegistration: this.props.HasAlienRegistration,
+        AlienRegistrationNumber: this.props.AlienRegistrationNumber,
+        AlienRegistrationExiration: this.props.AlienRegistrationExiration,
+        CertificateCourtName: this.props.CertificateCourtName,
+        CertificateCourtAddress: this.props.CertificateCourtAddress,
+        Basis: this.props.Basis,
+        PermanentResidentCardNumber: this.props.PermanentResidentCardNumber,
+        ResidenceStatus: this.props.ResidenceStatus,
+        DocumentType: this.props.DocumentType,
+        DocumentExpiration: this.props.DocumentExpiration
+      }
+
+      for (const q of queue) {
+        obj = { ...obj, [q.name]: q.value }
+      }
+
+      this.props.onUpdate(obj)
+    }
   }
 
   updateCitizenshipStatus (event) {
-    this.onUpdate('CitizenshipStatus', event.target.value)
+    this.update([
+      { name: 'CitizenshipStatus', value: event.target.value }
+    ])
   }
 
   updateAbroadDocumentation (event) {
-    this.onUpdate('AbroadDocumentation', event.target.value)
+    this.update([
+      { name: 'AbroadDocumentation', value: event.target.value }
+    ])
   }
 
   updateExplanation (values) {
-    this.onUpdate('Explanation', values)
+    this.update([
+      { name: 'Explanation', value: values }
+    ])
   }
 
   updateDocumentNumber (values) {
-    this.onUpdate('DocumentNumber', values)
+    this.update([
+      { name: 'DocumentNumber', value: values }
+    ])
   }
 
   updateDocumentIssued (values) {
-    this.onUpdate('DocumentIssued', values)
+    this.update([
+      { name: 'DocumentIssued', value: values }
+    ])
   }
 
   updatePlaceIssued (values) {
-    this.onUpdate('PlaceIssued', values)
+    this.update([
+      { name: 'PlaceIssued', value: values }
+    ])
   }
 
   updateDocumentName (values) {
-    this.onUpdate('DocumentName', values)
+    this.update([
+      { name: 'DocumentName', value: values }
+    ])
   }
 
   updateCertificateNumber (values) {
-    this.onUpdate('CertificateNumber', values)
+    this.update([
+      { name: 'CertificateNumber', value: values }
+    ])
   }
 
   updateCertificateIssued (values) {
-    this.onUpdate('CertificateIssued', values)
+    this.update([
+      { name: 'CertificateIssued', value: values }
+    ])
   }
 
   updateCertificateName (values) {
-    this.onUpdate('CertificateName', values)
+    this.update([
+      { name: 'CertificateName', value: values }
+    ])
   }
 
   updateBornOnMilitaryInstallation (values) {
-    this.onUpdate('BornOnMilitaryInstallation', values)
+    this.update([
+      { name: 'BornOnMilitaryInstallation', value: values }
+    ])
   }
 
   updateMilitaryBase (values) {
-    this.onUpdate('MilitaryBase', values)
+    this.update([
+      { name: 'MilitaryBase', value: values }
+    ])
   }
 
   updateEntryDate (values) {
-    this.onUpdate('EntryDate', values)
+    this.update([
+      { name: 'EntryDate', value: values }
+    ])
   }
 
   updateEntryLocation (values) {
-    this.onUpdate('EntryLocation', values)
+    this.update([
+      { name: 'EntryLocation', value: values }
+    ])
   }
 
   updatePriorCitizenship (values) {
-    this.onUpdate('PriorCitizenship', values)
+    this.update([
+      { name: 'PriorCitizenship', value: values }
+    ])
   }
 
   updateHasAlienRegistration (values) {
-    this.onUpdate('HasAlienRegistration', values)
+    this.update([
+      { name: 'HasAlienRegistration', value: values }
+    ])
   }
 
   updateAlienRegistrationNumber (values) {
-    this.onUpdate('AlienRegistrationNumber', values)
+    this.update([
+      { name: 'AlienRegistrationNumber', value: values }
+    ])
   }
 
   updateAlienRegistrationExpiration (values) {
-    this.onUpdate('AlienRegistrationExpiration', values)
+    this.update([
+      { name: 'AlienRegistrationExpiration', value: values }
+    ])
   }
 
   updateCertificateCourtName (values) {
-    this.onUpdate('CertificateCourtName', values)
+    this.update([
+      { name: 'CertificateCourtName', value: values }
+    ])
   }
 
   updateCertificateCourtAddress (values) {
-    this.onUpdate('CertificateCourtAddress', values)
+    this.update([
+      { name: 'CertificateCourtAddress', value: values }
+    ])
   }
 
   updateBasis (event) {
-    this.onUpdate('Basis', event.target.value)
+    this.update([
+      { name: 'Basis', value: event.target.value }
+    ])
   }
 
   updatePermanentResidentCardNumber (values) {
-    this.onUpdate('PermanentResidentCardNumber', values)
+    this.update([
+      { name: 'PermanentResidentCardNumber', value: values }
+    ])
   }
 
   updateResidenceStatus (values) {
-    this.onUpdate('ResidenceStatus', values)
+    this.update([
+      { name: 'ResidenceStatus', value: values }
+    ])
   }
 
   updateDocumentType (event) {
-    this.onUpdate('DocumentType', event.target.value)
+    this.update([
+      { name: 'DocumentType', value: event.target.value }
+    ])
   }
 
   updateDocumentExpiration (values) {
-    this.onUpdate('DocumentExpiration', values)
+    this.update([
+      { name: 'DocumentExpiration', value: values }
+    ])
   }
 
   render () {
@@ -189,7 +231,7 @@ export default class Status extends SubsectionElement {
         <Field title={i18n.t('citizenship.status.heading.citizenshipstatus')}
                adjustFor="buttons">
           <RadioGroup className="citizenship-status"
-                      selectedValue={this.state.CitizenshipStatus}>
+                      selectedValue={this.props.CitizenshipStatus}>
             <Radio name="citizenship-status-citizen"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.citizen')}
                    value="Citizen"
@@ -228,18 +270,18 @@ export default class Status extends SubsectionElement {
           </RadioGroup>
         </Field>
 
-        <Show when={this.state.CitizenshipStatus === 'ForeignBorn'}>
+        <Show when={this.props.CitizenshipStatus === 'ForeignBorn'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.abroad')}
                    adjustFor="buttons"
                    comments={true}
                    commentsName="Explanation"
-                   commentsValue={this.state.Explanation}
-                   commentsActive={this.state.AbroadDocumentation === 'Other'}
+                   commentsValue={this.props.Explanation}
+                   commentsActive={this.props.AbroadDocumentation === 'Other'}
                    onUpdate={this.updateExplanation}
                    onError={this.handleError}>
               <RadioGroup className="citizenship-abroad"
-                          selectedValue={this.state.AbroadDocumentation}>
+                          selectedValue={this.props.AbroadDocumentation}>
                 <Radio name="citizenship-abroad-fs240"
                        label={i18n.t('citizenship.status.label.abroad.fs240')}
                        value="FS-240"
@@ -274,7 +316,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.documentnumber.foreignborn')}>
               <Text name="DocumentNumber"
                     className="document-number"
-                    {...this.state.DocumentNumber}
+                    {...this.props.DocumentNumber}
                     onUpdate={this.updateDocumentNumber}
                     onError={this.handleError}
                     />
@@ -285,7 +327,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="DocumentIssued"
                            className="document-issued"
-                           {...this.state.DocumentIssued}
+                           {...this.props.DocumentIssued}
                            onUpdate={this.updateDocumentIssued}
                            onError={this.handleError}
                            />
@@ -298,7 +340,7 @@ export default class Status extends SubsectionElement {
                        label={'Was this issued in the United States?'}
                        layout={Location.CITY_STATE_COUNTRY}
                        className="place-issued"
-                       {...this.state.PlaceIssued}
+                       {...this.props.PlaceIssued}
                        onUpdate={this.updatePlaceIssued}
                        onError={this.handleError}
                        />
@@ -307,7 +349,7 @@ export default class Status extends SubsectionElement {
             <h3>{i18n.t('citizenship.status.heading.documentname')}</h3>
             <Name name="DocumentName"
                   className="document-name"
-                  {...this.state.DocumentName}
+                  {...this.props.DocumentName}
                   onUpdate={this.updateDocumentName}
                   onError={this.handleError}
                   />
@@ -315,7 +357,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}>
               <Text name="CertificateNumber"
                     className="certificate-number"
-                    {...this.state.CertificateNumber}
+                    {...this.props.CertificateNumber}
                     onUpdate={this.updateCertificateNumber}
                     onError={this.handleError}
                     />
@@ -326,7 +368,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
-                           {...this.state.CertificateIssued}
+                           {...this.props.CertificateIssued}
                            onUpdate={this.updateCertificateIssued}
                            onError={this.handleError}
                            />
@@ -335,7 +377,7 @@ export default class Status extends SubsectionElement {
             <h3>{i18n.t('citizenship.status.heading.certificatename.foreignborn')}</h3>
             <Name name="CertificateName"
                   className="certificate-name"
-                  {...this.state.CertificateName}
+                  {...this.props.CertificateName}
                   onUpdate={this.updateCertificateName}
                   onError={this.handleError}
                   />
@@ -344,16 +386,16 @@ export default class Status extends SubsectionElement {
                     label={i18n.t('citizenship.status.heading.bornonmilitaryinstallation')}
                     labelSize="h3"
                     className="born-on-military-installation"
-                    value={this.state.BornOnMilitaryInstallation}
+                    value={this.props.BornOnMilitaryInstallation}
                     onUpdate={this.updateBornOnMilitaryInstallation}
                     onError={this.handleError}
                     />
 
-            <Show when={this.state.BornOnMilitaryInstallation === 'Yes'}>
+            <Show when={this.props.BornOnMilitaryInstallation === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.militarybase')}>
                 <Text name="MilitaryBase"
                       className="military-base"
-                      {...this.state.MilitaryBase}
+                      {...this.props.MilitaryBase}
                       onUpdate={this.updateMilitaryBase}
                       onError={this.handleError}
                       />
@@ -362,7 +404,7 @@ export default class Status extends SubsectionElement {
           </div>
         </Show>
 
-        <Show when={this.state.CitizenshipStatus === 'Naturalized'}>
+        <Show when={this.props.CitizenshipStatus === 'Naturalized'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.entrydate')}
                    help="citizenship.status.help.entrydate"
@@ -370,7 +412,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="EntryDate"
                            className="entry-date"
-                           {...this.state.EntryDate}
+                           {...this.props.EntryDate}
                            onUpdate={this.updateEntryDate}
                            onError={this.handleError}
                            />
@@ -382,7 +424,7 @@ export default class Status extends SubsectionElement {
               <Location name="EntryLocation"
                        layout={Location.CITY_STATE}
                        className="entry-location"
-                       {...this.state.EntryLocation}
+                       {...this.props.EntryLocation}
                        onUpdate={this.updateEntryLocation}
                        onError={this.handleError}
                        />
@@ -392,7 +434,7 @@ export default class Status extends SubsectionElement {
                    help="citizenship.status.help.priorcitizenship">
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
-                       value={this.state.PriorCitizenship.first}
+                       value={this.props.PriorCitizenship.first}
                        multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}
@@ -403,16 +445,16 @@ export default class Status extends SubsectionElement {
                     label={i18n.t('citizenship.status.heading.hasalienregistration')}
                     labelSize="h3"
                     className="has-alien-registration"
-                    value={this.state.HasAlienRegistration}
+                    value={this.props.HasAlienRegistration}
                     onUpdate={this.updateHasAlienRegistration}
                     onError={this.handleError}
                     />
 
-            <Show when={this.state.HasAlienRegistration === 'Yes'}>
+            <Show when={this.props.HasAlienRegistration === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}>
                 <Text name="AlienRegistrationNumber"
                       className="alien-registration-number"
-                      {...this.state.AlienRegistrationNumber}
+                      {...this.props.AlienRegistrationNumber}
                       onUpdate={this.updateAlienRegistrationNumber}
                       onError={this.handleError}
                       />
@@ -422,7 +464,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.naturalized')}>
               <Text name="CertificateNumber"
                     className="certificate-number"
-                    {...this.state.CertificateNumber}
+                    {...this.props.CertificateNumber}
                     onUpdate={this.updateCertificateNumber}
                     onError={this.handleError}
                     />
@@ -431,7 +473,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.certificatecourtname')}>
               <Text name="CertificateCourtName"
                     className="certificate-court-name"
-                    {...this.state.CertificateCourtName}
+                    {...this.props.CertificateCourtName}
                     onUpdate={this.updateCertificateCourtName}
                     onError={this.handleError}
                     />
@@ -444,7 +486,7 @@ export default class Status extends SubsectionElement {
               <Location name="CertificateCourtAddress"
                        layout={Location.US_ADDRESS}
                        className="certificate-court-address"
-                       {...this.state.CertificateCourtAddress}
+                       {...this.props.CertificateCourtAddress}
                        onUpdate={this.updateCertificateCourtAddress}
                        onError={this.handleError}
                        />
@@ -456,7 +498,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
-                           {...this.state.CertificateIssued}
+                           {...this.props.CertificateIssued}
                            onUpdate={this.updateCertificateIssued}
                            onError={this.handleError}
                            />
@@ -465,7 +507,7 @@ export default class Status extends SubsectionElement {
             <h3>{i18n.t('citizenship.status.heading.certificatename.naturalized')}</h3>
             <Name name="CertificateName"
                   className="certificate-name"
-                  {...this.state.CertificateName}
+                  {...this.props.CertificateName}
                   onUpdate={this.updateCertificateName}
                   onError={this.handleError}
                   />
@@ -474,12 +516,12 @@ export default class Status extends SubsectionElement {
                    adjustFor="big-buttons"
                    comments={true}
                    commentsName="Explanation"
-                   commentsValue={this.state.Explanation}
-                   commentsActive={this.state.Basis === 'Other'}
+                   commentsValue={this.props.Explanation}
+                   commentsActive={this.props.Basis === 'Other'}
                    onUpdate={this.updateExplanation}
                    onError={this.handleError}>
               <RadioGroup className="citizenship-basis"
-                          selectedValue={this.state.Basis}>
+                          selectedValue={this.props.Basis}>
                 <Radio name="citizenship-basis-individual"
                        label={i18n.m('citizenship.status.label.basis.naturalized')}
                        value="Individual"
@@ -499,12 +541,12 @@ export default class Status extends SubsectionElement {
           </div>
         </Show>
 
-        <Show when={this.state.CitizenshipStatus === 'Derived'}>
+        <Show when={this.props.CitizenshipStatus === 'Derived'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.derived')}>
               <Text name="AlienRegistrationNumber"
                     className="alien-registration-number"
-                    {...this.state.AlienRegistrationNumber}
+                    {...this.props.AlienRegistrationNumber}
                     onUpdate={this.updateAlienRegistrationNumber}
                     onError={this.handleError}
                     />
@@ -513,7 +555,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.permanentresidentcardnumber')}>
               <Text name="PermanentResidentCardNumber"
                     className="permanent-resident-card-number"
-                    {...this.state.PermanentResidentCardNumber}
+                    {...this.props.PermanentResidentCardNumber}
                     onUpdate={this.updatePermanentResidentCardNumber}
                     onError={this.handleError}
                     />
@@ -522,7 +564,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.derived')}>
               <Text name="CertificateNumber"
                     className="certificate-number"
-                    {...this.state.CertificateNumber}
+                    {...this.props.CertificateNumber}
                     onUpdate={this.updateCertificateNumber}
                     onError={this.handleError}
                     />
@@ -531,7 +573,7 @@ export default class Status extends SubsectionElement {
             <h3>{i18n.t('citizenship.status.heading.certificatename.derived')}</h3>
             <Name name="CertificateName"
                   className="certificate-name"
-                  {...this.state.CertificateName}
+                  {...this.props.CertificateName}
                   onUpdate={this.updateCertificateName}
                   onError={this.handleError}
                   />
@@ -542,7 +584,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
-                           {...this.state.CertificateIssued}
+                           {...this.props.CertificateIssued}
                            onUpdate={this.updateCertificateIssued}
                            onError={this.handleError}
                            />
@@ -552,12 +594,12 @@ export default class Status extends SubsectionElement {
                    adjustFor="big-buttons"
                    comments={true}
                    commentsName="Explanation"
-                   commentsValue={this.state.Explanation}
-                   commentsActive={this.state.Basis === 'Other'}
+                   commentsValue={this.props.Explanation}
+                   commentsActive={this.props.Basis === 'Other'}
                    onUpdate={this.updateExplanation}
                    onError={this.handleError}>
               <RadioGroup className="citizenship-basis"
-                          selectedValue={this.state.Basis}>
+                          selectedValue={this.props.Basis}>
                 <Radio name="citizenship-basis-individual"
                        label={i18n.m('citizenship.status.label.basis.derived')}
                        value="Individual"
@@ -577,12 +619,12 @@ export default class Status extends SubsectionElement {
           </div>
         </Show>
 
-        <Show when={this.state.CitizenshipStatus === 'NotCitizen'}>
+        <Show when={this.props.CitizenshipStatus === 'NotCitizen'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.residencestatus')}>
               <Text name="ResidenceStatus"
                     className="residence-status"
-                    {...this.state.ResidenceStatus}
+                    {...this.props.ResidenceStatus}
                     onUpdate={this.updateResidenceStatus}
                     onError={this.handleError}
                     />
@@ -594,7 +636,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="EntryDate"
                            className="entry-date"
-                           {...this.state.EntryDate}
+                           {...this.props.EntryDate}
                            onUpdate={this.updateEntryDate}
                            onError={this.handleError}
                            />
@@ -605,7 +647,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <Address name="EntryLocation"
                        className="entry-location"
-                       {...this.state.EntryLocation}
+                       {...this.props.EntryLocation}
                        onUpdate={this.updateEntryLocation}
                        onError={this.handleError}
                        />
@@ -615,7 +657,7 @@ export default class Status extends SubsectionElement {
                    help="citizenship.status.help.priorcitizenship">
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
-                       value={this.state.PriorCitizenship.first}
+                       value={this.props.PriorCitizenship.first}
                        multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}
@@ -625,7 +667,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.notcitizen')}>
               <Text name="AlienRegistrationNumber"
                     className="alien-registration-number"
-                    {...this.state.AlienRegistrationNumber}
+                    {...this.props.AlienRegistrationNumber}
                     onUpdate={this.updateAlienRegistrationNumber}
                     onError={this.handleError}
                     />
@@ -636,7 +678,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="AlienRegistrationExpiration"
                            className="alien-registration-expiration"
-                           {...this.state.AlienRegistrationExpiration}
+                           {...this.props.AlienRegistrationExpiration}
                            onUpdate={this.updateAlienRegistrationExpiration}
                            onError={this.handleError}
                            />
@@ -646,12 +688,12 @@ export default class Status extends SubsectionElement {
                    adjustFor="buttons"
                    comments={true}
                    commentsName="Explanation"
-                   commentsValue={this.state.Explanation}
-                   commentsActive={this.state.DocumentType === 'Other'}
+                   commentsValue={this.props.Explanation}
+                   commentsActive={this.props.DocumentType === 'Other'}
                    onUpdate={this.updateExplanation}
                    onError={this.handleError}>
               <RadioGroup className="citizenship-document-type"
-                          selectedValue={this.state.DocumentType}>
+                          selectedValue={this.props.DocumentType}>
                 <Radio name="document-type-i94"
                        label={i18n.t('citizenship.status.label.documenttype.i94')}
                        value="I-94"
@@ -693,7 +735,7 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.documentnumber.notcitizen')}>
               <Text name="DocumentNumber"
                     className="document-number"
-                    {...this.state.DocumentNumber}
+                    {...this.props.DocumentNumber}
                     onUpdate={this.updateDocumentNumber}
                     onError={this.handleError}
                     />
@@ -702,7 +744,7 @@ export default class Status extends SubsectionElement {
             <h3>{i18n.t('citizenship.status.heading.documentname')}</h3>
             <Name name="DocumentName"
                   className="document-name"
-                  {...this.state.DocumentName}
+                  {...this.props.DocumentName}
                   onUpdate={this.updateDocumentName}
                   onError={this.handleError}
                   />
@@ -712,7 +754,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="DocumentIssued"
                            className="document-issued"
-                           {...this.state.DocumentIssued}
+                           {...this.props.DocumentIssued}
                            onUpdate={this.updateDocumentIssued}
                            onError={this.handleError}
                            />
@@ -723,7 +765,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <DateControl name="DocumentExpiration"
                            className="document-expiration"
-                           {...this.state.DocumentExpiration}
+                           {...this.props.DocumentExpiration}
                            onUpdate={this.updateDocumentExpiration}
                            onError={this.handleError}
                            />
@@ -766,6 +808,6 @@ Status.defaultProps = {
   subsection: 'status',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipValidator(state, props).isValid()
+    return new CitizenshipValidator(props, props).isValid()
   }
 }
