@@ -37,6 +37,8 @@ defineSupportCode(({Given, Then, When}) => {
       return completeResidence(promise)
     case 'employment':
       return completeEmployment(promise)
+    case 'education':
+      return completeEducation(promise)
     default:
       return promise
     }
@@ -100,6 +102,36 @@ const completeEmployment = (promise) => {
     .then(() => { return setText('.employment .reprimand-branch .explanation-left textarea', 'Reason for reprimand text') })
     .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .month input', '1') })
     .then(() => { return setText('.employment .reprimand-branch .date-left .datecontrol .year input', getCurrentYear()) })
+}
+
+const completeEducation = (promise) => {
+  return promise
+    .then(() => { return setOption('.history .section-view .field.branch .yes.block label') })
+    .then(() => { return setText('.education .school-name input', 'My School') })
+    .then(() => { return setText('.education .daterange .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.education .daterange .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.education .daterange .datecontrol.from .year input', getCurrentYear()-range) })
+    .then(() => { return setText('.education .daterange .datecontrol.to .month input', '1') })
+    .then(() => { return setText('.education .daterange .datecontrol.to .day input', '1') })
+    .then(() => { return setText('.education .daterange .datecontrol.to .year input', getCurrentYear()) })
+    .then(() => { return checkValue('.history .summary-counter.education .schools', '1') })
+    .then(() => { return setDomesticAddress('.education .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOption('.education .option-list .type-college.block label') })
+    .then(() => { return setText('.education .reference .first input', 'John') })
+    .then(() => { return setText('.education .reference .middle input', 'Q') })
+    .then(() => { return setText('.education .reference .last input', 'Public') })
+    .then(() => { return setText('.education .datecontrol.reference-last-contact .month input', '1') })
+    .then(() => { return setText('.education .datecontrol.reference-last-contact .day input', '1') })
+    .then(() => { return setText('.education .datecontrol.reference-last-contact .year input', getCurrentYear()-range) })
+    .then(() => { return setOption('.education .relationship .reference-relationship-neighbor.block label') })
+    .then(() => { return setDomesticTelephone('.education .telephone.reference-phone', '703', '555', '6666', 'Cell') })
+    .then(() => { return setText('.education .email.reference-email input', 'test@test.com') })
+    .then(() => { return setDomesticAddress('.education .location.reference-address .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOption('.education .receive-degree .field.branch .yes.block label') })
+    .then(() => { return setOption('.education .diploma.option-list .diploma-bachelor.block label') })
+    .then(() => { return setText('.education .datecontrol.date-awarded .month input', '1') })
+    .then(() => { return setText('.education .datecontrol.date-awarded .year input', "2016") })
+    .then(() => { return checkValue('.history .summary-counter.education .diplomas', '1') })
 }
 
 const navigateToSection = (section) => {
