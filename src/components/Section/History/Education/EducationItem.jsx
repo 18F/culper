@@ -226,6 +226,7 @@ export default class EducationItem extends ValidationElement {
           <BranchCollection help="history.education.help.degree"
                             label={i18n.t('history.education.heading.degree')}
                             appendLabel={i18n.t('history.education.heading.degreeTail')}
+                            className="receive-degree"
                             items={this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
                             onError={this.props.onError}>

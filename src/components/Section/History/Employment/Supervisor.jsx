@@ -64,7 +64,7 @@ export default class Supervisor extends ValidationElement {
                adjustFor="labels">
           <Text name="Title"
                 {...this.props.Title}
-                className="text full-width"
+                className="text full-width supervisor-title"
                 label={i18n.t('history.employment.default.supervisor.title.label')}
                 onUpdate={this.onUpdate.bind(this, 'Title')}
                 onError={this.props.onError}
@@ -83,7 +83,7 @@ export default class Supervisor extends ValidationElement {
                          onError={this.props.onError}>
             <Email name="Email"
                    {...this.props.Email}
-                   className="text"
+                   className="text supervisor-email"
                    label={i18n.t('history.employment.default.supervisor.email.label')}
                    onUpdate={this.onUpdate.bind(this, 'Email')}
                    onError={this.props.onError}
@@ -96,6 +96,7 @@ export default class Supervisor extends ValidationElement {
                adjustFor="address">
           <Address name="Address"
                    {...this.props.Address}
+                   className="supervisor-address"
                    label={i18n.t('history.employment.default.supervisor.address.label')}
                    onUpdate={this.onUpdate.bind(this, 'Address')}
                    onError={this.props.onError}
@@ -107,6 +108,7 @@ export default class Supervisor extends ValidationElement {
                adjustFor="labels">
           <Telephone name="Telephone"
                      {...this.props.Telephone}
+                     className="supervisor-telephone"
                      onUpdate={this.onUpdate.bind(this, 'Telephone')}
                      onError={this.props.onError}
                      />
