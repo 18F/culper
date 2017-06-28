@@ -39,6 +39,8 @@ defineSupportCode(({Given, Then, When}) => {
       return completeEmployment(promise)
     case 'education':
       return completeEducation(promise)
+    case 'federal':
+      return completeFederal(promise)
     default:
       return promise
     }
@@ -132,6 +134,20 @@ const completeEducation = (promise) => {
     .then(() => { return setText('.education .datecontrol.date-awarded .month input', '1') })
     .then(() => { return setText('.education .datecontrol.date-awarded .year input', "2016") })
     .then(() => { return checkValue('.history .summary-counter.education .diplomas', '1') })
+}
+
+const completeFederal = (promise) => {
+  return promise
+    .then(() => { return setOption('.federal .field.branch .option-list.branch .yes.block label') })
+    .then(() => { return setText('.federal .daterange .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.federal .daterange .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.federal .daterange .datecontrol.from .year input', getCurrentYear()-range) })
+    .then(() => { return setText('.federal .daterange .datecontrol.to .month input', '1') })
+    .then(() => { return setText('.federal .daterange .datecontrol.to .day input', '1') })
+    .then(() => { return setText('.federal .daterange .datecontrol.to .year input', getCurrentYear()) })
+    .then(() => { return setText('.federal .field.federal-agency input', 'General Services Administration') })
+    .then(() => { return setText('.federal .field.federal-position input', 'Usability Test Engineer') })
+    .then(() => { return setDomesticAddress('.federal .federal-agency-address .address', '1800 F ST NW', 'Washington', 'DC', '20006') })
 }
 
 const navigateToSection = (section) => {
