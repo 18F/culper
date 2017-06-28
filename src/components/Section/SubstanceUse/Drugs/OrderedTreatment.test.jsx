@@ -51,4 +51,25 @@ describe('The OrderedTreatment component', () => {
     component.find('.no-action-taken-explanation textarea').simulate('change')
     expect(updates).toBe(1)
   })
+
+  it('Deselect ordered by', () => {
+    let updates = 0
+    const onUpdate = () => { updates++ }
+    const orderedBy = ['Employer']
+    const component = mount(<OrderedTreatment onUpdate={onUpdate} ActionTaken={'No'} OrderedBy={orderedBy} />)
+
+    component.find('.ordered-by .employer input').simulate('change')
+    expect(updates).toBe(1)
+  })
+
+  it('Select none', () => {
+    let none = []
+    const onUpdate = (selected) => {
+      none = selected.OrderedBy
+    }
+    const orderedBy = ['Employer', 'Judge']
+    const component = mount(<OrderedTreatment onUpdate={onUpdate} ActionTaken={'No'} OrderedBy={orderedBy} />)
+    component.find('.ordered-by .none input').simulate('change')
+    expect(none).toEqual(['None'])
+  })
 })

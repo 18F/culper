@@ -6,14 +6,6 @@ import { DateSummary } from '../../../Summary'
 import OrderedTreatment from './OrderedTreatment'
 import { DrugOrderedTreatmentsValidator } from '../../../../validators'
 
-const orderedByList = {
-  'Employer': i18n.t('substance.drugs.ordered.orderedBy.label.employer'),
-  'MedicalProfessional': i18n.t('substance.drugs.ordered.orderedBy.label.medicalProfessional'),
-  'MentalHealthProfessional': i18n.t('substance.drugs.ordered.orderedBy.label.mentalHealthProfessional'),
-  'Judge': i18n.t('substance.drugs.ordered.orderedBy.label.judge'),
-  'None': i18n.t('substance.drugs.ordered.orderedBy.label.none')
-}
-
 export default class OrderedTreatments extends SubsectionElement {
   constructor (props) {
     super(props)
@@ -48,7 +40,7 @@ export default class OrderedTreatments extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).OrderedTreatment || {}
     const range = DateSummary(o.TreatmentDates)
-    const orderedBy = (o.OrderedBy || []).map(key => { return orderedByList[key] }).join(', ')
+    const explanation = (o.Explanation || {}).value
     const type = i18n.t('substance.drugs.ordered.collection.itemType')
 
     return (
@@ -56,7 +48,7 @@ export default class OrderedTreatments extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {orderedBy || i18n.t('substance.drugs.ordered.collection.summary')}
+            {explanation || i18n.t('substance.drugs.ordered.collection.summary')}
           </strong>
         </span>
         <span className="dates">
