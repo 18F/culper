@@ -16,10 +16,19 @@ export default class BranchCollection extends React.Component {
     item[this.props.valueKey] = yes
     items[index] = item
 
-    // If it's not the last item being marked as No, then remove it. This addresses the issue
-    // where the user must click No twice on the last item.
-    if (index + 1 < this.props.items.length && this.props.removable && yes === 'No') {
-      items.splice(index, 1)
+    if (yes !== 'Yes') {
+      if (index + 1 < this.props.items.length && this.props.removable) {
+        // If it's not the last item being marked as No, then remove it. This addresses the issue
+        // where the user must click No twice on the last item.
+        items.splice(index, 1)
+      } else if (index === 0 && items.length === 1) {
+        // If this is the first and last item, and "no" has been selected, then clear out
+        // any persisted data **except** the branch value.
+        items[index] = {
+          [this.props.valueKey]: item[this.props.valueKey],
+          index: item.index
+        }
+      }
     }
 
     this.props.onUpdate(items)
@@ -105,7 +114,7 @@ export default class BranchCollection extends React.Component {
       }
       return item
     })
-    let hasNo = !!items.find(item => item[this.props.valueKey] === 'No')
+    let hasNo = !!items.find(item => item[this.props.valueKey] !== 'Yes')
 
     // When no items are present, render default branch yes/no
     if (items.length === 0) {
