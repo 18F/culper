@@ -10,35 +10,33 @@ export default class Support extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignSupport: props.HasForeignSupport,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
+    this.update = this.update.bind(this)
     this.updateHasForeignSupport = this.updateHasForeignSupport.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignSupport: this.state.HasForeignSupport,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      HasForeignSupport: this.props.HasForeignSupport,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateHasForeignSupport (value) {
-    this.onUpdate('HasForeignSupport', value)
+    this.update({
+      HasForeignSupport: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -60,16 +58,17 @@ export default class Support extends SubsectionElement {
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
                 labelSize="h3"
-                value={this.state.HasForeignSupport}
+                value={this.props.HasForeignSupport}
+                warning={true}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
                 />
 
-        <Show when={this.state.HasForeignSupport === 'Yes'}>
+        <Show when={this.props.HasForeignSupport === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.List}
+                     items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -145,12 +144,13 @@ Support.defaultProps = {
   HasForeignSupport: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/support',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignActivitiesSupportValidator(state, props).isValid()
+    return new ForeignActivitiesSupportValidator(props, props).isValid()
   },
   defaultState: true
 }

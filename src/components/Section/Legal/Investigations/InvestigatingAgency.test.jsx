@@ -12,7 +12,7 @@ describe('The investigating agency component', () => {
     let agency = ''
     const onUpdate = (values) => { agency = values.Agency }
     const component = mount(<InvestigatingAgency Agency={agency} onUpdate={onUpdate} />)
-    component.find('.investigative-agency-dhs input').simulate('click')
+    component.find('.investigative-agency-dhs input').simulate('change')
     expect(agency).toBe('U.S. Department of Homeland Security')
   })
 

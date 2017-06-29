@@ -15,37 +15,45 @@ export default class Hospitalization extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Admission: this.props.Admission,
-        TreatmentDate: this.props.TreatmentDate,
-        Facility: this.props.Facility,
-        FacilityAddress: this.props.FacilityAddress,
-        Explanation: this.props.Explanation,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Admission: this.props.Admission,
+      TreatmentDate: this.props.TreatmentDate,
+      Facility: this.props.Facility,
+      FacilityAddress: this.props.FacilityAddress,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateTreatmentDate (values) {
-    this.update('TreatmentDate', values)
+    this.update({
+      TreatmentDate: values
+    })
   }
 
   updateAdmission (values) {
-    this.update('Admission', values.value)
+    this.update({
+      Admission: values.value
+    })
   }
 
   updateFacility (values) {
-    this.update('Facility', values)
+    this.update({
+      Facility: values
+    })
   }
 
   updateFacilityAddress (values) {
-    this.update('FacilityAddress', values)
+    this.update({
+      FacilityAddress: values
+    })
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
@@ -117,7 +125,6 @@ export default class Hospitalization extends ValidationElement {
                    onError={this.props.onError}
                    />
         </Field>
-
       </div>
     )
   }
@@ -125,5 +132,6 @@ export default class Hospitalization extends ValidationElement {
 
 Hospitalization.defaultProps = {
   Admission: { value: null },
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

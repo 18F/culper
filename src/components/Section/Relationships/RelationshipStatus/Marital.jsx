@@ -10,41 +10,39 @@ export default class Marital extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Status: props.Status,
-      CivilUnion: props.CivilUnion,
-      DivorcedList: props.DivorcedList,
-      DivorcedListBranch: props.DivorcedListBranch
-    }
-
     this.update = this.update.bind(this)
     this.updateStatus = this.updateStatus.bind(this)
     this.updateCivilUnion = this.updateCivilUnion.bind(this)
     this.updateDivorcedList = this.updateDivorcedList.bind(this)
   }
 
-  update (field, values) {
-    this.setState({[field]: values}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Status: this.state.Status,
-          CivilUnion: this.state.CivilUnion
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      Status: this.props.Status,
+      CivilUnion: this.props.CivilUnion,
+      DivorcedList: this.props.DivorcedList,
+      DivorcedListBranch: this.props.DivorcedListBranch,
+      ...queue
     })
   }
 
   updateStatus (values) {
-    this.update('Status', values.target.value)
+    this.update({
+      Status: values.target.value
+    })
   }
 
   updateCivilUnion (values) {
-    this.update('CivilUnion', values)
+    this.update({
+      CivilUnion: values
+    })
   }
 
   updateDivorcedList (values) {
-    this.update('DivorcedList', values.items)
-    this.update('DivorcedListBranch', values.branch)
+    this.update({
+      DivorcedList: values.items,
+      DivorcedListBranch: values.branch
+    })
   }
 
   divorceSummary (item, index) {
@@ -64,9 +62,9 @@ export default class Marital extends SubsectionElement {
   }
 
   showDivorce () {
-    if (['InCivilUnion', 'Separated'].includes(this.state.Status)) {
-      return (this.state.CivilUnion || {}).Divorced === 'Yes'
-    } else if (['Annulled', 'Divorced', 'Widowed'].includes(this.state.Status)) {
+    if (['InCivilUnion', 'Separated'].includes(this.props.Status)) {
+      return (this.props.CivilUnion || {}).Divorced === 'Yes'
+    } else if (['Annulled', 'Divorced', 'Widowed'].includes(this.props.Status)) {
       return true
     }
 
@@ -77,7 +75,7 @@ export default class Marital extends SubsectionElement {
     return (
       <div className="marital">
         <Field title={i18n.t('relationships.marital.heading.title')}>
-          <RadioGroup name="status" className="status-options" selectedValue={this.state.Status}>
+          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
                    value="Never"
@@ -117,9 +115,9 @@ export default class Marital extends SubsectionElement {
           </RadioGroup>
         </Field>
 
-        <Show when={['InCivilUnion', 'Separated'].includes(this.state.Status)}>
+        <Show when={['InCivilUnion', 'Separated'].includes(this.props.Status)}>
           <CivilUnion name="civilUnion"
-                      {...this.state.CivilUnion}
+                      {...this.props.CivilUnion}
                       onUpdate={this.updateCivilUnion}
                       onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
@@ -131,8 +129,8 @@ export default class Marital extends SubsectionElement {
           <span id="scrollToDivorce"></span>
           <Accordion minimum="1"
                      scrollTo="scrollToDivorce"
-                     items={this.state.DivorcedList}
-                     branch={this.state.DivorcedListBranch}
+                     items={this.props.DivorcedList}
+                     branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
                      summary={this.divorceSummary}
@@ -154,12 +152,13 @@ Marital.defaultProps = {
   CivilUnion: {},
   DivorcedList: [],
   DivorcedListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/marital',
   dispatch: () => {},
   validator: (state, props) => {
-    return new MaritalValidator(state, props).isValid()
+    return new MaritalValidator(props, props).isValid()
   },
   defaultState: true
 }

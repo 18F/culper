@@ -10,10 +10,14 @@ describe('The Consultation component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<Consultation onUpdate={onUpdate} />)
-    component.find('.consultation .yes input').simulate('change')
+    const props = {
+      Consulted: 'Yes',
+      List: [{}],
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Consultation {...props} />)
+    updates = 0
     component.find('input[name="CourtName"]').simulate('change')
-    expect(updates).toBe(5)
+    expect(updates).toBe(1)
   })
 })

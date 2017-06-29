@@ -15,32 +15,27 @@ export default class DirectActivity extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        HasInterests: this.props.HasInterests,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      HasInterests: this.props.HasInterests,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasInterests (values) {
-    this.update([
-      { name: 'HasInterests', value: values }
-    ])
+    this.update({
+      HasInterests: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -75,6 +70,7 @@ export default class DirectActivity extends SubsectionElement {
                 label={<h3>{i18n.t('foreign.activities.direct.heading.title')}</h3>}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasInterests}>
           {i18n.m('foreign.activities.direct.para.intro')}
@@ -107,6 +103,7 @@ DirectActivity.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/direct',
