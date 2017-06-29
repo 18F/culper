@@ -26,6 +26,24 @@ describe('The ExistingConditions component', () => {
     expect(updates).toBe(6)
   })
 
+  it('updates with recv treatments', () => {
+    let updates = 0
+    const props = {
+      HasCondition: 'Yes',
+      ReceivedTreatment: 'Yes',
+      TreatmentList: [{}],
+      DidNotFollow: 'Yes',
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<ExistingConditions {...props} />)
+    component.find('.hascondition .yes input').simulate('change')
+    component.find('.didnotfollow .yes input').simulate('change')
+    component.find('.existing-condition-didnotfollow-explanation textarea').simulate('change')
+    component.find('.treatment-list .no input').simulate('change')
+    component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('change')
+    expect(updates).toBe(6)
+  })
+
   it('Selects no to everything', () => {
     const props = {
       HasCondition: 'No',

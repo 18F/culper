@@ -24,7 +24,8 @@ describe('The military disciplinary component', () => {
   it('selecting yes to military disciplinary displays the form', () => {
     const expected = {
       name: 'military-disciplinary',
-      HasDisciplinary: 'Yes'
+      HasDisciplinary: 'Yes',
+      List: [{}]
     }
     const component = mount(<Disciplinary {...expected} />)
     expect(component.find('.accordion').length).toEqual(1)

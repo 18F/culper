@@ -26,18 +26,13 @@ export default class Selective extends SubsectionElement {
   }
 
   updateBornAfter (value, event) {
-    let values = {
-      WasBornAfter: value
-    }
-
     // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      values.HasRegistered = null
-      values.RegistrationNumber = null
-      values.Explanation = null
-    }
-
-    this.update(values)
+    this.update({
+      WasBornAfter: value,
+      HasRegistered: value === 'Yes' ? this.props.HasRegistered : null,
+      RegistrationNumber: value === 'Yes' ? this.props.RegistrationNumber : null,
+      Explanation: value === 'Yes' ? this.props.Explanation : null
+    })
   }
 
   updateRegistered (value, event) {

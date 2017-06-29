@@ -16,13 +16,35 @@ describe('The cohabitants component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitants',
+      HasCohabitant: 'Yes',
+      CohabitantList: [{
+        Cohabitant: {
+          SameSpouse: true,
+          spouse: {
+            first: 'Foo',
+            middle: 'FB',
+            last: 'Far'
+          },
+          Name: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'FB',
+            middleInitialOnly: false,
+            noMiddleName: false,
+            last: 'Bar',
+            lastInitialOnly: false,
+            suffix: ''
+          },
+          SSN: {}
+        }
+      }],
       onUpdate: () => { updates++ }
     }
 
     const component = mount(<Cohabitants {...expected} />)
     expect(component.find('.cohabitants').length).toEqual(1)
+    updates = 0
     component.find('.has-cohabitant .yes input').simulate('change')
-    component.find('.has-cohabitant .no input').simulate('change')
-    expect(updates).toBe(2)
+    expect(updates).toBe(1)
   })
 })

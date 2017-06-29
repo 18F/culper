@@ -25,9 +25,12 @@ describe('The multiple component', () => {
     let updates = 0
     const expected = {
       name: 'multiple',
+      HasMultiple: 'Yes',
+      Citizenships: [{}],
       onUpdate: () => { updates++ }
     }
     const component = mount(<Multiple {...expected} />)
+    updates = 0
     component.find('.has-multiple .yes input').simulate('change')
     expect(updates).toBe(1)
   })

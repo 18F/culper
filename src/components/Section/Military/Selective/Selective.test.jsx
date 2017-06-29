@@ -18,6 +18,7 @@ describe('The selective service component', () => {
       WasBornAfter: 'No'
     }
     const component = mount(<Selective {...expected} />)
+    component.find('.born .no input').simulate('change')
     expect(component.find({type: 'radio', name: 'has_registered', value: 'Yes'}).length).toEqual(0)
   })
 
@@ -27,6 +28,7 @@ describe('The selective service component', () => {
       WasBornAfter: 'Yes'
     }
     const component = mount(<Selective {...expected} />)
+    component.find('.born .yes input').simulate('change')
     expect(component.find({type: 'radio', name: 'has_registered', value: 'Yes'}).length).toEqual(1)
   })
 
@@ -37,6 +39,9 @@ describe('The selective service component', () => {
       HasRegistered: 'No'
     }
     const component = mount(<Selective {...expected} />)
+    component.find('.born .yes input').simulate('change')
+    component.find('.registered .no input').simulate('change')
+    component.find('.explanation textarea').simulate('change')
     expect(component.find('.explanation').length).toBe(1)
     expect(component.find('.registration-number').length).toBe(0)
   })
@@ -48,6 +53,9 @@ describe('The selective service component', () => {
       HasRegistered: 'Yes'
     }
     const component = mount(<Selective {...expected} />)
+    component.find('.born .yes input').simulate('change')
+    component.find('.registered .yes input').simulate('change')
+    component.find('.registration-number input').simulate('change')
     expect(component.find('.explanation').length).toBe(0)
     expect(component.find('.registration-number').length).toBe(1)
   })
