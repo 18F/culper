@@ -9153,9 +9153,19 @@ const en = {
   },
   releases: {
     verify: {
-      title: 'Verify your information is correct',
+      heading: {
+        title: 'Verify your information is correct',
+        changeInformation: 'Need to change your information?',
+        name: 'Your full name',
+        otherNamesUsed: 'Other names used',
+        dateOfBirth: 'Date of birth',
+        ssn: 'Social Security Number',
+        currentAddress: 'Current street address',
+        telephoneNumber: 'Telephone number'
+      },
       label: {
-        name: 'Type your name below to sign'
+        name: 'Type your name below to sign',
+        changeInformation: 'Back to Information about you'
       }
     },
     general: {
