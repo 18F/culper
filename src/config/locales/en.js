@@ -2867,6 +2867,10 @@ const en = {
         label: 'State',
         placeholder: 'Enter state'
       },
+      county: {
+        label: 'County',
+        placeholder: 'Enter county'
+      },
       zipcode: {
         label: 'Zip Code',
         placeholder: 'Enter zipcode'
