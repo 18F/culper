@@ -97,8 +97,8 @@ export default class ForeignService extends ValidationElement {
     // If there is no history clear out any previously entered data
     this.update([
       { name: 'MaintainsContact', value: value },
-      { name: 'List', value: value === 'Yes' ? values.items : [] },
-      { name: 'ListBranch', value: value === 'Yes' ? values.branch : '' }
+      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
+      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
     ])
   }
 

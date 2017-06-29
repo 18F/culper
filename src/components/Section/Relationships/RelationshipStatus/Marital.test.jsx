@@ -16,6 +16,7 @@ describe('The relationship status component', () => {
     let updates = 0
     const expected = {
       name: 'relatives',
+      Status: 'InCivilUnion',
       onUpdate: () => { updates++ }
     }
 
@@ -31,13 +32,14 @@ describe('The relationship status component', () => {
     let updates = 0
     const expected = {
       name: 'relatives',
+      Status: 'Divorced',
       onUpdate: () => { updates++ }
     }
 
     const component = mount(<Marital {...expected} />)
     expect(component.find('.marital').length).toEqual(1)
     component.find('.status-options input[value="Divorced"]').simulate('change')
-    expect(updates).toBe(3)
+    expect(updates).toBe(2)
     expect(component.find('.accordion').length).toBe(1)
   })
 })

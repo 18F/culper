@@ -10,11 +10,13 @@ describe('The Diagnoses component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<Diagnoses onUpdate={onUpdate} />)
-    component.find('.diagnosed .yes input').simulate('change')
-    component.find('.didnotconsult .yes input').simulate('change')
-    component.find('.intreatment .yes input').simulate('change')
-    expect(updates).toBe(7)
+    const props = {
+      Diagnosed: 'Yes',
+      DidNotConsult: 'Yes',
+      InTreatment: 'Yes',
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Diagnoses {...props} />)
+    expect(updates).toBeGreaterThan(1)
   })
 })

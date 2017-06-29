@@ -12,7 +12,7 @@ describe('The legal investigations history component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<History onUpdate={onUpdate} />)
-    component.find('.legal-investigations-history-has-history .yes input').simulate('click')
+    component.find('.legal-investigations-history-has-history .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 

@@ -456,6 +456,27 @@ export default class Offense extends ValidationElement {
 }
 
 Offense.defaultProps = {
+  Date: {},
+  Description: {},
+  InvolvedViolence: '',
+  InvolvedFirearms: '',
+  InvolvedSubstances: '',
+  Address: {},
+  WasCited: '',
+  CitedBy: {},
+  AgencyAddress: {},
+  WasCharged: '',
+  Explanation: {},
+  CourtName: {},
+  CourtAddress: {},
+  ChargeType: {},
+  CourtCharge: {},
+  CourtOutcome: {},
+  CourtDate: {},
+  WasSentenced: '',
+  Sentence: {},
+  AwaitingTrial: '',
+  AwaitingTrialExplanation: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

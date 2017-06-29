@@ -77,7 +77,7 @@ export default class Sentence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.sentenceDescription')}
                titleSize="h4"
                adjustFor="labels">
-          <Textarea {...this.state.Description}
+          <Textarea {...this.props.Description}
                     className="description"
                     name="description"
                     onError={this.props.onError}
@@ -88,7 +88,7 @@ export default class Sentence extends ValidationElement {
                 label={i18n.t('legal.police.heading.exceedsYear')}
                 labelSize="h4"
                 className="exceeds-year"
-                value={this.state.ExceedsYear}
+                value={this.props.ExceedsYear}
                 onError={this.props.onError}
                 onUpdate={this.updateExceedsYear}>
         </Branch>
@@ -97,7 +97,7 @@ export default class Sentence extends ValidationElement {
                 label={i18n.t('legal.police.heading.incarcerated')}
                 labelSize="h4"
                 className="incarcerated"
-                value={this.state.Incarcerated}
+                value={this.props.Incarcerated}
                 onError={this.props.onError}
                 onUpdate={this.updateIncarcerated}>
         </Branch>
@@ -107,14 +107,14 @@ export default class Sentence extends ValidationElement {
                adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="IncarcerationDatesNA"
-                         {...this.state.IncarcerationDatesNA}
+                         {...this.props.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
                          onError={this.props.onError}
                          onUpdate={this.updateIncarcerationDatesNA}>
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
-                       {...this.state.IncarcerationDates}
+                       {...this.props.IncarcerationDates}
                        onUpdate={this.updateIncarcerationDates}
                        onError={this.props.onError}
                        />
@@ -126,14 +126,14 @@ export default class Sentence extends ValidationElement {
                adjustFor="daterange"
                shrink={true}>
           <NotApplicable name="ProbationDatesNA"
-                         {...this.state.ProbationDatesNA}
+                         {...this.props.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
                          onError={this.props.onError}
                          onUpdate={this.updateProbationDatesNA}>
             <DateRange name="ProbationDates"
                        className="probation-dates"
-                       {...this.state.ProbationDates}
+                       {...this.props.ProbationDates}
                        onUpdate={this.updateProbationDates}
                        onError={this.props.onError}
                        />
@@ -145,6 +145,13 @@ export default class Sentence extends ValidationElement {
 }
 
 Sentence.defaultProps = {
+  Description: {},
+  ExceedsYear: {},
+  Incarcerated: '',
+  IncarcerationDates: {},
+  ProbationDates: {},
+  IncarcerationDatesNA: {},
+  ProbationDatesNA: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

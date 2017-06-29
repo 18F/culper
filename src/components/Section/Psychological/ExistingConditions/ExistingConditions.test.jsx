@@ -10,26 +10,31 @@ describe('The ExistingConditions component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<ExistingConditions onUpdate={onUpdate} />)
+    const props = {
+      HasCondition: 'Yes',
+      ReceivedTreatment: 'No',
+      DidNotFollow: 'Yes',
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<ExistingConditions {...props} />)
     component.find('.hascondition .yes input').simulate('change')
     component.find('.didnotfollow .yes input').simulate('change')
     component.find('.existing-condition-didnotfollow-explanation textarea').simulate('change')
     component.find('.treatment-list .no input').simulate('change')
     component.find('.existing-condition-explanation textarea').simulate('change')
     component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('change')
-    component.find('.diagnosis-condition input').simulate('change')
-
-    expect(updates).toBe(10)
+    expect(updates).toBe(6)
   })
 
   it('Selects no to everything', () => {
-    let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<ExistingConditions onUpdate={onUpdate} />)
-    component.find('.hascondition .no input').simulate('change')
-    component.find({type: 'radio', name: 'treatment', value: 'Decline'}).simulate('change')
-    component.find('.didnotfollow .no input').simulate('change')
-    expect(updates).toBe(3)
+    const props = {
+      HasCondition: 'No',
+      ReceivedTreatment: 'No',
+      DidNotFollow: 'No'
+    }
+    const component = mount(<ExistingConditions {...props} />)
+    expect(component.find('.existing-condition-explanation textarea').length).toBe(0)
+    expect(component.find('.accordion').length).toBe(0)
+    expect(component.find('.existing-condition-didnotfollow-explanation textarea').length).toBe(0)
   })
 })

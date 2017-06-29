@@ -230,13 +230,13 @@ export default class CivilUnion extends ValidationElement {
 
           <h3>{i18n.t('relationships.civilUnion.heading.birthplace')}</h3>
           <Location name="birthplace"
-                      layout={Location.BIRTHPLACE}
-                      className="birthplace"
-                      label={i18n.t('relationships.civilUnion.label.birthplace')}
-                      {...this.props.BirthPlace}
-                      onUpdate={this.updateBirthPlace}
-                      onError={this.props.onError}
-                      />
+                    layout={Location.BIRTHPLACE}
+                    className="birthplace"
+                    label={i18n.t('relationships.civilUnion.label.birthplace')}
+                    {...this.props.BirthPlace}
+                    onUpdate={this.updateBirthPlace}
+                    onError={this.props.onError}
+                    />
 
           <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
             <Field help="relationships.civilUnion.help.foreignBornDocument"
@@ -318,13 +318,13 @@ export default class CivilUnion extends ValidationElement {
 
           <Field title={i18n.t('relationships.civilUnion.heading.location')}>
             <Location name="Location"
-                     className="civilunion-location"
-                     layout={Location.BIRTHPLACE}
-                     label={i18n.t('relationships.civilUnion.label.location')}
-                     {...this.props.Location}
-                     onUpdate={this.updateLocation}
-                     onError={this.props.onError}
-                     />
+                      className="civilunion-location"
+                      layout={Location.BIRTHPLACE}
+                      label={i18n.t('relationships.civilUnion.label.location')}
+                      {...this.props.Location}
+                      onUpdate={this.updateLocation}
+                      onError={this.props.onError}
+                      />
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.address')}
@@ -400,12 +400,12 @@ export default class CivilUnion extends ValidationElement {
                                onUpdate={this.updateAddressSeparatedNotApplicable}
                                onError={this.props.onError}>
                   <Location name="addressSeparated"
-                           label={i18n.t('relationships.civilUnion.label.addressSeparated')}
-                           layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
-                           {...this.props.AddressSeparated}
-                           onUpdate={this.updateAddressSeparated}
-                           onError={this.props.onError}
-                           />
+                            label={i18n.t('relationships.civilUnion.label.addressSeparated')}
+                            layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
+                            {...this.props.AddressSeparated}
+                            onUpdate={this.updateAddressSeparated}
+                            onError={this.props.onError}
+                            />
                 </NotApplicable>
               </Field>
             </div>

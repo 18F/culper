@@ -250,6 +250,7 @@ export default class ForeignNational extends ValidationElement {
                        className="na-name"
                        label={i18n.t('foreign.contacts.label.idk')}
                        or={i18n.m('foreign.contacts.para.or')}
+                       {...this.props.NameNotApplicable}
                        onUpdate={this.updateNameNotApplicable}
                        onError={this.props.onError}>
           <Name name="Name"
@@ -482,6 +483,7 @@ export default class ForeignNational extends ValidationElement {
                          className="na-birthdate"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.BirthdateNotApplicable}
                          onUpdate={this.updateBirthdateNotApplicable}
                          onError={this.props.onError}>
             <DateControl name="Birthdate"
@@ -498,6 +500,7 @@ export default class ForeignNational extends ValidationElement {
                          className="na-birthplace"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.BirthplaceNotApplicable}
                          onUpdate={this.updateBirthplaceNotApplicable}
                          onError={this.props.onError}>
             <Location name="Birthplace"
@@ -516,6 +519,7 @@ export default class ForeignNational extends ValidationElement {
                          className="na-address"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.AddressNotApplicable}
                          onUpdate={this.updateAddressNotApplicable}
                          onError={this.props.onError}>
             <Address name="Address"
@@ -532,6 +536,7 @@ export default class ForeignNational extends ValidationElement {
                          className="na-employer"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.EmployerNotApplicable}
                          onUpdate={this.updateEmployerNotApplicable}
                          onError={this.props.onError}>
             <Text name="Employer"
@@ -549,6 +554,7 @@ export default class ForeignNational extends ValidationElement {
                          className="na-employer-address"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.EmployerAddressNotApplicable}
                          onUpdate={this.updateEmployerAddressNotApplicable}
                          onError={this.props.onError}>
             <Address name="EmployerAddress"
@@ -612,7 +618,7 @@ ForeignNational.defaultProps = {
   Methods: [],
   MethodsNotApplicable: {},
   MethodsExplanation: {},
-  Frequency: [],
+  Frequency: '',
   FrequencyExplanation: {},
   Relationship: [],
   RelationshipExplanation: {},
