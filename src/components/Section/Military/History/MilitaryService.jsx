@@ -20,90 +20,83 @@ export default class MilitaryService extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Service: this.props.Service,
-        Status: this.props.Status,
-        Officer: this.props.Officer,
-        ServiceNumber: this.props.ServiceNumber,
-        Dates: this.props.Dates,
-        HasBeenDischarged: this.props.HasBeenDischarged,
-        DischargeType: this.props.DischargeType,
-        DischargeTypeOther: this.props.DischargeTypeOther,
-        DischargeReason: this.props.DischargeReason,
-        DischargeDate: this.props.DischargeDate
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Service: this.props.Service,
+      Status: this.props.Status,
+      Officer: this.props.Officer,
+      ServiceNumber: this.props.ServiceNumber,
+      Dates: this.props.Dates,
+      HasBeenDischarged: this.props.HasBeenDischarged,
+      DischargeType: this.props.DischargeType,
+      DischargeTypeOther: this.props.DischargeTypeOther,
+      DischargeReason: this.props.DischargeReason,
+      DischargeDate: this.props.DischargeDate,
+      ...queue
+    })
   }
 
   updateService (event) {
-    this.update([
-      { name: 'Service', value: event.target.value }
-    ])
+    this.update({
+      Service: event.target.value
+    })
   }
 
   updateStatus (event) {
-    this.update([
-      { name: 'Status', value: event.target.value }
-    ])
+    this.update({
+      Status: event.target.value
+    })
   }
 
   updateOfficer (event) {
-    this.update([
-      { name: 'Officer', value: event.target.value }
-    ])
+    this.update({
+      Officer: event.target.value
+    })
   }
 
   updateServiceNumber (value) {
-    this.update([
-      { name: 'ServiceNumber', value: value }
-    ])
+    this.update({
+      ServiceNumber: value
+    })
   }
 
   updateDates (value) {
-    this.update([
-      { name: 'Dates', value: value }
-    ])
+    this.update({
+      Dates: value
+    })
   }
 
   updateDischarged (value, event) {
     // If there is no history clear out any previously entered data
-    this.update([
-      { name: 'HasBeenDischarged', value: value },
-      { name: 'DischargeType', value: value !== 'Yes' ? null : this.props.DischargeType },
-      { name: 'DischargeReason', value: value !== 'Yes' ? null : this.props.DischargeReason },
-      { name: 'DischargeDate', value: value !== 'Yes' ? null : this.props.DischargeDate }
-    ])
+    this.update({
+      HasBeenDischarged: value,
+      DischargeType: value !== 'Yes' ? null : this.props.DischargeType,
+      DischargeReason: value !== 'Yes' ? null : this.props.DischargeReason,
+      DischargeDate: value !== 'Yes' ? null : this.props.DischargeDate
+    })
   }
 
   updateDischargeType (event) {
-    this.update([
-      { name: 'DischargeType', value: event.target.value }
-    ])
+    this.update({
+      DischargeType: event.target.value
+    })
   }
 
   updateDischargeTypeOther (value) {
-    this.update([
-      { name: 'DischargeTypeOther', value: value }
-    ])
+    this.update({
+      DischargeTypeOther: value
+    })
   }
 
   updateDischargeReason (value) {
-    this.update([
-      { name: 'DischargeReason', value: value }
-    ])
+    this.update({
+      DischargeReason: value
+    })
   }
 
   updateDischargeDate (value) {
-    this.update([
-      { name: 'DischargeDate', value: value }
-    ])
+    this.update({
+      DischargeDate: value
+    })
   }
 
   render () {
@@ -381,5 +374,6 @@ export default class MilitaryService extends ValidationElement {
 }
 
 MilitaryService.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

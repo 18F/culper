@@ -21,72 +21,65 @@ export default class PassportItem extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Country: this.props.Country,
-        Issued: this.props.Issued,
-        Location: this.props.Location,
-        Name: this.props.Name,
-        Number: this.props.Number,
-        Expiration: this.props.Expiration,
-        Used: this.props.Used,
-        Countries: this.props.Countries
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Country: this.props.Country,
+      Issued: this.props.Issued,
+      Location: this.props.Location,
+      Name: this.props.Name,
+      Number: this.props.Number,
+      Expiration: this.props.Expiration,
+      Used: this.props.Used,
+      Countries: this.props.Countries,
+      ...queue
+    })
   }
 
   updateCountry (values) {
-    this.update([
-      { name: 'Country', value: values }
-    ])
+    this.update({
+      Country: values
+    })
   }
 
   updateIssued (values) {
-    this.update([
-      { name: 'Issued', value: values }
-    ])
+    this.update({
+      Issued: values
+    })
   }
 
   updateLocation (values) {
-    this.update([
-      { name: 'Location', value: values }
-    ])
+    this.update({
+      Location: values
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
   }
 
   updateNumber (values) {
-    this.update([
-      { name: 'Number', value: values }
-    ])
+    this.update({
+      Number: values
+    })
   }
 
   updateExpiration (values) {
-    this.update([
-      { name: 'Expiration', value: values }
-    ])
+    this.update({
+      Expiration: values
+    })
   }
 
   updateUsed (values) {
-    this.update([
-      { name: 'Used', value: values }
-    ])
+    this.update({
+      Used: values
+    })
   }
 
   updateCountries (values) {
-    this.update([
-      { name: 'Countries', value: values.items }
-    ])
+    this.update({
+      Countries: values.items
+    })
   }
 
   summary (item, index) {
@@ -202,6 +195,7 @@ PassportItem.defaultProps = {
   Expiration: {},
   Used: '',
   Countries: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true
 }

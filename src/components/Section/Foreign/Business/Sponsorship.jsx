@@ -16,34 +16,27 @@ export default class Sponsorship extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignSponsorship: this.props.HasForeignSponsorship
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignSponsorship: this.props.HasForeignSponsorship,
+      ...queue
+    })
   }
 
   updateHasForeignSponsorship (values) {
-    this.update([
-      { name: 'HasForeignSponsorship', value: values },
-      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      HasForeignSponsorship: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -214,6 +207,7 @@ Sponsorship.defaultProps = {
   HasForeignSponsorship: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/sponsorship',

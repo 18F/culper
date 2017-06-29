@@ -18,65 +18,58 @@ export default class CitizenshipItem extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Country: this.props.Country,
-        Dates: this.props.Dates,
-        How: this.props.How,
-        Renounced: this.props.Renounced,
-        RenouncedExplanation: this.props.RenouncedExplanation,
-        Current: this.props.Current,
-        CurrentExplanation: this.props.CurrentExplanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Country: this.props.Country,
+      Dates: this.props.Dates,
+      How: this.props.How,
+      Renounced: this.props.Renounced,
+      RenouncedExplanation: this.props.RenouncedExplanation,
+      Current: this.props.Current,
+      CurrentExplanation: this.props.CurrentExplanation,
+      ...queue
+    })
   }
 
   updateCountry (values) {
-    this.update([
-      { name: 'Country', value: values }
-    ])
+    this.update({
+      Country: values
+    })
   }
 
   updateDates (values) {
-    this.update([
-      { name: 'Dates', value: values }
-    ])
+    this.update({
+      Dates: values
+    })
   }
 
   updateHow (values) {
-    this.update([
-      { name: 'How', value: values }
-    ])
+    this.update({
+      How: values
+    })
   }
 
   updateRenounced (values) {
-    this.update([
-      { name: 'Renounced', value: values }
-    ])
+    this.update({
+      Renounced: values
+    })
   }
 
   updateRenouncedExplanation (values) {
-    this.update([
-      { name: 'RenouncedExplanation', value: values }
-    ])
+    this.update({
+      RenouncedExplanation: values
+    })
   }
 
   updateCurrent (values) {
-    this.update([
-      { name: 'Current', value: values }
-    ])
+    this.update({
+      Current: values
+    })
   }
 
   updateCurrentExplanation (values) {
-    this.update([
-      { name: 'CurrentExplanation', value: values }
-    ])
+    this.update({
+      CurrentExplanation: values
+    })
   }
 
   render () {
@@ -163,5 +156,6 @@ CitizenshipItem.defaultProps = {
   RenouncedExplanation: {},
   Current: '',
   CurrentExplanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -20,92 +20,85 @@ export default class Divorce extends React.Component {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        Birthdate: this.props.Birthdate,
-        BirthPlace: this.props.BirthPlace,
-        Telephone: this.props.Telephone,
-        Recognized: this.props.Recognized,
-        Address: this.props.Address,
-        DateDivorced: this.props.DateDivorced,
-        Status: this.props.Status,
-        Deceased: this.props.Deceased,
-        DeceasedAddress: this.props.DeceasedAddress
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Birthdate: this.props.Birthdate,
+      BirthPlace: this.props.BirthPlace,
+      Telephone: this.props.Telephone,
+      Recognized: this.props.Recognized,
+      Address: this.props.Address,
+      DateDivorced: this.props.DateDivorced,
+      Status: this.props.Status,
+      Deceased: this.props.Deceased,
+      DeceasedAddress: this.props.DeceasedAddress,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
   }
 
   updateBirthdate (values) {
-    this.update([
-      { name: 'Birthdate', value: values }
-    ])
+    this.update({
+      Birthdate: values
+    })
   }
 
   updateBirthPlace (values) {
-    this.update([
-      { name: 'BirthPlace', value: values }
-    ])
+    this.update({
+      BirthPlace: values
+    })
   }
 
   updateTelephone (values) {
-    this.update([
-      { name: 'Telephone', value: values }
-    ])
+    this.update({
+      Telephone: values
+    })
   }
 
   updateRecognized (values) {
-    this.update([
-      { name: 'Recognized', value: values }
-    ])
+    this.update({
+      Recognized: values
+    })
   }
 
   updateAddress (values) {
-    this.update([
-      { name: 'Address', value: values }
-    ])
+    this.update({
+      Address: values
+    })
   }
 
   updateDateDivorced (values) {
-    this.update([
-      { name: 'DateDivorced', value: values }
-    ])
+    this.update({
+      DateDivorced: values
+    })
   }
 
   updateStatus (values) {
-    this.update([
-      { name: 'Status', value: values.value }
-    ])
+    this.update({
+      Status: values.value
+    })
   }
 
   updateDeceased (values) {
-    this.update([
-      { name: 'Deceased', value: values.value }
-    ])
+    this.update({
+      Deceased: values.value
+    })
   }
 
   updateDeceasedAddress (values) {
-    this.update([
-      { name: 'DeceasedAddress', value: values }
-    ])
+    this.update({
+      DeceasedAddress: values
+    })
   }
 
   updateDeceasedAddressNotApplicable (values) {
-    this.update([
-      { name: 'DeceasedAddressNotApplicable', value: !values.applicable }
-    ])
+    this.update({
+      DeceasedAddressNotApplicable: !values.applicable
+    })
   }
 
   render () {
@@ -273,5 +266,6 @@ export default class Divorce extends React.Component {
 }
 
 Divorce.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

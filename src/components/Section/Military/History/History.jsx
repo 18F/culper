@@ -38,35 +38,28 @@ export default class History extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        HasServed: this.props.HasServed,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      HasServed: this.props.HasServed,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
+    })
   }
 
   updateServed (value, event) {
     // If there is no history clear out any previously entered data
-    this.update([
-      { name: 'HasServed', value: value },
-      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      HasServed: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   /**
@@ -120,6 +113,7 @@ export default class History extends SubsectionElement {
 }
 
 History.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'history',

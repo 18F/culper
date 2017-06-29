@@ -15,34 +15,27 @@ export default class DirectActivity extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        HasInterests: this.props.HasInterests,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      HasInterests: this.props.HasInterests,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasInterests (values) {
-    this.update([
-      { name: 'HasInterests', value: values },
-      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      HasInterests: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -110,6 +103,7 @@ DirectActivity.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/direct',

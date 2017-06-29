@@ -15,51 +15,44 @@ export default class Procedure extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Date: this.props.Date,
-        Offenses: this.props.Offenses,
-        Name: this.props.Name,
-        Court: this.props.Court,
-        Outcome: this.props.Outcome
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Date: this.props.Date,
+      Offenses: this.props.Offenses,
+      Name: this.props.Name,
+      Court: this.props.Court,
+      Outcome: this.props.Outcome,
+      ...queue
+    })
   }
 
   updateDate (value) {
-    this.update([
-      { name: 'Date', value: value }
-    ])
+    this.update({
+      Date: value
+    })
   }
 
   updateOffenses (value) {
-    this.update([
-      { name: 'Offenses', value: value }
-    ])
+    this.update({
+      Offenses: value
+    })
   }
 
   updateName (value) {
-    this.update([
-      { name: 'Name', value: value }
-    ])
+    this.update({
+      Name: value
+    })
   }
 
   updateCourt (value) {
-    this.update([
-      { name: 'Court', value: value }
-    ])
+    this.update({
+      Court: value
+    })
   }
 
   updateOutcome (value) {
-    this.update([
-      { name: 'Outcome', value: value }
-    ])
+    this.update({
+      Outcome: value
+    })
   }
 
   render () {
@@ -127,5 +120,6 @@ export default class Procedure extends ValidationElement {
 }
 
 Procedure.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

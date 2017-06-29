@@ -16,34 +16,27 @@ export default class Multiple extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Citizenships: this.props.Citizenships,
-        CitizenshipsBranch: this.props.CitizenshipsBranch,
-        HasMultiple: this.props.HasMultiple
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Citizenships: this.props.Citizenships,
+      CitizenshipsBranch: this.props.CitizenshipsBranch,
+      HasMultiple: this.props.HasMultiple,
+      ...queue
+    })
   }
 
   updateHasMultiple (values) {
-    this.update([
-      { name: 'HasMultiple', value: values },
-      { name: 'Citizenships', value: values === 'Yes' ? this.props.Citizenships : [] },
-      { name: 'CitizenshipsBranch', value: values === 'Yes' ? this.props.CitizenshipsBranch : '' }
-    ])
+    this.update({
+      HasMultiple: values,
+      Citizenships: values === 'Yes' ? this.props.Citizenships : [],
+      CitizenshipsBranch: values === 'Yes' ? this.props.CitizenshipsBranch : ''
+    })
   }
 
   updateCitizenships (values) {
-    this.update([
-      { name: 'Citizenships', value: values.items },
-      { name: 'CitizenshipsBranch', value: values.branch }
-    ])
+    this.update({
+      Citizenships: values.items,
+      CitizenshipsBranch: values.branch
+    })
   }
 
   summaryCitizenships (item, index) {
@@ -99,6 +92,7 @@ Multiple.defaultProps = {
   Citizenships: [],
   CitizenshipsBranch: '',
   Passports: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',
   subsection: 'multiple',

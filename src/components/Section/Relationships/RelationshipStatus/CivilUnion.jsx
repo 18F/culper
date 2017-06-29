@@ -33,42 +33,35 @@ export default class CivilUnion extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        Birthdate: this.props.Birthdate,
-        BirthPlace: this.props.BirthPlace,
-        ForeignBornDocument: this.props.ForeignBornDocument,
-        SSN: this.props.SSN,
-        OtherName: this.props.OtherName,
-        OtherNameMaiden: this.props.OtherNameMaiden,
-        OtherNameNotApplicable: this.props.OtherNameNotApplicable,
-        DatesUsed: this.props.DatesUsed,
-        Citizenship: this.props.Citizenship,
-        EnteredCivilUnion: this.props.EnteredCivilUnion,
-        Address: this.props.Address,
-        Telephone: this.props.Telephone,
-        Email: this.props.Email,
-        Separated: this.props.Separated,
-        DateSeparated: this.props.DateSeparated,
-        AddressSeparated: this.props.AddressSeparated,
-        AddressSeparatedNotApplicable: this.props.AddressSeparatedNotApplicable,
-        Divorced: this.props.Divorced,
-        UseCurrentAddress: this.props.UseCurrentAddress
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Birthdate: this.props.Birthdate,
+      BirthPlace: this.props.BirthPlace,
+      ForeignBornDocument: this.props.ForeignBornDocument,
+      SSN: this.props.SSN,
+      OtherName: this.props.OtherName,
+      OtherNameMaiden: this.props.OtherNameMaiden,
+      OtherNameNotApplicable: this.props.OtherNameNotApplicable,
+      DatesUsed: this.props.DatesUsed,
+      Citizenship: this.props.Citizenship,
+      EnteredCivilUnion: this.props.EnteredCivilUnion,
+      Address: this.props.Address,
+      Telephone: this.props.Telephone,
+      Email: this.props.Email,
+      Separated: this.props.Separated,
+      DateSeparated: this.props.DateSeparated,
+      AddressSeparated: this.props.AddressSeparated,
+      AddressSeparatedNotApplicable: this.props.AddressSeparatedNotApplicable,
+      Divorced: this.props.Divorced,
+      UseCurrentAddress: this.props.UseCurrentAddress,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
 
     if (this.props.onSpouseUpdate) {
       this.props.onSpouseUpdate(values)
@@ -76,118 +69,118 @@ export default class CivilUnion extends ValidationElement {
   }
 
   updateBirthdate (values) {
-    this.update([
-      { name: 'Birthdate', value: values }
-    ])
+    this.update({
+      Birthdate: values
+    })
   }
 
   updateBirthPlace (values) {
-    this.update([
-      { name: 'BirthPlace', value: values }
-    ])
+    this.update({
+      BirthPlace: values
+    })
   }
 
   updateForeignBornDocument (values) {
-    this.update([
-      { name: 'ForeignBornDocument', value: values }
-    ])
+    this.update({
+      ForeignBornDocument: values
+    })
   }
 
   updateSSN (values) {
-    this.update([
-      { name: 'SSN', value: values }
-    ])
+    this.update({
+      SSN: values
+    })
   }
 
   updateOtherName (values) {
-    this.update([
-      { name: 'OtherName', value: values }
-    ])
+    this.update({
+      OtherName: values
+    })
   }
 
   updateOtherNameMaiden (values) {
-    this.update([
-      { name: 'OtherNameMaiden', value: values }
-    ])
+    this.update({
+      OtherNameMaiden: values
+    })
   }
 
   updateDatesUsed (values) {
-    this.update([
-      { name: 'DatesUsed', value: values }
-    ])
+    this.update({
+      DatesUsed: values
+    })
   }
 
   updateCitizenship (values) {
-    this.update([
-      { name: 'Citizenship', value: values }
-    ])
+    this.update({
+      Citizenship: values
+    })
   }
 
   updateOtherNameNotApplicable (value) {
-    this.update([
-      { name: 'OtherNameNotApplicable', value: value.applicable }
-    ])
+    this.update({
+      OtherNameNotApplicable: value.applicable
+    })
   }
 
   updateEnteredCivilUnion (values) {
-    this.update([
-      { name: 'EnteredCivilUnion', value: values }
-    ])
+    this.update({
+      EnteredCivilUnion: values
+    })
   }
 
   updateAddress (values) {
-    this.update([
-      { name: 'UseCurrentAddress', value: false },
-      { name: 'Address', value: values }
-    ])
+    this.update({
+      UseCurrentAddress: false,
+      Address: values
+    })
   }
 
   updateLocation (values) {
-    this.update([
-      { name: 'Location', value: values }
-    ])
+    this.update({
+      Location: values
+    })
   }
 
   updateTelephone (values) {
-    this.update([
-      { name: 'Telephone', value: values }
-    ])
+    this.update({
+      Telephone: values
+    })
   }
 
   updateEmail (values) {
-    this.update([
-      { name: 'Email', value: values }
-    ])
+    this.update({
+      Email: values
+    })
   }
 
   updateSeparated (values) {
-    this.update([
-      { name: 'Separated', value: values }
-    ])
+    this.update({
+      Separated: values
+    })
   }
 
   updateDateSeparated (values) {
-    this.update([
-      { name: 'DateSeparated', value: values }
-    ])
+    this.update({
+      DateSeparated: values
+    })
   }
 
   updateAddressSeparated (values) {
-    this.update([
-      { name: 'AddressSeparated', value: values }
-    ])
+    this.update({
+      AddressSeparated: values
+    })
   }
 
   updateAddressSeparatedNotApplicable (values) {
-    this.update([
-      { name: 'AddressSeparatedNotApplicable', value: !values.applicable }
-    ])
+    this.update({
+      AddressSeparatedNotApplicable: !values.applicable
+    })
   }
 
   updateDivorced (values) {
-    this.update([
-      { name: 'Divorced', value: values }
-    ])
+    this.update({
+      Divorced: values
+    })
   }
 
   updateUseCurrentAddress (cb) {
@@ -197,9 +190,9 @@ export default class CivilUnion extends ValidationElement {
       this.updateAddress({})
     }
 
-    this.update([
-      { name: 'UseCurrentAddress', value: cb.checked }
-    ])
+    this.update({
+      UseCurrentAddress: cb.checked
+    })
   }
 
   render () {
@@ -447,6 +440,7 @@ CivilUnion.defaultProps = {
   AddressSeparatedNotApplicable: {},
   Divorced: '',
   UseCurrentAddress: false,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true
 }

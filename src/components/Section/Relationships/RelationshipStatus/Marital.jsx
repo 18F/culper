@@ -17,39 +17,32 @@ export default class Marital extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Status: this.props.Status,
-        CivilUnion: this.props.CivilUnion,
-        DivorcedList: this.props.DivorcedList,
-        DivorcedListBranch: this.props.DivorcedListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Status: this.props.Status,
+      CivilUnion: this.props.CivilUnion,
+      DivorcedList: this.props.DivorcedList,
+      DivorcedListBranch: this.props.DivorcedListBranch,
+      ...queue
+    })
   }
 
   updateStatus (values) {
-    this.update([
-      { name: 'Status', value: values.target.value }
-    ])
+    this.update({
+      Status: values.target.value
+    })
   }
 
   updateCivilUnion (values) {
-    this.update([
-      { name: 'CivilUnion', value: values }
-    ])
+    this.update({
+      CivilUnion: values
+    })
   }
 
   updateDivorcedList (values) {
-    this.update([
-      { name: 'DivorcedList', value: values.items },
-      { name: 'DivorcedListBranch', value: values.branch }
-    ])
+    this.update({
+      DivorcedList: values.items,
+      DivorcedListBranch: values.branch
+    })
   }
 
   divorceSummary (item, index) {
@@ -159,6 +152,7 @@ Marital.defaultProps = {
   CivilUnion: {},
   DivorcedList: [],
   DivorcedListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/marital',

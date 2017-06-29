@@ -14,23 +14,16 @@ export default class Passports extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Passports: this.props.Passports
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Passports: this.props.Passports,
+      ...queue
+    })
   }
 
   updatePassports (values) {
-    this.update([
-      { name: 'Passports', value: values }
-    ])
+    this.update({
+      Passports: values
+    })
   }
 
   render () {
@@ -55,6 +48,7 @@ Passports.defaultProps = {
   Citizenships: [],
   CitizenshipsBranch: '',
   Passports: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',
   subsection: 'passports',

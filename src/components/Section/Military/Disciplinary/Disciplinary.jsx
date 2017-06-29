@@ -15,35 +15,28 @@ export default class Disciplinary extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        HasDisciplinary: this.props.HasDisciplinary,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      HasDisciplinary: this.props.HasDisciplinary,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
+    })
   }
 
   updateDisciplinary (value, event) {
     // If there is no history clear out any previously entered data
-    this.update([
-      { name: 'HasDisciplinary', value: value },
-      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      HasDisciplinary: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   /**
@@ -100,6 +93,7 @@ export default class Disciplinary extends SubsectionElement {
 }
 
 Disciplinary.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'disciplinary',

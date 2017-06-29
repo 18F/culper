@@ -22,91 +22,84 @@ export default class ForeignService extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Organization: this.props.Organization,
-        Name: this.props.Name,
-        Dates: this.props.Dates,
-        Country: this.props.Country,
-        Rank: this.props.Rank,
-        Division: this.props.Division,
-        Circumstances: this.props.Circumstances,
-        ReasonLeft: this.props.ReasonLeft,
-        MaintainsContact: this.props.MaintainsContact,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Organization: this.props.Organization,
+      Name: this.props.Name,
+      Dates: this.props.Dates,
+      Country: this.props.Country,
+      Rank: this.props.Rank,
+      Division: this.props.Division,
+      Circumstances: this.props.Circumstances,
+      ReasonLeft: this.props.ReasonLeft,
+      MaintainsContact: this.props.MaintainsContact,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
+    })
   }
 
   updateOrganization (event) {
-    this.update([
-      { name: 'Organization', value: event.target.value }
-    ])
+    this.update({
+      Organization: event.target.value
+    })
   }
 
   updateName (value) {
-    this.update([
-      { name: 'Name', value: value }
-    ])
+    this.update({
+      Name: value
+    })
   }
 
   updateDates (value) {
-    this.update([
-      { name: 'Dates', value: value }
-    ])
+    this.update({
+      Dates: value
+    })
   }
 
   updateCountry (value) {
-    this.update([
-      { name: 'Country', value: value }
-    ])
+    this.update({
+      Country: value
+    })
   }
 
   updateRank (value) {
-    this.update([
-      { name: 'Rank', value: value }
-    ])
+    this.update({
+      Rank: value
+    })
   }
 
   updateDivision (value) {
-    this.update([
-      { name: 'Division', value: value }
-    ])
+    this.update({
+      Division: value
+    })
   }
 
   updateCircumstances (value) {
-    this.update([
-      { name: 'Circumstances', value: value }
-    ])
+    this.update({
+      Circumstances: value
+    })
   }
 
   updateReasonLeft (value) {
-    this.update([
-      { name: 'ReasonLeft', value: value }
-    ])
+    this.update({
+      ReasonLeft: value
+    })
   }
 
   updateMaintainsContact (value, event) {
     // If there is no history clear out any previously entered data
-    this.update([
-      { name: 'MaintainsContact', value: value },
-      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      MaintainsContact: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   /**
@@ -295,6 +288,7 @@ export default class ForeignService extends ValidationElement {
 }
 
 ForeignService.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true
 }

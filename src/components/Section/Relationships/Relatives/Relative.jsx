@@ -48,175 +48,168 @@ export default class Relative extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Relation: this.props.Relation,
-        Name: this.props.Name,
-        Birthdate: this.props.Birthdate,
-        Birthplace: this.props.Birthplace,
-        Citizenship: this.props.Citizenship,
-        MaidenSameAsListed: this.props.MaidenSameAsListed,
-        MaidenName: this.props.MaidenName,
-        Aliases: this.props.Aliases,
-        IsDeceased: this.props.IsDeceased,
-        Address: this.props.Address,
-        CitizenshipDocumentation: this.props.CitizenshipDocumentation,
-        OtherCitizenshipDocumentation: this.props.OtherCitizenshipDocumentation,
-        DocumentNumber: this.props.DocumentNumber,
-        CourtName: this.props.CourtName,
-        CourtAddress: this.props.CourtAddress,
-        Document: this.props.Document,
-        OtherDocument: this.props.OtherDocument,
-        DocumentComments: this.props.DocumentComments,
-        ResidenceDocumentNumber: this.props.ResidenceDocumentNumber,
-        Expiration: this.props.Expiration,
-        FirstContact: this.props.FirstContact,
-        LastContact: this.props.LastContact,
-        Methods: this.props.Methods,
-        MethodsComments: this.props.MethodsComments,
-        Frequency: this.props.Frequency,
-        FrequencyComments: this.props.FrequencyComments,
-        EmployerNotApplicable: this.props.EmployerNotApplicable,
-        EmployerAddressNotApplicable: this.props.EmployerAddressNotApplicable,
-        EmployerRelationshipNotApplicable: this.props.EmployerRelationshipNotApplicable,
-        Employer: this.props.Employer,
-        EmployerAddress: this.props.EmployerAddress,
-        HasAffiliation: this.props.HasAffiliation,
-        EmployerRelationship: this.props.EmployerRelationship
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Relation: this.props.Relation,
+      Name: this.props.Name,
+      Birthdate: this.props.Birthdate,
+      Birthplace: this.props.Birthplace,
+      Citizenship: this.props.Citizenship,
+      MaidenSameAsListed: this.props.MaidenSameAsListed,
+      MaidenName: this.props.MaidenName,
+      Aliases: this.props.Aliases,
+      IsDeceased: this.props.IsDeceased,
+      Address: this.props.Address,
+      CitizenshipDocumentation: this.props.CitizenshipDocumentation,
+      OtherCitizenshipDocumentation: this.props.OtherCitizenshipDocumentation,
+      DocumentNumber: this.props.DocumentNumber,
+      CourtName: this.props.CourtName,
+      CourtAddress: this.props.CourtAddress,
+      Document: this.props.Document,
+      OtherDocument: this.props.OtherDocument,
+      DocumentComments: this.props.DocumentComments,
+      ResidenceDocumentNumber: this.props.ResidenceDocumentNumber,
+      Expiration: this.props.Expiration,
+      FirstContact: this.props.FirstContact,
+      LastContact: this.props.LastContact,
+      Methods: this.props.Methods,
+      MethodsComments: this.props.MethodsComments,
+      Frequency: this.props.Frequency,
+      FrequencyComments: this.props.FrequencyComments,
+      EmployerNotApplicable: this.props.EmployerNotApplicable,
+      EmployerAddressNotApplicable: this.props.EmployerAddressNotApplicable,
+      EmployerRelationshipNotApplicable: this.props.EmployerRelationshipNotApplicable,
+      Employer: this.props.Employer,
+      EmployerAddress: this.props.EmployerAddress,
+      HasAffiliation: this.props.HasAffiliation,
+      EmployerRelationship: this.props.EmployerRelationship,
+      ...queue
+    })
   }
 
   updateRelation (event) {
-    this.update([
-      { name: 'Relation', value: event.target.value }
-    ])
+    this.update({
+      Relation: event.target.value
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
   }
 
   updateBirthdate (values) {
-    this.update([
-      { name: 'Birthdate', value: values }
-    ])
+    this.update({
+      Birthdate: values
+    })
   }
 
   updateBirthplace (values) {
-    this.update([
-      { name: 'Birthplace', value: values }
-    ])
+    this.update({
+      Birthplace: values
+    })
   }
 
   updateCitizenship (values) {
-    this.update([
-      { name: 'Citizenship', value: values }
-    ])
+    this.update({
+      Citizenship: values
+    })
   }
 
   updateMaidenSameAsListed (values) {
-    this.update([
-      { name: 'MaidenSameAsListed', value: values }
-    ])
+    this.update({
+      MaidenSameAsListed: values
+    })
   }
 
   updateMaidenName (values) {
-    this.update([
-      { name: 'MaidenName', value: values }
-    ])
+    this.update({
+      MaidenName: values
+    })
   }
 
   updateAliases (values) {
-    this.update([
-      { name: 'Aliases', value: values }
-    ])
+    this.update({
+      Aliases: values
+    })
   }
 
   updateIsDeceased (values) {
-    this.update([
-      { name: 'IsDeceased', value: values }
-    ])
+    this.update({
+      IsDeceased: values
+    })
   }
 
   updateAddress (values) {
-    this.update([
-      { name: 'Address', value: values }
-    ])
+    this.update({
+      Address: values
+    })
   }
 
   updateCitizenshipDocumentation (event) {
-    this.update([
-      { name: 'CitizenshipDocumentation', value: event.target.value }
-    ])
+    this.update({
+      CitizenshipDocumentation: event.target.value
+    })
   }
 
   updateOtherCitizenshipDocumentation (value) {
-    this.update([
-      { name: 'OtherCitizenshipDocumentation', value: value }
-    ])
+    this.update({
+      OtherCitizenshipDocumentation: value
+    })
   }
 
   updateDocumentNumber (values) {
-    this.update([
-      { name: 'DocumentNumber', value: values }
-    ])
+    this.update({
+      DocumentNumber: values
+    })
   }
 
   updateCourtName (values) {
-    this.update([
-      { name: 'CourtName', value: values }
-    ])
+    this.update({
+      CourtName: values
+    })
   }
 
   updateCourtAddress (values) {
-    this.update([
-      { name: 'CourtAddress', value: values }
-    ])
+    this.update({
+      CourtAddress: values
+    })
   }
 
   updateDocument (event) {
-    this.update([
-      { name: 'Document', value: event.target.value }
-    ])
+    this.update({
+      Document: event.target.value
+    })
   }
 
   updateOtherDocument (value) {
-    this.update([
-      { name: 'OtherDocument', value: value }
-    ])
+    this.update({
+      OtherDocument: value
+    })
   }
 
   updateResidenceDocumentNumber (values) {
-    this.update([
-      { name: 'ResidenceDocumentNumber', value: values }
-    ])
+    this.update({
+      ResidenceDocumentNumber: values
+    })
   }
 
   updateExpiration (values) {
-    this.update([
-      { name: 'Expiration', value: values }
-    ])
+    this.update({
+      Expiration: values
+    })
   }
 
   updateFirstContact (values) {
-    this.update([
-      { name: 'FirstContact', value: values }
-    ])
+    this.update({
+      FirstContact: values
+    })
   }
 
   updateLastContact (values) {
-    this.update([
-      { name: 'LastContact', value: values }
-    ])
+    this.update({
+      LastContact: values
+    })
   }
 
   updateMethods (event) {
@@ -231,69 +224,69 @@ export default class Relative extends ValidationElement {
       selected.push(method)
     }
 
-    this.update([
-      { name: 'Methods', value: selected }
-    ])
+    this.update({
+      Methods: selected
+    })
   }
 
   updateMethodsComments (values) {
-    this.update([
-      { name: 'MethodsComments', value: values }
-    ])
+    this.update({
+      MethodsComments: values
+    })
   }
 
   updateFrequency (event) {
-    this.update([
-      { name: 'Frequency', value: event.target.value }
-    ])
+    this.update({
+      Frequency: event.target.value
+    })
   }
 
   updateFrequencyComments (values) {
-    this.update([
-      { name: 'FrequencyComments', value: values }
-    ])
+    this.update({
+      FrequencyComments: values
+    })
   }
 
   updateEmployerNotApplicable (values) {
-    this.update([
-      { name: 'EmployerNotApplicable', value: values }
-    ])
+    this.update({
+      EmployerNotApplicable: values
+    })
   }
 
   updateEmployerAddressNotApplicable (values) {
-    this.update([
-      { name: 'EmployerAddressNotApplicable', value: values }
-    ])
+    this.update({
+      EmployerAddressNotApplicable: values
+    })
   }
 
   updateEmployerRelationshipNotApplicable (values) {
-    this.update([
-      { name: 'EmployerRelationshipNotApplicable', value: values }
-    ])
+    this.update({
+      EmployerRelationshipNotApplicable: values
+    })
   }
 
   updateEmployer (values) {
-    this.update([
-      { name: 'Employer', value: values }
-    ])
+    this.update({
+      Employer: values
+    })
   }
 
   updateEmployerAddress (values) {
-    this.update([
-      { name: 'EmployerAddress', value: values }
-    ])
+    this.update({
+      EmployerAddress: values
+    })
   }
 
   updateHasAffiliation (values) {
-    this.update([
-      { name: 'HasAffiliation', value: values }
-    ])
+    this.update({
+      HasAffiliation: values
+    })
   }
 
   updateEmployerRelationship (values) {
-    this.update([
-      { name: 'EmployerRelationship', value: values }
-    ])
+    this.update({
+      EmployerRelationship: values
+    })
   }
 
   render () {
@@ -991,5 +984,6 @@ Relative.defaultProps = {
   EmployerAddress: {},
   HasAffiliation: '',
   EmployerRelationship: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

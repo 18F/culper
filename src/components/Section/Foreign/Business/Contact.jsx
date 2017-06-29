@@ -17,34 +17,27 @@ export default class Contact extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignContact: this.props.HasForeignContact
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignContact: this.props.HasForeignContact,
+      ...queue
+    })
   }
 
   updateHasForeignContact (values) {
-    this.update([
-      { name: 'HasForeignContact', value: values },
-      { name: 'List', value: values === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: values === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      HasForeignContact: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -170,6 +163,7 @@ Contact.defaultProps = {
   HasForeignContact: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',

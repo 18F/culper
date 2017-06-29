@@ -19,6 +19,7 @@ describe('The civil union component', () => {
       Separated: 'Yes',
       Divorced: 'Yes',
       AddressSeparated: { country: 'United States' },
+      ForeignBornDocument: { DocumentType: 'Other' },
       onUpdate: () => { updates++ }
     }
 

@@ -22,51 +22,44 @@ export default class Person extends React.Component {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        Dates: this.props.Dates,
-        Rank: this.props.Rank,
-        RankNotApplicable: this.props.RankNotApplicable,
-        Relationship: this.props.Relationship,
-        RelationshipOther: this.props.RelationshipOther,
-        MobileTelephone: this.props.MobileTelephone,
-        OtherTelephone: this.props.OtherTelephone,
-        Email: this.props.Email,
-        EmailNotApplicable: this.props.EmailNotApplicable,
-        Address: this.props.Address
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Dates: this.props.Dates,
+      Rank: this.props.Rank,
+      RankNotApplicable: this.props.RankNotApplicable,
+      Relationship: this.props.Relationship,
+      RelationshipOther: this.props.RelationshipOther,
+      MobileTelephone: this.props.MobileTelephone,
+      OtherTelephone: this.props.OtherTelephone,
+      Email: this.props.Email,
+      EmailNotApplicable: this.props.EmailNotApplicable,
+      Address: this.props.Address,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
   }
 
   updateDates (values) {
-    this.update([
-      { name: 'Dates', value: values }
-    ])
+    this.update({
+      Dates: values
+    })
   }
 
   updateRank (values) {
-    this.update([
-      { name: 'Rank', value: values }
-    ])
+    this.update({
+      Rank: values
+    })
   }
 
   updateRankNotApplicable (values) {
-    this.update([
-      { name: 'RankNotApplicable', value: values }
-    ])
+    this.update({
+      RankNotApplicable: values
+    })
   }
 
   updateRelationship (event) {
@@ -80,45 +73,46 @@ export default class Person extends React.Component {
       // Add the new relationship
       selected.push(relations)
     }
-    this.update([
-      { name: 'Relationship', value: selected }
-    ])
+
+    this.update({
+      Relationship: selected
+    })
   }
 
   updateRelationshipOther (values) {
-    this.update([
-      { name: 'RelationshipOther', value: values }
-    ])
+    this.update({
+      RelationshipOther: values
+    })
   }
 
   updateMobileTelephone (values) {
-    this.update([
-      { name: 'MobileTelephone', value: values }
-    ])
+    this.update({
+      MobileTelephone: values
+    })
   }
 
   updateOtherTelephone (values) {
-    this.update([
-      { name: 'OtherTelephone', value: values }
-    ])
+    this.update({
+      OtherTelephone: values
+    })
   }
 
   updateEmail (values) {
-    this.update([
-      { name: 'Email', value: values }
-    ])
+    this.update({
+      Email: values
+    })
   }
 
   updateEmailNotApplicable (values) {
-    this.update([
-      { name: 'EmailNotApplicable', value: values }
-    ])
+    this.update({
+      EmailNotApplicable: values
+    })
   }
 
   updateAddress (values) {
-    this.update([
-      { name: 'Address', value: values }
-    ])
+    this.update({
+      Address: values
+    })
   }
 
   render () {
@@ -281,5 +275,6 @@ export default class Person extends React.Component {
 
 Person.defaultProps = {
   Relationship: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

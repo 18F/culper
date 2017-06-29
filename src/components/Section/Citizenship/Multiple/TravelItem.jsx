@@ -12,30 +12,23 @@ export default class TravelItem extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Country: this.props.Country,
-        Dates: this.props.Dates
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Country: this.props.Country,
+      Dates: this.props.Dates,
+      ...queue
+    })
   }
 
   updateCountry (values) {
-    this.update([
-      { name: 'Country', value: values }
-    ])
+    this.update({
+      Country: values
+    })
   }
 
   updateDates (values) {
-    this.update([
-      { name: 'Dates', value: values }
-    ])
+    this.update({
+      Dates: values
+    })
   }
 
   render () {
@@ -66,5 +59,6 @@ export default class TravelItem extends ValidationElement {
 TravelItem.defaultProps = {
   Country: {},
   Dates: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

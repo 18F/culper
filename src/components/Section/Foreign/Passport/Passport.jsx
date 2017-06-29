@@ -21,23 +21,16 @@ export default class Passport extends SubsectionElement {
   }
 
   update (queue, fn) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        Number: this.props.Number,
-        Card: this.props.Card,
-        Issued: this.props.Issued,
-        Expiration: this.props.Expiration,
-        Comments: this.props.Comments,
-        HasPassport: this.props.HasPassport
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Number: this.props.Number,
+      Card: this.props.Card,
+      Issued: this.props.Issued,
+      Expiration: this.props.Expiration,
+      Comments: this.props.Comments,
+      HasPassport: this.props.HasPassport,
+      ...queue
+    })
 
     if (fn) {
       fn()
@@ -48,9 +41,9 @@ export default class Passport extends SubsectionElement {
    * Handle the change event.
    */
   updateCard (event) {
-    this.update([
-      { name: 'Card', value: event.target.value }
-    ], () => {
+    this.update({
+      Card: event.target.value
+    }, () => {
       // This allows us to force a blur/validation using
       // the new regular expression
       this.refs.number.refs.text.refs.input.focus()
@@ -62,37 +55,37 @@ export default class Passport extends SubsectionElement {
    * Handle when the yes/no option has been changed
    */
   updateBranch (val, event) {
-    this.update([
-      { name: 'HasPassport', value: val },
-      { name: 'Name', value: val === 'Yes' ? this.props.Name : {} },
-      { name: 'Number', value: val === 'Yes' ? this.props.Number : '' },
-      { name: 'Issued', value: val === 'Yes' ? this.props.Issued : {} },
-      { name: 'Expired', value: val === 'Yes' ? this.props.Expired : {} }
-    ])
+    this.update({
+      HasPassport: val,
+      Name: val === 'Yes' ? this.props.Name : {},
+      Number: val === 'Yes' ? this.props.Number : '',
+      Issued: val === 'Yes' ? this.props.Issued : {},
+      Expired: val === 'Yes' ? this.props.Expired : {}
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
   }
 
   updateNumber (values) {
-    this.update([
-      { name: 'Number', value: values }
-    ])
+    this.update({
+      Number: values
+    })
   }
 
   updateIssued (values) {
-    this.update([
-      { name: 'Issued', value: values }
-    ])
+    this.update({
+      Issued: values
+    })
   }
 
   updateExpired (values) {
-    this.update([
-      { name: 'Expired', value: values }
-    ])
+    this.update({
+      Expired: values
+    })
   }
 
   renderSuggestion (suggestion) {
@@ -102,9 +95,9 @@ export default class Passport extends SubsectionElement {
   }
 
   onSuggestion (suggestion) {
-    this.update([
-      { name: 'Name', value: suggestion }
-    ])
+    this.update({
+      Name: suggestion
+    })
   }
 
   dismissSuggestions () {
@@ -244,6 +237,7 @@ Passport.defaultProps = {
   HasPassport: '',
   reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
   reCard: '^[cC]{1}[0-9]{8}$',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'passport',

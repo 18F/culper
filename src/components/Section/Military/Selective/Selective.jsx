@@ -16,32 +16,25 @@ export default class Selective extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        WasBornAfter: this.props.WasBornAfter,
-        HasRegistered: this.props.HasRegistered,
-        RegistrationNumber: this.props.RegistrationNumber,
-        Explanation: this.props.Explanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      WasBornAfter: this.props.WasBornAfter,
+      HasRegistered: this.props.HasRegistered,
+      RegistrationNumber: this.props.RegistrationNumber,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateBornAfter (value, event) {
-    let values = [
-      { name: 'WasBornAfter', value: value }
-    ]
+    let values = {
+      WasBornAfter: value
+    }
 
     // If there is no history clear out any previously entered data
     if (value === 'No') {
-      values.push({ name: 'HasRegistered', value: null })
-      values.push({ name: 'RegistrationNumber', value: null })
-      values.push({ name: 'Explanation', value: null })
+      values.HasRegistered = null
+      values.RegistrationNumber = null
+      values.Explanation = null
     }
 
     this.update(values)
@@ -49,23 +42,23 @@ export default class Selective extends SubsectionElement {
 
   updateRegistered (value, event) {
     // If there is no history clear out any previously entered data
-    this.update([
-      { name: 'HasRegistered', value: value },
-      { name: 'RegistrationNumber', value: value === 'Yes' ? this.props.RegistrationNumber : null },
-      { name: 'Explanation', value: value === 'Yes' ? null : this.props.Explanation }
-    ])
+    this.update({
+      HasRegistered: value,
+      RegistrationNumber: value === 'Yes' ? this.props.RegistrationNumber : null,
+      Explanation: value === 'Yes' ? null : this.props.Explanation
+    })
   }
 
   updateRegistrationNumber (value) {
-    this.update([
-      { name: 'RegistrationNumber', value: value }
-    ])
+    this.update({
+      RegistrationNumber: value
+    })
   }
 
   updateExplanation (value) {
-    this.update([
-      { name: 'Explanation', value: value }
-    ])
+    this.update({
+      Explanation: value
+    })
   }
 
   render () {
@@ -147,6 +140,7 @@ export default class Selective extends SubsectionElement {
 }
 
 Selective.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'selective',

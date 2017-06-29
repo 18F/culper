@@ -15,23 +15,16 @@ export default class ConferenceContacts extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ...queue
+    })
   }
 
   updateList (items) {
-    this.update([
-      { name: 'List', value: items }
-    ])
+    this.update({
+      List: items
+    })
   }
 
   render () {
@@ -60,5 +53,6 @@ export default class ConferenceContacts extends ValidationElement {
 ConferenceContacts.defaultProps = {
   name: 'Contacts',
   List: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

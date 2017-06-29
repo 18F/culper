@@ -37,71 +37,64 @@ export default class ForeignNational extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        NameNotApplicable: this.props.NameNotApplicable,
-        NameExplanation: this.props.NameExplanation,
-        FirstContact: this.props.FirstContact,
-        LastContact: this.props.LastContact,
-        Methods: this.props.Methods,
-        MethodsExplanation: this.props.MethodsExplanation,
-        Frequency: this.props.Frequency,
-        FrequencyExplanation: this.props.FrequencyExplanation,
-        Relationship: this.props.Relationship,
-        RelationshipExplanation: this.props.RelationshipExplanation,
-        Aliases: this.props.Aliases,
-        Citizenship: this.props.Citizenship,
-        Birthdate: this.props.Birthdate,
-        BirthdateNotApplicable: this.props.BirthdateNotApplicable,
-        Birthplace: this.props.Birthplace,
-        BirthplaceNotApplicable: this.props.BirthplaceNotApplicable,
-        Address: this.props.Address,
-        AddressNotApplicable: this.props.AddressNotApplicable,
-        Employer: this.props.Employer,
-        EmployerNotApplicable: this.props.EmployerNotApplicable,
-        EmployerAddress: this.props.EmployerAddress,
-        EmployerAddressNotApplicable: this.props.EmployerAddressNotApplicable,
-        HasAffiliations: this.props.HasAffiliations,
-        Affiliations: this.props.Affiliations
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      NameNotApplicable: this.props.NameNotApplicable,
+      NameExplanation: this.props.NameExplanation,
+      FirstContact: this.props.FirstContact,
+      LastContact: this.props.LastContact,
+      Methods: this.props.Methods,
+      MethodsExplanation: this.props.MethodsExplanation,
+      Frequency: this.props.Frequency,
+      FrequencyExplanation: this.props.FrequencyExplanation,
+      Relationship: this.props.Relationship,
+      RelationshipExplanation: this.props.RelationshipExplanation,
+      Aliases: this.props.Aliases,
+      Citizenship: this.props.Citizenship,
+      Birthdate: this.props.Birthdate,
+      BirthdateNotApplicable: this.props.BirthdateNotApplicable,
+      Birthplace: this.props.Birthplace,
+      BirthplaceNotApplicable: this.props.BirthplaceNotApplicable,
+      Address: this.props.Address,
+      AddressNotApplicable: this.props.AddressNotApplicable,
+      Employer: this.props.Employer,
+      EmployerNotApplicable: this.props.EmployerNotApplicable,
+      EmployerAddress: this.props.EmployerAddress,
+      EmployerAddressNotApplicable: this.props.EmployerAddressNotApplicable,
+      HasAffiliations: this.props.HasAffiliations,
+      Affiliations: this.props.Affiliations,
+      ...queue
+    })
   }
 
   updateName (value) {
-    this.update([
-      { name: 'Name', value: value }
-    ])
+    this.update({
+      Name: value
+    })
   }
 
   updateNameNotApplicable (value) {
-    this.update([
-      { name: 'NameNotApplicable', value: value }
-    ])
+    this.update({
+      NameNotApplicable: value
+    })
   }
 
   updateNameExplanation (value) {
-    this.update([
-      { name: 'NameExplanation', value: value }
-    ])
+    this.update({
+      NameExplanation: value
+    })
   }
 
   updateFirstContact (value) {
-    this.update([
-      { name: 'FirstContact', value: value }
-    ])
+    this.update({
+      FirstContact: value
+    })
   }
 
   updateLastContact (value) {
-    this.update([
-      { name: 'LastContact', value: value }
-    ])
+    this.update({
+      LastContact: value
+    })
   }
 
   updateMethods (response) {
@@ -114,27 +107,27 @@ export default class ForeignNational extends ValidationElement {
       list.push(selected)
     }
 
-    this.update([
-      { name: 'Methods', value: list }
-    ])
+    this.update({
+      Methods: list
+    })
   }
 
   updateMethodsExplanation (value) {
-    this.update([
-      { name: 'MethodsExplanation', value: value }
-    ])
+    this.update({
+      MethodsExplanation: value
+    })
   }
 
   updateFrequency (response) {
-    this.update([
-      { name: 'Frequency', value: response.value }
-    ])
+    this.update({
+      Frequency: response.value
+    })
   }
 
   updateFrequencyExplanation (value) {
-    this.update([
-      { name: 'FrequencyExplanation', value: value }
-    ])
+    this.update({
+      FrequencyExplanation: value
+    })
   }
 
   updateRelationship (response) {
@@ -147,99 +140,99 @@ export default class ForeignNational extends ValidationElement {
       list.push(selected)
     }
 
-    this.update([
-      { name: 'Relationship', value: list }
-    ])
+    this.update({
+      Relationship: list
+    })
   }
 
   updateRelationshipExplanation (value) {
-    this.update([
-      { name: 'RelationshipExplanation', value: value }
-    ])
+    this.update({
+      RelationshipExplanation: value
+    })
   }
 
   updateAliases (value) {
-    this.update([
-      { name: 'Aliases', value: value }
-    ])
+    this.update({
+      Aliases: value
+    })
   }
 
   updateCitizenship (value) {
-    this.update([
-      { name: 'Citizenship', value: value }
-    ])
+    this.update({
+      Citizenship: value
+    })
   }
 
   updateBirthdate (value) {
-    this.update([
-      { name: 'Birthdate', value: value }
-    ])
+    this.update({
+      Birthdate: value
+    })
   }
 
   updateBirthdateNotApplicable (value) {
-    this.update([
-      { name: 'BirthdateNotApplicable', value: value }
-    ])
+    this.update({
+      BirthdateNotApplicable: value
+    })
   }
 
   updateBirthplace (value) {
-    this.update([
-      { name: 'Birthplace', value: value }
-    ])
+    this.update({
+      Birthplace: value
+    })
   }
 
   updateBirthplaceNotApplicable (value) {
-    this.update([
-      { name: 'BirthplaceNotApplicable', value: value }
-    ])
+    this.update({
+      BirthplaceNotApplicable: value
+    })
   }
 
   updateAddress (value) {
-    this.update([
-      { name: 'Address', value: value }
-    ])
+    this.update({
+      Address: value
+    })
   }
 
   updateAddressNotApplicable (value) {
-    this.update([
-      { name: 'AddressNotApplicable', value: value }
-    ])
+    this.update({
+      AddressNotApplicable: value
+    })
   }
 
   updateEmployer (value) {
-    this.update([
-      { name: 'Employer', value: value }
-    ])
+    this.update({
+      Employer: value
+    })
   }
 
   updateEmployerNotApplicable (value) {
-    this.update([
-      { name: 'EmployerNotApplicable', value: value }
-    ])
+    this.update({
+      EmployerNotApplicable: value
+    })
   }
 
   updateEmployerAddress (value) {
-    this.update([
-      { name: 'EmployerAddress', value: value }
-    ])
+    this.update({
+      EmployerAddress: value
+    })
   }
 
   updateEmployerAddressNotApplicable (value) {
-    this.update([
-      { name: 'EmployerAddressNotApplicable', value: value }
-    ])
+    this.update({
+      EmployerAddressNotApplicable: value
+    })
   }
 
   updateHasAffiliations (response) {
-    this.update([
-      { name: 'HasAffiliations', value: response.value }
-    ])
+    this.update({
+      HasAffiliations: response.value
+    })
   }
 
   updateAffiliations (value) {
-    this.update([
-      { name: 'Affiliations', value: value }
-    ])
+    this.update({
+      Affiliations: value
+    })
   }
 
   render () {
@@ -635,5 +628,6 @@ ForeignNational.defaultProps = {
   EmployerAddress: {},
   HasAffiliations: '',
   Affiliations: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

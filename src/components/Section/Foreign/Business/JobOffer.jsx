@@ -17,58 +17,51 @@ export default class JobOffer extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        Description: this.props.Description,
-        Date: this.props.Date,
-        Address: this.props.Address,
-        Accepted: this.props.Accepted,
-        Explanation: this.props.Explanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Description: this.props.Description,
+      Date: this.props.Date,
+      Address: this.props.Address,
+      Accepted: this.props.Accepted,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
   }
 
   updateDescription (values) {
-    this.update([
-      { name: 'Description', value: values }
-    ])
+    this.update({
+      Description: values
+    })
   }
 
   updateDate (values) {
-    this.update([
-      { name: 'Date', value: values }
-    ])
+    this.update({
+      Date: values
+    })
   }
 
   updateAddress (values) {
-    this.update([
-      { name: 'Address', value: values }
-    ])
+    this.update({
+      Address: values
+    })
   }
 
   updateAccepted (values) {
-    this.update([
-      { name: 'Accepted', value: values }
-    ])
+    this.update({
+      Accepted: values
+    })
   }
 
   updateExplanation (values) {
-    this.update([
-      { name: 'Explanation', value: values }
-    ])
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
@@ -147,5 +140,6 @@ JobOffer.defaultProps = {
   Address: {},
   Accepted: '',
   Explanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

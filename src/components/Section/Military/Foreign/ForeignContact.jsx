@@ -15,51 +15,44 @@ export default class ForeignContact extends React.Component {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        Address: this.props.Address,
-        Title: this.props.Title,
-        Dates: this.props.Dates,
-        Frequency: this.props.Frequency
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Address: this.props.Address,
+      Title: this.props.Title,
+      Dates: this.props.Dates,
+      Frequency: this.props.Frequency,
+      ...queue
+    })
   }
 
   updateName (value) {
-    this.update([
-      { name: 'Name', value: value }
-    ])
+    this.update({
+      Name: value
+    })
   }
 
   updateAddress (value) {
-    this.update([
-      { name: 'Address', value: value }
-    ])
+    this.update({
+      Address: value
+    })
   }
 
   updateTitle (value) {
-    this.update([
-      { name: 'Title', value: value }
-    ])
+    this.update({
+      Title: value
+    })
   }
 
   updateDates (value) {
-    this.update([
-      { name: 'Dates', value: value }
-    ])
+    this.update({
+      Dates: value
+    })
   }
 
   updateFrequency (value) {
-    this.update([
-      { name: 'Frequency', value: value }
-    ])
+    this.update({
+      Frequency: value
+    })
   }
 
   render () {
@@ -127,5 +120,6 @@ ForeignContact.defaultProps = {
   Title: {},
   Dates: {},
   Frequency: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

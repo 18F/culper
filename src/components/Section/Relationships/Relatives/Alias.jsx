@@ -14,44 +14,37 @@ export default class Alias extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        MaidenName: this.props.MaidenName,
-        Dates: this.props.Dates,
-        Reason: this.props.Reason
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      MaidenName: this.props.MaidenName,
+      Dates: this.props.Dates,
+      Reason: this.props.Reason,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update([
-      { name: 'Name', value: values }
-    ])
+    this.update({
+      Name: values
+    })
   }
 
   updateMaidenName (values) {
-    this.update([
-      { name: 'MaidenName', value: values }
-    ])
+    this.update({
+      MaidenName: values
+    })
   }
 
   updateDates (values) {
-    this.update([
-      { name: 'Dates', value: values }
-    ])
+    this.update({
+      Dates: values
+    })
   }
 
   updateReason (values) {
-    this.update([
-      { name: 'Reason', value: values }
-    ])
+    this.update({
+      Reason: values
+    })
   }
 
   render () {
@@ -108,5 +101,6 @@ Alias.defaultProps = {
   Dates: {},
   Reason: {},
   hideMaiden: false,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

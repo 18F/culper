@@ -14,34 +14,27 @@ export default class Family extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignFamily: this.props.HasForeignFamily
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignFamily: this.props.HasForeignFamily,
+      ...queue
+    })
   }
 
   updateHasForeignFamily (value) {
-    this.update([
-      { name: 'HasForeignFamily', value: value },
-      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      HasForeignFamily: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -130,6 +123,7 @@ Family.defaultProps = {
   HasForeignFamily: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/family',

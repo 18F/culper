@@ -15,34 +15,27 @@ export default class Cohabitants extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        HasCohabitant: this.props.HasCohabitant,
-        CohabitantList: this.props.CohabitantList,
-        CohabitantListBranch: this.props.CohabitantListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      HasCohabitant: this.props.HasCohabitant,
+      CohabitantList: this.props.CohabitantList,
+      CohabitantListBranch: this.props.CohabitantListBranch,
+      ...queue
+    })
   }
 
   updateHasCohabitant (values) {
-    this.update([
-      { name: 'HasCohabitant', value: values },
-      { name: 'CohabitantList', value: values === 'Yes' ? values.items : [] },
-      { name: 'CohabitantListBranch', value: values === 'Yes' ? values.branch : '' }
-    ])
+    this.update({
+      HasCohabitant: values,
+      CohabitantList: values === 'Yes' ? values.items : [],
+      CohabitantListBranch: values === 'Yes' ? values.branch : ''
+    })
   }
 
   updateCohabitantList (values) {
-    this.update([
-      { name: 'CohabitantList', value: values.items },
-      { name: 'CohabitantListBranch', value: values.branch }
-    ])
+    this.update({
+      CohabitantList: values.items,
+      CohabitantListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -97,6 +90,7 @@ Cohabitants.defaultProps = {
   HasCohabitant: '',
   CohabitantList: [],
   CohabitantListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/cohabitant',

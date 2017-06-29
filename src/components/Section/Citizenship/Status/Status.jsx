@@ -38,191 +38,184 @@ export default class Status extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        CitizenshipStatus: this.props.CitizenshipStatus,
-        AbroadDocumentation: this.props.AbroadDocumentation,
-        Explanation: this.props.Explanation,
-        DocumentNumber: this.props.DocumentNumber,
-        DocumentIssued: this.props.DocumentIssued,
-        PlaceIssued: this.props.PlaceIssued,
-        DocumentName: this.props.DocumentName,
-        CertificateNumber: this.props.CertificateNumber,
-        CertificateIssued: this.props.CertificateIssued,
-        CertificateName: this.props.CertificateName,
-        BornOnMilitaryInstallation: this.props.BornOnMilitaryInstallation,
-        MilitaryBase: this.props.MilitaryBase,
-        EntryDate: this.props.EntryDate,
-        EntryLocation: this.props.EntryLocation,
-        PriorCitizenship: this.props.PriorCitizenship,
-        HasAlienRegistration: this.props.HasAlienRegistration,
-        AlienRegistrationNumber: this.props.AlienRegistrationNumber,
-        AlienRegistrationExiration: this.props.AlienRegistrationExiration,
-        CertificateCourtName: this.props.CertificateCourtName,
-        CertificateCourtAddress: this.props.CertificateCourtAddress,
-        Basis: this.props.Basis,
-        PermanentResidentCardNumber: this.props.PermanentResidentCardNumber,
-        ResidenceStatus: this.props.ResidenceStatus,
-        DocumentType: this.props.DocumentType,
-        DocumentExpiration: this.props.DocumentExpiration
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      CitizenshipStatus: this.props.CitizenshipStatus,
+      AbroadDocumentation: this.props.AbroadDocumentation,
+      Explanation: this.props.Explanation,
+      DocumentNumber: this.props.DocumentNumber,
+      DocumentIssued: this.props.DocumentIssued,
+      PlaceIssued: this.props.PlaceIssued,
+      DocumentName: this.props.DocumentName,
+      CertificateNumber: this.props.CertificateNumber,
+      CertificateIssued: this.props.CertificateIssued,
+      CertificateName: this.props.CertificateName,
+      BornOnMilitaryInstallation: this.props.BornOnMilitaryInstallation,
+      MilitaryBase: this.props.MilitaryBase,
+      EntryDate: this.props.EntryDate,
+      EntryLocation: this.props.EntryLocation,
+      PriorCitizenship: this.props.PriorCitizenship,
+      HasAlienRegistration: this.props.HasAlienRegistration,
+      AlienRegistrationNumber: this.props.AlienRegistrationNumber,
+      AlienRegistrationExiration: this.props.AlienRegistrationExiration,
+      CertificateCourtName: this.props.CertificateCourtName,
+      CertificateCourtAddress: this.props.CertificateCourtAddress,
+      Basis: this.props.Basis,
+      PermanentResidentCardNumber: this.props.PermanentResidentCardNumber,
+      ResidenceStatus: this.props.ResidenceStatus,
+      DocumentType: this.props.DocumentType,
+      DocumentExpiration: this.props.DocumentExpiration,
+      ...queue
+    })
   }
 
   updateCitizenshipStatus (event) {
-    this.update([
-      { name: 'CitizenshipStatus', value: event.target.value }
-    ])
+    this.update({
+      CitizenshipStatus: event.target.value
+    })
   }
 
   updateAbroadDocumentation (event) {
-    this.update([
-      { name: 'AbroadDocumentation', value: event.target.value }
-    ])
+    this.update({
+      AbroadDocumentation: event.target.value
+    })
   }
 
   updateExplanation (values) {
-    this.update([
-      { name: 'Explanation', value: values }
-    ])
+    this.update({
+      Explanation: values
+    })
   }
 
   updateDocumentNumber (values) {
-    this.update([
-      { name: 'DocumentNumber', value: values }
-    ])
+    this.update({
+      DocumentNumber: values
+    })
   }
 
   updateDocumentIssued (values) {
-    this.update([
-      { name: 'DocumentIssued', value: values }
-    ])
+    this.update({
+      DocumentIssued: values
+    })
   }
 
   updatePlaceIssued (values) {
-    this.update([
-      { name: 'PlaceIssued', value: values }
-    ])
+    this.update({
+      PlaceIssued: values
+    })
   }
 
   updateDocumentName (values) {
-    this.update([
-      { name: 'DocumentName', value: values }
-    ])
+    this.update({
+      DocumentName: values
+    })
   }
 
   updateCertificateNumber (values) {
-    this.update([
-      { name: 'CertificateNumber', value: values }
-    ])
+    this.update({
+      CertificateNumber: values
+    })
   }
 
   updateCertificateIssued (values) {
-    this.update([
-      { name: 'CertificateIssued', value: values }
-    ])
+    this.update({
+      CertificateIssued: values
+    })
   }
 
   updateCertificateName (values) {
-    this.update([
-      { name: 'CertificateName', value: values }
-    ])
+    this.update({
+      CertificateName: values
+    })
   }
 
   updateBornOnMilitaryInstallation (values) {
-    this.update([
-      { name: 'BornOnMilitaryInstallation', value: values }
-    ])
+    this.update({
+      BornOnMilitaryInstallation: values
+    })
   }
 
   updateMilitaryBase (values) {
-    this.update([
-      { name: 'MilitaryBase', value: values }
-    ])
+    this.update({
+      MilitaryBase: values
+    })
   }
 
   updateEntryDate (values) {
-    this.update([
-      { name: 'EntryDate', value: values }
-    ])
+    this.update({
+      EntryDate: values
+    })
   }
 
   updateEntryLocation (values) {
-    this.update([
-      { name: 'EntryLocation', value: values }
-    ])
+    this.update({
+      EntryLocation: values
+    })
   }
 
   updatePriorCitizenship (values) {
-    this.update([
-      { name: 'PriorCitizenship', value: values }
-    ])
+    this.update({
+      PriorCitizenship: values
+    })
   }
 
   updateHasAlienRegistration (values) {
-    this.update([
-      { name: 'HasAlienRegistration', value: values }
-    ])
+    this.update({
+      HasAlienRegistration: values
+    })
   }
 
   updateAlienRegistrationNumber (values) {
-    this.update([
-      { name: 'AlienRegistrationNumber', value: values }
-    ])
+    this.update({
+      AlienRegistrationNumber: values
+    })
   }
 
   updateAlienRegistrationExpiration (values) {
-    this.update([
-      { name: 'AlienRegistrationExpiration', value: values }
-    ])
+    this.update({
+      AlienRegistrationExpiration: values
+    })
   }
 
   updateCertificateCourtName (values) {
-    this.update([
-      { name: 'CertificateCourtName', value: values }
-    ])
+    this.update({
+      CertificateCourtName: values
+    })
   }
 
   updateCertificateCourtAddress (values) {
-    this.update([
-      { name: 'CertificateCourtAddress', value: values }
-    ])
+    this.update({
+      CertificateCourtAddress: values
+    })
   }
 
   updateBasis (event) {
-    this.update([
-      { name: 'Basis', value: event.target.value }
-    ])
+    this.update({
+      Basis: event.target.value
+    })
   }
 
   updatePermanentResidentCardNumber (values) {
-    this.update([
-      { name: 'PermanentResidentCardNumber', value: values }
-    ])
+    this.update({
+      PermanentResidentCardNumber: values
+    })
   }
 
   updateResidenceStatus (values) {
-    this.update([
-      { name: 'ResidenceStatus', value: values }
-    ])
+    this.update({
+      ResidenceStatus: values
+    })
   }
 
   updateDocumentType (event) {
-    this.update([
-      { name: 'DocumentType', value: event.target.value }
-    ])
+    this.update({
+      DocumentType: event.target.value
+    })
   }
 
   updateDocumentExpiration (values) {
-    this.update([
-      { name: 'DocumentExpiration', value: values }
-    ])
+    this.update({
+      DocumentExpiration: values
+    })
   }
 
   render () {
@@ -803,6 +796,7 @@ Status.defaultProps = {
   ResidenceStatus: {},
   DocumentType: '',
   DocumentExpiration: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',
   subsection: 'status',

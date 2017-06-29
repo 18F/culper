@@ -16,34 +16,27 @@ export default class Employment extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignEmployment: this.props.HasForeignEmployment
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignEmployment: this.props.HasForeignEmployment,
+      ...queue
+    })
   }
 
   updateHasForeignEmployment (value) {
-    this.update([
-      { name: 'HasForeignEmployment', value: value },
-      { name: 'List', value: value === 'Yes' ? this.props.List : [] },
-      { name: 'ListBranch', value: value === 'Yes' ? this.props.ListBranch : '' }
-    ])
+    this.update({
+      HasForeignEmployment: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -95,6 +88,7 @@ Employment.defaultProps = {
   name: 'Employment',
   HasForeignEmployment: '',
   List: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/employment',

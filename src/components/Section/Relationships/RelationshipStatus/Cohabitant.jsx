@@ -28,28 +28,21 @@ export default class Cohabitant extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Name: this.props.Name,
-        Birthdate: this.props.Birthdate,
-        BirthPlace: this.props.BirthPlace,
-        ForeignBornDocument: this.props.ForeignBornDocument,
-        SSN: this.props.SSN,
-        OtherName: this.props.OtherName,
-        OtherNameNotApplicable: this.props.OtherNameNotApplicable,
-        OtherNameMaiden: this.props.OtherNameMaiden,
-        OtherNameUsed: this.props.OtherNameUsed,
-        Citizenship: this.props.Citizenship,
-        CohabitationBegan: this.props.CohabitationBegan,
-        SameSpouse: this.props.SameSpouse
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Birthdate: this.props.Birthdate,
+      BirthPlace: this.props.BirthPlace,
+      ForeignBornDocument: this.props.ForeignBornDocument,
+      SSN: this.props.SSN,
+      OtherName: this.props.OtherName,
+      OtherNameNotApplicable: this.props.OtherNameNotApplicable,
+      OtherNameMaiden: this.props.OtherNameMaiden,
+      OtherNameUsed: this.props.OtherNameUsed,
+      Citizenship: this.props.Citizenship,
+      CohabitationBegan: this.props.CohabitationBegan,
+      SameSpouse: this.props.SameSpouse,
+      ...queue
+    })
   }
 
   clear () {
@@ -80,70 +73,70 @@ export default class Cohabitant extends ValidationElement {
     }
 
     const similarSpouse = new CohabitantValidator({Name: values}).similarSpouse(this.props.spouse)
-    this.update([
-      { name: 'Name', value: values },
-      { name: 'SameSpouse', value: similarSpouse }
-    ])
+    this.update({
+      Name: values,
+      SameSpouse: similarSpouse
+    })
   }
 
   updateBirthdate (values) {
-    this.update([
-      { name: 'Birthdate', value: values }
-    ])
+    this.update({
+      Birthdate: values
+    })
   }
 
   updateBirthPlace (values) {
-    this.update([
-      { name: 'BirthPlace', value: values }
-    ])
+    this.update({
+      BirthPlace: values
+    })
   }
 
   updateForeignBornDocument (values) {
-    this.update([
-      { name: 'ForeignBornDocument', value: values }
-    ])
+    this.update({
+      ForeignBornDocument: values
+    })
   }
 
   updateSSN (values) {
-    this.update([
-      { name: 'SSN', value: values.value || '' }
-    ])
+    this.update({
+      SSN: values.value || ''
+    })
   }
 
   updateOtherName (values) {
-    this.update([
-      { name: 'OtherName', value: values }
-    ])
+    this.update({
+      OtherName: values
+    })
   }
 
   updateOtherNameMaiden (values) {
-    this.update([
-      { name: 'OtherNameMaiden', value: values }
-    ])
+    this.update({
+      OtherNameMaiden: values
+    })
   }
 
   updateOtherNameUsed (values) {
-    this.update([
-      { name: 'OtherNameUsed', value: values }
-    ])
+    this.update({
+      OtherNameUsed: values
+    })
   }
 
   updateOtherNameNotApplicable (values) {
-    this.update([
-      { name: 'OtherNameNotApplicable', value: values }
-    ])
+    this.update({
+      OtherNameNotApplicable: values
+    })
   }
 
   updateCitizenship (values) {
-    this.update([
-      { name: 'Citizenship', value: values }
-    ])
+    this.update({
+      Citizenship: values
+    })
   }
 
   updateCohabitationBegan (values) {
-    this.update([
-      { name: 'CohabitationBegan', value: values }
-    ])
+    this.update({
+      CohabitationBegan: values
+    })
   }
 
   renderSpouseSuggestion () {
@@ -163,10 +156,10 @@ export default class Cohabitant extends ValidationElement {
   }
 
   dismissSpouseSuggestion () {
-    this.update([
-      { name: 'SameSpouseConfirmed', value: true },
-      { name: 'SameSpouse', value: false }
-    ])
+    this.update({
+      SameSpouseConfirmed: true,
+      SameSpouse: false
+    })
   }
 
   render () {
@@ -318,5 +311,6 @@ Cohabitant.defaultProps = {
   Citizenship: {},
   CohabitationBegan: {},
   SameSpouse: false,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
