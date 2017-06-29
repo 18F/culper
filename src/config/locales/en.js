@@ -2896,7 +2896,7 @@ const en = {
       },
       street: {
         label: 'Address',
-        placeholder: 'Enter mailing address'
+        placeholder: 'Enter address'
       },
       city: {
         label: 'City',
