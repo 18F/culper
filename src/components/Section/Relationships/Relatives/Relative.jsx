@@ -604,6 +604,7 @@ export default class Relative extends ValidationElement {
                    adjustFor="labels">
               <Location name="CourtAddress"
                        layout={Location.US_ADDRESS}
+                       geocode={true}
                        className="relative-courtaddress"
                        {...this.state.CourtAddress}
                        onError={this.props.onError}
