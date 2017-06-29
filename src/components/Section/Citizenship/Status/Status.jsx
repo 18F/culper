@@ -478,6 +478,7 @@ export default class Status extends SubsectionElement {
                    shrink={true}>
               <Location name="CertificateCourtAddress"
                        layout={Location.US_ADDRESS}
+                       geocode={true}
                        className="certificate-court-address"
                        {...this.props.CertificateCourtAddress}
                        onUpdate={this.updateCertificateCourtAddress}

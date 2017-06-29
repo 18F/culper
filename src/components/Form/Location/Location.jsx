@@ -413,10 +413,10 @@ Location.defaultProps = {
   cityPlaceholder: i18n.t('address.us.city.placeholder'),
   zipcodePlaceholder: i18n.t('address.us.zipcode.placeholder'),
   zipcodeLabel: i18n.t('address.us.zipcode.label'),
-  countyLabel: i18n.t('identification.birthplace.label.county'),
-  countyPlaceholder: i18n.t('identification.birthplace.placeholder.county'),
-  countryLabel: i18n.t('identification.birthplace.label.country'),
-  countryPlaceholder: i18n.t('identification.birthplace.placeholder.country')
+  countyLabel: i18n.t('address.us.county.label'),
+  countyPlaceholder: i18n.t('address.us.county.placeholder'),
+  countryLabel: i18n.t('address.international.country.label'),
+  countryPlaceholder: i18n.t('address.international.country.placeholder')
 }
 
 Location.errors = []
