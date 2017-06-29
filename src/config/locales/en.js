@@ -9152,6 +9152,11 @@ const en = {
     }
   },
   releases: {
+    destination: {
+      comments: 'Additional comments',
+      generalMedical: 'Release of information/HIPPA',
+      credit: 'Credit reporting disclosure'
+    },
     verify: {
       heading: {
         title: 'Verify your information is correct',
@@ -9161,12 +9166,24 @@ const en = {
         dateOfBirth: 'Date of birth',
         ssn: 'Social Security Number',
         currentAddress: 'Current street address',
-        telephoneNumber: 'Telephone number'
+        telephoneNumber: 'Telephone number',
+        changeAddress: 'Need to change your address?'
       },
       label: {
         name: 'Type your name below to sign',
-        changeInformation: 'Back to Information about you'
+        changeInformation: 'Back to Information about you',
+        changeAddress: 'Back to where you have lived'
       }
+    },
+    additionalComments: {
+      contents: [
+        '## Additional Comments',
+        'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the attached release(s).'
+      ],
+      certificationContents: [
+        '## Certification',
+        'My statements on this form, and on any attachments to it, are true, complete, and correct to the best of my knowledge and belief and are made in good faith. I further affirm that, to the best of my knowledge, I have not included any classified information herein. I have carefully read the foregoing instructions to complete this form. I understand that a knowing and willful false statement on this form can be punished by fine or imprisonment or both (18 U.S.C. 1001). I understand that intentionally withholding, misrepresenting, falsifying, or including classified information may have a negative effect on my security clearance, employment prospects, or job status, up to and including denial or revocation of my security clearance, or my removal and debarment from Federal service.'
+      ]
     },
     general: {
       contents: [

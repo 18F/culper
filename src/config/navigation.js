@@ -243,6 +243,17 @@ const navigation = [
     ]
   },
   {
+    hidden: true,
+    title: 'Questionnaire for National Security Positions',
+    name: 'Questionnaire for National Security Positions',
+    url: 'releases',
+    subsections: [
+      { name: 'Comments', url: 'comments' },
+      { name: 'Release of information/HIPPA', url: 'general' },
+      { name: 'Credit reporting disclosure', url: 'credit' }
+    ]
+  },
+  {
     title: 'Design guideline',
     name: 'Design guideline',
     url: 'design',

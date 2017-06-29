@@ -4,22 +4,22 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader } from '../../Form'
-import General from './General'
-import Medical from './Medical'
+import AdditionalComments from './AdditionalComments'
+import ReleaseOfGeneralAndMedical from './ReleaseOfGeneralAndMedical'
 import Credit from './Credit'
 
 class Releases extends SectionElement {
   constructor (props) {
     super(props)
 
-    this.updateGeneral = this.updateGeneral.bind(this)
+    this.updateAdditionalComments = this.updateAdditionalComments.bind(this)
+    this.updateReleaseOfGeneralAndMedical = this.updateReleaseOfGeneralAndMedical.bind(this)
     this.updateMedical = this.updateMedical.bind(this)
     this.updateCredit = this.updateCredit.bind(this)
   }
 
-  updateGeneral (values) {
-    this.handleUpdate('General', values)
+  updateAdditionalComments (values) {
+    this.handleUpdate('AdditionalComments', values)
   }
 
   updateMedical (values) {
@@ -30,6 +30,11 @@ class Releases extends SectionElement {
     this.handleUpdate('Credit', values)
   }
 
+  updateReleaseOfGeneralAndMedical (values) {
+    this.handleUpdate('General', values.General)
+    this.handleUpdate('Medical', values.Medical)
+  }
+
   render () {
     return (
       <div>
@@ -37,34 +42,47 @@ class Releases extends SectionElement {
           <SectionView name=""
             back=""
             backLabel=""
-            next=""
-            nextLabel="">
-            <General name="general"
-              {...this.props.General}
-              identification={this.props.Identification}
+            next="releases/general"
+            nextLabel={ i18n.t('releases.destination.generalMedical') }>
+            <AdditionalComments name="additionalcomments"
+              {...this.props.AdditionalComments}
               dispatch={this.props.dispatch}
-              onUpdate={this.updateGeneral}
+              onUpdate={this.updateAdditionalComments}
               onError={this.handleError}
             />
           </SectionView>
 
-          <SectionView name="medical"
+          <SectionView name="comments"
             back=""
             backLabel=""
-            next=""
-            nextLabel="">
-            <Medical name="medical"
-              {...this.props.General}
-              identification={this.props.Identification}
+            next="releases/general"
+            nextLabel={ i18n.t('releases.destination.generalMedical') }>
+            <AdditionalComments name="additionalcomments"
+              {...this.props.AdditionalComments}
               dispatch={this.props.dispatch}
-              onUpdate={this.updateMedical}
+              onUpdate={this.updateAdditionalComments}
+              onError={this.handleError}
+            />
+          </SectionView>
+
+          <SectionView name="general"
+            back="releases/comments"
+            backLabel={ i18n.t('releases.destination.comments') }
+            next="releases/credit"
+            nextLabel={ i18n.t('releases.destination.credit') }>
+            <ReleaseOfGeneralAndMedical name="general"
+              General={this.props.General}
+              Medical={this.props.Medical}
+              Identification={this.props.Identification}
+              dispatch={this.props.dispatch}
+              onUpdate={this.updateReleaseOfGeneralAndMedical}
               onError={this.handleError}
             />
           </SectionView>
 
           <SectionView name="credit"
-            back=""
-            backLabel=""
+            back="releases/general"
+            backLabel={ i18n.t('releases.destination.generalMedical') }
             next=""
             nextLabel="">
             <Credit name="credit"
@@ -87,8 +105,10 @@ function mapStateToProps (state) {
   let completed = app.Completed || {}
   return {
     Application: app || {},
+    Releases: releases,
     General: releases.General || {},
     Credit: releases.Credit || {},
+    AdditionalComments: releases.AdditionalComments || {},
     Identification: app.Identification || {},
     Errors: errors.releases || [],
     Completed: completed.releases || []
@@ -97,9 +117,7 @@ function mapStateToProps (state) {
 
 Releases.defaultProps = {
   section: 'releases',
-  defaultView: (props = {}) => {
-    return 'general'
-  },
+  defaultView: (props) => { return 'additionalcomments' },
   store: 'Releases'
 }
 

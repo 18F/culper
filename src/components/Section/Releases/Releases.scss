@@ -1,0 +1,29 @@
+.verify {
+  .verify-data {
+    h3 {
+      margin-bottom: 0;
+    }
+    margin-bottom: 3rem;
+  }
+
+  .change-info {
+    margin-top: 4.5rem;
+    margin-bottom: 4.5rem;
+
+    button {
+      padding: 1.8rem;
+      i {
+        padding-left: 1rem;
+      }
+    }
+  }
+}
+
+.signature {
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+
+  .fullname {
+    margin-bottom: 2rem;
+  }
+}
