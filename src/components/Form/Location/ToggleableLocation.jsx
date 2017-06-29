@@ -101,7 +101,7 @@ export default class ToggleableLocation extends ValidationElement {
             <City name="city"
               className="city"
               key={key}
-              label={i18n.t('address.us.city.label')}
+              label={this.props.cityLabel}
               placeholder={this.props.cityPlaceholder}
               value={this.props.city}
               onChange={this.updateCity}
@@ -129,8 +129,8 @@ export default class ToggleableLocation extends ValidationElement {
             <MilitaryState name="state"
               key={key}
               className="state"
-              label={i18n.t('address.us.state.label')}
-              placeholder={i18n.t('address.us.state.placeholder')}
+              label={this.props.stateLabel}
+              placeholder={this.props.statePlaceholder}
               value={this.props.state}
               includeStates="true"
               onChange={this.updateState}
@@ -144,8 +144,8 @@ export default class ToggleableLocation extends ValidationElement {
             <div className="state-zip-wrap">
               <MilitaryState name="state"
                 className="state"
-                label={i18n.t('address.us.state.label')}
-                placeholder={i18n.t('address.us.state.placeholder')}
+                label={this.props.stateLabel}
+                placeholder={this.props.statePlaceholder}
                 value={this.props.state}
                 includeStates="true"
                 onChange={this.updateState}
@@ -156,8 +156,8 @@ export default class ToggleableLocation extends ValidationElement {
               <ZipCode name="zipcode"
                 key="us_zipcode"
                 className="zipcode"
-                label={i18n.t('address.us.zipcode.label')}
-                placeholder={i18n.t('address.us.zipcode.placeholder')}
+                label={this.props.zipcodeLabel}
+                placeholder={this.props.zipcodePlaceholder}
                 value={this.props.zipcode}
                 onChange={this.updateZipcode}
                 onError={this.props.onError}
@@ -176,7 +176,7 @@ export default class ToggleableLocation extends ValidationElement {
           return (
             <City name="city"
               key={key}
-              label={i18n.t('address.us.city.label')}
+              label={this.props.cityLabel}
               placeholder={this.props.cityPlaceholder}
               value={this.props.city}
               onChange={this.updateCity}
