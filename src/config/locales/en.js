@@ -1948,7 +1948,7 @@ const en = {
     multiple: {
       heading: {
         title: 'Dual/Multiple citizenship',
-        hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
+        hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
           dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
