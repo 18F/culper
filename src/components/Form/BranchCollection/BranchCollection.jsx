@@ -16,10 +16,19 @@ export default class BranchCollection extends React.Component {
     item[this.props.valueKey] = yes
     items[index] = item
 
-    // If it's not the last item being marked as No, then remove it. This addresses the issue
-    // where the user must click No twice on the last item.
-    if (index + 1 < this.props.items.length && this.props.removable && yes === 'No') {
-      items.splice(index, 1)
+    if (yes !== 'Yes') {
+      if (index + 1 < this.props.items.length && this.props.removable) {
+        // If it's not the last item being marked as No, then remove it. This addresses the issue
+        // where the user must click No twice on the last item.
+        items.splice(index, 1)
+      } else if (index === 0 && items.length === 1) {
+        // If this is the first and last item, and "no" has been selected, then clear out
+        // any persisted data **except** the branch value.
+        items[index] = {
+          [this.props.valueKey]: item[this.props.valueKey],
+          index: item.index
+        }
+      }
     }
 
     this.props.onUpdate(items)
@@ -90,6 +99,7 @@ export default class BranchCollection extends React.Component {
               labelSize={props.labelSize}
               help={props.help}
               value={props.value}
+              warning={props.warning}
               onUpdate={props.onUpdate}
               onError={props.onError}>
         {props.children}
@@ -104,7 +114,7 @@ export default class BranchCollection extends React.Component {
       }
       return item
     })
-    let hasNo = !!items.find(item => item[this.props.valueKey] === 'No')
+    let hasNo = !!items.find(item => item[this.props.valueKey] !== 'Yes')
 
     // When no items are present, render default branch yes/no
     if (items.length === 0) {
@@ -117,6 +127,7 @@ export default class BranchCollection extends React.Component {
               labelSize: this.props.labelSize,
               help: this.props.help,
               value: null,
+              warning: false,
               children: this.props.content,
               onUpdate: this.onDefaultBranchClick.bind(this),
               onError: this.props.onError
@@ -139,6 +150,7 @@ export default class BranchCollection extends React.Component {
               labelSize: this.props.labelSize,
               help: this.props.help,
               value: 'No',
+              warning: false,
               children: this.props.content,
               onUpdate: this.onBranchClick.bind(this, item, 0),
               onError: this.props.onError
@@ -156,6 +168,7 @@ export default class BranchCollection extends React.Component {
           label: this.props.label,
           labelSize: this.props.labelSize,
           value: item[this.props.valueKey],
+          warning: true,
           help: this.props.help,
           children: this.props.content,
           onUpdate: this.onBranchClick.bind(this, item, index),
@@ -169,6 +182,7 @@ export default class BranchCollection extends React.Component {
         labelSize: this.props.appendSize,
         help: this.props.help,
         value: item[this.props.valueKey],
+        warning: true,
         children: this.props.appendContent,
         onUpdate: this.onBranchClick.bind(this, item, index),
         onError: this.props.onError
@@ -189,7 +203,8 @@ export default class BranchCollection extends React.Component {
         help: this.props.help,
         onUpdate: this.onLastBranchClick.bind(this),
         children: this.appendContent,
-        value: null
+        value: null,
+        warning: false
       })
     }
 

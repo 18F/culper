@@ -15,32 +15,27 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasActivities: this.props.HasActivities
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasActivities: this.props.HasActivities,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasActivities', value: values }
-    ])
+    this.update({
+      HasActivities: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -69,6 +64,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                 labelSize="h3"
                 className="legal-associations-activities-has-activities"
                 value={this.props.HasActivities}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
@@ -114,6 +110,7 @@ ActivitiesToOverthrow.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/activities-to-overthrow',

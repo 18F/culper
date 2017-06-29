@@ -16,32 +16,27 @@ export default class RealEstateActivity extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasInterests: this.props.HasInterests
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasInterests: this.props.HasInterests,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasInterests (values) {
-    this.update([
-      { name: 'HasInterests', value: values }
-    ])
+    this.update({
+      HasInterests: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -76,6 +71,7 @@ export default class RealEstateActivity extends SubsectionElement {
                 label={i18n.t('foreign.activities.realestate.heading.title')}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasInterests}>
         </Branch>
@@ -107,6 +103,7 @@ RealEstateActivity.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/realestate',

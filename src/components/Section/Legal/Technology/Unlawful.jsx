@@ -15,32 +15,27 @@ export default class Unlawful extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasUnlawful: this.props.HasUnlawful
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasUnlawful: this.props.HasUnlawful,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasUnlawful', value: values }
-    ])
+    this.update({
+      HasUnlawful: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -69,6 +64,7 @@ export default class Unlawful extends SubsectionElement {
                 labelSize="h3"
                 className="legal-technology-unlawful-has-unlawful"
                 value={this.props.HasUnlawful}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
@@ -132,6 +128,7 @@ Unlawful.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/unlawful',

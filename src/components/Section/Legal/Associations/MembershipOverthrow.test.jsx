@@ -12,7 +12,7 @@ describe('The legal associations overthrow component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<MembershipOverthrow onUpdate={onUpdate} />)
-    component.find('.legal-associations-overthrow-has-overthrow .yes input').simulate('click')
+    component.find('.legal-associations-overthrow-has-overthrow .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 

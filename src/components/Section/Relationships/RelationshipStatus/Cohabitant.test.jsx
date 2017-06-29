@@ -16,8 +16,10 @@ describe('The cohabitant component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitant',
-      onUpdate: () => { updates++ },
-      SSN: {}
+      SSN: {},
+      ForeignBornDocument: { DocumentType: 'Other' },
+      OtherNameMaiden: { value: 'Yes' },
+      onUpdate: () => { updates++ }
     }
 
     const component = mount(<Cohabitant {...expected} />)
@@ -26,8 +28,8 @@ describe('The cohabitant component', () => {
     component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
     component.find('.birthplace .no input').simulate('change')
     component.find('.maiden-name .yes input').simulate('change')
-    component.find('.foreign-born-documents input').first().simulate('click')
-    component.find('.foreign-born-documents .other input').simulate('click')
+    component.find('.foreign-born-documents input').first().simulate('change')
+    component.find('.foreign-born-documents .other input').simulate('change')
     component.find('.foreign-born-documents textarea').simulate('change')
     component.find('.foreign-born-document-number input').simulate('change')
     component.find('.foreign-born-documents .month input').simulate('change', { target: { value: '12' } })

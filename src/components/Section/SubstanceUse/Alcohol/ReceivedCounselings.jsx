@@ -34,7 +34,11 @@ export default class ReceivedCounselings extends SubsectionElement {
   }
 
   updateReceivedTreatment (values) {
-    this.update({ReceivedTreatment: values})
+    this.update({
+      ReceivedTreatment: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -69,6 +73,7 @@ export default class ReceivedCounselings extends SubsectionElement {
         <Branch name="ReceivedTreatment"
                 className="received-treatment"
                 value={this.props.ReceivedTreatment}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateReceivedTreatment}>
         </Branch>

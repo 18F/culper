@@ -10,35 +10,32 @@ export default class Ventures extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignVentures: props.HasForeignVentures,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateHasForeignVentures = this.updateHasForeignVentures.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignVentures: this.state.HasForeignVentures,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      HasForeignVentures: this.props.HasForeignVentures,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateHasForeignVentures (value) {
-    this.onUpdate('HasForeignVentures', value)
+    this.update({
+      HasForeignVentures: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -64,17 +61,18 @@ export default class Ventures extends SubsectionElement {
                 labelSize="h3"
                 adjustFor="p"
                 help="foreign.business.ventures.help.branch"
-                value={this.state.HasForeignVentures}
+                value={this.props.HasForeignVentures}
+                warning={true}
                 onUpdate={this.updateHasForeignVentures}
                 onError={this.handleError}>
           {i18n.m('foreign.business.ventures.para.branch')}
         </Branch>
 
-        <Show when={this.state.HasForeignVentures === 'Yes'}>
+        <Show when={this.props.HasForeignVentures === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.List}
+                     items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -182,12 +180,13 @@ Ventures.defaultProps = {
   HasForeignVentures: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/ventures',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessVenturesValidator(state, props).isValid()
+    return new ForeignBusinessVenturesValidator(props, props).isValid()
   },
   defaultState: true
 }

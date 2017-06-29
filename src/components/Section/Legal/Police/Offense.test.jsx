@@ -28,13 +28,11 @@ describe('The offense component', () => {
 
   it('asks for explanation if not charged for a citation', () => {
     const expected = {
-      name: 'offense'
+      name: 'offense',
+      WasCited: 'Yes',
+      WasCharged: 'No'
     }
     const component = mount(<Offense {...expected} />)
-    expect(component.find('.offense-explanation').length).toEqual(0)
-    component.find('.offense-cited .yes input').simulate('change')
-    expect(component.find('.offense-explanation').length).toEqual(0)
-    component.find('.offense-charged .no input').simulate('change')
     expect(component.find('.offense-explanation').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(0)
     expect(component.find('.offense-chargetype').length).toEqual(0)
@@ -46,11 +44,11 @@ describe('The offense component', () => {
 
   it('asks for court information if charged for a citation', () => {
     const expected = {
-      name: 'offense'
+      name: 'offense',
+      WasCited: 'Yes',
+      WasCharged: 'Yes'
     }
     const component = mount(<Offense {...expected} />)
-    component.find('.offense-cited .yes input').simulate('change')
-    component.find('.offense-charged .yes input').simulate('change')
     expect(component.find('.offense-courtname').length).toEqual(1)
     expect(component.find('.offense-courtaddress').length).toEqual(1)
     expect(component.find('.offense-chargetype').length).toEqual(1)
@@ -60,10 +58,13 @@ describe('The offense component', () => {
     expect(component.find('.offense-sentenced').length).toEqual(1)
   })
 
-  it('trigger updates when changing values', () => {
+  it('trigger updates when changing values with sentencing', () => {
     let updates = 0
     const expected = {
       name: 'offense',
+      WasCited: 'Yes',
+      WasCharged: 'Yes',
+      WasSentenced: 'Yes',
       onUpdate: () => { updates++ }
     }
     const component = mount(<Offense {...expected} />)
@@ -90,14 +91,56 @@ describe('The offense component', () => {
     component.find('.offense-sentenced .yes input').simulate('change')
     component.find('.offense-description textarea').simulate('change', { target: { value: 'Test' } })
     component.find({ type: 'radio', name: 'exceeding_year', value: 'Yes' }).simulate('change')
+    expect(updates).toBeGreaterThan(6)
+  })
 
+  it('trigger updates when changing values without sentencing', () => {
+    let updates = 0
+    const expected = {
+      name: 'offense',
+      WasCited: 'Yes',
+      WasCharged: 'Yes',
+      WasSentenced: 'No',
+      AwaitingTrial: 'Yes',
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Offense {...expected} />)
+    component.find('.offense-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
+    component.find('.offense-date .month input').simulate('change', { target: { name: 'month', value: '1' } })
+    component.find('.offense-date .year input').simulate('change', { target: { name: 'year', value: '2005' } })
+    component.find('.offense-description textarea').simulate('change', { target: { value: 'Some description' } })
+    component.find('.offense-violence .yes input').simulate('change')
+    component.find('.offense-firearms .yes input').simulate('change')
+    component.find('.offense-substances .yes input').simulate('change')
+    component.find('.offense-address .city input').simulate('change', { target: { value: 'The city' } })
+    component.find('.offense-cited .yes input').simulate('change')
+    component.find('.offense-citedby input').simulate('change', { target: { value: 'Some agency' } })
+    component.find('.offense-agencyaddress .city input').simulate('change', { target: { value: 'The city' } })
+    component.find('.offense-charged .yes input').simulate('change')
+    component.find('.offense-courtname input').simulate('change', { target: { value: 'Some court' } })
+    component.find('.offense-courtaddress .city input').simulate('change', { target: { value: 'The city' } })
+    component.find('.offense-chargetype .charge-felony input').simulate('change')
+    component.find('.offense-courtcharge input').simulate('change', { target: { value: 'charge' } })
+    component.find('.offense-courtoutcome input').simulate('change', { target: { value: 'outcome' } })
+    component.find('.offense-courtdate .month input').simulate('change', { target: { name: 'month', value: '1' } })
+    component.find('.offense-courtdate .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.offense-sentenced .no input').simulate('change')
     component.find({ type: 'radio', name: 'awaiting_trial', value: 'Yes' }).simulate('change')
     component.find('.awaiting-trial-explanation textarea').simulate('change')
+    expect(updates).toBeGreaterThan(6)
+  })
 
-    // Toggle was charged to provide explanation
+  it('trigger updates when changing values without charges', () => {
+    let updates = 0
+    const expected = {
+      name: 'offense',
+      WasCited: 'Yes',
+      WasCharged: 'No',
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Offense {...expected} />)
     component.find('.offense-charged .no input').simulate('change')
     component.find('.offense-explanation textarea').simulate('change')
-    expect(updates).toBeGreaterThan(6)
+    expect(updates).toBe(2)
   })
 })

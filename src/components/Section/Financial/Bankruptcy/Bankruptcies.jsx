@@ -16,32 +16,27 @@ export default class Bankruptcies extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasBankruptcy: this.props.HasBankruptcy
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasBankruptcy: this.props.HasBankruptcy,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasBankrupty (values) {
-    this.update([
-      { name: 'HasBankruptcy', value: values }
-    ])
+    this.update({
+      HasBankruptcy: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   /**
@@ -68,6 +63,7 @@ export default class Bankruptcies extends SubsectionElement {
                 className="bankruptcy-branch"
                 value={this.props.HasBankruptcy}
                 help="financial.bankruptcy.help"
+                warning={true}
                 onUpdate={this.updateHasBankrupty}
                 onError={this.handleError}>
         </Branch>

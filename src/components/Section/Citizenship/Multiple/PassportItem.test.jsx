@@ -17,6 +17,6 @@ describe('The passport item component', () => {
     component.find('.passport-number input').first().simulate('change')
     component.find('.passport-expiration .day input').first().simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.passport-used .yes input').simulate('change')
-    expect(updates).toBe(8)
+    expect(updates).toBe(7)
   })
 })

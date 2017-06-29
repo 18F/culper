@@ -9,18 +9,7 @@ export default class PassportItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Country: props.Country,
-      Issued: props.Issued,
-      Location: props.Location,
-      Name: props.Name,
-      Number: props.Number,
-      Expiration: props.Expiration,
-      Used: props.Used,
-      Countries: props.Countries
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateIssued = this.updateIssued.bind(this)
     this.updateLocation = this.updateLocation.bind(this)
@@ -31,42 +20,66 @@ export default class PassportItem extends ValidationElement {
     this.updateCountries = this.updateCountries.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      Country: this.props.Country,
+      Issued: this.props.Issued,
+      Location: this.props.Location,
+      Name: this.props.Name,
+      Number: this.props.Number,
+      Expiration: this.props.Expiration,
+      Used: this.props.Used,
+      Countries: this.props.Countries,
+      ...queue
     })
   }
 
   updateCountry (values) {
-    this.onUpdate('Country', values)
+    this.update({
+      Country: values
+    })
   }
 
   updateIssued (values) {
-    this.onUpdate('Issued', values)
+    this.update({
+      Issued: values
+    })
   }
 
   updateLocation (values) {
-    this.onUpdate('Location', values)
+    this.update({
+      Location: values
+    })
   }
 
   updateName (values) {
-    this.onUpdate('Name', values)
+    this.update({
+      Name: values
+    })
   }
 
   updateNumber (values) {
-    this.onUpdate('Number', values)
+    this.update({
+      Number: values
+    })
   }
 
   updateExpiration (values) {
-    this.onUpdate('Expiration', values)
+    this.update({
+      Expiration: values
+    })
   }
 
   updateUsed (values) {
-    this.onUpdate('Used', values)
+    this.update({
+      Used: values
+    })
   }
 
   updateCountries (values) {
-    this.onUpdate('Countries', values.items)
+    this.update({
+      Countries: values.items
+    })
   }
 
   summary (item, index) {
@@ -91,7 +104,7 @@ export default class PassportItem extends ValidationElement {
         <Field title={i18n.t('citizenship.multiple.heading.passport.country')}>
           <Country name="Country"
                    className="passport-country"
-                   {...this.state.Country}
+                   {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
                    />
@@ -101,7 +114,7 @@ export default class PassportItem extends ValidationElement {
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Issued"
-                       {...this.state.Issued}
+                       {...this.props.Issued}
                        className="passport-issued"
                        onUpdate={this.updateIssued}
                        onError={this.props.onError}
@@ -112,7 +125,7 @@ export default class PassportItem extends ValidationElement {
           adjustFor="labels">
           <Location name="Location"
                    layout={Location.CITY_COUNTRY}
-                   {...this.state.Location}
+                   {...this.props.Location}
                    className="passport-location"
                    onUpdate={this.updateLocation}
                    onError={this.props.onError}
@@ -121,7 +134,7 @@ export default class PassportItem extends ValidationElement {
 
         <h3>{i18n.t('citizenship.multiple.heading.passport.name')}</h3>
         <Name name="Name"
-              {...this.state.Name}
+              {...this.props.Name}
               className="passport-name"
               onUpdate={this.updateName}
               onError={this.props.onError}
@@ -129,7 +142,7 @@ export default class PassportItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.number')}>
           <Text name="Number"
-                {...this.state.Number}
+                {...this.props.Number}
                 className="passport-number"
                 onUpdate={this.updateNumber}
                 onError={this.props.onError}
@@ -140,7 +153,7 @@ export default class PassportItem extends ValidationElement {
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Expiration"
-                       {...this.state.Expiration}
+                       {...this.props.Expiration}
                        className="passport-expiration"
                        onUpdate={this.updateExpiration}
                        onError={this.props.onError}
@@ -151,14 +164,14 @@ export default class PassportItem extends ValidationElement {
                 label={i18n.t('citizenship.multiple.heading.passport.used')}
                 labelSize="h3"
                 className="passport-used"
-                value={this.state.Used}
+                value={this.props.Used}
                 onUpdate={this.updateUsed}
                 onError={this.props.onError}
                 />
 
-        <Show when={this.state.Used === 'Yes'}>
+        <Show when={this.props.Used === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.Countries}
+                     items={this.props.Countries}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateCountries}
                      onError={this.props.onError}
@@ -182,6 +195,7 @@ PassportItem.defaultProps = {
   Expiration: {},
   Used: '',
   Countries: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true
 }

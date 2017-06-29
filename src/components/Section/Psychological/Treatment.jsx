@@ -5,32 +5,37 @@ import { Address, ValidationElement, Field, Text, Telephone } from '../../Form'
 export default class Treatment extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.updateName = this.updateName.bind(this)
     this.updatePhone = this.updatePhone.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Name: this.props.Name,
-        Phone: this.props.Phone,
-        Address: this.props.Address,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Phone: this.props.Phone,
+      Address: this.props.Address,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update({
+      Name: values
+    })
   }
 
   updatePhone (values) {
-    this.update('Phone', values)
+    this.update({
+      Phone: values
+    })
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update({
+      Address: values
+    })
   }
 
   render () {
@@ -75,5 +80,6 @@ export default class Treatment extends ValidationElement {
 
 Treatment.defaultProps = {
   prefix: 'treatment',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

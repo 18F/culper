@@ -26,7 +26,7 @@ export default class Card extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasCardAbuse: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -76,6 +76,7 @@ export default class Card extends SubsectionElement {
         <Branch name="has_cardabuse"
                 className="card-branch"
                 value={this.state.HasCardAbuse}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>

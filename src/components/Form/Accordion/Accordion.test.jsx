@@ -276,7 +276,7 @@ describe('The accordion component', () => {
 
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.addendum').length).toEqual(1)
-    component.find('.addendum .no input').simulate('click')
+    component.find('.addendum .no input').simulate('change')
     expect(items.length).toBe(1)
     expect(branch).toBe('No')
   })
@@ -299,7 +299,7 @@ describe('The accordion component', () => {
 
     const component = mount(<Accordion {...expected}><div><Text name="mytext" bind={true} /></div></Accordion>)
     expect(component.find('.addendum').length).toEqual(1)
-    component.find('.addendum .yes input').simulate('click')
+    component.find('.addendum .yes input').simulate('change')
     expect(items.length).toBe(2)
     expect(branch).toBe('')
   })

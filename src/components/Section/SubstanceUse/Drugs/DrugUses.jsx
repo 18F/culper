@@ -33,7 +33,11 @@ export default class DrugUses extends SubsectionElement {
   }
 
   updateUsedDrugs (values) {
-    this.update({UsedDrugs: values})
+    this.update({
+      UsedDrugs: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -64,6 +68,7 @@ export default class DrugUses extends SubsectionElement {
         <Branch name="UsedDrugs"
                 className="used-drugs"
                 value={this.props.UsedDrugs}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateUsedDrugs}>
           {i18n.m('substance.drugs.use.para.drugUses')}

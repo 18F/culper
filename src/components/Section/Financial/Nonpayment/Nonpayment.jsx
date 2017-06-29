@@ -27,7 +27,7 @@ export default class Nonpayment extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasNonpayment: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -96,6 +96,7 @@ export default class Nonpayment extends SubsectionElement {
         <Branch name="has_nonpayment"
                 className="nonpayment-branch"
                 value={this.state.HasNonpayment}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>

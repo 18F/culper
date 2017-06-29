@@ -34,7 +34,11 @@ export default class VoluntaryCounselings extends SubsectionElement {
   }
 
   updateSoughtTreatment (values) {
-    this.update({SoughtTreatment: values})
+    this.update({
+      SoughtTreatment: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -66,6 +70,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
         <Branch name="SoughtTreatment"
                 className="sought-treatment"
                 value={this.props.SoughtTreatment}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateSoughtTreatment}>
         </Branch>

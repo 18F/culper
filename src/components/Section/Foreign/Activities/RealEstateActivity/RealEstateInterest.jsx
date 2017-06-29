@@ -20,22 +20,20 @@ export default class RealEstateInterest extends ValidationElement {
     this.updateCoOwners = this.updateCoOwners.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        InterestTypes: this.props.InterestTypes,
-        RealEstateType: this.props.RealEstateType,
-        Address: this.props.Address,
-        Acquired: this.props.Acquired,
-        HowAcquired: this.props.HowAcquired,
-        Cost: this.props.Cost,
-        CostEstimated: this.props.CostEstimated,
-        Sold: this.props.Sold,
-        SoldNotApplicable: this.props.SoldNotApplicable,
-        CoOwners: this.props.CoOwners,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      InterestTypes: this.props.InterestTypes,
+      RealEstateType: this.props.RealEstateType,
+      Address: this.props.Address,
+      Acquired: this.props.Acquired,
+      HowAcquired: this.props.HowAcquired,
+      Cost: this.props.Cost,
+      CostEstimated: this.props.CostEstimated,
+      Sold: this.props.Sold,
+      SoldNotApplicable: this.props.SoldNotApplicable,
+      CoOwners: this.props.CoOwners,
+      ...queue
+    })
   }
 
   updateInterestTypes (event) {
@@ -47,43 +45,63 @@ export default class RealEstateInterest extends ValidationElement {
       selected.push(interestType)
     }
 
-    this.update('InterestTypes', selected)
+    this.update({
+      InterestTypes: selected
+    })
   }
 
   updateRealEstateType (values) {
-    this.update('RealEstateType', values)
+    this.update({
+      RealEstateType: values
+    })
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update({
+      Address: values
+    })
   }
 
   updateAcquired (values) {
-    this.update('Acquired', values)
+    this.update({
+      Acquired: values
+    })
   }
 
   updateHowAcquired (values) {
-    this.update('HowAcquired', values)
+    this.update({
+      HowAcquired: values
+    })
   }
 
   updateCost (values) {
-    this.update('Cost', values)
+    this.update({
+      Cost: values
+    })
   }
 
   updateCostEstimated (cb) {
-    this.update('CostEstimated', cb.checked)
+    this.update({
+      CostEstimated: cb.checked
+    })
   }
 
   updateSold (values) {
-    this.update('Sold', values)
+    this.update({
+      Sold: values
+    })
   }
 
   updateSoldNotApplicable (values) {
-    this.update('SoldNotApplicable', values)
+    this.update({
+      SoldNotApplicable: values
+    })
   }
 
   updateCoOwners (values) {
-    this.update('CoOwners', values)
+    this.update({
+      CoOwners: values
+    })
   }
 
   render () {
@@ -225,5 +243,6 @@ export default class RealEstateInterest extends ValidationElement {
 
 RealEstateInterest.defaultProps = {
   prefix: 'activities.realestate.interest',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
