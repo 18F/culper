@@ -2948,6 +2948,10 @@ const en = {
     }
   },
 
+  spinner: {
+    label: 'Verifying'
+  },
+
   suggestions: {
     name: {
       title: 'Alternate names found',

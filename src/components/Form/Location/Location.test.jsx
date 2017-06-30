@@ -34,6 +34,8 @@ describe('The Address component', () => {
       city: 'Arlington',
       state: 'VA',
       zipcode: '22202',
+      country: 'United States',
+      suggestions: true,
       layout: Location.ADDRESS,
       geocodeResult: {
         Error: 'error.geocode.partial',
@@ -52,6 +54,9 @@ describe('The Address component', () => {
       city: 'Arlington',
       state: 'VA',
       zipcode: '22202',
+      country: 'United States',
+      suggestions: true,
+      layout: Location.ADDRESS,
       geocodeResult: {
         Error: 'error.geocode.partial',
         Suggestions: [{
@@ -76,6 +81,7 @@ describe('The Address component', () => {
       city: 'Arlington',
       state: 'VA',
       zipcode: '22202',
+      suggestions: true,
       geocodeResult: {
         Error: 'error.geocode.partial',
         Suggestions: [{

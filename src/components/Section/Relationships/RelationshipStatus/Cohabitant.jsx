@@ -177,17 +177,15 @@ export default class Cohabitant extends ValidationElement {
                      withSuggestions={false}
                      show={this.props.SameSpouse}
                      onDismiss={this.dismissSpouseSuggestion}
-                     onSuggestion={this.onSpouseSuggestion}>
-          <div>
-            <h3>{i18n.t('relationships.cohabitant.heading.name')}</h3>
-            <Name name="Name"
-                  className="cohabitant-name"
-                  {...this.props.Name}
-                  onUpdate={this.updateName}
-                  onError={this.props.onError}
-                  />
-          </div>
-        </Suggestions>
+                     onSuggestion={this.onSpouseSuggestion}
+                     />
+        <h3>{i18n.t('relationships.cohabitant.heading.name')}</h3>
+        <Name name="Name"
+              className="cohabitant-name"
+              {...this.props.Name}
+              onUpdate={this.updateName}
+              onError={this.props.onError}
+              />
 
         <Field help="relationships.cohabitant.help.birthdate"
                title={i18n.t('relationships.cohabitant.heading.birthdate')}
