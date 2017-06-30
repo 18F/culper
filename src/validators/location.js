@@ -186,7 +186,9 @@ export class Geocoder {
           }
           resolve(r.data.Errors[0])
         })
+        .catch(() => {
+          reject()
+        })
     })
   }
 }
-

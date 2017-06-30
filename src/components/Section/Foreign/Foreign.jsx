@@ -295,9 +295,9 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.contacts')}>
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
-                      {...this.props.Passport}
                       dispatch={this.props.dispatch}
                       suggestedNames={this.props.suggestedNames}
+                      {...this.props.Passport}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       />

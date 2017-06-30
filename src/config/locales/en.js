@@ -2851,6 +2851,7 @@ const en = {
 
   address: {
     label: 'This address is',
+    spinner: 'Verifying your address',
     options: {
       us: {
         label: 'In the<br>United States'
@@ -2946,6 +2947,10 @@ const en = {
         }
       }
     }
+  },
+
+  spinner: {
+    label: 'Verifying'
   },
 
   suggestions: {

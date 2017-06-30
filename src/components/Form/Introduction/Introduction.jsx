@@ -5,7 +5,7 @@ import { updateApplication } from '../../../actions/ApplicationActions'
 import { logout } from '../../../actions/AuthActions'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import Branch from '../Branch'
-import { applyFixedModal } from '../Suggestions'
+import Modal from '../Modal'
 
 export class Introduction extends React.Component {
   constructor (props) {
@@ -13,15 +13,7 @@ export class Introduction extends React.Component {
     this.updateBranch = this.updateBranch.bind(this)
   }
 
-  componentDidMount () {
-    if (!this.props.settings.acceptedTerms && !this.props.settings.modalOpen) {
-      applyFixedModal(true)
-    }
-  }
-
   updateBranch (values) {
-    applyFixedModal(false)
-
     if (values === 'No') {
       this.props.dispatch(updateApplication('Settings', 'acceptedTerms', ''))
       this.props.dispatch(logout())
@@ -35,14 +27,10 @@ export class Introduction extends React.Component {
   }
 
   render () {
-    if (this.props.settings.acceptedTerms) {
-      return null
-    }
-
     return (
-      <div className="modal introduction-modal">
-        <div className="modal-wrap">
-          <div className="modal-content introduction-content">
+      <div className="introduction-modal">
+        <Modal show={this.props.settings.acceptedTerms !== 'Yes'} className="introduction-content">
+          <div>
             <div className="introduction-legal">
               {i18n.m('introduction.contents')}
             </div>
@@ -55,7 +43,7 @@ export class Introduction extends React.Component {
               {i18n.m('introduction.acceptance.para')}
             </Branch>
           </div>
-        </div>
+        </Modal>
       </div>
     )
   }
