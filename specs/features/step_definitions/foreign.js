@@ -31,42 +31,42 @@ defineSupportCode(({Given, Then, When}) => {
     let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
 
     switch (subsection) {
-    case 'passport':
-      return completePassport(promise)
-    case 'travel':
-      return completeTravel(promise)
-    case 'activities/direct':
-      return promise
-    case 'activities/indirect':
-      return promise
-    case 'activities/realestate':
-      return promise
-    case 'activities/benefits':
-      return promise
-    case 'activities/support':
-      return promise
-    case 'business/advice':
-      return promise
-    case 'business/family':
-      return promise
-    case 'business/employment':
-      return promise
-    case 'business/ventures':
-      return promise
-    case 'business/conferences':
-      return promise
-    case 'business/contact':
-      return completeBusinessContact(promise)
-    case 'business/sponsorship':
-      return completeBusinessSponsorship(promise)
-    case 'business/political':
-      return completeBusinessPolitical(promise)
-    case 'business/voting':
-      return completeBusinessVoting(promise)
-    default:
-      return promise
-    }
-  })
+      case 'passport':
+        return completePassport(promise)
+      case 'travel':
+        return completeTravel(promise)
+      case 'activities/direct':
+        return promise
+      case 'activities/indirect':
+        return promise
+      case 'activities/realestate':
+        return promise
+      case 'activities/benefits':
+        return promise
+      case 'activities/support':
+        return promise
+      case 'business/advice':
+        return promise
+      case 'business/family':
+        return promise
+      case 'business/employment':
+        return promise
+      case 'business/ventures':
+        return promise
+      case 'business/conferences':
+        return promise
+      case 'business/contact':
+        return completeBusinessContact(promise)
+      case 'business/sponsorship':
+        return completeBusinessSponsorship(promise)
+      case 'business/political':
+        return completeBusinessPolitical(promise)
+      case 'business/voting':
+        return completeBusinessVoting(promise)
+      default:
+        return promise
+      }
+    })
 
   When(/^I fill in the foreign activities (.*?) section$/, (subsection) => {
     const section = 'foreign'
@@ -86,10 +86,6 @@ defineSupportCode(({Given, Then, When}) => {
     default:
       return promise
     }
-  })
-
-  When(/^I click next$/, () => {
-    return navigateToNext()
   })
 
   Then(/^I should be in the foreign (.*?) section$/, (subsection) => {
