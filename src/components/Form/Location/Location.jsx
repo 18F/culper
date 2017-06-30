@@ -66,6 +66,59 @@ export default class Location extends ValidationElement {
     }
   }
 
+  animateCloseWithSuggestions () {
+    // There were errors/suggestions so show them
+    this.setState({
+      spinner: false,
+      spinnerAction: SpinnerAction.Spin,
+      suggestions: true
+    })
+  }
+
+  animateCloseTimeout () {
+    timeout(() => {
+      this.setState({
+        spinner: true,
+        spinnerAction: SpinnerAction.Shrink
+      })
+
+      // Reset back for next usage
+      timeout(() => {
+        this.setState({
+          spinner: false,
+          spinnerAction: SpinnerAction.Spin,
+          suggestions: true
+        })
+      })
+    })
+  }
+
+  animateCloseValid () {
+    timeout(() => {
+      this.setState({
+        spinner: true,
+        spinnerAction: SpinnerAction.Shrink
+      })
+
+      timeout(() => {
+        // Grow the green arrow
+        this.setState({
+          spinner: true,
+          spinnerAction: SpinnerAction.Grow
+        })
+
+        // Reset back for next usage
+        timeout(() => {
+          this.setState({
+            spinner: false,
+            spinnerAction: SpinnerAction.Spin,
+            suggestions: true
+          })
+        }, 1000)
+      })
+    }, 1000)
+  }
+
   handleBlur (event) {
     super.handleBlur(event)
 
@@ -88,36 +141,13 @@ export default class Location extends ValidationElement {
           // Trigger the spinner to complete final animations
           if (this.showSuggestions()) {
             // There were errors/suggestions so show them
-            this.setState({
-              spinner: false,
-              spinnerAction: SpinnerAction.Spin,
-              suggestions: true
-            })
+            this.animateCloseWithSuggestions()
           } else {
-            timeout(() => {
-              this.setState({
-                spinner: true,
-                spinnerAction: SpinnerAction.Shrink
-              })
-
-              timeout(() => {
-                // Grow the green arrow
-                this.setState({
-                  spinner: true,
-                  spinnerAction: SpinnerAction.Grow
-                })
-
-                // Reset back for next usage
-                timeout(() => {
-                  this.setState({
-                    spinner: false,
-                    spinnerAction: SpinnerAction.Spin,
-                    suggestions: true
-                  })
-                }, 1000)
-              })
-            }, 1000)
+            this.animateCloseValid()
           }
+        })
+        .catch(() => {
+          this.animateCloseTimeout()
         })
     })
   }
