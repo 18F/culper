@@ -8,29 +8,28 @@ import { TelephoneSummary } from '../../../Summary'
 export default class ContactInformation extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      Emails: props.Emails || [],
-      PhoneNumbers: props.PhoneNumbers || []
-    }
+    this.update = this.update.bind(this)
+    this.updateEmails = this.updateEmails.bind(this)
+    this.updatePhoneNumbers = this.updatePhoneNumbers.bind(this)
   }
 
-  emailDispatch (collection) {
-    this.handleUpdate('Emails', collection)
+  update (queue) {
+    this.props.onUpdate({
+      Emails: this.props.Emails,
+      PhoneNumbers: this.props.PhoneNumbers,
+      ...queue
+    })
   }
 
-  contactDispatch (field, values) {
-    this.handleUpdate(field, values)
+  updateEmails (values) {
+    this.update({
+      Emails: values
+    })
   }
 
-  handleUpdate (field, values) {
-    this.setState({ [field]: values.items }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Emails: this.state.Emails,
-          PhoneNumbers: this.state.PhoneNumbers
-        })
-      }
+  updatePhoneNumbers (values) {
+    this.update({
+      PhoneNumbers: values
     })
   }
 
@@ -38,11 +37,7 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    let addr = i18n.t('identification.contacts.collection.summary.unknownEmail')
-    if (item.Email && item.Email.value) {
-      addr = item.Email.value
-    }
-
+    const addr = item.Email && item.Email.value ? item.Email.value : i18n.t('identification.contacts.collection.summary.unknownEmail')
     return (
       <span>
         <span className="index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</span>
@@ -73,9 +68,9 @@ export default class ContactInformation extends SubsectionElement {
         <p>{i18n.t('identification.contacts.para.email')}</p>
         <div className={klass + ' email-collection'}>
           <Accordion minimum="2"
-                     items={this.state.Emails}
+                     items={this.props.Emails}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.contactDispatch.bind(this, 'Emails')}
+                     onUpdate={this.updateEmails}
                      onError={this.handleError}
                      summary={this.emailSummary}
                      description={i18n.t('identification.contacts.collection.summary.title')}
@@ -95,9 +90,9 @@ export default class ContactInformation extends SubsectionElement {
         <p>{i18n.t('identification.contacts.para.phoneNumber')}</p>
         <div className={klass + ' telephone-collection'}>
           <Accordion minimum="2"
-                     items={this.state.PhoneNumbers}
+                     items={this.props.PhoneNumbers}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.contactDispatch.bind(this, 'PhoneNumbers')}
+                     onUpdate={this.updatePhoneNumbers}
                      onError={this.handleError}
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
@@ -118,12 +113,13 @@ export default class ContactInformation extends SubsectionElement {
 ContactInformation.defaultProps = {
   Emails: [],
   PhoneNumbers: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'contacts',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ContactInformationValidator(state, props).isValid()
+    return new ContactInformationValidator(props, props).isValid()
   },
   defaultState: true
 }
