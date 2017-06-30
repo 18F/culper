@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { ContactInformationValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Email, Accordion, Telephone } from '../../../Form'
+import { TelephoneSummary } from '../../../Summary'
 
 export default class ContactInformation extends SubsectionElement {
   constructor (props) {
@@ -54,32 +55,7 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    let number = i18n.t('identification.contacts.collection.summary.unknownPhone')
-    if (item.Telephone && !item.noNumber && item.Telephone.number) {
-      number = item.Telephone.number
-
-      switch (item.Telephone.type) {
-        case 'DSN':
-          number = `${number.slice(0, 3)}-${number.slice(3, 7)}`
-          break
-
-        case 'International':
-          number = `+${number.slice(0, 3)} ${number.slice(3, 13)}`
-          if (item.Telephone.extension) {
-            number += ` x${item.Telephone.extension}`
-          }
-          break
-
-        case 'Domestic':
-        default:
-          number = `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`
-          if (item.Telephone.extension) {
-            number += ` x${item.Telephone.extension}`
-          }
-          break
-      }
-    }
-
+    const number = TelephoneSummary(item, i18n.t('identification.contacts.collection.summary.unknownPhone'))
     return (
       <span>
         <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>

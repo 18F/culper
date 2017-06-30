@@ -11,13 +11,11 @@ export default class Medical extends ValidationElement {
     this.updateSignature = this.updateSignature.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Signature: this.props.Signature,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Signature: this.props.Signature,
+      ...queue
+    })
   }
 
   updateSignature (values) {
@@ -28,15 +26,16 @@ export default class Medical extends ValidationElement {
     return (
       <div className="medical-release">
         { i18n.m('releases.medical.contents') }
-
         <Signature onUpdate={this.updateSignature}
-          {...this.props.Signature}
-        />
+                   {...this.props.Signature}
+                   />
       </div>
     )
   }
 }
 
 Medical.defaultProps = {
+  Signature: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

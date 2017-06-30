@@ -1,8 +1,6 @@
 import React from 'react'
-import { Link } from 'react-router'
 import { i18n } from '../../../config'
-import { DateRange, ValidationElement, Text, Field, Textarea, DateControl } from '../../Form'
-import { FullName, OtherNames, DateOfBirth, SSN, Telephone } from './helpers'
+import { ValidationElement, Text, DateControl } from '../../Form'
 
 export default class Signature extends ValidationElement {
   constructor (props) {
@@ -13,14 +11,12 @@ export default class Signature extends ValidationElement {
     this.updateDate = this.updateDate.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Name: this.props.Name,
-        Date: this.props.Date,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Date: this.props.Date,
+      ...queue
+    })
   }
 
   updateName (values) {
@@ -35,21 +31,24 @@ export default class Signature extends ValidationElement {
     return (
       <div className="signature">
         <Text name="fullname"
-          className="fullname"
-          label={i18n.t('releases.verify.label.name')}
-          {...this.props.Name}
-          onUpdate={this.updateName}
-        />
+              className="fullname"
+              label={i18n.t('releases.verify.label.name')}
+              {...this.props.Name}
+              onUpdate={this.updateName}
+              />
         <DateControl name="date"
-          className="date"
-          {...this.props.Date}
-          showEstimated={false}
-          onUpdate={this.updateDate}
-        />
+                     className="date"
+                     {...this.props.Date}
+                     showEstimated={false}
+                     onUpdate={this.updateDate}
+                     />
       </div>
     )
   }
 }
 
 Signature.defaultProps = {
+  Name: {},
+  Date: {},
+  onUpdate: (queue) => {}
 }

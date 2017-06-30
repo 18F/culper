@@ -11,13 +11,11 @@ export default class Credit extends ValidationElement {
     this.updateSignature = this.updateSignature.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Signature: this.props.Signature,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Signature: this.props.Signature,
+      ...queue
+    })
   }
 
   updateSignature (values) {
@@ -29,11 +27,14 @@ export default class Credit extends ValidationElement {
       <div className="credit-release">
         { i18n.m('releases.credit.contents') }
         <Signature onUpdate={this.updateSignature}
-          {...this.props.Signature}
-        />
+                   {...this.props.Signature}
+                   />
       </div>
     )
   }
 }
 
-Credit.defaultProps = {}
+Credit.defaultProps = {
+  Signature: {},
+  onUpdate: (queue) => {}
+}

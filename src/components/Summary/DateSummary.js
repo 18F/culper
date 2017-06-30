@@ -1,6 +1,6 @@
 import { i18n } from '../../config'
 
-export const DateSummary = (props, unknown = i18n.t('history.employment.default.noDate.label')) => {
+export const DateSummary = (props, unknown = i18n.t('history.employment.default.noDate.label'), full = false) => {
   if (!props) {
     return ''
   }
@@ -8,6 +8,10 @@ export const DateSummary = (props, unknown = i18n.t('history.employment.default.
   const noDateLabel = unknown
   function format (d) {
     if (Object.prototype.toString.call(d) === '[object Date]') {
+      if (full) {
+        return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+      }
+
       return `${d.getMonth() + 1}/${d.getFullYear()}`
     }
 

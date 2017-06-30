@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { DateRange, ValidationElement, Text, Field, Textarea, DateControl } from '../../Form'
+import { ValidationElement, Field } from '../../Form'
 import Signature from './Signature'
 
 export default class AdditionalComments extends ValidationElement {
@@ -12,45 +12,44 @@ export default class AdditionalComments extends ValidationElement {
     this.updateAdditionalComments = this.updateAdditionalComments.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Signature: this.props.Signature,
-        AdditionalComments: this.props.AdditionalComments,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Signature: this.props.Signature,
+      AdditionalComments: this.props.AdditionalComments,
+      ...queue
+    })
   }
 
   updateSignature (values) {
     this.update({ Signature: values })
   }
 
-  updateAdditionalComments (text) {
-    this.update({ AdditionalComments: text.value })
+  updateAdditionalComments (values) {
+    this.update({ AdditionalComments: values })
   }
 
   render () {
     return (
       <div className="additional-comments">
-        <Field
-          comments={true}
-          commentsName="AdditionalComments"
-          commentsValue={this.props.AdditionalComments}
-          onUpdate={this.updateAdditionalComments}>
+        <Field comments={true}
+               commentsName="AdditionalComments"
+               commentsValue={this.props.AdditionalComments}
+               onUpdate={this.updateAdditionalComments}>
           { i18n.m('releases.additionalComments.contents') }
         </Field>
 
         { i18n.m('releases.additionalComments.certificationContents') }
-
         <Signature onUpdate={this.updateSignature}
-          {...this.props.Signature}
-        />
+                   {...this.props.Signature}
+                   />
       </div>
     )
   }
 }
 
 AdditionalComments.defaultProps = {
+  AdditionalComments: {},
+  Signature: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -12,13 +12,11 @@ export default class General extends ValidationElement {
     this.updateSignature = this.updateSignature.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Signature: this.props.Signature,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Signature: this.props.Signature,
+      ...queue
+    })
   }
 
   updateSignature (values) {
@@ -30,13 +28,15 @@ export default class General extends ValidationElement {
       <div className="general-release">
         { i18n.m('releases.general.contents') }
         <Signature onUpdate={this.updateSignature}
-          {...this.props.Signature}
-        />
+                   {...this.props.Signature}
+                   />
       </div>
     )
   }
 }
 
 General.defaultProps = {
+  Signature: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

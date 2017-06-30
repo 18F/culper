@@ -13,14 +13,12 @@ export default class ReleaseOfGeneralAndMedical extends ValidationElement {
     this.updateMedical = this.updateMedical.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        General: this.props.General,
-        Medical: this.props.Medical,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      General: this.props.General,
+      Medical: this.props.Medical,
+      ...queue
+    })
   }
 
   updateGeneral (values) {
@@ -34,17 +32,26 @@ export default class ReleaseOfGeneralAndMedical extends ValidationElement {
   render () {
     return (
       <div className="general-medical-release">
-        <Verify identification={this.props.Identification} />
+        <Verify identification={this.props.Identification}
+                history={this.props.History}
+                />
+        <hr />
         <General onUpdate={this.updateGeneral}
-          {...this.props.General}
-        />
+                 {...this.props.General}
+                 />
         <hr />
         <Medical onUpdate={this.updateMedical}
-          {...this.props.Medical}
-        />
+                 {...this.props.Medical}
+                 />
       </div>
     )
   }
 }
 
-ReleaseOfGeneralAndMedical.defaultProps = {}
+ReleaseOfGeneralAndMedical.defaultProps = {
+  Identification: {},
+  History: {},
+  General: {},
+  Medical: {},
+  onUpdate: (queue) => {}
+}

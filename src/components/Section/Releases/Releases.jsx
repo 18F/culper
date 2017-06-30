@@ -40,57 +40,58 @@ class Releases extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name=""
-            back=""
-            backLabel=""
-            next="releases/general"
-            nextLabel={ i18n.t('releases.destination.generalMedical') }>
+                       back=""
+                       backLabel=""
+                       next="releases/general"
+                       nextLabel={ i18n.t('releases.destination.generalMedical') }>
             <AdditionalComments name="additionalcomments"
-              {...this.props.AdditionalComments}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateAdditionalComments}
-              onError={this.handleError}
-            />
+                                {...this.props.AdditionalComments}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateAdditionalComments}
+                                onError={this.handleError}
+                                />
           </SectionView>
 
           <SectionView name="comments"
-            back=""
-            backLabel=""
-            next="releases/general"
-            nextLabel={ i18n.t('releases.destination.generalMedical') }>
+                       back=""
+                       backLabel=""
+                       next="releases/general"
+                       nextLabel={ i18n.t('releases.destination.generalMedical') }>
             <AdditionalComments name="additionalcomments"
-              {...this.props.AdditionalComments}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateAdditionalComments}
-              onError={this.handleError}
-            />
+                                {...this.props.AdditionalComments}
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.updateAdditionalComments}
+                                onError={this.handleError}
+                                />
           </SectionView>
 
           <SectionView name="general"
-            back="releases/comments"
-            backLabel={ i18n.t('releases.destination.comments') }
-            next="releases/credit"
-            nextLabel={ i18n.t('releases.destination.credit') }>
+                       back="releases/comments"
+                       backLabel={ i18n.t('releases.destination.comments') }
+                       next="releases/credit"
+                       nextLabel={ i18n.t('releases.destination.credit') }>
             <ReleaseOfGeneralAndMedical name="general"
-              General={this.props.General}
-              Medical={this.props.Medical}
-              Identification={this.props.Identification}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateReleaseOfGeneralAndMedical}
-              onError={this.handleError}
-            />
+                                        General={this.props.General}
+                                        Medical={this.props.Medical}
+                                        Identification={this.props.Identification}
+                                        History={this.props.History}
+                                        dispatch={this.props.dispatch}
+                                        onUpdate={this.updateReleaseOfGeneralAndMedical}
+                                        onError={this.handleError}
+                                        />
           </SectionView>
 
           <SectionView name="credit"
-            back="releases/general"
-            backLabel={ i18n.t('releases.destination.generalMedical') }
-            next=""
-            nextLabel="">
+                       back="releases/general"
+                       backLabel={ i18n.t('releases.destination.generalMedical') }
+                       next=""
+                       nextLabel="">
             <Credit name="credit"
-              {...this.props.Credit}
-              dispatch={this.props.dispatch}
-              onUpdate={this.updateCredit}
-              onError={this.handleError}
-            />
+                    {...this.props.Credit}
+                    dispatch={this.props.dispatch}
+                    onUpdate={this.updateCredit}
+                    onError={this.handleError}
+                    />
           </SectionView>
         </SectionViews>
       </div>
@@ -107,9 +108,11 @@ function mapStateToProps (state) {
     Application: app || {},
     Releases: releases,
     General: releases.General || {},
+    Medical: releases.Medical || {},
     Credit: releases.Credit || {},
     AdditionalComments: releases.AdditionalComments || {},
     Identification: app.Identification || {},
+    History: app.History || {},
     Errors: errors.releases || [],
     Completed: completed.releases || []
   }
