@@ -47,10 +47,6 @@ export default class Suggestions extends React.Component {
     })
   }
 
-  visible () {
-    return this.props.show || (this.props.withSuggestions && this.props.suggestions.length > 0)
-  }
-
   alternate () {
     if (this.props.suggestionDismissAlternate) {
       return (
@@ -100,13 +96,7 @@ Suggestions.defaultProps = {
   suggestions: [],
   className: '',
   show: false,
-  renderSuggestion: () => {
-    console.warn('*********************************Missing handler for renderSuggestion')
-  },
-  onSuggestion: () => {
-    console.warn('Missing handler for onSuggestion')
-  },
-  onDismiss: () => {
-    console.warn('Missing handler for onDismiss')
-  }
+  renderSuggestion: () => {},
+  onSuggestion: () => {},
+  onDismiss: () => {}
 }

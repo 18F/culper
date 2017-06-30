@@ -98,7 +98,24 @@ describe('The passport component', () => {
     }
     const component = mount(<Passport {...data} name={'passport'} />)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
+    component.find('.branch .yes input').simulate('change')
+    component.find('.name .first input').simulate('change')
+    component.find('.passport-book input').simulate('change')
+    component.find('.passport-number input').simulate('change')
+    component.find('.passport-issued .day input').simulate('change')
+    component.find('.passport-expiration .day input').simulate('change')
     component.find({type: 'radio', name: 'passport-card', value: 'Card'}).simulate('change')
     expect(component.find({type: 'radio', name: 'passport-card', value: 'Card'}).hasClass('selected')).toBe(true)
+  })
+
+  it('can render with regular expression for passport card', () => {
+    const props = {
+      HasPassport: 'Yes',
+      Card: 'Card',
+      reCard: 'test'
+    }
+    const component = mount(<Passport {...props} />)
+    expect(component.find('.number').length).toBe(1)
+    expect(component.find('[pattern="test"]').length).toBe(1)
   })
 })

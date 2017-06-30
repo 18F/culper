@@ -98,4 +98,90 @@ describe('The Address component', () => {
     component.find('.dismiss a').first().simulate('click')
     expect(component.find('.suggestions.modal-content').length).toBe(0)
   })
+
+  it('renders all the things', () => {
+    const tests = [
+      {
+        props: { layout: Location.BIRTHPLACE, country: 'United States' },
+        selectors: ['.state', '.city', '.county']
+      },
+      {
+        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY_COUNTRY, country: 'United States' },
+        selectors: ['.state', '.city']
+      },
+      {
+        props: { layout: Location.BIRTHPLACE_WITHOUT_COUNTY, country: 'United States' },
+        selectors: ['.state', '.city']
+      },
+      {
+        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY, country: 'United States' },
+        selectors: ['.city', '.state', '.zipcode']
+      },
+      {
+        props: { layout: Location.ADDRESS, country: 'United States' },
+        selectors: ['.street', '.street2', '.city', '.state', '.zipcode']
+      },
+      {
+        props: { layout: Location.CITY_STATE },
+        selectors: ['.city', '.state']
+      },
+      {
+        props: { layout: Location.STREET_CITY_COUNTRY },
+        selectors: ['.street', '.city', '.country']
+      },
+      {
+        props: { layout: Location.CITY_COUNTRY },
+        selectors: ['.city', '.country']
+      },
+      {
+        props: { layout: Location.CITY_STATE_COUNTRY },
+        selectors: ['.city', '.state', '.country']
+      },
+      {
+        props: { layout: Location.US_ADDRESS },
+        selectors: ['.street', '.city', '.state', '.zipcode']
+      },
+      {
+        props: { layout: Location.STREET_CITY },
+        selectors: ['.street', '.city']
+      },
+      {
+        props: { layout: Location.COUNTRY },
+        selectors: ['.country']
+      },
+      {
+        props: { layout: 'Something New' },
+        selectors: ['.location']
+      }
+    ]
+
+    tests.forEach(test => {
+      const component = mount(<Location {...test.props} />)
+      test.selectors.forEach(selector => {
+        const found = component.find(selector).length > 0
+        if (!found) {
+          console.log('props:', test.props)
+          console.log('selector:', selector)
+        }
+        expect(found).toBe(true)
+      })
+    })
+  })
+
+  it('can show spinner', () => {
+    const props = {
+      spinner: true
+    }
+    const component = mount(<Location {...props} />)
+    expect(component.find('.spinner').length).toBe(1)
+  })
+
+  it('can show suggestions', () => {
+    const props = {
+      suggestions: true,
+      geocodeResult: { Error: null, Suggestions: [{}] }
+    }
+    const component = mount(<Location {...props} />)
+    expect(component.find('.suggestions').length).toBe(1)
+  })
 })

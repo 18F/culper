@@ -15,7 +15,7 @@ export default class Passport extends SubsectionElement {
     this.updateNumber = this.updateNumber.bind(this)
     this.updateCard = this.updateCard.bind(this)
     this.updateIssued = this.updateIssued.bind(this)
-    this.updateExpired = this.updateExpired.bind(this)
+    this.updateExpiration = this.updateExpiration.bind(this)
     this.showSuggestions = this.showSuggestions.bind(this)
     this.onSuggestion = this.onSuggestion.bind(this)
     this.onDismiss = this.onDismiss.bind(this)
@@ -84,9 +84,9 @@ export default class Passport extends SubsectionElement {
     })
   }
 
-  updateExpired (values) {
+  updateExpiration (values) {
     this.update({
-      Expired: values
+      Expiration: values
     })
   }
 
@@ -174,12 +174,14 @@ export default class Passport extends SubsectionElement {
                 <RadioGroup className="passport-card option-list"
                             selectedValue={this.props.Card}>
                   <Radio name="passport-book"
+                         className="passport-book"
                          label={i18n.t('foreign.passport.label.book')}
                          value="Book"
                          onChange={this.updateCard}
                          onError={this.handleError}
                          />
                   <Radio name="passport-card"
+                         className="passport-card"
                          label={i18n.t('foreign.passport.label.card')}
                          value="Card"
                          onChange={this.updateCard}
@@ -192,7 +194,7 @@ export default class Passport extends SubsectionElement {
                       placeholder={i18n.t('foreign.passport.placeholder.number')}
                       pattern={re}
                       maxlength="9"
-                      className="number"
+                      className="number passport-number"
                       ref="number"
                       prefix="passport"
                       onUpdate={this.updateNumber}
@@ -206,6 +208,7 @@ export default class Passport extends SubsectionElement {
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="issued"
+                           className="passport-issued"
                            {...this.props.Issued}
                            onUpdate={this.updateIssued}
                            onError={this.handleError}
@@ -217,6 +220,7 @@ export default class Passport extends SubsectionElement {
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="expiration"
+                           className="passport-expiration"
                            {...this.props.Expiration}
                            onUpdate={this.updateExpiration}
                            onError={this.handleError}
