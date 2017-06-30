@@ -27,7 +27,7 @@ export default class Delinquent extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasDelinquent: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -92,6 +92,7 @@ export default class Delinquent extends SubsectionElement {
         <Branch name="has_delinquent"
                 className="delinquent-branch eapp-field-wrap"
                 value={this.state.HasDelinquent}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>

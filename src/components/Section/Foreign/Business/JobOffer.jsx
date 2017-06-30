@@ -7,15 +7,6 @@ export default class JobOffer extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Name: props.Name,
-      Description: props.Description,
-      Date: props.Date,
-      Address: props.Address,
-      Accepted: props.Accepted,
-      Explanation: props.Explanation
-    }
-
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateDescription = this.updateDescription.bind(this)
@@ -25,42 +16,52 @@ export default class JobOffer extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Name: this.props.Name,
-        Description: this.props.Description,
-        Date: this.props.Date,
-        Address: this.props.Address,
-        Accepted: this.props.Accepted,
-        Explanation: this.props.Explanation,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Description: this.props.Description,
+      Date: this.props.Date,
+      Address: this.props.Address,
+      Accepted: this.props.Accepted,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update({
+      Name: values
+    })
   }
 
   updateDescription (values) {
-    this.update('Description', values)
+    this.update({
+      Description: values
+    })
   }
 
   updateDate (values) {
-    this.update('Date', values)
+    this.update({
+      Date: values
+    })
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update({
+      Address: values
+    })
   }
 
   updateAccepted (values) {
-    this.update('Accepted', values)
+    this.update({
+      Accepted: values
+    })
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
@@ -139,5 +140,6 @@ JobOffer.defaultProps = {
   Address: {},
   Accepted: '',
   Explanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

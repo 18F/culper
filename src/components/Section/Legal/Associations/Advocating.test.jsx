@@ -12,7 +12,7 @@ describe('The legal associations advocating component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<Advocating onUpdate={onUpdate} />)
-    component.find('.legal-associations-advocating-has-advocated .yes input').simulate('click')
+    component.find('.legal-associations-advocating-has-advocated .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 

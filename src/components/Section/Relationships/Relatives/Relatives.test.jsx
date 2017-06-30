@@ -16,6 +16,7 @@ describe('The relatives component', () => {
     let updates = 0
     const expected = {
       name: 'relatives',
+      List: [{ Item: { Relation: 'Mother' } }],
       onUpdate: (obj) => {
         updates++
       }

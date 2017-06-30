@@ -6,18 +6,6 @@ import { Branch, Show, Accordion } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 import MilitaryService from './MilitaryService'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export const serviceNameDisplay = (service) => {
   switch (service) {
     case 'AirForce':
@@ -44,36 +32,34 @@ export default class History extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasServed: props.HasServed,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateServed = this.updateServed.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      HasServed: this.props.HasServed,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateServed (value, event) {
-    this.onUpdate('HasServed', value)
-
     // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('List', [])
-      this.onUpdate('ListBranch', '')
-    }
+    this.update({
+      HasServed: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   /**
@@ -98,17 +84,18 @@ export default class History extends SubsectionElement {
       <div className="history">
         <Branch name="has_served"
                 className="served"
-                value={this.state.HasServed}
+                value={this.props.HasServed}
                 help="military.history.help.served"
+                warning={true}
                 onUpdate={this.updateServed}
                 onError={this.handleError}>
         </Branch>
 
-        <Show when={this.state.HasServed === 'Yes'}>
+        <Show when={this.props.HasServed === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.List}
+                     items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -126,12 +113,13 @@ export default class History extends SubsectionElement {
 }
 
 History.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'history',
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryHistoryValidator(state, props).isValid()
+    return new MilitaryHistoryValidator(props, props).isValid()
   },
   defaultState: true
 }

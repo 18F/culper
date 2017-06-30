@@ -34,7 +34,11 @@ export default class NegativeImpacts extends SubsectionElement {
   }
 
   updateHasImpacts (values) {
-    this.update({HasImpacts: values})
+    this.update({
+      HasImpacts: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -61,6 +65,7 @@ export default class NegativeImpacts extends SubsectionElement {
         <Branch name="has_impacts"
                 className="has-impacts"
                 value={this.props.HasImpacts}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasImpacts}>
         </Branch>

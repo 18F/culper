@@ -15,32 +15,27 @@ export default class Political extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignPolitical: this.props.HasForeignPolitical
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignPolitical: this.props.HasForeignPolitical,
+      ...queue
+    })
   }
 
   updateHasForeignPolitical (values) {
-    this.update([
-      { name: 'HasForeignPolitical', value: values }
-    ])
+    this.update({
+      HasForeignPolitical: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -67,6 +62,7 @@ export default class Political extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.political.help.branch"
                 value={this.props.HasForeignPolitical}
+                warning={true}
                 onUpdate={this.updateHasForeignPolitical}
                 onError={this.handleError}>
         </Branch>
@@ -138,6 +134,7 @@ Political.defaultProps = {
   HasForeignPolitical: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/political',

@@ -52,12 +52,15 @@ class History extends SectionElement {
   updateBranchAttendance (values) {
     let education = this.props.Education || {}
     education.HasAttended = values
+    education.HasDegree10 = values === 'No' ? education.HasDegree10 : ''
+    education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
   }
 
   updateBranchDegree10 (values) {
     let education = this.props.Education || {}
     education.HasDegree10 = values
+    education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
   }
 
@@ -449,6 +452,7 @@ class History extends SectionElement {
                     value={this.props.Education.HasAttended}
                     help="history.education.help.attendance"
                     label={i18n.t('history.education.label.attendance')}
+                    warning={true}
                     onUpdate={this.updateBranchAttendance}
                     >
             </Branch>
@@ -457,6 +461,7 @@ class History extends SectionElement {
                       value={this.props.Education.HasDegree10}
                       help="history.education.help.degree10"
                       label={i18n.t('history.education.label.degree10')}
+                      warning={true}
                       onUpdate={this.updateBranchDegree10}
                       >
               </Branch>

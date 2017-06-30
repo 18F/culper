@@ -9,32 +9,29 @@ export default class OtherNames extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      List: props.List,
-      HasOtherNames: props.HasOtherNames
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
-    this.myDispatch = this.myDispatch.bind(this)
+    this.update = this.update.bind(this)
+    this.updateBranch = this.updateBranch.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (value) {
-    this.setState({ HasOtherNames: value }, () => {
-      this.myDispatch({
-        items: value === 'No' ? [] : this.state.List,
-        branch: ''
-      })
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      HasOtherNames: this.props.HasOtherNames,
+      ...queue
     })
   }
 
-  myDispatch (values) {
-    this.setState({ List: values.items }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasOtherNames: this.state.HasOtherNames
-        })
-      }
+  updateBranch (value) {
+    this.update({
+      HasOtherNames: value,
+      List: value === 'Yes' ? this.props.List : []
+    })
+  }
+
+  updateList (values) {
+    this.update({
+      List: values.items
     })
   }
 
@@ -62,16 +59,17 @@ export default class OtherNames extends SubsectionElement {
         <p>{i18n.t('identification.othernames.info')}</p>
         <h3>{i18n.t('identification.othernames.branch.question')}</h3>
         <Branch name="has_othernames"
-                value={this.state.HasOtherNames}
+                value={this.props.HasOtherNames}
                 help="identification.othernames.branch.help"
-                onUpdate={this.onUpdate}
+                warning={true}
+                onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasOtherNames === 'Yes'}>
+        <Show when={this.props.HasOtherNames === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.List}
+                     items={this.props.List}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.myDispatch}
+                     onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
@@ -118,12 +116,13 @@ export default class OtherNames extends SubsectionElement {
 OtherNames.defaultProps = {
   List: [],
   HasOtherNames: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'othernames',
   dispatch: () => {},
   validator: (state, props) => {
-    return new OtherNamesValidator(state, props).isValid()
+    return new OtherNamesValidator(props, props).isValid()
   },
   defaultState: true
 }

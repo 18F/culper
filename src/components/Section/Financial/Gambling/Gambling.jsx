@@ -24,7 +24,7 @@ export default class Gambling extends SubsectionElement {
   onUpdate (val, event) {
     this.setState({ HasGamblingDebt: val }, () => {
       this.myDispatch({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -93,6 +93,7 @@ export default class Gambling extends SubsectionElement {
       <div className="gambling">
         <Branch name="has_gamblingdebt"
                 value={this.state.HasGamblingDebt}
+                warning={true}
                 onUpdate={this.onUpdate.bind(this)}
                 onError={this.handleError}>
         </Branch>

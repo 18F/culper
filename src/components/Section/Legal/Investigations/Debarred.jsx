@@ -15,32 +15,27 @@ export default class Debarred extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasDebarment: this.props.HasDebarment
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasDebarment: this.props.HasDebarment,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasDebarment', value: values }
-    ])
+    this.update({
+      HasDebarment: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -69,6 +64,7 @@ export default class Debarred extends SubsectionElement {
                 labelSize="h3"
                 className="legal-investigations-debarred-has-debarment"
                 value={this.props.HasDebarment}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
@@ -123,6 +119,7 @@ Debarred.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/debarred',

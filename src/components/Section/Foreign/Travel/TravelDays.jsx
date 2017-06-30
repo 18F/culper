@@ -78,5 +78,6 @@ export default class TravelDays extends ValidationElement {
 
 TravelDays.defaultProps = {
   value: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

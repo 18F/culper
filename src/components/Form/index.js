@@ -46,6 +46,7 @@ import SSN from './SSN'
 import ForeignBornDocuments from './ForeignBornDocuments/ForeignBornDocuments'
 import Currency from './Currency'
 import Location from './Location'
+import Spinner from './Spinner'
 
 export {
   ValidationElement,
@@ -90,5 +91,6 @@ export {
   SSN,
   ForeignBornDocuments,
   Currency,
-  Location
+  Location,
+  Spinner
 }

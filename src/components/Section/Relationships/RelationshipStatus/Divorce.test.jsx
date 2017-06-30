@@ -16,6 +16,9 @@ describe('The Divorce component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitant',
+      Status: 'Divorced',
+      BirthPlace: { country: 'United States' },
+      Deceased: 'Yes',
       onUpdate: () => { updates++ }
     }
 
@@ -32,8 +35,7 @@ describe('The Divorce component', () => {
     component.find('.status .divorced input').simulate('change')
     component.find('.deceased .yes input').simulate('change')
     component.find('.address-deceased .city input').simulate('change')
-    component.find('.address-deceased .city input').simulate('change')
     component.find('.deceased-notapplicable .button input').simulate('change')
-    expect(updates).toBe(12)
+    expect(updates).toBe(10)
   })
 })
