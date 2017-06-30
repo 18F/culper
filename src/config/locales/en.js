@@ -1948,7 +1948,7 @@ const en = {
     multiple: {
       heading: {
         title: 'Dual/Multiple citizenship',
-        hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships',
+        hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
           dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
@@ -2835,6 +2835,18 @@ const en = {
         }
       }
     }
+  },
+
+  branch: {
+    value: {
+      yes: 'Yes',
+      no: 'No'
+    },
+    label: {
+      yes: 'Yes',
+      no: 'No'
+    },
+    confirmation: 'Are you sure you would like to change your answer? This will remove any data currently entered.'
   },
 
   address: {

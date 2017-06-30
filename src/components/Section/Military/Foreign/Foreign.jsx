@@ -13,9 +13,7 @@ export default class Foreign extends SubsectionElement {
   }
 
   updateList (collection) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({ List: collection })
-    }
+    this.props.onUpdate({ List: collection })
   }
 
   render () {
@@ -39,6 +37,7 @@ export default class Foreign extends SubsectionElement {
 }
 
 Foreign.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'foreign',

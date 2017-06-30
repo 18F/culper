@@ -13,32 +13,38 @@ export default class CoOwner extends ValidationElement {
     this.updateRelationshipNature = this.updateRelationshipNature.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Name: this.props.Name,
-        Address: this.props.Address,
-        Countries: this.props.Countries,
-        RelationshipNature: this.props.RelationshipNature,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Address: this.props.Address,
+      Countries: this.props.Countries,
+      RelationshipNature: this.props.RelationshipNature,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update({
+      Name: values
+    })
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update({
+      Address: values
+    })
   }
 
   updateCountries (values) {
-    this.update('Countries', values)
+    this.update({
+      Countries: values
+    })
   }
 
   updateRelationshipNature (values) {
-    this.update('RelationshipNature', values)
+    this.update({
+      RelationshipNature: values
+    })
   }
 
   render () {
@@ -89,5 +95,6 @@ export default class CoOwner extends ValidationElement {
 
 CoOwner.defaultProps = {
   prefix: 'coOwner',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

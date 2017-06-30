@@ -18,57 +18,73 @@ export default class FutureBenefit extends ValidationElement {
     this.updateObligatedExplanation = this.updateObligatedExplanation.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Begin: this.props.Begin,
-        Frequency: this.props.Frequency,
-        OtherFrequency: this.props.OtherFrequency,
-        Country: this.props.Country,
-        Value: this.props.Value,
-        ValueEstimated: this.props.ValueEstimated,
-        Reason: this.props.Reason,
-        Obligated: this.props.Obligated,
-        ObligatedExplanation: this.props.ObligatedExplanation,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Begin: this.props.Begin,
+      Frequency: this.props.Frequency,
+      OtherFrequency: this.props.OtherFrequency,
+      Country: this.props.Country,
+      Value: this.props.Value,
+      ValueEstimated: this.props.ValueEstimated,
+      Reason: this.props.Reason,
+      Obligated: this.props.Obligated,
+      ObligatedExplanation: this.props.ObligatedExplanation,
+      ...queue
+    })
   }
 
   updateBegin (values) {
-    this.update('Begin', values)
+    this.update({
+      Begin: values
+    })
   }
 
   updateFrequency (cb) {
-    this.update('Frequency', cb.value)
+    this.update({
+      Frequency: cb.value
+    })
   }
 
   updateOtherFrequency (values) {
-    this.update('OtherFrequency', values)
+    this.update({
+      OtherFrequency: values
+    })
   }
 
   updateCountry (values) {
-    this.update('Country', values)
+    this.update({
+      Country: values
+    })
   }
 
   updateValue (values) {
-    this.update('Value', values)
+    this.update({
+      Value: values
+    })
   }
 
   updateValueEstimated (cb) {
-    this.update('ValueEstimated', cb.checked)
+    this.update({
+      ValueEstimated: cb.checked
+    })
   }
 
   updateReason (values) {
-    this.update('Reason', values)
+    this.update({
+      Reason: values
+    })
   }
 
   updateObligated (values) {
-    this.update('Obligated', values)
+    this.update({
+      Obligated: values
+    })
   }
 
   updateObligatedExplanation (values) {
-    this.update('ObligatedExplanation', values)
+    this.update({
+      ObligatedExplanation: values
+    })
   }
 
   render () {
@@ -198,5 +214,6 @@ export default class FutureBenefit extends ValidationElement {
 }
 
 FutureBenefit.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

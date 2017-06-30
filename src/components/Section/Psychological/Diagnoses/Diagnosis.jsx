@@ -17,42 +17,52 @@ export default class Diagnosis extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Condition: this.props.Condition,
-        Diagnosed: this.props.Diagnosed,
-        Treatment: this.props.Treatment,
-        TreatmentFacility: this.props.TreatmentFacility,
-        Effective: this.props.Effective,
-        Explanation: this.props.Explanation,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Condition: this.props.Condition,
+      Diagnosed: this.props.Diagnosed,
+      Treatment: this.props.Treatment,
+      TreatmentFacility: this.props.TreatmentFacility,
+      Effective: this.props.Effective,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateCondition (response) {
-    this.update('Condition', response.value)
+    this.update({
+      Condition: response.value
+    })
   }
 
   updateDiagnosed (values) {
-    this.update('Diagnosed', values)
+    this.update({
+      Diagnosed: values
+    })
   }
 
   updateTreatment (values) {
-    this.update('Treatment', values)
+    this.update({
+      Treatment: values
+    })
   }
 
   updateTreatmentFacility (values) {
-    this.update('TreatmentFacility', values)
+    this.update({
+      TreatmentFacility: values
+    })
   }
 
   updateEffective (radio) {
-    this.update('Effective', radio.value)
+    this.update({
+      Effective: radio.value
+    })
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
@@ -197,5 +207,6 @@ export default class Diagnosis extends ValidationElement {
 
 Diagnosis.defaultProps = {
   prefix: 'diagnosis',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

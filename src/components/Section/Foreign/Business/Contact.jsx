@@ -4,44 +4,40 @@ import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Textarea, Country, DateControl, Name, BirthPlace, Location } from '../../../Form'
+         Textarea, Country, DateControl, Name, Location } from '../../../Form'
 import SubsequentContacts from './SubsequentContacts'
 
 export default class Contact extends SubsectionElement {
   constructor (props) {
     super(props)
 
+    this.update = this.update.bind(this)
     this.updateHasForeignContact = this.updateHasForeignContact.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignContact: this.props.HasForeignContact
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignContact: this.props.HasForeignContact,
+      ...queue
+    })
   }
 
   updateHasForeignContact (values) {
-    this.update([
-      { name: 'HasForeignContact', value: values }
-    ])
+    this.update({
+      HasForeignContact: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -70,6 +66,7 @@ export default class Contact extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.contact.help.branch"
                 value={this.props.HasForeignContact}
+                warning={true}
                 onUpdate={this.updateHasForeignContact}
                 onError={this.handleError}>
           {i18n.m('foreign.business.contact.para.branch')}
@@ -166,6 +163,7 @@ Contact.defaultProps = {
   HasForeignContact: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',

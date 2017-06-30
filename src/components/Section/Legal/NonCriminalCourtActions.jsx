@@ -14,15 +14,13 @@ export default class NonCriminalCourtActions extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasCourtActions: this.props.HasCourtActions,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      HasCourtActions: this.props.HasCourtActions,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
+    })
   }
 
   updateList (values) {
@@ -33,7 +31,11 @@ export default class NonCriminalCourtActions extends SubsectionElement {
   }
 
   updateHasCourtActions (values) {
-    this.update({HasCourtActions: values})
+    this.update({
+      HasCourtActions: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -58,23 +60,24 @@ export default class NonCriminalCourtActions extends SubsectionElement {
       <div className="non-criminal-court-actions">
         <h2>{i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}</h2>
         <Branch name="HasCourtActions"
-          className="has-court-actions"
-          value={this.props.HasCourtActions}
-          onError={this.handleError}
-          onUpdate={this.updateHasCourtActions}>
+                className="has-court-actions"
+                value={this.props.HasCourtActions}
+                warning={true}
+                onError={this.handleError}
+                onUpdate={this.updateHasCourtActions}>
         </Branch>
 
         <Show when={this.props.HasCourtActions === 'Yes'}>
           <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            summary={this.summary}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            description={i18n.t('legal.nonCriminalAction.collection.description')}
-            appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
-            appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}>
+                     defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     description={i18n.t('legal.nonCriminalAction.collection.description')}
+                     appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
+                     appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}>
             <NonCriminalCourtAction name="CourtAction" bind={true} />
           </Accordion>
         </Show>
@@ -86,6 +89,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 NonCriminalCourtActions.defaultProps = {
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'court',

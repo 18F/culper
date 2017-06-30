@@ -11,34 +11,32 @@ export default class Conferences extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignConferences: props.HasForeignConferences,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateHasForeignConferences = this.updateHasForeignConferences.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignConferences: this.state.HasForeignConferences,
-          List: this.state.List
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignConferences: this.props.HasForeignConferences,
+      ...queue
     })
   }
 
   updateHasForeignConferences (value) {
-    this.onUpdate('HasForeignConferences', value)
+    this.update({
+      HasForeignConferences: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -63,17 +61,18 @@ export default class Conferences extends SubsectionElement {
                 labelSize="h3"
                 adjustFor="p"
                 help="foreign.business.conferences.help.branch"
-                value={this.state.HasForeignConferences}
+                value={this.props.HasForeignConferences}
+                warning={true}
                 onUpdate={this.updateHasForeignConferences}
                 onError={this.handleError}>
           {i18n.m('foreign.business.conferences.para.branch')}
         </Branch>
 
-        <Show when={this.state.HasForeignConferences === 'Yes'}>
+        <Show when={this.props.HasForeignConferences === 'Yes'}>
           <Accordion minimum="1"
-                     items={this.state.List}
+                     items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -145,12 +144,13 @@ Conferences.defaultProps = {
   HasForeignConferences: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/conferences',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessConferencesValidator(state, props).isValid()
+    return new ForeignBusinessConferencesValidator(props, props).isValid()
   },
   defaultState: true
 }

@@ -26,6 +26,7 @@ class Foreign extends SectionElement {
     this.updateIndirectActivity = this.updateIndirectActivity.bind(this)
     this.updateRealEstateActivity = this.updateRealEstateActivity.bind(this)
     this.updateBenefitActivity = this.updateBenefitActivity.bind(this)
+    this.updateSupport = this.updateSupport.bind(this)
     this.updateConferences = this.updateConferences.bind(this)
     this.updateContact = this.updateContact.bind(this)
     this.updateSponsorship = this.updateSponsorship.bind(this)
@@ -79,6 +80,10 @@ class Foreign extends SectionElement {
 
   updateBenefitActivity (values) {
     this.handleUpdate('BenefitActivity', values)
+  }
+
+  updateSupport (values) {
+    this.handleUpdate('Support', values)
   }
 
   updateConferences (values) {

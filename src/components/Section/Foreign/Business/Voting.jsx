@@ -15,32 +15,27 @@ export default class Voting extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignVoting: this.props.HasForeignVoting
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignVoting: this.props.HasForeignVoting,
+      ...queue
+    })
   }
 
   updateHasForeignVoting (values) {
-    this.update([
-      { name: 'HasForeignVoting', value: values }
-    ])
+    this.update({
+      HasForeignVoting: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
@@ -65,6 +60,7 @@ export default class Voting extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.voting.help.branch"
                 value={this.props.HasForeignVoting}
+                warning={true}
                 onUpdate={this.updateHasForeignVoting}
                 onError={this.handleError}>
         </Branch>
@@ -127,6 +123,7 @@ Voting.defaultProps = {
   HasForeignVoting: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/voting',

@@ -7,6 +7,8 @@ describe('The citizenship item component', () => {
     let updates = 0
     const expected = {
       name: 'citizenshipItem',
+      Renounced: 'Yes',
+      Current: 'Yes',
       onUpdate: () => { updates++ }
     }
     const component = mount(<CitizenshipItem {...expected} />)

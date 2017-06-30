@@ -1,7 +1,7 @@
 import OrderValidator from './order'
 
 export default class ConsultationValidator {
-  constructor (state = {}, props) {
+  constructor (state = {}, props = {}) {
     this.list = state.List || []
     this.listBranch = state.ListBranch
     this.consulted = state.Consulted

@@ -9,23 +9,16 @@ export default class SubsequentContacts extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values }
-    ])
+    this.update({
+      List: values
+    })
   }
 
   render () {
@@ -73,5 +66,6 @@ export default class SubsequentContacts extends ValidationElement {
 SubsequentContacts.defaultProps = {
   name: 'SubsequentContacts',
   List: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

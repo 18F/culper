@@ -14,37 +14,45 @@ export default class Order extends ValidationElement {
     this.updateAppeals = this.updateAppeals.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Occurred: this.props.Occurred,
-        CourtName: this.props.CourtName,
-        CourtAddress: this.props.CourtAddress,
-        Disposition: this.props.Disposition,
-        Appeals: this.props.Appeals,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Occurred: this.props.Occurred,
+      CourtName: this.props.CourtName,
+      CourtAddress: this.props.CourtAddress,
+      Disposition: this.props.Disposition,
+      Appeals: this.props.Appeals,
+      ...queue
+    })
   }
 
   updateOccurred (values) {
-    this.update('Occurred', values)
+    this.update({
+      Occurred: values
+    })
   }
 
   updateCourtName (values) {
-    this.update('CourtName', values)
+    this.update({
+      CourtName: values
+    })
   }
 
   updateCourtAddress (values) {
-    this.update('CourtAddress', values)
+    this.update({
+      CourtAddress: values
+    })
   }
 
   updateDisposition (values) {
-    this.update('Disposition', values)
+    this.update({
+      Disposition: values
+    })
   }
 
   updateAppeals (values) {
-    this.update('Appeals', values)
+    this.update({
+      Appeals: values
+    })
   }
 
   render () {
@@ -146,5 +154,6 @@ export default class Order extends ValidationElement {
 Order.defaultProps = {
   List: [],
   prefix: 'order',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

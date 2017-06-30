@@ -27,7 +27,7 @@ export default class Credit extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasCreditCounseling: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -70,6 +70,7 @@ export default class Credit extends SubsectionElement {
         <Branch name="has_credit"
                 className="credit-branch"
                 value={this.state.HasCreditCounseling}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
