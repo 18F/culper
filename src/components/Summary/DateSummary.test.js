@@ -47,4 +47,18 @@ describe('The date summary', () => {
     const summary = DateSummary(item, 'NA')
     expect(summary).toBe(expected)
   })
+
+  it('display date for single value with the day', () => {
+    const expected = '6/1/1982'
+    const item = { date: new Date('6/1/1982') }
+    const summary = DateSummary(item, 'Unknown', true)
+    expect(summary).toBe(expected)
+  })
+
+  it('display nothing if empty object', () => {
+    const expected = ''
+    const item = {}
+    const summary = DateSummary(item, 'Unknown')
+    expect(summary).toBe(expected)
+  })
 })
