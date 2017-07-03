@@ -14,22 +14,28 @@ export default class ContactInformation extends SubsectionElement {
   }
 
   update (queue) {
-    this.props.onUpdate({
-      Emails: this.props.Emails,
-      PhoneNumbers: this.props.PhoneNumbers,
-      ...queue
-    })
+    const delay = this.props.Emails.length && this.props.PhoneNumbers.length ? 0 : 100
+
+    // Little bit of delay here because on first load both accordions send
+    // updates which clobber one another.
+    window.setTimeout(() => {
+      this.props.onUpdate({
+        Emails: this.props.Emails,
+        PhoneNumbers: this.props.PhoneNumbers,
+        ...queue
+      })
+    }, delay)
   }
 
   updateEmails (values) {
     this.update({
-      Emails: values
+      Emails: values.items
     })
   }
 
   updatePhoneNumbers (values) {
     this.update({
-      PhoneNumbers: values
+      PhoneNumbers: values.items
     })
   }
 
@@ -67,7 +73,7 @@ export default class ContactInformation extends SubsectionElement {
         <h3>{i18n.t('identification.contacts.heading.email')}</h3>
         <p>{i18n.t('identification.contacts.para.email')}</p>
         <div className={klass + ' email-collection'}>
-          <Accordion minimum="2"
+          <Accordion minimum={2}
                      items={this.props.Emails}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateEmails}
@@ -89,7 +95,7 @@ export default class ContactInformation extends SubsectionElement {
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
         <p>{i18n.t('identification.contacts.para.phoneNumber')}</p>
         <div className={klass + ' telephone-collection'}>
-          <Accordion minimum="2"
+          <Accordion minimum={2}
                      items={this.props.PhoneNumbers}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updatePhoneNumbers}

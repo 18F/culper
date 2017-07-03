@@ -1,11 +1,11 @@
 import React from 'react'
-import { i18n } from '../../../config'
-import { ValidationElement } from '../../Form'
+import SubsectionElement from '../SubsectionElement'
+import { SignatureValidator } from '../../../validators'
 import Verify from './Verify'
 import General from './General'
 import Medical from './Medical'
 
-export default class ReleaseOfGeneralAndMedical extends ValidationElement {
+export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
   constructor (props) {
     super(props)
     this.update = this.update.bind(this)
@@ -36,12 +36,14 @@ export default class ReleaseOfGeneralAndMedical extends ValidationElement {
                 history={this.props.History}
                 />
         <hr />
-        <General onUpdate={this.updateGeneral}
-                 {...this.props.General}
+        <General {...this.props.General}
+                 onUpdate={this.updateGeneral}
+                 onError={this.handleError}
                  />
         <hr />
-        <Medical onUpdate={this.updateMedical}
-                 {...this.props.Medical}
+        <Medical {...this.props.Medical}
+                 onUpdate={this.updateMedical}
+                 onError={this.handleError}
                  />
       </div>
     )
@@ -53,5 +55,15 @@ ReleaseOfGeneralAndMedical.defaultProps = {
   History: {},
   General: {},
   Medical: {},
-  onUpdate: (queue) => {}
+  section: 'releases',
+  subsection: 'general',
+  dispatch: () => {},
+  validator: (state, props) => {
+    const general = props.General || {}
+    const medical = props.General || {}
+    return new SignatureValidator(state, general).isValid() &&
+      new SignatureValidator(state, medical).isValid()
+  },
+  onUpdate: (queue) => {},
+  onError: (value, arr) => { return arr }
 }

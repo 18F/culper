@@ -26,8 +26,9 @@ export default class Medical extends ValidationElement {
     return (
       <div className="medical-release">
         { i18n.m('releases.medical.contents') }
-        <Signature onUpdate={this.updateSignature}
-                   {...this.props.Signature}
+        <Signature {...this.props.Signature}
+                   onUpdate={this.updateSignature}
+                   onError={this.props.onError}
                    />
       </div>
     )

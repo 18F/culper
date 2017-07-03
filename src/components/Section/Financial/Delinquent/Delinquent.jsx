@@ -97,8 +97,7 @@ export default class Delinquent extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasDelinquent === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      branch={this.state.ListBranch}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}

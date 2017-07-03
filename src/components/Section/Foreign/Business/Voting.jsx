@@ -66,8 +66,7 @@ export default class Voting extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignVoting === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

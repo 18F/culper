@@ -6,6 +6,7 @@ export default class Signature extends ValidationElement {
   constructor (props) {
     super(props)
 
+    this.handleError = this.handleError.bind(this)
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateDate = this.updateDate.bind(this)
@@ -27,6 +28,18 @@ export default class Signature extends ValidationElement {
     this.update({ Date: values })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `signature.${err.code}`,
+        valid: err.valid,
+        uid: err.uid
+      }
+    })
+
+    this.props.onError(value, arr)
+  }
+
   render () {
     return (
       <div className="signature">
@@ -35,12 +48,14 @@ export default class Signature extends ValidationElement {
               label={i18n.t('releases.verify.label.name')}
               {...this.props.Name}
               onUpdate={this.updateName}
+              onError={this.handleError}
               />
         <DateControl name="date"
                      className="date"
                      {...this.props.Date}
                      showEstimated={false}
                      onUpdate={this.updateDate}
+                     onError={this.handleError}
                      />
       </div>
     )
@@ -50,5 +65,6 @@ export default class Signature extends ValidationElement {
 Signature.defaultProps = {
   Name: {},
   Date: {},
-  onUpdate: (queue) => {}
+  onUpdate: (queue) => {},
+  onError: (value, arr) => { return arr }
 }

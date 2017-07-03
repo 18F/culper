@@ -1,12 +1,12 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { ValidationElement } from '../../Form'
+import SubsectionElement from '../SubsectionElement'
+import { SignatureValidator } from '../../../validators'
 import Signature from './Signature'
 
-export default class Credit extends ValidationElement {
+export default class Credit extends SubsectionElement {
   constructor (props) {
     super(props)
-
     this.update = this.update.bind(this)
     this.updateSignature = this.updateSignature.bind(this)
   }
@@ -26,8 +26,9 @@ export default class Credit extends ValidationElement {
     return (
       <div className="credit-release">
         { i18n.m('releases.credit.contents') }
-        <Signature onUpdate={this.updateSignature}
-                   {...this.props.Signature}
+        <Signature {...this.props.Signature}
+                   onUpdate={this.updateSignature}
+                   onError={this.handleError}
                    />
       </div>
     )
@@ -36,5 +37,12 @@ export default class Credit extends ValidationElement {
 
 Credit.defaultProps = {
   Signature: {},
-  onUpdate: (queue) => {}
+  section: 'releases',
+  subsection: 'credit',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new SignatureValidator(props, props).isValid()
+  },
+  onUpdate: (queue) => {},
+  onError: (value, arr) => { return arr }
 }

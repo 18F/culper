@@ -82,8 +82,7 @@ export default class Residence extends SubsectionElement {
   render () {
     return (
       <div className="residence">
-        <Accordion minimum="1"
-                   scrollTo={this.props.scrollTo}
+        <Accordion scrollTo={this.props.scrollTo}
                    defaultState={this.props.defaultState}
                    items={this.props.value}
                    sort={this.props.sort}

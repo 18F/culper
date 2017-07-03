@@ -68,8 +68,7 @@ export default class Cohabitants extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasCohabitant === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.CohabitantList}
+          <Accordion items={this.props.CohabitantList}
                      defaultState={this.props.defaultState}
                      branch={this.props.CohabitantListBranch}
                      summary={this.summary}

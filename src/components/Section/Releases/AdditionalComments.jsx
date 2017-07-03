@@ -1,9 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { ValidationElement, Field } from '../../Form'
+import SubsectionElement from '../SubsectionElement'
+import { SignatureValidator } from '../../../validators'
+import { Field } from '../../Form'
 import Signature from './Signature'
 
-export default class AdditionalComments extends ValidationElement {
+export default class AdditionalComments extends SubsectionElement {
   constructor (props) {
     super(props)
 
@@ -34,13 +36,15 @@ export default class AdditionalComments extends ValidationElement {
         <Field comments={true}
                commentsName="AdditionalComments"
                commentsValue={this.props.AdditionalComments}
-               onUpdate={this.updateAdditionalComments}>
+               onUpdate={this.updateAdditionalComments}
+               onError={this.handleError}>
           { i18n.m('releases.additionalComments.contents') }
         </Field>
 
         { i18n.m('releases.additionalComments.certificationContents') }
-        <Signature onUpdate={this.updateSignature}
-                   {...this.props.Signature}
+        <Signature {...this.props.Signature}
+                   onUpdate={this.updateSignature}
+                   onError={this.handleError}
                    />
       </div>
     )
@@ -50,6 +54,12 @@ export default class AdditionalComments extends ValidationElement {
 AdditionalComments.defaultProps = {
   AdditionalComments: {},
   Signature: {},
+  section: 'releases',
+  subsection: 'comments',
+  dispatch: () => {},
+  validator: (state, props) => {
+    return new SignatureValidator(props, props).isValid()
+  },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

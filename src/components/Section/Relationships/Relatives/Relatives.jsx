@@ -54,8 +54,7 @@ export default class Relatives extends SubsectionElement {
         <h2>{i18n.t('relationships.relatives.heading.title')}</h2>
         {i18n.m('relationships.relatives.para.opportunity')}
 
-        <Accordion minimum="1"
-                   items={this.props.List}
+        <Accordion items={this.props.List}
                    defaultState={this.props.defaultState}
                    branch={this.props.ListBranch}
                    onUpdate={this.updateList}
