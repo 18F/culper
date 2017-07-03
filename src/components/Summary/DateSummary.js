@@ -1,3 +1,4 @@
+import React from 'react'
 import { i18n } from '../../config'
 
 export const DateSummary = (props, unknown = i18n.t('history.employment.default.noDate.label'), full = false) => {
@@ -24,12 +25,12 @@ export const DateSummary = (props, unknown = i18n.t('history.employment.default.
     const to = props.to && props.to.date ? format(props.to.date) : noDateLabel
     return from === noDateLabel && to === noDateLabel
       ? ''
-      : `${from} - ${to}`
+      : <span>{`${from} - ${to}`}</span>
   }
 
   // Handle single date
   if (props.date) {
-    return format(props.date)
+    return <span>{format(props.date) || unknown}</span>
   }
 
   return ''

@@ -15,6 +15,28 @@ import Residence from './Residence'
 import Employment from './Employment'
 import Education from './Education'
 
+/**
+  * Default sorting of history objects. This assumes that all objects contain a `Dates` property
+  * with date range values.
+  */
+export const sort = (a, b) => {
+  // Helper to find the date value or default it to 0
+  const getOptionalDate = (obj) => {
+    return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
+  }
+
+  const first = getOptionalDate(a)
+  const second = getOptionalDate(b)
+
+  if (first < second) {
+    return 1
+  } else if (first > second) {
+    return -1
+  }
+
+  return 0
+}
+
 class History extends SectionElement {
   constructor (props) {
     super(props)
@@ -62,28 +84,6 @@ class History extends SectionElement {
     education.HasDegree10 = values
     education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
-  }
-
-  /**
-   * Default sorting of history objects. This assumes that all objects contain a `Dates` property
-   * with date range values.
-   */
-  sort (a, b) {
-    // Helper to find the date value or default it to 0
-    const getOptionalDate = (obj) => {
-      return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
-    }
-
-    const first = getOptionalDate(a)
-    const second = getOptionalDate(b)
-
-    if (first < second) {
-      return 1
-    } else if (first > second) {
-      return -1
-    }
-
-    return 0
   }
 
   /**
@@ -297,7 +297,7 @@ class History extends SectionElement {
       }
     })
 
-    this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(this.sort))
+    this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(sort))
   }
 
   overrideInitial (initial) {
@@ -337,7 +337,7 @@ class History extends SectionElement {
             <Residence value={this.props.Residence}
                        defaultState={false}
                        realtime={true}
-                       sort={this.sort}
+                       sort={sort}
                        totalYears={this.totalYears()}
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
@@ -348,7 +348,7 @@ class History extends SectionElement {
             <Employment value={this.props.Employment}
                         defaultState={false}
                         realtime={true}
-                        sort={this.sort}
+                        sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
                         onUpdate={this.updateEmployment}
@@ -360,7 +360,7 @@ class History extends SectionElement {
               <Education value={this.props.Education.List}
                          defaultState={false}
                          realtime={true}
-                         sort={this.sort}
+                         sort={sort}
                          totalYears={this.totalYears()}
                          overrideInitial={this.overrideInitial}
                          onUpdate={this.updateEducation}
@@ -395,7 +395,7 @@ class History extends SectionElement {
             <Residence value={this.props.Residence}
                        scrollTo="scrollToHistory"
                        realtime={true}
-                       sort={this.sort}
+                       sort={sort}
                        totalYears={this.totalYears()}
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
@@ -424,7 +424,7 @@ class History extends SectionElement {
             { this.employmentSummaryProgress() }
             <Employment value={this.props.Employment}
                         scrollTo="scrollToHistory"
-                        sort={this.sort}
+                        sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
                         onUpdate={this.updateEmployment}
@@ -472,7 +472,7 @@ class History extends SectionElement {
                 { this.educationSummaryProgress() }
                 <Education value={this.props.Education.List}
                            scrollTo="scrollToHistory"
-                           sort={this.sort}
+                           sort={sort}
                            totalYears={this.totalYears()}
                            overrideInitial={this.overrideInitial}
                            onUpdate={this.updateEducation}

@@ -2,7 +2,7 @@ import React from 'react'
 
 export const TelephoneSummary = (props, unknown) => {
   if (!props) {
-    return unknown
+    return <span>{unknown}</span>
   }
 
   let number = ''

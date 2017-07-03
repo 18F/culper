@@ -2,7 +2,7 @@ import React from 'react'
 
 export const NameSummary = (props, unknown) => {
   if (!props) {
-    return unknown
+    return <span>{unknown}</span>
   }
 
   const suffix = props.suffix && props.suffix === 'Other' ? props.suffixOther : props.suffix

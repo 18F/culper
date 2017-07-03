@@ -6,11 +6,16 @@ describe('The AdditionalComments Release component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
+      AdditionalComments: {
+        value: 'my two cents'
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<AdditionalComments {...expected} />)
     expect(component.find('.additional-comments').length).toBe(1)
+    updates = 0
+    component.find('.comments textarea').simulate('change')
     component.find('.fullname input').simulate('change')
-    expect(updates).toBe(1)
+    expect(updates).toBe(2)
   })
 })

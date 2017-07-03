@@ -5,7 +5,7 @@ import { TelephoneSummary } from './TelephoneSummary'
 describe('The telephone summary', () => {
   it('display unknown if no props', () => {
     const summary = TelephoneSummary(null, 'Unknown')
-    expect(summary).toBe('Unknown')
+    expect(summary).toEqual(<span>Unknown</span>)
   })
 
   it('display DSN format', () => {
