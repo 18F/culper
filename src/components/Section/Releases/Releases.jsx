@@ -73,6 +73,7 @@ class Releases extends SectionElement {
             <ReleaseOfGeneralAndMedical name="general"
                                         General={this.props.General}
                                         Medical={this.props.Medical}
+                                        Application={this.props.Application}
                                         Identification={this.props.Identification}
                                         History={this.props.History}
                                         dispatch={this.props.dispatch}

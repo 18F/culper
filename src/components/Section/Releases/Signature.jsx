@@ -37,7 +37,7 @@ export default class Signature extends ValidationElement {
       }
     })
 
-    this.props.onError(value, arr)
+    return this.props.onError(value, arr)
   }
 
   render () {

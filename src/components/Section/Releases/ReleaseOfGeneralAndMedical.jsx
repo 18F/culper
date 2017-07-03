@@ -1,6 +1,8 @@
 import React from 'react'
 import SubsectionElement from '../SubsectionElement'
 import { SignatureValidator } from '../../../validators'
+import { hideHippa } from '../../../validators/releases'
+import { Show } from '../../Form'
 import Verify from './Verify'
 import General from './General'
 import Medical from './Medical'
@@ -40,17 +42,22 @@ export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
                  onUpdate={this.updateGeneral}
                  onError={this.handleError}
                  />
-        <hr />
-        <Medical {...this.props.Medical}
-                 onUpdate={this.updateMedical}
-                 onError={this.handleError}
-                 />
+        <Show when={!hideHippa(this.props.Application)}>
+          <div>
+            <hr />
+            <Medical {...this.props.Medical}
+                    onUpdate={this.updateMedical}
+                    onError={this.handleError}
+                    />
+          </div>
+        </Show>
       </div>
     )
   }
 }
 
 ReleaseOfGeneralAndMedical.defaultProps = {
+  Application: {},
   Identification: {},
   History: {},
   General: {},
@@ -59,10 +66,13 @@ ReleaseOfGeneralAndMedical.defaultProps = {
   subsection: 'general',
   dispatch: () => {},
   validator: (state, props) => {
-    const general = props.General || {}
-    const medical = props.General || {}
-    return new SignatureValidator(state, general).isValid() &&
-      new SignatureValidator(state, medical).isValid()
+    const general = new SignatureValidator(state, props.General || {}).isValid()
+    if (hideHippa(props.Application)) {
+      return general
+    }
+
+    const medical = new SignatureValidator(state, props.Medical || {}).isValid()
+    return general && medical
   },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
