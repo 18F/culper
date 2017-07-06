@@ -153,8 +153,7 @@ export default class People extends SubsectionElement {
           <PeopleCounter List={this.props.List} />
         </div>
 
-        <Accordion minimum="1"
-                   scrollTo="scrollToPeople"
+        <Accordion scrollTo="scrollToPeople"
                    items={this.props.List}
                    defaultState={this.props.defaultState}
                    realtime={true}

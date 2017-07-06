@@ -1,54 +1,100 @@
-import NavigationValidator from './navigation'
+import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted } from './navigation'
 
 describe('Navigation component validation', function () {
-  it('should validate if route is considered complete and valid', function () {
-    const tests = [
-      {
-        props: {
-          completed: {
-            identification: {
-              name: {
-                status: true
-              },
-              status: 'complete'
-            }
-          },
-          crumbs: ['identification']
+  it('can count number of validations', () => {
+    const section = {
+      subsections: [
+        { hidden: true, url: 'one' },
+        { url: 'two' },
+        {
+          url: 'three',
+          subsections: [
+            { url: 'four' },
+            { url: 'five' }
+          ]
         },
-        expected: true
-      },
-      {
-        props: {
-          completed: {
-            identification: {
-              name: {
-                status: true
-              },
-              status: 'neutral'
-            }
-          },
-          crumbs: ['identification']
-        },
-        expected: false
-      },
-      {
-        props: {
-          completed: {
-            history: {
-              name: {
-                status: true
-              },
-              status: 'neutral'
-            }
-          },
-          crumbs: ['identification']
-        },
-        expected: false
-      }
-    ]
+        {
+          url: 'six',
+          subsections: [
+            { url: 'seven' },
+            { url: 'eight', hiddenFunc: () => { return true } }
+          ]
+        }
+      ]
+    }
 
-    tests.forEach(test => {
-      expect(new NavigationValidator(null, test.props).isValid()).toBe(test.expected)
-    })
+    expect(validations(section, {})).toBe(4)
+  })
+
+  it('can determine if a path is active', () => {
+    expect(isActive('/form/identification', '/form/foreign/activities/direct')).toBe(false)
+    expect(isActive('/form/foreign', '/form/foreign/activities/direct')).toBe(true)
+    expect(isActive('/form/foreign/activities', '/form/foreign/activities/direct')).toBe(true)
+    expect(isActive('/form/foreign/activities/direct', '/form/foreign/activities/direct')).toBe(true)
+  })
+
+  it('can determine a section has errors', () => {
+    const props = {
+      errors: {
+        foreign: [
+          { section: 'foreign', subsection: 'activities/direct', valid: false, code: 'date.month.notfound' },
+          { section: 'foreign', subsection: 'activities/direct', valid: true, code: 'acquired.length' },
+          { section: 'foreign', subsection: 'activities/indirect', valid: false, code: 'date.month.notfound' }
+        ],
+        identification: []
+      }
+    }
+
+    expect(hasErrors('/form/foreign', props)).toBe(true)
+    expect(hasErrors('/form/foreign/activities/direct', props)).toBe(true)
+    expect(hasErrors('/form/identification', props)).toBe(false)
+  })
+
+  it('can determine if a section is valid', () => {
+    const props = {
+      completed: {
+        foreign: [
+          { section: 'foreign', subsection: 'activities/direct', valid: false },
+          { section: 'foreign', subsection: 'activities/direct', valid: true },
+          { section: 'foreign', subsection: 'activities/indirect', valid: false }
+        ],
+        identification: [],
+        citizenship: [
+          { section: 'citizenship', subsection: 'status', valid: true },
+          { section: 'citizenship', subsection: 'multiple', valid: true },
+          { section: 'citizenship', subsection: 'passports', valid: true }
+        ]
+      }
+    }
+
+    expect(isValid('/form/foreign', props)).toBe(false)
+    expect(isValid('/form/identification', props)).toBe(false)
+    expect(isValid('/form/citizenship', props)).toBe(true)
+    expect(isValid('/form/citizenship/multiple', props)).toBe(true)
+    expect(isValid('/form/citizenship/passports', props)).toBe(true)
+  })
+
+  it('can get total number of sections', () => {
+    expect(sectionsTotal()).toBe(10)
+  })
+
+  it('can get number of sections completed', () => {
+    const store = {
+      completed: {
+        foreign: [
+          { section: 'foreign', subsection: 'activities/direct', valid: false },
+          { section: 'foreign', subsection: 'activities/direct', valid: true },
+          { section: 'foreign', subsection: 'activities/indirect', valid: false }
+        ],
+        identification: [],
+        citizenship: [
+          { section: 'citizenship', subsection: 'status', valid: true },
+          { section: 'citizenship', subsection: 'multiple', valid: true },
+          { section: 'citizenship', subsection: 'passports', valid: true }
+        ]
+      }
+    }
+
+    expect(sectionsCompleted(store.completed, { application: store })).toBe(1)
   })
 })

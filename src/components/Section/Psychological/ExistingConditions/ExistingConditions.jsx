@@ -152,8 +152,7 @@ export default class ExistingConditions extends SubsectionElement {
             </Show>
 
             <Show when={this.props.ReceivedTreatment === 'Yes'}>
-              <Accordion minimum="1"
-                         defaultState={this.props.defaultState}
+              <Accordion defaultState={this.props.defaultState}
                          items={this.props.TreatmentList}
                          branch={this.props.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}

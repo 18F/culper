@@ -121,8 +121,7 @@ export default class Diagnoses extends SubsectionElement {
         </Field>
         <Show when={this.props.Diagnosed === 'Yes'}>
           <div>
-            <Accordion minimum="1"
-                       className="diagnosis-collection"
+            <Accordion className="diagnosis-collection"
                        defaultState={this.props.defaultState}
                        items={this.props.DiagnosisList}
                        branch={this.props.DiagnosisListBranch}
@@ -158,8 +157,7 @@ export default class Diagnoses extends SubsectionElement {
             </Branch>
 
             <Show when={this.props.InTreatment === 'Yes'}>
-              <Accordion minimum="1"
-                         defaultState={this.props.defaultState}
+              <Accordion defaultState={this.props.defaultState}
                          items={this.props.TreatmentList}
                          branch={this.props.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}

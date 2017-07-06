@@ -265,8 +265,7 @@ export default class ForeignService extends ValidationElement {
           <div>
             <h2>{i18n.t('military.foreign.heading.contact.details')}</h2>
             {i18n.m('military.foreign.para.contact')}
-            <Accordion minimum="1"
-                       className="foreign-contacts-collection"
+            <Accordion className="foreign-contacts-collection"
                        items={this.props.List}
                        defaultState={this.props.defaultState}
                        branch={this.props.ListBranch}

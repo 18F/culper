@@ -66,8 +66,7 @@ export default class OtherNames extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasOtherNames === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}

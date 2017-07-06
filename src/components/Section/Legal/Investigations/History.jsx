@@ -73,8 +73,7 @@ export default class History extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasHistory === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

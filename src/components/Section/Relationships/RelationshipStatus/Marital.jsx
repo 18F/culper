@@ -127,8 +127,7 @@ export default class Marital extends SubsectionElement {
         </Show>
         <Show when={this.showDivorce()}>
           <span id="scrollToDivorce"></span>
-          <Accordion minimum="1"
-                     scrollTo="scrollToDivorce"
+          <Accordion scrollTo="scrollToDivorce"
                      items={this.props.DivorcedList}
                      branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
