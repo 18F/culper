@@ -1,5 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { reportCompletion } from '../../../actions/ApplicationActions'
+import { EducationValidator } from '../../../validators'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -77,6 +79,7 @@ class History extends SectionElement {
     education.HasDegree10 = values === 'No' ? education.HasDegree10 : ''
     education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
+    this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
   }
 
   updateBranchDegree10 (values) {
@@ -84,6 +87,7 @@ class History extends SectionElement {
     education.HasDegree10 = values
     education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
+    this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
   }
 
   /**
@@ -374,6 +378,7 @@ class History extends SectionElement {
             <Federal name="federal"
                      {...this.props.Federal}
                      defaultState={false}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
                      />
@@ -470,7 +475,7 @@ class History extends SectionElement {
               <div>
                 <span id="scrollToHistory"></span>
                 { this.educationSummaryProgress() }
-                <Education value={this.props.Education.List}
+                <Education value={this.props.Education}
                            scrollTo="scrollToHistory"
                            sort={sort}
                            totalYears={this.totalYears()}
@@ -492,6 +497,7 @@ class History extends SectionElement {
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
                      />

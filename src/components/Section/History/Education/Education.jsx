@@ -37,7 +37,7 @@ export default class Education extends SubsectionElement {
       <div className="education">
         <Accordion scrollTo={this.props.scrollTo}
                    defaultState={this.props.defaultState}
-                   items={this.props.value}
+                   items={this.props.value.List}
                    sort={this.props.sort}
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
@@ -68,8 +68,6 @@ Education.defaultProps = {
   subsection: 'education',
   dispatch: () => {},
   validator: (state, props) => {
-    return props.value.every(x => {
-      return new EducationValidator(x.Item, null).isValid()
-    })
+    return new EducationValidator(props.value, props.value).isValid()
   }
 }
