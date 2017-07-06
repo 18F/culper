@@ -109,8 +109,7 @@ export default class Headings extends ValidationElement {
         <h3>(h3) {i18n.t('identification.contacts.heading.phoneNumber')}</h3>
         <p>(p) {i18n.t('identification.contacts.para.phoneNumber')}</p>
 
-        <Accordion minimum="1"
-                   items={this.state.List}
+        <Accordion items={this.state.List}
                    summary={this.summary}
                    description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                    appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}

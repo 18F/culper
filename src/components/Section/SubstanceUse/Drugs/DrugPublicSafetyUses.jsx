@@ -75,8 +75,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.UsedDrugs === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

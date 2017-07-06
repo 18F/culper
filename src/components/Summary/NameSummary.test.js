@@ -4,8 +4,9 @@ import { NameSummary } from './NameSummary'
 
 describe('The name summary', () => {
   it('display unknown if no props', () => {
+    const expected = <span>Unknown</span>
     const summary = NameSummary(null, 'Unknown')
-    expect(summary).toBe('Unknown')
+    expect(summary).toEqual(expected)
   })
 
   it('display only first name', () => {

@@ -1,6 +1,7 @@
 import { hideDisciplinaryProcedures } from '../validators/militarydisciplinary'
 import { hideExistingConditions } from '../validators/psychological'
 import { hideSelectiveService } from '../validators/selectiveservice'
+import { hideReleases } from '../validators/releases'
 
 const navigation = [
   {
@@ -243,10 +244,23 @@ const navigation = [
     ]
   },
   {
+    title: 'Questionnaire for National Security Positions',
+    name: 'Questionnaire for National Security Positions',
+    url: 'releases',
+    subsections: [
+      { name: 'Comments', url: 'comments' },
+      { name: 'Release of information/HIPPA', url: 'general' },
+      { name: 'Credit reporting disclosure', url: 'credit' }
+    ],
+    exclude: true,
+    hiddenFunc: hideReleases
+  },
+  {
     title: 'Design guideline',
     name: 'Design guideline',
     url: 'design',
     hidden: true,
+    exclude: true,
     subsections: [
       { name: 'Headings', url: 'headings' }
     ]
