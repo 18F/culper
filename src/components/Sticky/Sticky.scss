@@ -1,0 +1,11 @@
+.sticky-container {
+  position: relative;
+  top: 1vh;
+  height: 98vh;
+  overflow: hidden;
+
+  .sticky {
+    position: absolute;
+    top: 0;
+  }
+}
