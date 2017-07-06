@@ -33,7 +33,7 @@ export default class EducationValidator {
     }
 
     for (const edu of this.list) {
-      if (new EducationItemValidator(edu, null).isValid() === false) {
+      if (new EducationItemValidator(edu.Item, null).isValid() === false) {
         return false
       }
     }
@@ -102,7 +102,7 @@ export class EducationItemValidator {
           return false
         }
 
-        if (diploma.Diploma === 'Other' && !diploma.DiplomaOther) {
+        if (diploma.Diploma === 'Other' && !validGenericTextfield(diploma.DiplomaOther)) {
           return false
         }
 

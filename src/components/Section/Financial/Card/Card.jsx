@@ -81,8 +81,7 @@ export default class Card extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}

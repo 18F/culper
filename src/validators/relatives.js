@@ -151,7 +151,7 @@ export class RelativeValidator {
       return false
     }
 
-    if (this.isDeceased === 'No') {
+    if (this.isDeceased === 'Yes') {
       return true
     }
 
@@ -241,6 +241,10 @@ export class RelativeValidator {
   }
 
   validFirstContact () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -249,6 +253,10 @@ export class RelativeValidator {
   }
 
   validLastContact () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -257,6 +265,10 @@ export class RelativeValidator {
   }
 
   validMethods () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -267,6 +279,10 @@ export class RelativeValidator {
   }
 
   validFrequency () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -277,6 +293,10 @@ export class RelativeValidator {
   }
 
   validEmployer () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -285,6 +305,10 @@ export class RelativeValidator {
   }
 
   validEmployerAddress () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -293,6 +317,10 @@ export class RelativeValidator {
   }
 
   validEmployerRelationship () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }

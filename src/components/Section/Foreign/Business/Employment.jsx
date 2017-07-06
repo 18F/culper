@@ -66,8 +66,7 @@ export default class Employment extends SubsectionElement {
                 />
 
         <Show when={this.props.HasForeignEmployment === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

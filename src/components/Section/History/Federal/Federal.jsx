@@ -65,8 +65,7 @@ export default class Federal extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasFederalService === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateCollection}
                      onError={this.handleError}
