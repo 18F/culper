@@ -1,7 +1,6 @@
 import React from 'react'
 
-export function SSN (props, unknown) {
-  const ssn = props.SSN
+export function SSN (ssn, unknown) {
   let formattedSSN = unknown
 
   if (ssn && ssn.first && ssn.middle && ssn.last) {
