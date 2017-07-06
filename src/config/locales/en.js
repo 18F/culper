@@ -860,7 +860,7 @@ const en = {
           name: 'Name',
           present: 'Now',
           nodates: 'NA',
-          unknown: 'Provide your full name below'
+          unknown: '*Provide your full name below*'
         },
         append: 'Add another name'
       },
@@ -5079,7 +5079,7 @@ const en = {
           howAcquired: 'Such as purchase, gift, etc.'
         },
         collection: {
-          summary: 'Provide your direct financial interests here',
+          summary: '*Provide your direct financial interests here*',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
           appendLabel: 'Add another direct interest',
@@ -5190,7 +5190,7 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?'
         },
         collection: {
-          summary: 'Provide your indirect financial interests here',
+          summary: '*Provide your indirect financial interests here*',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests controlled on your behalf?',
           appendLabel: 'Add another indirect interest',
@@ -5315,7 +5315,7 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
         },
         collection: {
-          summary: 'Provide your real estate purchase here',
+          summary: '*Provide your real estate purchase here*',
           description: 'Summary of financial purchase',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
           appendLabel: 'Add another real estate purchase',
@@ -5502,7 +5502,7 @@ const en = {
           }
         },
         collection: {
-          summary: 'Provide your financial benefits here',
+          summary: '*Provide your financial benefits here*',
           description: 'Summary of financial benefits',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
           appendLabel: 'Add another benefit',
@@ -7062,7 +7062,7 @@ const en = {
       },
       collection: {
         description: 'Summary of court actions',
-        summary: 'Provide your court action details below',
+        summary: '*Provide your court action details below*',
         appendTitle: 'Are there any other civil court actions in the last ten (10) years to report?',
         appendLabel: 'Add another court action',
         itemType: 'Court Action'
