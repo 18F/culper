@@ -70,11 +70,9 @@ describe('The verify component', () => {
     const props = {
       identification: {
         ApplicantSSN: {
-          SSN: {
-            first: '123',
-            middle: '45',
-            last: '6789'
-          }
+          first: '123',
+          middle: '45',
+          last: '6789'
         }
       },
       history: {}
