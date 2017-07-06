@@ -82,7 +82,7 @@ export default class People extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const name = NameSummary(o.Name, i18n.t('relationships.people.person.collection.summary.unknown'))
+    const name = NameSummary(o.Name, i18n.m('relationships.people.person.collection.summary.unknown'))
     const date = DateSummary(o.Dates)
     const type = i18n.t('relationships.people.person.collection.itemType')
 

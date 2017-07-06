@@ -49,7 +49,7 @@ export default class DrugUses extends SubsectionElement {
     }
 
     if (!drug) {
-      drug = i18n.t('substance.drugs.use.collection.summary')
+      drug = i18n.m('substance.drugs.use.collection.summary')
     }
 
     return (

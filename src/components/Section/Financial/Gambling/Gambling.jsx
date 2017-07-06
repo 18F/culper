@@ -58,7 +58,7 @@ export default class Gambling extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    let losses = i18n.t('financial.gambling.collection.summary.unknownlosses')
+    let losses = i18n.m('financial.gambling.collection.summary.unknownlosses')
     if (item.Losses && item.Losses.value) {
       losses = '$' + this.fancyNumber(item.Losses.value)
     }

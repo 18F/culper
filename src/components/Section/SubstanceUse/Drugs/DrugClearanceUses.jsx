@@ -52,7 +52,7 @@ export default class DrugClearanceUses extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {description || i18n.t('substance.drugs.clearance.collection.summary')}
+            {description || i18n.m('substance.drugs.clearance.collection.summary')}
           </strong>
         </span>
         <span className="dates">

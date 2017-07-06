@@ -37,14 +37,14 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    let addr = i18n.t('identification.contacts.collection.summary.unknownEmail')
+    let addr = i18n.m('identification.contacts.collection.summary.unknownEmail')
     if (item.Email && item.Email.value) {
       addr = item.Email.value
     }
 
     return (
       <span>
-        <span className="index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</span>
+        <span className="index">{i18n.m('identification.contacts.collection.summary.email')} {index + 1}:</span>
         <span><strong>{addr}</strong></span>
       </span>
     )
@@ -54,7 +54,7 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    let number = i18n.t('identification.contacts.collection.summary.unknownPhone')
+    let number = i18n.m('identification.contacts.collection.summary.unknownPhone')
     if (item.Telephone && !item.noNumber && item.Telephone.number) {
       number = item.Telephone.number
 

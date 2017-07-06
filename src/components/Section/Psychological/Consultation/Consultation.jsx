@@ -48,7 +48,7 @@ export default class Consultation extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="courtname">
           <strong>
-            {courtName || i18n.t('psychological.consultation.collection.summaryCourtName')}
+            {courtName || i18n.m('psychological.consultation.collection.summaryCourtName')}
           </strong>
         </span>
         <span className="occurred"><strong>{courtName && occurred}</strong></span>

@@ -46,7 +46,7 @@ export default class Travel extends SubsectionElement {
 
   summary (item, index) {
     const obj = (item || {}).Item || {}
-    const country = (obj.Country || {}).value || i18n.t('foreign.travel.collection.summary.unknown')
+    const country = (obj.Country || {}).value || i18n.m('foreign.travel.collection.summary.unknown')
     const date = DateSummary(obj.Dates)
 
     return (

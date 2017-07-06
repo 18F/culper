@@ -41,7 +41,7 @@ export default class Federal extends SubsectionElement {
   summary (item, index) {
     const agency = item && item.Name && item.Name.value
           ? item.Name.value
-          : i18n.t('history.federal.collection.summary.unknown')
+          : i18n.m('history.federal.collection.summary.unknown')
     const dates = DateSummary(item.Dates)
 
     return (

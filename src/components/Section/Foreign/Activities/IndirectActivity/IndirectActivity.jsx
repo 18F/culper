@@ -58,7 +58,7 @@ export default class IndirectActivity extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="interest">
-          <strong>{summary || i18n.t('foreign.activities.indirect.collection.summary')}</strong>
+          <strong>{summary || i18n.m('foreign.activities.indirect.collection.summary')}</strong>
         </span>
         <span className="cost">{cost}</span>
       </span>

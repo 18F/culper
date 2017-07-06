@@ -40,7 +40,7 @@ export default class Advice extends SubsectionElement {
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.advice.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.business.advice.collection.summary.unknown')
 
     return (
       <span>

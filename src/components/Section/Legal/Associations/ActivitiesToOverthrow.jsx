@@ -40,7 +40,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.associations.activities.collection.item')
-    const unknown = i18n.t('legal.associations.activities.collection.unknown')
+    const unknown = i18n.m('legal.associations.activities.collection.unknown')
     const o = item || {}
     const details = (o.Reasons || {}).value
           ? o.Reasons.value

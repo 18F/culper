@@ -14,7 +14,7 @@ const byline = (item, index, initial, translation, validator) => {
   if (!item.open && !initial && item.Item && !validator(item.Item)) {
     return (
       <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.t(translation)}</div>
+        <div className="incomplete">{i18n.m(translation)}</div>
       </div>
     )
   }
