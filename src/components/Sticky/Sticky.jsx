@@ -12,31 +12,30 @@ export default class Sticky extends React.Component {
 
     this.onScroll = this.onScroll.bind(this)
     this.onWheel = this.onWheel.bind(this)
+    this.elastic = this.elastic.bind(this)
   }
 
   componentDidMount () {
-    this.props.addEvent('scroll', this.onScroll)
-    this.props.addEvent('mousewheel', this.onWheel)
+    const w = this.props.window()
+    this.props.addEvent(w, 'scroll', this.onScroll)
+    this.props.addEvent(w, 'mousewheel', this.onWheel)
   }
 
   componentWillUnmount () {
-    this.props.removeEvent('scroll', this.onScroll)
-    this.props.removeEvent('mousewheel', this.onWheel)
+    const w = this.props.window()
+    this.props.removeEvent(w, 'scroll', this.onScroll)
+    this.props.removeEvent(w, 'mousewheel', this.onWheel)
   }
 
   onScroll (event) {
-    const w = this.props.window()
-    const deltaY = w.pageYOffset - this.state.scrollY
-    this.setState({ scrollY: w.pageYOffset }, () => {
-      this.fancyPants(deltaY)
-    })
+    this.props.getDelta(this, event, this.props.window(), this.state, this.elastic)
   }
 
   onWheel (event) {
-    this.fancyPants(event.deltaY)
+    this.props.getDelta(this, event, this.props.window(), this.state, this.elastic)
   }
 
-  fancyPants (delta) {
+  elastic (delta) {
     const w = this.props.window()
     const settings = this.props.settings
     const breakpoint = settings.breakpoint
@@ -121,11 +120,11 @@ Sticky.defaultProps = {
       lower: 10
     }
   },
-  addEvent: (name, fn) => {
-    window.addEventListener(name, fn)
+  addEvent: (w, name, fn) => {
+    w.addEventListener(name, fn)
   },
-  removeEvent: (name, fn) => {
-    window.removeEventListener(name, fn)
+  removeEvent: (w, name, fn) => {
+    w.removeEventListener(name, fn)
   },
   window: () => { return window },
   getBox: (ref) => {
@@ -134,5 +133,17 @@ Sticky.defaultProps = {
     }
 
     return { top: 0, bottom: 0 }
+  },
+  getDelta: (component, event, w, state, fn) => {
+    let delta = 0
+    if (!event.deltaY) {
+      delta = w.pageYOffset - state.scrollY
+    } else {
+      delta = event.deltaY
+    }
+
+    component.setState({ scrollY: w.pageYOffset }, () => {
+      fn(delta)
+    })
   }
 }
