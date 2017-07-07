@@ -94,7 +94,7 @@ export default class Sticky extends React.Component {
       position: this.state.position
     }
     const style = {
-      top: this.state.top ? `${this.state.top}${UNIT}` : null
+      top: this.state.top ? `${this.state.top}${this.props.settings.unit}` : null
     }
 
     return (
