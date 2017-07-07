@@ -114,16 +114,13 @@ class Foreign extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="foreign intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 17 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="military/foreign"
+                       backLabel={i18n.t('military.destination.foreign')}
+                       next="foreign/passport"
+                       nextLabel={i18n.t('foreign.destination.passport')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="review"
@@ -289,8 +286,8 @@ class Foreign extends SectionElement {
           </SectionView>
 
           <SectionView name="passport"
-                       back="military/foreign"
-                       backLabel={i18n.t('military.destination.foreign')}
+                       back="foreign/intro"
+                       backLabel={i18n.t('foreign.destination.intro')}
                        next="foreign/contacts"
                        nextLabel={i18n.t('foreign.destination.contacts')}>
             <h2>{i18n.t('foreign.passport.title')}</h2>

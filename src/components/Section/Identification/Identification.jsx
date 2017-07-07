@@ -19,16 +19,11 @@ class Identification extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="identification intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 7 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       next="identification/name"
+                       nextLabel={i18n.t('identification.destination.name')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="review"
@@ -106,6 +101,8 @@ class Identification extends SectionElement {
           </SectionView>
 
           <SectionView name="name"
+                       back="identification/intro"
+                       backLabel={i18n.t('identification.destination.intro')}
                        next="identification/contacts"
                        nextLabel={i18n.t('identification.destination.contacts')}>
             <h2>{i18n.t('identification.name.title')}</h2>

@@ -118,21 +118,18 @@ class Legal extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="legal intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                  completed={() => { return this.props.Completed.length === 3 && this.props.Completed.every(x => x.valid === true) }}
-                  onTour={this.handleTour}
-                  onReview={this.handleReview}
-                  />
-              </div>
-            </div>
-          </SectionView>
-
-          <SectionView name="police"
+          <SectionView name="intro"
                        back="foreign/business/conferences"
                        backLabel={i18n.t('foreign.destination.business.events')}
+                       next="legal/police/intro"
+                       nextLabel={i18n.t('legal.destination.police')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
+          </SectionView>
+
+          <SectionView name="police/intro"
+                       back="legal/intro"
+                       backLabel={i18n.t('legal.destination.intro')}
                        next="legal/police/offenses"
                        nextLabel={i18n.t('legal.destination.offenses')}>
             <h2>{i18n.t('legal.police.heading.title')}</h2>
@@ -142,7 +139,7 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="police/offenses"
-                       back="legal/police"
+                       back="legal/police/intro"
                        backLabel={i18n.t('legal.destination.police')}
                        next="legal/police/additionaloffenses"
                        nextLabel={i18n.t('legal.destination.additionalOffenses')}>

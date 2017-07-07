@@ -39,19 +39,6 @@ class Releases extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name=""
-                       back=""
-                       backLabel=""
-                       next="releases/general"
-                       nextLabel={ i18n.t('releases.destination.generalMedical') }>
-            <AdditionalComments name="additionalcomments"
-                                {...this.props.AdditionalComments}
-                                dispatch={this.props.dispatch}
-                                onUpdate={this.updateAdditionalComments}
-                                onError={this.handleError}
-                                />
-          </SectionView>
-
           <SectionView name="comments"
                        back=""
                        backLabel=""

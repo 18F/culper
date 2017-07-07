@@ -3,6 +3,11 @@ import { i18n } from '../../../config'
 import Svg from '../Svg'
 
 export default class IntroHeader extends React.Component {
+  constructor (props) {
+    super(props)
+    console.warn('DEPRECATED: Remove IntroHeader once approved.')
+  }
+
   tour () {
     return (
       <div className="review-tour">

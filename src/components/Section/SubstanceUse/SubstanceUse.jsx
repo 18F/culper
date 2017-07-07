@@ -95,21 +95,18 @@ class SubstanceUse extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="legal intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                  completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                  onTour={this.handleTour}
-                  onReview={this.handleReview}
-                  />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="foreign/travel"
+                       backLabel={ i18n.t('foreign.destination.travel') }
+                       next="substance/drugs/usage"
+                       nextLabel={i18n.t('substance.destination.drugs.usage')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="drugs/usage"
-                       back="foreign/travel"
-                       backLabel={ i18n.t('foreign.destination.travel') }
+                       back="substance/intro"
+                       backLabel={ i18n.t('substance.destination.intro') }
                        next="substance/drugs/purchase"
                        nextLabel={i18n.t('substance.destination.drugs.purchase')}>
             <DrugUses name="druguses"
