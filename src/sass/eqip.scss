@@ -164,6 +164,45 @@ a:focus {
   }
 }
 
+.sticky-header {
+  position: fixed;
+  .usa-banner-header {
+    display: none;
+  }
+
+  .usa-header,
+  .usa-header > .eapp-structure-wrap {
+    height: 5.7rem;
+    min-height: 5.7rem;
+  }
+  .usa-header.usa-header-basic {
+    .eapp-structure-wrap.eapp-header > .eapp-structure-row {
+      .eapp-structure-right {
+        .eapp-logout {
+          display: none;
+        }
+        .title {
+          font-size: 2rem;
+          max-height: 5.7rem;
+          margin: 0 auto 1.7rem auto;
+          .title-text {
+            line-height: 1;
+          }
+        }
+      }
+      .eapp-structure-left.eapp-logo {
+        height: 5.7rem;
+        min-height: 5.7rem;
+        img,
+        span,
+        a {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 /* horizontal progress bar, inner div width to be adjusted via JS */
 .eapp-progress {
   position: relative;
