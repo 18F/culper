@@ -53,7 +53,7 @@ export default class Card extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.t('financial.card.collection.summary.unknown')
+    const agency = (obj.Agency || {}).value || i18n.m('financial.card.collection.summary.unknown')
     const date = (obj.Date || {})
 
     let from = ''

@@ -54,7 +54,7 @@ export default class Credit extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.t('financial.credit.collection.summary.unknown')
+    const name = (obj.Name || {}).value || i18n.m('financial.credit.collection.summary.unknown')
 
     return (
       <span>
