@@ -2,9 +2,16 @@
   position: relative;
   top: 1vh;
   height: 98vh;
-  overflow: hidden;
 
-  .sticky {
+  &.sticky {
+    position: sticky;
+    position: -webkit-sticky;
+    position: -moz-sticky;
+    position: -ms-sticky;
+    position: -o-sticky;
+  }
+
+  .sticky-content {
     position: absolute;
     top: 0;
   }

@@ -17,14 +17,14 @@ export default class Sticky extends React.Component {
 
   componentDidMount () {
     const w = this.props.window()
-    this.props.addEvent(w, 'scroll', this.onScroll)
-    this.props.addEvent(w, 'mousewheel', this.onWheel)
+    this.props.events.scroll.forEach(name => this.props.addEvent(w, name, this.onScroll))
+    this.props.events.wheel.forEach(name => this.props.addEvent(w, name, this.onWheel))
   }
 
   componentWillUnmount () {
     const w = this.props.window()
-    this.props.removeEvent(w, 'scroll', this.onScroll)
-    this.props.removeEvent(w, 'mousewheel', this.onWheel)
+    this.props.events.scroll.forEach(name => this.props.removeEvent(w, name, this.onScroll))
+    this.props.events.wheel.forEach(name => this.props.removeEvent(w, name, this.onWheel))
   }
 
   onScroll (event) {
@@ -90,16 +90,14 @@ export default class Sticky extends React.Component {
   }
 
   render () {
-    const styleContainer = {
-      position: this.state.position
-    }
+    const klass = `sticky-container ${this.state.position}`
     const style = {
-      top: this.state.top ? `${this.state.top}${UNIT}` : null
+      top: this.state.top ? `${this.state.top}${this.props.settings.unit}` : null
     }
 
     return (
-      <div className="sticky-container" style={styleContainer}>
-        <div ref="sticky" className="sticky" style={style} onScroll={this.onScroll}>
+      <div className={klass}>
+        <div ref="sticky" className="sticky-content" style={style} onScroll={this.onScroll}>
           {this.props.children}
         </div>
       </div>
@@ -120,6 +118,10 @@ Sticky.defaultProps = {
       lower: 10
     }
   },
+  events: {
+    scroll: ['scroll'],
+    wheel: ['mousewheel']
+  },
   addEvent: (w, name, fn) => {
     w.addEventListener(name, fn)
   },
@@ -129,7 +131,7 @@ Sticky.defaultProps = {
   window: () => { return window },
   getBox: (ref) => {
     if (ref) {
-      ref.getBoundingClientRect()
+      return ref.getBoundingClientRect()
     }
 
     return { top: 0, bottom: 0 }
