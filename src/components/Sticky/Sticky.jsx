@@ -1,19 +1,13 @@
 import React from 'react'
 
-const STEP = 3
-const RATIO = 100
-const UNIT = 'vh'
-const BREAKPOINT_LOWER = 10
-const BREAKPOINT_UPPER = 200
-
 export default class Sticky extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
-      position: 'relative',
-      top: 0,
-      scrollY: 0
+      position: props.position,
+      top: props.top,
+      scrollY: props.scrollY
     }
 
     this.onScroll = this.onScroll.bind(this)
@@ -21,18 +15,19 @@ export default class Sticky extends React.Component {
   }
 
   componentDidMount () {
-    window.addEventListener('scroll', this.onScroll)
-    window.addEventListener('mousewheel', this.onWheel)
+    this.props.addEvent('scroll', this.onScroll)
+    this.props.addEvent('mousewheel', this.onWheel)
   }
 
   componentWillUnmount () {
-    window.removeEventListener('scroll', this.onScroll)
-    window.removeEventListener('mousewheel', this.onWheel)
+    this.props.removeEvent('scroll', this.onScroll)
+    this.props.removeEvent('mousewheel', this.onWheel)
   }
 
   onScroll (event) {
-    const deltaY = window.pageYOffset - this.state.scrollY
-    this.setState({ scrollY: window.pageYOffset }, () => {
+    const w = this.props.window()
+    const deltaY = w.pageYOffset - this.state.scrollY
+    this.setState({ scrollY: w.pageYOffset }, () => {
       this.fancyPants(deltaY)
     })
   }
@@ -42,19 +37,22 @@ export default class Sticky extends React.Component {
   }
 
   fancyPants (delta) {
+    const w = this.props.window()
+    const settings = this.props.settings
+    const breakpoint = settings.breakpoint
     let future = {
       position: null,
       top: null
     }
 
-    const winHeight = window.innerHeight
+    const winHeight = w.innerHeight
     const scrolled = {
       up: delta < 0,
       down: delta > 0
     }
 
-    const rect = this.refs.sticky.getBoundingClientRect()
-    if (rect.top < BREAKPOINT_LOWER || rect.top > BREAKPOINT_UPPER) {
+    const rect = this.props.getBox(this.refs.sticky)
+    if (rect.top < breakpoint.lower || rect.top > breakpoint.upper) {
       future.position = 'sticky'
     } else {
       future.position = 'relative'
@@ -63,7 +61,7 @@ export default class Sticky extends React.Component {
     if (future.position === 'sticky') {
       if (scrolled.down) {
         let offset = this.state.top
-        offset -= Math.abs(delta / RATIO) * STEP
+        offset -= Math.abs(delta / settings.ratio) * settings.step
 
         // Check if the bottom of the navigation is visible.
         // If it is then we don't need to scroll anymore.
@@ -76,7 +74,7 @@ export default class Sticky extends React.Component {
 
       if (scrolled.up) {
         let offset = this.state.top
-        offset += Math.abs(delta / RATIO) * STEP
+        offset += Math.abs(delta / settings.ratio) * settings.step
 
         // Check to see if this exceeds the initial setting. If so, then
         // reset it.
@@ -107,5 +105,34 @@ export default class Sticky extends React.Component {
         </div>
       </div>
     )
+  }
+}
+
+Sticky.defaultProps = {
+  position: 'relative',
+  top: 0,
+  scrollY: 0,
+  settings: {
+    step: 3,
+    ratio: 100,
+    unit: 'vh',
+    breakpoint: {
+      upper: 200,
+      lower: 10
+    }
+  },
+  addEvent: (name, fn) => {
+    window.addEventListener(name, fn)
+  },
+  removeEvent: (name, fn) => {
+    window.removeEventListener(name, fn)
+  },
+  window: () => { return window },
+  getBox: (ref) => {
+    if (ref) {
+      ref.getBoundingClientRect()
+    }
+
+    return { top: 0, bottom: 0 }
   }
 }
