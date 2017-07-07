@@ -126,7 +126,6 @@ function mapStateToProps (state) {
 
 Citizenship.defaultProps = {
   section: 'citizenship',
-  defaultView: (props) => { return 'status' },
   store: 'Citizenship'
 }
 

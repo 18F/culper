@@ -7,22 +7,12 @@ export default class SectionElement extends React.Component {
     super(props)
 
     this.handleError = this.handleError.bind(this)
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
   }
 
   doSave () {
     const d = new Date()
     this.props.dispatch(save(d))
-  }
-
-  handleTour (event) {
-    this.props.dispatch(push(`/form/${this.props.section}/${this.props.defaultView(this.props)}`))
-  }
-
-  handleReview (event) {
-    this.props.dispatch(push(`/form/${this.props.section}/review`))
   }
 
   handleError (value, arr) {
@@ -48,6 +38,5 @@ export default class SectionElement extends React.Component {
 SectionElement.defaultProps = {
   section: '',
   subsection: '',
-  defaultView: (props) => { return '' },
   store: ''
 }

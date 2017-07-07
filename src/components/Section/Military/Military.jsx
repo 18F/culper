@@ -188,12 +188,6 @@ function mapStateToProps (state) {
 
 Military.defaultProps = {
   section: 'military',
-  defaultView: (props = {}) => {
-    if (hideSelectiveService(props.Application)) {
-      return 'history'
-    }
-    return 'selective'
-  },
   store: 'Military'
 }
 

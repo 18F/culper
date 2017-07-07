@@ -108,7 +108,6 @@ function mapStateToProps (state) {
 
 Releases.defaultProps = {
   section: 'releases',
-  defaultView: (props) => { return 'additionalcomments' },
   store: 'Releases'
 }
 

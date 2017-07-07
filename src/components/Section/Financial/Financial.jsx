@@ -263,7 +263,6 @@ function mapStateToProps (state) {
 
 Financial.defaultProps = {
   section: 'financial',
-  defaultView: (props) => { return 'bankruptcy' },
   store: 'Financial'
 }
 

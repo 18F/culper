@@ -191,7 +191,6 @@ function mapStateToProps (state) {
 
 Psychological.defaultProps = {
   section: 'psychological',
-  defaultView: (props) => { return 'intro' },
   store: 'Psychological'
 }
 
