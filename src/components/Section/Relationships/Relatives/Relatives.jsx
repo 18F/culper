@@ -38,7 +38,7 @@ export default class Relatives extends SubsectionElement {
           : i18n.t('relationships.relatives.collection.summary.item')
     const name = o.Name
           ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.t('relationships.relatives.collection.summary.unknown')
+          : i18n.m('relationships.relatives.collection.summary.unknown')
 
     return (
       <span>

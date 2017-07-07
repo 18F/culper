@@ -41,7 +41,7 @@ export default class Ventures extends SubsectionElement {
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.ventures.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.business.ventures.collection.summary.unknown')
     const date = DateSummary(item.Dates)
 
     return (

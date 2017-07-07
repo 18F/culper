@@ -51,7 +51,7 @@ export default class NegativeImpacts extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {occurred || i18n.t('substance.alcohol.negativeImpact.collection.summary')}
+            {occurred || i18n.m('substance.alcohol.negativeImpact.collection.summary')}
           </strong>
         </span>
       </span>
