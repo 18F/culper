@@ -12,6 +12,12 @@ export class ToggleItem extends React.Component {
     this.toggle = this.toggle.bind(this)
   }
 
+  componentWillReceiveProps (next) {
+    if (next && next.visible !== this.state.visible) {
+      this.setState({ visible: next.visible })
+    }
+  }
+
   toggle () {
     this.setState({ visible: !this.state.visible })
   }
