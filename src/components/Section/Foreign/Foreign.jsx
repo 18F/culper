@@ -5,7 +5,6 @@ import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
 import Travel from './Travel'
@@ -115,8 +114,8 @@ class Foreign extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="military/foreign"
-                       backLabel={i18n.t('military.destination.foreign')}
+                       back="military/review"
+                       backLabel={i18n.t('military.destination.review')}
                        next="foreign/passport"
                        nextLabel={i18n.t('foreign.destination.passport')}>
             <h2>{i18n.t('temp.intro.title')}</h2>

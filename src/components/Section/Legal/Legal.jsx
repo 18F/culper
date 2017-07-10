@@ -4,7 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader, Field } from '../../Form'
+import { Field } from '../../Form'
 import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
@@ -119,8 +119,8 @@ class Legal extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="foreign/business/conferences"
-                       backLabel={i18n.t('foreign.destination.business.events')}
+                       back="foreign/review"
+                       backLabel={i18n.t('foreign.destination.review')}
                        next="legal/police/intro"
                        nextLabel={i18n.t('legal.destination.police')}>
             <h2>{i18n.t('temp.intro.title')}</h2>

@@ -6,7 +6,7 @@ import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
 import { hideSelectiveService } from '../../../validators/selectiveservice'
-import { IntroHeader, Show } from '../../Form'
+import { Show } from '../../Form'
 import Selective from './Selective'
 import History from './History'
 import Disciplinary from './Disciplinary'
@@ -45,8 +45,8 @@ class Military extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="citizenship/passports"
-                       backLabel={i18n.t('citizenship.destination.passports')}
+                       back="citizenship/review"
+                       backLabel={i18n.t('citizenship.destination.review')}
                        next={showSelectiveService ? 'military/selective' : 'military/history'}
                        nextLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.history')}>
             <h2>{i18n.t('temp.intro.title')}</h2>

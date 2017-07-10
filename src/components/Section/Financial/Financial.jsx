@@ -4,7 +4,6 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import IntroHeader from '../../Form/IntroHeader'
 import Gambling from './Gambling'
 import Bankruptcies from './Bankruptcy'
 import Taxes from './Taxes'
@@ -19,8 +18,8 @@ class Financial extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="identification/physical"
-                       backLabel={i18n.t('identification.destination.physical')}
+                       back="identification/review"
+                       backLabel={i18n.t('identification.destination.review')}
                        next="financial/bankruptcy"
                        nextLabel={i18n.t('financial.destination.bankruptcy')}>
             <h2>{i18n.t('temp.intro.title')}</h2>

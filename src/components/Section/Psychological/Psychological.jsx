@@ -4,7 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader, Show } from '../../Form'
+import { Show } from '../../Form'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
@@ -33,8 +33,8 @@ class Psychological extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="legal/associations/terrorism-association"
-                       backLabel={ i18n.t('legal.destination.associations.terrorism') }
+                       back="legal/review"
+                       backLabel={ i18n.t('legal.destination.review') }
                        next="psychological/competence"
                        nextLabel={ i18n.t('psychological.destination.competence') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>

@@ -5,7 +5,6 @@ import SectionElement from '../SectionElement'
 import { SectionViews, SectionView } from '../SectionView'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { hideSelectiveService } from '../../../validators/selectiveservice'
-import { IntroHeader } from '../../Form'
 import Status from './Status'
 import Multiple from './Multiple'
 import Passports from './Multiple/Passports'
@@ -17,8 +16,8 @@ class Citizenship extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="relationships/relatives"
-                       backLabel={i18n.t('relationships.destination.relatives')}
+                       back="relationships/review"
+                       backLabel={i18n.t('relationships.destination.review')}
                        next="citizenship/status"
                        nextLabel={i18n.t('citizenship.destination.status')}>
             <h2>{i18n.t('temp.intro.title')}</h2>

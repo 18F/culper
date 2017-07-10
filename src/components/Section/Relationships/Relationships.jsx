@@ -6,7 +6,6 @@ import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { RelationshipsValidator } from '../../../validators'
-import { IntroHeader } from '../../Form'
 import Relatives from './Relatives'
 import Marital from './RelationshipStatus/Marital'
 import Cohabitants from './RelationshipStatus/Cohabitants'
@@ -52,8 +51,8 @@ class Relationships extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
+                       back="history/review"
+                       backLabel={i18n.t('history.destination.review')}
                        next="relationships/status/marital"
                        nextLabel={i18n.t('relationships.destination.marital')}>
             <h2>{i18n.t('temp.intro.title')}</h2>

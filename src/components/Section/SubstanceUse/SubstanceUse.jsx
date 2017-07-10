@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { push } from '../../../middleware/history'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader } from '../../Form'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
@@ -96,8 +95,8 @@ class SubstanceUse extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="foreign/travel"
-                       backLabel={ i18n.t('foreign.destination.travel') }
+                       back="foreign/review"
+                       backLabel={ i18n.t('foreign.destination.review') }
                        next="substance/drugs/usage"
                        nextLabel={i18n.t('substance.destination.drugs.usage')}>
             <h2>{i18n.t('temp.intro.title')}</h2>

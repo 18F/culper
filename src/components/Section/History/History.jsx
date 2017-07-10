@@ -7,7 +7,6 @@ import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Svg, Show, Branch } from '../../Form'
-import IntroHeader from '../../Form/IntroHeader'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
@@ -313,8 +312,8 @@ class History extends SectionElement {
       <div className="history">
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="financial/nonpayment"
-                       backLabel={i18n.t('financial.destination.nonpayment')}
+                       back="financial/review"
+                       backLabel={i18n.t('financial.destination.review')}
                        next="history/residence"
                        nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('temp.intro.title')}</h2>
