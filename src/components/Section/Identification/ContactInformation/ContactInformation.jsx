@@ -103,7 +103,8 @@ export default class ContactInformation extends SubsectionElement {
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
-            <Field help="identification.contacts.help.phoneNumber">
+            <Field help="identification.contacts.help.phoneNumber"
+                   adjustFor="telephone">
               <Telephone name="Telephone"
                          placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                          bind={true}
