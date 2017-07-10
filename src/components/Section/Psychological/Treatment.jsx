@@ -54,7 +54,7 @@ export default class Treatment extends ValidationElement {
                 />
         </Field>
 
-        <Field adjustFor="labels">
+        <Field adjustFor="telephone">
           <Telephone name="Phone"
                      label={i18n.t(`psychological.${prefix}.label.phone`)}
                      {...this.props.Phone}

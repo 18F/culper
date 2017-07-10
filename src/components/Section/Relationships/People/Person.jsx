@@ -222,7 +222,8 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
-               className="mobile-telephone">
+               className="mobile-telephone"
+               adjustFor="telephone">
           <Telephone name="MobileTelephone"
                      {...this.props.MobileTelephone}
                      onUpdate={this.updateMobileTelephone}
@@ -231,7 +232,8 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
-               className="other-telephone">
+               className="other-telephone"
+               adjustFor="telephone">
           <Telephone name="OtherTelephone"
                      {...this.props.OtherTelephone}
                      onUpdate={this.updateOtherTelephone}

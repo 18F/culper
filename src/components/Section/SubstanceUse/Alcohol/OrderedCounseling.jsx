@@ -201,7 +201,8 @@ export default class OrderedCounseling extends ValidationElement {
                         />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderTelephone')}
-                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}>
+                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}
+                   adjustFor="telephone">
               <Telephone name="TreatmentProviderTelephone"
                          className="provider-telephone"
                          {...this.props.TreatmentProviderTelephone}

@@ -98,7 +98,8 @@ export default class VoluntaryTreatment extends ValidationElement {
         </Field>
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderTelephone')}
                className="treatment-provider-telephone"
-               help={'substance.drugs.voluntary.help.treatmentProviderTelephone'}>
+               help={'substance.drugs.voluntary.help.treatmentProviderTelephone'}
+               adjustFor="telephone">
           <Telephone name="TreatmentProviderTelephone"
                      {...this.props.TreatmentProviderTelephone}
                      onUpdate={this.updateTreatmentProviderTelephone}

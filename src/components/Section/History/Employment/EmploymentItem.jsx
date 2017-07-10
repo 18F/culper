@@ -218,7 +218,8 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.telephone`)}
-                 help={`${prefix}.telephone.help`}>
+                 help={`${prefix}.telephone.help`}
+                 adjustFor="telephone">
             <Telephone name="Telephone"
                        {...this.props.Telephone}
                        onUpdate={this.onUpdate.bind(this, 'Telephone')}
