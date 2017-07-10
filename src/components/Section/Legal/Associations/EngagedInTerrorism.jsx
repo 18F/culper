@@ -40,7 +40,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.associations.engaged.collection.item')
-    const unknown = i18n.t('legal.associations.engaged.collection.unknown')
+    const unknown = i18n.m('legal.associations.engaged.collection.unknown')
     const o = item || {}
     const details = (o.Reasons || {}).value
           ? o.Reasons.value

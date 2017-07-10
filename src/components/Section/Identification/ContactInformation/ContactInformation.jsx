@@ -43,10 +43,10 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    const addr = item.Email && item.Email.value ? item.Email.value : i18n.t('identification.contacts.collection.summary.unknownEmail')
+    const addr = item.Email && item.Email.value ? item.Email.value : i18n.m('identification.contacts.collection.summary.unknownEmail')
     return (
       <span>
-        <span className="index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</span>
+        <span className="index">{i18n.m('identification.contacts.collection.summary.email')} {index + 1}:</span>
         <span><strong>{addr}</strong></span>
       </span>
     )
@@ -56,7 +56,7 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    const number = TelephoneSummary(item, i18n.t('identification.contacts.collection.summary.unknownPhone'))
+    const number = TelephoneSummary(item, i18n.m('identification.contacts.collection.summary.unknownPhone'))
     return (
       <span>
         <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>

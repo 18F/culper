@@ -50,7 +50,7 @@ export default class Hospitalizations extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="facility">
-          <strong>{facility || i18n.t('psychological.hospitalization.collection.summary')}</strong>
+          <strong>{facility || i18n.m('psychological.hospitalization.collection.summary')}</strong>
         </span>
         <span className="treatmentdate"><strong>{facility && formattedTreatmentDate}</strong></span>
       </span>

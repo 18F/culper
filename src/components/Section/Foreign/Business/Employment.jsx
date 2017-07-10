@@ -41,7 +41,7 @@ export default class Employment extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const job = `${(obj.Description || {}).value || ''}`.trim() || i18n.t('foreign.business.employment.collection.summary.unknown')
+    const job = `${(obj.Description || {}).value || ''}`.trim() || i18n.m('foreign.business.employment.collection.summary.unknown')
     const date = DateSummary(item.Date)
 
     return (

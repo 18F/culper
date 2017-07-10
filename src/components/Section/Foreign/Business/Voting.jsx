@@ -40,7 +40,7 @@ export default class Voting extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const country = (obj.Country || {}).value || i18n.t('foreign.business.voting.collection.summary.unknown')
+    const country = (obj.Country || {}).value || i18n.m('foreign.business.voting.collection.summary.unknown')
     const date = DateSummary(obj.Date)
 
     return (

@@ -44,7 +44,7 @@ export default class Cohabitants extends SubsectionElement {
     const date = (o.CohabitationBegan || {}).date ? `${o.CohabitationBegan.month}/${o.CohabitationBegan.year}` : ''
     const name = o.Name
           ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.t('relationships.relatives.collection.summary.unknown')
+          : i18n.m('relationships.relatives.collection.summary.unknown')
     return (
       <span>
         <span className="index">{itemType}:</span>

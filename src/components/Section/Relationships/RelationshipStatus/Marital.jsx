@@ -52,7 +52,7 @@ export default class Marital extends SubsectionElement {
     const status = o.Status || ''
     const name = o.Name
           ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.t('relationships.relatives.collection.summary.unknown')
+          : i18n.m('relationships.relatives.collection.summary.unknown')
     return (
       <span>
         <span className="index">{itemType}:</span>

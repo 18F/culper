@@ -40,7 +40,7 @@ export default class Debarred extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.investigations.debarred.collection.item')
-    const unknown = i18n.t('legal.investigations.debarred.collection.unknown')
+    const unknown = i18n.m('legal.investigations.debarred.collection.unknown')
     const o = item || {}
     const agency = (o.Agency || {}).value
           ? o.Agency.value
