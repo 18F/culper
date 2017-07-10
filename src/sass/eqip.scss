@@ -164,8 +164,10 @@ a:focus {
   }
 }
 
-.sticky-header {
+.stickify {
   position: fixed;
+  top: 0;
+  z-index: 1000;
   .usa-banner-header {
     display: none;
   }
@@ -182,10 +184,11 @@ a:focus {
           display: none;
         }
         .title {
-          font-size: 2rem;
           max-height: 5.7rem;
           margin: 0 auto 1.7rem auto;
           .title-text {
+            transition: font-size 800ms ease;
+            font-size: 2rem;
             line-height: 1;
           }
         }
@@ -196,7 +199,9 @@ a:focus {
         img,
         span,
         a {
-          display: none;
+          //transition: all 300ms linear;
+          height: 0;
+          font-size: 0;
         }
       }
     }
