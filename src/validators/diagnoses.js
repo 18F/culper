@@ -1,8 +1,6 @@
-import AddressValidator from './address'
-import DateRangeValidator from './daterange'
 import TreatmentValidator from './treatment'
 import DiagnosisValidator from './diagnosis'
-import { validGenericTextfield, validGenericMonthYear, validBranch } from './helpers'
+import { validBranch } from './helpers'
 
 export default class DiagnosesValidator {
   constructor (state = {}, props = {}) {

@@ -1,4 +1,3 @@
-import AddressValidator from './address'
 import NameValidator from './name'
 import LocationValidator from './location'
 import { validDateField, validPhoneNumber } from './helpers'
@@ -29,7 +28,7 @@ export default class DivorceValidator {
       return false
     }
     if (this.deceased === 'Yes') {
-      return new AddressValidator(this.deceasedAddress).isValid()
+      return new LocationValidator(this.deceasedAddress).isValid()
     }
     return true
   }
@@ -40,7 +39,7 @@ export default class DivorceValidator {
       new LocationValidator(this.birthplace).isValid() &&
       validPhoneNumber(this.telephone) &&
       validDateField(this.recognized) &&
-      new AddressValidator(this.address).isValid() &&
+      new LocationValidator(this.address).isValid() &&
       validDateField(this.dateDivorced) &&
       this.validStatus() &&
       this.validDeceased()

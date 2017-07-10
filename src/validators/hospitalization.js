@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield, validBranch } from './helpers'
 
 export default class HospitalizationsValidator {
@@ -61,7 +61,7 @@ export class HospitalizationValidator {
   }
 
   validFacilityAddress () {
-    return new AddressValidator(this.facilityAddress).isValid()
+    return new LocationValidator(this.facilityAddress).isValid()
   }
 
   validFacility () {
