@@ -14,12 +14,12 @@ import { LocationValidator } from '../../../validators'
 import { AddressSuggestion } from './AddressSuggestion'
 import Layouts from './Layouts'
 
-const timeout = (fn, milliseconds = 400) => {
-  if (!window) {
+export const timeout = (fn, milliseconds = 400, w = window) => {
+  if (!w) {
     return
   }
 
-  window.setTimeout(fn, milliseconds)
+  w.setTimeout(fn, milliseconds)
 }
 
 export default class Location extends ValidationElement {
