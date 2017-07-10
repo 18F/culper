@@ -2967,7 +2967,8 @@ const en = {
       label: 'Suggested address',
       use: 'Use this address',
       dismiss: 'Keep original address',
-      alternate: 'Manually correct this address'
+      alternate: 'Manually correct this address',
+      more: 'Add more information'
     }
   },
 
