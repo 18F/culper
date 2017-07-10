@@ -2885,8 +2885,8 @@ const en = {
         placeholder: 'Enter county'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       }
     },
     international: {
@@ -9114,7 +9114,7 @@ const en = {
       '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
       '3. Do not abbreviate the names of cities or foreign countries. Whenever you are asked to supply a country name, you may select the country name by using the country dropdown feature.',
       '4. When entering a U.S. address or location, select the state or territory from the "States" dropdown list that will be provided. For locations outside of the U.S. and its territories, select the country in the "Country" dropdown list and leave the "State" field blank.',
-      '5. The 5-digit postal Zip Codes are required to process your investigation more rapidly. Refer to an automated system approved by the U.S. Postal Service to assist you with Zip Codes.',
+      '5. The 5-digit postal ZIP Codes are required to process your investigation more rapidly. Refer to an automated system approved by the U.S. Postal Service to assist you with ZIP Codes.',
       '6. For telephone numbers in the U.S., ensure that the area code is included.',
       '7. All dates provided in this form must be in Month/Day/Year or Month/Year format. Use the dropdown lists to select the month and day. The year should be entered as a four character number (i.e. 1978 or 2001.), or selected from a dropdown list. If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Est." box.',
       '---',
