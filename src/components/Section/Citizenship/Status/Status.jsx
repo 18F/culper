@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { CitizenshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Field, RadioGroup, Radio,
-         Text, Name, Address, DateControl, Country, Location } from '../../../Form'
+         Text, Name, DateControl, Country, Location } from '../../../Form'
 
 export default class Status extends SubsectionElement {
   constructor (props) {
@@ -330,13 +330,13 @@ export default class Status extends SubsectionElement {
                    adjustFor="address"
                    shrink={true}>
               <Location name="PlaceIssued"
-                       label={'Was this issued in the United States?'}
-                       layout={Location.CITY_STATE_COUNTRY}
-                       className="place-issued"
-                       {...this.props.PlaceIssued}
-                       onUpdate={this.updatePlaceIssued}
-                       onError={this.handleError}
-                       />
+                        label={'Was this issued in the United States?'}
+                        layout={Location.CITY_STATE_COUNTRY}
+                        className="place-issued"
+                        {...this.props.PlaceIssued}
+                        onUpdate={this.updatePlaceIssued}
+                        onError={this.handleError}
+                        />
             </Field>
 
             <h3>{i18n.t('citizenship.status.heading.documentname')}</h3>
@@ -415,12 +415,12 @@ export default class Status extends SubsectionElement {
                    adjustFor="address"
                    shrink={true}>
               <Location name="EntryLocation"
-                       layout={Location.CITY_STATE}
-                       className="entry-location"
-                       {...this.props.EntryLocation}
-                       onUpdate={this.updateEntryLocation}
-                       onError={this.handleError}
-                       />
+                        layout={Location.CITY_STATE}
+                        className="entry-location"
+                        {...this.props.EntryLocation}
+                        onUpdate={this.updateEntryLocation}
+                        onError={this.handleError}
+                        />
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.priorcitizenship.naturalized')}
@@ -477,13 +477,13 @@ export default class Status extends SubsectionElement {
                    adjustFor="address"
                    shrink={true}>
               <Location name="CertificateCourtAddress"
-                       layout={Location.US_ADDRESS}
-                       geocode={true}
-                       className="certificate-court-address"
-                       {...this.props.CertificateCourtAddress}
-                       onUpdate={this.updateCertificateCourtAddress}
-                       onError={this.handleError}
-                       />
+                        layout={Location.US_ADDRESS}
+                        geocode={true}
+                        className="certificate-court-address"
+                        {...this.props.CertificateCourtAddress}
+                        onUpdate={this.updateCertificateCourtAddress}
+                        onError={this.handleError}
+                        />
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.naturalized')}
@@ -639,12 +639,14 @@ export default class Status extends SubsectionElement {
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
                    adjustFor="address"
                    shrink={true}>
-              <Address name="EntryLocation"
-                       className="entry-location"
-                       {...this.props.EntryLocation}
-                       onUpdate={this.updateEntryLocation}
-                       onError={this.handleError}
-                       />
+              <Location name="EntryLocation"
+                        className="entry-location"
+                        {...this.props.EntryLocation}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onUpdate={this.updateEntryLocation}
+                        onError={this.handleError}
+                        />
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.priorcitizenship.notcitizen')}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Name, DateRange, Field, NotApplicable, Telephone, Email,
-         Text, Address, Show, CheckboxGroup, Checkbox, Svg } from '../../../Form'
+         Text, Location, Show, CheckboxGroup, Checkbox, Svg } from '../../../Form'
 
 export default class Person extends React.Component {
   constructor (props) {
@@ -260,13 +260,15 @@ export default class Person extends React.Component {
         <Field title={i18n.t('relationships.people.person.heading.address')}
                adjustFor="address"
                >
-          <Address name="Address"
-                   label={i18n.t('relationships.people.person.label.address')}
-                   className="address"
-                   {...this.props.Address}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    label={i18n.t('relationships.people.person.label.address')}
+                    className="address"
+                    {...this.props.Address}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )

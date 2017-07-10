@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, Textarea, Name, Address, Country } from '../../../Form'
+import { ValidationElement, Field, Textarea, Name, Location, Country } from '../../../Form'
 
 export default class CoOwner extends ValidationElement {
   constructor (props) {
@@ -62,12 +62,14 @@ export default class CoOwner extends ValidationElement {
         <Field title={i18n.t(`foreign.${prefix}.heading.address`)}
                adjustFor="address"
                shrink={true}>
-          <Address name="Address"
-                   {...this.props.Address}
-                   label={i18n.t(`foreign.${prefix}.label.address`)}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.props.Address}
+                    label={i18n.t(`foreign.${prefix}.label.address`)}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.countries`)}

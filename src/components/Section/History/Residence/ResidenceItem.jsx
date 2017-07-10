@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateRange, Reference, Text, RadioGroup, Radio, Field, Address } from '../../../Form'
+import { ValidationElement, DateRange, Reference, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
 import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
@@ -105,12 +105,14 @@ export default class ResidenceItem extends ValidationElement {
                onError={this.props.onError}
                adjustFor="address"
                shrink={true}>
-          <Address name="Address"
-                   {...this.state.Address}
-                   label={i18n.t('history.residence.label.address')}
-                   onUpdate={this.onUpdate.bind(this, 'Address')}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.state.Address}
+                    label={i18n.t('history.residence.label.address')}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.onUpdate.bind(this, 'Address')}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('history.residence.heading.dates')}

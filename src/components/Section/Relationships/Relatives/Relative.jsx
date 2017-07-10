@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Svg, BranchCollection,
-         Name, Text, Textarea, Address, DateControl,
+         Name, Text, Textarea, DateControl,
          Checkbox, CheckboxGroup, Radio, RadioGroup, Country,
          Field, NotApplicable, Location
        } from '../../../Form'
@@ -439,17 +439,17 @@ export default class Relative extends ValidationElement {
                adjustFor="label"
                validate={false}>
           <Location name="Birthplace"
-                      label={i18n.t('relationships.relatives.label.birthplace')}
-                      layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
-                      help=""
-                      cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
-                      countryPlaceholder={i18n.t('relationships.relatives.placeholder.country')}
-                      hideCounty={true}
-                      className="relative-birthplace"
-                      {...this.props.Birthplace}
-                      onError={this.props.onError}
-                      onUpdate={this.updateBirthplace}
-                      />
+                    label={i18n.t('relationships.relatives.label.birthplace')}
+                    layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
+                    help=""
+                    cityPlaceholder={i18n.t('relationships.relatives.placeholder.city')}
+                    countryPlaceholder={i18n.t('relationships.relatives.placeholder.country')}
+                    hideCounty={true}
+                    className="relative-birthplace"
+                    {...this.props.Birthplace}
+                    onError={this.props.onError}
+                    onUpdate={this.updateBirthplace}
+                    />
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.citizenship')}
@@ -519,12 +519,14 @@ export default class Relative extends ValidationElement {
           <Field title={i18n.t('relationships.relatives.heading.deceased.address')}
                  help="relationships.relatives.help.address"
                  adjustFor="address">
-            <Address name="Address"
-                     className="relative-address"
-                     {...this.props.Address}
-                     onUpdate={this.updateAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="Address"
+                      className="relative-address"
+                      {...this.props.Address}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateAddress}
+                      onError={this.props.onError}
+                      />
           </Field>
         </Show>
 
@@ -648,13 +650,13 @@ export default class Relative extends ValidationElement {
                    help="relationships.relatives.help.courtaddress"
                    adjustFor="labels">
               <Location name="CourtAddress"
-                       layout={Location.US_ADDRESS}
-                       geocode={true}
-                       className="relative-courtaddress"
-                       {...this.props.CourtAddress}
-                       onError={this.props.onError}
-                       onUpdate={this.updateCourtAddress}
-                       />
+                        layout={Location.US_ADDRESS}
+                        geocode={true}
+                        className="relative-courtaddress"
+                        {...this.props.CourtAddress}
+                        onError={this.props.onError}
+                        onUpdate={this.updateCourtAddress}
+                        />
             </Field>
           </div>
         </Show>
@@ -912,12 +914,12 @@ export default class Relative extends ValidationElement {
                                  onError={this.props.onError}
                                  onUpdate={this.updateEmployerAddressNotApplicable}>
                     <Location name="EmployerAddress"
-                             layout={Location.STREET_CITY}
-                             className="relative-employer-address"
-                             {...this.props.EmployerAddress}
-                             onError={this.props.onError}
-                             onUpdate={this.updateEmployerAddress}
-                             />
+                              layout={Location.STREET_CITY}
+                              className="relative-employer-address"
+                              {...this.props.EmployerAddress}
+                              onError={this.props.onError}
+                              onUpdate={this.updateEmployerAddress}
+                              />
                   </NotApplicable>
                 </Field>
 

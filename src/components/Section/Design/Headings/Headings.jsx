@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Telephone, Accordion, Country,
-         Address, RadioGroup, Radio, DateRange, DateControl, Text, Name } from '../../../Form'
+         Location, RadioGroup, Radio, DateRange, DateControl, Text, Name } from '../../../Form'
 
 export default class Headings extends ValidationElement {
   constructor (props) {
@@ -93,7 +93,7 @@ export default class Headings extends ValidationElement {
         </Field>
 
         <Field title="(h3) Address component" adjustFor="big-buttons">
-          <Address name="TestAddress" />
+          <Location name="TestAddress" layout={Location.ADDRESS} />
         </Field>
 
         <Branch label="(h3) Branch component" labelSize="h3" />

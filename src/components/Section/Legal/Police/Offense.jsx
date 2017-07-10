@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import Sentence from './Sentence'
-import { ValidationElement, Branch, Show, Address, DateControl,
+import { ValidationElement, Branch, Show, Location, DateControl,
          Textarea, Text, RadioGroup, Radio, Svg, Field } from '../../../Form'
 
 export default class Offense extends ValidationElement {
@@ -241,13 +241,15 @@ export default class Offense extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.address')}
                adjustFor="address"
                shrink={true}>
-          <Address name="Address"
-                   {...this.props.Address}
-                   className="offense-address"
-                   label={i18n.t('legal.police.label.address')}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.props.Address}
+                    className="offense-address"
+                    label={i18n.t('legal.police.label.address')}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <h3>{i18n.t('legal.police.heading.cited')}</h3>
@@ -280,13 +282,15 @@ export default class Offense extends ValidationElement {
                    help="legal.police.help.agencyaddress"
                    adjustFor="address"
                    shrink={true}>
-              <Address name="AgencyAddress"
-                       {...this.props.AgencyAddress}
-                       className="offense-agencyaddress"
-                       label={i18n.t('legal.police.label.address')}
-                       onUpdate={this.updateAgencyAddress}
-                       onError={this.props.onError}
-                       />
+              <Location name="AgencyAddress"
+                        {...this.props.AgencyAddress}
+                        className="offense-agencyaddress"
+                        label={i18n.t('legal.police.label.address')}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onUpdate={this.updateAgencyAddress}
+                        onError={this.props.onError}
+                        />
             </Field>
 
             <h3>{i18n.t('legal.police.heading.charged')}</h3>
@@ -335,13 +339,15 @@ export default class Offense extends ValidationElement {
                    help="legal.police.help.courtaddress"
                    adjustFor="address"
                    shrink={true}>
-              <Address name="CourtAddress"
-                       {...this.props.CourtAddress}
-                       label={i18n.t('legal.police.label.address')}
-                       className="offense-courtaddress"
-                       onUpdate={this.updateCourtAddress}
-                       onError={this.props.onError}
-                       />
+              <Location name="CourtAddress"
+                        {...this.props.CourtAddress}
+                        label={i18n.t('legal.police.label.address')}
+                        className="offense-courtaddress"
+                        geocode={true}
+                        layout={Location.ADDRESS}
+                        onUpdate={this.updateCourtAddress}
+                        onError={this.props.onError}
+                        />
             </Field>
 
             <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>

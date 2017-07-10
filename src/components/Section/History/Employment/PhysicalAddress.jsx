@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Address, Field, Telephone } from '../../../Form'
+import { ValidationElement, Branch, Location, Field, Telephone } from '../../../Form'
 
 export default class PhysicalAddress extends ValidationElement {
   constructor (props) {
@@ -77,14 +77,16 @@ export default class PhysicalAddress extends ValidationElement {
                  help="history.employment.default.physicalAddress.address.help"
                  adjustFor="labels"
                  shrink={true}>
-            <Address name="address"
-                     className="address"
-                     {...this.props.Address}
-                     label={i18n.t('history.employment.default.physicalAddress.address.label')}
-                     placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
-                     onUpdate={this.handleAddressChange}
-                     onError={this.props.onError}
-                     />
+            <Location name="address"
+                      className="address"
+                      {...this.props.Address}
+                      label={i18n.t('history.employment.default.physicalAddress.address.label')}
+                      placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.handleAddressChange}
+                      onError={this.props.onError}
+                      />
           </Field>
 
           <Field title={i18n.t('history.employment.default.physicalAddress.heading.telephone')}
