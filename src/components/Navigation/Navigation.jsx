@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation, env } from '../../config'
 import { validations, isActive, isValid, hasErrors } from '../../validators/navigation'
+import { ToggleItem } from './ToggleItem'
 
 class Navigation extends React.Component {
   /**
@@ -48,15 +49,15 @@ class Navigation extends React.Component {
       const subClass = this.getClassName(subUrl, pathname)
 
       // Collapsed state properties
-      let arrow = null
-      let childSubsections = []
       if (subsection.subsections) {
-        if (isActive(subUrl, pathname)) {
-          childSubsections = this.subsectionWalker(subsection, subUrl)
-          arrow = <i className="fa fa-angle-up" aria-hidden="true"></i>
-        } else {
-          arrow = <i className="fa fa-angle-down" aria-hidden="true"></i>
-        }
+        return (
+          <ToggleItem title={subsection.name}
+                      section={false}
+                      className={subClass}
+                      visible={isActive(subUrl, pathname)}>
+            {this.subsectionWalker(subsection, subUrl)}
+          </ToggleItem>
+        )
       }
 
       return (
@@ -64,12 +65,10 @@ class Navigation extends React.Component {
           <Link to={subUrl} className={subClass}>
             <span className="section-name">
               {subsection.name}
-              {arrow}
             </span>
             <span className="mini eapp-status-icon-valid"></span>
             <span className="mini eapp-status-icon-error"></span>
           </Link>
-          {childSubsections}
         </div>
       )
     })
@@ -91,20 +90,21 @@ class Navigation extends React.Component {
       const url = `/form/${section.url}`
       const sectionClass = this.getClassName(url, pathname)
 
-      // Collapsed state properties
-      let arrow = null
-      let subsections = []
-      if (section.subsections) {
-        if (isActive(url, pathname)) {
-          subsections = this.subsectionWalker(section, url)
-          arrow = <i className="fa fa-angle-up" aria-hidden="true"></i>
-        } else {
-          arrow = <i className="fa fa-angle-down" aria-hidden="true"></i>
-        }
-      }
-
       // Increment the section number
       sectionNum++
+
+      // Collapsed state properties
+      if (section.subsections) {
+        return (
+          <ToggleItem title={section.name}
+                      section={true}
+                      number={sectionNum}
+                      className={sectionClass}
+                      visible={isActive(url, pathname)}>
+            {this.subsectionWalker(section, url)}
+          </ToggleItem>
+        )
+      }
 
       return (
         <div key={section.name} className="section">
@@ -113,13 +113,11 @@ class Navigation extends React.Component {
               <span className="section-number">{sectionNum}</span>
               <span className="section-name">
                 {section.name}
-                {arrow}
               </span>
               <span className="eapp-status-icon-valid"></span>
               <span className="eapp-status-icon-error"></span>
             </Link>
           </span>
-          {subsections}
         </div>
       )
     })

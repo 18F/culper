@@ -114,7 +114,8 @@ export default class Headings extends ValidationElement {
                    description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                    appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
                    onUpdate={this.updateList}>
-          <Field help="identification.contacts.help.phoneNumber">
+          <Field help="identification.contacts.help.phoneNumber"
+                 adjustFor="telephone">
             <Telephone name="Telephone" bind={true} />
           </Field>
         </Accordion>

@@ -4,7 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader, Show } from '../../Form'
+import { Show } from '../../Form'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
@@ -32,21 +32,9 @@ class Psychological extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="legal intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === (this.props.ShowExistingConditions ? 5 : 4) && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
-          </SectionView>
-
           <SectionView name="intro"
-                       back="legal/police/domesticviolence"
-                       backLabel={ i18n.t('legal.destination.domesticViolence') }
+                       back="legal/review"
+                       backLabel={ i18n.t('legal.destination.review') }
                        next="psychological/competence"
                        nextLabel={ i18n.t('psychological.destination.competence') }>
             <h2>{ i18n.t('psychological.heading.intro') }</h2>
@@ -203,7 +191,6 @@ function mapStateToProps (state) {
 
 Psychological.defaultProps = {
   section: 'psychological',
-  defaultView: (props) => { return 'intro' },
   store: 'Psychological'
 }
 
