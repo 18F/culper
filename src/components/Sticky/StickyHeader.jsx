@@ -11,53 +11,73 @@ export default class StickyHeader extends React.Component {
     this.onScroll = this.onScroll.bind(this)
   }
 
+  componentDidUpdate () {
+    if (!this.state.stick) {
+      this.initialTop = this.refs.content.offsetTop
+    }
+  }
+
+  componentReceiveProps () {
+    if (!this.state.stick) {
+      this.initialTop = this.refs.content.offsetTop
+    }
+  }
+
   componentDidMount () {
-    //const w = this.props.window()
-    //this.props.events.scroll.forEach(name => this.props.addEvent(w, name, this.onScroll))
-    //this.props.events.wheel.forEach(name => this.props.addEvent(w, name, this.onWheel))
     this.originalHeight = this.refs.content.offsetHeight
+    //this.initialTop = this.refs.content.getBoundingClientRect().top
+    this.initialTop = this.refs.content.offsetTop
+    //this.initialOffsetTop = this.refs.content.offsetTop
     this.props.events.forEach(e => window.addEventListener(e, this.onScroll))
   }
 
   componentWillUnmount () {
-    //const w = this.props.window()
-    //this.props.events.scroll.forEach(name => this.props.removeEvent(w, name, this.onScroll))
-    //this.props.events.wheel.forEach(name => this.props.removeEvent(w, name, this.onWheel))
     this.props.events.forEach(e => window.removeEventListener(e, this.onScroll))
   }
 
   onScroll (event) {
+    if (this.props.disabled) {
+      this.setState({
+        stick: false
+      })
+      return
+    }
     const offset = this.props.offset
     const rect = this.refs.content.getBoundingClientRect()
     const doc = document.documentElement
-    //let st = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) - offset
-    let st = window.pageYOffset
-    let ot = rect.top
-    if (!this.state.stick) {
-      st = st - offset
-    } else {
-      ////st = st + (Math.abs(st - this.originalHeight))
-      ////st = st - offset
-      //st = st - (Math.abs(st + offset ))
-      ////ot = (offset + ot)
-      st = st + (st - offset)
-    }
-    console.log('========')
-    console.log('st:', st)
-    console.log('ot:', ot)
-    console.log('bt:', rect.bottom)
-    console.log('original height:', this.originalHeight)
-    console.log('offset:', offset)
-    console.log('========')
+    let st = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0) - offset
+    //let ot = rect.top
+    let ot = this.refs.content.offsetTop
 
     let stick = this.state.stick
-    if (st > ot) {
-      console.log('STICK ME')
-      stick = true
+    //console.log('=====')
+    //console.log(this.props.index)
+    //console.log('st:', st)
+    //console.log('ot:', ot)
+    //console.log('rect:', rect)
+    //console.log('=====')
+    //console.log('initialTop:', this.initialTop)
+    //console.log('initialOffsetTop:', this.initialOffsetTop)
+
+    if (this.state.stick) {
+      if (this.initialTop < st) {
+        console.log('STICK ME')
+        stick = true
+      } else {
+        if (this.initialTop >= st) {
+          console.log('UNSTICK ME')
+          stick = false
+        }
+      }
     } else {
-      if (st <= ot) {
-        console.log('UNSTICK ME')
-        stick = false
+      if (ot < st) {
+        console.log('STICK ME')
+        stick = true
+      } else {
+        if (ot >= st) {
+          console.log('UNSTICK ME')
+          stick = false
+        }
       }
     }
 
@@ -68,15 +88,32 @@ export default class StickyHeader extends React.Component {
         stick: stick
       })
     }
+    if (this.props.disableFunc) {
+      this.props.disableFunc(this.refs.childrenRefs)
+    }
   }
 
   render () {
-    const stickClass = this.state.stick ? 'stickify' : ''
+    const stickClass = this.state.stick ? this.props.className : ''
+    let style = {}
+    if (this.state.stick) {
+      //style.position = 'fixed'
+    } else {
+      //style.position = 'relative'
+      style.top = ''
+    }
+
+    const cloned = React.cloneElement(
+      this.props.children,
+      {
+        ref: 'childrenRefs'
+      }
+    )
     return (
       <div>
-        { this.state.stick && <div style={{ height: this.originalHeight }}></div> }
-        <div ref="sticky" className={stickClass} ref="content">
-          { this.props.children }
+        { this.state.stick && <div style={{height: this.originalHeight}}></div> }
+        <div ref="sticky" style={style} className={stickClass} ref="content">
+          { cloned }
         </div>
       </div>
     )
@@ -84,6 +121,7 @@ export default class StickyHeader extends React.Component {
 }
 
 StickyHeader.defaultProps = {
+  className: 'stickify',
   offset: 0,
 
   position: 'relative',

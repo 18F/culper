@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from './config'
 import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from './components'
+import StickyHeader from './components/Sticky/StickyHeader'
 import { connect } from 'react-redux'
 import { logout } from './actions/AuthActions'
 
@@ -64,65 +65,67 @@ class App extends React.Component {
       <div className={klassApp}>
         <div id="scrollTo"></div>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
-        <header className="usa-header usa-header-basic" role="banner">
-          <div className="usa-banner mobile-hidden">
-            <div className="usa-accordion">
-              <header className="usa-banner-header">
-                <div className="usa-grid usa-banner-inner">
-                  <img src="/img/favicons/favicon-57.png" alt="U.S. flag" />
-                  <p>{i18n.t('app.banner.title')}</p>
-                  <button className="usa-accordion-button usa-banner-button"
-                          aria-expanded="false" aria-controls="gov-banner">
-                    <span className="usa-banner-button-text">{i18n.t('app.banner.button')}</span>
-                  </button>
-                </div>
-              </header>
-              <div className="usa-banner-content usa-grid usa-accordion-content" id="gov-banner">
-                <div className="usa-banner-guidance-gov usa-width-one-half">
-                  <img className="usa-banner-icon usa-media_block-img" src="/img/icon-dot-gov.svg" alt="Dot gov" />
-                  <div className="usa-media_block-body">
-                    <p>
-                      <strong>{i18n.t('app.banner.witty')}</strong>
-                      <br />
-                      {i18n.t('app.banner.extension')}
-                    </p>
+        <StickyHeader offset={100}>
+          <div>
+            <header className="usa-header usa-header-basic" role="banner">
+              <div className="usa-banner mobile-hidden">
+                <div className="usa-accordion">
+                  <header className="usa-banner-header">
+                    <div className="usa-grid usa-banner-inner">
+                      <img src="/img/favicons/favicon-57.png" alt="U.S. flag" />
+                      <p>{i18n.t('app.banner.title')}</p>
+                      <button className="usa-accordion-button usa-banner-button"
+                        aria-expanded="false" aria-controls="gov-banner">
+                        <span className="usa-banner-button-text">{i18n.t('app.banner.button')}</span>
+                      </button>
+                    </div>
+                  </header>
+                  <div className="usa-banner-content usa-grid usa-accordion-content" id="gov-banner">
+                    <div className="usa-banner-guidance-gov usa-width-one-half">
+                      <img className="usa-banner-icon usa-media_block-img" src="/img/icon-dot-gov.svg" alt="Dot gov" />
+                      <div className="usa-media_block-body">
+                        <p>
+                          <strong>{i18n.t('app.banner.witty')}</strong>
+                          <br />
+                          {i18n.t('app.banner.extension')}
+                        </p>
+                      </div>
+                    </div>
+                    <div className="usa-banner-guidance-ssl usa-width-one-half">
+                      <img className="usa-banner-icon usa-media_block-img" src="/img/icon-https.svg" alt="SSL" />
+                      <div className="usa-media_block-body">
+                        <p>{i18n.t('app.banner.ssl')}</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-                <div className="usa-banner-guidance-ssl usa-width-one-half">
-                  <img className="usa-banner-icon usa-media_block-img" src="/img/icon-https.svg" alt="SSL" />
-                  <div className="usa-media_block-body">
-                    <p>{i18n.t('app.banner.ssl')}</p>
+              </div>
+              <div className="eapp-structure-wrap eapp-header">
+                <div className="eapp-structure-row">
+                  <div className="eapp-structure-left eapp-logo" id="logo">
+                    <img className="eapp-logo-icon" src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="Office of Personnet Management" />
+                    <span className="eapp-logo-text">SF86</span>
+                    <NavigationToggle />
+                  </div>
+                  <div className={klassTitle}>
+                    <div className="eapp-logout mobile-hidden">
+                      {logoutButton}
+                    </div>
+                    <SectionTitle />
                   </div>
                 </div>
               </div>
-            </div>
+            </header>
+            <div id="scrollToProgress"></div>
+            <div className="usa-overlay"></div>
+            <ProgressBar />
           </div>
-          <div className="eapp-structure-wrap eapp-header">
-            <div className="eapp-structure-row">
-              <div className="eapp-structure-left eapp-logo" id="logo">
-                <img className="eapp-logo-icon" src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="Office of Personnet Management" />
-                <span className="eapp-logo-text">SF86</span>
-                <NavigationToggle />
-              </div>
-              <div className={klassTitle}>
-                <div className="eapp-logout mobile-hidden">
-                  {logoutButton}
-                </div>
-                <SectionTitle />
-              </div>
-            </div>
-          </div>
-        </header>
-        <div id="scrollToProgress"></div>
-        <div className="usa-overlay"></div>
-        <ProgressBar />
+        </StickyHeader>
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <Sticky>
                 <ScoreCard />
                 <Navigation />
-              </Sticky>
               &nbsp;
             </div>
             <div className={klassCore}>

@@ -4,6 +4,8 @@ import ValidationElement from '../ValidationElement'
 import Branch from '../Branch'
 import Show from '../Show'
 import Svg from '../Svg'
+import StickyHeader from '../../Sticky/StickyHeader'
+import StickyAccordion from '../../Sticky/StickyAccordion'
 import { findPosition } from '../../../middleware/history'
 
 export const openState = (item = {}, initial = false) => {
@@ -310,7 +312,7 @@ export default class Accordion extends ValidationElement {
           : null
 
     return (
-      <div>
+      <div className="summary-container">
         <div className="summary">
           <a className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
             <span className="button-with-icon">
@@ -358,17 +360,17 @@ export default class Accordion extends ValidationElement {
 
     return items.map((item, index, arr) => {
       return (
-        <div className="item" id={item.uuid} key={item.uuid}>
-          {
-            this.props.customSummary(item, index, initial,
-                                     () => { return this.summary(item, index, initial) },
-                                     () => { return this.toggle.bind(this, item) },
-                                     () => { return this.openText(item) },
-                                     () => { return this.remove.bind(this, item) },
-                                     () => { return this.props.byline(item, index, initial) })
-          }
-          {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
-        </div>
+        <StickyAccordion id={item.uuid} offset={63} key={item.uuid} className="sticky-accordion" preventStick={!item.open} index={index} item={item}>
+            {
+              this.props.customSummary(item, index, initial,
+                () => { return this.summary(item, index, initial) },
+                () => { return this.toggle.bind(this, item) },
+                () => { return this.openText(item) },
+                () => { return this.remove.bind(this, item) },
+                () => { return this.props.byline(item, index, initial) })
+            }
+            {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
+        </StickyAccordion>
       )
     })
   }
