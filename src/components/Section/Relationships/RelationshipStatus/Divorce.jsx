@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, Field, DateControl, Show, RadioGroup, Radio, Telephone, Name, BirthPlace, NotApplicable, Location } from '../../../Form'
+import { Location, Field, DateControl, Show, RadioGroup, Radio,
+         Telephone, Name, BirthPlace, NotApplicable } from '../../../Form'
 
 export default class Divorce extends React.Component {
   constructor (props) {
@@ -127,13 +128,13 @@ export default class Divorce extends React.Component {
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}>
           <Location name="birthplace"
-                      layout={Location.BIRTHPLACE}
-                      label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
-                      className="birthplace"
-                      {...this.props.BirthPlace}
-                      onUpdate={this.updateBirthPlace}
-                      onError={this.props.onError}
-                      />
+                    layout={Location.BIRTHPLACE}
+                    label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
+                    className="birthplace"
+                    {...this.props.BirthPlace}
+                    onUpdate={this.updateBirthPlace}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
@@ -163,12 +164,14 @@ export default class Divorce extends React.Component {
                title={i18n.t('relationships.civilUnion.divorce.heading.address')}
                shrink={true}
                adjustFor="labels">
-          <Address name="address"
-                   className="location"
-                   {...this.props.Address}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="address"
+                    className="location"
+                    {...this.props.Address}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.dateDivorced"
@@ -249,12 +252,13 @@ export default class Divorce extends React.Component {
                                or={i18n.m('relationships.civilUnion.notApplicable.or')}
                                onError={this.props.onError}
                                onUpdate={this.updateDeceasedAddressNotApplicable}>
-                  <Address
-                    className="address-deceased"
-                    {...this.props.DeceasedAddress}
-                    onUpdate={this.updateDeceasedAddress}
-                    onError={this.props.onError}
-                    />
+                  <Location className="address-deceased"
+                            {...this.props.DeceasedAddress}
+                            layout={Location.ADDRESS}
+                            geocode={true}
+                            onUpdate={this.updateDeceasedAddress}
+                            onError={this.props.onError}
+                            />
                 </NotApplicable>
               </Field>
             </Show>

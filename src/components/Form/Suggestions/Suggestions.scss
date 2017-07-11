@@ -12,6 +12,14 @@
     margin-top: 0;
   }
 
+  .suggestion-btn {
+    padding: 2rem;
+
+    i {
+      margin-left: 1rem;
+    }
+  }
+
   .suggestion {
     .value {
       display: inline-block;
@@ -38,6 +46,7 @@
   .dismiss {
     border-top: 2px solid $eapp-grey;
     padding-top: 1rem;
+    margin-top: 3rem;
 
     a {
       text-decoration: none;

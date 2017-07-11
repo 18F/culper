@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, ValidationElement, Checkbox, Address, CheckboxGroup, Branch, Text, Textarea, DateRange, Telephone, Show } from '../../../Form'
+import { Field, ValidationElement, Checkbox, Location, CheckboxGroup, Branch, Text, Textarea, DateRange, Telephone, Show } from '../../../Form'
 import DrugType from './DrugType'
 
 export default class OrderedTreatment extends ValidationElement {
@@ -197,12 +197,14 @@ export default class OrderedTreatment extends ValidationElement {
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderAddress')}
                    adjustFor="address"
                    help={'substance.drugs.ordered.help.treatmentProviderAddress'}>
-              <Address name="TreatmentProviderAddress"
-                       className="treatment-provider-address"
-                       {...this.props.TreatmentProviderAddress}
-                       onUpdate={this.updateTreatmentProviderAddress}
-                       onError={this.props.onError}
-                       />
+              <Location name="TreatmentProviderAddress"
+                        className="treatment-provider-address"
+                        {...this.props.TreatmentProviderAddress}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onUpdate={this.updateTreatmentProviderAddress}
+                        onError={this.props.onError}
+                        />
             </Field>
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderTelephone')}
                    className="treatment-provider-telephone"

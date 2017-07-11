@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyUnlawfulValidator } from '../../../../validators'
 import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Address, Textarea } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
 
 export default class Unlawful extends SubsectionElement {
   constructor (props) {
@@ -100,10 +100,12 @@ export default class Unlawful extends SubsectionElement {
             <Field title={i18n.t('legal.technology.unlawful.heading.location')}
                    help="legal.technology.unlawful.help.location"
                    adjustFor="address">
-              <Address name="Location"
-                       className="legal-technology-unlawful-location"
-                       bind={true}
-                       />
+              <Location name="Location"
+                        className="legal-technology-unlawful-location"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.technology.unlawful.heading.action')}

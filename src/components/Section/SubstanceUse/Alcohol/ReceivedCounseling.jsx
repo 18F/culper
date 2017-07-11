@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, DateControl, Checkbox, Text, ValidationElement, Field, Textarea, Branch, Show } from '../../../Form'
+import { Location, DateControl, Checkbox, Text, ValidationElement, Field, Textarea, Branch, Show } from '../../../Form'
 
 export default class ReceivedCounseling extends ValidationElement {
   constructor (props) {
@@ -113,12 +113,14 @@ export default class ReceivedCounseling extends ValidationElement {
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
                help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}
                adjustFor="address">
-          <Address name="TreatmentProviderAddress"
-                   className="provider-address"
-                   {...this.props.TreatmentProviderAddress}
-                   onUpdate={this.updateTreatmentProviderAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="TreatmentProviderAddress"
+                    className="provider-address"
+                    {...this.props.TreatmentProviderAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateTreatmentProviderAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}>
@@ -143,12 +145,14 @@ export default class ReceivedCounseling extends ValidationElement {
         <Show when={this.props.UseSameAddress === 'No'}>
           <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
                  adjustFor="address">
-            <Address name="AgencyAddress"
-                     className="agency-address"
-                     {...this.props.AgencyAddress}
-                     onUpdate={this.updateAgencyAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="AgencyAddress"
+                      className="agency-address"
+                      {...this.props.AgencyAddress}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateAgencyAddress}
+                      onError={this.props.onError}
+                      />
           </Field>
         </Show>
 
