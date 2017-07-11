@@ -126,8 +126,8 @@ class Foreign extends SectionElement {
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop="true"
-                       back="military/foreign"
-                       backLabel={i18n.t('military.destination.foreign')}
+                       back="foreign/travel"
+                       backLabel={i18n.t('foreign.destination.travel')}
                        next="substance/drugs/usage"
                        nextLabel={i18n.t('substance.destination.drugs.usage')}
                        >

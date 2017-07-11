@@ -119,8 +119,8 @@ class Legal extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="foreign/review"
-                       backLabel={i18n.t('foreign.destination.review')}
+                       back="substance/review"
+                       backLabel={i18n.t('substance.destination.review')}
                        next="legal/police/intro"
                        nextLabel={i18n.t('legal.destination.police')}>
             <h2>{i18n.t('temp.intro.title')}</h2>
