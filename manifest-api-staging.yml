@@ -12,5 +12,5 @@ applications:
     - eqip-postgres
     - usps-api
   env:
-    GOVERSION: go1.8.5
+    GOVERSION: go1.8.3
     ALLOW_2FA_RESET: 1
