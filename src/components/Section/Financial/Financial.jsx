@@ -30,8 +30,8 @@ class Financial extends SectionElement {
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop="true"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       back="financial/nonpayment"
+                       backLabel={i18n.t('financial.destination.nonpayment')}
                        next="history"
                        nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
