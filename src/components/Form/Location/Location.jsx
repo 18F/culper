@@ -14,12 +14,12 @@ import { LocationValidator } from '../../../validators'
 import { AddressSuggestion } from './AddressSuggestion'
 import Layouts from './Layouts'
 
-const timeout = (fn, milliseconds = 400) => {
-  if (!window) {
+export const timeout = (fn, milliseconds = 400, w = window) => {
+  if (!w) {
     return
   }
 
-  window.setTimeout(fn, milliseconds)
+  w.setTimeout(fn, milliseconds)
 }
 
 export default class Location extends ValidationElement {
@@ -60,7 +60,7 @@ export default class Location extends ValidationElement {
         county: this.props.county,
         country: this.props.country,
         layout: this.props.layout,
-        validated: false,
+        validated: this.props.validated,
         ...queue
       })
     }
@@ -113,6 +113,8 @@ export default class Location extends ValidationElement {
             spinner: false,
             spinnerAction: SpinnerAction.Spin,
             suggestions: true
+          }, () => {
+            this.update({ validated: true })
           })
         }, 1000)
       })
@@ -157,23 +159,38 @@ export default class Location extends ValidationElement {
   }
 
   updateStreet (event) {
-    this.update({street: event.target.value})
+    this.update({
+      street: event.target.value,
+      validated: false
+    })
   }
 
   updateCity (event) {
-    this.update({city: event.target.value})
+    this.update({
+      city: event.target.value,
+      validated: false
+    })
   }
 
   updateState (event) {
-    this.update({state: event.target.value})
+    this.update({
+      state: event.target.value,
+      validated: false
+    })
   }
 
   updateCountry (event) {
-    this.update({country: event.target.value})
+    this.update({
+      country: event.target.value,
+      validated: false
+    })
   }
 
   updateZipcode (event) {
-    this.update({zipcode: event.target.value})
+    this.update({
+      zipcode: event.target.value,
+      validated: false
+    })
   }
 
   updateAddress (address) {
@@ -184,7 +201,8 @@ export default class Location extends ValidationElement {
       state: address.state,
       zipcode: address.zipcode,
       country: address.country,
-      addressType: address.addressType
+      addressType: address.addressType,
+      validated: false
     })
   }
 
@@ -194,7 +212,8 @@ export default class Location extends ValidationElement {
       state: location.state,
       zipcode: location.zipcode,
       county: location.county,
-      country: location.country
+      country: location.country,
+      validated: false
     })
   }
 
@@ -522,6 +541,7 @@ Location.STREET_CITY = Layouts.STREET_CITY
 
 Location.defaultProps = {
   layout: Layouts.ADDRESS,
+  validated: false,
   geocode: false,
   geocodeResult: {},
   spinner: false,

@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Location from './Location'
+import Location, { timeout } from './Location'
 
 describe('The Address component', () => {
   it('Renders without errors', () => {
@@ -183,5 +183,21 @@ describe('The Address component', () => {
     }
     const component = mount(<Location {...props} />)
     expect(component.find('.suggestions').length).toBe(1)
+  })
+
+  it('can set timeout function', () => {
+    let called = false
+    const w = {
+      setTimeout: (fn, ms) => { called = true }
+    }
+    timeout(null, 0, w)
+    expect(called).toBe(true)
+  })
+
+  it('timeout does nothing if window does not exist', () => {
+    let called = false
+    const w = null
+    timeout(null, 0, w)
+    expect(called).toBe(false)
   })
 })

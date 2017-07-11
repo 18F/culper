@@ -7,41 +7,12 @@ export default class SectionElement extends React.Component {
     super(props)
 
     this.handleError = this.handleError.bind(this)
-    this.handleTour = this.handleTour.bind(this)
-    this.handleReview = this.handleReview.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
-  }
-
-  componentDidMount () {
-    let current = this.launch(this.props[this.props.store], this.props.subsection, this.props.defaultView(this.props))
-    if (current !== '') {
-      this.props.dispatch(push(`/form/${this.props.section}/${current}`))
-    }
-  }
-
-  launch (storage, subsection, defaultView) {
-    subsection = subsection || ''
-    if (subsection === '') {
-      let keys = Object.keys(storage)
-      if (keys.length === 0 && storage.constructor === Object) {
-        return defaultView
-      }
-    }
-
-    return subsection
   }
 
   doSave () {
     const d = new Date()
     this.props.dispatch(save(d))
-  }
-
-  handleTour (event) {
-    this.props.dispatch(push(`/form/${this.props.section}/${this.props.defaultView(this.props)}`))
-  }
-
-  handleReview (event) {
-    this.props.dispatch(push(`/form/${this.props.section}/review`))
   }
 
   handleError (value, arr) {
@@ -67,6 +38,5 @@ export default class SectionElement extends React.Component {
 SectionElement.defaultProps = {
   section: '',
   subsection: '',
-  defaultView: (props) => { return '' },
   store: ''
 }

@@ -101,7 +101,8 @@ export default class Credit extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.credit.heading.telephone')}
-                   help="financial.credit.help.telephone">
+                   help="financial.credit.help.telephone"
+                   adjustFor="telephone">
               <Telephone name="Telephone"
                          className="credit-telephone"
                          bind={true}

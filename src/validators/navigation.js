@@ -11,6 +11,10 @@ export const validations = (section, props = {}) => {
         return false
       }
 
+      if (subsection.exclude) {
+        return false
+      }
+
       return true
     })
     .reduce((count, subsection) => {

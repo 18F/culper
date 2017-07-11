@@ -6,7 +6,6 @@ import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { RelationshipsValidator } from '../../../validators'
-import { IntroHeader } from '../../Form'
 import Relatives from './Relatives'
 import Marital from './RelationshipStatus/Marital'
 import Cohabitants from './RelationshipStatus/Cohabitants'
@@ -51,36 +50,18 @@ class Relationships extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="relationships intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
-          </SectionView>
-
-          <SectionView name="status"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
-                       next="relationships/status/cohabitant"
-                       nextLabel={i18n.t('relationships.destination.cohabitant')}>
-            <Marital name="marital"
-                     {...this.props.Marital}
-                     dispatch={this.props.dispatch}
-                     onUpdate={this.updateMarital}
-                     onError={this.handleError}
-                     onSpouseUpdate={this.updateSpouse}
-                     currentAddress={this.props.CurrentAddress}
-                     />
+          <SectionView name="intro"
+                       back="history/review"
+                       backLabel={i18n.t('history.destination.review')}
+                       next="relationships/status/marital"
+                       nextLabel={i18n.t('relationships.destination.marital')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="status/marital"
-                       back="history/federal"
-                       backLabel={i18n.t('history.destination.federal')}
+                       back="relationships/intro"
+                       backLabel={i18n.t('relationships.destination.intro')}
                        next="relationships/status/cohabitant"
                        nextLabel={i18n.t('relationships.destination.cohabitant')}>
             <Marital name="marital"
@@ -206,7 +187,6 @@ function mapStateToProps (state) {
 
 Relationships.defaultProps = {
   section: 'relationships',
-  defaultView: (props) => { return 'marital' },
   store: 'Relationships'
 }
 
