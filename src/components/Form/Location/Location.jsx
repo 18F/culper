@@ -455,10 +455,27 @@ export default class Location extends ValidationElement {
   }
 
   suggestionParagraph () {
-    return (<p>{i18n.t(`${this.state.geocodeResult.Error}.para`)}</p>)
+    const e = this.state.geocodeResult.Error
+    if (e === 'error.geocode.defaultAddress') {
+      return (
+        <span>
+          <p>{i18n.t(`${e}.para`)}</p>
+          <button className="suggestion-btn" onClick={this.onSuggestionDismiss.bind(this)}>
+            <span>{i18n.t('suggestions.address.more')}</span>
+            <i className="fa fa-arrow-circle-right"></i>
+          </button>
+        </span>
+      )
+    }
+    return (<p>{i18n.t(`${e}.para`)}</p>)
   }
 
   dismissAlternative () {
+    const e = this.state.geocodeResult.Error
+    if (e === 'error.geocode.defaultAddress') {
+      return null
+    }
+
     if (!this.state.geocodeResult.Suggestions || this.state.geocodeResult.Suggestions.length === 0) {
       return i18n.t('suggestions.address.alternate')
     }
