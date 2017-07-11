@@ -22,7 +22,7 @@ describe('The military section', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
     const component = mount(<Provider store={store}><Military /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
@@ -35,11 +35,72 @@ describe('The military section', () => {
 
   it('can go to each subsection', () => {
     const sections = ['selective', 'history', 'disciplinary', 'foreign', 'review']
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    const store = mockStore({
+      authentication: { authenticated: true, twofactor: true },
+      application: { Military: {} }
+    })
 
-    sections.forEach((section) => {
-      const component = mount(<Provider store={store}><Military subsection={section} /></Provider>)
+    const tests = [
+      {
+        section: 'selective',
+        action: (component) => { component.find('.selective .branch .yes input').simulate('change') }
+      },
+      {
+        section: 'history',
+        action: (component) => { component.find('.history .branch .yes input').simulate('change') }
+      },
+      {
+        section: 'disciplinary',
+        action: (component) => { component.find('.disciplinary .branch .yes input').simulate('change') }
+      },
+      {
+        section: 'foreign',
+        action: (component) => { component.find('.foreign .branch .yes input').simulate('change') }
+      }
+    ]
+
+    tests.forEach((test) => {
+      const component = mount(<Provider store={store}><Military section="military" subsection={test.section} /></Provider>)
+      test.action(component)
       expect(component.find('div').length).toBeGreaterThan(0)
     })
+  })
+
+  it('hides selective service if age is before December 31st, 1959', () => {
+    const modifiedState = {
+      Identification: { ApplicantBirthDate: { date: new Date(1900, 1, 1) } },
+      Military: {}
+    }
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const component = mount(<Provider store={store}><Military subsection="intro" /></Provider>)
+    expect(component.find('.actions.next .text .label').text()).not.toBe('Selective service record')
+  })
+
+  it('displays selective service if age is after December 31st, 1959', () => {
+    const modifiedState = {
+      Identification: { ApplicantBirthDate: { date: new Date(1980, 1, 1) } },
+      Military: {}
+    }
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const component = mount(<Provider store={store}><Military subsection="intro" /></Provider>)
+    expect(component.find('.actions.next .text .label').text()).toBe('Selective service record')
+  })
+
+  it('hides disciplinary procedures if no valid military history', () => {
+    const modifiedState = {
+      Military: { History: { HasServed: 'No' } }
+    }
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const component = mount(<Provider store={store}><Military subsection="history" /></Provider>)
+    expect(component.find('.actions.next .text .label').text()).not.toBe('Disciplinary procedures')
+  })
+
+  it('displays disciplinary procedures if military history is "Yes"', () => {
+    const modifiedState = {
+      Military: { History: { HasServed: 'Yes' } }
+    }
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
+    const component = mount(<Provider store={store}><Military subsection="history" /></Provider>)
+    expect(component.find('.actions.next .text .label').text()).toBe('Disciplinary procedures')
   })
 })

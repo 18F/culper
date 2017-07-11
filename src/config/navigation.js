@@ -9,13 +9,15 @@ const navigation = [
     title: 'Information about you',
     url: 'identification',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Full name', url: 'name' },
       { name: 'Your contact information', url: 'contacts' },
       { name: 'Other names used', url: 'othernames' },
       { name: 'Date of birth', url: 'birthdate' },
       { name: 'Place of birth', url: 'birthplace' },
       { name: 'SSN', url: 'ssn' },
-      { name: 'Your identifying information', url: 'physical' }
+      { name: 'Your identifying information', url: 'physical' },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -23,13 +25,15 @@ const navigation = [
     title: 'Financial record',
     url: 'financial',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Bankruptcy', url: 'bankruptcy' },
       { name: 'Gambling', url: 'gambling' },
       { name: 'Taxes', url: 'taxes' },
       { name: 'Employer card abuse', url: 'card' },
       { name: 'Credit counseling', url: 'credit' },
       { name: 'Delinquent payments', url: 'delinquent' },
-      { name: 'Non-payment consequence', url: 'nonpayment' }
+      { name: 'Non-payment consequence', url: 'nonpayment' },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -37,11 +41,13 @@ const navigation = [
     title: 'Your history',
     url: 'history',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Where you have lived', url: 'residence' },
       { name: 'Employment activities', url: 'employment' },
       { name: 'Where you went to school', url: 'education' },
       { name: 'Former federal service', url: 'federal' },
-      { hidden: true, name: 'Employment record', url: 'employment' }
+      { hidden: true, name: 'Employment record', url: 'employment' },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -49,6 +55,7 @@ const navigation = [
     title: 'Relationships',
     url: 'relationships',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       {
         name: 'Marital & relationship status',
         url: 'status',
@@ -58,7 +65,8 @@ const navigation = [
         ]
       },
       { name: 'People who know you well', url: 'people' },
-      { name: 'Relatives', url: 'relatives' }
+      { name: 'Relatives', url: 'relatives' },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -66,9 +74,11 @@ const navigation = [
     title: 'Citizenship',
     url: 'citizenship',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Citizenship Status', url: 'status' },
       { name: 'Dual/Multiple Citizenship', url: 'multiple' },
-      { name: 'Foreign Passports', url: 'passports' }
+      { name: 'Foreign Passports', url: 'passports' },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -76,10 +86,12 @@ const navigation = [
     title: 'Military history',
     url: 'military',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Selective service record', url: 'selective', hiddenFunc: hideSelectiveService },
       { name: 'U.S. military', url: 'history' },
       { name: 'Disciplinary procedures', url: 'disciplinary', hiddenFunc: hideDisciplinaryProcedures },
-      { name: 'Foreign military', url: 'foreign' }
+      { name: 'Foreign military', url: 'foreign' },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -87,6 +99,7 @@ const navigation = [
     title: 'Foreign activities',
     url: 'foreign',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'U.S. passport information', url: 'passport' },
       { name: 'Foreign contacts', url: 'contacts' },
       {
@@ -115,7 +128,8 @@ const navigation = [
           { name: 'Voting', url: 'voting' }
         ]
       },
-      { name: 'Foreign countries you have visited', url: 'travel' }
+      { name: 'Foreign countries you have visited', url: 'travel' },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -124,6 +138,7 @@ const navigation = [
     url: 'substance',
     hidden: false,
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       {
         name: 'Illegal use of drugs and drug activity',
         url: 'drugs',
@@ -179,7 +194,8 @@ const navigation = [
             url: 'additional'
           }
         ]
-      }
+      },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -187,10 +203,12 @@ const navigation = [
     title: 'Investigative and criminal history',
     url: 'legal',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       {
         name: 'Police record',
         url: 'police',
         subsections: [
+          { exclude: true, name: 'Intro', url: 'intro' },
           { name: 'Offenses', url: 'offenses' },
           { name: 'Additional offenses', url: 'additionaloffenses' },
           { name: 'Domestic violence', url: 'domesticviolence' }
@@ -228,7 +246,8 @@ const navigation = [
           { name: 'Activities to overthrow', url: 'activities-to-overthrow' },
           { name: 'Terrorism association', url: 'terrorism-association' }
         ]
-      }
+      },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
@@ -236,11 +255,13 @@ const navigation = [
     name: 'Psychological and emotional health',
     url: 'psychological',
     subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
       { name: 'Competence', url: 'competence' },
       { name: 'Consultations', url: 'consultations' },
       { name: 'Hospitalizations', url: 'hospitalizations' },
       { name: 'Diagnoses', url: 'diagnoses' },
-      { name: 'Existing Conditions', url: 'conditions', hiddenFunc: hideExistingConditions }
+      { name: 'Existing Conditions', url: 'conditions', hiddenFunc: hideExistingConditions },
+      { exclude: true, name: 'Review', url: 'review' }
     ]
   },
   {
