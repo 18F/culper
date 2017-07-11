@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateRange, Address, Text, Field, Reference, Telephone, Show } from '../../../Form'
+import { ValidationElement, DateRange, Location, Text, Field, Reference, Telephone, Show } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -195,12 +195,14 @@ export default class EmploymentItem extends ValidationElement {
                  help={`${prefix}.address.help`}
                  adjustFor="address"
                  shrink={true}>
-            <Address name="Address"
-                     {...this.props.Address}
-                     onUpdate={this.onUpdate.bind(this, 'Address')}
-                     onError={this.props.onError}
-                     label={i18n.t(`${prefix}.address.label`)}
-                     />
+            <Location name="Address"
+                      {...this.props.Address}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.onUpdate.bind(this, 'Address')}
+                      onError={this.props.onError}
+                      label={i18n.t(`${prefix}.address.label`)}
+                      />
           </Field>
         </Show>
 

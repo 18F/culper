@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { CardAbuseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
-         Address, Checkbox, Text, Textarea } from '../../../Form'
+         Location, Checkbox, Text, Textarea } from '../../../Form'
 
 export default class Card extends SubsectionElement {
   constructor (props) {
@@ -101,10 +101,12 @@ export default class Card extends SubsectionElement {
             <Field title={i18n.t('financial.card.heading.address')}
                    help="financial.card.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="card-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="card-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('financial.card.heading.date')}

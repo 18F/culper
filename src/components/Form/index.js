@@ -20,7 +20,6 @@ import Accordion from './Accordion'
 import Field from './Field'
 
 // Composite components
-import Address from './Address'
 import City from './City'
 import County from './County'
 import Country from './Country'
@@ -61,7 +60,6 @@ export {
   Checkbox,
   Radio,
   DateControl,
-  Address,
   City,
   County,
   Country,

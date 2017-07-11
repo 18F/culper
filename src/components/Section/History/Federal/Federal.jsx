@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { FederalServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field, DateRange, Text, Address } from '../../../Form'
+import { Branch, Show, Accordion, Field, DateRange, Text, Location } from '../../../Form'
 import { DateSummary } from '../../../Summary'
 
 export default class Federal extends SubsectionElement {
@@ -97,9 +97,11 @@ export default class Federal extends SubsectionElement {
             <Field title={i18n.t('history.federal.heading.address')}
                    help="history.federal.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
           </Accordion>
         </Show>

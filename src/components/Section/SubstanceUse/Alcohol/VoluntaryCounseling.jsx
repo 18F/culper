@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, Text, DateRange, ValidationElement, Field, Textarea, Branch, Show, Telephone } from '../../../Form'
+import { Location, Text, DateRange, ValidationElement, Field, Textarea, Branch, Show, Telephone } from '../../../Form'
 
 export default class VoluntaryCounseling extends ValidationElement {
   constructor (props) {
@@ -77,12 +77,14 @@ export default class VoluntaryCounseling extends ValidationElement {
         <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderAddress')}
                adjustFor="address"
                help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderAddress'}>
-          <Address name="TreatmentProviderAddress"
-                   className="provider-address"
-                   {...this.props.TreatmentProviderAddress}
-                   onUpdate={this.updateTreatmentProviderAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="TreatmentProviderAddress"
+                    className="provider-address"
+                    {...this.props.TreatmentProviderAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateTreatmentProviderAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
         <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone')}
                help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone'}

@@ -1,6 +1,6 @@
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessVenturesValidator {
@@ -55,7 +55,7 @@ export class VenturesValidator {
   }
 
   validAddress () {
-    return !!this.address && new AddressValidator(this.address, null).isValid()
+    return !!this.address && new LocationValidator(this.address).isValid()
   }
 
   validCitizenship () {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { ValidationElement, Address, Field, Text, Textarea, DateControl } from '../../Form'
+import { ValidationElement, Location, Field, Text, Textarea, DateControl } from '../../Form'
 
 export default class NonCriminalCourtAction extends ValidationElement {
   constructor (props) {
@@ -77,12 +77,14 @@ export default class NonCriminalCourtAction extends ValidationElement {
         <Field title={i18n.t('legal.nonCriminalAction.heading.courtAddress')}
                adjustFor="address"
                help={'legal.nonCriminalAction.help.courtAddress'}>
-          <Address name="CourtAddress"
-                   className="court-address"
-                   {...this.props.CourtAddress}
-                   onUpdate={this.updateCourtAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="CourtAddress"
+                    className="court-address"
+                    {...this.props.CourtAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateCourtAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.natureOfAction')}

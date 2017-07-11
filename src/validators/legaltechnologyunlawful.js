@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalTechnologyUnlawfulValidator {
@@ -50,7 +50,7 @@ export class UnlawfulValidator {
   }
 
   validLocation () {
-    return !!this.location && new AddressValidator(this.location).isValid()
+    return !!this.location && new LocationValidator(this.location).isValid()
   }
 
   validAction () {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, Branch, Field, DateControl, ValidationElement, Show, NotApplicable,
+import { Branch, Field, DateControl, ValidationElement, Show, NotApplicable,
          Email, Telephone, Name, ForeignBornDocuments, SSN, MaidenName, DateRange,
          Checkbox, Country, Location } from '../../../Form'
 
@@ -333,11 +333,13 @@ export default class CivilUnion extends ValidationElement {
                         onError={this.props.onError}
                         />
             </Show>
-            <Address name="Address"
-                     {...this.props.Address}
-                     onUpdate={this.updateAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="Address"
+                      {...this.props.Address}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateAddress}
+                      onError={this.props.onError}
+                      />
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.telephone')}

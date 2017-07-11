@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import SentenceValidator from './sentence'
 import { validGenericTextfield, validDateField, validBranch } from './helpers'
 
@@ -48,7 +48,7 @@ export default class OtherOffenseValidator {
   }
 
   validCourtAddress () {
-    return !!this.courtAddress && new AddressValidator(this.courtAddress, null).isValid()
+    return !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
   }
 
   validChargeType () {

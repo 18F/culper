@@ -1,5 +1,4 @@
 import NameValidator from './name'
-import AddressValidator from './address'
 import LocationValidator, { isInternational } from './location'
 import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
@@ -155,7 +154,7 @@ export class RelativeValidator {
       return true
     }
 
-    return !!this.address && new AddressValidator(this.address, null).isValid()
+    return !!this.address && new LocationValidator(this.address).isValid()
   }
 
   validCitizenshipDocumentation () {
