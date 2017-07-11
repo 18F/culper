@@ -44,7 +44,7 @@ export default class Bankruptcies extends SubsectionElement {
    */
   summary (item, index) {
     const b = item.Bankruptcy || {}
-    const address = AddressSummary(b.CourtAddress, i18n.t('financial.bankruptcy.collection.summary.unknown'))
+    const address = AddressSummary(b.CourtAddress, i18n.m('financial.bankruptcy.collection.summary.unknown'))
     const from = DateSummary(b.DateFiled, i18n.t('financial.bankruptcy.collection.summary.nodates'))
 
     return (

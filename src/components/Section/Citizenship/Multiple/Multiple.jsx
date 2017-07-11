@@ -43,7 +43,7 @@ export default class Multiple extends SubsectionElement {
     const itemProperties = (item || {}).Item || {}
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
-          : i18n.t('citizenship.multiple.collection.citizenship.summary.unknown')
+          : i18n.m('citizenship.multiple.collection.citizenship.summary.unknown')
     const dates = DateSummary(itemProperties.Dates)
 
     return (
