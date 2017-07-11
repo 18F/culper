@@ -1,7 +1,7 @@
 import { hideDisciplinaryProcedures } from '../validators/militarydisciplinary'
 import { hideExistingConditions } from '../validators/psychological'
 import { hideSelectiveService } from '../validators/selectiveservice'
-import { hideReleases } from '../validators/releases'
+//import { hideReleases } from '../validators/releases'
 
 const navigation = [
   {
@@ -273,8 +273,8 @@ const navigation = [
       { name: 'Release of information/HIPPA', url: 'general' },
       { name: 'Credit reporting disclosure', url: 'credit' }
     ],
-    exclude: true,
-    hiddenFunc: hideReleases
+    exclude: true
+    //hiddenFunc: hideReleases
   },
   {
     title: 'Design guideline',

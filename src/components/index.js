@@ -6,4 +6,17 @@ import { SectionTitle } from './SectionTitle'
 import Section from './Section'
 import { SavedIndicator } from './SavedIndicator'
 import { ProgressBar } from './ProgressBar'
-export { LoginOAuth, TwoFactor, ScoreCard, Navigation, NavigationToggle, SectionTitle, Section, SavedIndicator, ProgressBar }
+import Sticky from './Sticky'
+
+export {
+  LoginOAuth,
+  TwoFactor,
+  ScoreCard,
+  Navigation,
+  NavigationToggle,
+  SectionTitle,
+  Section,
+  SavedIndicator,
+  ProgressBar,
+  Sticky
+}

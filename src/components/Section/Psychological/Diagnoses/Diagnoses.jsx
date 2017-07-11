@@ -83,7 +83,7 @@ export default class Diagnoses extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span>
-          <strong>{facility || i18n.t('psychological.diagnoses.collection.summary')}</strong>
+          <strong>{facility || i18n.m('psychological.diagnoses.collection.summary')}</strong>
         </span>
         <span className="diagnosisdate"><strong>{facility && diagnosisDate}</strong></span>
       </span>
@@ -92,7 +92,7 @@ export default class Diagnoses extends SubsectionElement {
 
   treatmentSummary (item, index) {
     const o = (item || {}).Treatment || {}
-    const name = (o.Name || {}).value ? `${o.Name.value}` : i18n.t('psychological.diagnoses.treatment.collection.summary')
+    const name = (o.Name || {}).value ? `${o.Name.value}` : i18n.m('psychological.diagnoses.treatment.collection.summary')
     const type = i18n.t('psychological.diagnoses.treatment.collection.itemType')
 
     return (

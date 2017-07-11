@@ -40,7 +40,7 @@ export default class MembershipViolence extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.associations.violence.collection.item')
-    const unknown = i18n.t('legal.associations.violence.collection.unknown')
+    const unknown = i18n.m('legal.associations.violence.collection.unknown')
     const o = item || {}
     const details = (o.Organization || {}).value
           ? o.Organization.value

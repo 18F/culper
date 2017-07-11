@@ -40,7 +40,7 @@ export default class Unlawful extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.technology.unlawful.collection.item')
-    const unknown = i18n.t('legal.technology.unlawful.collection.unknown')
+    const unknown = i18n.m('legal.technology.unlawful.collection.unknown')
     const o = item || {}
     const incident = (o.Incident || {}).value
           ? o.Incident.value

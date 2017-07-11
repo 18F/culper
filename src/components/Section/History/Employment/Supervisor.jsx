@@ -104,7 +104,7 @@ export default class Supervisor extends ValidationElement {
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.telephone')}
                help="history.employment.default.supervisor.telephone.help"
-               adjustFor="labels">
+               adjustFor="telephone">
           <Telephone name="Telephone"
                      {...this.props.Telephone}
                      onUpdate={this.onUpdate.bind(this, 'Telephone')}
