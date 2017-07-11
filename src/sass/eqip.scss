@@ -165,43 +165,50 @@ a:focus {
 }
 
 .stickify {
-  position: fixed;
-  top: 0;
-  z-index: 1000;
-  .usa-banner-header {
-    display: none;
-  }
+  .header-container {
+    height: 16.7rem;
+    .usa-banner-header {
+      display: none;
+    }
 
-  .usa-header,
-  .usa-header > .eapp-structure-wrap {
-    height: 5.7rem;
-    min-height: 5.7rem;
-  }
-  .usa-header.usa-header-basic {
-    .eapp-structure-wrap.eapp-header > .eapp-structure-row {
-      .eapp-structure-right {
-        .eapp-logout {
-          display: none;
-        }
-        .title {
-          max-height: 5.7rem;
-          margin: 0 auto 1.7rem auto;
-          .title-text {
-            transition: font-size 800ms ease;
-            font-size: 2rem;
-            line-height: 1;
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+    }
+    .usa-header,
+    .usa-header > .eapp-structure-wrap {
+      height: 5.7rem;
+      min-height: 5.7rem;
+    }
+    .usa-header.usa-header-basic {
+      .eapp-structure-wrap.eapp-header > .eapp-structure-row {
+        .eapp-structure-right {
+          .eapp-logout {
+            display: none;
+          }
+          .title {
+            max-height: 5.7rem;
+            margin: 0 auto 1.7rem auto;
+            .title-text {
+              transition: font-size 800ms ease;
+              font-size: 2rem;
+              line-height: 1;
+            }
           }
         }
-      }
-      .eapp-structure-left.eapp-logo {
-        height: 5.7rem;
-        min-height: 5.7rem;
-        img,
-        span,
-        a {
-          //transition: all 300ms linear;
-          height: 0;
-          font-size: 0;
+        .eapp-structure-left.eapp-logo {
+          height: 5.7rem;
+          min-height: 5.7rem;
+          img,
+          span,
+          a {
+            height: 0;
+            font-size: 0;
+            opacity: 1;
+          }
         }
       }
     }
