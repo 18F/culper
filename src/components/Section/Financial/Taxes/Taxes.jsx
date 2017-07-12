@@ -27,7 +27,7 @@ export default class Taxes extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasTaxes: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -54,7 +54,7 @@ export default class Taxes extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.t('financial.taxes.collection.summary.unknown')
+    const agency = (obj.Agency || {}).value || i18n.m('financial.taxes.collection.summary.unknown')
     const year = (obj.Year || {}).value || ''
 
     return (
@@ -72,12 +72,12 @@ export default class Taxes extends SubsectionElement {
         <Branch name="has_taxes"
                 className="taxes-branch"
                 value={this.state.HasTaxes}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}

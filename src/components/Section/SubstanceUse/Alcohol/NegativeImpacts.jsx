@@ -34,7 +34,11 @@ export default class NegativeImpacts extends SubsectionElement {
   }
 
   updateHasImpacts (values) {
-    this.update({HasImpacts: values})
+    this.update({
+      HasImpacts: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -47,7 +51,7 @@ export default class NegativeImpacts extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {occurred || i18n.t('substance.alcohol.negativeImpact.collection.summary')}
+            {occurred || i18n.m('substance.alcohol.negativeImpact.collection.summary')}
           </strong>
         </span>
       </span>
@@ -61,13 +65,13 @@ export default class NegativeImpacts extends SubsectionElement {
         <Branch name="has_impacts"
                 className="has-impacts"
                 value={this.props.HasImpacts}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasImpacts}>
         </Branch>
 
         <Show when={this.props.HasImpacts === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

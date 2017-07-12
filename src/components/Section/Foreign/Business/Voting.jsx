@@ -15,37 +15,32 @@ export default class Voting extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignVoting: this.props.HasForeignVoting
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignVoting: this.props.HasForeignVoting,
+      ...queue
+    })
   }
 
   updateHasForeignVoting (values) {
-    this.update([
-      { name: 'HasForeignVoting', value: values }
-    ])
+    this.update({
+      HasForeignVoting: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const country = (obj.Country || {}).value || i18n.t('foreign.business.voting.collection.summary.unknown')
+    const country = (obj.Country || {}).value || i18n.m('foreign.business.voting.collection.summary.unknown')
     const date = DateSummary(obj.Date)
 
     return (
@@ -63,15 +58,14 @@ export default class Voting extends SubsectionElement {
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
                 labelSize="h3"
-                help="foreign.business.voting.help.branch"
                 value={this.props.HasForeignVoting}
+                warning={true}
                 onUpdate={this.updateHasForeignVoting}
                 onError={this.handleError}>
         </Branch>
 
         <Show when={this.props.HasForeignVoting === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -90,7 +84,6 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.country')}
-                   help="foreign.business.voting.help.country"
                    adjustFor="country">
               <Country name="Country"
                        className="foreign-business-voting-country"
@@ -99,7 +92,6 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.reason')}
-                   help="foreign.business.voting.help.reason"
                    adjustFor="textarea">
               <Textarea name="Reason"
                         className="foreign-business-voting-reason"
@@ -108,7 +100,6 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.eligibility')}
-                   help="foreign.business.voting.help.eligibility"
                    adjustFor="text">
               <Text name="Eligibility"
                     className="foreign-business-voting-eligibility"
@@ -127,6 +118,7 @@ Voting.defaultProps = {
   HasForeignVoting: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/voting',

@@ -4,26 +4,20 @@ import Employment from './Employment'
 
 describe('The foreign business employment component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-employment',
-      onUpdate: () => { updates++ }
+      HasForeignEmployment: 'No'
     }
     const component = mount(<Employment {...expected} />)
-    component.find('.branch .no input').simulate('change')
-    expect(updates).toBe(1)
     expect(component.find('.accordion').length).toBe(0)
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-employment',
-      onUpdate: () => { updates++ }
+      HasForeignEmployment: 'Yes'
     }
     const component = mount(<Employment {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -48,6 +42,12 @@ describe('The foreign business employment component', () => {
     const expected = {
       name: 'foreign-business-employment',
       HasForeignEmployment: 'Yes',
+      List: [{
+        Item: {
+          Address: { country: 'United States' },
+          Accepted: 'Yes'
+        }
+      }],
       onUpdate: () => { updates++ }
     }
     const component = mount(<Employment {...expected} />)
@@ -58,6 +58,6 @@ describe('The foreign business employment component', () => {
     component.find('.employment-address .yes input').simulate('change')
     component.find('.employment-accepted .yes input').simulate('change')
     component.find('.employment-explanation textarea').simulate('change')
-    expect(updates).toBe(7 * 2)
+    expect(updates).toBe(6)
   })
 })

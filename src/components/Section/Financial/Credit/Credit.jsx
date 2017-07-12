@@ -27,7 +27,7 @@ export default class Credit extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasCreditCounseling: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -54,7 +54,7 @@ export default class Credit extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.t('financial.credit.collection.summary.unknown')
+    const name = (obj.Name || {}).value || i18n.m('financial.credit.collection.summary.unknown')
 
     return (
       <span>
@@ -70,12 +70,12 @@ export default class Credit extends SubsectionElement {
         <Branch name="has_credit"
                 className="credit-branch"
                 value={this.state.HasCreditCounseling}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
@@ -101,7 +101,8 @@ export default class Credit extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.credit.heading.telephone')}
-                   help="financial.credit.help.telephone">
+                   help="financial.credit.help.telephone"
+                   adjustFor="telephone">
               <Telephone name="Telephone"
                          className="credit-telephone"
                          bind={true}

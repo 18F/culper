@@ -49,6 +49,6 @@ describe('The progress bar component', () => {
 
     const component = mount(<Provider store={store}><ProgressBar /></Provider>)
     expect(component.find('div').length).toEqual(2)
-    expect(component.find('#progress-bar').props().style.width).toBe('10%')
+    expect(component.find('#progress-bar').props().style.width).not.toBe('0%')
   })
 })

@@ -5,7 +5,6 @@ import SectionElement from '../SectionElement'
 import { SectionViews, SectionView } from '../SectionView'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { hideSelectiveService } from '../../../validators/selectiveservice'
-import { IntroHeader } from '../../Form'
 import Status from './Status'
 import Multiple from './Multiple'
 import Passports from './Multiple/Passports'
@@ -16,16 +15,13 @@ class Citizenship extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 2 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="relationships/review"
+                       backLabel={i18n.t('relationships.destination.review')}
+                       next="citizenship/status"
+                       nextLabel={i18n.t('citizenship.destination.status')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="review"
@@ -66,8 +62,8 @@ class Citizenship extends SectionElement {
           </SectionView>
 
           <SectionView name="status"
-                       back="relationships/relatives"
-                       backLabel={i18n.t('relationships.destination.relatives')}
+                       back="citizenship/intro"
+                       backLabel={i18n.t('citizenship.destination.intro')}
                        next="citizenship/multiple"
                        nextLabel={i18n.t('citizenship.destination.multiple')}>
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
@@ -129,7 +125,6 @@ function mapStateToProps (state) {
 
 Citizenship.defaultProps = {
   section: 'citizenship',
-  defaultView: (props) => { return 'status' },
   store: 'Citizenship'
 }
 

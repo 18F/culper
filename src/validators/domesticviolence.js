@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield, validGenericMonthYear, BranchCollection } from './helpers'
 
 export default class DomesticViolence {
@@ -35,7 +35,7 @@ export class DomesticViolenceItem {
   }
 
   isValid () {
-    return new AddressValidator(this.courtAddress).isValid() &&
+    return new LocationValidator(this.courtAddress).isValid() &&
       validGenericTextfield(this.courtName) &&
       validGenericTextfield(this.explanation) &&
       validGenericMonthYear(this.issued)

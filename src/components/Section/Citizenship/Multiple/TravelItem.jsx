@@ -1,34 +1,34 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Field, Country, DateRange } from '../../../Form'
-import { sendUpdate } from './Multiple'
 
 export default class TravelItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Country: props.Country,
-      Dates: props.Dates
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateDates = this.updateDates.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      Country: this.props.Country,
+      Dates: this.props.Dates,
+      ...queue
     })
   }
 
   updateCountry (values) {
-    this.onUpdate('Country', values)
+    this.update({
+      Country: values
+    })
   }
 
   updateDates (values) {
-    this.onUpdate('Dates', values)
+    this.update({
+      Dates: values
+    })
   }
 
   render () {
@@ -36,7 +36,7 @@ export default class TravelItem extends ValidationElement {
       <div className="citizenship-item">
         <Field title={i18n.t('citizenship.multiple.heading.travel.country')}>
           <Country name="Country"
-                   {...this.state.Country}
+                   {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
                    />
@@ -46,7 +46,7 @@ export default class TravelItem extends ValidationElement {
                help="citizenship.multiple.help.travel.dates"
                adjustFor="daterange">
           <DateRange name="Dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      />
@@ -59,5 +59,6 @@ export default class TravelItem extends ValidationElement {
 TravelItem.defaultProps = {
   Country: {},
   Dates: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

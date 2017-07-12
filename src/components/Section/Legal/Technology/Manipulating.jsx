@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyManipulatingValidator } from '../../../../validators'
 import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Address, Textarea } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
 
 export default class Manipulating extends SubsectionElement {
   constructor (props) {
@@ -15,37 +15,32 @@ export default class Manipulating extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasManipulating: this.props.HasManipulating
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasManipulating: this.props.HasManipulating,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasManipulating', value: values }
-    ])
+    this.update({
+      HasManipulating: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const type = i18n.t('legal.technology.manipulating.collection.item')
-    const unknown = i18n.t('legal.technology.manipulating.collection.unknown')
+    const unknown = i18n.m('legal.technology.manipulating.collection.unknown')
     const o = item || {}
     const incident = (o.Incident || {}).value
           ? o.Incident.value
@@ -69,13 +64,13 @@ export default class Manipulating extends SubsectionElement {
                 labelSize="h3"
                 className="legal-technology-manipulating-has-manipulating"
                 value={this.props.HasManipulating}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
 
         <Show when={this.props.HasManipulating === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -105,10 +100,12 @@ export default class Manipulating extends SubsectionElement {
             <Field title={i18n.t('legal.technology.manipulating.heading.location')}
                    help="legal.technology.manipulating.help.location"
                    adjustFor="address">
-              <Address name="Location"
-                       className="legal-technology-manipulating-location"
-                       bind={true}
-                       />
+              <Location name="Location"
+                        className="legal-technology-manipulating-location"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.action')}
@@ -132,6 +129,7 @@ Manipulating.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/manipulating',

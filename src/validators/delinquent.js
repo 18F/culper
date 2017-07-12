@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class DelinquentValidator {
@@ -115,7 +115,7 @@ export class DelinquentItemValidator {
   }
 
   validCourtAddress () {
-    return !!this.courtAddress && new AddressValidator(this.courtAddress, null).isValid()
+    return !!this.courtAddress && new LocationValidator(this.courtAddress).isValid()
   }
 
   validDescription () {

@@ -9,36 +9,33 @@ export default class Competence extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      IsIncompetent: props.IsIncompetent,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.update = this.update.bind(this)
     this.updateIsIncompentent = this.updateIsIncompentent.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  update (field, values) {
-    this.setState({[field]: values}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          IsIncompetent: this.state.IsIncompetent,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      IsIncompetent: this.props.IsIncompetent,
+      ...queue
     })
   }
 
   updateList (values) {
-    this.update('List', values.items)
-    this.update('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateIsIncompentent (values) {
-    this.update('IsIncompetent', values)
+    this.update({
+      IsIncompetent: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -51,7 +48,7 @@ export default class Competence extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="courtname">
-          <strong>{courtName || i18n.t('psychological.competence.collection.summaryCourtName')}</strong>
+          <strong>{courtName || i18n.m('psychological.competence.collection.summaryCourtName')}</strong>
         </span>
         <span className="occurred"><strong>{courtName && occurred}</strong></span>
       </span>
@@ -63,16 +60,16 @@ export default class Competence extends SubsectionElement {
       <div className="competence">
         <h2>{i18n.t('psychological.heading.competence')}</h2>
         <Branch name="is_incompetent"
-                value={this.state.IsIncompetent}
+                value={this.props.IsIncompetent}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateIsIncompentent}>
         </Branch>
 
-        <Show when={this.state.IsIncompetent === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
-                     items={this.state.List}
-                     branch={this.state.ListBranch}
+        <Show when={this.props.IsIncompetent === 'Yes'}>
+          <Accordion defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -95,11 +92,12 @@ Competence.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'competence',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CompetenceValidator(state, props).isValid()
+    return new CompetenceValidator(props, props).isValid()
   }
 }

@@ -22,24 +22,22 @@ export default class DirectInterest extends ValidationElement {
     this.updateCoOwners = this.updateCoOwners.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        InterestTypes: this.props.InterestTypes,
-        InterestType: this.props.InterestType,
-        Acquired: this.props.Acquired,
-        HowAcquired: this.props.HowAcquired,
-        Cost: this.props.Cost,
-        CostEstimated: this.props.CostEstimated,
-        Value: this.props.Value,
-        ValueEstimated: this.props.ValueEstimated,
-        Relinquished: this.props.Relinquished,
-        RelinquishedNotApplicable: this.props.RelinquishedNotApplicable,
-        Explanation: this.props.Explanation,
-        CoOwners: this.props.CoOwners,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      InterestTypes: this.props.InterestTypes,
+      InterestType: this.props.InterestType,
+      Acquired: this.props.Acquired,
+      HowAcquired: this.props.HowAcquired,
+      Cost: this.props.Cost,
+      CostEstimated: this.props.CostEstimated,
+      Value: this.props.Value,
+      ValueEstimated: this.props.ValueEstimated,
+      Relinquished: this.props.Relinquished,
+      RelinquishedNotApplicable: this.props.RelinquishedNotApplicable,
+      Explanation: this.props.Explanation,
+      CoOwners: this.props.CoOwners,
+      ...queue
+    })
   }
 
   updateInterestTypes (event) {
@@ -51,51 +49,75 @@ export default class DirectInterest extends ValidationElement {
       selected.push(interestType)
     }
 
-    this.update('InterestTypes', selected)
+    this.update({
+      InterestTypes: selected
+    })
   }
 
   updateInterestType (values) {
-    this.update('InterestType', values)
+    this.update({
+      InterestType: values
+    })
   }
 
   updateAcquired (values) {
-    this.update('Acquired', values)
+    this.update({
+      Acquired: values
+    })
   }
 
   updateHowAcquired (values) {
-    this.update('HowAcquired', values)
+    this.update({
+      HowAcquired: values
+    })
   }
 
   updateCost (values) {
-    this.update('Cost', values)
+    this.update({
+      Cost: values
+    })
   }
 
   updateCostEstimated (cb) {
-    this.update('CostEstimated', cb.checked)
+    this.update({
+      CostEstimated: cb.checked
+    })
   }
 
   updateValue (values) {
-    this.update('Value', values)
+    this.update({
+      Value: values
+    })
   }
 
   updateValueEstimated (cb) {
-    this.update('ValueEstimated', cb.checked)
+    this.update({
+      ValueEstimated: cb.checked
+    })
   }
 
   updateRelinquished (values) {
-    this.update('Relinquished', values)
+    this.update({
+      Relinquished: values
+    })
   }
 
   updateRelinquishedNotApplicable (values) {
-    this.update('RelinquishedNotApplicable', values)
+    this.update({
+      RelinquishedNotApplicable: values
+    })
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   updateCoOwners (values) {
-    this.update('CoOwners', values)
+    this.update({
+      CoOwners: values
+    })
   }
 
   render () {
@@ -253,5 +275,6 @@ export default class DirectInterest extends ValidationElement {
 
 DirectInterest.defaultProps = {
   prefix: 'activities.direct.interest',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -1,5 +1,4 @@
 import NameValidator from './name'
-import AddressValidator from './address'
 import LocationValidator from './location'
 import { validGenericMonthYear, validGenericTextfield, validBranch } from './helpers'
 
@@ -88,7 +87,7 @@ export class BankruptcyItemValidator {
         return true
       case 'Chapter13':
         return validGenericTextfield(this.trustee) &&
-          new AddressValidator(this.trusteeAddress).isValid()
+          new LocationValidator(this.trusteeAddress).isValid()
       default:
         return false
     }

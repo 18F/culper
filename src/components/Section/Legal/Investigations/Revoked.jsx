@@ -15,37 +15,32 @@ export default class Revoked extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasRevocations: this.props.HasRevocations
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasRevocations: this.props.HasRevocations,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasRevocations', value: values }
-    ])
+    this.update({
+      HasRevocations: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const type = i18n.t('legal.investigations.revoked.collection.item')
-    const unknown = i18n.t('legal.investigations.revoked.collection.unknown')
+    const unknown = i18n.m('legal.investigations.revoked.collection.unknown')
     const o = item || {}
     const agency = (o.Agency || {}).value
           ? o.Agency.value
@@ -69,14 +64,14 @@ export default class Revoked extends SubsectionElement {
                 labelSize="h3"
                 className="legal-investigations-revoked-has-revocations"
                 value={this.props.HasRevocations}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
           {i18n.m('legal.investigations.revoked.para.downgrade')}
         </Branch>
 
         <Show when={this.props.HasRevocations === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -124,6 +119,7 @@ Revoked.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/revoked',

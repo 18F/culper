@@ -3,48 +3,46 @@ import { i18n } from '../../../../config'
 import { ForeignActivitiesSupportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Text, Textarea, Currency, Name, Address, Country,
+         Text, Textarea, Currency, Name, Location, Country,
          Checkbox } from '../../../Form'
 
 export default class Support extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignSupport: props.HasForeignSupport,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
+    this.update = this.update.bind(this)
     this.updateHasForeignSupport = this.updateHasForeignSupport.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignSupport: this.state.HasForeignSupport,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      HasForeignSupport: this.props.HasForeignSupport,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateHasForeignSupport (value) {
-    this.onUpdate('HasForeignSupport', value)
+    this.update({
+      HasForeignSupport: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.activities.support.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.activities.support.collection.summary.unknown')
 
     return (
       <span>
@@ -60,16 +58,16 @@ export default class Support extends SubsectionElement {
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
                 labelSize="h3"
-                value={this.state.HasForeignSupport}
+                value={this.props.HasForeignSupport}
+                warning={true}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
                 />
 
-        <Show when={this.state.HasForeignSupport === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasForeignSupport === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -84,10 +82,12 @@ export default class Support extends SubsectionElement {
 
             <Field title={i18n.t('foreign.activities.support.heading.address')}
                    adjustFor="address">
-              <Address name="Address"
-                       className="foreign-activities-support-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="foreign-activities-support-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.relationship')}
@@ -145,12 +145,13 @@ Support.defaultProps = {
   HasForeignSupport: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/support',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignActivitiesSupportValidator(state, props).isValid()
+    return new ForeignActivitiesSupportValidator(props, props).isValid()
   },
   defaultState: true
 }

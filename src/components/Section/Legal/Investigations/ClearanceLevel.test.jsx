@@ -12,7 +12,7 @@ describe('The clearance level component', () => {
     let level = ''
     const onUpdate = (values) => { level = values.Level }
     const component = mount(<ClearanceLevel Level={level} onUpdate={onUpdate} />)
-    component.find('.clearance-level-q input').simulate('click')
+    component.find('.clearance-level-q input').simulate('change')
     expect(level).toBe('Q')
   })
 

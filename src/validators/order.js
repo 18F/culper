@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield, validGenericMonthYear, BranchCollection } from './helpers'
 
 export default class OrderValidator {
@@ -13,7 +13,7 @@ export default class OrderValidator {
 
   validCourt () {
     return validGenericTextfield(this.courtName) &&
-      new AddressValidator(this.courtAddress).isValid()
+      new LocationValidator(this.courtAddress).isValid()
   }
 
   validOccurred () {
@@ -40,7 +40,7 @@ export default class OrderValidator {
 
     return branchValidator.each(item => {
       return validGenericTextfield(item.CourtName) &&
-        new AddressValidator(item.CourtAddress) &&
+        new LocationValidator(item.CourtAddress) &&
         validGenericTextfield(item.Disposition)
     })
   }

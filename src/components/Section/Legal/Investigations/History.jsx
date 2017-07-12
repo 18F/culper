@@ -18,37 +18,32 @@ export default class History extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasHistory: this.props.HasHistory
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasHistory: this.props.HasHistory,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasHistory', value: values }
-    ])
+    this.update({
+      HasHistory: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const type = i18n.t('legal.investigations.history.collection.item')
-    const unknown = i18n.t('legal.investigations.history.collection.unknown')
+    const unknown = i18n.m('legal.investigations.history.collection.unknown')
     const o = item || {}
     const agency = (o.Agency || {}).Agency
           ? o.Agency.Agency
@@ -72,13 +67,13 @@ export default class History extends SubsectionElement {
                 labelSize="h3"
                 className="legal-investigations-history-has-history"
                 value={this.props.HasHistory}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
 
         <Show when={this.props.HasHistory === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -164,6 +159,7 @@ History.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/history',

@@ -16,32 +16,27 @@ export default class Bankruptcies extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasBankruptcy: this.props.HasBankruptcy
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasBankruptcy: this.props.HasBankruptcy,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasBankrupty (values) {
-    this.update([
-      { name: 'HasBankruptcy', value: values }
-    ])
+    this.update({
+      HasBankruptcy: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   /**
@@ -49,7 +44,7 @@ export default class Bankruptcies extends SubsectionElement {
    */
   summary (item, index) {
     const b = item.Bankruptcy || {}
-    const address = AddressSummary(b.CourtAddress, i18n.t('financial.bankruptcy.collection.summary.unknown'))
+    const address = AddressSummary(b.CourtAddress, i18n.m('financial.bankruptcy.collection.summary.unknown'))
     const from = DateSummary(b.DateFiled, i18n.t('financial.bankruptcy.collection.summary.nodates'))
 
     return (
@@ -68,12 +63,12 @@ export default class Bankruptcies extends SubsectionElement {
                 className="bankruptcy-branch"
                 value={this.props.HasBankruptcy}
                 help="financial.bankruptcy.help"
+                warning={true}
                 onUpdate={this.updateHasBankrupty}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasBankruptcy === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

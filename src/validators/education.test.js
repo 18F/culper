@@ -246,7 +246,9 @@ describe('Education component validation', function () {
                   date: new Date()
                 },
                 Diploma: 'Other',
-                DiplomaOther: ''
+                DiplomaOther: {
+                  value: ''
+                }
               }
             }
           ]
@@ -262,7 +264,9 @@ describe('Education component validation', function () {
               Diploma: {
                 Date: null,
                 Diploma: 'Other',
-                DiplomaOther: 'Other'
+                DiplomaOther: {
+                  value: 'Other'
+                }
               }
             }
           ]
@@ -302,7 +306,9 @@ describe('Education component validation', function () {
                   date: new Date()
                 },
                 Diploma: 'Other',
-                DiplomaOther: 'GED'
+                DiplomaOther: {
+                  value: 'GED'
+                }
               }
             }
           ]
@@ -375,34 +381,36 @@ describe('Education component validation', function () {
           hasDegree10: 'Yes',
           List: [
             {
-              Name: {
-                value: 'School name'
-              },
-              Reference: null,
-              Type: 'High School',
-              Address: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Name: {
+                  value: 'School name'
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Reference: null,
+                Type: 'High School',
+                Address: {
+                  country: 'United States',
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
-                present: false
-              },
-              Diplomas: [
-                {
-                  Has: 'No',
-                  Diploma: null
-                }
-              ]
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                },
+                Diplomas: [
+                  {
+                    Has: 'No',
+                    Diploma: null
+                  }
+                ]
+              }
             }
           ]
         },
@@ -414,34 +422,36 @@ describe('Education component validation', function () {
           hasDegree10: 'Yes',
           List: [
             {
-              Name: {
-                value: ''
-              },
-              Reference: null,
-              Type: 'High School',
-              Address: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Name: {
+                  value: ''
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Reference: null,
+                Type: 'High School',
+                Address: {
+                  country: 'United States',
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
-                present: false
-              },
-              Diplomas: [
-                {
-                  Has: 'No',
-                  Diploma: null
-                }
-              ]
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                },
+                Diplomas: [
+                  {
+                    Has: 'No',
+                    Diploma: null
+                  }
+                ]
+              }
             }
           ]
         },

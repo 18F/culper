@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, BranchCollection, DateRange, Reference, Text, RadioGroup, Radio, Field, Address } from '../../../Form'
+import { ValidationElement, BranchCollection, DateRange, Reference, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
 
@@ -176,12 +176,14 @@ export default class EducationItem extends ValidationElement {
                  onError={this.props.onError}
                  adjustFor="address"
                  shrink={true}>
-            <Address name="Address"
-                     {...this.state.Address}
-                     label={i18n.t('history.education.label.address')}
-                     onUpdate={this.updateAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="Address"
+                      {...this.state.Address}
+                      label={i18n.t('history.education.label.address')}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateAddress}
+                      onError={this.props.onError}
+                      />
           </Field>
 
           <Field title={i18n.t('history.education.heading.type')}
@@ -226,6 +228,7 @@ export default class EducationItem extends ValidationElement {
           <BranchCollection help="history.education.help.degree"
                             label={i18n.t('history.education.heading.degree')}
                             appendLabel={i18n.t('history.education.heading.degreeTail')}
+                            className="receive-degree"
                             items={this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
                             onError={this.props.onError}>
