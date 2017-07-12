@@ -58,7 +58,6 @@ export default class Voting extends SubsectionElement {
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
                 labelSize="h3"
-                help="foreign.business.voting.help.branch"
                 value={this.props.HasForeignVoting}
                 warning={true}
                 onUpdate={this.updateHasForeignVoting}
@@ -85,7 +84,6 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.country')}
-                   help="foreign.business.voting.help.country"
                    adjustFor="country">
               <Country name="Country"
                        className="foreign-business-voting-country"
@@ -94,7 +92,6 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.reason')}
-                   help="foreign.business.voting.help.reason"
                    adjustFor="textarea">
               <Textarea name="Reason"
                         className="foreign-business-voting-reason"
@@ -103,7 +100,6 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.eligibility')}
-                   help="foreign.business.voting.help.eligibility"
                    adjustFor="text">
               <Text name="Eligibility"
                     className="foreign-business-voting-eligibility"
