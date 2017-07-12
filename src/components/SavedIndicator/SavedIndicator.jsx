@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { updateApplication } from '../../actions/ApplicationActions'
 import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
+import { Show } from '../Form'
 
 class SavedIndicator extends React.Component {
   constructor (props) {
@@ -10,11 +11,14 @@ class SavedIndicator extends React.Component {
 
     this.state = {
       interval: props.interval || 1000,
-      elapsed: props.elapsed || 0
+      elapsed: props.elapsed || 0,
+      hover: false
     }
 
     this.tick = this.tick.bind(this)
     this.reset = this.reset.bind(this)
+    this.mouseEnter = this.mouseEnter.bind(this)
+    this.mouseLeave = this.mouseLeave.bind(this)
   }
 
   componentWillReceiveProps (next) {
@@ -32,6 +36,14 @@ class SavedIndicator extends React.Component {
   reset (event) {
     this.props.dispatch(updateApplication('Settings', 'saved', new Date()))
     this.setState({elapsed: 0})
+  }
+
+  mouseEnter (event) {
+    this.setState({hover: true})
+  }
+
+  mouseLeave (event) {
+    this.setState({hover: false})
   }
 
   tick () {
@@ -81,9 +93,18 @@ class SavedIndicator extends React.Component {
 
   render () {
     return (
-      <button className="saved-indicator" onClick={this.reset}>
+      <button className="saved-indicator"
+              onClick={this.reset}
+              onMouseEnter={this.mouseEnter}
+              onMouseLeave={this.mouseLeave}>
         <i className="fa fa-floppy-o" aria-hidden="true"></i>
-        <strong>{i18n.t('saved.saved')}</strong> <span className="time">{this.calculateTime()}</span>
+        <Show when={this.state.hover}>
+          <strong>{i18n.t('saved.action')}</strong>
+        </Show>
+        <Show when={!this.state.hover}>
+          <strong>{i18n.t('saved.saved')}</strong>
+          <span className="time">{this.calculateTime()}</span>
+        </Show>
       </button>
     )
   }

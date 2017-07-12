@@ -43,6 +43,7 @@ const en = {
     complete: 'Sections complete'
   },
   saved: {
+    action: 'Save now',
     saved: 'Saved',
     now: 'Just now',
     second: 'sec',
