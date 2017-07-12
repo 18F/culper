@@ -9,46 +9,34 @@ import OtherOffense from './OtherOffense'
 export default class OtherOffenses extends SubsectionElement {
   constructor (props) {
     super(props)
-    this.state = {
-      HasOtherOffenses: props.HasOtherOffenses,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
 
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
     this.updateHasOtherOffenses = this.updateHasOtherOffenses.bind(this)
   }
 
-  onUpdate (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasOtherOffenses: this.props.HasOtherOffenses,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasOtherOffenses: this.props.HasOtherOffenses,
+      ...queue
+    })
   }
+
   updateList (values) {
-    this.onUpdate({
+    this.update({
       List: values.items,
       ListBranch: values.branch
     })
   }
 
   updateHasOtherOffenses (value) {
-    if (value === 'No') {
-      this.onUpdate({
-        HasOtherOffenses: value,
-        List: [],
-        ListBranch: ''
-      })
-    } else {
-      this.onUpdate({
-        HasOtherOffenses: value
-      })
-    }
+    this.update({
+      HasOtherOffenses: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   /**
@@ -58,7 +46,7 @@ export default class OtherOffenses extends SubsectionElement {
     const o = (item || {}).Item || {}
     const description = o.Description && o.Description.value
           ? o.Description.value
-          : i18n.t('legal.police.collection.summary.unknown')
+          : i18n.m('legal.police.collection.summary.unknown')
     const dates = DateSummary(o.Date)
 
     return (
@@ -89,10 +77,11 @@ export default class OtherOffenses extends SubsectionElement {
       <div className="police-other-offenses">
         <h2>{i18n.t('legal.police.para.otherOffense.intro')}</h2>
         <Branch name="has_otheroffenses"
-          className="has-otheroffenses"
-          value={this.props.HasOtherOffenses}
-          onUpdate={this.updateHasOtherOffenses}
-          onError={this.handleError}>
+                className="has-otheroffenses"
+                value={this.props.HasOtherOffenses}
+                warning={true}
+                onUpdate={this.updateHasOtherOffenses}
+                onError={this.handleError}>
           <ul>
             <li>{i18n.m('legal.police.para.otherOffense.first')}</li>
             <li>{i18n.m('legal.police.para.otherOffense.second')}</li>
@@ -103,20 +92,19 @@ export default class OtherOffenses extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasOtherOffenses === 'Yes'}>
-          <Accordion minimum="1"
-            items={this.props.List}
-            defaultState={this.props.defaultState}
-            branch={this.props.ListBranch}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            summary={this.summary}
-            description={i18n.t('legal.police.collection.summary.title')}
-            appendTitle={i18n.t('legal.police.collection.appendTitle')}
-            appendMessage={this.otherOffenseBranch()}
-            appendLabel={i18n.t('legal.police.collection.append')}>
+          <Accordion items={this.props.List}
+                     defaultState={this.props.defaultState}
+                     branch={this.props.ListBranch}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     summary={this.summary}
+                     description={i18n.t('legal.police.collection.summary.title')}
+                     appendTitle={i18n.t('legal.police.collection.appendTitle')}
+                     appendMessage={this.otherOffenseBranch()}
+                     appendLabel={i18n.t('legal.police.collection.append')}>
             <OtherOffense name="Item"
-              bind={true}
-            />
+                          bind={true}
+                          />
           </Accordion>
         </Show>
       </div>
@@ -125,6 +113,7 @@ export default class OtherOffenses extends SubsectionElement {
 }
 
 OtherOffenses.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/additionaloffenses',

@@ -85,5 +85,6 @@ export default class TravelPurpose extends ValidationElement {
 
 TravelPurpose.defaultProps = {
   value: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

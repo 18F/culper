@@ -204,12 +204,18 @@ Generic.errors = [
   {
     code: 'length',
     func: (value, props) => {
+      if (!value) {
+        return null
+      }
       return value.length >= parseInt(props.minlength) && value.length <= parseInt(props.maxlength)
     }
   },
   {
     code: 'pattern',
     func: (value, props) => {
+      if (!value) {
+        return null
+      }
       const re = new RegExp(props.pattern)
       return re.test(value)
     }

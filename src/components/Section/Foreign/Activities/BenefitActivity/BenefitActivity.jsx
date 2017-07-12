@@ -15,32 +15,27 @@ export default class BenefitActivity extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasBenefits: this.props.HasBenefits
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasBenefits: this.props.HasBenefits,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasBenefits (values) {
-    this.update([
-      { name: 'HasBenefits', value: values }
-    ])
+    this.update({
+      HasBenefits: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -56,13 +51,13 @@ export default class BenefitActivity extends SubsectionElement {
                 label={i18n.t('foreign.activities.benefit.heading.title')}
                 labelSize="h3"
                 value={this.props.HasBenefits}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasBenefits}>
         </Branch>
 
         <Show when={this.props.HasBenefits === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -87,6 +82,7 @@ BenefitActivity.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/benefits',
@@ -130,7 +126,7 @@ export const benefitSummary = (item, index) => {
     <span className="content">
       <span className="index">{type}: {index + 1}</span>
       <span className="benefit-summary">
-        <strong>{ summary || i18n.t('foreign.activities.benefit.collection.summary')}</strong>
+        <strong>{ summary || i18n.m('foreign.activities.benefit.collection.summary')}</strong>
       </span>
       <span className="date"><strong>{benefit.Date}</strong></span>
     </span>

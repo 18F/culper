@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validBranch, validDateField, validGenericTextfield } from './helpers'
 
 export default class NonCriminalCourtActionsValidator {
@@ -54,7 +54,7 @@ export class NonCriminalCourtActionValidator {
   isValid () {
     return validDateField(this.civilActionDate) &&
       validGenericTextfield(this.courtName) &&
-      new AddressValidator(this.courtAddress).isValid() &&
+      new LocationValidator(this.courtAddress).isValid() &&
       validGenericTextfield(this.natureOfAction) &&
       validGenericTextfield(this.resultsOfAction) &&
       validGenericTextfield(this.principalPartyNames)

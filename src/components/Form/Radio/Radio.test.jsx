@@ -3,20 +3,6 @@ import { mount } from 'enzyme'
 import Radio from './Radio'
 
 describe('The radio component', () => {
-  // it('renders appropriately with an error', () => {
-  //   const expected = {
-  //     name: 'input-error',
-  //     label: 'Text input error',
-  //     error: true,
-  //     focus: false,
-  //     valid: false
-  //   }
-  //   const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
-  //   expect(component.find('label.usa-input-error-label').text()).toEqual(expected.label)
-  //   expect(component.find('input').length).toEqual(1)
-  //   expect(component.find('.usa-input-error-label').length).toEqual(1)
-  // })
-
   it('renders appropriately with focus', () => {
     const expected = {
       name: 'input-focus',
@@ -117,9 +103,9 @@ describe('The radio component', () => {
     }
     const component = mount(<Radio name="toggle" value="foo" checked="true" onUpdate={onUpdate} />)
     expect(component.find('.checked').length).toEqual(1)
-    component.find('input').simulate('click')
+    component.find('input').simulate('change')
     expect(checked).toBe(1)
-    component.find('input').simulate('click')
+    component.find('input').simulate('change')
     expect(checked).toBe(2)
   })
 })

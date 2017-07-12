@@ -4,7 +4,6 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import IntroHeader from '../../Form/IntroHeader'
 import Gambling from './Gambling'
 import Bankruptcies from './Bankruptcy'
 import Taxes from './Taxes'
@@ -18,24 +17,21 @@ class Financial extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="financial intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 7 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="identification/review"
+                       backLabel={i18n.t('identification.destination.review')}
+                       next="financial/bankruptcy"
+                       nextLabel={i18n.t('financial.destination.bankruptcy')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop="true"
-                       back="financial/bankruptcy"
-                       backLabel={i18n.t('financial.destination.bankruptcy')}
+                       back="financial/nonpayment"
+                       backLabel={i18n.t('financial.destination.nonpayment')}
                        next="history"
                        nextLabel={i18n.t('history.destination.residence')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
@@ -126,8 +122,8 @@ class Financial extends SectionElement {
           </SectionView>
 
           <SectionView name="bankruptcy"
-                       back="identification/physical"
-                       backLabel={i18n.t('identification.destination.physical')}
+                       back="financial/intro"
+                       backLabel={i18n.t('financial.destination.intro')}
                        next="financial/gambling"
                        nextLabel={i18n.t('financial.destination.gambling')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
@@ -266,7 +262,6 @@ function mapStateToProps (state) {
 
 Financial.defaultProps = {
   section: 'financial',
-  defaultView: (props) => { return 'bankruptcy' },
   store: 'Financial'
 }
 

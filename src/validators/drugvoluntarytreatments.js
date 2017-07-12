@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugVoluntaryTreatmentsValidator {
@@ -66,7 +66,7 @@ export class DrugVoluntaryTreatmentValidator {
 
   isValid () {
     return validGenericTextfield(this.treatmentProvider) &&
-      new AddressValidator(this.treatmentProviderAddress) &&
+      new LocationValidator(this.treatmentProviderAddress) &&
       validPhoneNumber(this.treatmentProviderTelephone) &&
       new DateRangeValidator(this.treatmentDates) &&
       this.validTreatmentCompleted()

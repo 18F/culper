@@ -4,26 +4,20 @@ import Support from './Support'
 
 describe('The foreign activities support component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-activities-support',
-      onUpdate: () => { updates++ }
+      HasForeignSupport: 'No'
     }
     const component = mount(<Support {...expected} />)
-    component.find('.branch .no input').simulate('change')
-    expect(updates).toBe(1)
     expect(component.find('.accordion').length).toBe(0)
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-activities-support',
-      onUpdate: () => { updates++ }
+      HasForeignSupport: 'Yes'
     }
     const component = mount(<Support {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -48,6 +42,7 @@ describe('The foreign activities support component', () => {
     const expected = {
       name: 'foreign-activities-support',
       HasForeignSupport: 'Yes',
+      List: [{}],
       onUpdate: () => { updates++ }
     }
     const component = mount(<Support {...expected} />)
@@ -58,6 +53,6 @@ describe('The foreign activities support component', () => {
     component.find('.foreign-activities-support-amount input').simulate('change')
     component.find('.foreign-activities-support-frequency input').simulate('change')
     component.find('.foreign-activities-support-citizenship input').simulate('change')
-    expect(updates).toBe(6 * 2)
+    expect(updates).toBe(6)
   })
 })

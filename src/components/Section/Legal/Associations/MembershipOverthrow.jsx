@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsOverthrowValidator } from '../../../../validators'
 import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Address, Text, Textarea, NotApplicable } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
 
 export default class MembershipOverthrow extends SubsectionElement {
   constructor (props) {
@@ -15,37 +15,32 @@ export default class MembershipOverthrow extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasOverthrow: this.props.HasOverthrow
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasOverthrow: this.props.HasOverthrow,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasOverthrow', value: values }
-    ])
+    this.update({
+      HasOverthrow: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const type = i18n.t('legal.associations.overthrow.collection.item')
-    const unknown = i18n.t('legal.associations.overthrow.collection.unknown')
+    const unknown = i18n.m('legal.associations.overthrow.collection.unknown')
     const o = item || {}
     const details = (o.Organization || {}).value
           ? o.Organization.value
@@ -69,13 +64,13 @@ export default class MembershipOverthrow extends SubsectionElement {
                 labelSize="h3"
                 className="legal-associations-overthrow-has-overthrow"
                 value={this.props.HasOverthrow}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
 
         <Show when={this.props.HasOverthrow === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -96,10 +91,12 @@ export default class MembershipOverthrow extends SubsectionElement {
             <Field title={i18n.t('legal.associations.overthrow.heading.address')}
                    help="legal.associations.overthrow.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="legal-associations-overthrow-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="legal-associations-overthrow-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.dates')}
@@ -160,6 +157,7 @@ MembershipOverthrow.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-overthrow',

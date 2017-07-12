@@ -62,7 +62,8 @@ describe('The Introduction component', () => {
       }
     })
     const component = mount(<Provider store={store}><AuthenticatedIntroduction /></Provider>)
-    expect(component.find('.introduction-modal').length).toBe(0)
+    expect(component.find('.introduction-modal').length).toBe(1)
+    expect(component.find('.modal').length).toBe(0)
   })
 
   it('hidden if not authenticated', () => {

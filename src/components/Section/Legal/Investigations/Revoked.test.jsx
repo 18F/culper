@@ -12,7 +12,7 @@ describe('The legal investigations revoked component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<Revoked onUpdate={onUpdate} />)
-    component.find('.legal-investigations-revoked-has-revocations .yes input').simulate('click')
+    component.find('.legal-investigations-revoked-has-revocations .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 

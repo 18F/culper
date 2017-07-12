@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from './config'
-import { SectionTitle, ProgressBar, ScoreCard, Navigation, NavigationToggle } from './components'
+import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from './components'
 import { connect } from 'react-redux'
 import { logout } from './actions/AuthActions'
 
@@ -119,8 +119,10 @@ class App extends React.Component {
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <ScoreCard />
-              <Navigation />
+              <Sticky>
+                <ScoreCard />
+                <Navigation />
+              </Sticky>
               &nbsp;
             </div>
             <div className={klassCore}>

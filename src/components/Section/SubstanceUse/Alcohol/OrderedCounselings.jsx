@@ -34,7 +34,11 @@ export default class OrderedCounselings extends SubsectionElement {
   }
 
   updateHasBeenOrdered (values) {
-    this.update({HasBeenOrdered: values})
+    this.update({
+      HasBeenOrdered: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -70,8 +74,8 @@ export default class OrderedCounselings extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
-          <Show when={!seekers && !counselingDates}>
-            <strong>{i18n.t('substance.alcohol.receivedCounseling.collection.summary')}</strong>
+          <Show when={!seekers.length && !counselingDates}>
+            <strong>{i18n.m('substance.alcohol.receivedCounseling.collection.summary')}</strong>
           </Show>
           <Show when={seekers || counselingDates}>
             <strong>{seekers.join(', ')}</strong>
@@ -89,13 +93,13 @@ export default class OrderedCounselings extends SubsectionElement {
         <Branch name="HasBeenOrdered"
                 className="has-been-ordered"
                 value={this.props.HasBeenOrdered}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasBeenOrdered}>
         </Branch>
 
         <Show when={this.props.HasBeenOrdered === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

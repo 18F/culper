@@ -9,41 +9,38 @@ export default class Contacts extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignContacts: props.HasForeignContacts,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateHasForeignContacts = this.updateHasForeignContacts.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignContacts: this.state.HasForeignContacts,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      HasForeignContacts: this.props.HasForeignContacts,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateHasForeignContacts (value) {
-    this.onUpdate('HasForeignContacts', value)
+    this.update({
+      HasForeignContacts: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = (item || {}).Item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.contacts.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.contacts.collection.summary.unknown')
 
     return (
       <span>
@@ -61,15 +58,15 @@ export default class Contacts extends SubsectionElement {
         <Branch name="has_foreign_contacts"
                 title={i18n.t('foreign.contacts.para.definition')}
                 help="foreign.contacts.help.branch"
-                value={this.state.HasForeignContacts}
+                value={this.props.HasForeignContacts}
+                warning={true}
                 onUpdate={this.updateHasForeignContacts}
                 onError={this.handleError}
                 />
-        <Show when={this.state.HasForeignContacts === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasForeignContacts === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -89,12 +86,13 @@ Contacts.defaultProps = {
   HasForeignContacts: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'contacts',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignContactsValidator(state, props).isValid()
+    return new ForeignContactsValidator(props, props).isValid()
   },
   defaultState: true
 }

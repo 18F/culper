@@ -1,4 +1,3 @@
-import AddressValidator from './address'
 import LocationValidator from './location'
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
@@ -71,7 +70,7 @@ export default class CivilUnionValidator {
       validPhoneNumber(this.telephone) &&
       validSSN(this.ssn) &&
       validBranch(this.separated) &&
-      new AddressValidator(this.address).isValid() &&
+      new LocationValidator(this.address).isValid() &&
       new LocationValidator(this.location).isValid() &&
       this.validSeparated() &&
       this.validCitizenship() &&

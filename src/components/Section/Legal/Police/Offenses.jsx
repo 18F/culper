@@ -10,38 +10,30 @@ export default class Offenses extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateHasOffenses = this.updateHasOffenses.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        HasOffenses: this.props.HasOffenses,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        ...updateValues
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasOffenses: this.props.HasOffenses,
+      ...queue
+    })
   }
 
   updateHasOffenses (value, event) {
-    if (value === 'No') {
-      this.onUpdate({
-        HasOffenses: value,
-        List: [],
-        ListBranch: ''
-      })
-    } else {
-      this.onUpdate({
-        HasOffenses: value
-      })
-    }
+    this.update({
+      HasOffenses: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate({
+    this.update({
       List: values.items,
       ListBranch: values.branch
     })
@@ -54,7 +46,7 @@ export default class Offenses extends SubsectionElement {
     const o = (item || {}).Item || {}
     const description = o.Description && o.Description.value
           ? o.Description.value
-          : i18n.t('legal.police.collection.summary.unknown')
+          : i18n.m('legal.police.collection.summary.unknown')
     const dates = DateSummary(o.Date)
 
     return (
@@ -73,20 +65,20 @@ export default class Offenses extends SubsectionElement {
         <Branch name="has_offenses"
                 className="has-offenses"
                 value={this.props.HasOffenses}
+                warning={true}
                 onUpdate={this.updateHasOffenses}
                 onError={this.handleError}>
-                <ul>
-                  <li>{i18n.m('legal.police.label.summons')}</li>
-                  <li>{i18n.m('legal.police.label.arrests')}</li>
-                  <li>{i18n.m('legal.police.label.charges')}</li>
-                  <li>{i18n.m('legal.police.label.probation')}</li>
-                  <li>{i18n.m('legal.police.label.trial')}</li>
-                </ul>
+          <ul>
+            <li>{i18n.m('legal.police.label.summons')}</li>
+            <li>{i18n.m('legal.police.label.arrests')}</li>
+            <li>{i18n.m('legal.police.label.charges')}</li>
+            <li>{i18n.m('legal.police.label.probation')}</li>
+            <li>{i18n.m('legal.police.label.trial')}</li>
+          </ul>
         </Branch>
         <Show when={this.props.HasOffenses === 'Yes'}>
           <div>
-            <Accordion minimum="1"
-                       items={this.props.List}
+            <Accordion items={this.props.List}
                        defaultState={this.props.defaultState}
                        branch={this.props.ListBranch}
                        onUpdate={this.updateList}
@@ -108,6 +100,7 @@ export default class Offenses extends SubsectionElement {
 }
 
 Offenses.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/offenses',
