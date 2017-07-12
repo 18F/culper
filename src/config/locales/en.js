@@ -6463,8 +6463,8 @@ const en = {
             note: ''
           },
           date: {
-            title: 'Need help with the date?',
-            message: 'Provide the date you voted.',
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           country: {
