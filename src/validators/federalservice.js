@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield } from './helpers'
 
 export default class FederalServiceValidator {
@@ -46,7 +46,7 @@ export class FederalServiceItemValidator {
   }
 
   validAddress () {
-    return new AddressValidator(this.address, null).isValid()
+    return new LocationValidator(this.address).isValid()
   }
 
   validDates () {

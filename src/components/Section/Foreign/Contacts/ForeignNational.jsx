@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Field, Name, Textarea, DateControl,
          CheckboxGroup, Checkbox, RadioGroup, Radio, Country,
-         Address, Text, NotApplicable, Show, BranchCollection, Location } from '../../../Form'
+         Text, NotApplicable, Show, BranchCollection, Location } from '../../../Form'
 
 export default class ForeignNational extends ValidationElement {
   constructor (props) {
@@ -497,12 +497,12 @@ export default class ForeignNational extends ValidationElement {
                          onUpdate={this.updateBirthplaceNotApplicable}
                          onError={this.props.onError}>
             <Location name="Birthplace"
-                        className="birthplace"
-                        layout={Location.CITY_COUNTRY}
-                        {...this.props.Birthplace}
-                        onUpdate={this.updateBirthplace}
-                        onError={this.props.onError}
-                        />
+                      className="birthplace"
+                      layout={Location.CITY_COUNTRY}
+                      {...this.props.Birthplace}
+                      onUpdate={this.updateBirthplace}
+                      onError={this.props.onError}
+                      />
           </NotApplicable>
         </Field>
 
@@ -515,12 +515,14 @@ export default class ForeignNational extends ValidationElement {
                          {...this.props.AddressNotApplicable}
                          onUpdate={this.updateAddressNotApplicable}
                          onError={this.props.onError}>
-            <Address name="Address"
-                     className="current-address"
-                     {...this.props.Address}
-                     onUpdate={this.updateAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="Address"
+                      className="current-address"
+                      {...this.props.Address}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateAddress}
+                      onError={this.props.onError}
+                      />
           </NotApplicable>
         </Field>
 
@@ -550,12 +552,14 @@ export default class ForeignNational extends ValidationElement {
                          {...this.props.EmployerAddressNotApplicable}
                          onUpdate={this.updateEmployerAddressNotApplicable}
                          onError={this.props.onError}>
-            <Address name="EmployerAddress"
-                     className="employer-address"
-                     {...this.props.EmployerAddress}
-                     onUpdate={this.updateEmployerAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="EmployerAddress"
+                      className="employer-address"
+                      {...this.props.EmployerAddress}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateEmployerAddress}
+                      onError={this.props.onError}
+                      />
           </NotApplicable>
         </Field>
 

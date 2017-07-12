@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Address, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show } from '../../Form'
+import { Location, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show } from '../../Form'
 
 export default class Order extends ValidationElement {
   constructor (props) {
@@ -87,12 +87,14 @@ export default class Order extends ValidationElement {
         <Field title={i18n.t(`psychological.${prefix}.heading.courtAddress`)}
                help={`psychological.${prefix}.help.courtAddress`}
                adjustFor="address">
-          <Address name="CourtAddress"
-                   {...this.props.CourtAddress}
-                   label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
-                   onUpdate={this.updateCourtAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="CourtAddress"
+                    {...this.props.CourtAddress}
+                    label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateCourtAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Show when={prefix !== 'competence'}>
@@ -130,11 +132,13 @@ export default class Order extends ValidationElement {
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
                  adjustFor="address">
-            <Address name="CourtAddress"
-                     bind={true}
-                     label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
-                     onError={this.props.onError}
-                     />
+            <Location name="CourtAddress"
+                      bind={true}
+                      label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onError={this.props.onError}
+                      />
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}

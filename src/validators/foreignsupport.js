@@ -1,5 +1,5 @@
 import NameValidator from './name'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield } from './helpers'
 
 export default class ForeignActivitiesSupportValidator {
@@ -49,7 +49,7 @@ export class SupportValidator {
   }
 
   validAddress () {
-    return !!this.address && new AddressValidator(this.address, null).isValid()
+    return !!this.address && new LocationValidator(this.address).isValid()
   }
 
   validRelationship () {

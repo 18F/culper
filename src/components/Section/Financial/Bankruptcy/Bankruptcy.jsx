@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, DateControl, Currency, Field,
-         Text, Textarea, Name, Address, Checkbox, NotApplicable, RadioGroup, Radio, Location } from '../../../Form'
+         Text, Textarea, Name, Checkbox, NotApplicable, RadioGroup, Radio, Location } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
@@ -246,12 +246,14 @@ export default class Bankruptcy extends ValidationElement {
         <Field title={i18n.t('financial.bankruptcy.heading.courtAddress')}
                help="financial.bankruptcy.courtAddress.help"
                adjustFor="address">
-          <Address name="CourtAddress"
-                   label={i18n.t('financial.bankruptcy.courtAddress.label')}
-                   {...this.props.CourtAddress}
-                   onUpdate={this.updateCourtAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="CourtAddress"
+                    label={i18n.t('financial.bankruptcy.courtAddress.label')}
+                    {...this.props.CourtAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateCourtAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Show when={this.props.PetitionType === 'Chapter13'}>
@@ -269,13 +271,15 @@ export default class Bankruptcy extends ValidationElement {
             <Field title={i18n.t('financial.bankruptcy.trustee.address.title')}
                    help="financial.bankruptcy.trustee.address.help"
                    adjustFor="address">
-              <Address name="trusteeAddress"
-                       className="trustee-address"
-                       {...this.props.TrusteeAddress}
-                       label={i18n.t('financial.bankruptcy.trustee.address.label')}
-                       onError={this.props.onError}
-                       onUpdate={this.updateTrusteeAddress}
-                       />
+              <Location name="trusteeAddress"
+                        className="trustee-address"
+                        {...this.props.TrusteeAddress}
+                        label={i18n.t('financial.bankruptcy.trustee.address.label')}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onError={this.props.onError}
+                        onUpdate={this.updateTrusteeAddress}
+                        />
             </Field>
           </div>
         </Show>

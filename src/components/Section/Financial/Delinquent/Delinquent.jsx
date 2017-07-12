@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { DelinquentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
-         NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
+         NotApplicable, Location, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
 
 export default class Delinquent extends SubsectionElement {
@@ -205,10 +205,12 @@ export default class Delinquent extends SubsectionElement {
             <Field title={i18n.t('financial.delinquent.heading.courtaddress')}
                    help="financial.delinquent.help.courtaddress"
                    adjustFor="address">
-              <Address name="CourtAddress"
-                       className="delinquent-courtaddress"
-                       bind={true}
-                       />
+              <Location name="CourtAddress"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        className="delinquent-courtaddress"
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('financial.delinquent.heading.description')}

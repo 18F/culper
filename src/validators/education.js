@@ -1,7 +1,7 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
 import { validGenericTextfield } from './helpers'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import ReferenceValidator from './reference'
 
 export default class EducationValidator {
@@ -62,7 +62,7 @@ export class EducationItemValidator {
   }
 
   validAddress () {
-    return new AddressValidator(this.address, null).isValid()
+    return new LocationValidator(this.address).isValid()
   }
 
   validName () {

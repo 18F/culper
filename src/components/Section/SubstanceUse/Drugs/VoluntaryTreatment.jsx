@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, ValidationElement, Address, Branch, Text, Textarea, DateRange, Telephone, Show } from '../../../Form'
+import { Field, ValidationElement, Location, Branch, Text, Textarea, DateRange, Telephone, Show } from '../../../Form'
 import DrugType from './DrugType'
 
 export default class VoluntaryTreatment extends ValidationElement {
@@ -65,12 +65,12 @@ export default class VoluntaryTreatment extends ValidationElement {
       <div className="drug-voluntary-treatment">
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.drugType')}
-          className="drug-type-voluntary">
+               className="drug-type-voluntary">
           <DrugType name="DrugType"
-            {...this.props.DrugType}
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-          />
+                    {...this.props.DrugType}
+                    onUpdate={this.updateDrugType}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProvider')}
@@ -87,12 +87,14 @@ export default class VoluntaryTreatment extends ValidationElement {
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderAddress')}
                adjustFor="address"
                help={'substance.drugs.voluntary.help.treatmentProviderAddress'}>
-          <Address name="TreatmentProviderAddress"
-                   className="treatment-provider-address"
-                   {...this.props.TreatmentProviderAddress}
-                   onUpdate={this.updateTreatmentProviderAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="TreatmentProviderAddress"
+                    className="treatment-provider-address"
+                    {...this.props.TreatmentProviderAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateTreatmentProviderAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderTelephone')}
                className="treatment-provider-telephone"

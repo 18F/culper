@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Name, Address, DateRange, Text, Field } from '../../../Form'
+import { Name, Location, DateRange, Text, Field } from '../../../Form'
 
 export default class ForeignContact extends React.Component {
   constructor (props) {
@@ -69,12 +69,14 @@ export default class ForeignContact extends React.Component {
         <Field title={i18n.t('military.foreign.heading.contact.address')}
                adjustFor="address"
                shrink={true}>
-          <Address name="Address"
-                   className="foreign-contact-address"
-                   {...this.props.Address}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    className="foreign-contact-address"
+                    {...this.props.Address}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.contact.title')}>
