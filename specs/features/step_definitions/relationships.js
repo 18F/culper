@@ -20,18 +20,19 @@ let range = 10
 defineSupportCode(({Given, Then, When}) => {
 
   When(/^I fill in the relationships (.*?) section$/, (subsection) => {
-    const section = 'relationships'
+    const section = 'Relationships'
+    const ssheader = 'Marital & relationship status'
     let promise = navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection.split("/")[0]) }) //workaround
-      .then(() => { return navigateToSubsection(section, subsection) })
+      .then(() => { return navigateToSection(ssheader)})
+      .then(() => { return navigateToSubsection(section.toLowerCase(), subsection) })
 
     switch (subsection) {
-    case 'status/marital':
-      return completeRelationshipStatusMarital(promise)
-    case 'status/cohabitant':
-      return completeRelationshipStatusCohabitant(promise)
-    default:
-      return promise
+      case 'status/marital':
+        return completeRelationshipStatusMarital(promise)
+      case 'status/cohabitant':
+        return completeRelationshipStatusCohabitant(promise)
+      default:
+        return promise
     }
   })
 
@@ -88,10 +89,37 @@ const completeRelationshipStatusMarital = (promise) => {
 const completeRelationshipStatusCohabitant = (promise) => {
   return promise
     .then(() => { return setOption('.cohabitants .has-cohabitant .blocks.option-list .yes.block') })
+    .then(() => { return setText('.cohabitants .cohabitant-name .field .first input', 'CohabFirst') })
+    .then(() => { return setText('.cohabitants .cohabitant-name .field .middle input', 'CohabMiddle') })
+    .then(() => { return setText('.cohabitants .cohabitant-name .field .last input', 'CohabLast') })
+    .then(() => { return setText('.cohabitants .datecontrol.birthdate .month input', '3') })
+    .then(() => { return setText('.cohabitants .datecontrol.birthdate .day input', '3') })
+    .then(() => { return setText('.cohabitants .datecontrol.birthdate .year input', '1980') })
+    .then(() => { return setOption('.cohabitants .birthplace .blocks.option-list .yes.block') })
+    .then(() => { return setText('.cohabitants .birthplace .fields .state input', 'VA') })
+    .then(() => { return setText('.cohabitants .birthplace .fields .city input', 'Fairfax') })
+    .then(() => { return setText('.cohabitants .birthplace .fields .county input', 'Fairfax') })
+    .then(() => { return setText('.cohabitants .ssn .first input', '323') })
+    .then(() => { return setText('.cohabitants .ssn .middle input', '42') })
+    .then(() => { return setText('.cohabitants .ssn .last input', '5252') })
+    .then(() => { return setText('.cohabitants .othername .field .first input', 'CohabFirst') })
+    .then(() => { return setText('.cohabitants .othername .field .middle input', 'CohabMiddle') })
+    .then(() => { return setText('.cohabitants .othername .field .last input', 'CohabLastMaiden') })
+    .then(() => { return setOption('.cohabitants .maiden-name.othername .blocks.option-list .yes.block') })
+    .then(() => { return setText('.cohabitants .daterange.othername .datecontrol.from .month input', '3') })
+    .then(() => { return setText('.cohabitants .daterange.othername .datecontrol.from .day input', '3') })
+    .then(() => { return setText('.cohabitants .daterange.othername .datecontrol.from .year input', '1980') })
+    .then(() => { return setText('.cohabitants .daterange.othername .datecontrol.to .month input', '2') })
+    .then(() => { return setText('.cohabitants .daterange.othername .datecontrol.to .day input', '2') })
+    .then(() => { return setText('.cohabitants .daterange.othername .datecontrol.to .year input', '2010') })
+    .then(() => { return setText('.cohabitants .country.relationships-cohabitant-citizenship input', 'United States') })
+    .then(() => { return setText('.cohabitants .datecontrol.cohabitation-began .month input', '3') })
+    .then(() => { return setText('.cohabitants .datecontrol.cohabitation-began .day input', '3') })
+    .then(() => { return setText('.cohabitants .datecontrol.cohabitation-began .year input', '2000') })
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -100,9 +128,10 @@ const navigateToSection = (section) => {
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.section a[href="/form/' + section + '/' + subsection + '"]'
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
   return client
     .assert.visible(selector)
+    .click(selector)
     .click(selector)
     .pause(3000)
     .saveScreenshot('./screenshots/Relationships/' + filenum() + '-navigate-subsection.png')
