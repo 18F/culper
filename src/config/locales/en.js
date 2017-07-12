@@ -6417,9 +6417,9 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates?',
-            message: 'Provide the dates you held political office.',
-            note: ''
+            title: 'Need help with this date range?',
+            message: 'Tell us the full date range you held this political office.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
           country: {
             title: 'Need help with the country involved?',
