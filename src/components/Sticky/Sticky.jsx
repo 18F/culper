@@ -1,9 +1,9 @@
 import React from 'react'
 
 // TODO: Remove logging after wide range of browser testing.
-const isEventSupported = (eventName) => {
+const isEventSupported = (el, eventName) => {
   const faux = `on${eventName}`
-  if (faux in window) {
+  if (faux in el) {
     // console.log('event [' + eventName + '] is supported')
     return true
   }
@@ -31,7 +31,7 @@ export default class Sticky extends React.Component {
     const w = this.props.window()
     let scroll = false
     this.props.events.scroll.forEach(name => {
-      if (!scroll && isEventSupported(name)) {
+      if (!scroll && isEventSupported(w, name)) {
         this.props.addEvent(w, name, this.onScroll)
         scroll = true
       }
@@ -39,7 +39,7 @@ export default class Sticky extends React.Component {
 
     let wheel = false
     this.props.events.wheel.forEach(name => {
-      if (!wheel && isEventSupported(name)) {
+      if (!wheel && isEventSupported(w, name)) {
         this.props.addEvent(w, name, this.onWheel)
         wheel = true
       }
@@ -51,12 +51,12 @@ export default class Sticky extends React.Component {
   componentWillUnmount () {
     const w = this.props.window()
     this.props.events.scroll.forEach(name => {
-      if (isEventSupported(name)) {
+      if (isEventSupported(w, name)) {
         this.props.removeEvent(w, name, this.onScroll)
       }
     })
     this.props.events.wheel.forEach(name => {
-      if (isEventSupported(name)) {
+      if (isEventSupported(w, name)) {
         this.props.removeEvent(w, name, this.onWheel)
       }
     })

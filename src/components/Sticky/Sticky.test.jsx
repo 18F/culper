@@ -32,6 +32,7 @@ describe('The sticky component', () => {
       window: () => {
         return {
           ...window,
+          onscroll: () => {},
           pageYOffset: 100
         }
       },
@@ -60,6 +61,7 @@ describe('The sticky component', () => {
       window: () => {
         return {
           ...window,
+          onmousewheel: () => {},
           pageYOffset: 500
         }
       },
@@ -89,6 +91,7 @@ describe('The sticky component', () => {
       window: () => {
         return {
           ...window,
+          onmousewheel: () => {},
           pageYOffset: 300
         }
       },
