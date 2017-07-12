@@ -4,7 +4,7 @@ import { NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessSponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Text, Textarea, Country, DateControl, Address, Name,
+         Text, Textarea, Country, DateControl, Name,
          Location, DateRange, NotApplicable } from '../../../Form'
 
 export default class Sponsorship extends SubsectionElement {
@@ -41,7 +41,7 @@ export default class Sponsorship extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.t('foreign.business.sponsorship.collection.summary.unknown'))
+    const name = NameSummary(obj.Name, i18n.m('foreign.business.sponsorship.collection.summary.unknown'))
     const dates = DateSummary(obj.Dates)
 
     return (
@@ -67,8 +67,7 @@ export default class Sponsorship extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignSponsorship === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -102,25 +101,26 @@ export default class Sponsorship extends SubsectionElement {
                    adjustFor="birthplace"
                    validate={false}>
               <Location name="Birthplace"
-                          layout={Location.CITY_COUNTRY}
-                          fields={['city', 'country']}
-                          help=""
-                          label={i18n.t('foreign.business.sponsorship.label.birthplace')}
-                          cityPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.city')}
-                          countryPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.country')}
-                          hideCounty={true}
-                          className="foreign-business-sponsorship-birthplace"
-                          bind={true}
-                          />
+                        layout={Location.CITY_COUNTRY}
+                        fields={['city', 'country']}
+                        help=""
+                        label={i18n.t('foreign.business.sponsorship.label.birthplace')}
+                        cityPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.city')}
+                        countryPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.country')}
+                        hideCounty={true}
+                        className="foreign-business-sponsorship-birthplace"
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.address')}
                    help="foreign.business.sponsorship.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="foreign-business-sponsorship-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="foreign-business-sponsorship-address"
+                        layout={Location.ADDRESS}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.citizenship')}
@@ -152,10 +152,12 @@ export default class Sponsorship extends SubsectionElement {
               <NotApplicable name="OrganizationAddressNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
                              bind={true}>
-                <Address name="OrganizationAddress"
-                         className="foreign-business-sponsorship-organizationaddress"
-                         bind={true}
-                         />
+                <Location name="OrganizationAddress"
+                          className="foreign-business-sponsorship-organizationaddress"
+                          layout={Location.ADDRESS}
+                          geocode={true}
+                          bind={true}
+                          />
               </NotApplicable>
             </Field>
 
@@ -171,11 +173,13 @@ export default class Sponsorship extends SubsectionElement {
             <Field title={i18n.t('foreign.business.sponsorship.heading.residence')}
                    help="foreign.business.sponsorship.help.residence"
                    adjustFor="address no-buttons">
-              <Address name="Residence"
-                       className="foreign-business-sponsorship-residence"
-                       disableToggle={true}
-                       bind={true}
-                       />
+              <Location name="Residence"
+                        className="foreign-business-sponsorship-residence"
+                        disableToggle={true}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.stay')}

@@ -43,7 +43,7 @@ export default class History extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.investigations.history.collection.item')
-    const unknown = i18n.t('legal.investigations.history.collection.unknown')
+    const unknown = i18n.m('legal.investigations.history.collection.unknown')
     const o = item || {}
     const agency = (o.Agency || {}).Agency
           ? o.Agency.Agency
@@ -73,8 +73,7 @@ export default class History extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasHistory === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

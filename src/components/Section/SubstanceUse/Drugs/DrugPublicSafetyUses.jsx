@@ -52,7 +52,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {description || i18n.t('substance.drugs.clearance.collection.summary')}
+            {description || i18n.m('substance.drugs.clearance.collection.summary')}
           </strong>
         </span>
         <span className="dates">
@@ -75,8 +75,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.UsedDrugs === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

@@ -15,9 +15,10 @@ export default class Passport extends SubsectionElement {
     this.updateNumber = this.updateNumber.bind(this)
     this.updateCard = this.updateCard.bind(this)
     this.updateIssued = this.updateIssued.bind(this)
-    this.updateExpired = this.updateExpired.bind(this)
+    this.updateExpiration = this.updateExpiration.bind(this)
+    this.showSuggestions = this.showSuggestions.bind(this)
     this.onSuggestion = this.onSuggestion.bind(this)
-    this.dismissSuggestions = this.dismissSuggestions.bind(this)
+    this.onDismiss = this.onDismiss.bind(this)
   }
 
   update (queue, fn) {
@@ -29,6 +30,7 @@ export default class Passport extends SubsectionElement {
       Expiration: this.props.Expiration,
       Comments: this.props.Comments,
       HasPassport: this.props.HasPassport,
+      suggestedNames: this.props.suggestedNames,
       ...queue
     })
 
@@ -82,9 +84,9 @@ export default class Passport extends SubsectionElement {
     })
   }
 
-  updateExpired (values) {
+  updateExpiration (values) {
     this.update({
-      Expired: values
+      Expiration: values
     })
   }
 
@@ -96,21 +98,25 @@ export default class Passport extends SubsectionElement {
 
   onSuggestion (suggestion) {
     this.update({
-      Name: suggestion
+      Name: suggestion,
+      suggestedNames: []
     })
   }
 
-  dismissSuggestions () {
+  onDismiss (suggestion) {
+    this.update({
+      suggestedNames: []
+    })
+  }
+
+  showSuggestions () {
     // If we have a name already, don't show
     if (this.props.Name && this.props.Name.first && this.props.Name.last) {
-      return true
+      return false
     }
 
     // If we have suggestions, show them
-    if (this.props.suggestedNames && this.props.suggestedNames.length) {
-      return false
-    }
-    return true
+    return this.props.suggestedNames.length
   }
 
   render () {
@@ -141,23 +147,23 @@ export default class Passport extends SubsectionElement {
         <Show when={this.props.HasPassport === 'Yes'}>
           <div>
             <h3>{i18n.t('foreign.passport.name')}</h3>
-            <Suggestions suggestions={this.props.suggestedNames}
+            <Suggestions show={this.showSuggestions()}
+                         suggestions={this.props.suggestedNames}
                          renderSuggestion={this.renderSuggestion}
-                         onSuggestion={this.onSuggestion}
-                         withSuggestions="true"
-                         dismissSuggestions={this.dismissSuggestions()}
+                         withSuggestions={true}
                          suggestionTitle={i18n.t('suggestions.name.title')}
                          suggestionParagraph={i18n.m('suggestions.name.para')}
                          suggestionLabel={i18n.t('suggestions.name.label')}
                          suggestionDismissLabel={i18n.t('suggestions.name.dismiss')}
                          suggestionUseLabel={i18n.t('suggestions.name.use')}
-                         >
-              <Name name="name"
-                    {...this.props.Name}
-                    onUpdate={this.updateName}
-                    onError={this.handleError}
-                    />
-            </Suggestions>
+                         onSuggestion={this.onSuggestion}
+                         onDismiss={this.onDismiss}
+                         />
+            <Name name="name"
+                  {...this.props.Name}
+                  onUpdate={this.updateName}
+                  onError={this.handleError}
+                  />
 
             <Field title={i18n.t('foreign.passport.number')}
                    help="foreign.passport.help.number"
@@ -168,12 +174,14 @@ export default class Passport extends SubsectionElement {
                 <RadioGroup className="passport-card option-list"
                             selectedValue={this.props.Card}>
                   <Radio name="passport-book"
+                         className="passport-book"
                          label={i18n.t('foreign.passport.label.book')}
                          value="Book"
                          onChange={this.updateCard}
                          onError={this.handleError}
                          />
                   <Radio name="passport-card"
+                         className="passport-card"
                          label={i18n.t('foreign.passport.label.card')}
                          value="Card"
                          onChange={this.updateCard}
@@ -186,7 +194,7 @@ export default class Passport extends SubsectionElement {
                       placeholder={i18n.t('foreign.passport.placeholder.number')}
                       pattern={re}
                       maxlength="9"
-                      className="number"
+                      className="number passport-number"
                       ref="number"
                       prefix="passport"
                       onUpdate={this.updateNumber}
@@ -200,6 +208,7 @@ export default class Passport extends SubsectionElement {
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="issued"
+                           className="passport-issued"
                            {...this.props.Issued}
                            onUpdate={this.updateIssued}
                            onError={this.handleError}
@@ -211,6 +220,7 @@ export default class Passport extends SubsectionElement {
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="expiration"
+                           className="passport-expiration"
                            {...this.props.Expiration}
                            onUpdate={this.updateExpiration}
                            onError={this.handleError}
@@ -235,6 +245,7 @@ Passport.defaultProps = {
   Expiration: {},
   Comments: '',
   HasPassport: '',
+  suggestedNames: [],
   reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
   reCard: '^[cC]{1}[0-9]{8}$',
   onUpdate: (queue) => {},

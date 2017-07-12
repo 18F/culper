@@ -52,7 +52,7 @@ export default class OrderedTreatments extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {explanation || i18n.t('substance.drugs.ordered.collection.summary')}
+            {explanation || i18n.m('substance.drugs.ordered.collection.summary')}
           </strong>
         </span>
         <span className="dates">
@@ -75,8 +75,7 @@ export default class OrderedTreatments extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.TreatmentOrdered === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

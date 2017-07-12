@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { ForeignActivitiesSupportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Text, Textarea, Currency, Name, Address, Country,
+         Text, Textarea, Currency, Name, Location, Country,
          Checkbox } from '../../../Form'
 
 export default class Support extends SubsectionElement {
@@ -42,7 +42,7 @@ export default class Support extends SubsectionElement {
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.activities.support.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.activities.support.collection.summary.unknown')
 
     return (
       <span>
@@ -65,8 +65,7 @@ export default class Support extends SubsectionElement {
                 />
 
         <Show when={this.props.HasForeignSupport === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -83,10 +82,12 @@ export default class Support extends SubsectionElement {
 
             <Field title={i18n.t('foreign.activities.support.heading.address')}
                    adjustFor="address">
-              <Address name="Address"
-                       className="foreign-activities-support-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="foreign-activities-support-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.relationship')}

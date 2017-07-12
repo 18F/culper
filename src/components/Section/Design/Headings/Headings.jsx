@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Telephone, Accordion, Country,
-         Address, RadioGroup, Radio, DateRange, DateControl, Text, Name } from '../../../Form'
+         Location, RadioGroup, Radio, DateRange, DateControl, Text, Name } from '../../../Form'
 
 export default class Headings extends ValidationElement {
   constructor (props) {
@@ -93,7 +93,7 @@ export default class Headings extends ValidationElement {
         </Field>
 
         <Field title="(h3) Address component" adjustFor="big-buttons">
-          <Address name="TestAddress" />
+          <Location name="TestAddress" layout={Location.ADDRESS} />
         </Field>
 
         <Branch label="(h3) Branch component" labelSize="h3" />
@@ -109,13 +109,13 @@ export default class Headings extends ValidationElement {
         <h3>(h3) {i18n.t('identification.contacts.heading.phoneNumber')}</h3>
         <p>(p) {i18n.t('identification.contacts.para.phoneNumber')}</p>
 
-        <Accordion minimum="1"
-                   items={this.state.List}
+        <Accordion items={this.state.List}
                    summary={this.summary}
                    description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                    appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
                    onUpdate={this.updateList}>
-          <Field help="identification.contacts.help.phoneNumber">
+          <Field help="identification.contacts.help.phoneNumber"
+                 adjustFor="telephone">
             <Telephone name="Telephone" bind={true} />
           </Field>
         </Accordion>

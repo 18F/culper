@@ -54,7 +54,7 @@ export default class Nonpayment extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.t('financial.nonpayment.collection.summary.unknown')
+    const name = (obj.Name || {}).value || i18n.m('financial.nonpayment.collection.summary.unknown')
     const amount = (obj.Amount || {}).value
     const text = `${name}${amount ? ', $' + amount : ''}`.trim()
     const date = (obj.Date || {})
@@ -101,8 +101,7 @@ export default class Nonpayment extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}

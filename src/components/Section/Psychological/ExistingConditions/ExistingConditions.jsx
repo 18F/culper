@@ -89,7 +89,7 @@ export default class ExistingConditions extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="info">
           <strong>
-            {condition || i18n.t('psychological.existingConditions.treatment.collection.summary')}
+            {condition || i18n.m('psychological.existingConditions.treatment.collection.summary')}
           </strong>
         </span>
         <span className="treatmentdate"><strong>{condition && formattedTreatmentDate}</strong></span>
@@ -152,8 +152,7 @@ export default class ExistingConditions extends SubsectionElement {
             </Show>
 
             <Show when={this.props.ReceivedTreatment === 'Yes'}>
-              <Accordion minimum="1"
-                         defaultState={this.props.defaultState}
+              <Accordion defaultState={this.props.defaultState}
                          items={this.props.TreatmentList}
                          branch={this.props.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}

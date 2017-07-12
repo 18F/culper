@@ -77,6 +77,7 @@ export default combineReducers({
   Legal: reducer('Legal'),
   Psychological: reducer('Psychological'),
   SubstanceUse: reducer('SubstanceUse'),
+  Releases: reducer('Releases'),
   Completed: errorReducer('Completed'),
   Errors: errorReducer('Errors')
 })

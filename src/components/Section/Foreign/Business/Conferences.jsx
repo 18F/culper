@@ -41,7 +41,7 @@ export default class Conferences extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const city = (obj.City || {}).value || i18n.t('foreign.business.conferences.collection.summary.unknown')
+    const city = (obj.City || {}).value || i18n.m('foreign.business.conferences.collection.summary.unknown')
     const date = DateSummary(item.Dates)
 
     return (
@@ -69,8 +69,7 @@ export default class Conferences extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignConferences === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

@@ -39,7 +39,7 @@ export default class OtherNames extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const name = NameSummary(item.Name, i18n.t('identification.othernames.collection.summary.unknown'))
+    const name = NameSummary(item.Name, i18n.m('identification.othernames.collection.summary.unknown'))
     const dates = DateSummary(item.DatesUsed, i18n.t('identification.othernames.collection.summary.nodates'))
 
     return (
@@ -66,8 +66,7 @@ export default class OtherNames extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasOtherNames === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}

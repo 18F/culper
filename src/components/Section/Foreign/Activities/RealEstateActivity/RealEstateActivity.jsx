@@ -57,7 +57,7 @@ export default class RealEstateActivity extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="interest">
-          <strong>{summary || i18n.t('foreign.activities.realestate.collection.summary')}</strong>
+          <strong>{summary || i18n.m('foreign.activities.realestate.collection.summary')}</strong>
         </span>
         <span className="acquired">{acquired}</span>
       </span>
@@ -77,8 +77,7 @@ export default class RealEstateActivity extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

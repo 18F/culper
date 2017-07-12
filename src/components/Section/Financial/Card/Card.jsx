@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { CardAbuseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
-         Address, Checkbox, Text, Textarea } from '../../../Form'
+         Location, Checkbox, Text, Textarea } from '../../../Form'
 
 export default class Card extends SubsectionElement {
   constructor (props) {
@@ -53,7 +53,7 @@ export default class Card extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.t('financial.card.collection.summary.unknown')
+    const agency = (obj.Agency || {}).value || i18n.m('financial.card.collection.summary.unknown')
     const date = (obj.Date || {})
 
     let from = ''
@@ -81,8 +81,7 @@ export default class Card extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
@@ -102,10 +101,12 @@ export default class Card extends SubsectionElement {
             <Field title={i18n.t('financial.card.heading.address')}
                    help="financial.card.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="card-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="card-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('financial.card.heading.date')}

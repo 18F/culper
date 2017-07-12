@@ -57,8 +57,7 @@ export default class BenefitActivity extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasBenefits === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -127,7 +126,7 @@ export const benefitSummary = (item, index) => {
     <span className="content">
       <span className="index">{type}: {index + 1}</span>
       <span className="benefit-summary">
-        <strong>{ summary || i18n.t('foreign.activities.benefit.collection.summary')}</strong>
+        <strong>{ summary || i18n.m('foreign.activities.benefit.collection.summary')}</strong>
       </span>
       <span className="date"><strong>{benefit.Date}</strong></span>
     </span>

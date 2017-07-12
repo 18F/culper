@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import ReferenceValidator from './reference'
 import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear,
          validDateField, withinSevenYears, BranchCollection } from './helpers'
@@ -39,7 +39,7 @@ export default class EmploymentValidator {
   }
 
   validAddress () {
-    return new AddressValidator(this.address, null).isValid()
+    return new LocationValidator(this.address).isValid()
   }
 
   validAdditionalActivity () {
@@ -74,7 +74,7 @@ export default class EmploymentValidator {
 
     if (this.physicalAddress.HasDifferentAddress === 'Yes') {
       return this.physicalAddress.Address &&
-        new AddressValidator(this.physicalAddress.Address, null).isValid()
+        new LocationValidator(this.physicalAddress.Address).isValid()
     }
 
     return true
@@ -117,7 +117,7 @@ export default class EmploymentValidator {
       validGenericTextfield(this.supervisor.SupervisorName) &&
       validGenericTextfield(this.supervisor.Title) &&
       validNotApplicable(this.supervisor.EmailNotApplicable, () => { return validGenericTextfield(this.supervisor.Email) }) &&
-      new AddressValidator(this.supervisor.Address, null).isValid() &&
+      new LocationValidator(this.supervisor.Address).isValid() &&
       validPhoneNumber(this.supervisor.Telephone)
   }
 

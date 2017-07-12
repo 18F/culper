@@ -40,7 +40,7 @@ export default class Revoked extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.investigations.revoked.collection.item')
-    const unknown = i18n.t('legal.investigations.revoked.collection.unknown')
+    const unknown = i18n.m('legal.investigations.revoked.collection.unknown')
     const o = item || {}
     const agency = (o.Agency || {}).value
           ? o.Agency.value
@@ -71,8 +71,7 @@ export default class Revoked extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasRevocations === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

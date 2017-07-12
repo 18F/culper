@@ -68,7 +68,7 @@ export default class History extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Dates)
-    const service = serviceNameDisplay(o.Service || i18n.t('military.history.collection.summary.unknown'))
+    const service = serviceNameDisplay(o.Service || i18n.m('military.history.collection.summary.unknown'))
 
     return (
       <span>
@@ -92,8 +92,7 @@ export default class History extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasServed === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

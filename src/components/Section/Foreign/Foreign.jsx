@@ -5,7 +5,6 @@ import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
 import Travel from './Travel'
@@ -114,24 +113,21 @@ class Foreign extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="foreign intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 17 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="military/review"
+                       backLabel={i18n.t('military.destination.review')}
+                       next="foreign/passport"
+                       nextLabel={i18n.t('foreign.destination.passport')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop="true"
-                       back="military/foreign"
-                       backLabel={i18n.t('military.destination.foreign')}
+                       back="foreign/travel"
+                       backLabel={i18n.t('foreign.destination.travel')}
                        next="substance/drugs/usage"
                        nextLabel={i18n.t('substance.destination.drugs.usage')}
                        >
@@ -289,15 +285,15 @@ class Foreign extends SectionElement {
           </SectionView>
 
           <SectionView name="passport"
-                       back="military/foreign"
-                       backLabel={i18n.t('military.destination.foreign')}
+                       back="foreign/intro"
+                       backLabel={i18n.t('foreign.destination.intro')}
                        next="foreign/contacts"
                        nextLabel={i18n.t('foreign.destination.contacts')}>
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
-                      {...this.props.Passport}
                       dispatch={this.props.dispatch}
                       suggestedNames={this.props.suggestedNames}
+                      {...this.props.Passport}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       />
@@ -585,7 +581,6 @@ function mapStateToProps (state) {
 
 Foreign.defaultProps = {
   section: 'foreign',
-  defaultView: (props) => { return 'passport' },
   store: 'Foreign'
 }
 

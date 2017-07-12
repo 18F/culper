@@ -40,7 +40,7 @@ export default class Advocating extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.associations.advocating.collection.item')
-    const unknown = i18n.t('legal.associations.advocating.collection.unknown')
+    const unknown = i18n.m('legal.associations.advocating.collection.unknown')
     const o = item || {}
     const details = (o.Reasons || {}).value
           ? o.Reasons.value
@@ -70,8 +70,7 @@ export default class Advocating extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasAdvocated === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

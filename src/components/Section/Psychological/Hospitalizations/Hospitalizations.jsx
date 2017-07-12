@@ -50,7 +50,7 @@ export default class Hospitalizations extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="facility">
-          <strong>{facility || i18n.t('psychological.hospitalization.collection.summary')}</strong>
+          <strong>{facility || i18n.m('psychological.hospitalization.collection.summary')}</strong>
         </span>
         <span className="treatmentdate"><strong>{facility && formattedTreatmentDate}</strong></span>
       </span>
@@ -69,8 +69,7 @@ export default class Hospitalizations extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.Hospitalized === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

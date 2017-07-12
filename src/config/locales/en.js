@@ -1,4 +1,12 @@
 const en = {
+  temp: {
+    intro: {
+      title: 'Introduction title placeholder',
+      body: [
+        'Introduction body placeholder'
+      ]
+    }
+  },
   app: {
     logout: 'Logout',
     skip: 'Skip to main content',
@@ -795,6 +803,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
+      intro: 'Intro',
       review: 'Review Identification',
       relationships: 'Relationships',
       othernames: 'Other names used',
@@ -860,7 +869,7 @@ const en = {
           name: 'Name',
           present: 'Now',
           nodates: 'NA',
-          unknown: 'Provide your full name below'
+          unknown: '*Provide your full name below*'
         },
         append: 'Add another name'
       },
@@ -951,8 +960,8 @@ const en = {
         summary: {
           title: 'Summary of email addresses',
           email: 'Email',
-          unknownEmail: 'Provide your email address below',
-          unknownPhone: 'Provide your telephone number below',
+          unknownEmail: '*Provide your email address below*',
+          unknownPhone: '*Provide your telephone number below*',
           phoneNumber: 'Phone number'
         },
         phoneNumbers: {
@@ -1110,6 +1119,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
+      intro: 'Intro',
       gambling: 'Gambling',
       bankruptcy: 'Bankruptcy',
       taxes: 'Taxes',
@@ -1131,7 +1141,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of financial problems',
-          unknownlosses: 'Provide your financial problem details',
+          unknownlosses: '*Provide your financial problem details*',
           present: 'Now',
           nodates: 'NA',
           debt: 'Debt'
@@ -1189,7 +1199,7 @@ const en = {
         summary: {
           title: 'Summary of Bankruptcy',
           item: 'Petition',
-          unknown: 'Provide your petition details below',
+          unknown: '*Provide your petition details below*',
           nodates: 'NA',
           chapter: 'Chapter',
           appendTitle: 'In the last seven (7) years, have you filed any additional petitions under any chapter of the bankruptcy code?'
@@ -1384,7 +1394,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of failed tax filings',
-          unknown: 'Provide your tax filing information below',
+          unknown: '*Provide your tax filing information below*',
           item: 'Agency'
         },
         appendTitle: 'Are there any other instances in the last seven (7) years where you failed to file or pay Federal, state, or other taxes when required by law or ordinance?',
@@ -1447,7 +1457,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of employer card abuses',
-          unknown: 'Provide your card abuse information below',
+          unknown: '*Provide your card abuse information below*',
           item: 'Employer'
         },
         appendTitle: 'Are there any other instances in the last seven (7) years where you have been counseled, warned, or disciplined for violating the term of agreement for a travel or credit card provided by your employer?',
@@ -1503,7 +1513,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of credit counseling',
-          unknown: 'Provide your credit counseling details below',
+          unknown: '*Provide your credit counseling details below*',
           item: 'Service'
         },
         appendTitle: 'Are you currently utilizing, or seeking assistance from any other credit counseling service or similar resource to resolve your financial difficulties?',
@@ -1612,7 +1622,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of delinquent payment issues',
-          unknown: 'Provide your payment issue details below',
+          unknown: '*Provide your payment issue details below*',
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
@@ -1712,7 +1722,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of non-payment issues',
-          unknown: 'Provide your non-payment details below',
+          unknown: '*Provide your non-payment details below*',
           item: 'Service'
         },
         appendTitle: 'Other than previously listed, are there any other instances of the following occurrences?',
@@ -1729,6 +1739,7 @@ const en = {
       para: 'View all the sections associated with citizenship at once'
     },
     destination: {
+      intro: 'Intro',
       review: 'Review Citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
@@ -1979,7 +1990,7 @@ const en = {
           summary: {
             title: 'Summary of dual/multiple citizenships',
             item: 'Country',
-            unknown: 'Provide citizenship details below'
+            unknown: '*Provide citizenship details below*'
           },
           appendTitle: 'Do you have an additional citizenship to provide?',
           append: 'Add another citizenship'
@@ -1988,7 +1999,7 @@ const en = {
           summary: {
             title: 'Summary of foreign passports',
             item: 'Country',
-            unknown: 'Provide passport details below'
+            unknown: '*Provide passport details below*'
           },
           appendTitle: 'Do you have an additional foreign passport (or identity card) to report?',
           append: 'Add another foreign passport'
@@ -1997,7 +2008,7 @@ const en = {
           summary: {
             title: 'Summary of foreign travel',
             item: 'Country',
-            unknown: 'Provide travel details below'
+            unknown: '*Provide travel details below*'
           },
           append: 'Add another foreign travel'
         }
@@ -2111,6 +2122,7 @@ const en = {
       para: 'View all the sections associated with relationships at once'
     },
     destination: {
+      intro: 'Intro',
       review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
@@ -2121,7 +2133,7 @@ const en = {
       collection: {
         summary: {
           title: 'Summary of relatives',
-          unknown: 'Click to provide details',
+          unknown: '*Click to provide details*',
           item: 'Relative'
         },
         appendTitle: 'Do you have an additional relative to enter?',
@@ -2826,7 +2838,7 @@ const en = {
         },
         collection: {
           summary: {
-            unknown: 'Provide the person\'s information below'
+            unknown: '*Provide the person\'s information below*'
           },
           description: 'Summary of people who know you',
           appendLabel: 'Add another person',
@@ -2851,6 +2863,7 @@ const en = {
 
   address: {
     label: 'This address is',
+    spinner: 'Verifying your address',
     options: {
       us: {
         label: 'In the<br>United States'
@@ -2884,8 +2897,8 @@ const en = {
         placeholder: 'Enter county'
       },
       zipcode: {
-        label: 'Zip Code',
-        placeholder: 'Enter zipcode'
+        label: 'ZIP Code',
+        placeholder: 'Enter ZIP Code'
       }
     },
     international: {
@@ -2948,6 +2961,10 @@ const en = {
     }
   },
 
+  spinner: {
+    label: 'Verifying'
+  },
+
   suggestions: {
     name: {
       title: 'Alternate names found',
@@ -2962,7 +2979,8 @@ const en = {
       label: 'Suggested address',
       use: 'Use this address',
       dismiss: 'Keep original address',
-      alternate: 'Manually correct this address'
+      alternate: 'Manually correct this address',
+      more: 'Add more information'
     }
   },
 
@@ -2994,6 +3012,7 @@ const en = {
       para: 'View all the sections associated with military history at once'
     },
     destination: {
+      intro: 'Intro',
       selective: 'Selective service record',
       history: 'U.S. military',
       disciplinary: 'Disciplinary procedures',
@@ -3138,7 +3157,7 @@ const en = {
         summary: {
           title: 'Summary of military history',
           item: 'Branch',
-          unknown: 'Provide your military history below'
+          unknown: '*Provide your military history below*'
         },
         appendTitle: 'Do you have additional military service to report?',
         append: 'Add additional military history'
@@ -3197,7 +3216,7 @@ const en = {
         summary: {
           title: 'Summary of disciplinary procedures',
           item: 'Procedure',
-          unknown: 'Provide the disciplinary procedure below'
+          unknown: '*Provide the disciplinary procedure below*'
         },
         appendTitle: 'Additional disciplinary procedures',
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
@@ -3316,7 +3335,7 @@ const en = {
           summary: {
             title: 'Summary of foreign military contacts',
             item: 'Name',
-            unknown: 'Provide foreign military contact below'
+            unknown: '*Provide foreign military contact below*'
           },
           appendTitle: 'Do you have an additional foreign military service contact to report?',
           append: 'Add another contact'
@@ -3356,6 +3375,7 @@ const en = {
       }
     },
     destination: {
+      intro: 'Intro',
       review: 'Review your history',
       timeline: 'Timeline',
       residence: 'Places you lived',
@@ -3379,7 +3399,7 @@ const en = {
         summary: {
           title: 'Summary of places you have lived',
           item: 'Address',
-          unknown: 'Provide residence details',
+          unknown: '*Provide residence details*',
           incomplete: 'This residence\'s information is incomplete',
           item2: 'Person'
         },
@@ -3471,7 +3491,7 @@ const en = {
             title: 'Summary of your work history',
             employer: 'Employer',
             incomplete: 'This employer\'s information is incomplete',
-            unknown: 'Provide employer details',
+            unknown: '*Provide employer details*',
             item2: 'Title'
           }
         },
@@ -4814,7 +4834,7 @@ const en = {
           summary: {
             title: 'Summary of education',
             item: 'School',
-            unknown: 'Provide your education details',
+            unknown: '*Provide your education details*',
             incomplete: 'This education\'s information is incomplete',
             item2: 'Diploma'
           },
@@ -4824,7 +4844,7 @@ const en = {
           summary: {
             title: 'Summary of degrees/diplomas',
             item: 'Degree',
-            unknown: 'Provide your degree/diploma details'
+            unknown: '*Provide your degree/diploma details*'
           },
           append: 'Add another diploma/degree'
         }
@@ -4970,7 +4990,7 @@ const en = {
           item: 'Federal service',
           present: 'Now',
           nodates: 'NA',
-          unknown: 'Provide federal service below'
+          unknown: '*Provide federal service below*'
         },
         append: 'Add another former federal service'
       }
@@ -4984,6 +5004,7 @@ const en = {
       para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
+      intro: 'Intro',
       review: 'Review Foreign Activities',
       history: 'Your History',
       tbd: 'TBD',
@@ -5074,7 +5095,7 @@ const en = {
           howAcquired: 'Such as purchase, gift, etc.'
         },
         collection: {
-          summary: 'Provide your direct financial interests here',
+          summary: '*Provide your direct financial interests here*',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
           appendLabel: 'Add another direct interest',
@@ -5185,7 +5206,7 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER had any foreign financial interests that someone controlled on your behalf?'
         },
         collection: {
-          summary: 'Provide your indirect financial interests here',
+          summary: '*Provide your indirect financial interests here*',
           description: 'Summary of financial interests',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests controlled on your behalf?',
           appendLabel: 'Add another indirect interest',
@@ -5310,7 +5331,7 @@ const en = {
           title: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children EVER owned, or do you anticipate owning, or plan to purchase real estate in a foreign country?'
         },
         collection: {
-          summary: 'Provide your real estate purchase here',
+          summary: '*Provide your real estate purchase here*',
           description: 'Summary of financial purchase',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
           appendLabel: 'Add another real estate purchase',
@@ -5455,7 +5476,7 @@ const en = {
           summary: {
             title: 'Summary of foreign financial support',
             item: 'Support',
-            unknown: 'Provide details of foreign financial support below'
+            unknown: '*Provide details of foreign financial support below*'
           },
           appendTitle: 'Have you additionally provided financial support for any foreign national?',
           append: 'Add another instance'
@@ -5497,7 +5518,7 @@ const en = {
           }
         },
         collection: {
-          summary: 'Provide your financial benefits here',
+          summary: '*Provide your financial benefits here*',
           description: 'Summary of financial benefits',
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children receive any additional benefits from a foreign country?',
           appendLabel: 'Add another benefit',
@@ -5829,7 +5850,7 @@ const en = {
         summary: {
           title: 'Summary of foreign contacts',
           item: 'Foreign national',
-          unknown: 'Provide the foreign national below'
+          unknown: '*Provide the foreign national below*'
         },
         appendTitle: 'Do you have, or have you had, close and/or continuing contact with any additional foreign national within the last seven (7) years with whom you, or your spouse, or cohabitant are bound by affection, influence, common interests, and/or obligation?',
         appendMessage: [
@@ -5884,7 +5905,7 @@ const en = {
           summary: {
             title: 'Summary of foreign business advice',
             item: 'Advice',
-            unknown: 'Provide details of foreign business advice below'
+            unknown: '*Provide details of foreign business advice below*'
           },
           appendTitle: 'Have you in the last seven (7) years provided advice or support to any other individual associated with a foreign business or other foreign organization that you have not previously listed as a former employer?',
           appendMessage: [
@@ -5939,7 +5960,7 @@ const en = {
           summary: {
             title: 'Summary of family foreign business advice',
             item: 'Advice',
-            unknown: 'Provide details of family foreign business advice below'
+            unknown: '*Provide details of family foreign business advice below*'
           },
           appendTitle: 'Have you, your spouse or legally recognized civil union/domestic partner, cohabitant, or any member of your immediate family in the last seven (7) years been asked to provide advice or serve as a consultant, even informally, by any other foreign government official or agency?',
           appendMessage: [
@@ -5995,7 +6016,7 @@ const en = {
           summary: {
             title: 'Summary of foreign business job offers',
             item: 'Offer',
-            unknown: 'Provide details of foreign business job below'
+            unknown: '*Provide details of foreign business job below*'
           },
           appendTitle: 'Has any additional foreign national, in the last seven (7) years, offered you a job, asked you to work a consultant, or consider employment with them?',
           append: 'Add another job offer'
@@ -6082,7 +6103,7 @@ const en = {
           summary: {
             title: 'Summary of foreign business ventures',
             item: 'Venture',
-            unknown: 'Provide details of foreign business ventures below'
+            unknown: '*Provide details of foreign business ventures below*'
           },
           appendTitle: 'Have you, in the last seven (7) years, been involved in any other type of business venture with a foreign national not described above?',
           appendMessage: [
@@ -6160,7 +6181,7 @@ const en = {
           summary: {
             title: 'Summary of foreign business conferences',
             item: 'Conference',
-            unknown: 'Provide details of conference below'
+            unknown: '*Provide details of conference below*'
           },
           appendTitle: 'Have you in the last seven (7) years, attended or participated in any additional conferences, trade shows, seminars, or meetings outside the U.S.?',
           appendMessage: [
@@ -6260,7 +6281,7 @@ const en = {
           summary: {
             title: 'Summary of foreign government contacts',
             item: 'Contact',
-            unknown: 'Provide details of contact below'
+            unknown: '*Provide details of contact below*'
           },
           appendTitle: 'Have you or any member of your immediate family in the last seven (7) years had any additional contact with a foreign government, its establishment or its representatives, whether inside or outside the U.S.?',
           appendMessage: [
@@ -6357,7 +6378,7 @@ const en = {
           summary: {
             title: 'Summary of foreign national sponsorship',
             item: 'Sponsorship',
-            unknown: 'Provide details of sponsorship below'
+            unknown: '*Provide details of sponsorship below*'
           },
           appendTitle: 'Have you in the last seven (7) years sponsored any additional foreign national to come to the U.S. as a student, for work, or for permanent residence?',
           appendMessage: [],
@@ -6420,7 +6441,7 @@ const en = {
           summary: {
             title: 'Summary of foreign political office',
             item: 'Office',
-            unknown: 'Provide details of political office below'
+            unknown: '*Provide details of political office below*'
           },
           appendTitle: 'Have you EVER held any additional political office in a foreign country?',
           appendMessage: [],
@@ -6466,7 +6487,7 @@ const en = {
           summary: {
             title: 'Summary of foreign elections',
             item: 'Election',
-            unknown: 'Provide details of election below'
+            unknown: '*Provide details of election below*'
           },
           appendTitle: 'Do you have other instances of voting in the election of a foreign country to report?',
           appendMessage: [],
@@ -6586,7 +6607,7 @@ const en = {
         summary: {
           title: 'Summary of foreign travel',
           item: 'Travel',
-          unknown: 'Provide details of your travel below'
+          unknown: '*Provide details of your travel below*'
         },
         appendTitle: 'Do you have additional travel outside the U.S. in the last seven (7) years for other than solely U.S. Government business on official government orders?',
         appendMessage: [],
@@ -6602,6 +6623,7 @@ const en = {
       para: 'View all the sections associated with investigative & criminal history at once'
     },
     destination: {
+      intro: 'Intro',
       police: 'Police record',
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
@@ -6865,7 +6887,7 @@ const en = {
         summary: {
           title: 'Summary of offenses',
           item: 'Offense',
-          unknown: 'Provide offense below'
+          unknown: '*Provide offense below*'
         },
         appendTitle: 'Do you have any other offenses where any of the following has happened to you?',
         appendMessage: [
@@ -6935,7 +6957,7 @@ const en = {
         collection: {
           description: 'Summary of investigations',
           item: 'Investigation',
-          unknown: 'Provide investigation details below',
+          unknown: '*Provide investigation details below*',
           appendTitle: 'Do you have another investigation to enter?',
           appendLabel: 'Add another investigation'
         },
@@ -6990,7 +7012,7 @@ const en = {
         collection: {
           description: 'Summary of revocations',
           item: 'Revoked',
-          unknown: 'Provide revocation details below',
+          unknown: '*Provide revocation details below*',
           appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
           appendLabel: 'Add another revocation'
         },
@@ -7022,7 +7044,7 @@ const en = {
         collection: {
           description: 'Summary of debarments',
           item: 'Debarment',
-          unknown: 'Provide debarment details below',
+          unknown: '*Provide debarment details below*',
           appendTitle: 'Do you have another Government debarment to enter?',
           appendLabel: 'Add another debarment'
         },
@@ -7057,7 +7079,7 @@ const en = {
       },
       collection: {
         description: 'Summary of court actions',
-        summary: 'Provide your court action details below',
+        summary: '*Provide your court action details below*',
         appendTitle: 'Are there any other civil court actions in the last ten (10) years to report?',
         appendLabel: 'Add another court action',
         itemType: 'Court Action'
@@ -7113,7 +7135,7 @@ const en = {
         collection: {
           description: 'Summary of unauthorized access',
           item: 'Access',
-          unknown: 'Provide unauthorized access details below',
+          unknown: '*Provide unauthorized access details below*',
           appendTitle: 'Are there any other incidents to report?',
           appendLabel: 'Add another unauthorized access'
         },
@@ -7151,7 +7173,7 @@ const en = {
         collection: {
           description: 'Summary of modified, destroyed, manipulated, or denied access',
           item: 'Incident',
-          unknown: 'Provide details below',
+          unknown: '*Provide details below*',
           appendTitle: 'Are there any other incidents to report?',
           appendLabel: 'Add another incident'
         },
@@ -7189,7 +7211,7 @@ const en = {
         collection: {
           description: 'Summary of unlawful use',
           item: 'Use',
-          unknown: 'Provide details below',
+          unknown: '*Provide details below*',
           appendTitle: 'Are there any other incidents to report?',
           appendLabel: 'Add another unlawful use'
         },
@@ -7242,7 +7264,7 @@ const en = {
         collection: {
           description: 'Summary of terrorist organizations',
           item: 'Organization',
-          unknown: 'Provide details of organization below',
+          unknown: '*Provide details of organization below*',
           appendTitle: 'Do you have any other instances of being a member of an organization dedicated to terrorism, either with an awareness of the organization\'s dedication to that end, or with the specific intent to further such activities to report?',
           appendLabel: 'Add another terrorist organization'
         },
@@ -7288,7 +7310,7 @@ const en = {
         collection: {
           description: 'Summary of acts of terrorism',
           item: 'Act',
-          unknown: 'Provide details for the terrorism below',
+          unknown: '*Provide details for the terrorism below*',
           appendTitle: 'Do you have any other instances of knowingly engaging in acts of terrorism to report?',
           appendLabel: 'Add another act of terrorism'
         },
@@ -7314,7 +7336,7 @@ const en = {
         collection: {
           description: 'Summary of advocating terrorism',
           item: 'Instance',
-          unknown: 'Provide details of the instance below',
+          unknown: '*Provide details of the instance below*',
           appendTitle: 'Do you have any other instances of advocating acts of terrorism or activities designed to overthrow the U.S. Government by force to report?',
           appendLabel: 'Add another instance'
         },
@@ -7351,7 +7373,7 @@ const en = {
         collection: {
           description: 'Summary of memberships',
           item: 'Membership',
-          unknown: 'Please provide membership details below',
+          unknown: '*Please provide membership details below*',
           appendTitle: 'Do you have any other instances of being a member of an organization dedicated to the use of violence or force to overthrow the United States Government, which engaged in activities to that end with an awareness of the organization’s dedication to that end or with the specific intent to further such activities to report?',
           appendLabel: 'Add another membership'
         },
@@ -7408,7 +7430,7 @@ const en = {
         collection: {
           description: 'Summary of memberships',
           item: 'Membership',
-          unknown: 'Provide membership details below',
+          unknown: '*Provide membership details below*',
           appendTitle: 'Do you have any other instances of being a member of an organization that advocates or practices commission of acts of force or violence to discourage others from exercising their rights under the U.S. Constitution or any state of the United States with the specific intent to further such action to report',
           appendLabel: 'Add another membership'
         },
@@ -7454,7 +7476,7 @@ const en = {
         collection: {
           description: 'Summary of acts of terrorism',
           item: 'Activity',
-          unknown: 'Provide details below',
+          unknown: '*Provide details below*',
           appendTitle: 'Do you have any other instances of having knowingly engaged in activities designed to overthrow the U.S. Government by force to report?',
           appendLabel: 'Add another activity'
         },
@@ -7495,6 +7517,7 @@ const en = {
       para: 'View all the sections associated with substance abuse'
     },
     destination: {
+      intro: 'Intro',
       police: {
         negative: 'Negative impact',
         ordered: 'Mandatory counseling or treatment',
@@ -7548,7 +7571,7 @@ const en = {
         },
         collection: {
           description: 'Summary of negative impacts',
-          summary: 'Provide your negative impact details below',
+          summary: '*Provide your negative impact details below*',
           appendTitle: 'Has the use of alcohol had other negative impacts on your work performance, your professional or personal relationships, your finances, or resulted in intervention by law enforcement/public safety personnel?',
           appendLabel: 'Add another negative impact',
           itemType: 'Negative impact'
@@ -7582,7 +7605,7 @@ const en = {
         },
         collection: {
           description: 'Summary of counselings',
-          summary: 'Provide your counseling details below',
+          summary: '*Provide your counseling details below*',
           appendTitle: 'Do you have additional instances of having been ordered, advised or asked to seek counseling or treatment as a result of your use of alcohol to enter?',
           appendLabel: 'Add another counseling',
           itemType: 'Counseling'
@@ -7636,7 +7659,7 @@ const en = {
         },
         collection: {
           description: 'Summary of counselings',
-          summary: 'Provide your counseling details below',
+          summary: '*Provide your counseling details below*',
           appendTitle: 'Do you have additional instances where you have voluntarily sought counseling or treatment as a result of your use of alcohol to enter?',
           appendLabel: 'Add another counseling',
           itemType: 'Counseling'
@@ -7688,7 +7711,7 @@ const en = {
         },
         collection: {
           description: 'Summary of counselings',
-          summary: 'Provide your counseling details below',
+          summary: '*Provide your counseling details below*',
           appendTitle: 'Did you receive alcohol-related counseling or treatment another time?',
           appendLabel: 'Add another counseling',
           itemType: 'Counseling'
@@ -7808,7 +7831,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug uses',
-          summary: 'Provide your drug use details below',
+          summary: '*Provide your drug use details below*',
           appendTitle: 'Do you have an additional instance(s) of illegal use of a drug or controlled substance to enter?',
           appendLabel: 'Add another drug use',
           itemType: 'Drug Use'
@@ -7875,7 +7898,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug involvement',
-          summary: 'Provide your drug involvement details below',
+          summary: '*Provide your drug involvement details below*',
           appendTitle: 'Do you have an additional instance(s) of having been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of a drug or controlled substance to enter?',
           appendLabel: 'Add another drug involvement',
           itemType: 'Drug involvement'
@@ -7906,7 +7929,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug involvement',
-          summary: 'Provide your drug involvement details below',
+          summary: '*Provide your drug involvement details below*',
           appendTitle: 'Do you have an additional instance(s) of the illegal use or involvement with a drug or controlled substance while possessing a security clearance to enter?',
           appendLabel: 'Add another drug involvement',
           itemType: 'Drug involvement'
@@ -7938,7 +7961,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug involvement',
-          summary: 'Provide your drug involvement details below',
+          summary: '*Provide your drug involvement details below*',
           appendTitle: 'Do you have an additional instance(s) of illegal use or involvement with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety to enter?',
           appendLabel: 'Add another drug involvement',
           itemType: 'Drug involvement'
@@ -7981,7 +8004,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug misuse',
-          summary: 'Provide your drug misuse details below',
+          summary: '*Provide your drug misuse details below**',
           appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
           appendLabel: 'Add another drug misuse',
           itemType: 'Drug misuse'
@@ -8064,7 +8087,7 @@ const en = {
         },
         collection: {
           description: 'Summary of treatments',
-          summary: 'Provide your treatment details below',
+          summary: '*Provide your treatment details below*',
           appendTitle: 'Do you have another instance of having been ordered, advised, or asked to seek drug or controlled substance counseling or treatment to enter?',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
@@ -8131,7 +8154,7 @@ const en = {
         },
         collection: {
           description: 'Summary of treatments',
-          summary: 'Provide your treatment details below',
+          summary: '*Provide your treatment details below*',
           appendTitle: 'Do you have another instance of EVER voluntarily seeking counseling or treatment as a result of your use of a drug or controlled substance?',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
@@ -8313,8 +8336,8 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
+      intro: 'Intro',
       psychological: 'Psychological and emotional health',
-      intro: 'Introduction',
       competence: 'Competence',
       consultation: 'Consultations',
       hospitalization: 'Hospitalizations',
@@ -8384,7 +8407,7 @@ const en = {
         }
       },
       collection: {
-        summaryCourtName: 'Provide your order details below',
+        summaryCourtName: '*Provide your order details below*',
         description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendLabel: 'Add another order',
@@ -8439,7 +8462,7 @@ const en = {
         }
       },
       collection: {
-        summaryCourtName: 'Provide your order details below',
+        summaryCourtName: '*Provide your order details below*',
         description: 'Summary of orders',
         appendTitle: 'Do you have an additional instance where a court or administrative agency EVER issued an order declaring you mentally incompetent?',
         appendLabel: 'Add another order',
@@ -8461,7 +8484,7 @@ const en = {
       },
       collection: {
         description: 'Summary of hospitalizations',
-        summary: 'Provide your hospitalization details below',
+        summary: '*Provide your hospitalization details below*',
         appendTitle: 'Do you have an additional instance where you have EVER been hospitalized for a mental health condition?',
         appendLabel: 'Add another hospitalization',
         itemType: 'Hospitalization'
@@ -8580,7 +8603,7 @@ const en = {
       },
       collection: {
         description: 'Summary of diagnoses',
-        summary: 'Provide your diagnosis details below',
+        summary: '*Provide your diagnosis details below*',
         appendTitle: 'Do you have an additional instance where you EVER had been diagnosed by a physician or other health professional (for example, a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner) with psychotic disorder, schizophrenia, schizoaffective disorder, delusional disorder, bipolar mood disorder, borderline personality disorder, or antisocial personality disorder?',
         appendMessage: 'Health professional examples: a psychiatrist, psychologist, licensed clinical social worker, or nurse practitioner.',
         appendLabel: 'Add another diagnosis',
@@ -8612,7 +8635,7 @@ const en = {
       treatment: {
         collection: {
           description: 'Summary of treatments',
-          summary: 'Provide your treatment details below',
+          summary: '*Provide your treatment details below*',
           appendTitle: 'Do you have an additional instance where you are currently in treatment?',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
@@ -8693,7 +8716,7 @@ const en = {
       treatment: {
         collection: {
           description: 'Summary of treatments',
-          summary: 'Provide your treatment details below',
+          summary: '*Provide your treatment details below*',
           appendTitle: 'Do you have an additional instance where you ever received are you currently receiving counseling or treatment for that condition',
           appendLabel: 'Add another treatment',
           itemType: 'Treatment'
@@ -9108,7 +9131,7 @@ const en = {
       '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
       '3. Do not abbreviate the names of cities or foreign countries. Whenever you are asked to supply a country name, you may select the country name by using the country dropdown feature.',
       '4. When entering a U.S. address or location, select the state or territory from the "States" dropdown list that will be provided. For locations outside of the U.S. and its territories, select the country in the "Country" dropdown list and leave the "State" field blank.',
-      '5. The 5-digit postal Zip Codes are required to process your investigation more rapidly. Refer to an automated system approved by the U.S. Postal Service to assist you with Zip Codes.',
+      '5. The 5-digit postal ZIP Codes are required to process your investigation more rapidly. Refer to an automated system approved by the U.S. Postal Service to assist you with ZIP Codes.',
       '6. For telephone numbers in the U.S., ensure that the area code is included.',
       '7. All dates provided in this form must be in Month/Day/Year or Month/Year format. Use the dropdown lists to select the month and day. The year should be entered as a four character number (i.e. 1978 or 2001.), or selected from a dropdown list. If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Est." box.',
       '---',
@@ -9164,6 +9187,83 @@ const en = {
       title: 'Persons completing this form should begin after carefully reading the preceding instructions',
       para: [
         'I have read the instructions and I understand that if I withhold, misrepresent, or falsify information on this form, I am subject to the penalties for inaccurate or false statement (per U. S. Criminal Code, Title 18, section 1001), denial or revocation of a security clearance, and/or removal and debarment from Federal Service.'
+      ]
+    }
+  },
+  releases: {
+    destination: {
+      comments: 'Additional comments',
+      generalMedical: 'Release of information/HIPPA',
+      credit: 'Credit reporting disclosure'
+    },
+    verify: {
+      heading: {
+        title: 'Verify your information is correct',
+        changeInformation: 'Need to change your information?',
+        name: 'Your full name',
+        otherNamesUsed: 'Other names used',
+        dateOfBirth: 'Date of birth',
+        ssn: 'Social Security Number',
+        currentAddress: 'Current street address',
+        telephoneNumber: 'Telephone number',
+        changeAddress: 'Need to change your address?'
+      },
+      label: {
+        name: 'Type your name below to sign',
+        changeInformation: 'Back to Information about you',
+        changeAddress: 'Back to where you have lived',
+        none: 'Not entered'
+      }
+    },
+    additionalComments: {
+      contents: [
+        '## Additional Comments',
+        'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the attached release(s).'
+      ],
+      certificationContents: [
+        '## Certification',
+        'My statements on this form, and on any attachments to it, are true, complete, and correct to the best of my knowledge and belief and are made in good faith. I further affirm that, to the best of my knowledge, I have not included any classified information herein. I have carefully read the foregoing instructions to complete this form. I understand that a knowing and willful false statement on this form can be punished by fine or imprisonment or both (18 U.S.C. 1001). I understand that intentionally withholding, misrepresenting, falsifying, or including classified information may have a negative effect on my security clearance, employment prospects, or job status, up to and including denial or revocation of my security clearance, or my removal and debarment from Federal service.'
+      ]
+    },
+    general: {
+      contents: [
+        '## Questionnaire for National Security Positions',
+        '### United States of America Authorization for Release of Information',
+        '**Carefully read this authorization to release information about you, then sign and date it in ink.**',
+        '**I Authorize** any investigator, special agent, or other duly accredited representative of the authorized Federal agency conducting my background investigation, reinvestigation or ongoing evaluation (i.e. continuous evaluation) of my eligibility for access to classified information or, when applicable, eligibility to hold a national security sensitive position to obtain any information relating to my activities from individuals, schools, residential management agents, employers, criminal justice agencies, credit bureaus, consumer reporting agencies, collection agencies, retail business establishments, or other sources of information. This information may include, but is not limited to current and historic, academic, residential, achievement, performance, attendance, disciplinary, employment, criminal, financial, and credit information, and publicly available social media information. I authorize the Federal agency conducting my investigation, reinvestigation, or ongoing evaluation (i.e. continuous evaluation) of eligibility to disclose the record of investigation or ongoing evaluation to the requesting agency for the purpose of making a determination of suitability or initial or continued eligibility for a national security position or eligibility for access to classified information.',
+        '**I Understand** that, for these purposes, publicly available social media information includes any electronic social media information that has been published or broadcast for public consumption, is available on request to the public, is accessible on-line to the public, is available to the public by subscription or purchase, or is otherwise lawfully accessible to the public. I further understand that this authorization does not require me to provide passwords; log into a private account; or take any action that would disclose non-publicly available social media information.',
+        '**I Authorize** the Social Security Administration (SSA) to verify my Social Security Number (to match my name, Social Security Number, and date of birth with information in SSA records and provide the results of the match) to the United States Office of Personnel Management (OPM) or other Federal agency requesting or conducting my investigation for the purposes outlined above. I authorize SSA to provide explanatory information to OPM, or to the other Federal agency requesting or conducting my investigation, in the event of a discrepancy.',
+        '**I Understand** that, for financial or lending institutions, medical institutions, hospitals, health care professionals, and other sources of information, separate specific releases may be needed, and I may be contacted for such releases at a later date.',
+        '**I Authorize** any investigator, special agent, or other duly accredited representative of the OPM, the Federal Bureau of Investigation, the Department of Defense, the Department of Homeland Security, the Office of the Director of National Intelligence, the Department of State, and any other authorized Federal agency, to request criminal record information about me from criminal justice agencies for the purpose of determining my eligibility for assignment to, or retention in, a national security position, in accordance with 5 U.S.C. 9101. I understand that I may request a copy of such records as may be available to me under the law.',
+        '**I Authorize** custodians of records and other sources of information pertaining to me to release such information upon request of the investigator, special agent, or other duly accredited representative of any Federal agency authorized above regardless of any previous agreement to the contrary',
+        '**I Understand** that the information released by records custodians and sources of information is for official use by the Federal Government only for the purposes provided in this Standard Form 86, and that it may be disclosed by the Government only as authorized by law.',
+        '**I Authorize** the information to be used to conduct officially sanctioned and approved personnel security-related studies and analyses, which will be maintained in accordance with the Privacy Act.',
+        'Photocopies of this authorization with my signature are valid. This authorization shall remain in effect so long as I occupy a national security sensitive position or require eligibility for access to classified information'
+      ]
+    },
+    credit: {
+      contents: [
+        '## United States of America Fair Credit Reporting Disclosure and Authorization',
+        '### Disclosure',
+        'One or more reports from consumer reporting agencies may be obtained for employment purposes pursuant to the Fair Credit Reporting Act, codified at 15 U.S.C. § 1681 et seq.',
+        '### Purpose',
+        'The Federal government requires information from one or more consumer reporting agencies in order to obtain information in connection with a background investigation, reinvestigation, or ongoing evaluation (i.e. continuous evaluation) of eligibility for access to classified information, or when applicable, eligibility to hold a national security sensitive position. The information obtained may be disclosed to other Federal agencies for the above purposes in fulfillment of official responsibilities to the extent that such disclosure is permitted by law. Information from the consumer report will not be used in violation of any applicable Federal or state equal employment opportunity law or regulation',
+        '### Authorization',
+        'I hereby authorize any investigator, special agent, or other duly accredited representative of the authorized Federal agency conducting my initial background investigation, reinvestigation, or ongoing evaluation (i.e. continuous evaluation) of my eligibility for access to classified information, or when applicable, eligibility to hold a national security sensitive position to request, and any consumer reporting agency to provide, such reports for purposes described above.',
+        '**Note:** If you have a security freeze on your consumer or credit report file, we will not be able to access the information necessary to complete your investigation, which can adversely affect your eligibility for a national security position. To avoid such delays, you should expeditiously respond to any requests made to release the credit freeze for the purposes as described above',
+        'Photocopies of this authorization with my signature are valid. This authorization shall remain in effect so long as I occupy a national security sensitive position or require eligibility for access to classified information.'
+      ]
+    },
+    medical: {
+      contents: [
+        '## United States of America Authorization for Release of Medical Information pursuant to the Health Insurance Portability and Accountability Act (HIPAA)',
+        'If you answered "Yes" to Section 21 of the Standard Form 86 (SF-86), carefully read this authorization to release information about you, then sign and date it in ink.',
+        '**Authorization**',
+        'This is an authorization for the investigator to ask your health practitioner(s) the questions below concerning your mental health consultations. The U.S. government recognizes the critical importance of mental health and advocates proactive management of mental health conditions to support the wellness and recovery of Federal employees and others. The government recognizes that mental health counseling and treatment may provide important support for those who have experienced traumatic events, as well as for those with other mental health conditions. While most individuals with mental health conditions do not present security risks, there may be times when such a condition can affect a person’s eligibility for a security clearance. Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility. Your signature will allow the practitioner(s) to answer only those questions identified below.',
+        'I am seeking assignment to or retention in a national security sensitive position. As part of the clearance investigative process, I hereby authorize the investigator, special agent, or duly accredited representative of the authorized Federal agency conducting my background investigation, reinvestigation, or ongoing evaluation (i.e.  continuous evaluation) of eligibility for access to classified information or eligibility to hold a national security sensitive position to request, and my health practitioner(s) to provide, the information requested below, relating to my mental health consultations. ',
+        'In accordance with HIPAA, I understand that I have the right to revoke this authorization at any time by writing to my health care provider/entity. Revocation of this authorization is not effective until received by my health care provider/entity. I understand that I may revoke this authorization, except to the extent that action has already been taken based on this authorization. Further, I understand that this authorization is voluntary. My treatment, payment, enrollment in a health plan, or eligibility for benefits will not be conditioned upon my authorization of this disclosure.',
+        'I understand the information disclosed pursuant to this authorization for use by the Federal Government only for purposes provided in the Standard Form 86 will no longer be covered by the HIPAA Privacy Rule, and that the Federal Government may redisclose the information as authorized by law, subject to Privacy Act safeguards.',
+        'Photocopies of this authorization with my signature are valid. This authorization is valid for one (1) year from the date signed or upon termination of my affiliation with the Federal Government, whichever is sooner.'
       ]
     }
   }

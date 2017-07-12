@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { HospitalizationValidator } from '../../../../validators'
-import { Address, ValidationElement, Field, Text, Textarea, DateRange, RadioGroup, Radio, Show } from '../../../Form'
+import { Location, ValidationElement, Field, Text, Textarea, DateRange, RadioGroup, Radio, Show } from '../../../Form'
 
 export default class Hospitalization extends ValidationElement {
   constructor (props) {
@@ -118,12 +118,14 @@ export default class Hospitalization extends ValidationElement {
         <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
                help="psychological.hospitalization.help.address"
                adjustFor="address">
-          <Address name="FacilityAddress"
-                   {...this.props.FacilityAddress}
-                   label={i18n.t(`psychological.hospitalization.label.address`)}
-                   onUpdate={this.updateFacilityAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="FacilityAddress"
+                    {...this.props.FacilityAddress}
+                    label={i18n.t(`psychological.hospitalization.label.address`)}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateFacilityAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )

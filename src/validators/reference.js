@@ -1,5 +1,5 @@
 import NameValidator from './name'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validNotApplicable, validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
 
 const relationshipOptions = ['Neighbor', 'Friend', 'Landlord', 'Business', 'Other']
@@ -38,7 +38,7 @@ export default class ReferenceValidator {
   }
 
   validAddress () {
-    return new AddressValidator(this.address).isValid()
+    return new LocationValidator(this.address).isValid()
   }
 
   isValid () {

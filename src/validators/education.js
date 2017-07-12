@@ -1,7 +1,7 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
 import { validGenericTextfield } from './helpers'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import ReferenceValidator from './reference'
 
 export default class EducationValidator {
@@ -33,7 +33,7 @@ export default class EducationValidator {
     }
 
     for (const edu of this.list) {
-      if (new EducationItemValidator(edu, null).isValid() === false) {
+      if (new EducationItemValidator(edu.Item, null).isValid() === false) {
         return false
       }
     }
@@ -62,7 +62,7 @@ export class EducationItemValidator {
   }
 
   validAddress () {
-    return new AddressValidator(this.address, null).isValid()
+    return new LocationValidator(this.address).isValid()
   }
 
   validName () {
@@ -102,7 +102,7 @@ export class EducationItemValidator {
           return false
         }
 
-        if (diploma.Diploma === 'Other' && !diploma.DiplomaOther) {
+        if (diploma.Diploma === 'Other' && !validGenericTextfield(diploma.DiplomaOther)) {
           return false
         }
 

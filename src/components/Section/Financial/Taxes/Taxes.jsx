@@ -54,7 +54,7 @@ export default class Taxes extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.t('financial.taxes.collection.summary.unknown')
+    const agency = (obj.Agency || {}).value || i18n.m('financial.taxes.collection.summary.unknown')
     const year = (obj.Year || {}).value || ''
 
     return (
@@ -77,8 +77,7 @@ export default class Taxes extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}

@@ -52,7 +52,7 @@ export default class PrescriptionUses extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {name || i18n.t('substance.drugs.prescription.collection.summary')}
+            {name || i18n.m('substance.drugs.prescription.collection.summary')}
           </strong>
         </span>
         <span className="dates">
@@ -75,8 +75,7 @@ export default class PrescriptionUses extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.MisusedDrugs === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

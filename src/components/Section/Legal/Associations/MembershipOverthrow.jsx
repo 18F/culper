@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsOverthrowValidator } from '../../../../validators'
 import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Address, Text, Textarea, NotApplicable } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
 
 export default class MembershipOverthrow extends SubsectionElement {
   constructor (props) {
@@ -40,7 +40,7 @@ export default class MembershipOverthrow extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.associations.overthrow.collection.item')
-    const unknown = i18n.t('legal.associations.overthrow.collection.unknown')
+    const unknown = i18n.m('legal.associations.overthrow.collection.unknown')
     const o = item || {}
     const details = (o.Organization || {}).value
           ? o.Organization.value
@@ -70,8 +70,7 @@ export default class MembershipOverthrow extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasOverthrow === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -92,10 +91,12 @@ export default class MembershipOverthrow extends SubsectionElement {
             <Field title={i18n.t('legal.associations.overthrow.heading.address')}
                    help="legal.associations.overthrow.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="legal-associations-overthrow-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="legal-associations-overthrow-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.dates')}

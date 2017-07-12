@@ -27,7 +27,9 @@ defineSupportCode(({Given, Then, When}) => {
 
     switch (subsection) {
     case 'status/marital':
-      return completeRelationshipStatus(promise)
+      return completeRelationshipStatusMarital(promise)
+    case 'status/cohabitant':
+      return completeRelationshipStatusCohabitant(promise)
     default:
       return promise
     }
@@ -42,7 +44,7 @@ defineSupportCode(({Given, Then, When}) => {
   })
 })
 
-const completeRelationshipStatus = (promise) => {
+const completeRelationshipStatusMarital = (promise) => {
   return promise
     .then(() => { return setOption('.marital .blocks.status-options .status-civil-union') })
     .then(() => { return setText('.marital .name.civil .field .first input', 'SpouseFirst') })
@@ -81,6 +83,11 @@ const completeRelationshipStatus = (promise) => {
     .then(() => { return setText('.marital .field .component .email input', 'test@test.com') })
     .then(() => { return setOption('.marital .branch.separated .blocks.option-list .no.block') })
     .then(() => { return setOption('.marital .branch.divorced .blocks.option-list .no.block') })
+}
+
+const completeRelationshipStatusCohabitant = (promise) => {
+  return promise
+    .then(() => { return setOption('.cohabitants .has-cohabitant .blocks.option-list .yes.block') })
 }
 
 const navigateToSection = (section) => {

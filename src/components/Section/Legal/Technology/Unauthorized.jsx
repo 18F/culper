@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyUnauthorizedValidator } from '../../../../validators'
 import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Address, Textarea } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
 
 export default class Unauthorized extends SubsectionElement {
   constructor (props) {
@@ -40,7 +40,7 @@ export default class Unauthorized extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.technology.unauthorized.collection.item')
-    const unknown = i18n.t('legal.technology.unauthorized.collection.unknown')
+    const unknown = i18n.m('legal.technology.unauthorized.collection.unknown')
     const o = item || {}
     const incident = (o.Incident || {}).value
           ? o.Incident.value
@@ -72,8 +72,7 @@ export default class Unauthorized extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasUnauthorized === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -103,10 +102,12 @@ export default class Unauthorized extends SubsectionElement {
             <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
                    help="legal.technology.unauthorized.help.location"
                    adjustFor="address">
-              <Address name="Location"
-                       className="legal-technology-unauthorized-location"
-                       bind={true}
-                       />
+              <Location name="Location"
+                        className="legal-technology-unauthorized-location"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.action')}

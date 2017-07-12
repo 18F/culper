@@ -40,7 +40,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).CourtAction || {}
-    const courtName = (o.CourtName || {}).value || i18n.t('legal.nonCriminalAction.collection.summary')
+    const courtName = (o.CourtName || {}).value || i18n.m('legal.nonCriminalAction.collection.summary')
     const date = DateSummary(o.CivilActionDate)
     const type = i18n.t('legal.nonCriminalAction.collection.itemType')
 
@@ -68,8 +68,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasCourtActions === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

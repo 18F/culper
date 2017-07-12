@@ -83,7 +83,7 @@ export default class Diagnoses extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span>
-          <strong>{facility || i18n.t('psychological.diagnoses.collection.summary')}</strong>
+          <strong>{facility || i18n.m('psychological.diagnoses.collection.summary')}</strong>
         </span>
         <span className="diagnosisdate"><strong>{facility && diagnosisDate}</strong></span>
       </span>
@@ -92,7 +92,7 @@ export default class Diagnoses extends SubsectionElement {
 
   treatmentSummary (item, index) {
     const o = (item || {}).Treatment || {}
-    const name = (o.Name || {}).value ? `${o.Name.value}` : i18n.t('psychological.diagnoses.treatment.collection.summary')
+    const name = (o.Name || {}).value ? `${o.Name.value}` : i18n.m('psychological.diagnoses.treatment.collection.summary')
     const type = i18n.t('psychological.diagnoses.treatment.collection.itemType')
 
     return (
@@ -121,8 +121,7 @@ export default class Diagnoses extends SubsectionElement {
         </Field>
         <Show when={this.props.Diagnosed === 'Yes'}>
           <div>
-            <Accordion minimum="1"
-                       className="diagnosis-collection"
+            <Accordion className="diagnosis-collection"
                        defaultState={this.props.defaultState}
                        items={this.props.DiagnosisList}
                        branch={this.props.DiagnosisListBranch}
@@ -158,8 +157,7 @@ export default class Diagnoses extends SubsectionElement {
             </Branch>
 
             <Show when={this.props.InTreatment === 'Yes'}>
-              <Accordion minimum="1"
-                         defaultState={this.props.defaultState}
+              <Accordion defaultState={this.props.defaultState}
                          items={this.props.TreatmentList}
                          branch={this.props.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}

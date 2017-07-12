@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import NameValidator from './name'
 import { validGenericTextfield, BranchCollection } from './helpers'
 
@@ -36,7 +36,7 @@ export class ForeignCoOwnerValidator {
 
   isValid () {
     return new NameValidator(this.name).isValid() &&
-      new AddressValidator(this.address).isValid() &&
+      new LocationValidator(this.address).isValid() &&
       this.validCountries() &&
       validGenericTextfield(this.relationshipNature)
   }

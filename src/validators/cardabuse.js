@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class CardAbuseValidator {
@@ -65,7 +65,7 @@ export class CardAbuseItemValidator {
   }
 
   validAddress () {
-    return !!this.address && new AddressValidator(this.address, null).isValid()
+    return !!this.address && new LocationValidator(this.address).isValid()
   }
 
   validDate () {

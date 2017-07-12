@@ -40,7 +40,7 @@ export default class Contacts extends SubsectionElement {
   summary (item, index) {
     const obj = (item || {}).Item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.contacts.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.contacts.collection.summary.unknown')
 
     return (
       <span>
@@ -64,8 +64,7 @@ export default class Contacts extends SubsectionElement {
                 onError={this.handleError}
                 />
         <Show when={this.props.HasForeignContacts === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

@@ -43,7 +43,7 @@ export default class Multiple extends SubsectionElement {
     const itemProperties = (item || {}).Item || {}
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
-          : i18n.t('citizenship.multiple.collection.citizenship.summary.unknown')
+          : i18n.m('citizenship.multiple.collection.citizenship.summary.unknown')
     const dates = DateSummary(itemProperties.Dates)
 
     return (
@@ -69,8 +69,7 @@ export default class Multiple extends SubsectionElement {
                 />
 
         <Show when={this.props.HasMultiple === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.Citizenships}
+          <Accordion items={this.props.Citizenships}
                      defaultState={this.props.defaultState}
                      branch={this.props.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}

@@ -44,7 +44,7 @@ export default class Bankruptcies extends SubsectionElement {
    */
   summary (item, index) {
     const b = item.Bankruptcy || {}
-    const address = AddressSummary(b.CourtAddress, i18n.t('financial.bankruptcy.collection.summary.unknown'))
+    const address = AddressSummary(b.CourtAddress, i18n.m('financial.bankruptcy.collection.summary.unknown'))
     const from = DateSummary(b.DateFiled, i18n.t('financial.bankruptcy.collection.summary.nodates'))
 
     return (
@@ -68,8 +68,7 @@ export default class Bankruptcies extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasBankruptcy === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

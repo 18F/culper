@@ -49,7 +49,7 @@ export default class DrugInvolvements extends SubsectionElement {
     }
 
     if (!drug) {
-      drug = i18n.t('substance.drugs.involvement.collection.summary')
+      drug = i18n.m('substance.drugs.involvement.collection.summary')
     }
 
     return (
@@ -73,8 +73,7 @@ export default class DrugInvolvements extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.Involved === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

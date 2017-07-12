@@ -46,7 +46,7 @@ export default class Disciplinary extends SubsectionElement {
     const itemProperties = (item || {}).Item || {}
     const service = itemProperties.Name && itemProperties.Name.value
           ? itemProperties.Name.value
-          : i18n.t('military.disciplinary.collection.summary.unknown')
+          : i18n.m('military.disciplinary.collection.summary.unknown')
     const dates = itemProperties.Date && itemProperties.Date.date
           ? `${itemProperties.Date.month}/${itemProperties.Date.year}`
           : ''
@@ -71,8 +71,7 @@ export default class Disciplinary extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasDisciplinary === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

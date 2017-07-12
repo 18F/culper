@@ -40,7 +40,7 @@ export default class Voting extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const country = (obj.Country || {}).value || i18n.t('foreign.business.voting.collection.summary.unknown')
+    const country = (obj.Country || {}).value || i18n.m('foreign.business.voting.collection.summary.unknown')
     const date = DateSummary(obj.Date)
 
     return (
@@ -66,8 +66,7 @@ export default class Voting extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignVoting === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

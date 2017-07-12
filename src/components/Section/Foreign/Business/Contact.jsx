@@ -42,7 +42,7 @@ export default class Contact extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.t('foreign.business.contact.collection.summary.unknown'))
+    const name = NameSummary(obj.Name, i18n.m('foreign.business.contact.collection.summary.unknown'))
     const date = DateSummary(obj.Date)
     const govt = ((obj.Governments || {}).value || []).map(x => x.name).join(', ')
     const govtParen = govt ? ` (${govt})` : ''
@@ -73,8 +73,7 @@ export default class Contact extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignContact === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}

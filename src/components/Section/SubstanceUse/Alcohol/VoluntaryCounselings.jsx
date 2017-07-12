@@ -52,7 +52,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <Show when={!counselor && !counselingDates}>
-            <strong>{i18n.t('substance.alcohol.voluntaryCounseling.collection.summary')}</strong>
+            <strong>{i18n.m('substance.alcohol.voluntaryCounseling.collection.summary')}</strong>
           </Show>
           <Show when={counselor || counselingDates}>
             <strong>{counselor}</strong>
@@ -76,8 +76,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.SoughtTreatment === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

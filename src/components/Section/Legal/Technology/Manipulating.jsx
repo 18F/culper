@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyManipulatingValidator } from '../../../../validators'
 import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Address, Textarea } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
 
 export default class Manipulating extends SubsectionElement {
   constructor (props) {
@@ -40,7 +40,7 @@ export default class Manipulating extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.technology.manipulating.collection.item')
-    const unknown = i18n.t('legal.technology.manipulating.collection.unknown')
+    const unknown = i18n.m('legal.technology.manipulating.collection.unknown')
     const o = item || {}
     const incident = (o.Incident || {}).value
           ? o.Incident.value
@@ -70,8 +70,7 @@ export default class Manipulating extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasManipulating === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -101,10 +100,12 @@ export default class Manipulating extends SubsectionElement {
             <Field title={i18n.t('legal.technology.manipulating.heading.location')}
                    help="legal.technology.manipulating.help.location"
                    adjustFor="address">
-              <Address name="Location"
-                       className="legal-technology-manipulating-location"
-                       bind={true}
-                       />
+              <Location name="Location"
+                        className="legal-technology-manipulating-location"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.action')}
