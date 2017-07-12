@@ -97,7 +97,6 @@ export default class Sponsorship extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.birthplace')}
-                   help="foreign.business.sponsorship.help.birthplace"
                    adjustFor="birthplace"
                    validate={false}>
               <Location name="Birthplace"
@@ -134,7 +133,6 @@ export default class Sponsorship extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.organization')}
-                   help="foreign.business.sponsorship.help.organization"
                    adjustFor="text">
               <NotApplicable name="OrganizationNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
@@ -171,7 +169,6 @@ export default class Sponsorship extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.residence')}
-                   help="foreign.business.sponsorship.help.residence"
                    adjustFor="address no-buttons">
               <Location name="Residence"
                         className="foreign-business-sponsorship-residence"
@@ -183,7 +180,6 @@ export default class Sponsorship extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.stay')}
-                   help="foreign.business.sponsorship.help.stay"
                    adjustFor="textarea">
               <Textarea name="Stay"
                         className="foreign-business-sponsorship-stay"
@@ -192,7 +188,6 @@ export default class Sponsorship extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.sponsorship')}
-                   help="foreign.business.sponsorship.help.sponsorship"
                    adjustFor="textarea">
               <Textarea name="Sponsorship"
                         className="foreign-business-sponsorship-sponsorship"
