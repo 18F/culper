@@ -6319,13 +6319,13 @@ const en = {
         },
         help: {
           branch: {
-            title: 'Need help determining if you have any foreign government sponsorship?',
-            message: 'If you have any foreign government sponsorship then select "yes".',
+            title: 'What is a foreign national?',
+            message: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
             note: ''
           },
           birthdate: {
-            title: 'Need help with the date of birth?',
-            message: 'Provide the foreign nationals date of birth.',
+            title: 'Need help with the foreign national\'s date of birth?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           birthplace: {
@@ -6340,7 +6340,7 @@ const en = {
           },
           citizenship: {
             title: 'Need help with the foreign nationals citizenship(s)?',
-            message: 'To the best of your knowledge provide the foreign nationals citizenship(s).',
+            message: 'Tell us all of the citizenships this foreign national has.',
             note: 'Note: You can provide multiple citizenships in this question.'
           },
           organization: {
@@ -6349,14 +6349,14 @@ const en = {
             note: ''
           },
           organizationaddress: {
-            title: 'Need help with the organization address?',
-            message: 'Provide the organization address.',
-            note: ''
+            title: 'Not sure of the organization\'s address?',
+            message: 'Try looking up the organization\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address'
           },
           dates: {
             title: 'Need help with the dates of stay?',
-            message: 'Provide the approximate date range for the period of stay within the U.S.',
-            note: ''
+            message: 'Tell us the full date range the sponsored foreign national was in the U.S.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
           residence: {
             title: 'Need help with the residence?',
