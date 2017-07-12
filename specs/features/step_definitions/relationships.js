@@ -34,6 +34,8 @@ defineSupportCode(({Given, Then, When}) => {
         return completeRelationshipStatusCohabitant(promise)
       case 'people':
         return completeRelationshipPeople(promise)
+      case 'relatives':
+        return completeRelationshipRelatives(promise)
       default:
         return promise
     }
@@ -139,7 +141,27 @@ const completeRelationshipPeople = (promise) => {
     .then(() => { return setText('.person .email input', 'test@test.com') })
     .then(() => { return setDomesticAddress('.person .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setOption('.people .field.branch.addendum .no.block label') })
+}
 
+const completeRelationshipRelatives = (promise) => {
+  return promise
+    .then(() => { return setOption('.relatives .relative-relation .relation-mother.block label') })
+    .then(() => { return setText('.relatives .name.relative-name .first input', 'Mom') })
+    .then(() => { return setText('.relatives .name.relative-name .middle input', 'Q') })
+    .then(() => { return setText('.relatives .name.relative-name .last input', 'Public') })
+    .then(() => { return setText('.relatives .datecontrol.relative-birthdate .month input', '6') })
+    .then(() => { return setText('.relatives .datecontrol.relative-birthdate .day input', '6') })
+    .then(() => { return setText('.relatives .datecontrol.relative-birthdate .year input', '1950') })
+    .then(() => { return setOption('.relatives .location.relative-birthplace .blocks.option-list .yes.block  label') })
+    .then(() => { return setText('.relatives .relative-birthplace .fields .state input', 'VA') })
+    .then(() => { return setText('.relatives .relative-birthplace .fields .city input', 'Fairfax') })
+    .then(() => { return setText('.relatives .country.relative-citizenship input', 'United States') })
+    .then(() => { return setOption('.relatives .relative-maiden-diff .blocks.option-list .no.block label') })
+    .then(() => { return setText('.relatives .name.relative-maidenname .first input', 'Mom') })
+    .then(() => { return setText('.relatives .name.relative-maidenname .middle input', 'Q') })
+    .then(() => { return setText('.relatives .name.relative-maidenname .last input', 'Private') })
+    .then(() => { return setOption('.relatives .relative-alias .blocks.option-list .no.block label') })
+    .then(() => { return setOption('.relatives .relative-deceased .blocks.option-list .no.block label') })
 }
 
 const navigateToSection = (section) => {
