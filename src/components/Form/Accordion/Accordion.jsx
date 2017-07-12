@@ -360,16 +360,21 @@ export default class Accordion extends ValidationElement {
 
     return items.map((item, index, arr) => {
       return (
-        <StickyAccordion id={item.uuid} offset={63} key={item.uuid} className="sticky-accordion" preventStick={!item.open} index={index} item={item}>
-            {
-              this.props.customSummary(item, index, initial,
-                () => { return this.summary(item, index, initial) },
-                () => { return this.toggle.bind(this, item) },
-                () => { return this.openText(item) },
-                () => { return this.remove.bind(this, item) },
-                () => { return this.props.byline(item, index, initial) })
-            }
-            {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
+        <StickyAccordion id={item.uuid}
+          offset={49}
+          key={item.uuid}
+          className="item"
+          stickyClass="sticky-accordion"
+          preventStick={!item.open}>
+          {
+            this.props.customSummary(item, index, initial,
+              () => { return this.summary(item, index, initial) },
+              () => { return this.toggle.bind(this, item) },
+              () => { return this.openText(item) },
+              () => { return this.remove.bind(this, item) },
+              () => { return this.props.byline(item, index, initial) })
+          }
+          {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
         </StickyAccordion>
       )
     })

@@ -364,15 +364,35 @@ button.usa-button-outline {
   }
 }
 
-.sticky-accordion {
+.accordion > .items > .item.sticky-accordion {
   .summary-container {
-    height: 78px;
     .summary {
       z-index: 1001;
-      box-shadow: 0px 2px 6px -1px rgba(0,0,0,0.40);
+      box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
       position: fixed;
-      top: 5.7rem;
+      top: 6.4rem;
       background-color: #fff;
+      //line-height: 3rem;
+      .left, .right {
+        > span > span {
+          max-height: 3.6rem;
+        }
+        vertical-align: middle;
+        line-height: 3rem;
+        .button-with-icon {
+          margin-top: 0.7rem;
+        }
+        .toggle.fa-chevron-up {
+          display: none;
+        }
+      }
+      .right.remove {
+        visibility: hidden;
+      }
     }
+  }
+  .details {
+    /* Need to compensate for space used up by accordion row */
+    padding-top: 7.8rem;
   }
 }

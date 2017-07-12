@@ -1,5 +1,7 @@
 import React from 'react'
 
+const SUMMARY_CLASS = '.summary'
+
 export default class StickyAccordion extends React.Component {
   constructor (props) {
     super(props)
@@ -30,7 +32,6 @@ export default class StickyAccordion extends React.Component {
 
   componentWillUnmount () {
     this.props.events.forEach(e => window.removeEventListener(e, this.onScroll))
-    console.log('Unmounting:', this.props.index)
   }
 
   documentScrollTop () {
@@ -53,7 +54,7 @@ export default class StickyAccordion extends React.Component {
   }
 
   summaryElement () {
-    return this.refs.content.querySelector('.summary')
+    return this.refs.content.querySelector(SUMMARY_CLASS)
   }
 
   onScroll (event) {
@@ -91,10 +92,9 @@ export default class StickyAccordion extends React.Component {
     if (stick !== this.state.stick) {
       this.setState({
         stick: stick
-      }, () => {
-
       })
     }
+
     if (stick) {
       this.updateFixedSummaryRowWidth()
     } else {
@@ -114,9 +114,10 @@ export default class StickyAccordion extends React.Component {
   }
 
   render () {
-    const stickClass = this.state.stick ? this.props.className : ''
+    const stickyClass = this.state.stick ? this.props.stickyClass : ''
+    const classes = [stickyClass, this.props.className].join(' ')
     return (
-      <div id={this.props.id} className={`item ${stickClass}`} ref="content">
+      <div id={this.props.id} className={classes} ref="content">
         { this.props.children }
       </div>
     )
@@ -124,7 +125,7 @@ export default class StickyAccordion extends React.Component {
 }
 
 StickyAccordion.defaultProps = {
-  className: 'accordion-sticky',
+  stickyClass: '',
   preventStick: false,
   offset: 0,
   events: [

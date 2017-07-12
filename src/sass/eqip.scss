@@ -170,7 +170,6 @@ a:focus {
     .usa-banner-header {
       display: none;
     }
-
     .header {
       position: fixed;
       top: 0;
@@ -193,7 +192,7 @@ a:focus {
             max-height: 5.7rem;
             margin: 0 auto 1.7rem auto;
             .title-text {
-              transition: font-size 800ms ease;
+              transition: font-size 600ms ease;
               font-size: 2rem;
               line-height: 1;
             }

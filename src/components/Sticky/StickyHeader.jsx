@@ -71,7 +71,7 @@ export default class StickyHeader extends React.Component {
 }
 
 StickyHeader.defaultProps = {
-  preventStick: false,
+  stickyClass: '',
   offset: 0,
   events: [
     'scroll',
