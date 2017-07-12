@@ -199,8 +199,12 @@ Sticky.defaultProps = {
     let delta = 0
     if (!event.deltaY) {
       delta = w.pageYOffset - state.scrollY
+      console.log('delta (scroll): ', delta)
     } else {
-      delta = event.deltaY
+      // 53 is the delta in chrome and chromium.
+      // 3 is the delta in ff.
+      delta = 53 // event.deltaY
+      console.log('delta (wheel): ', delta)
     }
 
     component.setState({ scrollY: w.pageYOffset, touched: timestamp }, () => {
