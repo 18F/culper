@@ -1,18 +1,27 @@
-.sticky-container {
-  position: relative;
-  top: 1vh;
-  height: 98vh;
+.sticky-stick {
+  position: static;
+}
 
-  &.sticky {
-    position: sticky;
-    position: -webkit-sticky;
-    position: -moz-sticky;
-    position: -ms-sticky;
-    position: -o-sticky;
+.sticky-container {
+  position: fixed;
+  width: 21%;
+  min-width: 32rem;
+  top: 0;
+
+  &.pin-top {
+    position: relative;
+    width: 100%;
+  }
+
+  &.no-pin.pin-top {
+    position: fixed;
+    top: 0 !important;
+    width: 21%;
   }
 
   .sticky-content {
     position: absolute;
-    top: 0;
+    left: 2rem;
+    right: 2rem;
   }
 }

@@ -19,6 +19,8 @@ export default class Sticky extends React.Component {
     const w = this.props.window()
     this.props.events.scroll.forEach(name => this.props.addEvent(w, name, this.onScroll))
     this.props.events.wheel.forEach(name => this.props.addEvent(w, name, this.onWheel))
+
+    this.elastic(0)
   }
 
   componentWillUnmount () {
@@ -35,70 +37,90 @@ export default class Sticky extends React.Component {
     this.props.getDelta(this, event, this.props.window(), this.state, this.elastic)
   }
 
+  setPosition (winHeight, scrolled) {
+    const content = this.props.getBox(this.refs.content)
+    const measure = this.props.getBox(this.refs.measure)
+    const current = this.state.position
+    const pin = {
+      top: content.top >= 0 && content.bottom > winHeight,
+      bottom: content.top < 0 && content.bottom <= winHeight
+    }
+
+    let position = ''
+    if (measure.top > 0 || (pin.top && pin.bottom)) {
+      position = 'pin-top'
+    } else if (pin.bottom) {
+      if (scrolled.up) {
+        position = 'no-pin'
+      } else {
+        position = 'pin-bottom'
+      }
+    } else {
+      position = 'no-pin'
+      if (scrolled.up && (content.top > 0 || current.indexOf('pin-top') !== -1)) {
+        position += ' pin-top'
+      }
+    }
+
+    return position
+  }
+
+  getDiffFromStick (delta) {
+    const content = this.props.getBox(this.refs.content)
+    const measure = this.props.getBox(this.refs.measure)
+
+    return measure.top - content.top
+  }
+
+  setOffset (delta, settings, winHeight, scrolled) {
+    const content = this.props.getBox(this.refs.content)
+    let top = (Math.abs(content.top) + delta) * -1
+
+    // Pseudo pin to the bottom without flicker effect
+    if (scrolled.down && content.bottom < winHeight) {
+      top = Math.abs(content.top) * -1
+    }
+
+    // Pseudo pin to the top without flicker effect
+    if (scrolled.up && content.top > 0) {
+      top = 0
+    }
+
+    return top
+  }
+
   elastic (delta) {
     const w = this.props.window()
     const settings = this.props.settings
-    const breakpoint = settings.breakpoint
-    let future = {
-      position: null,
-      top: null
-    }
-
     const winHeight = w.innerHeight
     const scrolled = {
       up: delta < 0,
       down: delta > 0
     }
+    const position = this.setPosition(winHeight, scrolled)
+    const top = position.indexOf('pin-top') === -1
+          ? this.setOffset(delta, settings, winHeight, scrolled)
+          : 0
 
-    const rect = this.props.getBox(this.refs.sticky)
-    if (rect.top < breakpoint.lower || rect.top > breakpoint.upper) {
-      future.position = 'sticky'
-    } else {
-      future.position = 'relative'
-    }
-
-    if (future.position === 'sticky') {
-      if (scrolled.down) {
-        let offset = this.state.top
-        offset -= Math.abs(delta / settings.ratio) * settings.step
-
-        // Check if the bottom of the navigation is visible.
-        // If it is then we don't need to scroll anymore.
-        if (rect.bottom < winHeight) {
-          offset = this.state.top
-        }
-
-        future.top = offset
-      }
-
-      if (scrolled.up) {
-        let offset = this.state.top
-        offset += Math.abs(delta / settings.ratio) * settings.step
-
-        // Check to see if this exceeds the initial setting. If so, then
-        // reset it.
-        if (offset > 0) {
-          offset = 0
-        }
-
-        future.top = offset
-      }
-    }
-
-    // Set the state
-    this.setState(future)
+    this.setState({
+      position: position,
+      top: top
+    })
   }
 
   render () {
     const klass = `sticky-container ${this.state.position}`
     const style = {
-      top: this.state.top ? `${this.state.top}${this.props.settings.unit}` : null
+      top: this.state.top !== null ? `${this.state.top}${this.props.unit}` : null
     }
 
     return (
-      <div className={klass}>
-        <div ref="sticky" className="sticky-content" style={style} onScroll={this.onScroll}>
-          {this.props.children}
+      <div>
+        <span ref="measure" className="sticky-stick"></span>
+        <div className={klass}>
+          <div ref="content" className="sticky-content" style={style} onScroll={this.onScroll}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     )
@@ -106,18 +128,10 @@ export default class Sticky extends React.Component {
 }
 
 Sticky.defaultProps = {
-  position: 'relative',
+  position: '',
   top: 0,
   scrollY: 0,
-  settings: {
-    step: 3,
-    ratio: 100,
-    unit: 'vh',
-    breakpoint: {
-      upper: 200,
-      lower: 10
-    }
-  },
+  unit: 'px',
   events: {
     scroll: ['scroll'],
     wheel: ['mousewheel']

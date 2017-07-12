@@ -10,7 +10,7 @@ describe('The sticky component', () => {
   it('default position is relative', () => {
     const props = {}
     const component = mount(<Sticky {...props} />)
-    expect(component.state('position')).toBe('relative')
+    expect(component.state('position')).toBe('no-pin')
   })
 
   it('scroll within breakpoints is relative', () => {
@@ -23,7 +23,7 @@ describe('The sticky component', () => {
       }
     }
     const component = mount(<Sticky {...props} />)
-    expect(component.state('position')).toBe('relative')
+    expect(component.state('position')).toBe('no-pin')
   })
 
   it('detects scrollbar movement', () => {
@@ -50,7 +50,7 @@ describe('The sticky component', () => {
     const component = mount(<Sticky {...props} />)
     fire('scroll', { detail: 0 })
     expect(scrolled).toBe(true)
-    expect(component.state('position')).toBe('sticky')
+    expect(component.state('position')).toBe('no-pin')
   })
 
   it('detects wheel movement', () => {
@@ -78,7 +78,7 @@ describe('The sticky component', () => {
     const component = mount(<Sticky {...props} />)
     fire('mousewheel', { deltaY: 100 })
     expect(scrolled).toBe(true)
-    expect(component.state('position')).toBe('sticky')
+    expect(component.state('position')).toBe('no-pin')
     expect(component.state('scrollY')).toBe(500)
   })
 
@@ -107,7 +107,7 @@ describe('The sticky component', () => {
     const component = mount(<Sticky {...props} />)
     fire('mousewheel', { target: { deltaY: -100 } })
     expect(scrolled).toBe(true)
-    expect(component.state('position')).toBe('sticky')
+    expect(component.state('position')).toBe('no-pin')
     expect(component.state('scrollY')).toBe(300)
   })
 
