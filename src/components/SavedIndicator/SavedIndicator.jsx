@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { updateApplication } from '../../actions/ApplicationActions'
 import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
-import { Show } from '../Form'
+import { Show, Spinner } from '../Form'
 
 class SavedIndicator extends React.Component {
   constructor (props) {
@@ -12,7 +12,8 @@ class SavedIndicator extends React.Component {
     this.state = {
       interval: props.interval || 1000,
       elapsed: props.elapsed || 0,
-      hover: false
+      hover: false,
+      animate: false
     }
 
     this.tick = this.tick.bind(this)
@@ -35,7 +36,11 @@ class SavedIndicator extends React.Component {
 
   reset (event) {
     this.props.dispatch(updateApplication('Settings', 'saved', new Date()))
-    this.setState({elapsed: 0})
+    this.setState({elapsed: 0, animate: true}, () => {
+      window.setTimeout(() => {
+        this.setState({animate: false})
+      }, 3000)
+    })
   }
 
   mouseEnter (event) {
@@ -92,19 +97,31 @@ class SavedIndicator extends React.Component {
   }
 
   render () {
+    const klassCircle = `spinner-icon ${this.state.animate ? 'spin' : ''}`.trim()
+    const klassIcon = `fa fa-floppy-o ${this.state.animate ? 'invert' : ''}`.trim()
     return (
       <button className="saved-indicator"
               onClick={this.reset}
               onMouseEnter={this.mouseEnter}
               onMouseLeave={this.mouseLeave}>
-        <i className="fa fa-floppy-o" aria-hidden="true"></i>
-        <Show when={this.state.hover}>
-          <strong>{i18n.t('saved.action')}</strong>
-        </Show>
-        <Show when={!this.state.hover}>
-          <strong>{i18n.t('saved.saved')}</strong>
-          <span className="time">{this.calculateTime()}</span>
-        </Show>
+
+        <div className="spinner">
+          <div className={klassCircle}></div>
+          <i className={klassIcon} aria-hidden="true"></i>
+        </div>
+
+        <span className="spinner-label">
+          <Show when={this.state.animate}>
+            <strong className="one-line">{i18n.t('saved.saving')}</strong>
+          </Show>
+          <Show when={!this.state.animate && this.state.hover}>
+            <strong className="one-line">{i18n.t('saved.action')}</strong>
+          </Show>
+          <Show when={!this.state.animate && !this.state.hover}>
+            <strong>{i18n.t('saved.saved')}</strong>
+            <span className="time">{this.calculateTime()}</span>
+          </Show>
+        </span>
       </button>
     )
   }

@@ -44,6 +44,7 @@ const en = {
   },
   saved: {
     action: 'Save now',
+    saving: 'Saving',
     saved: 'Saved',
     now: 'Just now',
     second: 'sec',
