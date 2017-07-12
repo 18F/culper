@@ -42,12 +42,12 @@ export default class Sticky extends React.Component {
     const measure = this.props.getBox(this.refs.measure)
     const current = this.state.position
     const pin = {
-      top: content.top >= 0 && content.bottom > winHeight,
+      top: content.top >= 0 && content.bottom < winHeight,
       bottom: content.top < 0 && content.bottom <= winHeight
     }
 
     let position = ''
-    if (measure.top > 0 || (pin.top && pin.bottom)) {
+    if (measure.top > 18 || (pin.top && pin.bottom)) {
       position = 'pin-top'
     } else if (pin.bottom) {
       if (scrolled.up) {
