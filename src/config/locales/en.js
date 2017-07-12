@@ -6543,8 +6543,8 @@ const en = {
           note: ''
         },
         official: {
-          title: 'Was the travel solely U.S. Government related?',
-          message: 'If it was then click Yes.',
+          title: 'Need help with this question?',
+          message: 'You will need to enter an item for each trip. <br />Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards. <br />Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjunction with the official U.S. Government travel.',
           note: ''
         },
         country: {
@@ -6555,7 +6555,7 @@ const en = {
         dates: {
           title: 'Need help with this date range?',
           message: 'Tell us the full date range you visited this country including many short trips.',
-          note: 'Note: This date range can cover multiple trips to the same country.'
+          note: 'Note: This date range can cover many trips to the same country.'
         },
         days: {
           title: 'Need help with how many days?',
