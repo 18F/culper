@@ -60,7 +60,6 @@ export default class Political extends SubsectionElement {
         <Branch name="has_foreign_political"
                 label={i18n.t('foreign.business.political.heading.title')}
                 labelSize="h3"
-                help="foreign.business.political.help.branch"
                 value={this.props.HasForeignPolitical}
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
@@ -78,7 +77,6 @@ export default class Political extends SubsectionElement {
                      appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.business.political.collection.append')}>
             <Field title={i18n.t('foreign.business.political.heading.position')}
-                   help="foreign.business.political.help.position"
                    adjustFor="text">
               <Text name="Position"
                     className="foreign-business-political-position"
@@ -96,7 +94,6 @@ export default class Political extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.country')}
-                   help="foreign.business.political.help.country"
                    adjustFor="country">
               <Country name="Country"
                        className="foreign-business-political-country"
@@ -105,7 +102,6 @@ export default class Political extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.reason')}
-                   help="foreign.business.political.help.reason"
                    adjustFor="textarea">
               <Textarea name="Reason"
                         className="foreign-business-political-reason"
@@ -114,7 +110,6 @@ export default class Political extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.eligibility')}
-                   help="foreign.business.political.help.eligibility"
                    adjustFor="text">
               <Text name="Eligibility"
                     className="foreign-business-political-eligibility"
