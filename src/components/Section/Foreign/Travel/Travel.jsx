@@ -65,7 +65,6 @@ export default class Travel extends SubsectionElement {
                 labelSize="h3"
                 name="has_foreign_travel_outside"
                 className="foreign-travel-outside"
-                help="foreign.travel.help.outside"
                 value={this.props.HasForeignTravelOutside}
                 warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}

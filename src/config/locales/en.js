@@ -6319,13 +6319,13 @@ const en = {
         },
         help: {
           branch: {
-            title: 'Need help determining if you have any foreign government sponsorship?',
-            message: 'If you have any foreign government sponsorship then select "yes".',
+            title: 'What is a foreign national?',
+            message: 'A foreign national is defined as any person who is not a citizen or national of the U.S.',
             note: ''
           },
           birthdate: {
-            title: 'Need help with the date of birth?',
-            message: 'Provide the foreign nationals date of birth.',
+            title: 'Need help with the foreign national\'s date of birth?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           birthplace: {
@@ -6340,7 +6340,7 @@ const en = {
           },
           citizenship: {
             title: 'Need help with the foreign nationals citizenship(s)?',
-            message: 'To the best of your knowledge provide the foreign nationals citizenship(s).',
+            message: 'Tell us all of the citizenships this foreign national has.',
             note: 'Note: You can provide multiple citizenships in this question.'
           },
           organization: {
@@ -6349,14 +6349,14 @@ const en = {
             note: ''
           },
           organizationaddress: {
-            title: 'Need help with the organization address?',
-            message: 'Provide the organization address.',
-            note: ''
+            title: 'Not sure of the organization\'s address?',
+            message: 'Try looking up the organization\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address'
           },
           dates: {
             title: 'Need help with the dates of stay?',
-            message: 'Provide the approximate date range for the period of stay within the U.S.',
-            note: ''
+            message: 'Tell us the full date range the sponsored foreign national was in the U.S.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
           residence: {
             title: 'Need help with the residence?',
@@ -6417,9 +6417,9 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates?',
-            message: 'Provide the dates you held political office.',
-            note: ''
+            title: 'Need help with this date range?',
+            message: 'Tell us the full date range you held this political office.',
+            note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
           country: {
             title: 'Need help with the country involved?',
@@ -6463,8 +6463,8 @@ const en = {
             note: ''
           },
           date: {
-            title: 'Need help with the date?',
-            message: 'Provide the date you voted.',
+            title: 'Need help with this date?',
+            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           country: {
@@ -6513,7 +6513,7 @@ const en = {
         explanation: 'Provide explanation'
       },
       para: {
-        personal: '(i.e., no personal trips in conjunction with the official U.S. Government business.)',
+        personal: 'I.e., no personal trips in conjunction with the official U.S. Government business.',
         checkall: 'Check all that apply',
         explanation: 'If yes provide explanation.',
         timeframe: [
@@ -6543,8 +6543,8 @@ const en = {
           note: ''
         },
         official: {
-          title: 'Was the travel solely U.S. Government related?',
-          message: 'If it was then click Yes.',
+          title: 'Need help with this question?',
+          message: 'You will need to enter an item for each trip. <br />Respond for the time frame of the last seven (7) years, beginning with the most recent and working backwards. <br />Do not list trips that ONLY involved travel on official U.S. Government business on official government orders, but you must include any personal trips made in conjunction with the official U.S. Government travel.',
           note: ''
         },
         country: {
@@ -6555,7 +6555,7 @@ const en = {
         dates: {
           title: 'Need help with this date range?',
           message: 'Tell us the full date range you visited this country including many short trips.',
-          note: 'Note: This date range can cover multiple trips to the same country.'
+          note: 'Note: This date range can cover many trips to the same country.'
         },
         days: {
           title: 'Need help with how many days?',
