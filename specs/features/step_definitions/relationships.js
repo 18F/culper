@@ -1,6 +1,7 @@
 const { client } = require('nightwatch-cucumber')
 const { defineSupportCode } = require('cucumber')
 
+let range = 7
 let counter = 0
 
 const filenum = () => {
@@ -15,22 +16,24 @@ const filenum = () => {
   return s
 }
 
-let range = 10
-
 defineSupportCode(({Given, Then, When}) => {
 
   When(/^I fill in the relationships (.*?) section$/, (subsection) => {
     const section = 'Relationships'
     const ssheader = 'Marital & relationship status'
     let promise = navigateToSection(section)
-      .then(() => { return navigateToSection(ssheader)})
-      .then(() => { return navigateToSubsection(section.toLowerCase(), subsection) })
+    if (subsection.includes("/")) {
+      promise.then(() => { return navigateToSection(ssheader)})
+    }
+    promise.then(() => { return navigateToSubsection(section.toLowerCase(), subsection) })
 
     switch (subsection) {
       case 'status/marital':
         return completeRelationshipStatusMarital(promise)
       case 'status/cohabitant':
         return completeRelationshipStatusCohabitant(promise)
+      case 'people':
+        return completeRelationshipPeople(promise)
       default:
         return promise
     }
@@ -118,12 +121,33 @@ const completeRelationshipStatusCohabitant = (promise) => {
     .then(() => { return setText('.cohabitants .datecontrol.cohabitation-began .year input', '2000') })
 }
 
+const completeRelationshipPeople = (promise) => {
+  return promise
+    .then(() => { return checkValue('.people .summary-progress.people-summary .stats .fraction .completed', '0') })
+    .then(() => { return setText('.person .daterange.known-dates .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.person .daterange.known-dates .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.person .daterange.known-dates .datecontrol.from .year input', getCurrentYear()-range) })
+    .then(() => { return setOption('.person .daterange.known-dates .from-present .block label') })
+    .then(() => { return setText('.person .name .first input', 'John') })
+    .then(() => { return setText('.person .name .middle input', 'Q') })
+    .then(() => { return setText('.person .name .last input', 'Public') })
+    .then(() => { return checkValue('.people .summary-progress.people-summary .stats .fraction .completed', range) })
+    .then(() => { return setOption('.person .rank-notapplicable .block label') })
+    .then(() => { return setOption('.person .relationship.option-list .block label') })
+    .then(() => { return setDomesticTelephone('.person .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setDomesticTelephone('.person .other-telephone', '703', '444', '5555', 'Home') })
+    .then(() => { return setText('.person .email input', 'test@test.com') })
+    .then(() => { return setDomesticAddress('.person .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOption('.people .field.branch.addendum .no.block label') })
+
+}
+
 const navigateToSection = (section) => {
   const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
-    .pause(3000)
+    .pause(3000).pause(3000)
     .saveScreenshot('./screenshots/Relationships/' + filenum() + '-navigate-section.png')
 }
 
@@ -157,6 +181,7 @@ const setDomesticAddress = (selector, street, city, state, zipcode) => {
     .setValue(selector + ' .city input', city)
     .setValue(selector + ' .state input', state)
     .setValue(selector + ' .zipcode input', zipcode)
+    .pause(3000)
     .saveScreenshot('./screenshots/Relationships/' + filenum() + '-set-address.png')
 }
 
