@@ -377,7 +377,10 @@ button.usa-button-outline {
       top: 6.4rem;
       background-color: #fff;
       //line-height: 3rem;
-      .left, .right {
+      .left {
+        width: 90%;
+        transition: width 300ms ease-out;
+        padding-top: 1rem;
         > span > span {
           max-height: 3.6rem;
         }
@@ -385,13 +388,22 @@ button.usa-button-outline {
         line-height: 3rem;
         .button-with-icon {
           margin-top: 0.7rem;
+          span.toggle {
+            width: 4rem;
+            border-bottom: 1px dashed #0071bc;
+          }
         }
         .toggle.fa-chevron-up {
           display: none;
         }
       }
       .right.remove {
+        /** Allow for sliding in animation **/
+        padding: 0;
         visibility: hidden;
+        width: 0;
+        display: block;
+        height: 0;
       }
     }
   }
