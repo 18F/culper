@@ -110,6 +110,9 @@ export default class StickyAccordion extends React.Component {
 
   updateRelativeSummaryRowWidth () {
     let fixedSummary = this.summaryElement()
+    if (!fixedSummary) {
+      return
+    }
     fixedSummary.style.width = ''
   }
 

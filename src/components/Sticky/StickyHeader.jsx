@@ -26,6 +26,9 @@ export default class StickyHeader extends React.Component {
   }
 
   elementOffset () {
+    if (!this.refs.content) {
+      return
+    }
     const rect = this.refs.content.getBoundingClientRect()
     const bodyRect = document.body.getBoundingClientRect()
     const elOffset = rect.top - bodyRect.top
