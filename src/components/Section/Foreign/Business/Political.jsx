@@ -40,7 +40,7 @@ export default class Political extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const pos = (obj.Position || {}).value || i18n.t('foreign.business.political.collection.summary.unknown')
+    const pos = (obj.Position || {}).value || i18n.m('foreign.business.political.collection.summary.unknown')
     const country = (obj.Country || {}).value || ''
     const dates = DateSummary(obj.Dates)
     const text = country.length ? `${pos} (${country})` : pos

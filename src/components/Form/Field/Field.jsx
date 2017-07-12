@@ -273,13 +273,13 @@ export default class Field extends ValidationElement {
         {this.title()}
         <div className="table">
           <span className="content">
+            <span className="icon">
+              {this.icon()}
+            </span>
             <span className={klassComponent}>
               {this.children(this.props.children)}
               {this.comments()}
               {this.commentsButton()}
-            </span>
-            <span className="icon">
-              {this.icon()}
             </span>
           </span>
         </div>

@@ -8,7 +8,7 @@ import Text from '../Text'
 import DateControl from '../DateControl'
 import Telephone from '../Telephone'
 import Email from '../Email'
-import Address from '../Address'
+import Location from '../Location'
 import Checkbox from '../Checkbox'
 import CheckboxGroup from '../CheckboxGroup'
 import Show from '../Show'
@@ -190,7 +190,7 @@ export default class Reference extends ValidationElement {
 
         <Field title={i18n.t(`${prefix}reference.heading.phone`)}
                help={`${prefix}reference.help.phone`}
-               adjustFor="labels">
+               adjustFor="telephone">
           <Telephone name="Phone"
                      className="reference-phone"
                      {...this.state.Phone}
@@ -221,13 +221,15 @@ export default class Reference extends ValidationElement {
                help={`${prefix}reference.help.address`}
                adjustFor="address">
           <p>{i18n.t(`${prefix}reference.para.address`)}</p>
-          <Address name="Address"
-                   className="reference-address"
-                   {...this.state.Address}
-                   label={i18n.t(`${prefix}reference.label.address`)}
-                   onUpdate={this.onUpdate.bind(this, 'Address')}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    className="reference-address"
+                    {...this.state.Address}
+                    label={i18n.t(`${prefix}reference.label.address`)}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.onUpdate.bind(this, 'Address')}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )

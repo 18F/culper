@@ -4,7 +4,7 @@ import { DateSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Text, Textarea, Name, Country, DateRange, Address } from '../../../Form'
+         Text, Textarea, Name, Country, DateRange, Location } from '../../../Form'
 
 export default class Ventures extends SubsectionElement {
   constructor (props) {
@@ -41,7 +41,7 @@ export default class Ventures extends SubsectionElement {
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.ventures.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.business.ventures.collection.summary.unknown')
     const date = DateSummary(item.Dates)
 
     return (
@@ -88,10 +88,12 @@ export default class Ventures extends SubsectionElement {
             <Field title={i18n.t('foreign.business.ventures.heading.address')}
                    help="foreign.business.ventures.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="ventures-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="ventures-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.ventures.heading.citizenship')}

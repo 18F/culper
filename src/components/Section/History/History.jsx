@@ -7,7 +7,6 @@ import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Svg, Show, Branch } from '../../Form'
-import IntroHeader from '../../Form/IntroHeader'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
@@ -312,16 +311,13 @@ class History extends SectionElement {
     return (
       <div className="history">
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="history intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="financial/review"
+                       backLabel={i18n.t('financial.destination.review')}
+                       next="history/residence"
+                       nextLabel={i18n.t('history.destination.residence')}>
+            <h2>{i18n.t('temp.intro.title')}</h2>
+            {i18n.m('temp.intro.body')}
           </SectionView>
 
           <SectionView name="review"
@@ -385,8 +381,8 @@ class History extends SectionElement {
           </SectionView>
 
           <SectionView name="residence"
-                       back="financial/nonpayment"
-                       backLabel={i18n.t('financial.destination.nonpayment')}
+                       back="history/intro"
+                       backLabel={i18n.t('history.destination.intro')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
             <h2>{i18n.t('history.residence.title')}</h2>
@@ -541,7 +537,6 @@ function mapStateToProps (state) {
 
 History.defaultProps = {
   section: 'history',
-  defaultView: (props) => { return 'residence' },
   store: 'History'
 }
 

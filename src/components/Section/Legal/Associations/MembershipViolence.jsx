@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsViolenceValidator } from '../../../../validators'
 import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Address, Text, Textarea, NotApplicable } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
 
 export default class MembershipViolence extends SubsectionElement {
   constructor (props) {
@@ -40,7 +40,7 @@ export default class MembershipViolence extends SubsectionElement {
 
   summary (item, index) {
     const type = i18n.t('legal.associations.violence.collection.item')
-    const unknown = i18n.t('legal.associations.violence.collection.unknown')
+    const unknown = i18n.m('legal.associations.violence.collection.unknown')
     const o = item || {}
     const details = (o.Organization || {}).value
           ? o.Organization.value
@@ -91,10 +91,12 @@ export default class MembershipViolence extends SubsectionElement {
             <Field title={i18n.t('legal.associations.violence.heading.address')}
                    help="legal.associations.violence.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="legal-associations-violence-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="legal-associations-violence-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.associations.violence.heading.dates')}

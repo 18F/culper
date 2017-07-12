@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import DateRangeValidator from './daterange'
 import NameValidator from './name'
 import { validGenericTextfield } from './helpers'
@@ -136,7 +136,7 @@ export class ForeignContactValidator {
   }
 
   validAddress () {
-    return new AddressValidator(this.address, null).isValid()
+    return new LocationValidator(this.address).isValid()
   }
 
   validTitle () {

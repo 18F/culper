@@ -40,7 +40,7 @@ export default class Family extends SubsectionElement {
   summary (item, index) {
     const obj = item || {}
     const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.family.collection.summary.unknown')
+    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.business.family.collection.summary.unknown')
 
     return (
       <span>

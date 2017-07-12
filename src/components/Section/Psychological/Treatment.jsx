@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Address, ValidationElement, Field, Text, Telephone } from '../../Form'
+import { Location, ValidationElement, Field, Text, Telephone } from '../../Form'
 
 export default class Treatment extends ValidationElement {
   constructor (props) {
@@ -54,7 +54,7 @@ export default class Treatment extends ValidationElement {
                 />
         </Field>
 
-        <Field adjustFor="labels">
+        <Field adjustFor="telephone">
           <Telephone name="Phone"
                      label={i18n.t(`psychological.${prefix}.label.phone`)}
                      {...this.props.Phone}
@@ -66,12 +66,14 @@ export default class Treatment extends ValidationElement {
         <Field title={i18n.t(`psychological.${prefix}.heading.address`)}
                help={`psychological.${prefix}.help.address`}
                adjustFor="address">
-          <Address name="Address"
-                   {...this.props.Address}
-                   label={i18n.t(`psychological.${prefix}.label.address`)}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.props.Address}
+                    label={i18n.t(`psychological.${prefix}.label.address`)}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )
