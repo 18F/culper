@@ -41,8 +41,8 @@ export default class Sponsorship extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.m('foreign.business.sponsorship.collection.summary.unknown'))
     const dates = DateSummary(obj.Dates)
+    const name = NameSummary(obj.Name, dates === '' ? i18n.m('foreign.business.sponsorship.collection.summary.unknown') : '')
 
     return (
       <span>

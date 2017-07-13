@@ -42,10 +42,10 @@ export default class Unauthorized extends SubsectionElement {
     const type = i18n.t('legal.technology.unauthorized.collection.item')
     const unknown = i18n.m('legal.technology.unauthorized.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value
           ? o.Incident.value
-          : unknown
-    const dates = DateSummary(o.Date)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

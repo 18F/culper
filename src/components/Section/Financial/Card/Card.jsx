@@ -53,13 +53,14 @@ export default class Card extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.m('financial.card.collection.summary.unknown')
     const date = (obj.Date || {})
 
     let from = ''
     if (date.month && date.year) {
       from = '' + date.month + '/' + date.year
     }
+
+    const agency = (obj.Agency || {}).value || from === '' ? i18n.m('financial.card.collection.summary.unknown') : ''
 
     return (
       <span>

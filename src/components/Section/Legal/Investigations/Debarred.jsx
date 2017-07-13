@@ -42,10 +42,10 @@ export default class Debarred extends SubsectionElement {
     const type = i18n.t('legal.investigations.debarred.collection.item')
     const unknown = i18n.m('legal.investigations.debarred.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Date)
     const agency = (o.Agency || {}).value
           ? o.Agency.value
-          : unknown
-    const dates = DateSummary(o.Date)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

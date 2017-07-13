@@ -54,15 +54,16 @@ export default class Delinquent extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.m('financial.delinquent.collection.summary.unknown')
-    const amount = (obj.Amount || {}).value
-    const text = `${name}${amount ? ', $' + amount : ''}`.trim()
     const date = (obj.Date || {})
 
     let from = ''
     if (date.month && date.year) {
       from = '' + date.month + '/' + date.year
     }
+
+    const name = (obj.Name || {}).value || from === '' ? i18n.m('financial.delinquent.collection.summary.unknown') : ''
+    const amount = (obj.Amount || {}).value
+    const text = `${name}${amount ? ', $' + amount : ''}`.trim()
 
     return (
       <span>

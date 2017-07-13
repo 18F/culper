@@ -45,10 +45,10 @@ export default class History extends SubsectionElement {
     const type = i18n.t('legal.investigations.history.collection.item')
     const unknown = i18n.m('legal.investigations.history.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Granted)
     const agency = (o.Agency || {}).Agency
           ? o.Agency.Agency
-          : unknown
-    const dates = DateSummary(o.Granted)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

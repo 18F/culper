@@ -40,8 +40,8 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).CourtAction || {}
-    const courtName = (o.CourtName || {}).value || i18n.m('legal.nonCriminalAction.collection.summary')
     const date = DateSummary(o.CivilActionDate)
+    const courtName = (o.CourtName || {}).value || date === '' ? i18n.m('legal.nonCriminalAction.collection.summary') : ''
     const type = i18n.t('legal.nonCriminalAction.collection.itemType')
 
     return (

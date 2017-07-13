@@ -42,8 +42,8 @@ export default class Contact extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.m('foreign.business.contact.collection.summary.unknown'))
     const date = DateSummary(obj.Date)
+    const name = NameSummary(obj.Name, date === '' ? i18n.m('foreign.business.contact.collection.summary.unknown') : '')
     const govt = ((obj.Governments || {}).value || []).map(x => x.name).join(', ')
     const govtParen = govt ? ` (${govt})` : ''
 

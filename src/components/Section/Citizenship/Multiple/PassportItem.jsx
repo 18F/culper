@@ -84,10 +84,10 @@ export default class PassportItem extends ValidationElement {
 
   summary (item, index) {
     const itemProperties = (item || {}).Item || {}
+    const dates = DateSummary(itemProperties.Dates)
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
-          : i18n.m('citizenship.multiple.collection.travel.summary.unknown')
-    const dates = DateSummary(itemProperties.Dates)
+          : dates === '' ? i18n.m('citizenship.multiple.collection.travel.summary.unknown') : ''
 
     return (
       <span>

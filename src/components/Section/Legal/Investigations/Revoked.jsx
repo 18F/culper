@@ -42,10 +42,10 @@ export default class Revoked extends SubsectionElement {
     const type = i18n.t('legal.investigations.revoked.collection.item')
     const unknown = i18n.m('legal.investigations.revoked.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Date)
     const agency = (o.Agency || {}).value
           ? o.Agency.value
-          : unknown
-    const dates = DateSummary(o.Date)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

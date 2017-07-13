@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import { DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignBenefitActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
@@ -101,17 +102,17 @@ export const benefitSummary = (item, index) => {
     case 'OneTime':
       b = (item.OneTimeBenefit || {})
       benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Received || {}).date ? `${b.Received.month}/${b.Received.year}` : ''
+      benefit.Date = DateSummary(b.Received)
       break
     case 'Future':
       b = (item.FutureBenefit || {})
       benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Begin || {}).date ? `${b.Begin.month}/${b.Begin.year}` : ''
+      benefit.Date = DateSummary(b.Begin)
       break
     case 'Continuing':
       b = (item.ContinuingBenefit || {})
       benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Began || {}).date ? `${b.Began.month}/${b.Began.year}` : ''
+      benefit.Date = DateSummary(b.Began)
       break
   }
 
@@ -126,7 +127,7 @@ export const benefitSummary = (item, index) => {
     <span className="content">
       <span className="index">{type}: {index + 1}</span>
       <span className="benefit-summary">
-        <strong>{ summary || i18n.m('foreign.activities.benefit.collection.summary')}</strong>
+        <strong>{ summary || benefit.Date === '' ? i18n.m('foreign.activities.benefit.collection.summary') : ''}</strong>
       </span>
       <span className="date"><strong>{benefit.Date}</strong></span>
     </span>

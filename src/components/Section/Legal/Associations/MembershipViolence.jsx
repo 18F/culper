@@ -42,10 +42,10 @@ export default class MembershipViolence extends SubsectionElement {
     const type = i18n.t('legal.associations.violence.collection.item')
     const unknown = i18n.m('legal.associations.violence.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Dates)
     const details = (o.Organization || {}).value
           ? o.Organization.value
-          : unknown
-    const dates = DateSummary(o.Dates)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

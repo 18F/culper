@@ -42,10 +42,10 @@ export default class Unlawful extends SubsectionElement {
     const type = i18n.t('legal.technology.unlawful.collection.item')
     const unknown = i18n.m('legal.technology.unlawful.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value
           ? o.Incident.value
-          : unknown
-    const dates = DateSummary(o.Date)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

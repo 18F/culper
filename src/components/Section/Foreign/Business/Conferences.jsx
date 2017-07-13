@@ -41,8 +41,8 @@ export default class Conferences extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const city = (obj.City || {}).value || i18n.m('foreign.business.conferences.collection.summary.unknown')
     const date = DateSummary(item.Dates)
+    const city = (obj.City || {}).value || date === '' ? i18n.m('foreign.business.conferences.collection.summary.unknown') : ''
 
     return (
       <span>

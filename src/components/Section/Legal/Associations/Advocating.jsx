@@ -42,10 +42,10 @@ export default class Advocating extends SubsectionElement {
     const type = i18n.t('legal.associations.advocating.collection.item')
     const unknown = i18n.m('legal.associations.advocating.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Dates)
     const details = (o.Reasons || {}).value
           ? o.Reasons.value
-          : unknown
-    const dates = DateSummary(o.Dates)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

@@ -42,10 +42,10 @@ export default class TerroristOrganization extends SubsectionElement {
     const type = i18n.t('legal.associations.terrorist.collection.item')
     const unknown = i18n.m('legal.associations.terrorist.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Dates)
     const details = (o.Organization || {}).value
           ? o.Organization.value
-          : unknown
-    const dates = DateSummary(o.Dates)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

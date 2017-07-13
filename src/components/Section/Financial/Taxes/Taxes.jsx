@@ -54,8 +54,8 @@ export default class Taxes extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.m('financial.taxes.collection.summary.unknown')
     const year = (obj.Year || {}).value || ''
+    const agency = (obj.Agency || {}).value || year === '' ? i18n.m('financial.taxes.collection.summary.unknown') : ''
 
     return (
       <span>

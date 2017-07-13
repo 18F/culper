@@ -42,10 +42,10 @@ export default class Manipulating extends SubsectionElement {
     const type = i18n.t('legal.technology.manipulating.collection.item')
     const unknown = i18n.m('legal.technology.manipulating.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value
           ? o.Incident.value
-          : unknown
-    const dates = DateSummary(o.Date)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

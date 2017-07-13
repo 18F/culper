@@ -56,7 +56,7 @@ export default class DirectActivity extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="interest">
-          <strong>{summary || i18n.m('foreign.activities.direct.collection.summary')}</strong>
+          <strong>{summary || cost === '' ? i18n.m('foreign.activities.direct.collection.summary') : ''}</strong>
         </span>
         <span className="cost">{cost}</span>
       </span>

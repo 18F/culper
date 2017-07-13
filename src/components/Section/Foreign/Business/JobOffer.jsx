@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Show,
-         Address, Textarea, Name, DateControl, Location } from '../../../Form'
+         Textarea, Name, DateControl, Location } from '../../../Form'
 
 export default class JobOffer extends ValidationElement {
   constructor (props) {

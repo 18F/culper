@@ -42,10 +42,10 @@ export default class MembershipOverthrow extends SubsectionElement {
     const type = i18n.t('legal.associations.overthrow.collection.item')
     const unknown = i18n.m('legal.associations.overthrow.collection.unknown')
     const o = item || {}
+    const dates = DateSummary(o.Dates)
     const details = (o.Organization || {}).value
           ? o.Organization.value
-          : unknown
-    const dates = DateSummary(o.Dates)
+          : dates === '' ? unknown : ''
 
     return (
       <span className="content">

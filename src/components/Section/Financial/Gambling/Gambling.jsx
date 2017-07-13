@@ -58,11 +58,6 @@ export default class Gambling extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    let losses = i18n.m('financial.gambling.collection.summary.unknownlosses')
-    if (item.Losses && item.Losses.value) {
-      losses = '$' + this.fancyNumber(item.Losses.value)
-    }
-
     let from = ''
     if (item.Dates && item.Dates.from && item.Dates.from.date) {
       from = '' + item.Dates.from.date.getFullYear()
@@ -78,6 +73,12 @@ export default class Gambling extends SubsectionElement {
     const dates = from === '' && to === ''
           ? i18n.t('financial.gambling.collection.summary.nodates')
           : `${from} - ${to}`
+
+    let losses = i18n.m('financial.gambling.collection.summary.unknownlosses')
+    if (item.Losses && item.Losses.value) {
+      losses = '$' + this.fancyNumber(item.Losses.value)
+    }
+    // TODO: Refactor
 
     return (
       <span>

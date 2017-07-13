@@ -44,10 +44,10 @@ export default class OtherOffenses extends SubsectionElement {
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
+    const dates = DateSummary(o.Date)
     const description = o.Description && o.Description.value
           ? o.Description.value
-          : i18n.m('legal.police.collection.summary.unknown')
-    const dates = DateSummary(o.Date)
+          : dates === '' ? i18n.m('legal.police.collection.summary.unknown') : ''
 
     return (
       <span>
