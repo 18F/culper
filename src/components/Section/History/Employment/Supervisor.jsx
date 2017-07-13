@@ -97,6 +97,7 @@ export default class Supervisor extends ValidationElement {
           <Location name="Address"
                     {...this.props.Address}
                     label={i18n.t('history.employment.default.supervisor.address.label')}
+                    className="supervisor-address"
                     layout={Location.ADDRESS}
                     geocode={true}
                     onUpdate={this.onUpdate.bind(this, 'Address')}
