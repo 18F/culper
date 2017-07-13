@@ -8,5 +8,6 @@ Feature: Authentication
     And sign in
     Then I should be presented with a request for two factor authentication
     And provide my token
+    Then I should be presented with the introduction
     Then I should be presented with the form
     Then I log out

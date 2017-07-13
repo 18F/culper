@@ -17,7 +17,7 @@ export default class Spinner extends React.Component {
     // Append on any classes passed down
     const klass = `spinner ${this.props.className}`.trim()
     const klassIcon = `spinner-icon ${this.props.action === ACTION_GROW ? 'hidden' : this.props.action}`
-    const klassCheck = `fa fa-check-circle ${this.props.action === ACTION_GROW ? 'grow' : 'hidden'}`
+    const klassCheck = `fa ${this.props.icon} ${this.props.action === ACTION_GROW ? 'grow' : 'hidden'}`
 
     // When there is nothing special do the status quo
     return (
@@ -34,5 +34,6 @@ Spinner.defaultProps = {
   className: '',
   show: false,
   action: ACTION_SPIN,
-  label: i18n.t('spinner.label')
+  label: i18n.t('spinner.label'),
+  icon: 'fa-check-circle'
 }

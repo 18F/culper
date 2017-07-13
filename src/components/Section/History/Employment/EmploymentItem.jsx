@@ -132,7 +132,7 @@ export default class EmploymentItem extends ValidationElement {
                   {...this.props.Employment}
                   onUpdate={this.onUpdate.bind(this, 'Employment')}
                   onError={this.props.onError}
-                  className="text full-width"
+                  className="text full-width employment"
                   label={i18n.t(`${prefix}.employer.label`)}
                   />
           </Field>
