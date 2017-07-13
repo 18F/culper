@@ -123,6 +123,7 @@ export class DiplomaItem extends ValidationElement {
                shrink={true}>
           <DateControl name="Date"
                        {...this.state.Date}
+                       className="date-awarded"
                        hideDay={true}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
