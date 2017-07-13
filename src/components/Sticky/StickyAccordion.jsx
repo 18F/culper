@@ -1,6 +1,7 @@
 import React from 'react'
 
 const SUMMARY_CLASS = '.summary'
+const MOBILE_BREAKPOINT = 850
 
 export default class StickyAccordion extends React.Component {
   constructor (props) {
@@ -57,9 +58,19 @@ export default class StickyAccordion extends React.Component {
     return this.refs.content.querySelector(SUMMARY_CLASS)
   }
 
+  doStick () {
+    if (this.props.preventStick) {
+      return false
+    }
+    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+      return false
+    }
+    return true
+  }
+
   onScroll (event) {
     // Do not perform any sticky behavior. Set to false and run away
-    if (this.props.preventStick) {
+    if (!this.doStick()) {
       this.setState({
         stick: false
       })
@@ -104,6 +115,9 @@ export default class StickyAccordion extends React.Component {
 
   updateFixedSummaryRowWidth () {
     let fixedSummary = this.summaryElement()
+    if (!fixedSummary) {
+      return
+    }
     let areaWidth = this.refs.content.clientWidth
     fixedSummary.style.width = `${areaWidth}px`
   }
