@@ -10,7 +10,7 @@ describe('The sticky component', () => {
   it('default position is relative', () => {
     const props = {}
     const component = mount(<Sticky {...props} />)
-    expect(component.state('position')).toBe('relative')
+    expect(component.state('position')).toBe('anchor-visible no-scroll scrollbar-top')
   })
 
   it('scroll within breakpoints is relative', () => {
@@ -23,7 +23,7 @@ describe('The sticky component', () => {
       }
     }
     const component = mount(<Sticky {...props} />)
-    expect(component.state('position')).toBe('relative')
+    expect(component.state('position')).toBe('anchor-visible no-scroll scrollbar-bottom')
   })
 
   it('detects scrollbar movement', () => {
@@ -32,6 +32,7 @@ describe('The sticky component', () => {
       window: () => {
         return {
           ...window,
+          onscroll: () => {},
           pageYOffset: 100
         }
       },
@@ -50,16 +51,18 @@ describe('The sticky component', () => {
     const component = mount(<Sticky {...props} />)
     fire('scroll', { detail: 0 })
     expect(scrolled).toBe(true)
-    expect(component.state('position')).toBe('sticky')
+    expect(component.state('position')).toBe('anchor-visible scrolled-down scrollbar-bottom')
   })
 
   it('detects wheel movement', () => {
     let scrolled = false
     const props = {
+      events: { scroll: [], wheel: ['mousewheel'] },
       scrollY: 400,
       window: () => {
         return {
           ...window,
+          onmousewheel: () => {},
           pageYOffset: 500
         }
       },
@@ -78,17 +81,19 @@ describe('The sticky component', () => {
     const component = mount(<Sticky {...props} />)
     fire('mousewheel', { deltaY: 100 })
     expect(scrolled).toBe(true)
-    expect(component.state('position')).toBe('sticky')
+    expect(component.state('position')).toBe('anchor-visible scrolled-down scrollbar-bottom')
     expect(component.state('scrollY')).toBe(500)
   })
 
   it('can scroll up', () => {
     let scrolled = false
     const props = {
+      events: { scroll: [], wheel: ['mousewheel'] },
       scrollY: 400,
       window: () => {
         return {
           ...window,
+          onmousewheel: () => {},
           pageYOffset: 300
         }
       },
@@ -107,7 +112,7 @@ describe('The sticky component', () => {
     const component = mount(<Sticky {...props} />)
     fire('mousewheel', { target: { deltaY: -100 } })
     expect(scrolled).toBe(true)
-    expect(component.state('position')).toBe('sticky')
+    expect(component.state('position')).toBe('anchor-visible scrolled-up scrollbar-bottom')
     expect(component.state('scrollY')).toBe(300)
   })
 

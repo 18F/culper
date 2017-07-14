@@ -1,13 +1,41 @@
 import React from 'react'
 
+// TODO: Remove logging after wide range of browser testing.
+const isEventSupported = (el, eventName) => {
+  const faux = `on${eventName}`
+  if (faux in el) {
+    // console.log('event [' + eventName + '] is supported')
+    return true
+  }
+  // console.log('event [' + eventName + '] is not supported')
+  return false
+}
+
+const getBox = (ref) => {
+  if (ref) {
+    return ref.getBoundingClientRect()
+  }
+
+  return { top: 0, bottom: 0 }
+}
+
+const toppedOut = (w, b) => {
+  return w.pageYOffset <= 1
+}
+
+const bottomedOut = (w, b) => {
+  return (w.innerHeight + w.pageYOffset) >= b.offsetHeight
+}
+
 export default class Sticky extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
       position: props.position,
-      top: props.top,
-      scrollY: props.scrollY
+      marginTop: props.marginTop,
+      scrollY: props.scrollY,
+      touched: 0
     }
 
     this.onScroll = this.onScroll.bind(this)
@@ -17,14 +45,37 @@ export default class Sticky extends React.Component {
 
   componentDidMount () {
     const w = this.props.window()
-    this.props.events.scroll.forEach(name => this.props.addEvent(w, name, this.onScroll))
-    this.props.events.wheel.forEach(name => this.props.addEvent(w, name, this.onWheel))
+    let scroll = false
+    this.props.events.scroll.forEach(name => {
+      if (!scroll && isEventSupported(w, name)) {
+        this.props.addEvent(w, name, this.onScroll)
+        scroll = true
+      }
+    })
+
+    let wheel = false
+    this.props.events.wheel.forEach(name => {
+      if (!wheel && isEventSupported(w, name)) {
+        this.props.addEvent(w, name, this.onWheel)
+        wheel = true
+      }
+    })
+
+    this.elastic(0)
   }
 
   componentWillUnmount () {
     const w = this.props.window()
-    this.props.events.scroll.forEach(name => this.props.removeEvent(w, name, this.onScroll))
-    this.props.events.wheel.forEach(name => this.props.removeEvent(w, name, this.onWheel))
+    this.props.events.scroll.forEach(name => {
+      if (isEventSupported(w, name)) {
+        this.props.removeEvent(w, name, this.onScroll)
+      }
+    })
+    this.props.events.wheel.forEach(name => {
+      if (isEventSupported(w, name)) {
+        this.props.removeEvent(w, name, this.onWheel)
+      }
+    })
   }
 
   onScroll (event) {
@@ -35,70 +86,103 @@ export default class Sticky extends React.Component {
     this.props.getDelta(this, event, this.props.window(), this.state, this.elastic)
   }
 
+  setPosition (w, b, scrolled, scrollbar) {
+    const content = getBox(this.refs.content)
+    const dipstick = getBox(this.refs.dipstick)
+    let klasses = ''
+
+    //
+    // Check our dipstick stick
+    // Check the content's boundaries
+    //
+    if (dipstick.top >= 0) {
+      klasses += ' anchor-visible'
+    } else if (content.top > 0 && content.bottom < w.innerHeight) {
+      klasses += ' both-visible'
+    } else if (content.top > 0) {
+      klasses += ' top-visible'
+    } else if (content.bottom < w.innerHeight) {
+      klasses += ' bottom-visible'
+    } else {
+      klasses += ' none-visible'
+    }
+
+    //
+    // Check the scrolling direction
+    //
+    if (scrolled.up) {
+      klasses += ' scrolled-up'
+    } else if (scrolled.down) {
+      klasses += ' scrolled-down'
+    } else {
+      klasses += ' no-scroll'
+    }
+
+    //
+    // Check the scrollbar position
+    //
+    if (scrollbar.top) {
+      klasses += ' scrollbar-top'
+    } else if (scrollbar.bottom) {
+      klasses += ' scrollbar-bottom'
+    } else {
+      klasses += ' scrollbar-flux'
+    }
+
+    //
+    // Special case classes
+    //
+    const form = getBox(document.getElementsByClassName('eapp-form')[0])
+    if (form.height < content.height) {
+      klasses += ' page-short'
+    }
+
+    return klasses.trim()
+  }
+
   elastic (delta) {
     const w = this.props.window()
-    const settings = this.props.settings
-    const breakpoint = settings.breakpoint
-    let future = {
-      position: null,
-      top: null
-    }
+    const b = this.props.body()
+    const scrolled = { up: delta < 0, down: delta > 0 }
+    const scrollbar = { top: toppedOut(w, b), bottom: bottomedOut(w, b) }
+    const current = this.state.position
+    const position = this.setPosition(w, b, scrolled, scrollbar)
 
-    const winHeight = w.innerHeight
-    const scrolled = {
-      up: delta < 0,
-      down: delta > 0
-    }
-
-    const rect = this.props.getBox(this.refs.sticky)
-    if (rect.top < breakpoint.lower || rect.top > breakpoint.upper) {
-      future.position = 'sticky'
-    } else {
-      future.position = 'relative'
-    }
-
-    if (future.position === 'sticky') {
-      if (scrolled.down) {
-        let offset = this.state.top
-        offset -= Math.abs(delta / settings.ratio) * settings.step
-
-        // Check if the bottom of the navigation is visible.
-        // If it is then we don't need to scroll anymore.
-        if (rect.bottom < winHeight) {
-          offset = this.state.top
-        }
-
-        future.top = offset
+    let marginTop = this.state.marginTop
+    if (scrolled.up) {
+      if (current.indexOf('bottom-visible') !== -1 && scrolled.up) {
+        const headerAdjust = document.getElementsByClassName('eapp-header')[0].clientHeight
+        const offset = w.pageYOffset + getBox(this.refs.content).top - headerAdjust
+        marginTop = `${offset}${this.props.unit}`
+      } else if (position.indexOf('top-visible') !== -1) {
+        marginTop = null
+      } else if (position.indexOf('anchor-visible') !== -1) {
+        marginTop = null
       }
-
-      if (scrolled.up) {
-        let offset = this.state.top
-        offset += Math.abs(delta / settings.ratio) * settings.step
-
-        // Check to see if this exceeds the initial setting. If so, then
-        // reset it.
-        if (offset > 0) {
-          offset = 0
-        }
-
-        future.top = offset
-      }
+    } if (scrolled.down) {
+      marginTop = null
     }
 
-    // Set the state
-    this.setState(future)
+    this.setState({ position: position, marginTop: marginTop })
+  }
+
+  convert (px) {
+    return `${px}${this.props.unit}`
   }
 
   render () {
     const klass = `sticky-container ${this.state.position}`
-    const style = {
-      top: this.state.top ? `${this.state.top}${this.props.settings.unit}` : null
+    const contentStyle = {
+      marginTop: this.state.marginTop
     }
 
     return (
-      <div className={klass}>
-        <div ref="sticky" className="sticky-content" style={style} onScroll={this.onScroll}>
-          {this.props.children}
+      <div>
+        <span ref="dipstick" className="sticky-dipstick"></span>
+        <div className={klass}>
+          <div ref="content" className="sticky-content" style={contentStyle}>
+            {this.props.children}
+          </div>
         </div>
       </div>
     )
@@ -106,21 +190,13 @@ export default class Sticky extends React.Component {
 }
 
 Sticky.defaultProps = {
-  position: 'relative',
-  top: 0,
+  position: '',
+  marginTop: null,
   scrollY: 0,
-  settings: {
-    step: 3,
-    ratio: 100,
-    unit: 'vh',
-    breakpoint: {
-      upper: 200,
-      lower: 10
-    }
-  },
+  unit: 'px',
   events: {
     scroll: ['scroll'],
-    wheel: ['mousewheel']
+    wheel: [/* 'mousewheel', 'wheel' */]
   },
   addEvent: (w, name, fn) => {
     w.addEventListener(name, fn)
@@ -129,23 +205,29 @@ Sticky.defaultProps = {
     w.removeEventListener(name, fn)
   },
   window: () => { return window },
-  getBox: (ref) => {
-    if (ref) {
-      return ref.getBoundingClientRect()
-    }
-
-    return { top: 0, bottom: 0 }
-  },
+  body: () => { return document.body },
   getDelta: (component, event, w, state, fn) => {
-    let delta = 0
-    if (!event.deltaY) {
-      delta = w.pageYOffset - state.scrollY
-    } else {
-      delta = event.deltaY
+    const timestamp = parseInt(new Date().getTime() / 100)
+    if (timestamp <= state.touched) {
+      return
     }
 
-    component.setState({ scrollY: w.pageYOffset }, () => {
-      fn(delta)
+    const y = w.pageYOffset
+    const direction = y < state.scrollY ? -1 : 1
+    let delta = 0
+
+    if (event.deltaY) {
+      delta = 53
+    } else {
+      const stick = getBox(component.refs.dipstick).top
+      const navigationHeight = getBox(component.refs.content).height
+      const windowHeight = w.innerHeight
+      const percentageScrolled = y / (windowHeight - stick)
+      delta = (navigationHeight * percentageScrolled) - y
+    }
+
+    component.setState({ scrollY: w.pageYOffset, touched: timestamp }, () => {
+      fn(Math.abs(delta) * direction)
     })
   }
 }
