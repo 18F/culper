@@ -4,7 +4,6 @@ import ValidationElement from '../ValidationElement'
 import Branch from '../Branch'
 import Show from '../Show'
 import Svg from '../Svg'
-import StickyHeader from '../../Sticky/StickyHeader'
 import StickyAccordion from '../../Sticky/StickyAccordion'
 import { findPosition } from '../../../middleware/history'
 
@@ -55,6 +54,10 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
+
+    // Instance variable. Not stored in state to prevent re-renders and it's not going to
+    // be used in the UI.
+    this.stickyStatus = {}
   }
 
   /**
@@ -200,8 +203,12 @@ export default class Accordion extends ValidationElement {
       return x
     })
 
-    this.update(items, this.props.branch)
-    this.setState({ initial: false, scrollToId: '' })
+    if (this.stickyStatus[item.uuid]) {
+      this.setState({ initial: false, scrollToId: item.uuid })
+    } else {
+      this.update(items, this.props.branch)
+      this.setState({ initial: false, scrollToId: '' })
+    }
   }
 
   /**
@@ -350,6 +357,11 @@ export default class Accordion extends ValidationElement {
     )
   }
 
+  onStickyScroll (item, stick) {
+    // Set the sticky status for the particular item
+    this.stickyStatus[item.uuid] = stick
+  }
+
   /**
    * Render the indivual items in the array.
    */
@@ -359,12 +371,16 @@ export default class Accordion extends ValidationElement {
     const items = [...this.props.items]
 
     return items.map((item, index, arr) => {
+      // Bind for each item so we get a handle to it when we set the sticky status
+      const onScroll = this.onStickyScroll.bind(this, item)
+
       return (
         <StickyAccordion id={item.uuid}
-          offset={49}
+          offset={52}
           key={item.uuid}
           className="item"
           stickyClass="sticky-accordion"
+          onScroll={onScroll}
           preventStick={!item.open}>
           {
             this.props.customSummary(item, index, initial,

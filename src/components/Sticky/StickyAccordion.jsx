@@ -75,6 +75,7 @@ export default class StickyAccordion extends React.Component {
         stick: false
       })
       this.updateRelativeSummaryRowWidth()
+      this.props.onScroll(false)
       return
     }
 
@@ -111,6 +112,7 @@ export default class StickyAccordion extends React.Component {
     } else {
       this.updateRelativeSummaryRowWidth()
     }
+    this.props.onScroll(stick)
   }
 
   updateFixedSummaryRowWidth () {
@@ -145,6 +147,7 @@ StickyAccordion.defaultProps = {
   stickyClass: '',
   preventStick: false,
   offset: 0,
+  onScroll: (stick) => {},
   events: [
     'scroll',
     'resize',

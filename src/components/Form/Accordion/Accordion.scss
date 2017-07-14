@@ -376,18 +376,18 @@ button.usa-button-outline {
       z-index: 1001;
       box-shadow: 0 2px 6px -1px rgba(0, 0, 0, 0.4);
       position: fixed;
-      top: 5.6rem;
+      top: 5.7rem;
       background-color: #fff;
 
       .left.close,
       .left.open {
         width: 90%;
         transition: width 300ms ease-out;
-        padding-top: 1rem;
+        //padding-top: 1rem;
         > a,
         > span > span > strong,
         > span > span {
-          max-height: 3.6rem;
+          max-height: 2.8rem;
         }
         vertical-align: middle;
         line-height: 3rem;
@@ -419,6 +419,6 @@ button.usa-button-outline {
   }
   .details {
     /* Need to compensate for space used up by accordion row */
-    padding-top: 7.8rem;
+    padding-top: 8.6rem;
   }
 }
