@@ -11,13 +11,29 @@ const isEventSupported = (el, eventName) => {
   return false
 }
 
+const getBox = (ref) => {
+  if (ref) {
+    return ref.getBoundingClientRect()
+  }
+
+  return { top: 0, bottom: 0 }
+}
+
+const toppedOut = (w, b) => {
+  return w.pageYOffset <= 1
+}
+
+const bottomedOut = (w, b) => {
+  return (w.innerHeight + w.pageYOffset) >= b.offsetHeight
+}
+
 export default class Sticky extends React.Component {
   constructor (props) {
     super(props)
 
     this.state = {
       position: props.position,
-      top: props.top,
+      marginTop: props.marginTop,
       scrollY: props.scrollY,
       touched: 0
     }
@@ -70,76 +86,84 @@ export default class Sticky extends React.Component {
     this.props.getDelta(this, event, this.props.window(), this.state, this.elastic)
   }
 
-  setPosition (winHeight, scrolled) {
-    const content = this.props.getBox(this.refs.content)
-    const measure = this.props.getBox(this.refs.measure)
-    const current = this.state.position
-    const pin = {
-      top: content.top >= 0 && content.bottom < winHeight,
-      bottom: content.top < 0 && content.bottom <= winHeight
-    }
+  setPosition (w, b, scrolled, scrollbar) {
+    const content = getBox(this.refs.content)
+    const dipstick = getBox(this.refs.dipstick)
+    let klasses = ''
 
-    let position = ''
-    if (measure.top > 20 || (pin.top && pin.bottom)) {
-      position = 'pin-top'
-    } else if (pin.bottom) {
-      if (scrolled.up) {
-        position = 'no-pin'
-      } else {
-        position = 'pin-bottom'
-      }
+    //
+    // Check our dipstick stick
+    // Check the content's boundaries
+    //
+    if (dipstick.top >= 0) {
+      klasses += ' anchor-visible'
+    } else if (content.top > 0 && content.bottom < w.innerHeight) {
+      klasses += ' both-visible'
+    } else if (content.top > 0) {
+      klasses += ' top-visible'
+    } else if (content.bottom < w.innerHeight) {
+      klasses += ' bottom-visible'
     } else {
-      position = 'no-pin'
-      if (scrolled.up && (content.top > 0 || current.indexOf('pin-top') !== -1)) {
-        position += ' pin-top'
-      }
+      klasses += ' none-visible'
     }
 
-    return position
-  }
-
-  getDiffFromStick (delta) {
-    const content = this.props.getBox(this.refs.content)
-    const measure = this.props.getBox(this.refs.measure)
-    return measure.top - content.top
-  }
-
-  setOffset (delta, settings, winHeight, scrolled) {
-    const content = this.props.getBox(this.refs.content)
-    let top = (Math.abs(content.top) + delta) * -1
-    // let top = (Math.abs(this.getDiffFromStick(delta)) + delta) * -1
-    console.log('top: ', top)
-
-    // Pseudo pin to the bottom without flicker effect
-    if (scrolled.down && content.bottom < winHeight) {
-      top = Math.abs(content.top) * -1
-      console.log('top (pseudo bottom): ', top)
+    //
+    // Check the scrolling direction
+    //
+    if (scrolled.up) {
+      klasses += ' scrolled-up'
+    } else if (scrolled.down) {
+      klasses += ' scrolled-down'
+    } else {
+      klasses += ' no-scroll'
     }
 
-    // Pseudo pin to the top without flicker effect
-    if (scrolled.up && content.top > 0) {
-      top = 0
-      console.log('top (pseudo top): ', top)
+    //
+    // Check the scrollbar position
+    //
+    if (scrollbar.top) {
+      klasses += ' scrollbar-top'
+    } else if (scrollbar.bottom) {
+      klasses += ' scrollbar-bottom'
+    } else {
+      klasses += ' scrollbar-flux'
     }
 
-    return top
+    //
+    // Special case classes
+    //
+    const form = getBox(document.getElementsByClassName('eapp-form')[0])
+    if (form.height < content.height) {
+      klasses += ' page-short'
+    }
+
+    return klasses.trim()
   }
 
   elastic (delta) {
     const w = this.props.window()
-    const settings = this.props.settings
-    const winHeight = w.innerHeight
-    const scrolled = {
-      up: delta < 0,
-      down: delta > 0
-    }
-    const position = this.setPosition(winHeight, scrolled)
-    const top = this.setOffset(delta, settings, winHeight, scrolled)
+    const b = this.props.body()
+    const scrolled = { up: delta < 0, down: delta > 0 }
+    const scrollbar = { top: toppedOut(w, b), bottom: bottomedOut(w, b) }
+    const current = this.state.position
+    const position = this.setPosition(w, b, scrolled, scrollbar)
 
-    this.setState({
-      position: position,
-      top: top
-    })
+    let marginTop = this.state.marginTop
+    if (scrolled.up) {
+      if (current.indexOf('bottom-visible') !== -1 && scrolled.up) {
+        const headerAdjust = document.getElementsByClassName('eapp-header')[0].clientHeight
+        const offset = w.pageYOffset + getBox(this.refs.content).top - headerAdjust
+        marginTop = `${offset}${this.props.unit}`
+      } else if (position.indexOf('top-visible') !== -1) {
+        marginTop = null
+      } else if (position.indexOf('anchor-visible') !== -1) {
+        marginTop = null
+      }
+    } if (scrolled.down) {
+      marginTop = null
+    }
+
+    this.setState({ position: position, marginTop: marginTop })
   }
 
   convert (px) {
@@ -148,17 +172,15 @@ export default class Sticky extends React.Component {
 
   render () {
     const klass = `sticky-container ${this.state.position}`
-    const style = {
-      top: this.state.position.indexOf('pin-top') !== -1
-        ? null
-        : this.convert(this.state.top)
+    const contentStyle = {
+      marginTop: this.state.marginTop
     }
 
     return (
       <div>
-        <span ref="measure" className="sticky-stick"></span>
+        <span ref="dipstick" className="sticky-dipstick"></span>
         <div className={klass}>
-          <div ref="content" className="sticky-content" style={style}>
+          <div ref="content" className="sticky-content" style={contentStyle}>
             {this.props.children}
           </div>
         </div>
@@ -169,12 +191,12 @@ export default class Sticky extends React.Component {
 
 Sticky.defaultProps = {
   position: '',
-  top: 0,
+  marginTop: null,
   scrollY: 0,
   unit: 'px',
   events: {
     scroll: ['scroll'],
-    wheel: ['mousewheel', 'wheel']
+    wheel: [/* 'mousewheel', 'wheel' */]
   },
   addEvent: (w, name, fn) => {
     w.addEventListener(name, fn)
@@ -183,32 +205,29 @@ Sticky.defaultProps = {
     w.removeEventListener(name, fn)
   },
   window: () => { return window },
-  getBox: (ref) => {
-    if (ref) {
-      return ref.getBoundingClientRect()
-    }
-
-    return { top: 0, bottom: 0 }
-  },
+  body: () => { return document.body },
   getDelta: (component, event, w, state, fn) => {
-    const timestamp = new Date().getTime()
+    const timestamp = parseInt(new Date().getTime() / 100)
     if (timestamp <= state.touched) {
       return
     }
 
+    const y = w.pageYOffset
+    const direction = y < state.scrollY ? -1 : 1
     let delta = 0
-    if (!event.deltaY) {
-      delta = w.pageYOffset - state.scrollY
-      console.log('delta (scroll): ', delta)
+
+    if (event.deltaY) {
+      delta = 53
     } else {
-      // 53 is the delta in chrome and chromium.
-      // 3 is the delta in ff.
-      delta = 53 // event.deltaY
-      console.log('delta (wheel): ', delta)
+      const stick = getBox(component.refs.dipstick).top
+      const navigationHeight = getBox(component.refs.content).height
+      const windowHeight = w.innerHeight
+      const percentageScrolled = y / (windowHeight - stick)
+      delta = (navigationHeight * percentageScrolled) - y
     }
 
     component.setState({ scrollY: w.pageYOffset, touched: timestamp }, () => {
-      fn(delta)
+      fn(Math.abs(delta) * direction)
     })
   }
 }

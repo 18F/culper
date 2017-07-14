@@ -1,28 +1,74 @@
-.sticky-stick {
+$fixed-width: 18.75%;
+
+.sticky-dipstick {
   position: static;
+  display: block;
+  margin-top: -1rem;
 }
 
 .sticky-container {
-  position: fixed;
-  height: 100vh;
+  position: absolute;
+  top: 0;
+  margin-top: 18rem;
   width: 21%;
   min-width: 32rem;
-  top: 0;
-
-  &.pin-top {
-    position: relative;
-    width: 100%;
-  }
-
-  &.no-pin.pin-top {
-    position: fixed;
-    top: 0 !important;
-    width: 21%;
-  }
+  padding-left: 2rem;
+  padding-right: 2rem;
 
   .sticky-content {
-    position: absolute;
-    left: 2rem;
-    right: 2rem;
+    position: relative;
+  }
+
+  &.bottom-visible.scrolled-down {
+    .sticky-content {
+      position: fixed;
+      bottom: 1rem;
+      width: $fixed-width;
+    }
+  }
+
+  &.bottom-visible.scrolled-down.page-short {
+    .sticky-content {
+      position: relative;
+      bottom: unset;
+      width: initial;
+    }
+  }
+
+  &.bottom-visible.scrolled-up {
+    .sticky-content {
+      position: relative;
+    }
+  }
+
+  &.both-visible {
+    .sticky-content {
+      position: fixed;
+      top: 1rem;
+      bottom: unset;
+      width: $fixed-width;
+    }
+  }
+
+  &.top-visible.scrolled-up {
+    .sticky-content {
+      position: fixed;
+      top: 1rem;
+      bottom: unset;
+      width: $fixed-width;
+    }
+  }
+
+  &.none-visible.scrolled-up {
+    .sticky-content {
+      position: relative;
+    }
+  }
+
+  &.anchor-visible {
+    .sticky-content {
+      top: unset;
+      bottom: unset;
+    }
   }
 }
