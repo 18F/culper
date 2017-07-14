@@ -166,7 +166,6 @@ export default class TravelQuestions extends ValidationElement {
     return (
       <div className="foreign-travel-questions">
         <Field title={i18n.t('foreign.travel.heading.country')}
-               help="foreign.travel.help.country"
                adjustFor="country">
           <Country name="Country"
                    {...this.props.Country}
@@ -201,7 +200,6 @@ export default class TravelQuestions extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.purpose')}
-               help="foreign.travel.help.purpose"
                adjustFor="p">
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose name="Purpose"
@@ -216,7 +214,6 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_questioned"
                 className="foreign-travel-questioned"
-                help="foreign.travel.help.questioned"
                 value={this.props.Questioned}
                 onUpdate={this.updateQuestioned}
                 onError={this.props.onError}>
@@ -238,7 +235,6 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_encounter"
                 className="foreign-travel-encounter"
-                help="foreign.travel.help.encounter"
                 value={this.props.Encounter}
                 onUpdate={this.updateEncounter}
                 onError={this.props.onError}>
@@ -260,7 +256,6 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_contacted"
                 className="foreign-travel-contacted"
-                help="foreign.travel.help.contacted"
                 value={this.props.Contacted}
                 onUpdate={this.updateContacted}
                 onError={this.props.onError}>
@@ -282,7 +277,6 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_counter"
                 className="foreign-travel-counter"
-                help="foreign.travel.help.counter"
                 value={this.props.Counter}
                 onUpdate={this.updateCounter}
                 onError={this.props.onError}>
@@ -304,7 +298,6 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_interest"
                 className="foreign-travel-interest"
-                help="foreign.travel.help.interest"
                 value={this.props.Interest}
                 onUpdate={this.updateInterest}
                 onError={this.props.onError}>
@@ -326,7 +319,6 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_sensitive"
                 className="foreign-travel-sensitive"
-                help="foreign.travel.help.sensitive"
                 value={this.props.Sensitive}
                 onUpdate={this.updateSensitive}
                 onError={this.props.onError}>
@@ -348,7 +340,6 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_threatened"
                 className="foreign-travel-threatened"
-                help="foreign.travel.help.threatened"
                 value={this.props.Threatened}
                 onUpdate={this.updateThreatened}
                 onError={this.props.onError}>

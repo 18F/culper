@@ -81,6 +81,7 @@ export default class Federal extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('history.federal.heading.name')}
+                   className="federal-agency"
                    help="history.federal.help.name">
               <Text name="Name"
                     bind={true}
@@ -88,6 +89,7 @@ export default class Federal extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('history.federal.heading.position')}
+                   className="federal-position"
                    help="history.federal.help.position">
               <Text name="Position"
                     bind={true}
@@ -96,6 +98,7 @@ export default class Federal extends SubsectionElement {
 
             <Field title={i18n.t('history.federal.heading.address')}
                    help="history.federal.help.address"
+                   className="federal-agency-address"
                    adjustFor="address">
               <Location name="Address"
                         layout={Location.ADDRESS}
