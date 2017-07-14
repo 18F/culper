@@ -11,17 +11,17 @@ export default class StickyHeader extends React.Component {
   }
 
   componentDidMount () {
-    this.props.events.forEach(e => window.addEventListener(e, this.onScroll))
+    this.props.events.forEach(e => this.props.window().addEventListener(e, this.onScroll))
     this.onScroll()
   }
 
   componentWillUnmount () {
-    this.props.events.forEach(e => window.removeEventListener(e, this.onScroll))
+    this.props.events.forEach(e => this.props.window().removeEventListener(e, this.onScroll))
   }
 
   documentScrollTop () {
-    const doc = document.documentElement
-    let st = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+    const doc = this.props.document().documentElement
+    let st = (this.props.window().pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
     return st
   }
 
@@ -30,7 +30,7 @@ export default class StickyHeader extends React.Component {
       return
     }
     const rect = this.refs.content.getBoundingClientRect()
-    const bodyRect = document.body.getBoundingClientRect()
+    const bodyRect = this.props.document().body.getBoundingClientRect()
     const elOffset = rect.top - bodyRect.top
     return elOffset + this.props.offset
   }
@@ -43,9 +43,6 @@ export default class StickyHeader extends React.Component {
     // Obtain the position of the element
     let elementOffset = this.elementOffset()
 
-    // Ensure that the top of the screen is within the bounds of the contents
-    // of the accordion. The top and bottom of the accordion content region are
-    // represented by elementOffset and elementBottomOffset respectively.
     let stick = this.state.stick
     if (documentScrollTop >= elementOffset) {
       stick = true
@@ -74,8 +71,10 @@ export default class StickyHeader extends React.Component {
 }
 
 StickyHeader.defaultProps = {
+  window: () => { return window },
+  document: () => { return document },
   stickyClass: '',
-  offset: 0,
+  offset: 110,
   events: [
     'scroll',
     'resize',

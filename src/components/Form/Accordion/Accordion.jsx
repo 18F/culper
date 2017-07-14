@@ -4,7 +4,7 @@ import ValidationElement from '../ValidationElement'
 import Branch from '../Branch'
 import Show from '../Show'
 import Svg from '../Svg'
-import StickyAccordion from '../../Sticky/StickyAccordion'
+import StickyAccordionSummary from '../../Sticky/StickyAccordionSummary'
 import { findPosition } from '../../../middleware/history'
 
 export const openState = (item = {}, initial = false) => {
@@ -204,6 +204,7 @@ export default class Accordion extends ValidationElement {
     })
 
     if (this.stickyStatus[item.uuid]) {
+      this.update(items, this.props.branch)
       this.setState({ initial: false, scrollToId: item.uuid })
     } else {
       this.update(items, this.props.branch)
@@ -375,8 +376,7 @@ export default class Accordion extends ValidationElement {
       const onScroll = this.onStickyScroll.bind(this, item)
 
       return (
-        <StickyAccordion id={item.uuid}
-          offset={52}
+        <StickyAccordionSummary id={item.uuid}
           key={item.uuid}
           className="item"
           stickyClass="sticky-accordion"
@@ -391,7 +391,7 @@ export default class Accordion extends ValidationElement {
               () => { return this.props.byline(item, index, initial) })
           }
           {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
-        </StickyAccordion>
+        </StickyAccordionSummary>
       )
     })
   }

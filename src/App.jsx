@@ -65,7 +65,7 @@ class App extends React.Component {
       <div className={klassApp}>
         <div id="scrollTo"></div>
         <a className="usa-skipnav" href="#main-content">{i18n.t('app.skip')}</a>
-        <StickyHeader offset={110} stickyClass="stickify">
+        <StickyHeader stickyClass="sticky-header">
           <div className="header-container">
             <div className="header">
               <header className="usa-header usa-header-basic" role="banner">
@@ -126,8 +126,10 @@ class App extends React.Component {
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
+              <Sticky>
                 <ScoreCard />
                 <Navigation />
+              </Sticky>
               &nbsp;
             </div>
             <div className={klassCore}>

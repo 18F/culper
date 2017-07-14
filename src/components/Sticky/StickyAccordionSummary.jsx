@@ -3,7 +3,7 @@ import React from 'react'
 const SUMMARY_CLASS = '.summary'
 const MOBILE_BREAKPOINT = 850
 
-export default class StickyAccordion extends React.Component {
+export default class StickyAccordionSummary extends React.Component {
   constructor (props) {
     super(props)
 
@@ -27,23 +27,23 @@ export default class StickyAccordion extends React.Component {
   }
 
   componentDidMount () {
-    this.props.events.forEach(e => window.addEventListener(e, this.onScroll))
+    this.props.events.forEach(e => this.props.window().addEventListener(e, this.onScroll))
     this.onScroll()
   }
 
   componentWillUnmount () {
-    this.props.events.forEach(e => window.removeEventListener(e, this.onScroll))
+    this.props.events.forEach(e => this.props.window().removeEventListener(e, this.onScroll))
   }
 
   documentScrollTop () {
-    const doc = document.documentElement
-    let st = (window.pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
+    const doc = this.props.document().documentElement
+    let st = (this.props.window().pageYOffset || doc.scrollTop) - (doc.clientTop || 0)
     return st + this.props.offset
   }
 
   elementOffset () {
     const rect = this.refs.content.getBoundingClientRect()
-    const bodyRect = document.body.getBoundingClientRect()
+    const bodyRect = this.props.document().body.getBoundingClientRect()
     const elOffset = rect.top - bodyRect.top
     return elOffset
   }
@@ -62,7 +62,7 @@ export default class StickyAccordion extends React.Component {
     if (this.props.preventStick) {
       return false
     }
-    if (window.innerWidth <= MOBILE_BREAKPOINT) {
+    if (this.props.window().innerWidth <= MOBILE_BREAKPOINT) {
       return false
     }
     return true
@@ -143,10 +143,12 @@ export default class StickyAccordion extends React.Component {
   }
 }
 
-StickyAccordion.defaultProps = {
+StickyAccordionSummary.defaultProps = {
+  window: () => { return window },
+  document: () => { return document },
   stickyClass: '',
   preventStick: false,
-  offset: 0,
+  offset: 52,
   onScroll: (stick) => {},
   events: [
     'scroll',
