@@ -115,6 +115,12 @@ export default class StickyAccordionSummary extends React.Component {
     this.props.onScroll(stick)
   }
 
+  /**
+   * Sets the width of the fixed summary row to exactly match the width of the accordion content area.
+   * This updates when the page is resized as well to be properly aligned. Doing this with pure css yielded
+   * inconsistent results where fixed summaries were not matching up exactly with the accordion content
+   * area.
+   */
   updateFixedSummaryRowWidth () {
     let fixedSummary = this.summaryElement()
     if (!fixedSummary) {
@@ -124,6 +130,9 @@ export default class StickyAccordionSummary extends React.Component {
     fixedSummary.style.width = `${areaWidth}px`
   }
 
+  /**
+   * When not fixed, removes the fixed summary width since it can follow the natural width set
+   */
   updateRelativeSummaryRowWidth () {
     let fixedSummary = this.summaryElement()
     if (!fixedSummary) {
