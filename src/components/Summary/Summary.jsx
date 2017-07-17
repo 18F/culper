@@ -23,8 +23,9 @@ export const Summary = (props = {}) => {
 
   const t = props.index < 0 ? props.type : `${props.type} ${props.index + 1}`
   const l = !props.left && props.right ? '' : !props.left && !props.right ? props.placeholder : props.left
+  const klass = `summary-item-content ${l === props.placeholder ? 'default' : 'has-content'}`
   return (
-    <span>
+    <span className={klass}>
       <span className="index">{t}:</span>
       <span className="context"><strong>{l}</strong></span>
       <Show when={props.right}>
