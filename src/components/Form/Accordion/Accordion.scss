@@ -261,39 +261,9 @@
             }
           }
 
-          @media screen and (max-width: 1800px) {
-            > strong,
-            > strong * {
-              max-width: 48rem;
-            }
-          }
-
-          @media screen and (max-width: 1380px) {
-            > strong,
-            > strong * {
-              max-width: 38rem;
-            }
-          }
-
-          @media screen and (max-width: 1025px) {
-            > strong,
-            > strong * {
-              max-width: 32rem;
-            }
-          }
-
-          @media screen and (max-width: 640px) {
-            > strong,
-            > strong * {
-              max-width: 28rem;
-            }
-          }
-
-          @media screen and (max-width: 590px) {
-            > strong,
-            > strong * {
-              max-width: 20rem;
-            }
+          &.has-content > strong,
+          &.has-content > strong * {
+            max-width: 40rem;
           }
         }
 
@@ -301,6 +271,76 @@
           float: right;
           text-align: right;
           height: 4.9rem;
+        }
+
+        @media screen and (max-width: 1800px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 48rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 32rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 1380px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 38rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 28rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 1025px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 32rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 22rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 640px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 28rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 22rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 590px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 20rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 16rem;
+            }
+          }
         }
       }
 
