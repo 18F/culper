@@ -7,6 +7,8 @@ describe('The ContactInformation component', () => {
     let blurs = 0
     const expected = {
       name: 'input-focus',
+      Emails: [{}],
+      PhoneNumbers: [{}],
       onBlur: function (event) {
         blurs++
       }
@@ -56,13 +58,30 @@ describe('The ContactInformation component', () => {
       ]
     }
     const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(7)
-    expect(component.find('.summary strong').at(0).text()).toEqual('Provide your email address below')
+    expect(component.find('.index').length).toEqual(5)
+    expect(component.find('.summary strong').at(0).text()).toEqual('(202) 867-5309 x1234')
+    expect(component.find('.summary strong').at(1).text()).toEqual('(202) 867-5309')
+    expect(component.find('.summary strong').at(2).text()).toEqual('867-5309')
+    expect(component.find('.summary strong').at(3).text()).toEqual('+001 1234567890 x1234')
+    expect(component.find('.summary strong').at(4).text()).toEqual('+001 1234567890')
+  })
+
+  it('formats emails appropriately', () => {
+    const expected = {
+      Emails: [
+        {
+          Email: {
+            value: 'test@abc.com'
+          }
+        },
+        {
+          Email: {}
+        }
+      ]
+    }
+    const component = mount(<ContactInformation {...expected} />)
+    expect(component.find('.index').length).toEqual(2)
+    expect(component.find('.summary strong').at(0).text()).toEqual('test@abc.com')
     expect(component.find('.summary strong').at(1).text()).toEqual('Provide your email address below')
-    expect(component.find('.summary strong').at(2).text()).toEqual('(202) 867-5309 x1234')
-    expect(component.find('.summary strong').at(3).text()).toEqual('(202) 867-5309')
-    expect(component.find('.summary strong').at(4).text()).toEqual('867-5309')
-    expect(component.find('.summary strong').at(5).text()).toEqual('+001 1234567890 x1234')
-    expect(component.find('.summary strong').at(6).text()).toEqual('+001 1234567890')
   })
 })

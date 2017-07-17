@@ -2,52 +2,37 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { FederalServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field, DateRange, Text, Address } from '../../../Form'
+import { Branch, Show, Accordion, Field, DateRange, Text, Location } from '../../../Form'
 import { DateSummary } from '../../../Summary'
-
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
 
 export default class Federal extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasFederalService: props.HasFederalService,
-      List: props.List || []
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateBranch = this.updateBranch.bind(this)
     this.updateCollection = this.updateCollection.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      HasFederalService: this.props.HasFederalService,
+      List: this.props.List,
+      ...queue
     })
   }
 
   updateBranch (value, event) {
-    this.onUpdate('HasFederalService', value)
-
-    // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('List', [])
-    }
+    this.update({
+      HasFederalService: value,
+      List: value === 'Yes' ? this.props.List : []
+    })
   }
 
   updateCollection (values) {
-    this.onUpdate('List', values.items)
+    this.update({
+      List: values.items
+    })
   }
 
   /**
@@ -56,7 +41,7 @@ export default class Federal extends SubsectionElement {
   summary (item, index) {
     const agency = item && item.Name && item.Name.value
           ? item.Name.value
-          : i18n.t('history.federal.collection.summary.unknown')
+          : i18n.m('history.federal.collection.summary.unknown')
     const dates = DateSummary(item.Dates)
 
     return (
@@ -73,14 +58,14 @@ export default class Federal extends SubsectionElement {
       <div className="federal">
         <h3>{i18n.t('history.federal.heading.branch')}</h3>
         <Branch name="has_federalservice"
-                value={this.state.HasFederalService}
                 help="history.federal.help.branch"
+                value={this.props.HasFederalService}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasFederalService === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasFederalService === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateCollection}
                      onError={this.handleError}
@@ -96,6 +81,7 @@ export default class Federal extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('history.federal.heading.name')}
+                   className="federal-agency"
                    help="history.federal.help.name">
               <Text name="Name"
                     bind={true}
@@ -103,6 +89,7 @@ export default class Federal extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('history.federal.heading.position')}
+                   className="federal-position"
                    help="history.federal.help.position">
               <Text name="Position"
                     bind={true}
@@ -111,10 +98,13 @@ export default class Federal extends SubsectionElement {
 
             <Field title={i18n.t('history.federal.heading.address')}
                    help="history.federal.help.address"
+                   className="federal-agency-address"
                    adjustFor="address">
-              <Address name="Address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
           </Accordion>
         </Show>
@@ -124,12 +114,15 @@ export default class Federal extends SubsectionElement {
 }
 
 Federal.defaultProps = {
+  HasFederalService: '',
+  List: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'federal',
   dispatch: () => {},
   validator: (state, props) => {
-    return new FederalServiceValidator(state, props).isValid()
+    return new FederalServiceValidator(props, props).isValid()
   },
   defaultState: true
 }

@@ -16,7 +16,7 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
   const errors = item.Item && !validation(target)
 
   return (
-    <div>
+    <div className="summary-container">
       <div className="summary">
         <span className={`left ${openState(item, initial)}`}>
           <a onClick={toggle()}>
@@ -53,7 +53,7 @@ export const ResidenceCaption = (props) => {
  * Renders a formatted summary information for a residence row
  */
 export const ResidenceSummary = (item, errors, open) => {
-  const address = AddressSummary(item.Address, i18n.t('history.residence.collection.summary.unknown'))
+  const address = AddressSummary(item.Address, i18n.m('history.residence.collection.summary.unknown'))
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" />
@@ -123,7 +123,7 @@ export const EmploymentCaption = (props) => {
 export const EmploymentSummary = (item, errors, open) => {
   const employer = item.Employment && item.Employment.value
         ? item.Employment.value
-        : i18n.t('history.employment.default.collection.summary.unknown')
+        : i18n.m('history.employment.default.collection.summary.unknown')
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" />
@@ -197,7 +197,7 @@ export const EducationCaption = (props) => {
  * Renders a formatted summary information for an education row
  */
 export const EducationSummary = (item, errors, open) => {
-  const school = (item.Name && item.Name.value ? item.Name.value : 'N/A')
+  const school = (item.Name && item.Name.value ? item.Name.value : i18n.m('history.education.collection.school.summary.unknown'))
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" />

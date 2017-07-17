@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class TreatmentValidator {
@@ -11,6 +11,6 @@ export default class TreatmentValidator {
   isValid () {
     return validGenericTextfield(this.name) &&
       validPhoneNumber(this.phone) &&
-      new AddressValidator(this.address).isValid()
+      new LocationValidator(this.address).isValid()
   }
 }

@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class VoluntaryCounselingsValidator {
@@ -66,7 +66,7 @@ export class VoluntaryCounselingValidator {
   isValid () {
     return new DateRangeValidator(this.counselingDates).isValid() &&
       validGenericTextfield(this.treatmentProviderName) &&
-      new AddressValidator(this.treatmentProviderAddress).isValid() &&
+      new LocationValidator(this.treatmentProviderAddress).isValid() &&
       validPhoneNumber(this.treatmentProviderTelephone) &&
       this.validCompletedTreatment()
   }

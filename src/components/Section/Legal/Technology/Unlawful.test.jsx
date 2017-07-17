@@ -12,7 +12,7 @@ describe('The legal technology unlawful access component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<Unlawful onUpdate={onUpdate} />)
-    component.find('.legal-technology-unlawful-has-unlawful .yes input').simulate('click')
+    component.find('.legal-technology-unlawful-has-unlawful .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 

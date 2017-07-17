@@ -138,6 +138,7 @@ export default class Address extends ValidationElement {
                 <Street name="address"
                         className="mailing street"
                         label={this.props.streetLabel}
+                        placeholder={this.props.streetPlaceholder}
                         value={this.props.street}
                         onChange={this.updateStreet}
                         onError={this.handleError}
@@ -192,6 +193,7 @@ export default class Address extends ValidationElement {
               <div>
                 <Street name="address"
                         label={this.props.streetLabel}
+                        placeholder={this.props.streetPlaceholder}
                         className="mailing street"
                         value={this.props.street}
                         onChange={this.updateStreet}
@@ -233,6 +235,7 @@ export default class Address extends ValidationElement {
               <div>
                 <Street name="address"
                         label={i18n.t('address.apoFpo.street.label')}
+                        placeholder={this.props.postOfficeStreetPlaceholder}
                         className="mailing street"
                         value={this.props.street}
                         onChange={this.updateStreet}
@@ -308,6 +311,7 @@ Address.defaultProps = {
   country: 'United States',
   onError: (value, arr) => { return arr },
   streetLabel: i18n.t('address.us.street.label'),
+  postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   street2Label: i18n.t('address.us.street2.label')
 }
 

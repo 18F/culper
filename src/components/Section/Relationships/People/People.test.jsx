@@ -5,24 +5,29 @@ import People from './People'
 describe('The relative alias component', () => {
   it('no error on empty', () => {
     const expected = {
-      name: 'person'
+      name: 'people'
     }
 
     const component = mount(<People {...expected} />)
-    expect(component.find('.person').length).toEqual(1)
+    expect(component.find('.accordion').length).toEqual(1)
   })
 
   it('updates values', () => {
     let updates = 0
     const expected = {
-      name: 'person',
+      name: 'people',
+      List: [
+        {
+          Item: { Relationship: 'Other' }
+        }
+      ],
       onUpdate: () => {
         updates++
       }
     }
 
     const component = mount(<People {...expected} />)
-    expect(component.find('.person').length).toEqual(1)
+    expect(component.find('.accordion').length).toEqual(1)
     component.find('.known-dates .from .month input').simulate('change', { target: { value: '10' } })
     component.find('.name input[name="first"]').simulate('change')
     component.find('.rank input').simulate('change')
@@ -35,6 +40,6 @@ describe('The relative alias component', () => {
     component.find('.relationships input[name="relationship-other"]').simulate('change')
     component.find('.relationship-other input').simulate('change')
     component.find('.relationships input[name="relationship-other"]').simulate('change')
-    expect(updates).toBe(13 * 2)
+    expect(updates).toBe(13)
   })
 })

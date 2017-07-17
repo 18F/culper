@@ -10,10 +10,14 @@ describe('The Competence component', () => {
 
   it('Performs updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<Competence onUpdate={onUpdate} />)
-    component.find('.competence .yes input').simulate('change')
+    const props = {
+      IsIncompetent: 'Yes',
+      List: [{}],
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Competence {...props} />)
+    updates = 0
     component.find('input[name="CourtName"]').simulate('change')
-    expect(updates).toBe(5)
+    expect(updates).toBe(1)
   })
 })

@@ -11,17 +11,17 @@ export default class CoOwners extends ValidationElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        List: this.props.List,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update({
+      List: values
+    })
   }
 
   render () {
@@ -45,5 +45,6 @@ export default class CoOwners extends ValidationElement {
 }
 
 CoOwner.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

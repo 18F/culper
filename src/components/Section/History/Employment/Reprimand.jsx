@@ -37,6 +37,7 @@ export default class Reprimand extends ValidationElement {
                         appendLabel={i18n.t('history.employment.default.reprimand.append')}
                         help="history.employment.default.reprimand.help"
                         items={this.state.Reasons}
+                        className="reprimand-branch"
                         onUpdate={this.updateReasons}
                         onError={this.props.onError}>
         <div>

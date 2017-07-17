@@ -15,30 +15,24 @@ export default class TerrorismAssociation extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Explanation: this.props.Explanation,
-        HasTerrorism: this.props.HasTerrorism
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Explanation: this.props.Explanation,
+      HasTerrorism: this.props.HasTerrorism,
+      ...queue
+    })
   }
 
   updateExplanation (values) {
-    this.update([
-      { name: 'Explanation', value: values }
-    ])
+    this.update({
+      Explanation: values
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasTerrorism', value: values }
-    ])
+    this.update({
+      HasTerrorism: values,
+      Explanation: values === 'Yes' ? this.props.Explanation : {}
+    })
   }
 
   render () {
@@ -49,6 +43,7 @@ export default class TerrorismAssociation extends SubsectionElement {
                 labelSize="h3"
                 className="legal-associations-terrorism-has-terrorism"
                 value={this.props.HasTerrorism}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
@@ -76,6 +71,7 @@ TerrorismAssociation.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/terrorism-association',

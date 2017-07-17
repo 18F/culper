@@ -34,7 +34,11 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
   }
 
   updateUsedDrugs (values) {
-    this.update({UsedDrugs: values})
+    this.update({
+      UsedDrugs: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -48,7 +52,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {description || i18n.t('substance.drugs.clearance.collection.summary')}
+            {description || i18n.m('substance.drugs.clearance.collection.summary')}
           </strong>
         </span>
         <span className="dates">
@@ -63,23 +67,23 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
       <div className="drug-public-safety-uses">
         <h2>{i18n.m('substance.drugs.heading.drugPublicSafetyUses')}</h2>
         <Branch name="UsedDrugs"
-          className="used-drugs"
-          value={this.props.UsedDrugs}
-          onError={this.handleError}
-          onUpdate={this.updateUsedDrugs}>
+                className="used-drugs"
+                value={this.props.UsedDrugs}
+                warning={true}
+                onError={this.handleError}
+                onUpdate={this.updateUsedDrugs}>
         </Branch>
 
         <Show when={this.props.UsedDrugs === 'Yes'}>
-          <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            summary={this.summary}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            description={i18n.t('substance.drugs.publicSafety.collection.description')}
-            appendTitle={i18n.t('substance.drugs.publicSafety.collection.appendTitle')}
-            appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}>
+          <Accordion defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     description={i18n.t('substance.drugs.publicSafety.collection.description')}
+                     appendTitle={i18n.t('substance.drugs.publicSafety.collection.appendTitle')}
+                     appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}>
             <DrugPublicSafetyUse name="DrugPublicSafetyUse" bind={true} />
           </Accordion>
         </Show>

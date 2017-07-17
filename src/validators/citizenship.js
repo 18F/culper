@@ -1,4 +1,3 @@
-import AddressValidator from './address'
 import NameValidator from './name'
 import LocationValidator from './location'
 import { validGenericTextfield, validDateField } from './helpers'
