@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -42,15 +42,15 @@ export default class Employment extends SubsectionElement {
   summary (item, index) {
     const obj = item || {}
     const date = DateSummary(item.Date)
-    const job = `${(obj.Description || {}).value || ''}`.trim() || date === '' ? i18n.m('foreign.business.employment.collection.summary.unknown') : ''
+    const job = `${(obj.Description || {}).value || ''}`.trim() || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.employment.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{job}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.employment.collection.summary.item'),
+      index: index,
+      left: job,
+      right: date,
+      placeholder: i18n.m('foreign.business.employment.collection.summary.unknown')
+    })
   }
 
   render () {

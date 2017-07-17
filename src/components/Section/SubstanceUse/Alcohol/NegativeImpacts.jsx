@@ -4,7 +4,7 @@ import { AlcoholNegativeImpactsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import NegativeImpact from './NegativeImpact'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 
 export default class NegativeImpacts extends SubsectionElement {
   constructor (props) {
@@ -44,18 +44,14 @@ export default class NegativeImpacts extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).NegativeImpact || {}
     const occurred = DateSummary(o.Occurred)
-    const type = i18n.t('substance.alcohol.negativeImpact.collection.itemType')
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <strong>
-            {occurred || i18n.m('substance.alcohol.negativeImpact.collection.summary')}
-          </strong>
-        </span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.alcohol.negativeImpact.collection.itemType'),
+      index: index,
+      left: occurred,
+      right: null,
+      placeholder: i18n.m('substance.alcohol.negativeImpact.collection.summary')
+    })
   }
 
   render () {

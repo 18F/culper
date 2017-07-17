@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { CardAbuseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
@@ -54,21 +55,16 @@ export default class Card extends SubsectionElement {
   summary (item, index) {
     const obj = (item || {})
     const date = (obj.Date || {})
+    const from = DateSummary({date: date})
+    const agency = (obj.Agency || {}).value || ''
 
-    let from = ''
-    if (date.month && date.year) {
-      from = '' + date.month + '/' + date.year
-    }
-
-    const agency = (obj.Agency || {}).value || from === '' ? i18n.m('financial.card.collection.summary.unknown') : ''
-
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.card.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.card.collection.summary.item'),
+      index: index,
+      left: agency,
+      right: from,
+      placeholder: i18n.m('financial.card.collection.summary.unknown')
+    })
   }
 
   render () {

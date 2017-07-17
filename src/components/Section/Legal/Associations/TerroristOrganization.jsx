@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsTerroristValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
 
 export default class TerroristOrganization extends SubsectionElement {
@@ -39,21 +39,17 @@ export default class TerroristOrganization extends SubsectionElement {
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.associations.terrorist.collection.item')
-    const unknown = i18n.m('legal.associations.terrorist.collection.unknown')
     const o = item || {}
     const dates = DateSummary(o.Dates)
-    const details = (o.Organization || {}).value
-          ? o.Organization.value
-          : dates === '' ? unknown : ''
+    const details = (o.Organization || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{details}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.associations.terrorist.collection.item'),
+      index: index,
+      left: details,
+      right: dates,
+      placeholder: i18n.m('legal.associations.terrorist.collection.unknown')
+    })
   }
 
   render () {

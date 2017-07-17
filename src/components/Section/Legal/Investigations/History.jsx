@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsHistoryValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, NotApplicable, DateControl,
          Text } from '../../../Form'
 import InvestigatingAgency from './InvestigatingAgency'
@@ -42,21 +42,17 @@ export default class History extends SubsectionElement {
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.investigations.history.collection.item')
-    const unknown = i18n.m('legal.investigations.history.collection.unknown')
     const o = item || {}
     const dates = DateSummary(o.Granted)
-    const agency = (o.Agency || {}).Agency
-          ? o.Agency.Agency
-          : dates === '' ? unknown : ''
+    const agency = (o.Agency || {}).Agency || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.investigations.history.collection.item'),
+      index: index,
+      left: agency,
+      right: dates,
+      placeholder: i18n.m('legal.investigations.history.collection.unknown')
+    })
   }
 
   render () {

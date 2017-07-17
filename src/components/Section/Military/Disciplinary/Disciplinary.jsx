@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { MilitaryDisciplinaryValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -46,17 +46,15 @@ export default class Disciplinary extends SubsectionElement {
   summary (item, index) {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Date)
-    const service = itemProperties.Name && itemProperties.Name.value
-          ? itemProperties.Name.value
-          : dates === '' ? i18n.m('military.disciplinary.collection.summary.unknown') : ''
+    const service = itemProperties.Name && itemProperties.Name.value ? itemProperties.Name.value : ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('military.disciplinary.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{service}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('military.disciplinary.collection.summary.item'),
+      index: index,
+      left: service,
+      right: dates,
+      placeholder: i18n.m('military.disciplinary.collection.summary.unknown')
+    })
   }
 
   render () {

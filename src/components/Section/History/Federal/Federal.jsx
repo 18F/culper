@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { FederalServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field, DateRange, Text, Location } from '../../../Form'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 
 export default class Federal extends SubsectionElement {
   constructor (props) {
@@ -39,18 +39,16 @@ export default class Federal extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const agency = item && item.Name && item.Name.value
-          ? item.Name.value
-          : i18n.m('history.federal.collection.summary.unknown')
+    const agency = item && item.Name && item.Name.value ? item.Name.value : ''
     const dates = DateSummary(item.Dates)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('history.federal.collection.summary.item')} {index + 1}:</span>
-        <span className=""><strong>{agency}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('history.federal.collection.summary.item'),
+      index: index,
+      left: agency,
+      right: dates,
+      placeholder: i18n.m('history.federal.collection.summary.unknown')
+    })
   }
 
   render () {

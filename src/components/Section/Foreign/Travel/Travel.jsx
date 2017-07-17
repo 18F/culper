@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignTravelValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -47,15 +47,15 @@ export default class Travel extends SubsectionElement {
   summary (item, index) {
     const obj = (item || {}).Item || {}
     const date = DateSummary(obj.Dates)
-    const country = (obj.Country || {}).value || date === '' ? i18n.m('foreign.travel.collection.summary.unknown') : ''
+    const country = (obj.Country || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.travel.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{country}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.travel.collection.summary.item'),
+      index: index,
+      left: country,
+      right: date,
+      placeholder: i18n.m('foreign.travel.collection.summary.unknown')
+    })
   }
 
   render () {

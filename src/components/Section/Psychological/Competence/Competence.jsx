@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { CompetenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -40,19 +41,16 @@ export default class Competence extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).Competence || {}
-    const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? o.CourtName.value : null
-    const type = i18n.t('psychological.competence.collection.itemType')
+    const occurred = DateSummary(o.Occurred || {})
+    const courtName = (o.CourtName || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="courtname">
-          <strong>{courtName || occurred === '' ? i18n.m('psychological.competence.collection.summaryCourtName') : ''}</strong>
-        </span>
-        <span className="occurred"><strong>{courtName && occurred}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('psychological.competence.collection.itemType'),
+      index: index,
+      left: courtName,
+      right: occurred,
+      placeholder: i18n.m('psychological.competence.collection.summaryCourtName')
+    })
   }
 
   render () {

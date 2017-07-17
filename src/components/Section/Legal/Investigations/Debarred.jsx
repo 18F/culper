@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsDebarredValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateControl, Text, Textarea } from '../../../Form'
 
 export default class Debarred extends SubsectionElement {
@@ -39,21 +39,17 @@ export default class Debarred extends SubsectionElement {
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.investigations.debarred.collection.item')
-    const unknown = i18n.m('legal.investigations.debarred.collection.unknown')
     const o = item || {}
     const dates = DateSummary(o.Date)
-    const agency = (o.Agency || {}).value
-          ? o.Agency.value
-          : dates === '' ? unknown : ''
+    const agency = (o.Agency || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.investigations.debarred.collection.item'),
+      index: index,
+      left: agency,
+      right: dates,
+      placeholder: i18n.m('legal.investigations.debarred.collection.unknown')
+    })
   }
 
   render () {

@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary } from '../../../Summary'
 import { CreditValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Telephone, BirthPlace, Text, Textarea, Location } from '../../../Form'
+         Telephone, Text, Textarea, Location } from '../../../Form'
 
 export default class Credit extends SubsectionElement {
   constructor (props) {
@@ -54,14 +55,15 @@ export default class Credit extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.m('financial.credit.collection.summary.unknown')
+    const name = (obj.Name || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.credit.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{name}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.credit.collection.summary.item'),
+      index: index,
+      left: name,
+      right: null,
+      placeholder: i18n.m('financial.credit.collection.summary.unknown')
+    })
   }
 
   render () {

@@ -40,7 +40,7 @@ describe('The legal technology unauthorized access component', () => {
       ListBranch: ''
     }
     const component = mount(<Unauthorized {...props} />)
-    const text = component.find('.accordion .summary .left .content').text()
+    const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('Looked over the shoulder')
     expect(text).toContain('1/2010')
   })

@@ -7,7 +7,7 @@ import PeopleValidator, { PersonValidator } from '../../../../validators/people'
 import SubsectionElement from '../../SubsectionElement'
 import SummaryProgress from '../../History/SummaryProgress'
 import PeopleCounter from './PeopleCounter'
-import { DateSummary, NameSummary } from '../../../Summary'
+import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import { today, daysAgo } from '../../History/dateranges'
 import { InjectGaps } from '../../History/summaries'
 import { Gap } from '../../History/Gap'
@@ -83,16 +83,16 @@ export default class People extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const date = DateSummary(o.Dates)
-    const name = NameSummary(o.Name, date === '' ? i18n.m('relationships.people.person.collection.summary.unknown') : '')
+    const name = NameSummary(o.Name)
     const type = i18n.t('relationships.people.person.collection.itemType')
 
-    return (
-      <span>
-        <span className="index">{type} {index + 1}:</span>
-        <span className="info"><strong>{name}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('relationships.people.person.collection.itemType'),
+      index: index,
+      left: name,
+      right: date,
+      placeholder: i18n.m('relationships.people.person.collection.summary.unknown')
+    })
   }
 
   customDetails (item, index, initial, callback) {

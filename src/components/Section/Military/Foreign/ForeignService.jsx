@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field, Country } from '../../../Form'
 import ForeignContact from './ForeignContact'
-import { DateSummary, NameSummary } from '../../../Summary'
+import { Summary, DateSummary, NameSummary } from '../../../Summary'
 
 export default class ForeignService extends ValidationElement {
   constructor (props) {
@@ -108,15 +108,15 @@ export default class ForeignService extends ValidationElement {
   summary (item, index) {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Dates)
-    const name = NameSummary(itemProperties.Name, dates === '' ? i18n.m('military.foreign.collection.contacts.summary.unknown') : '')
+    const name = NameSummary(itemProperties.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('military.foreign.collection.contacts.summary.item')} {index + 1}:</span>
-        <span className=""><strong>{name}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('military.foreign.collection.contacts.summary.item'),
+      index: index,
+      left: name,
+      right: dates,
+      placeholder: i18n.m('military.foreign.collection.contacts.summary.unknown')
+    })
   }
 
   render () {

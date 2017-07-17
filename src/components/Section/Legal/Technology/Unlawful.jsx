@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyUnlawfulValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
 
 export default class Unlawful extends SubsectionElement {
@@ -39,21 +39,17 @@ export default class Unlawful extends SubsectionElement {
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.technology.unlawful.collection.item')
-    const unknown = i18n.m('legal.technology.unlawful.collection.unknown')
     const o = item || {}
     const dates = DateSummary(o.Date)
-    const incident = (o.Incident || {}).value
-          ? o.Incident.value
-          : dates === '' ? unknown : ''
+    const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{incident}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.technology.unlawful.collection.item'),
+      index: index,
+      left: incident,
+      right: dates,
+      placeholder: i18n.m('legal.technology.unlawful.collection.unknown')
+    })
   }
 
   render () {

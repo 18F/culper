@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsAdvocatingValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateRange, Textarea } from '../../../Form'
 
 export default class Advocating extends SubsectionElement {
@@ -39,21 +39,17 @@ export default class Advocating extends SubsectionElement {
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.associations.advocating.collection.item')
-    const unknown = i18n.m('legal.associations.advocating.collection.unknown')
     const o = item || {}
     const dates = DateSummary(o.Dates)
-    const details = (o.Reasons || {}).value
-          ? o.Reasons.value
-          : dates === '' ? unknown : ''
+    const details = (o.Reasons || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{details}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.associations.advocating.collection.item'),
+      index: index,
+      left: details,
+      right: dates,
+      placeholder: i18n.m('legal.associations.advocating.collection.unknown')
+    })
   }
 
   render () {

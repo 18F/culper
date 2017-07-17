@@ -4,7 +4,7 @@ import { LegalNonCriminalCourtActionsValidator } from '../../../validators'
 import SubsectionElement from '../SubsectionElement'
 import { Accordion, Branch, Show } from '../../Form'
 import NonCriminalCourtAction from './NonCriminalCourtAction'
-import { DateSummary } from '../../Summary'
+import { Summary, DateSummary } from '../../Summary'
 
 export default class NonCriminalCourtActions extends SubsectionElement {
   constructor (props) {
@@ -41,18 +41,15 @@ export default class NonCriminalCourtActions extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).CourtAction || {}
     const date = DateSummary(o.CivilActionDate)
-    const courtName = (o.CourtName || {}).value || date === '' ? i18n.m('legal.nonCriminalAction.collection.summary') : ''
-    const type = i18n.t('legal.nonCriminalAction.collection.itemType')
+    const courtName = (o.CourtName || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="courtname">
-          <strong>{courtName}</strong>
-        </span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.nonCriminalAction.collection.itemType'),
+      index: index,
+      left: courtName,
+      right: date,
+      placeholder: i18n.m('legal.nonCriminalAction.collection.summary')
+    })
   }
 
   render () {

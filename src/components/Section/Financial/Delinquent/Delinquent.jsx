@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { DelinquentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
@@ -55,23 +56,18 @@ export default class Delinquent extends SubsectionElement {
   summary (item, index) {
     const obj = (item || {})
     const date = (obj.Date || {})
-
-    let from = ''
-    if (date.month && date.year) {
-      from = '' + date.month + '/' + date.year
-    }
-
-    const name = (obj.Name || {}).value || from === '' ? i18n.m('financial.delinquent.collection.summary.unknown') : ''
-    const amount = (obj.Amount || {}).value
+    const from = DateSummary({date: date})
+    const name = (obj.Name || {}).value || ''
+    const amount = (obj.Amount || {}).value || ''
     const text = `${name}${amount ? ', $' + amount : ''}`.trim()
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.delinquent.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{text}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.delinquent.collection.summary.item'),
+      index: index,
+      left: text,
+      right: from,
+      placeholder: i18n.m('financial.delinquent.collection.summary.unknown')
+    })
   }
 
   message () {

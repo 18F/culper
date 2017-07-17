@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NonpaymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
          NotApplicable, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
@@ -56,17 +56,17 @@ export default class Nonpayment extends SubsectionElement {
   summary (item, index) {
     const obj = (item || {})
     const date = DateSummary(obj.Date)
-    const name = (obj.Name || {}).value || date === '' ? i18n.m('financial.nonpayment.collection.summary.unknown') : ''
+    const name = (obj.Name || {}).value || ''
     const amount = (obj.Amount || {}).value
     const text = `${name}${amount ? ', $' + amount : ''}`.trim()
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.nonpayment.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{text}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.nonpayment.collection.summary.item'),
+      index: index,
+      left: text,
+      right: date,
+      placeholder: i18n.m('financial.nonpayment.collection.summary.unknown')
+    })
   }
 
   message () {

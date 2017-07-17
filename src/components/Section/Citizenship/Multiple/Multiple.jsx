@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import CitizenshipItem from './CitizenshipItem'
 
 export default class Multiple extends SubsectionElement {
@@ -44,15 +44,15 @@ export default class Multiple extends SubsectionElement {
     const dates = DateSummary(itemProperties.Dates)
     const country = itemProperties.Country && itemProperties.Country.value
           ? itemProperties.Country.value
-          : dates === '' ? i18n.m('citizenship.multiple.collection.citizenship.summary.unknown') : ''
+          : ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('citizenship.multiple.collection.citizenship.summary.item')} {index + 1}:</span>
-        <span><strong>{country}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('citizenship.multiple.collection.citizenship.summary.item'),
+      index: index,
+      left: country,
+      right: dates,
+      placeholder: i18n.m('citizenship.multiple.collection.citizenship.summary.unknown')
+    })
   }
 
   render () {

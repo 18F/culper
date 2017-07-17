@@ -41,7 +41,7 @@ describe('The legal associations engaged in terrorism component', () => {
       ListBranch: ''
     }
     const component = mount(<EngagedInTerrorism {...props} />)
-    const text = component.find('.accordion .summary .left .content').text()
+    const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('It was a tuesday')
     expect(text).toContain('1/2010 - 1/2011')
   })

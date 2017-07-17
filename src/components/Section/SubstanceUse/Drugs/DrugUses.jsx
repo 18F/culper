@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import DrugUse from './DrugUse'
@@ -42,22 +43,18 @@ export default class DrugUses extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).DrugUse || {}
-    const type = i18n.t('substance.drugs.use.collection.itemType')
     let drug = (o.DrugType || {}).DrugType
     if (drug === 'Other') {
       drug = ((o.DrugType || {}).DrugTypeOther || {}).value
     }
 
-    if (!drug) {
-      drug = i18n.m('substance.drugs.use.collection.summary')
-    }
-
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className=""><strong>{drug}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.drugs.use.collection.itemType'),
+      index: index,
+      left: drug,
+      right: null,
+      placeholder: i18n.m('substance.drugs.use.collection.summary')
+    })
   }
 
   render () {

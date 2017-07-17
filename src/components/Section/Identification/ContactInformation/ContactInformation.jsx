@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { ContactInformationValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Email, Accordion, Telephone } from '../../../Form'
-import { TelephoneSummary } from '../../../Summary'
+import { Summary, TelephoneSummary } from '../../../Summary'
 
 export default class ContactInformation extends SubsectionElement {
   constructor (props) {
@@ -43,26 +43,28 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    const addr = item.Email && item.Email.value ? item.Email.value : i18n.m('identification.contacts.collection.summary.unknownEmail')
-    return (
-      <span>
-        <span className="index">{i18n.m('identification.contacts.collection.summary.email')} {index + 1}:</span>
-        <span><strong>{addr}</strong></span>
-      </span>
-    )
+    const addr = item.Email && item.Email.value ? item.Email.value : ''
+    return Summary({
+      type: i18n.t('identification.contacts.collection.summary.email'),
+      index: index,
+      left: addr,
+      right: null,
+      placeholder: i18n.m('identification.contacts.collection.summary.unknownEmail')
+    })
   }
 
   /**
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    const number = TelephoneSummary(item, i18n.m('identification.contacts.collection.summary.unknownPhone'))
-    return (
-      <span>
-        <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>
-        <span><strong>{number}</strong></span>
-      </span>
-    )
+    const number = TelephoneSummary(item)
+    return Summary({
+      type: i18n.t('identification.contacts.collection.summary.phoneNumber'),
+      index: index,
+      left: number,
+      right: null,
+      placeholder: i18n.m('identification.contacts.collection.summary.unknownPhone')
+    })
   }
 
   render () {

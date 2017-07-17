@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, NameSummary } from '../../../Summary'
 import { RelativesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
@@ -36,16 +37,15 @@ export default class Relatives extends SubsectionElement {
     const relation = (o.Relations || []).length > 0
           ? o.Relations[0]
           : i18n.t('relationships.relatives.collection.summary.item')
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.m('relationships.relatives.collection.summary.unknown')
+    const name = NameSummary(o.Name)
 
-    return (
-      <span>
-        <span className="index">{relation}:</span>
-        <span className="info"><strong>{name}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: relation,
+      index: index,
+      left: name,
+      right: null,
+      placeholder: i18n.m('relationships.relatives.collection.summary.unknown')
+    })
   }
 
   render () {
