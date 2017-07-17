@@ -661,7 +661,7 @@ export default class Relative extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={!validator.citizen() && this.props.IsDeceased === 'No'}>
+        <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased === 'No'}>
           <div>
             <Show when={this.props.Address && this.props.Address.country === 'United States'}>
               <div>
@@ -889,66 +889,66 @@ export default class Relative extends ValidationElement {
                   </RadioGroup>
                 </Field>
 
-                <Field title={i18n.t('relationships.relatives.heading.employer.name')}
-                       adjustFor="buttons"
-                       shrink={true}>
-                  <NotApplicable name="EmployerNotApplicable"
-                                 label={i18n.t('relationships.relatives.label.idk')}
-                                 or={i18n.m('relationships.relatives.para.or')}
-                                 onError={this.props.onError}
-                                 onUpdate={this.updateEmployerNotApplicable}>
-                    <Text name="Employer"
-                          className="relative-employer"
-                          {...this.props.Employer}
-                          onError={this.props.onError}
-                          onUpdate={this.updateEmployer}
-                          />
-                  </NotApplicable>
-                </Field>
-
-                <Field title={i18n.t('relationships.relatives.heading.employer.address')}
-                       adjustFor="address">
-                  <NotApplicable name="EmployerAddressNotApplicable"
-                                 label={i18n.t('relationships.relatives.label.idk')}
-                                 or={i18n.m('relationships.relatives.para.or')}
-                                 onError={this.props.onError}
-                                 onUpdate={this.updateEmployerAddressNotApplicable}>
-                    <Location name="EmployerAddress"
-                              layout={Location.STREET_CITY}
-                              className="relative-employer-address"
-                              {...this.props.EmployerAddress}
-                              onError={this.props.onError}
-                              onUpdate={this.updateEmployerAddress}
-                              />
-                  </NotApplicable>
-                </Field>
-
-                <NotApplicable name="EmployerRelationshipNotApplicable"
-                               label={i18n.t('relationships.relatives.label.idk')}
-                               or={i18n.m('relationships.relatives.para.or')}
-                               onError={this.props.onError}
-                               onUpdate={this.updateEmployerRelationshipNotApplicable}>
-                  <Branch name="has_affiliation"
-                          label={i18n.t('relationships.relatives.heading.employer.affiliated')}
-                          labelSize="h3"
-                          className="relative-affiliation"
-                          value={this.props.HasAffiliation}
-                          onUpdate={this.updateHasAffiliation}
-                          onError={this.props.onError}>
-                  </Branch>
-                  <Show when={this.props.HasAffiliation === 'Yes'}>
-                    <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}>
-                      <Textarea name="EmployerRelationship"
-                                className="relative-employer-relationship"
-                                {...this.props.EmployerRelationship}
-                                onError={this.props.onError}
-                                onUpdate={this.updateEmployerRelationship}
-                                />
-                    </Field>
-                  </Show>
-                </NotApplicable>
               </div>
             </Show>
+            <Field title={i18n.t('relationships.relatives.heading.employer.name')}
+                   adjustFor="buttons"
+                   shrink={true}>
+              <NotApplicable name="EmployerNotApplicable"
+                             label={i18n.t('relationships.relatives.label.idk')}
+                             or={i18n.m('relationships.relatives.para.or')}
+                             onError={this.props.onError}
+                             onUpdate={this.updateEmployerNotApplicable}>
+                <Text name="Employer"
+                      className="relative-employer"
+                      {...this.props.Employer}
+                      onError={this.props.onError}
+                      onUpdate={this.updateEmployer}
+                      />
+              </NotApplicable>
+            </Field>
+
+            <Field title={i18n.t('relationships.relatives.heading.employer.address')}
+                   adjustFor="address">
+              <NotApplicable name="EmployerAddressNotApplicable"
+                             label={i18n.t('relationships.relatives.label.idk')}
+                             or={i18n.m('relationships.relatives.para.or')}
+                             onError={this.props.onError}
+                             onUpdate={this.updateEmployerAddressNotApplicable}>
+                <Location name="EmployerAddress"
+                          layout={Location.STREET_CITY}
+                          className="relative-employer-address"
+                          {...this.props.EmployerAddress}
+                          onError={this.props.onError}
+                          onUpdate={this.updateEmployerAddress}
+                          />
+              </NotApplicable>
+            </Field>
+
+            <NotApplicable name="EmployerRelationshipNotApplicable"
+                           label={i18n.t('relationships.relatives.label.idk')}
+                           or={i18n.m('relationships.relatives.para.or')}
+                           onError={this.props.onError}
+                           onUpdate={this.updateEmployerRelationshipNotApplicable}>
+              <Branch name="has_affiliation"
+                      label={i18n.t('relationships.relatives.heading.employer.affiliated')}
+                      labelSize="h3"
+                      className="relative-affiliation"
+                      value={this.props.HasAffiliation}
+                      onUpdate={this.updateHasAffiliation}
+                      onError={this.props.onError}>
+              </Branch>
+              <Show when={this.props.HasAffiliation === 'Yes'}>
+                <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}>
+                  <Textarea name="EmployerRelationship"
+                            className="relative-employer-relationship"
+                            {...this.props.EmployerRelationship}
+                            onError={this.props.onError}
+                            onUpdate={this.updateEmployerRelationship}
+                            />
+                </Field>
+              </Show>
+            </NotApplicable>
           </div>
         </Show>
       </div>
