@@ -68,7 +68,7 @@ export default class History extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Dates)
-    const service = serviceNameDisplay(o.Service || i18n.m('military.history.collection.summary.unknown'))
+    const service = serviceNameDisplay(o.Service || dates === '' ? i18n.m('military.history.collection.summary.unknown') : '')
 
     return (
       <span>

@@ -48,7 +48,7 @@ export default class Competence extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="courtname">
-          <strong>{courtName || i18n.m('psychological.competence.collection.summaryCourtName')}</strong>
+          <strong>{courtName || occurred === '' ? i18n.m('psychological.competence.collection.summaryCourtName') : ''}</strong>
         </span>
         <span className="occurred"><strong>{courtName && occurred}</strong></span>
       </span>

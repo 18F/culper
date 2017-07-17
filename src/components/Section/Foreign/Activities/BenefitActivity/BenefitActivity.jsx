@@ -122,12 +122,15 @@ export const benefitSummary = (item, index) => {
     }
     return prev
   })
+  const realSummary = summary.length
+        ? summary
+        : benefit.Date === '' ? i18n.m('foreign.activities.benefit.collection.summary') : ''
 
   return (
     <span className="content">
       <span className="index">{type}: {index + 1}</span>
       <span className="benefit-summary">
-        <strong>{ summary || benefit.Date === '' ? i18n.m('foreign.activities.benefit.collection.summary') : ''}</strong>
+        <strong>{realSummary}</strong>
       </span>
       <span className="date"><strong>{benefit.Date}</strong></span>
     </span>

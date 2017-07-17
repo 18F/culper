@@ -83,7 +83,7 @@ export default class Diagnoses extends SubsectionElement {
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span>
-          <strong>{facility || i18n.m('psychological.diagnoses.collection.summary')}</strong>
+          <strong>{facility || diagnosisDate === '' ? i18n.m('psychological.diagnoses.collection.summary') : ''}</strong>
         </span>
         <span className="diagnosisdate"><strong>{facility && diagnosisDate}</strong></span>
       </span>

@@ -13,6 +13,7 @@ export default class Consultation extends SubsectionElement {
     this.updateConsulted = this.updateConsulted.bind(this)
     this.updateList = this.updateList.bind(this)
   }
+
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
@@ -48,7 +49,7 @@ export default class Consultation extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="courtname">
           <strong>
-            {courtName || i18n.m('psychological.consultation.collection.summaryCourtName')}
+            {courtName || occurred === '' ? i18n.m('psychological.consultation.collection.summaryCourtName') : ''}
           </strong>
         </span>
         <span className="occurred"><strong>{courtName && occurred}</strong></span>

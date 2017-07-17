@@ -52,12 +52,15 @@ export default class RealEstateActivity extends SubsectionElement {
       }
       return prev
     })
+    const realSummary = who || address
+          ? summary
+          : acquired === '' ? i18n.m('foreign.activities.realestate.collection.summary') : ''
 
     return (
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="interest">
-          <strong>{summary || acquired === '' ? i18n.m('foreign.activities.realestate.collection.summary') : ''}</strong>
+          <strong>{realSummary}</strong>
         </span>
         <span className="acquired">{acquired}</span>
       </span>

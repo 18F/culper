@@ -52,7 +52,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {name || i18n.m('substance.drugs.voluntary.collection.summary')}
+            {name || range === '' ? i18n.m('substance.drugs.voluntary.collection.summary') : ''}
           </strong>
         </span>
         <span className="dates">

@@ -52,7 +52,7 @@ export default class OrderedTreatments extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="occurred">
           <strong>
-            {explanation || i18n.m('substance.drugs.ordered.collection.summary')}
+            {explanation || range === '' ? i18n.m('substance.drugs.ordered.collection.summary') : ''}
           </strong>
         </span>
         <span className="dates">

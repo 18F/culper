@@ -44,19 +44,21 @@ export default class DirectActivity extends SubsectionElement {
     const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
     const type = i18n.t('foreign.activities.direct.collection.itemType')
-
     const summary = [who, interestType].reduce((prev, next) => {
       if (prev && next) {
         return prev + ' - ' + next
       }
       return prev
     })
+    const realSummary = summary.length
+          ? summary
+          : cost === '' ? i18n.m('foreign.activities.direct.collection.summary') : ''
 
     return (
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="interest">
-          <strong>{summary || cost === '' ? i18n.m('foreign.activities.direct.collection.summary') : ''}</strong>
+          <strong>{realSummary}</strong>
         </span>
         <span className="cost">{cost}</span>
       </span>

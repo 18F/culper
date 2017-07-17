@@ -53,12 +53,15 @@ export default class IndirectActivity extends SubsectionElement {
       }
       return prev
     })
+    const realSummary = summary.length
+          ? summary
+          : cost === '' ? i18n.m('foreign.activities.indirect.collection.summary') : ''
 
     return (
       <span className="content">
         <span className="index">{type} {index + 1}:</span>
         <span className="interest">
-          <strong>{summary || cost === '' ? i18n.m('foreign.activities.indirect.collection.summary') : ''}</strong>
+          <strong>{realSummary}</strong>
         </span>
         <span className="cost">{cost}</span>
       </span>

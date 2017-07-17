@@ -89,7 +89,7 @@ export default class ExistingConditions extends SubsectionElement {
         <span className="index">{type} {index + 1}:</span>
         <span className="info">
           <strong>
-            {condition || i18n.m('psychological.existingConditions.treatment.collection.summary')}
+            {condition || formattedTreatmentDate === '' ? i18n.m('psychological.existingConditions.treatment.collection.summary') : ''}
           </strong>
         </span>
         <span className="treatmentdate"><strong>{condition && formattedTreatmentDate}</strong></span>

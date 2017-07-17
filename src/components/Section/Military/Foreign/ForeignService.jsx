@@ -107,8 +107,8 @@ export default class ForeignService extends ValidationElement {
    */
   summary (item, index) {
     const itemProperties = (item || {}).Item || {}
-    const name = NameSummary(itemProperties.Name, i18n.m('military.foreign.collection.contacts.summary.unknown'))
     const dates = DateSummary(itemProperties.Dates)
+    const name = NameSummary(itemProperties.Name, dates === '' ? i18n.m('military.foreign.collection.contacts.summary.unknown') : '')
 
     return (
       <span>
