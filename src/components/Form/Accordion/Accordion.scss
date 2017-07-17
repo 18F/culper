@@ -223,7 +223,7 @@
       // All but the first anchor
       > a:nth-child(n+2) {
         display: block;
-        line-height: 1rem;
+        line-height: 1.8rem;
         padding-bottom: 3rem;
         padding-right: 7rem;
 
@@ -244,17 +244,55 @@
 
         > span:nth-of-type(2) {
           > strong {
+            margin-bottom: 0.6rem;
+          }
+
+          > strong,
+          > strong * {
             display: inline-block;
-            vertical-align: top;
-            max-width: 40rem;
+            max-width: 53rem;
+            vertical-align: middle;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+
+            p {
+              margin-bottom: 0.3rem;
+            }
+          }
+
+          @media screen and (max-width: 1800px) {
+            > strong,
+            > strong * {
+              max-width: 48rem;
+            }
           }
 
           @media screen and (max-width: 1380px) {
-            > strong {
-              max-width: 25rem;
+            > strong,
+            > strong * {
+              max-width: 38rem;
+            }
+          }
+
+          @media screen and (max-width: 1025px) {
+            > strong,
+            > strong * {
+              max-width: 32rem;
+            }
+          }
+
+          @media screen and (max-width: 640px) {
+            > strong,
+            > strong * {
+              max-width: 28rem;
+            }
+          }
+
+          @media screen and (max-width: 590px) {
+            > strong,
+            > strong * {
+              max-width: 20rem;
             }
           }
         }
