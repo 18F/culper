@@ -97,10 +97,11 @@ class SavedIndicator extends React.Component {
   }
 
   render () {
+    const klass = `saved-indicator ${this.state.animate ? 'active' : ''}`.trim()
     const klassCircle = `spinner-icon ${this.state.animate ? 'spin' : ''}`.trim()
     const klassIcon = `fa fa-floppy-o ${this.state.animate ? 'invert' : ''}`.trim()
     return (
-      <button className="saved-indicator"
+      <button className={klass}
               onClick={this.reset}
               onMouseEnter={this.mouseEnter}
               onMouseLeave={this.mouseLeave}>
