@@ -16,7 +16,7 @@ export const CustomSummary = (validation, summary, more, item, index, initial, c
   const errors = item.Item && !validation(target)
 
   return (
-    <div>
+    <div className="summary-container">
       <div className="summary">
         <span className={`left ${openState(item, initial)}`}>
           <a onClick={toggle()}>
