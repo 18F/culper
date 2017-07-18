@@ -1,13 +1,13 @@
 import React from 'react'
 
-export const NameSummary = (props, unknown) => {
+export const NameSummary = (props, unknown = '') => {
   if (!props) {
-    return <span>{unknown}</span>
+    return unknown
   }
 
   const suffix = props.suffix && props.suffix === 'Other' ? props.suffixOther : props.suffix
   const name = `${props.first || ''} ${props.middle || ''} ${props.last || ''} ${suffix || ''}`.trim()
   return name.length > 0
     ? <span className="title-case">{name}</span>
-    : <span>{unknown}</span>
+    : unknown
 }

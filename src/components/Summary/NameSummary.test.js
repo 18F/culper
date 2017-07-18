@@ -4,7 +4,7 @@ import { NameSummary } from './NameSummary'
 
 describe('The name summary', () => {
   it('display unknown if no props', () => {
-    const expected = <span>Unknown</span>
+    const expected = 'Unknown'
     const summary = NameSummary(null, 'Unknown')
     expect(summary).toEqual(expected)
   })

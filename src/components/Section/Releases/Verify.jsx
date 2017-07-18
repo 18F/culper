@@ -6,6 +6,21 @@ import { Field } from '../../Form'
 import { sort } from '../History/History'
 import { NameSummary, DateSummary, AddressSummary, TelephoneSummary } from '../../Summary'
 
+const wrapSpans = (text) => {
+  if (text === '') {
+    return <span></span>
+  }
+
+  const typeOf = Object.prototype.toString.call(text)
+  if (typeOf === '[object String]') {
+    return <span>{text}</span>
+  } else if (typeOf === '[object Array]') {
+    return text.map(t => wrapSpans(t))
+  }
+
+  return text
+}
+
 export default class Verify extends React.Component {
   render () {
     // Identification section
@@ -35,27 +50,27 @@ export default class Verify extends React.Component {
 
         <Field title={i18n.t('releases.verify.heading.name')}
                className="release-name verify-data no-margin-bottom">
-          {name}
+          {wrapSpans(name)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.otherNamesUsed')}
                className="release-aliases verify-data no-margin-bottom">
-          {othernames}
+          {wrapSpans(othernames)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.dateOfBirth')}
                className="release-dob verify-data no-margin-bottom">
-          {dob}
+          {wrapSpans(dob)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.ssn')}
                className="release-ssn verify-data no-margin-bottom">
-          {ssn}
+          {wrapSpans(ssn)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.telephoneNumber')}
                className="release-telephone verify-data no-margin-bottom">
-          {phoneNumbers}
+          {wrapSpans(phoneNumbers)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.changeInformation')}
@@ -69,7 +84,7 @@ export default class Verify extends React.Component {
 
         <Field title={i18n.t('releases.verify.heading.currentAddress')}
                className="release-current-address verify-data no-margin-bottom">
-          {currentResidence}
+          {wrapSpans(currentResidence)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.changeAddress')}
