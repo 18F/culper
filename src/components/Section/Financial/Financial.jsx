@@ -29,7 +29,7 @@ class Financial extends SectionElement {
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        back="financial/nonpayment"
                        backLabel={i18n.t('financial.destination.nonpayment')}
                        next="history"

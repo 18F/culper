@@ -125,7 +125,7 @@ class Foreign extends SectionElement {
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        back="foreign/travel"
                        backLabel={i18n.t('foreign.destination.travel')}
                        next="substance/drugs/usage"

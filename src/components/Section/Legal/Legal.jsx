@@ -401,7 +401,7 @@ class Legal extends SectionElement {
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        back="legal/associations/terrorism-activities"
                        backLabel={i18n.t('legal.destination.associations.activities')}
                        next="psychological/intro"

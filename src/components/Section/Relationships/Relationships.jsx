@@ -117,7 +117,7 @@ class Relationships extends SectionElement {
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        back="relationships/relatives"
                        backLabel={i18n.t('relationships.destination.relatives')}
                        next="citizenship/status"

@@ -110,7 +110,7 @@ class Psychological extends SectionElement {
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        back="psychological/conditions"
                        backLabel={ i18n.t('psychological.destination.existingConditions') }>
 
