@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, NameSummary } from '../../../Summary'
 import { ForeignContactsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -39,15 +40,15 @@ export default class Contacts extends SubsectionElement {
 
   summary (item, index) {
     const obj = (item || {}).Item || {}
-    const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.contacts.collection.summary.unknown')
+    const name = NameSummary(obj.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.contacts.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{display}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.contacts.collection.summary.item'),
+      index: index,
+      left: name,
+      right: null,
+      placeholder: i18n.m('foreign.contacts.collection.summary.unknown')
+    })
   }
 
   render () {

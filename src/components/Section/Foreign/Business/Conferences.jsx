@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessConferencesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -41,16 +41,16 @@ export default class Conferences extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const city = (obj.City || {}).value || i18n.m('foreign.business.conferences.collection.summary.unknown')
     const date = DateSummary(item.Dates)
+    const city = (obj.City || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.conferences.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{city}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.conferences.collection.summary.item'),
+      index: index,
+      left: city,
+      right: date,
+      placeholder: i18n.m('foreign.business.conferences.collection.summary.unknown')
+    })
   }
 
   render () {

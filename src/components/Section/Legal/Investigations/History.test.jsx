@@ -40,7 +40,7 @@ describe('The legal investigations history component', () => {
       ListBranch: ''
     }
     const component = mount(<History {...props} />)
-    const text = component.find('.accordion .summary .left .content').text()
+    const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('U.S. Department of Defense')
     expect(text).toContain('1/2010')
   })

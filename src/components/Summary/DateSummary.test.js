@@ -15,7 +15,7 @@ describe('The date summary', () => {
   })
 
   it('display empty if missing date value', () => {
-    const expected = <span>Unknown</span>
+    const expected = ''
     const item = { date: {} }
     const summary = DateSummary(item, 'Unknown')
     expect(summary).toEqual(expected)

@@ -2,8 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsTerrorismValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Textarea } from '../../../Form'
+import { Branch, Show, Field, Textarea } from '../../../Form'
 
 export default class TerrorismAssociation extends SubsectionElement {
   constructor (props) {

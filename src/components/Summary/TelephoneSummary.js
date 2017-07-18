@@ -1,8 +1,8 @@
 import React from 'react'
 
-export const TelephoneSummary = (props, unknown) => {
+export const TelephoneSummary = (props, unknown = '') => {
   if (!props) {
-    return <span>{unknown}</span>
+    return unknown
   }
 
   let number = ''
@@ -33,5 +33,5 @@ export const TelephoneSummary = (props, unknown) => {
 
   return number.length > 0
     ? <span className="title-case">{number}</span>
-    : <span>{unknown}</span>
+    : unknown
 }

@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { PoliceOffensesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import Offense from './Offense'
 
 export default class Offenses extends SubsectionElement {
@@ -44,18 +44,16 @@ export default class Offenses extends SubsectionElement {
    */
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const description = o.Description && o.Description.value
-          ? o.Description.value
-          : i18n.m('legal.police.collection.summary.unknown')
     const dates = DateSummary(o.Date)
+    const description = o.Description && o.Description.value ? o.Description.value : ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('legal.police.collection.summary.item')} {index + 1}:</span>
-        <span className="info"><strong>{description}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.police.collection.summary.item'),
+      index: index,
+      left: description,
+      right: dates,
+      placeholder: i18n.m('legal.police.collection.summary.unknown')
+    })
   }
 
   render () {

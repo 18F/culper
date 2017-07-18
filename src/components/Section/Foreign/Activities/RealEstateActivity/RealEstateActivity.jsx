@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { AddressSummary } from '../../../../Summary'
+import { Summary, AddressSummary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignRealEstateActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
@@ -42,10 +42,8 @@ export default class RealEstateActivity extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).RealEstateInterest || {}
     const who = (o.InterestTypes || []).join(', ')
-    const acquired = (o.Acquired || {}).date ? `${o.Acquired.month}/${o.Acquired.year}` : ''
+    const acquired = DateSummary(o.Acquired)
     const address = AddressSummary(o.Address, '')
-    const type = i18n.t('foreign.activities.realestate.collection.itemType')
-
     const summary = [who, address].reduce((prev, next) => {
       if (prev && next) {
         return <span>{prev} - {next}</span>
@@ -53,15 +51,13 @@ export default class RealEstateActivity extends SubsectionElement {
       return prev
     })
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="interest">
-          <strong>{summary || i18n.m('foreign.activities.realestate.collection.summary')}</strong>
-        </span>
-        <span className="acquired">{acquired}</span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.activities.realestate.collection.itemType'),
+      index: index,
+      left: who || address ? summary : '',
+      right: acquired,
+      placeholder: i18n.m('foreign.activities.realestate.collection.summary')
+    })
   }
 
   render () {

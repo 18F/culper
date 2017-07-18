@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -42,18 +42,18 @@ export default class Contact extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.m('foreign.business.contact.collection.summary.unknown'))
     const date = DateSummary(obj.Date)
+    const name = NameSummary(obj.Name)
     const govt = ((obj.Governments || {}).value || []).map(x => x.name).join(', ')
-    const govtParen = govt ? ` (${govt})` : ''
+    const govtParen = name && govt ? ` (${govt})` : ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.contact.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{name}{govtParen}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.contact.collection.summary.item'),
+      index: index,
+      left: `${name}${govtParen}`,
+      right: date,
+      placeholder: i18n.m('foreign.business.contact.collection.summary.unknown')
+    })
   }
 
   render () {

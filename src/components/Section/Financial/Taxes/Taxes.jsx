@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary } from '../../../Summary'
 import { TaxesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Number, Field,
@@ -54,16 +55,16 @@ export default class Taxes extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.m('financial.taxes.collection.summary.unknown')
     const year = (obj.Year || {}).value || ''
+    const agency = (obj.Agency || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.taxes.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{year}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.taxes.collection.summary.item'),
+      index: index,
+      left: agency,
+      right: year,
+      placeholder: i18n.m('financial.taxes.collection.summary.unknown')
+    })
   }
 
   render () {

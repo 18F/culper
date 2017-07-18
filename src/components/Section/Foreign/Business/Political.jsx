@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessPoliticalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -40,18 +40,18 @@ export default class Political extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const pos = (obj.Position || {}).value || i18n.m('foreign.business.political.collection.summary.unknown')
-    const country = (obj.Country || {}).value || ''
     const dates = DateSummary(obj.Dates)
+    const pos = (obj.Position || {}).value || ''
+    const country = (obj.Country || {}).value || ''
     const text = country.length ? `${pos} (${country})` : pos
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.political.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{text}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.political.collection.summary.item'),
+      index: index,
+      left: text,
+      right: dates,
+      placeholder: i18n.m('foreign.business.political.collection.summary.unknown')
+    })
   }
 
   render () {

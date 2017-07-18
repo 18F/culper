@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary } from '../../../Summary'
 import { ValidationElement, Branch, Field, Telephone, Accordion, Country,
          Location, RadioGroup, Radio, DateRange, DateControl, Text, Name } from '../../../Form'
 
@@ -20,12 +21,12 @@ export default class Headings extends ValidationElement {
   }
 
   summary (item, index) {
-    return (
-      <span>
-        <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>
-        <span><strong>{i18n.t('identification.contacts.collection.summary.unknownPhone')}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('identification.contacts.collection.summary.phoneNumber'),
+      index: index,
+      right: null,
+      placeholder: i18n.m('identification.contacts.collection.summary.unknownPhone')
+    })
   }
 
   render () {

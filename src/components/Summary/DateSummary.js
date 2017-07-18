@@ -30,7 +30,10 @@ export const DateSummary = (props, unknown = i18n.t('history.employment.default.
 
   // Handle single date
   if (props.date) {
-    return <span>{format(props.date) || unknown}</span>
+    const singleDate = format(props.date)
+    if (singleDate !== '') {
+      return <span>{singleDate}</span>
+    }
   }
 
   return ''

@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { MilitaryHistoryValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import MilitaryService from './MilitaryService'
 
 export const serviceNameDisplay = (service) => {
@@ -68,15 +68,15 @@ export default class History extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Item || {}
     const dates = DateSummary(o.Dates)
-    const service = serviceNameDisplay(o.Service || i18n.m('military.history.collection.summary.unknown'))
+    const service = serviceNameDisplay(o.Service)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('military.history.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{service}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('military.history.collection.summary.item'),
+      index: index,
+      left: service,
+      right: dates,
+      placeholder: i18n.m('military.history.collection.summary.unknown')
+    })
   }
 
   render () {

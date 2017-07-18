@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessSponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -41,16 +41,16 @@ export default class Sponsorship extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.m('foreign.business.sponsorship.collection.summary.unknown'))
     const dates = DateSummary(obj.Dates)
+    const name = NameSummary(obj.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.sponsorship.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{name}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.sponsorship.collection.summary.item'),
+      index: index,
+      left: name,
+      right: dates,
+      placeholder: i18n.m('foreign.business.sponsorship.collection.summary.unknown')
+    })
   }
 
   render () {

@@ -4,7 +4,7 @@ import { BankruptcyValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import Bankruptcy from './Bankruptcy'
-import { AddressSummary, DateSummary } from '../../../Summary'
+import { Summary, AddressSummary, DateSummary } from '../../../Summary'
 
 export default class Bankruptcies extends SubsectionElement {
   constructor (props) {
@@ -44,16 +44,16 @@ export default class Bankruptcies extends SubsectionElement {
    */
   summary (item, index) {
     const b = item.Bankruptcy || {}
-    const address = AddressSummary(b.CourtAddress, i18n.m('financial.bankruptcy.collection.summary.unknown'))
-    const from = DateSummary(b.DateFiled, i18n.t('financial.bankruptcy.collection.summary.nodates'))
+    const from = DateSummary(b.DateFiled)
+    const address = AddressSummary(b.CourtAddress)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.bankruptcy.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{address}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.bankruptcy.collection.summary.item'),
+      index: index,
+      left: address,
+      right: from,
+      placeholder: i18n.m('financial.bankruptcy.collection.summary.unknown')
+    })
   }
 
   render () {

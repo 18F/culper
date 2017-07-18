@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { ExistingConditionsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show, RadioGroup, Radio, Field, Textarea } from '../../../Form'
 import Diagnosis from '../Diagnoses/Diagnosis'
-import { dateRangeFormat } from '../summaryHelper'
 
 export default class ExistingConditions extends SubsectionElement {
   constructor (props) {
@@ -80,21 +80,17 @@ export default class ExistingConditions extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
     const treatmentDate = (o.Diagnosed || {})
-    const formattedTreatmentDate = dateRangeFormat(treatmentDate)
-    const condition = (o.Condition || {}).value ? o.Condition.value : null
+    const date = DateSummary(treatmentDate)
+    const condition = (o.Condition || {}).value || ''
     const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
-    return (
 
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="info">
-          <strong>
-            {condition || i18n.m('psychological.existingConditions.treatment.collection.summary')}
-          </strong>
-        </span>
-        <span className="treatmentdate"><strong>{condition && formattedTreatmentDate}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('psychological.existingConditions.treatment.collection.itemType'),
+      index: index,
+      left: condition,
+      right: date,
+      placeholder: i18n.m('psychological.existingConditions.treatment.collection.summary')
+    })
   }
 
   render () {

@@ -226,7 +226,7 @@
       // All but the first anchor
       > a:nth-child(n+2) {
         display: block;
-        line-height: 1rem;
+        line-height: 1.8rem;
         padding-bottom: 3rem;
         padding-right: 7rem;
 
@@ -247,18 +247,26 @@
 
         > span:nth-of-type(2) {
           > strong {
+            margin-bottom: 0.6rem;
+          }
+
+          > strong,
+          > strong * {
             display: inline-block;
-            vertical-align: top;
-            max-width: 40rem;
+            max-width: 53rem;
+            vertical-align: middle;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+
+            p {
+              margin-bottom: 0.3rem;
+            }
           }
 
-          @media screen and (max-width: 1380px) {
-            > strong {
-              max-width: 25rem;
-            }
+          &.has-content > strong,
+          &.has-content > strong * {
+            max-width: 40rem;
           }
         }
 
@@ -266,6 +274,76 @@
           float: right;
           text-align: right;
           height: 4.9rem;
+        }
+
+        @media screen and (max-width: 1800px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 48rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 32rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 1380px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 38rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 28rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 1025px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 32rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 22rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 640px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 28rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 22rem;
+            }
+          }
+        }
+
+        @media screen and (max-width: 590px) {
+          > span:nth-of-type(2) {
+            > strong,
+            > strong * {
+              max-width: 20rem;
+            }
+
+            &.has-content > strong,
+            &.has-content > strong * {
+              max-width: 16rem;
+            }
+          }
         }
       }
 
@@ -390,7 +468,7 @@ button.usa-button-outline {
           > a,
           > span > span > strong,
           > span > span {
-            max-height: 2.8rem;
+            max-height: 3rem;
           }
           vertical-align: middle;
           line-height: 3rem;

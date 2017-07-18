@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignDirectActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
@@ -43,8 +44,6 @@ export default class DirectActivity extends SubsectionElement {
     const who = (o.InterestTypes || []).join(', ')
     const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
-    const type = i18n.t('foreign.activities.direct.collection.itemType')
-
     const summary = [who, interestType].reduce((prev, next) => {
       if (prev && next) {
         return prev + ' - ' + next
@@ -52,15 +51,13 @@ export default class DirectActivity extends SubsectionElement {
       return prev
     })
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="interest">
-          <strong>{summary || i18n.m('foreign.activities.direct.collection.summary')}</strong>
-        </span>
-        <span className="cost">{cost}</span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.activities.direct.collection.itemType'),
+      index: index,
+      left: summary,
+      right: cost,
+      placeholder: i18n.m('foreign.activities.direct.collection.summary')
+    })
   }
 
   render () {

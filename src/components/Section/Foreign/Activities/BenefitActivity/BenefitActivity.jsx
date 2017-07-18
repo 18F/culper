@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignBenefitActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
@@ -40,7 +41,42 @@ export default class BenefitActivity extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).Benefit || {}
-    return benefitSummary(o, index)
+    const benefit = {}
+    const who = (o.InterestTypes || []).join(', ')
+
+    let b = null
+    switch (o.BenefitFrequency) {
+      case 'OneTime':
+        b = (o.OneTimeBenefit || {})
+        benefit.Country = (b.Country || {}).value
+        benefit.Date = DateSummary(b.Received)
+        break
+      case 'Future':
+        b = (o.FutureBenefit || {})
+        benefit.Country = (b.Country || {}).value
+        benefit.Date = DateSummary(b.Begin)
+        break
+      case 'Continuing':
+        b = (o.ContinuingBenefit || {})
+        benefit.Country = (b.Country || {}).value
+        benefit.Date = DateSummary(b.Began)
+        break
+    }
+
+    const summary = [who, benefit.Country].reduce((prev, next) => {
+      if (prev && next) {
+        return prev + ' - ' + next
+      }
+      return prev
+    })
+
+    return Summary({
+      type: i18n.t('foreign.activities.benefit.collection.itemType'),
+      index: index,
+      left: summary,
+      right: benefit.Date,
+      placeholder: i18n.m('foreign.activities.benefit.collection.summary')
+    })
   }
 
   render () {
@@ -93,42 +129,4 @@ BenefitActivity.defaultProps = {
 }
 
 export const benefitSummary = (item, index) => {
-  const benefit = {}
-  const who = (item.InterestTypes || []).join(', ')
-  const type = i18n.t('foreign.activities.benefit.collection.itemType')
-  let b = null
-  switch (item.BenefitFrequency) {
-    case 'OneTime':
-      b = (item.OneTimeBenefit || {})
-      benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Received || {}).date ? `${b.Received.month}/${b.Received.year}` : ''
-      break
-    case 'Future':
-      b = (item.FutureBenefit || {})
-      benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Begin || {}).date ? `${b.Begin.month}/${b.Begin.year}` : ''
-      break
-    case 'Continuing':
-      b = (item.ContinuingBenefit || {})
-      benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Began || {}).date ? `${b.Began.month}/${b.Began.year}` : ''
-      break
-  }
-
-  const summary = [who, benefit.Country].reduce((prev, next) => {
-    if (prev && next) {
-      return prev + ' - ' + next
-    }
-    return prev
-  })
-
-  return (
-    <span className="content">
-      <span className="index">{type}: {index + 1}</span>
-      <span className="benefit-summary">
-        <strong>{ summary || i18n.m('foreign.activities.benefit.collection.summary')}</strong>
-      </span>
-      <span className="date"><strong>{benefit.Date}</strong></span>
-    </span>
-  )
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../../Form'
+import { Summary } from '../../../../Summary'
+import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignIndirectActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import IndirectInterest from './IndirectInterest'
@@ -45,8 +46,6 @@ export default class IndirectActivity extends SubsectionElement {
     const name = `${firstname} ${lastname}`.trim()
     const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
-    const type = i18n.t('foreign.activities.indirect.collection.itemType')
-
     const summary = [interestType, name].reduce((prev, next) => {
       if (prev && next) {
         return prev + ' - ' + next
@@ -54,15 +53,13 @@ export default class IndirectActivity extends SubsectionElement {
       return prev
     })
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="interest">
-          <strong>{summary || i18n.m('foreign.activities.indirect.collection.summary')}</strong>
-        </span>
-        <span className="cost">{cost}</span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.activities.indirect.collection.itemType'),
+      index: index,
+      left: summary,
+      right: cost,
+      placeholder: i18n.m('foreign.activities.indirect.collection.summary')
+    })
   }
 
   render () {

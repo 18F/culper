@@ -1,11 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { DiagnosesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show, Field } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
-import { dateRangeFormat } from '../summaryHelper'
 
 export default class Diagnoses extends SubsectionElement {
   constructor (props) {
@@ -75,19 +75,17 @@ export default class Diagnoses extends SubsectionElement {
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
     const date = (o.Diagnosed || {})
-    const diagnosisDate = dateRangeFormat(date)
-    const facility = (o.Condition || {}).value ? o.Condition.value : null
-    const type = i18n.t('psychological.diagnoses.collection.itemType')
+    // const diagnosisDate = dateRangeFormat(date)
+    const diagnosisDate = DateSummary(date)
+    const facility = (o.Condition || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span>
-          <strong>{facility || i18n.m('psychological.diagnoses.collection.summary')}</strong>
-        </span>
-        <span className="diagnosisdate"><strong>{facility && diagnosisDate}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('psychological.diagnoses.collection.itemType'),
+      index: index,
+      left: facility,
+      right: diagnosisDate,
+      placeholder: i18n.m('psychological.diagnoses.collection.summary')
+    })
   }
 
   treatmentSummary (item, index) {

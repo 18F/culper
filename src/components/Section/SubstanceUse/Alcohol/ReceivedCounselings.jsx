@@ -4,7 +4,7 @@ import { AlcoholReceivedCounselingsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import ReceivedCounseling from './ReceivedCounseling'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 
 export default class ReceivedCounselings extends SubsectionElement {
   constructor (props) {
@@ -48,22 +48,14 @@ export default class ReceivedCounselings extends SubsectionElement {
       from: o.TreatmentBeganDate,
       to: o.TreatmentEndDate
     })
-    const type = i18n.t('substance.alcohol.receivedCounseling.collection.itemType')
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <Show when={!counselor && !counselingDates}>
-            <strong>{i18n.m('substance.alcohol.receivedCounseling.collection.summary')}</strong>
-          </Show>
-          <Show when={counselor || counselingDates}>
-            <strong>{counselor}</strong>
-          </Show>
-        </span>
-        <span className="dates"><strong>{counselingDates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.alcohol.receivedCounseling.collection.itemType'),
+      index: index,
+      left: counselor,
+      right: counselingDates,
+      placeholder: i18n.m('substance.alcohol.receivedCounseling.collection.summary')
+    })
   }
 
   render () {

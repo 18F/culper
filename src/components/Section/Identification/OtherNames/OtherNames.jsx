@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { OtherNamesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
@@ -39,18 +39,16 @@ export default class OtherNames extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const name = NameSummary(item.Name, i18n.m('identification.othernames.collection.summary.unknown'))
-    const dates = DateSummary(item.DatesUsed, i18n.t('identification.othernames.collection.summary.nodates'))
+    const dates = DateSummary(item.DatesUsed)
+    const name = NameSummary(item.Name)
 
-    return (
-      <span>
-        <span className="index">
-          {i18n.t('identification.othernames.collection.summary.name')} {index + 1}:
-        </span>
-        <span><strong>{name}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('identification.othernames.collection.summary.name'),
+      index: index,
+      left: name,
+      right: dates,
+      placeholder: i18n.m('identification.othernames.collection.summary.unknown')
+    })
   }
 
   render () {

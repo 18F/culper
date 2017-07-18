@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import PrescriptionUse from './PrescriptionUse'
 import { DrugPrescriptionUsesValidator } from '../../../../validators'
 
@@ -45,21 +45,14 @@ export default class PrescriptionUses extends SubsectionElement {
     const o = (item || {}).DrugPrescriptionUse || {}
     const range = DateSummary(o.InvolvementDates)
     const name = (o.PrescriptionName || {}).value
-    const type = i18n.t('substance.drugs.prescription.collection.itemType')
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <strong>
-            {name || i18n.m('substance.drugs.prescription.collection.summary')}
-          </strong>
-        </span>
-        <span className="dates">
-          <strong>{range}</strong>
-        </span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.drugs.prescription.collection.itemType'),
+      index: index,
+      left: name,
+      right: range,
+      placeholder: i18n.m('substance.drugs.prescription.collection.summary')
+    })
   }
 
   render () {

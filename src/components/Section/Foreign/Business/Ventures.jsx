@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -40,17 +40,16 @@ export default class Ventures extends SubsectionElement {
 
   summary (item, index) {
     const obj = item || {}
-    const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.m('foreign.business.ventures.collection.summary.unknown')
     const date = DateSummary(item.Dates)
+    const name = NameSummary(obj.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.ventures.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.ventures.collection.summary.item'),
+      index: index,
+      left: name,
+      right: date,
+      placeholder: i18n.m('foreign.business.ventures.collection.summary.unknown')
+    })
   }
 
   render () {

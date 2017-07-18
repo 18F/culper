@@ -1,12 +1,8 @@
 import React from 'react'
 
-export const AddressSummary = (props, unknown) => {
+export const AddressSummary = (props, unknown = '') => {
   if (!props) {
-    if (unknown) {
-      return <span>{unknown}</span>
-    }
-
-    return ''
+    return unknown
   }
 
   const address1 = `${props.street || ''} ${props.street2 || ''}`.trim()
@@ -21,7 +17,7 @@ export const AddressSummary = (props, unknown) => {
   }
 
   if (address1.length === 0 || address2.length === 1) {
-    return <span>{unknown}</span>
+    return unknown
   }
 
   return (

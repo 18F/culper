@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsActivitiesValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateRange, Textarea } from '../../../Form'
 
 export default class ActivitiesToOverthrow extends SubsectionElement {
@@ -39,21 +39,17 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.associations.activities.collection.item')
-    const unknown = i18n.m('legal.associations.activities.collection.unknown')
     const o = item || {}
-    const details = (o.Reasons || {}).value
-          ? o.Reasons.value
-          : unknown
     const dates = DateSummary(o.Dates)
+    const details = (o.Reasons || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{details}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.associations.activities.collection.item'),
+      index: index,
+      left: details,
+      right: dates,
+      placeholder: i18n.m('legal.associations.activities.collection.unknown')
+    })
   }
 
   render () {
