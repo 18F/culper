@@ -1,9 +1,10 @@
 $fixed-width: 18.75%;
+$fixed-top: 5.4rem;
 
 .sticky-dipstick {
   position: static;
   display: block;
-  margin-top: -1rem;
+  margin-top: $fixed-top * -1;
 }
 
 .sticky-container {
@@ -19,56 +20,53 @@ $fixed-width: 18.75%;
     position: relative;
   }
 
-  &.bottom-visible.scrolled-down {
-    .sticky-content {
-      position: fixed;
-      bottom: 1rem;
-      width: $fixed-width;
+  &:not(.page-short) {
+    &.bottom-visible.scrolled-down {
+      .sticky-content {
+        position: fixed;
+        bottom: 1rem;
+        width: $fixed-width;
+        min-width: 28rem;
+      }
     }
-  }
 
-  &.bottom-visible.scrolled-down.page-short {
-    .sticky-content {
-      position: relative;
-      bottom: unset;
-      width: initial;
+    &.bottom-visible.scrolled-up {
+      .sticky-content {
+        position: relative;
+      }
     }
-  }
 
-  &.bottom-visible.scrolled-up {
-    .sticky-content {
-      position: relative;
+    &.both-visible {
+      .sticky-content {
+        position: fixed;
+        top: $fixed-top;
+        bottom: unset;
+        width: $fixed-width;
+        min-width: 28rem;
+      }
     }
-  }
 
-  &.both-visible {
-    .sticky-content {
-      position: fixed;
-      top: 5.4rem;
-      bottom: unset;
-      width: $fixed-width;
+    &.top-visible.scrolled-up {
+      .sticky-content {
+        position: fixed;
+        top: $fixed-top;
+        bottom: unset;
+        width: $fixed-width;
+        min-width: 28rem;
+      }
     }
-  }
 
-  &.top-visible.scrolled-up {
-    .sticky-content {
-      position: fixed;
-      top: 5.4rem;
-      bottom: unset;
-      width: $fixed-width;
+    &.none-visible.scrolled-up {
+      .sticky-content {
+        position: relative;
+      }
     }
-  }
 
-  &.none-visible.scrolled-up {
-    .sticky-content {
-      position: relative;
-    }
-  }
-
-  &.anchor-visible {
-    .sticky-content {
-      top: unset;
-      bottom: unset;
+    &.anchor-visible {
+      .sticky-content {
+        top: unset;
+        bottom: unset;
+      }
     }
   }
 }
