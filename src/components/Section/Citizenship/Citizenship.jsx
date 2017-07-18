@@ -27,7 +27,7 @@ class Citizenship extends SectionElement {
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        back="citizenship/passports"
                        backLabel={i18n.t('citizenship.destination.passports')}
                        next="military"

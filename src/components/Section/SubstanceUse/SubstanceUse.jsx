@@ -250,7 +250,7 @@ class SubstanceUse extends SectionElement {
                        title={i18n.t('substance.review.title')}
                        back="substance/alcohol/additional"
                        backLabel={ i18n.t('substance.destination.police.additional') }
-                       showTop="true"
+                       showTop={true}
                        next="legal/police"
                        nextLabel={ i18n.t('legal.destination.police') }>
 
