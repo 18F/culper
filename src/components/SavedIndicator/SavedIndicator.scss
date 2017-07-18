@@ -1,6 +1,6 @@
 @import 'eqip-colors';
 
-$border-size: 0.75rem;
+$border-size: 5px;
 
 .saved-indicator {
   position: fixed;
@@ -23,13 +23,15 @@ $border-size: 0.75rem;
     z-index: -1;
   }
 
+  &.active,
   &:active,
   &:hover {
     background-color: #fff;
-    color: $eapp-grey-darker;
+    color: $eapp-blue;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
 
     i {
-      background-color: $eapp-blue-dark;
+      background-color: $eapp-blue;
     }
 
     .spinner {
@@ -38,7 +40,7 @@ $border-size: 0.75rem;
         border-top: $border-size solid rgba(32, 84, 147, 0.2);
         border-right: $border-size solid rgba(32, 84, 147, 0.2);
         border-bottom: $border-size solid rgba(32, 84, 147, 0.2);
-        border-left: $border-size solid $eapp-blue-dark;
+        border-left: $border-size solid $eapp-blue;
       }
     }
   }
@@ -96,6 +98,10 @@ $border-size: 0.75rem;
   .spinner-label {
     position: relative;
     top: -7.5rem;
+
+    .one-line {
+      color: $eapp-blue;
+    }
   }
 }
 
