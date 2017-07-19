@@ -2572,7 +2572,7 @@ const en = {
       },
       othernames: {
         heading: {
-          maiden: 'Provide maiden name',
+          maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
       },
