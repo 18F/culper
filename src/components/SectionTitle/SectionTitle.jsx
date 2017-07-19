@@ -16,10 +16,12 @@ import { navigation } from '../../config'
  */
 class SectionTitle extends React.Component {
   render () {
-    let title = ''
+    const splitSubsections = (this.props.section.subsection || '').split('/')
+
+    let title = null
     navigation.forEach(s => {
       if (s.url === this.props.section.section) {
-        title = s.title
+        title = breadcrumbs(splitSubsections, s)
       }
     })
 
@@ -31,6 +33,26 @@ class SectionTitle extends React.Component {
       </div>
     )
   }
+}
+
+const breadcrumbs = (urls, node) => {
+  const top = (<span>{node.title || node.name}</span>)
+  if (node.subsections) {
+    return node.subsections.reduce((a, b) => {
+      if (!urls.includes(b.url)) {
+        return a
+      }
+
+      return (
+        <span>
+          {a}
+          <span className="crumb">&gt; {breadcrumbs(urls, b)}</span>
+        </span>
+      )
+    }, top)
+  }
+
+  return top
 }
 
 /**
