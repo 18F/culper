@@ -221,15 +221,16 @@ export default class CivilUnion extends ValidationElement {
                          />
           </Field>
 
-          <h3>{i18n.t('relationships.civilUnion.heading.birthplace')}</h3>
-          <Location name="birthplace"
-                    layout={Location.BIRTHPLACE}
-                    className="birthplace"
-                    label={i18n.t('relationships.civilUnion.label.birthplace')}
-                    {...this.props.BirthPlace}
-                    onUpdate={this.updateBirthPlace}
-                    onError={this.props.onError}
-                    />
+          <Field title={i18n.t('relationships.civilUnion.heading.birthplace')}>
+            <Location name="birthplace"
+                      layout={Location.BIRTHPLACE}
+                      className="birthplace"
+                      label={i18n.t('relationships.civilUnion.label.birthplace')}
+                      {...this.props.BirthPlace}
+                      onUpdate={this.updateBirthPlace}
+                      onError={this.props.onError}
+                      />
+          </Field>
 
           <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
             <Field help="relationships.civilUnion.help.foreignBornDocument"
