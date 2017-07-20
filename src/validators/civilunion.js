@@ -2,7 +2,7 @@ import LocationValidator from './location'
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
-import { validBranch, validSSN, validDateField, validPhoneNumber } from './helpers'
+import { validBranch, validSSN, validDateField, validPhoneNumber, BranchCollection } from './helpers'
 
 export default class CivilUnionValidator {
   constructor (state = {}, props = {}) {
@@ -11,9 +11,7 @@ export default class CivilUnionValidator {
     this.birthPlace = state.BirthPlace
     this.foreignBornDocument = state.ForeignBornDocument
     this.ssn = state.SSN
-    this.otherName = state.OtherName
-    this.otherNameMaiden = state.OtherNameMaiden
-    this.otherNameNotApplicable = state.OtherNameNotApplicable
+    this.otherNames = state.OtherNames
     this.datesUsed = state.DatesUsed
     this.citizenship = state.Citizenship
     this.location = state.Location
@@ -31,11 +29,20 @@ export default class CivilUnionValidator {
   }
 
   validOtherName () {
-    if (this.otherNameNotApplicable) {
-      return true
+    const branchValidator = new BranchCollection(this.otherNames)
+    if (!branchValidator.validKeyValues()) {
+      return false
     }
-    return new NameValidator(this.otherName).isValid() &&
-      new DateRangeValidator(this.datesUsed).isValid()
+
+    if (!branchValidator.hasNo()) {
+      return false
+    }
+
+    return branchValidator.each(item => {
+      return new NameValidator(item.Othername).isValid() &&
+        new DateRangeValidator(item.DatesUsed) &&
+        validBranch((item.MaidenName || {}).value)
+    })
   }
 
   validSeparated () {
@@ -62,6 +69,16 @@ export default class CivilUnionValidator {
     return true
   }
 
+  validAddress () {
+    const address = this.address || {}
+    // This one is optional so if a user fills anything, then assume they want to fill it all out
+    const fields = [address.street, address.street2, address.city, address.state, address.zipcode]
+    if (fields.some(field => !!field)) {
+      return new LocationValidator(this.address).isValid()
+    }
+    return true
+  }
+
   isValid () {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
@@ -70,7 +87,7 @@ export default class CivilUnionValidator {
       validPhoneNumber(this.telephone) &&
       validSSN(this.ssn) &&
       validBranch(this.separated) &&
-      new LocationValidator(this.address).isValid() &&
+      this.validAddress() &&
       new LocationValidator(this.location).isValid() &&
       this.validSeparated() &&
       this.validCitizenship() &&
