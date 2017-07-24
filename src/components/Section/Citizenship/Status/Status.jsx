@@ -474,8 +474,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificatecourtaddress')}
                    help="citizenship.status.help.certificatecourtaddress"
-                   adjustFor="address"
-                   shrink={true}>
+                   adjustFor="labels">
               <Location name="CertificateCourtAddress"
                         layout={Location.US_ADDRESS}
                         geocode={true}

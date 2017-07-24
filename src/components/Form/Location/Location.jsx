@@ -28,6 +28,7 @@ export default class Location extends ValidationElement {
 
     this.update = this.update.bind(this)
     this.updateStreet = this.updateStreet.bind(this)
+    this.updateStreet2 = this.updateStreet2.bind(this)
     this.updateCity = this.updateCity.bind(this)
     this.updateState = this.updateState.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
@@ -165,6 +166,13 @@ export default class Location extends ValidationElement {
     })
   }
 
+  updateStreet2 (event) {
+    this.update({
+      street2: event.target.value,
+      validated: false
+    })
+  }
+
   updateCity (event) {
     this.update({
       city: event.target.value,
@@ -233,6 +241,19 @@ export default class Location extends ValidationElement {
                   onFocus={this.props.onFocus}
                   onBlur={this.handleBlur}
                   />
+          )
+        case 'street2':
+          return (
+            <Street name="street2"
+                    className="street2"
+                    label={this.props.street2Label}
+                    optional={true}
+                    value={this.props.street2}
+                    onChange={this.updateStreet2}
+                    onError={this.props.onError}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.props.onBlur}
+                    />
           )
         case 'city':
           return (
@@ -367,7 +388,7 @@ export default class Location extends ValidationElement {
       case Location.CITY_STATE_COUNTRY:
         return this.renderFields(['city', 'state', 'country'])
       case Location.US_ADDRESS:
-        return this.renderFields(['street', 'city', 'stateZipcode'])
+        return this.renderFields(['street', 'street2', 'city', 'stateZipcode'])
       case Location.STREET_CITY:
         return this.renderFields(['street', 'city'])
       case Location.COUNTRY:
@@ -548,6 +569,7 @@ Location.defaultProps = {
   suggestions: false,
   streetLabel: i18n.t('address.us.street.label'),
   streetPlaceholder: i18n.t('address.us.street.placeholder'),
+  street2Label: i18n.t('address.us.street2.label'),
   stateLabel: i18n.t('address.us.state.label'),
   statePlaceholder: i18n.t('address.us.state.placeholder'),
   cityLabel: i18n.t('address.us.city.label'),
