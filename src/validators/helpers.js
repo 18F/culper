@@ -173,6 +173,9 @@ export class BranchCollection {
     }
 
     for (let item of this.collection) {
+      if (item[this.key] === 'No') {
+        continue
+      }
       if (!isValidFunc(item)) {
         return false
       }
