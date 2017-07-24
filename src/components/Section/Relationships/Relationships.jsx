@@ -55,8 +55,8 @@ class Relationships extends SectionElement {
                        backLabel={i18n.t('history.destination.review')}
                        next="relationships/status/marital"
                        nextLabel={i18n.t('relationships.destination.marital')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('relationships.intro.title')}</h2>
+            {i18n.m('relationships.intro.body')}
           </SectionView>
 
           <SectionView name="status/marital"

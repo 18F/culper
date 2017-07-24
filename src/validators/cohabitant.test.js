@@ -36,38 +36,68 @@ describe('Cohabitant validation', function () {
     const tests = [
       {
         state: {
-          OtherNameNotApplicable: true
+          OtherNames: []
+        },
+        expected: false
+      },
+      {
+        state: {
+          OtherNames: [
+            {
+              Has: 'Yes',
+              Othername: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                lastInitialOnly: false,
+                suffix: 'Jr'
+              },
+              MaidenName: {
+                value: 'No'
+              },
+              DatesUsed: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2016')
+                },
+                present: false
+              }
+            },
+            {
+              Has: 'No'
+            }
+          ]
         },
         expected: true
       },
       {
         state: {
-          OtherNameNotApplicable: false,
-          OtherName: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
-            noMiddleName: false,
-            last: 'Bar',
-            lastInitialOnly: false,
-            suffix: 'Jr'
-          },
-          OtherNameUsed: {
-            from: {
-              date: new Date('1/1/2010')
-            },
-            to: {
-              date: new Date('1/1/2016')
-            },
-            present: false
-          }
+          OtherNames: [
+            {
+              Has: 'Nope'
+            }
+          ]
         },
-        expected: true
+        expected: false
+      },
+      {
+        state: {
+          OtherNames: [
+            {
+              Has: 'Yes'
+            }
+          ]
+        },
+        expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new CohabitantValidator(test.state, null).validOtherName()).toBe(test.expected)
+      expect(new CohabitantValidator(test.state, null).validOtherNames()).toBe(test.expected)
     })
   })
 
@@ -104,26 +134,36 @@ describe('Cohabitant validation', function () {
             last: '1111',
             applicable: true
           },
-          OtherNameNotApplicable: false,
-          OtherName: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
-            noMiddleName: false,
-            last: 'Bar',
-            lastInitialOnly: false,
-            suffix: 'Jr'
-          },
-          OtherNameUsed: {
-            from: {
-              date: new Date('1/1/2010')
+          OtherNames: [
+            {
+              Has: 'Yes',
+              Othername: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                lastInitialOnly: false,
+                suffix: 'Jr'
+              },
+              MaidenName: {
+                value: 'No'
+              },
+              DatesUsed: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2016')
+                },
+                present: false
+              }
             },
-            to: {
-              date: new Date('1/1/2016')
-            },
-            present: false
-          },
+            {
+              Has: 'No'
+            }
+          ],
           Citizenship: {
             value: ['Germany', 'United States']
           },
@@ -208,26 +248,36 @@ describe('Cohabitant validation', function () {
                   last: '1111',
                   applicable: true
                 },
-                OtherNameNotApplicable: false,
-                OtherName: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                OtherNameUsed: {
-                  from: {
-                    date: new Date('1/1/2010')
+                OtherNames: [
+                  {
+                    Has: 'Yes',
+                    Othername: {
+                      first: 'Foo',
+                      firstInitialOnly: false,
+                      middle: 'J',
+                      middleInitialOnly: true,
+                      noMiddleName: false,
+                      last: 'Bar',
+                      lastInitialOnly: false,
+                      suffix: 'Jr'
+                    },
+                    MaidenName: {
+                      value: 'No'
+                    },
+                    DatesUsed: {
+                      from: {
+                        date: new Date('1/1/2010')
+                      },
+                      to: {
+                        date: new Date('1/1/2016')
+                      },
+                      present: false
+                    }
                   },
-                  to: {
-                    date: new Date('1/1/2016')
-                  },
-                  present: false
-                },
+                  {
+                    Has: 'No'
+                  }
+                ],
                 Citizenship: {
                   value: ['Germany', 'United States']
                 },

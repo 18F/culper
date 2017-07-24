@@ -798,6 +798,10 @@ const en = {
   },
 
   identification: {
+    intro: {
+      title: 'Section 1: Information about you',
+      body: 'You will be asked questions about your personal information and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -1114,6 +1118,10 @@ const en = {
   },
 
   financial: {
+    intro: {
+      title: 'Section 2: Financial record',
+      body: 'You will be asked questions about your financial history and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -1734,6 +1742,10 @@ const en = {
   },
 
   citizenship: {
+    intro: {
+      title: 'Section 5: Citizenship',
+      body: 'You will be asked questions about your citizenship status and history and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -2117,6 +2129,10 @@ const en = {
   },
 
   relationships: {
+    intro: {
+      title: 'Section 4: Relationships',
+      body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -2464,7 +2480,8 @@ const en = {
         birthplace: 'Provide place of birth',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide U.S. Social Security Number',
-        othernames: 'Provide other names used',
+        othernames: 'Has this person used another name?',
+        appendOthernames: 'Has this person used any other names?',
         citizenship: 'Provide country(ies) of citizenship',
         location: 'Provide location',
         address: 'Provide current address, if different than your current address',
@@ -2507,7 +2524,7 @@ const en = {
           divorced: 'Divorced/Dissolved',
           widowed: 'Widowed',
           annulled: 'Annulled',
-          birthplace: 'Was this person born in the United States of America'
+          birthplace: 'Was this person born in the United States of America?'
         },
         deceased: {
           label: {
@@ -2572,7 +2589,8 @@ const en = {
       },
       othernames: {
         heading: {
-          maiden: 'Provide maiden name',
+          name: 'Provide full name',
+          maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
       },
@@ -2654,7 +2672,8 @@ const en = {
         birthplace: 'Provide the place of birth.',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
-        othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+        othernames: 'Has your cohabitant used another name?',
+        appendOthernames: 'Has your cohabitant used any other names?',
         citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
         cohabitationBegan: 'Provide date cohabitation residing with person began'
       },
@@ -2667,7 +2686,8 @@ const en = {
       },
       othernames: {
         heading: {
-          maiden: 'Provide maiden name',
+          name: 'Provide full name',
+          maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
       },
@@ -2675,7 +2695,7 @@ const en = {
         divorced: 'Divorced/Dissolved',
         widowed: 'Widowed',
         annulled: 'Annulled',
-        birthplace: 'Was this person born in the United States of America'
+        birthplace: 'Was this person born in the United States of America?'
       },
       collection: {
         description: 'Summary of cohabitants',
@@ -3007,6 +3027,10 @@ const en = {
   },
 
   military: {
+    intro: {
+      title: 'Section 6: Military history',
+      body: 'You will be asked questions about your military history and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -3347,6 +3371,10 @@ const en = {
   },
 
   history: {
+    intro: {
+      title: 'Section 3: Your history',
+      body: 'You will be asked questions about your history and be asked to provide details if necessary. This section includes where you have lived, where you have worked, and where you went to school.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -4999,6 +5027,10 @@ const en = {
     }
   },
   foreign: {
+    intro: {
+      title: 'Section 7: Foriegn activities',
+      body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -7511,6 +7543,10 @@ const en = {
     }
   },
   substance: {
+    intro: {
+      title: 'Section 8: Substance use',
+      body: 'You will be asked questions about your substance use and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -8800,8 +8836,8 @@ const en = {
       documentExpiration: 'Provide document expiration date, if applicable'
     },
     para: {
-      bornToUSParents: 'Born Abroad to U.S. Parents:',
-      naturalized: 'Naturalized:',
+      bornToUSParents: 'Born Abroad to U.S. Parents',
+      naturalized: 'Naturalized',
       derived: 'Derived',
       notCitizen: 'Not a U.S. Citizen',
       other: 'Other'

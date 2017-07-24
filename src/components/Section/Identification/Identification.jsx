@@ -10,7 +10,6 @@ import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
-import Location from '../../Form/Location/Location'
 import ContactInformation from './ContactInformation'
 
 class Identification extends SectionElement {
@@ -21,8 +20,8 @@ class Identification extends SectionElement {
           <SectionView name="intro"
                        next="identification/name"
                        nextLabel={i18n.t('identification.destination.name')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('identification.intro.title')}</h2>
+            {i18n.m('identification.intro.body')}
           </SectionView>
 
           <SectionView name="review"

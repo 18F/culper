@@ -150,16 +150,14 @@ export default class Sticky extends React.Component {
 
     let marginTop = this.state.marginTop
     if (scrolled.up) {
-      if (current.indexOf('bottom-visible') !== -1 && scrolled.up) {
+      if (['page-short', 'top-visible', 'anchor-visible'].some(pos => position.indexOf(pos) !== -1)) {
+        marginTop = null
+      } else if (current.indexOf('bottom-visible') !== -1 && scrolled.up) {
         const headerAdjust = document.getElementsByClassName('eapp-header')[0].clientHeight
         const offset = w.pageYOffset + getBox(this.refs.content).top - headerAdjust
         marginTop = `${offset}${this.props.unit}`
-      } else if (position.indexOf('top-visible') !== -1) {
-        marginTop = null
-      } else if (position.indexOf('anchor-visible') !== -1) {
-        marginTop = null
       }
-    } if (scrolled.down) {
+    } else if (scrolled.down) {
       marginTop = null
     }
 

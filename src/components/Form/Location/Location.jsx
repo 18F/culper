@@ -35,6 +35,8 @@ export default class Location extends ValidationElement {
     this.updateAddress = this.updateAddress.bind(this)
     this.updateToggleableLocation = this.updateToggleableLocation.bind(this)
     this.renderSuggestion = this.renderSuggestion.bind(this)
+    this.onSuggestion = this.onSuggestion.bind(this)
+    this.onSuggestionDismiss = this.onSuggestionDismiss.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.renderFields = this.renderFields.bind(this)
 
@@ -67,12 +69,14 @@ export default class Location extends ValidationElement {
   }
 
   animateCloseWithSuggestions () {
-    // There were errors/suggestions so show them
-    this.setState({
-      spinner: false,
-      spinnerAction: SpinnerAction.Spin,
-      suggestions: true
-    })
+    timeout(() => {
+      // There were errors/suggestions so show them
+      this.setState({
+        spinner: false,
+        spinnerAction: SpinnerAction.Spin,
+        suggestions: true
+      })
+    }, 1000)
   }
 
   animateCloseTimeout () {
@@ -112,7 +116,7 @@ export default class Location extends ValidationElement {
           this.setState({
             spinner: false,
             spinnerAction: SpinnerAction.Spin,
-            suggestions: true
+            suggestions: false
           }, () => {
             this.update({ validated: true })
           })
@@ -124,8 +128,14 @@ export default class Location extends ValidationElement {
   handleBlur (event) {
     super.handleBlur(event)
 
+    // If we can't geocode or it is already validated we skip validation.
     const validator = new LocationValidator(this.props)
     if (!this.props.geocode || this.props.validated || !validator.canGeocode()) {
+      return
+    }
+
+    // If spinner or suggestions are active then we skip validation.
+    if (this.state.spinner || this.state.suggestions) {
       return
     }
 
@@ -274,7 +284,7 @@ export default class Location extends ValidationElement {
                            value={this.props.state}
                            includeStates="true"
                            onChange={this.updateState}
-                           onError={this.handleError}
+                           onError={this.props.onError}
                            onFocus={this.props.onFocus}
                            onBlur={this.handleBlur}
                            />
@@ -285,7 +295,7 @@ export default class Location extends ValidationElement {
                      placeholder={this.props.zipcodePlaceholder}
                      value={this.props.zipcode}
                      onChange={this.updateZipcode}
-                     onError={this.handleError}
+                     onError={this.props.onError}
                      onFocus={this.props.onFocus}
                      onBlur={this.handleBlur}
                      />
@@ -395,26 +405,23 @@ export default class Location extends ValidationElement {
   }
 
   suggestions () {
-    if (this.state.suggestions) {
-      return (
-        <Suggestions suggestions={this.state.geocodeResult.Suggestions || []}
-                     renderSuggestion={this.renderSuggestion}
-                     withSuggestions={true}
-                     show={this.showSuggestions()}
-                     suggestionTitle={this.suggestionTitle()}
-                     suggestionLabel={this.suggestionLabel()}
-                     suggestionParagraph={this.suggestionParagraph()}
-                     suggestionDismissLabel={i18n.t('suggestions.address.dismiss')}
-                     suggestionDismissContent={this.suggestionDismissContent()}
-                     suggestionDismissAlternate={this.dismissAlternative()}
-                     suggestionUseLabel={i18n.t('suggestions.address.use')}
-                     onSuggestion={this.onSuggestion.bind(this)}
-                     onDismiss={this.onSuggestionDismiss.bind(this)}
-                     />
-      )
-    }
-
-    return null
+    const show = this.state.suggestions && this.showSuggestions()
+    const suggestions = this.state.geocodeResult.Suggestions || []
+    return (
+      <Suggestions show={show}
+                   suggestions={suggestions}
+                   renderSuggestion={this.renderSuggestion}
+                   suggestionTitle={this.suggestionTitle()}
+                   suggestionLabel={this.suggestionLabel()}
+                   suggestionParagraph={this.suggestionParagraph()}
+                   suggestionDismissLabel={i18n.t('suggestions.address.dismiss')}
+                   suggestionDismissContent={this.suggestionDismissContent()}
+                   suggestionDismissAlternate={this.dismissAlternative()}
+                   suggestionUseLabel={i18n.t('suggestions.address.use')}
+                   onSuggestion={this.onSuggestion}
+                   onDismiss={this.onSuggestionDismiss}
+                   />
+    )
   }
 
   render () {
