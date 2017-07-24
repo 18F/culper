@@ -189,8 +189,7 @@ export default class Cohabitant extends ValidationElement {
 
         <Field help="relationships.cohabitant.help.birthdate"
                title={i18n.t('relationships.cohabitant.heading.birthdate')}
-               shrink={true}
-               adjustFor="labels">
+               adjustFor="datecontrol">
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
@@ -201,17 +200,18 @@ export default class Cohabitant extends ValidationElement {
 
         <h3>{i18n.t('relationships.cohabitant.heading.birthplace')}</h3>
         <Location name="birthplace"
-                    layout={Location.BIRTHPLACE}
-                    className="birthplace"
-                    label={i18n.t('relationships.cohabitant.label.birthplace')}
-                    {...this.props.BirthPlace}
-                    onUpdate={this.updateBirthPlace}
-                    onError={this.props.onError}
-                    />
+                  layout={Location.BIRTHPLACE}
+                  className="birthplace"
+                  label={i18n.t('relationships.cohabitant.label.birthplace')}
+                  {...this.props.BirthPlace}
+                  onUpdate={this.updateBirthPlace}
+                  onError={this.props.onError}
+                  />
 
         <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
           <Field help="relationships.cohabitant.help.foreignBornDocument"
-                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}>
+                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
+                 adjustFor="p">
             <ForeignBornDocuments name="foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
                                   onUpdate={this.updateForeignBornDocument}
@@ -245,8 +245,7 @@ export default class Cohabitant extends ValidationElement {
                 />
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
                  help="alias.maiden.help"
-                 adjustFor="buttons"
-                 shrink={true}>
+                 adjustFor="buttons">
             <MaidenName name="OtherNameMaiden"
                         className="othername"
                         {...this.props.OtherNameMaiden}
@@ -257,8 +256,7 @@ export default class Cohabitant extends ValidationElement {
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
                  help="alias.used.help"
-                 adjustFor="daterange"
-                 shrink={true}>
+                 adjustFor="daterange">
             <DateRange name="OtherNameUsed"
                        className="othername"
                        {...this.props.OtherNameUsed}
@@ -282,8 +280,7 @@ export default class Cohabitant extends ValidationElement {
 
         <Field help="relationships.cohabitant.help.cohabitationBegan"
                title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
-               shrink={true}
-               adjustFor="labels">
+               adjustFor="datecontrol">
           <DateControl name="cohabitationBegan"
                        className="cohabitation-began"
                        {...this.props.CohabitationBegan}

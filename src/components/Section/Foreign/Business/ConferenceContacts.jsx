@@ -6,10 +6,6 @@ export default class ConferenceContacts extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      List: props.List
-    }
-
     this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
   }
@@ -34,7 +30,7 @@ export default class ConferenceContacts extends ValidationElement {
                           appendLabel={i18n.t('foreign.business.conferences.heading.contact2')}
                           help="foreign.business.conferences.help.contact"
                           className="has-foreign-contacts"
-                          items={this.state.List}
+                          items={this.props.List}
                           onUpdate={this.updateList}
                           onError={this.props.onError}>
           <Field title={i18n.t('foreign.business.conferences.heading.explanation')}
