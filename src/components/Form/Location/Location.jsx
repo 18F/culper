@@ -70,19 +70,12 @@ export default class Location extends ValidationElement {
 
   animateCloseWithSuggestions () {
     timeout(() => {
+      // There were errors/suggestions so show them
       this.setState({
-        spinner: true,
-        spinnerAction: SpinnerAction.Shrink
+        spinner: false,
+        spinnerAction: SpinnerAction.Spin,
+        suggestions: true
       })
-
-      timeout(() => {
-        // There were errors/suggestions so show them
-        this.setState({
-          spinner: false,
-          spinnerAction: SpinnerAction.Spin,
-          suggestions: true
-        })
-      }, 1000)
     }, 1000)
   }
 
