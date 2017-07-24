@@ -316,8 +316,8 @@ class History extends SectionElement {
                        backLabel={i18n.t('financial.destination.review')}
                        next="history/residence"
                        nextLabel={i18n.t('history.destination.residence')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('history.intro.title')}</h2>
+            {i18n.m('history.intro.body')}
           </SectionView>
 
           <SectionView name="review"
