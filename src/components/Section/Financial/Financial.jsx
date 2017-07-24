@@ -22,8 +22,8 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('identification.destination.review')}
                        next="financial/bankruptcy"
                        nextLabel={i18n.t('financial.destination.bankruptcy')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('financial.intro.title')}</h2>
+            {i18n.m('financial.intro.body')}
           </SectionView>
 
           <SectionView name="review"
