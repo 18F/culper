@@ -98,7 +98,7 @@ export default class Family extends SubsectionElement {
 
             <Field title={i18n.t('foreign.business.family.heading.date')}
                    help="foreign.business.family.help.date"
-                   adjustFor="label">
+                   adjustFor="datecontrol">
               <DateControl name="Date"
                            className="family-date"
                            bind={true}
