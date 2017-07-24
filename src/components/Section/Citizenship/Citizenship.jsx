@@ -20,8 +20,8 @@ class Citizenship extends SectionElement {
                        backLabel={i18n.t('relationships.destination.review')}
                        next="citizenship/status"
                        nextLabel={i18n.t('citizenship.destination.status')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('citizenship.intro.title')}</h2>
+            {i18n.m('citizenship.intro.body')}
           </SectionView>
 
           <SectionView name="review"
