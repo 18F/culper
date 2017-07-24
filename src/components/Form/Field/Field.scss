@@ -4,20 +4,11 @@
 .field {
   border-left: 0.75rem solid #fff;
   padding-left: 3rem;
-  margin-left: -7.3rem;
+  margin-left: -10.3rem;
   margin-bottom: 7rem;
-
-  @media screen and (max-width: 1380px) {
-    padding-left: 1rem;
-  }
-
-  @media screen and (max-width: 850px) {
-    margin-left: -1.7rem;
-  }
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
-    padding-left: 1rem;
   }
 
   > .title {
@@ -25,15 +16,11 @@
     width: 100%;
     max-width: 64rem;
     margin-top: 5rem;
-    margin-left: 3.5rem;
+    margin-left: 6.5rem;
     padding-bottom: 0.5rem;
     line-height: 1.3;
     font-family: $eapp-serif;
     font-weight: 700;
-
-    @media screen and (max-width: 850px) {
-      margin-left: 0;
-    }
 
     &.label {
       font-family: inherit;
@@ -71,10 +58,7 @@
   > .table {
     display: table;
     width: 100%;
-
-    @media screen and (max-width: 850px) {
-      width: 100%;
-    }
+    margin-left: 3rem;
 
     &.expand {
       width: 100%;
@@ -87,12 +71,6 @@
         display: table-cell;
         width: 100%;
         max-width: 64rem;
-
-        @media screen and (max-width: 850px) {
-          display: block;
-          float: left;
-          width: 85%;
-        }
 
         > div {
           width: 100%;
@@ -156,17 +134,13 @@
       }
 
       > .icon {
-        // position: relative;
         display: table-cell;
-        min-width: 3.7rem;
-        // margin-left: -7rem;
+        min-width: 3.6rem;
         padding-right: 1rem;
         vertical-align: top;
 
         > .toggle {
           display: inline-block;
-          margin-left: 0.8rem;
-          // vertical-align: top;
 
           &.adjust-for-label,
           &.adjust-for-labels,
@@ -237,30 +211,6 @@
                 fill: $eapp-blue-light;
               }
             }
-          }
-        }
-
-        @media screen and (max-width: 1380px) {
-          > .toggle svg {
-            margin-left: 0.3rem;
-            margin-right: 0.3rem;
-          }
-        }
-
-        @media screen and (max-width: 1024px) {
-          > .toggle svg {
-            margin-left: 1.4rem;
-            margin-right: -0.6rem;
-          }
-        }
-
-        @media screen and (max-width: 850px) {
-          display: block;
-          float: right;
-
-          > .toggle svg {
-            margin-left: 0;
-            margin-right: 0;
           }
         }
       }
@@ -340,6 +290,30 @@
           > i {
             background-color: $eapp-red;
           }
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 850px) {
+    > .table {
+      margin-left: 6.6rem;
+
+      > .content {
+        > .icon {
+          display: block;
+          float: right;
+          margin-right: 4rem;
+        }
+
+        > .component {
+          display: block;
+        }
+      }
+
+      > .messages {
+        .message {
+          width: 85%;
         }
       }
     }

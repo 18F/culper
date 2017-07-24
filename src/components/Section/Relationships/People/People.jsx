@@ -11,7 +11,6 @@ import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import { today, daysAgo } from '../../History/dateranges'
 import { InjectGaps } from '../../History/summaries'
 import { Gap } from '../../History/Gap'
-import { openState, chevron } from '../../../Form/Accordion/Accordion'
 
 export default class People extends SubsectionElement {
   constructor (props) {

@@ -162,8 +162,7 @@ export default class Cohabitant extends ValidationElement {
 
         <Field help="relationships.cohabitant.help.birthdate"
                title={i18n.t('relationships.cohabitant.heading.birthdate')}
-               shrink={true}
-               adjustFor="labels">
+               adjustFor="datecontrol">
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
@@ -185,7 +184,8 @@ export default class Cohabitant extends ValidationElement {
 
         <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
           <Field help="relationships.cohabitant.help.foreignBornDocument"
-                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}>
+                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
+                 adjustFor="p">
             <ForeignBornDocuments name="foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
                                   onUpdate={this.updateForeignBornDocument}
@@ -252,8 +252,7 @@ export default class Cohabitant extends ValidationElement {
 
         <Field help="relationships.cohabitant.help.cohabitationBegan"
                title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
-               shrink={true}
-               adjustFor="labels">
+               adjustFor="datecontrol">
           <DateControl name="cohabitationBegan"
                        className="cohabitation-began"
                        {...this.props.CohabitationBegan}
