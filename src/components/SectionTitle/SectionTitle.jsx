@@ -21,38 +21,61 @@ class SectionTitle extends React.Component {
     let title = null
     navigation.forEach(s => {
       if (s.url === this.props.section.section) {
-        title = breadcrumbs(splitSubsections, s)
+        title = trail(breadcrumbs(splitSubsections, s))
       }
     })
 
     return (
       <div className="title">
-        <span className="title-text">
-          {title}
-        </span>
+        {title}
       </div>
     )
   }
 }
 
+/**
+ * Creates an array of breadcrumbs
+ */
 const breadcrumbs = (urls, node) => {
-  const top = (<span>{node.title || node.name}</span>)
-  if (node.subsections) {
-    return node.subsections.reduce((a, b) => {
-      if (!urls.includes(b.url)) {
-        return a
-      }
+  return (node.subsections || []).reduce((a, b) => {
+    if (!urls.includes(b.url)) {
+      return a
+    }
 
-      return (
-        <span>
-          {a}
-          <span className="crumb">&gt; {breadcrumbs(urls, b)}</span>
-        </span>
-      )
-    }, top)
+    return a.concat(breadcrumbs(urls, b))
+  }, [node.title || node.name])
+}
+
+/**
+ * Takes an array of breadcrumbs and formats it in to a pretty trail
+ */
+const trail = (crumbs) => {
+  const length = crumbs.length
+
+  if (length === 2) {
+    // If there are just two crumbs the first will be a larger
+    // font and the second will be smaller an on its own line.
+    return (
+      <span>
+        <span className="title-text">{crumbs[0]}</span>
+        <span className="trail crumb">{crumbs[1]}</span>
+      </span>
+    )
+  } else if (length > 2) {
+    // If there are more than two we only display the last two
+    // in a smaller font.
+    return (
+      <span className="trail">
+        <span className="crumb">{crumbs[length - 2]}</span>
+        <span className="crumb"> &gt; {crumbs[length - 1]}</span>
+      </span>
+    )
   }
 
-  return top
+  // If there is only one display it in a large font.
+  return (
+    <span className="title-text">{crumbs[0]}</span>
+  )
 }
 
 /**

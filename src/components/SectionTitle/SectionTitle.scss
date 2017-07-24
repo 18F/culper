@@ -9,22 +9,18 @@
   font-weight: $eapp-bold;
   margin-bottom: 2rem;
 
-  > .title-text {
+  .title-text {
     transition: all 400ms ease;
     display: block;
     line-height: 1.2;
+  }
 
-    > span > span {
-      display: block;
-    }
+  .crumb {
+    transition: all 400ms ease;
+    font-size: 1.6rem;
+  }
 
-    .crumb {
-      margin-left: 0.5rem;
-      font-size: 12pt;
-    }
-
-    > span > .crumb {
-      margin-left: 0;
-    }
+  .trail {
+    display: block;
   }
 }
