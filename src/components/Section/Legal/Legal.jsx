@@ -123,8 +123,8 @@ class Legal extends SectionElement {
                        backLabel={i18n.t('substance.destination.review')}
                        next="legal/police/intro"
                        nextLabel={i18n.t('legal.destination.police')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('legal.intro.title')}</h2>
+            {i18n.m('legal.intro.body')}
           </SectionView>
 
           <SectionView name="police/intro"

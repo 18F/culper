@@ -49,8 +49,8 @@ class Military extends SectionElement {
                        backLabel={i18n.t('citizenship.destination.review')}
                        next={showSelectiveService ? 'military/selective' : 'military/history'}
                        nextLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.history')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('military.intro.title')}</h2>
+            {i18n.m('military.intro.body')}
           </SectionView>
 
           <SectionView name="review"
