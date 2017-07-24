@@ -10,7 +10,6 @@ import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
-import Location from '../../Form/Location/Location'
 import ContactInformation from './ContactInformation'
 
 class Identification extends SectionElement {
