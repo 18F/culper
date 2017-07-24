@@ -242,10 +242,13 @@ export default class CivilUnion extends ValidationElement {
             onError={this.props.onError}
             onUpdate={this.updateOtherNames}>
 
-            <Name name="Othername"
-              bind={true}
-              onError={this.props.onError}
-            />
+            <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}>
+              <Name name="Othername"
+                bind={true}
+                onError={this.props.onError}
+              />
+            </Field>
+
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.maiden')}
               help="alias.maiden.help"
               adjustFor="buttons"
@@ -333,8 +336,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.email')}
-                 help="relationships.civilUnion.help.email"
-                 adjustFor="email">
+              help="relationships.civilUnion.help.email">
             <Email name="Email"
                    {...this.props.Email}
                    onUpdate={this.updateEmail}

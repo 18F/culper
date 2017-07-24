@@ -2524,7 +2524,7 @@ const en = {
           divorced: 'Divorced/Dissolved',
           widowed: 'Widowed',
           annulled: 'Annulled',
-          birthplace: 'Was this person born in the United States of America'
+          birthplace: 'Was this person born in the United States of America?'
         },
         deceased: {
           label: {
@@ -2589,6 +2589,7 @@ const en = {
       },
       othernames: {
         heading: {
+          name: 'Provide full name',
           maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
@@ -2685,6 +2686,7 @@ const en = {
       },
       othernames: {
         heading: {
+          name: 'Provide full name',
           maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
@@ -2693,7 +2695,7 @@ const en = {
         divorced: 'Divorced/Dissolved',
         widowed: 'Widowed',
         annulled: 'Annulled',
-        birthplace: 'Was this person born in the United States of America'
+        birthplace: 'Was this person born in the United States of America?'
       },
       collection: {
         description: 'Summary of cohabitants',

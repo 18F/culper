@@ -220,7 +220,6 @@ export default class ForeignBornDocuments extends ValidationElement {
           </Field>
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentNumber')}
-               help="foreignBornDocuments.help.documentNumber"
                adjustFor="labels">
           <Text name="documentNumber"
                 label="Document Number"
@@ -232,7 +231,6 @@ export default class ForeignBornDocuments extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentExpiration')}
-               help="foreignBornDocuments.help.documentExpiration"
                adjustFor="labels">
           <NotApplicable name="OtherNameNotApplicable"
                          applicable={this.props.DocumentExpirationNotApplicable}
