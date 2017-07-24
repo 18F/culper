@@ -1114,6 +1114,10 @@ const en = {
   },
 
   financial: {
+    intro: {
+      title: 'Section 2: Financial record',
+      body: 'You will be asked questions about your financial history and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
