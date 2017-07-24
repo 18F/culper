@@ -66,7 +66,7 @@ export default class ForeignBornDocuments extends ValidationElement {
     return (
       <div className="foreign-born-documents">
         <Field>
-          <Field title={i18n.t('foreignBornDocuments.para.bornToUSParents')} titleSize="p">
+          <Field title={i18n.t('foreignBornDocuments.para.bornToUSParents')} titleSize="label">
             <RadioGroup name="born" selectedValue={this.props.DocumentType}>
               <Radio className="born"
                      label={i18n.m('foreignBornDocuments.bornToUSParents.label.fs240')}
@@ -87,7 +87,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.naturalized')} titleSize="p">
+          <Field title={i18n.t('foreignBornDocuments.para.naturalized')} titleSize="label">
             <RadioGroup name="naturalized" selectedValue={this.props.DocumentType}>
               <Radio className="naturalized alien"
                      label={i18n.m('foreignBornDocuments.naturalized.label.alien')}
@@ -116,7 +116,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.derived')} titleSize="p">
+          <Field title={i18n.t('foreignBornDocuments.para.derived')} titleSize="label">
             <RadioGroup name="derived" selectedValue={this.props.DocumentType}>
               <Radio className="derived alien"
                      label={i18n.m('foreignBornDocuments.derived.label.alien')}
@@ -145,7 +145,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.notCitizen')} titleSize="p">
+          <Field title={i18n.t('foreignBornDocuments.para.notCitizen')} titleSize="label">
             <RadioGroup name="notCitizen" selectedValue={this.props.DocumentType}>
               <Radio className="notcitizen permanent"
                      label={i18n.m('foreignBornDocuments.notCitizen.label.permanentResident')}
@@ -198,7 +198,7 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.other')} titleSize="p">
+          <Field title={i18n.t('foreignBornDocuments.para.other')} titleSize="label">
             <RadioGroup name="other" selectedValue={this.props.DocumentType}>
               <Radio className="other"
                      label={i18n.m('foreignBornDocuments.other.label.other')}

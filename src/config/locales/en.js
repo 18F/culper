@@ -8801,8 +8801,8 @@ const en = {
       documentExpiration: 'Provide document expiration date, if applicable'
     },
     para: {
-      bornToUSParents: 'Born Abroad to U.S. Parents:',
-      naturalized: 'Naturalized:',
+      bornToUSParents: 'Born Abroad to U.S. Parents',
+      naturalized: 'Naturalized',
       derived: 'Derived',
       notCitizen: 'Not a U.S. Citizen',
       other: 'Other'
