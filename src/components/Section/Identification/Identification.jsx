@@ -10,7 +10,6 @@ import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
-import Location from '../../Form/Location/Location'
 import ContactInformation from './ContactInformation'
 
 class Identification extends SectionElement {
@@ -67,7 +66,7 @@ class Identification extends SectionElement {
                                  value={this.props.ApplicantBirthPlace}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
-                                 onError={this.handleError}
+                                 onError={this.props.onError}
                                  />
 
             <hr />
