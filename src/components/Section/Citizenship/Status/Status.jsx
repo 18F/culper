@@ -316,8 +316,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="DocumentIssued"
                            className="document-issued"
                            {...this.props.DocumentIssued}
@@ -327,8 +326,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.placeissued')}
-                   adjustFor="address"
-                   shrink={true}>
+                   adjustFor="label">
               <Location name="PlaceIssued"
                         label={'Was this issued in the United States?'}
                         layout={Location.CITY_STATE_COUNTRY}
@@ -357,8 +355,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.foreignborn')}
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
                            {...this.props.CertificateIssued}
@@ -401,8 +398,7 @@ export default class Status extends SubsectionElement {
           <div>
             <Field title={i18n.t('citizenship.status.heading.entrydate')}
                    help="citizenship.status.help.entrydate"
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="EntryDate"
                            className="entry-date"
                            {...this.props.EntryDate}
@@ -412,8 +408,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
-                   adjustFor="address"
-                   shrink={true}>
+                   adjustFor="label">
               <Location name="EntryLocation"
                         layout={Location.CITY_STATE}
                         className="entry-location"
@@ -474,7 +469,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificatecourtaddress')}
                    help="citizenship.status.help.certificatecourtaddress"
-                   adjustFor="labels">
+                   adjustFor="label">
               <Location name="CertificateCourtAddress"
                         layout={Location.US_ADDRESS}
                         geocode={true}
@@ -487,8 +482,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.naturalized')}
                    help="citizenship.status.help.certificateissued"
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
                            {...this.props.CertificateIssued}
@@ -573,8 +567,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.derived')}
                    help="citizenship.status.help.certificateissued"
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
                            {...this.props.CertificateIssued}
@@ -625,8 +618,7 @@ export default class Status extends SubsectionElement {
 
             <Field title={i18n.t('citizenship.status.heading.entrydate')}
                    help="citizenship.status.help.entrydate"
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="EntryDate"
                            className="entry-date"
                            {...this.props.EntryDate}
@@ -636,8 +628,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
-                   adjustFor="address"
-                   shrink={true}>
+                   adjustFor="address">
               <Location name="EntryLocation"
                         className="entry-location"
                         {...this.props.EntryLocation}
@@ -669,8 +660,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.alienregistrationexpiration')}
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="AlienRegistrationExpiration"
                            className="alien-registration-expiration"
                            {...this.props.AlienRegistrationExpiration}
@@ -745,8 +735,7 @@ export default class Status extends SubsectionElement {
                   />
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="DocumentIssued"
                            className="document-issued"
                            {...this.props.DocumentIssued}
@@ -756,8 +745,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentexpiration')}
-                   adjustFor="labels"
-                   shrink={true}>
+                   adjustFor="datecontrol">
               <DateControl name="DocumentExpiration"
                            className="document-expiration"
                            {...this.props.DocumentExpiration}

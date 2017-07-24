@@ -194,8 +194,7 @@ export default class CivilUnion extends ValidationElement {
 
           <Field help="relationships.civilUnion.help.birthdate"
                  title={i18n.t('relationships.civilUnion.heading.birthdate')}
-                 shrink={true}
-                 adjustFor="labels">
+                 adjustFor="datecontrol">
             <DateControl name="birthdate"
                          className="birthdate"
                          {...this.props.Birthdate}
@@ -217,7 +216,8 @@ export default class CivilUnion extends ValidationElement {
 
           <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
             <Field help="relationships.civilUnion.help.foreignBornDocument"
-                   title={i18n.t('relationships.civilUnion.heading.foreignBornDocument')}>
+                   title={i18n.t('relationships.civilUnion.heading.foreignBornDocument')}
+                   adjustFor="p">
               <ForeignBornDocuments name="foreignBornDocument"
                                     {...this.props.ForeignBornDocument}
                                     onUpdate={this.updateForeignBornDocument}
@@ -282,7 +282,8 @@ export default class CivilUnion extends ValidationElement {
                      />
           </Field>
 
-          <Field title={i18n.t('relationships.civilUnion.heading.enteredCivilUnion')}>
+          <Field title={i18n.t('relationships.civilUnion.heading.enteredCivilUnion')}
+                 adjustFor="datecontrol">
             <DateControl name="enteredCivilUnion"
                          className="entered"
                          {...this.props.EnteredCivilUnion}
@@ -304,8 +305,7 @@ export default class CivilUnion extends ValidationElement {
 
           <Field title={i18n.t('relationships.civilUnion.heading.address')}
                  help="relationships.civilUnion.help.address"
-                 adjustFor="address"
-                 shrink={true}>
+                 adjustFor="address">
             <Show when={this.props.currentAddress}>
               <Checkbox name="current_address"
                         className="current-address"
@@ -326,8 +326,7 @@ export default class CivilUnion extends ValidationElement {
 
           <Field title={i18n.t('relationships.civilUnion.heading.telephone')}
                  help="relationships.civilUnion.help.telephone"
-                 adjustFor="telephone"
-                 shrink={true}>
+                 adjustFor="telephone">
             <Telephone name="Telephone"
                        {...this.props.Telephone}
                        onUpdate={this.updateTelephone}
@@ -336,7 +335,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.email')}
-              help="relationships.civilUnion.help.email">
+                 help="relationships.civilUnion.help.email">
             <Email name="Email"
                    {...this.props.Email}
                    onUpdate={this.updateEmail}
@@ -357,7 +356,8 @@ export default class CivilUnion extends ValidationElement {
           <Show when={this.props.Separated === 'Yes'}>
             <div>
               <Field title={i18n.t('relationships.civilUnion.heading.dateSeparated')}
-                     help="relationships.civilUnion.help.dateSeparated">
+                     help="relationships.civilUnion.help.dateSeparated"
+                     adjustFor="datecontrol">
                 <DateControl name="DateSeparated"
                              className="dateseparated"
                              {...this.props.DateSeparated}

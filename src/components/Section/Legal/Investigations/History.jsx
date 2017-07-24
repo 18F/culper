@@ -80,7 +80,7 @@ export default class History extends SubsectionElement {
                      appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}>
             <Field title={i18n.t('legal.investigations.history.heading.agency')}
                    help="legal.investigations.history.help.agency"
-                   adjustFor="text">
+                   adjustFor="big-buttons">
               <NotApplicable name="AgencyNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
@@ -131,7 +131,7 @@ export default class History extends SubsectionElement {
 
             <Field title={i18n.t('legal.investigations.history.heading.clearance')}
                    help="legal.investigations.history.help.clearance"
-                   adjustFor="text">
+                   adjustFor="big-button">
               <NotApplicable name="clearanceNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
