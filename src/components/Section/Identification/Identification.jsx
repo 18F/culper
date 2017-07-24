@@ -66,7 +66,7 @@ class Identification extends SectionElement {
                                  value={this.props.ApplicantBirthPlace}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
-                                 onError={this.props.onError}
+                                 onError={this.handleError}
                                  />
 
             <hr />
