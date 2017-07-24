@@ -26,6 +26,8 @@ defineSupportCode(({Given, Then, When}) => {
     switch (subsection) {
       case 'status':
         return completeCitizenshipStatus(promise)
+      case 'multiple':
+        return completeCitizenshipMultiple(promise)
       default:
         return promise
     }
@@ -62,6 +64,24 @@ const completeCitizenshipStatus = (promise) => {
     .then(() => { return setText('.status .certificate-name .field .last input', 'CertLast') })
     .then(() => { return setOption('.status .blocks.citizenship-basis .citizenship-basis-other.block label') })
     .then(() => { return setText('.status .with-comments .comments textarea', 'This is a test explanation') })
+}
+
+const completeCitizenshipMultiple = (promise) => {
+  return promise
+    .then(() => { return setOption('.multiple .branch.has-multiple .blocks .yes.block label') })
+    .then(() => { return setText('.multiple .country.citizenship-country input', 'Canada') })
+    .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.from .year input', '1980') })
+    .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.to .month input', '2') })
+    .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.to .day input', '2') })
+    .then(() => { return setText('.multiple .daterange.citizenship-dates .datecontrol.to .year input', '2000') })
+    .then(() => { return setText('.multiple .citizenship-how textarea', 'Citizenship how explanation') })
+    .then(() => { return setOption('.multiple .citizenship-renounced .blocks .yes.block label') })
+    .then(() => { return setText('.multiple .citizenship-renounced-explanation textarea', 'Citizenship renounced explanation') })
+    .then(() => { return setOption('.multiple .citizenship-current .blocks .yes.block label') })
+    .then(() => { return setText('.multiple .citizenship-current-explanation textarea', 'Citizenship current explanation') })
+    .then(() => { return setOption('.multiple .branch.addendum .blocks .no.block label') })
 }
 
 const navigateToSection = (section) => {
