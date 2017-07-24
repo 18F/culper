@@ -798,6 +798,10 @@ const en = {
   },
 
   identification: {
+    intro: {
+      title: 'Section 1: Information about you',
+      body: 'You will be asked questions about your personal information and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -1738,6 +1742,10 @@ const en = {
   },
 
   citizenship: {
+    intro: {
+      title: 'Section 5: Citizenship',
+      body: 'You will be asked questions about your citizenship status and history and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -2121,6 +2129,10 @@ const en = {
   },
 
   relationships: {
+    intro: {
+      title: 'Section 4: Relationships',
+      body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -3011,6 +3023,10 @@ const en = {
   },
 
   military: {
+    intro: {
+      title: 'Section 6: Military history',
+      body: 'You will be asked questions about your military history and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -3351,6 +3367,10 @@ const en = {
   },
 
   history: {
+    intro: {
+      title: 'Section 3: Your history',
+      body: 'You will be asked questions about your history and be asked to provide details if necessary. This section includes where you have lived, where you have worked, and where you went to school.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -5003,6 +5023,10 @@ const en = {
     }
   },
   foreign: {
+    intro: {
+      title: 'Section 7: Foriegn activities',
+      body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -7515,6 +7539,10 @@ const en = {
     }
   },
   substance: {
+    intro: {
+      title: 'Section 8: Substance use',
+      body: 'You will be asked questions about your substance use and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
