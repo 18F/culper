@@ -1,7 +1,7 @@
 import React from 'react'
 import Svg from '../Svg'
 
-export const applyFixedModal = (open) => {
+export const applyFixedModal = (open = false) => {
   if (!window || !window.document || !window.document.body) {
     return
   }
@@ -28,18 +28,6 @@ export default class Modal extends React.Component {
     this.update = this.update.bind(this)
     this.doNothing = this.doNothing.bind(this)
     this.dismiss = this.dismiss.bind(this)
-  }
-
-  componentWillReceiveProps (next) {
-    this.scrollbars(next.show)
-  }
-
-  componentWillUnmount () {
-    applyFixedModal(false)
-  }
-
-  scrollbars (visible = true) {
-    applyFixedModal(visible)
   }
 
   update (queue) {
@@ -90,6 +78,8 @@ export default class Modal extends React.Component {
   }
 
   render () {
+    applyFixedModal(this.props.show)
+
     if (!this.props.show) {
       return null
     }
@@ -99,13 +89,11 @@ export default class Modal extends React.Component {
 
     // When there is nothing special do the status quo
     return (
-      <div>
-        <div className="modal" onClick={this.dismiss}>
-          <div className="modal-wrap">
-            <div className={klass} onClick={this.doNothing}>
-              {this.closer()}
-              {this.props.children}
-            </div>
+      <div className="modal" onClick={this.dismiss}>
+        <div className="modal-wrap">
+          <div className={klass} onClick={this.doNothing}>
+            {this.closer()}
+            {this.props.children}
           </div>
         </div>
       </div>

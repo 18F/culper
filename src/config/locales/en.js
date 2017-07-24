@@ -2480,7 +2480,8 @@ const en = {
         birthplace: 'Provide place of birth',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide U.S. Social Security Number',
-        othernames: 'Provide other names used',
+        othernames: 'Has this person used another name?',
+        appendOthernames: 'Has this person used any other names?',
         citizenship: 'Provide country(ies) of citizenship',
         location: 'Provide location',
         address: 'Provide current address, if different than your current address',
@@ -2523,7 +2524,7 @@ const en = {
           divorced: 'Divorced/Dissolved',
           widowed: 'Widowed',
           annulled: 'Annulled',
-          birthplace: 'Was this person born in the United States of America'
+          birthplace: 'Was this person born in the United States of America?'
         },
         deceased: {
           label: {
@@ -2588,6 +2589,7 @@ const en = {
       },
       othernames: {
         heading: {
+          name: 'Provide full name',
           maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
@@ -2670,7 +2672,8 @@ const en = {
         birthplace: 'Provide the place of birth.',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
-        othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+        othernames: 'Has your cohabitant used another name?',
+        appendOthernames: 'Has your cohabitant used any other names?',
         citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
         cohabitationBegan: 'Provide date cohabitation residing with person began'
       },
@@ -2683,7 +2686,8 @@ const en = {
       },
       othernames: {
         heading: {
-          maiden: 'Provide maiden name',
+          name: 'Provide full name',
+          maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
       },
@@ -2691,7 +2695,7 @@ const en = {
         divorced: 'Divorced/Dissolved',
         widowed: 'Widowed',
         annulled: 'Annulled',
-        birthplace: 'Was this person born in the United States of America'
+        birthplace: 'Was this person born in the United States of America?'
       },
       collection: {
         description: 'Summary of cohabitants',
@@ -8832,8 +8836,8 @@ const en = {
       documentExpiration: 'Provide document expiration date, if applicable'
     },
     para: {
-      bornToUSParents: 'Born Abroad to U.S. Parents:',
-      naturalized: 'Naturalized:',
+      bornToUSParents: 'Born Abroad to U.S. Parents',
+      naturalized: 'Naturalized',
       derived: 'Derived',
       notCitizen: 'Not a U.S. Citizen',
       other: 'Other'

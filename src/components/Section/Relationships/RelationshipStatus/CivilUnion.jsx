@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { Branch, Field, DateControl, ValidationElement, Show, NotApplicable,
          Email, Telephone, Name, ForeignBornDocuments, SSN, MaidenName, DateRange,
-         Checkbox, Country, Location } from '../../../Form'
+         Checkbox, Country, Location, BranchCollection } from '../../../Form'
 
 export default class CivilUnion extends ValidationElement {
   constructor (props) {
@@ -14,10 +14,7 @@ export default class CivilUnion extends ValidationElement {
     this.updateBirthPlace = this.updateBirthPlace.bind(this)
     this.updateForeignBornDocument = this.updateForeignBornDocument.bind(this)
     this.updateSSN = this.updateSSN.bind(this)
-    this.updateOtherName = this.updateOtherName.bind(this)
-    this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
-    this.updateOtherNameNotApplicable = this.updateOtherNameNotApplicable.bind(this)
-    this.updateDatesUsed = this.updateDatesUsed.bind(this)
+    this.updateOtherNames = this.updateOtherNames.bind(this)
     this.updateCitizenship = this.updateCitizenship.bind(this)
     this.updateEnteredCivilUnion = this.updateEnteredCivilUnion.bind(this)
     this.updateLocation = this.updateLocation.bind(this)
@@ -39,12 +36,10 @@ export default class CivilUnion extends ValidationElement {
       BirthPlace: this.props.BirthPlace,
       ForeignBornDocument: this.props.ForeignBornDocument,
       SSN: this.props.SSN,
-      OtherName: this.props.OtherName,
-      OtherNameMaiden: this.props.OtherNameMaiden,
-      OtherNameNotApplicable: this.props.OtherNameNotApplicable,
-      DatesUsed: this.props.DatesUsed,
+      OtherNames: this.props.OtherNames,
       Citizenship: this.props.Citizenship,
       EnteredCivilUnion: this.props.EnteredCivilUnion,
+      Location: this.props.Location,
       Address: this.props.Address,
       Telephone: this.props.Telephone,
       Email: this.props.Email,
@@ -92,21 +87,9 @@ export default class CivilUnion extends ValidationElement {
     })
   }
 
-  updateOtherName (values) {
+  updateOtherNames (values) {
     this.update({
-      OtherName: values
-    })
-  }
-
-  updateOtherNameMaiden (values) {
-    this.update({
-      OtherNameMaiden: values
-    })
-  }
-
-  updateDatesUsed (values) {
-    this.update({
-      DatesUsed: values
+      OtherNames: values
     })
   }
 
@@ -220,15 +203,16 @@ export default class CivilUnion extends ValidationElement {
                          />
           </Field>
 
-          <h3>{i18n.t('relationships.civilUnion.heading.birthplace')}</h3>
-          <Location name="birthplace"
-                    layout={Location.BIRTHPLACE}
-                    className="birthplace"
-                    label={i18n.t('relationships.civilUnion.label.birthplace')}
-                    {...this.props.BirthPlace}
-                    onUpdate={this.updateBirthPlace}
-                    onError={this.props.onError}
-                    />
+          <Field title={i18n.t('relationships.civilUnion.heading.birthplace')}>
+            <Location name="birthplace"
+                      layout={Location.BIRTHPLACE}
+                      className="birthplace"
+                      label={i18n.t('relationships.civilUnion.label.birthplace')}
+                      {...this.props.BirthPlace}
+                      onUpdate={this.updateBirthPlace}
+                      onError={this.props.onError}
+                      />
+          </Field>
 
           <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
             <Field help="relationships.civilUnion.help.foreignBornDocument"
@@ -251,40 +235,40 @@ export default class CivilUnion extends ValidationElement {
                  />
           </Field>
 
-          <h3>{i18n.t('relationships.civilUnion.heading.othernames')}</h3>
-          <p>{i18n.t('relationships.civilUnion.para.othernames')}</p>
-          <NotApplicable name="OtherNameNotApplicable"
-                         className="othername"
-                         applicable={this.props.OtherNameNotApplicable}
-                         label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                         or={i18n.m('relationships.civilUnion.notApplicable.or')}
-                         onUpdate={this.updateOtherNameNotApplicable}
-                         onError={this.props.onError}>
-            <Name name="othername"
-                  {...this.props.OtherName}
-                  onUpdate={this.updateOtherName}
-                  onError={this.props.onError}
-                  />
+          <BranchCollection label={i18n.t('relationships.civilUnion.heading.othernames')}
+            className="othername"
+            appendLabel={i18n.m('relationships.civilUnion.heading.appendOthernames')}
+            items={this.props.OtherNames}
+            onError={this.props.onError}
+            onUpdate={this.updateOtherNames}>
+
+            <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}>
+              <Name name="Othername"
+                bind={true}
+                onError={this.props.onError}
+              />
+            </Field>
+
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.maiden')}
-                   help="alias.maiden.help"
-                   adjustFor="buttons">
+              help="alias.maiden.help"
+              adjustFor="buttons"
+              shrink={true}>
               <MaidenName name="MaidenName"
-                          {...this.props.OtherNameMaiden}
-                          onUpdate={this.updateOtherNameMaiden}
-                          onError={this.props.onError}
-                          />
+                bind={true}
+                onError={this.props.onError}
+              />
             </Field>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.used')}
-                   adjustFor="daterange">
+              adjustFor="daterange"
+              shrink={true}>
               <DateRange name="DatesUsed"
-                         className="datesused"
-                         {...this.props.DatesUsed}
-                         onUpdate={this.updateDatesUsed}
-                         onError={this.props.onError}
-                         />
+                bind={true}
+                className="datesused"
+                onError={this.props.onError}
+              />
             </Field>
-          </NotApplicable>
+          </BranchCollection>
 
           <Field title={i18n.t('relationships.civilUnion.heading.citizenship')}
                  help="relationships.civilUnion.help.citizenship"
@@ -424,10 +408,7 @@ CivilUnion.defaultProps = {
   BirthPlace: {},
   ForeignBornDocument: {},
   SSN: {},
-  OtherName: {},
-  OtherNameMaiden: {},
-  OtherNameNotApplicable: {},
-  DatesUsed: {},
+  OtherNames: [],
   Citizenship: {},
   EnteredCivilUnion: {},
   Address: {},
