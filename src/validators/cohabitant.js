@@ -2,7 +2,7 @@ import NameValidator from './name'
 import LocationValidator from './location'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
-import { validSSN, validDateField, validBranch } from './helpers'
+import { validSSN, validDateField, validBranch, BranchCollection } from './helpers'
 
 export default class CohabitantsValidator {
   constructor (state = {}) {
@@ -43,10 +43,7 @@ export class CohabitantValidator {
     this.birthPlace = state.BirthPlace
     this.foreignBornDocument = state.ForeignBornDocument
     this.ssn = state.SSN
-    this.otherName = state.OtherName
-    this.otherNameMaiden = state.OtherNameMaiden
-    this.otherNameNotApplicable = state.OtherNameNotApplicable
-    this.otherNameUsed = state.OtherNameUsed
+    this.otherNames = state.OtherNames
     this.citizenship = state.Citizenship
   }
 
@@ -69,12 +66,21 @@ export class CohabitantValidator {
     return true
   }
 
-  validOtherName () {
-    if (this.otherNameNotApplicable) {
-      return true
+  validOtherNames () {
+    const branchValidator = new BranchCollection(this.otherNames)
+    if (!branchValidator.validKeyValues()) {
+      return false
     }
-    return new NameValidator(this.otherName).isValid() &&
-      new DateRangeValidator(this.otherNameUsed).isValid()
+
+    if (!branchValidator.hasNo()) {
+      return false
+    }
+
+    return branchValidator.each(item => {
+      return new NameValidator(item.Othername).isValid() &&
+        new DateRangeValidator(item.DatesUsed) &&
+        validBranch((item.MaidenName || {}).value)
+    })
   }
 
   validCitizenship () {
@@ -87,6 +93,7 @@ export class CohabitantValidator {
       new LocationValidator(this.birthPlace).isValid() &&
       this.validForeignBornDocument() &&
       validSSN(this.ssn) &&
-      this.validCitizenship()
+      this.validCitizenship() &&
+      this.validOtherNames()
   }
 }

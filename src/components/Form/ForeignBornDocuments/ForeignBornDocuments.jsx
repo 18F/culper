@@ -65,7 +65,6 @@ export default class ForeignBornDocuments extends ValidationElement {
   render () {
     return (
       <div className="foreign-born-documents">
-        <Field>
           <Field title={i18n.t('foreignBornDocuments.para.bornToUSParents')} titleSize="label">
             <RadioGroup name="born" selectedValue={this.props.DocumentType}>
               <Radio className="born"
@@ -219,7 +218,6 @@ export default class ForeignBornDocuments extends ValidationElement {
                         />
             </Show>
           </Field>
-        </Field>
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentNumber')}
                help="foreignBornDocuments.help.documentNumber"
@@ -235,7 +233,6 @@ export default class ForeignBornDocuments extends ValidationElement {
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentExpiration')}
                help="foreignBornDocuments.help.documentExpiration"
-               shrink={true}
                adjustFor="labels">
           <NotApplicable name="OtherNameNotApplicable"
                          applicable={this.props.DocumentExpirationNotApplicable}

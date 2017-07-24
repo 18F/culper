@@ -2671,7 +2671,8 @@ const en = {
         birthplace: 'Provide the place of birth.',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
-        othernames: 'Provide other names used by your cohabitant (such as maiden name, names by other marriages, etc., and provide dates each name was used)',
+        othernames: 'Has your cohabitant used another name?',
+        appendOthernames: 'Has your cohabitant used any other names?',
         citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
         cohabitationBegan: 'Provide date cohabitation residing with person began'
       },
@@ -2684,7 +2685,7 @@ const en = {
       },
       othernames: {
         heading: {
-          maiden: 'Provide maiden name',
+          maiden: 'Is this your cohabitant\'s maiden name?',
           used: 'Provide dates name was used'
         }
       },
