@@ -28,6 +28,8 @@ defineSupportCode(({Given, Then, When}) => {
         return completeCitizenshipStatus(promise)
       case 'multiple':
         return completeCitizenshipMultiple(promise)
+      case 'passports':
+        return completeCitizenshipForeignPassports(promise)
       default:
         return promise
     }
@@ -82,6 +84,32 @@ const completeCitizenshipMultiple = (promise) => {
     .then(() => { return setOption('.multiple .citizenship-current .blocks .yes.block label') })
     .then(() => { return setText('.multiple .citizenship-current-explanation textarea', 'Citizenship current explanation') })
     .then(() => { return setOption('.multiple .branch.addendum .blocks .no.block label') })
+}
+
+const completeCitizenshipForeignPassports = (promise) => {
+  return promise
+    .then(() => { return setOption('.passports .has-foreignpassport .blocks .yes.block label') })
+    .then(() => { return setText('.passports .country.passport-country input', 'Canada') })
+    .then(() => { return setText('.passports .datecontrol.passport-issued .month input', '2') })
+    .then(() => { return setText('.passports .datecontrol.passport-issued .day input', '2') })
+    .then(() => { return setText('.passports .datecontrol.passport-issued .year input', '1990') })
+    .then(() => { return setText('.passports .location.passport-location .city input', 'Montreal') })
+    .then(() => { return setText('.passports .location.passport-location .country input', 'Canada') })
+    .then(() => { return setText('.passports .name.passport-name .field .first input', 'PassportFirst') })
+    .then(() => { return setText('.passports .name.passport-name .field .middle input', 'PassportMiddle') })
+    .then(() => { return setText('.passports .name.passport-name .field .last input', 'PassportLast') })
+    .then(() => { return setText('.passports .passport-number input', '12345678') })
+    .then(() => { return setText('.passports .datecontrol.passport-expiration .month input', '2') })
+    .then(() => { return setText('.passports .datecontrol.passport-expiration .day input', '2') })
+    .then(() => { return setText('.passports .datecontrol.passport-expiration .year input', '2000') })
+    .then(() => { return setOption('.passports .branch.passport-used .blocks .yes.block label') })
+    .then(() => { return setText('.passports .citizenship-item .country input', 'Ireland') })
+    .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.from .year input', '1995') })
+    .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.to .month input', '2') })
+    .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.to .day input', '2') })
+    .then(() => { return setText('.passports .citizenship-item .daterange .datecontrol.to .year input', '1995') })
 }
 
 const navigateToSection = (section) => {
