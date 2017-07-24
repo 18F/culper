@@ -120,7 +120,7 @@ export default class Person extends React.Component {
       <div className="person">
         <Field title={i18n.t('relationships.people.person.heading.knownDates')}
                help="relationships.people.person.help.knownDates"
-               >
+               adjustFor="daterange">
           <DateRange name="Dates"
                      className="known-dates"
                      {...this.props.Dates}
@@ -157,8 +157,7 @@ export default class Person extends React.Component {
 
         <Field title={i18n.t(`relationships.people.person.heading.relationship`)}
                className="relationships"
-               adjustFor="labels"
-               shrink={true}>
+               adjustFor="labels">
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
                          selectedValues={this.props.Relationship}>

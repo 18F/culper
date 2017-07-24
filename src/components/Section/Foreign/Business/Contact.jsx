@@ -90,8 +90,7 @@ export default class Contact extends SubsectionElement {
                   />
 
             <Field title={i18n.t('foreign.business.contact.heading.location')}
-                   help="foreign.business.contact.help.location"
-                   adjustFor="address">
+                   help="foreign.business.contact.help.location">
               <Location name="Location"
                           layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                           help=""

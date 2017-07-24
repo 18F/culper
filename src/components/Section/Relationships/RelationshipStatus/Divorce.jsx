@@ -116,8 +116,7 @@ export default class Divorce extends React.Component {
 
         <Field help="relationships.civilUnion.divorce.help.birthdate"
                title={i18n.t('relationships.civilUnion.divorce.heading.birthdate')}
-               shrink={true}
-               adjustFor="labels">
+               adjustFor="datecontrol">
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
@@ -139,8 +138,7 @@ export default class Divorce extends React.Component {
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
                help="relationships.civilUnion.divorce.help.telephone"
-               adjustFor="telephone"
-               shrink={true}>
+               adjustFor="telephone">
           <Telephone name="Telephone"
                      {...this.props.Telephone}
                      onUpdate={this.updateTelephone}
@@ -150,8 +148,7 @@ export default class Divorce extends React.Component {
 
         <Field help="relationships.civilUnion.divorce.help.recognized"
                title={i18n.t('relationships.civilUnion.divorce.heading.recognized')}
-               shrink={true}
-               adjustFor="labels">
+               adjustFor="datecontrol">
           <DateControl name="Recognized"
                        className="recognized"
                        {...this.props.Recognized}
@@ -162,7 +159,6 @@ export default class Divorce extends React.Component {
 
         <Field help="relationships.civilUnion.divorce.help.address"
                title={i18n.t('relationships.civilUnion.divorce.heading.address')}
-               shrink={true}
                adjustFor="labels">
           <Location name="address"
                     className="location"
@@ -176,8 +172,7 @@ export default class Divorce extends React.Component {
 
         <Field help="relationships.civilUnion.divorce.help.dateDivorced"
                title={i18n.t('relationships.civilUnion.divorce.heading.dateDivorced')}
-               shrink={true}
-               adjustFor="labels">
+               adjustFor="datecontrol">
           <DateControl name="DateDivorced"
                        className="date-divorced"
                        {...this.props.DateDivorced}
