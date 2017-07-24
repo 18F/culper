@@ -118,8 +118,8 @@ class Foreign extends SectionElement {
                        backLabel={i18n.t('military.destination.review')}
                        next="foreign/passport"
                        nextLabel={i18n.t('foreign.destination.passport')}>
-            <h2>{i18n.t('temp.intro.title')}</h2>
-            {i18n.m('temp.intro.body')}
+            <h2>{i18n.t('foreign.intro.title')}</h2>
+            {i18n.m('foreign.intro.body')}
           </SectionView>
 
           <SectionView name="review"

@@ -243,5 +243,6 @@ const branchValue = (country) => {
 ToggleableLocation.defaultProps = {
   country: null,
   domesticFields: [],
-  internationalFields: []
+  internationalFields: [],
+  onError: (value, arr) => { return arr }
 }
