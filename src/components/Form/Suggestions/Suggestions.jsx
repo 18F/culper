@@ -25,8 +25,6 @@ export default class Suggestions extends React.Component {
 
   /**
    * Return the possible suggestions or an empty value if there is nothing to present.
-   *
-   *  - Assign the property `withSuggestions` to turn this feature on
    */
   suggestions () {
     return this.props.suggestions.map(suggestion => {
@@ -66,9 +64,13 @@ export default class Suggestions extends React.Component {
 
     // When there is nothing special do the status quo
     return (
-      <Modal show={this.props.show} closeable={true} onDismiss={this.dismissSuggestions} className="suggestions">
+      <Modal show={this.props.show}
+             closeable={true}
+             onDismiss={this.dismissSuggestions}
+             className="suggestions">
         <h3>{this.props.suggestionTitle}</h3>
         {this.props.suggestionParagraph}
+
         <div className={klass}>
           {this.suggestions()}
           <div className="dismiss">
@@ -92,11 +94,10 @@ Suggestions.defaultProps = {
   suggestionDismissLabel: '',
   suggestionDismissAlternate: '',
   suggestionUseLabel: '',
-  withSuggestions: false,
   suggestions: [],
   className: '',
   show: false,
-  renderSuggestion: () => {},
-  onSuggestion: () => {},
+  renderSuggestion: (suggestion) => {},
+  onSuggestion: (suggestion) => {},
   onDismiss: () => {}
 }
