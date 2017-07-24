@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BirthPlace, ForeignBornDocuments, SSN,
-         MaidenName, DateRange, NotApplicable, ValidationElement,
+import { Field, DateControl, Name, BranchCollection, ForeignBornDocuments, SSN,
+         MaidenName, DateRange, ValidationElement,
          Suggestions, Show, Country, Location } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 
@@ -15,10 +15,7 @@ export default class Cohabitant extends ValidationElement {
     this.updateBirthPlace = this.updateBirthPlace.bind(this)
     this.updateForeignBornDocument = this.updateForeignBornDocument.bind(this)
     this.updateSSN = this.updateSSN.bind(this)
-    this.updateOtherName = this.updateOtherName.bind(this)
-    this.updateOtherNameNotApplicable = this.updateOtherNameNotApplicable.bind(this)
-    this.updateOtherNameMaiden = this.updateOtherNameMaiden.bind(this)
-    this.updateOtherNameUsed = this.updateOtherNameUsed.bind(this)
+    this.updateOtherNames = this.updateOtherNames.bind(this)
     this.updateCitizenship = this.updateCitizenship.bind(this)
     this.updateCohabitationBegan = this.updateCohabitationBegan.bind(this)
     this.renderSpouseSuggestion = this.renderSpouseSuggestion.bind(this)
@@ -34,10 +31,7 @@ export default class Cohabitant extends ValidationElement {
       BirthPlace: this.props.BirthPlace,
       ForeignBornDocument: this.props.ForeignBornDocument,
       SSN: this.props.SSN,
-      OtherName: this.props.OtherName,
-      OtherNameNotApplicable: this.props.OtherNameNotApplicable,
-      OtherNameMaiden: this.props.OtherNameMaiden,
-      OtherNameUsed: this.props.OtherNameUsed,
+      OtherNames: this.props.OtherNames,
       Citizenship: this.props.Citizenship,
       CohabitationBegan: this.props.CohabitationBegan,
       SameSpouse: this.props.SameSpouse,
@@ -52,10 +46,7 @@ export default class Cohabitant extends ValidationElement {
       BirthPlace: null,
       ForeignBornDocument: null,
       SSN: null,
-      OtherName: null,
-      OtherNameNotApplicable: null,
-      OtherNameMaiden: null,
-      OtherNameUsed: null,
+      OtherNames: null,
       Citizenship: null,
       CohabitationBegan: null,
       SameSpouse: false,
@@ -99,31 +90,13 @@ export default class Cohabitant extends ValidationElement {
 
   updateSSN (values) {
     this.update({
-      SSN: values.value || ''
+      SSN: values
     })
   }
 
-  updateOtherName (values) {
+  updateOtherNames (values) {
     this.update({
-      OtherName: values
-    })
-  }
-
-  updateOtherNameMaiden (values) {
-    this.update({
-      OtherNameMaiden: values
-    })
-  }
-
-  updateOtherNameUsed (values) {
-    this.update({
-      OtherNameUsed: values
-    })
-  }
-
-  updateOtherNameNotApplicable (values) {
-    this.update({
-      OtherNameNotApplicable: values
+      OtherNames: values
     })
   }
 
@@ -199,15 +172,16 @@ export default class Cohabitant extends ValidationElement {
                        />
         </Field>
 
-        <h3>{i18n.t('relationships.cohabitant.heading.birthplace')}</h3>
-        <Location name="birthplace"
-                    layout={Location.BIRTHPLACE}
-                    className="birthplace"
-                    label={i18n.t('relationships.cohabitant.label.birthplace')}
-                    {...this.props.BirthPlace}
-                    onUpdate={this.updateBirthPlace}
-                    onError={this.props.onError}
-                    />
+        <Field title={i18n.t('relationships.cohabitant.heading.birthplace')}>
+          <Location name="birthplace"
+                      layout={Location.BIRTHPLACE}
+                      className="birthplace"
+                      label={i18n.t('relationships.cohabitant.label.birthplace')}
+                      {...this.props.BirthPlace}
+                      onUpdate={this.updateBirthPlace}
+                      onError={this.props.onError}
+                      />
+        </Field>
 
         <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
           <Field help="relationships.cohabitant.help.foreignBornDocument"
@@ -229,44 +203,40 @@ export default class Cohabitant extends ValidationElement {
                />
         </Field>
 
-        <h3>{i18n.t('relationships.cohabitant.heading.othernames')}</h3>
-        <NotApplicable name="OtherNameNotApplicable"
-                       className="othername"
-                       applicable={this.props.OtherNameNotApplicable}
-                       label={i18n.t('reference.label.idk')}
-                       or={i18n.m('reference.para.or')}
-                       onUpdate={this.updateOtherNameNotApplicable}
-                       onError={this.props.onError}>
-          <Name name="othername"
-                className="othername"
-                {...this.props.OtherName}
-                onUpdate={this.updateOtherName}
-                onError={this.props.onError}
-                />
+        <BranchCollection label={i18n.t('relationships.cohabitant.heading.othernames')}
+          className="cohabitant-othernames"
+          appendLabel={i18n.m('relationships.cohabitant.heading.appendOthernames')}
+          items={this.props.OtherNames}
+          onError={this.props.onError}
+          onUpdate={this.updateOtherNames}>
+
+          <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}>
+            <Name name="Othername"
+              bind={true}
+              onError={this.props.onError}
+            />
+          </Field>
+
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
-                 help="alias.maiden.help"
-                 adjustFor="buttons"
-                 shrink={true}>
-            <MaidenName name="OtherNameMaiden"
-                        className="othername"
-                        {...this.props.OtherNameMaiden}
-                        onUpdate={this.updateOtherNameMaiden}
-                        onError={this.props.onError}
-                        />
+            help="alias.maiden.help"
+            adjustFor="buttons"
+            shrink={true}>
+            <MaidenName name="MaidenName"
+              bind={true}
+              onError={this.props.onError}
+            />
           </Field>
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
-                 help="alias.used.help"
-                 adjustFor="daterange"
-                 shrink={true}>
-            <DateRange name="OtherNameUsed"
-                       className="othername"
-                       {...this.props.OtherNameUsed}
-                       onUpdate={this.updateOtherNameUsed}
-                       onError={this.props.onError}
-                       />
+            adjustFor="daterange"
+            shrink={true}>
+            <DateRange name="DatesUsed"
+              bind={true}
+              className="datesused"
+              onError={this.props.onError}
+            />
           </Field>
-        </NotApplicable>
+        </BranchCollection>
 
         <Field title={i18n.t('relationships.cohabitant.heading.citizenship')}
                help="relationships.cohabitant.help.citizenship"
@@ -302,10 +272,7 @@ Cohabitant.defaultProps = {
   BirthPlace: {},
   ForeignBornDocument: {},
   SSN: {},
-  OtherName: {},
-  OtherNameNotApplicable: {},
-  OtherNameMaiden: {},
-  OtherNameUsed: {},
+  OtherNames: [],
   Citizenship: {},
   CohabitationBegan: {},
   SameSpouse: false,

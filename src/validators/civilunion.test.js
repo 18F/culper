@@ -59,34 +59,64 @@ describe('CivilUnion validation', function () {
     const tests = [
       {
         state: {
-          OtherNameNotApplicable: true
+          OtherNames: []
+        },
+        expected: false
+      },
+      {
+        state: {
+          OtherNames: [
+            {
+              Has: 'Yes',
+              Othername: {
+                first: 'Foo',
+                firstInitialOnly: false,
+                middle: 'J',
+                middleInitialOnly: true,
+                noMiddleName: false,
+                last: 'Bar',
+                lastInitialOnly: false,
+                suffix: 'Jr'
+              },
+              MaidenName: {
+                value: 'No'
+              },
+              DatesUsed: {
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2016')
+                },
+                present: false
+              }
+            },
+            {
+              Has: 'No'
+            }
+          ]
         },
         expected: true
       },
       {
         state: {
-          OtherNameNotApplicable: false,
-          OtherName: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
-            noMiddleName: false,
-            last: 'Bar',
-            lastInitialOnly: false,
-            suffix: 'Jr'
-          },
-          DatesUsed: {
-            from: {
-              date: new Date('1/1/2010')
-            },
-            to: {
-              date: new Date('1/1/2016')
-            },
-            present: false
-          }
+          OtherNames: [
+            {
+              Has: 'Nope'
+            }
+          ]
         },
-        expected: true
+        expected: false
+      },
+      {
+        state: {
+          OtherNames: [
+            {
+              Has: 'Yes'
+            }
+          ]
+        },
+        expected: false
       }
     ]
     tests.forEach(test => {
@@ -121,6 +151,46 @@ describe('CivilUnion validation', function () {
     ]
     tests.forEach(test => {
       expect(new CivilUnionValidator(test.state, null).validCitizenship()).toBe(test.expected)
+    })
+  })
+
+  it('validates address', () => {
+    const tests = [
+      {
+        state: {
+          Address: {
+            country: 'United States',
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202',
+            layout: Location.ADDRESS
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          Address: {
+            country: 'United States',
+            street: '',
+            city: '',
+            state: 'Virginia',
+            zipcode: '22202',
+            layout: Location.ADDRESS
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Address: {}
+        },
+        expected: true
+      }
+    ]
+    tests.forEach(test => {
+      expect(new CivilUnionValidator(test.state, null).validAddress()).toBe(test.expected)
     })
   })
 
@@ -228,7 +298,8 @@ describe('CivilUnion validation', function () {
           BirthPlace: {
             domestic: 'No',
             country: 'Germany',
-            city: 'Munich'
+            city: 'Munich',
+            layout: Location.BIRTHPLACE
           },
           ForeignBornDocument: {
             DocumentType: 'FS240',
