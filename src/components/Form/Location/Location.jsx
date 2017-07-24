@@ -291,7 +291,7 @@ export default class Location extends ValidationElement {
                            value={this.props.state}
                            includeStates="true"
                            onChange={this.updateState}
-                           onError={this.handleError}
+                           onError={this.props.onError}
                            onFocus={this.props.onFocus}
                            onBlur={this.handleBlur}
                            />
@@ -302,7 +302,7 @@ export default class Location extends ValidationElement {
                      placeholder={this.props.zipcodePlaceholder}
                      value={this.props.zipcode}
                      onChange={this.updateZipcode}
-                     onError={this.handleError}
+                     onError={this.props.onError}
                      onFocus={this.props.onFocus}
                      onBlur={this.handleBlur}
                      />
