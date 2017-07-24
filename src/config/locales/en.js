@@ -999,6 +999,9 @@ const en = {
     },
     ssn: {
       title: 'Provide your U.S. Social Security Number',
+      heading: {
+        verify: 'Please enter your U.S. Social Security Number again for vefication'
+      },
       help: {
         title: 'Need help with your U.S. Social Security Number?',
         message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox',

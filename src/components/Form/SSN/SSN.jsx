@@ -69,7 +69,6 @@ export default class SSN extends ValidationElement {
             first: this.state.first,
             middle: this.state.middle,
             last: this.state.last,
-            verified: this.state.verified,
             notApplicable: this.state.notApplicable
           })
         }
