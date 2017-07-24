@@ -11,7 +11,7 @@ export default class ApoFpo extends ValidationElement {
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
-        code: `apofpo.${err.code}`,
+        code: `address.apofpo.${err.code}`,
         valid: err.valid,
         uid: err.uid
       }
