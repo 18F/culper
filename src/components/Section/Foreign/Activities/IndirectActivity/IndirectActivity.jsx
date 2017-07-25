@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import { Accordion, ValidationElement, Branch, Show } from '../../../../Form'
+import { Summary } from '../../../../Summary'
+import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignIndirectActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import IndirectInterest from './IndirectInterest'
@@ -15,32 +16,27 @@ export default class IndirectActivity extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasInterests: this.props.HasInterests
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasInterests: this.props.HasInterests,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasInterests (values) {
-    this.update([
-      { name: 'HasInterests', value: values }
-    ])
+    this.update({
+      HasInterests: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -50,8 +46,6 @@ export default class IndirectActivity extends SubsectionElement {
     const name = `${firstname} ${lastname}`.trim()
     const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
-    const type = i18n.t('foreign.activities.indirect.collection.itemType')
-
     const summary = [interestType, name].reduce((prev, next) => {
       if (prev && next) {
         return prev + ' - ' + next
@@ -59,15 +53,13 @@ export default class IndirectActivity extends SubsectionElement {
       return prev
     })
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="interest">
-          <strong>{summary || i18n.t('foreign.activities.indirect.collection.summary')}</strong>
-        </span>
-        <span className="cost">{cost}</span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.activities.indirect.collection.itemType'),
+      index: index,
+      left: summary,
+      right: cost,
+      placeholder: i18n.m('foreign.activities.indirect.collection.summary')
+    })
   }
 
   render () {
@@ -77,13 +69,13 @@ export default class IndirectActivity extends SubsectionElement {
                 label={i18n.t('foreign.activities.indirect.heading.title')}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasInterests}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -108,6 +100,7 @@ IndirectActivity.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/indirect',

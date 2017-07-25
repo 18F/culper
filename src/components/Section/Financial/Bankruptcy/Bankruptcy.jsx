@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, DateControl, Currency, Field,
-         Text, Textarea, Name, Address, Checkbox, NotApplicable, RadioGroup, Radio, Location } from '../../../Form'
+         Text, Textarea, Name, Checkbox, NotApplicable, RadioGroup, Radio, Location } from '../../../Form'
 
 export default class Bankruptcy extends ValidationElement {
   constructor (props) {
@@ -22,82 +22,108 @@ export default class Bankruptcy extends ValidationElement {
     this.updateTrusteeAddress = this.updateTrusteeAddress.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        PetitionType: this.props.PetitionType,
-        CourtNumber: this.props.CourtNumber,
-        DateFiled: this.props.DateFiled,
-        DischargeDateNotApplicable: this.props.DischargeDateNotApplicable,
-        DateDischarged: this.props.DateDischarged,
-        TotalAmount: this.props.TotalAmount,
-        TotalAmountEstimated: this.props.TotalAmountEstimated,
-        NameDebt: this.props.NameDebt,
-        CourtInvolved: this.props.CourtInvolved,
-        CourtAddress: this.props.CourtAddress,
-        Trustee: this.props.Trustee,
-        TrusteeAddress: this.props.TrusteeAddress,
-        HasDischargeExplanation: this.props.HasDischargeExplanation,
-        DischargeExplanation: this.props.DischargeExplanation,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      PetitionType: this.props.PetitionType,
+      CourtNumber: this.props.CourtNumber,
+      DateFiled: this.props.DateFiled,
+      DischargeDateNotApplicable: this.props.DischargeDateNotApplicable,
+      DateDischarged: this.props.DateDischarged,
+      TotalAmount: this.props.TotalAmount,
+      TotalAmountEstimated: this.props.TotalAmountEstimated,
+      NameDebt: this.props.NameDebt,
+      CourtInvolved: this.props.CourtInvolved,
+      CourtAddress: this.props.CourtAddress,
+      Trustee: this.props.Trustee,
+      TrusteeAddress: this.props.TrusteeAddress,
+      HasDischargeExplanation: this.props.HasDischargeExplanation,
+      DischargeExplanation: this.props.DischargeExplanation,
+      ...queue
+    })
   }
 
   updatePetitionType (radio) {
-    this.update('PetitionType', radio.value)
+    this.update({
+      PetitionType: radio.value
+    })
   }
 
   updateCourtNumber (values) {
-    this.update('CourtNumber', values)
+    this.update({
+      CourtNumber: values
+    })
   }
 
   updateDateFiled (values) {
-    this.update('DateFiled', values)
+    this.update({
+      DateFiled: values
+    })
   }
 
   updateDateDischarged (values) {
-    this.update('DateDischarged', values)
+    this.update({
+      DateDischarged: values
+    })
   }
 
   updateDischargeDateNotApplicable (values) {
-    this.update('DischargeDateNotApplicable', values)
+    this.update({
+      DischargeDateNotApplicable: values
+    })
   }
 
   updateTotalAmount (values) {
-    this.update('TotalAmount', values)
+    this.update({
+      TotalAmount: values
+    })
   }
 
   updateTotalAmountEstimated (values) {
-    this.update('TotalAmountEstimated', values)
+    this.update({
+      TotalAmountEstimated: values
+    })
   }
 
   updateNameDebt (values) {
-    this.update('NameDebt', values)
+    this.update({
+      NameDebt: values
+    })
   }
 
   updateCourtInvolved (values) {
-    this.update('CourtInvolved', values)
+    this.update({
+      CourtInvolved: values
+    })
   }
 
   updateCourtAddress (values) {
-    this.update('CourtAddress', values)
+    this.update({
+      CourtAddress: values
+    })
   }
 
   updateHasDischargeExplanation (values) {
-    this.update('HasDischargeExplanation', values)
+    this.update({
+      HasDischargeExplanation: values
+    })
   }
 
   updateDischargeExplanation (values) {
-    this.update('DischargeExplanation', values)
+    this.update({
+      DischargeExplanation: values
+    })
   }
 
   updateTrustee (values) {
-    this.update('Trustee', values)
+    this.update({
+      Trustee: values
+    })
   }
 
   updateTrusteeAddress (values) {
-    this.update('TrusteeAddress', values)
+    this.update({
+      TrusteeAddress: values
+    })
   }
 
   render () {
@@ -220,12 +246,14 @@ export default class Bankruptcy extends ValidationElement {
         <Field title={i18n.t('financial.bankruptcy.heading.courtAddress')}
                help="financial.bankruptcy.courtAddress.help"
                adjustFor="address">
-          <Address name="CourtAddress"
-                   label={i18n.t('financial.bankruptcy.courtAddress.label')}
-                   {...this.props.CourtAddress}
-                   onUpdate={this.updateCourtAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="CourtAddress"
+                    label={i18n.t('financial.bankruptcy.courtAddress.label')}
+                    {...this.props.CourtAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateCourtAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Show when={this.props.PetitionType === 'Chapter13'}>
@@ -243,13 +271,15 @@ export default class Bankruptcy extends ValidationElement {
             <Field title={i18n.t('financial.bankruptcy.trustee.address.title')}
                    help="financial.bankruptcy.trustee.address.help"
                    adjustFor="address">
-              <Address name="trusteeAddress"
-                       className="trustee-address"
-                       {...this.props.TrusteeAddress}
-                       label={i18n.t('financial.bankruptcy.trustee.address.label')}
-                       onError={this.props.onError}
-                       onUpdate={this.updateTrusteeAddress}
-                       />
+              <Location name="trusteeAddress"
+                        className="trustee-address"
+                        {...this.props.TrusteeAddress}
+                        label={i18n.t('financial.bankruptcy.trustee.address.label')}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onError={this.props.onError}
+                        onUpdate={this.updateTrusteeAddress}
+                        />
             </Field>
           </div>
         </Show>
@@ -278,5 +308,6 @@ export default class Bankruptcy extends ValidationElement {
 }
 
 Bankruptcy.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

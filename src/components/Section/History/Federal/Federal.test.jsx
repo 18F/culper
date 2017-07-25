@@ -5,10 +5,11 @@ import Federal from './Federal'
 describe('The federal component', () => {
   it('selects yes and loads form', () => {
     const expected = {
-      name: 'federal_service'
+      name: 'federal_service',
+      HasFederalService: 'Yes',
+      List: [{}]
     }
-    const component = mount(<Federal name={expected.name} />)
-    component.find({type: 'radio', name: 'has_federalservice', value: 'Yes'}).simulate('change')
+    const component = mount(<Federal {...expected} />)
     expect(component.find('.accordion').length).toBeGreaterThan(0)
     expect(component.find('.accordion .daterange').length).toBeGreaterThan(0)
     expect(component.find('.accordion input').length).toBeGreaterThan(0)
@@ -17,10 +18,10 @@ describe('The federal component', () => {
 
   it('selects no', () => {
     const expected = {
-      name: 'federal_service'
+      name: 'federal_service',
+      HasFederalService: 'No'
     }
-    const component = mount(<Federal name={expected.name} />)
-    component.find({type: 'radio', name: 'has_federalservice', value: 'No'}).simulate('change')
+    const component = mount(<Federal {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
   })
 
@@ -29,6 +30,7 @@ describe('The federal component', () => {
     const expected = {
       name: 'federal_service',
       HasFederalService: 'Yes',
+      List: [{}],
       onUpdate: () => { updates++ }
     }
     const component = mount(<Federal {...expected} />)
@@ -46,19 +48,35 @@ describe('The federal component', () => {
       HasFederalService: 'Yes',
       List: [
         {
-          Name: 'Acme',
-          Position: ' Chief Anvil Engineer',
+          Name: {
+            value: 'Acme'
+          },
+          Position: {
+            value: ' Chief Anvil Engineer'
+          },
           Dates: {
-            from: new Date(2017, 1, 1),
-            to: new Date(2017, 2, 1)
+            from: {
+              date: new Date(2017, 1, 1)
+            },
+            to: {
+              date: new Date(2017, 2, 1)
+            }
           }
         },
         {
-          Name: 'Quills R Us',
-          Position: 'I wrote stuff',
+          Name: {
+            value: 'Quills R Us'
+          },
+          Position: {
+            value: 'I wrote stuff'
+          },
           Dates: {
-            from: new Date(2017, 2, 1),
-            to: new Date(2017, 3, 1)
+            from: {
+              date: new Date(2017, 2, 1)
+            },
+            to: {
+              date: new Date(2017, 3, 1)
+            }
           }
         }
       ]

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignTravelValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -16,53 +16,46 @@ export default class Travel extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignTravelOutside: this.props.HasForeignTravelOutside,
-        HasForeignTravelOfficial: this.props.HasForeignTravelOfficial
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignTravelOutside: this.props.HasForeignTravelOutside,
+      HasForeignTravelOfficial: this.props.HasForeignTravelOfficial,
+      ...queue
+    })
   }
 
   updateHasForeignTravelOutside (values) {
-    this.update([
-      { name: 'HasForeignTravelOutside', value: values }
-    ])
+    this.update({
+      HasForeignTravelOutside: values
+    })
   }
 
   updateHasForeignTravelOfficial (values) {
-    this.update([
-      { name: 'HasForeignTravelOfficial', value: values }
-    ])
+    this.update({
+      HasForeignTravelOfficial: values
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = (item || {}).Item || {}
-    const country = (obj.Country || {}).value || i18n.t('foreign.travel.collection.summary.unknown')
     const date = DateSummary(obj.Dates)
+    const country = (obj.Country || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.travel.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{country}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.travel.collection.summary.item'),
+      index: index,
+      left: country,
+      right: date,
+      placeholder: i18n.m('foreign.travel.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -72,8 +65,8 @@ export default class Travel extends SubsectionElement {
                 labelSize="h3"
                 name="has_foreign_travel_outside"
                 className="foreign-travel-outside"
-                help="foreign.travel.help.outside"
                 value={this.props.HasForeignTravelOutside}
+                warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}
                 onError={this.handleError}>
         </Branch>
@@ -90,8 +83,7 @@ export default class Travel extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignTravelOutside === 'Yes' && this.props.HasForeignTravelOfficial === 'No'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -114,6 +106,7 @@ Travel.defaultProps = {
   HasForeignTravelOfficial: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'travel',

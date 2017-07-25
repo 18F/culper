@@ -164,6 +164,72 @@ a:focus {
   }
 }
 
+@media screen and (min-width: 850px) {
+  .sticky-header {
+    .header-container {
+      height: 16.7rem;
+
+      .usa-banner-header {
+        display: none;
+      }
+
+      .header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        overflow: hidden;
+      }
+
+      .usa-header,
+      .usa-header > .eapp-structure-wrap {
+        height: 5rem;
+        min-height: 5rem;
+      }
+
+      .usa-header.usa-header-basic {
+        .eapp-structure-wrap.eapp-header > .eapp-structure-row {
+          .eapp-structure-right {
+            .eapp-logout {
+              display: none;
+            }
+
+            .title {
+              max-height: 5rem;
+              margin: 0.75rem auto 2rem auto;
+
+              .title-text {
+                transition: font-size 400ms ease-out;
+                font-size: 1.8rem;
+                line-height: 1;
+              }
+
+              .crumb {
+                transition: font-size 400ms ease-out;
+                font-size: 1.2rem;
+              }
+            }
+          }
+
+          .eapp-structure-left.eapp-logo {
+            height: 5.7rem;
+            min-height: 5.7rem;
+
+            img,
+            span,
+            a {
+              height: 0;
+              font-size: 0;
+              opacity: 1;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
 /* horizontal progress bar, inner div width to be adjusted via JS */
 .eapp-progress {
   position: relative;

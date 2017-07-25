@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { ConsultationValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -9,55 +10,47 @@ export default class Consultation extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Consulted: props.Consulted,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.update = this.update.bind(this)
     this.updateConsulted = this.updateConsulted.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  update (field, values) {
-    this.setState({[field]: values}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Consulted: this.state.Consulted,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      Consulted: this.props.Consulted,
+      ...queue
     })
   }
 
   updateList (values) {
-    this.update('List', values.items)
-    this.update('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateConsulted (values) {
-    this.update('Consulted', values)
+    this.update({
+      Consulted: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).Consultation || {}
-    const occurred = (o.Occurred || {}).date ? `${o.Occurred.month}/${o.Occurred.year}` : ''
-    const courtName = (o.CourtName || {}).value ? o.CourtName.value : null
-    const type = i18n.t('psychological.consultation.collection.itemType')
+    const occurred = DateSummary(o.Occurred || {})
+    const courtName = (o.CourtName || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="courtname">
-          <strong>
-            {courtName || i18n.t('psychological.consultation.collection.summaryCourtName')}
-          </strong>
-        </span>
-        <span className="occurred"><strong>{courtName && occurred}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('psychological.consultation.collection.itemType'),
+      index: index,
+      left: courtName,
+      right: occurred,
+      placeholder: i18n.m('psychological.consultation.collection.summaryCourtName')
+    })
   }
 
   render () {
@@ -66,16 +59,16 @@ export default class Consultation extends SubsectionElement {
         <h2>{i18n.t('psychological.heading.consultation')}</h2>
         { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
-                value={this.state.Consulted}
+                value={this.props.Consulted}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateConsulted}>
         </Branch>
 
-        <Show when={this.state.Consulted === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
-                     items={this.state.List}
-                     branch={this.state.ListBranch}
+        <Show when={this.props.Consulted === 'Yes'}>
+          <Accordion defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -98,11 +91,12 @@ Consultation.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'consultations',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ConsultationValidator(state, props).isValid()
+    return new ConsultationValidator(props, props).isValid()
   }
 }

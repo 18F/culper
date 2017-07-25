@@ -1,16 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Address, Text, Textarea, DateControl, Field } from '../../../Form'
+import { ValidationElement, Location, Text, Textarea, DateControl, Field } from '../../../Form'
 
 export default class DomesticViolence extends ValidationElement {
   constructor (props) {
     super(props)
-    this.state = {
-      Explanation: props.Explanation,
-      Issued: props.Issued,
-      CourtName: props.CourtName,
-      CourtAddress: props.CourtAddress
-    }
 
     this.update = this.update.bind(this)
     this.updateIssued = this.updateIssued.bind(this)
@@ -19,32 +13,37 @@ export default class DomesticViolence extends ValidationElement {
     this.updateCourtAddress = this.updateCourtAddress.bind(this)
   }
 
-  update (name, values) {
-    this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Explanation: this.state.Explanation,
-          Issued: this.state.Issued,
-          CourtName: this.state.CourtName,
-          CourtAddress: this.state.CourtAddress
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      Explanation: this.props.Explanation,
+      Issued: this.props.Issued,
+      CourtName: this.props.CourtName,
+      CourtAddress: this.props.CourtAddress,
+      ...queue
     })
   }
 
   updateIssued (value) {
-    this.update('Issued', value)
+    this.update({
+      Issued: value
+    })
   }
 
   updateExplanation (value) {
-    this.update('Explanation', value)
+    this.update({
+      Explanation: value
+    })
   }
 
   updateCourtName (value) {
-    this.update('CourtName', value)
+    this.update({
+      CourtName: value
+    })
   }
   updateCourtAddress (value) {
-    this.update('CourtAddress', value)
+    this.update({
+      CourtAddress: value
+    })
   }
 
   render () {
@@ -55,7 +54,7 @@ export default class DomesticViolence extends ValidationElement {
                help="legal.police.help.domesticExplanation">
           <Textarea className="explanation"
                     name="explanation"
-                    {...this.state.Explanation}
+                    {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
                     />
@@ -66,7 +65,7 @@ export default class DomesticViolence extends ValidationElement {
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Issued"
-                       {...this.state.Issued}
+                       {...this.props.Issued}
                        hideDay={true}
                        className="issued"
                        onUpdate={this.updateIssued}
@@ -78,7 +77,7 @@ export default class DomesticViolence extends ValidationElement {
                titleSize="h3"
                adjustFor="labels">
           <Text name="CourtName"
-                {...this.state.CourtName}
+                {...this.props.CourtName}
                 label={i18n.t('legal.police.label.courtname')}
                 className="domestic-courtname"
                 onUpdate={this.updateCourtName}
@@ -91,13 +90,15 @@ export default class DomesticViolence extends ValidationElement {
                help="legal.police.help.courtaddress"
                adjustFor="address"
                shrink={true}>
-          <Address name="CourtAddress"
-                   {...this.state.CourtAddress}
-                   label={i18n.t('legal.police.label.address')}
-                   className="domestic-courtaddress"
-                   onUpdate={this.updateCourtAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="CourtAddress"
+                    {...this.props.CourtAddress}
+                    label={i18n.t('legal.police.label.address')}
+                    className="domestic-courtaddress"
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateCourtAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )
@@ -105,5 +106,6 @@ export default class DomesticViolence extends ValidationElement {
 }
 
 DomesticViolence.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

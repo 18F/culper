@@ -18,8 +18,11 @@ describe('The ForeignBornDocuments component', () => {
 
   it('renders and updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<ForeignBornDocuments onUpdate={onUpdate} />)
+    const props = {
+      DocumentType: 'Other',
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<ForeignBornDocuments {...props} />)
     expect(component.find('.foreign-born-documents').length).toEqual(1)
 
     expect(component.find('.born').length).toEqual(2)

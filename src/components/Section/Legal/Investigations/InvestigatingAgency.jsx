@@ -12,30 +12,23 @@ export default class InvestigatingAgency extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Agency: this.props.Agency,
-        Explanation: this.props.Explanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Agency: this.props.Agency,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateAgency (values) {
-    this.update([
-      { name: 'Agency', value: values.value }
-    ])
+    this.update({
+      Agency: values.value
+    })
   }
 
   updateExplanation (values) {
-    this.update([
-      { name: 'Explanation', value: values }
-    ])
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
@@ -114,6 +107,7 @@ InvestigatingAgency.defaultProps = {
   className: 'investigative-agency',
   Agency: '',
   Explanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NonpaymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
+import { Summary, DateSummary } from '../../../Summary'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
          NotApplicable, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
@@ -27,7 +28,7 @@ export default class Nonpayment extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasNonpayment: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -54,23 +55,18 @@ export default class Nonpayment extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.t('financial.nonpayment.collection.summary.unknown')
+    const date = DateSummary(obj.Date)
+    const name = (obj.Name || {}).value || ''
     const amount = (obj.Amount || {}).value
     const text = `${name}${amount ? ', $' + amount : ''}`.trim()
-    const date = (obj.Date || {})
 
-    let from = ''
-    if (date.month && date.year) {
-      from = '' + date.month + '/' + date.year
-    }
-
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.nonpayment.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{text}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.nonpayment.collection.summary.item'),
+      index: index,
+      left: text,
+      right: date,
+      placeholder: i18n.m('financial.nonpayment.collection.summary.unknown')
+    })
   }
 
   message () {
@@ -96,12 +92,12 @@ export default class Nonpayment extends SubsectionElement {
         <Branch name="has_nonpayment"
                 className="nonpayment-branch"
                 value={this.state.HasNonpayment}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}

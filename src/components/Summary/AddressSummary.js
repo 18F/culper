@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const AddressSummary = (props, unknown) => {
+export const AddressSummary = (props, unknown = '') => {
   if (!props) {
     return unknown
   }

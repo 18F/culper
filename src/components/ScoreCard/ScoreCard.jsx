@@ -1,36 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n, navigation } from '../../config'
+import { i18n } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
-import { validations } from '../Navigation'
+import { sectionsTotal, sectionsCompleted } from '../../validators/navigation'
 
 class ScoreCard extends React.Component {
-  sections () {
-    return navigation.filter(x => !x.hidden)
-  }
-
-  total () {
-    return this.sections().length
-  }
-
-  completed () {
-    let completed = 0
-
-    for (const section in this.props.completed) {
-      const valid = this.props.completed[section]
-            .filter(e => e.section.toLowerCase() === section.toLowerCase() && e.valid === true)
-            .length
-      if (valid >= validations(navigation.find(n => n.url === section), this.props)) {
-        completed++
-      }
-    }
-
-    return completed
-  }
-
   render () {
-    const completed = this.completed()
-    const total = this.total()
+    const completed = sectionsCompleted(this.props.completed, this.props)
+    const total = sectionsTotal()
 
     return (
       <div className={`score-card ${completed >= total ? 'completed' : ''}`.trim()}>

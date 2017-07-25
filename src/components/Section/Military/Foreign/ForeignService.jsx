@@ -2,39 +2,13 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field, Country } from '../../../Form'
 import ForeignContact from './ForeignContact'
-import { DateSummary, NameSummary } from '../../../Summary'
-
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
+import { Summary, DateSummary, NameSummary } from '../../../Summary'
 
 export default class ForeignService extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Organization: props.Organization,
-      Name: props.Name,
-      Dates: props.Dates,
-      Country: props.Country,
-      Rank: props.Rank,
-      Division: props.Division,
-      Circumstances: props.Circumstances,
-      ReasonLeft: props.ReasonLeft,
-      MaintainsContact: props.MaintainsContact,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateOrganization = this.updateOrganization.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateDates = this.updateDates.bind(this)
@@ -47,57 +21,85 @@ export default class ForeignService extends ValidationElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      Organization: this.props.Organization,
+      Name: this.props.Name,
+      Dates: this.props.Dates,
+      Country: this.props.Country,
+      Rank: this.props.Rank,
+      Division: this.props.Division,
+      Circumstances: this.props.Circumstances,
+      ReasonLeft: this.props.ReasonLeft,
+      MaintainsContact: this.props.MaintainsContact,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateOrganization (event) {
-    this.onUpdate('Organization', event.target.value)
+    this.update({
+      Organization: event.target.value
+    })
   }
 
   updateName (value) {
-    this.onUpdate('Name', value)
+    this.update({
+      Name: value
+    })
   }
 
   updateDates (value) {
-    this.onUpdate('Dates', value)
+    this.update({
+      Dates: value
+    })
   }
 
   updateCountry (value) {
-    this.onUpdate('Country', value)
+    this.update({
+      Country: value
+    })
   }
 
   updateRank (value) {
-    this.onUpdate('Rank', value)
+    this.update({
+      Rank: value
+    })
   }
 
   updateDivision (value) {
-    this.onUpdate('Division', value)
+    this.update({
+      Division: value
+    })
   }
 
   updateCircumstances (value) {
-    this.onUpdate('Circumstances', value)
+    this.update({
+      Circumstances: value
+    })
   }
 
   updateReasonLeft (value) {
-    this.onUpdate('ReasonLeft', value)
+    this.update({
+      ReasonLeft: value
+    })
   }
 
   updateMaintainsContact (value, event) {
-    this.onUpdate('MaintainsContact', value)
-
     // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('List', [])
-      this.onUpdate('ListBranch', '')
-    }
+    this.update({
+      MaintainsContact: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   /**
@@ -105,16 +107,16 @@ export default class ForeignService extends ValidationElement {
    */
   summary (item, index) {
     const itemProperties = (item || {}).Item || {}
-    const name = NameSummary(itemProperties.Name, i18n.t('military.foreign.collection.contacts.summary.unknown'))
     const dates = DateSummary(itemProperties.Dates)
+    const name = NameSummary(itemProperties.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('military.foreign.collection.contacts.summary.item')} {index + 1}:</span>
-        <span className=""><strong>{name}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('military.foreign.collection.contacts.summary.item'),
+      index: index,
+      left: name,
+      right: dates,
+      placeholder: i18n.m('military.foreign.collection.contacts.summary.unknown')
+    })
   }
 
   render () {
@@ -124,7 +126,7 @@ export default class ForeignService extends ValidationElement {
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="organization option-list"
-                      selectedValue={this.state.Organization}>
+                      selectedValue={this.props.Organization}>
             <Radio name="organization-military"
                    className="organization-military"
                    label={i18n.m('military.foreign.label.organization.military')}
@@ -179,7 +181,7 @@ export default class ForeignService extends ValidationElement {
 
         <Field title={i18n.t('military.foreign.heading.name')}>
           <Text name="Name"
-                {...this.state.Name}
+                {...this.props.Name}
                 className="foreign-service-name"
                 maxlength="100"
                 onUpdate={this.updateName}
@@ -193,7 +195,7 @@ export default class ForeignService extends ValidationElement {
                shrink={true}>
           <DateRange name="Dates"
                      className="foreign-service-dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      />
@@ -202,7 +204,7 @@ export default class ForeignService extends ValidationElement {
         <Field title={i18n.t('military.foreign.heading.country')}
                adjustFor="country">
           <Country name="Country"
-                   {...this.state.Country}
+                   {...this.props.Country}
                    className="foreign-service-country"
                    maxlength="100"
                    onUpdate={this.updateCountry}
@@ -212,7 +214,7 @@ export default class ForeignService extends ValidationElement {
 
         <Field title={i18n.t('military.foreign.heading.rank')}>
           <Text name="Rank"
-                {...this.state.Rank}
+                {...this.props.Rank}
                 className="foreign-service-rank"
                 maxlength="100"
                 onUpdate={this.updateRank}
@@ -222,7 +224,7 @@ export default class ForeignService extends ValidationElement {
 
         <Field title={i18n.t('military.foreign.heading.division')}>
           <Text name="Division"
-                {...this.state.Division}
+                {...this.props.Division}
                 className="foreign-service-division"
                 maxlength="100"
                 onUpdate={this.updateDivision}
@@ -232,7 +234,7 @@ export default class ForeignService extends ValidationElement {
 
         <Field title={i18n.t('military.foreign.heading.circumstances')}>
           <Textarea name="Circumstances"
-                    {...this.state.Circumstances}
+                    {...this.props.Circumstances}
                     className="foreign-service-circumstances"
                     maxlength="100"
                     onUpdate={this.updateCircumstances}
@@ -242,7 +244,7 @@ export default class ForeignService extends ValidationElement {
 
         <Field title={i18n.t('military.foreign.heading.left')}>
           <Textarea name="ReasonLeft"
-                    {...this.state.ReasonLeft}
+                    {...this.props.ReasonLeft}
                     className="foreign-service-left"
                     maxlength="100"
                     onUpdate={this.updateReasonLeft}
@@ -253,21 +255,20 @@ export default class ForeignService extends ValidationElement {
         <h3>{i18n.t('military.foreign.heading.maintainscontact')}</h3>
         <Branch name="has_maintainscontact"
                 className="maintainscontact"
-                value={this.state.MaintainsContact}
+                value={this.props.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}
                 onError={this.props.onError}>
         </Branch>
 
-        <Show when={this.state.MaintainsContact === 'Yes'}>
+        <Show when={this.props.MaintainsContact === 'Yes'}>
           <div>
             <h2>{i18n.t('military.foreign.heading.contact.details')}</h2>
             {i18n.m('military.foreign.para.contact')}
-            <Accordion minimum="1"
-                       className="foreign-contacts-collection"
-                       items={this.state.List}
+            <Accordion className="foreign-contacts-collection"
+                       items={this.props.List}
                        defaultState={this.props.defaultState}
-                       branch={this.state.ListBranch}
+                       branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.props.onError}
                        summary={this.summary}
@@ -286,6 +287,7 @@ export default class ForeignService extends ValidationElement {
 }
 
 ForeignService.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true
 }

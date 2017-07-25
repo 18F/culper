@@ -4,26 +4,20 @@ import Family from './Family'
 
 describe('The foreign business family component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-family',
-      onUpdate: () => { updates++ }
+      HasForeignFamily: 'No'
     }
     const component = mount(<Family {...expected} />)
-    component.find('.branch .no input').simulate('change')
-    expect(updates).toBe(1)
     expect(component.find('.accordion').length).toBe(0)
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-family',
-      onUpdate: () => { updates++ }
+      HasForeignFamily: 'Yes'
     }
     const component = mount(<Family {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -48,6 +42,7 @@ describe('The foreign business family component', () => {
     const expected = {
       name: 'foreign-business-family',
       HasForeignFamily: 'Yes',
+      List: [{}],
       onUpdate: () => { updates++ }
     }
     const component = mount(<Family {...expected} />)
@@ -57,6 +52,6 @@ describe('The foreign business family component', () => {
     component.find('.family-country input').simulate('change')
     component.find('.family-date .day input').simulate('change')
     component.find('.family-circumstances textarea').simulate('change')
-    expect(updates).toBe(5 * 2)
+    expect(updates).toBe(5)
   })
 })

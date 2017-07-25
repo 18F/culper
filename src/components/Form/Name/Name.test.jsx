@@ -127,6 +127,7 @@ describe('The Name component', () => {
     let updates = 0
     const expected = {
       name: 'name',
+      suffix: 'Other',
       onUpdate: () => { updates++ }
     }
 
@@ -140,6 +141,6 @@ describe('The Name component', () => {
     component.find('.last-initial-only input').simulate('change')
     component.find('.suffix-more input').simulate('change')
     component.find('.suffix-other input').simulate('change')
-    expect(updates).toBeGreaterThan(9)
+    expect(updates).toBe(9)
   })
 })

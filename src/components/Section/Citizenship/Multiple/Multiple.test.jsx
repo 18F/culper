@@ -18,17 +18,20 @@ describe('The multiple component', () => {
       HasMultiple: 'Yes'
     }
     const component = mount(<Multiple {...expected} />)
-    expect(component.find('.citizenship-item').length).toBe(1)
+    expect(component.find('.accordion').length).toBe(1)
   })
 
   it('can trigger updates', () => {
     let updates = 0
     const expected = {
       name: 'multiple',
+      HasMultiple: 'Yes',
+      Citizenships: [{}],
       onUpdate: () => { updates++ }
     }
     const component = mount(<Multiple {...expected} />)
+    updates = 0
     component.find('.has-multiple .yes input').simulate('change')
-    expect(updates).toBeGreaterThan(1)
+    expect(updates).toBe(1)
   })
 })

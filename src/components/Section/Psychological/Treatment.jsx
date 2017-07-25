@@ -1,36 +1,41 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Address, ValidationElement, Field, Text, Telephone } from '../../Form'
+import { Location, ValidationElement, Field, Text, Telephone } from '../../Form'
 
 export default class Treatment extends ValidationElement {
   constructor (props) {
     super(props)
+
     this.updateName = this.updateName.bind(this)
     this.updatePhone = this.updatePhone.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Name: this.props.Name,
-        Phone: this.props.Phone,
-        Address: this.props.Address,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Phone: this.props.Phone,
+      Address: this.props.Address,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update({
+      Name: values
+    })
   }
 
   updatePhone (values) {
-    this.update('Phone', values)
+    this.update({
+      Phone: values
+    })
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update({
+      Address: values
+    })
   }
 
   render () {
@@ -49,7 +54,7 @@ export default class Treatment extends ValidationElement {
                 />
         </Field>
 
-        <Field adjustFor="labels">
+        <Field adjustFor="telephone">
           <Telephone name="Phone"
                      label={i18n.t(`psychological.${prefix}.label.phone`)}
                      {...this.props.Phone}
@@ -61,12 +66,14 @@ export default class Treatment extends ValidationElement {
         <Field title={i18n.t(`psychological.${prefix}.heading.address`)}
                help={`psychological.${prefix}.help.address`}
                adjustFor="address">
-          <Address name="Address"
-                   {...this.props.Address}
-                   label={i18n.t(`psychological.${prefix}.label.address`)}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.props.Address}
+                    label={i18n.t(`psychological.${prefix}.label.address`)}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )
@@ -75,5 +82,6 @@ export default class Treatment extends ValidationElement {
 
 Treatment.defaultProps = {
   prefix: 'treatment',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

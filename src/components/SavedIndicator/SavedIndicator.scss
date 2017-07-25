@@ -1,5 +1,7 @@
 @import 'eqip-colors';
 
+$border-size: 5px;
+
 .saved-indicator {
   position: fixed;
   right: 0;
@@ -12,32 +14,98 @@
   margin: 0;
   box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.3);
   border-radius: 3px 0 0 3px;
-  width: initial;
+  height: 11rem;
+  width: 12rem;
 
+  @media only screen and (max-width: 850px) {
+    position: static;
+    width: 100%;
+    z-index: -1;
+  }
+
+  &.active,
   &:active,
   &:hover {
     background-color: #fff;
-    color: $eapp-grey-darker;
+    color: $eapp-blue;
+    box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
 
     i {
-      background-color: $eapp-blue-dark;
+      background-color: $eapp-blue;
+    }
+
+    .spinner {
+      .spinner-icon,
+      .spinner-icon:after {
+        border-top: $border-size solid rgba(32, 84, 147, 0.2);
+        border-right: $border-size solid rgba(32, 84, 147, 0.2);
+        border-bottom: $border-size solid rgba(32, 84, 147, 0.2);
+        border-left: $border-size solid $eapp-blue;
+      }
     }
   }
 
   i {
+    position: relative;
+    top: -7rem;
+
     display: block;
     color: #fff;
-    background-color: $eapp-blue;
+    background-color: $eapp-blue;  // translates to rgb(0, 113, 188)
     padding: 1.75rem;
     border-radius: 50%;
     font-size: 2.5rem;
+    width: 6rem;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+
+    &.invert {
+      background-color: transparent;
+      color: $eapp-blue;
+    }
   }
 
   strong {
     display: block;
+
+    &.one-line {
+      padding: 0.7rem 0;
+    }
   }
 
   span.time {
     display: block;
   }
+
+  .spinner {
+    position: relative;
+    top: -1rem;
+    width: initial;
+    height: initial;
+
+    .spinner-icon,
+    .spinner-icon:after {
+      width: 6rem;
+      height: 6rem;
+      border-top: $border-size solid rgba(0, 113, 188, 0.2);
+      border-right: $border-size solid rgba(0, 113, 188, 0.2);
+      border-bottom: $border-size solid rgba(0, 113, 188, 0.2);
+      border-left: $border-size solid $eapp-blue;
+    }
+  }
+
+  .spinner-label {
+    position: relative;
+    top: -7.5rem;
+
+    .one-line {
+      color: $eapp-blue;
+    }
+  }
+}
+
+.modal-open .saved-indicator {
+  display: none;
+  visibility: hidden;
 }

@@ -4,14 +4,16 @@ import { AddressSummary } from './AddressSummary'
 
 describe('The address summary', () => {
   it('display unknown if no props', () => {
+    const expected = 'Unknown'
     const summary = AddressSummary(null, 'Unknown')
-    expect(summary).toBe('Unknown')
+    expect(summary).toEqual(expected)
   })
 
   it('display unknown if no address line 1', () => {
+    const expected = 'Unknown'
     const item = {}
     const summary = AddressSummary(item, 'Unknown')
-    expect(summary).toBe('Unknown')
+    expect(summary).toEqual(expected)
   })
 
   it('display United States address', () => {

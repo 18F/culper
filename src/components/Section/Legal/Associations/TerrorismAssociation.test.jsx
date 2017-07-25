@@ -12,7 +12,7 @@ describe('The legal associations terrorism component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<TerrorismAssociation onUpdate={onUpdate} />)
-    component.find('.legal-associations-terrorism-has-terrorism .yes input').simulate('click')
+    component.find('.legal-associations-terrorism-has-terrorism .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 

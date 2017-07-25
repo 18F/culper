@@ -3,33 +3,39 @@ import { i18n } from '../../../../config'
 import { ContactInformationValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Email, Accordion, Telephone } from '../../../Form'
+import { Summary, TelephoneSummary } from '../../../Summary'
 
 export default class ContactInformation extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      Emails: props.Emails || [],
-      PhoneNumbers: props.PhoneNumbers || []
-    }
+    this.update = this.update.bind(this)
+    this.updateEmails = this.updateEmails.bind(this)
+    this.updatePhoneNumbers = this.updatePhoneNumbers.bind(this)
   }
 
-  emailDispatch (collection) {
-    this.handleUpdate('Emails', collection)
+  update (queue) {
+    const delay = this.props.Emails.length && this.props.PhoneNumbers.length ? 0 : 100
+
+    // Little bit of delay here because on first load both accordions send
+    // updates which clobber one another.
+    window.setTimeout(() => {
+      this.props.onUpdate({
+        Emails: this.props.Emails,
+        PhoneNumbers: this.props.PhoneNumbers,
+        ...queue
+      })
+    }, delay)
   }
 
-  contactDispatch (field, values) {
-    this.handleUpdate(field, values)
+  updateEmails (values) {
+    this.update({
+      Emails: values.items
+    })
   }
 
-  handleUpdate (field, values) {
-    this.setState({ [field]: values.items }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Emails: this.state.Emails,
-          PhoneNumbers: this.state.PhoneNumbers
-        })
-      }
+  updatePhoneNumbers (values) {
+    this.update({
+      PhoneNumbers: values.items
     })
   }
 
@@ -37,55 +43,28 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    let addr = i18n.t('identification.contacts.collection.summary.unknownEmail')
-    if (item.Email && item.Email.value) {
-      addr = item.Email.value
-    }
-
-    return (
-      <span>
-        <span className="index">{i18n.t('identification.contacts.collection.summary.email')} {index + 1}:</span>
-        <span><strong>{addr}</strong></span>
-      </span>
-    )
+    const addr = item.Email && item.Email.value ? item.Email.value : ''
+    return Summary({
+      type: i18n.t('identification.contacts.collection.summary.email'),
+      index: index,
+      left: addr,
+      right: null,
+      placeholder: i18n.m('identification.contacts.collection.summary.unknownEmail')
+    })
   }
 
   /**
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    let number = i18n.t('identification.contacts.collection.summary.unknownPhone')
-    if (item.Telephone && !item.noNumber && item.Telephone.number) {
-      number = item.Telephone.number
-
-      switch (item.Telephone.type) {
-        case 'DSN':
-          number = `${number.slice(0, 3)}-${number.slice(3, 7)}`
-          break
-
-        case 'International':
-          number = `+${number.slice(0, 3)} ${number.slice(3, 13)}`
-          if (item.Telephone.extension) {
-            number += ` x${item.Telephone.extension}`
-          }
-          break
-
-        case 'Domestic':
-        default:
-          number = `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`
-          if (item.Telephone.extension) {
-            number += ` x${item.Telephone.extension}`
-          }
-          break
-      }
-    }
-
-    return (
-      <span>
-        <span className="index">{i18n.t('identification.contacts.collection.summary.phoneNumber')} {index + 1}:</span>
-        <span><strong>{number}</strong></span>
-      </span>
-    )
+    const number = TelephoneSummary(item)
+    return Summary({
+      type: i18n.t('identification.contacts.collection.summary.phoneNumber'),
+      index: index,
+      left: number,
+      right: null,
+      placeholder: i18n.m('identification.contacts.collection.summary.unknownPhone')
+    })
   }
 
   render () {
@@ -96,10 +75,10 @@ export default class ContactInformation extends SubsectionElement {
         <h3>{i18n.t('identification.contacts.heading.email')}</h3>
         <p>{i18n.t('identification.contacts.para.email')}</p>
         <div className={klass + ' email-collection'}>
-          <Accordion minimum="2"
-                     items={this.state.Emails}
+          <Accordion minimum={2}
+                     items={this.props.Emails}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.contactDispatch.bind(this, 'Emails')}
+                     onUpdate={this.updateEmails}
                      onError={this.handleError}
                      summary={this.emailSummary}
                      description={i18n.t('identification.contacts.collection.summary.title')}
@@ -118,15 +97,16 @@ export default class ContactInformation extends SubsectionElement {
         <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
         <p>{i18n.t('identification.contacts.para.phoneNumber')}</p>
         <div className={klass + ' telephone-collection'}>
-          <Accordion minimum="2"
-                     items={this.state.PhoneNumbers}
+          <Accordion minimum={2}
+                     items={this.props.PhoneNumbers}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.contactDispatch.bind(this, 'PhoneNumbers')}
+                     onUpdate={this.updatePhoneNumbers}
                      onError={this.handleError}
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
-            <Field help="identification.contacts.help.phoneNumber">
+            <Field help="identification.contacts.help.phoneNumber"
+                   adjustFor="telephone">
               <Telephone name="Telephone"
                          placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                          bind={true}
@@ -142,12 +122,13 @@ export default class ContactInformation extends SubsectionElement {
 ContactInformation.defaultProps = {
   Emails: [],
   PhoneNumbers: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'contacts',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ContactInformationValidator(state, props).isValid()
+    return new ContactInformationValidator(props, props).isValid()
   },
   defaultState: true
 }

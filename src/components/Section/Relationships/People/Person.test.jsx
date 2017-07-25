@@ -2,7 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Person from './Person'
 
-describe('The relative alias component', () => {
+describe('The person component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'person'
@@ -16,6 +16,7 @@ describe('The relative alias component', () => {
     let updates = 0
     const expected = {
       name: 'person',
+      Relationship: ['Other'],
       onUpdate: () => {
         updates++
       }
@@ -34,7 +35,6 @@ describe('The relative alias component', () => {
     component.find('.address input[name="city"]').simulate('change')
     component.find('.relationships input[name="relationship-other"]').simulate('change')
     component.find('.relationship-other input').simulate('change')
-    component.find('.relationships input[name="relationship-other"]').simulate('change')
-    expect(updates).toBe(12)
+    expect(updates).toBe(11)
   })
 })

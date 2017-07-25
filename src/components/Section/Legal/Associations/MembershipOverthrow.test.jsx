@@ -12,7 +12,7 @@ describe('The legal associations overthrow component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<MembershipOverthrow onUpdate={onUpdate} />)
-    component.find('.legal-associations-overthrow-has-overthrow .yes input').simulate('click')
+    component.find('.legal-associations-overthrow-has-overthrow .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 
@@ -41,7 +41,7 @@ describe('The legal associations overthrow component', () => {
       ListBranch: ''
     }
     const component = mount(<MembershipOverthrow {...props} />)
-    const text = component.find('.accordion .summary .left .content').text()
+    const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('Donut Brigade')
     expect(text).toContain('1/2010 - 1/2011')
   })

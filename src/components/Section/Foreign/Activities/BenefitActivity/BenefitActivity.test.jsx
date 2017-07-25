@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import BenefitActivity, { benefitSummary } from './BenefitActivity'
+import BenefitActivity from './BenefitActivity'
 
 describe('The BenefitActivity component', () => {
   it('Renders without errors', () => {
@@ -127,7 +127,7 @@ describe('The BenefitActivity component', () => {
 
     tests.forEach(test => {
       const component = mount(<BenefitActivity {...test} />)
-      expect(component.find('.benefit-summary').text()).toContain(test.expected)
+      expect(component.find('.context').text()).toContain(test.expected)
     })
   })
 })

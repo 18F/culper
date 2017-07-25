@@ -1,6 +1,7 @@
+import React from 'react'
 import { i18n } from '../../config'
 
-export const DateSummary = (props, unknown = i18n.t('history.employment.default.noDate.label')) => {
+export const DateSummary = (props, unknown = i18n.t('history.employment.default.noDate.label'), full = false) => {
   if (!props) {
     return ''
   }
@@ -8,6 +9,10 @@ export const DateSummary = (props, unknown = i18n.t('history.employment.default.
   const noDateLabel = unknown
   function format (d) {
     if (Object.prototype.toString.call(d) === '[object Date]') {
+      if (full) {
+        return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
+      }
+
       return `${d.getMonth() + 1}/${d.getFullYear()}`
     }
 
@@ -20,12 +25,15 @@ export const DateSummary = (props, unknown = i18n.t('history.employment.default.
     const to = props.to && props.to.date ? format(props.to.date) : noDateLabel
     return from === noDateLabel && to === noDateLabel
       ? ''
-      : `${from} - ${to}`
+      : <span>{`${from} - ${to}`}</span>
   }
 
   // Handle single date
   if (props.date) {
-    return format(props.date)
+    const singleDate = format(props.date)
+    if (singleDate !== '') {
+      return <span>{singleDate}</span>
+    }
   }
 
   return ''

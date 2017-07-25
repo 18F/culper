@@ -1,23 +1,23 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Employment from './Employment'
+import JobOffer from './JobOffer'
 
 describe('The foreign business job offer component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'Yes',
+      Address: { country: 'United States' },
+      Accepted: 'Yes',
       onUpdate: () => { updates++ }
     }
-    const component = mount(<Employment {...expected} />)
-    expect(component.find('.accordion').length).toBe(1)
+    const component = mount(<JobOffer {...expected} />)
     component.find('.employment-name .first input').simulate('change')
     component.find('.employment-description textarea').simulate('change')
     component.find('.employment-date .day input').simulate('change')
     component.find('.employment-address .yes input').simulate('change')
     component.find('.employment-accepted .yes input').simulate('change')
     component.find('.employment-explanation textarea').simulate('change')
-    expect(updates).toBe(14)
+    expect(updates).toBe(5)
   })
 })

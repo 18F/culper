@@ -12,30 +12,23 @@ export default class ClearanceLevel extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Level: this.props.Level,
-        Explanation: this.props.Explanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Level: this.props.Level,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateLevel (values) {
-    this.update([
-      { name: 'Level', value: values.value }
-    ])
+    this.update({
+      Level: values.value
+    })
   }
 
   updateExplanation (values) {
-    this.update([
-      { name: 'Explanation', value: values }
-    ])
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
@@ -120,6 +113,7 @@ ClearanceLevel.defaultProps = {
   className: 'investigative-clearance-levels',
   Level: '',
   Explanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

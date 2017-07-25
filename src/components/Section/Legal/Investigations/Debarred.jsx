@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsDebarredValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateControl, Text, Textarea } from '../../../Form'
 
 export default class Debarred extends SubsectionElement {
@@ -15,50 +15,41 @@ export default class Debarred extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasDebarment: this.props.HasDebarment
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasDebarment: this.props.HasDebarment,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasDebarment', value: values }
-    ])
+    this.update({
+      HasDebarment: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.investigations.debarred.collection.item')
-    const unknown = i18n.t('legal.investigations.debarred.collection.unknown')
     const o = item || {}
-    const agency = (o.Agency || {}).value
-          ? o.Agency.value
-          : unknown
     const dates = DateSummary(o.Date)
+    const agency = (o.Agency || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.investigations.debarred.collection.item'),
+      index: index,
+      left: agency,
+      right: dates,
+      placeholder: i18n.m('legal.investigations.debarred.collection.unknown')
+    })
   }
 
   render () {
@@ -69,13 +60,13 @@ export default class Debarred extends SubsectionElement {
                 labelSize="h3"
                 className="legal-investigations-debarred-has-debarment"
                 value={this.props.HasDebarment}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
 
         <Show when={this.props.HasDebarment === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -123,6 +114,7 @@ Debarred.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/debarred',
