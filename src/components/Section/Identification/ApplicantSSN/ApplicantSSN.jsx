@@ -52,6 +52,7 @@ export default class ApplicantSSN extends SubsectionElement {
         <Field help="identification.ssn.help">
           <SSN name="ssn"
                {...this.props.ssn}
+               className="applicant-ssn-initial"
                onUpdate={this.updateSSN}
                onError={this.handleError}
                />
@@ -62,6 +63,7 @@ export default class ApplicantSSN extends SubsectionElement {
                  titleSize="h4">
             <SSN name="verification"
                  {...this.state.verification}
+                 className="applicant-ssn-verification"
                  onUpdate={this.updateVerification}
                  onError={this.handleError}
                  />
