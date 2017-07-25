@@ -13,10 +13,11 @@ describe('The Address component', () => {
     const onUpdate = () => { updates++ }
     const component = mount(<Location onUpdate={onUpdate} layout={Location.US_ADDRESS} />)
     component.find('.street input').simulate('change')
+    component.find('.street2 input').simulate('change')
     component.find('.city input').simulate('change')
     component.find('.state input').simulate('change', { target: { value: 'Virginia' } })
     component.find('.zipcode input').simulate('change')
-    expect(updates).toBe(4)
+    expect(updates).toBe(5)
   })
 
   it('Renders Country Address', () => {
