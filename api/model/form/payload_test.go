@@ -22,6 +22,7 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/datecontrol.json"},
 		{Data: "testdata/daterange.json"},
 		{Data: "testdata/email.json"},
+		{Data: "testdata/location.json"},
 		{Data: "testdata/name.json"},
 		{Data: "testdata/notapplicable.json"},
 		{Data: "testdata/number.json"},
