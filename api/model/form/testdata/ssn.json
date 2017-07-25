@@ -1,0 +1,9 @@
+{
+  "type": "ssn",
+  "props": {
+    "first": "123",
+    "middle": "12",
+    "last": "1234",
+    "notApplicable": false
+  }
+}

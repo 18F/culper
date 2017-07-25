@@ -10,7 +10,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/handlers"
 	middleware "github.com/18F/e-QIP-prototype/api/middleware"
-	"github.com/18F/e-QIP-prototype/api/model/form"
 )
 
 var (
@@ -41,24 +40,24 @@ func main() {
 
 	// Validation
 	v := r.PathPrefix("/validate").Subrouter()
-	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
-	v.HandleFunc("/email", handlers.ValidateEmail)
+	// v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
+	// v.HandleFunc("/email", handlers.ValidateEmail)
 
-	// Passport validation
-	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
-	v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
+	// // Passport validation
+	// v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
+	// v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
 
-	// Phonenumber validation
-	v.HandleFunc("/telephone/domestic/{number}", handlers.ValidatePhoneNumber(form.DomesticPhoneNumberKey))
-	v.HandleFunc("/telephone/dsn/{number}", handlers.ValidatePhoneNumber(form.DSNPhoneNumberKey))
-	v.HandleFunc("/telephone/international/{number}", handlers.ValidatePhoneNumber(form.InternationalPhoneNumberKey))
+	// // Phonenumber validation
+	// v.HandleFunc("/telephone/domestic/{number}", handlers.ValidatePhoneNumber(form.DomesticPhoneNumberKey))
+	// v.HandleFunc("/telephone/dsn/{number}", handlers.ValidatePhoneNumber(form.DSNPhoneNumberKey))
+	// v.HandleFunc("/telephone/international/{number}", handlers.ValidatePhoneNumber(form.InternationalPhoneNumberKey))
 
-	v.HandleFunc("/height", handlers.ValidateHeight)
-	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
-	v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
-	v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
-	v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
-	v.HandleFunc("/daterange", handlers.ValidateDateRange)
+	// v.HandleFunc("/height", handlers.ValidateHeight)
+	// v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
+	// v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
+	// v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
+	// v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
+	// v.HandleFunc("/daterange", handlers.ValidateDateRange)
 
 	// Address Validation
 	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)
@@ -66,10 +65,16 @@ func main() {
 	v.HandleFunc("/address/state/{state}", handlers.ValidateState)
 	v.HandleFunc("/address", handlers.ValidateAddress)
 
-	// Applicant Validation
-	v.HandleFunc("/applicant/name", handlers.ValidateApplicantName)
-	v.HandleFunc("/applicant/birthplace", handlers.ValidateApplicantBirthplace)
-	v.HandleFunc("/applicant/birthdate", handlers.ValidateApplicantBirthdate)
+	// // Applicant Validation
+	// v.HandleFunc("/applicant/name", handlers.ValidateApplicantName)
+	// v.HandleFunc("/applicant/birthplace", handlers.ValidateApplicantBirthplace)
+	// v.HandleFunc("/applicant/birthdate", handlers.ValidateApplicantBirthdate)
+
+	a := r.PathPrefix("/{account}").Subrouter()
+	a.HandleFunc("/save", handlers.Save).Methods("POST")
+	a.HandleFunc("/attachment", handlers.SaveAttachment).Methods("POST")
+	a.HandleFunc("/attachment/{id}", handlers.GetAttachment)
+	a.HandleFunc("/attachment/{id}/delete", handlers.DeleteAttachment).Methods("POST")
 
 	log.Println("Starting API mock server")
 	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))

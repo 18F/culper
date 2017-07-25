@@ -6,11 +6,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api/geo"
 )
 
-// Validator is an interface to be used by components that require validation.
-type Validator interface {
-	Valid() (bool, error)
-}
-
 // ValidationResult is an interface to be used by errors that return a properly formatted struct
 // to be used to send for client-side validation requests
 type ValidationResult interface {
