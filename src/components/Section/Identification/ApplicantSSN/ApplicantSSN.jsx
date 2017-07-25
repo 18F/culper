@@ -9,11 +9,14 @@ export default class ApplicantSSN extends SubsectionElement {
     super(props)
 
     this.state = {
-      verification: {}
+      uid: `${this.props.name}-${super.guid()}`,
+      verification: {},
+      error: false
     }
 
     this.updateSSN = this.updateSSN.bind(this)
     this.updateVerification = this.updateVerification.bind(this)
+    this.verificationError = this.verificationError.bind(this)
   }
 
   update (queue) {
@@ -27,24 +30,56 @@ export default class ApplicantSSN extends SubsectionElement {
   updateSSN (values) {
     this.update({
       ssn: values,
-      verified: false
+      verified: false,
+      error: false
     })
   }
+
   updateVerification (values) {
     const verified = this.props.ssn.first === values.first &&
           this.props.ssn.middle === values.middle &&
           this.props.ssn.last === values.last &&
           validSSN(values)
 
-    this.setState({ verification: values }, () => {
-      this.update({
-        verified: verified
-      })
+    this.setState({
+      verification: verified ? {} : values,
+      error: verified ? false : this.state.error
+    }, () => {
+      // Update the properties so they can be reflected
+      // within this component.
+      this.update({ verified: verified })
+
+      // If everything checks out there are no errors and
+      // we are going to forcefully flush them.
+      if (verified) {
+        this.handleError(values, [])
+      }
     })
+  }
+
+  verificationError (value, arr) {
+    // If the verification SSN is valid then we run our validation
+    // function(s). However, if it is not then we set the `valid` property
+    // to a neutral state. This allows the error notifications to be properly
+    // toggled within the various subscribing components.
+    const verification = this.state.verification
+    const local = this.props.onError(value, this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: validSSN(verification) ? err.func(verification, this.props) : null,
+        uid: this.state.uid
+      }
+    })) || []
+
+    // Set the error state value so we can apply a CSS class to
+    // the entire SSN.
+    this.setState({ error: local.some(x => x.valid === false) })
+    return this.handleError(value, arr.concat(local))
   }
 
   render () {
     const klass = `applicant-ssn ${this.props.className || ''}`.trim()
+    const klassVerify = `applicant-ssn-verification ${this.state.error ? 'usa-input-error' : ''}`.trim()
     const verify = validSSN(this.props.ssn) && !this.props.verified && !this.props.ssn.notApplicable
 
     return (
@@ -63,9 +98,10 @@ export default class ApplicantSSN extends SubsectionElement {
                  titleSize="h4">
             <SSN name="verification"
                  {...this.state.verification}
-                 className="applicant-ssn-verification"
+                 hideNotApplicable={true}
+                 className={klassVerify}
                  onUpdate={this.updateVerification}
-                 onError={this.handleError}
+                 onError={this.verificationError}
                  />
           </Field>
         </Show>
@@ -75,6 +111,7 @@ export default class ApplicantSSN extends SubsectionElement {
 }
 
 ApplicantSSN.defaultProps = {
+  name: 'applicant-ssn',
   ssn: {},
   verified: false,
   onUpdate: (queue) => {},
@@ -87,4 +124,17 @@ ApplicantSSN.defaultProps = {
   }
 }
 
-ApplicantSSN.errors = []
+ApplicantSSN.errors = [
+  {
+    code: 'ssn.mismatch',
+    func: (value, props) => {
+      if (!value) {
+        return null
+      }
+      return validSSN(value) &&
+        props.ssn.first === value.first &&
+        props.ssn.middle === value.middle &&
+        props.ssn.last === value.last
+    }
+  }
+]

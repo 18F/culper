@@ -193,26 +193,10 @@ const en = {
           note: ''
         }
       },
-      verifyFirst: {
-        pattern: {
-          title: 'This field must have 3 digits',
-          message: 'The first part of the social security number must be 3 digits between 0 and 9',
-          note: ''
-        }
-      },
-      verifyMiddle: {
-        pattern: {
-          title: 'This field must have 2 digits',
-          message: 'The middle part of the social security number must be 2 digits between 0 and 9',
-          note: ''
-        }
-      },
-      verifyLast: {
-        pattern: {
-          title: 'This field must have 4 digits',
-          message: 'The last part of the social security number must be 4 digits between 0 and 9',
-          note: ''
-        }
+      mismatch: {
+        title: 'Verification mismatch',
+        message: 'The two U.S. Social Security Numbers need to match to pass verification.',
+        note: ''
       }
     },
     date: {
