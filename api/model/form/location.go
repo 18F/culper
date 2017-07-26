@@ -3,6 +3,8 @@ package form
 import (
 	"encoding/json"
 	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/geo"
 )
 
 // Different potential layouts used by the frontend.
@@ -50,6 +52,7 @@ func (entity *Location) Valid() (bool, error) {
 	var stack ErrorStack
 	domestic := entity.Country == "United States"
 	postoffice := entity.Country == "POSTOFFICE"
+	international := !domestic && !postoffice
 
 	switch entity.Layout {
 	case LayoutBirthPlace:
@@ -102,6 +105,25 @@ func (entity *Location) Valid() (bool, error) {
 			stack = validateFields(entity, "street", "city", "state", "zipcode")
 		}
 		stack = validateFields(entity, "street", "city", "country")
+	}
+
+	if !stack.HasErrors() && !international {
+		// Perform geocoding
+		results, err := geo.Geocode.Validate(
+			geo.Values{
+				Street:  string(entity.Street1),
+				Street2: string(entity.Street2),
+				City:    string(entity.City),
+				State:   string(entity.State),
+				Zipcode: string(entity.Zipcode),
+			})
+
+		if err != nil {
+			stack.Append("Location", ErrInvalidLocation{
+				Message:     err.Error(),
+				Suggestions: results,
+			})
+		}
 	}
 
 	return !stack.HasErrors(), stack

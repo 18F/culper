@@ -24,7 +24,9 @@ export default class LocationValidator {
     switch (this.layout) {
       case Layouts.ADDRESS:
       case Layouts.US_ADDRESS:
-        return !this.isInternational() && this.validZipcode() && this.validFields(['street', 'city', 'state'])
+        return !this.isInternational() &&
+        this.validZipcode() &&
+        this.validFields(['street', 'city', 'state'])
       default:
         return false
     }

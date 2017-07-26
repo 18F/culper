@@ -1,9 +1,23 @@
 package form
 
 import (
+	"fmt"
 	"io/ioutil"
+	"net/http"
+	"net/http/httptest"
 	"testing"
+
+	"github.com/18F/e-QIP-prototype/api/geo"
 )
+
+// readTestData pulls in test data as a string
+func readTestData(filepath string) (string, error) {
+	b, err := ioutil.ReadFile(filepath)
+	if err != nil {
+		return "", err
+	}
+	return string(b), nil
+}
 
 // readBinaryData pulls test data and returns it as a byte array.
 func readBinaryData(filepath string) ([]byte, error) {
@@ -33,6 +47,17 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/textarea.json"},
 	}
 
+	// HTTP test server to field any third party requests
+	xml, _ := readTestData("../../geo/testdata/valid_address.xml")
+	server := httptest.NewServer(http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Content-Type", "application/xml")
+		fmt.Fprintln(w, xml)
+	}))
+	defer server.Close()
+
+	// Setup the geocoder to use our mock endpoint
+	geo.Geocode = geo.NewTestUSPSGeocoder("test", server.URL)
+
 	for _, test := range tests {
 		// Get the test data as a byte array
 		raw, err := readBinaryData(test.Data)
@@ -52,7 +77,7 @@ func TestPayload(t *testing.T) {
 			t.Fatal(err)
 		}
 		if ok, err := entity.Valid(); !ok {
-			t.Fatalf("Error with [%s]: %v", test.Data, err)
+			t.Fatalf("Error with [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
 	}
 }

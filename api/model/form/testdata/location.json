@@ -2,11 +2,11 @@
   "type": "location",
   "props": {
     "layout": "Address",
-    "street": "13709 Walsingham Rd",
+    "street": "123 Some Rd",
     "street2": "",
-    "city": "Largo",
-    "state": "FL",
-    "zipcode": "33774",
+    "city": "Arlington",
+    "state": "VA",
+    "zipcode": "22202",
     "county": "",
     "country": "United States",
     "validated": false

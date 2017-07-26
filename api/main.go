@@ -24,15 +24,18 @@ func main() {
 		}
 	}
 
+	// Declare a new router with any middleware injected
 	r := middleware.NewRouter().Inject(handlers.LoggerHandler)
 	r.HandleFunc("/", handlers.RootHandler)
 
+	// Two-factor authentication
 	s := r.PathPrefix("/2fa").Subrouter()
 	s.HandleFunc("/{account}", handlers.TwofactorHandler)
 	s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
 	s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
 	s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
 
+	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
 	o.HandleFunc("/{service}", handlers.AuthServiceHandler)
@@ -40,36 +43,9 @@ func main() {
 
 	// Validation
 	v := r.PathPrefix("/validate").Subrouter()
-	// v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
-	// v.HandleFunc("/email", handlers.ValidateEmail)
-
-	// // Passport validation
-	// v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
-	// v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
-
-	// // Phonenumber validation
-	// v.HandleFunc("/telephone/domestic/{number}", handlers.ValidatePhoneNumber(form.DomesticPhoneNumberKey))
-	// v.HandleFunc("/telephone/dsn/{number}", handlers.ValidatePhoneNumber(form.DSNPhoneNumberKey))
-	// v.HandleFunc("/telephone/international/{number}", handlers.ValidatePhoneNumber(form.InternationalPhoneNumberKey))
-
-	// v.HandleFunc("/height", handlers.ValidateHeight)
-	// v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
-	// v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
-	// v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
-	// v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
-	// v.HandleFunc("/daterange", handlers.ValidateDateRange)
-
-	// Address Validation
-	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)
-	v.HandleFunc("/address/zipcode/{zipcode}", handlers.ValidateZipcode)
-	v.HandleFunc("/address/state/{state}", handlers.ValidateState)
 	v.HandleFunc("/address", handlers.ValidateAddress)
 
-	// // Applicant Validation
-	// v.HandleFunc("/applicant/name", handlers.ValidateApplicantName)
-	// v.HandleFunc("/applicant/birthplace", handlers.ValidateApplicantBirthplace)
-	// v.HandleFunc("/applicant/birthdate", handlers.ValidateApplicantBirthdate)
-
+	// Account specific actions
 	a := r.PathPrefix("/{account}").Subrouter()
 	a.HandleFunc("/save", handlers.Save).Methods("POST")
 	a.HandleFunc("/attachment", handlers.SaveAttachment).Methods("POST")
