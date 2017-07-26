@@ -464,8 +464,8 @@ const en = {
     },
     country: {
       notfound: {
-        title: 'There is a problem with the Country',
-        message: 'Country name should be one of the available options.',
+        title: 'This Country is not on our current list',
+        message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
         note: ''
       }
     },
