@@ -158,6 +158,7 @@ class Identification extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
+                                 required={true}
                                  />
           </SectionView>
 
@@ -200,6 +201,7 @@ class Identification extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
+                      required={true}
                       />
           </SectionView>
         </SectionViews>

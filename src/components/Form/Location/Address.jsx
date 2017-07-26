@@ -144,6 +144,7 @@ export default class Address extends ValidationElement {
                         onError={this.props.onError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        required={this.props.required}
                         />
                 <Street name="street2"
                         className="street2"
@@ -163,6 +164,7 @@ export default class Address extends ValidationElement {
                       onError={this.props.onError}
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
+                      required={this.props.required}
                       />
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
@@ -174,6 +176,7 @@ export default class Address extends ValidationElement {
                                  onError={this.props.onError}
                                  onFocus={this.props.onFocus}
                                  onBlur={this.props.onBlur}
+                                 required={this.props.required}
                                  />
                   <ZipCode name="zipcode"
                            ref="us_zipcode"
@@ -185,6 +188,7 @@ export default class Address extends ValidationElement {
                            onError={this.props.onError}
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
+                           required={this.props.required}
                            />
                 </div>
               </div>
@@ -200,6 +204,7 @@ export default class Address extends ValidationElement {
                         onError={this.props.onError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        required={this.props.required}
                         />
                 <Street name="street2"
                         className="street2"
@@ -219,6 +224,7 @@ export default class Address extends ValidationElement {
                       onError={this.props.onError}
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
+                      required={this.props.required}
                       />
                 <Country name="country"
                          label={this.props.countryLabel}
@@ -228,6 +234,7 @@ export default class Address extends ValidationElement {
                          onError={this.props.onError}
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}
+                         required={this.props.required}
                          />
               </div>
             </Show>
@@ -242,6 +249,7 @@ export default class Address extends ValidationElement {
                         onError={this.props.onError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        required={this.props.required}
                         />
                 <label>{i18n.t('address.apoFpo.select.label')}</label>
                 <RadioGroup className="apofpo" selectedValue={this.props.city}>
@@ -294,6 +302,7 @@ export default class Address extends ValidationElement {
                              onError={this.props.onError}
                              onFocus={this.props.onFocus}
                              onBlur={this.props.onBlur}
+                             required={this.props.required}
                              />
                 </div>
               </div>

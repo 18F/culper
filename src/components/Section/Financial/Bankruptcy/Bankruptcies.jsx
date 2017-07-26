@@ -65,6 +65,7 @@ export default class Bankruptcies extends SubsectionElement {
                 help="financial.bankruptcy.help"
                 warning={true}
                 onUpdate={this.updateHasBankrupty}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasBankruptcy === 'Yes'}>
