@@ -250,6 +250,7 @@ export default class Location extends ValidationElement {
                   onError={this.props.onError}
                   onFocus={this.props.onFocus}
                   onBlur={this.handleBlur}
+                  required={this.props.required}
                   />
           )
         case 'street2':
@@ -263,6 +264,7 @@ export default class Location extends ValidationElement {
                     onError={this.props.onError}
                     onFocus={this.props.onFocus}
                     onBlur={this.props.onBlur}
+                    required={this.props.required}
                     />
           )
         case 'city':
@@ -277,6 +279,7 @@ export default class Location extends ValidationElement {
                 onError={this.props.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.handleBlur}
+                required={this.props.required}
                 />
           )
         case 'state':
@@ -292,6 +295,7 @@ export default class Location extends ValidationElement {
                          onError={this.props.onError}
                          onFocus={this.props.onFocus}
                          onBlur={this.handleBlur}
+                         required={this.props.required}
                          />
           )
         case 'stateZipcode':
@@ -308,6 +312,7 @@ export default class Location extends ValidationElement {
                            onError={this.props.onError}
                            onFocus={this.props.onFocus}
                            onBlur={this.handleBlur}
+                           required={this.props.required}
                            />
             <ZipCode name="zipcode"
                      key={`zip-${field}`}
@@ -319,6 +324,7 @@ export default class Location extends ValidationElement {
                      onError={this.props.onError}
                      onFocus={this.props.onFocus}
                      onBlur={this.handleBlur}
+                     required={this.props.required}
                      />
           </div>
           )
@@ -335,6 +341,7 @@ export default class Location extends ValidationElement {
                    onError={this.props.onError}
                    onFocus={this.props.onFocus}
                    onBlur={this.handleBlur}
+                   required={this.props.required}
                    />
           )
       }
@@ -355,6 +362,7 @@ export default class Location extends ValidationElement {
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}
           onError={this.props.onError}
+          required={this.props.required}
           />
         )
       case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
@@ -367,6 +375,7 @@ export default class Location extends ValidationElement {
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}
           onError={this.props.onError}
+          required={this.props.required}
           />
         )
       case Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
@@ -378,6 +387,7 @@ export default class Location extends ValidationElement {
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}
           onError={this.props.onError}
+          required={this.props.required}
           />
         )
       case Location.ADDRESS:
@@ -387,6 +397,7 @@ export default class Location extends ValidationElement {
           onBlur={this.handleBlur}
           onUpdate={this.updateAddress}
           onError={this.props.onError}
+          required={this.props.required}
           />
         )
       case Location.CITY_STATE:
@@ -586,7 +597,8 @@ Location.defaultProps = {
   countyLabel: i18n.t('address.us.county.label'),
   countyPlaceholder: i18n.t('address.us.county.placeholder'),
   countryLabel: i18n.t('address.international.country.label'),
-  countryPlaceholder: i18n.t('address.international.country.placeholder')
+  countryPlaceholder: i18n.t('address.international.country.placeholder'),
+  required: false
 }
 
 Location.errors = []

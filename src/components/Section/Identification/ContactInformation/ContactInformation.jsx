@@ -89,6 +89,7 @@ export default class ContactInformation extends SubsectionElement {
                      label={i18n.t('identification.contacts.label.email')}
                      placeholder={i18n.t('identification.contacts.placeholder.email')}
                      bind={true}
+                     required={this.props.required}
                      />
             </Field>
           </Accordion>
@@ -110,6 +111,7 @@ export default class ContactInformation extends SubsectionElement {
               <Telephone name="Telephone"
                          placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>

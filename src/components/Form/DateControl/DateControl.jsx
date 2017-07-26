@@ -356,6 +356,7 @@ export default class DateControl extends ValidationElement {
                     onChange={this.handleChange}
                     onError={this.handleErrorYear}
                     tabBack={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
+                    required={this.props.required}
                     />
           </div>
         </div>

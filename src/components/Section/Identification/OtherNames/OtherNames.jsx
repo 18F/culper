@@ -61,6 +61,7 @@ export default class OtherNames extends SubsectionElement {
                 help="identification.othernames.branch.help"
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasOtherNames === 'Yes'}>
@@ -76,6 +77,7 @@ export default class OtherNames extends SubsectionElement {
             <Name name="Name"
                   key="name"
                   bind={true}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('identification.othernames.heading.maiden')}
@@ -84,6 +86,7 @@ export default class OtherNames extends SubsectionElement {
                    shrink={true}>
               <MaidenName name="MaidenName"
                           bind={true}
+                          required={this.props.required}
                           />
             </Field>
 
@@ -93,6 +96,7 @@ export default class OtherNames extends SubsectionElement {
                    shrink={true}>
               <DateRange name="DatesUsed"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -101,6 +105,7 @@ export default class OtherNames extends SubsectionElement {
               <Textarea name="Reason"
                         className="reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -121,5 +126,6 @@ OtherNames.defaultProps = {
   validator: (state, props) => {
     return new OtherNamesValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  required: false
 }

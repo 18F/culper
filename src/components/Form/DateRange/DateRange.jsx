@@ -198,6 +198,7 @@ export default class DateRange extends ValidationElement {
                        maxDate={this.props.maxDate}
                        prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}from`}
                        onError={this.handleErrorFrom}
+                       required={this.props.required}
                        />
         </div>
         <div className="arrow">
@@ -219,6 +220,7 @@ export default class DateRange extends ValidationElement {
                        maxDate={this.props.maxDate}
                        prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}to`}
                        onError={this.handleErrorTo}
+                       required={this.props.required}
                        />
           <div className="from-present">
             <span className="or"> or </span>

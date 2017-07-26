@@ -90,6 +90,7 @@ export default class ApplicantSSN extends SubsectionElement {
                className="applicant-ssn-initial"
                onUpdate={this.updateSSN}
                onError={this.handleError}
+               required={this.props.required}
                />
         </Field>
 
@@ -119,6 +120,7 @@ ApplicantSSN.defaultProps = {
   section: 'identification',
   subsection: 'ssn',
   dispatch: () => {},
+  required: false,
   validator: (state, props) => {
     return validSSN(props.ssn) && props.verified
   }

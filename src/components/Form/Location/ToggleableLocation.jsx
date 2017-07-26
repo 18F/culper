@@ -8,7 +8,6 @@ import Country from '../Country'
 import County from '../County'
 import ZipCode from '../ZipCode'
 import Show from '../Show'
-import { i18n } from '../../../config'
 
 export default class ToggleableLocation extends ValidationElement {
   constructor (props) {
@@ -94,6 +93,7 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'city':
@@ -108,6 +108,7 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'county':
@@ -122,6 +123,8 @@ export default class ToggleableLocation extends ValidationElement {
               onChange={this.updateCounty}
               onError={this.props.onError}
               onBlur={this.props.onBlur}
+              onFocus={this.props.onFocus}
+              required={this.props.required}
             />
           )
         case 'state':
@@ -137,6 +140,7 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'stateZipcode':
@@ -152,6 +156,7 @@ export default class ToggleableLocation extends ValidationElement {
                 onError={this.props.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
               />
               <ZipCode name="zipcode"
                 key="us_zipcode"
@@ -163,6 +168,7 @@ export default class ToggleableLocation extends ValidationElement {
                 onError={this.props.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
               />
             </div>
           )
@@ -183,6 +189,7 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'country':
@@ -199,6 +206,7 @@ export default class ToggleableLocation extends ValidationElement {
               onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
       }
@@ -212,6 +220,7 @@ export default class ToggleableLocation extends ValidationElement {
           label={this.props.label}
           onUpdate={this.updateToggle}
           onBlur={this.props.onBlur}
+          required={this.props.required}
           onError={this.props.onError}>
         </Branch>
 
@@ -244,5 +253,6 @@ ToggleableLocation.defaultProps = {
   country: null,
   domesticFields: [],
   internationalFields: [],
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  required: false
 }

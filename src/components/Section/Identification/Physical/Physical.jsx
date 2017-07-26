@@ -46,6 +46,7 @@ export default class Physical extends SubsectionElement {
                   {...this.props.Height}
                   onUpdate={this.handleUpdate.bind(this, 'Height')}
                   onError={this.handleError}
+                  required={this.props.required}
                   />
         </Field>
 
@@ -57,6 +58,7 @@ export default class Physical extends SubsectionElement {
                   value={this.props.Weight}
                   onUpdate={this.handleUpdate.bind(this, 'Weight')}
                   onError={this.handleError}
+                  required={this.props.required}
                   />
         </Field>
 
@@ -69,6 +71,7 @@ export default class Physical extends SubsectionElement {
                      value={this.props.HairColor}
                      onUpdate={this.handleUpdate.bind(this, 'HairColor')}
                      onError={this.handleError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -80,6 +83,7 @@ export default class Physical extends SubsectionElement {
                     value={this.props.EyeColor}
                     onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
                     onError={this.handleError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -94,6 +98,7 @@ export default class Physical extends SubsectionElement {
                value={this.props.Sex}
                onUpdate={this.handleUpdate.bind(this, 'Sex')}
                onError={this.handleError}
+               required={this.props.required}
                />
         </Field>
       </div>
@@ -104,9 +109,9 @@ export default class Physical extends SubsectionElement {
 Physical.defaultProps = {
   Height: {},
   Weight: {},
-  HairColor: [],
-  EyeColor: [],
-  Sex: {},
+  HairColor: '',
+  EyeColor: '',
+  Sex: '',
   Comments: {},
   onError: (value, arr) => { return arr },
   section: 'identification',
@@ -114,5 +119,6 @@ Physical.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new PhysicalValidator(state, props).isValid()
-  }
+  },
+  required: false
 }

@@ -79,6 +79,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate}
                        onError={this.handleError}
+                       required={this.props.required}
                        />
         </Field>
       </div>

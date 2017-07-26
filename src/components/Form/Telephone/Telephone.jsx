@@ -323,7 +323,9 @@ export default class Telephone extends ValidationElement {
               tabBack={() => { this.props.tab(this.refs.dsn_first.refs.text.refs.input) }}
               />
         <span className="separator extension">or</span>
-        <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+        <RadioGroup
+          className="nonumber"
+          selectedValue={this.state.noNumber}>
           <Radio name="nonumber"
                  label={i18n.t('telephone.noNumber.label')}
                  value="NA"
@@ -405,7 +407,7 @@ export default class Telephone extends ValidationElement {
               maxlength="10"
               pattern="^\d{0,10}$"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={false}
               value={this.state.extension}
               onChange={this.handleExtensionChange.bind(this)}
               onError={this.handleErrorDomesticExtension}
@@ -474,7 +476,7 @@ export default class Telephone extends ValidationElement {
               maxlength="10"
               pattern="^\d{0,10}$"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={false}
               value={this.state.extension}
               onChange={this.handleExtensionChange.bind(this)}
               onError={this.handleErrorInternationalExtension}
@@ -568,7 +570,7 @@ export default class Telephone extends ValidationElement {
 
         <div className="phonetype">
           <label className={this.state.noNumber ? 'disabled' : ''}>Select phone number type</label>
-          <RadioGroup selectedValue={this.state.numberType}>
+          <RadioGroup selectedValue={this.state.numberType} required={this.props.required} onError={this.props.onError}>
             <Radio name="numbertype-cell"
                    className="phonetype-option cell"
                    label={i18n.t('telephone.numberType.cell')}

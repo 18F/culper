@@ -48,7 +48,11 @@ export default class MaidenName extends ValidationElement {
     return (
       <div className={klass}>
         <label>{this.props.label}</label>
-        <RadioGroup className="option-list" selectedValue={this.state.value}>
+        <RadioGroup
+          className="option-list"
+          selectedValue={this.state.value}
+          onError={this.props.onError}
+          required={this.props.required}>
           <Radio name="maiden-name"
                  label="Yes"
                  value="Yes"

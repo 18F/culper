@@ -25,6 +25,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
             {...this.props.value}
             onUpdate={this.props.onUpdate}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
       </div>

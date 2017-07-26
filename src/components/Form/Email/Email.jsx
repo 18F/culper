@@ -62,6 +62,7 @@ export default class Email extends ValidationElement {
                onFocus={this.props.Focus}
                onBlur={this.props.Blur}
                onError={this.handleError}
+               required={this.props.required}
                />
     )
   }

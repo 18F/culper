@@ -177,6 +177,7 @@ export default class Name extends ValidationElement {
                 onError={this.handleErrorFirst}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="flags">
             <Checkbox name="firstInitialOnly"
@@ -206,6 +207,7 @@ export default class Name extends ValidationElement {
                 onError={this.handleErrorMiddle}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="middle-options flags">
             <Checkbox name="noMiddleName"
@@ -244,6 +246,7 @@ export default class Name extends ValidationElement {
                 onError={this.handleErrorLast}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="flags">
             <Checkbox name="lastInitialOnly"
@@ -392,6 +395,7 @@ export default class Name extends ValidationElement {
                   onError={this.handleErrorSuffix}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
+                  required={this.props.required}
                   />
           </Show>
         </Field>
@@ -414,6 +418,7 @@ Name.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  required: false,
   errorCodes: [],
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

@@ -39,6 +39,7 @@ class Identification extends SectionElement {
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
+                           required={true}
                            />
 
             <hr />
@@ -49,6 +50,7 @@ class Identification extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
+                        required={true}
                         />
 
             <hr />
@@ -58,6 +60,7 @@ class Identification extends SectionElement {
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
+                                required={true}
                                 />
 
             <hr />
@@ -67,6 +70,7 @@ class Identification extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
+                                 required={true}
                                  />
 
             <hr />
@@ -77,6 +81,7 @@ class Identification extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
+                                required={true}
                                 />
 
             <hr />
@@ -86,6 +91,7 @@ class Identification extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
+                          required={true}
                           />
 
             <hr />
@@ -95,6 +101,7 @@ class Identification extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
+                      required={true}
                       />
           </SectionView>
 

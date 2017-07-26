@@ -103,6 +103,7 @@ export default class Height extends ValidationElement {
                   onBlur={this.handleBlur}
                   onError={this.handleErrorFeet}
                   tabNext={() => { this.props.tab(this.refs.inches.refs.number.refs.input) }}
+                  required={this.props.required}
                   />
         </div>
         <div className="inches">
@@ -124,6 +125,7 @@ export default class Height extends ValidationElement {
                   onBlur={this.handleBlur}
                   onError={this.handleErrorInches}
                   tabBack={() => { this.props.tab(this.refs.feet.refs.number.refs.input) }}
+                  required={this.props.required}
                   />
         </div>
       </div>
@@ -137,7 +139,8 @@ Height.defaultProps = {
   error: false,
   valid: false,
   tab: (input) => { input.focus() },
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  required: false
 }
 
 Height.errors = []

@@ -14,6 +14,7 @@ export default class ApplicantName extends SubsectionElement {
               dispatch={this.props.dispatch}
               onUpdate={this.props.onUpdate}
               onError={this.handleError}
+              required={this.props.required}
               />
       </div>
     )
@@ -26,6 +27,7 @@ ApplicantName.defaultProps = {
   section: 'identification',
   subsection: 'name',
   dispatch: () => {},
+  required: false,
   validator: (state, props) => {
     return new NameValidator(props.value, null).isValid()
   }
