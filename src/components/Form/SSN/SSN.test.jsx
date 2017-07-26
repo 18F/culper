@@ -19,38 +19,24 @@ describe('The SSN component', () => {
     expect(blurs).toEqual(0)
   })
 
-  it('bubbles up validate event', () => {
-    let validations = 0
+  it('handles updates', () => {
+    let updated = false
     const expected = {
       name: 'input-error',
       label: 'Text input error',
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
-        validations++
+      onUpdate: (queue) => {
+        updated = true
       }
     }
-    const component = mount(<SSN name={expected.name} onValidate={expected.handleValidation} />)
-    component.find('input').first().simulate('change')
-    expect(validations > 0).toEqual(true)
-  })
-
-  it('bubbles up change event', () => {
-    let changes = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      handleChange: function (event) {
-        changes++
-      }
-    }
-    const component = mount(<SSN name={expected.name} onChange={expected.handleChange} />)
-    component.find('input').first().simulate('change')
-    expect(changes).toEqual(1)
+    const component = mount(<SSN {...expected} />)
+    component.find('.first input').simulate('change')
+    component.find('.middle input').simulate('change')
+    component.find('.last input').simulate('change')
+    component.find('.not-applicable input').simulate('change')
+    expect(updated).toEqual(true)
   })
 
   it('bubbles up focus event', () => {
@@ -111,7 +97,7 @@ describe('The SSN component', () => {
   })
 
   it('loads value that is an incorrect length', () => {
-    const component = mount(<SSN name="ssn" value="1234" />)
+    const component = mount(<SSN name="ssn" first="123" middle="4" last="" />)
     expect(component.find({ type: 'text', name: 'first', value: '123' }).length).toBe(1)
     expect(component.find({ type: 'text', name: 'middle', value: '4' }).length).toBe(1)
     expect(component.find({ type: 'text', name: 'last', value: '' }).length).toBe(1)
