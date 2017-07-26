@@ -51,8 +51,8 @@ func TestPayload(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		if ok, _ := entity.Valid(); !ok {
-			t.Fatal("Not valid")
+		if ok, err := entity.Valid(); !ok {
+			t.Fatalf("Error with [%s]: %v", test.Data, err)
 		}
 	}
 }

@@ -1,6 +1,9 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"strings"
+)
 
 // Textarea is a basic input.
 type Textarea struct {
@@ -14,7 +17,13 @@ func (entity *Textarea) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Textarea) Valid() (bool, error) {
-	return true, nil
+	var stack ErrorStack
+
+	if strings.TrimSpace(string(entity.Value)) == "" {
+		stack.Append("Textarea", ErrFieldRequired{"Text is required"})
+	}
+
+	return !stack.HasErrors(), stack
 }
 
 // Save will create or update the database.

@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"strings"
 	"time"
 )
 
@@ -21,7 +22,25 @@ func (entity *DateControl) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *DateControl) Valid() (bool, error) {
-	return true, nil
+	var stack ErrorStack
+
+	if strings.TrimSpace(entity.Month) == "" {
+		stack.Append("Month", ErrFieldRequired{"Month is required"})
+	}
+
+	if strings.TrimSpace(entity.Day) == "" {
+		if entity.Estimated {
+			entity.Day = "15"
+		} else {
+			stack.Append("Day", ErrFieldRequired{"Day is required"})
+		}
+	}
+
+	if strings.TrimSpace(entity.Year) == "" {
+		stack.Append("Year", ErrFieldRequired{"Year is required"})
+	}
+
+	return !stack.HasErrors(), stack
 }
 
 // Save will create or update the database.

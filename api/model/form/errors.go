@@ -27,7 +27,11 @@ func (stack ErrorStack) HasErrors() bool {
 // Error is string representation of an ErrorStack and displays
 // the total number of errors. This is to implement the error type
 func (stack ErrorStack) Error() string {
-	return fmt.Sprintf("%d Errors \n", len(stack))
+	var pretty string
+	for _, e := range stack {
+		pretty += fmt.Sprintf("%v\n", e)
+	}
+	return fmt.Sprintf("%d Errors: %s", len(stack), pretty)
 }
 
 // Result creates a struct that is properly formatted for the client-validation

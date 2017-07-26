@@ -1,6 +1,10 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+	"strconv"
+	"strings"
+)
 
 // Number is a basic input.
 type Number struct {
@@ -14,7 +18,15 @@ func (entity *Number) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Number) Valid() (bool, error) {
-	return true, nil
+	var stack ErrorStack
+
+	if strings.TrimSpace(entity.Value) == "" {
+		stack.Append("Number", ErrFieldRequired{"Number is required"})
+	} else if _, err := strconv.Atoi(entity.Value); err != nil {
+		stack.Append("Number", ErrFieldInvalid{"Invalid number"})
+	}
+
+	return !stack.HasErrors(), stack
 }
 
 // Save will create or update the database.
