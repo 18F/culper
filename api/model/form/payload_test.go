@@ -36,6 +36,7 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/datecontrol.json"},
 		{Data: "testdata/daterange.json"},
 		{Data: "testdata/email.json"},
+		{Data: "testdata/height.json"},
 		{Data: "testdata/location.json"},
 		{Data: "testdata/name.json"},
 		{Data: "testdata/notapplicable.json"},
@@ -45,6 +46,13 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/telephone.json"},
 		{Data: "testdata/text.json"},
 		{Data: "testdata/textarea.json"},
+		{Data: "testdata/identification-birthdate.json"},
+		{Data: "testdata/identification-birthplace.json"},
+		// {Data: "testdata/identification-contacts.json"},
+		{Data: "testdata/identification-name.json"},
+		// {Data: "testdata/identification-othernames.json"},
+		{Data: "testdata/identification-physical.json"},
+		{Data: "testdata/identification-ssn.json"},
 	}
 
 	// HTTP test server to field any third party requests
@@ -68,13 +76,13 @@ func TestPayload(t *testing.T) {
 		// Deserialize the initial payload from a JSON structure
 		payload := &Payload{}
 		if err := payload.Unmarshal(raw); err != nil {
-			t.Fatal(err)
+			t.Fatalf("Failed to deserialize JSON: %v\n:Error: %v\n", string(raw), err)
 		}
 
 		// Extract the entity interface of the payload and validate it
 		entity, err := payload.Entity()
 		if err != nil {
-			t.Fatal(err)
+			t.Fatalf("Failed to unpackage the payload for [%s]: %v", test.Data, err)
 		}
 		if ok, err := entity.Valid(); !ok {
 			t.Fatalf("Error with [%s]: %v\n\nEntity: %v", test.Data, err, entity)

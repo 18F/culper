@@ -3,6 +3,8 @@ package form
 import (
 	"encoding/json"
 	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // Textarea is a basic input.
@@ -17,26 +19,11 @@ func (entity *Textarea) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Textarea) Valid() (bool, error) {
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if strings.TrimSpace(string(entity.Value)) == "" {
-		stack.Append("Textarea", ErrFieldRequired{"Text is required"})
+		stack.Append("Textarea", model.ErrFieldRequired{"Text is required"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *Textarea) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *Textarea) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *Textarea) Get() error {
-	return nil
 }

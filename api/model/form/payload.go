@@ -3,6 +3,8 @@ package form
 import (
 	"encoding/json"
 	"errors"
+
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // Payload is a basic structure to encapsulate a generic structure.
@@ -18,7 +20,7 @@ func (payload *Payload) Unmarshal(raw []byte) error {
 
 // Entity returns the appropriate entity as an interface
 // based on its type.
-func (payload Payload) Entity() (Entity, error) {
+func (payload Payload) Entity() (model.Entity, error) {
 	entity := transform[payload.Type]()
 	if entity == nil {
 		return nil, errors.New("Could not determine a suitable type")

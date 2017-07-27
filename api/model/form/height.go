@@ -1,6 +1,10 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/18F/e-QIP-prototype/api/model"
+)
 
 // Height is a basic input.
 type Height struct {
@@ -15,30 +19,15 @@ func (entity *Height) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Height) Valid() (bool, error) {
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if entity.Feet < 1 || entity.Feet > 9 {
-		stack.Append("Feet", ErrFieldInvalid{"Feet must be between 1 and 9"})
+		stack.Append("Feet", model.ErrFieldInvalid{"Feet must be between 1 and 9"})
 	}
 
 	if entity.Inches < 0 || entity.Inches > 11 {
-		stack.Append("Inches", ErrFieldInvalid{"Inches must be between 0 an 11"})
+		stack.Append("Inches", model.ErrFieldInvalid{"Inches must be between 0 an 11"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *Height) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *Height) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *Height) Get() error {
-	return nil
 }

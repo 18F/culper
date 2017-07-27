@@ -7,7 +7,7 @@ import (
 
 	jwt "github.com/dgrijalva/jwt-go"
 
-	pg "gopkg.in/pg.v5"
+	"github.com/go-pg/pg"
 )
 
 var (

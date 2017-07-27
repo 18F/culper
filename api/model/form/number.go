@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"strconv"
 	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // Number is a basic input.
@@ -18,28 +20,13 @@ func (entity *Number) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Number) Valid() (bool, error) {
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if strings.TrimSpace(entity.Value) == "" {
-		stack.Append("Number", ErrFieldRequired{"Number is required"})
+		stack.Append("Number", model.ErrFieldRequired{"Number is required"})
 	} else if _, err := strconv.Atoi(entity.Value); err != nil {
-		stack.Append("Number", ErrFieldInvalid{"Invalid number"})
+		stack.Append("Number", model.ErrFieldInvalid{"Invalid number"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *Number) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *Number) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *Number) Get() error {
-	return nil
 }

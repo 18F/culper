@@ -16,18 +16,3 @@ func (entity *NotApplicable) Unmarshal(raw []byte) error {
 func (entity *NotApplicable) Valid() (bool, error) {
 	return true, nil
 }
-
-// Save will create or update the database.
-func (entity *NotApplicable) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *NotApplicable) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *NotApplicable) Get() error {
-	return nil
-}

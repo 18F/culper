@@ -1,10 +1,9 @@
-package form
+package model
 
 // Entity is a structure which can marshall, validate, and persist.
 type Entity interface {
 	Marshaller
 	Validator
-	Persister
 }
 
 // Marshaller is structure which can marshal and unmarshal JSON.

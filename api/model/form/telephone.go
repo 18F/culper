@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"regexp"
 	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 var (
@@ -33,49 +35,34 @@ func (entity *Telephone) Valid() (bool, error) {
 		return true, nil
 	}
 
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if strings.TrimSpace(entity.TimeOfDay) == "" {
-		stack.Append("Telephone", ErrFieldRequired{"Telephone time of day is required"})
+		stack.Append("Telephone", model.ErrFieldRequired{"Telephone time of day is required"})
 	}
 
 	if strings.TrimSpace(entity.Number) == "" {
-		stack.Append("Telephone", ErrFieldRequired{"Telephone number is required"})
+		stack.Append("Telephone", model.ErrFieldRequired{"Telephone number is required"})
 	} else {
 		switch strings.ToLower(entity.Type) {
 		case "international":
 			if ok := formatTelephoneInternational.MatchString(entity.Number); !ok {
-				stack.Append("Telephone", ErrFieldInvalid{"International telephone number is not properly formatted"})
+				stack.Append("Telephone", model.ErrFieldInvalid{"International telephone number is not properly formatted"})
 			}
 		case "dsn":
 			if ok := formatTelephoneDSN.MatchString(entity.Number); !ok {
-				stack.Append("Telephone", ErrFieldInvalid{"DSN telephone number is not properly formatted"})
+				stack.Append("Telephone", model.ErrFieldInvalid{"DSN telephone number is not properly formatted"})
 			}
 		default:
 			if ok := formatTelephoneDomestic.MatchString(entity.Number); !ok {
-				stack.Append("Telephone", ErrFieldInvalid{"Domestic telephone number is not properly formatted"})
+				stack.Append("Telephone", model.ErrFieldInvalid{"Domestic telephone number is not properly formatted"})
 			}
 		}
 	}
 
 	if strings.TrimSpace(entity.NumberType) == "" {
-		stack.Append("Telephone", ErrFieldRequired{"Telephone number type is required"})
+		stack.Append("Telephone", model.ErrFieldRequired{"Telephone number type is required"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *Telephone) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *Telephone) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *Telephone) Get() error {
-	return nil
 }

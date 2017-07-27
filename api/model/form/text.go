@@ -3,6 +3,8 @@ package form
 import (
 	"encoding/json"
 	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // Text is a basic input.
@@ -17,26 +19,11 @@ func (entity *Text) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Text) Valid() (bool, error) {
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if strings.TrimSpace(string(entity.Value)) == "" {
-		stack.Append("Text", ErrFieldRequired{"Text is required"})
+		stack.Append("Text", model.ErrFieldRequired{"Text is required"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *Text) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *Text) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *Text) Get() error {
-	return nil
 }

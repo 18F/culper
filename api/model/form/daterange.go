@@ -1,6 +1,10 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/18F/e-QIP-prototype/api/model"
+)
 
 // DateRange is a basic input.
 type DateRange struct {
@@ -35,7 +39,7 @@ func (entity *DateRange) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *DateRange) Valid() (bool, error) {
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if ok, err := entity.from.Valid(); !ok {
 		stack.Append("From", err)
@@ -46,23 +50,8 @@ func (entity *DateRange) Valid() (bool, error) {
 	}
 
 	if !stack.HasErrors() && entity.from.Date.After(entity.to.Date) {
-		stack.Append("Range", ErrFieldRequired{"Date range is out of order"})
+		stack.Append("Range", model.ErrFieldRequired{"Date range is out of order"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *DateRange) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *DateRange) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *DateRange) Get() error {
-	return nil
 }

@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"net/mail"
 	"strings"
+
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // Email is a basic input.
@@ -18,28 +20,13 @@ func (entity *Email) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Email) Valid() (bool, error) {
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if strings.TrimSpace(entity.Value) == "" {
-		stack.Append("Email", ErrFieldRequired{"Email is required"})
+		stack.Append("Email", model.ErrFieldRequired{"Email is required"})
 	} else if _, err := mail.ParseAddress(entity.Value); err != nil {
-		stack.Append("Email", ErrFieldInvalid{"Email is not correctly formatted"})
+		stack.Append("Email", model.ErrFieldInvalid{"Email is not correctly formatted"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *Email) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *Email) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *Email) Get() error {
-	return nil
 }

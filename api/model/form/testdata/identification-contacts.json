@@ -1,0 +1,7 @@
+{
+  "type": "identification.contacts",
+  "props": {
+    "Emails": {}
+    "PhoneNumbers": {}
+  }
+}

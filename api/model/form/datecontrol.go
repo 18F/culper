@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"strings"
 	"time"
+
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // DateControl is a basic input.
@@ -22,38 +24,23 @@ func (entity *DateControl) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *DateControl) Valid() (bool, error) {
-	var stack ErrorStack
+	var stack model.ErrorStack
 
 	if strings.TrimSpace(entity.Month) == "" {
-		stack.Append("Month", ErrFieldRequired{"Month is required"})
+		stack.Append("Month", model.ErrFieldRequired{"Month is required"})
 	}
 
 	if strings.TrimSpace(entity.Day) == "" {
 		if entity.Estimated {
 			entity.Day = "15"
 		} else {
-			stack.Append("Day", ErrFieldRequired{"Day is required"})
+			stack.Append("Day", model.ErrFieldRequired{"Day is required"})
 		}
 	}
 
 	if strings.TrimSpace(entity.Year) == "" {
-		stack.Append("Year", ErrFieldRequired{"Year is required"})
+		stack.Append("Year", model.ErrFieldRequired{"Year is required"})
 	}
 
 	return !stack.HasErrors(), stack
-}
-
-// Save will create or update the database.
-func (entity *DateControl) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *DateControl) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *DateControl) Get() error {
-	return nil
 }

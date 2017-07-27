@@ -5,6 +5,7 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/geo"
+	"github.com/18F/e-QIP-prototype/api/model"
 )
 
 // Different potential layouts used by the frontend.
@@ -49,7 +50,7 @@ func (entity *Location) Valid() (bool, error) {
 		return true, nil
 	}
 
-	var stack ErrorStack
+	var stack model.ErrorStack
 	domestic := entity.Country == "United States"
 	postoffice := entity.Country == "POSTOFFICE"
 	international := !domestic && !postoffice
@@ -119,7 +120,7 @@ func (entity *Location) Valid() (bool, error) {
 			})
 
 		if err != nil {
-			stack.Append("Location", ErrInvalidLocation{
+			stack.Append("Location", model.ErrInvalidLocation{
 				Message:     err.Error(),
 				Suggestions: results,
 			})
@@ -129,59 +130,44 @@ func (entity *Location) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-// Save will create or update the database.
-func (entity *Location) Save() error {
-	return nil
-}
-
-// Delete will remove the entity from the database.
-func (entity *Location) Delete() error {
-	return nil
-}
-
-// Get will retrieve the entity from the database.
-func (entity *Location) Get() error {
-	return nil
-}
-
-func validateFields(entity *Location, props ...string) ErrorStack {
-	var stack ErrorStack
+func validateFields(entity *Location, props ...string) model.ErrorStack {
+	var stack model.ErrorStack
 
 	for _, prop := range props {
 		switch strings.ToLower(prop) {
 		case "street":
 			street1 := strings.TrimSpace(entity.Street1)
 			if street1 == "" {
-				stack.Append("Location", ErrFieldRequired{"Missing street"})
+				stack.Append("Location", model.ErrFieldRequired{"Missing street"})
 			}
 		case "city":
 			city := strings.TrimSpace(entity.City)
 			if city == "" {
-				stack.Append("Location", ErrFieldRequired{"Missing city"})
+				stack.Append("Location", model.ErrFieldRequired{"Missing city"})
 			}
 		case "state":
 			state := strings.TrimSpace(entity.State)
 			if state == "" {
-				stack.Append("Location", ErrFieldRequired{"Missing state"})
+				stack.Append("Location", model.ErrFieldRequired{"Missing state"})
 			} else if !has(state, states...) {
-				stack.Append("Location", ErrFieldInvalid{"Invalid state"})
+				stack.Append("Location", model.ErrFieldInvalid{"Invalid state"})
 			}
 		case "zipcode":
 			zipcode := strings.TrimSpace(entity.Zipcode)
 			if zipcode == "" {
-				stack.Append("Location", ErrFieldRequired{"Missing ZIP code"})
+				stack.Append("Location", model.ErrFieldRequired{"Missing ZIP code"})
 			}
 		case "county":
 			county := strings.TrimSpace(entity.County)
 			if county == "" {
-				stack.Append("Location", ErrFieldRequired{"Missing county"})
+				stack.Append("Location", model.ErrFieldRequired{"Missing county"})
 			}
 		case "country":
 			country := strings.TrimSpace(entity.Country)
 			if country == "" {
-				stack.Append("Location", ErrFieldRequired{"Missing country"})
+				stack.Append("Location", model.ErrFieldRequired{"Missing country"})
 			} else if !has(country, countries...) {
-				stack.Append("Location", ErrFieldInvalid{"Invalid state"})
+				stack.Append("Location", model.ErrFieldInvalid{"Invalid state"})
 			}
 		}
 	}
