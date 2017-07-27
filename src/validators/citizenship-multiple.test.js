@@ -90,7 +90,7 @@ describe('citizenship multiple component validation', function () {
         state: {
           Renounced: 'No'
         },
-        expected: true
+        expected: false
       },
       {
         state: {
@@ -157,7 +157,7 @@ describe('citizenship multiple component validation', function () {
           },
           Current: 'No'
         },
-        expected: true
+        expected: false
       },
       {
         state: {

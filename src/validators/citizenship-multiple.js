@@ -67,8 +67,8 @@ export class CitizenshipItemValidator {
 
   validRenounced () {
     return !!this.renounced &&
-      (this.renounced === 'Yes' || this.renounced === 'No') &&
-      (this.renounced === 'No' || (this.renounced === 'Yes' && validGenericTextfield(this.renouncedExplanation)))
+      (this.renounced === 'No' || this.renounced === 'Yes') &&
+      validGenericTextfield(this.renouncedExplanation)
   }
 
   validCurrent () {
@@ -77,8 +77,8 @@ export class CitizenshipItemValidator {
     }
 
     return !!this.current &&
-      (this.current === 'Yes' || this.current === 'No') &&
-      (this.current === 'No' || (this.current === 'Yes' && validGenericTextfield(this.currentExplanation)))
+      (this.current === 'No' || this.current === 'Yes') &&
+      validGenericTextfield(this.currentExplanation)
   }
 
   isValid () {

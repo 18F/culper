@@ -113,16 +113,14 @@ export default class CitizenshipItem extends ValidationElement {
                 onError={this.props.onError}
                 />
 
-        <Show when={this.props.Renounced === 'Yes'}>
-          <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}>
-            <Textarea name="RenouncedExplanation"
-                      {...this.props.RenouncedExplanation}
-                      className="citizenship-renounced-explanation"
-                      onUpdate={this.updateRenouncedExplanation}
-                      onError={this.props.onError}
-                      />
-          </Field>
-        </Show>
+        <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}>
+          <Textarea name="RenouncedExplanation"
+                    {...this.props.RenouncedExplanation}
+                    className="citizenship-renounced-explanation"
+                    onUpdate={this.updateRenouncedExplanation}
+                    onError={this.props.onError}
+                    />
+        </Field>
 
         <Show when={(this.props.Dates || {}).present}>
           <div>
@@ -135,16 +133,14 @@ export default class CitizenshipItem extends ValidationElement {
                     onError={this.props.onError}
                     />
 
-            <Show when={this.props.Current === 'Yes'}>
-              <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
-                <Textarea name="CurrentExplanation"
-                          {...this.props.CurrentExplanation}
-                          className="citizenship-current-explanation"
-                          onUpdate={this.updateCurrentExplanation}
-                          onError={this.props.onError}
-                          />
-              </Field>
-            </Show>
+            <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
+              <Textarea name="CurrentExplanation"
+                        {...this.props.CurrentExplanation}
+                        className="citizenship-current-explanation"
+                        onUpdate={this.updateCurrentExplanation}
+                        onError={this.props.onError}
+                        />
+            </Field>
           </div>
         </Show>
       </div>
