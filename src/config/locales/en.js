@@ -2452,6 +2452,7 @@ const en = {
       label: {
         status: {
           never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+          married: 'Currently in a civil marriage',
           inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
           separated: 'Separated',
           annulled: 'Annulled',
