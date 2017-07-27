@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Field, Branch, Show, Country, DateRange, Textarea } from '../../../Form'
-import { sendUpdate } from './Multiple'
 
 export default class CitizenshipItem extends ValidationElement {
   constructor (props) {
@@ -124,24 +123,28 @@ export default class CitizenshipItem extends ValidationElement {
           </Field>
         </Show>
 
-        <Branch name="Current"
-                label={i18n.t('citizenship.multiple.heading.citizenship.current')}
-                labelSize="h3"
-                className="citizenship-current"
-                value={this.props.Current}
-                onUpdate={this.updateCurrent}
-                onError={this.props.onError}
-                />
+        <Show when={(this.props.Dates || {}).present}>
+          <div>
+            <Branch name="Current"
+                    label={i18n.t('citizenship.multiple.heading.citizenship.current')}
+                    labelSize="h3"
+                    className="citizenship-current"
+                    value={this.props.Current}
+                    onUpdate={this.updateCurrent}
+                    onError={this.props.onError}
+                    />
 
-        <Show when={this.props.Current === 'Yes'}>
-          <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
-            <Textarea name="CurrentExplanation"
-                      {...this.props.CurrentExplanation}
-                      className="citizenship-current-explanation"
-                      onUpdate={this.updateCurrentExplanation}
-                      onError={this.props.onError}
-                      />
-          </Field>
+            <Show when={this.props.Current === 'Yes'}>
+              <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
+                <Textarea name="CurrentExplanation"
+                          {...this.props.CurrentExplanation}
+                          className="citizenship-current-explanation"
+                          onUpdate={this.updateCurrentExplanation}
+                          onError={this.props.onError}
+                          />
+              </Field>
+            </Show>
+          </div>
         </Show>
       </div>
     )

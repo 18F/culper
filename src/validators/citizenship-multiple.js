@@ -72,6 +72,10 @@ export class CitizenshipItemValidator {
   }
 
   validCurrent () {
+    if (!this.dates || !this.dates.present) {
+      return true
+    }
+
     return !!this.current &&
       (this.current === 'Yes' || this.current === 'No') &&
       (this.current === 'No' || (this.current === 'Yes' && validGenericTextfield(this.currentExplanation)))
@@ -85,4 +89,3 @@ export class CitizenshipItemValidator {
       this.validCurrent()
   }
 }
-
