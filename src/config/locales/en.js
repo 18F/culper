@@ -4927,7 +4927,7 @@ const en = {
           message: 'Provide the dates of attendance',
           note: ''
         },
-        school: {
+        name: {
           title: 'Need help with the school name?',
           message: 'Provide the school name',
           note: ''
