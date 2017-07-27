@@ -83,6 +83,7 @@ export default class CitizenshipItem extends ValidationElement {
                    />
         </Field>
 
+        <h2 className="period">{i18n.t('citizenship.multiple.heading.citizenship.period')}</h2>
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.dates')}
                help="citizenship.multiple.help.citizenship.dates"
                adjustFor="daterange">
