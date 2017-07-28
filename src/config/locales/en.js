@@ -4934,8 +4934,8 @@ const en = {
         },
         address: {
           title: 'Need help with the school address?',
-          message: 'Provide the street address of the school',
-          note: ''
+          message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
+          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).'
         },
         type: {
           title: 'Need help with the school code?',
