@@ -54,6 +54,21 @@ input[type='checkbox'], input[type='radio'] {
   opacity: 1;
 }
 
+:focus {
+  &::-webkit-input-placeholder {
+    color: transparent;
+  }
+  &::-ms-input-placeholder {
+    color: transparent;
+  }
+  &::-moz-placeholder {
+    color: transparent;
+  }
+  &:-moz-placeholder {
+    color: transparent;
+  }
+}
+
 .usa-input-error {
   border: none;
   padding: 0;
@@ -96,7 +111,7 @@ select {
   background-position: 100% center;
 
   &:focus {
-    box-shadow: 3px 1px 16px 22px 12px black;
+    // box-shadow: 3px 1px 16px 22px 12px black;
   }
 
   &.usa-input-success {
