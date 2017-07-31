@@ -2106,8 +2106,8 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates?',
-            message: 'Provide the dates',
+            title: 'Not sure of the exact dates?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
