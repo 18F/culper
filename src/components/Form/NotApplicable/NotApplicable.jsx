@@ -27,7 +27,8 @@ export default class NotApplicable extends React.Component {
   renderChildren () {
     return React.Children.map(this.props.children, (child) => {
       let extendedProps = {
-        disabled: !this.state.applicable
+        disabled: !this.state.applicable,
+        onError: this.props.onError
       }
 
       return React.cloneElement(child, {

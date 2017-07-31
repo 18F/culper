@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { MaritalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Show, RadioGroup, Radio, Accordion } from '../../../Form'
@@ -46,23 +47,20 @@ export default class Marital extends SubsectionElement {
   }
 
   divorceSummary (item, index) {
-    const itemType = i18n.t('relationships.civilUnion.divorce.collection.itemType')
     const o = (item || {}).Divorce || {}
-    const date = (o.DateDivorced || {}).date ? `${o.DateDivorced.month}/${o.DateDivorced.year}` : ''
-    const status = o.Status || ''
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : date === '' ? i18n.m('relationships.relatives.collection.summary.unknown') : ''
-    return (
-      <span>
-        <span className="index">{itemType}:</span>
-        <span className="info"><strong>{name} {date} {status}</strong></span>
-      </span>
-    )
+    const date = DateSummary(o.DateDivorced)
+    const name = NameSummary(o.Name)
+    return Summary({
+      type: i18n.t('relationships.civilUnion.divorce.collection.itemType'),
+      index: index,
+      left: name,
+      right: date,
+      placeholder: i18n.m('relationships.relatives.collection.summary.unknown')
+    })
   }
 
   showDivorce () {
-    if (['InCivilUnion', 'Separated'].includes(this.props.Status)) {
+    if (['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)) {
       return (this.props.CivilUnion || {}).Divorced === 'Yes'
     } else if (['Annulled', 'Divorced', 'Widowed'].includes(this.props.Status)) {
       return true
@@ -79,6 +77,12 @@ export default class Marital extends SubsectionElement {
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
                    value="Never"
+                   onChange={this.updateStatus}
+                   onError={this.handleError}
+                   />
+            <Radio label={i18n.m('relationships.marital.label.status.married')}
+                   className="status-married"
+                   value="Married"
                    onChange={this.updateStatus}
                    onError={this.handleError}
                    />
@@ -115,7 +119,7 @@ export default class Marital extends SubsectionElement {
           </RadioGroup>
         </Field>
 
-        <Show when={['InCivilUnion', 'Separated'].includes(this.props.Status)}>
+        <Show when={['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)}>
           <CivilUnion name="civilUnion"
                       {...this.props.CivilUnion}
                       onUpdate={this.updateCivilUnion}

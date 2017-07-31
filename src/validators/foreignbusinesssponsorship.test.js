@@ -71,7 +71,7 @@ describe('Foreign business sponsorship component validation', function () {
           Birthplace: {
             city: 'Munich',
             country: 'Germnay',
-            layout: Location.CITY_COUNTRY
+            layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           }
         },
         expected: true

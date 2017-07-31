@@ -119,7 +119,6 @@ describe('The status component', () => {
     component.find('.citizenship-status-notcitizen input').simulate('change')
     component.find({ name: 'ResidenceStatus' }).simulate('change', { target: { value: 'status' } })
     component.find('.entry-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.entry-location .domestic input').simulate('change')
     component.find('.entry-location .city input').simulate('change', { target: { name: 'city', value: 'City name' } })
     component.find('.prior-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
     component.find('.alien-registration-expiration .day input').simulate('change')
