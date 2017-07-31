@@ -4929,15 +4929,15 @@ const en = {
           message: 'Provide the dates of attendance',
           note: ''
         },
-        school: {
+        name: {
           title: 'Need help with the school name?',
           message: 'Provide the school name',
           note: ''
         },
         address: {
           title: 'Need help with the school address?',
-          message: 'Provide the street address of the school',
-          note: ''
+          message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
+          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).'
         },
         type: {
           title: 'Need help with the school code?',
