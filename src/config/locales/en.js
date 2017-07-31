@@ -1766,7 +1766,7 @@ const en = {
         certificateissued: {
           foreignborn: 'Provide the date the certificate was issued',
           naturalized: 'Provide the date the Certificate of Naturalization was issued',
-          derived: 'Provide the date the certificate was issued'
+          derived: 'Provide the date the document was issued'
         },
         certificatename: {
           foreignborn: 'Provide the name in which the certificate was issued',
