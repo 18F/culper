@@ -48,12 +48,6 @@ export default class Marital extends SubsectionElement {
 
   divorceSummary (item, index) {
     const o = (item || {}).Divorce || {}
-    // const itemType = i18n.t('relationships.civilUnion.divorce.collection.itemType')
-    // const date = (o.DateDivorced || {}).date ? `${o.DateDivorced.month}/${o.DateDivorced.year}` : ''
-    // const status = o.Status || ''
-    // const name = o.Name
-    //       ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-    //       : date === '' ? i18n.m('relationships.relatives.collection.summary.unknown') : ''
     const date = DateSummary(o.DateDivorced)
     const name = NameSummary(o.Name)
     return Summary({
@@ -63,12 +57,6 @@ export default class Marital extends SubsectionElement {
       right: date,
       placeholder: i18n.m('relationships.relatives.collection.summary.unknown')
     })
-    // return (
-    //   <span>
-    //     <span className="index">{itemType}:</span>
-    //     <span className="info"><strong>{name} {date} {status}</strong></span>
-    //   </span>
-    // )
   }
 
   showDivorce () {
