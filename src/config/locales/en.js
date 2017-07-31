@@ -1760,7 +1760,7 @@ const en = {
         certificateissued: {
           foreignborn: 'Provide the date the certificate was issued',
           naturalized: 'Provide the date the Certificate of Naturalization was issued',
-          derived: 'Provide the date the certificate was issued'
+          derived: 'Provide the date the document was issued'
         },
         certificatename: {
           foreignborn: 'Provide the name in which the certificate was issued',
@@ -1772,7 +1772,7 @@ const en = {
         bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
         militarybase: 'Provide the name of the base',
         entrydate: 'Provide the date of entry into the U.S.',
-        entrylocation: 'Provide the location of entry into the U.S.',
+        entrylocation: 'Provide your place of entry in the U.S.',
         priorcitizenship: {
           naturalized: 'Provide country(ies) of prior citizenship',
           notcitizen: 'Provide your countr(ies) of citizenship'
@@ -1794,6 +1794,7 @@ const en = {
         documenttype: 'Provide type of document issued'
       },
       label: {
+        explanation: 'Explanation',
         citizenshipstatus: {
           citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
           foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
