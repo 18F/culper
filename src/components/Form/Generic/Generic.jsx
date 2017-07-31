@@ -1,8 +1,16 @@
 import React from 'react'
-import ValidationElement, { newGuid } from '../ValidationElement'
+import ValidationElement from '../ValidationElement'
 
 export const autotab = (event, maxlength, back, next) => {
   const input = event.target
+
+  // If there is a selection (highlighted text) within the element then we
+  // need to let normal operations take precedence.
+  const highlighted = ((input.selectionEnd || 0) - (input.selectionStart || 0)) !== 0
+  if (highlighted) {
+    return
+  }
+
   const value = input.value
   const code = event.keyCode
   const backCodes = [8, 46]

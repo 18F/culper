@@ -13,18 +13,6 @@ export default class ExistingConditionsValidator {
     this.prefix = (props || {}).prefix
   }
 
-  validReceivedTreatment () {
-    if (!['Yes', 'No', 'Decline'].includes(this.receivedTreatment)) {
-      return false
-    }
-
-    if (this.receivedTreatment === 'No' && !validGenericTextfield(this.explanation)) {
-      return false
-    }
-
-    return true
-  }
-
   validDidNotFollow () {
     if (!validBranch(this.didNotFollow)) {
       return false
@@ -38,31 +26,34 @@ export default class ExistingConditionsValidator {
   }
 
   validTreatmentList () {
-    if (this.receivedTreatment === 'No' || this.receivedTreatment === 'Decline') {
-      return true
-    }
-
-    if (this.receivedTreatment === 'Yes' && this.treatmentList.length === 0) {
-      return false
-    }
-
-    if (this.treatmentListBranch !== 'No') {
-      return false
-    }
-
-    for (let item of this.treatmentList) {
-      if (!new DiagnosisValidator(item.Treatment, { prefix: this.prefix }).isValid()) {
+    switch (this.receivedTreatment) {
+      case 'No':
+        return validGenericTextfield(this.explanation)
+      case 'Decline':
+        return true
+      case 'Yes':
+        if (this.treatmentListBranch !== 'No') {
+          return false
+        }
+        if (this.receivedTreatment === 'Yes' && this.treatmentList.length === 0) {
+          return false
+        }
+        for (let item of this.treatmentList) {
+          if (!new DiagnosisValidator(item.Diagnosis, { prefix: this.prefix }).isValid()) {
+            return false
+          }
+        }
+        return true
+      default:
         return false
-      }
     }
-
-    return true
   }
 
   isValid () {
-    return validBranch(this.hasCondition) &&
-      this.validReceivedTreatment() &&
-      this.validDidNotFollow() &&
+    if (this.hasCondition === 'No') {
+      return true
+    }
+    return this.validDidNotFollow() &&
       this.validTreatmentList()
   }
 }
