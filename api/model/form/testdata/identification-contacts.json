@@ -1,7 +1,44 @@
 {
   "type": "identification.contacts",
   "props": {
-    "Emails": {}
-    "PhoneNumbers": {}
+    "Emails": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Email": {
+                "type": "email",
+                "props": {
+                  "value": "test@abc.com"
+                }
+              }
+            }
+          }
+        ]
+      }
+    },
+    "PhoneNumbers": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Telephone": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "Cell",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
   }
 }

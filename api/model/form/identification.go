@@ -197,7 +197,17 @@ func (entity *IdentificationContacts) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationContacts) Valid() (bool, error) {
-	return true, nil
+	var stack model.ErrorStack
+
+	if _, err := entity.Emails.Entity(); err != nil {
+		stack.Append("Emails", err)
+	}
+
+	if _, err := entity.PhoneNumbers.Entity(); err != nil {
+		stack.Append("PhoneNumbers", err)
+	}
+
+	return !stack.HasErrors(), stack
 }
 
 // Save will create or update the database.
@@ -217,6 +227,8 @@ func (entity *IdentificationContacts) Get() error {
 
 // IdentificationOtherNames subsection of identification section.
 type IdentificationOtherNames struct {
+	HasOtherNames Payload
+	List          Payload
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -226,7 +238,29 @@ func (entity *IdentificationOtherNames) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationOtherNames) Valid() (bool, error) {
-	return true, nil
+	var stack model.ErrorStack
+
+	b, err := entity.HasOtherNames.Entity()
+	if err != nil {
+		return false, err
+	}
+
+	if ok, err := b.Valid(); !ok {
+		stack.Append("OtherNames", err)
+	}
+
+	if b.(*Branch).Value == "Yes" {
+		l, err := entity.List.Entity()
+		if err != nil {
+			return false, err
+		}
+
+		if ok, err := l.Valid(); !ok {
+			stack.Append("OtherNames", err)
+		}
+	}
+
+	return !stack.HasErrors(), stack
 }
 
 // Save will create or update the database.

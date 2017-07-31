@@ -8,7 +8,9 @@ import (
 // be made on a JSON structure converting it in to an Entity
 // interface.
 var transform = map[string]func() model.Entity{
+	"branch":                    func() model.Entity { return &Branch{} },
 	"checkbox":                  func() model.Entity { return &Checkbox{} },
+	"collection":                func() model.Entity { return &Collection{} },
 	"datecontrol":               func() model.Entity { return &DateControl{} },
 	"daterange":                 func() model.Entity { return &DateRange{} },
 	"email":                     func() model.Entity { return &Email{} },

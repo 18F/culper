@@ -32,6 +32,9 @@ func TestPayload(t *testing.T) {
 	tests := []struct {
 		Data string
 	}{
+		{Data: "testdata/accordion.json"},
+		{Data: "testdata/branch.json"},
+		{Data: "testdata/branchcollection.json"},
 		{Data: "testdata/checkbox.json"},
 		{Data: "testdata/datecontrol.json"},
 		{Data: "testdata/daterange.json"},
@@ -48,9 +51,9 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/textarea.json"},
 		{Data: "testdata/identification-birthdate.json"},
 		{Data: "testdata/identification-birthplace.json"},
-		// {Data: "testdata/identification-contacts.json"},
+		{Data: "testdata/identification-contacts.json"},
 		{Data: "testdata/identification-name.json"},
-		// {Data: "testdata/identification-othernames.json"},
+		{Data: "testdata/identification-othernames.json"},
 		{Data: "testdata/identification-physical.json"},
 		{Data: "testdata/identification-ssn.json"},
 	}
