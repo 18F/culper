@@ -194,8 +194,8 @@ const en = {
         }
       },
       mismatch: {
-        title: 'Verification mismatch',
-        message: 'The two U.S. Social Security Numbers need to match to pass verification.',
+        title: 'Confirmation mismatch',
+        message: 'The two U.S. Social Security Numbers you entered do not match.',
         note: ''
       }
     },
@@ -981,7 +981,7 @@ const en = {
     ssn: {
       title: 'Provide your U.S. Social Security Number',
       heading: {
-        verify: 'Please enter your U.S. Social Security Number again for vefication'
+        verify: 'Please confirm your social security number'
       },
       help: {
         title: 'Need help with your U.S. Social Security Number?',
