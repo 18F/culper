@@ -795,15 +795,13 @@ const en = {
     destination: {
       intro: 'Intro',
       review: 'Review Identification',
-      relationships: 'Relationships',
       othernames: 'Other names used',
       name: 'Full name',
-      birthdate: 'Birth date',
-      birthplace: 'Birth place',
-      contacts: 'Contacts',
+      birthdate: 'Date of birth',
+      birthplace: 'Place of birth',
+      contacts: 'Your contact information',
       ssn: 'Social security number',
-      physical: 'Identifying information',
-      psychological: 'Psychological and emotional health'
+      physical: 'Your identifying information'
     },
     name: {
       title: 'Provide your full name',
