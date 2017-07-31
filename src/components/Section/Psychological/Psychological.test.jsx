@@ -79,4 +79,30 @@ describe('The legal section', () => {
     expect(component.find('.existingconditions .accordion').length).toBe(0)
     expect(component.find('textarea#DidNotFollowExplanation').length).toBe(0)
   })
+
+  it('renders existing conditions', () => {
+    const appState = {
+      Psychological: {
+        Competence: {
+          IsIncompetent: 'No'
+        },
+        Consultation: {
+          Consulted: 'No'
+        },
+        Diagnoses: {
+          Diagnosed: 'No'
+        },
+        Hospitalization: {
+          Hospitalized: 'No'
+        },
+        ExistingConditions: {
+          HasCondition: 'No'
+        }
+      }
+    }
+    const store = mockStore({ application: appState, authentication: { authenticated: true, twofactor: true } })
+    const component = mount(<Provider store={store}><Psychological subsection="review" /></Provider>)
+    expect(component.find('div').length).toBeGreaterThan(0)
+    expect(component.find('.existingconditions').length).toBe(1)
+  })
 })

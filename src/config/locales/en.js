@@ -1963,6 +1963,7 @@ const en = {
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
+          period: 'During what period of time did you hold citizenship with this country?',
           dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
           how: 'How did you acquire this non-U.S. citizenship you now have or previously had?',
           renounced: 'Have you taken any action to renounce your foreign citizenship?',
@@ -2106,8 +2107,8 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates?',
-            message: 'Provide the dates',
+            title: 'Not sure of the exact dates?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -2452,6 +2453,7 @@ const en = {
       label: {
         status: {
           never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+          married: 'Currently in a civil marriage',
           inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
           separated: 'Separated',
           annulled: 'Annulled',
