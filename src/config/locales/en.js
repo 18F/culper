@@ -195,7 +195,7 @@ const en = {
       },
       mismatch: {
         title: 'Confirmation mismatch',
-        message: 'The two U.S. Social Security Numbers need to match to pass confirmation.',
+        message: 'The two U.S. Social Security Numbers you entered do not match.',
         note: ''
       }
     },
