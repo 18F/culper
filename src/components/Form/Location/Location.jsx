@@ -357,7 +357,7 @@ export default class Location extends ValidationElement {
         return (
         <ToggleableLocation
           {...this.props}
-          domesticFields={['state', 'city', 'county']}
+          domesticFields={['city', 'state', 'county']}
           internationalFields={['city', 'country']}
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}
@@ -370,7 +370,7 @@ export default class Location extends ValidationElement {
         return (
         <ToggleableLocation
           {...this.props}
-          domesticFields={['state', 'city']}
+          domesticFields={['city', 'state']}
           internationalFields={['city', 'country']}
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}

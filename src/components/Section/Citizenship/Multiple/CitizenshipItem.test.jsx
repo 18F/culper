@@ -8,6 +8,15 @@ describe('The citizenship item component', () => {
     const expected = {
       name: 'citizenshipItem',
       Renounced: 'Yes',
+      Dates: {
+        from: {
+          date: new Date('1/1/2010')
+        },
+        to: {
+          date: new Date('1/1/2012')
+        },
+        present: true
+      },
       Current: 'Yes',
       onUpdate: () => { updates++ }
     }

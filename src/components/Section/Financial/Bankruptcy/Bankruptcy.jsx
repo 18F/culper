@@ -287,7 +287,7 @@ export default class Bankruptcy extends ValidationElement {
         <Branch name="discharge_explanation"
                 label={i18n.t('financial.bankruptcy.heading.dischargeExplanation')}
                 labelSize="h3"
-                className="has-discharge-explanation"
+                className="has-discharge-explanation no-margin-bottom"
                 value={this.props.HasDischargeExplanation}
                 onUpdate={this.updateHasDischargeExplanation}
                 onError={this.props.onError}
