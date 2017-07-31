@@ -1778,7 +1778,7 @@ const en = {
         bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
         militarybase: 'Provide the name of the base',
         entrydate: 'Provide the date of entry into the U.S.',
-        entrylocation: 'Provide the location of entry into the U.S.',
+        entrylocation: 'Provide your place of entry in the U.S.',
         priorcitizenship: {
           naturalized: 'Provide country(ies) of prior citizenship',
           notcitizen: 'Provide your countr(ies) of citizenship'

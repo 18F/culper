@@ -627,18 +627,6 @@ export default class Status extends SubsectionElement {
                            />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.entrylocation')}
-                   adjustFor="address">
-              <Location name="EntryLocation"
-                        className="entry-location"
-                        {...this.props.EntryLocation}
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        onUpdate={this.updateEntryLocation}
-                        onError={this.handleError}
-                        />
-            </Field>
-
             <Field title={i18n.t('citizenship.status.heading.priorcitizenship.notcitizen')}
                    help="citizenship.status.help.priorcitizenship">
               <Country name="PriorCitizenship"
@@ -648,6 +636,17 @@ export default class Status extends SubsectionElement {
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}
                        />
+            </Field>
+
+            <Field title={i18n.t('citizenship.status.heading.entrylocation')}
+                   adjustFor="address">
+              <Location name="EntryLocation"
+                        className="entry-location"
+                        {...this.props.EntryLocation}
+                        layout={Location.CITY_STATE}
+                        onUpdate={this.updateEntryLocation}
+                        onError={this.handleError}
+                        />
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.notcitizen')}>
