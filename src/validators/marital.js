@@ -10,7 +10,7 @@ export default class MaritalValidator {
   }
 
   validStatus () {
-    return ['Never', 'InCivilUnion', 'Separated', 'Annulled', 'Divorced', 'Widowed'].includes(this.status)
+    return ['Never', 'Married', 'InCivilUnion', 'Separated', 'Annulled', 'Divorced', 'Widowed'].includes(this.status)
   }
 
   validDivorce () {
@@ -37,7 +37,7 @@ export default class MaritalValidator {
     }
 
     let valid = true
-    if (['InCivilUnion', 'Separated'].includes(this.status)) {
+    if (['Married', 'InCivilUnion', 'Separated'].includes(this.status)) {
       valid = new CivilUnionValidator(this.civilUnion).isValid()
       if (valid && (this.civilUnion || {}).Divorced === 'Yes') {
         valid = this.validDivorce()

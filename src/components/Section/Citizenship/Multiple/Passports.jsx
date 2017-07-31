@@ -31,7 +31,6 @@ export default class Passports extends SubsectionElement {
       <div className="passports">
         <BranchCollection label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
                           appendLabel={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
-                          help="citizenship.multiple.help.hasforeignpassport"
                           className="has-foreignpassport"
                           items={this.props.Passports}
                           onUpdate={this.updatePassports}
