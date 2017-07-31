@@ -2106,8 +2106,8 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates?',
-            message: 'Provide the dates',
+            title: 'Not sure of the exact dates?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -2452,6 +2452,7 @@ const en = {
       label: {
         status: {
           never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+          married: 'Currently in a civil marriage',
           inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
           separated: 'Separated',
           annulled: 'Annulled',

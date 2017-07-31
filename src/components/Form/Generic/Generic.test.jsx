@@ -90,6 +90,19 @@ describe('The generic component', () => {
     expect(tabbed).toBe(true)
   })
 
+  it('does not autotab if text is selected', () => {
+    let tabbed = false
+    const expected = {
+      name: 'input-type-text',
+      value: '11',
+      maxlength: '2',
+      tabNext: () => { tabbed = true }
+    }
+    const component = mount(<Generic {...expected} />)
+    component.find('input').simulate('keydown', { keyCode: 48, target: { value: '1', selectionDirection: 'forward', selectionStart: 0, selectionEnd: 2 } })
+    expect(tabbed).toBe(false)
+  })
+
   it('trims whitespace for validation', () => {
     let persisted = false
     const expected = {
