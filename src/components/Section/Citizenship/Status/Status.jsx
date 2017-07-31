@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Field, RadioGroup, Radio,
+import { Branch, Show, Field, RadioGroup, Radio, Textarea,
          Text, Name, DateControl, Country, Location } from '../../../Form'
 
 export default class Status extends SubsectionElement {
@@ -266,13 +266,7 @@ export default class Status extends SubsectionElement {
         <Show when={this.props.CitizenshipStatus === 'ForeignBorn'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.abroad')}
-                   adjustFor="buttons"
-                   comments={true}
-                   commentsName="Explanation"
-                   commentsValue={this.props.Explanation}
-                   commentsActive={this.props.AbroadDocumentation === 'Other'}
-                   onUpdate={this.updateExplanation}
-                   onError={this.handleError}>
+                   adjustFor="buttons">
               <RadioGroup className="citizenship-abroad"
                           selectedValue={this.props.AbroadDocumentation}>
                 <Radio name="citizenship-abroad-fs240"
@@ -304,6 +298,16 @@ export default class Status extends SubsectionElement {
                        onError={this.handleError}
                        />
               </RadioGroup>
+
+              <Show when={this.props.AbroadDocumentation === 'Other'}>
+                <Textarea name="Explanation"
+                          className="citizenship-abroad-explanation"
+                          label={i18n.t('citizenship.status.label.explanation')}
+                          {...this.props.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onError={this.handleError}
+                          />
+              </Show>
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentnumber.foreignborn')}>
@@ -500,13 +504,7 @@ export default class Status extends SubsectionElement {
                   />
 
             <Field title={i18n.t('citizenship.status.heading.basis.naturalized')}
-                   adjustFor="big-buttons"
-                   comments={true}
-                   commentsName="Explanation"
-                   commentsValue={this.props.Explanation}
-                   commentsActive={this.props.Basis === 'Other'}
-                   onUpdate={this.updateExplanation}
-                   onError={this.handleError}>
+                   adjustFor="big-buttons">
               <RadioGroup className="citizenship-basis"
                           selectedValue={this.props.Basis}>
                 <Radio name="citizenship-basis-individual"
@@ -524,6 +522,16 @@ export default class Status extends SubsectionElement {
                        onError={this.handleError}
                        />
               </RadioGroup>
+
+              <Show when={this.props.Basis === 'Other'}>
+                <Textarea name="Explanation"
+                          className="citizenship-basis-explanation"
+                          label={i18n.t('citizenship.status.label.explanation')}
+                          {...this.props.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onError={this.handleError}
+                          />
+              </Show>
             </Field>
           </div>
         </Show>
@@ -577,13 +585,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.basis.derived')}
-                   adjustFor="big-buttons"
-                   comments={true}
-                   commentsName="Explanation"
-                   commentsValue={this.props.Explanation}
-                   commentsActive={this.props.Basis === 'Other'}
-                   onUpdate={this.updateExplanation}
-                   onError={this.handleError}>
+                   adjustFor="big-buttons">
               <RadioGroup className="citizenship-basis"
                           selectedValue={this.props.Basis}>
                 <Radio name="citizenship-basis-individual"
@@ -601,6 +603,16 @@ export default class Status extends SubsectionElement {
                        onError={this.handleError}
                        />
               </RadioGroup>
+
+              <Show when={this.props.Basis === 'Other'}>
+                <Textarea name="Explanation"
+                          className="citizenship-basis-explanation"
+                          label={i18n.t('citizenship.status.label.explanation')}
+                          {...this.props.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onError={this.handleError}
+                          />
+              </Show>
             </Field>
           </div>
         </Show>
@@ -669,13 +681,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documenttype')}
-                   adjustFor="buttons"
-                   comments={true}
-                   commentsName="Explanation"
-                   commentsValue={this.props.Explanation}
-                   commentsActive={this.props.DocumentType === 'Other'}
-                   onUpdate={this.updateExplanation}
-                   onError={this.handleError}>
+                   adjustFor="buttons">
               <RadioGroup className="citizenship-document-type"
                           selectedValue={this.props.DocumentType}>
                 <Radio name="document-type-i94"
@@ -714,6 +720,16 @@ export default class Status extends SubsectionElement {
                        onError={this.handleError}
                        />
               </RadioGroup>
+
+              <Show when={this.props.DocumentType === 'Other'}>
+                <Textarea name="Explanation"
+                          className="citizenship-document-type-explanation"
+                          label={i18n.t('citizenship.status.label.explanation')}
+                          {...this.props.Explanation}
+                          onUpdate={this.updateExplanation}
+                          onError={this.handleError}
+                          />
+              </Show>
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentnumber.notcitizen')}>

@@ -1800,6 +1800,7 @@ const en = {
         documenttype: 'Provide type of document issued'
       },
       label: {
+        explanation: 'Explanation',
         citizenshipstatus: {
           citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
           foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
