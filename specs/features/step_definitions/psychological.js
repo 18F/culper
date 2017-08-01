@@ -31,6 +31,8 @@ defineSupportCode(({Given, Then, When}) => {
         return completePsychologicalConsultations(promise)
       case 'hospitalizations':
         return completePyschologicalHospitalizations(promise)
+      case 'diagnoses':
+        return completePyschologicalDiagnoses(promise)
       default:
         return promise
     }
@@ -89,6 +91,27 @@ const completePyschologicalHospitalizations = (promise) => {
     .then(() => { return setDomesticAddress('.hospitalizations .location .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setOptionWithPause('.hospitalizations .branch.addendum .blocks.option-list .no.block label') })
 }
+
+const completePyschologicalDiagnoses = (promise) => {
+  return promise
+    .then(() => { return setOption('.diagnoses .branch.diagnosed .blocks.option-list .yes.block label') })
+    .then(() => { return setOption('.diagnoses .diagnosis .blocks.diagnosis-condition .diagnosis-condition-psychotic label') })
+    .then(() => { return setText('.diagnoses .daterange .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.diagnoses .daterange .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.diagnoses .daterange .datecontrol.from .year input', '2000') })
+    .then(() => { return setText('.diagnoses .daterange .datecontrol.to .month input', '2') })
+    .then(() => { return setText('.diagnoses .daterange .datecontrol.to .day input', '2') })
+    .then(() => { return setText('.diagnoses .daterange .datecontrol.to .year input', '2000') })
+    .then(() => { return setText('.diagnoses .person .treatment .treatment-name input', 'Test treatment information') })
+    .then(() => { return setDomesticTelephone('.diagnoses .person .telephone', '703', '111', '2222', 'Cell') })
+    .then(() => { return setDomesticAddress('.diagnoses .person .location .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setTextWithPause('.diagnoses .facility .treatment .treatment-name input', 'Test treatment facility information') })
+    .then(() => { return setDomesticTelephone('.diagnoses .facility .telephone', '703', '333', '4444', 'Cell') })
+    .then(() => { return setDomesticAddress('.diagnoses .facility .location .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOptionWithPause('.diagnoses .blocks.effective .block label') })
+    .then(() => { return setOption('.diagnoses .branch.addendum .blocks.option-list .no.block label') })
+}
+
 
 const navigateToSection = (section) => {
   const selector = '.section a[title="' + section + '"]'
