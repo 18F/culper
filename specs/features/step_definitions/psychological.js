@@ -27,6 +27,8 @@ defineSupportCode(({Given, Then, When}) => {
     switch (subsection) {
       case 'competence':
         return completePsychologicalCompetence(promise)
+      case 'consultations':
+        return completePsychologicalConsultations(promise)
       default:
         return promise
     }
@@ -53,6 +55,21 @@ const completePsychologicalCompetence = (promise) => {
     .then(() => { return setDomesticAddress('.competence .appeals .location.appealcourtaddress .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setTextWithPause('.competence .appeals .disposition input', 'Final disposition for comptence') })
     .then(() => { return setOption('.competence .branch.addendum .blocks.option-list .no.block label') })
+}
+
+const completePsychologicalConsultations = (promise) => {
+  return promise
+    .then(() => { return setOption('.consultation .branch .blocks.option-list .yes.block label') })
+    .then(() => { return setText('.consultation .order .datecontrol .month input', '1') })
+    .then(() => { return setText('.consultation .order .datecontrol .year input', '2010') })
+    .then(() => { return setText('.consultation .courtname input', 'Court name for comptence') })
+    .then(() => { return setDomesticAddress('.consultation .location .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setTextWithPause('.consultation .disposition input', 'Final disposition for comptence') })
+    .then(() => { return setOption('.consultation .appeals .field.branch .blocks.option-list .yes.block label') })
+    .then(() => { return setText('.consultation .appeals .appealcourtname input', 'Appeal court name for comptence') })
+    .then(() => { return setDomesticAddress('.consultation .appeals .location.appealcourtaddress .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setTextWithPause('.consultation .appeals .disposition input', 'Final disposition for comptence') })
+    .then(() => { return setOption('.consultation .branch.addendum .blocks.option-list .no.block label') })
 }
 
 const navigateToSection = (section) => {
