@@ -29,13 +29,13 @@ describe('The title section', () => {
     const store = mockStore({ section: { section: 'legal', subsection: 'technology' } })
     const component = mount(<Provider store={store}><SectionTitle /></Provider>)
     expect(component.find('div').length).toEqual(1)
-    expect(component.find('div').text()).toEqual('Investigative and criminal historyUse of information technology systems')
+    expect(component.find('div').text()).toEqual('Investigative and criminal history > Use of information technology systems')
   })
 
   it('can handle title 3 deep', () => {
     const store = mockStore({ section: { section: 'legal', subsection: 'technology/unauthorized' } })
     const component = mount(<Provider store={store}><SectionTitle /></Provider>)
     expect(component.find('div').length).toEqual(1)
-    expect(component.find('div').text()).toEqual('Use of information technology systems > Unauthorized access')
+    expect(component.find('div').text()).toEqual('Investigative and criminal history > Use of information technology systems > Unauthorized access')
   })
 })
