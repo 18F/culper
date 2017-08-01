@@ -35,10 +35,6 @@ defineSupportCode(({Given, Then, When}) => {
     }
   })
 
-  When(/^I click Next (.*?)$/, (section) => {
-    return navigateToNext()
-  })
-
   Then(/^I should be in the citizenship (.*?) section$/, (subsection) => {
     return shouldBeInSubsection('citizenship', subsection)
   })

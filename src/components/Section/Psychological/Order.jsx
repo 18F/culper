@@ -123,16 +123,17 @@ export default class Order extends ValidationElement {
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}>
-            <Text name="CourtName"
-                  className="courtname"
+            <Text name="AppealCourtName"
+                  className="appealcourtname"
                   bind={true}
                   onError={this.props.onError}
                   />
           </Field>
 
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
+          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtAddress`)}
                  adjustFor="address">
-            <Location name="CourtAddress"
+            <Location name="AppealCourtAddress"
+                      className="appealcourtaddress"
                       bind={true}
                       label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
                       layout={Location.ADDRESS}
