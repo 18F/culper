@@ -64,7 +64,7 @@ export default class DateControl extends ValidationElement {
       valid: props.valid,
       maxDate: props.maxDate,
       month: props.month || datePart('m', props.value),
-      day: props.day || props.hideDay ? 1 : datePart('d', props.value),
+      day: props.hideDay ? 1 : (props.day || datePart('d', props.value)),
       year: props.year || datePart('y', props.value),
       errors: []
     }
@@ -75,6 +75,7 @@ export default class DateControl extends ValidationElement {
     this.handleErrorMonth = this.handleErrorMonth.bind(this)
     this.handleErrorDay = this.handleErrorDay.bind(this)
     this.handleErrorYear = this.handleErrorYear.bind(this)
+    this.update = this.update.bind(this)
     this.updateMonth = this.updateMonth.bind(this)
     this.updateDay = this.updateDay.bind(this)
     this.updateYear = this.updateYear.bind(this)
@@ -93,25 +94,16 @@ export default class DateControl extends ValidationElement {
         month = '' + (next.date.getMonth() + 1)
         day = next.date.getDate()
         year = next.date.getFullYear()
-        this.setState({
-          value: value,
-          month: month,
-          day: day,
-          year: year
-        })
       } else {
         value = next.value
         month = datePart('m', next.value)
         day = datePart('d', next.value)
         year = datePart('y', next.value)
-        this.setState({
-          value: value,
-          month: month,
-          day: day,
-          year: year
-        })
       }
+
+      this.update(null, year, month, day, next.estimated)
     }
+
     if (next.disabled !== this.state.disabled) {
       this.setState({
         disabled: next.disabled
@@ -131,10 +123,17 @@ export default class DateControl extends ValidationElement {
     this.setState(
       { month: month, day: day, year: year, estimated: estimated, value: date },
       () => {
-        // event.target.date = d
+        // Estimate touches the day so we need to toggle focus
+        const toggleForEstimation = changed.estimated
+
+        // Potential for typical day out-of-bounds (including leap year)
+        const toggleForDay = date && (changed.year || changed.month)
+
+        // Any external influence (i.e. clicking `Present` in a date range)
+        const toggleForExternal = el === null && changed.year && changed.month && changed.day
 
         // This will force a blur/validation
-        if (date && (changed.year || changed.month || changed.estimated)) {
+        if (toggleForEstimation || toggleForDay || toggleForExternal) {
           this.props.toggleFocus(
             window,
             changed,
@@ -407,16 +406,16 @@ DateControl.defaultProps = {
   maxDate: new Date(),
   minDate: null,
   toggleFocus: (w, changed, el, day, month) => {
-    w.setTimeout(() => {
-      day.focus()
-      day.blur()
+    day.focus()
+    day.blur()
 
+    if (el) {
       if (changed.month) {
         month.focus()
       } else if (el.focus) {
         el.focus()
       }
-    }, 200)
+    }
   },
   onUpdate: (values) => {},
   onError: (value, arr) => { return arr },
