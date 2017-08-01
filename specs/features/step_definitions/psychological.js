@@ -29,6 +29,8 @@ defineSupportCode(({Given, Then, When}) => {
         return completePsychologicalCompetence(promise)
       case 'consultations':
         return completePsychologicalConsultations(promise)
+      case 'hospitalizations':
+        return completePyschologicalHospitalizations(promise)
       default:
         return promise
     }
@@ -70,6 +72,22 @@ const completePsychologicalConsultations = (promise) => {
     .then(() => { return setDomesticAddress('.consultation .appeals .location.appealcourtaddress .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setTextWithPause('.consultation .appeals .disposition input', 'Final disposition for comptence') })
     .then(() => { return setOption('.consultation .branch.addendum .blocks.option-list .no.block label') })
+}
+
+const completePyschologicalHospitalizations = (promise) => {
+  return promise
+    .then(() => { return setOption('.hospitalizations .branch .blocks.option-list .yes.block label') })
+    .then(() => { return setOption('.hospitalizations .hospitalization .voluntary-option.block label') })
+    .then(() => { return setText('.hospitalizations .explanation textarea', 'This is a test explanation') })
+    .then(() => { return setText('.hospitalizations .daterange .datecontrol.from .month input', '1') })
+    .then(() => { return setText('.hospitalizations .daterange .datecontrol.from .day input', '1') })
+    .then(() => { return setText('.hospitalizations .daterange .datecontrol.from .year input', '2000') })
+    .then(() => { return setText('.hospitalizations .daterange .datecontrol.to .month input', '2') })
+    .then(() => { return setText('.hospitalizations .daterange .datecontrol.to .day input', '2') })
+    .then(() => { return setText('.hospitalizations .daterange .datecontrol.to .year input', '2000') })
+    .then(() => { return setText('.hospitalizations .facility input', 'Hospital to which I was admitted') })
+    .then(() => { return setDomesticAddress('.hospitalizations .location .address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOptionWithPause('.hospitalizations .branch.addendum .blocks.option-list .no.block label') })
 }
 
 const navigateToSection = (section) => {
