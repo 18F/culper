@@ -194,8 +194,8 @@ const en = {
         }
       },
       mismatch: {
-        title: 'Verification mismatch',
-        message: 'The two U.S. Social Security Numbers need to match to pass verification.',
+        title: 'Confirmation mismatch',
+        message: 'The two U.S. Social Security Numbers you entered do not match.',
         note: ''
       }
     },
@@ -794,15 +794,13 @@ const en = {
     destination: {
       intro: 'Intro',
       review: 'Review Identification',
-      relationships: 'Relationships',
       othernames: 'Other names used',
       name: 'Full name',
-      birthdate: 'Birth date',
-      birthplace: 'Birth place',
-      contacts: 'Contacts',
+      birthdate: 'Date of birth',
+      birthplace: 'Place of birth',
+      contacts: 'Your contact information',
       ssn: 'Social security number',
-      physical: 'Identifying information',
-      psychological: 'Psychological and emotional health'
+      physical: 'Your identifying information'
     },
     name: {
       title: 'Provide your full name',
@@ -983,7 +981,7 @@ const en = {
     ssn: {
       title: 'Provide your U.S. Social Security Number',
       heading: {
-        verify: 'Please enter your U.S. Social Security Number again for vefication'
+        verify: 'Please confirm your social security number'
       },
       help: {
         title: 'Need help with your U.S. Social Security Number?',
@@ -1762,7 +1760,7 @@ const en = {
         certificateissued: {
           foreignborn: 'Provide the date the certificate was issued',
           naturalized: 'Provide the date the Certificate of Naturalization was issued',
-          derived: 'Provide the date the certificate was issued'
+          derived: 'Provide the date the document was issued'
         },
         certificatename: {
           foreignborn: 'Provide the name in which the certificate was issued',
@@ -1774,7 +1772,7 @@ const en = {
         bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
         militarybase: 'Provide the name of the base',
         entrydate: 'Provide the date of entry into the U.S.',
-        entrylocation: 'Provide the location of entry into the U.S.',
+        entrylocation: 'Provide your place of entry in the U.S.',
         priorcitizenship: {
           naturalized: 'Provide country(ies) of prior citizenship',
           notcitizen: 'Provide your countr(ies) of citizenship'
@@ -1796,6 +1794,7 @@ const en = {
         documenttype: 'Provide type of document issued'
       },
       label: {
+        explanation: 'Explanation',
         citizenshipstatus: {
           citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
           foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
