@@ -53,6 +53,7 @@ export default class ApplicantSSN extends SubsectionElement {
       // we are going to forcefully flush them.
       if (verified) {
         this.handleError(values, [])
+        this.verificationError(values, [])
       }
     })
   }
