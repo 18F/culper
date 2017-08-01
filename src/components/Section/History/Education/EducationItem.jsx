@@ -142,7 +142,6 @@ export default class EducationItem extends ValidationElement {
       <div>
         <div className="content">
           <Field title={i18n.t('history.education.heading.name')}
-                 help="history.education.help.name"
                  adjustFor="labels">
             <Text name="Name"
                   {...this.state.Name}
