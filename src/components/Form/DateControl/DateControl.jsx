@@ -84,18 +84,15 @@ export default class DateControl extends ValidationElement {
 
   componentWillReceiveProps (next) {
     if (next.receiveProps) {
-      let value = ''
       let month = ''
       let day = ''
       let year = ''
 
       if (next.date) {
-        value = next.date
         month = '' + (next.date.getMonth() + 1)
         day = next.date.getDate()
         year = next.date.getFullYear()
       } else {
-        value = next.value
         month = datePart('m', next.value)
         day = datePart('d', next.value)
         year = datePart('y', next.value)
@@ -181,11 +178,17 @@ export default class DateControl extends ValidationElement {
   }
 
   updateEstimated (values) {
+    let day = `${this.state.day}`
+    if (values.checked) {
+      if (!day) {
+        day = '15'
+      }
+    }
     this.update(
       this.refs.estimated.refs.checkbox,
       this.state.year,
       this.state.month,
-      values.checked ? '15' : '',
+      day,
       values.checked)
   }
 
