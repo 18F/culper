@@ -4915,11 +4915,6 @@ const en = {
           message: 'Provide the dates of attendance',
           note: ''
         },
-        name: {
-          title: 'Need help with the school name?',
-          message: 'Provide the school name',
-          note: ''
-        },
         address: {
           title: 'Need help with the school address?',
           message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
