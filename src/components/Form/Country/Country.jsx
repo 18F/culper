@@ -14,26 +14,34 @@ export default class Country extends ValidationElement {
       value: props.value
     }
 
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
+    this.updateDropdown = this.updateDropdown.bind(this)
+    this.updateMultiple = this.updateMultiple.bind(this)
     this.handleError = this.handleError.bind(this)
   }
 
-  onUpdate (value) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        name: this.props.name,
-        value: value
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      value: this.state.value,
+      ...queue
+    })
+  }
+
+  updateDropdown (values) {
+    this.update({ value: values.value })
+  }
+
+  updateMultiple (values) {
+    this.update({ value: values.value })
   }
 
   /**
    * Handle the change event.
    */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      this.onUpdate(event.target.value)
-      super.handleChange(event)
+  handleChange (values) {
+    this.setState({ value: value }, () => {
+      this.onUpdate(value)
     })
   }
 
@@ -111,11 +119,10 @@ export default class Country extends ValidationElement {
       return (
         <MultipleDropdown name={this.props.name}
                           label={this.props.label}
-                          help="Country is required"
                           placeholder={this.props.placeholder}
                           className={klass}
                           disabled={this.props.disabled}
-                          onUpdate={this.onUpdate}
+                          onUpdate={this.updateMultiple}
                           onError={this.handleError}
                           onFocus={this.handleFocus}
                           onBlur={this.handleBlur}
@@ -130,11 +137,10 @@ export default class Country extends ValidationElement {
     return (
       <Dropdown name={this.props.name}
                 label={this.props.label}
-                help="Country is required"
                 placeholder={this.props.placeholder}
                 className={klass}
                 disabled={this.props.disabled}
-                onChange={this.handleChange}
+                onUpdate={this.updateDropdown}
                 onError={this.handleError}
                 onFocus={this.handleFocus}
                 onBlur={this.handleBlur}
@@ -150,6 +156,7 @@ export default class Country extends ValidationElement {
 Country.defaultProps = {
   name: 'country',
   excludeUnitedStates: false,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

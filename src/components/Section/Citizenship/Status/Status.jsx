@@ -643,7 +643,7 @@ export default class Status extends SubsectionElement {
                    help="citizenship.status.help.priorcitizenship">
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
-                       value={this.props.PriorCitizenship.first}
+                       {...this.props.PriorCitizenship}
                        multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}

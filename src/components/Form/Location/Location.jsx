@@ -197,9 +197,9 @@ export default class Location extends ValidationElement {
     })
   }
 
-  updateCountry (event) {
+  updateCountry (values) {
     this.update({
-      country: event.target.value,
+      country: values.value,
       validated: false
     })
   }
@@ -331,7 +331,7 @@ export default class Location extends ValidationElement {
                    placeholder={this.props.countryPlaceholder}
                    value={this.props.country}
                    excludeUnitedStates="true"
-                   onChange={this.updateCountry}
+                   onUpdate={this.updateCountry}
                    onError={this.props.onError}
                    onFocus={this.props.onFocus}
                    onBlur={this.handleBlur}

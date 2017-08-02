@@ -1,138 +1,34 @@
 .multiple-dropdown {
-  .ic-tokens {
+  .tokens {
+    display: block;
     width: 100%;
-    padding: 0 !important;
-    margin-top: 0;
+    padding: 1rem 0 0;
 
-    &.flex {
-      /* 2009 */
-      display: -webkit-box;
-      display: -moz-box;
+    // These are the badge/token/thingies showing the selected values
+    .token {
+      display: inline-block;
+      width: initial;
+      border: 3px solid #4aa564;
+      border-radius: 3px;
+      margin-top: 1rem;
+      margin-bottom: 0.1rem;
+      padding: 1rem;
+      cursor: default;
 
-      /* 2011 */
-      display: -moz-flexbox;
-      display: -ms-flexbox;
-      display: -o-flexbox;
+      .token-delete {
+        cursor: pointer;
+        margin-left: 1rem;
 
-      /* 2012 */
-      display: -webkit-flex;
-      display: flex;
-
-      flex-flow: row wrap;
-    }
-
-    .inline-flex {
-      list-style: none;
-      padding: 0 !important;
-      width: 100%;
-
-      /* 2009 */
-      display: -webkit-inline-box;
-      display: -moz-inline-box;
-
-      /* 2011 */
-      display: -moz-inline-flexbox;
-      display: -ms-inline-flexbox;
-      display: -o-inline-flexbox;
-
-      /* 2012 */
-      display: -webkit-inline-flex;
-      display: inline-flex;
-
-      // These are the badge/token/thingies showing the selected values
-      &.ic-token {
-        width: initial;
-        border: 3px solid #4aa564;
-        border-radius: 3px;
-        margin-top: 1rem;
-        margin-bottom: 0.1rem;
-        padding: 1rem !important;
-        cursor: default;
-
-        // This helps us position what we actually care about
-        order: unset;
-
-        .ic-token-delete-button {
-          cursor: pointer;
-          margin-left: 1rem;
-
-          &:focus,
-          &:hover {
-            outline: none;
-            color: #cd2026;
-          }
+        &:focus,
+        &:hover {
+          outline: none;
+          color: #cd2026;
         }
       }
 
       // Only apply the margin left to items after the first
-      &.ic-token:nth-of-type(n + 1) {
+      &:nth-of-type(n + 1) {
         margin-right: 1rem;
-      }
-
-      // Position the text input before everything else
-      &:last-of-type {
-        order: -1;
-      }
-
-      &:last-of-type::after {
-        content: '';
-        width: 100%;
-        order: 0;
-      }
-
-      .ic-tokeninput {
-        width: 100%;
-        max-width: 64rem;
-        display: table;
-
-        &.ic-tokeninput-is-open {
-          box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
-
-          .ic-tokeninput-input {
-            border-bottom: 1px solid #aaa;
-          }
-
-          .ic-tokeninput-list {
-            display: block;
-          }
-        }
-
-        .ic-tokeninput-input {
-          margin-bottom: 0;
-        }
-
-        .ic-tokeninput-button {
-          display: none;
-          visibility: hidden;
-        }
-
-        // TODO: Get the highlighting of open options to match current dropdown or better
-        .ic-tokeninput-list {
-          display: none;
-          position: relative;
-          z-index: 1;
-          border-bottom: 1px solid #000;
-          border-right: 1px solid #000;
-          border-left: 1px solid #000;
-          background: #fff;
-          max-height: 400px;
-          overflow: auto;
-          width: 100%;
-          max-width: 64rem;
-          -moz-box-sizing: border-box;
-          -ms-box-sizing: border-box;
-          box-sizing: border-box;
-        }
-
-        .ic-tokeninput-option {
-          padding: 1rem 1.2rem;
-
-          &:hover,
-          &:focus {
-            background-color: #dce2ee;
-            outline: none;
-          }
-        }
       }
     }
   }

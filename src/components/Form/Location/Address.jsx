@@ -46,8 +46,8 @@ export default class Address extends ValidationElement {
     this.update({zipcode: event.target.value})
   }
 
-  updateCountry (event) {
-    this.update({country: event.target.value})
+  updateCountry (values) {
+    this.update({country: values.value})
   }
 
   updateAddressType (cb) {
@@ -224,7 +224,7 @@ export default class Address extends ValidationElement {
                          label={this.props.countryLabel}
                          value={this.props.country}
                          excludeUnitedStates="true"
-                         onChange={this.updateCountry}
+                         onUpdate={this.updateCountry}
                          onError={this.props.onError}
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}

@@ -56,8 +56,8 @@ export default class ToggleableLocation extends ValidationElement {
     this.update({state: event.target.value})
   }
 
-  updateCountry (event) {
-    this.update({country: event.target.value})
+  updateCountry (values) {
+    this.update({country: values.value})
   }
 
   updateCounty (event) {
@@ -195,7 +195,7 @@ export default class ToggleableLocation extends ValidationElement {
               placeholder={this.props.countryPlaceholder}
               excludeUnitedStates="true"
               disabled={this.props.disabledCountry}
-              onChange={this.updateCountry}
+              onUpdate={this.updateCountry}
               onError={this.props.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
