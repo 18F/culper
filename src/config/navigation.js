@@ -1,7 +1,7 @@
 import { hideDisciplinaryProcedures } from '../validators/militarydisciplinary'
 import { hideExistingConditions } from '../validators/psychological'
 import { hideSelectiveService } from '../validators/selectiveservice'
-//import { hideReleases } from '../validators/releases'
+// import { hideReleases } from '../validators/releases'
 
 const navigation = [
   {
@@ -15,7 +15,7 @@ const navigation = [
       { name: 'Other names used', url: 'othernames' },
       { name: 'Date of birth', url: 'birthdate' },
       { name: 'Place of birth', url: 'birthplace' },
-      { name: 'SSN', url: 'ssn' },
+      { name: 'Social security number', url: 'ssn' },
       { name: 'Your identifying information', url: 'physical' },
       { exclude: true, name: 'Review', url: 'review' }
     ]
@@ -274,7 +274,7 @@ const navigation = [
       { name: 'Credit reporting disclosure', url: 'credit' }
     ],
     exclude: true
-    //hiddenFunc: hideReleases
+    // hiddenFunc: hideReleases
   },
   {
     title: 'Design guideline',

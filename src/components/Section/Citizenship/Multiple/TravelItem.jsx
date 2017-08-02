@@ -36,6 +36,7 @@ export default class TravelItem extends ValidationElement {
       <div className="citizenship-item">
         <Field title={i18n.t('citizenship.multiple.heading.travel.country')}>
           <Country name="Country"
+                   className="travel-item-country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
@@ -46,6 +47,7 @@ export default class TravelItem extends ValidationElement {
                help="citizenship.multiple.help.travel.dates"
                adjustFor="daterange">
           <DateRange name="Dates"
+                     className="travel-item-dates"
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
