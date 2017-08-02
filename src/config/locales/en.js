@@ -981,7 +981,8 @@ const en = {
     ssn: {
       title: 'Provide your U.S. Social Security Number',
       heading: {
-        verify: 'Please confirm your social security number'
+        verify: 'Please confirm your social security number',
+        verified: 'Thank you for confirming your social security number!'
       },
       help: {
         title: 'Need help with your U.S. Social Security Number?',

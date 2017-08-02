@@ -105,6 +105,11 @@ export default class ApplicantSSN extends SubsectionElement {
                  />
           </Field>
         </Show>
+        <Show when={this.props.verified}>
+          <Field title={i18n.t('identification.ssn.heading.verified')}
+                 titleSize="h4">
+          </Field>
+        </Show>
       </div>
     )
   }
