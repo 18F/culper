@@ -27,9 +27,7 @@ const renderSuggestion = (suggestion, search) => {
   }
 
   return (
-    <div>
-      <ReactMarkdown source={text} />
-    </div>
+    <ReactMarkdown source={text} />
   )
 }
 
@@ -206,8 +204,13 @@ export default class Dropdown extends ValidationElement {
         value: value
       }
     }
+
     this.setState({value: value}, () => {
       super.handleChange(e)
+      this.props.onUpdate({
+        name: this.props.name,
+        value: value
+      })
     })
   }
 
@@ -223,8 +226,20 @@ export default class Dropdown extends ValidationElement {
     })
   }
 
-  onSuggestionSelected (event) {
-    this.setState({ focus: false }, () => {
+  onSuggestionSelected (event, options) {
+    let future = {
+      focus: false,
+      suggestions: this.state.suggestions,
+      value: this.state.value
+    }
+
+    if (this.props.clearOnSelection) {
+      future.suggestions = []
+      future.value = ''
+    }
+
+    this.setState(future, () => {
+      this.props.onSuggestionSelected(event, options)
       this.props.tabNext()
     })
   }
@@ -264,8 +279,8 @@ export default class Dropdown extends ValidationElement {
     }).shift()
 
     const value = (option && !this.state.focus)
-        ? this.props.displayText(option.value, option.text)
-        : this.state.value
+          ? this.props.displayText(option.value, option.text)
+          : this.state.value
 
     const inputProps = {
       id: this.state.uid,
@@ -300,6 +315,7 @@ export default class Dropdown extends ValidationElement {
                      getSuggestionValue={getSuggestionValue}
                      renderSuggestion={renderSuggestion}
                      inputProps={inputProps}
+                     highlightFirstSuggestion={true}
                      ref="autosuggest"
                      />
       </div>
@@ -320,6 +336,7 @@ Dropdown.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  clearOnSelection: false,
   clipboard: true,
   tabNext: () => {},
   tabBack: () => {},
@@ -327,6 +344,8 @@ Dropdown.defaultProps = {
   displayText: (value, text) => {
     return value
   },
+  onSuggestionSelected: (event, options) => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 
@@ -337,6 +356,7 @@ Dropdown.errors = [
       if (!value) {
         return null
       }
+
       return props.options.some(x => {
         return x.text.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()
       })
