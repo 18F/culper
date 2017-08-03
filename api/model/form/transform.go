@@ -10,6 +10,7 @@ import (
 var transform = map[string]func() model.Entity{
 	"branch":                    func() model.Entity { return &Branch{} },
 	"checkbox":                  func() model.Entity { return &Checkbox{} },
+	"checkboxgroup":             func() model.Entity { return &CheckboxGroup{} },
 	"collection":                func() model.Entity { return &Collection{} },
 	"datecontrol":               func() model.Entity { return &DateControl{} },
 	"daterange":                 func() model.Entity { return &DateRange{} },
@@ -31,4 +32,11 @@ var transform = map[string]func() model.Entity{
 	"identification.birthplace": func() model.Entity { return &IdentificationBirthPlace{} },
 	"identification.ssn":        func() model.Entity { return &IdentificationSSN{} },
 	"identification.physical":   func() model.Entity { return &IdentificationPhysical{} },
+	"financial.bankruptcy":      func() model.Entity { return &FinancialBankruptcy{} },
+	"financial.gambling":        func() model.Entity { return &FinancialGambling{} },
+	"financial.taxes":           func() model.Entity { return &FinancialTaxes{} },
+	"financial.card":            func() model.Entity { return &FinancialCard{} },
+	"financial.credit":          func() model.Entity { return &FinancialCredit{} },
+	"financial.delinquent":      func() model.Entity { return &FinancialDelinquent{} },
+	"financial.nonpayment":      func() model.Entity { return &FinancialNonpayment{} },
 }

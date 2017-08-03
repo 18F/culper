@@ -56,6 +56,13 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/identification-othernames.json"},
 		{Data: "testdata/identification-physical.json"},
 		{Data: "testdata/identification-ssn.json"},
+		{Data: "testdata/financial-bankruptcy.json"},
+		{Data: "testdata/financial-gambling.json"},
+		{Data: "testdata/financial-taxes.json"},
+		{Data: "testdata/financial-card.json"},
+		{Data: "testdata/financial-credit.json"},
+		{Data: "testdata/financial-delinquent.json"},
+		{Data: "testdata/financial-nonpayment.json"},
 	}
 
 	// HTTP test server to field any third party requests

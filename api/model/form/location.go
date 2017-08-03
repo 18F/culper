@@ -108,7 +108,8 @@ func (entity *Location) Valid() (bool, error) {
 		stack = validateFields(entity, "street", "city", "country")
 	}
 
-	if !stack.HasErrors() && !international {
+	geocode := entity.Layout == LayoutAddress || entity.Layout == LayoutUSAddress
+	if !stack.HasErrors() && !international && geocode {
 		// Perform geocoding
 		results, err := geo.Geocode.Validate(
 			geo.Values{
