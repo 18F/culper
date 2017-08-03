@@ -36,15 +36,6 @@ export default class Country extends ValidationElement {
     this.update({ value: values.value })
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (values) {
-    this.setState({ value: value }, () => {
-      this.onUpdate(value)
-    })
-  }
-
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
@@ -74,14 +65,6 @@ export default class Country extends ValidationElement {
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
-  }
-
-  unitedStates () {
-    if (this.props.excludeUnitedStates) {
-      return null
-    }
-
-    return <option value="United States">United States</option>
   }
 
   renderOptions () {

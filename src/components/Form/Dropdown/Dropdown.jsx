@@ -6,7 +6,7 @@ import { autotab } from '../Generic'
 
 const getSuggestionValue = suggestion => suggestion.text
 
-const renderSuggestion = (suggestion, search) => {
+export const renderSuggestion = (suggestion, search) => {
   let text = `${suggestion.value}`
 
   // If the value is different than the name then display that

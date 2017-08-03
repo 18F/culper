@@ -61,4 +61,25 @@ describe('The MultipleDropdown component', () => {
     const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
     expect(component.find('input').length).toBe(1)
   })
+
+  it('handles when no match found', () => {
+    let updated = false
+    const expected = {
+      value: [],
+      onUpdate: () => { updated = true }
+    }
+    const options = [
+      { name: 'Germany', value: 'Germany' }
+    ].map(x => {
+      return <option key={x.value} value={x.value}>{x.name}</option>
+    })
+    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    component.find('.dropdown input').simulate('change', {
+      target: {
+        value: 'Belg'
+      }
+    })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 13 })
+    expect(updated).toBe(false)
+  })
 })

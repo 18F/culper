@@ -19,7 +19,12 @@ describe('The Country component', () => {
       onBlur: () => {},
       onFocus: () => {}
     }
-    const component = mount(<Country {...expected} />)
+    const options = [
+      { name: 'Belgium', value: 'Belgium' }
+    ].map(x => {
+      return <option key={x.value} value={x.value}>{x.name}</option>
+    })
+    const component = mount(<Country {...expected}>{options}</Country>)
     component.find('.country input').simulate('change', {
       target: {
         value: 'Belg'
