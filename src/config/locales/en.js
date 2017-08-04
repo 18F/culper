@@ -7587,7 +7587,7 @@ const en = {
         heading: {
           seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
           actionTaken: 'Did you take action to seek counseling or treatment?',
-          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment.',
           counselingDates: 'Provide the dates of counseling or treatment',
           treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
           treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
