@@ -7639,7 +7639,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7683,7 +7683,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7730,7 +7730,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           agencyName: {
@@ -7744,13 +7744,13 @@ const en = {
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentBeganDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment started',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           treatmentEndDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment ended',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           completedTreatment: {
