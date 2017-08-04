@@ -95,7 +95,13 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/substance-alcohol-additional.json"},
 
 		// Section: Investigative and criminal history
+
 		// Section: Psychological and emotional health
+		{Data: "testdata/psychological-competence.json"},
+		{Data: "testdata/psychological-consultations.json"},
+		{Data: "testdata/psychological-hospitalizations.json"},
+		{Data: "testdata/psychological-diagnoses.json"},
+		{Data: "testdata/psychological-existing.json"},
 	}
 
 	// HTTP test server to field any third party requests
