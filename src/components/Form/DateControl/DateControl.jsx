@@ -205,13 +205,25 @@ export default class DateControl extends ValidationElement {
   }
 
   handleError (code, value, arr) {
-    arr = arr.map(err => {
+    let original = arr.map(err => {
       return {
         code: `date.${code}.${err.code}`,
         valid: err.valid,
         uid: err.uid
       }
     })
+
+    // Handle required
+    arr = original.concat(this.constructor.errors
+      .filter(err => err.code === 'required')
+      .map(err => {
+        const props = {...this.props, ...this.state}
+        return {
+          code: `date.${err.code}`,
+          valid: err.func(null, props),
+          uid: this.state.uid
+        }
+      }))
 
     // Introducing local state to the DateControl so it can determine
     // if there were **any** errors found in other child components.
@@ -225,6 +237,7 @@ export default class DateControl extends ValidationElement {
 
       // If the date is valid and there are no child errors...
       let local = []
+      const noneRequiredErrors = this.constructor.errors.filter(err => err.code !== 'required')
       if (date && !existingErr) {
         // Prepare some properties for the error testing
         const props = {
@@ -234,7 +247,7 @@ export default class DateControl extends ValidationElement {
         }
 
         // Call any `onError` binding with error checking specific to the `DateControl`
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: err.func(date, props),
@@ -242,7 +255,7 @@ export default class DateControl extends ValidationElement {
           }
         })
       } else {
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: null,
@@ -258,7 +271,7 @@ export default class DateControl extends ValidationElement {
     })
 
     // Return the original array of errors to the child control
-    return arr
+    return original
   }
 
   storeErrors (arr = [], callback) {
@@ -350,6 +363,7 @@ export default class DateControl extends ValidationElement {
                     onError={this.handleErrorDay}
                     tabBack={() => { this.props.tab(this.refs.month.refs.autosuggest.input) }}
                     tabNext={() => { this.props.tab(this.refs.year.refs.number.refs.input) }}
+                    required={this.props.required}
                     />
           </div>
           <div className="usa-form-group year">
@@ -427,6 +441,16 @@ DateControl.defaultProps = {
 }
 
 DateControl.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!props.month && !!props.day && !!props.year
+      }
+      return true
+    }
+
+  },
   {
     code: 'max',
     func: (value, props) => {

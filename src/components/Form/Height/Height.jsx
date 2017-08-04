@@ -8,6 +8,7 @@ export default class Height extends ValidationElement {
     super(props)
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       feet: props.feet,
       inches: props.inches,
       error: props.error,
@@ -52,8 +53,17 @@ export default class Height extends ValidationElement {
       }
     })
 
+    const requiredErrors = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `height.${err.code}`,
+        valid: err.func({...this.state}, this.props),
+        uid: this.state.uid
+      }
+    }))
+
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    this.props.onError(value, requiredErrors)
+    return arr
   }
 
   /**
@@ -143,4 +153,15 @@ Height.defaultProps = {
   required: false
 }
 
-Height.errors = []
+Height.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!value.feet && !!value.inches
+      }
+      return true
+    }
+
+  }
+]

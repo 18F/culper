@@ -131,11 +131,24 @@ export default class DateRange extends ValidationElement {
       }
     })
 
+    // Handle required
+    arr = arr.concat(this.constructor.errors
+      .filter(err => err.code === 'required')
+      .map(err => {
+        const value = { ...this.state }
+        return {
+          code: `daterange.${err.code}`,
+          valid: err.func(value, this.props),
+          uid: this.state.uid
+        }
+      }))
+
     // Introducing local state to the DateControl so it can determine
     // if there were **any** errors found in other child components.
     this.storeErrors(arr, () => {
       const existingErr = this.state.errors.some(e => e.valid === false)
       let local = []
+      const noneRequiredErrors = this.constructor.errors.filter(err => err.code !== 'required')
 
       if (!existingErr && this.state.from.date && this.state.to.date) {
         // Prepare some properties for the error testing
@@ -144,7 +157,7 @@ export default class DateRange extends ValidationElement {
           to: this.state.to
         }
 
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: err.code,
             valid: err.func(null, props),
@@ -152,7 +165,7 @@ export default class DateRange extends ValidationElement {
           }
         })
       } else {
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: err.code,
             valid: null,
@@ -242,6 +255,22 @@ DateRange.defaultProps = {
 }
 
 DateRange.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!value.from &&
+          !!value.from.day &&
+          !!value.from.month &&
+          !!value.from.year &&
+          !!value.to &&
+          !!value.to.day &&
+          !!value.to.month &&
+          !!value.to.year
+      }
+      return true
+    }
+  },
   {
     code: 'daterange.order',
     func: (value, props) => {

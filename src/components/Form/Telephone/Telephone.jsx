@@ -26,6 +26,7 @@ export default class Telephone extends ValidationElement {
   constructor (props) {
     super(props)
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       value: props.value,
       type: props.type,
       numberType: props.numberType,
@@ -66,6 +67,7 @@ export default class Telephone extends ValidationElement {
     this.handleErrorNoNumber = this.handleErrorNoNumber.bind(this)
     this.handleErrorTime = this.handleErrorTime.bind(this)
     this.handleErrorType = this.handleErrorType.bind(this)
+    this.handleErrorNumberType = this.handleErrorNumberType.bind(this)
   }
 
   parseNumber (start, end, number) {
@@ -269,6 +271,10 @@ export default class Telephone extends ValidationElement {
     return this.handleError('type', value, arr)
   }
 
+  handleErrorNumberType (value, arr) {
+    return this.handleError('numberType', value, arr)
+  }
+
   handleError (code, value, arr) {
     arr = arr.map(err => {
       return {
@@ -278,8 +284,17 @@ export default class Telephone extends ValidationElement {
       }
     })
 
+    const requiredErr = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `telephone.${err.code}`,
+        valid: err.func(value, {...this.props, ...this.state}),
+        uid: this.state.uid
+      }
+    }))
+
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    this.props.onError(value, requiredErr)
+    return arr
   }
 
   dsn () {
@@ -570,7 +585,7 @@ export default class Telephone extends ValidationElement {
 
         <div className="phonetype">
           <label className={this.state.noNumber ? 'disabled' : ''}>Select phone number type</label>
-          <RadioGroup selectedValue={this.state.numberType} required={this.props.required} onError={this.props.onError}>
+          <RadioGroup selectedValue={this.state.numberType} required={this.props.required} onError={this.handleErrorNumberType}>
             <Radio name="numbertype-cell"
                    className="phonetype-option cell"
                    label={i18n.t('telephone.numberType.cell')}
@@ -623,4 +638,17 @@ Telephone.defaultProps = {
   onError: (value, arr) => { return arr }
 }
 
-Telephone.errors = []
+Telephone.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!props.domestic.first &&
+          !!props.domestic.second &&
+          !!props.domestic.third &&
+          !!props.numberType
+      }
+      return true
+    }
+  }
+]

@@ -99,8 +99,17 @@ export default class SSN extends ValidationElement {
       }
     })
 
+    const requiredErrors = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `ssn.${err.code}`,
+        valid: err.func({...this.state}, this.props),
+        uid: this.state.uid
+      }
+    }))
+
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    this.props.onError(value, requiredErrors)
+    return arr
   }
 
   ripper (val, start, end) {
@@ -200,4 +209,15 @@ SSN.defaultProps = {
   onError: (value, arr) => { return arr }
 }
 
-SSN.errors = []
+SSN.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required && props.notApplicable === false) {
+        return !!value.first && !!value.middle && !!value.last
+      }
+      return true
+    }
+
+  }
+]

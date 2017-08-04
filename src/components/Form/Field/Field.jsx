@@ -184,7 +184,19 @@ export default class Field extends ValidationElement {
       )
     }
 
-    const errors = (this.state.errors || []).filter(err => err.valid === false)
+    let errors = (this.state.errors || []).filter(err => err.valid === false && err.code.indexOf('required') === -1)
+    const required = this.state.errors
+      .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
+      .sort((e1, e2) => {
+        return e1.code.split('.').length - e2.code.split('.').length
+      })
+
+    if (required.length) {
+      errors = errors.concat(required[0])
+    }
+
+    console.log('errors: ', errors)
+
     if (errors.length) {
       const markup = errors.map(err => {
         return message(`error.${err.code}`)
