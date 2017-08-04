@@ -75,6 +75,7 @@ export default class Card extends SubsectionElement {
                 value={this.state.HasCardAbuse}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
@@ -92,6 +93,7 @@ export default class Card extends SubsectionElement {
               <Text name="Agency"
                     className="card-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -103,6 +105,7 @@ export default class Card extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -113,6 +116,7 @@ export default class Card extends SubsectionElement {
                            className="card-date"
                            hideDay={true}
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -120,6 +124,7 @@ export default class Card extends SubsectionElement {
               <Textarea name="Reason"
                         className="card-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -130,6 +135,7 @@ export default class Card extends SubsectionElement {
                           placeholder={i18n.t('financial.card.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -147,6 +153,7 @@ export default class Card extends SubsectionElement {
               <Textarea name="Description"
                         className="card-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

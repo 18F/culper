@@ -79,6 +79,7 @@ export default class Bankruptcies extends SubsectionElement {
                      appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
                      appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
             <Bankruptcy name="Bankruptcy"
+                        required={this.props.required}
                         bind={true} />
           </Accordion>
         </Show>

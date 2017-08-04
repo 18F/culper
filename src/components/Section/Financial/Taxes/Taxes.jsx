@@ -75,6 +75,7 @@ export default class Taxes extends SubsectionElement {
                 value={this.state.HasTaxes}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
@@ -94,6 +95,7 @@ export default class Taxes extends SubsectionElement {
               <FailureType name="Failure"
                            className="taxes-failure"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -103,6 +105,7 @@ export default class Taxes extends SubsectionElement {
                       placeholder={i18n.t('financial.taxes.placeholder.year')}
                       min="1000"
                       bind={true}
+                      required={this.props.required}
                       />
               <div className="flags">
                 <Checkbox name="YearEstimated"
@@ -118,6 +121,7 @@ export default class Taxes extends SubsectionElement {
               <Textarea name="Reason"
                         className="taxes-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -125,6 +129,7 @@ export default class Taxes extends SubsectionElement {
               <Text name="Agency"
                     className="taxes-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -132,6 +137,7 @@ export default class Taxes extends SubsectionElement {
               <Text name="TaxType"
                     className="taxes-taxtype"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -142,6 +148,7 @@ export default class Taxes extends SubsectionElement {
                           placeholder={i18n.t('financial.taxes.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -165,6 +172,7 @@ export default class Taxes extends SubsectionElement {
                              className="taxes-date"
                              hideDay={true}
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
@@ -173,6 +181,7 @@ export default class Taxes extends SubsectionElement {
               <Textarea name="Description"
                         className="taxes-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

@@ -80,6 +80,7 @@ export default class Gambling extends SubsectionElement {
                 value={this.state.HasGamblingDebt}
                 warning={true}
                 onUpdate={this.onUpdate.bind(this)}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
@@ -97,6 +98,7 @@ export default class Gambling extends SubsectionElement {
               <DateRange name="Dates"
                          label={i18n.t('financial.gambling.label.dates')}
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -106,6 +108,7 @@ export default class Gambling extends SubsectionElement {
                         placeholder={i18n.t('financial.gambling.placeholder.losses')}
                         min="1"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -114,6 +117,7 @@ export default class Gambling extends SubsectionElement {
               <Textarea name="Description"
                         className="description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -122,6 +126,7 @@ export default class Gambling extends SubsectionElement {
               <Textarea name="Actions"
                         className="actions"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

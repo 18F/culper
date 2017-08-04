@@ -94,6 +94,7 @@ export default class Nonpayment extends SubsectionElement {
                 value={this.state.HasNonpayment}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
@@ -112,6 +113,7 @@ export default class Nonpayment extends SubsectionElement {
               <Text name="Name"
                     className="nonpayment-name"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -119,6 +121,7 @@ export default class Nonpayment extends SubsectionElement {
               <Infractions name="Infractions"
                            className="nonpayment-infractions"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -126,6 +129,7 @@ export default class Nonpayment extends SubsectionElement {
               <Text name="AccountNumber"
                     className="nonpayment-accountnumber"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -133,6 +137,7 @@ export default class Nonpayment extends SubsectionElement {
               <Text name="PropertyType"
                     className="nonpayment-propertytype"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -143,6 +148,7 @@ export default class Nonpayment extends SubsectionElement {
                           placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -160,6 +166,7 @@ export default class Nonpayment extends SubsectionElement {
               <Textarea name="Reason"
                         className="nonpayment-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -167,6 +174,7 @@ export default class Nonpayment extends SubsectionElement {
               <Text name="Status"
                     className="nonpayment-status"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -181,6 +189,7 @@ export default class Nonpayment extends SubsectionElement {
                              className="nonpayment-resolved"
                              hideDay={true}
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
@@ -192,6 +201,7 @@ export default class Nonpayment extends SubsectionElement {
                            className="nonpayment-date"
                            hideDay={true}
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -200,6 +210,7 @@ export default class Nonpayment extends SubsectionElement {
               <Textarea name="Description"
                         className="nonpayment-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

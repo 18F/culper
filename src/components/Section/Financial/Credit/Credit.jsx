@@ -74,6 +74,7 @@ export default class Credit extends SubsectionElement {
                 value={this.state.HasCreditCounseling}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
@@ -92,6 +93,7 @@ export default class Credit extends SubsectionElement {
               <Textarea name="Explanation"
                         className="credit-explanation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -99,6 +101,7 @@ export default class Credit extends SubsectionElement {
               <Text name="Name"
                     className="credit-name"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -108,6 +111,7 @@ export default class Credit extends SubsectionElement {
               <Telephone name="Telephone"
                          className="credit-telephone"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -121,6 +125,7 @@ export default class Credit extends SubsectionElement {
                           help=""
                           statePlaceholder={i18n.t('financial.credit.placeholder.state')}
                           cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
+                          required={this.props.required}
                           />
             </Field>
 
@@ -129,6 +134,7 @@ export default class Credit extends SubsectionElement {
               <Textarea name="Description"
                         className="credit-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

@@ -132,7 +132,7 @@ export default class Bankruptcy extends ValidationElement {
         <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
         <Field help="financial.bankruptcy.petitionType.help"
                adjustFor="buttons">
-          <RadioGroup className="petition-chapters" selectedValue={this.props.PetitionType}>
+          <RadioGroup className="petition-chapters" selectedValue={this.props.PetitionType} required={this.props.required} onError={this.props.onError}>
             <Radio name="petition_type"
                    label={i18n.t('financial.bankruptcy.petitionType.label.chapter7')}
                    value="Chapter7"
@@ -173,6 +173,7 @@ export default class Bankruptcy extends ValidationElement {
                 placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
                 title={i18n.t('financial.bankruptcy.courtNumber.title')}
                 placeholder={i18n.t('financial.bankruptcy.courtNumber.placeholder')}
+                required={this.props.required}
                 />
         </Field>
 
@@ -184,6 +185,7 @@ export default class Bankruptcy extends ValidationElement {
                        {...this.props.DateFiled}
                        className="datefiled"
                        prefix="bankruptcy.datefiled"
+                       required={this.props.required}
                        hideDay={true} />
         </Field>
 
@@ -199,6 +201,7 @@ export default class Bankruptcy extends ValidationElement {
                          onError={this.props.onError}
                          {...this.props.DateDischarged}
                          prefix="bankruptcy.datedischarged"
+                         required={this.props.required}
                          hideDay={true} />
           </NotApplicable>
         </Field>
@@ -211,6 +214,7 @@ export default class Bankruptcy extends ValidationElement {
                     className="amount"
                     min="1"
                     placeholder={i18n.t('financial.bankruptcy.totalAmount.placeholder')}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="TotalAmountEstimated"
@@ -231,6 +235,7 @@ export default class Bankruptcy extends ValidationElement {
               {...this.props.NameDebt}
               onUpdate={this.updateNameDebt}
               onError={this.props.onError}
+              required={this.props.required}
               />
 
         <Field title={i18n.t('financial.bankruptcy.heading.courtInvolved')}>
@@ -240,6 +245,7 @@ export default class Bankruptcy extends ValidationElement {
                 className="courtinvolved"
                 onUpdate={this.updateCourtInvolved}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -253,6 +259,7 @@ export default class Bankruptcy extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -265,6 +272,7 @@ export default class Bankruptcy extends ValidationElement {
                     placeholder={i18n.t('financial.bankruptcy.trustee.placeholder')}
                     onError={this.props.onError}
                     onUpdate={this.updateTrustee}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -279,6 +287,7 @@ export default class Bankruptcy extends ValidationElement {
                         geocode={true}
                         onError={this.props.onError}
                         onUpdate={this.updateTrusteeAddress}
+                        required={this.props.required}
                         />
             </Field>
           </div>
@@ -291,6 +300,7 @@ export default class Bankruptcy extends ValidationElement {
                 value={this.props.HasDischargeExplanation}
                 onUpdate={this.updateHasDischargeExplanation}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
 
         <Show when={this.props.HasDischargeExplanation}>
@@ -300,6 +310,7 @@ export default class Bankruptcy extends ValidationElement {
                     className="discharge-explanation"
                     onUpdate={this.updateDischargeExplanation}
                     onError={this.props.onError}
+                    required={this.props.required && this.props.HasDischargeExplanation !== ''}
                     />
         </Show>
       </div>

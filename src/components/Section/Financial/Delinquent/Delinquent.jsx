@@ -91,6 +91,7 @@ export default class Delinquent extends SubsectionElement {
                 value={this.state.HasDelinquent}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasDelinquent === 'Yes'}>
@@ -109,6 +110,7 @@ export default class Delinquent extends SubsectionElement {
               <Text name="Name"
                     className="delinquent-name"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -116,6 +118,7 @@ export default class Delinquent extends SubsectionElement {
               <Infractions name="Infractions"
                            className="delinquent-infractions"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -123,6 +126,7 @@ export default class Delinquent extends SubsectionElement {
               <Text name="AccountNumber"
                     className="delinquent-accountnumber"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -130,6 +134,7 @@ export default class Delinquent extends SubsectionElement {
               <Text name="PropertyType"
                     className="delinquent-propertytype"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -140,6 +145,7 @@ export default class Delinquent extends SubsectionElement {
                           placeholder={i18n.t('financial.delinquent.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -157,6 +163,7 @@ export default class Delinquent extends SubsectionElement {
               <Textarea name="Reason"
                         className="delinquent-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -164,6 +171,7 @@ export default class Delinquent extends SubsectionElement {
               <Text name="Status"
                     className="delinquent-status"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -174,6 +182,7 @@ export default class Delinquent extends SubsectionElement {
                            className="delinquent-date"
                            hideDay={true}
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -188,6 +197,7 @@ export default class Delinquent extends SubsectionElement {
                              className="delinquent-resolved"
                              hideDay={true}
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
@@ -196,6 +206,7 @@ export default class Delinquent extends SubsectionElement {
               <Text name="CourtName"
                     className="delinquent-courtname"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -207,6 +218,7 @@ export default class Delinquent extends SubsectionElement {
                         geocode={true}
                         className="delinquent-courtaddress"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -215,6 +227,7 @@ export default class Delinquent extends SubsectionElement {
               <Textarea name="Description"
                         className="delinquent-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
