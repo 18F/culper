@@ -7639,7 +7639,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
