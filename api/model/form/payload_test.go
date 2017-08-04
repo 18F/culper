@@ -49,6 +49,8 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/telephone.json"},
 		{Data: "testdata/text.json"},
 		{Data: "testdata/textarea.json"},
+
+		// Section: Identification
 		{Data: "testdata/identification-birthdate.json"},
 		{Data: "testdata/identification-birthplace.json"},
 		{Data: "testdata/identification-contacts.json"},
@@ -56,6 +58,8 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/identification-othernames.json"},
 		{Data: "testdata/identification-physical.json"},
 		{Data: "testdata/identification-ssn.json"},
+
+		// Section: Financial
 		{Data: "testdata/financial-bankruptcy.json"},
 		{Data: "testdata/financial-gambling.json"},
 		{Data: "testdata/financial-taxes.json"},
@@ -63,6 +67,19 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/financial-credit.json"},
 		{Data: "testdata/financial-delinquent.json"},
 		{Data: "testdata/financial-nonpayment.json"},
+
+		// Section: Substance use
+		{Data: "testdata/substance-drug-usage.json"},
+		{Data: "testdata/substance-drug-purchase.json"},
+		{Data: "testdata/substance-drug-clearance.json"},
+		{Data: "testdata/substance-drug-publicsafety.json"},
+		{Data: "testdata/substance-drug-misuse.json"},
+		{Data: "testdata/substance-drug-ordered.json"},
+		{Data: "testdata/substance-drug-voluntary.json"},
+		{Data: "testdata/substance-alcohol-negative.json"},
+		{Data: "testdata/substance-alcohol-ordered.json"},
+		{Data: "testdata/substance-alcohol-voluntary.json"},
+		{Data: "testdata/substance-alcohol-additional.json"},
 	}
 
 	// HTTP test server to field any third party requests
