@@ -215,6 +215,7 @@ export default class ForeignBornDocuments extends ValidationElement {
                         {...this.props.OtherExplanation}
                         onUpdate={this.updateOtherExplanation}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </Show>
           </Field>
@@ -227,6 +228,7 @@ export default class ForeignBornDocuments extends ValidationElement {
                 className="foreign-born-document-number"
                 onUpdate={this.updateDocumentNumber}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -242,6 +244,7 @@ export default class ForeignBornDocuments extends ValidationElement {
                          {...this.props.DocumentExpiration}
                          onUpdate={this.updateDocumentExpiration}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </NotApplicable>
         </Field>

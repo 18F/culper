@@ -65,6 +65,7 @@ export default class Relatives extends SubsectionElement {
                    appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative name="Item"
                     bind={true}
+                    required={this.props.required}
                     />
         </Accordion>
       </div>

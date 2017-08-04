@@ -57,6 +57,7 @@ export default class Alias extends ValidationElement {
               {...this.props.Name}
               onUpdate={this.updateName}
               onError={this.props.onError}
+              required={this.props.required}
               />
 
         <Show when={this.props.hideMaiden === false}>
@@ -66,6 +67,7 @@ export default class Alias extends ValidationElement {
                   className="alias-maiden"
                   value={this.props.MaidenName}
                   onUpdate={this.updateMaidenName}
+                  required={this.props.required}
                   onError={this.props.onError}>
           </Branch>
         </Show>
@@ -78,6 +80,7 @@ export default class Alias extends ValidationElement {
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -88,6 +91,7 @@ export default class Alias extends ValidationElement {
                     {...this.props.Reason}
                     onUpdate={this.updateReason}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

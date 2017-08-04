@@ -167,7 +167,7 @@ export default class People extends SubsectionElement {
                    description={i18n.t('relationships.people.person.collection.description')}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
-          <Person name="Item" bind={true} />
+          <Person name="Item" bind={true} required={this.props.required} />
         </Accordion>
       </div>
     )

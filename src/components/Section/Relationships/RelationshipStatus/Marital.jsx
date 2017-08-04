@@ -73,7 +73,7 @@ export default class Marital extends SubsectionElement {
     return (
       <div className="marital">
         <Field title={i18n.t('relationships.marital.heading.title')}>
-          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status}>
+          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
                    value="Never"
@@ -127,6 +127,7 @@ export default class Marital extends SubsectionElement {
                       onSpouseUpdate={this.props.onSpouseUpdate}
                       currentAddress={this.props.currentAddress}
                       defaultState={this.props.defaultState}
+                      required={this.props.required}
                       />
         </Show>
         <Show when={this.showDivorce()}>
@@ -143,6 +144,7 @@ export default class Marital extends SubsectionElement {
                      appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
             <Divorce name="Divorce"
                      bind={true}
+                     required={this.props.required}
                      />
           </Accordion>
         </Show>

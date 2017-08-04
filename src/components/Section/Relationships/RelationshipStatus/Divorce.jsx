@@ -111,6 +111,7 @@ export default class Divorce extends React.Component {
                 {...this.props.Name}
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -122,6 +123,7 @@ export default class Divorce extends React.Component {
                        {...this.props.Birthdate}
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -133,6 +135,7 @@ export default class Divorce extends React.Component {
                     {...this.props.BirthPlace}
                     onUpdate={this.updateBirthPlace}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -143,6 +146,7 @@ export default class Divorce extends React.Component {
                      {...this.props.Telephone}
                      onUpdate={this.updateTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -154,6 +158,7 @@ export default class Divorce extends React.Component {
                        {...this.props.Recognized}
                        onUpdate={this.updateRecognized}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -167,6 +172,7 @@ export default class Divorce extends React.Component {
                     geocode={true}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -178,12 +184,13 @@ export default class Divorce extends React.Component {
                        {...this.props.DateDivorced}
                        onUpdate={this.updateDateDivorced}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.status')}
                className="status">
-          <RadioGroup name="status" selectedValue={this.props.Status}>
+          <RadioGroup name="status" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
@@ -211,7 +218,7 @@ export default class Divorce extends React.Component {
         <Show when={['Divorced', 'Annulled'].includes(this.props.Status)}>
           <div>
             <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceased')} className="deceased">
-              <RadioGroup name="deceased" selectedValue={this.props.Deceased}>
+              <RadioGroup name="deceased" selectedValue={this.props.Deceased} required={this.props.required} onError={this.props.onError}>
                 <Radio
                   className="yes"
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.yes')}
@@ -253,6 +260,7 @@ export default class Divorce extends React.Component {
                             geocode={true}
                             onUpdate={this.updateDeceasedAddress}
                             onError={this.props.onError}
+                            required={this.props.required}
                             />
                 </NotApplicable>
               </Field>

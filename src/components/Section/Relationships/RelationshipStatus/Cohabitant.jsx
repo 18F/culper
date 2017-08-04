@@ -158,6 +158,7 @@ export default class Cohabitant extends ValidationElement {
               {...this.props.Name}
               onUpdate={this.updateName}
               onError={this.props.onError}
+              required={this.props.required}
               />
 
         <Field help="relationships.cohabitant.help.birthdate"
@@ -168,6 +169,7 @@ export default class Cohabitant extends ValidationElement {
                        {...this.props.Birthdate}
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -179,6 +181,7 @@ export default class Cohabitant extends ValidationElement {
                       {...this.props.BirthPlace}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
         </Field>
 
@@ -190,6 +193,7 @@ export default class Cohabitant extends ValidationElement {
                                   {...this.props.ForeignBornDocument}
                                   onUpdate={this.updateForeignBornDocument}
                                   onError={this.props.onError}
+                                  required={this.props.required}
                                   />
           </Field>
         </Show>
@@ -200,6 +204,7 @@ export default class Cohabitant extends ValidationElement {
                {...this.props.SSN}
                onUpdate={this.updateSSN}
                onError={this.props.onError}
+               required={this.props.required}
                />
         </Field>
 
@@ -214,6 +219,7 @@ export default class Cohabitant extends ValidationElement {
             <Name name="Othername"
               bind={true}
               onError={this.props.onError}
+              required={this.props.required}
             />
           </Field>
 
@@ -224,6 +230,7 @@ export default class Cohabitant extends ValidationElement {
             <MaidenName name="MaidenName"
               bind={true}
               onError={this.props.onError}
+              required={this.props.required}
             />
           </Field>
 
@@ -234,6 +241,7 @@ export default class Cohabitant extends ValidationElement {
               bind={true}
               className="datesused"
               onError={this.props.onError}
+              required={this.props.required}
             />
           </Field>
         </BranchCollection>
@@ -247,6 +255,7 @@ export default class Cohabitant extends ValidationElement {
                    className="relationships-cohabitant-citizenship"
                    onUpdate={this.updateCitizenship}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -258,6 +267,7 @@ export default class Cohabitant extends ValidationElement {
                        {...this.props.CohabitationBegan}
                        onUpdate={this.updateCohabitationBegan}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
       </div>

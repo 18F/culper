@@ -126,6 +126,7 @@ export default class Person extends React.Component {
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -135,6 +136,7 @@ export default class Person extends React.Component {
               {...this.props.Name}
               onUpdate={this.updateName}
               onError={this.props.onError}
+              required={this.props.required}
               />
 
         <Field title={i18n.t('relationships.people.person.heading.rank')}
@@ -151,6 +153,7 @@ export default class Person extends React.Component {
                   {...this.props.Rank}
                   onUpdate={this.updateRank}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </NotApplicable>
         </Field>
@@ -216,6 +219,7 @@ export default class Person extends React.Component {
                   {...this.props.RelationshipOther}
                   onUpdate={this.updateRelationshipOther}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Show>
         </Field>
@@ -227,6 +231,7 @@ export default class Person extends React.Component {
                      {...this.props.MobileTelephone}
                      onUpdate={this.updateMobileTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -237,6 +242,7 @@ export default class Person extends React.Component {
                      {...this.props.OtherTelephone}
                      onUpdate={this.updateOtherTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -254,6 +260,7 @@ export default class Person extends React.Component {
                    {...this.props.Email}
                    onUpdate={this.updateEmail}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
           </NotApplicable>
         </Field>
@@ -269,6 +276,7 @@ export default class Person extends React.Component {
                     geocode={true}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

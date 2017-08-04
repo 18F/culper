@@ -190,6 +190,7 @@ export default class CivilUnion extends ValidationElement {
                 {...this.props.Name}
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
 
           <Field help="relationships.civilUnion.help.birthdate"
@@ -200,6 +201,7 @@ export default class CivilUnion extends ValidationElement {
                          {...this.props.Birthdate}
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </Field>
 
@@ -211,6 +213,7 @@ export default class CivilUnion extends ValidationElement {
                       {...this.props.BirthPlace}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
 
@@ -222,6 +225,7 @@ export default class CivilUnion extends ValidationElement {
                                     {...this.props.ForeignBornDocument}
                                     onUpdate={this.updateForeignBornDocument}
                                     onError={this.props.onError}
+                                    required={this.props.required}
                                     />
             </Field>
           </Show>
@@ -232,6 +236,7 @@ export default class CivilUnion extends ValidationElement {
                  {...this.props.SSN}
                  onUpdate={this.updateSSN}
                  onError={this.props.onError}
+                 required={this.props.required}
                  />
           </Field>
 
@@ -240,12 +245,14 @@ export default class CivilUnion extends ValidationElement {
             appendLabel={i18n.m('relationships.civilUnion.heading.appendOthernames')}
             items={this.props.OtherNames}
             onError={this.props.onError}
+            required={this.props.required}
             onUpdate={this.updateOtherNames}>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}>
               <Name name="Othername"
                 bind={true}
                 onError={this.props.onError}
+                required={this.props.required}
               />
             </Field>
 
@@ -256,6 +263,7 @@ export default class CivilUnion extends ValidationElement {
               <MaidenName name="MaidenName"
                 bind={true}
                 onError={this.props.onError}
+                required={this.props.required}
               />
             </Field>
 
@@ -266,6 +274,7 @@ export default class CivilUnion extends ValidationElement {
                 bind={true}
                 className="datesused"
                 onError={this.props.onError}
+                required={this.props.required}
               />
             </Field>
           </BranchCollection>
@@ -279,6 +288,7 @@ export default class CivilUnion extends ValidationElement {
                      multiple={true}
                      onUpdate={this.updateCitizenship}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
           </Field>
 
@@ -289,6 +299,7 @@ export default class CivilUnion extends ValidationElement {
                          {...this.props.EnteredCivilUnion}
                          onUpdate={this.updateEnteredCivilUnion}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </Field>
 
@@ -300,6 +311,7 @@ export default class CivilUnion extends ValidationElement {
                       {...this.props.Location}
                       onUpdate={this.updateLocation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
 
@@ -321,6 +333,7 @@ export default class CivilUnion extends ValidationElement {
                       geocode={true}
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
 
@@ -331,6 +344,7 @@ export default class CivilUnion extends ValidationElement {
                        {...this.props.Telephone}
                        onUpdate={this.updateTelephone}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </Field>
 
@@ -340,6 +354,7 @@ export default class CivilUnion extends ValidationElement {
                    {...this.props.Email}
                    onUpdate={this.updateEmail}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
           </Field>
 
@@ -350,6 +365,7 @@ export default class CivilUnion extends ValidationElement {
                   value={this.props.Separated}
                   help="relationships.civilUnion.help.separated"
                   onUpdate={this.updateSeparated}
+                  required={this.props.required}
                   onError={this.props.onError}>
           </Branch>
 
@@ -363,6 +379,7 @@ export default class CivilUnion extends ValidationElement {
                              {...this.props.DateSeparated}
                              onUpdate={this.updateDateSeparated}
                              onError={this.props.onError}
+                             required={this.props.required}
                              />
               </Field>
 
@@ -381,6 +398,7 @@ export default class CivilUnion extends ValidationElement {
                             {...this.props.AddressSeparated}
                             onUpdate={this.updateAddressSeparated}
                             onError={this.props.onError}
+                            required={this.props.required}
                             />
                 </NotApplicable>
               </Field>
@@ -394,6 +412,7 @@ export default class CivilUnion extends ValidationElement {
                   value={this.props.Divorced}
                   help="relationships.civilUnion.help.divorced"
                   onUpdate={this.updateDivorced}
+                  required={this.props.required}
                   onError={this.props.onError}>
           </Branch>
         </div>

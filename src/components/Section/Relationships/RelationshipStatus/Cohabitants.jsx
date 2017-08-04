@@ -64,6 +64,7 @@ export default class Cohabitants extends SubsectionElement {
                 warning={true}
                 help="relationships.cohabitant.help.hasCohabitant"
                 onUpdate={this.updateHasCohabitant}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -77,7 +78,10 @@ export default class Cohabitants extends SubsectionElement {
                      description={i18n.t('relationships.cohabitant.collection.description')}
                      appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
                      appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}>
-            <Cohabitant name="Cohabitant" spouse={this.props.spouse} bind={true} />
+                     <Cohabitant name="Cohabitant"
+                       spouse={this.props.spouse}
+                       required={this.props.required}
+                       bind={true} />
           </Accordion>
         </Show>
       </div>
