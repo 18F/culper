@@ -36,6 +36,7 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/branch.json"},
 		{Data: "testdata/branchcollection.json"},
 		{Data: "testdata/checkbox.json"},
+		{Data: "testdata/country.json"},
 		{Data: "testdata/datecontrol.json"},
 		{Data: "testdata/daterange.json"},
 		{Data: "testdata/email.json"},
@@ -68,6 +69,18 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/financial-delinquent.json"},
 		{Data: "testdata/financial-nonpayment.json"},
 
+		// Section: Your history
+		// Section: Relationships
+		// Section: Citizenship
+
+		// Section: Military history
+		{Data: "testdata/military-selective.json"},
+		{Data: "testdata/military-history.json"},
+		{Data: "testdata/military-foreign.json"},
+		{Data: "testdata/military-disciplinary.json"},
+
+		// Section: Foreign activities
+
 		// Section: Substance use
 		{Data: "testdata/substance-drug-usage.json"},
 		{Data: "testdata/substance-drug-purchase.json"},
@@ -80,6 +93,9 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/substance-alcohol-ordered.json"},
 		{Data: "testdata/substance-alcohol-voluntary.json"},
 		{Data: "testdata/substance-alcohol-additional.json"},
+
+		// Section: Investigative and criminal history
+		// Section: Psychological and emotional health
 	}
 
 	// HTTP test server to field any third party requests
