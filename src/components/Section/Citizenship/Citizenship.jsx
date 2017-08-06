@@ -39,6 +39,7 @@ class Citizenship extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
+                    required={true}
                     />
 
             <hr/>
@@ -49,6 +50,7 @@ class Citizenship extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
                       onError={this.handleError}
+                      required={true}
                       />
 
             <hr/>
@@ -59,6 +61,7 @@ class Citizenship extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Passports')}
                       onError={this.handleError}
+                      required={true}
                       />
           </SectionView>
 

@@ -101,7 +101,7 @@ export default class BranchCollection extends React.Component {
               value={props.value}
               warning={props.warning}
               onUpdate={props.onUpdate}
-              required={this.props.required}
+              required={props.required}
               onError={props.onError}>
         {props.children}
       </Branch>

@@ -106,6 +106,7 @@ export default class PassportItem extends ValidationElement {
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -117,6 +118,7 @@ export default class PassportItem extends ValidationElement {
                        className="passport-issued"
                        onUpdate={this.updateIssued}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -128,6 +130,7 @@ export default class PassportItem extends ValidationElement {
                    className="passport-location"
                    onUpdate={this.updateLocation}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -137,6 +140,7 @@ export default class PassportItem extends ValidationElement {
               className="passport-name"
               onUpdate={this.updateName}
               onError={this.props.onError}
+              required={this.props.required}
               />
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.number')}>
@@ -157,6 +161,7 @@ export default class PassportItem extends ValidationElement {
                        onUpdate={this.updateExpiration}
                        onError={this.props.onError}
                        maxDate={null}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -167,6 +172,7 @@ export default class PassportItem extends ValidationElement {
                 value={this.props.Used}
                 onUpdate={this.updateUsed}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
 
         <Show when={this.props.Used === 'Yes'}>
@@ -177,7 +183,7 @@ export default class PassportItem extends ValidationElement {
                      summary={this.summary}
                      description={i18n.t('citizenship.multiple.collection.travel.summary.title')}
                      appendLabel={i18n.t('citizenship.multiple.collection.travel.append')}>
-            <TravelItem name="Item" bind={true} />
+            <TravelItem name="Item" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

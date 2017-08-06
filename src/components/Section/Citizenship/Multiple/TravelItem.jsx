@@ -40,6 +40,7 @@ export default class TravelItem extends ValidationElement {
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -51,6 +52,7 @@ export default class TravelItem extends ValidationElement {
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
       </div>

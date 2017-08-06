@@ -80,6 +80,7 @@ export default class CitizenshipItem extends ValidationElement {
                    className="citizenship-country"
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -92,6 +93,7 @@ export default class CitizenshipItem extends ValidationElement {
                      className="citizenship-dates"
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -101,6 +103,7 @@ export default class CitizenshipItem extends ValidationElement {
                     className="citizenship-how"
                     onUpdate={this.updateHow}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -111,6 +114,7 @@ export default class CitizenshipItem extends ValidationElement {
                 value={this.props.Renounced}
                 onUpdate={this.updateRenounced}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
 
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}>
@@ -119,6 +123,7 @@ export default class CitizenshipItem extends ValidationElement {
                     className="citizenship-renounced-explanation"
                     onUpdate={this.updateRenouncedExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -131,6 +136,7 @@ export default class CitizenshipItem extends ValidationElement {
                     value={this.props.Current}
                     onUpdate={this.updateCurrent}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
 
             <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
@@ -139,6 +145,7 @@ export default class CitizenshipItem extends ValidationElement {
                         className="citizenship-current-explanation"
                         onUpdate={this.updateCurrentExplanation}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </Field>
           </div>

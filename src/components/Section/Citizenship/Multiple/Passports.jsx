@@ -35,7 +35,7 @@ export default class Passports extends SubsectionElement {
                           items={this.props.Passports}
                           onUpdate={this.updatePassports}
                           onError={this.handleError}>
-          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} />
+          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} required={this.props.required} />
         </BranchCollection>
       </div>
     )
