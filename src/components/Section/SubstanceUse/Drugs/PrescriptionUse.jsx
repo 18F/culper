@@ -56,6 +56,7 @@ export default class PrescriptionUse extends ValidationElement {
             {...this.props.PrescriptionName}
             onUpdate={this.updatePrescriptionName}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
@@ -67,6 +68,7 @@ export default class PrescriptionUse extends ValidationElement {
             {...this.props.InvolvementDates}
             onUpdate={this.updateInvolvementDates}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
@@ -76,6 +78,7 @@ export default class PrescriptionUse extends ValidationElement {
             {...this.props.Reason}
             onUpdate={this.updateReason}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
@@ -84,6 +87,7 @@ export default class PrescriptionUse extends ValidationElement {
           className="use-while-employed"
           value={this.props.UseWhileEmployed}
           onError={this.props.onError}
+          required={this.props.required}
           onUpdate={this.updateUseWhileEmployed}>
         </Branch>
 
@@ -92,6 +96,7 @@ export default class PrescriptionUse extends ValidationElement {
           className="use-with-clearance"
           value={this.props.UseWithClearance}
           onError={this.props.onError}
+          required={this.props.required}
           onUpdate={this.updateUseWithClearance}>
         </Branch>
       </div>

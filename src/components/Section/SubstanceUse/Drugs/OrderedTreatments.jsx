@@ -64,6 +64,7 @@ export default class OrderedTreatments extends SubsectionElement {
                 value={this.props.TreatmentOrdered}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateTreatmentOrdered}>
         </Branch>
 
@@ -77,7 +78,7 @@ export default class OrderedTreatments extends SubsectionElement {
                      description={i18n.t('substance.drugs.ordered.collection.description')}
                      appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}>
-            <OrderedTreatment name="OrderedTreatment" bind={true} />
+            <OrderedTreatment name="OrderedTreatment" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

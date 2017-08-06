@@ -63,6 +63,7 @@ export default class NegativeImpacts extends SubsectionElement {
                 value={this.props.HasImpacts}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasImpacts}>
         </Branch>
 
@@ -76,7 +77,7 @@ export default class NegativeImpacts extends SubsectionElement {
                      description={i18n.t('substance.alcohol.negativeImpact.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.negativeImpact.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}>
-            <NegativeImpact name="NegativeImpact" bind={true} />
+            <NegativeImpact name="NegativeImpact" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

@@ -66,6 +66,7 @@ export default class DrugInvolvements extends SubsectionElement {
                 value={this.props.Involved}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateInvolved}>
         </Branch>
 
@@ -79,7 +80,7 @@ export default class DrugInvolvements extends SubsectionElement {
                      description={i18n.t('substance.drugs.involvement.collection.description')}
                      appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}>
-            <DrugInvolvement name="DrugInvolvement" bind={true} />
+            <DrugInvolvement name="DrugInvolvement" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

@@ -64,6 +64,7 @@ export default class DrugClearanceUses extends SubsectionElement {
                 value={this.props.UsedDrugs}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateUsedDrugs}>
         </Branch>
 
@@ -77,7 +78,7 @@ export default class DrugClearanceUses extends SubsectionElement {
                      description={i18n.t('substance.drugs.clearance.collection.description')}
                      appendTitle={i18n.t('substance.drugs.clearance.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.clearance.collection.appendLabel')}>
-            <DrugClearanceUse name="DrugClearanceUse" bind={true} />
+            <DrugClearanceUse name="DrugClearanceUse" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

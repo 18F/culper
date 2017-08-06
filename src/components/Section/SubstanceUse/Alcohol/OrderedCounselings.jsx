@@ -87,6 +87,7 @@ export default class OrderedCounselings extends SubsectionElement {
                 value={this.props.HasBeenOrdered}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasBeenOrdered}>
         </Branch>
 
@@ -100,7 +101,7 @@ export default class OrderedCounselings extends SubsectionElement {
                      description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}>
-            <OrderedCounseling name="OrderedCounseling" bind={true} />
+            <OrderedCounseling name="OrderedCounseling" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

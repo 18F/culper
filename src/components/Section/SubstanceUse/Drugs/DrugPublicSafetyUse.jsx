@@ -44,6 +44,7 @@ export default class DrugPublicSafetyUse extends ValidationElement {
             {...this.props.Description}
             onUpdate={this.updateDescription}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
@@ -55,6 +56,7 @@ export default class DrugPublicSafetyUse extends ValidationElement {
             {...this.props.InvolvementDates}
             onUpdate={this.updateInvolvementDates}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
@@ -64,6 +66,7 @@ export default class DrugPublicSafetyUse extends ValidationElement {
             {...this.props.EstimatedUse}
             onUpdate={this.updateEstimatedUse}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
       </div>

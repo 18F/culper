@@ -108,6 +108,7 @@ export default class ReceivedCounseling extends ValidationElement {
                 {...this.props.TreatmentProviderName}
                 onUpdate={this.updateTreatmentProviderName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
@@ -120,6 +121,7 @@ export default class ReceivedCounseling extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateTreatmentProviderAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -129,6 +131,7 @@ export default class ReceivedCounseling extends ValidationElement {
                 {...this.props.AgencyName}
                 onUpdate={this.updateAgencyName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -139,6 +142,7 @@ export default class ReceivedCounseling extends ValidationElement {
                 noLabel="Different address"
                 value={this.props.UseSameAddress}
                 onUpdate={this.updateUseSameAddress}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
 
@@ -151,6 +155,7 @@ export default class ReceivedCounseling extends ValidationElement {
                       layout={Location.ADDRESS}
                       geocode={true}
                       onUpdate={this.updateAgencyAddress}
+                      required={this.props.required}
                       onError={this.props.onError}
                       />
           </Field>
@@ -165,6 +170,7 @@ export default class ReceivedCounseling extends ValidationElement {
                        prefix="treatment.began"
                        maxDate={maxDate}
                        onUpdate={this.updateTreatmentBeganDate}
+                       required={this.props.required}
                        onError={this.props.onError}
                        />
         </Field>
@@ -181,6 +187,7 @@ export default class ReceivedCounseling extends ValidationElement {
                        disabled={this.props.PresentTreatmentEndDate}
                        onUpdate={this.updateTreatmentEndDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           <Checkbox name="PresentTreatmentEndDate"
                     className="present-treatment-end-date"
@@ -197,6 +204,7 @@ export default class ReceivedCounseling extends ValidationElement {
                 className="completed-treatment"
                 value={this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
 
@@ -207,6 +215,7 @@ export default class ReceivedCounseling extends ValidationElement {
                       {...this.props.NoCompletedTreatmentExplanation}
                       onUpdate={this.updateNoCompletedTreatmentExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

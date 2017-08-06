@@ -260,6 +260,7 @@ class SubstanceUse extends SectionElement {
                       dispatch={this.props.dispatch}
                       onError={this.handleError}
                       onUpdate={this.updateDrugUses}
+                      required={true}
                       />
 
             <hr />
@@ -269,6 +270,7 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updateDrugInvolvements}
+                              required={true}
                               />
 
             <hr />
@@ -278,6 +280,7 @@ class SubstanceUse extends SectionElement {
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateDrugClearanceUses}
+                               required={true}
                                />
 
             <hr />
@@ -287,6 +290,7 @@ class SubstanceUse extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateDrugPublicSafetyUses}
+                                  required={true}
                                   />
 
             <hr />
@@ -296,6 +300,7 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updatePrescriptionUses}
+                              required={true}
                               />
 
             <hr />
@@ -305,6 +310,7 @@ class SubstanceUse extends SectionElement {
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateOrderedTreatments}
+                               required={true}
                                />
 
             <hr />
@@ -314,7 +320,8 @@ class SubstanceUse extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateVoluntaryTreatments}
-                                 />
+                                 required={true}
+                               />
 
             <hr />
             <NegativeImpacts name="negative"
@@ -323,6 +330,7 @@ class SubstanceUse extends SectionElement {
                              dispatch={this.props.dispatch}
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
+                             required={true}
                              />
 
             <hr />
@@ -332,6 +340,7 @@ class SubstanceUse extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
+                                required={true}
                                 />
 
             <hr />
@@ -341,6 +350,7 @@ class SubstanceUse extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
+                                  required={true}
                                   />
 
             <hr />
@@ -350,6 +360,7 @@ class SubstanceUse extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateReceivedCounselings}
+                                 required={true}
                                  />
           </SectionView>
         </SectionViews>

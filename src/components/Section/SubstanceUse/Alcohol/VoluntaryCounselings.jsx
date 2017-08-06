@@ -64,6 +64,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
                 value={this.props.SoughtTreatment}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateSoughtTreatment}>
         </Branch>
 
@@ -77,7 +78,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}>
-            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} />
+            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

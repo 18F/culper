@@ -70,6 +70,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                     {...this.props.DrugType}
                     onUpdate={this.updateDrugType}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -81,6 +82,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                 {...this.props.TreatmentProvider}
                 onUpdate={this.updateTreatmentProvider}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -94,6 +96,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateTreatmentProviderAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderTelephone')}
@@ -104,6 +107,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                      {...this.props.TreatmentProviderTelephone}
                      onUpdate={this.updateTreatmentProviderTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -115,6 +119,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                      {...this.props.TreatmentDates}
                      onUpdate={this.updateTreatmentDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -123,6 +128,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                 className="treatment-completed"
                 value={this.props.TreatmentCompleted}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateTreatmentCompleted}>
         </Branch>
 
@@ -134,6 +140,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                       {...this.props.NoTreatmentExplanation}
                       onUpdate={this.updateNoTreatmentExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

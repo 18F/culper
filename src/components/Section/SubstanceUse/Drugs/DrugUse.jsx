@@ -76,6 +76,7 @@ export default class DrugUse extends ValidationElement {
             {...this.props.DrugType}
             onUpdate={this.updateDrugType}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
@@ -88,6 +89,7 @@ export default class DrugUse extends ValidationElement {
                        showEstimated={false}
                        onUpdate={this.updateFirstUse}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -100,6 +102,7 @@ export default class DrugUse extends ValidationElement {
                        showEstimated={false}
                        onUpdate={this.updateRecentUse}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -109,6 +112,7 @@ export default class DrugUse extends ValidationElement {
                     {...this.props.NatureOfUse}
                     onUpdate={this.updateNatureOfUse}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -117,6 +121,7 @@ export default class DrugUse extends ValidationElement {
                 className="use-while-employed"
                 value={this.props.UseWhileEmployed}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateUseWhileEmployed}>
         </Branch>
 
@@ -125,6 +130,7 @@ export default class DrugUse extends ValidationElement {
                 className="use-with-clearance"
                 value={this.props.UseWithClearance}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateUseWithClearance}>
         </Branch>
 
@@ -133,6 +139,7 @@ export default class DrugUse extends ValidationElement {
                 className="use-in-future"
                 value={this.props.UseInFuture}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateUseInFuture}>
         </Branch>
 
@@ -142,6 +149,7 @@ export default class DrugUse extends ValidationElement {
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

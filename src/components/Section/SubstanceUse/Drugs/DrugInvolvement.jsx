@@ -82,6 +82,7 @@ export default class DrugInvolvement extends ValidationElement {
                     {...this.props.DrugType}
                     onUpdate={this.updateDrugType}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -94,6 +95,7 @@ export default class DrugInvolvement extends ValidationElement {
                        showEstimated={false}
                        onUpdate={this.updateFirstInvolvement}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -106,6 +108,7 @@ export default class DrugInvolvement extends ValidationElement {
                        showEstimated={false}
                        onUpdate={this.updateRecentInvolvement}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -115,6 +118,7 @@ export default class DrugInvolvement extends ValidationElement {
                     {...this.props.NatureOfInvolvement}
                     onUpdate={this.updateNatureOfInvolvement}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -124,6 +128,7 @@ export default class DrugInvolvement extends ValidationElement {
                     {...this.props.Reasons}
                     onUpdate={this.updateReasons}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -132,6 +137,7 @@ export default class DrugInvolvement extends ValidationElement {
                 className="involvement-while-employed"
                 value={this.props.InvolvementWhileEmployed}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateInvolvementWhileEmployed}>
         </Branch>
 
@@ -140,6 +146,7 @@ export default class DrugInvolvement extends ValidationElement {
                 className="involvement-with-clearance"
                 value={this.props.InvolvementWithClearance}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateInvolvementWithClearance}>
         </Branch>
 
@@ -148,6 +155,7 @@ export default class DrugInvolvement extends ValidationElement {
                 className="involvement-in-future"
                 value={this.props.InvolvementInFuture}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateInvolvementInFuture}>
         </Branch>
 
@@ -159,6 +167,7 @@ export default class DrugInvolvement extends ValidationElement {
                       {...this.props.Explanation}
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

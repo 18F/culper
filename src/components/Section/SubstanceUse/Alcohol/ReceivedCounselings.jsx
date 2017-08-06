@@ -67,6 +67,7 @@ export default class ReceivedCounselings extends SubsectionElement {
                 value={this.props.ReceivedTreatment}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateReceivedTreatment}>
         </Branch>
 
@@ -80,7 +81,7 @@ export default class ReceivedCounselings extends SubsectionElement {
                      description={i18n.t('substance.alcohol.receivedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.receivedCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.receivedCounseling.collection.appendLabel')}>
-            <ReceivedCounseling name="ReceivedCounseling" bind={true} />
+            <ReceivedCounseling name="ReceivedCounseling" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

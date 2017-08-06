@@ -54,6 +54,7 @@ export default class NegativeImpact extends ValidationElement {
                        hideDay={true}
                        onUpdate={this.updateOccurred}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -66,6 +67,7 @@ export default class NegativeImpact extends ValidationElement {
                       label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
                       onUpdate={this.updateCircumstances}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
           <Field>
@@ -75,6 +77,7 @@ export default class NegativeImpact extends ValidationElement {
                       label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
                       onUpdate={this.updateNegativeImpact}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Field>
@@ -86,6 +89,7 @@ export default class NegativeImpact extends ValidationElement {
                      {...this.props.Used}
                      onUpdate={this.updateUsed}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
       </div>

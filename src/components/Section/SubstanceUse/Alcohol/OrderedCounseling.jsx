@@ -99,6 +99,8 @@ export default class OrderedCounseling extends ValidationElement {
                adjustFor="p">
           {i18n.m('substance.alcohol.orderedCounseling.label.seekers')}
           <CheckboxGroup className="seekers"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.Seekers}>
 
             <Checkbox name="seekers-employer"
@@ -155,6 +157,7 @@ export default class OrderedCounseling extends ValidationElement {
                   {...this.props.OtherSeeker}
                   onUpdate={this.updateOtherSeeker}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Show>
         </Field>
@@ -165,6 +168,7 @@ export default class OrderedCounseling extends ValidationElement {
                 className="action-taken"
                 value={this.props.ActionTaken}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateActionTaken}>
         </Branch>
 
@@ -178,6 +182,7 @@ export default class OrderedCounseling extends ValidationElement {
                          {...this.props.CounselingDates}
                          onUpdate={this.updateCounselingDates}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderName')}>
@@ -186,6 +191,7 @@ export default class OrderedCounseling extends ValidationElement {
                     {...this.props.TreatmentProviderName}
                     onUpdate={this.updateTreatmentProviderName}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderAddress')}
@@ -198,6 +204,7 @@ export default class OrderedCounseling extends ValidationElement {
                         geocode={true}
                         onUpdate={this.updateTreatmentProviderAddress}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderTelephone')}
@@ -208,6 +215,7 @@ export default class OrderedCounseling extends ValidationElement {
                          {...this.props.TreatmentProviderTelephone}
                          onUpdate={this.updateTreatmentProviderTelephone}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -217,6 +225,7 @@ export default class OrderedCounseling extends ValidationElement {
                     className="completed-treatment"
                     value={this.props.CompletedTreatment}
                     onError={this.props.onError}
+                    required={this.props.required}
                     onUpdate={this.updateCompletedTreatment}>
             </Branch>
 
@@ -227,6 +236,7 @@ export default class OrderedCounseling extends ValidationElement {
                           {...this.props.NoCompletedTreatmentExplanation}
                           onUpdate={this.updateNoCompletedTreatmentExplanation}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -239,6 +249,7 @@ export default class OrderedCounseling extends ValidationElement {
                       {...this.props.NoActionTakenExplanation}
                       onUpdate={this.updateNoActionTakenExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

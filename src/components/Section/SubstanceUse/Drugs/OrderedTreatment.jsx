@@ -105,6 +105,8 @@ export default class OrderedTreatment extends ValidationElement {
         <Field title={i18n.t('substance.drugs.ordered.heading.orderedBy')}>
           {i18n.m('substance.drugs.ordered.para.orderedBy')}
           <CheckboxGroup className="ordered-by"
+                         required={this.props.required}
+                         onError={this.props.onError}
                          selectedValues={this.props.OrderedBy}>
             <Checkbox name="Employer"
                       label={i18n.m('substance.drugs.ordered.orderedBy.label.employer')}
@@ -150,6 +152,7 @@ export default class OrderedTreatment extends ValidationElement {
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -158,6 +161,7 @@ export default class OrderedTreatment extends ValidationElement {
                 className="action-taken"
                 value={this.props.ActionTaken}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateActionTaken}>
         </Branch>
 
@@ -169,6 +173,7 @@ export default class OrderedTreatment extends ValidationElement {
                       {...this.props.NoActionTakenExplanation}
                       onUpdate={this.updateNoActionTakenExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -181,6 +186,7 @@ export default class OrderedTreatment extends ValidationElement {
                         {...this.props.DrugType}
                         onUpdate={this.updateDrugType}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -191,6 +197,7 @@ export default class OrderedTreatment extends ValidationElement {
                     {...this.props.TreatmentProvider}
                     onUpdate={this.updateTreatmentProvider}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -204,6 +211,7 @@ export default class OrderedTreatment extends ValidationElement {
                         geocode={true}
                         onUpdate={this.updateTreatmentProviderAddress}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </Field>
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderTelephone')}
@@ -214,6 +222,7 @@ export default class OrderedTreatment extends ValidationElement {
                          {...this.props.TreatmentProviderTelephone}
                          onUpdate={this.updateTreatmentProviderTelephone}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -225,6 +234,7 @@ export default class OrderedTreatment extends ValidationElement {
                          {...this.props.TreatmentDates}
                          onUpdate={this.updateTreatmentDates}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -233,6 +243,7 @@ export default class OrderedTreatment extends ValidationElement {
                     className="treatment-completed"
                     value={this.props.TreatmentCompleted}
                     onError={this.props.onError}
+                    required={this.props.required}
                     onUpdate={this.updateTreatmentCompleted}>
             </Branch>
 
@@ -244,6 +255,7 @@ export default class OrderedTreatment extends ValidationElement {
                           {...this.props.NoTreatmentExplanation}
                           onUpdate={this.updateNoTreatmentExplanation}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
 
