@@ -61,7 +61,7 @@ export default class Hospitalization extends ValidationElement {
       <div className="hospitalization">
         <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}
                adjustFor="big-buttons">
-          <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission}>
+          <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission} required={this.props.required} onError={this.props.onError}>
             <Radio
               className="voluntary-option"
               value="Voluntary"
@@ -89,6 +89,7 @@ export default class Hospitalization extends ValidationElement {
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -100,6 +101,7 @@ export default class Hospitalization extends ValidationElement {
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateTreatmentDate}
                      onError={this.props.onError}
+                     required={this.props.required}
                      minDate={this.props.ApplicantBirthDate}
                      prefix="hospitalization"
                      />
@@ -112,6 +114,7 @@ export default class Hospitalization extends ValidationElement {
                 {...this.props.Facility}
                 onUpdate={this.updateFacility}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -125,6 +128,7 @@ export default class Hospitalization extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateFacilityAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

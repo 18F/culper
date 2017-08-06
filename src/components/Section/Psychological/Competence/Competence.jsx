@@ -61,6 +61,7 @@ export default class Competence extends SubsectionElement {
                 value={this.props.IsIncompetent}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateIsIncompentent}>
         </Branch>
 
@@ -77,6 +78,7 @@ export default class Competence extends SubsectionElement {
             <Order name="Competence"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
                    prefix="competence"
+                   required={this.props.required}
                    bind={true} />
           </Accordion>
         </Show>

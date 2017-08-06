@@ -71,6 +71,7 @@ export default class Order extends ValidationElement {
                        prefix="order"
                        onUpdate={this.updateOccurred}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -81,6 +82,7 @@ export default class Order extends ValidationElement {
                 {...this.props.CourtName}
                 onUpdate={this.updateCourtName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -94,6 +96,7 @@ export default class Order extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -105,6 +108,7 @@ export default class Order extends ValidationElement {
                   {...this.props.Disposition}
                   onUpdate={this.updateDisposition}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Field>
         </Show>
@@ -114,6 +118,7 @@ export default class Order extends ValidationElement {
                           appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
                           items={this.props.Appeals}
                           onError={this.props.onError}
+                          required={this.props.required}
                           onUpdate={this.updateAppeals}
                           >
 
@@ -127,6 +132,7 @@ export default class Order extends ValidationElement {
                   className="courtname"
                   bind={true}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Field>
 
@@ -138,6 +144,7 @@ export default class Order extends ValidationElement {
                       layout={Location.ADDRESS}
                       geocode={true}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
 
@@ -147,6 +154,7 @@ export default class Order extends ValidationElement {
                   className="disposition"
                   bind={true}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Field>
         </BranchCollection>

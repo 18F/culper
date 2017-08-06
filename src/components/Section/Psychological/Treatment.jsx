@@ -51,6 +51,7 @@ export default class Treatment extends ValidationElement {
                 {...this.props.Name}
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -60,6 +61,7 @@ export default class Treatment extends ValidationElement {
                      {...this.props.Phone}
                      onUpdate={this.updatePhone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -73,6 +75,7 @@ export default class Treatment extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

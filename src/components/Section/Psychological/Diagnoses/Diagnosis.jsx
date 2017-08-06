@@ -76,10 +76,13 @@ export default class Diagnosis extends ValidationElement {
                   value={this.props.Condition}
                   onUpdate={this.updateCondition}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Show>
           <Show when={this.props.prefix === 'diagnosis'}>
             <RadioGroup className="diagnosis-condition"
+                        onError={this.props.onError}
+                        required={this.props.required}
                         selectedValue={this.props.Condition}>
               <Radio name="diagnosis-condition-psychotic"
                      label={i18n.m('psychological.diagnosis.label.psychotic')}
@@ -144,6 +147,7 @@ export default class Diagnosis extends ValidationElement {
                      prefix={prefix}
                      minDate={this.props.ApplicantBirthDate}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -154,6 +158,7 @@ export default class Diagnosis extends ValidationElement {
                      prefix={`${prefix}.person`}
                      onUpdate={this.updateTreatment}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </div>
 
@@ -164,6 +169,7 @@ export default class Diagnosis extends ValidationElement {
                      prefix={`${prefix}.facility`}
                      onUpdate={this.updateTreatmentFacility}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </div>
 
@@ -171,7 +177,7 @@ export default class Diagnosis extends ValidationElement {
           <div>
             <Field title={i18n.t(`psychological.${prefix}.heading.effective`)}
                    adjustFor="buttons">
-              <RadioGroup className="effective" selectedValue={this.props.Effective}>
+              <RadioGroup className="effective" selectedValue={this.props.Effective} onError={this.props.onError} required={this.props.required}>
                 <Radio name="effective"
                        label="Yes"
                        value="Yes"
@@ -195,6 +201,7 @@ export default class Diagnosis extends ValidationElement {
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>

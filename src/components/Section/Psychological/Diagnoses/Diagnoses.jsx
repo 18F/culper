@@ -114,6 +114,7 @@ export default class Diagnoses extends SubsectionElement {
                   value={this.props.Diagnosed}
                   warning={true}
                   onError={this.handleError}
+                  required={this.props.required}
                   onUpdate={this.updateDiagnosed}>
           </Branch>
         </Field>
@@ -132,6 +133,7 @@ export default class Diagnoses extends SubsectionElement {
                        appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
               <Diagnosis name="Diagnosis"
                          ApplicantBirthDate={this.props.ApplicantBirthDate}
+                         required={this.props.required}
                          bind={true} />
             </Accordion>
 
@@ -141,6 +143,7 @@ export default class Diagnoses extends SubsectionElement {
                     value={this.props.DidNotConsult}
                     help="psychological.diagnoses.help.didNotConsult"
                     onError={this.handleError}
+                    required={this.props.required}
                     onUpdate={this.updateDidNotConsult}>
             </Branch>
 
@@ -151,6 +154,7 @@ export default class Diagnoses extends SubsectionElement {
                     help="psychological.diagnoses.help.inTreatment"
                     warning={true}
                     onError={this.handleError}
+                    required={this.props.required}
                     onUpdate={this.updateInTreatment}>
             </Branch>
 
@@ -165,6 +169,7 @@ export default class Diagnoses extends SubsectionElement {
                          appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
                 <Treatment name="Treatment"
                            prefix="diagnoses.professional"
+                           required={this.props.required}
                            bind={true} />
               </Accordion>
             </Show>

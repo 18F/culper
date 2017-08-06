@@ -63,6 +63,7 @@ export default class Hospitalizations extends SubsectionElement {
                 value={this.props.Hospitalized}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHospitalized}>
         </Branch>
 
@@ -79,6 +80,7 @@ export default class Hospitalizations extends SubsectionElement {
             <Hospitalization name="Hospitalization"
                              ApplicantBirthDate={this.props.ApplicantBirthDate}
                              bind={true}
+                             required={this.props.required}
                              />
           </Accordion>
 

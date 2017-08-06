@@ -62,6 +62,7 @@ export default class Consultation extends SubsectionElement {
                 value={this.props.Consulted}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateConsulted}>
         </Branch>
 
@@ -78,6 +79,7 @@ export default class Consultation extends SubsectionElement {
             <Order name="Consultation"
                    prefix="consultation"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   required={this.props.required}
                    bind={true} />
           </Accordion>
         </Show>

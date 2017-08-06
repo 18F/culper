@@ -103,6 +103,7 @@ export default class ExistingConditions extends SubsectionElement {
                 value={this.props.HasCondition}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasCondition}>
         </Branch>
 
@@ -111,7 +112,7 @@ export default class ExistingConditions extends SubsectionElement {
             <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
             {i18n.m('psychological.existingConditions.para.receivedTreatment')}
             <Field adjustFor="button">
-              <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment}>
+              <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment} onError={this.handleError} required={this.props.required}>
                 <Radio name="treatment"
                        className="treatment yes"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
@@ -143,6 +144,7 @@ export default class ExistingConditions extends SubsectionElement {
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -160,6 +162,7 @@ export default class ExistingConditions extends SubsectionElement {
                 <Diagnosis name="Diagnosis"
                            ApplicantBirthDate={this.props.ApplicantBirthDate}
                            prefix="existingConditions.diagnosis"
+                           required={this.props.required}
                            bind={true} />
               </Accordion>
             </Show>
@@ -169,6 +172,7 @@ export default class ExistingConditions extends SubsectionElement {
                     className="eapp-field-wrap didnotfollow"
                     value={this.props.DidNotFollow}
                     onError={this.handleError}
+                    required={this.props.required}
                     onUpdate={this.updateDidNotFollow}>
             </Branch>
 
@@ -179,6 +183,7 @@ export default class ExistingConditions extends SubsectionElement {
                           {...this.props.DidNotFollowExplanation}
                           onUpdate={this.updateDidNotFollowExplanation}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
