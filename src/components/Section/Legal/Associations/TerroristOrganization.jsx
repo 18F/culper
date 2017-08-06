@@ -64,6 +64,7 @@ export default class TerroristOrganization extends SubsectionElement {
                 value={this.props.HasTerrorist}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -83,6 +84,7 @@ export default class TerroristOrganization extends SubsectionElement {
               <Text name="Organization"
                     className="legal-associations-terrorist-organization"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -94,6 +96,7 @@ export default class TerroristOrganization extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -103,6 +106,7 @@ export default class TerroristOrganization extends SubsectionElement {
               <DateRange name="Dates"
                          className="legal-associations-terrorist-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -112,10 +116,12 @@ export default class TerroristOrganization extends SubsectionElement {
               <NotApplicable name="PositionsNotApplicable"
                              or={i18n.m('legal.associations.terrorist.para.or')}
                              label={i18n.t('legal.associations.terrorist.label.noposition')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Positions"
                       className="legal-associations-terrorist-positions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
@@ -126,10 +132,12 @@ export default class TerroristOrganization extends SubsectionElement {
               <NotApplicable name="ContributionsNotApplicable"
                              or={i18n.m('legal.associations.terrorist.para.or')}
                              label={i18n.t('legal.associations.terrorist.label.nocontribs')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Contributions"
                       className="legal-associations-terrorist-contributions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
@@ -140,6 +148,7 @@ export default class TerroristOrganization extends SubsectionElement {
               <Textarea name="Reasons"
                         className="legal-associations-terrorist-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

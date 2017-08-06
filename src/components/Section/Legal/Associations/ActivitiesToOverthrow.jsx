@@ -62,6 +62,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                 value={this.props.HasActivities}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
               <Textarea name="Reasons"
                         className="legal-associations-activities-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -90,6 +92,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
               <DateRange name="Dates"
                          className="legal-associations-activities-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>

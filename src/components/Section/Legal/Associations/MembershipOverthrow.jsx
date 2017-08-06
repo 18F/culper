@@ -62,6 +62,7 @@ export default class MembershipOverthrow extends SubsectionElement {
                 value={this.props.HasOverthrow}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class MembershipOverthrow extends SubsectionElement {
               <Text name="Organization"
                     className="legal-associations-overthrow-organization"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -92,6 +94,7 @@ export default class MembershipOverthrow extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -101,6 +104,7 @@ export default class MembershipOverthrow extends SubsectionElement {
               <DateRange name="Dates"
                          className="legal-associations-overthrow-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -110,10 +114,12 @@ export default class MembershipOverthrow extends SubsectionElement {
               <NotApplicable name="PositionsNotApplicable"
                              or={i18n.m('legal.associations.overthrow.para.or')}
                              label={i18n.t('legal.associations.overthrow.label.noposition')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Positions"
                       className="legal-associations-overthrow-positions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
@@ -124,10 +130,12 @@ export default class MembershipOverthrow extends SubsectionElement {
               <NotApplicable name="ContributionsNotApplicable"
                              or={i18n.m('legal.associations.overthrow.para.or')}
                              label={i18n.t('legal.associations.overthrow.label.nocontribs')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Contributions"
                       className="legal-associations-overthrow-contributions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
@@ -138,6 +146,7 @@ export default class MembershipOverthrow extends SubsectionElement {
               <Textarea name="Reasons"
                         className="legal-associations-overthrow-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

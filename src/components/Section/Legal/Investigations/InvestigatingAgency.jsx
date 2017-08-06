@@ -34,7 +34,7 @@ export default class InvestigatingAgency extends ValidationElement {
   render () {
     return (
       <div className={this.props.className}>
-        <RadioGroup className="investigative-agencies" selectedValue={this.props.Agency}>
+        <RadioGroup className="investigative-agencies" selectedValue={this.props.Agency} onError={this.props.onError} required={this.props.required}>
           <Radio label={i18n.m('legal.investigations.history.label.agency.dod')}
                  value="U.S. Department of Defense"
                  className="investigative-agency-dod"
@@ -95,6 +95,7 @@ export default class InvestigatingAgency extends ValidationElement {
                       className="legal-investigations-history-agency-explanation"
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                   />
           </Field>
         </Show>

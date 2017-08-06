@@ -81,6 +81,7 @@ export default class Sentence extends ValidationElement {
                     className="description"
                     name="description"
                     onError={this.props.onError}
+                    required={this.props.required}
                     onUpdate={this.updateDescription} />
         </Field>
 
@@ -90,6 +91,7 @@ export default class Sentence extends ValidationElement {
                 className="exceeds-year"
                 value={this.props.ExceedsYear}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateExceedsYear}>
         </Branch>
 
@@ -99,6 +101,7 @@ export default class Sentence extends ValidationElement {
                 className="incarcerated"
                 value={this.props.Incarcerated}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateIncarcerated}>
         </Branch>
 
@@ -111,12 +114,14 @@ export default class Sentence extends ValidationElement {
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateIncarcerationDatesNA}>
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
                        {...this.props.IncarcerationDates}
                        onUpdate={this.updateIncarcerationDates}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </NotApplicable>
         </Field>
@@ -130,12 +135,14 @@ export default class Sentence extends ValidationElement {
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateProbationDatesNA}>
             <DateRange name="ProbationDates"
                        className="probation-dates"
                        {...this.props.ProbationDates}
                        onUpdate={this.updateProbationDates}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </NotApplicable>
         </Field>

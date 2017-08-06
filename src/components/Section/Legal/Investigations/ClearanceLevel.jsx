@@ -34,7 +34,7 @@ export default class ClearanceLevel extends ValidationElement {
   render () {
     return (
       <div className={this.props.className}>
-        <RadioGroup className="clearance-levels" selectedValue={this.props.Level}>
+        <RadioGroup className="clearance-levels" selectedValue={this.props.Level} onError={this.props.onError} required={this.props.required}>
           <Radio label={i18n.m('legal.investigations.history.label.level.none')}
                  value="None"
                  className="clearance-level-none"
@@ -101,6 +101,7 @@ export default class ClearanceLevel extends ValidationElement {
                       className="legal-investigations-history-clearance-explanation"
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                   />
           </Field>
         </Show>

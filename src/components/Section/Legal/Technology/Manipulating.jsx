@@ -62,6 +62,7 @@ export default class Manipulating extends SubsectionElement {
                 value={this.props.HasManipulating}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class Manipulating extends SubsectionElement {
               <DateControl name="Date"
                            className="legal-technology-manipulating-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -90,6 +92,7 @@ export default class Manipulating extends SubsectionElement {
               <Textarea name="Incident"
                         className="legal-technology-manipulating-incident"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -101,6 +104,7 @@ export default class Manipulating extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -110,6 +114,7 @@ export default class Manipulating extends SubsectionElement {
               <Textarea name="Action"
                         className="legal-technology-manipulating-action"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

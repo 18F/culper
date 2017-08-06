@@ -62,6 +62,7 @@ export default class Advocating extends SubsectionElement {
                 value={this.props.HasAdvocated}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class Advocating extends SubsectionElement {
               <Textarea name="Reasons"
                         className="legal-associations-advocating-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -90,6 +92,7 @@ export default class Advocating extends SubsectionElement {
               <DateRange name="Dates"
                          className="legal-associations-advocating-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>

@@ -65,6 +65,7 @@ export default class Offenses extends SubsectionElement {
                 value={this.props.HasOffenses}
                 warning={true}
                 onUpdate={this.updateHasOffenses}
+                required={this.props.required}
                 onError={this.handleError}>
           <ul>
             <li>{i18n.m('legal.police.label.summons')}</li>
@@ -88,6 +89,7 @@ export default class Offenses extends SubsectionElement {
                        appendLabel={i18n.t('legal.police.collection.append')}>
               <Offense name="Item"
                        bind={true}
+                       required={this.props.required}
                        />
             </Accordion>
           </div>

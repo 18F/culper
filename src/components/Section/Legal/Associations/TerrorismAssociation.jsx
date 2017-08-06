@@ -44,6 +44,7 @@ export default class TerrorismAssociation extends SubsectionElement {
                 value={this.props.HasTerrorism}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -55,6 +56,7 @@ export default class TerrorismAssociation extends SubsectionElement {
                       {...this.props.Explanation}
                       className="legal-associations-terrorism-explanation"
                       onError={this.handleError}
+                      required={this.props.required}
                       onUpdate={this.updateExplanation}
                       />
           </Field>

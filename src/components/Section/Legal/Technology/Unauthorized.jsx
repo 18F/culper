@@ -64,6 +64,7 @@ export default class Unauthorized extends SubsectionElement {
                 value={this.props.HasUnauthorized}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -83,6 +84,7 @@ export default class Unauthorized extends SubsectionElement {
               <DateControl name="Date"
                            className="legal-technology-unauthorized-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -92,6 +94,7 @@ export default class Unauthorized extends SubsectionElement {
               <Textarea name="Incident"
                         className="legal-technology-unauthorized-incident"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -103,6 +106,7 @@ export default class Unauthorized extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -112,6 +116,7 @@ export default class Unauthorized extends SubsectionElement {
               <Textarea name="Action"
                         className="legal-technology-unauthorized-action"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

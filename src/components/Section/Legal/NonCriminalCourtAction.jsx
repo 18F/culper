@@ -61,6 +61,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
                        {...this.props.CivilActionDate}
                        onUpdate={this.updateCivilActionDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -71,6 +72,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
                 {...this.props.CourtName}
                 onUpdate={this.updateCourtName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -84,6 +86,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -94,6 +97,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
                     {...this.props.NatureOfAction}
                     onUpdate={this.updateNatureOfAction}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -104,6 +108,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
                     {...this.props.ResultsOfAction}
                     onUpdate={this.updateResultsOfAction}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -114,6 +119,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
                     {...this.props.PrincipalPartyNames}
                     onUpdate={this.updatePrincipalPartyNames}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

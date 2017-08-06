@@ -62,6 +62,7 @@ export default class MembershipViolence extends SubsectionElement {
                 value={this.props.HasViolence}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class MembershipViolence extends SubsectionElement {
               <Text name="Organization"
                     className="legal-associations-violence-organization"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -92,6 +94,7 @@ export default class MembershipViolence extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -101,6 +104,7 @@ export default class MembershipViolence extends SubsectionElement {
               <DateRange name="Dates"
                          className="legal-associations-violence-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -110,10 +114,12 @@ export default class MembershipViolence extends SubsectionElement {
               <NotApplicable name="PositionsNotApplicable"
                              or={i18n.m('legal.associations.violence.para.or')}
                              label={i18n.t('legal.associations.violence.label.noposition')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Positions"
                       className="legal-associations-violence-positions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
@@ -124,10 +130,12 @@ export default class MembershipViolence extends SubsectionElement {
               <NotApplicable name="ContributionsNotApplicable"
                              or={i18n.m('legal.associations.violence.para.or')}
                              label={i18n.t('legal.associations.violence.label.nocontribs')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Contributions"
                       className="legal-associations-violence-contributions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
@@ -138,6 +146,7 @@ export default class MembershipViolence extends SubsectionElement {
               <Textarea name="Reasons"
                         className="legal-associations-violence-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

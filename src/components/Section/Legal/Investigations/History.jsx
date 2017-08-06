@@ -65,6 +65,7 @@ export default class History extends SubsectionElement {
                 value={this.props.HasHistory}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -84,10 +85,12 @@ export default class History extends SubsectionElement {
               <NotApplicable name="AgencyNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
+                             required={this.props.required}
                              bind={true}>
                 <InvestigatingAgency name="Agency"
                                      className="legal-investigations-history-agency"
                                      bind={true}
+                                     required={this.props.required}
                                      />
               </NotApplicable>
             </Field>
@@ -98,10 +101,12 @@ export default class History extends SubsectionElement {
               <NotApplicable name="CompletedNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
+                             required={this.props.required}
                              bind={true}>
                 <DateControl name="Completed"
                              className="legal-investigations-history-completed"
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
@@ -112,6 +117,7 @@ export default class History extends SubsectionElement {
               <Text name="Issued"
                     className="legal-investigations-history-issued"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -121,10 +127,12 @@ export default class History extends SubsectionElement {
               <NotApplicable name="GrantedNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
+                             required={this.props.required}
                              bind={true}>
                 <DateControl name="Granted"
                              className="legal-investigations-history-granted"
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
@@ -135,10 +143,12 @@ export default class History extends SubsectionElement {
               <NotApplicable name="clearanceNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
+                             required={this.props.required}
                              bind={true}>
                 <ClearanceLevel name="Clearance"
                                 className="legal-investigations-history-clearance"
                                 bind={true}
+                                required={this.props.required}
                                 />
               </NotApplicable>
             </Field>

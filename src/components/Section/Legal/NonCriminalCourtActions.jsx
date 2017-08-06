@@ -61,6 +61,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                 value={this.props.HasCourtActions}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasCourtActions}>
         </Branch>
 
@@ -74,7 +75,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                      description={i18n.t('legal.nonCriminalAction.collection.description')}
                      appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
                      appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}>
-            <NonCriminalCourtAction name="CourtAction" bind={true} />
+            <NonCriminalCourtAction name="CourtAction" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

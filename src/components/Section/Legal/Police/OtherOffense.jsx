@@ -149,6 +149,7 @@ export default class OtherOffense extends ValidationElement {
                        className="offense-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -159,6 +160,7 @@ export default class OtherOffense extends ValidationElement {
                     className="offense-description"
                     onUpdate={this.updateDescription}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -167,6 +169,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-violence"
                 value={this.props.InvolvedViolence}
                 onUpdate={this.updateInvolvedViolence}
+                required={this.props.required}
                 onError={this.props.onError}>
           {i18n.m('legal.police.label.violence')}
         </Branch>
@@ -175,6 +178,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-firearms"
                 value={this.props.InvolvedFirearms}
                 onUpdate={this.updateInvolvedFirearms}
+                required={this.props.required}
                 onError={this.props.onError}>
           {i18n.m('legal.police.label.firearms')}
         </Branch>
@@ -183,6 +187,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-substances"
                 value={this.props.InvolvedSubstances}
                 onUpdate={this.updateInvolvedSubstances}
+                required={this.props.required}
                 onError={this.props.onError}>
           {i18n.m('legal.police.label.substances')}
         </Branch>
@@ -195,6 +200,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-courtname"
                 onUpdate={this.updateCourtName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -210,6 +216,7 @@ export default class OtherOffense extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -220,6 +227,8 @@ export default class OtherOffense extends ValidationElement {
                titleSize="h4"
                adjustFor="buttons">
           <RadioGroup className="offense-chargetype option-list"
+                      onError={this.props.onErro}
+                      required={this.props.required}
                       selectedValue={this.props.ChargeType}>
             <Radio name="charge-felony"
                    className="charge-felony"
@@ -250,6 +259,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-courtcharge"
                 onUpdate={this.updateCourtCharge}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
           <Text name="CourtOutcome"
                 {...this.props.CourtOutcome}
@@ -257,6 +267,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-courtoutcome"
                 onUpdate={this.updateCourtOutcome}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -271,6 +282,7 @@ export default class OtherOffense extends ValidationElement {
                        className="offense-courtdate"
                        onUpdate={this.updateCourtDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -279,6 +291,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-sentenced"
                 value={this.props.WasSentenced}
                 onUpdate={this.updateWasSentenced}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
 
@@ -291,6 +304,7 @@ export default class OtherOffense extends ValidationElement {
             <Sentence name="Sentence"
                       {...this.props.Sentence}
                       onError={this.props.onError}
+                      required={this.props.required}
                       onUpdate={this.updateSentence}
                       />
           </div>
@@ -303,6 +317,7 @@ export default class OtherOffense extends ValidationElement {
                     className="awaiting-trial"
                     value={this.props.AwaitingTrial}
                     onError={this.props.onError}
+                    required={this.props.required}
                     onUpdate={this.updateAwaitingTrial}>
             </Branch>
             <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
@@ -312,6 +327,7 @@ export default class OtherOffense extends ValidationElement {
                         {...this.props.AwaitingTrialExplanation}
                         name="awaiting_trial_explanation"
                         onError={this.props.onError}
+                        required={this.props.required}
                         onUpdate={this.updateAwaitingTrialExplanation} />
             </Field>
           </div>

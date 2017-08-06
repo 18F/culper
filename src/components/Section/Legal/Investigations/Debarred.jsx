@@ -62,6 +62,7 @@ export default class Debarred extends SubsectionElement {
                 value={this.props.HasDebarment}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class Debarred extends SubsectionElement {
               <Text name="Agency"
                     className="legal-investigations-debarred-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -90,6 +92,7 @@ export default class Debarred extends SubsectionElement {
               <DateControl name="Date"
                            className="legal-investigations-debarred-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -99,6 +102,7 @@ export default class Debarred extends SubsectionElement {
               <Textarea name="Explanation"
                         className="legal-investigations-debarred-explanation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

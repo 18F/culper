@@ -57,6 +57,7 @@ export default class DomesticViolence extends ValidationElement {
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -70,6 +71,7 @@ export default class DomesticViolence extends ValidationElement {
                        className="issued"
                        onUpdate={this.updateIssued}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -82,6 +84,7 @@ export default class DomesticViolence extends ValidationElement {
                 className="domestic-courtname"
                 onUpdate={this.updateCourtName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -98,6 +101,7 @@ export default class DomesticViolence extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

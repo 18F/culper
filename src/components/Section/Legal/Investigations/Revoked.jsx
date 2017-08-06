@@ -62,6 +62,7 @@ export default class Revoked extends SubsectionElement {
                 value={this.props.HasRevocations}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateBranch}>
           {i18n.m('legal.investigations.revoked.para.downgrade')}
         </Branch>
@@ -82,6 +83,7 @@ export default class Revoked extends SubsectionElement {
               <DateControl name="Date"
                            className="legal-investigations-revoked-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -91,6 +93,7 @@ export default class Revoked extends SubsectionElement {
               <Text name="Agency"
                     className="legal-investigations-revoked-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -100,6 +103,7 @@ export default class Revoked extends SubsectionElement {
               <Textarea name="Explanation"
                         className="legal-investigations-revoked-explanation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
