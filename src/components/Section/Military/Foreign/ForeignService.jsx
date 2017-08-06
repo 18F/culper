@@ -126,6 +126,8 @@ export default class ForeignService extends ValidationElement {
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="organization option-list"
+                      onError={this.props.onError}
+                      required={this.props.required}
                       selectedValue={this.props.Organization}>
             <Radio name="organization-military"
                    className="organization-military"
@@ -186,6 +188,7 @@ export default class ForeignService extends ValidationElement {
                 maxlength="100"
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -198,6 +201,7 @@ export default class ForeignService extends ValidationElement {
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -209,6 +213,7 @@ export default class ForeignService extends ValidationElement {
                    maxlength="100"
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -219,6 +224,7 @@ export default class ForeignService extends ValidationElement {
                 maxlength="100"
                 onUpdate={this.updateRank}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -229,6 +235,7 @@ export default class ForeignService extends ValidationElement {
                 maxlength="100"
                 onUpdate={this.updateDivision}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -239,6 +246,7 @@ export default class ForeignService extends ValidationElement {
                     maxlength="100"
                     onUpdate={this.updateCircumstances}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -249,6 +257,7 @@ export default class ForeignService extends ValidationElement {
                     maxlength="100"
                     onUpdate={this.updateReasonLeft}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -258,6 +267,7 @@ export default class ForeignService extends ValidationElement {
                 value={this.props.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
 
@@ -277,6 +287,7 @@ export default class ForeignService extends ValidationElement {
                        appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
               <ForeignContact name="Item"
                               bind={true}
+                              required={this.props.required}
                               />
             </Accordion>
           </div>

@@ -24,11 +24,13 @@ export default class Foreign extends SubsectionElement {
                           appendLabel={i18n.t('military.foreign.collection.foreign.appendTitle')}
                           appendSize="h2"
                           onUpdate={this.updateList}
+                          required={this.props.required}
                           onError={this.handleError}>
           <ForeignService name="Item"
                           bind={true}
                           defaultState={this.props.defaultState}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
         </BranchCollection>
       </div>

@@ -65,6 +65,7 @@ export default class Selective extends SubsectionElement {
                 help="military.selective.help.born"
                 warning={true}
                 onUpdate={this.updateBornAfter}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -76,6 +77,7 @@ export default class Selective extends SubsectionElement {
                     value={this.props.HasRegistered}
                     warning={true}
                     onUpdate={this.updateRegistered}
+                    required={this.props.required}
                     onError={this.handleError}>
             </Branch>
 
@@ -90,6 +92,7 @@ export default class Selective extends SubsectionElement {
                         {...this.props.RegistrationNumber}
                         onUpdate={this.updateRegistrationNumber}
                         onError={this.handleError}
+                        required={this.props.required}
                         />
                 </Field>
 
@@ -124,6 +127,7 @@ export default class Selective extends SubsectionElement {
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>

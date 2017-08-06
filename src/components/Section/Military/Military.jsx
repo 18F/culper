@@ -68,6 +68,7 @@ class Military extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateSelective}
                         onError={this.handleError}
+                        required={true}
                         />
               <hr/>
             </Show>
@@ -79,6 +80,7 @@ class Military extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     required={true}
                      />
 
             <Show when={showDisciplinary}>
@@ -91,6 +93,7 @@ class Military extends SectionElement {
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDisciplinary}
                             onError={this.handleError}
+                            required={true}
                             />
             </Show>
 
@@ -103,6 +106,7 @@ class Military extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
+                     required={true}
                      />
           </SectionView>
 

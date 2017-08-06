@@ -68,6 +68,7 @@ export default class Procedure extends ValidationElement {
                        hideDay={true}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -77,6 +78,7 @@ export default class Procedure extends ValidationElement {
                     className="procedure-offenses"
                     onUpdate={this.updateOffenses}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -89,6 +91,7 @@ export default class Procedure extends ValidationElement {
                 maxlength="100"
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -100,6 +103,7 @@ export default class Procedure extends ValidationElement {
                     className="procedure-court"
                     onUpdate={this.updateCourt}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -112,6 +116,7 @@ export default class Procedure extends ValidationElement {
                 maxlength="100"
                 onUpdate={this.updateOutcome}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
       </div>

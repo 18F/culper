@@ -64,6 +64,7 @@ export default class Disciplinary extends SubsectionElement {
                 value={this.props.HasDisciplinary}
                 weight={true}
                 onUpdate={this.updateDisciplinary}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -80,6 +81,7 @@ export default class Disciplinary extends SubsectionElement {
                      appendLabel={i18n.t('military.disciplinary.collection.append')}>
             <Procedure name="Item"
                        bind={true}
+                       required={this.props.required}
                        />
           </Accordion>
         </Show>

@@ -106,6 +106,8 @@ export default class MilitaryService extends ValidationElement {
                adjustFor="big-buttons"
                shrink={true}>
           <RadioGroup className="service option-list eapp-extend-labels"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.props.Service}>
             <Radio name="service-airforce"
                    className="service-airforce"
@@ -192,6 +194,8 @@ export default class MilitaryService extends ValidationElement {
                  adjustFor="buttons"
                  shrink={true}>
             <RadioGroup className="status option-list"
+                        required={this.props.required}
+                        onError={this.props.onError}
                         selectedValue={this.props.Status}>
               <Radio name="status-activeduty"
                      className="status-activeduty"
@@ -222,6 +226,8 @@ export default class MilitaryService extends ValidationElement {
                adjustFor="buttons"
                shrink={true}>
           <RadioGroup className="officer option-list"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.props.Officer}>
             <Radio name="officer-officer"
                    className="officer-officer"
@@ -254,6 +260,7 @@ export default class MilitaryService extends ValidationElement {
                 className="service-number"
                 onUpdate={this.updateServiceNumber}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -267,6 +274,7 @@ export default class MilitaryService extends ValidationElement {
                      label={i18n.t('military.history.label.dates')}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -275,6 +283,7 @@ export default class MilitaryService extends ValidationElement {
                 className="discharged"
                 value={this.props.HasBeenDischarged}
                 onUpdate={this.updateDischarged}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
 
@@ -286,6 +295,8 @@ export default class MilitaryService extends ValidationElement {
                    adjustFor="big-buttons"
                    shrink={true}>
               <RadioGroup className="discharge-type option-list"
+                          required={this.props.required}
+                          onError={this.props.onError}
                           selectedValue={this.props.DischargeType}>
                 <Radio name="discharge-type-honorable"
                        className="discharge-type-honorable"
@@ -338,6 +349,7 @@ export default class MilitaryService extends ValidationElement {
                       maxlength="100"
                       onUpdate={this.updateDischargeTypeOther}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
               </Show>
             </Field>
@@ -350,6 +362,7 @@ export default class MilitaryService extends ValidationElement {
                           label={i18n.t('military.history.label.discharge.reason')}
                           onUpdate={this.updateDischargeReason}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -364,6 +377,7 @@ export default class MilitaryService extends ValidationElement {
                            hideDay={true}
                            onUpdate={this.updateDischargeDate}
                            onError={this.props.onError}
+                           required={this.props.required}
                            />
             </Field>
           </div>

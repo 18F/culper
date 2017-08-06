@@ -88,6 +88,7 @@ export default class History extends SubsectionElement {
                 help="military.history.help.served"
                 warning={true}
                 onUpdate={this.updateServed}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -103,6 +104,7 @@ export default class History extends SubsectionElement {
                      appendLabel={i18n.t('military.history.collection.append')}>
             <MilitaryService name="Item"
                              bind={true}
+                             required={this.props.required}
                              />
           </Accordion>
         </Show>
