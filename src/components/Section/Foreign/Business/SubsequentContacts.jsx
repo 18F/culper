@@ -30,6 +30,7 @@ export default class SubsequentContacts extends ValidationElement {
                           className="has-foreign-contacts"
                           items={this.props.List}
                           onUpdate={this.updateList}
+                          required={this.props.required}
                           onError={this.props.onError}>
           <Field title={i18n.t('foreign.business.contact.heading.subsequent')}
                  help="foreign.business.contact.help.subsequent"
@@ -37,6 +38,7 @@ export default class SubsequentContacts extends ValidationElement {
             <Textarea name="Subsequent"
                       className="foreign-business-contact-subsequent"
                       bind={true}
+                      required={this.props.required}
                       />
           </Field>
 
@@ -46,6 +48,7 @@ export default class SubsequentContacts extends ValidationElement {
             <DateControl name="Recent"
                          className="foreign-business-contact-recent"
                          bind={true}
+                         required={this.props.required}
                          />
           </Field>
 
@@ -55,6 +58,7 @@ export default class SubsequentContacts extends ValidationElement {
             <Textarea name="Future"
                       className="foreign-business-contact-future"
                       bind={true}
+                      required={this.props.required}
                       />
           </Field>
         </BranchCollection>

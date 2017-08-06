@@ -98,6 +98,8 @@ export default class Benefit extends ValidationElement {
 
           <p>{i18n.t('foreign.activities.benefit.para.checkAll')}</p>
           <CheckboxGroup className="interest-types"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.benefit.label.interestTypes.yourself')}
@@ -132,7 +134,10 @@ export default class Benefit extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitType')}
                adjustFor="big-buttons">
-          <RadioGroup className="benefit-types" selectedValue={this.props.BenefitType}>
+               <RadioGroup className="benefit-types"
+                 onError={this.props.onError}
+                 required={this.props.required}
+                 selectedValue={this.props.BenefitType}>
             <Radio name="benefit_type"
                    label={i18n.m('foreign.activities.benefit.label.benefitTypes.educational')}
                    value="Educational"
@@ -166,6 +171,7 @@ export default class Benefit extends ValidationElement {
                         {...this.props.OtherBenefitType}
                         onUpdate={this.updateOtherBenefitType}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </div>
           </Show>
@@ -173,7 +179,10 @@ export default class Benefit extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}
                adjustFor="big-buttons">
-          <RadioGroup className="benefit-frequency" selectedValue={this.props.BenefitFrequency}>
+               <RadioGroup className="benefit-frequency"
+                 onError={this.props.onError}
+                 required={this.props.required}
+                 selectedValue={this.props.BenefitFrequency}>
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.label.benefitFrequency.oneTime')}
                    value="OneTime"
@@ -206,6 +215,7 @@ export default class Benefit extends ValidationElement {
                         {...this.props.OtherBenefit}
                         onUpdate={this.updateOtherBenefit}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </div>
           </Show>
@@ -216,6 +226,7 @@ export default class Benefit extends ValidationElement {
                           {...this.props.OneTimeBenefit}
                           onUpdate={this.updateOneTimeBenefit}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
         </Show>
 
@@ -224,6 +235,7 @@ export default class Benefit extends ValidationElement {
                          {...this.props.FutureBenefit}
                          onUpdate={this.updateFutureBenefit}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
         </Show>
 
@@ -232,6 +244,7 @@ export default class Benefit extends ValidationElement {
                              {...this.props.ContinuingBenefit}
                              onUpdate={this.updateContinuingBenefit}
                              onError={this.props.onError}
+                             required={this.props.required}
                              />
         </Show>
       </div>

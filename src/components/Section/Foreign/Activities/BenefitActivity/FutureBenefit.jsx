@@ -101,13 +101,14 @@ export default class FutureBenefit extends ValidationElement {
                        onUpdate={this.updateBegin}
                        onError={this.props.onError}
                        maxDate={null}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
                adjustFor="big-buttons">
 
-          <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
+          <RadioGroup className="frequency" selectedValue={this.props.Frequency} onError={this.props.onError} required={this.props.required}>
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.future.label.frequency.annually')}
                    value="Annually"
@@ -147,6 +148,7 @@ export default class FutureBenefit extends ValidationElement {
                         {...this.props.OtherFrequency}
                         onUpdate={this.updateOtherFrequency}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </div>
           </Show>
@@ -157,6 +159,7 @@ export default class FutureBenefit extends ValidationElement {
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -167,6 +170,7 @@ export default class FutureBenefit extends ValidationElement {
                     min="0"
                     onUpdate={this.updateValue}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="ValueEstimated"
@@ -185,6 +189,7 @@ export default class FutureBenefit extends ValidationElement {
                     {...this.props.Reason}
                     onUpdate={this.updateReason}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -194,6 +199,7 @@ export default class FutureBenefit extends ValidationElement {
                 labelSize="h3"
                 value={this.props.Obligated}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateObligated}>
         </Branch>
 
@@ -205,6 +211,7 @@ export default class FutureBenefit extends ValidationElement {
                       {...this.props.ObligatedExplanation}
                       onUpdate={this.updateObligatedExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </div>
         </Show>

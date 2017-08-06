@@ -32,11 +32,13 @@ export default class CoOwners extends ValidationElement {
                           appendLabel={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwnersAppend`)}
                           items={this.props.List}
                           onError={this.props.onError}
+                          required={this.props.required}
                           onUpdate={this.updateList}>
           <CoOwner name="CoOwner"
                    bind={true}
                    prefix={`${this.props.prefix}.coOwner`}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </BranchCollection>
       </div>

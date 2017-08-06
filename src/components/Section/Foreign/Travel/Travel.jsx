@@ -68,6 +68,7 @@ export default class Travel extends SubsectionElement {
                 value={this.props.HasForeignTravelOutside}
                 warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -78,6 +79,7 @@ export default class Travel extends SubsectionElement {
                 help="foreign.travel.help.official"
                 value={this.props.HasForeignTravelOfficial}
                 onUpdate={this.updateHasForeignTravelOfficial}
+                required={this.props.required}
                 onError={this.handleError}>
           {i18n.m('foreign.travel.para.personal')}
         </Branch>
@@ -92,7 +94,7 @@ export default class Travel extends SubsectionElement {
                      description={i18n.t('foreign.travel.collection.summary.title')}
                      appendTitle={i18n.t('foreign.travel.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.travel.collection.append')}>
-            <TravelQuestions name="Item" bind={true} />
+            <TravelQuestions name="Item" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

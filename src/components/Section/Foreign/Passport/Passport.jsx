@@ -142,6 +142,7 @@ export default class Passport extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}
+                required={this.props.required}
                 >
         </Branch>
         <Show when={this.props.HasPassport === 'Yes'}>
@@ -163,6 +164,7 @@ export default class Passport extends SubsectionElement {
                   {...this.props.Name}
                   onUpdate={this.updateName}
                   onError={this.handleError}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('foreign.passport.number')}
@@ -172,6 +174,8 @@ export default class Passport extends SubsectionElement {
                    shrink={true}>
               <div>
                 <RadioGroup className="passport-card option-list"
+                            onError={this.handleError}
+                            required={this.props.required}
                             selectedValue={this.props.Card}>
                   <Radio name="passport-book"
                          className="passport-book"
@@ -199,6 +203,7 @@ export default class Passport extends SubsectionElement {
                       prefix="passport"
                       onUpdate={this.updateNumber}
                       onError={this.handleError}
+                      required={this.props.required}
                       />
               </div>
             </Field>
@@ -212,6 +217,7 @@ export default class Passport extends SubsectionElement {
                            {...this.props.Issued}
                            onUpdate={this.updateIssued}
                            onError={this.handleError}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -224,6 +230,7 @@ export default class Passport extends SubsectionElement {
                            {...this.props.Expiration}
                            onUpdate={this.updateExpiration}
                            onError={this.handleError}
+                           required={this.props.required}
                            />
             </Field>
           </div>

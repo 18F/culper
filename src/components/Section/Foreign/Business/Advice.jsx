@@ -61,6 +61,7 @@ export default class Advice extends SubsectionElement {
                 value={this.props.HasForeignAdvice}
                 warning={true}
                 onUpdate={this.updateHasForeignAdvice}
+                required={this.props.required}
                 onError={this.handleError}>
           {i18n.m('foreign.business.advice.para.branch')}
         </Branch>
@@ -80,6 +81,7 @@ export default class Advice extends SubsectionElement {
               <Textarea name="Description"
                         className="advice-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -87,12 +89,14 @@ export default class Advice extends SubsectionElement {
             <Name name="Name"
                   className="advice-name"
                   bind={true}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('foreign.business.advice.heading.organization')}>
               <Text name="Organization"
                     className="advice-organization"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -100,6 +104,7 @@ export default class Advice extends SubsectionElement {
               <Country name="Country"
                        className="advice-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -109,6 +114,7 @@ export default class Advice extends SubsectionElement {
               <DateRange name="Dates"
                          className="advice-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -116,6 +122,7 @@ export default class Advice extends SubsectionElement {
               <Textarea name="Compensation"
                         className="advice-compensation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

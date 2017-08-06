@@ -61,6 +61,7 @@ export default class Voting extends SubsectionElement {
                 value={this.props.HasForeignVoting}
                 warning={true}
                 onUpdate={this.updateHasForeignVoting}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -80,6 +81,7 @@ export default class Voting extends SubsectionElement {
               <DateControl name="Date"
                            className="foreign-business-voting-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -88,6 +90,7 @@ export default class Voting extends SubsectionElement {
               <Country name="Country"
                        className="foreign-business-voting-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -96,6 +99,7 @@ export default class Voting extends SubsectionElement {
               <Textarea name="Reason"
                         className="foreign-business-voting-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -104,6 +108,7 @@ export default class Voting extends SubsectionElement {
               <Text name="Eligibility"
                     className="foreign-business-voting-eligibility"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
           </Accordion>

@@ -84,6 +84,7 @@ export default class OneTimeBenefit extends ValidationElement {
                        label={i18n.t('foreign.activities.benefit.oneTime.label.received')}
                        onUpdate={this.updateReceived}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -92,6 +93,7 @@ export default class OneTimeBenefit extends ValidationElement {
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -102,6 +104,7 @@ export default class OneTimeBenefit extends ValidationElement {
                     min="0"
                     onUpdate={this.updateValue}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="ValueEstimated"
@@ -120,6 +123,7 @@ export default class OneTimeBenefit extends ValidationElement {
                     {...this.props.Reason}
                     onUpdate={this.updateReason}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -129,6 +133,7 @@ export default class OneTimeBenefit extends ValidationElement {
                 labelSize="h3"
                 value={this.props.Obligated}
                 onError={this.props.onError}
+                required={this.props.required}
                 onUpdate={this.updateObligated}>
         </Branch>
 
@@ -139,6 +144,7 @@ export default class OneTimeBenefit extends ValidationElement {
                     {...this.props.ObligatedExplanation}
                     onUpdate={this.updateObligatedExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Show>
       </div>

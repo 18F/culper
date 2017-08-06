@@ -129,6 +129,8 @@ export default class DirectInterest extends ValidationElement {
 
           <p>{i18n.t('foreign.activities.direct.interest.para.checkAll')}</p>
           <CheckboxGroup className="interest-types option-list"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.direct.interest.label.interestTypes.yourself')}
@@ -167,6 +169,7 @@ export default class DirectInterest extends ValidationElement {
                 {...this.props.InterestType}
                 onUpdate={this.updateInterestType}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -178,6 +181,7 @@ export default class DirectInterest extends ValidationElement {
                        label={i18n.t('foreign.activities.direct.interest.label.acquired')}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -189,6 +193,7 @@ export default class DirectInterest extends ValidationElement {
                     {...this.props.HowAcquired}
                     onUpdate={this.updateHowAcquired}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -200,7 +205,8 @@ export default class DirectInterest extends ValidationElement {
                     onUpdate={this.updateCost}
                     min="0"
                     onError={this.props.onError}
-                    />
+                    required={this.props.required}
+                  />
           <div className="flags">
             <Checkbox name="CostEstimated"
                       label={i18n.t('foreign.activities.direct.interest.label.costEstimated')}
@@ -221,6 +227,7 @@ export default class DirectInterest extends ValidationElement {
                     onUpdate={this.updateValue}
                     min="0"
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="ValueEstimated"
@@ -242,6 +249,7 @@ export default class DirectInterest extends ValidationElement {
                          label={i18n.t('foreign.activities.direct.interest.label.relinquishedNotApplicable')}
                          or={i18n.m('foreign.activities.direct.interest.label.or')}
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateRelinquishedNotApplicable}>
             <DateControl name="Relinquished"
                          className="relinquished"
@@ -249,6 +257,7 @@ export default class DirectInterest extends ValidationElement {
                          label={i18n.t('foreign.activities.direct.interest.label.relinquished')}
                          onUpdate={this.updateRelinquished}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </NotApplicable>
         </Field>
@@ -259,6 +268,7 @@ export default class DirectInterest extends ValidationElement {
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -266,6 +276,7 @@ export default class DirectInterest extends ValidationElement {
                   {...this.props.CoOwners}
                   onUpdate={this.updateCoOwners}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
 
       </div>

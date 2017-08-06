@@ -68,6 +68,7 @@ export default class Contact extends SubsectionElement {
                 value={this.props.HasForeignContact}
                 warning={true}
                 onUpdate={this.updateHasForeignContact}
+                required={this.props.required}
                 onError={this.handleError}>
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
@@ -87,6 +88,7 @@ export default class Contact extends SubsectionElement {
             <Name name="Name"
                   className="foreign-business-contact-name"
                   bind={true}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('foreign.business.contact.heading.location')}
@@ -99,6 +101,7 @@ export default class Contact extends SubsectionElement {
                           countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
                           className="birthplace foreign-business-contact-location"
                           bind={true}
+                          required={this.props.required}
                           />
             </Field>
 
@@ -108,6 +111,7 @@ export default class Contact extends SubsectionElement {
               <DateControl name="Date"
                            className="foreign-business-contact-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -118,6 +122,7 @@ export default class Contact extends SubsectionElement {
                        className="foreign-business-contact-governments"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -127,6 +132,7 @@ export default class Contact extends SubsectionElement {
               <Textarea name="Establishment"
                         className="foreign-business-contact-establishment"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -136,6 +142,7 @@ export default class Contact extends SubsectionElement {
               <Textarea name="Representatives"
                         className="foreign-business-contact-representatives"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -145,10 +152,11 @@ export default class Contact extends SubsectionElement {
               <Textarea name="Purpose"
                         className="foreign-business-contact-purpose"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <SubsequentContacts name="SubsequentContacts" bind={true} />
+            <SubsequentContacts name="SubsequentContacts" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

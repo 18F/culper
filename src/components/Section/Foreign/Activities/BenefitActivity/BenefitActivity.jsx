@@ -89,6 +89,7 @@ export default class BenefitActivity extends SubsectionElement {
                 value={this.props.HasBenefits}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasBenefits}>
         </Branch>
 
@@ -104,6 +105,7 @@ export default class BenefitActivity extends SubsectionElement {
                      appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}>
             <Benefit name="Benefit"
                      bind={true}
+                     required={this.props.required}
                      />
           </Accordion>
         </Show>

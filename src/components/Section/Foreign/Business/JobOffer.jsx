@@ -73,6 +73,7 @@ export default class JobOffer extends ValidationElement {
               onUpdate={this.updateName}
               onError={this.props.onError}
               {...this.props.Name}
+              required={this.props.required}
               />
 
         <Field title={i18n.t('foreign.business.employment.heading.description')}>
@@ -81,6 +82,7 @@ export default class JobOffer extends ValidationElement {
                     onUpdate={this.updateDescription}
                     onError={this.props.onError}
                     {...this.props.Description}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -92,6 +94,7 @@ export default class JobOffer extends ValidationElement {
                        className="employment-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -104,6 +107,7 @@ export default class JobOffer extends ValidationElement {
                    className="employment-address"
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -114,6 +118,7 @@ export default class JobOffer extends ValidationElement {
                 value={this.props.Accepted}
                 onUpdate={this.updateAccepted}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
 
         <Show when={this.props.Accepted === 'Yes' || this.props.Accepted === 'No'}>
@@ -124,6 +129,7 @@ export default class JobOffer extends ValidationElement {
                       className="employment-explanation"
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

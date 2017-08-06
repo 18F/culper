@@ -57,6 +57,7 @@ export default class CoOwner extends ValidationElement {
               {...this.props.Name}
               onUpdate={this.updateName}
               onError={this.props.onError}
+              required={this.props.required}
               />
 
         <Field title={i18n.t(`foreign.${prefix}.heading.address`)}
@@ -69,6 +70,7 @@ export default class CoOwner extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -79,6 +81,7 @@ export default class CoOwner extends ValidationElement {
                    multiple={true}
                    onUpdate={this.updateCountries}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -88,6 +91,7 @@ export default class CoOwner extends ValidationElement {
                     {...this.props.RelationshipNature}
                     onUpdate={this.updateRelationshipNature}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

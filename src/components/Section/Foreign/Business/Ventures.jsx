@@ -63,6 +63,7 @@ export default class Ventures extends SubsectionElement {
                 value={this.props.HasForeignVentures}
                 warning={true}
                 onUpdate={this.updateHasForeignVentures}
+                required={this.props.required}
                 onError={this.handleError}>
           {i18n.m('foreign.business.ventures.para.branch')}
         </Branch>
@@ -82,6 +83,7 @@ export default class Ventures extends SubsectionElement {
             <Name name="Name"
                   className="ventures-name"
                   bind={true}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('foreign.business.ventures.heading.address')}
@@ -92,6 +94,7 @@ export default class Ventures extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -101,6 +104,7 @@ export default class Ventures extends SubsectionElement {
                        className="ventures-citizenship"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -109,6 +113,7 @@ export default class Ventures extends SubsectionElement {
               <Textarea name="Description"
                         className="ventures-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -117,6 +122,7 @@ export default class Ventures extends SubsectionElement {
               <Textarea name="Relationship"
                         className="ventures-relationship"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -126,6 +132,7 @@ export default class Ventures extends SubsectionElement {
               <DateRange name="Dates"
                          className="ventures-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -134,6 +141,7 @@ export default class Ventures extends SubsectionElement {
               <Textarea name="Association"
                         className="ventures-association"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -142,6 +150,7 @@ export default class Ventures extends SubsectionElement {
               <Text name="Position"
                     className="ventures-position"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -150,6 +159,7 @@ export default class Ventures extends SubsectionElement {
               <Text name="Service"
                     className="ventures-service"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -158,6 +168,7 @@ export default class Ventures extends SubsectionElement {
               <Text name="Support"
                     className="ventures-support"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -166,6 +177,7 @@ export default class Ventures extends SubsectionElement {
               <Textarea name="Compensation"
                         className="ventures-compensation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

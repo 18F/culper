@@ -63,6 +63,7 @@ export default class Contacts extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignContacts}
                 onError={this.handleError}
+                required={this.props.required}
                 />
         <Show when={this.props.HasForeignContacts === 'Yes'}>
           <Accordion items={this.props.List}
@@ -75,7 +76,7 @@ export default class Contacts extends SubsectionElement {
                      appendTitle={i18n.t('foreign.contacts.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.contacts.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.contacts.collection.append')}>
-            <ForeignNational name="Item" bind={true} />
+            <ForeignNational name="Item" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>

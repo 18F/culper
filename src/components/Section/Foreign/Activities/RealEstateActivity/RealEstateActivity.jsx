@@ -69,6 +69,7 @@ export default class RealEstateActivity extends SubsectionElement {
                 value={this.props.HasInterests}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasInterests}>
         </Branch>
 
@@ -84,6 +85,7 @@ export default class RealEstateActivity extends SubsectionElement {
                      appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
             <RealEstateInterest name="RealEstateInterest"
                                 bind={true}
+                                required={this.props.required}
                                 />
           </Accordion>
         </Show>

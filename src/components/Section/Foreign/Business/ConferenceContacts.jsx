@@ -32,12 +32,14 @@ export default class ConferenceContacts extends ValidationElement {
                           className="has-foreign-contacts"
                           items={this.props.List}
                           onUpdate={this.updateList}
+                          required={this.props.required}
                           onError={this.props.onError}>
           <Field title={i18n.t('foreign.business.conferences.heading.explanation')}
                   help="foreign.business.conferences.help.explanation">
             <Textarea name="Explanation"
                       className="conferences-explanation"
                       bind={true}
+                      required={this.props.required}
                       />
           </Field>
         </BranchCollection>

@@ -245,11 +245,13 @@ export default class ForeignNational extends ValidationElement {
                        or={i18n.m('foreign.contacts.para.or')}
                        {...this.props.NameNotApplicable}
                        onUpdate={this.updateNameNotApplicable}
+                       required={this.props.required}
                        onError={this.props.onError}>
           <Name name="Name"
                 {...this.props.Name}
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </NotApplicable>
 
@@ -260,6 +262,7 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.NameExplanation}
                       onUpdate={this.updateNameExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -272,6 +275,7 @@ export default class ForeignNational extends ValidationElement {
                        {...this.props.FirstContact}
                        onUpdate={this.updateFirstContact}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -283,6 +287,7 @@ export default class ForeignNational extends ValidationElement {
                        {...this.props.LastContact}
                        onUpdate={this.updateLastContact}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -291,6 +296,8 @@ export default class ForeignNational extends ValidationElement {
                adjustFor="p">
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="methods"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.Methods}>
             <Checkbox name="methods-inperson"
                       label={i18n.m('foreign.contacts.label.inperson')}
@@ -337,6 +344,7 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.MethodsExplanation}
                       onUpdate={this.updateMethodsExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -344,6 +352,8 @@ export default class ForeignNational extends ValidationElement {
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
                adjustFor="big-buttons">
           <RadioGroup className="frequency"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.props.Frequency}>
             <Radio name="frequency-daily"
                    label={i18n.m('foreign.contacts.label.daily')}
@@ -397,6 +407,7 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.FrequencyExplanation}
                       onUpdate={this.updateFrequencyExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -405,6 +416,8 @@ export default class ForeignNational extends ValidationElement {
                adjustFor="p">
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
+                         required={this.props.required}
+                         onError={this.props.onError}
                          selectedValues={this.props.Relationship}>
             <Checkbox name="relationship-professional"
                       label={i18n.m('foreign.contacts.label.professional')}
@@ -444,6 +457,7 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.RelationshipExplanation}
                       onUpdate={this.updateRelationshipExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -454,9 +468,10 @@ export default class ForeignNational extends ValidationElement {
                           className="aliases"
                           items={this.props.Aliases}
                           onUpdate={this.updateAliases}
+                          required={this.props.required}
                           onError={this.props.onError}>
           <h4>{i18n.t('foreign.contacts.heading.aliasname')}</h4>
-          <Name name="Alias" bind={true} />
+          <Name name="Alias" bind={true} required={this.props.required} />
         </BranchCollection>
 
         <Field title={i18n.t('foreign.contacts.heading.citizenship')}
@@ -467,6 +482,7 @@ export default class ForeignNational extends ValidationElement {
                    value={this.props.Citizenship}
                    onUpdate={this.updateCitizenship}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -478,11 +494,13 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          {...this.props.BirthdateNotApplicable}
                          onUpdate={this.updateBirthdateNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <DateControl name="Birthdate"
                          {...this.props.Birthdate}
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </NotApplicable>
         </Field>
@@ -495,6 +513,7 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          {...this.props.BirthplaceNotApplicable}
                          onUpdate={this.updateBirthplaceNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <Location name="Birthplace"
                       className="birthplace"
@@ -502,6 +521,7 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.Birthplace}
                       onUpdate={this.updateBirthplace}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </NotApplicable>
         </Field>
@@ -514,6 +534,7 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          {...this.props.AddressNotApplicable}
                          onUpdate={this.updateAddressNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <Location name="Address"
                       className="current-address"
@@ -522,6 +543,7 @@ export default class ForeignNational extends ValidationElement {
                       geocode={true}
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </NotApplicable>
         </Field>
@@ -533,12 +555,14 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          {...this.props.EmployerNotApplicable}
                          onUpdate={this.updateEmployerNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <Text name="Employer"
                   className="employer"
                   {...this.props.Employer}
                   onUpdate={this.updateEmployer}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </NotApplicable>
         </Field>
@@ -551,6 +575,7 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          {...this.props.EmployerAddressNotApplicable}
                          onUpdate={this.updateEmployerAddressNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <Location name="EmployerAddress"
                       className="employer-address"
@@ -559,6 +584,7 @@ export default class ForeignNational extends ValidationElement {
                       geocode={true}
                       onUpdate={this.updateEmployerAddress}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </NotApplicable>
         </Field>
@@ -566,6 +592,8 @@ export default class ForeignNational extends ValidationElement {
         <Field title={i18n.t('foreign.contacts.heading.hasaffiliations')}
                adjustFor="buttons">
           <RadioGroup className="has-affiliations"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.props.HasAffiliations}>
             <Radio name="affiliation_yes"
                    label={i18n.t('foreign.contacts.label.yes')}
@@ -598,6 +626,7 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.Affiliations}
                       onUpdate={this.updateAffiliations}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

@@ -63,6 +63,7 @@ export default class Sponsorship extends SubsectionElement {
                 value={this.props.HasForeignSponsorship}
                 warning={true}
                 onUpdate={this.updateHasForeignSponsorship}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -80,6 +81,7 @@ export default class Sponsorship extends SubsectionElement {
             <Name name="Name"
                   className="foreign-business-sponsorship-name"
                   bind={true}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.birthdate')}
@@ -88,10 +90,12 @@ export default class Sponsorship extends SubsectionElement {
               <NotApplicable name="BirthdateNotApplicable"
                              label={i18n.t('foreign.business.sponsorship.label.idk')}
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <DateControl name="Birthdate"
                              className="foreign-business-sponsorship-birthdate"
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
@@ -106,6 +110,7 @@ export default class Sponsorship extends SubsectionElement {
                         countryPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.country')}
                         className="foreign-business-sponsorship-birthplace"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -116,6 +121,7 @@ export default class Sponsorship extends SubsectionElement {
                         className="foreign-business-sponsorship-address"
                         layout={Location.ADDRESS}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -126,6 +132,7 @@ export default class Sponsorship extends SubsectionElement {
                        className="foreign-business-sponsorship-citizenship"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -133,10 +140,12 @@ export default class Sponsorship extends SubsectionElement {
                    adjustFor="text">
               <NotApplicable name="OrganizationNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Organization"
                       className="foreign-business-sponsorship-organization"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
@@ -146,12 +155,14 @@ export default class Sponsorship extends SubsectionElement {
                    adjustFor="address">
               <NotApplicable name="OrganizationAddressNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <Location name="OrganizationAddress"
                           className="foreign-business-sponsorship-organizationaddress"
                           layout={Location.ADDRESS}
                           geocode={true}
                           bind={true}
+                          required={this.props.required}
                           />
               </NotApplicable>
             </Field>
@@ -162,6 +173,7 @@ export default class Sponsorship extends SubsectionElement {
               <DateRange name="Dates"
                          className="foreign-business-sponsorship-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -173,6 +185,7 @@ export default class Sponsorship extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -181,6 +194,7 @@ export default class Sponsorship extends SubsectionElement {
               <Textarea name="Stay"
                         className="foreign-business-sponsorship-stay"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -189,6 +203,7 @@ export default class Sponsorship extends SubsectionElement {
               <Textarea name="Sponsorship"
                         className="foreign-business-sponsorship-sponsorship"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

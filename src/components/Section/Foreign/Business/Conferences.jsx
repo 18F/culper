@@ -64,6 +64,7 @@ export default class Conferences extends SubsectionElement {
                 value={this.props.HasForeignConferences}
                 warning={true}
                 onUpdate={this.updateHasForeignConferences}
+                required={this.props.required}
                 onError={this.handleError}>
           {i18n.m('foreign.business.conferences.para.branch')}
         </Branch>
@@ -84,6 +85,7 @@ export default class Conferences extends SubsectionElement {
               <Textarea name="Description"
                         className="conferences-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -92,6 +94,7 @@ export default class Conferences extends SubsectionElement {
               <Text name="Sponsor"
                     className="conferences-sponsor"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -100,6 +103,7 @@ export default class Conferences extends SubsectionElement {
               <Text name="City"
                     className="conferences-city"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -108,6 +112,7 @@ export default class Conferences extends SubsectionElement {
               <Country name="Country"
                        className="conferences-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -117,6 +122,7 @@ export default class Conferences extends SubsectionElement {
               <DateRange name="Dates"
                          className="conferences-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -125,11 +131,13 @@ export default class Conferences extends SubsectionElement {
               <Textarea name="Purpose"
                         className="conferences-purpose"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <ConferenceContacts name="Contacts"
                                 bind={true}
+                                required={this.props.required}
                                 />
           </Accordion>
         </Show>

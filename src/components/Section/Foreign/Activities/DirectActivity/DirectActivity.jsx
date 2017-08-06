@@ -69,6 +69,7 @@ export default class DirectActivity extends SubsectionElement {
                 value={this.props.HasInterests}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasInterests}>
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
@@ -85,6 +86,7 @@ export default class DirectActivity extends SubsectionElement {
                      appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}>
             <DirectInterest name="DirectInterest"
                             bind={true}
+                            required={this.props.required}
                             />
           </Accordion>
         </Show>

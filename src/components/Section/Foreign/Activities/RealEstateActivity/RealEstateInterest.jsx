@@ -113,6 +113,8 @@ export default class RealEstateInterest extends ValidationElement {
           {i18n.m('foreign.activities.realestate.interest.para.checkAll')}
 
           <CheckboxGroup className="interest-types option-list"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.realestate.interest.label.interestTypes.yourself')}
@@ -153,6 +155,7 @@ export default class RealEstateInterest extends ValidationElement {
                 {...this.props.RealEstateType}
                 onUpdate={this.updateRealEstateType}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -165,6 +168,7 @@ export default class RealEstateInterest extends ValidationElement {
                    {...this.props.Address}
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -177,6 +181,7 @@ export default class RealEstateInterest extends ValidationElement {
                        maxDate={null}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -188,6 +193,7 @@ export default class RealEstateInterest extends ValidationElement {
                     {...this.props.HowAcquired}
                     onUpdate={this.updateHowAcquired}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -199,6 +205,7 @@ export default class RealEstateInterest extends ValidationElement {
                          label={i18n.t('foreign.activities.realestate.interest.label.soldNotApplicable')}
                          or={i18n.m('foreign.activities.realestate.interest.label.or')}
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"
                          className="sold"
@@ -206,6 +213,7 @@ export default class RealEstateInterest extends ValidationElement {
                          label={i18n.t('foreign.activities.realestate.interest.label.sold')}
                          onUpdate={this.updateSold}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </NotApplicable>
         </Field>
@@ -218,6 +226,7 @@ export default class RealEstateInterest extends ValidationElement {
                     min="0"
                     onUpdate={this.updateCost}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="CostEstimated"
@@ -234,6 +243,7 @@ export default class RealEstateInterest extends ValidationElement {
                   {...this.props.CoOwners}
                   onUpdate={this.updateCoOwners}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
 
       </div>

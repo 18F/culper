@@ -62,6 +62,7 @@ export default class Support extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
+                required={this.props.required}
                 />
 
         <Show when={this.props.HasForeignSupport === 'Yes'}>
@@ -78,6 +79,7 @@ export default class Support extends SubsectionElement {
             <Name name="Name"
                   className="foreign-activities-support-name"
                   bind={true}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('foreign.activities.support.heading.address')}
@@ -87,6 +89,7 @@ export default class Support extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -95,6 +98,7 @@ export default class Support extends SubsectionElement {
               <Textarea name="Relationship"
                         className="foreign-activities-support-relationship"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -105,6 +109,7 @@ export default class Support extends SubsectionElement {
                         className="foreign-activities-support-amount"
                         bind={true}
                         min="0"
+                        required={this.props.required}
                         />
               <div className="flags">
                 <Checkbox name="AmountEstimated"
@@ -121,6 +126,7 @@ export default class Support extends SubsectionElement {
               <Text name="Frequency"
                     className="foreign-activities-support-frequency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -131,6 +137,7 @@ export default class Support extends SubsectionElement {
                        className="foreign-activities-support-citizenship"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
           </Accordion>

@@ -63,6 +63,7 @@ export default class Political extends SubsectionElement {
                 value={this.props.HasForeignPolitical}
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
+                required={this.props.required}
                 onError={this.handleError}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class Political extends SubsectionElement {
               <Text name="Position"
                     className="foreign-business-political-position"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -90,6 +92,7 @@ export default class Political extends SubsectionElement {
               <DateRange name="Dates"
                          className="foreign-business-political-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
@@ -98,6 +101,7 @@ export default class Political extends SubsectionElement {
               <Country name="Country"
                        className="foreign-business-political-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -106,6 +110,7 @@ export default class Political extends SubsectionElement {
               <Textarea name="Reason"
                         className="foreign-business-political-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
@@ -114,6 +119,7 @@ export default class Political extends SubsectionElement {
               <Text name="Eligibility"
                     className="foreign-business-political-eligibility"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
           </Accordion>

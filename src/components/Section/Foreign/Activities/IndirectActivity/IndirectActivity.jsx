@@ -71,6 +71,7 @@ export default class IndirectActivity extends SubsectionElement {
                 value={this.props.HasInterests}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
                 onUpdate={this.updateHasInterests}>
         </Branch>
 
@@ -86,6 +87,7 @@ export default class IndirectActivity extends SubsectionElement {
                      appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}>
             <IndirectInterest name="IndirectInterest"
                               bind={true}
+                              required={this.props.required}
                               />
           </Accordion>
         </Show>

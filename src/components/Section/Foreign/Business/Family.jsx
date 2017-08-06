@@ -61,6 +61,7 @@ export default class Family extends SubsectionElement {
                 value={this.props.HasForeignFamily}
                 warning={true}
                 onUpdate={this.updateHasForeignFamily}
+                required={this.props.required}
                 onError={this.handleError}>
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
@@ -80,12 +81,14 @@ export default class Family extends SubsectionElement {
             <Name name="Name"
                   className="family-name"
                   bind={true}
+                  required={this.props.required}
                   />
 
             <Field title={i18n.t('foreign.business.family.heading.agency')}>
               <Text name="Agency"
                     className="family-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
@@ -93,6 +96,7 @@ export default class Family extends SubsectionElement {
               <Country name="Country"
                        className="family-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
@@ -102,6 +106,7 @@ export default class Family extends SubsectionElement {
               <DateControl name="Date"
                            className="family-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
@@ -109,6 +114,7 @@ export default class Family extends SubsectionElement {
               <Textarea name="Circumstances"
                         className="family-circumstances"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

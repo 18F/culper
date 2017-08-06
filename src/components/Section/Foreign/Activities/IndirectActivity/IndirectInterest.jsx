@@ -153,6 +153,8 @@ export default class IndirectInterest extends ValidationElement {
 
           <p>{i18n.t(`foreign.activities.indirect.interest.para.checkAll`)}</p>
           <CheckboxGroup className="interest-types option-list"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
                       label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.yourself`)}
@@ -191,6 +193,7 @@ export default class IndirectInterest extends ValidationElement {
                 {...this.props.InterestType}
                 onUpdate={this.updateInterestType}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -200,12 +203,14 @@ export default class IndirectInterest extends ValidationElement {
                 {...this.props.Firstname}
                 onUpdate={this.updateFirstname}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
           <Text name="Lastname"
                 label={i18n.t(`foreign.activities.indirect.interest.label.lastname`)}
                 {...this.props.Lastname}
                 onUpdate={this.updateLastname}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -215,6 +220,7 @@ export default class IndirectInterest extends ValidationElement {
                     {...this.props.Relationship}
                     onUpdate={this.updateRelationship}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -226,6 +232,7 @@ export default class IndirectInterest extends ValidationElement {
                        label={i18n.t(`foreign.activities.indirect.interest.label.acquired`)}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -237,6 +244,7 @@ export default class IndirectInterest extends ValidationElement {
                     onUpdate={this.updateCost}
                     min="0"
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="CostEstimated"
@@ -257,6 +265,7 @@ export default class IndirectInterest extends ValidationElement {
                     {...this.props.HowAcquired}
                     onUpdate={this.updateHowAcquired}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -268,6 +277,7 @@ export default class IndirectInterest extends ValidationElement {
                     onUpdate={this.updateValue}
                     min="0"
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="ValueEstimated"
@@ -289,6 +299,7 @@ export default class IndirectInterest extends ValidationElement {
                          label={i18n.t(`foreign.activities.indirect.interest.label.soldNotApplicable`)}
                          or={i18n.m(`foreign.activities.indirect.interest.label.or`)}
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateSoldNotApplicable}>
             <DateControl name="Sold"
                          className="sold"
@@ -296,6 +307,7 @@ export default class IndirectInterest extends ValidationElement {
                          label={i18n.t(`foreign.activities.indirect.interest.label.sold`)}
                          onUpdate={this.updateSold}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </NotApplicable>
         </Field>
@@ -307,6 +319,7 @@ export default class IndirectInterest extends ValidationElement {
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -314,6 +327,7 @@ export default class IndirectInterest extends ValidationElement {
                   {...this.props.CoOwners}
                   onUpdate={this.updateCoOwners}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
 
       </div>

@@ -63,6 +63,7 @@ export default class Employment extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignEmployment}
                 onError={this.handleError}
+                required={this.props.required}
                 />
 
         <Show when={this.props.HasForeignEmployment === 'Yes'}>
@@ -75,7 +76,7 @@ export default class Employment extends SubsectionElement {
                      description={i18n.t('foreign.business.employment.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.business.employment.collection.append')}>
-            <JobOffer name="Item" bind={true} />
+            <JobOffer name="Item" bind={true} required={this.props.required} />
           </Accordion>
         </Show>
       </div>
