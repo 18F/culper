@@ -184,8 +184,9 @@ export default class Field extends ValidationElement {
       )
     }
 
-    let errors = (this.state.errors || []).filter(err => err.valid === false && err.code.indexOf('required') === -1)
-    const required = this.state.errors
+    let stateErrors = this.props.filterErrors(this.state.errors || [])
+    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1)
+    const required = stateErrors
       .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
       .sort((e1, e2) => {
         return e1.code.split('.').length - e2.code.split('.').length
@@ -194,8 +195,6 @@ export default class Field extends ValidationElement {
     if (required.length) {
       errors = errors.concat(required[0])
     }
-
-    console.log('errors: ', errors)
 
     if (errors.length) {
       const markup = errors.map(err => {
@@ -330,5 +329,6 @@ Field.defaultProps = {
   commentsRemove: 'comments.remove',
   validate: true,
   shrink: false,
-  scrollIntoView: true
+  scrollIntoView: true,
+  filterErrors: (errors) => { return errors }
 }

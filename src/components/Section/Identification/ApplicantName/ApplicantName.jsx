@@ -1,7 +1,7 @@
 import React from 'react'
 import NameValidator from '../../../../validators/name'
 import SubsectionElement from '../../SubsectionElement'
-import { Name } from '../../../Form'
+import { Name, Field } from '../../../Form'
 
 export default class ApplicantName extends SubsectionElement {
   render () {
@@ -9,6 +9,7 @@ export default class ApplicantName extends SubsectionElement {
 
     return (
       <div className={klass}>
+        <Field>
         <Name name="name"
               {...this.props.value}
               dispatch={this.props.dispatch}
@@ -16,6 +17,7 @@ export default class ApplicantName extends SubsectionElement {
               onError={this.handleError}
               required={this.props.required}
               />
+            </Field>
       </div>
     )
   }

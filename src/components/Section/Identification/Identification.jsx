@@ -116,6 +116,7 @@ class Identification extends SectionElement {
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
+                           required={true}
                            />
           </SectionView>
 
