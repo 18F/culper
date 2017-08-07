@@ -178,7 +178,7 @@ export default class SSN extends ValidationElement {
               onBlur={this.props.onBlur}
               tabBack={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
               />
-        <div className="flags">
+        <div className="flags not-applicable">
           <Checkbox name="notApplicable"
                     label={i18n.t('identification.ssn.label.notApplicable')}
                     ref="notApplicable"

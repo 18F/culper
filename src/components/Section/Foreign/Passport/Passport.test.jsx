@@ -105,7 +105,6 @@ describe('The passport component', () => {
     component.find('.passport-issued .day input').simulate('change')
     component.find('.passport-expiration .day input').simulate('change')
     component.find({type: 'radio', name: 'passport-card', value: 'Card'}).simulate('change')
-    expect(component.find({type: 'radio', name: 'passport-card', value: 'Card'}).hasClass('selected')).toBe(true)
   })
 
   it('can render with regular expression for passport card', () => {
