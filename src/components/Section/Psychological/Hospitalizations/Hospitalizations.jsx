@@ -44,7 +44,6 @@ export default class Hospitalizations extends SubsectionElement {
     const treatmentDate = (o.TreatmentDate || {})
     const date = DateSummary(treatmentDate)
     const facility = (o.Facility || {}).value || ''
-    const type = i18n.t('psychological.hospitalization.collection.itemType')
 
     return Summary({
       type: i18n.t('psychological.hospitalization.collection.itemType'),
@@ -64,7 +63,8 @@ export default class Hospitalizations extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateHospitalized}>
+                onUpdate={this.updateHospitalized}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Hospitalized === 'Yes'}>
@@ -76,11 +76,13 @@ export default class Hospitalizations extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('psychological.hospitalization.collection.description')}
                      appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
-                     appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
+                     appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Hospitalization name="Hospitalization"
                              ApplicantBirthDate={this.props.ApplicantBirthDate}
                              bind={true}
                              required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
                              />
           </Accordion>
 

@@ -107,7 +107,8 @@ export default class Diagnoses extends SubsectionElement {
         <div>
           {i18n.m('psychological.heading.diagnoses')}
         </div>
-        <Field title={i18n.t('psychological.diagnoses.heading.diagnoses')}>
+        <Field title={i18n.t('psychological.diagnoses.heading.diagnoses')}
+          scrollIntoView={this.props.scrollIntoView}>
           <p>{i18n.t('psychological.diagnoses.heading.examples')}</p>
           <Branch name="diagnosed"
                   className="diagnosed"
@@ -115,7 +116,8 @@ export default class Diagnoses extends SubsectionElement {
                   warning={true}
                   onError={this.handleError}
                   required={this.props.required}
-                  onUpdate={this.updateDiagnosed}>
+                  onUpdate={this.updateDiagnosed}
+                  scrollIntoView={this.props.scrollIntoView}>
           </Branch>
         </Field>
         <Show when={this.props.Diagnosed === 'Yes'}>
@@ -130,10 +132,12 @@ export default class Diagnoses extends SubsectionElement {
                        description={i18n.t('psychological.diagnoses.collection.description')}
                        appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
                        appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
-                       appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
+                       appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}
+                       scrollIntoView={this.props.scrollIntoView}>
               <Diagnosis name="Diagnosis"
                          ApplicantBirthDate={this.props.ApplicantBirthDate}
                          required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
                          bind={true} />
             </Accordion>
 
@@ -144,7 +148,8 @@ export default class Diagnoses extends SubsectionElement {
                     help="psychological.diagnoses.help.didNotConsult"
                     onError={this.handleError}
                     required={this.props.required}
-                    onUpdate={this.updateDidNotConsult}>
+                    onUpdate={this.updateDidNotConsult}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <h3>{i18n.t('psychological.diagnoses.heading.inTreatment')}</h3>
@@ -155,7 +160,8 @@ export default class Diagnoses extends SubsectionElement {
                     warning={true}
                     onError={this.handleError}
                     required={this.props.required}
-                    onUpdate={this.updateInTreatment}>
+                    onUpdate={this.updateInTreatment}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <Show when={this.props.InTreatment === 'Yes'}>
@@ -166,10 +172,12 @@ export default class Diagnoses extends SubsectionElement {
                          summary={this.treatmentSummary}
                          onError={this.handleError}
                          appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
-                         appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
+                         appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}
+                         scrollIntoView={this.props.scrollIntoView}>
                 <Treatment name="Treatment"
                            prefix="diagnoses.professional"
                            required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
                            bind={true} />
               </Accordion>
             </Show>

@@ -44,7 +44,8 @@ export default class Treatment extends ValidationElement {
       <div className="treatment">
         <Field title={i18n.t(`psychological.${prefix}.heading.name`)}
                help={`psychological.${prefix}.help.name`}
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
                 label={i18n.t(`psychological.${prefix}.label.name`)}
                 className="treatment-name"
@@ -55,7 +56,8 @@ export default class Treatment extends ValidationElement {
                 />
         </Field>
 
-        <Field adjustFor="telephone">
+        <Field adjustFor="telephone"
+          scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="Phone"
                      label={i18n.t(`psychological.${prefix}.label.phone`)}
                      {...this.props.Phone}
@@ -67,7 +69,8 @@ export default class Treatment extends ValidationElement {
 
         <Field title={i18n.t(`psychological.${prefix}.heading.address`)}
                help={`psychological.${prefix}.help.address`}
-               adjustFor="address">
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
                     {...this.props.Address}
                     label={i18n.t(`psychological.${prefix}.label.address`)}
@@ -76,6 +79,7 @@ export default class Treatment extends ValidationElement {
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
       </div>

@@ -62,7 +62,8 @@ export default class Order extends ValidationElement {
         <Field title={i18n.t(`psychological.${prefix}.heading.occurred`)}
                help={`psychological.${prefix}.help.occurred`}
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Occurred"
                        {...this.props.Occurred}
                        label={i18n.t(`psychological${prefix}.label.occurred`)}
@@ -76,7 +77,8 @@ export default class Order extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.${prefix}.heading.courtName`)}
-               help={`psychological.${prefix}.help.courtName`}>
+          help={`psychological.${prefix}.help.courtName`}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 className="courtname"
                 {...this.props.CourtName}
@@ -88,7 +90,8 @@ export default class Order extends ValidationElement {
 
         <Field title={i18n.t(`psychological.${prefix}.heading.courtAddress`)}
                help={`psychological.${prefix}.help.courtAddress`}
-               adjustFor="address">
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="CourtAddress"
                     {...this.props.CourtAddress}
                     label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
@@ -97,12 +100,14 @@ export default class Order extends ValidationElement {
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
         <Show when={prefix !== 'competence'}>
           <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
-                 help={`psychological.consultation.help.disposition`}>
+            help={`psychological.consultation.help.disposition`}
+            scrollIntoView={this.props.scrollIntoView}>
             <Text name="Disposition"
                   className="disposition"
                   {...this.props.Disposition}
@@ -120,14 +125,17 @@ export default class Order extends ValidationElement {
                           onError={this.props.onError}
                           required={this.props.required}
                           onUpdate={this.updateAppeals}
+                          scrollIntoView={this.props.scrollIntoView}
                           >
 
           <Field title={i18n.t(`psychological.${prefix}.heading.needMore`)}
-                 className="more title">
+            className="more title"
+            scrollIntoView={this.props.scrollIntoView}>
             <Svg src="/img/date-down-arrow.svg" className="more arrow" />
           </Field>
 
-          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}>
+          <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
+            scrollIntoView={this.props.scrollIntoView}>
             <Text name="CourtName"
                   className="courtname"
                   bind={true}
@@ -137,7 +145,8 @@ export default class Order extends ValidationElement {
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
-                 adjustFor="address">
+            adjustFor="address"
+            scrollIntoView={this.props.scrollIntoView}>
             <Location name="CourtAddress"
                       bind={true}
                       label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
@@ -145,11 +154,13 @@ export default class Order extends ValidationElement {
                       geocode={true}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
           <Field title={i18n.t(`psychological.${prefix}.heading.disposition`)}
-                 help={`psychological.${prefix}.help.disposition`}>
+            help={`psychological.${prefix}.help.disposition`}
+            scrollIntoView={this.props.scrollIntoView}>
             <Text name="Disposition"
                   className="disposition"
                   bind={true}

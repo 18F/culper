@@ -121,6 +121,7 @@ class Psychological extends SectionElement {
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
                         required={true}
+                        scrollIntoView={false}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
 
             <hr />
@@ -131,6 +132,7 @@ class Psychological extends SectionElement {
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
                           required={true}
+                          scrollIntoView={false}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
 
             <hr />
@@ -141,6 +143,7 @@ class Psychological extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               required={true}
+                              scrollIntoView={false}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
 
             <hr />
@@ -151,6 +154,7 @@ class Psychological extends SectionElement {
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
                        required={true}
+                       scrollIntoView={false}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
                        />
 
@@ -165,6 +169,7 @@ class Psychological extends SectionElement {
                                     onError={this.handleError}
                                     onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
                                     required={this.props.ShowExistingConditions === 'Yes'}
+                                    scrollIntoView={false}
                                     />
               </div>
             </Show>

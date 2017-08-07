@@ -60,7 +60,8 @@ export default class Hospitalization extends ValidationElement {
     return (
       <div className="hospitalization">
         <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}
-               adjustFor="big-buttons">
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission} required={this.props.required} onError={this.props.onError}>
             <Radio
               className="voluntary-option"
@@ -83,7 +84,8 @@ export default class Hospitalization extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}>
+        <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
@@ -95,7 +97,8 @@ export default class Hospitalization extends ValidationElement {
 
         <Field title={i18n.t(`psychological.hospitalization.heading.treatment`)}
                help="psychological.hospitalization.help.treatment"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="TreatmentDate"
                      {...this.props.TreatmentDate}
                      receiveProps={this.props.receiveProps}
@@ -108,7 +111,8 @@ export default class Hospitalization extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.facility`)}
-               help="psychological.hospitalization.help.facility">
+          help="psychological.hospitalization.help.facility"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Facility"
                 className="facility"
                 {...this.props.Facility}
@@ -120,7 +124,8 @@ export default class Hospitalization extends ValidationElement {
 
         <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
                help="psychological.hospitalization.help.address"
-               adjustFor="address">
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="FacilityAddress"
                     {...this.props.FacilityAddress}
                     label={i18n.t(`psychological.hospitalization.label.address`)}
@@ -129,6 +134,7 @@ export default class Hospitalization extends ValidationElement {
                     onUpdate={this.updateFacilityAddress}
                     onError={this.props.onError}
                     required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
       </div>
