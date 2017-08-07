@@ -63,7 +63,8 @@ export default class MembershipViolence extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasViolence === 'Yes'}>
@@ -75,10 +76,12 @@ export default class MembershipViolence extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.associations.violence.collection.description')}
                      appendTitle={i18n.t('legal.associations.violence.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.violence.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.violence.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.violence.heading.organization')}
                    help="legal.associations.violence.help.organization"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Organization"
                     className="legal-associations-violence-organization"
                     bind={true}
@@ -88,19 +91,22 @@ export default class MembershipViolence extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.violence.heading.address')}
                    help="legal.associations.violence.help.address"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Address"
                         className="legal-associations-violence-address"
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
                         required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
             <Field title={i18n.t('legal.associations.violence.heading.dates')}
                    help="legal.associations.violence.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-violence-dates"
                          bind={true}
@@ -110,7 +116,8 @@ export default class MembershipViolence extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.violence.heading.positions')}
                    help="legal.associations.violence.help.positions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="PositionsNotApplicable"
                              or={i18n.m('legal.associations.violence.para.or')}
                              label={i18n.t('legal.associations.violence.label.noposition')}
@@ -126,7 +133,8 @@ export default class MembershipViolence extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.violence.heading.contributions')}
                    help="legal.associations.violence.help.contributions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="ContributionsNotApplicable"
                              or={i18n.m('legal.associations.violence.para.or')}
                              label={i18n.t('legal.associations.violence.label.nocontribs')}
@@ -142,7 +150,8 @@ export default class MembershipViolence extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.violence.heading.reasons')}
                    help="legal.associations.violence.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-violence-reasons"
                         bind={true}

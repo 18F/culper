@@ -55,7 +55,8 @@ export default class NonCriminalCourtAction extends ValidationElement {
       <div className="non-criminal-court-action">
         <Field title={i18n.t('legal.nonCriminalAction.heading.civilActionDate')}
                help={'legal.nonCriminalAction.help.civilActionDate'}
-               adjustFor="datecontrol">
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="CivilActionDate"
                        className="civil-action-date"
                        {...this.props.CivilActionDate}
@@ -66,7 +67,8 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.courtName')}
-               help={'legal.nonCriminalAction.help.courtName'}>
+          help={'legal.nonCriminalAction.help.courtName'}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 className="court-name"
                 {...this.props.CourtName}
@@ -78,7 +80,8 @@ export default class NonCriminalCourtAction extends ValidationElement {
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.courtAddress')}
                adjustFor="address"
-               help={'legal.nonCriminalAction.help.courtAddress'}>
+               help={'legal.nonCriminalAction.help.courtAddress'}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="CourtAddress"
                     className="court-address"
                     {...this.props.CourtAddress}
@@ -87,11 +90,13 @@ export default class NonCriminalCourtAction extends ValidationElement {
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.natureOfAction')}
-               help={'legal.nonCriminalAction.help.natureOfAction'}>
+          help={'legal.nonCriminalAction.help.natureOfAction'}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="NatureOfAction"
                     className="nature-of-action"
                     {...this.props.NatureOfAction}
@@ -102,7 +107,8 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.resultsOfAction')}
-               help={'legal.nonCriminalAction.help.resultsOfAction'}>
+          help={'legal.nonCriminalAction.help.resultsOfAction'}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="ResultsOfAction"
                     className="results-of-action"
                     {...this.props.ResultsOfAction}
@@ -113,7 +119,8 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.principalPartyNames')}
-               help={'legal.nonCriminalAction.help.principalPartyNames'}>
+          help={'legal.nonCriminalAction.help.principalPartyNames'}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="PrincipalPartyNames"
                     className="principal-party-names"
                     {...this.props.PrincipalPartyNames}

@@ -63,7 +63,8 @@ export default class EngagedInTerrorism extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasEngaged === 'Yes'}>
@@ -75,10 +76,12 @@ export default class EngagedInTerrorism extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.associations.engaged.collection.description')}
                      appendTitle={i18n.t('legal.associations.engaged.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.engaged.heading.reasons')}
                    help="legal.associations.engaged.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-engaged-reasons"
                         bind={true}
@@ -88,7 +91,8 @@ export default class EngagedInTerrorism extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.engaged.heading.dates')}
                    help="legal.associations.engaged.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-engaged-dates"
                          bind={true}

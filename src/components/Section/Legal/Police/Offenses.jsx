@@ -66,7 +66,8 @@ export default class Offenses extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasOffenses}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           <ul>
             <li>{i18n.m('legal.police.label.summons')}</li>
             <li>{i18n.m('legal.police.label.arrests')}</li>
@@ -86,10 +87,12 @@ export default class Offenses extends SubsectionElement {
                        description={i18n.t('legal.police.collection.summary.title')}
                        appendTitle={i18n.t('legal.police.collection.appendTitle')}
                        appendMessage={i18n.m('legal.police.collection.appendMessage')}
-                       appendLabel={i18n.t('legal.police.collection.append')}>
+                       appendLabel={i18n.t('legal.police.collection.append')}
+                       scrollIntoView={this.props.scrollIntoView}>
               <Offense name="Item"
                        bind={true}
                        required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        />
             </Accordion>
           </div>

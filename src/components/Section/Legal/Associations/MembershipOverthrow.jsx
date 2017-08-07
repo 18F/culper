@@ -63,7 +63,8 @@ export default class MembershipOverthrow extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasOverthrow === 'Yes'}>
@@ -75,10 +76,12 @@ export default class MembershipOverthrow extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.associations.overthrow.collection.description')}
                      appendTitle={i18n.t('legal.associations.overthrow.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.overthrow.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.overthrow.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.overthrow.heading.organization')}
                    help="legal.associations.overthrow.help.organization"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Organization"
                     className="legal-associations-overthrow-organization"
                     bind={true}
@@ -88,19 +91,22 @@ export default class MembershipOverthrow extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.overthrow.heading.address')}
                    help="legal.associations.overthrow.help.address"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Address"
                         className="legal-associations-overthrow-address"
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
                         required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.dates')}
                    help="legal.associations.overthrow.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-overthrow-dates"
                          bind={true}
@@ -110,7 +116,8 @@ export default class MembershipOverthrow extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.overthrow.heading.positions')}
                    help="legal.associations.overthrow.help.positions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="PositionsNotApplicable"
                              or={i18n.m('legal.associations.overthrow.para.or')}
                              label={i18n.t('legal.associations.overthrow.label.noposition')}
@@ -126,7 +133,8 @@ export default class MembershipOverthrow extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.overthrow.heading.contributions')}
                    help="legal.associations.overthrow.help.contributions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="ContributionsNotApplicable"
                              or={i18n.m('legal.associations.overthrow.para.or')}
                              label={i18n.t('legal.associations.overthrow.label.nocontribs')}
@@ -142,7 +150,8 @@ export default class MembershipOverthrow extends SubsectionElement {
 
             <Field title={i18n.t('legal.associations.overthrow.heading.reasons')}
                    help="legal.associations.overthrow.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-overthrow-reasons"
                         bind={true}

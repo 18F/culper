@@ -36,11 +36,13 @@ export default class DomesticViolenceList extends SubsectionElement {
                           items={this.props.List}
                           onError={this.handleError}
                           required={true}
-                          onUpdate={this.updateList}>
+                          onUpdate={this.updateList}
+                          scrollIntoView={this.props.scrollIntoView}>
           <DomesticViolence name="domestic"
                             bind={true}
                             onError={this.handleError}
                             required={true}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
         </BranchCollection>
       </div>

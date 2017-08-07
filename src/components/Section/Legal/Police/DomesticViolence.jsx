@@ -51,7 +51,8 @@ export default class DomesticViolence extends ValidationElement {
       <div className="domestic-violence">
         <Field title={i18n.t('legal.police.heading.domesticExplanation')}
                titleSize="h3"
-               help="legal.police.help.domesticExplanation">
+               help="legal.police.help.domesticExplanation"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea className="explanation"
                     name="explanation"
                     {...this.props.Explanation}
@@ -64,7 +65,8 @@ export default class DomesticViolence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.domesticCourtDate')}
                titleSize="h3"
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Issued"
                        {...this.props.Issued}
                        hideDay={true}
@@ -77,7 +79,8 @@ export default class DomesticViolence extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.domesticCourtName')}
                titleSize="h3"
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 {...this.props.CourtName}
                 label={i18n.t('legal.police.label.courtname')}
@@ -92,7 +95,8 @@ export default class DomesticViolence extends ValidationElement {
                titleSize="h3"
                help="legal.police.help.courtaddress"
                adjustFor="address"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="CourtAddress"
                     {...this.props.CourtAddress}
                     label={i18n.t('legal.police.label.address')}
@@ -102,6 +106,7 @@ export default class DomesticViolence extends ValidationElement {
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
       </div>

@@ -76,7 +76,8 @@ export default class Sentence extends ValidationElement {
       <div className="sentence">
         <Field title={i18n.t('legal.police.heading.sentenceDescription')}
                titleSize="h4"
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea {...this.props.Description}
                     className="description"
                     name="description"
@@ -92,7 +93,8 @@ export default class Sentence extends ValidationElement {
                 value={this.props.ExceedsYear}
                 onError={this.props.onError}
                 required={this.props.required}
-                onUpdate={this.updateExceedsYear}>
+                onUpdate={this.updateExceedsYear}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Branch name="incarcerated"
@@ -102,13 +104,15 @@ export default class Sentence extends ValidationElement {
                 value={this.props.Incarcerated}
                 onError={this.props.onError}
                 required={this.props.required}
-                onUpdate={this.updateIncarcerated}>
+                onUpdate={this.updateIncarcerated}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.incarcerationDates')}
                titleSize="h4"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="IncarcerationDatesNA"
                          {...this.props.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
@@ -129,7 +133,8 @@ export default class Sentence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.probationDates')}
                titleSize="h4"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="ProbationDatesNA"
                          {...this.props.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}

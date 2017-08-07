@@ -89,7 +89,8 @@ export default class InvestigatingAgency extends ValidationElement {
           <Field title={i18n.t('legal.investigations.history.heading.agencyExplanation')}
                  titleSize="label"
                  help="legal.investigations.history.help.agencyExplanation"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       {...this.props.Explanation}
                       className="legal-investigations-history-agency-explanation"

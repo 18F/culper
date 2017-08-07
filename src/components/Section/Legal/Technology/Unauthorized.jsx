@@ -65,7 +65,8 @@ export default class Unauthorized extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasUnauthorized === 'Yes'}>
@@ -77,10 +78,12 @@ export default class Unauthorized extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.technology.unauthorized.collection.description')}
                      appendTitle={i18n.t('legal.technology.unauthorized.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.technology.unauthorized.heading.date')}
                    help="legal.technology.unauthorized.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="legal-technology-unauthorized-date"
                            bind={true}
@@ -90,7 +93,8 @@ export default class Unauthorized extends SubsectionElement {
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.incident')}
                    help="legal.technology.unauthorized.help.incident"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Incident"
                         className="legal-technology-unauthorized-incident"
                         bind={true}
@@ -100,19 +104,22 @@ export default class Unauthorized extends SubsectionElement {
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
                    help="legal.technology.unauthorized.help.location"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Location"
                         className="legal-technology-unauthorized-location"
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
                         required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.action')}
                    help="legal.technology.unauthorized.help.action"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Action"
                         className="legal-technology-unauthorized-action"
                         bind={true}

@@ -62,7 +62,8 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateHasCourtActions}>
+                onUpdate={this.updateHasCourtActions}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasCourtActions === 'Yes'}>
@@ -74,8 +75,9 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.nonCriminalAction.collection.description')}
                      appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}>
-            <NonCriminalCourtAction name="CourtAction" bind={true} required={this.props.required} />
+                     appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <NonCriminalCourtAction name="CourtAction" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

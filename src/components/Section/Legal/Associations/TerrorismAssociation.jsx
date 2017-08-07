@@ -45,13 +45,15 @@ export default class TerrorismAssociation extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateBranch}>
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasTerrorism === 'Yes'}>
           <Field title={i18n.t('legal.associations.terrorism.heading.explanation')}
                   help="legal.associations.terrorism.help.explanation"
-                  adjustFor="textarea">
+                  adjustFor="textarea"
+                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       {...this.props.Explanation}
                       className="legal-associations-terrorism-explanation"

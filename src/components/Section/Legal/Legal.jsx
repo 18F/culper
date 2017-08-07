@@ -420,6 +420,7 @@ class Legal extends SectionElement {
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -430,6 +431,7 @@ class Legal extends SectionElement {
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
                            required={true}
+                           scrollIntoView={false}
                            />
 
             <hr/>
@@ -439,6 +441,7 @@ class Legal extends SectionElement {
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
                                   required={true}
+                                  scrollIntoView={false}
                                   />
 
             <hr/>
@@ -449,6 +452,7 @@ class Legal extends SectionElement {
                      onUpdate={this.updateInvestigationsHistory}
                      onError={this.handleError}
                      required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -459,6 +463,7 @@ class Legal extends SectionElement {
                      onUpdate={this.updateRevoked}
                      onError={this.handleError}
                      required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -469,6 +474,7 @@ class Legal extends SectionElement {
                       onUpdate={this.updateDebarred}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
 
             <hr />
@@ -479,6 +485,7 @@ class Legal extends SectionElement {
                       onUpdate={this.updateNonCriminalCourtActions}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
             <hr />
             <Unauthorized name="unauthorized"
@@ -488,6 +495,7 @@ class Legal extends SectionElement {
                           onUpdate={this.updateUnauthorized}
                           onError={this.handleError}
                           required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -498,6 +506,7 @@ class Legal extends SectionElement {
                           onUpdate={this.updateManipulating}
                           onError={this.handleError}
                           required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -508,6 +517,7 @@ class Legal extends SectionElement {
                       onUpdate={this.updateUnlawful}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
 
             <hr />
@@ -517,6 +527,7 @@ class Legal extends SectionElement {
                                    onUpdate={this.updateTerroristOrganization}
                                    onError={this.handleError}
                                    required={true}
+                                   scrollIntoView={false}
                                    />
 
             <hr />
@@ -526,7 +537,8 @@ class Legal extends SectionElement {
                                 onUpdate={this.updateEngagedInTerrorism}
                                 onError={this.handleError}
                                 required={true}
-                                />
+                                scrollIntoView={false}
+                              />
 
             <hr />
             <Advocating name="advocating"
@@ -535,6 +547,7 @@ class Legal extends SectionElement {
                         onUpdate={this.updateAdvocating}
                         onError={this.handleError}
                         required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -544,6 +557,7 @@ class Legal extends SectionElement {
                                  onUpdate={this.updateMembershipOverthrow}
                                  onError={this.handleError}
                                  required={true}
+                                 scrollIntoView={false}
                                  />
 
             <hr />
@@ -553,6 +567,7 @@ class Legal extends SectionElement {
                                 onUpdate={this.updateMembershipViolence}
                                 onError={this.handleError}
                                 required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -562,6 +577,7 @@ class Legal extends SectionElement {
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}
                                    required={true}
+                                   scrollIntoView={false}
                                    />
 
             <hr />
@@ -571,6 +587,7 @@ class Legal extends SectionElement {
                                   onUpdate={this.updateTerrorismAssociation}
                                   onError={this.handleError}
                                   required={true}
+                                  scrollIntoView={false}
                                   />
           </SectionView>
 
