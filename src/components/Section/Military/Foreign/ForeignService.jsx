@@ -124,7 +124,8 @@ export default class ForeignService extends ValidationElement {
       <div className="foreign-service">
         <Field title={i18n.t('military.foreign.heading.organization')}
                adjustFor="big-buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="organization option-list"
                       onError={this.props.onError}
                       required={this.props.required}
@@ -181,7 +182,8 @@ export default class ForeignService extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.name')}>
+        <Field title={i18n.t('military.foreign.heading.name')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
                 {...this.props.Name}
                 className="foreign-service-name"
@@ -195,7 +197,8 @@ export default class ForeignService extends ValidationElement {
         <Field title={i18n.t('military.foreign.heading.dates')}
                help="military.foreign.help.dates"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      className="foreign-service-dates"
                      {...this.props.Dates}
@@ -206,7 +209,8 @@ export default class ForeignService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.country')}
-               adjustFor="country">
+              adjustFor="country"
+              scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    className="foreign-service-country"
@@ -217,7 +221,8 @@ export default class ForeignService extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.rank')}>
+        <Field title={i18n.t('military.foreign.heading.rank')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Rank"
                 {...this.props.Rank}
                 className="foreign-service-rank"
@@ -228,7 +233,8 @@ export default class ForeignService extends ValidationElement {
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.division')}>
+        <Field title={i18n.t('military.foreign.heading.division')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Division"
                 {...this.props.Division}
                 className="foreign-service-division"
@@ -239,7 +245,8 @@ export default class ForeignService extends ValidationElement {
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.circumstances')}>
+        <Field title={i18n.t('military.foreign.heading.circumstances')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Circumstances"
                     {...this.props.Circumstances}
                     className="foreign-service-circumstances"
@@ -250,7 +257,8 @@ export default class ForeignService extends ValidationElement {
                     />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.left')}>
+        <Field title={i18n.t('military.foreign.heading.left')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="ReasonLeft"
                     {...this.props.ReasonLeft}
                     className="foreign-service-left"
@@ -268,6 +276,7 @@ export default class ForeignService extends ValidationElement {
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}>
         </Branch>
 
@@ -284,10 +293,12 @@ export default class ForeignService extends ValidationElement {
                        summary={this.summary}
                        description={i18n.t('military.foreign.collection.contacts.summary.title')}
                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
-                       appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
+                       appendLabel={i18n.t('military.foreign.collection.contacts.append')}
+                       scrollIntoView={this.props.scrollIntoView}>
               <ForeignContact name="Item"
                               bind={true}
                               required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView}
                               />
             </Accordion>
           </div>

@@ -25,12 +25,14 @@ export default class Foreign extends SubsectionElement {
                           appendSize="h2"
                           onUpdate={this.updateList}
                           required={this.props.required}
-                          onError={this.handleError}>
+                          onError={this.handleError}
+                          scrollIntoView={this.props.scrollIntoView}>
           <ForeignService name="Item"
                           bind={true}
                           defaultState={this.props.defaultState}
                           onError={this.handleError}
                           required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
                           />
         </BranchCollection>
       </div>

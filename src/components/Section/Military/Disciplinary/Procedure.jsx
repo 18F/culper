@@ -61,7 +61,8 @@ export default class Procedure extends ValidationElement {
         <Field title={i18n.t('military.disciplinary.heading.date')}
                help="military.disciplinary.help.date"
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
                        className="procedure-date"
@@ -72,7 +73,8 @@ export default class Procedure extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('military.disciplinary.heading.offenses')}>
+        <Field title={i18n.t('military.disciplinary.heading.offenses')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Offenses"
                     {...this.props.Offenses}
                     className="procedure-offenses"
@@ -83,7 +85,8 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.name')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
                 {...this.props.Name}
                 label={i18n.m('military.disciplinary.label.name')}
@@ -96,7 +99,8 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.court')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Court"
                     {...this.props.Court}
                     label={i18n.t('military.disciplinary.label.court')}
@@ -108,7 +112,8 @@ export default class Procedure extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.disciplinary.heading.outcome')}
-               adjustFor="labels">
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Outcome"
                 {...this.props.Outcome}
                 label={i18n.t('military.disciplinary.label.outcome')}

@@ -66,7 +66,8 @@ export default class Selective extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateBornAfter}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.WasBornAfter === 'Yes'}>
@@ -78,14 +79,16 @@ export default class Selective extends SubsectionElement {
                     warning={true}
                     onUpdate={this.updateRegistered}
                     required={this.props.required}
-                    onError={this.handleError}>
+                    onError={this.handleError}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <Show when={this.props.HasRegistered === 'Yes'}>
               <div>
                 <Field title={i18n.t('military.selective.heading.number')}
                        className="no-margin-bottom"
-                       adjustFor="labels">
+                       adjustFor="labels"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <Text name="RegistrationNumber"
                         className="registration-number"
                         label={i18n.t('military.selective.label.number')}
@@ -120,7 +123,8 @@ export default class Selective extends SubsectionElement {
             <Show when={this.props.HasRegistered === 'No'}>
               <Field help="military.selective.help.explanation"
                      className="no-margin-bottom"
-                     adjustFor="labels">
+                     adjustFor="labels"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation"
                           label={i18n.t('military.selective.label.explanation')}
