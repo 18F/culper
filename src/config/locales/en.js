@@ -7587,7 +7587,7 @@ const en = {
         heading: {
           seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
           actionTaken: 'Did you take action to seek counseling or treatment?',
-          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment.',
           counselingDates: 'Provide the dates of counseling or treatment',
           treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
           treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
@@ -7639,7 +7639,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7683,7 +7683,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7730,7 +7730,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           agencyName: {
@@ -7744,13 +7744,13 @@ const en = {
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentBeganDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment started',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           treatmentEndDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment ended',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           completedTreatment: {
