@@ -109,6 +109,8 @@ export default class EducationItem extends ValidationElement {
                      {...this.state.Reference}
                      onUpdate={this.updateReference}
                      onValidate={this.props.onValidate}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
         </div>
       )
@@ -142,7 +144,8 @@ export default class EducationItem extends ValidationElement {
       <div>
         <div className="content">
           <Field title={i18n.t('history.education.heading.name')}
-                 adjustFor="labels">
+            adjustFor="labels"
+            scrollIntoView={this.props.scrollIntoView}>
             <Text name="Name"
                   {...this.state.Name}
                   label={i18n.t('history.education.label.name')}
@@ -150,19 +153,22 @@ export default class EducationItem extends ValidationElement {
                   maxlength="100"
                   onUpdate={this.updateName}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Field>
 
           <Field title={i18n.t('history.education.heading.dates')}
                  help="history.education.help.dates"
                  adjustFor="daterange"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
             <DateRange name="Dates"
                        {...this.state.Dates}
                        label={i18n.t('history.education.label.dates')}
                        onUpdate={this.updateDates}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </Field>
 
@@ -174,7 +180,8 @@ export default class EducationItem extends ValidationElement {
                  onUpdate={this.updateComments}
                  onError={this.props.onError}
                  adjustFor="address"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="Address"
                       {...this.state.Address}
                       label={i18n.t('history.education.label.address')}
@@ -182,14 +189,19 @@ export default class EducationItem extends ValidationElement {
                       geocode={true}
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
           <Field title={i18n.t('history.education.heading.type')}
                  help="history.education.help.type"
                  adjustFor="big-buttons"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup className="type option-list"
+                        required={this.props.required}
+                        onError={this.props.onError}
                         selectedValue={this.state.Type}>
               <Radio name="type-highschool"
                      className="type-highschool"
@@ -230,8 +242,9 @@ export default class EducationItem extends ValidationElement {
                             className="receive-degree"
                             items={this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
-                            onError={this.props.onError}>
-            <DiplomaItem name="Diploma" bind={true} />
+                            onError={this.props.onError}
+                            scrollIntoView={this.props.scrollIntoView}>
+            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView}  />
           </BranchCollection>
         </div>
       </div>

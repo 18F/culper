@@ -37,26 +37,31 @@ export default class AdditionalActivity extends ValidationElement {
                           help="history.employment.default.additionalActivity.help"
                           items={this.state.List}
                           onUpdate={this.myDispatch}
-                          onError={this.props.onError}>
+                          onError={this.props.onError}
+                          scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('history.employment.default.additionalActivity.heading.position')}
                  titleSize="h4"
                  help="history.employment.default.additionalActivity.position.help"
-                 adjustFor="labels">
+                 adjustFor="labels"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Text name="Position"
                   className="text"
                   label={i18n.t('history.employment.default.additionalActivity.position.label')}
                   bind={true}
+                  required={this.props.required}
                   />
           </Field>
 
           <Field title={i18n.t('history.employment.default.additionalActivity.heading.supervisor')}
                  titleSize="h4"
                  help="history.employment.default.additionalActivity.supervisor.help"
-                 adjustFor="labels">
+                 adjustFor="labels"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Text name="Supervisor"
                   className="text"
                   label={i18n.t('history.employment.default.additionalActivity.supervisor.label')}
                   bind={true}
+                  required={this.props.required}
                   />
           </Field>
 
@@ -64,9 +69,11 @@ export default class AdditionalActivity extends ValidationElement {
                  titleSize="h4"
                  help="history.employment.default.additionalActivity.datesEmployed.help"
                  adjustFor="daterange"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <DateRange name="DatesEmployed"
                        bind={true}
+                       required={this.props.required}
                        />
           </Field>
         </BranchCollection>
