@@ -65,6 +65,7 @@ export default class Cohabitants extends SubsectionElement {
                 help="relationships.cohabitant.help.hasCohabitant"
                 onUpdate={this.updateHasCohabitant}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
 
@@ -81,6 +82,7 @@ export default class Cohabitants extends SubsectionElement {
                      <Cohabitant name="Cohabitant"
                        spouse={this.props.spouse}
                        required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        bind={true} />
           </Accordion>
         </Show>

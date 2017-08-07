@@ -152,17 +152,20 @@ export default class Cohabitant extends ValidationElement {
                      onDismiss={this.dismissSpouseSuggestion}
                      onSuggestion={this.onSpouseSuggestion}
                      />
-        <h3>{i18n.t('relationships.cohabitant.heading.name')}</h3>
-        <Name name="Name"
-              className="cohabitant-name"
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              required={this.props.required}
-              />
+       <Field title={i18n.t('relationships.cohabitant.heading.name')}
+         scrollIntoView={this.props.scrollIntoView}>
+          <Name name="Name"
+                className="cohabitant-name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                required={this.props.required}
+                />
+      </Field>
 
         <Field help="relationships.cohabitant.help.birthdate"
                title={i18n.t('relationships.cohabitant.heading.birthdate')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="datecontrol">
           <DateControl name="birthdate"
                        className="birthdate"
@@ -173,7 +176,8 @@ export default class Cohabitant extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('relationships.cohabitant.heading.birthplace')}>
+        <Field title={i18n.t('relationships.cohabitant.heading.birthplace')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
                       layout={Location.BIRTHPLACE}
                       className="birthplace"
@@ -182,12 +186,14 @@ export default class Cohabitant extends ValidationElement {
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Field>
 
         <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
           <Field help="relationships.cohabitant.help.foreignBornDocument"
                  title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="p">
             <ForeignBornDocuments name="foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
@@ -199,7 +205,8 @@ export default class Cohabitant extends ValidationElement {
         </Show>
 
         <h3>{i18n.t('relationships.cohabitant.heading.ssn')}</h3>
-        <Field help="identification.ssn.help">
+        <Field help="identification.ssn.help"
+          scrollIntoView={this.props.scrollIntoView}>
           <SSN name="ssn"
                {...this.props.SSN}
                onUpdate={this.updateSSN}
@@ -213,9 +220,11 @@ export default class Cohabitant extends ValidationElement {
           appendLabel={i18n.m('relationships.cohabitant.heading.appendOthernames')}
           items={this.props.OtherNames}
           onError={this.props.onError}
+          scrollIntoView={this.props.scrollIntoView}
           onUpdate={this.updateOtherNames}>
 
-          <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}>
+          <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Name name="Othername"
               bind={true}
               onError={this.props.onError}
@@ -226,6 +235,7 @@ export default class Cohabitant extends ValidationElement {
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
             help="alias.maiden.help"
             adjustFor="buttons"
+            scrollIntoView={this.props.scrollIntoView}
             shrink={true}>
             <MaidenName name="MaidenName"
               bind={true}
@@ -236,6 +246,7 @@ export default class Cohabitant extends ValidationElement {
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
             adjustFor="daterange"
+            scrollIntoView={this.props.scrollIntoView}
             shrink={true}>
             <DateRange name="DatesUsed"
               bind={true}
@@ -248,6 +259,7 @@ export default class Cohabitant extends ValidationElement {
 
         <Field title={i18n.t('relationships.cohabitant.heading.citizenship')}
                help="relationships.cohabitant.help.citizenship"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="country">
           <Country name="Citizenship"
                    {...this.props.Citizenship}
@@ -261,6 +273,7 @@ export default class Cohabitant extends ValidationElement {
 
         <Field help="relationships.cohabitant.help.cohabitationBegan"
                title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="datecontrol">
           <DateControl name="cohabitationBegan"
                        className="cohabitation-began"

@@ -72,7 +72,8 @@ export default class Marital extends SubsectionElement {
   render () {
     return (
       <div className="marital">
-        <Field title={i18n.t('relationships.marital.heading.title')}>
+        <Field title={i18n.t('relationships.marital.heading.title')}
+          scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup name="status" className="status-options" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
@@ -128,6 +129,7 @@ export default class Marital extends SubsectionElement {
                       currentAddress={this.props.currentAddress}
                       defaultState={this.props.defaultState}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Show>
         <Show when={this.showDivorce()}>
@@ -145,6 +147,7 @@ export default class Marital extends SubsectionElement {
             <Divorce name="Divorce"
                      bind={true}
                      required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
         </Show>

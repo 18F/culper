@@ -184,17 +184,20 @@ export default class CivilUnion extends ValidationElement {
         <div>
           <p>{i18n.t('relationships.civilUnion.para.never')}</p>
 
-          <h3>{i18n.t('relationships.civilUnion.heading.name')}</h3>
-          <Name name="Name"
-                className="civil"
-                {...this.props.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                required={this.props.required}
-                />
+          <Field title={i18n.t('relationships.civilUnion.heading.name')}
+            scrollIntoView={this.props.scrollIntoView}>
+            <Name name="Name"
+                  className="civil"
+                  {...this.props.Name}
+                  onUpdate={this.updateName}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                  />
+          </Field>
 
           <Field help="relationships.civilUnion.help.birthdate"
                  title={i18n.t('relationships.civilUnion.heading.birthdate')}
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="datecontrol">
             <DateControl name="birthdate"
                          className="birthdate"
@@ -205,7 +208,8 @@ export default class CivilUnion extends ValidationElement {
                          />
           </Field>
 
-          <Field title={i18n.t('relationships.civilUnion.heading.birthplace')}>
+          <Field title={i18n.t('relationships.civilUnion.heading.birthplace')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Location name="birthplace"
                       layout={Location.BIRTHPLACE}
                       className="birthplace"
@@ -214,12 +218,14 @@ export default class CivilUnion extends ValidationElement {
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
           <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
             <Field help="relationships.civilUnion.help.foreignBornDocument"
                    title={i18n.t('relationships.civilUnion.heading.foreignBornDocument')}
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="p">
               <ForeignBornDocuments name="foreignBornDocument"
                                     {...this.props.ForeignBornDocument}
@@ -231,7 +237,8 @@ export default class CivilUnion extends ValidationElement {
           </Show>
 
           <h3>{i18n.t('relationships.civilUnion.heading.ssn')}</h3>
-          <Field help="identification.ssn.help">
+          <Field help="identification.ssn.help"
+            scrollIntoView={this.props.scrollIntoView}>
             <SSN name="ssn"
                  {...this.props.SSN}
                  onUpdate={this.updateSSN}
@@ -246,9 +253,11 @@ export default class CivilUnion extends ValidationElement {
             items={this.props.OtherNames}
             onError={this.props.onError}
             required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}
             onUpdate={this.updateOtherNames}>
 
-            <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}>
+            <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Name name="Othername"
                 bind={true}
                 onError={this.props.onError}
@@ -259,6 +268,7 @@ export default class CivilUnion extends ValidationElement {
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.maiden')}
               help="alias.maiden.help"
               adjustFor="buttons"
+              scrollIntoView={this.props.scrollIntoView}
               shrink={true}>
               <MaidenName name="MaidenName"
                 bind={true}
@@ -269,6 +279,7 @@ export default class CivilUnion extends ValidationElement {
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.used')}
               adjustFor="daterange"
+              scrollIntoView={this.props.scrollIntoView}
               shrink={true}>
               <DateRange name="DatesUsed"
                 bind={true}
@@ -281,6 +292,7 @@ export default class CivilUnion extends ValidationElement {
 
           <Field title={i18n.t('relationships.civilUnion.heading.citizenship')}
                  help="relationships.civilUnion.help.citizenship"
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="country">
             <Country name="Citizenship"
                      {...this.props.Citizenship}
@@ -293,6 +305,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.enteredCivilUnion')}
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="datecontrol">
             <DateControl name="enteredCivilUnion"
                          className="entered"
@@ -303,7 +316,8 @@ export default class CivilUnion extends ValidationElement {
                          />
           </Field>
 
-          <Field title={i18n.t('relationships.civilUnion.heading.location')}>
+          <Field title={i18n.t('relationships.civilUnion.heading.location')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Location name="Location"
                       className="civilunion-location"
                       layout={Location.BIRTHPLACE}
@@ -312,11 +326,13 @@ export default class CivilUnion extends ValidationElement {
                       onUpdate={this.updateLocation}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.address')}
                  help="relationships.civilUnion.help.address"
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="address">
             <Show when={this.props.currentAddress}>
               <Checkbox name="current_address"
@@ -334,11 +350,13 @@ export default class CivilUnion extends ValidationElement {
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.telephone')}
                  help="relationships.civilUnion.help.telephone"
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="telephone">
             <Telephone name="Telephone"
                        {...this.props.Telephone}
@@ -349,6 +367,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.email')}
+                 scrollIntoView={this.props.scrollIntoView}
                  help="relationships.civilUnion.help.email">
             <Email name="Email"
                    {...this.props.Email}
@@ -366,6 +385,7 @@ export default class CivilUnion extends ValidationElement {
                   help="relationships.civilUnion.help.separated"
                   onUpdate={this.updateSeparated}
                   required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
                   onError={this.props.onError}>
           </Branch>
 
@@ -373,6 +393,7 @@ export default class CivilUnion extends ValidationElement {
             <div>
               <Field title={i18n.t('relationships.civilUnion.heading.dateSeparated')}
                      help="relationships.civilUnion.help.dateSeparated"
+                     scrollIntoView={this.props.scrollIntoView}
                      adjustFor="datecontrol">
                 <DateControl name="DateSeparated"
                              className="dateseparated"
@@ -385,6 +406,7 @@ export default class CivilUnion extends ValidationElement {
 
               <Field title={i18n.t('relationships.civilUnion.heading.addressSeparated')}
                      className="address-separated"
+                     scrollIntoView={this.props.scrollIntoView}
                      help="relationships.civilUnion.help.addressSeparated">
                 <NotApplicable name="OtherNameNotApplicable"
                                applicable={this.props.AddressSeparatedNotApplicable}
@@ -399,6 +421,7 @@ export default class CivilUnion extends ValidationElement {
                             onUpdate={this.updateAddressSeparated}
                             onError={this.props.onError}
                             required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
                 </NotApplicable>
               </Field>

@@ -162,6 +162,10 @@ const en = {
           message: 'Some of these characters aren\'t allowed.',
           note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     birthdate: {
@@ -243,6 +247,10 @@ const en = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be on or after your date of birth.'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     daterange: {
@@ -342,6 +350,10 @@ const en = {
         title: 'There is a problem with the date range',
         message: 'The **from** date should be before the **to** date.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     weight: {
@@ -588,6 +600,10 @@ const en = {
             note: ''
           }
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     geocode: {
@@ -648,6 +664,10 @@ const en = {
           message: 'The date should be after the date treatment began.'
         }
       }
+    },
+    required: {
+      title: 'There is a problem with this field',
+      message: 'This field is required'
     }
     // order: {
     //   datecontrol: {

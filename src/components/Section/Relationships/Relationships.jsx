@@ -131,6 +131,7 @@ class Relationships extends SectionElement {
                      onSpouseUpdate={this.updateSpouse}
                      currentAddress={this.props.CurrentAddress}
                      required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -142,6 +143,7 @@ class Relationships extends SectionElement {
                          onUpdate={this.updateCohabitants}
                          onError={this.handleError}
                          required={true}
+                         scrollIntoView={false}
                          />
 
             <hr/>
@@ -152,6 +154,7 @@ class Relationships extends SectionElement {
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
                     required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -162,6 +165,7 @@ class Relationships extends SectionElement {
                        onUpdate={this.updateRelatives}
                        onError={this.handleError}
                        required={true}
+                       scrollIntoView={false}
                        />
           </SectionView>
         </SectionViews>
