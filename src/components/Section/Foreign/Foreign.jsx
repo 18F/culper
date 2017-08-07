@@ -138,6 +138,7 @@ class Foreign extends SectionElement {
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -148,6 +149,7 @@ class Foreign extends SectionElement {
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -158,6 +160,7 @@ class Foreign extends SectionElement {
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
                             required={true}
+                            scrollIntoView={false}
                             />
 
             <hr/>
@@ -168,6 +171,7 @@ class Foreign extends SectionElement {
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
                               required={true}
+                              scrollIntoView={false}
                               />
 
             <hr/>
@@ -178,6 +182,7 @@ class Foreign extends SectionElement {
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
                                 required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr/>
@@ -188,6 +193,7 @@ class Foreign extends SectionElement {
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
                              required={true}
+                             scrollIntoView={false}
                              />
 
             <hr/>
@@ -198,6 +204,7 @@ class Foreign extends SectionElement {
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
                      required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -208,6 +215,7 @@ class Foreign extends SectionElement {
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
                     required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -218,6 +226,7 @@ class Foreign extends SectionElement {
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
                     required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -228,6 +237,7 @@ class Foreign extends SectionElement {
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         required={true}
+                        scrollIntoView={false}
                         />
 
             <hr/>
@@ -238,6 +248,7 @@ class Foreign extends SectionElement {
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -248,6 +259,7 @@ class Foreign extends SectionElement {
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
                          required={true}
+                         scrollIntoView={false}
                          />
 
             <hr/>
@@ -258,6 +270,7 @@ class Foreign extends SectionElement {
                      onUpdate={this.updateContact}
                      onError={this.handleError}
                      required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -268,6 +281,7 @@ class Foreign extends SectionElement {
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
                          required={true}
+                         scrollIntoView={false}
                          />
 
             <hr/>
@@ -278,6 +292,7 @@ class Foreign extends SectionElement {
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
                        required={true}
+                       scrollIntoView={false}
                        />
 
             <hr/>
@@ -288,6 +303,7 @@ class Foreign extends SectionElement {
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
                     required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -298,6 +314,7 @@ class Foreign extends SectionElement {
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
                     required={true}
+                    scrollIntoView={false}
                     />
           </SectionView>
 

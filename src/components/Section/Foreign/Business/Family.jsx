@@ -62,7 +62,8 @@ export default class Family extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignFamily}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
 
@@ -76,15 +77,20 @@ export default class Family extends SubsectionElement {
                      description={i18n.t('foreign.business.family.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.family.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.family.collection.append')}>
-            <h3>{i18n.t('foreign.business.family.heading.name')}</h3>
-            <Name name="Name"
-                  className="family-name"
-                  bind={true}
-                  required={this.props.required}
-                  />
+                     appendLabel={i18n.t('foreign.business.family.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
+           <Field title={i18n.t('foreign.business.family.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="family-name"
+                    bind={true}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+          </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.agency')}>
+          <Field title={i18n.t('foreign.business.family.heading.agency')}
+            scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="family-agency"
                     bind={true}
@@ -92,7 +98,8 @@ export default class Family extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.country')}>
+            <Field title={i18n.t('foreign.business.family.heading.country')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="family-country"
                        bind={true}
@@ -102,7 +109,8 @@ export default class Family extends SubsectionElement {
 
             <Field title={i18n.t('foreign.business.family.heading.date')}
                    help="foreign.business.family.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="family-date"
                            bind={true}
@@ -110,7 +118,8 @@ export default class Family extends SubsectionElement {
                            />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.circumstances')}>
+            <Field title={i18n.t('foreign.business.family.heading.circumstances')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Circumstances"
                         className="family-circumstances"
                         bind={true}

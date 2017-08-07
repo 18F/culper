@@ -72,7 +72,8 @@ export default class IndirectActivity extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateHasInterests}>
+                onUpdate={this.updateHasInterests}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
@@ -84,10 +85,12 @@ export default class IndirectActivity extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.indirect.collection.description')}
                      appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <IndirectInterest name="IndirectInterest"
                               bind={true}
                               required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView}
                               />
           </Accordion>
         </Show>

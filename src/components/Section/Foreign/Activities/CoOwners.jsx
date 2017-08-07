@@ -33,12 +33,14 @@ export default class CoOwners extends ValidationElement {
                           items={this.props.List}
                           onError={this.props.onError}
                           required={this.props.required}
-                          onUpdate={this.updateList}>
+                          onUpdate={this.updateList}
+                          scrollIntoView={this.props.scrollIntoView}>
           <CoOwner name="CoOwner"
                    bind={true}
                    prefix={`${this.props.prefix}.coOwner`}
                    onError={this.props.onError}
                    required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    />
         </BranchCollection>
       </div>

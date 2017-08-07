@@ -69,7 +69,8 @@ export default class Travel extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Branch label={i18n.t('foreign.travel.heading.official')}
@@ -80,7 +81,8 @@ export default class Travel extends SubsectionElement {
                 value={this.props.HasForeignTravelOfficial}
                 onUpdate={this.updateHasForeignTravelOfficial}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.personal')}
         </Branch>
 
@@ -93,8 +95,9 @@ export default class Travel extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.travel.collection.summary.title')}
                      appendTitle={i18n.t('foreign.travel.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.travel.collection.append')}>
-            <TravelQuestions name="Item" bind={true} required={this.props.required} />
+                     appendLabel={i18n.t('foreign.travel.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <TravelQuestions name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

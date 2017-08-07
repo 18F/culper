@@ -33,9 +33,11 @@ export default class ConferenceContacts extends ValidationElement {
                           items={this.props.List}
                           onUpdate={this.updateList}
                           required={this.props.required}
-                          onError={this.props.onError}>
+                          onError={this.props.onError}
+                          scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('foreign.business.conferences.heading.explanation')}
-                  help="foreign.business.conferences.help.explanation">
+            help="foreign.business.conferences.help.explanation"
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       className="conferences-explanation"
                       bind={true}

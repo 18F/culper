@@ -62,7 +62,8 @@ export default class Voting extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignVoting}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignVoting === 'Yes'}>
@@ -74,10 +75,12 @@ export default class Voting extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.voting.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.voting.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.voting.collection.append')}>
+                     appendLabel={i18n.t('foreign.business.voting.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.voting.heading.date')}
                    help="foreign.business.voting.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="foreign-business-voting-date"
                            bind={true}
@@ -86,7 +89,8 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.country')}
-                   adjustFor="country">
+                adjustFor="country"
+                scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="foreign-business-voting-country"
                        bind={true}
@@ -95,7 +99,8 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.reason')}
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="foreign-business-voting-reason"
                         bind={true}
@@ -104,7 +109,8 @@ export default class Voting extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.eligibility')}
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Eligibility"
                     className="foreign-business-voting-eligibility"
                     bind={true}

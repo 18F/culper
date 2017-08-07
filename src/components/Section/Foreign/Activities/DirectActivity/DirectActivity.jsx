@@ -70,7 +70,8 @@ export default class DirectActivity extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateHasInterests}>
+                onUpdate={this.updateHasInterests}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
@@ -83,10 +84,12 @@ export default class DirectActivity extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.direct.collection.description')}
                      appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <DirectInterest name="DirectInterest"
                             bind={true}
                             required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
           </Accordion>
         </Show>

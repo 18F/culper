@@ -94,7 +94,8 @@ export default class Benefit extends ValidationElement {
     return (
       <div className="benefit">
         <Field title={i18n.t('foreign.activities.benefit.heading.interestTypes')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
 
           <p>{i18n.t('foreign.activities.benefit.para.checkAll')}</p>
           <CheckboxGroup className="interest-types"
@@ -133,7 +134,8 @@ export default class Benefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitType')}
-               adjustFor="big-buttons">
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
                <RadioGroup className="benefit-types"
                  onError={this.props.onError}
                  required={this.props.required}
@@ -178,7 +180,8 @@ export default class Benefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}
-               adjustFor="big-buttons">
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
                <RadioGroup className="benefit-frequency"
                  onError={this.props.onError}
                  required={this.props.required}
@@ -227,6 +230,7 @@ export default class Benefit extends ValidationElement {
                           onUpdate={this.updateOneTimeBenefit}
                           onError={this.props.onError}
                           required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
                           />
         </Show>
 
@@ -236,6 +240,7 @@ export default class Benefit extends ValidationElement {
                          onUpdate={this.updateFutureBenefit}
                          onError={this.props.onError}
                          required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
                          />
         </Show>
 
@@ -245,6 +250,7 @@ export default class Benefit extends ValidationElement {
                              onUpdate={this.updateContinuingBenefit}
                              onError={this.props.onError}
                              required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
                              />
         </Show>
       </div>

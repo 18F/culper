@@ -166,7 +166,8 @@ export default class TravelQuestions extends ValidationElement {
     return (
       <div className="foreign-travel-questions">
         <Field title={i18n.t('foreign.travel.heading.country')}
-               adjustFor="country">
+          adjustFor="country"
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    excludeUnitedStates={true}
@@ -179,7 +180,8 @@ export default class TravelQuestions extends ValidationElement {
 
         <Field title={i18n.t('foreign.travel.heading.dates')}
                help="foreign.travel.help.dates"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
                      className="foreign-travel-dates"
@@ -191,7 +193,8 @@ export default class TravelQuestions extends ValidationElement {
 
         <Field title={i18n.t('foreign.travel.heading.days')}
                help="foreign.travel.help.days"
-               adjustFor="p">
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.checkall')}
           <TravelDays name="Days"
                       className="foreign-travel-days"
@@ -199,11 +202,13 @@ export default class TravelQuestions extends ValidationElement {
                       onUpdate={this.updateDays}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.purpose')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose name="Purpose"
                          className="foreign-travel-purpose"
@@ -211,6 +216,7 @@ export default class TravelQuestions extends ValidationElement {
                          onUpdate={this.updatePurpose}
                          onError={this.props.onError}
                          required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
                          />
         </Field>
 
@@ -221,12 +227,14 @@ export default class TravelQuestions extends ValidationElement {
                 value={this.props.Questioned}
                 onUpdate={this.updateQuestioned}
                 required={this.props.required}
-                onError={this.props.onError}>
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Questioned === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="QuestionedExplanation"
                       {...this.props.QuestionedExplanation}
                       className="foreign-travel-questioned-explanation"
@@ -244,12 +252,14 @@ export default class TravelQuestions extends ValidationElement {
                 value={this.props.Encounter}
                 onUpdate={this.updateEncounter}
                 required={this.props.required}
-                onError={this.props.onError}>
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Encounter === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="EncounterExplanation"
                       {...this.props.EncounterExplanation}
                       className="foreign-travel-encounter-explanation"
@@ -267,12 +277,14 @@ export default class TravelQuestions extends ValidationElement {
                 value={this.props.Contacted}
                 onUpdate={this.updateContacted}
                 required={this.props.required}
-                onError={this.props.onError}>
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Contacted === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="ContactedExplanation"
                       {...this.props.ContactedExplanation}
                       className="foreign-travel-contacted-explanation"

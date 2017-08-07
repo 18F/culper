@@ -64,7 +64,8 @@ export default class Political extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignPolitical === 'Yes'}>
@@ -76,9 +77,11 @@ export default class Political extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.political.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.political.collection.append')}>
+                     appendLabel={i18n.t('foreign.business.political.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.political.heading.position')}
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Position"
                     className="foreign-business-political-position"
                     bind={true}
@@ -88,7 +91,8 @@ export default class Political extends SubsectionElement {
 
             <Field title={i18n.t('foreign.business.political.heading.dates')}
                    help="foreign.business.political.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="foreign-business-political-dates"
                          bind={true}
@@ -97,7 +101,8 @@ export default class Political extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.country')}
-                   adjustFor="country">
+              adjustFor="country"
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="foreign-business-political-country"
                        bind={true}
@@ -106,7 +111,8 @@ export default class Political extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.reason')}
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="foreign-business-political-reason"
                         bind={true}
@@ -115,7 +121,8 @@ export default class Political extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.eligibility')}
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Eligibility"
                     className="foreign-business-political-eligibility"
                     bind={true}

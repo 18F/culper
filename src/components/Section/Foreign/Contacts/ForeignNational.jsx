@@ -238,25 +238,29 @@ export default class ForeignNational extends ValidationElement {
   render () {
     return (
       <div className="foreign-national">
-        <h3>{i18n.t('foreign.contacts.heading.name')}</h3>
-        <NotApplicable name="NameNotApplicable"
-                       className="na-name"
-                       label={i18n.t('foreign.contacts.label.idk')}
-                       or={i18n.m('foreign.contacts.para.or')}
-                       {...this.props.NameNotApplicable}
-                       onUpdate={this.updateNameNotApplicable}
-                       required={this.props.required}
-                       onError={this.props.onError}>
-          <Name name="Name"
-                {...this.props.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                required={this.props.required}
-                />
-        </NotApplicable>
+        <Field title={i18n.t('foreign.contacts.heading.name')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <NotApplicable name="NameNotApplicable"
+                         className="na-name"
+                         label={i18n.t('foreign.contacts.label.idk')}
+                         or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.NameNotApplicable}
+                         onUpdate={this.updateNameNotApplicable}
+                         required={this.props.required}
+                         onError={this.props.onError}>
+            <Name name="Name"
+                  {...this.props.Name}
+                  onUpdate={this.updateName}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                  />
+          </NotApplicable>
+        </Field>
 
         <Show when={this.props.NameNotApplicable.applicable === false}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NameExplanation"
                       className="name-explanation"
                       {...this.props.NameExplanation}
@@ -269,7 +273,8 @@ export default class ForeignNational extends ValidationElement {
 
         <Field title={i18n.t('foreign.contacts.heading.firstcontact')}
                help="foreign.contacts.help.firstcontact"
-               adjustFor="label">
+               adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="FirstContact"
                        className="first-contact"
                        {...this.props.FirstContact}
@@ -281,7 +286,8 @@ export default class ForeignNational extends ValidationElement {
 
         <Field title={i18n.t('foreign.contacts.heading.lastcontact')}
                help="foreign.contacts.help.lastcontact"
-               adjustFor="label">
+               adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="LastContact"
                        className="last-contact"
                        {...this.props.LastContact}
@@ -293,7 +299,8 @@ export default class ForeignNational extends ValidationElement {
 
         <Field title={i18n.t('foreign.contacts.heading.methods')}
                help="foreign.contacts.help.methods"
-               adjustFor="p">
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="methods"
                          onError={this.props.onError}
@@ -338,7 +345,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Show when={this.props.Methods.some(x => x === 'Other')}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="MethodsExplanation"
                       className="methods-explanation"
                       {...this.props.MethodsExplanation}
@@ -350,7 +358,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
-               adjustFor="big-buttons">
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="frequency"
                       required={this.props.required}
                       onError={this.props.onError}
@@ -401,7 +410,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Show when={this.props.Frequency === 'Other'}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="FrequencyExplanation"
                       className="frequency-explanation"
                       {...this.props.FrequencyExplanation}
@@ -413,7 +423,8 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
                          required={this.props.required}
@@ -451,7 +462,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Show when={this.props.Relationship.some(x => x === 'Other' || x === 'Obligation')}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="RelationshipExplanation"
                       className="relationship-explanation"
                       {...this.props.RelationshipExplanation}
@@ -463,19 +475,22 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <BranchCollection label={i18n.t('foreign.contacts.heading.aliases')}
-                          appendLabel={i18n.t('foreign.contacts.heading.aliases2')}
-                          help="foreign.contacts.help.aliases"
-                          className="aliases"
-                          items={this.props.Aliases}
-                          onUpdate={this.updateAliases}
-                          required={this.props.required}
-                          onError={this.props.onError}>
-          <h4>{i18n.t('foreign.contacts.heading.aliasname')}</h4>
-          <Name name="Alias" bind={true} required={this.props.required} />
+          appendLabel={i18n.t('foreign.contacts.heading.aliases2')}
+          help="foreign.contacts.help.aliases"
+          className="aliases"
+          items={this.props.Aliases}
+          onUpdate={this.updateAliases}
+          required={this.props.required}
+          onError={this.props.onError}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Field title={i18n.t('foreign.contacts.heading.aliasname')}>
+            <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+          </Field>
         </BranchCollection>
 
         <Field title={i18n.t('foreign.contacts.heading.citizenship')}
-               help="foreign.contacts.help.citizenship">
+          help="foreign.contacts.help.citizenship"
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Citizenship"
                    multiple={true}
                    className="citizenship"
@@ -487,7 +502,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthdate')}
-               adjustFor="label">
+          adjustFor="label"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="BirthdateNotApplicable"
                          className="na-birthdate"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -506,7 +522,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthplace')}
-               adjustFor="label">
+          adjustFor="label"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="BirthplaceNotApplicable"
                          className="na-birthplace"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -522,12 +539,14 @@ export default class ForeignNational extends ValidationElement {
                       onUpdate={this.updateBirthplace}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.address')}
-               adjustFor="address">
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="AddressNotApplicable"
                          className="na-address"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -544,11 +563,13 @@ export default class ForeignNational extends ValidationElement {
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('foreign.contacts.heading.employer')}>
+        <Field title={i18n.t('foreign.contacts.heading.employer')}
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmployerNotApplicable"
                          className="na-employer"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -568,7 +589,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.employeraddress')}
-               adjustFor="address">
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmployerAddressNotApplicable"
                          className="na-employer-address"
                          label={i18n.t('foreign.contacts.label.idk')}
@@ -585,12 +607,14 @@ export default class ForeignNational extends ValidationElement {
                       onUpdate={this.updateEmployerAddress}
                       onError={this.props.onError}
                       required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.hasaffiliations')}
-               adjustFor="buttons">
+          adjustFor="buttons"
+          scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="has-affiliations"
                       required={this.props.required}
                       onError={this.props.onError}
@@ -620,7 +644,8 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Show when={this.props.HasAffiliations === 'Yes'}>
-          <Field title={i18n.t('foreign.contacts.heading.affiliations')}>
+          <Field title={i18n.t('foreign.contacts.heading.affiliations')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Affiliations"
                       className="affiliations"
                       {...this.props.Affiliations}

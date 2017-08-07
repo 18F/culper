@@ -67,16 +67,18 @@ export default class JobOffer extends ValidationElement {
   render () {
     return (
       <div className="job-offer">
-        <h3>{i18n.t('foreign.business.employment.heading.name')}</h3>
-        <Name name="Name"
-              className="employment-name"
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              {...this.props.Name}
-              required={this.props.required}
-              />
-
-        <Field title={i18n.t('foreign.business.employment.heading.description')}>
+        <Field title={i18n.t('foreign.business.employment.heading.name')}>
+          <Name name="Name"
+                className="employment-name"
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                {...this.props.Name}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
+        </Field>
+        <Field title={i18n.t('foreign.business.employment.heading.description')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
                     className="employment-description"
                     onUpdate={this.updateDescription}
@@ -88,7 +90,8 @@ export default class JobOffer extends ValidationElement {
 
         <Field title={i18n.t('foreign.business.employment.heading.date')}
                help="foreign.business.employment.help.date"
-               adjustFor="label">
+               adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
                        className="employment-date"
@@ -99,7 +102,8 @@ export default class JobOffer extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.business.employment.heading.address')}
-               adjustFor="address">
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
                    {...this.props.Address}
                    label={i18n.t('foreign.business.employment.label.address')}
@@ -108,6 +112,7 @@ export default class JobOffer extends ValidationElement {
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
                    required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    />
         </Field>
 
@@ -119,11 +124,13 @@ export default class JobOffer extends ValidationElement {
                 onUpdate={this.updateAccepted}
                 onError={this.props.onError}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.Accepted === 'Yes' || this.props.Accepted === 'No'}>
           <Field title={i18n.t('foreign.business.employment.label.explanation')}
-                 titleSize="label">
+            titleSize="label"
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       {...this.props.Explanation}
                       className="employment-explanation"

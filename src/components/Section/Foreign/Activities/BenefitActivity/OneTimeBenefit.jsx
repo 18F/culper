@@ -76,7 +76,8 @@ export default class OneTimeBenefit extends ValidationElement {
       <div className="onetime-benefit">
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.received')}
                help={'foreign.activities.benefit.oneTime.help.received'}
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
 
           <DateControl name="Received"
                        className="received"
@@ -88,7 +89,8 @@ export default class OneTimeBenefit extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.country')}>
+        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.country')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
@@ -97,7 +99,8 @@ export default class OneTimeBenefit extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.value')}>
+        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.value')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
@@ -117,7 +120,8 @@ export default class OneTimeBenefit extends ValidationElement {
           </div>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.reason')}>
+        <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.reason')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
                     className="reason"
                     {...this.props.Reason}
@@ -134,7 +138,8 @@ export default class OneTimeBenefit extends ValidationElement {
                 value={this.props.Obligated}
                 onError={this.props.onError}
                 required={this.props.required}
-                onUpdate={this.updateObligated}>
+                onUpdate={this.updateObligated}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>

@@ -100,7 +100,8 @@ export default class ContinuingBenefit extends ValidationElement {
       <div className="continuing-benefit">
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.began')}
                help={'foreign.activities.benefit.continuing.help.began'}
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
 
           <DateControl name="Began"
                        className="began"
@@ -114,7 +115,8 @@ export default class ContinuingBenefit extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.end')}
                help={'foreign.activities.benefit.continuing.help.end'}
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
 
           <DateControl name="End"
                        className="end"
@@ -128,7 +130,8 @@ export default class ContinuingBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.frequency')}
-               adjustFor="big-buttons">
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
 
           <RadioGroup className="frequency" onError={this.props.onError} required={this.props.required} selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
@@ -176,7 +179,8 @@ export default class ContinuingBenefit extends ValidationElement {
           </Show>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.country')}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.country')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
@@ -185,7 +189,8 @@ export default class ContinuingBenefit extends ValidationElement {
                    />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.value')}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.value')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
@@ -205,7 +210,8 @@ export default class ContinuingBenefit extends ValidationElement {
           </div>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.reason')}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.reason')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
                     className="reason"
                     {...this.props.Reason}
@@ -222,7 +228,8 @@ export default class ContinuingBenefit extends ValidationElement {
                 value={this.props.Obligated}
                 onError={this.props.onError}
                 required={this.props.required}
-                onUpdate={this.updateObligated}>
+                onUpdate={this.updateObligated}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>

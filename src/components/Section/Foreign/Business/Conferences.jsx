@@ -65,7 +65,8 @@ export default class Conferences extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignConferences}
                 required={this.props.required}
-                onError={this.handleError}>
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.conferences.para.branch')}
         </Branch>
 
@@ -79,9 +80,11 @@ export default class Conferences extends SubsectionElement {
                      description={i18n.t('foreign.business.conferences.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.conferences.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.conferences.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.conferences.collection.append')}>
+                     appendLabel={i18n.t('foreign.business.conferences.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.conferences.heading.description')}
-                   help="foreign.business.conferences.help.description">
+              help="foreign.business.conferences.help.description"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Description"
                         className="conferences-description"
                         bind={true}
@@ -90,7 +93,8 @@ export default class Conferences extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.sponsor')}
-                   help="foreign.business.conferences.help.sponsor">
+              help="foreign.business.conferences.help.sponsor"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Sponsor"
                     className="conferences-sponsor"
                     bind={true}
@@ -99,7 +103,8 @@ export default class Conferences extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.city')}
-                   help="foreign.business.conferences.help.city">
+              help="foreign.business.conferences.help.city"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="City"
                     className="conferences-city"
                     bind={true}
@@ -108,7 +113,8 @@ export default class Conferences extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.country')}
-                   help="foreign.business.conferences.help.country">
+              help="foreign.business.conferences.help.country"
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="conferences-country"
                        bind={true}
@@ -118,7 +124,8 @@ export default class Conferences extends SubsectionElement {
 
             <Field title={i18n.t('foreign.business.conferences.heading.dates')}
                    help="foreign.business.conferences.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="conferences-dates"
                          bind={true}
@@ -127,7 +134,8 @@ export default class Conferences extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.purpose')}
-                   help="foreign.business.conferences.help.purpose">
+              help="foreign.business.conferences.help.purpose"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Purpose"
                         className="conferences-purpose"
                         bind={true}
@@ -138,6 +146,7 @@ export default class Conferences extends SubsectionElement {
             <ConferenceContacts name="Contacts"
                                 bind={true}
                                 required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView}
                                 />
           </Accordion>
         </Show>
