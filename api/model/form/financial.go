@@ -30,12 +30,7 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 	}
 
 	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("Bankruptcy", err)
 		}
 	}

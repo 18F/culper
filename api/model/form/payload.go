@@ -37,3 +37,12 @@ func (payload Payload) Entity() (model.Entity, error) {
 	err := entity.Unmarshal(payload.Props)
 	return entity, err
 }
+
+func (payload Payload) Valid() (bool, error) {
+	entity, err := payload.Entity()
+	if err != nil {
+		return false, err
+	}
+
+	return entity.Valid()
+}

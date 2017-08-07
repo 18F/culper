@@ -71,7 +71,11 @@ func TestPayload(t *testing.T) {
 
 		// Section: Your history
 		// Section: Relationships
+
 		// Section: Citizenship
+		{Data: "testdata/citizenship-status.json"},
+		{Data: "testdata/citizenship-multiple.json"},
+		{Data: "testdata/citizenship-passports.json"},
 
 		// Section: Military history
 		{Data: "testdata/military-selective.json"},

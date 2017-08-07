@@ -1,0 +1,219 @@
+{
+  "type": "citizenship.status",
+  "props": {
+    "CitizenshipStatus": {
+      "type": "radio",
+      "props": {
+        "value": "ForeignBorn",
+        "checked": true
+      }
+    },
+    "AbroadDocumentation": {
+      "type": "radio",
+      "props": {
+        "value": "Other",
+        "checked": true
+      }
+    },
+    "Explanation": {
+      "type": "textarea",
+      "props": {
+        "value": "explanation for abroad documentation"
+      }
+    },
+    "DocumentNumber": {
+      "type": "text",
+      "props": {
+        "value": "document number"
+      }
+    },
+    "DocumentIssued": {
+      "type": "datecontrol",
+      "props": {
+        "month": "7",
+        "day": "25",
+        "year": "2017",
+        "estimated": false,
+        "date": "2017-07-25T00:00:00Z"
+      }
+    },
+    "DocumentName": {
+      "type": "name",
+      "props": {
+        "first": "John",
+        "firstInitialOnly": false,
+        "last": "Smith",
+        "lastInitialOnly": false,
+        "middle": "H",
+        "middleInitialOnly": true,
+        "noMiddleName": false,
+        "suffix": "Other",
+        "suffixOther": "XX"
+      }
+    },
+    "DocumentExpiration": {
+      "type": "datecontrol",
+      "props": {
+        "month": "7",
+        "day": "25",
+        "year": "2017",
+        "estimated": false,
+        "date": "2017-07-25T00:00:00Z"
+      }
+    },
+    "DocumentType": {
+      "type": "radio",
+      "props": {
+        "value": "I-94",
+        "checked": true
+      }
+    },
+    "PlaceIssued": {
+      "type": "location",
+      "props": {
+        "layout": "City, State, Country",
+        "street": "",
+        "street2": "",
+        "city": "Arlington",
+        "state": "VA",
+        "zipcode": "",
+        "county": "",
+        "country": "United States",
+        "validated": false
+      }
+    },
+    "CertificateNumber": {
+      "type": "text",
+      "props": {
+        "value": "cert number"
+      }
+    },
+    "CertificateIssued": {
+      "type": "datecontrol",
+      "props": {
+        "month": "7",
+        "day": "25",
+        "year": "2017",
+        "estimated": false,
+        "date": "2017-07-25T00:00:00Z"
+      }
+    },
+    "CertificateName": {
+      "type": "name",
+      "props": {
+        "first": "John",
+        "firstInitialOnly": false,
+        "last": "Smith",
+        "lastInitialOnly": false,
+        "middle": "H",
+        "middleInitialOnly": true,
+        "noMiddleName": false,
+        "suffix": "Other",
+        "suffixOther": "XX"
+      }
+    },
+    "CertificateCourtName": {
+      "type": "text",
+      "props": {
+        "value": "cert court name"
+      }
+    },
+    "CertificateCourtAddress": {
+      "type": "location",
+      "props": {
+        "layout": "Address",
+        "street": "123 Some Rd",
+        "street2": "",
+        "city": "Arlington",
+        "state": "VA",
+        "zipcode": "22202",
+        "county": "",
+        "country": "United States",
+        "validated": false
+      }
+    },
+    "BornOnMilitaryInstallation": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "MilitaryBase": {
+      "type": "text",
+      "props": {
+        "value": "military base"
+      }
+    },
+    "EntryDate": {
+      "type": "datecontrol",
+      "props": {
+        "month": "7",
+        "day": "25",
+        "year": "2017",
+        "estimated": false,
+        "date": "2017-07-25T00:00:00Z"
+      }
+    },
+    "EntryLocation": {
+      "type": "location",
+      "props": {
+        "layout": "City, State",
+        "street": "",
+        "street2": "",
+        "city": "Arlington",
+        "state": "VA",
+        "zipcode": "",
+        "county": "",
+        "country": "United States",
+        "validated": false
+      }
+    },
+    "PriorCitizenship": {
+      "type": "country",
+      "props": {
+        "value": ["Germany"]
+      }
+    },
+    "HasAlienRegistration": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "AlienRegistrationNumber": {
+      "type": "text",
+      "props": {
+        "value": "alien registration number"
+      }
+    },
+    "AlienRegistrationExpiration": {
+      "type": "datecontrol",
+      "props": {
+        "month": "7",
+        "day": "25",
+        "year": "2017",
+        "estimated": false,
+        "date": "2017-07-25T00:00:00Z"
+      }
+    },
+    "Basis": {
+      "type": "radio",
+      "props": {
+        "value": "Individual",
+        "checked": true
+      }
+    },
+    "PermanentResidentCardNumber": {
+      "type": "text",
+      "props": {
+        "value": "perm res card number"
+      }
+    },
+    "ResidenceStatus": {
+      "type": "text",
+      "props": {
+        "value": "res status"
+      }
+    }
+  }
+}
