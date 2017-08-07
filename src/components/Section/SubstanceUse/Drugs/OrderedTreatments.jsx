@@ -65,7 +65,8 @@ export default class OrderedTreatments extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateTreatmentOrdered}>
+                onUpdate={this.updateTreatmentOrdered}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.TreatmentOrdered === 'Yes'}>
@@ -77,8 +78,9 @@ export default class OrderedTreatments extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('substance.drugs.ordered.collection.description')}
                      appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}>
-            <OrderedTreatment name="OrderedTreatment" bind={true} required={this.props.required} />
+                     appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <OrderedTreatment name="OrderedTreatment" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

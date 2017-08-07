@@ -65,7 +65,8 @@ export default class VoluntaryCounselings extends SubsectionElement {
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
-                onUpdate={this.updateSoughtTreatment}>
+                onUpdate={this.updateSoughtTreatment}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.SoughtTreatment === 'Yes'}>
@@ -77,8 +78,9 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}>
-            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} required={this.props.required} />
+                     appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

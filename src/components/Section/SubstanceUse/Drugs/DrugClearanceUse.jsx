@@ -38,7 +38,8 @@ export default class DrugClearanceUse extends ValidationElement {
   render () {
     return (
       <div className="drug-clearance-use">
-        <Field title={i18n.t('substance.drugs.clearance.heading.description')}>
+        <Field title={i18n.t('substance.drugs.clearance.heading.description')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
             className="description"
             {...this.props.Description}
@@ -50,7 +51,8 @@ export default class DrugClearanceUse extends ValidationElement {
 
         <Field title={i18n.t('substance.drugs.clearance.heading.involvementDates')}
           adjustFor="daterange"
-          help={'substance.drugs.clearance.help.involvementDates'}>
+          help={'substance.drugs.clearance.help.involvementDates'}
+          scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="InvolvementDates"
             className="involvement-dates"
             {...this.props.InvolvementDates}
@@ -60,7 +62,8 @@ export default class DrugClearanceUse extends ValidationElement {
           />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.clearance.heading.estimatedUse')}>
+        <Field title={i18n.t('substance.drugs.clearance.heading.estimatedUse')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="EstimatedUse"
             className="estimated-use"
             {...this.props.EstimatedUse}

@@ -102,7 +102,8 @@ export default class ReceivedCounseling extends ValidationElement {
     const minDate = (this.props.TreatmentBeganDate || {}).date || null
     return (
       <div className="voluntary-counseling">
-        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="TreatmentProviderName"
                 className="treatment-provider-name"
                 {...this.props.TreatmentProviderName}
@@ -113,7 +114,8 @@ export default class ReceivedCounseling extends ValidationElement {
         </Field>
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
                help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}
-               adjustFor="address">
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="TreatmentProviderAddress"
                     className="provider-address"
                     {...this.props.TreatmentProviderAddress}
@@ -122,10 +124,12 @@ export default class ReceivedCounseling extends ValidationElement {
                     onUpdate={this.updateTreatmentProviderAddress}
                     onError={this.props.onError}
                     required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
-        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="AgencyName"
                 className="agency-name"
                 {...this.props.AgencyName}
@@ -143,12 +147,14 @@ export default class ReceivedCounseling extends ValidationElement {
                 value={this.props.UseSameAddress}
                 onUpdate={this.updateUseSameAddress}
                 required={this.props.required}
-                onError={this.props.onError}>
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.UseSameAddress === 'No'}>
           <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
-                 adjustFor="address">
+            adjustFor="address"
+            scrollIntoView={this.props.scrollIntoView}>
             <Location name="AgencyAddress"
                       className="agency-address"
                       {...this.props.AgencyAddress}
@@ -157,13 +163,15 @@ export default class ReceivedCounseling extends ValidationElement {
                       onUpdate={this.updateAgencyAddress}
                       required={this.props.required}
                       onError={this.props.onError}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
         </Show>
 
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}
                help={'substance.alcohol.receivedCounseling.help.treatmentBeganDate'}
-               adjustFor="datecontrol">
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="TreatmentBeganDate"
                        className="treatment-began-date"
                        {...this.props.TreatmentBeganDate}
@@ -177,7 +185,8 @@ export default class ReceivedCounseling extends ValidationElement {
 
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}
                help={'substance.alcohol.receivedCounseling.help.treatmentEndDate'}
-               adjustFor="datecontrol">
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="TreatmentEndDate"
                        className="treatment-end-date"
                        {...this.props.TreatmentEndDate}
@@ -205,11 +214,13 @@ export default class ReceivedCounseling extends ValidationElement {
                 value={this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
                 required={this.props.required}
-                onError={this.props.onError}>
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NoCompletedTreatmentExplanation"
                       className="no-completed-treatment"
                       {...this.props.NoCompletedTreatmentExplanation}
