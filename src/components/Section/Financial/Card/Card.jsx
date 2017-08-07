@@ -76,6 +76,7 @@ export default class Card extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
@@ -89,7 +90,8 @@ export default class Card extends SubsectionElement {
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
 
-            <Field title={i18n.t('financial.card.heading.agency')}>
+           <Field title={i18n.t('financial.card.heading.agency')}
+               scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="card-agency"
                     bind={true}
@@ -99,6 +101,7 @@ export default class Card extends SubsectionElement {
 
             <Field title={i18n.t('financial.card.heading.address')}
                    help="financial.card.help.address"
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="address">
               <Location name="Address"
                         className="card-address"
@@ -111,6 +114,7 @@ export default class Card extends SubsectionElement {
 
             <Field title={i18n.t('financial.card.heading.date')}
                    adjustFor="labels"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <DateControl name="Date"
                            className="card-date"
@@ -120,7 +124,8 @@ export default class Card extends SubsectionElement {
                            />
             </Field>
 
-            <Field title={i18n.t('financial.card.heading.reason')}>
+            <Field title={i18n.t('financial.card.heading.reason')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="card-reason"
                         bind={true}
@@ -128,7 +133,8 @@ export default class Card extends SubsectionElement {
                         />
             </Field>
 
-            <Field title={i18n.t('financial.card.heading.amount')}>
+            <Field title={i18n.t('financial.card.heading.amount')}
+              scrollIntoView={this.props.scrollIntoView}>
               <div>
                 <Currency name="Amount"
                           className="card-amount"
@@ -149,6 +155,7 @@ export default class Card extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.card.heading.description')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.card.help.description">
               <Textarea name="Description"
                         className="card-description"

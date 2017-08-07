@@ -42,6 +42,7 @@ class Financial extends SectionElement {
                           onError={this.handleError}
                           defaultState={false}
                           required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -53,6 +54,7 @@ class Financial extends SectionElement {
                       onError={this.handleError}
                       defaultState={false}
                       required={true}
+                      scrollIntoView={false}
                     />
 
             <hr />
@@ -64,6 +66,7 @@ class Financial extends SectionElement {
                    onError={this.handleError}
                    defaultState={false}
                    required={true}
+                   scrollIntoView={false}
                    />
 
             <hr />
@@ -75,6 +78,7 @@ class Financial extends SectionElement {
                   onError={this.handleError}
                   defaultState={false}
                   required={true}
+                  scrollIntoView={false}
                   />
 
             <hr />
@@ -86,6 +90,7 @@ class Financial extends SectionElement {
                     onError={this.handleError}
                     defaultState={false}
                     required={true}
+                    scrollIntoView={false}
                     />
 
             <hr />
@@ -104,6 +109,7 @@ class Financial extends SectionElement {
                         onError={this.handleError}
                         defaultState={false}
                         required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -125,6 +131,7 @@ class Financial extends SectionElement {
                         onError={this.handleError}
                         defaultState={false}
                         required={true}
+                        scrollIntoView={false}
                         />
           </SectionView>
 

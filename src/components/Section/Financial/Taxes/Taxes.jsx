@@ -76,6 +76,7 @@ export default class Taxes extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
@@ -91,6 +92,7 @@ export default class Taxes extends SubsectionElement {
 
             <Field title={i18n.t('financial.taxes.heading.failure')}
                    adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <FailureType name="Failure"
                            className="taxes-failure"
@@ -99,7 +101,8 @@ export default class Taxes extends SubsectionElement {
                            />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.year')}>
+            <Field title={i18n.t('financial.taxes.heading.year')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Number name="Year"
                       className="taxes-year"
                       placeholder={i18n.t('financial.taxes.placeholder.year')}
@@ -117,7 +120,8 @@ export default class Taxes extends SubsectionElement {
               </div>
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.reason')}>
+            <Field title={i18n.t('financial.taxes.heading.reason')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="taxes-reason"
                         bind={true}
@@ -125,7 +129,8 @@ export default class Taxes extends SubsectionElement {
                         />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.agency')}>
+            <Field title={i18n.t('financial.taxes.heading.agency')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="taxes-agency"
                     bind={true}
@@ -133,7 +138,8 @@ export default class Taxes extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.taxtype')}>
+            <Field title={i18n.t('financial.taxes.heading.taxtype')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="TaxType"
                     className="taxes-taxtype"
                     bind={true}
@@ -141,7 +147,8 @@ export default class Taxes extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.amount')}>
+            <Field title={i18n.t('financial.taxes.heading.amount')}
+              scrollIntoView={this.props.scrollIntoView}>
               <div>
                 <Currency name="Amount"
                           className="taxes-amount"
@@ -163,6 +170,7 @@ export default class Taxes extends SubsectionElement {
 
             <Field title={i18n.t('financial.taxes.heading.date')}
                    adjustFor="label"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <NotApplicable name="DateNotApplicable"
                              label={i18n.t('financial.taxes.label.notapplicable')}
@@ -177,7 +185,8 @@ export default class Taxes extends SubsectionElement {
               </NotApplicable>
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.description')}>
+            <Field title={i18n.t('financial.taxes.heading.description')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Description"
                         className="taxes-description"
                         bind={true}
