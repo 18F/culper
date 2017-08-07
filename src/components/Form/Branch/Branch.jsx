@@ -38,6 +38,7 @@ export default class Branch extends React.Component {
              className={klass}
              help={this.props.help}
              adjustFor={this.props.adjustFor}
+             scrollIntoView={this.props.scrollIntoView}
              shrink={true}>
         <div className="content">
           {this.props.children}

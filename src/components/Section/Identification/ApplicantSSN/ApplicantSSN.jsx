@@ -85,7 +85,7 @@ export default class ApplicantSSN extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <Field help="identification.ssn.help">
+        <Field help="identification.ssn.help" scrollIntoView={this.props.scrollIntoView}>
           <SSN name="ssn"
                {...this.props.ssn}
                className="applicant-ssn-initial"
@@ -97,6 +97,7 @@ export default class ApplicantSSN extends SubsectionElement {
 
         <Show when={verify}>
           <Field title={i18n.t('identification.ssn.heading.verify')}
+                 scrollIntoView={this.props.scrollIntoView}
                  titleSize="h4">
             <SSN name="verification"
                  {...this.state.verification}
@@ -109,6 +110,7 @@ export default class ApplicantSSN extends SubsectionElement {
         </Show>
         <Show when={this.props.verified}>
           <Field title={i18n.t('identification.ssn.heading.verified')}
+                 scrollIntoView={this.props.scrollIntoView}
                  titleSize="h4">
           </Field>
         </Show>

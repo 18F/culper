@@ -9,13 +9,14 @@ export default class ApplicantName extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <Field>
+        <Field scrollIntoView={this.props.scrollIntoView}>
         <Name name="name"
               {...this.props.value}
               dispatch={this.props.dispatch}
               onUpdate={this.props.onUpdate}
               onError={this.handleError}
               required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
               />
             </Field>
       </div>

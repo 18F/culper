@@ -41,6 +41,7 @@ export default class Physical extends SubsectionElement {
         <Field title={i18n.t('identification.traits.heading.height')}
                help="identification.traits.help.height"
                adjustFor='labels'
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <Height name="height"
                   {...this.props.Height}
@@ -53,6 +54,7 @@ export default class Physical extends SubsectionElement {
         <Field title={i18n.t('identification.traits.heading.weight')}
                help="identification.traits.help.weight"
                adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <Weight name="weight"
                   value={this.props.Weight}
@@ -64,6 +66,7 @@ export default class Physical extends SubsectionElement {
 
         <Field title={i18n.t('identification.traits.heading.hair')}
                adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}
                help="identification.traits.help.hair">
           <HairColor name="hair"
                      help="identification.traits.help.hair"
@@ -77,6 +80,7 @@ export default class Physical extends SubsectionElement {
 
         <Field title={i18n.t('identification.traits.heading.eye')}
                adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}
                help="identification.traits.help.eye">
           <EyeColor name="eye"
                     className=""
@@ -93,6 +97,7 @@ export default class Physical extends SubsectionElement {
                shrink={true}
                onUpdate={this.handleUpdate.bind(this, 'Comments')}
                commentsValue={this.state.Comments}
+               scrollIntoView={this.props.scrollIntoView}
                comments={true}>
           <Sex name="sex"
                value={this.props.Sex}

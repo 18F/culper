@@ -62,6 +62,7 @@ export default class OtherNames extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasOtherNames === 'Yes'}>
@@ -73,16 +74,19 @@ export default class OtherNames extends SubsectionElement {
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
 
-            <h3>{i18n.t('identification.othernames.heading.name')}</h3>
-            <Name name="Name"
-                  key="name"
-                  bind={true}
-                  required={this.props.required}
-                  />
+            <Field title={i18n.t('identification.othernames.heading.name')}>
+              <Name name="Name"
+                    key="name"
+                    bind={true}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+            </Field>
 
             <Field title={i18n.t('identification.othernames.heading.maiden')}
                    help="alias.maiden.help"
                    adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <MaidenName name="MaidenName"
                           bind={true}
@@ -93,6 +97,7 @@ export default class OtherNames extends SubsectionElement {
             <Field title={i18n.t('identification.othernames.heading.used')}
                    help="alias.used.help"
                    adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <DateRange name="DatesUsed"
                          bind={true}
@@ -101,6 +106,7 @@ export default class OtherNames extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('identification.othernames.heading.reason')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="alias.reason.help">
               <Textarea name="Reason"
                         className="reason"

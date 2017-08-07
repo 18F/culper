@@ -233,6 +233,7 @@ export default class ToggleableLocation extends ValidationElement {
           onUpdate={this.updateToggle}
           onBlur={this.props.onBlur}
           required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
           onError={this.onError}>
         </Branch>
 
@@ -300,7 +301,8 @@ ToggleableLocation.defaultProps = {
   domesticFields: [],
   internationalFields: [],
   onError: (value, arr) => { return arr },
-  required: false
+  required: false,
+  scrollIntoView: false
 }
 
 ToggleableLocation.errors = [

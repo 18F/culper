@@ -72,6 +72,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
       <div className={klass}>
         <Field help="identification.birthdate.help"
                adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <DateControl name={this.props.name}
                        value={this.state.value}

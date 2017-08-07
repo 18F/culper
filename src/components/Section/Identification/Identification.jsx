@@ -40,6 +40,7 @@ class Identification extends SectionElement {
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
                            required={true}
+                           scrollIntoView={false}
                            />
 
             <hr />
@@ -51,6 +52,7 @@ class Identification extends SectionElement {
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
                         required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -61,6 +63,7 @@ class Identification extends SectionElement {
                                 onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
                                 required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -71,6 +74,7 @@ class Identification extends SectionElement {
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
                                  required={true}
+                                 scrollIntoView={false}
                                  />
 
             <hr />
@@ -82,6 +86,7 @@ class Identification extends SectionElement {
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
                                 required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -92,6 +97,7 @@ class Identification extends SectionElement {
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
                           required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -102,6 +108,7 @@ class Identification extends SectionElement {
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
           </SectionView>
 

@@ -183,6 +183,7 @@ export default class Name extends ValidationElement {
         <Field help="identification.name.first.help"
                errorPrefix="name"
                filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="first"
                 ref="first"
@@ -213,6 +214,7 @@ export default class Name extends ValidationElement {
         <Field help="identification.name.middle.help"
                errorPrefix="name"
                filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="middle"
                 ref="middle"
@@ -254,6 +256,7 @@ export default class Name extends ValidationElement {
         <Field help="identification.name.last.help"
                errorPrefix="name"
                filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="last"
                 ref="last"
@@ -283,6 +286,7 @@ export default class Name extends ValidationElement {
         </Field>
         <Field help="identification.name.suffix.help"
                errorPrefix="name"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <label>{i18n.t(`${prefix}.label.suffix`)} <span className="optional">({i18n.t(`${prefix}.label.optional`)})</span></label>
 
