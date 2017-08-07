@@ -40,6 +40,7 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/datecontrol.json"},
 		{Data: "testdata/daterange.json"},
 		{Data: "testdata/email.json"},
+		{Data: "testdata/foreignborndocument.json"},
 		{Data: "testdata/height.json"},
 		{Data: "testdata/location.json"},
 		{Data: "testdata/name.json"},
@@ -70,7 +71,12 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/financial-nonpayment.json"},
 
 		// Section: Your history
+
 		// Section: Relationships
+		{Data: "testdata/relationships-marital.json"},
+		{Data: "testdata/relationships-cohabitants.json"},
+		{Data: "testdata/relationships-people.json"},
+		{Data: "testdata/relationships-relatives.json"},
 
 		// Section: Citizenship
 		{Data: "testdata/citizenship-status.json"},
