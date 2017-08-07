@@ -93,7 +93,6 @@ export default class BranchCollection extends React.Component {
    * Helper that renders branch information. Allows props to be overriden
    */
   branch (props) {
-    console.log(props)
     return (
       <Branch name={props.name}
               label={props.label}
@@ -103,7 +102,8 @@ export default class BranchCollection extends React.Component {
               warning={props.warning}
               onUpdate={props.onUpdate}
               required={this.props.required}
-              onError={props.onError}>
+              onError={props.onError}
+              scrollIntoView={this.props.scrollIntoView}>
         {props.children}
       </Branch>
     )

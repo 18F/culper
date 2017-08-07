@@ -74,7 +74,8 @@ export default class CitizenshipItem extends ValidationElement {
   render () {
     return (
       <div className="citizenship-item">
-        <Field title={i18n.t('citizenship.multiple.heading.citizenship.country')}>
+        <Field title={i18n.t('citizenship.multiple.heading.citizenship.country')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    className="citizenship-country"
@@ -87,7 +88,8 @@ export default class CitizenshipItem extends ValidationElement {
         <h2 className="period">{i18n.t('citizenship.multiple.heading.citizenship.period')}</h2>
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.dates')}
                help="citizenship.multiple.help.citizenship.dates"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
                      className="citizenship-dates"
@@ -97,7 +99,8 @@ export default class CitizenshipItem extends ValidationElement {
                      />
         </Field>
 
-        <Field title={i18n.t('citizenship.multiple.heading.citizenship.how')}>
+        <Field title={i18n.t('citizenship.multiple.heading.citizenship.how')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="How"
                     {...this.props.How}
                     className="citizenship-how"
@@ -115,9 +118,11 @@ export default class CitizenshipItem extends ValidationElement {
                 onUpdate={this.updateRenounced}
                 onError={this.props.onError}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}>
+        <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}
+            scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="RenouncedExplanation"
                     {...this.props.RenouncedExplanation}
                     className="citizenship-renounced-explanation"
@@ -137,9 +142,11 @@ export default class CitizenshipItem extends ValidationElement {
                     onUpdate={this.updateCurrent}
                     onError={this.props.onError}
                     required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
 
-            <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
+            <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="CurrentExplanation"
                         {...this.props.CurrentExplanation}
                         className="citizenship-current-explanation"

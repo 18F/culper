@@ -34,7 +34,8 @@ export default class TravelItem extends ValidationElement {
   render () {
     return (
       <div className="citizenship-item">
-        <Field title={i18n.t('citizenship.multiple.heading.travel.country')}>
+        <Field title={i18n.t('citizenship.multiple.heading.travel.country')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    className="travel-item-country"
                    {...this.props.Country}
@@ -46,7 +47,8 @@ export default class TravelItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.travel.dates')}
                help="citizenship.multiple.help.travel.dates"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      className="travel-item-dates"
                      {...this.props.Dates}

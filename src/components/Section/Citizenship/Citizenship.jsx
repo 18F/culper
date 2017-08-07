@@ -40,6 +40,7 @@ class Citizenship extends SectionElement {
                     onUpdate={this.handleUpdate.bind(this, 'Status')}
                     onError={this.handleError}
                     required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -51,6 +52,7 @@ class Citizenship extends SectionElement {
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -62,6 +64,7 @@ class Citizenship extends SectionElement {
                       onUpdate={this.handleUpdate.bind(this, 'Passports')}
                       onError={this.handleError}
                       required={true}
+                      scrollIntoView={false}
                       />
           </SectionView>
 

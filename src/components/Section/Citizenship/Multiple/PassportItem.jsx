@@ -100,7 +100,8 @@ export default class PassportItem extends ValidationElement {
   render () {
     return (
       <div className="passport-item">
-        <Field title={i18n.t('citizenship.multiple.heading.passport.country')}>
+        <Field title={i18n.t('citizenship.multiple.heading.passport.country')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    className="passport-country"
                    {...this.props.Country}
@@ -112,7 +113,8 @@ export default class PassportItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.issued')}
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Issued"
                        {...this.props.Issued}
                        className="passport-issued"
@@ -123,7 +125,8 @@ export default class PassportItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.location')}
-          adjustFor="labels">
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
                    layout={Location.CITY_COUNTRY}
                    {...this.props.Location}
@@ -131,19 +134,23 @@ export default class PassportItem extends ValidationElement {
                    onUpdate={this.updateLocation}
                    onError={this.props.onError}
                    required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    />
         </Field>
 
-        <h3>{i18n.t('citizenship.multiple.heading.passport.name')}</h3>
-        <Name name="Name"
-              {...this.props.Name}
-              className="passport-name"
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              required={this.props.required}
-              />
+        <Field title={i18n.t('citizenship.multiple.heading.passport.name')}
+          scrollIntoView={this.props.scrollIntoView}>
+            <Name name="Name"
+                  {...this.props.Name}
+                  className="passport-name"
+                  onUpdate={this.updateName}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                  />
+        </Field>
 
-        <Field title={i18n.t('citizenship.multiple.heading.passport.number')}>
+        <Field title={i18n.t('citizenship.multiple.heading.passport.number')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Number"
                 {...this.props.Number}
                 className="passport-number"
@@ -154,7 +161,8 @@ export default class PassportItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.expiration')}
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Expiration"
                        {...this.props.Expiration}
                        className="passport-expiration"
@@ -173,6 +181,7 @@ export default class PassportItem extends ValidationElement {
                 onUpdate={this.updateUsed}
                 onError={this.props.onError}
                 required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.Used === 'Yes'}>
@@ -182,8 +191,9 @@ export default class PassportItem extends ValidationElement {
                      onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('citizenship.multiple.collection.travel.summary.title')}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('citizenship.multiple.collection.travel.append')}>
-            <TravelItem name="Item" bind={true} required={this.props.required} />
+            <TravelItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
