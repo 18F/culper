@@ -20,20 +20,18 @@ export default class Benefit extends ValidationElement {
     this.updateOtherBenefit = this.updateOtherBenefit.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        InterestTypes: this.props.InterestTypes,
-        BenefitType: this.props.BenefitType,
-        OtherBenefitType: this.props.OtherBenefitType,
-        BenefitFrequency: this.props.BenefitFrequency,
-        OneTimeBenefit: this.props.OneTimeBenefit,
-        FutureBenefit: this.props.FutureBenefit,
-        ContinuingBenefit: this.props.ContinuingBenefit,
-        OtherBenefit: this.props.OtherBenefit,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      InterestTypes: this.props.InterestTypes,
+      BenefitType: this.props.BenefitType,
+      OtherBenefitType: this.props.OtherBenefitType,
+      BenefitFrequency: this.props.BenefitFrequency,
+      OneTimeBenefit: this.props.OneTimeBenefit,
+      FutureBenefit: this.props.FutureBenefit,
+      ContinuingBenefit: this.props.ContinuingBenefit,
+      OtherBenefit: this.props.OtherBenefit,
+      ...queue
+    })
   }
 
   updateInterestTypes (event) {
@@ -45,45 +43,64 @@ export default class Benefit extends ValidationElement {
       selected.push(interestType)
     }
 
-    this.update('InterestTypes', selected)
+    this.update({
+      InterestTypes: selected
+    })
   }
 
   updateBenefitType (cb) {
-    this.update('BenefitType', cb.target.value)
+    this.update({
+      BenefitType: cb.target.value
+    })
   }
 
   updateOtherBenefitType (values) {
-    this.update('OtherBenefitType', values)
+    this.update({
+      OtherBenefitType: values
+    })
   }
 
   updateBenefitFrequency (cb) {
-    this.update('BenefitFrequency', cb.target.value)
+    this.update({
+      BenefitFrequency: cb.target.value
+    })
   }
 
   updateOneTimeBenefit (values) {
-    this.update('OneTimeBenefit', values)
+    this.update({
+      OneTimeBenefit: values
+    })
   }
 
   updateFutureBenefit (values) {
-    this.update('FutureBenefit', values)
+    this.update({
+      FutureBenefit: values
+    })
   }
 
   updateContinuingBenefit (values) {
-    this.update('ContinuingBenefit', values)
+    this.update({
+      ContinuingBenefit: values
+    })
   }
 
   updateOtherBenefit (values) {
-    this.update('OtherBenefit', values)
+    this.update({
+      OtherBenefit: values
+    })
   }
 
   render () {
     return (
       <div className="benefit">
         <Field title={i18n.t('foreign.activities.benefit.heading.interestTypes')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
 
           <p>{i18n.t('foreign.activities.benefit.para.checkAll')}</p>
           <CheckboxGroup className="interest-types"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.benefit.label.interestTypes.yourself')}
@@ -117,8 +134,12 @@ export default class Benefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitType')}
-               adjustFor="big-buttons">
-          <RadioGroup className="benefit-types" selectedValue={this.props.BenefitType}>
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
+               <RadioGroup className="benefit-types"
+                 onError={this.props.onError}
+                 required={this.props.required}
+                 selectedValue={this.props.BenefitType}>
             <Radio name="benefit_type"
                    label={i18n.m('foreign.activities.benefit.label.benefitTypes.educational')}
                    value="Educational"
@@ -152,14 +173,19 @@ export default class Benefit extends ValidationElement {
                         {...this.props.OtherBenefitType}
                         onUpdate={this.updateOtherBenefitType}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </div>
           </Show>
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}
-               adjustFor="big-buttons">
-          <RadioGroup className="benefit-frequency" selectedValue={this.props.BenefitFrequency}>
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
+               <RadioGroup className="benefit-frequency"
+                 onError={this.props.onError}
+                 required={this.props.required}
+                 selectedValue={this.props.BenefitFrequency}>
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.label.benefitFrequency.oneTime')}
                    value="OneTime"
@@ -192,6 +218,7 @@ export default class Benefit extends ValidationElement {
                         {...this.props.OtherBenefit}
                         onUpdate={this.updateOtherBenefit}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </div>
           </Show>
@@ -202,6 +229,8 @@ export default class Benefit extends ValidationElement {
                           {...this.props.OneTimeBenefit}
                           onUpdate={this.updateOneTimeBenefit}
                           onError={this.props.onError}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
                           />
         </Show>
 
@@ -210,6 +239,8 @@ export default class Benefit extends ValidationElement {
                          {...this.props.FutureBenefit}
                          onUpdate={this.updateFutureBenefit}
                          onError={this.props.onError}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
                          />
         </Show>
 
@@ -218,6 +249,8 @@ export default class Benefit extends ValidationElement {
                              {...this.props.ContinuingBenefit}
                              onUpdate={this.updateContinuingBenefit}
                              onError={this.props.onError}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
                              />
         </Show>
       </div>
@@ -229,5 +262,6 @@ Benefit.defaultProps = {
   InterestTypes: [],
   BenefitType: '',
   BenefitFrequency: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

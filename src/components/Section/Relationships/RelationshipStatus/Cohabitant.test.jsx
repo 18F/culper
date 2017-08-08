@@ -16,8 +16,10 @@ describe('The cohabitant component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitant',
-      onUpdate: () => { updates++ },
-      SSN: {}
+      SSN: {},
+      ForeignBornDocument: { DocumentType: 'Other' },
+      OtherNameMaiden: { value: 'Yes' },
+      onUpdate: () => { updates++ }
     }
 
     const component = mount(<Cohabitant {...expected} />)
@@ -25,19 +27,15 @@ describe('The cohabitant component', () => {
     component.find('.cohabitant-name .first input').simulate('change')
     component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
     component.find('.birthplace .no input').simulate('change')
-    component.find('.maiden-name .yes input').simulate('change')
-    component.find('.foreign-born-documents input').first().simulate('click')
-    component.find('.foreign-born-documents .other input').simulate('click')
+    component.find('.foreign-born-documents input').first().simulate('change')
+    component.find('.foreign-born-documents .other input').simulate('change')
     component.find('.foreign-born-documents textarea').simulate('change')
     component.find('.foreign-born-document-number input').simulate('change')
     component.find('.foreign-born-documents .month input').simulate('change', { target: { value: '12' } })
     component.find('.ssn .first input').simulate('change')
-    component.find('.othername .first input').simulate('change')
-    component.find('.othername .maiden-name .yes input').simulate('change')
-    component.find('.othername .from .month input').simulate('change', { target: { value: '12' } })
-    component.find('.othername input[name="OtherNameNotApplicable"]').simulate('change')
+    component.find('.cohabitant-othernames .yes input').simulate('change')
     component.find('.cohabitation-began .month input').simulate('change', { target: { value: '12' } })
-    expect(updates).toBe(15)
+    expect(updates).toBe(11)
   })
 
   it('shows suggestion and marks as not spouse', () => {

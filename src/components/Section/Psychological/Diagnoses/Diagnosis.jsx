@@ -17,59 +17,73 @@ export default class Diagnosis extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Condition: this.props.Condition,
-        Diagnosed: this.props.Diagnosed,
-        Treatment: this.props.Treatment,
-        TreatmentFacility: this.props.TreatmentFacility,
-        Effective: this.props.Effective,
-        Explanation: this.props.Explanation,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Condition: this.props.Condition,
+      Diagnosed: this.props.Diagnosed,
+      Treatment: this.props.Treatment,
+      TreatmentFacility: this.props.TreatmentFacility,
+      Effective: this.props.Effective,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateCondition (response) {
-    this.update('Condition', response.value)
+    this.update({
+      Condition: response.value
+    })
   }
 
   updateDiagnosed (values) {
-    this.update('Diagnosed', values)
+    this.update({
+      Diagnosed: values
+    })
   }
 
   updateTreatment (values) {
-    this.update('Treatment', values)
+    this.update({
+      Treatment: values
+    })
   }
 
   updateTreatmentFacility (values) {
-    this.update('TreatmentFacility', values)
+    this.update({
+      TreatmentFacility: values
+    })
   }
 
   updateEffective (radio) {
-    this.update('Effective', radio.value)
+    this.update({
+      Effective: radio.value
+    })
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
     const prefix = this.props.prefix
     return (
       <div className="diagnosis">
-        <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}>
+        <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}
+          scrollIntoView={this.props.scrollIntoView}>
           <Show when={this.props.prefix === 'existingConditions.diagnosis'}>
             <Text name="Condition"
                   className="diagnosis-condition"
                   value={this.props.Condition}
                   onUpdate={this.updateCondition}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Show>
           <Show when={this.props.prefix === 'diagnosis'}>
             <RadioGroup className="diagnosis-condition"
+                        onError={this.props.onError}
+                        required={this.props.required}
                         selectedValue={this.props.Condition}>
               <Radio name="diagnosis-condition-psychotic"
                      label={i18n.m('psychological.diagnosis.label.psychotic')}
@@ -126,7 +140,8 @@ export default class Diagnosis extends ValidationElement {
 
         <Field title={i18n.t(`psychological.${prefix}.heading.diagnosed`)}
                help={`psychological.${prefix}.help.diagnosed`}
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Diagnosed"
                      {...this.props.Diagnosed}
                      receiveProps={this.props.receiveProps}
@@ -134,6 +149,7 @@ export default class Diagnosis extends ValidationElement {
                      prefix={prefix}
                      minDate={this.props.ApplicantBirthDate}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -144,6 +160,8 @@ export default class Diagnosis extends ValidationElement {
                      prefix={`${prefix}.person`}
                      onUpdate={this.updateTreatment}
                      onError={this.props.onError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
         </div>
 
@@ -154,14 +172,17 @@ export default class Diagnosis extends ValidationElement {
                      prefix={`${prefix}.facility`}
                      onUpdate={this.updateTreatmentFacility}
                      onError={this.props.onError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
         </div>
 
         <Show when={this.props.prefix !== 'existingConditions.diagnosis'}>
           <div>
             <Field title={i18n.t(`psychological.${prefix}.heading.effective`)}
-                   adjustFor="buttons">
-              <RadioGroup className="effective" selectedValue={this.props.Effective}>
+              adjustFor="buttons"
+              scrollIntoView={this.props.scrollIntoView}>
+              <RadioGroup className="effective" selectedValue={this.props.Effective} onError={this.props.onError} required={this.props.required}>
                 <Radio name="effective"
                        label="Yes"
                        value="Yes"
@@ -179,12 +200,14 @@ export default class Diagnosis extends ValidationElement {
 
             <Show when={this.props.Effective === 'No'}>
               <Field title={i18n.t(`psychological.${prefix}.heading.explanation`)}
-                     help={`psychological.${prefix}.help.explanation`}>
+                help={`psychological.${prefix}.help.explanation`}
+                scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation"
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -197,5 +220,6 @@ export default class Diagnosis extends ValidationElement {
 
 Diagnosis.defaultProps = {
   prefix: 'diagnosis',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

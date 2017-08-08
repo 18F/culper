@@ -1,42 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Field, Name, Textarea, DateControl,
-         CheckboxGroup, Checkbox, RadioGroup, Radio, Country, InternationalBirthPlace,
-         Address, Text, NotApplicable, Show, BranchCollection, Location } from '../../../Form'
+import { ValidationElement, Field, Name, Textarea, DateControl,
+         CheckboxGroup, Checkbox, RadioGroup, Radio, Country,
+         Text, NotApplicable, Show, BranchCollection, Location } from '../../../Form'
 
 export default class ForeignNational extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Name: props.Name,
-      NameNotApplicable: props.NameNotApplicable,
-      NameExplanation: props.NameExplanation,
-      FirstContact: props.FirstContact,
-      LastContact: props.LastContact,
-      Methods: props.Methods,
-      MethodsExplanation: props.MethodsExplanation,
-      Frequency: props.Frequency,
-      FrequencyExplanation: props.FrequencyExplanation,
-      Relationship: props.Relationship,
-      RelationshipExplanation: props.RelationshipExplanation,
-      Aliases: props.Aliases,
-      Citizenship: props.Citizenship,
-      Birthdate: props.Birthdate,
-      BirthdateNotApplicable: props.BirthdateNotApplicable,
-      Birthplace: props.Birthplace,
-      BirthplaceNotApplicable: props.BirthplaceNotApplicable,
-      Address: props.Address,
-      AddressNotApplicable: props.AddressNotApplicable,
-      Employer: props.Employer,
-      EmployerNotApplicable: props.EmployerNotApplicable,
-      EmployerAddress: props.EmployerAddress,
-      EmployerAddressNotApplicable: props.EmployerAddressNotApplicable,
-      HasAffiliations: props.HasAffiliations,
-      Affiliations: props.Affiliations
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateNameNotApplicable = this.updateNameNotApplicable.bind(this)
     this.updateNameExplanation = this.updateNameExplanation.bind(this)
@@ -64,61 +36,70 @@ export default class ForeignNational extends ValidationElement {
     this.updateAffiliations = this.updateAffiliations.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Name: this.state.Name,
-          NameNotApplicable: this.state.NameNotApplicable,
-          NameExplanation: this.state.NameExplanation,
-          FirstContact: this.state.FirstContact,
-          LastContact: this.state.LastContact,
-          Methods: this.state.Methods,
-          MethodsExplanation: this.state.MethodsExplanation,
-          Frequency: this.state.Frequency,
-          FrequencyExplanation: this.state.FrequencyExplanation,
-          Relationship: this.state.Relationship,
-          RelationshipExplanation: this.state.RelationshipExplanation,
-          Aliases: this.state.Aliases,
-          Citizenship: this.state.Citizenship,
-          Birthplace: this.state.Birthplace,
-          BirthplaceNotApplicable: this.state.BirthplaceNotApplicable,
-          Address: this.state.Address,
-          AddressNotApplicable: this.state.AddressNotApplicable,
-          Employer: this.state.Employer,
-          EmployerNotApplicable: this.state.EmployerNotApplicable,
-          EmployerAddress: this.state.EmployerAddress,
-          EmployerAddressNotApplicable: this.state.EmployerAddressNotApplicable,
-          HasAffiliations: this.state.HasAffiliations,
-          Affiliations: this.state.Affiliations
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      NameNotApplicable: this.props.NameNotApplicable,
+      NameExplanation: this.props.NameExplanation,
+      FirstContact: this.props.FirstContact,
+      LastContact: this.props.LastContact,
+      Methods: this.props.Methods,
+      MethodsExplanation: this.props.MethodsExplanation,
+      Frequency: this.props.Frequency,
+      FrequencyExplanation: this.props.FrequencyExplanation,
+      Relationship: this.props.Relationship,
+      RelationshipExplanation: this.props.RelationshipExplanation,
+      Aliases: this.props.Aliases,
+      Citizenship: this.props.Citizenship,
+      Birthdate: this.props.Birthdate,
+      BirthdateNotApplicable: this.props.BirthdateNotApplicable,
+      Birthplace: this.props.Birthplace,
+      BirthplaceNotApplicable: this.props.BirthplaceNotApplicable,
+      Address: this.props.Address,
+      AddressNotApplicable: this.props.AddressNotApplicable,
+      Employer: this.props.Employer,
+      EmployerNotApplicable: this.props.EmployerNotApplicable,
+      EmployerAddress: this.props.EmployerAddress,
+      EmployerAddressNotApplicable: this.props.EmployerAddressNotApplicable,
+      HasAffiliations: this.props.HasAffiliations,
+      Affiliations: this.props.Affiliations,
+      ...queue
     })
   }
 
   updateName (value) {
-    this.onUpdate('Name', value)
+    this.update({
+      Name: value
+    })
   }
 
   updateNameNotApplicable (value) {
-    this.onUpdate('NameNotApplicable', value)
+    this.update({
+      NameNotApplicable: value
+    })
   }
 
   updateNameExplanation (value) {
-    this.onUpdate('NameExplanation', value)
+    this.update({
+      NameExplanation: value
+    })
   }
 
   updateFirstContact (value) {
-    this.onUpdate('FirstContact', value)
+    this.update({
+      FirstContact: value
+    })
   }
 
   updateLastContact (value) {
-    this.onUpdate('LastContact', value)
+    this.update({
+      LastContact: value
+    })
   }
 
   updateMethods (response) {
     let selected = response.value
-    let list = [...(this.state.Methods || [])]
+    let list = [...(this.props.Methods || [])]
 
     if (list.includes(selected)) {
       list.splice(list.indexOf(selected), 1)
@@ -126,24 +107,32 @@ export default class ForeignNational extends ValidationElement {
       list.push(selected)
     }
 
-    this.onUpdate('Methods', list)
+    this.update({
+      Methods: list
+    })
   }
 
   updateMethodsExplanation (value) {
-    this.onUpdate('MethodsExplanation', value)
+    this.update({
+      MethodsExplanation: value
+    })
   }
 
   updateFrequency (response) {
-    this.onUpdate('Frequency', response.value)
+    this.update({
+      Frequency: response.value
+    })
   }
 
   updateFrequencyExplanation (value) {
-    this.onUpdate('FrequencyExplanation', value)
+    this.update({
+      FrequencyExplanation: value
+    })
   }
 
   updateRelationship (response) {
     let selected = response.value
-    let list = [...(this.state.Relationship || [])]
+    let list = [...(this.props.Relationship || [])]
 
     if (list.includes(selected)) {
       list.splice(list.indexOf(selected), 1)
@@ -151,125 +140,172 @@ export default class ForeignNational extends ValidationElement {
       list.push(selected)
     }
 
-    this.onUpdate('Relationship', list)
+    this.update({
+      Relationship: list
+    })
   }
 
   updateRelationshipExplanation (value) {
-    this.onUpdate('RelationshipExplanation', value)
+    this.update({
+      RelationshipExplanation: value
+    })
   }
 
   updateAliases (value) {
-    this.onUpdate('Aliases', value)
+    this.update({
+      Aliases: value
+    })
   }
 
   updateCitizenship (value) {
-    this.onUpdate('Citizenship', value)
+    this.update({
+      Citizenship: value
+    })
   }
 
   updateBirthdate (value) {
-    this.onUpdate('Birthdate', value)
+    this.update({
+      Birthdate: value
+    })
   }
 
   updateBirthdateNotApplicable (value) {
-    this.onUpdate('BirthdateNotApplicable', value)
+    this.update({
+      BirthdateNotApplicable: value
+    })
   }
 
   updateBirthplace (value) {
-    this.onUpdate('Birthplace', value)
+    this.update({
+      Birthplace: value
+    })
   }
 
   updateBirthplaceNotApplicable (value) {
-    this.onUpdate('BirthplaceNotApplicable', value)
+    this.update({
+      BirthplaceNotApplicable: value
+    })
   }
 
   updateAddress (value) {
-    this.onUpdate('Address', value)
+    this.update({
+      Address: value
+    })
   }
 
   updateAddressNotApplicable (value) {
-    this.onUpdate('AddressNotApplicable', value)
+    this.update({
+      AddressNotApplicable: value
+    })
   }
 
   updateEmployer (value) {
-    this.onUpdate('Employer', value)
+    this.update({
+      Employer: value
+    })
   }
 
   updateEmployerNotApplicable (value) {
-    this.onUpdate('EmployerNotApplicable', value)
+    this.update({
+      EmployerNotApplicable: value
+    })
   }
 
   updateEmployerAddress (value) {
-    this.onUpdate('EmployerAddress', value)
+    this.update({
+      EmployerAddress: value
+    })
   }
 
   updateEmployerAddressNotApplicable (value) {
-    this.onUpdate('EmployerAddressNotApplicable', value)
+    this.update({
+      EmployerAddressNotApplicable: value
+    })
   }
 
   updateHasAffiliations (response) {
-    this.onUpdate('HasAffiliations', response.value)
+    this.update({
+      HasAffiliations: response.value
+    })
   }
 
   updateAffiliations (value) {
-    this.onUpdate('Affiliations', value)
+    this.update({
+      Affiliations: value
+    })
   }
 
   render () {
     return (
       <div className="foreign-national">
-        <h3>{i18n.t('foreign.contacts.heading.name')}</h3>
-        <NotApplicable name="NameNotApplicable"
-                       className="na-name"
-                       label={i18n.t('foreign.contacts.label.idk')}
-                       or={i18n.m('foreign.contacts.para.or')}
-                       onUpdate={this.updateNameNotApplicable}
-                       onError={this.props.onError}>
-          <Name name="Name"
-                {...this.state.Name}
-                onUpdate={this.updateName}
-                onError={this.props.onError}
-                />
-        </NotApplicable>
+        <Field title={i18n.t('foreign.contacts.heading.name')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <NotApplicable name="NameNotApplicable"
+                         className="na-name"
+                         label={i18n.t('foreign.contacts.label.idk')}
+                         or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.NameNotApplicable}
+                         onUpdate={this.updateNameNotApplicable}
+                         required={this.props.required}
+                         onError={this.props.onError}>
+            <Name name="Name"
+                  {...this.props.Name}
+                  onUpdate={this.updateName}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                  />
+          </NotApplicable>
+        </Field>
 
-        <Show when={this.state.NameNotApplicable.applicable === false}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+        <Show when={this.props.NameNotApplicable.applicable === false}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NameExplanation"
                       className="name-explanation"
-                      {...this.state.NameExplanation}
+                      {...this.props.NameExplanation}
                       onUpdate={this.updateNameExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.firstcontact')}
                help="foreign.contacts.help.firstcontact"
-               adjustFor="label">
+               adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="FirstContact"
                        className="first-contact"
-                       {...this.state.FirstContact}
+                       {...this.props.FirstContact}
                        onUpdate={this.updateFirstContact}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.lastcontact')}
                help="foreign.contacts.help.lastcontact"
-               adjustFor="label">
+               adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="LastContact"
                        className="last-contact"
-                       {...this.state.LastContact}
+                       {...this.props.LastContact}
                        onUpdate={this.updateLastContact}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.methods')}
                help="foreign.contacts.help.methods"
-               adjustFor="p">
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="methods"
-                         selectedValues={this.state.Methods}>
+                         onError={this.props.onError}
+                         required={this.props.required}
+                         selectedValues={this.props.Methods}>
             <Checkbox name="methods-inperson"
                       label={i18n.m('foreign.contacts.label.inperson')}
                       value="In person"
@@ -308,21 +344,26 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={this.state.Methods.some(x => x === 'Other')}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+        <Show when={this.props.Methods.some(x => x === 'Other')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="MethodsExplanation"
                       className="methods-explanation"
-                      {...this.state.MethodsExplanation}
+                      {...this.props.MethodsExplanation}
                       onUpdate={this.updateMethodsExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.frequency')}
-               adjustFor="big-buttons">
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="frequency"
-                      selectedValue={this.state.Frequency}>
+                      required={this.props.required}
+                      onError={this.props.onError}
+                      selectedValue={this.props.Frequency}>
             <Radio name="frequency-daily"
                    label={i18n.m('foreign.contacts.label.daily')}
                    value="Daily"
@@ -368,22 +409,27 @@ export default class ForeignNational extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Show when={this.state.Frequency === 'Other'}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+        <Show when={this.props.Frequency === 'Other'}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="FrequencyExplanation"
                       className="frequency-explanation"
-                      {...this.state.FrequencyExplanation}
+                      {...this.props.FrequencyExplanation}
                       onUpdate={this.updateFrequencyExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
-                         selectedValues={this.state.Relationship}>
+                         required={this.props.required}
+                         onError={this.props.onError}
+                         selectedValues={this.props.Relationship}>
             <Checkbox name="relationship-professional"
                       label={i18n.m('foreign.contacts.label.professional')}
                       value="Professional"
@@ -415,127 +461,164 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={this.state.Relationship.some(x => x === 'Other' || x === 'Obligation')}>
-          <Field title={i18n.t('foreign.contacts.heading.explanation')}>
+        <Show when={this.props.Relationship.some(x => x === 'Other' || x === 'Obligation')}>
+          <Field title={i18n.t('foreign.contacts.heading.explanation')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="RelationshipExplanation"
                       className="relationship-explanation"
-                      {...this.state.RelationshipExplanation}
+                      {...this.props.RelationshipExplanation}
                       onUpdate={this.updateRelationshipExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
 
         <BranchCollection label={i18n.t('foreign.contacts.heading.aliases')}
-                          appendLabel={i18n.t('foreign.contacts.heading.aliases2')}
-                          help="foreign.contacts.help.aliases"
-                          className="aliases"
-                          items={this.state.Aliases}
-                          onUpdate={this.updateAliases}
-                          onError={this.props.onError}>
-          <h4>{i18n.t('foreign.contacts.heading.aliasname')}</h4>
-          <Name name="Alias" bind={true} />
+          appendLabel={i18n.t('foreign.contacts.heading.aliases2')}
+          help="foreign.contacts.help.aliases"
+          className="aliases"
+          items={this.props.Aliases}
+          onUpdate={this.updateAliases}
+          required={this.props.required}
+          onError={this.props.onError}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Field title={i18n.t('foreign.contacts.heading.aliasname')}>
+            <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+          </Field>
         </BranchCollection>
 
         <Field title={i18n.t('foreign.contacts.heading.citizenship')}
-               help="foreign.contacts.help.citizenship">
+          help="foreign.contacts.help.citizenship"
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Citizenship"
                    multiple={true}
                    className="citizenship"
-                   value={this.state.Citizenship}
+                   value={this.props.Citizenship}
                    onUpdate={this.updateCitizenship}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthdate')}
-               adjustFor="label">
+          adjustFor="label"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="BirthdateNotApplicable"
                          className="na-birthdate"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.BirthdateNotApplicable}
                          onUpdate={this.updateBirthdateNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <DateControl name="Birthdate"
-                         {...this.state.Birthdate}
+                         {...this.props.Birthdate}
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.birthplace')}
-               adjustFor="label">
+          adjustFor="label"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="BirthplaceNotApplicable"
                          className="na-birthplace"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.BirthplaceNotApplicable}
                          onUpdate={this.updateBirthplaceNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <Location name="Birthplace"
-                        className="birthplace"
-                        layout={Location.CITY_COUNTRY}
-                        {...this.state.Birthplace}
-                        onUpdate={this.updateBirthplace}
-                        onError={this.props.onError}
-                        />
+                      className="birthplace"
+                      layout={Location.CITY_COUNTRY}
+                      {...this.props.Birthplace}
+                      onUpdate={this.updateBirthplace}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.address')}
-               adjustFor="address">
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="AddressNotApplicable"
                          className="na-address"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.AddressNotApplicable}
                          onUpdate={this.updateAddressNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
-            <Address name="Address"
-                     className="current-address"
-                     {...this.state.Address}
-                     onUpdate={this.updateAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="Address"
+                      className="current-address"
+                      {...this.props.Address}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateAddress}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('foreign.contacts.heading.employer')}>
+        <Field title={i18n.t('foreign.contacts.heading.employer')}
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmployerNotApplicable"
                          className="na-employer"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.EmployerNotApplicable}
                          onUpdate={this.updateEmployerNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
             <Text name="Employer"
                   className="employer"
-                  {...this.state.Employer}
+                  {...this.props.Employer}
                   onUpdate={this.updateEmployer}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.employeraddress')}
-               adjustFor="address">
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmployerAddressNotApplicable"
                          className="na-employer-address"
                          label={i18n.t('foreign.contacts.label.idk')}
                          or={i18n.m('foreign.contacts.para.or')}
+                         {...this.props.EmployerAddressNotApplicable}
                          onUpdate={this.updateEmployerAddressNotApplicable}
+                         required={this.props.required}
                          onError={this.props.onError}>
-            <Address name="EmployerAddress"
-                     className="employer-address"
-                     {...this.state.EmployerAddress}
-                     onUpdate={this.updateEmployerAddress}
-                     onError={this.props.onError}
-                     />
+            <Location name="EmployerAddress"
+                      className="employer-address"
+                      {...this.props.EmployerAddress}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateEmployerAddress}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.hasaffiliations')}
-               adjustFor="buttons">
+          adjustFor="buttons"
+          scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="has-affiliations"
-                      selectedValue={this.state.HasAffiliations}>
+                      required={this.props.required}
+                      onError={this.props.onError}
+                      selectedValue={this.props.HasAffiliations}>
             <Radio name="affiliation_yes"
                    label={i18n.t('foreign.contacts.label.yes')}
                    value="Yes"
@@ -560,13 +643,15 @@ export default class ForeignNational extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Show when={this.state.HasAffiliations === 'Yes'}>
-          <Field title={i18n.t('foreign.contacts.heading.affiliations')}>
+        <Show when={this.props.HasAffiliations === 'Yes'}>
+          <Field title={i18n.t('foreign.contacts.heading.affiliations')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Affiliations"
                       className="affiliations"
-                      {...this.state.Affiliations}
+                      {...this.props.Affiliations}
                       onUpdate={this.updateAffiliations}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -584,7 +669,7 @@ ForeignNational.defaultProps = {
   Methods: [],
   MethodsNotApplicable: {},
   MethodsExplanation: {},
-  Frequency: [],
+  Frequency: '',
   FrequencyExplanation: {},
   Relationship: [],
   RelationshipExplanation: {},
@@ -601,5 +686,6 @@ ForeignNational.defaultProps = {
   EmployerAddress: {},
   HasAffiliations: '',
   Affiliations: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

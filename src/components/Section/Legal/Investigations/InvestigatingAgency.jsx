@@ -12,36 +12,29 @@ export default class InvestigatingAgency extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Agency: this.props.Agency,
-        Explanation: this.props.Explanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Agency: this.props.Agency,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateAgency (values) {
-    this.update([
-      { name: 'Agency', value: values.value }
-    ])
+    this.update({
+      Agency: values.value
+    })
   }
 
   updateExplanation (values) {
-    this.update([
-      { name: 'Explanation', value: values }
-    ])
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
     return (
       <div className={this.props.className}>
-        <RadioGroup className="investigative-agencies" selectedValue={this.props.Agency}>
+        <RadioGroup className="investigative-agencies" selectedValue={this.props.Agency} onError={this.props.onError} required={this.props.required}>
           <Radio label={i18n.m('legal.investigations.history.label.agency.dod')}
                  value="U.S. Department of Defense"
                  className="investigative-agency-dod"
@@ -96,12 +89,14 @@ export default class InvestigatingAgency extends ValidationElement {
           <Field title={i18n.t('legal.investigations.history.heading.agencyExplanation')}
                  titleSize="label"
                  help="legal.investigations.history.help.agencyExplanation"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       {...this.props.Explanation}
                       className="legal-investigations-history-agency-explanation"
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                   />
           </Field>
         </Show>
@@ -114,6 +109,7 @@ InvestigatingAgency.defaultProps = {
   className: 'investigative-agency',
   Agency: '',
   Explanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

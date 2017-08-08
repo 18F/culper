@@ -16,21 +16,47 @@ import { navigation } from '../../config'
  */
 class SectionTitle extends React.Component {
   render () {
-    let title = ''
+    const splitSubsections = (this.props.section.subsection || '').split('/')
+
+    let title = null
     navigation.forEach(s => {
       if (s.url === this.props.section.section) {
-        title = s.title
+        title = trail(breadcrumbs(splitSubsections, s))
       }
     })
 
     return (
       <div className="title">
-        <span className="title-text">
-          {title}
-        </span>
+        {title}
       </div>
     )
   }
+}
+
+/**
+ * Creates an array of breadcrumbs
+ */
+const breadcrumbs = (urls, node) => {
+  return (node.subsections || []).reduce((a, b) => {
+    if (!urls.includes(b.url)) {
+      return a
+    }
+
+    return a.concat(breadcrumbs(urls, b))
+  }, [node.title || node.name])
+}
+
+/**
+ * Takes an array of breadcrumbs and formats it in to a pretty trail
+ */
+const trail = (crumbs) => {
+  return crumbs.map((crumb, i, arr) => {
+    if (arr.length === i + 1) {
+      return <span className="title-text">{crumb}</span>
+    }
+
+    return <span className="crumb">{crumb} &gt; </span>
+  })
 }
 
 /**

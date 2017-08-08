@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import VoluntaryTreatment from './VoluntaryTreatment'
 import { DrugVoluntaryTreatmentsValidator } from '../../../../validators'
 
@@ -34,28 +34,25 @@ export default class VoluntaryTreatments extends SubsectionElement {
   }
 
   updateTreatmentVoluntary (values) {
-    this.update({TreatmentVoluntary: values})
+    this.update({
+      TreatmentVoluntary: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).VoluntaryTreatment || {}
     const range = DateSummary(o.TreatmentDates)
     const name = (o.TreatmentProvider || {}).value
-    const type = i18n.t('substance.drugs.voluntary.collection.itemType')
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <strong>
-            {name || i18n.t('substance.drugs.voluntary.collection.summary')}
-          </strong>
-        </span>
-        <span className="dates">
-          <strong>{range}</strong>
-        </span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.drugs.voluntary.collection.itemType'),
+      index: index,
+      left: name,
+      right: range,
+      placeholder: i18n.m('substance.drugs.voluntary.collection.summary')
+    })
   }
 
   render () {
@@ -63,24 +60,27 @@ export default class VoluntaryTreatments extends SubsectionElement {
       <div className="voluntary-treatments">
         <h2>{i18n.m('substance.drugs.heading.voluntaryTreatments')}</h2>
         <Branch name="TreatmentVoluntary"
-          className="treatment-voluntary"
-          value={this.props.TreatmentVoluntary}
-          onError={this.handleError}
-          onUpdate={this.updateTreatmentVoluntary}>
+                className="treatment-voluntary"
+                value={this.props.TreatmentVoluntary}
+                warning={true}
+                onError={this.handleError}
+                required={this.props.required}
+                onUpdate={this.updateTreatmentVoluntary}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.TreatmentVoluntary === 'Yes'}>
-          <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            summary={this.summary}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            description={i18n.t('substance.drugs.voluntary.collection.description')}
-            appendTitle={i18n.t('substance.drugs.voluntary.collection.appendTitle')}
-            appendLabel={i18n.t('substance.drugs.voluntary.collection.appendLabel')}>
-            <VoluntaryTreatment name="VoluntaryTreatment" bind={true} />
+          <Accordion defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     description={i18n.t('substance.drugs.voluntary.collection.description')}
+                     appendTitle={i18n.t('substance.drugs.voluntary.collection.appendTitle')}
+                     appendLabel={i18n.t('substance.drugs.voluntary.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <VoluntaryTreatment name="VoluntaryTreatment" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

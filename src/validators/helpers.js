@@ -173,6 +173,9 @@ export class BranchCollection {
     }
 
     for (let item of this.collection) {
+      if (item[this.key] === 'No') {
+        continue
+      }
       if (!isValidFunc(item)) {
         return false
       }
@@ -213,5 +216,6 @@ export const validSSN = (ssn) => {
   if (ssn.notApplicable === true) {
     return true
   }
-  return !!ssn.first && !!ssn.middle && !!ssn.last
+  return !!ssn.first && !!ssn.middle && !!ssn.last &&
+    ssn.first.length === 3 && ssn.middle.length === 2 && ssn.last.length === 4
 }

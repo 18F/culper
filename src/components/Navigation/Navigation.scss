@@ -4,10 +4,6 @@
 /* handle inner-application navigation */
 .eapp-navigation {
   padding: 1rem 0 2.5rem 0;
-
-  > * {
-    margin: 0 10%;
-  }
 }
 
 .form-navigation {
@@ -57,7 +53,7 @@
       width: 0.5rem;
       height: 0.5rem;
       border-radius: 50%;
-      top: 2rem;
+      top: 2.3rem;
       right: 0.6rem;
     }
 
@@ -123,16 +119,20 @@
 
   .section {
     font-size: 1.9rem;
-    border-bottom: 1px solid $eapp-grey-dark;
 
     > span > a {
       position: relative;
       border-left: 4px solid transparent;
       padding-left: 3.7rem;
+      border-bottom: 1px solid $eapp-grey-dark;
     }
 
-    > span > a.active {
+    &.open {
       border-bottom: 1px solid $eapp-grey-dark;
+    }
+
+    &:last-of-type {
+      border-bottom: transparent;
     }
 
     a {

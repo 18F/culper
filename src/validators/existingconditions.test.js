@@ -2,50 +2,6 @@ import ExistingConditionsValidator from './existingconditions'
 import Location from '../components/Form/Location'
 
 describe('Diagnosis validation', function () {
-  it('validates received treatment', () => {
-    const tests = [
-      {
-        state: {
-          ReceivedTreatment: 'Yes',
-          Explanation: null
-        },
-        expected: true
-      },
-      {
-        state: {
-          ReceivedTreatment: 'Decline',
-          Explanation: null
-        },
-        expected: true
-      },
-      {
-        state: {
-          ReceivedTreatment: 'No',
-          Explanation: {
-            value: 'The explanation'
-          }
-        },
-        expected: true
-      },
-      {
-        state: {
-          ReceivedTreatment: 'Nope'
-        },
-        expected: false
-      },
-      {
-        state: {
-          ReceivedTreatment: 'No',
-          Explanation: null
-        },
-        expected: false
-      }
-    ]
-    tests.forEach(test => {
-      expect(new ExistingConditionsValidator(test.state, null).validReceivedTreatment()).toBe(test.expected)
-    })
-  })
-
   it('validates did not follow', () => {
     const tests = [
       {
@@ -91,7 +47,7 @@ describe('Diagnosis validation', function () {
           ReceivedTreatment: 'Yes',
           TreatmentList: [
             {
-              Treatment: {
+              Diagnosis: {
                 Condition: 'Test',
                 Effective: 'Yes',
                 Explanation: {
@@ -155,7 +111,10 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          ReceivedTreatment: 'No'
+          ReceivedTreatment: 'No',
+          Explanation: {
+            value: 'Testing'
+          }
         },
         expected: true
       },
@@ -172,10 +131,30 @@ describe('Diagnosis validation', function () {
           TreatmentListBranch: 'No'
         },
         expected: false
+      },
+      {
+        state: {
+          ReceivedTreatment: 'Yes',
+          TreatmentList: [],
+          TreatmentListBranch: 'No'
+        },
+        expected: false
+      },
+      {
+        state: {
+          ReceivedTreatment: 'Decline'
+        },
+        expected: true
+      },
+      {
+        state: {
+          ReceivedTreatment: 'Nope'
+        },
+        expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new ExistingConditionsValidator(test.state, null).validTreatmentList()).toBe(test.expected)
+      expect(new ExistingConditionsValidator(test.state, test.props).validTreatmentList()).toBe(test.expected)
     })
   })
 
@@ -183,7 +162,7 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          HasCondition: 'No',
+          HasCondition: 'Yes',
           ReceivedTreatment: 'Yes',
           DidNotFollow: 'No',
           DidNotFollowExplanation: {
@@ -192,7 +171,7 @@ describe('Diagnosis validation', function () {
           Explanation: null,
           TreatmentList: [
             {
-              Treatment: {
+              Diagnosis: {
                 Condition: {
                   value: 'Test'
                 },
@@ -253,6 +232,12 @@ describe('Diagnosis validation', function () {
             }
           ],
           TreatmentListBranch: 'No'
+        },
+        expected: true
+      },
+      {
+        state: {
+          HasCondition: 'No'
         },
         expected: true
       }

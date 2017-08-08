@@ -96,9 +96,12 @@ const completeContacts = (promise) => {
 
 const completeSocialSecurityNumber = (promise) => {
   return promise
-      .then(() => { return setText('input[name="first"]', '123') })
-      .then(() => { return setText('input[name="middle"]', '45') })
-      .then(() => { return setText('input[name="last"]', '6789') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="first"]', '123') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="middle"]', '45') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="last"]', '6789') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="first"]', '123') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="middle"]', '45') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="last"]', '6789') })
 }
 
 const completePhysicalAttributes = (promise) => {
@@ -124,7 +127,7 @@ const filenum = () => {
 }
 
 const navigateToSection = (section) => {
-  const selector = '.section a[href="#/form/' + section + '"]'
+  const selector = '.section a[href="/form/' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -133,12 +136,25 @@ const navigateToSection = (section) => {
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const selector = '.section a[href="#/form/' + section + '/' + subsection + '"]'
+  const crumbs = subsection.split('/')
+  for (let i = 0; i < crumbs.length; i++) {
+    let path = ''
+    for (let j = 0; j < (i + 1); j++) {
+      if (path.length) {
+        path += '/'
+      }
+      path += crumbs[j]
+    }
+
+    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
+    client
+      .assert.visible(selector)
+      .click(selector)
+      .pause(3000)
+      .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-subsection.png')
+  }
+
   return client
-    .assert.visible(selector)
-    .click(selector)
-    .pause(3000)
-    .saveScreenshot('./screenshots/Identification/' + filenum() + '-navigate-subsection.png')
 }
 
 const navigateToNext = () => {

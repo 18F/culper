@@ -2,36 +2,11 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, RadioGroup, Radio, Svg, DateRange, DateControl, Text, Textarea, Field } from '../../../Form'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export default class MilitaryService extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Service: props.Service,
-      Status: props.Status,
-      Officer: props.Officer,
-      ServiceNumber: props.ServiceNumber,
-      Dates: props.Dates,
-      HasBeenDischarged: props.HasBeenDischarged,
-      DischargeType: props.DischargeType,
-      DischargeTypeOther: props.DischargeTypeOther,
-      DischargeReason: props.DischargeReason,
-      DischargeDate: props.DischargeDate
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateService = this.updateService.bind(this)
     this.updateStatus = this.updateStatus.bind(this)
     this.updateOfficer = this.updateOfficer.bind(this)
@@ -44,57 +19,84 @@ export default class MilitaryService extends ValidationElement {
     this.updateDischargeDate = this.updateDischargeDate.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      Service: this.props.Service,
+      Status: this.props.Status,
+      Officer: this.props.Officer,
+      ServiceNumber: this.props.ServiceNumber,
+      Dates: this.props.Dates,
+      HasBeenDischarged: this.props.HasBeenDischarged,
+      DischargeType: this.props.DischargeType,
+      DischargeTypeOther: this.props.DischargeTypeOther,
+      DischargeReason: this.props.DischargeReason,
+      DischargeDate: this.props.DischargeDate,
+      ...queue
     })
   }
 
   updateService (event) {
-    this.onUpdate('Service', event.target.value)
+    this.update({
+      Service: event.target.value
+    })
   }
 
   updateStatus (event) {
-    this.onUpdate('Status', event.target.value)
+    this.update({
+      Status: event.target.value
+    })
   }
 
   updateOfficer (event) {
-    this.onUpdate('Officer', event.target.value)
+    this.update({
+      Officer: event.target.value
+    })
   }
 
   updateServiceNumber (value) {
-    this.onUpdate('ServiceNumber', value)
+    this.update({
+      ServiceNumber: value
+    })
   }
 
   updateDates (value) {
-    this.onUpdate('Dates', value)
+    this.update({
+      Dates: value
+    })
   }
 
   updateDischarged (value, event) {
-    this.onUpdate('HasBeenDischarged', value)
-
     // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('DischargeType', null)
-      this.onUpdate('DischargeReason', null)
-      this.onUpdate('DischargeDate', null)
-    }
+    this.update({
+      HasBeenDischarged: value,
+      DischargeType: value !== 'Yes' ? null : this.props.DischargeType,
+      DischargeReason: value !== 'Yes' ? null : this.props.DischargeReason,
+      DischargeDate: value !== 'Yes' ? null : this.props.DischargeDate
+    })
   }
 
   updateDischargeType (event) {
-    this.onUpdate('DischargeType', event.target.value)
+    this.update({
+      DischargeType: event.target.value
+    })
   }
 
   updateDischargeTypeOther (value) {
-    this.onUpdate('DischargeTypeOther', value)
+    this.update({
+      DischargeTypeOther: value
+    })
   }
 
   updateDischargeReason (value) {
-    this.onUpdate('DischargeReason', value)
+    this.update({
+      DischargeReason: value
+    })
   }
 
   updateDischargeDate (value) {
-    this.onUpdate('DischargeDate', value)
+    this.update({
+      DischargeDate: value
+    })
   }
 
   render () {
@@ -102,9 +104,12 @@ export default class MilitaryService extends ValidationElement {
       <div className="military-service">
         <Field title={i18n.t('military.history.heading.service')}
                adjustFor="big-buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="service option-list eapp-extend-labels"
-                      selectedValue={this.state.Service}>
+                      required={this.props.required}
+                      onError={this.props.onError}
+                      selectedValue={this.props.Service}>
             <Radio name="service-airforce"
                    className="service-airforce"
                    label={i18n.t('military.history.label.airforce')}
@@ -185,12 +190,15 @@ export default class MilitaryService extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Show when={this.state.Service === 'AirNationalGuard' || this.state.Service === 'ArmyNationalGuard'}>
+        <Show when={this.props.Service === 'AirNationalGuard' || this.props.Service === 'ArmyNationalGuard'}>
           <Field title={i18n.t('military.history.heading.status')}
                  adjustFor="buttons"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup className="status option-list"
-                        selectedValue={this.state.Status}>
+                        required={this.props.required}
+                        onError={this.props.onError}
+                        selectedValue={this.props.Status}>
               <Radio name="status-activeduty"
                      className="status-activeduty"
                      label={i18n.t('military.history.label.activeduty')}
@@ -218,9 +226,12 @@ export default class MilitaryService extends ValidationElement {
 
         <Field title={i18n.t('military.history.heading.officer')}
                adjustFor="buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="officer option-list"
-                      selectedValue={this.state.Officer}>
+                      required={this.props.required}
+                      onError={this.props.onError}
+                      selectedValue={this.props.Officer}>
             <Radio name="officer-officer"
                    className="officer-officer"
                    label={i18n.t('military.history.label.officer')}
@@ -246,45 +257,54 @@ export default class MilitaryService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.history.heading.number')}
-               help="military.history.help.number">
+          help="military.history.help.number"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="ServiceNumber"
-                {...this.state.ServiceNumber}
+                {...this.props.ServiceNumber}
                 className="service-number"
                 onUpdate={this.updateServiceNumber}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field title={i18n.t('military.history.heading.dates')}
                help="military.history.help.dates"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      className="dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      label={i18n.t('military.history.label.dates')}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <h3>{i18n.t('military.history.heading.discharged')}</h3>
         <Branch name="has_beendischarged"
                 className="discharged"
-                value={this.state.HasBeenDischarged}
+                value={this.props.HasBeenDischarged}
                 onUpdate={this.updateDischarged}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.state.HasBeenDischarged === 'Yes'}>
+        <Show when={this.props.HasBeenDischarged === 'Yes'}>
           <div>
             <h2>{i18n.t('military.history.heading.details')}</h2>
 
             <Field title={i18n.t('military.history.heading.discharge.type')}
                    adjustFor="big-buttons"
-                   shrink={true}>
+                   shrink={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup className="discharge-type option-list"
-                          selectedValue={this.state.DischargeType}>
+                          required={this.props.required}
+                          onError={this.props.onError}
+                          selectedValue={this.props.DischargeType}>
                 <Radio name="discharge-type-honorable"
                        className="discharge-type-honorable"
                        label={i18n.m('military.history.label.discharge.type.honorable')}
@@ -328,26 +348,29 @@ export default class MilitaryService extends ValidationElement {
                        onError={this.props.onError}
                        />
               </RadioGroup>
-              <Show when={this.state.DischargeType === 'Other'}>
+              <Show when={this.props.DischargeType === 'Other'}>
                 <Text name="DischargeTypeOther"
-                      {...this.state.DischargeTypeOther}
+                      {...this.props.DischargeTypeOther}
                       label={i18n.t('military.history.label.discharge.type.otherex')}
                       className="discharge-type-otherex"
                       maxlength="100"
                       onUpdate={this.updateDischargeTypeOther}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
               </Show>
             </Field>
 
-            <Show when={this.state.DischargeType && this.state.DischargeType !== 'Honorable'}>
-              <Field adjustFor="labels">
+            <Show when={this.props.DischargeType && this.props.DischargeType !== 'Honorable'}>
+              <Field adjustFor="labels"
+                scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="DischargeReason"
-                          {...this.state.DischargeReason}
+                          {...this.props.DischargeReason}
                           className="discharge-reason"
                           label={i18n.t('military.history.label.discharge.reason')}
                           onUpdate={this.updateDischargeReason}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -355,13 +378,15 @@ export default class MilitaryService extends ValidationElement {
             <Field title={i18n.t('military.history.heading.discharge.date')}
                    help="military.history.help.discharge.date"
                    adjustFor="labels"
-                   shrink={true}>
+                   shrink={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="DischargeDate"
-                           {...this.state.DischargeDate}
+                           {...this.props.DischargeDate}
                            className="discharge-date"
                            hideDay={true}
                            onUpdate={this.updateDischargeDate}
                            onError={this.props.onError}
+                           required={this.props.required}
                            />
             </Field>
           </div>
@@ -372,5 +397,6 @@ export default class MilitaryService extends ValidationElement {
 }
 
 MilitaryService.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

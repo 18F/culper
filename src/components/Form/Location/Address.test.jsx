@@ -50,4 +50,9 @@ describe('The Address component', () => {
     component.find('.address-options .international input').simulate('change')
     expect(updates).toBe(3)
   })
+
+  it('Validates required', () => {
+    const component = mount(<Address country="Germany" required={true} />)
+    expect(component.find('.usa-input-error').length).toBe(2)
+  })
 })

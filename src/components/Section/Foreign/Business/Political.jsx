@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessPoliticalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -15,48 +15,43 @@ export default class Political extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignPolitical: this.props.HasForeignPolitical
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignPolitical: this.props.HasForeignPolitical,
+      ...queue
+    })
   }
 
   updateHasForeignPolitical (values) {
-    this.update([
-      { name: 'HasForeignPolitical', value: values }
-    ])
+    this.update({
+      HasForeignPolitical: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const pos = (obj.Position || {}).value || i18n.t('foreign.business.political.collection.summary.unknown')
-    const country = (obj.Country || {}).value || ''
     const dates = DateSummary(obj.Dates)
+    const pos = (obj.Position || {}).value || ''
+    const country = (obj.Country || {}).value || ''
     const text = country.length ? `${pos} (${country})` : pos
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.political.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{text}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.political.collection.summary.item'),
+      index: index,
+      left: text,
+      right: dates,
+      placeholder: i18n.m('foreign.business.political.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -65,15 +60,16 @@ export default class Political extends SubsectionElement {
         <Branch name="has_foreign_political"
                 label={i18n.t('foreign.business.political.heading.title')}
                 labelSize="h3"
-                help="foreign.business.political.help.branch"
                 value={this.props.HasForeignPolitical}
+                warning={true}
                 onUpdate={this.updateHasForeignPolitical}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignPolitical === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -81,49 +77,56 @@ export default class Political extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.political.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.political.collection.append')}>
+                     appendLabel={i18n.t('foreign.business.political.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.political.heading.position')}
-                   help="foreign.business.political.help.position"
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Position"
                     className="foreign-business-political-position"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.dates')}
                    help="foreign.business.political.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="foreign-business-political-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.country')}
-                   help="foreign.business.political.help.country"
-                   adjustFor="country">
+              adjustFor="country"
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="foreign-business-political-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.reason')}
-                   help="foreign.business.political.help.reason"
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="foreign-business-political-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.eligibility')}
-                   help="foreign.business.political.help.eligibility"
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Eligibility"
                     className="foreign-business-political-eligibility"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
           </Accordion>
@@ -138,6 +141,7 @@ Political.defaultProps = {
   HasForeignPolitical: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/political',

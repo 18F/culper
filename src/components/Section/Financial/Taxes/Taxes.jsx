@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary } from '../../../Summary'
 import { TaxesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Number, Field,
@@ -27,7 +28,7 @@ export default class Taxes extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasTaxes: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -54,16 +55,16 @@ export default class Taxes extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.t('financial.taxes.collection.summary.unknown')
     const year = (obj.Year || {}).value || ''
+    const agency = (obj.Agency || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.taxes.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{year}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.taxes.collection.summary.item'),
+      index: index,
+      left: agency,
+      right: year,
+      placeholder: i18n.m('financial.taxes.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -72,12 +73,14 @@ export default class Taxes extends SubsectionElement {
         <Branch name="has_taxes"
                 className="taxes-branch"
                 value={this.state.HasTaxes}
+                warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
@@ -89,19 +92,23 @@ export default class Taxes extends SubsectionElement {
 
             <Field title={i18n.t('financial.taxes.heading.failure')}
                    adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <FailureType name="Failure"
                            className="taxes-failure"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.year')}>
+            <Field title={i18n.t('financial.taxes.heading.year')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Number name="Year"
                       className="taxes-year"
                       placeholder={i18n.t('financial.taxes.placeholder.year')}
                       min="1000"
                       bind={true}
+                      required={this.props.required}
                       />
               <div className="flags">
                 <Checkbox name="YearEstimated"
@@ -113,34 +120,42 @@ export default class Taxes extends SubsectionElement {
               </div>
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.reason')}>
+            <Field title={i18n.t('financial.taxes.heading.reason')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="taxes-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.agency')}>
+            <Field title={i18n.t('financial.taxes.heading.agency')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="taxes-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.taxtype')}>
+            <Field title={i18n.t('financial.taxes.heading.taxtype')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="TaxType"
                     className="taxes-taxtype"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.amount')}>
+            <Field title={i18n.t('financial.taxes.heading.amount')}
+              scrollIntoView={this.props.scrollIntoView}>
               <div>
                 <Currency name="Amount"
                           className="taxes-amount"
                           placeholder={i18n.t('financial.taxes.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -155,6 +170,7 @@ export default class Taxes extends SubsectionElement {
 
             <Field title={i18n.t('financial.taxes.heading.date')}
                    adjustFor="label"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <NotApplicable name="DateNotApplicable"
                              label={i18n.t('financial.taxes.label.notapplicable')}
@@ -164,14 +180,17 @@ export default class Taxes extends SubsectionElement {
                              className="taxes-date"
                              hideDay={true}
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
 
-            <Field title={i18n.t('financial.taxes.heading.description')}>
+            <Field title={i18n.t('financial.taxes.heading.description')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Description"
                         className="taxes-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

@@ -4,14 +4,12 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader } from '../../Form'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
 import ApplicantBirthDate from './ApplicantBirthDate'
 import OtherNames from './OtherNames'
 import Physical from './Physical'
-import Location from '../../Form/Location/Location'
 import ContactInformation from './ContactInformation'
 
 class Identification extends SectionElement {
@@ -19,22 +17,17 @@ class Identification extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="identification intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 7 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       next="identification/name"
+                       nextLabel={i18n.t('identification.destination.name')}>
+            <h2>{i18n.t('identification.intro.title')}</h2>
+            {i18n.m('identification.intro.body')}
           </SectionView>
 
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        next="financial"
                        nextLabel={i18n.t('financial.destination.gambling')}
                        back="identification/physical"
@@ -46,6 +39,8 @@ class Identification extends SectionElement {
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
+                           required={true}
+                           scrollIntoView={false}
                            />
 
             <hr />
@@ -56,6 +51,8 @@ class Identification extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -65,6 +62,8 @@ class Identification extends SectionElement {
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
+                                required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -74,6 +73,8 @@ class Identification extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
+                                 required={true}
+                                 scrollIntoView={false}
                                  />
 
             <hr />
@@ -84,6 +85,8 @@ class Identification extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
+                                required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -93,6 +96,8 @@ class Identification extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -102,10 +107,14 @@ class Identification extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
           </SectionView>
 
           <SectionView name="name"
+                       back="identification/intro"
+                       backLabel={i18n.t('identification.destination.intro')}
                        next="identification/contacts"
                        nextLabel={i18n.t('identification.destination.contacts')}>
             <h2>{i18n.t('identification.name.title')}</h2>
@@ -180,7 +189,7 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.physical')}>
             <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
-                          value={this.props.ApplicantSSN}
+                          {...this.props.ApplicantSSN}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
@@ -240,7 +249,6 @@ export function processApplicantBirthDate (birthDate) {
 
 Identification.defaultProps = {
   section: 'identification',
-  defaultView: (props) => { return 'name' },
   store: 'Identification'
 }
 

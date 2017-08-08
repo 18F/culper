@@ -4,7 +4,7 @@ import { AlcoholVoluntaryCounselingsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import VoluntaryCounseling from './VoluntaryCounseling'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 
 export default class VoluntaryCounselings extends SubsectionElement {
   constructor (props) {
@@ -34,29 +34,25 @@ export default class VoluntaryCounselings extends SubsectionElement {
   }
 
   updateSoughtTreatment (values) {
-    this.update({SoughtTreatment: values})
+    this.update({
+      SoughtTreatment: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).VoluntaryCounseling || {}
     const counselor = o.TreatmentProviderName ? o.TreatmentProviderName.value : ''
     const counselingDates = DateSummary(o.CounselingDates)
-    const type = i18n.t('substance.alcohol.voluntaryCounseling.collection.itemType')
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <Show when={!counselor && !counselingDates}>
-            <strong>{i18n.t('substance.alcohol.voluntaryCounseling.collection.summary')}</strong>
-          </Show>
-          <Show when={counselor || counselingDates}>
-            <strong>{counselor}</strong>
-          </Show>
-        </span>
-        <span className="dates"><strong>{counselingDates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.alcohol.voluntaryCounseling.collection.itemType'),
+      index: index,
+      left: counselor,
+      right: counselingDates,
+      placeholder: i18n.m('substance.alcohol.voluntaryCounseling.collection.summary')
+    })
   }
 
   render () {
@@ -66,13 +62,15 @@ export default class VoluntaryCounselings extends SubsectionElement {
         <Branch name="SoughtTreatment"
                 className="sought-treatment"
                 value={this.props.SoughtTreatment}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateSoughtTreatment}>
+                required={this.props.required}
+                onUpdate={this.updateSoughtTreatment}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.SoughtTreatment === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -80,8 +78,9 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}>
-            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

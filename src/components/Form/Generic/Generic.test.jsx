@@ -48,6 +48,21 @@ describe('The generic component', () => {
     expect(component.find('input').hasClass('usa-input-success')).toEqual(true)
   })
 
+  it('renders if field is required', () => {
+    const expected = {
+      name: 'input-error',
+      label: 'Text input required',
+      type: 'text',
+      value: '',
+      required: true,
+      error: false,
+      focus: false,
+      valid: true
+    }
+    const component = mount(<Generic {...expected} />)
+    expect(component.find('.usa-input-error').length).toEqual(1)
+  })
+
   it('renders sane defaults', () => {
     const expected = {
       name: 'input-type-text',
@@ -88,6 +103,19 @@ describe('The generic component', () => {
     expect(tabbed).toBe(false)
     component.find('input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
+  })
+
+  it('does not autotab if text is selected', () => {
+    let tabbed = false
+    const expected = {
+      name: 'input-type-text',
+      value: '11',
+      maxlength: '2',
+      tabNext: () => { tabbed = true }
+    }
+    const component = mount(<Generic {...expected} />)
+    component.find('input').simulate('keydown', { keyCode: 48, target: { value: '1', selectionDirection: 'forward', selectionStart: 0, selectionEnd: 2 } })
+    expect(tabbed).toBe(false)
   })
 
   it('trims whitespace for validation', () => {

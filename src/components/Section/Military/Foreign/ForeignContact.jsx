@@ -1,32 +1,12 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Name, Address, DateRange, Text, Field } from '../../../Form'
-
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
+import { Name, Location, DateRange, Text, Field } from '../../../Form'
 
 export default class ForeignContact extends React.Component {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Name: props.Name,
-      Address: props.Address,
-      Title: props.Title,
-      Dates: props.Dates,
-      Frequency: props.Frequency
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
     this.updateTitle = this.updateTitle.bind(this)
@@ -34,57 +14,79 @@ export default class ForeignContact extends React.Component {
     this.updateFrequency = this.updateFrequency.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Address: this.props.Address,
+      Title: this.props.Title,
+      Dates: this.props.Dates,
+      Frequency: this.props.Frequency,
+      ...queue
     })
   }
 
   updateName (value) {
-    this.onUpdate('Name', value)
+    this.update({
+      Name: value
+    })
   }
 
   updateAddress (value) {
-    this.onUpdate('Address', value)
+    this.update({
+      Address: value
+    })
   }
 
   updateTitle (value) {
-    this.onUpdate('Title', value)
+    this.update({
+      Title: value
+    })
   }
 
   updateDates (value) {
-    this.onUpdate('Dates', value)
+    this.update({
+      Dates: value
+    })
   }
 
   updateFrequency (value) {
-    this.onUpdate('Frequency', value)
+    this.update({
+      Frequency: value
+    })
   }
 
   render () {
     return (
       <div className="foreign-contact">
-        <h3>{i18n.t('military.foreign.heading.contact.name')}</h3>
-        <Name name="Name"
-              className="foreign-contact-name"
-              {...this.state.Name}
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              />
+        <Field title={i18n.t('military.foreign.heading.contact.name')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Name name="Name"
+                className="foreign-contact-name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                />
+        </Field>
 
         <Field title={i18n.t('military.foreign.heading.contact.address')}
                adjustFor="address"
-               shrink={true}>
-          <Address name="Address"
-                   className="foreign-contact-address"
-                   {...this.state.Address}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
+          <Location name="Address"
+                    className="foreign-contact-address"
+                    {...this.props.Address}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.contact.title')}>
+        <Field title={i18n.t('military.foreign.heading.contact.title')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Title"
-                {...this.state.Title}
+                {...this.props.Title}
                 className="foreign-contact-title"
                 maxlength="100"
                 onUpdate={this.updateTitle}
@@ -95,19 +97,21 @@ export default class ForeignContact extends React.Component {
         <Field title={i18n.t('military.foreign.heading.contact.dates')}
                help="military.foreign.help.contact.dates"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      className="foreign-contact-dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      />
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.contact.frequency')}
-               help="military.foreign.help.contact.frequency">
+                help="military.foreign.help.contact.frequency"
+                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Frequency"
-                {...this.state.Frequency}
+                {...this.props.Frequency}
                 className="foreign-contact-frequency"
                 maxlength="100"
                 onUpdate={this.updateFrequency}
@@ -125,5 +129,6 @@ ForeignContact.defaultProps = {
   Title: {},
   Dates: {},
   Frequency: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

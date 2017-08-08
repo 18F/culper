@@ -28,6 +28,8 @@ export default class TravelPurpose extends ValidationElement {
   render () {
     return (
       <CheckboxGroup className={`travel-purpose ${this.props.className || ''}`.trim()}
+                     onError={this.props.onError}
+                     required={this.props.required}
                      selectedValues={this.props.value}>
         <Checkbox name="purpose-business"
                   label={i18n.m('foreign.travel.label.business')}
@@ -85,5 +87,6 @@ export default class TravelPurpose extends ValidationElement {
 
 TravelPurpose.defaultProps = {
   value: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

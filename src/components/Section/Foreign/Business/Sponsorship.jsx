@@ -1,11 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessSponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Text, Textarea, Country, DateControl, Address, Name,
-         BirthPlace, Location, DateRange, NotApplicable } from '../../../Form'
+         Text, Textarea, Country, DateControl, Name,
+         Location, DateRange, NotApplicable } from '../../../Form'
 
 export default class Sponsorship extends SubsectionElement {
   constructor (props) {
@@ -16,46 +16,41 @@ export default class Sponsorship extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignSponsorship: this.props.HasForeignSponsorship
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignSponsorship: this.props.HasForeignSponsorship,
+      ...queue
+    })
   }
 
   updateHasForeignSponsorship (values) {
-    this.update([
-      { name: 'HasForeignSponsorship', value: values }
-    ])
+    this.update({
+      HasForeignSponsorship: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.t('foreign.business.sponsorship.collection.summary.unknown'))
     const dates = DateSummary(obj.Dates)
+    const name = NameSummary(obj.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.sponsorship.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{name}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.sponsorship.collection.summary.item'),
+      index: index,
+      left: name,
+      right: dates,
+      placeholder: i18n.m('foreign.business.sponsorship.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -66,13 +61,15 @@ export default class Sponsorship extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.sponsorship.help.branch"
                 value={this.props.HasForeignSponsorship}
+                warning={true}
                 onUpdate={this.updateHasForeignSponsorship}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignSponsorship === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -80,123 +77,152 @@ export default class Sponsorship extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.sponsorship.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.sponsorship.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}>
-            <h3>{i18n.t('foreign.business.sponsorship.heading.name')}</h3>
-            <Name name="Name"
-                  className="foreign-business-sponsorship-name"
-                  bind={true}
-                  />
+                     appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
+         <Field title={i18n.t('foreign.business.sponsorship.heading.name')}
+           scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="foreign-business-sponsorship-name"
+                    bind={true}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+          </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.birthdate')}
                    help="foreign.business.sponsorship.help.birthdate"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="BirthdateNotApplicable"
                              label={i18n.t('foreign.business.sponsorship.label.idk')}
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <DateControl name="Birthdate"
                              className="foreign-business-sponsorship-birthdate"
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.birthplace')}
-                   help="foreign.business.sponsorship.help.birthplace"
                    adjustFor="birthplace"
-                   validate={false}>
+                   validate={false}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Birthplace"
-                          layout={Location.CITY_COUNTRY}
-                          fields={['city', 'country']}
-                          help=""
-                          label={i18n.t('foreign.business.sponsorship.label.birthplace')}
-                          cityPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.city')}
-                          countryPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.country')}
-                          hideCounty={true}
-                          className="foreign-business-sponsorship-birthplace"
-                          bind={true}
-                          />
+                        layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
+                        label={i18n.t('foreign.business.sponsorship.label.birthplace')}
+                        cityPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.city')}
+                        countryPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.country')}
+                        className="foreign-business-sponsorship-birthplace"
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.address')}
                    help="foreign.business.sponsorship.help.address"
-                   adjustFor="address">
-              <Address name="Address"
-                       className="foreign-business-sponsorship-address"
-                       bind={true}
-                       />
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Location name="Address"
+                        className="foreign-business-sponsorship-address"
+                        layout={Location.ADDRESS}
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.citizenship')}
                    help="foreign.business.sponsorship.help.citizenship"
-                   adjustFor="country">
+                   adjustFor="country"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Country name="Citizenship"
                        className="foreign-business-sponsorship-citizenship"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.organization')}
-                   help="foreign.business.sponsorship.help.organization"
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="OrganizationNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Organization"
                       className="foreign-business-sponsorship-organization"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.organizationaddress')}
                    help="foreign.business.sponsorship.help.organizationaddress"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="OrganizationAddressNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
-                <Address name="OrganizationAddress"
-                         className="foreign-business-sponsorship-organizationaddress"
-                         bind={true}
-                         />
+                <Location name="OrganizationAddress"
+                          className="foreign-business-sponsorship-organizationaddress"
+                          layout={Location.ADDRESS}
+                          geocode={true}
+                          bind={true}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
+                          />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.dates')}
                    help="foreign.business.sponsorship.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="foreign-business-sponsorship-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.residence')}
-                   help="foreign.business.sponsorship.help.residence"
-                   adjustFor="address no-buttons">
-              <Address name="Residence"
-                       className="foreign-business-sponsorship-residence"
-                       disableToggle={true}
-                       bind={true}
-                       />
+              adjustFor="address no-buttons"
+              scrollIntoView={this.props.scrollIntoView}>
+              <Location name="Residence"
+                        className="foreign-business-sponsorship-residence"
+                        disableToggle={true}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.stay')}
-                   help="foreign.business.sponsorship.help.stay"
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Stay"
                         className="foreign-business-sponsorship-stay"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.sponsorship')}
-                   help="foreign.business.sponsorship.help.sponsorship"
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Sponsorship"
                         className="foreign-business-sponsorship-sponsorship"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -211,6 +237,7 @@ Sponsorship.defaultProps = {
   HasForeignSponsorship: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/sponsorship',

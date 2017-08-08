@@ -1,5 +1,5 @@
 import DateRangeValidator from './daterange'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validBranch, validGenericTextfield, validDateField } from './helpers'
 
 export default class ReceivedCounselingsValidator {
@@ -67,10 +67,10 @@ export class ReceivedCounselingValidator {
 
   validAddress () {
     if (this.useSameAddress === 'Yes') {
-      return new AddressValidator(this.treatmentProviderAddress).isValid()
+      return new LocationValidator(this.treatmentProviderAddress).isValid()
     }
-    return new AddressValidator(this.treatmentProviderAddress).isValid() &&
-      new AddressValidator(this.agencyAddress).isValid()
+    return new LocationValidator(this.treatmentProviderAddress).isValid() &&
+      new LocationValidator(this.agencyAddress).isValid()
   }
 
   isValid () {

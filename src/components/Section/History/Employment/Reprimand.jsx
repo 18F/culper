@@ -34,31 +34,39 @@ export default class Reprimand extends ValidationElement {
   render () {
     return (
       <BranchCollection label={i18n.t('history.employment.default.reprimand.label')}
-                        appendLabel={i18n.t('history.employment.default.reprimand.append')}
-                        help="history.employment.default.reprimand.help"
-                        items={this.state.Reasons}
-                        onUpdate={this.updateReasons}
-                        onError={this.props.onError}>
+        appendLabel={i18n.t('history.employment.default.reprimand.append')}
+        help="history.employment.default.reprimand.help"
+        items={this.state.Reasons}
+        className="reprimand-branch"
+        onUpdate={this.updateReasons}
+        onError={this.props.onError}
+        required={this.props.required}
+        scrollIntoView={this.props.scrollIntoView}>
         <div>
           <Field title={i18n.t('history.employment.default.reprimand.description.label')}
-                 titleSize="h4"
-                 className="explanation-left">
+            titleSize="h4"
+            className="explanation-left"
+            required={this.props.required}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Text"
-                      bind={true}
-                      maxlength="100"
-                      onError={this.props.onError}
-                      />
+              bind={true}
+              maxlength="100"
+              onError={this.props.onError}
+              required={this.props.required}
+            />
           </Field>
           <Field title={i18n.t('history.employment.default.reprimand.date.label')}
-                 titleSize="h4"
-                 className="date-left"
-                 adjustFor="labels"
-                 shrink={true}>
+            titleSize="h4"
+            className="date-left"
+            adjustFor="labels"
+            shrink={true}
+            scrollIntoView={this.props.scrollIntoView}>
             <DateControl name="Date"
-                         bind={true}
-                         hideDay={true}
-                         onError={this.props.onError}
-                         />
+              bind={true}
+              hideDay={true}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
           </Field>
         </div>
       </BranchCollection>

@@ -82,8 +82,7 @@ export default class Employment extends SubsectionElement {
   render () {
     return (
       <div className="employment">
-        <Accordion minimum="1"
-                   scrollTo={this.props.scrollTo}
+        <Accordion scrollTo={this.props.scrollTo}
                    defaultState={this.props.defaultState}
                    items={this.props.value}
                    sort={this.props.sort}
@@ -96,8 +95,9 @@ export default class Employment extends SubsectionElement {
                    customSummary={EmploymentCustomSummary}
                    customDetails={this.customEmploymentDetails}
                    description={i18n.t('history.employment.default.collection.summary.title')}
-                   appendLabel={i18n.t('history.employment.default.collection.append')}>
-          <EmploymentItem name="Item" bind={true} />
+                   appendLabel={i18n.t('history.employment.default.collection.append')}
+                   scrollIntoView={this.props.scrollIntoView}>
+          <EmploymentItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )

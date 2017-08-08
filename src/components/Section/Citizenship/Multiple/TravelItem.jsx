@@ -1,54 +1,60 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Field, Country, DateRange } from '../../../Form'
-import { sendUpdate } from './Multiple'
 
 export default class TravelItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Country: props.Country,
-      Dates: props.Dates
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateCountry = this.updateCountry.bind(this)
     this.updateDates = this.updateDates.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      Country: this.props.Country,
+      Dates: this.props.Dates,
+      ...queue
     })
   }
 
   updateCountry (values) {
-    this.onUpdate('Country', values)
+    this.update({
+      Country: values
+    })
   }
 
   updateDates (values) {
-    this.onUpdate('Dates', values)
+    this.update({
+      Dates: values
+    })
   }
 
   render () {
     return (
       <div className="citizenship-item">
-        <Field title={i18n.t('citizenship.multiple.heading.travel.country')}>
+        <Field title={i18n.t('citizenship.multiple.heading.travel.country')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
-                   {...this.state.Country}
+                   className="travel-item-country"
+                   {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.travel.dates')}
                help="citizenship.multiple.help.travel.dates"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-                     {...this.state.Dates}
+                     className="travel-item-dates"
+                     {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
       </div>
@@ -59,5 +65,6 @@ export default class TravelItem extends ValidationElement {
 TravelItem.defaultProps = {
   Country: {},
   Dates: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

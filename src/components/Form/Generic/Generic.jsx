@@ -1,8 +1,16 @@
 import React from 'react'
-import ValidationElement, { newGuid } from '../ValidationElement'
+import ValidationElement from '../ValidationElement'
 
 export const autotab = (event, maxlength, back, next) => {
   const input = event.target
+
+  // If there is a selection (highlighted text) within the element then we
+  // need to let normal operations take precedence.
+  const highlighted = ((input.selectionEnd || 0) - (input.selectionStart || 0)) !== 0
+  if (highlighted) {
+    return
+  }
+
   const value = input.value
   const code = event.keyCode
   const backCodes = [8, 46]
@@ -87,7 +95,7 @@ export default class Generic extends ValidationElement {
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: value.length ? err.func(value, this.props) : null,
+        valid: err.func(value, this.props),
         uid: this.state.uid
       }
     })) || []
@@ -202,14 +210,29 @@ Generic.defaultProps = {
 
 Generic.errors = [
   {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!value
+      }
+      return true
+    }
+  },
+  {
     code: 'length',
     func: (value, props) => {
+      if (!value) {
+        return null
+      }
       return value.length >= parseInt(props.minlength) && value.length <= parseInt(props.maxlength)
     }
   },
   {
     code: 'pattern',
     func: (value, props) => {
+      if (!value) {
+        return null
+      }
       const re = new RegExp(props.pattern)
       return re.test(value)
     }

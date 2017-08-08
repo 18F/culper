@@ -11,7 +11,7 @@ export default class ApoFpo extends ValidationElement {
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
-        code: `apofpo.${err.code}`,
+        code: `address.apofpo.${err.code}`,
         valid: err.valid,
         uid: err.uid
       }
@@ -34,6 +34,7 @@ export default class ApoFpo extends ValidationElement {
             onError={this.handleError}
             tabBack={this.props.tabBack}
             tabNext={this.props.tabNext}
+            required={this.props.required}
             />
     )
   }
@@ -42,7 +43,8 @@ export default class ApoFpo extends ValidationElement {
 ApoFpo.defaultProps = {
   tabBack: () => {},
   tabNext: () => {},
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  required: false
 }
 
 ApoFpo.errors = []

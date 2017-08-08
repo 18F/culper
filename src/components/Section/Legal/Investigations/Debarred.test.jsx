@@ -12,7 +12,7 @@ describe('The legal investigations debarred component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<Debarred onUpdate={onUpdate} />)
-    component.find('.legal-investigations-debarred-has-debarment .yes input').simulate('click')
+    component.find('.legal-investigations-debarred-has-debarment .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 
@@ -40,7 +40,7 @@ describe('The legal investigations debarred component', () => {
       ListBranch: ''
     }
     const component = mount(<Debarred {...props} />)
-    const text = component.find('.accordion .summary .left .content').text()
+    const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('U.S. Department of Defense')
     expect(text).toContain('1/2010')
   })

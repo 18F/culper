@@ -20,7 +20,6 @@ import Accordion from './Accordion'
 import Field from './Field'
 
 // Composite components
-import Address from './Address'
 import City from './City'
 import County from './County'
 import Country from './Country'
@@ -46,6 +45,7 @@ import SSN from './SSN'
 import ForeignBornDocuments from './ForeignBornDocuments/ForeignBornDocuments'
 import Currency from './Currency'
 import Location from './Location'
+import Spinner from './Spinner'
 
 export {
   ValidationElement,
@@ -60,7 +60,6 @@ export {
   Checkbox,
   Radio,
   DateControl,
-  Address,
   City,
   County,
   Country,
@@ -90,5 +89,6 @@ export {
   SSN,
   ForeignBornDocuments,
   Currency,
-  Location
+  Location,
+  Spinner
 }

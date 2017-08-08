@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessVotingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -15,46 +15,41 @@ export default class Voting extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignVoting: this.props.HasForeignVoting
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignVoting: this.props.HasForeignVoting,
+      ...queue
+    })
   }
 
   updateHasForeignVoting (values) {
-    this.update([
-      { name: 'HasForeignVoting', value: values }
-    ])
+    this.update({
+      HasForeignVoting: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const country = (obj.Country || {}).value || i18n.t('foreign.business.voting.collection.summary.unknown')
     const date = DateSummary(obj.Date)
+    const country = (obj.Country || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.voting.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{country}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.voting.collection.summary.item'),
+      index: index,
+      left: country,
+      right: date,
+      placeholder: i18n.m('foreign.business.voting.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -63,15 +58,16 @@ export default class Voting extends SubsectionElement {
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
                 labelSize="h3"
-                help="foreign.business.voting.help.branch"
                 value={this.props.HasForeignVoting}
+                warning={true}
                 onUpdate={this.updateHasForeignVoting}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignVoting === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -79,40 +75,46 @@ export default class Voting extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.voting.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.voting.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.voting.collection.append')}>
+                     appendLabel={i18n.t('foreign.business.voting.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.voting.heading.date')}
                    help="foreign.business.voting.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="foreign-business-voting-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.country')}
-                   help="foreign.business.voting.help.country"
-                   adjustFor="country">
+                adjustFor="country"
+                scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="foreign-business-voting-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.reason')}
-                   help="foreign.business.voting.help.reason"
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="foreign-business-voting-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.voting.heading.eligibility')}
-                   help="foreign.business.voting.help.eligibility"
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Eligibility"
                     className="foreign-business-voting-eligibility"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
           </Accordion>
@@ -127,6 +129,7 @@ Voting.defaultProps = {
   HasForeignVoting: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/voting',

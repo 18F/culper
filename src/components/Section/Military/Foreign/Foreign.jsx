@@ -13,9 +13,7 @@ export default class Foreign extends SubsectionElement {
   }
 
   updateList (collection) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({ List: collection })
-    }
+    this.props.onUpdate({ List: collection })
   }
 
   render () {
@@ -26,11 +24,15 @@ export default class Foreign extends SubsectionElement {
                           appendLabel={i18n.t('military.foreign.collection.foreign.appendTitle')}
                           appendSize="h2"
                           onUpdate={this.updateList}
-                          onError={this.handleError}>
+                          required={this.props.required}
+                          onError={this.handleError}
+                          scrollIntoView={this.props.scrollIntoView}>
           <ForeignService name="Item"
                           bind={true}
                           defaultState={this.props.defaultState}
                           onError={this.handleError}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
                           />
         </BranchCollection>
       </div>
@@ -39,6 +41,7 @@ export default class Foreign extends SubsectionElement {
 }
 
 Foreign.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'foreign',

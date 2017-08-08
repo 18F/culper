@@ -19,6 +19,8 @@ export default class Field extends ValidationElement {
     this.toggleComments = this.toggleComments.bind(this)
     this.handleError = this.handleError.bind(this)
     this.children = this.children.bind(this)
+
+    this.errors = []
   }
 
   /**
@@ -54,7 +56,7 @@ export default class Field extends ValidationElement {
   }
 
   handleError (value, arr = []) {
-    let errors = [...this.state.errors]
+    let errors = [...this.errors]
     if (arr.length === 0) {
       if (errors.length && errors.some(err => err.valid === false)) {
         this.scrollIntoView()
@@ -71,6 +73,8 @@ export default class Field extends ValidationElement {
       }
     }
 
+    // Explain this...
+    this.errors = [...errors]
     this.setState({ errors: errors }, () => {
       if (errors.length && errors.some(err => err.valid === false)) {
         this.scrollIntoView()
@@ -180,7 +184,18 @@ export default class Field extends ValidationElement {
       )
     }
 
-    const errors = (this.state.errors || []).filter(err => err.valid === false)
+    let stateErrors = this.props.filterErrors(this.state.errors || [])
+    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1)
+    const required = stateErrors
+      .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
+      .sort((e1, e2) => {
+        return e1.code.split('.').length - e2.code.split('.').length
+      })
+
+    if (required.length) {
+      errors = errors.concat(required[0])
+    }
+
     if (errors.length) {
       const markup = errors.map(err => {
         return message(`error.${err.code}`)
@@ -248,6 +263,10 @@ export default class Field extends ValidationElement {
    * help message into view so that users can see the message without having to manually scroll.
    */
   scrollIntoView () {
+    if (!this.refs.messages) {
+      return
+    }
+
     // Grab the bottom position for the help container
     const helpBottom = this.refs.messages.getBoundingClientRect().bottom
 
@@ -273,13 +292,13 @@ export default class Field extends ValidationElement {
         {this.title()}
         <div className="table">
           <span className="content">
+            <span className="icon">
+              {this.icon()}
+            </span>
             <span className={klassComponent}>
               {this.children(this.props.children)}
               {this.comments()}
               {this.commentsButton()}
-            </span>
-            <span className="icon">
-              {this.icon()}
             </span>
           </span>
         </div>
@@ -310,5 +329,6 @@ Field.defaultProps = {
   commentsRemove: 'comments.remove',
   validate: true,
   shrink: false,
-  scrollIntoView: true
+  scrollIntoView: true,
+  filterErrors: (errors) => { return errors }
 }

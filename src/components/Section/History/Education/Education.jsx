@@ -35,10 +35,9 @@ export default class Education extends SubsectionElement {
   render () {
     return (
       <div className="education">
-        <Accordion minimum="1"
-                   scrollTo={this.props.scrollTo}
+        <Accordion scrollTo={this.props.scrollTo}
                    defaultState={this.props.defaultState}
-                   items={this.props.value}
+                   items={this.props.value.List}
                    sort={this.props.sort}
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
@@ -47,8 +46,9 @@ export default class Education extends SubsectionElement {
                    byline={this.customEducationByline}
                    customSummary={EducationCustomSummary}
                    description={i18n.t('history.education.collection.school.summary.title')}
-                   appendLabel={i18n.t('history.education.collection.school.append')}>
-          <EducationItem name="Item" bind={true} />
+                   appendLabel={i18n.t('history.education.collection.school.append')}
+                   scrollIntoView={this.props.scrollIntoView}>
+          <EducationItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -69,8 +69,6 @@ Education.defaultProps = {
   subsection: 'education',
   dispatch: () => {},
   validator: (state, props) => {
-    return props.value.every(x => {
-      return new EducationValidator(x.Item, null).isValid()
-    })
+    return new EducationValidator(props.value, props.value).isValid()
   }
 }

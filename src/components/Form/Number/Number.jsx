@@ -58,14 +58,16 @@ export default class Number extends ValidationElement {
   }
 
   handleError (value, arr) {
-    // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr.concat(this.constructor.errors.map(err => {
+    let errors = arr.concat(this.constructor.errors.map(err => {
       return {
         code: err.code,
         valid: err.func(value, this.props),
         uid: this.state.uid
       }
-    })))
+    }))
+
+    // Take the original and concatenate our new error values to it
+    return this.props.onError(value, errors)
   }
 
   render () {

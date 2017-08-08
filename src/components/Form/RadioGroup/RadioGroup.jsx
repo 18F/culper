@@ -1,30 +1,84 @@
 import React from 'react'
 import Radio from '../Radio'
+import ValidationElement from '../ValidationElement'
 
-export default function RadioGroup (props) {
-  const id = new Date().getTime()
-  const name = props.name ? `${props.name}-${id}` : null
-
-  const children = React.Children.map(props.children, (child) => {
-    // If type is not Radio, stop
-    if (child.type !== Radio) {
-      return child
+export default class RadioGroup extends ValidationElement {
+  constructor (props) {
+    super(props)
+    this.state = {
+      uid: `${props.name}-${super.guid()}`,
+      error: false
     }
+    this.onUpdate = this.onUpdate.bind(this)
+  }
 
-    // Check if current value matches one of the child radio options
-    let checked = (child.props.value === props.selectedValue)
+  componentDidMount () {
+    this.onUpdate({value: this.props.selectedValue})
+  }
 
-    // Use function when you want custom behavior
-    if (props.selectedValueFunc) {
-      checked = props.selectedValueFunc(child.props)
-    }
+  onUpdate (option) {
+    const selectedValue = option.value
+    const errors = this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(selectedValue, this.props),
+        uid: this.state.uid
+      }
+    })
 
+    this.setState({
+      error: errors.some(x => x.valid === false)
+    })
+
+    this.props.onError(selectedValue, errors)
+  }
+
+  render () {
+    const id = new Date().getTime()
+    const name = this.props.name ? `${this.props.name}-${id}` : null
+    const children = React.Children.map(this.props.children, (child) => {
+      // If type is not Radio, stop
+      if (child.type !== Radio) {
+        return child
+      }
+
+      // Check if current value matches one of the child radio options
+      let checked = (child.props.value === this.props.selectedValue)
+
+      // Use function when you want custom behavior
+      if (this.props.selectedValueFunc) {
+        checked = this.props.selectedValueFunc(child.props)
+      }
+      const onUpdate = (option) => {
+        if (child.props.onUpdate) {
+          child.props.onUpdate(option)
+        }
+        this.onUpdate(option)
+      }
+
+      return (
+        <child.type {...child.props} name={name || child.props.name} checked={checked} onUpdate={onUpdate}></child.type>
+      )
+    })
+    const classes = ['blocks', this.props.className, (this.state.error === true ? 'usa-input-error' : '')].join(' ').trim()
     return (
-      <child.type {...child.props} name={name || child.props.name} checked={checked}></child.type>
+      <div className={classes}>{children}</div>
     )
-  })
-
-  return (
-    <div className={`blocks ${props.className || ''}`.trim()}>{children}</div>
-  )
+  }
 }
+
+RadioGroup.defaultProps = {
+  onError: (value, arr) => { return arr }
+}
+
+RadioGroup.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!value
+      }
+      return true
+    }
+  }
+]

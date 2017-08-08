@@ -17,10 +17,10 @@ describe('The passport component', () => {
 
   it('display passport field if "Yes" is selected', () => {
     const expected = {
-      name: 'passport'
+      name: 'passport',
+      HasPassport: 'Yes'
     }
     const component = mount(<Passport {...expected} />)
-    component.find({type: 'radio', name: 'has_passport', value: 'Yes'}).simulate('change')
     expect(component.find('input[name="has_passport"]').length).toEqual(2)
     expect(component.find('.number input').length).toEqual(1)
     expect(component.find('.month input').length).toEqual(2)
@@ -29,7 +29,8 @@ describe('The passport component', () => {
 
   it('display no passport information if "No" is selected', () => {
     const expected = {
-      name: 'passport'
+      name: 'passport',
+      HasPassport: 'No'
     }
     const component = mount(<Passport name={expected.name} HasPassport="No" />)
     expect(component.find('input[name="has_passport"]').length).toEqual(2)
@@ -43,6 +44,7 @@ describe('The passport component', () => {
     let first = ''
     const expected = {
       name: 'passport',
+      HasPassport: 'Yes',
       onUpdate: (values) => {
         first = values.Name.first
       },
@@ -58,7 +60,6 @@ describe('The passport component', () => {
       ]
     }
     const component = mount(<Passport {...expected} />)
-    component.find({type: 'radio', name: 'has_passport', value: 'Yes'}).simulate('change')
     expect(component.find('.modal').length).toEqual(1)
     component.find('.suggestion .action button').first().simulate('click')
     expect(first).toEqual(expected.suggestedNames[0].first)
@@ -97,7 +98,23 @@ describe('The passport component', () => {
     }
     const component = mount(<Passport {...data} name={'passport'} />)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
+    component.find('.branch .yes input').simulate('change')
+    component.find('.name .first input').simulate('change')
+    component.find('.passport-book input').simulate('change')
+    component.find('.passport-number input').simulate('change')
+    component.find('.passport-issued .day input').simulate('change')
+    component.find('.passport-expiration .day input').simulate('change')
     component.find({type: 'radio', name: 'passport-card', value: 'Card'}).simulate('change')
-    expect(component.find({type: 'radio', name: 'passport-card', value: 'Card'}).hasClass('selected')).toBe(true)
+  })
+
+  it('can render with regular expression for passport card', () => {
+    const props = {
+      HasPassport: 'Yes',
+      Card: 'Card',
+      reCard: 'test'
+    }
+    const component = mount(<Passport {...props} />)
+    expect(component.find('.number').length).toBe(1)
+    expect(component.find('[pattern="test"]').length).toBe(1)
   })
 })

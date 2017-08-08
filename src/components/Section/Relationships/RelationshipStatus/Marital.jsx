@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { MaritalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Show, RadioGroup, Radio, Accordion } from '../../../Form'
@@ -10,63 +11,58 @@ export default class Marital extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Status: props.Status,
-      CivilUnion: props.CivilUnion,
-      DivorcedList: props.DivorcedList,
-      DivorcedListBranch: props.DivorcedListBranch
-    }
-
     this.update = this.update.bind(this)
     this.updateStatus = this.updateStatus.bind(this)
     this.updateCivilUnion = this.updateCivilUnion.bind(this)
     this.updateDivorcedList = this.updateDivorcedList.bind(this)
   }
 
-  update (field, values) {
-    this.setState({[field]: values}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          Status: this.state.Status,
-          CivilUnion: this.state.CivilUnion
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      Status: this.props.Status,
+      CivilUnion: this.props.CivilUnion,
+      DivorcedList: this.props.DivorcedList,
+      DivorcedListBranch: this.props.DivorcedListBranch,
+      ...queue
     })
   }
 
   updateStatus (values) {
-    this.update('Status', values.target.value)
+    this.update({
+      Status: values.target.value
+    })
   }
 
   updateCivilUnion (values) {
-    this.update('CivilUnion', values)
+    this.update({
+      CivilUnion: values
+    })
   }
 
   updateDivorcedList (values) {
-    this.update('DivorcedList', values.items)
-    this.update('DivorcedListBranch', values.branch)
+    this.update({
+      DivorcedList: values.items,
+      DivorcedListBranch: values.branch
+    })
   }
 
   divorceSummary (item, index) {
-    const itemType = i18n.t('relationships.civilUnion.divorce.collection.itemType')
     const o = (item || {}).Divorce || {}
-    const date = (o.DateDivorced || {}).date ? `${o.DateDivorced.month}/${o.DateDivorced.year}` : ''
-    const status = o.Status || ''
-    const name = o.Name
-          ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
-          : i18n.t('relationships.relatives.collection.summary.unknown')
-    return (
-      <span>
-        <span className="index">{itemType}:</span>
-        <span className="info"><strong>{name} {date} {status}</strong></span>
-      </span>
-    )
+    const date = DateSummary(o.DateDivorced)
+    const name = NameSummary(o.Name)
+    return Summary({
+      type: i18n.t('relationships.civilUnion.divorce.collection.itemType'),
+      index: index,
+      left: name,
+      right: date,
+      placeholder: i18n.m('relationships.relatives.collection.summary.unknown')
+    })
   }
 
   showDivorce () {
-    if (['InCivilUnion', 'Separated'].includes(this.state.Status)) {
-      return (this.state.CivilUnion || {}).Divorced === 'Yes'
-    } else if (['Annulled', 'Divorced', 'Widowed'].includes(this.state.Status)) {
+    if (['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)) {
+      return (this.props.CivilUnion || {}).Divorced === 'Yes'
+    } else if (['Annulled', 'Divorced', 'Widowed'].includes(this.props.Status)) {
       return true
     }
 
@@ -76,11 +72,18 @@ export default class Marital extends SubsectionElement {
   render () {
     return (
       <div className="marital">
-        <Field title={i18n.t('relationships.marital.heading.title')}>
-          <RadioGroup name="status" className="status-options" selectedValue={this.state.Status}>
+        <Field title={i18n.t('relationships.marital.heading.title')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
                    value="Never"
+                   onChange={this.updateStatus}
+                   onError={this.handleError}
+                   />
+            <Radio label={i18n.m('relationships.marital.label.status.married')}
+                   className="status-married"
+                   value="Married"
                    onChange={this.updateStatus}
                    onError={this.handleError}
                    />
@@ -117,22 +120,24 @@ export default class Marital extends SubsectionElement {
           </RadioGroup>
         </Field>
 
-        <Show when={['InCivilUnion', 'Separated'].includes(this.state.Status)}>
+        <Show when={['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)}>
           <CivilUnion name="civilUnion"
-                      {...this.state.CivilUnion}
+                      {...this.props.CivilUnion}
                       onUpdate={this.updateCivilUnion}
                       onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
                       currentAddress={this.props.currentAddress}
                       defaultState={this.props.defaultState}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Show>
         <Show when={this.showDivorce()}>
           <span id="scrollToDivorce"></span>
-          <Accordion minimum="1"
-                     scrollTo="scrollToDivorce"
-                     items={this.state.DivorcedList}
-                     branch={this.state.DivorcedListBranch}
+          <Accordion scrollTo="scrollToDivorce"
+                     defaultState={this.props.defaultState}
+                     items={this.props.DivorcedList}
+                     branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
                      summary={this.divorceSummary}
@@ -141,6 +146,8 @@ export default class Marital extends SubsectionElement {
                      appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
             <Divorce name="Divorce"
                      bind={true}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
         </Show>
@@ -154,12 +161,13 @@ Marital.defaultProps = {
   CivilUnion: {},
   DivorcedList: [],
   DivorcedListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/marital',
   dispatch: () => {},
   validator: (state, props) => {
-    return new MaritalValidator(state, props).isValid()
+    return new MaritalValidator(props, props).isValid()
   },
   defaultState: true
 }

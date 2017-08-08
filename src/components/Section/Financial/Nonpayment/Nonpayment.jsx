@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { NonpaymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
+import { Summary, DateSummary } from '../../../Summary'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
          NotApplicable, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
@@ -27,7 +28,7 @@ export default class Nonpayment extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasNonpayment: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -54,23 +55,18 @@ export default class Nonpayment extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.t('financial.nonpayment.collection.summary.unknown')
+    const date = DateSummary(obj.Date)
+    const name = (obj.Name || {}).value || ''
     const amount = (obj.Amount || {}).value
     const text = `${name}${amount ? ', $' + amount : ''}`.trim()
-    const date = (obj.Date || {})
 
-    let from = ''
-    if (date.month && date.year) {
-      from = '' + date.month + '/' + date.year
-    }
-
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.nonpayment.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{text}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.nonpayment.collection.summary.item'),
+      index: index,
+      left: text,
+      right: date,
+      placeholder: i18n.m('financial.nonpayment.collection.summary.unknown')
+    })
   }
 
   message () {
@@ -96,12 +92,14 @@ export default class Nonpayment extends SubsectionElement {
         <Branch name="has_nonpayment"
                 className="nonpayment-branch"
                 value={this.state.HasNonpayment}
+                warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
@@ -112,41 +110,51 @@ export default class Nonpayment extends SubsectionElement {
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.nonpayment.collection.append')}>
 
-            <Field title={i18n.t('financial.nonpayment.heading.name')}>
+           <Field title={i18n.t('financial.nonpayment.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
               <Text name="Name"
                     className="nonpayment-name"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.infractions')}>
+            <Field title={i18n.t('financial.nonpayment.heading.infractions')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Infractions name="Infractions"
                            className="nonpayment-infractions"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.accountnumber')}>
+            <Field title={i18n.t('financial.nonpayment.heading.accountnumber')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="AccountNumber"
                     className="nonpayment-accountnumber"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.propertytype')}>
+            <Field title={i18n.t('financial.nonpayment.heading.propertytype')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="PropertyType"
                     className="nonpayment-propertytype"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.amount')}>
+            <Field title={i18n.t('financial.nonpayment.heading.amount')}
+              scrollIntoView={this.props.scrollIntoView}>
               <div>
                 <Currency name="Amount"
                           className="nonpayment-amount"
                           placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -160,22 +168,27 @@ export default class Nonpayment extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.reason')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.nonpayment.help.reason">
               <Textarea name="Reason"
                         className="nonpayment-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.status')}>
+            <Field title={i18n.t('financial.nonpayment.heading.status')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Status"
                     className="nonpayment-status"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.resolved')}
                    adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <NotApplicable name="ResolvedNotApplicable"
                              label={i18n.t('financial.nonpayment.label.notresolved')}
@@ -185,25 +198,30 @@ export default class Nonpayment extends SubsectionElement {
                              className="nonpayment-resolved"
                              hideDay={true}
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.date')}
                    adjustFor="labels"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <DateControl name="Date"
                            className="nonpayment-date"
                            hideDay={true}
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.description')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.nonpayment.help.description">
               <Textarea name="Description"
                         className="nonpayment-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

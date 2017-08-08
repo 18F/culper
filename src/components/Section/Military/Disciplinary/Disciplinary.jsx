@@ -1,55 +1,43 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { MilitaryDisciplinaryValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import Procedure from './Procedure'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export default class Disciplinary extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasDisciplinary: props.HasDisciplinary,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateDisciplinary = this.updateDisciplinary.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      HasDisciplinary: this.props.HasDisciplinary,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateDisciplinary (value, event) {
-    this.onUpdate('HasDisciplinary', value)
-
     // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('List', [])
-    }
+    this.update({
+      HasDisciplinary: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   /**
@@ -57,45 +45,46 @@ export default class Disciplinary extends SubsectionElement {
    */
   summary (item, index) {
     const itemProperties = (item || {}).Item || {}
-    const service = itemProperties.Name && itemProperties.Name.value
-          ? itemProperties.Name.value
-          : i18n.t('military.disciplinary.collection.summary.unknown')
-    const dates = itemProperties.Date && itemProperties.Date.date
-          ? `${itemProperties.Date.month}/${itemProperties.Date.year}`
-          : ''
+    const dates = DateSummary(itemProperties.Date)
+    const service = itemProperties.Name && itemProperties.Name.value ? itemProperties.Name.value : ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('military.disciplinary.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{service}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('military.disciplinary.collection.summary.item'),
+      index: index,
+      left: service,
+      right: dates,
+      placeholder: i18n.m('military.disciplinary.collection.summary.unknown')
+    })
   }
 
   render () {
     return (
       <div className="disciplinary">
         <Branch name="has_disciplinary"
-                value={this.state.HasDisciplinary}
+                value={this.props.HasDisciplinary}
+                weight={true}
                 onUpdate={this.updateDisciplinary}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.state.HasDisciplinary === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasDisciplinary === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('military.disciplinary.collection.summary.title')}
                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
                      appendMessage={i18n.m('military.disciplinary.collection.appendMessage')}
-                     appendLabel={i18n.t('military.disciplinary.collection.append')}>
+                     appendLabel={i18n.t('military.disciplinary.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Procedure name="Item"
                        bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        />
           </Accordion>
         </Show>
@@ -105,12 +94,13 @@ export default class Disciplinary extends SubsectionElement {
 }
 
 Disciplinary.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'disciplinary',
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryDisciplinaryValidator(state, props).isValid()
+    return new MilitaryDisciplinaryValidator(props, props).isValid()
   },
   defaultState: true
 }

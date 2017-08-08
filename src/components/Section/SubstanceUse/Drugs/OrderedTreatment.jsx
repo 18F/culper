@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, ValidationElement, Checkbox, Address, CheckboxGroup, Branch, Text, Textarea, DateRange, Telephone, Show } from '../../../Form'
+import { Field, ValidationElement, Checkbox, Location, CheckboxGroup, Branch, Text, Textarea, DateRange, Telephone, Show } from '../../../Form'
 import DrugType from './DrugType'
 
 export default class OrderedTreatment extends ValidationElement {
@@ -102,146 +102,173 @@ export default class OrderedTreatment extends ValidationElement {
   render () {
     return (
       <div className="drug-ordered-treatment">
-        <Field title={i18n.t('substance.drugs.ordered.heading.orderedBy')}>
+        <Field title={i18n.t('substance.drugs.ordered.heading.orderedBy')}
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('substance.drugs.ordered.para.orderedBy')}
           <CheckboxGroup className="ordered-by"
-            selectedValues={this.props.OrderedBy}>
+                         required={this.props.required}
+                         onError={this.props.onError}
+                         selectedValues={this.props.OrderedBy}>
             <Checkbox name="Employer"
-              label={i18n.m('substance.drugs.ordered.orderedBy.label.employer')}
-              value="Employer"
-              className="employer"
-              onUpdate={this.updateOrderedBy}
-              onError={this.props.onError}
-            />
+                      label={i18n.m('substance.drugs.ordered.orderedBy.label.employer')}
+                      value="Employer"
+                      className="employer"
+                      onUpdate={this.updateOrderedBy}
+                      onError={this.props.onError}
+                      />
             <Checkbox name="MedicalProfessional"
-              label={i18n.m('substance.drugs.ordered.orderedBy.label.medicalProfessional')}
-              value="MedicalProfessional"
-              className="medical-professional"
-              onUpdate={this.updateOrderedBy}
-              onError={this.props.onError}
-            />
+                      label={i18n.m('substance.drugs.ordered.orderedBy.label.medicalProfessional')}
+                      value="MedicalProfessional"
+                      className="medical-professional"
+                      onUpdate={this.updateOrderedBy}
+                      onError={this.props.onError}
+                      />
             <Checkbox name="MentalHealthProfessional"
-              label={i18n.m('substance.drugs.ordered.orderedBy.label.mentalHealthProfessional')}
-              value="MentalHealthProfessional"
-              className="mental-health-professional"
-              onUpdate={this.updateOrderedBy}
-              onError={this.props.onError}
-            />
+                      label={i18n.m('substance.drugs.ordered.orderedBy.label.mentalHealthProfessional')}
+                      value="MentalHealthProfessional"
+                      className="mental-health-professional"
+                      onUpdate={this.updateOrderedBy}
+                      onError={this.props.onError}
+                      />
             <Checkbox name="Judge"
-              label={i18n.m('substance.drugs.ordered.orderedBy.label.judge')}
-              value="Judge"
-              className="judge"
-              onUpdate={this.updateOrderedBy}
-              onError={this.props.onError}
-            />
+                      label={i18n.m('substance.drugs.ordered.orderedBy.label.judge')}
+                      value="Judge"
+                      className="judge"
+                      onUpdate={this.updateOrderedBy}
+                      onError={this.props.onError}
+                      />
             <Checkbox name="None"
-              label={i18n.m('substance.drugs.ordered.orderedBy.label.none')}
-              value="None"
-              className="none"
-              onUpdate={this.updateOrderedBy}
-              onError={this.props.onError}
-            />
+                      label={i18n.m('substance.drugs.ordered.orderedBy.label.none')}
+                      value="None"
+                      className="none"
+                      onUpdate={this.updateOrderedBy}
+                      onError={this.props.onError}
+                      />
           </CheckboxGroup>
         </Field>
 
-        <Field title={i18n.t('substance.drugs.ordered.heading.explanation')}>
+        <Field title={i18n.t('substance.drugs.ordered.heading.explanation')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
-            className="explanation"
-            {...this.props.Explanation}
-            onUpdate={this.updateExplanation}
-            onError={this.props.onError}
-          />
+                    className="explanation"
+                    {...this.props.Explanation}
+                    onUpdate={this.updateExplanation}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
 
         <h3>{i18n.t('substance.drugs.ordered.heading.actionTaken')}</h3>
         <Branch name="ActionTaken"
-          className="action-taken"
-          value={this.props.ActionTaken}
-          onError={this.props.onError}
-          onUpdate={this.updateActionTaken}>
+                className="action-taken"
+                value={this.props.ActionTaken}
+                onError={this.props.onError}
+                required={this.props.required}
+                onUpdate={this.updateActionTaken}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.ActionTaken === 'No'}>
           <Field title={i18n.t('substance.drugs.ordered.heading.noActionTakenExplanation')}
-            titleSize="h4">
+            titleSize="h4"
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NoActionTakenExplanation"
-              className="no-action-taken-explanation"
-              {...this.props.NoActionTakenExplanation}
-              onUpdate={this.updateNoActionTakenExplanation}
-              onError={this.props.onError}
-            />
+                      className="no-action-taken-explanation"
+                      {...this.props.NoActionTakenExplanation}
+                      onUpdate={this.updateNoActionTakenExplanation}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      />
           </Field>
         </Show>
 
         <Show when={this.props.ActionTaken === 'Yes'}>
           <div>
             <Field title={i18n.t('substance.drugs.ordered.heading.drugType')}
-              className="drug-type-ordered">
+              className="drug-type-ordered"
+              scrollIntoView={this.props.scrollIntoView}>
               <DrugType name="DrugType"
-                {...this.props.DrugType}
-                onUpdate={this.updateDrugType}
-                onError={this.props.onError}
-              />
+                        {...this.props.DrugType}
+                        onUpdate={this.updateDrugType}
+                        onError={this.props.onError}
+                        required={this.props.required}
+                        />
             </Field>
 
-            <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProvider')}>
+            <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProvider')}
+              scrollIntoView={this.props.scrollIntoView}>
               {i18n.m('substance.drugs.ordered.para.treatmentProvider')}
               <Text name="TreatmentProvider"
-                className="treatment-provider"
-                {...this.props.TreatmentProvider}
-                onUpdate={this.updateTreatmentProvider}
-                onError={this.props.onError}
-              />
+                    className="treatment-provider"
+                    {...this.props.TreatmentProvider}
+                    onUpdate={this.updateTreatmentProvider}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
             </Field>
 
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderAddress')}
-              adjustFor="address"
-              help={'substance.drugs.ordered.help.treatmentProviderAddress'}>
-              <Address name="TreatmentProviderAddress"
-                className="treatment-provider-address"
-                {...this.props.TreatmentProviderAddress}
-                onUpdate={this.updateTreatmentProviderAddress}
-                onError={this.props.onError}
-              />
+                   adjustFor="address"
+                   help={'substance.drugs.ordered.help.treatmentProviderAddress'}
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Location name="TreatmentProviderAddress"
+                        className="treatment-provider-address"
+                        {...this.props.TreatmentProviderAddress}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onUpdate={this.updateTreatmentProviderAddress}
+                        onError={this.props.onError}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
             </Field>
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderTelephone')}
-              className="treatment-provider-telephone"
-              help={'substance.drugs.ordered.help.treatmentProviderTelephone'}>
+                   className="treatment-provider-telephone"
+                   help={'substance.drugs.ordered.help.treatmentProviderTelephone'}
+                   adjustFor="telephone"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Telephone name="TreatmentProviderTelephone"
-                {...this.props.TreatmentProviderTelephone}
-                onUpdate={this.updateTreatmentProviderTelephone}
-                onError={this.props.onError}
-              />
+                         {...this.props.TreatmentProviderTelephone}
+                         onUpdate={this.updateTreatmentProviderTelephone}
+                         onError={this.props.onError}
+                         required={this.props.required}
+                         />
             </Field>
 
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentDates')}
-              adjustFor="daterange"
-              help={'substance.drugs.ordered.help.treatmentDates'}>
+                   adjustFor="daterange"
+                   help={'substance.drugs.ordered.help.treatmentDates'}
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="TreatmentDates"
-                className="treatment-dates"
-                {...this.props.TreatmentDates}
-                onUpdate={this.updateTreatmentDates}
-                onError={this.props.onError}
-              />
+                         className="treatment-dates"
+                         {...this.props.TreatmentDates}
+                         onUpdate={this.updateTreatmentDates}
+                         onError={this.props.onError}
+                         required={this.props.required}
+                         />
             </Field>
 
             <h3>{i18n.t('substance.drugs.ordered.heading.treatmentCompleted')}</h3>
             <Branch name="TreatmentCompleted"
-              className="treatment-completed"
-              value={this.props.TreatmentCompleted}
-              onError={this.props.onError}
-              onUpdate={this.updateTreatmentCompleted}>
+                    className="treatment-completed"
+                    value={this.props.TreatmentCompleted}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    onUpdate={this.updateTreatmentCompleted}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <Show when={this.props.TreatmentCompleted === 'No'}>
               <Field title={i18n.t('substance.drugs.ordered.heading.noTreatmentExplanation')}
-                titleSize="h4">
+                titleSize="h4"
+                scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="NoTreatmentExplanation"
-                  className="no-treatment-explanation"
-                  {...this.props.NoTreatmentExplanation}
-                  onUpdate={this.updateNoTreatmentExplanation}
-                  onError={this.props.onError}
-                />
+                          className="no-treatment-explanation"
+                          {...this.props.NoTreatmentExplanation}
+                          onUpdate={this.updateNoTreatmentExplanation}
+                          onError={this.props.onError}
+                          required={this.props.required}
+                          />
               </Field>
 
             </Show>

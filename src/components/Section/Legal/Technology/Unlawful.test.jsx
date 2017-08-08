@@ -12,7 +12,7 @@ describe('The legal technology unlawful access component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<Unlawful onUpdate={onUpdate} />)
-    component.find('.legal-technology-unlawful-has-unlawful .yes input').simulate('click')
+    component.find('.legal-technology-unlawful-has-unlawful .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 
@@ -40,7 +40,7 @@ describe('The legal technology unlawful access component', () => {
       ListBranch: ''
     }
     const component = mount(<Unlawful {...props} />)
-    const text = component.find('.accordion .summary .left .content').text()
+    const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('Looked over the shoulder')
     expect(text).toContain('1/2010')
   })

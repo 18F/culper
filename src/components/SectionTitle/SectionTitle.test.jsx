@@ -12,16 +12,30 @@ describe('The title section', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('can handle no title', () => {
-    const store = mockStore({ section: { title: '' } })
+    const store = mockStore({ section: { section: '' } })
     const component = mount(<Provider store={store}><SectionTitle /></Provider>)
     expect(component.find('div').length).toEqual(1)
     expect(component.find('div').text()).toEqual('')
   })
 
-  it('can handle title', () => {
-    const store = mockStore({ section: { section: 'identification' } })
+  it('can handle title 1 deep', () => {
+    const store = mockStore({ section: { section: 'legal', subsection: '' } })
     const component = mount(<Provider store={store}><SectionTitle /></Provider>)
     expect(component.find('div').length).toEqual(1)
-    expect(component.find('div').text()).toEqual('Information about you')
+    expect(component.find('div').text()).toEqual('Investigative and criminal history')
+  })
+
+  it('can handle title 2 deep', () => {
+    const store = mockStore({ section: { section: 'legal', subsection: 'technology' } })
+    const component = mount(<Provider store={store}><SectionTitle /></Provider>)
+    expect(component.find('div').length).toEqual(1)
+    expect(component.find('div').text()).toEqual('Investigative and criminal history > Use of information technology systems')
+  })
+
+  it('can handle title 3 deep', () => {
+    const store = mockStore({ section: { section: 'legal', subsection: 'technology/unauthorized' } })
+    const component = mount(<Provider store={store}><SectionTitle /></Provider>)
+    expect(component.find('div').length).toEqual(1)
+    expect(component.find('div').text()).toEqual('Investigative and criminal history > Use of information technology systems > Unauthorized access')
   })
 })

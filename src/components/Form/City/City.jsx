@@ -6,27 +6,16 @@ export default class City extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      name: props.name,
-      value: props.value
-    }
-
     this.handleError = this.handleError.bind(this)
-  }
-
-  componentWillReceiveProps (nextProps) {
-    this.setState({
-      value: nextProps.value
-    })
   }
 
   /**
    * Handle the change event.
    */
   handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
+    //this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
-    })
+    //})
   }
 
   handleError (value, arr) {
@@ -50,9 +39,9 @@ export default class City extends ValidationElement {
             placeholder={this.props.placeholder}
             minlength="2"
             maxlength="100"
-            required="true"
+            required={this.props.required}
             className={klass}
-            value={this.state.value}
+            value={this.props.value}
             onChange={this.handleChange}
             onError={this.handleError}
             onFocus={this.props.onFocus}
@@ -65,7 +54,8 @@ export default class City extends ValidationElement {
 City.defaultProps = {
   name: 'city',
   value: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  required: false
 }
 
 City.errors = []

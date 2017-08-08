@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignBenefitActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
@@ -15,37 +16,67 @@ export default class BenefitActivity extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasBenefits: this.props.HasBenefits
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasBenefits: this.props.HasBenefits,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasBenefits (values) {
-    this.update([
-      { name: 'HasBenefits', value: values }
-    ])
+    this.update({
+      HasBenefits: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).Benefit || {}
-    return benefitSummary(o, index)
+    const benefit = {}
+    const who = (o.InterestTypes || []).join(', ')
+
+    let b = null
+    switch (o.BenefitFrequency) {
+      case 'OneTime':
+        b = (o.OneTimeBenefit || {})
+        benefit.Country = (b.Country || {}).value
+        benefit.Date = DateSummary(b.Received)
+        break
+      case 'Future':
+        b = (o.FutureBenefit || {})
+        benefit.Country = (b.Country || {}).value
+        benefit.Date = DateSummary(b.Begin)
+        break
+      case 'Continuing':
+        b = (o.ContinuingBenefit || {})
+        benefit.Country = (b.Country || {}).value
+        benefit.Date = DateSummary(b.Began)
+        break
+    }
+
+    const summary = [who, benefit.Country].reduce((prev, next) => {
+      if (prev && next) {
+        return prev + ' - ' + next
+      }
+      return prev
+    })
+
+    return Summary({
+      type: i18n.t('foreign.activities.benefit.collection.itemType'),
+      index: index,
+      left: summary,
+      right: benefit.Date,
+      placeholder: i18n.m('foreign.activities.benefit.collection.summary')
+    })
   }
 
   render () {
@@ -56,13 +87,15 @@ export default class BenefitActivity extends SubsectionElement {
                 label={i18n.t('foreign.activities.benefit.heading.title')}
                 labelSize="h3"
                 value={this.props.HasBenefits}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasBenefits}>
+                required={this.props.required}
+                onUpdate={this.updateHasBenefits}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasBenefits === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -70,9 +103,12 @@ export default class BenefitActivity extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.benefit.collection.description')}
                      appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Benefit name="Benefit"
                      bind={true}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
         </Show>
@@ -87,6 +123,7 @@ BenefitActivity.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/benefits',
@@ -97,42 +134,4 @@ BenefitActivity.defaultProps = {
 }
 
 export const benefitSummary = (item, index) => {
-  const benefit = {}
-  const who = (item.InterestTypes || []).join(', ')
-  const type = i18n.t('foreign.activities.benefit.collection.itemType')
-  let b = null
-  switch (item.BenefitFrequency) {
-    case 'OneTime':
-      b = (item.OneTimeBenefit || {})
-      benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Received || {}).date ? `${b.Received.month}/${b.Received.year}` : ''
-      break
-    case 'Future':
-      b = (item.FutureBenefit || {})
-      benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Begin || {}).date ? `${b.Begin.month}/${b.Begin.year}` : ''
-      break
-    case 'Continuing':
-      b = (item.ContinuingBenefit || {})
-      benefit.Country = (b.Country || {}).value
-      benefit.Date = (b.Began || {}).date ? `${b.Began.month}/${b.Began.year}` : ''
-      break
-  }
-
-  const summary = [who, benefit.Country].reduce((prev, next) => {
-    if (prev && next) {
-      return prev + ' - ' + next
-    }
-    return prev
-  })
-
-  return (
-    <span className="content">
-      <span className="index">{type}: {index + 1}</span>
-      <span className="benefit-summary">
-        <strong>{ summary || i18n.t('foreign.activities.benefit.collection.summary')}</strong>
-      </span>
-      <span className="date"><strong>{benefit.Date}</strong></span>
-    </span>
-  )
 }

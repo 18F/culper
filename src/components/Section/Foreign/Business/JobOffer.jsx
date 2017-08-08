@@ -1,20 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Field, Show,
-         Address, Textarea, Name, DateControl, Location } from '../../../Form'
+         Textarea, Name, DateControl, Location } from '../../../Form'
 
 export default class JobOffer extends ValidationElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      Name: props.Name,
-      Description: props.Description,
-      Date: props.Date,
-      Address: props.Address,
-      Accepted: props.Accepted,
-      Explanation: props.Explanation
-    }
 
     this.update = this.update.bind(this)
     this.updateName = this.updateName.bind(this)
@@ -25,77 +16,94 @@ export default class JobOffer extends ValidationElement {
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Name: this.props.Name,
-        Description: this.props.Description,
-        Date: this.props.Date,
-        Address: this.props.Address,
-        Accepted: this.props.Accepted,
-        Explanation: this.props.Explanation,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Description: this.props.Description,
+      Date: this.props.Date,
+      Address: this.props.Address,
+      Accepted: this.props.Accepted,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update({
+      Name: values
+    })
   }
 
   updateDescription (values) {
-    this.update('Description', values)
+    this.update({
+      Description: values
+    })
   }
 
   updateDate (values) {
-    this.update('Date', values)
+    this.update({
+      Date: values
+    })
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update({
+      Address: values
+    })
   }
 
   updateAccepted (values) {
-    this.update('Accepted', values)
+    this.update({
+      Accepted: values
+    })
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
     return (
       <div className="job-offer">
-        <h3>{i18n.t('foreign.business.employment.heading.name')}</h3>
-        <Name name="Name"
-              className="employment-name"
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              {...this.props.Name}
-              />
-
-        <Field title={i18n.t('foreign.business.employment.heading.description')}>
+        <Field title={i18n.t('foreign.business.employment.heading.name')}>
+          <Name name="Name"
+                className="employment-name"
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                {...this.props.Name}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
+        </Field>
+        <Field title={i18n.t('foreign.business.employment.heading.description')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
                     className="employment-description"
                     onUpdate={this.updateDescription}
                     onError={this.props.onError}
                     {...this.props.Description}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('foreign.business.employment.heading.date')}
                help="foreign.business.employment.help.date"
-               adjustFor="label">
+               adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
                        className="employment-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('foreign.business.employment.heading.address')}
-               adjustFor="address">
+          adjustFor="address"
+          scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
                    {...this.props.Address}
                    label={i18n.t('foreign.business.employment.label.address')}
@@ -103,6 +111,8 @@ export default class JobOffer extends ValidationElement {
                    className="employment-address"
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    />
         </Field>
 
@@ -113,16 +123,20 @@ export default class JobOffer extends ValidationElement {
                 value={this.props.Accepted}
                 onUpdate={this.updateAccepted}
                 onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.Accepted === 'Yes' || this.props.Accepted === 'No'}>
           <Field title={i18n.t('foreign.business.employment.label.explanation')}
-                 titleSize="label">
+            titleSize="label"
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       {...this.props.Explanation}
                       className="employment-explanation"
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -139,5 +153,6 @@ JobOffer.defaultProps = {
   Address: {},
   Accepted: '',
   Explanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

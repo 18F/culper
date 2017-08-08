@@ -8,7 +8,6 @@ import Country from '../Country'
 import County from '../County'
 import ZipCode from '../ZipCode'
 import Show from '../Show'
-import { i18n } from '../../../config'
 
 export default class ToggleableLocation extends ValidationElement {
   constructor (props) {
@@ -21,10 +20,13 @@ export default class ToggleableLocation extends ValidationElement {
     this.updateCountry = this.updateCountry.bind(this)
     this.updateToggle = this.updateToggle.bind(this)
     this.updateZipcode = this.updateZipcode.bind(this)
+    this.onError = this.onError.bind(this)
 
     this.state = {
-      suggestions: []
+      suggestions: [],
+      uid: `${this.props.name}-${super.guid()}`
     }
+    this.errors = []
   }
 
   update (updateValues) {
@@ -69,6 +71,15 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   updateToggle (value) {
+    // Set existing errors to null when toggling fields
+    this.props.onError(value, this.errors.map(err => {
+      return {
+        code: err.code,
+        valid: null,
+        uid: err.uid
+      }
+    }))
+
     switch (value) {
       case 'Yes':
         this.update({country: 'United States'})
@@ -91,9 +102,10 @@ export default class ToggleableLocation extends ValidationElement {
               placeholder={this.props.streetPlaceholder}
               value={this.props.street}
               onChange={this.updateStreet}
-              onError={this.props.onError}
+              onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'city':
@@ -101,13 +113,14 @@ export default class ToggleableLocation extends ValidationElement {
             <City name="city"
               className="city"
               key={key}
-              label={i18n.t('address.us.city.label')}
+              label={this.props.cityLabel}
               placeholder={this.props.cityPlaceholder}
               value={this.props.city}
               onChange={this.updateCity}
-              onError={this.props.onError}
+              onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'county':
@@ -120,8 +133,10 @@ export default class ToggleableLocation extends ValidationElement {
               placeholder={this.props.countyPlaceholder}
               maxlength="255"
               onChange={this.updateCounty}
-              onError={this.props.onError}
+              onError={this.onError}
               onBlur={this.props.onBlur}
+              onFocus={this.props.onFocus}
+              required={this.props.required}
             />
           )
         case 'state':
@@ -129,14 +144,15 @@ export default class ToggleableLocation extends ValidationElement {
             <MilitaryState name="state"
               key={key}
               className="state"
-              label={i18n.t('address.us.state.label')}
-              placeholder={i18n.t('address.us.state.placeholder')}
+              label={this.props.stateLabel}
+              placeholder={this.props.statePlaceholder}
               value={this.props.state}
               includeStates="true"
               onChange={this.updateState}
-              onError={this.props.onError}
+              onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'stateZipcode':
@@ -144,25 +160,27 @@ export default class ToggleableLocation extends ValidationElement {
             <div className="state-zip-wrap">
               <MilitaryState name="state"
                 className="state"
-                label={i18n.t('address.us.state.label')}
-                placeholder={i18n.t('address.us.state.placeholder')}
+                label={this.props.stateLabel}
+                placeholder={this.props.statePlaceholder}
                 value={this.props.state}
                 includeStates="true"
                 onChange={this.updateState}
-                onError={this.props.onError}
+                onError={this.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
               />
               <ZipCode name="zipcode"
                 key="us_zipcode"
                 className="zipcode"
-                label={i18n.t('address.us.zipcode.label')}
-                placeholder={i18n.t('address.us.zipcode.placeholder')}
+                label={this.props.zipcodeLabel}
+                placeholder={this.props.zipcodePlaceholder}
                 value={this.props.zipcode}
                 onChange={this.updateZipcode}
-                onError={this.props.onError}
+                onError={this.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
               />
             </div>
           )
@@ -176,13 +194,14 @@ export default class ToggleableLocation extends ValidationElement {
           return (
             <City name="city"
               key={key}
-              label={i18n.t('address.us.city.label')}
+              label={this.props.cityLabel}
               placeholder={this.props.cityPlaceholder}
               value={this.props.city}
               onChange={this.updateCity}
-              onError={this.props.onError}
+              onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
         case 'country':
@@ -196,9 +215,10 @@ export default class ToggleableLocation extends ValidationElement {
               excludeUnitedStates="true"
               disabled={this.props.disabledCountry}
               onChange={this.updateCountry}
-              onError={this.props.onError}
+              onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
+              required={this.props.required}
             />
           )
       }
@@ -212,7 +232,9 @@ export default class ToggleableLocation extends ValidationElement {
           label={this.props.label}
           onUpdate={this.updateToggle}
           onBlur={this.props.onBlur}
-          onError={this.props.onError}>
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+          onError={this.onError}>
         </Branch>
 
         <Show when={this.props.country === 'United States'}>
@@ -223,6 +245,40 @@ export default class ToggleableLocation extends ValidationElement {
         </Show>
       </div>
     )
+  }
+
+  onError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `location.${err.code}`,
+        valid: err.valid,
+        uid: err.uid
+      }
+    })
+
+    const requiredErr = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `location.${err.code}`,
+        valid: err.func(value, {...this.props}),
+        uid: this.state.uid
+      }
+    }))
+
+    this.storeErrors(requiredErr)
+    this.props.onError(value, requiredErr)
+    return arr
+  }
+
+  storeErrors (errors) {
+    let newErrors = [...errors]
+    for (const e of newErrors) {
+      const idx = this.errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+      if (idx !== -1) {
+        this.errors[idx] = { ...e }
+      } else {
+        this.errors.push({ ...e })
+      }
+    }
   }
 }
 
@@ -243,5 +299,61 @@ const branchValue = (country) => {
 ToggleableLocation.defaultProps = {
   country: null,
   domesticFields: [],
-  internationalFields: []
+  internationalFields: [],
+  onError: (value, arr) => { return arr },
+  required: false,
+  scrollIntoView: false
 }
+
+ToggleableLocation.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        let valid = true
+        switch (branchValue(props.country)) {
+          case 'Yes':
+            for (let f of props.domesticFields) {
+              switch (f) {
+                case 'city':
+                  valid = valid && !!props.city
+                  break
+                case 'state':
+                  valid = valid && !!props.state
+                  break
+                case 'county':
+                  valid = valid && !!props.county
+                  break
+                case 'stateZipcode':
+                  valid = valid && !!props.state && !!props.zipcode
+                  break
+                case 'country':
+                  valid = valid && !!props.country
+                  break
+                default:
+                  console.warn(`Could not map location property '${f}' in ToggleableLocation `)
+                  valid = false
+              }
+            }
+            break
+          case 'No':
+            for (let f of props.internationalFields) {
+              switch (f) {
+                case 'city':
+                  valid = valid && !!props.city
+                  break
+                case 'country':
+                  valid = valid && !!props.country
+                  break
+                default:
+                  console.warn(`Could not map location property '${f}' in ToggleableLocation `)
+                  valid = false
+              }
+            }
+        }
+        return valid
+      }
+      return true
+    }
+  }
+]

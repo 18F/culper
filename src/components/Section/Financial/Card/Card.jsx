@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { CardAbuseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
-         Address, Checkbox, Text, Textarea } from '../../../Form'
+         Location, Checkbox, Text, Textarea } from '../../../Form'
 
 export default class Card extends SubsectionElement {
   constructor (props) {
@@ -26,7 +27,7 @@ export default class Card extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasCardAbuse: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -53,21 +54,17 @@ export default class Card extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.t('financial.card.collection.summary.unknown')
     const date = (obj.Date || {})
+    const from = DateSummary({date: date})
+    const agency = (obj.Agency || {}).value || ''
 
-    let from = ''
-    if (date.month && date.year) {
-      from = '' + date.month + '/' + date.year
-    }
-
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.card.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.card.collection.summary.item'),
+      index: index,
+      left: agency,
+      right: from,
+      placeholder: i18n.m('financial.card.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -76,12 +73,14 @@ export default class Card extends SubsectionElement {
         <Branch name="has_cardabuse"
                 className="card-branch"
                 value={this.state.HasCardAbuse}
+                warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
@@ -91,46 +90,58 @@ export default class Card extends SubsectionElement {
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
 
-            <Field title={i18n.t('financial.card.heading.agency')}>
+           <Field title={i18n.t('financial.card.heading.agency')}
+               scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="card-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('financial.card.heading.address')}
                    help="financial.card.help.address"
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="address">
-              <Address name="Address"
-                       className="card-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="card-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        required={this.props.required}
+                        />
             </Field>
 
             <Field title={i18n.t('financial.card.heading.date')}
                    adjustFor="labels"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <DateControl name="Date"
                            className="card-date"
                            hideDay={true}
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
-            <Field title={i18n.t('financial.card.heading.reason')}>
+            <Field title={i18n.t('financial.card.heading.reason')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="card-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <Field title={i18n.t('financial.card.heading.amount')}>
+            <Field title={i18n.t('financial.card.heading.amount')}
+              scrollIntoView={this.props.scrollIntoView}>
               <div>
                 <Currency name="Amount"
                           className="card-amount"
                           placeholder={i18n.t('financial.card.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -144,10 +155,12 @@ export default class Card extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.card.heading.description')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.card.help.description">
               <Textarea name="Description"
                         className="card-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

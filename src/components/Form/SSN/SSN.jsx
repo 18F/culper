@@ -99,8 +99,17 @@ export default class SSN extends ValidationElement {
       }
     })
 
+    const requiredErrors = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `ssn.${err.code}`,
+        valid: err.func({...this.state}, this.props),
+        uid: this.state.uid
+      }
+    }))
+
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    this.props.onError(value, requiredErrors)
+    return arr
   }
 
   ripper (val, start, end) {
@@ -129,6 +138,7 @@ export default class SSN extends ValidationElement {
               clipboard={false}
               value={this.state.first}
               disabled={this.state.notApplicable}
+              required={this.props.required && this.state.notApplicable === false}
               onChange={this.handleChange}
               onError={this.handleErrorFirst}
               onFocus={this.props.onFocus}
@@ -144,6 +154,7 @@ export default class SSN extends ValidationElement {
               clipboard={false}
               value={this.state.middle}
               disabled={this.state.notApplicable}
+              required={this.props.required && this.state.notApplicable === false}
               onChange={this.handleChange}
               onError={this.handleErrorMiddle}
               onFocus={this.props.onFocus}
@@ -160,13 +171,14 @@ export default class SSN extends ValidationElement {
               clipboard={false}
               value={this.state.last}
               disabled={this.state.notApplicable}
+              required={this.props.required && this.state.notApplicable === false}
               onChange={this.handleChange}
               onError={this.handleErrorLast}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               tabBack={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
               />
-        <div className="flags">
+        <div className="flags not-applicable">
           <Checkbox name="notApplicable"
                     label={i18n.t('identification.ssn.label.notApplicable')}
                     ref="notApplicable"
@@ -197,4 +209,15 @@ SSN.defaultProps = {
   onError: (value, arr) => { return arr }
 }
 
-SSN.errors = []
+SSN.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required && props.notApplicable === false) {
+        return !!value.first && !!value.middle && !!value.last
+      }
+      return true
+    }
+
+  }
+]

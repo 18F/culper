@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, DateControl, Checkbox, Text, ValidationElement, Field, Textarea, Branch, Show } from '../../../Form'
+import { Location, DateControl, Checkbox, Text, ValidationElement, Field, Textarea, Branch, Show } from '../../../Form'
 
 export default class ReceivedCounseling extends ValidationElement {
   constructor (props) {
@@ -102,31 +102,40 @@ export default class ReceivedCounseling extends ValidationElement {
     const minDate = (this.props.TreatmentBeganDate || {}).date || null
     return (
       <div className="voluntary-counseling">
-        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="TreatmentProviderName"
                 className="treatment-provider-name"
                 {...this.props.TreatmentProviderName}
                 onUpdate={this.updateTreatmentProviderName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
                help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}
-               adjustFor="address">
-          <Address name="TreatmentProviderAddress"
-                   className="provider-address"
-                   {...this.props.TreatmentProviderAddress}
-                   onUpdate={this.updateTreatmentProviderAddress}
-                   onError={this.props.onError}
-                   />
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
+          <Location name="TreatmentProviderAddress"
+                    className="provider-address"
+                    {...this.props.TreatmentProviderAddress}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateTreatmentProviderAddress}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
         </Field>
 
-        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}>
+        <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="AgencyName"
                 className="agency-name"
                 {...this.props.AgencyName}
                 onUpdate={this.updateAgencyName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -137,37 +146,47 @@ export default class ReceivedCounseling extends ValidationElement {
                 noLabel="Different address"
                 value={this.props.UseSameAddress}
                 onUpdate={this.updateUseSameAddress}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.UseSameAddress === 'No'}>
           <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
-                 adjustFor="address">
-            <Address name="AgencyAddress"
-                     className="agency-address"
-                     {...this.props.AgencyAddress}
-                     onUpdate={this.updateAgencyAddress}
-                     onError={this.props.onError}
-                     />
+            adjustFor="address"
+            scrollIntoView={this.props.scrollIntoView}>
+            <Location name="AgencyAddress"
+                      className="agency-address"
+                      {...this.props.AgencyAddress}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.updateAgencyAddress}
+                      required={this.props.required}
+                      onError={this.props.onError}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </Field>
         </Show>
 
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentBeganDate')}
                help={'substance.alcohol.receivedCounseling.help.treatmentBeganDate'}
-               adjustFor="datecontrol">
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="TreatmentBeganDate"
                        className="treatment-began-date"
                        {...this.props.TreatmentBeganDate}
                        prefix="treatment.began"
                        maxDate={maxDate}
                        onUpdate={this.updateTreatmentBeganDate}
+                       required={this.props.required}
                        onError={this.props.onError}
                        />
         </Field>
 
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentEndDate')}
                help={'substance.alcohol.receivedCounseling.help.treatmentEndDate'}
-               adjustFor="datecontrol">
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="TreatmentEndDate"
                        className="treatment-end-date"
                        {...this.props.TreatmentEndDate}
@@ -177,6 +196,7 @@ export default class ReceivedCounseling extends ValidationElement {
                        disabled={this.props.PresentTreatmentEndDate}
                        onUpdate={this.updateTreatmentEndDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           <Checkbox name="PresentTreatmentEndDate"
                     className="present-treatment-end-date"
@@ -193,16 +213,20 @@ export default class ReceivedCounseling extends ValidationElement {
                 className="completed-treatment"
                 value={this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NoCompletedTreatmentExplanation"
                       className="no-completed-treatment"
                       {...this.props.NoCompletedTreatmentExplanation}
                       onUpdate={this.updateNoCompletedTreatmentExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

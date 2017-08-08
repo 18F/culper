@@ -31,191 +31,192 @@ export default class TravelQuestions extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Dates: this.props.Dates,
-        Country: this.props.Country,
-        Days: this.props.Days,
-        Purpose: this.props.Purpose,
-        Questioned: this.props.Questioned,
-        QuestionedExplanation: this.props.QuestionedExplanation,
-        Encounter: this.props.Encounter,
-        EncounterExplanation: this.props.EncounterExplanation,
-        Contacted: this.props.Contacted,
-        ContactedExplanation: this.props.ContactedExplanation,
-        Counter: this.props.Counter,
-        CounterExplanation: this.props.CounterExplanation,
-        Interest: this.props.Interest,
-        InterestExplanation: this.props.InterestExplanation,
-        Sensitive: this.props.Sensitive,
-        SensitiveExplanation: this.props.SensitiveExplanation,
-        Threatened: this.props.Threatened,
-        ThreatenedExplanation: this.props.ThreatenedExplanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Dates: this.props.Dates,
+      Country: this.props.Country,
+      Days: this.props.Days,
+      Purpose: this.props.Purpose,
+      Questioned: this.props.Questioned,
+      QuestionedExplanation: this.props.QuestionedExplanation,
+      Encounter: this.props.Encounter,
+      EncounterExplanation: this.props.EncounterExplanation,
+      Contacted: this.props.Contacted,
+      ContactedExplanation: this.props.ContactedExplanation,
+      Counter: this.props.Counter,
+      CounterExplanation: this.props.CounterExplanation,
+      Interest: this.props.Interest,
+      InterestExplanation: this.props.InterestExplanation,
+      Sensitive: this.props.Sensitive,
+      SensitiveExplanation: this.props.SensitiveExplanation,
+      Threatened: this.props.Threatened,
+      ThreatenedExplanation: this.props.ThreatenedExplanation,
+      ...queue
+    })
   }
 
   updateThreatenedExplanation (values) {
-    this.update([
-      { name: 'ThreatenedExplanation', value: values }
-    ])
+    this.update({
+      ThreatenedExplanation: values
+    })
   }
 
   updateThreatened (values) {
-    this.update([
-      { name: 'Threatened', value: values }
-    ])
+    this.update({
+      Threatened: values
+    })
   }
 
   updateSensitiveExplanation (values) {
-    this.update([
-      { name: 'SensitiveExplanation', value: values }
-    ])
+    this.update({
+      SensitiveExplanation: values
+    })
   }
 
   updateSensitive (values) {
-    this.update([
-      { name: 'Sensitive', value: values }
-    ])
+    this.update({
+      Sensitive: values
+    })
   }
 
   updateInterestExplanation (values) {
-    this.update([
-      { name: 'InterestExplanation', value: values }
-    ])
+    this.update({
+      InterestExplanation: values
+    })
   }
 
   updateInterest (values) {
-    this.update([
-      { name: 'Interest', value: values }
-    ])
+    this.update({
+      Interest: values
+    })
   }
 
   updateCounterExplanation (values) {
-    this.update([
-      { name: 'CounterExplanation', value: values }
-    ])
+    this.update({
+      CounterExplanation: values
+    })
   }
 
   updateCounter (values) {
-    this.update([
-      { name: 'Counter', value: values }
-    ])
+    this.update({
+      Counter: values
+    })
   }
 
   updateContactedExplanation (values) {
-    this.update([
-      { name: 'ContactedExplanation', value: values }
-    ])
+    this.update({
+      ContactedExplanation: values
+    })
   }
 
   updateContacted (values) {
-    this.update([
-      { name: 'Contacted', value: values }
-    ])
+    this.update({
+      Contacted: values
+    })
   }
 
   updateEncounterExplanation (values) {
-    this.update([
-      { name: 'EncounterExplanation', value: values }
-    ])
+    this.update({
+      EncounterExplanation: values
+    })
   }
 
   updateEncounter (values) {
-    this.update([
-      { name: 'Encounter', value: values }
-    ])
+    this.update({
+      Encounter: values
+    })
   }
 
   updateQuestionedExplanation (values) {
-    this.update([
-      { name: 'QuestionedExplanation', value: values }
-    ])
+    this.update({
+      QuestionedExplanation: values
+    })
   }
 
   updateQuestioned (values) {
-    this.update([
-      { name: 'Questioned', value: values }
-    ])
+    this.update({
+      Questioned: values
+    })
   }
 
   updatePurpose (values) {
-    this.update([
-      { name: 'Purpose', value: values }
-    ])
+    this.update({
+      Purpose: values
+    })
   }
 
   updateDays (values) {
-    this.update([
-      { name: 'Days', value: values }
-    ])
+    this.update({
+      Days: values
+    })
   }
 
   updateDates (values) {
-    this.update([
-      { name: 'Dates', value: values }
-    ])
+    this.update({
+      Dates: values
+    })
   }
 
   updateCountry (values) {
-    this.update([
-      { name: 'Country', value: values }
-    ])
+    this.update({
+      Country: values
+    })
   }
 
   render () {
     return (
       <div className="foreign-travel-questions">
         <Field title={i18n.t('foreign.travel.heading.country')}
-               help="foreign.travel.help.country"
-               adjustFor="country">
+          adjustFor="country"
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    excludeUnitedStates={true}
                    className="foreign-travel-country"
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.dates')}
                help="foreign.travel.help.dates"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
                      className="foreign-travel-dates"
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.days')}
                help="foreign.travel.help.days"
-               adjustFor="p">
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.checkall')}
           <TravelDays name="Days"
                       className="foreign-travel-days"
                       value={this.props.Days}
                       onUpdate={this.updateDays}
                       onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.purpose')}
-               help="foreign.travel.help.purpose"
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose name="Purpose"
                          className="foreign-travel-purpose"
                          value={this.props.Purpose}
                          onUpdate={this.updatePurpose}
                          onError={this.props.onError}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
                          />
         </Field>
 
@@ -223,20 +224,23 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_questioned"
                 className="foreign-travel-questioned"
-                help="foreign.travel.help.questioned"
                 value={this.props.Questioned}
                 onUpdate={this.updateQuestioned}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Questioned === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="QuestionedExplanation"
                       {...this.props.QuestionedExplanation}
                       className="foreign-travel-questioned-explanation"
                       onUpdate={this.updateQuestionedExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -245,20 +249,23 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_encounter"
                 className="foreign-travel-encounter"
-                help="foreign.travel.help.encounter"
                 value={this.props.Encounter}
                 onUpdate={this.updateEncounter}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Encounter === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="EncounterExplanation"
                       {...this.props.EncounterExplanation}
                       className="foreign-travel-encounter-explanation"
                       onUpdate={this.updateEncounterExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -267,20 +274,23 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_contacted"
                 className="foreign-travel-contacted"
-                help="foreign.travel.help.contacted"
                 value={this.props.Contacted}
                 onUpdate={this.updateContacted}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Contacted === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="ContactedExplanation"
                       {...this.props.ContactedExplanation}
                       className="foreign-travel-contacted-explanation"
                       onUpdate={this.updateContactedExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -289,9 +299,9 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_counter"
                 className="foreign-travel-counter"
-                help="foreign.travel.help.counter"
                 value={this.props.Counter}
                 onUpdate={this.updateCounter}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Counter === 'Yes'}>
@@ -303,6 +313,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-counter-explanation"
                       onUpdate={this.updateCounterExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -311,9 +322,9 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_interest"
                 className="foreign-travel-interest"
-                help="foreign.travel.help.interest"
                 value={this.props.Interest}
                 onUpdate={this.updateInterest}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Interest === 'Yes'}>
@@ -325,6 +336,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-interest-explanation"
                       onUpdate={this.updateInterestExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -333,9 +345,9 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_sensitive"
                 className="foreign-travel-sensitive"
-                help="foreign.travel.help.sensitive"
                 value={this.props.Sensitive}
                 onUpdate={this.updateSensitive}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Sensitive === 'Yes'}>
@@ -347,6 +359,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-sensitive-explanation"
                       onUpdate={this.updateSensitiveExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -355,9 +368,9 @@ export default class TravelQuestions extends ValidationElement {
                 labelSize="h3"
                 name="has_foreign_travel_threatened"
                 className="foreign-travel-threatened"
-                help="foreign.travel.help.threatened"
                 value={this.props.Threatened}
                 onUpdate={this.updateThreatened}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Threatened === 'Yes'}>
@@ -369,6 +382,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-threatened-explanation"
                       onUpdate={this.updateThreatenedExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -396,5 +410,6 @@ TravelQuestions.defaultProps = {
   SensitiveExplanation: {},
   Threatened: '',
   ThreatenedExplanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

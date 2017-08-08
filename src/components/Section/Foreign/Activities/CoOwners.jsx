@@ -11,17 +11,17 @@ export default class CoOwners extends ValidationElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        List: this.props.List,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update('List', values)
+    this.update({
+      List: values
+    })
   }
 
   render () {
@@ -32,11 +32,15 @@ export default class CoOwners extends ValidationElement {
                           appendLabel={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwnersAppend`)}
                           items={this.props.List}
                           onError={this.props.onError}
-                          onUpdate={this.updateList}>
+                          required={this.props.required}
+                          onUpdate={this.updateList}
+                          scrollIntoView={this.props.scrollIntoView}>
           <CoOwner name="CoOwner"
                    bind={true}
                    prefix={`${this.props.prefix}.coOwner`}
                    onError={this.props.onError}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    />
         </BranchCollection>
       </div>
@@ -45,5 +49,6 @@ export default class CoOwners extends ValidationElement {
 }
 
 CoOwner.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

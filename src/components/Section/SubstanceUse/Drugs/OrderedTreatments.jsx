@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import OrderedTreatment from './OrderedTreatment'
 import { DrugOrderedTreatmentsValidator } from '../../../../validators'
 
@@ -34,28 +34,25 @@ export default class OrderedTreatments extends SubsectionElement {
   }
 
   updateTreatmentOrdered (values) {
-    this.update({TreatmentOrdered: values})
+    this.update({
+      TreatmentOrdered: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).OrderedTreatment || {}
     const range = DateSummary(o.TreatmentDates)
     const explanation = (o.Explanation || {}).value
-    const type = i18n.t('substance.drugs.ordered.collection.itemType')
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <strong>
-            {explanation || i18n.t('substance.drugs.ordered.collection.summary')}
-          </strong>
-        </span>
-        <span className="dates">
-          <strong>{range}</strong>
-        </span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.drugs.ordered.collection.itemType'),
+      index: index,
+      left: explanation,
+      right: range,
+      placeholder: i18n.m('substance.drugs.ordered.collection.summary')
+    })
   }
 
   render () {
@@ -63,24 +60,27 @@ export default class OrderedTreatments extends SubsectionElement {
       <div className="ordered-treatments">
         <h2>{i18n.m('substance.drugs.heading.orderedTreatments')}</h2>
         <Branch name="TreatmentOrdered"
-          className="treatment-ordered"
-          value={this.props.TreatmentOrdered}
-          onError={this.handleError}
-          onUpdate={this.updateTreatmentOrdered}>
+                className="treatment-ordered"
+                value={this.props.TreatmentOrdered}
+                warning={true}
+                onError={this.handleError}
+                required={this.props.required}
+                onUpdate={this.updateTreatmentOrdered}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.TreatmentOrdered === 'Yes'}>
-          <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            summary={this.summary}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            description={i18n.t('substance.drugs.ordered.collection.description')}
-            appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
-            appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}>
-            <OrderedTreatment name="OrderedTreatment" bind={true} />
+          <Accordion defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     description={i18n.t('substance.drugs.ordered.collection.description')}
+                     appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
+                     appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <OrderedTreatment name="OrderedTreatment" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

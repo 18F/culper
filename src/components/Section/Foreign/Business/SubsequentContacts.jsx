@@ -9,23 +9,16 @@ export default class SubsequentContacts extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values }
-    ])
+    this.update({
+      List: values
+    })
   }
 
   render () {
@@ -37,31 +30,39 @@ export default class SubsequentContacts extends ValidationElement {
                           className="has-foreign-contacts"
                           items={this.props.List}
                           onUpdate={this.updateList}
-                          onError={this.props.onError}>
+                          required={this.props.required}
+                          onError={this.props.onError}
+                          scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('foreign.business.contact.heading.subsequent')}
                  help="foreign.business.contact.help.subsequent"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Subsequent"
                       className="foreign-business-contact-subsequent"
                       bind={true}
+                      required={this.props.required}
                       />
           </Field>
 
           <Field title={i18n.t('foreign.business.contact.heading.recent')}
                  help="foreign.business.contact.help.recent"
-                 adjustFor="datecontrol">
+                 adjustFor="datecontrol"
+                 scrollIntoView={this.props.scrollIntoView}>
             <DateControl name="Recent"
                          className="foreign-business-contact-recent"
                          bind={true}
+                         required={this.props.required}
                          />
           </Field>
 
           <Field title={i18n.t('foreign.business.contact.heading.future')}
                  help="foreign.business.contact.help.future"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Future"
                       className="foreign-business-contact-future"
                       bind={true}
+                      required={this.props.required}
                       />
           </Field>
         </BranchCollection>
@@ -73,5 +74,6 @@ export default class SubsequentContacts extends ValidationElement {
 SubsequentContacts.defaultProps = {
   name: 'SubsequentContacts',
   List: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

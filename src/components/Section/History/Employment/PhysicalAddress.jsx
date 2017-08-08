@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Branch, Address, Field, Telephone } from '../../../Form'
+import { ValidationElement, Branch, Location, Field, Telephone } from '../../../Form'
 
 export default class PhysicalAddress extends ValidationElement {
   constructor (props) {
@@ -56,7 +56,9 @@ export default class PhysicalAddress extends ValidationElement {
               value={this.state.HasDifferentAddress}
               help="history.employment.default.physicalAddress.help"
               onUpdate={this.onBranchUpdate}
-              onError={this.props.onError}>
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}>
       </Branch>
     )
   }
@@ -76,26 +78,33 @@ export default class PhysicalAddress extends ValidationElement {
                  titleSize="h4"
                  help="history.employment.default.physicalAddress.address.help"
                  adjustFor="labels"
-                 shrink={true}>
-            <Address name="address"
-                     className="address"
-                     {...this.props.Address}
-                     label={i18n.t('history.employment.default.physicalAddress.address.label')}
-                     placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
-                     onUpdate={this.handleAddressChange}
-                     onError={this.props.onError}
-                     />
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
+            <Location name="address"
+                      className="address"
+                      {...this.props.Address}
+                      label={i18n.t('history.employment.default.physicalAddress.address.label')}
+                      placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
+                      layout={Location.ADDRESS}
+                      geocode={true}
+                      onUpdate={this.handleAddressChange}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </Field>
 
           <Field title={i18n.t('history.employment.default.physicalAddress.heading.telephone')}
                  titleSize="h4"
                  help="history.employment.default.physicalAddress.telephone.help"
-                 adjustFor="labels">
+                 adjustFor="telephone"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="telephone"
                        {...this.props.Telephone}
                        label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
                        onUpdate={this.updateTelephone}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </Field>
         </div>

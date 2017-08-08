@@ -4,6 +4,7 @@ import ValidationElement from '../ValidationElement'
 import Branch from '../Branch'
 import Show from '../Show'
 import Svg from '../Svg'
+import StickyAccordionSummary from '../../Sticky/StickyAccordionSummary'
 import { findPosition } from '../../../middleware/history'
 
 export const openState = (item = {}, initial = false) => {
@@ -53,6 +54,10 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
+
+    // Instance variable. Not stored in state to prevent re-renders and it's not going to
+    // be used in the UI.
+    this.stickyStatus = {}
   }
 
   /**
@@ -198,8 +203,13 @@ export default class Accordion extends ValidationElement {
       return x
     })
 
-    this.update(items, this.props.branch)
-    this.setState({ initial: false, scrollToId: '' })
+    if (this.stickyStatus[item.uuid]) {
+      this.update(items, this.props.branch)
+      this.setState({ initial: false, scrollToId: item.uuid })
+    } else {
+      this.update(items, this.props.branch)
+      this.setState({ initial: false, scrollToId: '' })
+    }
   }
 
   /**
@@ -310,7 +320,7 @@ export default class Accordion extends ValidationElement {
           : null
 
     return (
-      <div>
+      <div className="summary-container">
         <div className="summary">
           <a className={`left ${openState(item, initial)}`} onClick={this.toggle.bind(this, item)}>
             <span className="button-with-icon">
@@ -348,6 +358,11 @@ export default class Accordion extends ValidationElement {
     )
   }
 
+  onStickyScroll (item, stick) {
+    // Set the sticky status for the particular item
+    this.stickyStatus[item.uuid] = stick
+  }
+
   /**
    * Render the indivual items in the array.
    */
@@ -357,18 +372,26 @@ export default class Accordion extends ValidationElement {
     const items = [...this.props.items]
 
     return items.map((item, index, arr) => {
+      // Bind for each item so we get a handle to it when we set the sticky status
+      const onScroll = this.onStickyScroll.bind(this, item)
+
       return (
-        <div className="item" id={item.uuid} key={item.uuid}>
+        <StickyAccordionSummary id={item.uuid}
+          key={item.uuid}
+          className="item"
+          stickyClass="sticky-accordion"
+          onScroll={onScroll}
+          preventStick={!item.open}>
           {
             this.props.customSummary(item, index, initial,
-                                     () => { return this.summary(item, index, initial) },
-                                     () => { return this.toggle.bind(this, item) },
-                                     () => { return this.openText(item) },
-                                     () => { return this.remove.bind(this, item) },
-                                     () => { return this.props.byline(item, index, initial) })
+              () => { return this.summary(item, index, initial) },
+              () => { return this.toggle.bind(this, item) },
+              () => { return this.openText(item) },
+              () => { return this.remove.bind(this, item) },
+              () => { return this.props.byline(item, index, initial) })
           }
           {this.props.customDetails(item, index, initial, () => { return this.details(item, index, initial) })}
-        </div>
+        </StickyAccordionSummary>
       )
     })
   }
@@ -405,7 +428,9 @@ export default class Accordion extends ValidationElement {
               help={this.props.appendHelp}
               value={this.props.branch}
               onUpdate={this.updateAddendum}
-              onError={this.props.onError}>
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}>
         {this.props.appendMessage}
       </Branch>
     )

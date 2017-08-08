@@ -4,70 +4,56 @@ import { SelectiveServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Text, Textarea, Field } from '../../../Form'
 
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
-
 export default class Selective extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      WasBornAfter: props.WasBornAfter,
-      HasRegistered: props.HasRegistered,
-      RegistrationNumber: props.RegistrationNumber,
-      Explanation: props.Explanation
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateBornAfter = this.updateBornAfter.bind(this)
     this.updateRegistered = this.updateRegistered.bind(this)
     this.updateRegistrationNumber = this.updateRegistrationNumber.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      WasBornAfter: this.props.WasBornAfter,
+      HasRegistered: this.props.HasRegistered,
+      RegistrationNumber: this.props.RegistrationNumber,
+      Explanation: this.props.Explanation,
+      ...queue
     })
   }
 
   updateBornAfter (value, event) {
-    this.onUpdate('WasBornAfter', value)
-
     // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('HasRegistered', null)
-      this.onUpdate('RegistrationNumber', null)
-      this.onUpdate('Explanation', null)
-    }
+    this.update({
+      WasBornAfter: value,
+      HasRegistered: value === 'Yes' ? this.props.HasRegistered : null,
+      RegistrationNumber: value === 'Yes' ? this.props.RegistrationNumber : null,
+      Explanation: value === 'Yes' ? this.props.Explanation : null
+    })
   }
 
   updateRegistered (value, event) {
-    this.onUpdate('HasRegistered', value)
-
     // If there is no history clear out any previously entered data
-    if (value === 'No') {
-      this.onUpdate('RegistrationNumber', null)
-    } else if (value === 'Yes') {
-      this.onUpdate('Explanation', null)
-    }
+    this.update({
+      HasRegistered: value,
+      RegistrationNumber: value === 'Yes' ? this.props.RegistrationNumber : null,
+      Explanation: value === 'Yes' ? null : this.props.Explanation
+    })
   }
 
   updateRegistrationNumber (value) {
-    this.onUpdate('RegistrationNumber', value)
+    this.update({
+      RegistrationNumber: value
+    })
   }
 
   updateExplanation (value) {
-    this.onUpdate('Explanation', value)
+    this.update({
+      Explanation: value
+    })
   }
 
   render () {
@@ -75,33 +61,41 @@ export default class Selective extends SubsectionElement {
       <div className="selective">
         <Branch name="was_bornafter"
                 className="born"
-                value={this.state.WasBornAfter}
+                value={this.props.WasBornAfter}
                 help="military.selective.help.born"
+                warning={true}
                 onUpdate={this.updateBornAfter}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.state.WasBornAfter === 'Yes'}>
+        <Show when={this.props.WasBornAfter === 'Yes'}>
           <div>
             <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
                     className="registered no-margin-bottom"
-                    value={this.state.HasRegistered}
+                    value={this.props.HasRegistered}
+                    warning={true}
                     onUpdate={this.updateRegistered}
-                    onError={this.handleError}>
+                    required={this.props.required}
+                    onError={this.handleError}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.state.HasRegistered === 'Yes'}>
+            <Show when={this.props.HasRegistered === 'Yes'}>
               <div>
                 <Field title={i18n.t('military.selective.heading.number')}
                        className="no-margin-bottom"
-                       adjustFor="labels">
+                       adjustFor="labels"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <Text name="RegistrationNumber"
                         className="registration-number"
                         label={i18n.t('military.selective.label.number')}
-                        {...this.state.RegistrationNumber}
+                        {...this.props.RegistrationNumber}
                         onUpdate={this.updateRegistrationNumber}
                         onError={this.handleError}
+                        required={this.props.required}
                         />
                 </Field>
 
@@ -126,16 +120,18 @@ export default class Selective extends SubsectionElement {
               </div>
             </Show>
 
-            <Show when={this.state.HasRegistered === 'No'}>
+            <Show when={this.props.HasRegistered === 'No'}>
               <Field help="military.selective.help.explanation"
                      className="no-margin-bottom"
-                     adjustFor="labels">
+                     adjustFor="labels"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation"
                           label={i18n.t('military.selective.label.explanation')}
-                          {...this.state.Explanation}
+                          {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -147,11 +143,12 @@ export default class Selective extends SubsectionElement {
 }
 
 Selective.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'selective',
   dispatch: () => {},
   validator: (state, props) => {
-    return new SelectiveServiceValidator(state, props).isValid()
+    return new SelectiveServiceValidator(props, props).isValid()
   }
 }

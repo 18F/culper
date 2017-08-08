@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsEngagedValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateRange, Textarea } from '../../../Form'
 
 export default class EngagedInTerrorism extends SubsectionElement {
@@ -15,50 +15,41 @@ export default class EngagedInTerrorism extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasEngaged: this.props.HasEngaged
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasEngaged: this.props.HasEngaged,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasEngaged', value: values }
-    ])
+    this.update({
+      HasEngaged: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.associations.engaged.collection.item')
-    const unknown = i18n.t('legal.associations.engaged.collection.unknown')
     const o = item || {}
-    const details = (o.Reasons || {}).value
-          ? o.Reasons.value
-          : unknown
     const dates = DateSummary(o.Dates)
+    const details = (o.Reasons || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{details}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.associations.engaged.collection.item'),
+      index: index,
+      left: details,
+      right: dates,
+      placeholder: i18n.m('legal.associations.engaged.collection.unknown')
+    })
   }
 
   render () {
@@ -69,13 +60,15 @@ export default class EngagedInTerrorism extends SubsectionElement {
                 labelSize="h3"
                 className="legal-associations-engaged-has-engaged"
                 value={this.props.HasEngaged}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasEngaged === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -83,22 +76,27 @@ export default class EngagedInTerrorism extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.associations.engaged.collection.description')}
                      appendTitle={i18n.t('legal.associations.engaged.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.engaged.heading.reasons')}
                    help="legal.associations.engaged.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-engaged-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.associations.engaged.heading.dates')}
                    help="legal.associations.engaged.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-engaged-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>
@@ -114,6 +112,7 @@ EngagedInTerrorism.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/engaged-in-terrorism',

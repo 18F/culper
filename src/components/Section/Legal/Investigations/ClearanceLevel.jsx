@@ -12,36 +12,29 @@ export default class ClearanceLevel extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        Level: this.props.Level,
-        Explanation: this.props.Explanation
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      Level: this.props.Level,
+      Explanation: this.props.Explanation,
+      ...queue
+    })
   }
 
   updateLevel (values) {
-    this.update([
-      { name: 'Level', value: values.value }
-    ])
+    this.update({
+      Level: values.value
+    })
   }
 
   updateExplanation (values) {
-    this.update([
-      { name: 'Explanation', value: values }
-    ])
+    this.update({
+      Explanation: values
+    })
   }
 
   render () {
     return (
       <div className={this.props.className}>
-        <RadioGroup className="clearance-levels" selectedValue={this.props.Level}>
+        <RadioGroup className="clearance-levels" selectedValue={this.props.Level} onError={this.props.onError} required={this.props.required}>
           <Radio label={i18n.m('legal.investigations.history.label.level.none')}
                  value="None"
                  className="clearance-level-none"
@@ -102,12 +95,14 @@ export default class ClearanceLevel extends ValidationElement {
           <Field title={i18n.t('legal.investigations.history.heading.clearanceExplanation')}
                  titleSize="label"
                  help="legal.investigations.history.help.clearanceExplanation"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       {...this.props.Explanation}
                       className="legal-investigations-history-clearance-explanation"
                       onUpdate={this.updateExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                   />
           </Field>
         </Show>
@@ -120,6 +115,7 @@ ClearanceLevel.defaultProps = {
   className: 'investigative-clearance-levels',
   Level: '',
   Explanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

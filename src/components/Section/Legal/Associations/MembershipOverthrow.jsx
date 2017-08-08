@@ -2,8 +2,8 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsOverthrowValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Address, Text, Textarea, NotApplicable } from '../../../Form'
+import { Summary, DateSummary } from '../../../Summary'
+import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
 
 export default class MembershipOverthrow extends SubsectionElement {
   constructor (props) {
@@ -15,50 +15,41 @@ export default class MembershipOverthrow extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasOverthrow: this.props.HasOverthrow
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasOverthrow: this.props.HasOverthrow,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasOverthrow', value: values }
-    ])
+    this.update({
+      HasOverthrow: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.associations.overthrow.collection.item')
-    const unknown = i18n.t('legal.associations.overthrow.collection.unknown')
     const o = item || {}
-    const details = (o.Organization || {}).value
-          ? o.Organization.value
-          : unknown
     const dates = DateSummary(o.Dates)
+    const details = (o.Organization || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{details}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.associations.overthrow.collection.item'),
+      index: index,
+      left: details,
+      right: dates,
+      placeholder: i18n.m('legal.associations.overthrow.collection.unknown')
+    })
   }
 
   render () {
@@ -69,13 +60,15 @@ export default class MembershipOverthrow extends SubsectionElement {
                 labelSize="h3"
                 className="legal-associations-overthrow-has-overthrow"
                 value={this.props.HasOverthrow}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasOverthrow === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -83,68 +76,86 @@ export default class MembershipOverthrow extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.associations.overthrow.collection.description')}
                      appendTitle={i18n.t('legal.associations.overthrow.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.overthrow.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.overthrow.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.overthrow.heading.organization')}
                    help="legal.associations.overthrow.help.organization"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Organization"
                     className="legal-associations-overthrow-organization"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.address')}
                    help="legal.associations.overthrow.help.address"
-                   adjustFor="address">
-              <Address name="Address"
-                       className="legal-associations-overthrow-address"
-                       bind={true}
-                       />
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Location name="Address"
+                        className="legal-associations-overthrow-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.dates')}
                    help="legal.associations.overthrow.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-overthrow-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.positions')}
                    help="legal.associations.overthrow.help.positions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="PositionsNotApplicable"
                              or={i18n.m('legal.associations.overthrow.para.or')}
                              label={i18n.t('legal.associations.overthrow.label.noposition')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Positions"
                       className="legal-associations-overthrow-positions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.contributions')}
                    help="legal.associations.overthrow.help.contributions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="ContributionsNotApplicable"
                              or={i18n.m('legal.associations.overthrow.para.or')}
                              label={i18n.t('legal.associations.overthrow.label.nocontribs')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Contributions"
                       className="legal-associations-overthrow-contributions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.reasons')}
                    help="legal.associations.overthrow.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-overthrow-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -160,6 +171,7 @@ MembershipOverthrow.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-overthrow',

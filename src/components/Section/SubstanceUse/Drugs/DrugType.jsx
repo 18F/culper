@@ -32,7 +32,10 @@ export default class DrugType extends ValidationElement {
   render () {
     return (
       <div className="drug-type">
-        <RadioGroup name="born" selectedValue={this.props.DrugType}>
+        <RadioGroup name="born"
+          onError={this.props.onError}
+          required={this.props.required}
+          selectedValue={this.props.DrugType}>
           <Radio className="cocaine"
             label={i18n.m('substance.drugs.drugType.label.cocaine')}
             value="Cocaine"
@@ -121,6 +124,7 @@ export default class DrugType extends ValidationElement {
             label={i18n.t('substance.drugs.drugType.label.drugTypeOther')}
             onUpdate={this.updateDrugTypeOther}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Show>
       </div>

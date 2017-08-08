@@ -79,8 +79,9 @@ export default class ReasonOptions extends React.Component {
       <div className={this.props.className}>
         <Field title="Select the type of incident"
                adjustFor="big-buttons"
-               shrink={true}>
-          <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
+         <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason} required={this.props.required} onError={this.props.onError}>
             <Radio name="employment_left"
                    label={i18n.m('history.employment.default.left.fired.option')}
                    value="Fired"
@@ -115,6 +116,7 @@ export default class ReasonOptions extends React.Component {
                           {...this.state.Text}
                           onUpdate={this.updateText}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </div>
               <div className="date-left">
@@ -123,6 +125,7 @@ export default class ReasonOptions extends React.Component {
                              {...this.state.Date}
                              onUpdate={this.updateDate}
                              onError={this.props.onError}
+                             required={this.props.required}
                              />
               </div>
             </div>

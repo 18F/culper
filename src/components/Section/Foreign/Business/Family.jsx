@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, NameSummary } from '../../../Summary'
 import { ForeignBusinessFamilyValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -9,48 +10,45 @@ export default class Family extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignFamily: props.HasForeignFamily,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateHasForeignFamily = this.updateHasForeignFamily.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignFamily: this.state.HasForeignFamily,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignFamily: this.props.HasForeignFamily,
+      ...queue
     })
   }
 
   updateHasForeignFamily (value) {
-    this.onUpdate('HasForeignFamily', value)
+    this.update({
+      HasForeignFamily: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.family.collection.summary.unknown')
+    const name = NameSummary(obj.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.family.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{display}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.family.collection.summary.item'),
+      index: index,
+      left: name,
+      right: null,
+      placeholder: i18n.m('foreign.business.family.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -60,57 +58,72 @@ export default class Family extends SubsectionElement {
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h3"
                 adjustFor="p"
-                value={this.state.HasForeignFamily}
+                value={this.props.HasForeignFamily}
+                warning={true}
                 onUpdate={this.updateHasForeignFamily}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
 
-        <Show when={this.state.HasForeignFamily === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasForeignFamily === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.family.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.family.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.family.collection.append')}>
-            <h3>{i18n.t('foreign.business.family.heading.name')}</h3>
-            <Name name="Name"
-                  className="family-name"
-                  bind={true}
-                  />
+                     appendLabel={i18n.t('foreign.business.family.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
+           <Field title={i18n.t('foreign.business.family.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="family-name"
+                    bind={true}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+          </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.agency')}>
+          <Field title={i18n.t('foreign.business.family.heading.agency')}
+            scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="family-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.country')}>
+            <Field title={i18n.t('foreign.business.family.heading.country')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="family-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.family.heading.date')}
                    help="foreign.business.family.help.date"
-                   adjustFor="label">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="family-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.circumstances')}>
+            <Field title={i18n.t('foreign.business.family.heading.circumstances')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Circumstances"
                         className="family-circumstances"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -125,12 +138,13 @@ Family.defaultProps = {
   HasForeignFamily: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/family',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessFamilyValidator(state, props).isValid()
+    return new ForeignBusinessFamilyValidator(props, props).isValid()
   },
   defaultState: true
 }

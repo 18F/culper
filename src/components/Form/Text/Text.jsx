@@ -66,8 +66,6 @@ export default class Text extends ValidationElement {
                required={this.props.required}
                value={this.state.value}
                focus={this.props.focus}
-               error={this.state.error}
-               valid={this.state.valid}
                onChange={this.handleChange}
                onFocus={this.props.onFocus}
                onBlur={this.props.onBlur}
@@ -79,6 +77,7 @@ export default class Text extends ValidationElement {
                clipboard={this.props.clipboard}
                tabBack={this.props.tabBack}
                tabNext={this.props.tabNext}
+               required={this.props.required}
                ref="text"
                />
     )
@@ -89,6 +88,7 @@ Text.defaultProps = {
   name: 'text',
   value: '',
   prefix: '',
+  required: false,
   onError: (value, arr) => { return arr }
 }
 

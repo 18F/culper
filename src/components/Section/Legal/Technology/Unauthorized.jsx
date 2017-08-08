@@ -2,8 +2,8 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyUnauthorizedValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Address, Textarea } from '../../../Form'
+import { Summary, DateSummary } from '../../../Summary'
+import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
 
 export default class Unauthorized extends SubsectionElement {
   constructor (props) {
@@ -15,50 +15,41 @@ export default class Unauthorized extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasUnauthorized: this.props.HasUnauthorized
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasUnauthorized: this.props.HasUnauthorized,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasUnauthorized', value: values }
-    ])
+    this.update({
+      HasUnauthorized: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.technology.unauthorized.collection.item')
-    const unknown = i18n.t('legal.technology.unauthorized.collection.unknown')
     const o = item || {}
-    const incident = (o.Incident || {}).value
-          ? o.Incident.value
-          : unknown
     const dates = DateSummary(o.Date)
+    const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{incident}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.technology.unauthorized.collection.item'),
+      index: index,
+      left: incident,
+      right: dates,
+      placeholder: i18n.m('legal.technology.unauthorized.collection.unknown')
+    })
   }
 
   render () {
@@ -71,13 +62,15 @@ export default class Unauthorized extends SubsectionElement {
                 labelSize="h3"
                 className="legal-technology-unauthorized-has-unauthorized"
                 value={this.props.HasUnauthorized}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasUnauthorized === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -85,40 +78,52 @@ export default class Unauthorized extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.technology.unauthorized.collection.description')}
                      appendTitle={i18n.t('legal.technology.unauthorized.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.technology.unauthorized.heading.date')}
                    help="legal.technology.unauthorized.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="legal-technology-unauthorized-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.incident')}
                    help="legal.technology.unauthorized.help.incident"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Incident"
                         className="legal-technology-unauthorized-incident"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
                    help="legal.technology.unauthorized.help.location"
-                   adjustFor="address">
-              <Address name="Location"
-                       className="legal-technology-unauthorized-location"
-                       bind={true}
-                       />
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Location name="Location"
+                        className="legal-technology-unauthorized-location"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.action')}
                    help="legal.technology.unauthorized.help.action"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Action"
                         className="legal-technology-unauthorized-action"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -134,6 +139,7 @@ Unauthorized.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/unauthorized',

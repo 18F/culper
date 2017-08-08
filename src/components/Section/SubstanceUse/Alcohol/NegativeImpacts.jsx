@@ -4,7 +4,7 @@ import { AlcoholNegativeImpactsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import NegativeImpact from './NegativeImpact'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 
 export default class NegativeImpacts extends SubsectionElement {
   constructor (props) {
@@ -34,24 +34,24 @@ export default class NegativeImpacts extends SubsectionElement {
   }
 
   updateHasImpacts (values) {
-    this.update({HasImpacts: values})
+    this.update({
+      HasImpacts: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).NegativeImpact || {}
     const occurred = DateSummary(o.Occurred)
-    const type = i18n.t('substance.alcohol.negativeImpact.collection.itemType')
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <strong>
-            {occurred || i18n.t('substance.alcohol.negativeImpact.collection.summary')}
-          </strong>
-        </span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.alcohol.negativeImpact.collection.itemType'),
+      index: index,
+      left: occurred,
+      right: null,
+      placeholder: i18n.m('substance.alcohol.negativeImpact.collection.summary')
+    })
   }
 
   render () {
@@ -61,13 +61,15 @@ export default class NegativeImpacts extends SubsectionElement {
         <Branch name="has_impacts"
                 className="has-impacts"
                 value={this.props.HasImpacts}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasImpacts}>
+                required={this.props.required}
+                onUpdate={this.updateHasImpacts}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasImpacts === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -75,8 +77,9 @@ export default class NegativeImpacts extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.negativeImpact.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.negativeImpact.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}>
-            <NegativeImpact name="NegativeImpact" bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <NegativeImpact name="NegativeImpact" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

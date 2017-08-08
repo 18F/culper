@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignDirectActivityValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
@@ -15,32 +16,27 @@ export default class DirectActivity extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        HasInterests: this.props.HasInterests,
-        List: this.props.List,
-        ListBranch: this.props.ListBranch
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      HasInterests: this.props.HasInterests,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateHasInterests (values) {
-    this.update([
-      { name: 'HasInterests', value: values }
-    ])
+    this.update({
+      HasInterests: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
@@ -48,8 +44,6 @@ export default class DirectActivity extends SubsectionElement {
     const who = (o.InterestTypes || []).join(', ')
     const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
-    const type = i18n.t('foreign.activities.direct.collection.itemType')
-
     const summary = [who, interestType].reduce((prev, next) => {
       if (prev && next) {
         return prev + ' - ' + next
@@ -57,15 +51,13 @@ export default class DirectActivity extends SubsectionElement {
       return prev
     })
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="interest">
-          <strong>{summary || i18n.t('foreign.activities.direct.collection.summary')}</strong>
-        </span>
-        <span className="cost">{cost}</span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.activities.direct.collection.itemType'),
+      index: index,
+      left: summary,
+      right: cost,
+      placeholder: i18n.m('foreign.activities.direct.collection.summary')
+    })
   }
 
   render () {
@@ -75,14 +67,16 @@ export default class DirectActivity extends SubsectionElement {
                 label={<h3>{i18n.t('foreign.activities.direct.heading.title')}</h3>}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasInterests}>
+                required={this.props.required}
+                onUpdate={this.updateHasInterests}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -90,9 +84,12 @@ export default class DirectActivity extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.direct.collection.description')}
                      appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <DirectInterest name="DirectInterest"
                             bind={true}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
           </Accordion>
         </Show>
@@ -107,6 +104,7 @@ DirectActivity.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/direct',

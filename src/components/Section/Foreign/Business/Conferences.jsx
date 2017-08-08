@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessConferencesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
@@ -11,48 +11,46 @@ export default class Conferences extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignConferences: props.HasForeignConferences,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateHasForeignConferences = this.updateHasForeignConferences.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignConferences: this.state.HasForeignConferences,
-          List: this.state.List
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignConferences: this.props.HasForeignConferences,
+      ...queue
     })
   }
 
   updateHasForeignConferences (value) {
-    this.onUpdate('HasForeignConferences', value)
+    this.update({
+      HasForeignConferences: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const city = (obj.City || {}).value || i18n.t('foreign.business.conferences.collection.summary.unknown')
     const date = DateSummary(item.Dates)
+    const city = (obj.City || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.conferences.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{city}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.conferences.collection.summary.item'),
+      index: index,
+      left: city,
+      right: date,
+      placeholder: i18n.m('foreign.business.conferences.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -63,75 +61,92 @@ export default class Conferences extends SubsectionElement {
                 labelSize="h3"
                 adjustFor="p"
                 help="foreign.business.conferences.help.branch"
-                value={this.state.HasForeignConferences}
+                value={this.props.HasForeignConferences}
+                warning={true}
                 onUpdate={this.updateHasForeignConferences}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.conferences.para.branch')}
         </Branch>
 
-        <Show when={this.state.HasForeignConferences === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasForeignConferences === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.conferences.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.conferences.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.conferences.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.conferences.collection.append')}>
+                     appendLabel={i18n.t('foreign.business.conferences.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.conferences.heading.description')}
-                   help="foreign.business.conferences.help.description">
+              help="foreign.business.conferences.help.description"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Description"
                         className="conferences-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.sponsor')}
-                   help="foreign.business.conferences.help.sponsor">
+              help="foreign.business.conferences.help.sponsor"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Sponsor"
                     className="conferences-sponsor"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.city')}
-                   help="foreign.business.conferences.help.city">
+              help="foreign.business.conferences.help.city"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="City"
                     className="conferences-city"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.country')}
-                   help="foreign.business.conferences.help.country">
+              help="foreign.business.conferences.help.country"
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="conferences-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.dates')}
                    help="foreign.business.conferences.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="conferences-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('foreign.business.conferences.heading.purpose')}
-                   help="foreign.business.conferences.help.purpose">
+              help="foreign.business.conferences.help.purpose"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Purpose"
                         className="conferences-purpose"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <ConferenceContacts name="Contacts"
                                 bind={true}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView}
                                 />
           </Accordion>
         </Show>
@@ -145,12 +160,13 @@ Conferences.defaultProps = {
   HasForeignConferences: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/conferences',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessConferencesValidator(state, props).isValid()
+    return new ForeignBusinessConferencesValidator(props, props).isValid()
   },
   defaultState: true
 }

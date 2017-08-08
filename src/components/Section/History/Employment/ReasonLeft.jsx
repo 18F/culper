@@ -52,12 +52,14 @@ export default class ReasonLeft extends ValidationElement {
         <Field help="history.employment.default.reasonDescription"
                comments={true}
                commentsName="comments"
-               commentsValue={this.state.Comments}>
+               commentsValue={this.state.Comments}
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="reason_description"
                     {...this.state.ReasonDescription}
                     className="reason-description"
                     onUpdate={this.updateReasonDescription}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -68,8 +70,10 @@ export default class ReasonLeft extends ValidationElement {
                           items={this.state.Reasons}
                           onUpdate={this.updateReasons}
                           onError={this.props.onError}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
                           >
-          <ReasonOptions name="Reason" bind={true} />
+          <ReasonOptions name="Reason" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
         </BranchCollection>
       </div>
     )

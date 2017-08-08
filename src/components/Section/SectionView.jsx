@@ -65,7 +65,7 @@ export class SectionViews extends React.Component {
         }
 
         let topButtons = null
-        if (child.props.showTop === 'true' && buttons) {
+        if (child.props.showTop && buttons) {
           topButtons = (<div className="top-btns">{buttons}</div>)
         }
 

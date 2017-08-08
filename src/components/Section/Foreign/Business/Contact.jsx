@@ -1,63 +1,59 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Textarea, Country, DateControl, Name, BirthPlace, Location } from '../../../Form'
+         Textarea, Country, DateControl, Name, Location } from '../../../Form'
 import SubsequentContacts from './SubsequentContacts'
 
 export default class Contact extends SubsectionElement {
   constructor (props) {
     super(props)
 
+    this.update = this.update.bind(this)
     this.updateHasForeignContact = this.updateHasForeignContact.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasForeignContact: this.props.HasForeignContact
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasForeignContact: this.props.HasForeignContact,
+      ...queue
+    })
   }
 
   updateHasForeignContact (values) {
-    this.update([
-      { name: 'HasForeignContact', value: values }
-    ])
+    this.update({
+      HasForeignContact: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const name = NameSummary(obj.Name, i18n.t('foreign.business.contact.collection.summary.unknown'))
     const date = DateSummary(obj.Date)
+    const name = NameSummary(obj.Name)
     const govt = ((obj.Governments || {}).value || []).map(x => x.name).join(', ')
-    const govtParen = govt ? ` (${govt})` : ''
+    const govtParen = name && govt ? ` (${govt})` : ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.contact.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{name}{govtParen}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.contact.collection.summary.item'),
+      index: index,
+      left: `${name}${govtParen}`,
+      right: date,
+      placeholder: i18n.m('foreign.business.contact.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -70,14 +66,16 @@ export default class Contact extends SubsectionElement {
                 labelSize="h3"
                 help="foreign.business.contact.help.branch"
                 value={this.props.HasForeignContact}
+                warning={true}
                 onUpdate={this.updateHasForeignContact}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
         <Show when={this.props.HasForeignContact === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.props.List}
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
@@ -86,16 +84,19 @@ export default class Contact extends SubsectionElement {
                      description={i18n.t('foreign.business.contact.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.contact.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.contact.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.contact.collection.append')}>
-            <h3>{i18n.t('foreign.business.contact.heading.name')}</h3>
-            <Name name="Name"
-                  className="foreign-business-contact-name"
-                  bind={true}
-                  />
-
+                     appendLabel={i18n.t('foreign.business.contact.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
+           <Field title={i18n.t('foreign.business.contact.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="foreign-business-contact-name"
+                    bind={true}
+                    required={this.props.required}
+                    />
+           </Field>
             <Field title={i18n.t('foreign.business.contact.heading.location')}
-                   help="foreign.business.contact.help.location"
-                   adjustFor="address">
+              help="foreign.business.contact.help.location"
+              scrollIntoView={this.props.scrollIntoView}>
               <Location name="Location"
                           layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                           help=""
@@ -104,56 +105,68 @@ export default class Contact extends SubsectionElement {
                           countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
                           className="birthplace foreign-business-contact-location"
                           bind={true}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
                           />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.date')}
                    help="foreign.business.contact.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="foreign-business-contact-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.governments')}
                    help="foreign.business.contact.help.governments"
-                   adjustFor="country">
+                   adjustFor="country"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Country name="Governments"
                        className="foreign-business-contact-governments"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.establishment')}
                    help="foreign.business.contact.help.establishment"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Establishment"
                         className="foreign-business-contact-establishment"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.representatives')}
                    help="foreign.business.contact.help.representatives"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Representatives"
                         className="foreign-business-contact-representatives"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.purpose')}
                    help="foreign.business.contact.help.purpose"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Purpose"
                         className="foreign-business-contact-purpose"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <SubsequentContacts name="SubsequentContacts" bind={true} />
+            <SubsequentContacts name="SubsequentContacts" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -166,6 +179,7 @@ Contact.defaultProps = {
   HasForeignContact: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',

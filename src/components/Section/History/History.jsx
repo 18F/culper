@@ -1,11 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { reportCompletion } from '../../../actions/ApplicationActions'
+import { EducationValidator } from '../../../validators'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Svg, Show, Branch } from '../../Form'
-import IntroHeader from '../../Form/IntroHeader'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
@@ -14,6 +15,28 @@ import { InjectGaps } from './summaries'
 import Residence from './Residence'
 import Employment from './Employment'
 import Education from './Education'
+
+/**
+  * Default sorting of history objects. This assumes that all objects contain a `Dates` property
+  * with date range values.
+  */
+export const sort = (a, b) => {
+  // Helper to find the date value or default it to 0
+  const getOptionalDate = (obj) => {
+    return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
+  }
+
+  const first = getOptionalDate(a)
+  const second = getOptionalDate(b)
+
+  if (first < second) {
+    return 1
+  } else if (first > second) {
+    return -1
+  }
+
+  return 0
+}
 
 class History extends SectionElement {
   constructor (props) {
@@ -52,35 +75,18 @@ class History extends SectionElement {
   updateBranchAttendance (values) {
     let education = this.props.Education || {}
     education.HasAttended = values
+    education.HasDegree10 = values === 'No' ? education.HasDegree10 : ''
+    education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
+    this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
   }
 
   updateBranchDegree10 (values) {
     let education = this.props.Education || {}
     education.HasDegree10 = values
+    education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
-  }
-
-  /**
-   * Default sorting of history objects. This assumes that all objects contain a `Dates` property
-   * with date range values.
-   */
-  sort (a, b) {
-    // Helper to find the date value or default it to 0
-    const getOptionalDate = (obj) => {
-      return ((((obj || {}).Item || {}).Dates || {}).to || {}).date || 0
-    }
-
-    const first = getOptionalDate(a)
-    const second = getOptionalDate(b)
-
-    if (first < second) {
-      return 1
-    } else if (first > second) {
-      return -1
-    }
-
-    return 0
+    this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
   }
 
   /**
@@ -294,7 +300,7 @@ class History extends SectionElement {
       }
     })
 
-    this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(this.sort))
+    this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(sort))
   }
 
   overrideInitial (initial) {
@@ -305,16 +311,13 @@ class History extends SectionElement {
     return (
       <div className="history">
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="history intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                             completed={() => { return this.props.Completed.length === 4 && this.props.Completed.every(x => x.valid === true) }}
-                             onTour={this.handleTour}
-                             onReview={this.handleReview}
-                             />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="financial/review"
+                       backLabel={i18n.t('financial.destination.review')}
+                       next="history/residence"
+                       nextLabel={i18n.t('history.destination.residence')}>
+            <h2>{i18n.t('history.intro.title')}</h2>
+            {i18n.m('history.intro.body')}
           </SectionView>
 
           <SectionView name="review"
@@ -334,35 +337,41 @@ class History extends SectionElement {
             <Residence value={this.props.Residence}
                        defaultState={false}
                        realtime={true}
-                       sort={this.sort}
+                       sort={sort}
                        totalYears={this.totalYears()}
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
                        dispatch={this.props.dispatch}
+                       scrollIntoView={false}
+                       required={true}
                        />
 
             <Employment value={this.props.Employment}
                         defaultState={false}
                         realtime={true}
-                        sort={this.sort}
+                        sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         dispatch={this.props.dispatch}
+                        scrollIntoView={false}
+                        required={true}
                         />
 
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
               <Education value={this.props.Education.List}
                          defaultState={false}
                          realtime={true}
-                         sort={this.sort}
+                         sort={sort}
                          totalYears={this.totalYears()}
                          overrideInitial={this.overrideInitial}
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
+                         scrollIntoView={false}
+                         required={true}
                          />
             </Show>
 
@@ -371,14 +380,17 @@ class History extends SectionElement {
             <Federal name="federal"
                      {...this.props.Federal}
                      defaultState={false}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
+                     scrollIntoView={false}
+                     required={true}
                      />
           </SectionView>
 
           <SectionView name="residence"
-                       back="financial/nonpayment"
-                       backLabel={i18n.t('financial.destination.nonpayment')}
+                       back="history/intro"
+                       backLabel={i18n.t('history.destination.intro')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
             <h2>{i18n.t('history.residence.title')}</h2>
@@ -392,7 +404,7 @@ class History extends SectionElement {
             <Residence value={this.props.Residence}
                        scrollTo="scrollToHistory"
                        realtime={true}
-                       sort={this.sort}
+                       sort={sort}
                        totalYears={this.totalYears()}
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
@@ -421,7 +433,7 @@ class History extends SectionElement {
             { this.employmentSummaryProgress() }
             <Employment value={this.props.Employment}
                         scrollTo="scrollToHistory"
-                        sort={this.sort}
+                        sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
                         onUpdate={this.updateEmployment}
@@ -449,6 +461,7 @@ class History extends SectionElement {
                     value={this.props.Education.HasAttended}
                     help="history.education.help.attendance"
                     label={i18n.t('history.education.label.attendance')}
+                    warning={true}
                     onUpdate={this.updateBranchAttendance}
                     >
             </Branch>
@@ -457,6 +470,7 @@ class History extends SectionElement {
                       value={this.props.Education.HasDegree10}
                       help="history.education.help.degree10"
                       label={i18n.t('history.education.label.degree10')}
+                      warning={true}
                       onUpdate={this.updateBranchDegree10}
                       >
               </Branch>
@@ -465,9 +479,9 @@ class History extends SectionElement {
               <div>
                 <span id="scrollToHistory"></span>
                 { this.educationSummaryProgress() }
-                <Education value={this.props.Education.List}
+                <Education value={this.props.Education}
                            scrollTo="scrollToHistory"
-                           sort={this.sort}
+                           sort={sort}
                            totalYears={this.totalYears()}
                            overrideInitial={this.overrideInitial}
                            onUpdate={this.updateEducation}
@@ -487,6 +501,7 @@ class History extends SectionElement {
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
                      />
@@ -530,7 +545,6 @@ function mapStateToProps (state) {
 
 History.defaultProps = {
   section: 'history',
-  defaultView: (props) => { return 'residence' },
   store: 'History'
 }
 

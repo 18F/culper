@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import { Field, Radio, RadioGroup } from '../../Form'
 
 /**
@@ -9,20 +10,23 @@ import { Field, Radio, RadioGroup } from '../../Form'
 export default class Branch extends React.Component {
   constructor (props) {
     super(props)
-
-    this.state = {
-      value: this.props.value
-    }
-
     this.handleUpdate = this.handleUpdate.bind(this)
   }
 
   handleUpdate (values) {
-    this.setState({value: values.value}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate(values.value)
+    // If they answered "No" (or deselects "Yes" entirely) we need to
+    // check if a confirmation is required.
+    if ((values.value === this.props.noValue || values.value === '') && this.props.value === this.props.yesValue) {
+      // When a `warning` should be displayed AND they do no approve the change then
+      // set the old value back to "Yes".
+      if (this.props.warning && window.confirm(this.props.confirmation) === false) {
+        values.value = this.props.yesValue
       }
-    })
+    }
+
+    if (this.props.onUpdate) {
+      this.props.onUpdate(values.value)
+    }
   }
 
   render () {
@@ -34,11 +38,16 @@ export default class Branch extends React.Component {
              className={klass}
              help={this.props.help}
              adjustFor={this.props.adjustFor}
+             scrollIntoView={this.props.scrollIntoView}
              shrink={true}>
         <div className="content">
           {this.props.children}
         </div>
-        <RadioGroup className="option-list branch" selectedValue={this.props.value}>
+        <RadioGroup
+          className="option-list branch"
+          required={this.props.required}
+          onError={this.props.onError}
+          selectedValue={this.props.value}>
           <Radio name={this.props.name}
                  label={this.props.yesLabel}
                  value={this.props.yesValue}
@@ -61,12 +70,14 @@ export default class Branch extends React.Component {
 
 // Default values for properties that are not specified
 Branch.defaultProps = {
-  yesLabel: 'Yes',
-  yesValue: 'Yes',
-  noLabel: 'No',
-  noValue: 'No',
+  yesLabel: i18n.t('branch.label.yes'),
+  yesValue: i18n.t('branch.value.yes'),
+  noLabel: i18n.t('branch.label.no'),
+  noValue: i18n.t('branch.value.no'),
   labelSize: 'label',
   adjustFor: 'buttons',
+  warning: false,
+  confirmation: i18n.t('branch.confirmation'),
   value: '',
   onError: (value, arr) => { return arr }
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsRevokedValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, DateControl, Text, Textarea } from '../../../Form'
 
 export default class Revoked extends SubsectionElement {
@@ -15,50 +15,41 @@ export default class Revoked extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasRevocations: this.props.HasRevocations
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasRevocations: this.props.HasRevocations,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasRevocations', value: values }
-    ])
+    this.update({
+      HasRevocations: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.investigations.revoked.collection.item')
-    const unknown = i18n.t('legal.investigations.revoked.collection.unknown')
     const o = item || {}
-    const agency = (o.Agency || {}).value
-          ? o.Agency.value
-          : unknown
     const dates = DateSummary(o.Date)
+    const agency = (o.Agency || {}).value || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.investigations.revoked.collection.item'),
+      index: index,
+      left: agency,
+      right: dates,
+      placeholder: i18n.m('legal.investigations.revoked.collection.unknown')
+    })
   }
 
   render () {
@@ -69,14 +60,16 @@ export default class Revoked extends SubsectionElement {
                 labelSize="h3"
                 className="legal-investigations-revoked-has-revocations"
                 value={this.props.HasRevocations}
+                warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('legal.investigations.revoked.para.downgrade')}
         </Branch>
 
         <Show when={this.props.HasRevocations === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -84,31 +77,38 @@ export default class Revoked extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.investigations.revoked.collection.description')}
                      appendTitle={i18n.t('legal.investigations.revoked.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.revoked.heading.date')}
                    help="legal.investigations.revoked.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="legal-investigations-revoked-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('legal.investigations.revoked.heading.agency')}
                    help="legal.investigations.revoked.help.agency"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="legal-investigations-revoked-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('legal.investigations.revoked.heading.explanation')}
                    help="legal.investigations.revoked.help.explanation"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Explanation"
                         className="legal-investigations-revoked-explanation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -124,6 +124,7 @@ Revoked.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/revoked',

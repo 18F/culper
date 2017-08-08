@@ -14,17 +14,10 @@ export default class Name extends ValidationElement {
     super(props)
 
     this.state = {
-      first: props.first,
-      firstInitialOnly: props.firstInitialOnly,
-      last: props.last,
-      lastInitialOnly: props.lastInitialOnly,
-      middle: props.middle,
-      middleInitialOnly: props.middleInitialOnly,
-      noMiddleName: props.noMiddleName,
-      suffix: props.suffix,
-      suffixOther: props.suffixOther
+      uid: `${this.props.name}-${super.guid()}`
     }
 
+    this.update = this.update.bind(this)
     this.updateFirst = this.updateFirst.bind(this)
     this.updateFirstInitial = this.updateFirstInitial.bind(this)
     this.updateMiddle = this.updateMiddle.bind(this)
@@ -42,27 +35,35 @@ export default class Name extends ValidationElement {
     this.handleErrorSuffix = this.handleErrorSuffix.bind(this)
   }
 
-  update (name, value, callback) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          ...this.state,
-          [name]: value
-        })
-      }
-
-      if (callback) {
-        callback()
-      }
+  update (queue, callback) {
+    this.props.onUpdate({
+      first: this.props.first,
+      firstInitialOnly: this.props.firstInitialOnly,
+      last: this.props.last,
+      lastInitialOnly: this.props.lastInitialOnly,
+      middle: this.props.middle,
+      middleInitialOnly: this.props.middleInitialOnly,
+      noMiddleName: this.props.noMiddleName,
+      suffix: this.props.suffix,
+      suffixOther: this.props.suffixOther,
+      ...queue
     })
+
+    if (callback) {
+      callback()
+    }
   }
 
   updateFirst (values) {
-    this.update('first', values.value)
+    this.update({
+      first: values.value
+    })
   }
 
   updateFirstInitial (values) {
-    this.update('firstInitialOnly', values.checked, () => {
+    this.update({
+      firstInitialOnly: values.checked
+    }, () => {
       this.refs.first.refs.text.refs.input.focus()
       this.refs.first.refs.text.refs.input.blur()
       this.refs.first.refs.text.refs.input.focus()
@@ -71,12 +72,16 @@ export default class Name extends ValidationElement {
   }
 
   updateMiddle (values) {
-    this.update('middle', values.value)
+    this.update({
+      middle: values.value
+    })
   }
 
   updateMiddleInitial (values) {
-    this.update('noMiddleName', false)
-    this.update('middleInitialOnly', values.checked, () => {
+    this.update({
+      noMiddleName: false,
+      middleInitialOnly: values.checked
+    }, () => {
       this.refs.middle.refs.text.refs.input.focus()
       this.refs.middle.refs.text.refs.input.blur()
       this.refs.middleInitialOnly.refs.checkbox.focus()
@@ -84,9 +89,11 @@ export default class Name extends ValidationElement {
   }
 
   updateMiddleNone (values) {
-    this.update('middleInitialOnly', false)
-    this.update('middle', '')
-    this.update('noMiddleName', values.checked, () => {
+    this.update({
+      middleInitialOnly: false,
+      middle: '',
+      noMiddleName: values.checked
+    }, () => {
       this.refs.middle.refs.text.refs.input.focus()
       this.refs.middle.refs.text.refs.input.blur()
       this.refs.noMiddleName.refs.checkbox.focus()
@@ -94,11 +101,15 @@ export default class Name extends ValidationElement {
   }
 
   updateLast (values) {
-    this.update('last', values.value)
+    this.update({
+      last: values.value
+    })
   }
 
   updateLastInitial (values) {
-    this.update('lastInitialOnly', values.checked, () => {
+    this.update({
+      lastInitialOnly: values.checked
+    }, () => {
       this.refs.last.refs.text.refs.input.focus()
       this.refs.last.refs.text.refs.input.blur()
       this.refs.lastInitialOnly.refs.checkbox.focus()
@@ -106,11 +117,15 @@ export default class Name extends ValidationElement {
   }
 
   updateSuffix (values) {
-    this.update('suffix', values.value)
+    this.update({
+      suffix: values.value
+    })
   }
 
   updateSuffixOther (values) {
-    this.update('suffixOther', values.value)
+    this.update({
+      suffixOther: values.value
+    })
   }
 
   handleErrorFirst (value, arr) {
@@ -138,22 +153,37 @@ export default class Name extends ValidationElement {
       }
     })
 
+    const requiredErr = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `name.${err.code}`,
+        valid: err.func(value, {...this.props, ...this.state}),
+        uid: this.state.uid
+      }
+    }))
+
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    this.props.onError(value, requiredErr.filter(err => err.code === 'name.required'))
+    return arr
+  }
+
+  filterErrors (errors) {
+    return errors.filter(err => err.code.indexOf('required') === -1)
   }
 
   render () {
     const prefix = this.props.prefix
     const klass = `name ${this.props.className || ''}`.trim()
-    const maxFirst = this.state.firstInitialOnly ? '1' : '100'
-    const maxMiddle = this.state.middleInitialOnly ? '1' : '100'
-    const maxLast = this.state.lastInitialOnly ? '1' : '100'
+    const maxFirst = this.props.firstInitialOnly ? '1' : '100'
+    const maxMiddle = this.props.middleInitialOnly ? '1' : '100'
+    const maxLast = this.props.lastInitialOnly ? '1' : '100'
 
     return (
       <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
         <Field help="identification.name.first.help"
                errorPrefix="name"
+               filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="first"
                 ref="first"
@@ -161,11 +191,12 @@ export default class Name extends ValidationElement {
                 pattern="^[a-zA-Z\-\.' ]*$"
                 maxlength={maxFirst}
                 className="first"
-                value={this.state.first}
+                value={this.props.first}
                 onUpdate={this.updateFirst}
                 onError={this.handleErrorFirst}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="flags">
             <Checkbox name="firstInitialOnly"
@@ -173,8 +204,8 @@ export default class Name extends ValidationElement {
                       label={i18n.t(`${prefix}.label.initialOnly`)}
                       className="first-initial-only"
                       toggle="false"
-                      value={this.state.firstInitialOnly}
-                      checked={this.state.firstInitialOnly}
+                      value={this.props.firstInitialOnly}
+                      checked={this.props.firstInitialOnly}
                       onUpdate={this.updateFirstInitial}
                       onError={this.handleErrorFirst}
                       />
@@ -182,6 +213,8 @@ export default class Name extends ValidationElement {
         </Field>
         <Field help="identification.name.middle.help"
                errorPrefix="name"
+               filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="middle"
                 ref="middle"
@@ -189,12 +222,13 @@ export default class Name extends ValidationElement {
                 minlength="0"
                 maxlength={maxMiddle}
                 className="middle"
-                value={this.state.middle}
-                disabled={this.state.noMiddleName}
+                value={this.props.middle}
+                disabled={this.props.noMiddleName}
                 onUpdate={this.updateMiddle}
                 onError={this.handleErrorMiddle}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="middle-options flags">
             <Checkbox name="noMiddleName"
@@ -202,8 +236,8 @@ export default class Name extends ValidationElement {
                       label={i18n.t(`${prefix}.label.noMiddle`)}
                       className="middle-none"
                       toggle="false"
-                      value={this.state.noMiddleName}
-                      checked={this.state.noMiddleName}
+                      value={this.props.noMiddleName}
+                      checked={this.props.noMiddleName}
                       onUpdate={this.updateMiddleNone}
                       onError={this.handleErrorMiddle}
                       />
@@ -212,8 +246,8 @@ export default class Name extends ValidationElement {
                       label={i18n.t(`${prefix}.label.initialOnly`)}
                       className="middle-initial-only"
                       toggle="false"
-                      value={this.state.middleInitialOnly}
-                      checked={this.state.middleInitialOnly}
+                      value={this.props.middleInitialOnly}
+                      checked={this.props.middleInitialOnly}
                       onUpdate={this.updateMiddleInitial}
                       onError={this.handleErrorMiddle}
                       />
@@ -221,6 +255,8 @@ export default class Name extends ValidationElement {
         </Field>
         <Field help="identification.name.last.help"
                errorPrefix="name"
+               filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="last"
                 ref="last"
@@ -228,11 +264,12 @@ export default class Name extends ValidationElement {
                 maxlength={maxLast}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
-                value={this.state.last}
+                value={this.props.last}
                 onUpdate={this.updateLast}
                 onError={this.handleErrorLast}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="flags">
             <Checkbox name="lastInitialOnly"
@@ -240,8 +277,8 @@ export default class Name extends ValidationElement {
                       label={i18n.t(`${prefix}.label.initialOnly`)}
                       className="last-initial-only"
                       toggle="false"
-                      value={this.state.lastInitialOnly}
-                      checked={this.state.lastInitialOnly}
+                      value={this.props.lastInitialOnly}
+                      checked={this.props.lastInitialOnly}
                       onUpdate={this.updateLastInitial}
                       onError={this.handleErrorLast}
                       />
@@ -249,10 +286,11 @@ export default class Name extends ValidationElement {
         </Field>
         <Field help="identification.name.suffix.help"
                errorPrefix="name"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <label>{i18n.t(`${prefix}.label.suffix`)} <span className="optional">({i18n.t(`${prefix}.label.optional`)})</span></label>
 
-          <RadioGroup className="option-list suffix" selectedValue={this.state.suffix}>
+          <RadioGroup className="option-list suffix" selectedValue={this.props.suffix}>
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.jr`)}
                    className="suffix-jr"
@@ -371,16 +409,17 @@ export default class Name extends ValidationElement {
                    onBlur={this.props.onBlur}
                    />
           </RadioGroup>
-          <Show when={this.state.suffix === 'Other'}>
+          <Show when={this.props.suffix === 'Other'}>
             <Text name="suffixOther"
                   label={i18n.t(`${prefix}.label.other`)}
                   maxlength="100"
                   className="suffix-other"
-                  value={this.state.suffixOther}
+                  value={this.props.suffixOther}
                   onUpdate={this.updateSuffixOther}
                   onError={this.handleErrorSuffix}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
+                  required={this.props.required}
                   />
           </Show>
         </Field>
@@ -403,8 +442,20 @@ Name.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  required: false,
   errorCodes: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 
-Name.errors = []
+Name.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!props.first && !!props.last
+      }
+      return true
+    }
+  }
+]
