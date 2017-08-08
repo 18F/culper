@@ -1,0 +1,87 @@
+{
+  "type": "foreign.activities.support",
+  "props": {
+    "HasForeignSupport": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "last": "Smith",
+                  "lastInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "Relationship": {
+                "type": "textarea",
+                "props": {
+                  "value": "my relationship"
+                }
+              },
+              "Amount": {
+                "type": "number",
+                "props": {
+                  "value": "10000"
+                }
+              },
+              "AmountEstimated": {
+                "type": "checkbox",
+                "props": {
+                  "value": "",
+                  "checked": false
+                }
+              },
+              "Frequency": {
+                "type": "text",
+                "props": {
+                  "value": "Daily"
+                }
+              },
+              "Citizenship": {
+                "type": "country",
+                "props": {
+                  "value": ["Germany"]
+                }
+              }
+            }
+          }
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    }
+  }
+}

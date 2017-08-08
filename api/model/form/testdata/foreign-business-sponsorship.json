@@ -1,0 +1,176 @@
+{
+  "type": "foreign.business.sponsorship",
+  "props": {
+    "HasForeignSponsorship": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Name": {
+                "type": "name",
+                "props": {
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "last": "Smith",
+                  "lastInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "Birthdate": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "BirthdateNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Birthplace": {
+                "type": "location",
+                "props": {
+                  "layout": "City, Country",
+                  "street": "",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "",
+                  "zipcode": "",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "Address": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "Citizenship": {
+                "type": "country",
+                "props": {
+                  "value": ["Germany"]
+                }
+              },
+              "Organization": {
+                "type": "text",
+                "props": {
+                  "value": "my org"
+                }
+              },
+              "OrganizationNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "OrganizationAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "OrganizationAddressNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "Dates": {
+                "type": "daterange",
+                "props": {
+                  "from": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "1",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-01T00:00:00Z"
+                    }
+                  },
+                  "to": {
+                    "type": "datecontrol",
+                    "props": {
+                      "month": "7",
+                      "day": "25",
+                      "year": "2017",
+                      "estimated": false,
+                      "date": "2017-07-25T00:00:00Z"
+                    }
+                  },
+                  "present": false
+                }
+              },
+              "Residence": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
+                }
+              },
+              "Stay": {
+                "type": "textarea",
+                "props": {
+                  "value": "my stay"
+                }
+              },
+              "Sponsorship": {
+                "type": "textarea",
+                "props": {
+                  "value": "my sponsorship"
+                }
+              }
+            }
+          }
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    }
+  }
+}

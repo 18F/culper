@@ -99,6 +99,23 @@ func TestPayload(t *testing.T) {
 		{Data: "testdata/military-disciplinary.json"},
 
 		// Section: Foreign activities
+		{Data: "testdata/foreign-passport.json"},
+		{Data: "testdata/foreign-contacts.json"},
+		{Data: "testdata/foreign-travel.json"},
+		{Data: "testdata/foreign-activities-benefits.json"},
+		{Data: "testdata/foreign-activities-direct.json"},
+		{Data: "testdata/foreign-activities-indirect.json"},
+		{Data: "testdata/foreign-activities-realestate.json"},
+		{Data: "testdata/foreign-activities-support.json"},
+		{Data: "testdata/foreign-business-advice.json"},
+		{Data: "testdata/foreign-business-conferences.json"},
+		{Data: "testdata/foreign-business-contact.json"},
+		{Data: "testdata/foreign-business-employment.json"},
+		{Data: "testdata/foreign-business-family.json"},
+		{Data: "testdata/foreign-business-political.json"},
+		{Data: "testdata/foreign-business-sponsorship.json"},
+		{Data: "testdata/foreign-business-ventures.json"},
+		{Data: "testdata/foreign-business-voting.json"},
 
 		// Section: Substance use
 		{Data: "testdata/substance-drug-usage.json"},
