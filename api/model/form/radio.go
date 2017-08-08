@@ -5,7 +5,7 @@ import "encoding/json"
 // Radio is a basic input.
 type Radio struct {
 	Value   string `json:"value"`
-	Checked bool   `json:"checked"`
+	Checked bool   `json:"checked,omitempty"`
 }
 
 // Unmarshal bytes in to the entity properties.
