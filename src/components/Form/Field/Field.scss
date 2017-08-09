@@ -228,10 +228,6 @@
         border: 2px solid $eapp-blue-lighter;
         border-radius: 6px;
 
-        @media screen and (max-width: 1380px) {
-          margin: 1.3rem 0 1.3rem 5.5rem;
-        }
-
         @media screen and (max-width: 850px) {
           margin: 1.3rem 0;
         }
@@ -308,12 +304,6 @@
 
         > .component {
           display: block;
-        }
-      }
-
-      > .messages {
-        .message {
-          width: 85%;
         }
       }
     }

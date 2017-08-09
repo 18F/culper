@@ -31,17 +31,28 @@ $border-size: 5px;
     box-shadow: 0 0 10px 3px rgba(0, 0, 0, 0.3);
 
     i {
+      top: -7.45rem;
+      width: 6.25rem;
+      height: 6.25rem;
+      padding-top: 2rem;
       background-color: $eapp-blue;
     }
 
     .spinner {
       .spinner-icon,
       .spinner-icon:after {
+        top: -0.15rem;
+        width: 6.25rem;
+        height: 6.25rem;
         border-top: $border-size solid rgba(32, 84, 147, 0.2);
         border-right: $border-size solid rgba(32, 84, 147, 0.2);
         border-bottom: $border-size solid rgba(32, 84, 147, 0.2);
         border-left: $border-size solid $eapp-blue;
       }
+    }
+
+    .spinner-label {
+      top: -8rem;
     }
   }
 
@@ -52,11 +63,11 @@ $border-size: 5px;
     display: block;
     color: #fff;
     background-color: $eapp-blue;  // translates to rgb(0, 113, 188)
-    padding: 1.75rem;
+    padding-top: 1.75rem;
     border-radius: 50%;
     font-size: 2.5rem;
     width: 6rem;
-    height: auto;
+    height: 6rem;
     margin-right: auto;
     margin-left: auto;
 
