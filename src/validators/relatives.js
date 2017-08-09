@@ -1,5 +1,4 @@
 import NameValidator from './name'
-import AddressValidator from './address'
 import LocationValidator, { isInternational } from './location'
 import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
@@ -151,11 +150,11 @@ export class RelativeValidator {
       return false
     }
 
-    if (this.isDeceased === 'No') {
+    if (this.isDeceased === 'Yes') {
       return true
     }
 
-    return !!this.address && new AddressValidator(this.address, null).isValid()
+    return !!this.address && new LocationValidator(this.address).isValid()
   }
 
   validCitizenshipDocumentation () {
@@ -241,6 +240,10 @@ export class RelativeValidator {
   }
 
   validFirstContact () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -249,6 +252,10 @@ export class RelativeValidator {
   }
 
   validLastContact () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -257,6 +264,10 @@ export class RelativeValidator {
   }
 
   validMethods () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -267,6 +278,10 @@ export class RelativeValidator {
   }
 
   validFrequency () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -277,6 +292,10 @@ export class RelativeValidator {
   }
 
   validEmployer () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -285,6 +304,10 @@ export class RelativeValidator {
   }
 
   validEmployerAddress () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }
@@ -293,6 +316,10 @@ export class RelativeValidator {
   }
 
   validEmployerRelationship () {
+    if (this.citizen() || this.isDeceased === 'Yes') {
+      return true
+    }
+
     if (this.address && !isInternational(this.address)) {
       return true
     }

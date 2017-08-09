@@ -40,30 +40,6 @@ describe('The foreign section', () => {
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
-  it('can take the tour', () => {
-    let dispatched = false
-    const store = mockStore({
-      authentication: { authenticated: true, twofactor: true },
-      application: applicationState2
-    })
-    store.dispatch = () => { dispatched = true }
-    const component = mount(<Provider store={store}><Foreign /></Provider>)
-    component.find('.review-tour button').simulate('click')
-    expect(dispatched).toBe(true)
-  })
-
-  it('can view full review', () => {
-    let dispatched = false
-    const store = mockStore({
-      authentication: { authenticated: true, twofactor: true },
-      application: applicationState2
-    })
-    store.dispatch = () => { dispatched = true }
-    const component = mount(<Provider store={store}><Foreign /></Provider>)
-    component.find('.review-full button').simulate('click')
-    expect(dispatched).toBe(true)
-  })
-
   it('can go to each subsection', () => {
     const store = mockStore({
       authentication: { authenticated: true, twofactor: true },

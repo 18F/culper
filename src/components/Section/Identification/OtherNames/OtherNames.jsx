@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { NameSummary, DateSummary } from '../../../Summary'
+import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { OtherNamesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
@@ -9,32 +9,29 @@ export default class OtherNames extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      List: props.List,
-      HasOtherNames: props.HasOtherNames
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
-    this.myDispatch = this.myDispatch.bind(this)
+    this.update = this.update.bind(this)
+    this.updateBranch = this.updateBranch.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (value) {
-    this.setState({ HasOtherNames: value }, () => {
-      this.myDispatch({
-        items: value === 'No' ? [] : this.state.List,
-        branch: ''
-      })
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      HasOtherNames: this.props.HasOtherNames,
+      ...queue
     })
   }
 
-  myDispatch (values) {
-    this.setState({ List: values.items }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          HasOtherNames: this.state.HasOtherNames
-        })
-      }
+  updateBranch (value) {
+    this.update({
+      HasOtherNames: value,
+      List: value === 'Yes' ? this.props.List : []
+    })
+  }
+
+  updateList (values) {
+    this.update({
+      List: values.items
     })
   }
 
@@ -42,18 +39,16 @@ export default class OtherNames extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const name = NameSummary(item.Name, i18n.t('identification.othernames.collection.summary.unknown'))
-    const dates = DateSummary(item.DatesUsed, i18n.t('identification.othernames.collection.summary.nodates'))
+    const dates = DateSummary(item.DatesUsed)
+    const name = NameSummary(item.Name)
 
-    return (
-      <span>
-        <span className="index">
-          {i18n.t('identification.othernames.collection.summary.name')} {index + 1}:
-        </span>
-        <span><strong>{name}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('identification.othernames.collection.summary.name'),
+      index: index,
+      left: name,
+      right: dates,
+      placeholder: i18n.m('identification.othernames.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -62,16 +57,16 @@ export default class OtherNames extends SubsectionElement {
         <p>{i18n.t('identification.othernames.info')}</p>
         <h3>{i18n.t('identification.othernames.branch.question')}</h3>
         <Branch name="has_othernames"
-                value={this.state.HasOtherNames}
+                value={this.props.HasOtherNames}
                 help="identification.othernames.branch.help"
-                onUpdate={this.onUpdate}
+                warning={true}
+                onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasOtherNames === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasOtherNames === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.myDispatch}
+                     onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
@@ -118,12 +113,13 @@ export default class OtherNames extends SubsectionElement {
 OtherNames.defaultProps = {
   List: [],
   HasOtherNames: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'othernames',
   dispatch: () => {},
   validator: (state, props) => {
-    return new OtherNamesValidator(state, props).isValid()
+    return new OtherNamesValidator(props, props).isValid()
   },
   defaultState: true
 }

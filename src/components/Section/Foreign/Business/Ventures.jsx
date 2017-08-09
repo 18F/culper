@@ -1,59 +1,55 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, Field,
-         Text, Textarea, Name, Country, DateRange, Address } from '../../../Form'
+         Text, Textarea, Name, Country, DateRange, Location } from '../../../Form'
 
 export default class Ventures extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasForeignVentures: props.HasForeignVentures,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateHasForeignVentures = this.updateHasForeignVentures.bind(this)
     this.updateList = this.updateList.bind(this)
   }
 
-  onUpdate (name, value) {
-    this.setState({ [name]: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasForeignVentures: this.state.HasForeignVentures,
-          List: this.state.List,
-          ListBranch: this.state.ListBranch
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      HasForeignVentures: this.props.HasForeignVentures,
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      ...queue
     })
   }
 
   updateHasForeignVentures (value) {
-    this.onUpdate('HasForeignVentures', value)
+    this.update({
+      HasForeignVentures: value,
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   updateList (values) {
-    this.onUpdate('List', values.items)
-    this.onUpdate('ListBranch', values.branch)
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   summary (item, index) {
     const obj = item || {}
-    const name = obj.Name || {}
-    const display = `${name.first || ''} ${name.middle || ''} ${name.last || ''}`.trim() || i18n.t('foreign.business.ventures.collection.summary.unknown')
     const date = DateSummary(item.Dates)
+    const name = NameSummary(obj.Name)
 
-    return (
-      <span>
-        <span className="index">{i18n.t('foreign.business.ventures.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{display}</strong></span>
-        <span className="dates"><strong>{date}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('foreign.business.ventures.collection.summary.item'),
+      index: index,
+      left: name,
+      right: date,
+      placeholder: i18n.m('foreign.business.ventures.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -64,17 +60,17 @@ export default class Ventures extends SubsectionElement {
                 labelSize="h3"
                 adjustFor="p"
                 help="foreign.business.ventures.help.branch"
-                value={this.state.HasForeignVentures}
+                value={this.props.HasForeignVentures}
+                warning={true}
                 onUpdate={this.updateHasForeignVentures}
                 onError={this.handleError}>
           {i18n.m('foreign.business.ventures.para.branch')}
         </Branch>
 
-        <Show when={this.state.HasForeignVentures === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+        <Show when={this.props.HasForeignVentures === 'Yes'}>
+          <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.state.ListBranch}
+                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -91,10 +87,12 @@ export default class Ventures extends SubsectionElement {
             <Field title={i18n.t('foreign.business.ventures.heading.address')}
                    help="foreign.business.ventures.help.address"
                    adjustFor="address">
-              <Address name="Address"
-                       className="ventures-address"
-                       bind={true}
-                       />
+              <Location name="Address"
+                        className="ventures-address"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.ventures.heading.citizenship')}
@@ -182,12 +180,13 @@ Ventures.defaultProps = {
   HasForeignVentures: '',
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/ventures',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessVenturesValidator(state, props).isValid()
+    return new ForeignBusinessVenturesValidator(props, props).isValid()
   },
   defaultState: true
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Email, Text, Field, Address, Telephone, NotApplicable } from '../../../Form'
+import { ValidationElement, Email, Text, Field, Location, Telephone, NotApplicable } from '../../../Form'
 
 export default class Supervisor extends ValidationElement {
   constructor (props) {
@@ -64,7 +64,7 @@ export default class Supervisor extends ValidationElement {
                adjustFor="labels">
           <Text name="Title"
                 {...this.props.Title}
-                className="text full-width"
+                className="text full-width supervisor-title"
                 label={i18n.t('history.employment.default.supervisor.title.label')}
                 onUpdate={this.onUpdate.bind(this, 'Title')}
                 onError={this.props.onError}
@@ -83,7 +83,7 @@ export default class Supervisor extends ValidationElement {
                          onError={this.props.onError}>
             <Email name="Email"
                    {...this.props.Email}
-                   className="text"
+                   className="text supervisor-email"
                    label={i18n.t('history.employment.default.supervisor.email.label')}
                    onUpdate={this.onUpdate.bind(this, 'Email')}
                    onError={this.props.onError}
@@ -94,19 +94,23 @@ export default class Supervisor extends ValidationElement {
         <Field title={i18n.t('history.employment.default.supervisor.heading.address')}
                help="history.employment.default.supervisor.address.help"
                adjustFor="address">
-          <Address name="Address"
-                   {...this.props.Address}
-                   label={i18n.t('history.employment.default.supervisor.address.label')}
-                   onUpdate={this.onUpdate.bind(this, 'Address')}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.props.Address}
+                    label={i18n.t('history.employment.default.supervisor.address.label')}
+                    className="supervisor-address"
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.onUpdate.bind(this, 'Address')}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.telephone')}
                help="history.employment.default.supervisor.telephone.help"
-               adjustFor="labels">
+               adjustFor="telephone">
           <Telephone name="Telephone"
                      {...this.props.Telephone}
+                     className="supervisor-telephone"
                      onUpdate={this.onUpdate.bind(this, 'Telephone')}
                      onError={this.props.onError}
                      />

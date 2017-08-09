@@ -82,8 +82,7 @@ export default class Employment extends SubsectionElement {
   render () {
     return (
       <div className="employment">
-        <Accordion minimum="1"
-                   scrollTo={this.props.scrollTo}
+        <Accordion scrollTo={this.props.scrollTo}
                    defaultState={this.props.defaultState}
                    items={this.props.value}
                    sort={this.props.sort}

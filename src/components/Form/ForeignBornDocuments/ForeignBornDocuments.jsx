@@ -14,14 +14,6 @@ export default class ForeignBornDocuments extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      DocumentType: props.DocumentType,
-      OtherExplanation: props.OtherExplanation,
-      DocumentNumber: props.DocumentNumber,
-      DocumentExpiration: props.DocumentExpiration,
-      DocumentExpirationNotApplicable: props.DocumentExpirationNotApplicable
-    }
-
     this.updateDocumentType = this.updateDocumentType.bind(this)
     this.updateOtherExplanation = this.updateOtherExplanation.bind(this)
     this.updateDocumentNumber = this.updateDocumentNumber.bind(this)
@@ -29,47 +21,52 @@ export default class ForeignBornDocuments extends ValidationElement {
     this.updateDocumentExpirationNotApplicable = this.updateDocumentExpirationNotApplicable.bind(this)
   }
 
-  update (field, values) {
-    this.setState({[field]: values}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          DocumentType: this.state.DocumentType,
-          OtherExplanation: this.state.OtherExplanation,
-          DocumentNumber: this.state.DocumentNumber,
-          DocumentExpiration: this.state.DocumentExpiration,
-          DocumentExpirationNotApplicable: this.state.DocumentExpirationNotApplicable
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      DocumentType: this.props.DocumentType,
+      OtherExplanation: this.props.OtherExplanation,
+      DocumentNumber: this.props.DocumentNumber,
+      DocumentExpiration: this.props.DocumentExpiration,
+      DocumentExpirationNotApplicable: this.props.DocumentExpirationNotApplicable,
+      ...queue
     })
   }
 
   updateDocumentType (values) {
-    this.update('DocumentType', values.value)
+    this.update({
+      DocumentType: values.value
+    })
   }
 
   updateOtherExplanation (values) {
-    this.update('OtherExplanation', values)
+    this.update({
+      OtherExplanation: values
+    })
   }
 
   updateDocumentNumber (values) {
-    this.update('DocumentNumber', values)
+    this.update({
+      DocumentNumber: values
+    })
   }
 
   updateDocumentExpiration (values) {
-    this.update('DocumentExpiration', values)
+    this.update({
+      DocumentExpiration: values
+    })
   }
 
   updateDocumentExpirationNotApplicable (values) {
-    this.update('DocumentExpirationNotApplicable', !values.applicable)
+    this.update({
+      DocumentExpirationNotApplicable: !values.applicable
+    })
   }
 
   render () {
     return (
       <div className="foreign-born-documents">
-
-        <Field>
-          <Field title={i18n.t('foreignBornDocuments.para.bornToUSParents')} titleSize="p">
-            <RadioGroup name="born" selectedValue={this.state.DocumentType}>
+          <Field title={i18n.t('foreignBornDocuments.para.bornToUSParents')} titleSize="label">
+            <RadioGroup name="born" selectedValue={this.props.DocumentType}>
               <Radio className="born"
                      label={i18n.m('foreignBornDocuments.bornToUSParents.label.fs240')}
                      value="FS240"
@@ -89,8 +86,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.naturalized')} titleSize="p">
-            <RadioGroup name="naturalized" selectedValue={this.state.DocumentType}>
+          <Field title={i18n.t('foreignBornDocuments.para.naturalized')} titleSize="label">
+            <RadioGroup name="naturalized" selectedValue={this.props.DocumentType}>
               <Radio className="naturalized alien"
                      label={i18n.m('foreignBornDocuments.naturalized.label.alien')}
                      value="AlienRegistration"
@@ -118,8 +115,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.derived')} titleSize="p">
-            <RadioGroup name="derived" selectedValue={this.state.DocumentType}>
+          <Field title={i18n.t('foreignBornDocuments.para.derived')} titleSize="label">
+            <RadioGroup name="derived" selectedValue={this.props.DocumentType}>
               <Radio className="derived alien"
                      label={i18n.m('foreignBornDocuments.derived.label.alien')}
                      value="DerivedAlienRegistration"
@@ -147,8 +144,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.notCitizen')} titleSize="p">
-            <RadioGroup name="notCitizen" selectedValue={this.state.DocumentType}>
+          <Field title={i18n.t('foreignBornDocuments.para.notCitizen')} titleSize="label">
+            <RadioGroup name="notCitizen" selectedValue={this.props.DocumentType}>
               <Radio className="notcitizen permanent"
                      label={i18n.m('foreignBornDocuments.notCitizen.label.permanentResident')}
                      value="I-551"
@@ -200,8 +197,8 @@ export default class ForeignBornDocuments extends ValidationElement {
             </RadioGroup>
           </Field>
 
-          <Field title={i18n.t('foreignBornDocuments.para.other')} titleSize="p">
-            <RadioGroup name="other" selectedValue={this.state.DocumentType}>
+          <Field title={i18n.t('foreignBornDocuments.para.other')} titleSize="label">
+            <RadioGroup name="other" selectedValue={this.props.DocumentType}>
               <Radio className="other"
                      label={i18n.m('foreignBornDocuments.other.label.other')}
                      value="Other"
@@ -211,24 +208,22 @@ export default class ForeignBornDocuments extends ValidationElement {
                      onFocus={this.props.onFocus}
                      />
             </RadioGroup>
-            <Show when={this.state.DocumentType === 'Other'}>
+            <Show when={this.props.DocumentType === 'Other'}>
               <Textarea name="otherExplanation"
                         className="other-explanation"
                         label="Provide explanation"
-                        {...this.state.OtherExplanation}
+                        {...this.props.OtherExplanation}
                         onUpdate={this.updateOtherExplanation}
                         onError={this.props.onError}
                         />
             </Show>
           </Field>
-        </Field>
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentNumber')}
-               help="foreignBornDocuments.help.documentNumber"
                adjustFor="labels">
           <Text name="documentNumber"
                 label="Document Number"
-                {...this.state.DocumentNumber}
+                {...this.props.DocumentNumber}
                 className="foreign-born-document-number"
                 onUpdate={this.updateDocumentNumber}
                 onError={this.props.onError}
@@ -236,16 +231,15 @@ export default class ForeignBornDocuments extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreignBornDocuments.heading.documentExpiration')}
-               help="foreignBornDocuments.help.documentExpiration"
-               shrink={true}
                adjustFor="labels">
           <NotApplicable name="OtherNameNotApplicable"
-                         applicable={this.state.DocumentExpirationNotApplicable}
+                         applicable={this.props.DocumentExpirationNotApplicable}
                          label={i18n.t('reference.label.idk')}
                          or={i18n.m('reference.para.or')}
+                         {...this.props.OtherNameNotApplicable}
                          onUpdate={this.updateDocumentExpirationNotApplicable}>
             <DateControl name="documentExpiration"
-                         {...this.state.DocumentExpiration}
+                         {...this.props.DocumentExpiration}
                          onUpdate={this.updateDocumentExpiration}
                          onError={this.props.onError}
                          />
@@ -257,5 +251,11 @@ export default class ForeignBornDocuments extends ValidationElement {
 }
 
 ForeignBornDocuments.defaultProps = {
+  DocumentType: {},
+  OtherExplanation: {},
+  DocumentNumber: {},
+  DocumentExpiration: {},
+  DocumentExpirationNotApplicable: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

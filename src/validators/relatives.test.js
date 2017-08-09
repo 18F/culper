@@ -360,20 +360,20 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          IsDeceased: 'No'
+          IsDeceased: 'Yes'
         },
         expected: true
       },
       {
         state: {
-          IsDeceased: 'Yes',
+          IsDeceased: 'No',
           Address: {}
         },
         expected: false
       },
       {
         state: {
-          IsDeceased: 'Yes',
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1095,6 +1095,7 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1108,6 +1109,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1120,6 +1122,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1146,6 +1149,7 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1159,6 +1163,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1171,6 +1176,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1197,6 +1203,7 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1210,6 +1217,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1222,6 +1230,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1243,6 +1252,7 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1256,6 +1266,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1268,6 +1279,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1289,6 +1301,7 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1302,6 +1315,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1314,6 +1328,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1337,6 +1352,7 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1350,6 +1366,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1362,6 +1379,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1388,6 +1406,8 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          Citizenship: [ 'Germany' ],
+          IsDeceased: 'No',
           Address: {
             country: 'United States',
             street: '1234 Some Rd',
@@ -1401,6 +1421,8 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          Citizenship: [ 'Germany' ],
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1413,6 +1435,8 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          Citizenship: [ 'Germany' ],
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1425,6 +1449,8 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          Citizenship: [ 'Germany' ],
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
@@ -1438,6 +1464,8 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          Citizenship: [ 'Germany' ],
+          IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',

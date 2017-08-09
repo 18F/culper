@@ -27,6 +27,7 @@ defineSupportCode(({Given, Then, When}) => {
       .then(() => { return signIn(credentials.username, credentials.password) })
       .then(() => { return getQrCode(credentials.token, (token) => { credentials.token = token }) })
       .then(() => { return provideToken(credentials.token) })
+      .then(() => { return acceptIntroduction() })
       .then(() => { return haveAccess() })
   })
 
@@ -44,6 +45,10 @@ defineSupportCode(({Given, Then, When}) => {
 
   Then(/^provide my token$/, () => {
     return provideToken(credentials.token)
+  })
+
+  Then(/^I should be presented with the introduction$/, () => {
+    return acceptIntroduction()
   })
 
   Then(/^I should be presented with the form$/, () => {
@@ -137,10 +142,18 @@ defineSupportCode(({Given, Then, When}) => {
       .pause(3000)
   }
 
+  const acceptIntroduction = () => {
+    return client
+      .assert.urlContains('/form')
+      .saveScreenshot('./screenshots/Authentication/08-accept-introduction.png')
+      .click('.introduction-acceptance .yes label')
+      .pause(3000)
+  }
+
   const haveAccess = () => {
     return client
       .assert.urlContains('/form')
-      .saveScreenshot('./screenshots/Authentication/08-logged-in.png')
+      .saveScreenshot('./screenshots/Authentication/09-logged-in.png')
   }
 
   const logout = () => {

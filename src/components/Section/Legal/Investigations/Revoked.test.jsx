@@ -12,7 +12,7 @@ describe('The legal investigations revoked component', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
     const component = mount(<Revoked onUpdate={onUpdate} />)
-    component.find('.legal-investigations-revoked-has-revocations .yes input').simulate('click')
+    component.find('.legal-investigations-revoked-has-revocations .yes input').simulate('change')
     expect(updates).toBe(1)
   })
 
@@ -40,7 +40,7 @@ describe('The legal investigations revoked component', () => {
       ListBranch: ''
     }
     const component = mount(<Revoked {...props} />)
-    const text = component.find('.accordion .summary .left .content').text()
+    const text = component.find('.accordion .summary .left').text()
     expect(text).toContain('U.S. Department of Defense')
     expect(text).toContain('1/2010')
   })

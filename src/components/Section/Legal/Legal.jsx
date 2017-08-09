@@ -4,7 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { IntroHeader, Field } from '../../Form'
+import { Field } from '../../Form'
 import Offenses from './Police/Offenses'
 import OtherOffenses from './Police/OtherOffenses'
 import DomesticViolenceList from './Police/DomesticViolenceList'
@@ -118,21 +118,18 @@ class Legal extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="">
-            <div className="legal intro review-screen">
-              <div className="usa-grid-full">
-                <IntroHeader errors={() => { return this.props.Errors.some(x => x.valid === false) }}
-                  completed={() => { return this.props.Completed.length === 3 && this.props.Completed.every(x => x.valid === true) }}
-                  onTour={this.handleTour}
-                  onReview={this.handleReview}
-                  />
-              </div>
-            </div>
+          <SectionView name="intro"
+                       back="substance/review"
+                       backLabel={i18n.t('substance.destination.review')}
+                       next="legal/police/intro"
+                       nextLabel={i18n.t('legal.destination.police')}>
+            <h2>{i18n.t('legal.intro.title')}</h2>
+            {i18n.m('legal.intro.body')}
           </SectionView>
 
-          <SectionView name="police"
-                       back="foreign/business/conferences"
-                       backLabel={i18n.t('foreign.destination.business.events')}
+          <SectionView name="police/intro"
+                       back="legal/intro"
+                       backLabel={i18n.t('legal.destination.intro')}
                        next="legal/police/offenses"
                        nextLabel={i18n.t('legal.destination.offenses')}>
             <h2>{i18n.t('legal.police.heading.title')}</h2>
@@ -142,7 +139,7 @@ class Legal extends SectionElement {
           </SectionView>
 
           <SectionView name="police/offenses"
-                       back="legal/police"
+                       back="legal/police/intro"
                        backLabel={i18n.t('legal.destination.police')}
                        next="legal/police/additionaloffenses"
                        nextLabel={i18n.t('legal.destination.additionalOffenses')}>
@@ -404,7 +401,7 @@ class Legal extends SectionElement {
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
-                       showTop="true"
+                       showTop={true}
                        back="legal/associations/terrorism-activities"
                        backLabel={i18n.t('legal.destination.associations.activities')}
                        next="psychological/intro"
@@ -598,7 +595,6 @@ function mapStateToProps (state) {
 
 Legal.defaultProps = {
   section: 'legal',
-  defaultView: (props) => { return 'police' },
   store: 'Legal'
 }
 

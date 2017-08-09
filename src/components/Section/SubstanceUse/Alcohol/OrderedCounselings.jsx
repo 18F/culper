@@ -4,7 +4,7 @@ import { AlcoholOrderedCounselingsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import OrderedCounseling from './OrderedCounseling'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 
 export default class OrderedCounselings extends SubsectionElement {
   constructor (props) {
@@ -34,13 +34,16 @@ export default class OrderedCounselings extends SubsectionElement {
   }
 
   updateHasBeenOrdered (values) {
-    this.update({HasBeenOrdered: values})
+    this.update({
+      HasBeenOrdered: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).OrderedCounseling || {}
     const counselingDates = DateSummary(o.CounselingDates)
-    const type = i18n.t('substance.alcohol.orderedCounseling.collection.itemType')
 
     let seekers = []
     for (const s of (o.Seekers || [])) {
@@ -66,20 +69,13 @@ export default class OrderedCounselings extends SubsectionElement {
       }
     }
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="occurred">
-          <Show when={!seekers && !counselingDates}>
-            <strong>{i18n.t('substance.alcohol.receivedCounseling.collection.summary')}</strong>
-          </Show>
-          <Show when={seekers || counselingDates}>
-            <strong>{seekers.join(', ')}</strong>
-          </Show>
-        </span>
-        <span className="dates"><strong>{counselingDates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.alcohol.orderedCounseling.collection.itemType'),
+      index: index,
+      left: seekers.join(', '),
+      right: counselingDates,
+      placeholder: i18n.m('substance.alcohol.receivedCounseling.collection.summary')
+    })
   }
 
   render () {
@@ -89,13 +85,13 @@ export default class OrderedCounselings extends SubsectionElement {
         <Branch name="HasBeenOrdered"
                 className="has-been-ordered"
                 value={this.props.HasBeenOrdered}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasBeenOrdered}>
         </Branch>
 
         <Show when={this.props.HasBeenOrdered === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}

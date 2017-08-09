@@ -14,7 +14,7 @@ const byline = (item, index, initial, translation, validator) => {
   if (!item.open && !initial && item.Item && !validator(item.Item)) {
     return (
       <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.t(translation)}</div>
+        <div className="incomplete">{i18n.m(translation)}</div>
       </div>
     )
   }
@@ -82,8 +82,7 @@ export default class Residence extends SubsectionElement {
   render () {
     return (
       <div className="residence">
-        <Accordion minimum="1"
-                   scrollTo={this.props.scrollTo}
+        <Accordion scrollTo={this.props.scrollTo}
                    defaultState={this.props.defaultState}
                    items={this.props.value}
                    sort={this.props.sort}

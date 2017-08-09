@@ -1,24 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { ExistingConditionsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show, RadioGroup, Radio, Field, Textarea } from '../../../Form'
 import Diagnosis from '../Diagnoses/Diagnosis'
-import { dateRangeFormat } from '../summaryHelper'
 
 export default class ExistingConditions extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      HasCondition: props.HasCondition,
-      ReceivedTreatment: props.ReceivedTreatment,
-      Explanation: props.Explanation,
-      TreatmentList: props.TreatmentList,
-      TreatmentListBranch: props.TreatmentListBranch,
-      DidNotFollow: props.DidNotFollow,
-      DidNotFollowExplanation: props.DidNotFollowExplanation
-    }
 
     this.update = this.update.bind(this)
     this.updateHasCondition = this.updateHasCondition.bind(this)
@@ -29,64 +19,78 @@ export default class ExistingConditions extends SubsectionElement {
     this.updateDidNotFollowExplanation = this.updateDidNotFollowExplanation.bind(this)
   }
 
-  update (field, values) {
-    this.setState({[field]: values}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          HasCondition: this.state.HasCondition,
-          ReceivedTreatment: this.state.ReceivedTreatment,
-          Explanation: this.state.Explanation,
-          TreatmentList: this.state.TreatmentList,
-          DidNotFollow: this.state.DidNotFollow,
-          didNotFollowExplanation: this.state.DidNotFollowExplanation
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      HasCondition: this.props.HasCondition,
+      ReceivedTreatment: this.props.ReceivedTreatment,
+      Explanation: this.props.Explanation,
+      TreatmentList: this.props.TreatmentList,
+      TreatmentListBranch: this.props.TreatmentListBranch,
+      DidNotFollow: this.props.DidNotFollow,
+      DidNotFollowExplanation: this.props.DidNotFollowExplanation,
+      ...queue
     })
   }
 
   updateHasCondition (values) {
-    this.update('HasCondition', values)
+    this.update({
+      HasCondition: values,
+      ReceivedTreatment: values === 'Yes' ? this.props.ReceivedTreatment : '',
+      Explanation: values === 'Yes' ? this.props.Explanation : {},
+      TreatmentList: values === 'Yes' ? this.props.TreatmentList : [],
+      TreatmentListBranch: values === 'Yes' ? this.props.TreatmentListBranch : '',
+      DidNotFollow: values === 'Yes' ? this.props.DidNotFollow : '',
+      DidNotFollowExplanation: values === 'Yes' ? this.props.DidNotFollowExplanation : {}
+    })
   }
 
   updateReceivedTreatment (checkbox) {
-    this.update('ReceivedTreatment', checkbox.value)
+    this.update({
+      ReceivedTreatment: checkbox.value,
+      Explanation: checkbox.value === 'No' ? this.props.Explanation : {}
+    })
   }
 
   updateTreatmentList (values) {
-    this.update('TreatmentList', values.items)
-    this.update('TreatmentListBranch', values.branch)
+    this.update({
+      TreatmentList: values.items,
+      TreatmentListBranch: values.branch
+    })
   }
 
   updateDidNotFollow (values) {
-    this.update('DidNotFollow', values)
+    this.update({
+      DidNotFollow: values,
+      DidNotFollowExplanation: values === 'Yes' ? this.props.DidNotFollowExplanation : {}
+    })
   }
 
   updateExplanation (values) {
-    this.update('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   updateDidNotFollowExplanation (values) {
-    this.update('didNotFollowExplanation', values)
+    this.update({
+      DidNotFollowExplanation: values
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).Diagnosis || {}
     const treatmentDate = (o.Diagnosed || {})
-    const formattedTreatmentDate = dateRangeFormat(treatmentDate)
-    const condition = (o.Condition || {}).value ? o.Condition.value : null
+    const date = DateSummary(treatmentDate)
+    const condition = (o.Condition || {}).value || ''
     const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
-    return (
 
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className="info">
-          <strong>
-            {condition || i18n.t('psychological.existingConditions.treatment.collection.summary')}
-          </strong>
-        </span>
-        <span className="treatmentdate"><strong>{condition && formattedTreatmentDate}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('psychological.existingConditions.treatment.collection.itemType'),
+      index: index,
+      left: condition,
+      right: date,
+      placeholder: i18n.m('psychological.existingConditions.treatment.collection.summary')
+    })
   }
 
   render () {
@@ -96,17 +100,18 @@ export default class ExistingConditions extends SubsectionElement {
         {i18n.m('psychological.existingConditions.para.hasCondition')}
         <Branch name="hascondition"
                 className="eapp-field-wrap hascondition"
-                value={this.state.HasCondition}
+                value={this.props.HasCondition}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasCondition}>
         </Branch>
 
-        <Show when={this.state.HasCondition}>
+        <Show when={this.props.HasCondition === 'Yes'}>
           <div>
             <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
             {i18n.m('psychological.existingConditions.para.receivedTreatment')}
             <Field adjustFor="button">
-              <RadioGroup className="treatment-list option-list" selectedValue={this.state.ReceivedTreatment}>
+              <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment}>
                 <Radio name="treatment"
                        className="treatment yes"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
@@ -131,7 +136,7 @@ export default class ExistingConditions extends SubsectionElement {
               </RadioGroup>
             </Field>
 
-            <Show when={this.state.ReceivedTreatment === 'No'}>
+            <Show when={this.props.ReceivedTreatment === 'No'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
                 <Textarea name="Explanation"
                           className="explanation existing-condition-explanation"
@@ -142,11 +147,10 @@ export default class ExistingConditions extends SubsectionElement {
               </Field>
             </Show>
 
-            <Show when={this.state.ReceivedTreatment === 'Yes'}>
-              <Accordion minimum="1"
-                         defaultState={this.props.defaultState}
-                         items={this.state.TreatmentList}
-                         branch={this.state.TreatmentListBranch}
+            <Show when={this.props.ReceivedTreatment === 'Yes'}>
+              <Accordion defaultState={this.props.defaultState}
+                         items={this.props.TreatmentList}
+                         branch={this.props.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}
                          summary={this.summary}
                          onError={this.handleError}
@@ -163,12 +167,12 @@ export default class ExistingConditions extends SubsectionElement {
             <h3>{i18n.t('psychological.existingConditions.heading.didNotFollow')}</h3>
             <Branch name="didNotFollow"
                     className="eapp-field-wrap didnotfollow"
-                    value={this.state.DidNotFollow}
+                    value={this.props.DidNotFollow}
                     onError={this.handleError}
                     onUpdate={this.updateDidNotFollow}>
             </Branch>
 
-            <Show when={this.state.DidNotFollow === 'Yes'}>
+            <Show when={this.props.DidNotFollow === 'Yes'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
                 <Textarea name="DidNotFollowExplanation"
                           className="explanation existing-condition-didnotfollow-explanation"
@@ -189,11 +193,12 @@ ExistingConditions.defaultProps = {
   TreatmentList: [],
   TreatmentListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'conditions',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ExistingConditionsValidator(state, props).isValid()
+    return new ExistingConditionsValidator(props, props).isValid()
   }
 }

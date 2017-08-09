@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import DrugInvolvement from './DrugInvolvement'
@@ -33,27 +34,27 @@ export default class DrugInvolvements extends SubsectionElement {
   }
 
   updateInvolved (values) {
-    this.update({Involved: values})
+    this.update({
+      Involved: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
     const o = (item || {}).DrugInvolvement || {}
-    const type = i18n.t('substance.drugs.involvement.collection.itemType')
     let drug = (o.DrugType || {}).DrugType
     if (drug === 'Other') {
       drug = ((o.DrugType || {}).DrugTypeOther || {}).value
     }
 
-    if (!drug) {
-      drug = i18n.t('substance.drugs.involvement.collection.summary')
-    }
-
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span className=""><strong>{drug}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('substance.drugs.involvement.collection.itemType'),
+      index: index,
+      left: drug,
+      right: null,
+      placeholder: i18n.m('substance.drugs.involvement.collection.summary')
+    })
   }
 
   render () {
@@ -61,23 +62,23 @@ export default class DrugInvolvements extends SubsectionElement {
       <div className="drug-involvements">
         <h2>{i18n.m('substance.drugs.heading.drugInvolvement')}</h2>
         <Branch name="Involved"
-          className="involved"
-          value={this.props.Involved}
-          onError={this.handleError}
-          onUpdate={this.updateInvolved}>
+                className="involved"
+                value={this.props.Involved}
+                warning={true}
+                onError={this.handleError}
+                onUpdate={this.updateInvolved}>
         </Branch>
 
         <Show when={this.props.Involved === 'Yes'}>
-          <Accordion minimum="1"
-            defaultState={this.props.defaultState}
-            items={this.props.List}
-            branch={this.props.ListBranch}
-            summary={this.summary}
-            onUpdate={this.updateList}
-            onError={this.handleError}
-            description={i18n.t('substance.drugs.involvement.collection.description')}
-            appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
-            appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}>
+          <Accordion defaultState={this.props.defaultState}
+                     items={this.props.List}
+                     branch={this.props.ListBranch}
+                     summary={this.summary}
+                     onUpdate={this.updateList}
+                     onError={this.handleError}
+                     description={i18n.t('substance.drugs.involvement.collection.description')}
+                     appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
+                     appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}>
             <DrugInvolvement name="DrugInvolvement" bind={true} />
           </Accordion>
         </Show>

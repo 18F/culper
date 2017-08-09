@@ -80,7 +80,7 @@ describe('The gambling component', () => {
       HasGamblingDebt: 'Yes'
     }
     const component = mount(<Gambling {...expected} />)
-    expect(component.find('.losses').length).toEqual(2)
+    expect(component.find('.losses').length).toEqual(1)
   })
 
   it('does not display any fields when "no" is selected', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, Textarea, Name, Address, Country } from '../../../Form'
+import { ValidationElement, Field, Textarea, Name, Location, Country } from '../../../Form'
 
 export default class CoOwner extends ValidationElement {
   constructor (props) {
@@ -13,32 +13,38 @@ export default class CoOwner extends ValidationElement {
     this.updateRelationshipNature = this.updateRelationshipNature.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        Name: this.props.Name,
-        Address: this.props.Address,
-        Countries: this.props.Countries,
-        RelationshipNature: this.props.RelationshipNature,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      Name: this.props.Name,
+      Address: this.props.Address,
+      Countries: this.props.Countries,
+      RelationshipNature: this.props.RelationshipNature,
+      ...queue
+    })
   }
 
   updateName (values) {
-    this.update('Name', values)
+    this.update({
+      Name: values
+    })
   }
 
   updateAddress (values) {
-    this.update('Address', values)
+    this.update({
+      Address: values
+    })
   }
 
   updateCountries (values) {
-    this.update('Countries', values)
+    this.update({
+      Countries: values
+    })
   }
 
   updateRelationshipNature (values) {
-    this.update('RelationshipNature', values)
+    this.update({
+      RelationshipNature: values
+    })
   }
 
   render () {
@@ -56,12 +62,14 @@ export default class CoOwner extends ValidationElement {
         <Field title={i18n.t(`foreign.${prefix}.heading.address`)}
                adjustFor="address"
                shrink={true}>
-          <Address name="Address"
-                   {...this.props.Address}
-                   label={i18n.t(`foreign.${prefix}.label.address`)}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.props.Address}
+                    label={i18n.t(`foreign.${prefix}.label.address`)}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.countries`)}
@@ -89,5 +97,6 @@ export default class CoOwner extends ValidationElement {
 
 CoOwner.defaultProps = {
   prefix: 'coOwner',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -18,7 +18,7 @@ describe('The suggestions component', () => {
       suggestionDismissLabel: 'Dismiss',
       suggestionUseLabel: 'Use'
     }
-    const component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    const component = mount(<Suggestions {...expected} />)
     expect(component.find('.modal').length).toEqual(0)
   })
 
@@ -32,13 +32,14 @@ describe('The suggestions component', () => {
       suggestionDismissLabel: 'Dismiss',
       suggestionUseLabel: 'Use'
     }
-    const component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    const component = mount(<Suggestions {...expected} />)
     expect(component.find('.modal').length).toEqual(0)
   })
 
   it('displays suggestions', () => {
     const expected = {
       renderSuggestion: renderSuggestion,
+      show: true,
       suggestions: ['suggestion1', 'suggestion2'],
       withSuggestions: 'true',
       suggestionTitle: 'Suggestion title',
@@ -47,7 +48,7 @@ describe('The suggestions component', () => {
       suggestionDismissLabel: 'Dismiss',
       suggestionUseLabel: 'Use'
     }
-    const component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    const component = mount(<Suggestions {...expected} />)
     expect(component.find('.modal').length).toEqual(1)
   })
 
@@ -56,6 +57,7 @@ describe('The suggestions component', () => {
     const expected = {
       renderSuggestion: renderSuggestion,
       onDismiss: () => { dismissed = true },
+      show: true,
       suggestions: ['suggestion1', 'suggestion2'],
       withSuggestions: 'true',
       suggestionTitle: 'Suggestion title',
@@ -64,7 +66,7 @@ describe('The suggestions component', () => {
       suggestionDismissLabel: 'Dismiss',
       suggestionUseLabel: 'Use'
     }
-    const component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    const component = mount(<Suggestions {...expected} />)
     expect(component.find('.modal').length).toEqual(1)
     component.find('.dismiss a').simulate('click')
     expect(dismissed).toBe(true)
@@ -75,6 +77,7 @@ describe('The suggestions component', () => {
     const expected = {
       renderSuggestion: renderSuggestion,
       onDismiss: () => { dismissed = true },
+      show: true,
       suggestions: ['suggestion1', 'suggestion2'],
       withSuggestions: 'true',
       suggestionTitle: 'Suggestion title',
@@ -84,7 +87,7 @@ describe('The suggestions component', () => {
       suggestionDismissAlternate: 'Another dismiss',
       suggestionUseLabel: 'Use'
     }
-    const component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    const component = mount(<Suggestions {...expected} />)
     expect(component.find('.modal').length).toEqual(1)
     component.find('.dismiss a.right').simulate('click')
     expect(dismissed).toBe(true)
@@ -95,6 +98,7 @@ describe('The suggestions component', () => {
     const expected = {
       renderSuggestion: renderSuggestion,
       onSuggestion: () => { used = true },
+      show: true,
       suggestions: ['suggestion1', 'suggestion2'],
       withSuggestions: 'true',
       suggestionTitle: 'Suggestion title',
@@ -103,24 +107,9 @@ describe('The suggestions component', () => {
       suggestionDismissLabel: 'Dismiss',
       suggestionUseLabel: 'Use'
     }
-    const component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
+    const component = mount(<Suggestions {...expected} />)
     expect(component.find('.modal').length).toEqual(1)
     component.find('.suggestion .action button').first().simulate('click')
     expect(used).toBe(true)
-  })
-
-  it('renders warning messages when not all props are passed', () => {
-    const expected = {
-      suggestions: [{id: 1}],
-      show: true
-
-    }
-    const spy = spyOn(console, 'warn')
-    let component = mount(<Suggestions {...expected}><span>Something</span></Suggestions>)
-    expect(spy).toHaveBeenCalled()
-    component.find('.suggestion-btn').simulate('click')
-    expect(spy).toHaveBeenCalled()
-    component.find('.dismiss').simulate('click')
-    expect(spy).toHaveBeenCalled()
   })
 })

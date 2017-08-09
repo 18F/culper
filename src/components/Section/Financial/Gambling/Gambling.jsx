@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { GamblingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateRange, Currency, Textarea, Field } from '../../../Form'
@@ -24,7 +25,7 @@ export default class Gambling extends SubsectionElement {
   onUpdate (val, event) {
     this.setState({ HasGamblingDebt: val }, () => {
       this.myDispatch({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -58,34 +59,18 @@ export default class Gambling extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    let losses = i18n.t('financial.gambling.collection.summary.unknownlosses')
-    if (item.Losses && item.Losses.value) {
-      losses = '$' + this.fancyNumber(item.Losses.value)
-    }
+    const dates = DateSummary(item.Dates)
+    const losses = item.Losses && item.Losses.value
+        ? `$${this.fancyNumber(item.Losses.value)}`
+        : ''
 
-    let from = ''
-    if (item.Dates && item.Dates.from && item.Dates.from.date) {
-      from = '' + item.Dates.from.date.getFullYear()
-    }
-
-    let to = ''
-    if (item.Dates && item.Dates.to && item.Dates.to.date) {
-      to = '' + item.Dates.to.date.getFullYear()
-    } else if (item.Dates && item.Dates.present) {
-      to = i18n.t('financial.gambling.collection.summary.present')
-    }
-
-    const dates = from === '' && to === ''
-          ? i18n.t('financial.gambling.collection.summary.nodates')
-          : `${from} - ${to}`
-
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.gambling.collection.summary.debt')} {index + 1}:</span>
-        <span className="losses"><strong>{losses}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.gambling.collection.summary.debt'),
+      index: index,
+      left: losses,
+      right: dates,
+      placeholder: i18n.m('financial.gambling.collection.summary.unknownlosses')
+    })
   }
 
   render () {
@@ -93,12 +78,12 @@ export default class Gambling extends SubsectionElement {
       <div className="gambling">
         <Branch name="has_gamblingdebt"
                 value={this.state.HasGamblingDebt}
+                warning={true}
                 onUpdate={this.onUpdate.bind(this)}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}

@@ -37,7 +37,7 @@ describe('The IndirectActivity component', () => {
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    expect(component.find('.interest strong').text()).toBe('Foo - John Doe')
+    expect(component.find('.context strong').text()).toBe('Foo - John Doe')
   })
 
   it('Renders interest types summary information', () => {
@@ -54,7 +54,7 @@ describe('The IndirectActivity component', () => {
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    expect(component.find('.interest strong').text()).toBe('Foo')
+    expect(component.find('.context strong').text()).toBe('Foo')
   })
 
   it('Renders with no', () => {

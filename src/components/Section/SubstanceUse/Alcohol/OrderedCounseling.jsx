@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Address, CheckboxGroup, Checkbox, Text, DateRange, ValidationElement, Field, Textarea, Branch, Show, Telephone } from '../../../Form'
+import { Location, CheckboxGroup, Checkbox, Text, DateRange, ValidationElement, Field, Textarea, Branch, Show, Telephone } from '../../../Form'
 
 export default class OrderedCounseling extends ValidationElement {
   constructor (props) {
@@ -191,15 +191,18 @@ export default class OrderedCounseling extends ValidationElement {
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderAddress')}
                    help={'substance.alcohol.orderedCounseling.help.treatmentProviderAddress'}
                    adjustFor="address">
-              <Address name="TreatmentProviderAddress"
-                       className="provider-address"
-                       {...this.props.TreatmentProviderAddress}
-                       onUpdate={this.updateTreatmentProviderAddress}
-                       onError={this.props.onError}
-                       />
+              <Location name="TreatmentProviderAddress"
+                        className="provider-address"
+                        {...this.props.TreatmentProviderAddress}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onUpdate={this.updateTreatmentProviderAddress}
+                        onError={this.props.onError}
+                        />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderTelephone')}
-                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}>
+                   help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}
+                   adjustFor="telephone">
               <Telephone name="TreatmentProviderTelephone"
                          className="provider-telephone"
                          {...this.props.TreatmentProviderTelephone}

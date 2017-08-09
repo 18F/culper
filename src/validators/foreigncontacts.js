@@ -1,4 +1,4 @@
-import AddressValidator from './address'
+import LocationValidator from './location'
 import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
 import { validNotApplicable, validGenericTextfield, validDateField,
@@ -136,7 +136,7 @@ export class ForeignNationalValidator {
 
   validAddress () {
     return validNotApplicable(this.addressNotApplicable, () => {
-      return new AddressValidator(this.address, null).isValid()
+      return new LocationValidator(this.address).isValid()
     })
   }
 
@@ -148,7 +148,7 @@ export class ForeignNationalValidator {
 
   validEmployerAddress () {
     return validNotApplicable(this.employerAddressNotApplicable, () => {
-      return new AddressValidator(this.employerAddress, null).isValid()
+      return new LocationValidator(this.employerAddress).isValid()
     })
   }
 

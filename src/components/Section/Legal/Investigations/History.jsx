@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsHistoryValidator } from '../../../../validators'
-import { DateSummary } from '../../../Summary'
+import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show, Field, NotApplicable, DateControl,
          Text } from '../../../Form'
 import InvestigatingAgency from './InvestigatingAgency'
@@ -18,50 +18,41 @@ export default class History extends SubsectionElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      let obj = {
-        List: this.props.List,
-        ListBranch: this.props.ListBranch,
-        HasHistory: this.props.HasHistory
-      }
-
-      for (const q of queue) {
-        obj = { ...obj, [q.name]: q.value }
-      }
-
-      this.props.onUpdate(obj)
-    }
+    this.props.onUpdate({
+      List: this.props.List,
+      ListBranch: this.props.ListBranch,
+      HasHistory: this.props.HasHistory,
+      ...queue
+    })
   }
 
   updateList (values) {
-    this.update([
-      { name: 'List', value: values.items },
-      { name: 'ListBranch', value: values.branch }
-    ])
+    this.update({
+      List: values.items,
+      ListBranch: values.branch
+    })
   }
 
   updateBranch (values) {
-    this.update([
-      { name: 'HasHistory', value: values }
-    ])
+    this.update({
+      HasHistory: values,
+      List: values === 'Yes' ? this.props.List : [],
+      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+    })
   }
 
   summary (item, index) {
-    const type = i18n.t('legal.investigations.history.collection.item')
-    const unknown = i18n.t('legal.investigations.history.collection.unknown')
     const o = item || {}
-    const agency = (o.Agency || {}).Agency
-          ? o.Agency.Agency
-          : unknown
     const dates = DateSummary(o.Granted)
+    const agency = (o.Agency || {}).Agency || ''
 
-    return (
-      <span className="content">
-        <span className="index">{type} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{dates}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('legal.investigations.history.collection.item'),
+      index: index,
+      left: agency,
+      right: dates,
+      placeholder: i18n.m('legal.investigations.history.collection.unknown')
+    })
   }
 
   render () {
@@ -72,13 +63,13 @@ export default class History extends SubsectionElement {
                 labelSize="h3"
                 className="legal-investigations-history-has-history"
                 value={this.props.HasHistory}
+                warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateBranch}>
         </Branch>
 
         <Show when={this.props.HasHistory === 'Yes'}>
-          <Accordion minimum="1"
-                     defaultState={this.props.defaultState}
+          <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -89,7 +80,7 @@ export default class History extends SubsectionElement {
                      appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}>
             <Field title={i18n.t('legal.investigations.history.heading.agency')}
                    help="legal.investigations.history.help.agency"
-                   adjustFor="text">
+                   adjustFor="big-buttons">
               <NotApplicable name="AgencyNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
@@ -140,7 +131,7 @@ export default class History extends SubsectionElement {
 
             <Field title={i18n.t('legal.investigations.history.heading.clearance')}
                    help="legal.investigations.history.help.clearance"
-                   adjustFor="text">
+                   adjustFor="big-button">
               <NotApplicable name="clearanceNotApplicable"
                              or={i18n.m('legal.investigations.history.para.or')}
                              label={i18n.t('legal.investigations.history.label.idk')}
@@ -164,6 +155,7 @@ History.defaultProps = {
   List: [],
   ListBranch: '',
   defaultState: true,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/history',

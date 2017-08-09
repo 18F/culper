@@ -5,12 +5,12 @@ class Api {
   constructor () {
     this.proxy = axios.create({
       baseURL: env.ApiBaseURL(),
-      timeout: 1000
+      timeout: 5000
     })
 
     this.proxySecured = axios.create({
       baseURL: env.ApiBaseURL(),
-      timeout: 1000,
+      timeout: 5000,
       headers: {
         'Authorization': ''
       }

@@ -13,17 +13,17 @@ export default class DomesticViolenceList extends SubsectionElement {
     this.updateList = this.updateList.bind(this)
   }
 
-  update (field, values) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        List: this.props.List,
-        [field]: values
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ...queue
+    })
   }
 
   updateList (values, event) {
-    this.update('List', values)
+    this.update({
+      List: values
+    })
   }
 
   render () {
@@ -48,6 +48,7 @@ export default class DomesticViolenceList extends SubsectionElement {
 
 DomesticViolenceList.defaultProps = {
   List: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/domesticviolence',

@@ -30,7 +30,7 @@ describe('The RealEstateActivity component', () => {
     }
     const component = mount(<RealEstateActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
-    expect(component.find('.interest strong').text()).toBe('Yourself')
+    expect(component.find('.context strong').text()).toBe('Yourself')
   })
 
   it('Renders interest types summary information', () => {
@@ -98,7 +98,7 @@ describe('The RealEstateActivity component', () => {
     tests.forEach(test => {
       const component = mount(<RealEstateActivity {...test.props} />)
       expect(component.find('.accordion').length).toBe(1)
-      expect(component.find('.interest strong').text()).toBe(test.expected)
+      expect(component.find('.context strong').text()).toBe(test.expected)
     })
   })
 

@@ -22,20 +22,19 @@ describe('The military service component', () => {
 
   it('selecting a national guard service provides the status', () => {
     const expected = {
-      name: 'military-service'
+      name: 'military-service',
+      Service: 'AirNationalGuard'
     }
     const component = mount(<MilitaryService {...expected} />)
-    expect(component.find('.status').length).toEqual(0)
-    component.find('.service-airnationalguard input').simulate('change')
     expect(component.find('.status').length).toEqual(1)
   })
 
   it('select no for discharged and no new fields appear', () => {
     const expected = {
-      name: 'military-service'
+      name: 'military-service',
+      HasBeenDischarged: 'No'
     }
     const component = mount(<MilitaryService {...expected} />)
-    component.find('.discharged .no input').simulate('change')
     expect(component.find('.discharge-type').length).toEqual(0)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
@@ -44,10 +43,10 @@ describe('The military service component', () => {
 
   it('select yes for discharged and more information is required', () => {
     const expected = {
-      name: 'military-service'
+      name: 'military-service',
+      HasBeenDischarged: 'Yes'
     }
     const component = mount(<MilitaryService {...expected} />)
-    component.find('.discharged .yes input').simulate('change')
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
@@ -56,11 +55,11 @@ describe('The military service component', () => {
 
   it('selecting other for discharge type presents textbox', () => {
     const expected = {
-      name: 'military-service'
+      name: 'military-service',
+      HasBeenDischarged: 'Yes',
+      DischargeType: 'Other'
     }
     const component = mount(<MilitaryService {...expected} />)
-    component.find('.discharged .yes input').simulate('change')
-    component.find('.discharge-type-other input').simulate('change')
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(1)
     expect(component.find('.discharge-reason').length).toEqual(1)
@@ -68,11 +67,11 @@ describe('The military service component', () => {
 
   it('selecting discharge type which is not honorable', () => {
     const expected = {
-      name: 'military-service'
+      name: 'military-service',
+      HasBeenDischarged: 'Yes',
+      DischargeType: 'General'
     }
     const component = mount(<MilitaryService {...expected} />)
-    component.find('.discharged .yes input').simulate('change')
-    component.find('.discharge-type-general input').simulate('change')
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(1)
@@ -80,11 +79,11 @@ describe('The military service component', () => {
 
   it('selecting discharge type which is honorable', () => {
     const expected = {
-      name: 'military-service'
+      name: 'military-service',
+      HasBeenDischarged: 'Yes',
+      DischargeType: 'Honorable'
     }
     const component = mount(<MilitaryService {...expected} />)
-    component.find('.discharged .yes input').simulate('change')
-    component.find('.discharge-type-honorable input').simulate('change')
     expect(component.find('.discharge-type').length).toEqual(1)
     expect(component.find('.discharge-type-otherex').length).toEqual(0)
     expect(component.find('.discharge-reason').length).toEqual(0)
@@ -94,6 +93,9 @@ describe('The military service component', () => {
     let updates = 0
     const expected = {
       name: 'military-service',
+      Service: 'AirNationalGuard',
+      HasBeenDischarged: 'Yes',
+      DischargeType: 'Other',
       onUpdate: () => { updates++ }
     }
     const component = mount(<MilitaryService {...expected} />)

@@ -4,26 +4,20 @@ import Ventures from './Ventures'
 
 describe('The foreign business ventures component', () => {
   it('display nothing when "no" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-ventures',
-      onUpdate: () => { updates++ }
+      HasForeignVentures: 'No'
     }
     const component = mount(<Ventures {...expected} />)
-    component.find('.branch .no input').simulate('change')
-    expect(updates).toBe(1)
     expect(component.find('.accordion').length).toBe(0)
   })
 
   it('display content when "yes" is clicked', () => {
-    let updates = 0
     const expected = {
       name: 'foreign-business-ventures',
-      onUpdate: () => { updates++ }
+      HasForeignVentures: 'Yes'
     }
     const component = mount(<Ventures {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(3)
     expect(component.find('.accordion').length).toBe(1)
   })
 
@@ -48,6 +42,7 @@ describe('The foreign business ventures component', () => {
     const expected = {
       name: 'foreign-business-ventures',
       HasForeignVentures: 'Yes',
+      List: [{}],
       onUpdate: () => { updates++ }
     }
     const component = mount(<Ventures {...expected} />)
@@ -62,6 +57,6 @@ describe('The foreign business ventures component', () => {
     component.find('.ventures-position input').simulate('change')
     component.find('.ventures-service input').simulate('change')
     component.find('.ventures-compensation textarea').simulate('change')
-    expect(updates).toBe(10 * 2)
+    expect(updates).toBe(10)
   })
 })

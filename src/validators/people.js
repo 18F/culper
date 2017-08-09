@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import NameValidator from './name'
-import AddressValidator from './address'
+import LocationValidator from './location'
 import { validGenericTextfield, validPhoneNumber, validNotApplicable } from './helpers'
 import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../components/Section/History/dateranges'
 
@@ -128,6 +128,6 @@ export class PersonValidator {
       validPhoneNumber(this.otherTelephone) &&
       validNotApplicable(this.emailNotApplicable, () => {
         return validGenericTextfield(this.email)
-      }) && new AddressValidator(this.address).isValid()
+      }) && new LocationValidator(this.address).isValid()
   }
 }

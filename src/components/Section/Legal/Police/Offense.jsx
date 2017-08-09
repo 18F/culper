@@ -1,50 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import Sentence from './Sentence'
-import { ValidationElement, Branch, Show, Address, DateControl,
+import { ValidationElement, Branch, Show, Location, DateControl,
          Textarea, Text, RadioGroup, Radio, Svg, Field } from '../../../Form'
-
-/**
- * Convenience function to send updates along their merry way
- */
-const sendUpdate = (fn, name, props) => {
-  if (fn) {
-    fn({
-      name: name,
-      ...props
-    })
-  }
-}
 
 export default class Offense extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Date: props.Date,
-      Description: props.Description,
-      InvolvedViolence: props.InvolvedViolence,
-      InvolvedFirearms: props.InvolvedFirearms,
-      InvolvedSubstances: props.InvolvedSubstances,
-      Address: props.Address,
-      WasCited: props.WasCited,
-      CitedBy: props.CitedBy,
-      AgencyAddress: props.AgencyAddress,
-      WasCharged: props.WasCharged,
-      Explanation: props.Explanation,
-      CourtName: props.CourtName,
-      CourtAddress: props.CourtAddress,
-      CourtCharge: props.CourtCharge,
-      CourtOutcome: props.CourtOutcome,
-      CourtDate: props.CourtDate,
-      ChargeType: props.ChargeType,
-      WasSentenced: props.WasSentenced,
-      Sentence: props.Sentence,
-      AwaitingTrial: props.AwaitingTrial,
-      AwaitingTrialExplanation: props.AwaitingTrialExplanation
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
     this.updateDate = this.updateDate.bind(this)
     this.updateDescription = this.updateDescription.bind(this)
     this.updateInvolvedViolence = this.updateInvolvedViolence.bind(this)
@@ -68,94 +32,157 @@ export default class Offense extends ValidationElement {
     this.updateAwaitingTrialExplanation = this.updateAwaitingTrialExplanation.bind(this)
   }
 
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      sendUpdate(this.props.onUpdate, this.props.name, this.state)
+  update (queue) {
+    this.props.onUpdate({
+      Date: this.props.Date,
+      Description: this.props.Description,
+      InvolvedViolence: this.props.InvolvedViolence,
+      InvolvedFirearms: this.props.InvolvedFirearms,
+      InvolvedSubstances: this.props.InvolvedSubstances,
+      Address: this.props.Address,
+      WasCited: this.props.WasCited,
+      CitedBy: this.props.CitedBy,
+      AgencyAddress: this.props.AgencyAddress,
+      WasCharged: this.props.WasCharged,
+      Explanation: this.props.Explanation,
+      CourtName: this.props.CourtName,
+      CourtAddress: this.props.CourtAddress,
+      CourtCharge: this.props.CourtCharge,
+      CourtOutcome: this.props.CourtOutcome,
+      CourtDate: this.props.CourtDate,
+      ChargeType: this.props.ChargeType,
+      WasSentenced: this.props.WasSentenced,
+      Sentence: this.props.Sentence,
+      AwaitingTrial: this.props.AwaitingTrial,
+      AwaitingTrialExplanation: this.props.AwaitingTrialExplanation,
+      ...queue
     })
   }
 
   updateDate (values) {
-    this.onUpdate('Date', values)
+    this.update({
+      Date: values
+    })
   }
 
   updateDescription (values) {
-    this.onUpdate('Description', values)
+    this.update({
+      Description: values
+    })
   }
 
   updateInvolvedViolence (value, event) {
-    this.onUpdate('InvolvedViolence', value)
+    this.update({
+      InvolvedViolence: value
+    })
   }
 
   updateInvolvedFirearms (value, event) {
-    this.onUpdate('InvolvedFirearms', value)
+    this.update({
+      InvolvedFirearms: value
+    })
   }
 
   updateInvolvedSubstances (value, event) {
-    this.onUpdate('InvolvedSubstances', value)
+    this.update({
+      InvolvedSubstances: value
+    })
   }
 
   updateAddress (value) {
-    this.onUpdate('Address', value)
+    this.update({
+      Address: value
+    })
   }
 
   updateWasCited (value, event) {
-    this.onUpdate('WasCited', value)
+    this.update({
+      WasCited: value
+    })
   }
 
   updateCitedBy (values) {
-    this.onUpdate('CitedBy', values)
+    this.update({
+      CitedBy: values
+    })
   }
 
   updateAgencyAddress (value) {
-    this.onUpdate('AgencyAddress', value)
+    this.update({
+      AgencyAddress: value
+    })
   }
 
   updateWasCharged (value, event) {
-    this.onUpdate('WasCharged', value)
+    this.update({
+      WasCharged: value
+    })
   }
 
   updateExplanation (values) {
-    this.onUpdate('Explanation', values)
+    this.update({
+      Explanation: values
+    })
   }
 
   updateCourtName (value) {
-    this.onUpdate('CourtName', value)
+    this.update({
+      CourtName: value
+    })
   }
 
   updateCourtAddress (value) {
-    this.onUpdate('CourtAddress', value)
+    this.update({
+      CourtAddress: value
+    })
   }
 
   updateChargeType (event) {
-    this.onUpdate('ChargeType', event.target.value)
+    this.update({
+      ChargeType: event.target.value
+    })
   }
 
   updateCourtCharge (value) {
-    this.onUpdate('CourtCharge', value)
+    this.update({
+      CourtCharge: value
+    })
   }
 
   updateCourtOutcome (value) {
-    this.onUpdate('CourtOutcome', value)
+    this.update({
+      CourtOutcome: value
+    })
   }
 
   updateCourtDate (value) {
-    this.onUpdate('CourtDate', value)
+    this.update({
+      CourtDate: value
+    })
   }
 
   updateWasSentenced (value, event) {
-    this.onUpdate('WasSentenced', value)
+    this.update({
+      WasSentenced: value
+    })
   }
 
   updateSentence (value, event) {
-    this.onUpdate('Sentence', value)
+    this.update({
+      Sentence: value
+    })
   }
 
   updateAwaitingTrial (values) {
-    this.onUpdate('AwaitingTrial', values)
+    this.update({
+      AwaitingTrial: values
+    })
   }
 
   updateAwaitingTrialExplanation (values) {
-    this.onUpdate('AwaitingTrialExplanation', values)
+    this.update({
+      AwaitingTrialExplanation: values
+    })
   }
 
   render () {
@@ -166,7 +193,7 @@ export default class Offense extends ValidationElement {
                adjustFor="labels"
                shrink={true}>
           <DateControl name="Date"
-                       {...this.state.Date}
+                       {...this.props.Date}
                        className="offense-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -176,7 +203,7 @@ export default class Offense extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.description')}
                help="legal.police.help.description">
           <Textarea name="Description"
-                    {...this.state.Description}
+                    {...this.props.Description}
                     className="offense-description"
                     onUpdate={this.updateDescription}
                     onError={this.props.onError}
@@ -187,7 +214,7 @@ export default class Offense extends ValidationElement {
         <Branch name="involved_violence"
                 adjustFor="p"
                 className="offense-violence"
-                value={this.state.InvolvedViolence}
+                value={this.props.InvolvedViolence}
                 onUpdate={this.updateInvolvedViolence}
                 onError={this.props.onError}>
           {i18n.m('legal.police.label.violence')}
@@ -196,7 +223,7 @@ export default class Offense extends ValidationElement {
         <Branch name="involved_firearms"
                 adjustFor="p"
                 className="offense-firearms"
-                value={this.state.InvolvedFirearms}
+                value={this.props.InvolvedFirearms}
                 onUpdate={this.updateInvolvedFirearms}
                 onError={this.props.onError}>
           {i18n.m('legal.police.label.firearms')}
@@ -205,7 +232,7 @@ export default class Offense extends ValidationElement {
         <Branch name="involved_substances"
                 adjustFor="p"
                 className="offense-substances"
-                value={this.state.InvolvedSubstances}
+                value={this.props.InvolvedSubstances}
                 onUpdate={this.updateInvolvedSubstances}
                 onError={this.props.onError}>
           {i18n.m('legal.police.label.substances')}
@@ -214,25 +241,27 @@ export default class Offense extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.address')}
                adjustFor="address"
                shrink={true}>
-          <Address name="Address"
-                   {...this.state.Address}
-                   className="offense-address"
-                   label={i18n.t('legal.police.label.address')}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   />
+          <Location name="Address"
+                    {...this.props.Address}
+                    className="offense-address"
+                    label={i18n.t('legal.police.label.address')}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <h3>{i18n.t('legal.police.heading.cited')}</h3>
         <Branch name="was_cited"
                 adjustFor="p"
                 className="offense-cited"
-                value={this.state.WasCited}
+                value={this.props.WasCited}
                 onUpdate={this.updateWasCited}
                 onError={this.props.onError}>
         </Branch>
 
-        <Show when={this.state.WasCited === 'Yes'}>
+        <Show when={this.props.WasCited === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    className="more title">
@@ -242,7 +271,7 @@ export default class Offense extends ValidationElement {
             <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
             <Field title={i18n.t('legal.police.heading.citedby')}>
               <Text name="CitedBy"
-                    {...this.state.CitedBy}
+                    {...this.props.CitedBy}
                     className="offense-citedby"
                     onUpdate={this.updateCitedBy}
                     onError={this.props.onError}
@@ -253,30 +282,32 @@ export default class Offense extends ValidationElement {
                    help="legal.police.help.agencyaddress"
                    adjustFor="address"
                    shrink={true}>
-              <Address name="AgencyAddress"
-                       {...this.state.AgencyAddress}
-                       className="offense-agencyaddress"
-                       label={i18n.t('legal.police.label.address')}
-                       onUpdate={this.updateAgencyAddress}
-                       onError={this.props.onError}
-                       />
+              <Location name="AgencyAddress"
+                        {...this.props.AgencyAddress}
+                        className="offense-agencyaddress"
+                        label={i18n.t('legal.police.label.address')}
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        onUpdate={this.updateAgencyAddress}
+                        onError={this.props.onError}
+                        />
             </Field>
 
             <h3>{i18n.t('legal.police.heading.charged')}</h3>
             <Branch name="was_charged"
                     className="offense-charged"
-                    value={this.state.WasCharged}
+                    value={this.props.WasCharged}
                     onUpdate={this.updateWasCharged}
                     onError={this.props.onError}>
             </Branch>
           </div>
         </Show>
 
-        <Show when={this.state.WasCharged === 'No'}>
+        <Show when={this.props.WasCharged === 'No'}>
           <div>
             <Field adjustFor="labels">
               <Textarea name="Explanation"
-                        {...this.state.Explanation}
+                        {...this.props.Explanation}
                         label={i18n.t('legal.police.label.explanation')}
                         className="offense-explanation"
                         onUpdate={this.updateExplanation}
@@ -286,7 +317,7 @@ export default class Offense extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.state.WasCharged === 'Yes'}>
+        <Show when={this.props.WasCharged === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    className="more title">
@@ -296,7 +327,7 @@ export default class Offense extends ValidationElement {
             <Field title={i18n.t('legal.police.heading.courtname')}
                    adjustFor="labels">
               <Text name="CourtName"
-                    {...this.state.CourtName}
+                    {...this.props.CourtName}
                     label={i18n.t('legal.police.label.courtname')}
                     className="offense-courtname"
                     onUpdate={this.updateCourtName}
@@ -308,13 +339,15 @@ export default class Offense extends ValidationElement {
                    help="legal.police.help.courtaddress"
                    adjustFor="address"
                    shrink={true}>
-              <Address name="CourtAddress"
-                       {...this.state.CourtAddress}
-                       label={i18n.t('legal.police.label.address')}
-                       className="offense-courtaddress"
-                       onUpdate={this.updateCourtAddress}
-                       onError={this.props.onError}
-                       />
+              <Location name="CourtAddress"
+                        {...this.props.CourtAddress}
+                        label={i18n.t('legal.police.label.address')}
+                        className="offense-courtaddress"
+                        geocode={true}
+                        layout={Location.ADDRESS}
+                        onUpdate={this.updateCourtAddress}
+                        onError={this.props.onError}
+                        />
             </Field>
 
             <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
@@ -324,7 +357,7 @@ export default class Offense extends ValidationElement {
                    adjustFor="buttons"
                    shrink={true}>
               <RadioGroup className="offense-chargetype option-list"
-                          selectedValue={this.state.ChargeType}>
+                          selectedValue={this.props.ChargeType}>
                 <Radio name="charge-felony"
                        className="charge-felony"
                        label={i18n.t('legal.police.label.felony')}
@@ -349,14 +382,14 @@ export default class Offense extends ValidationElement {
               </RadioGroup>
 
               <Text name="CourtCharge"
-                    {...this.state.CourtCharge}
+                    {...this.props.CourtCharge}
                     label={i18n.t('legal.police.label.courtcharge')}
                     className="offense-courtcharge"
                     onUpdate={this.updateCourtCharge}
                     onError={this.props.onError}
                     />
               <Text name="CourtOutcome"
-                    {...this.state.CourtOutcome}
+                    {...this.props.CourtOutcome}
                     label={i18n.t('legal.police.label.courtoutcome')}
                     className="offense-courtoutcome"
                     onUpdate={this.updateCourtOutcome}
@@ -370,7 +403,7 @@ export default class Offense extends ValidationElement {
                    adjustFor="labels"
                    shrink={true}>
               <DateControl name="CourtDate"
-                           {...this.state.CourtDate}
+                           {...this.props.CourtDate}
                            hideDay={true}
                            className="offense-courtdate"
                            onUpdate={this.updateCourtDate}
@@ -381,32 +414,32 @@ export default class Offense extends ValidationElement {
             <h3>{i18n.t('legal.police.heading.sentenced')}</h3>
             <Branch name="was_sentenced"
                     className="offense-sentenced"
-                    value={this.state.WasSentenced}
+                    value={this.props.WasSentenced}
                     onUpdate={this.updateWasSentenced}
                     onError={this.props.onError}>
             </Branch>
 
-            <Show when={this.state.WasSentenced === 'Yes'}>
+            <Show when={this.props.WasSentenced === 'Yes'}>
               <div>
                 <Field title={i18n.t('legal.police.heading.needmore')}
                        className="more title">
                   <Svg src="/img/date-down-arrow.svg" className="more arrow" />
                 </Field>
                 <Sentence name="Sentence"
-                          {...this.state.Sentence}
+                          {...this.props.Sentence}
                           onError={this.props.onError}
                           onUpdate={this.updateSentence}
                           />
               </div>
             </Show>
 
-            <Show when={this.state.WasSentenced === 'No'}>
+            <Show when={this.props.WasSentenced === 'No'}>
               <div>
                 <Branch name="awaiting_trial"
                         label={i18n.t('legal.police.heading.awaitingTrial')}
                         labelSize="h4"
                         className="awaiting-trial"
-                        value={this.state.AwaitingTrial}
+                        value={this.props.AwaitingTrial}
                         onError={this.props.onError}
                         onUpdate={this.updateAwaitingTrial}
                         />
@@ -414,7 +447,7 @@ export default class Offense extends ValidationElement {
                        titleSize="label"
                        adjustFor="labels">
                   <Textarea className="awaiting-trial-explanation"
-                            {...this.state.AwaitingTrialExplanation}
+                            {...this.props.AwaitingTrialExplanation}
                             name="awaiting_trial_explanation"
                             onError={this.props.onError}
                             onUpdate={this.updateAwaitingTrialExplanation} />
@@ -429,5 +462,27 @@ export default class Offense extends ValidationElement {
 }
 
 Offense.defaultProps = {
+  Date: {},
+  Description: {},
+  InvolvedViolence: '',
+  InvolvedFirearms: '',
+  InvolvedSubstances: '',
+  Address: {},
+  WasCited: '',
+  CitedBy: {},
+  AgencyAddress: {},
+  WasCharged: '',
+  Explanation: {},
+  CourtName: {},
+  CourtAddress: {},
+  ChargeType: {},
+  CourtCharge: {},
+  CourtOutcome: {},
+  CourtDate: {},
+  WasSentenced: '',
+  Sentence: {},
+  AwaitingTrial: '',
+  AwaitingTrialExplanation: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary } from '../../../Summary'
 import { TaxesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Number, Field,
@@ -27,7 +28,7 @@ export default class Taxes extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasTaxes: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -54,16 +55,16 @@ export default class Taxes extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const agency = (obj.Agency || {}).value || i18n.t('financial.taxes.collection.summary.unknown')
     const year = (obj.Year || {}).value || ''
+    const agency = (obj.Agency || {}).value || ''
 
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.taxes.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{agency}</strong></span>
-        <span className="dates"><strong>{year}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.taxes.collection.summary.item'),
+      index: index,
+      left: agency,
+      right: year,
+      placeholder: i18n.m('financial.taxes.collection.summary.unknown')
+    })
   }
 
   render () {
@@ -72,12 +73,12 @@ export default class Taxes extends SubsectionElement {
         <Branch name="has_taxes"
                 className="taxes-branch"
                 value={this.state.HasTaxes}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasTaxes === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}

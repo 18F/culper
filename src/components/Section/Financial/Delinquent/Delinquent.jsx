@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { Summary, DateSummary } from '../../../Summary'
 import { DelinquentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion, DateControl, Currency, Field,
-         NotApplicable, Address, Checkbox, Text, Textarea } from '../../../Form'
+         NotApplicable, Location, Checkbox, Text, Textarea } from '../../../Form'
 import Infractions from './Infractions'
 
 export default class Delinquent extends SubsectionElement {
@@ -27,7 +28,7 @@ export default class Delinquent extends SubsectionElement {
   updateBranch (val, event) {
     this.setState({ HasDelinquent: val }, () => {
       this.updateList({
-        items: val === 'No' ? [] : this.state.List,
+        items: val === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -54,23 +55,19 @@ export default class Delinquent extends SubsectionElement {
    */
   summary (item, index) {
     const obj = (item || {})
-    const name = (obj.Name || {}).value || i18n.t('financial.delinquent.collection.summary.unknown')
-    const amount = (obj.Amount || {}).value
-    const text = `${name}${amount ? ', $' + amount : ''}`.trim()
     const date = (obj.Date || {})
+    const from = DateSummary({date: date})
+    const name = (obj.Name || {}).value || ''
+    const amount = (obj.Amount || {}).value || ''
+    const text = `${name}${amount ? ', $' + amount : ''}`.trim()
 
-    let from = ''
-    if (date.month && date.year) {
-      from = '' + date.month + '/' + date.year
-    }
-
-    return (
-      <span>
-        <span className="index">{i18n.t('financial.delinquent.collection.summary.item')} {index + 1}:</span>
-        <span><strong>{text}</strong></span>
-        <span className="dates"><strong>{from}</strong></span>
-      </span>
-    )
+    return Summary({
+      type: i18n.t('financial.delinquent.collection.summary.item'),
+      index: index,
+      left: text,
+      right: from,
+      placeholder: i18n.m('financial.delinquent.collection.summary.unknown')
+    })
   }
 
   message () {
@@ -92,12 +89,12 @@ export default class Delinquent extends SubsectionElement {
         <Branch name="has_delinquent"
                 className="delinquent-branch eapp-field-wrap"
                 value={this.state.HasDelinquent}
+                warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasDelinquent === 'Yes'}>
-          <Accordion minimum="1"
-                     items={this.state.List}
+          <Accordion items={this.state.List}
                      branch={this.state.ListBranch}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
@@ -205,10 +202,12 @@ export default class Delinquent extends SubsectionElement {
             <Field title={i18n.t('financial.delinquent.heading.courtaddress')}
                    help="financial.delinquent.help.courtaddress"
                    adjustFor="address">
-              <Address name="CourtAddress"
-                       className="delinquent-courtaddress"
-                       bind={true}
-                       />
+              <Location name="CourtAddress"
+                        layout={Location.ADDRESS}
+                        geocode={true}
+                        className="delinquent-courtaddress"
+                        bind={true}
+                        />
             </Field>
 
             <Field title={i18n.t('financial.delinquent.heading.description')}
