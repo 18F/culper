@@ -12,7 +12,7 @@ describe('The employment status component', () => {
     }
 
     const component = mount(<EmploymentStatus name="employmentstatus" onUpdate={expected.onUpdate} onBlur={expected.onBlur} onFocus={expected.onFocus} />)
-    const selected = component.find({type: 'radio', name: 'employment_status', value: 'Fulltime'})
+    const selected = component.find('.employment-status .fulltime input')
     selected.simulate('change')
     selected.simulate('blur')
     expect(selected.hasClass('selected')).toBe(true)

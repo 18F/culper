@@ -22,7 +22,7 @@ describe('The ExistingConditions component', () => {
     component.find('.existing-condition-didnotfollow-explanation textarea').simulate('change')
     component.find('.treatment-list .no input').simulate('change')
     component.find('.existing-condition-explanation textarea').simulate('change')
-    component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('change')
+    component.find('.treatment.yes input').simulate('change')
     expect(updates).toBe(6)
   })
 
@@ -40,7 +40,7 @@ describe('The ExistingConditions component', () => {
     component.find('.didnotfollow .yes input').simulate('change')
     component.find('.existing-condition-didnotfollow-explanation textarea').simulate('change')
     component.find('.treatment-list .no input').simulate('change')
-    component.find({type: 'radio', name: 'treatment', value: 'Yes'}).simulate('change')
+    component.find('.treatment.yes input').simulate('change')
     expect(updates).toBe(6)
   })
 

@@ -42,7 +42,7 @@ describe('The gambling component', () => {
       name: 'gambling'
     }
     const component = mount(<Gambling name={expected.name} />)
-    component.find({type: 'radio', name: 'has_gamblingdebt', value: 'Yes'}).simulate('change')
+    component.find('.has-gambling-debt .yes input').simulate('change')
     expect(component.find('.details').length).toBeGreaterThan(0)
   })
 
@@ -51,7 +51,7 @@ describe('The gambling component', () => {
       name: 'gambling'
     }
     const component = mount(<Gambling name={expected.name} />)
-    component.find({type: 'radio', name: 'has_gamblingdebt', value: 'No'}).simulate('change')
+    component.find('.has-gambling-debt .no input').simulate('change')
     expect(component.find('.details').length).toBe(0)
   })
 
@@ -68,7 +68,7 @@ describe('The gambling component', () => {
         onUpdate={onUpdate}
       />
     )
-    component.find({type: 'radio', name: 'has_gamblingdebt', value: 'Yes'}).simulate('change')
+    component.find('.has-gambling-debt .yes input').simulate('change')
     expect(component.find('.details').length).toBeGreaterThan(0)
 
     component.find('.addendum .yes input').simulate('click')
