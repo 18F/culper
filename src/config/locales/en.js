@@ -398,53 +398,109 @@ const en = {
       required: {
         title: 'There is a problem with this field',
         message: 'This field is required'
-      }
-    },
-    address: {
-      city: {
-        length: {
-          title: 'There is a problem with the City',
-          message: 'City name should be between 2 and 100 characters.',
-          note: ''
+      },
+      toggleablelocation: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          notfound: {
+            title: 'This country is not one of the options',
+            message: 'Please enter the country that your city of birth is in now.',
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       },
-      state: {
-        notfound: {
-          title: 'There is a problem with the State',
-          message: [
-            'State name must be one of the available options.',
-            '*and/or*',
-            'The state name is too long.'
-          ],
-          note: ''
-        }
-      },
-      county: {
-        length: {
-          title: 'There is a problem with the County',
-          message: 'County name must be between 2 and 100 characters',
-          note: ''
-        }
-      },
-      zipcode: {
-        pattern: {
-          title: 'There is a problem with the ZIP Code',
-          message: 'The ZIP Code should be either 5 or 9 digits.',
-          note: ''
-        }
-      },
-      country: {
-        notfound: {
-          title: 'This country is not one of the options',
-          message: 'Please enter the country that your city of birth is in now.',
-          note: ''
-        }
-      },
-      apofpo: {
-        pattern: {
-          title: 'There is a problem with the State Code',
-          message: 'APO/FPO state code must be 2 letters',
-          note: 'Note: Typically the value is either AA, AE, or AP.'
+      address: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          notfound: {
+            title: 'This country is not one of the options',
+            message: 'Please enter the country that your city of birth is in now.',
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       }
     },

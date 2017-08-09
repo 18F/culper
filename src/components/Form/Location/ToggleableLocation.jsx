@@ -8,6 +8,8 @@ import Country from '../Country'
 import County from '../County'
 import ZipCode from '../ZipCode'
 import Show from '../Show'
+import Radio from '../Radio'
+import RadioGroup from '../RadioGroup'
 
 export default class ToggleableLocation extends ValidationElement {
   constructor (props) {
@@ -70,9 +72,9 @@ export default class ToggleableLocation extends ValidationElement {
     this.update({zipcode: event.target.value})
   }
 
-  updateToggle (value) {
+  updateToggle (option) {
     // Set existing errors to null when toggling fields
-    this.props.onError(value, this.errors.map(err => {
+    this.props.onError(option.value, this.errors.map(err => {
       return {
         code: err.code,
         valid: null,
@@ -80,7 +82,7 @@ export default class ToggleableLocation extends ValidationElement {
       }
     }))
 
-    switch (value) {
+    switch (option.value) {
       case 'Yes':
         this.update({country: 'United States'})
         break
@@ -226,16 +228,26 @@ export default class ToggleableLocation extends ValidationElement {
 
     return (
       <div className="toggleable-location">
-        <Branch name="birthplace_type"
-          help={this.props.help}
-          value={branchValue(this.props.country)}
-          label={this.props.label}
-          onUpdate={this.updateToggle}
-          onBlur={this.props.onBlur}
+        <RadioGroup
+          className="option-list branch"
           required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}
-          onError={this.onError}>
-        </Branch>
+          onError={this.props.onError}
+          selectedValue={branchValue(this.props.country)}>
+          <Radio name={this.props.name}
+                 label={"Yes"}
+                 value={"Yes"}
+                 className="yes"
+                 onUpdate={this.updateToggle}
+                 onError={this.onError}
+                 />
+          <Radio name={this.props.name}
+                 label={"No"}
+                 value={"No"}
+                 className="no"
+                 onUpdate={this.updateToggle}
+                 onError={this.onError}
+                 />
+        </RadioGroup>
 
         <Show when={this.props.country === 'United States'}>
           {domesticFields}
@@ -250,7 +262,7 @@ export default class ToggleableLocation extends ValidationElement {
   onError (value, arr) {
     arr = arr.map(err => {
       return {
-        code: `location.${err.code}`,
+        code: `toggleablelocation.${err.code}`,
         valid: err.valid,
         uid: err.uid
       }
@@ -258,7 +270,7 @@ export default class ToggleableLocation extends ValidationElement {
 
     const requiredErr = arr.concat(this.constructor.errors.map(err => {
       return {
-        code: `location.${err.code}`,
+        code: `toggleablelocation.${err.code}`,
         valid: err.func(value, {...this.props}),
         uid: this.state.uid
       }
@@ -350,6 +362,9 @@ ToggleableLocation.errors = [
                   valid = false
               }
             }
+            break
+          default:
+            valid = false
         }
         return valid
       }
