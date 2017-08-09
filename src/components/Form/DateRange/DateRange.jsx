@@ -15,13 +15,15 @@ export default class DateRange extends ValidationElement {
       to: props.to,
       present: props.present,
       presentClicked: false,
-      trickleDown: false,
       title: props.title || 'Date Range',
       error: false,
       errors: []
     }
 
     this.storeErrors = this.storeErrors.bind(this)
+    this.update = this.update.bind(this)
+    this.updateFrom = this.updateFrom.bind(this)
+    this.updateTo = this.updateTo.bind(this)
     this.updatePresent = this.updatePresent.bind(this)
     this.handleError = this.handleError.bind(this)
     this.handleErrorFrom = this.handleErrorFrom.bind(this)
@@ -29,31 +31,25 @@ export default class DateRange extends ValidationElement {
     this.handleErrorPresent = this.handleErrorPresent.bind(this)
   }
 
-  componentWillReceiveProps (next) {
-    if (next.receiveProps) {
-      this.setState({ from: next.from, to: next.to, trickleDown: true }, () => {
-        this.setState({ trickleDown: false })
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      from: this.state.from,
+      to: this.state.to,
+      present: this.state.present,
+      ...queue
+    })
   }
 
-  onUpdate (field, value) {
-    let futureState = {
-      ...this.state,
-      presentClicked: false,
-      [field]: value
-    }
+  updateFrom (values) {
+    this.setState({ from: values, presentClicked: false }, () => {
+      this.update({ from: values })
+    })
+  }
 
-    this.setState(futureState, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          from: this.state.from,
-          to: this.state.to,
-          present: this.state.present,
-          title: this.state.title
-        })
-      }
+  updateTo (values) {
+    this.setState({ to: values, presentClicked: false }, () => {
+      this.update({ to: values })
     })
   }
 
@@ -68,29 +64,24 @@ export default class DateRange extends ValidationElement {
 
     // If present is true then make the "to" date equal to today
     if (!this.state.present && futureState.present) {
-      futureState.to = {}
-      futureState.to.date = now
-      futureState.to.year = now.getFullYear()
-      futureState.to.month = '' + (now.getMonth() - 1)
-      futureState.to.day = now.getDate()
+      futureState.to = {
+        date: now,
+        year: now.getFullYear(),
+        month: `${now.getMonth() - 1}`,
+        day: now.getDate(),
+        estimated: false
+      }
     } else if (this.state.present && !futureState.present) {
       futureState.to = {
         date: '',
         year: '',
         month: '',
-        day: ''
+        day: '',
+        estimated: false
       }
     }
 
     this.setState(futureState, () => {
-      // This will force a blur/validation
-      this.refs.to.refs.month.refs.autosuggest.input.focus()
-      this.refs.to.refs.month.refs.autosuggest.input.blur()
-      this.refs.to.refs.day.refs.number.refs.input.focus()
-      this.refs.to.refs.day.refs.number.refs.input.blur()
-      this.refs.to.refs.year.refs.number.refs.input.focus()
-      this.refs.to.refs.year.refs.number.refs.input.blur()
-
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
@@ -192,8 +183,7 @@ export default class DateRange extends ValidationElement {
                        className="from"
                        {...this.state.from}
                        estimated={this.state.estimated}
-                       onUpdate={this.onUpdate.bind(this, 'from')}
-                       receiveProps={this.state.trickleDown}
+                       onUpdate={this.updateFrom}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
                        prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}from`}
@@ -212,9 +202,9 @@ export default class DateRange extends ValidationElement {
                        className={klassTo}
                        {...this.state.to}
                        estimated={this.state.estimated}
-                       receiveProps={this.state.trickleDown || this.state.presentClicked}
+                       receiveProps={this.state.presentClicked}
                        disabled={this.state.present}
-                       onUpdate={this.onUpdate.bind(this, 'to')}
+                       onUpdate={this.updateTo}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
                        prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}to`}
@@ -225,6 +215,7 @@ export default class DateRange extends ValidationElement {
           </div>
           <div className="from-present">
             <Checkbox name="present"
+                      className="present"
                       label="Present"
                       value="present"
                       checked={this.state.present}

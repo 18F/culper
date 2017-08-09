@@ -96,9 +96,12 @@ const completeContacts = (promise) => {
 
 const completeSocialSecurityNumber = (promise) => {
   return promise
-      .then(() => { return setText('input[name="first"]', '123') })
-      .then(() => { return setText('input[name="middle"]', '45') })
-      .then(() => { return setText('input[name="last"]', '6789') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="first"]', '123') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="middle"]', '45') })
+      .then(() => { return setText('.applicant-ssn-initial input[name="last"]', '6789') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="first"]', '123') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="middle"]', '45') })
+      .then(() => { return setText('.applicant-ssn-verification input[name="last"]', '6789') })
 }
 
 const completePhysicalAttributes = (promise) => {

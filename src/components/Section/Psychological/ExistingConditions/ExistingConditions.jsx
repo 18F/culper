@@ -200,5 +200,6 @@ ExistingConditions.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ExistingConditionsValidator(props, props).isValid()
-  }
+  },
+  prefix: 'existingConditions.diagnosis'
 }

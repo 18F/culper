@@ -14,7 +14,7 @@ const navigation = [
       { name: 'Other names used', url: 'othernames' },
       { name: 'Date of birth', url: 'birthdate' },
       { name: 'Place of birth', url: 'birthplace' },
-      { name: 'SSN', url: 'ssn' },
+      { name: 'Social security number', url: 'ssn' },
       { name: 'Your identifying information', url: 'physical' },
       { exclude: true, name: 'Review', url: 'review' }
     ]

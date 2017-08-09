@@ -50,32 +50,13 @@ const breadcrumbs = (urls, node) => {
  * Takes an array of breadcrumbs and formats it in to a pretty trail
  */
 const trail = (crumbs) => {
-  const length = crumbs.length
+  return crumbs.map((crumb, i, arr) => {
+    if (arr.length === i + 1) {
+      return <span className="title-text">{crumb}</span>
+    }
 
-  if (length === 2) {
-    // If there are just two crumbs the first will be a larger
-    // font and the second will be smaller an on its own line.
-    return (
-      <span>
-        <span className="title-text">{crumbs[0]}</span>
-        <span className="trail crumb">{crumbs[1]}</span>
-      </span>
-    )
-  } else if (length > 2) {
-    // If there are more than two we only display the last two
-    // in a smaller font.
-    return (
-      <span className="trail">
-        <span className="crumb">{crumbs[length - 2]}</span>
-        <span className="crumb"> &gt; {crumbs[length - 1]}</span>
-      </span>
-    )
-  }
-
-  // If there is only one display it in a large font.
-  return (
-    <span className="title-text">{crumbs[0]}</span>
-  )
+    return <span className="crumb">{crumb} &gt; </span>
+  })
 }
 
 /**

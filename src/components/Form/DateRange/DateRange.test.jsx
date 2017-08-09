@@ -3,38 +3,6 @@ import { mount } from 'enzyme'
 import DateRange from './DateRange'
 
 describe('The date range component', () => {
-  it('bubbles up validate event', () => {
-    let updates = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      help: 'Helpful error message',
-      error: true,
-      focus: false,
-      valid: false,
-      onUpdate: () => { updates++ }
-    }
-    const component = mount(<DateRange {...expected} />)
-    component.find('.day input').first().simulate('change', { target: { name: 'day', value: '1' } })
-    expect(updates).toBeGreaterThan(0)
-  })
-
-  it('bubbles up change event', () => {
-    let updates = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      help: 'Helpful error message',
-      error: true,
-      focus: false,
-      valid: false,
-      onUpdate: () => { updates++ }
-    }
-    const component = mount(<DateRange {...expected} />)
-    component.find('.day input').first().simulate('change')
-    expect(updates).toBeGreaterThan(0)
-  })
-
   it('handles dates in reversed order', () => {
     let updates = 0
     const expected = {
@@ -78,8 +46,35 @@ describe('The date range component', () => {
       receiveProps: true
     }
     const component = mount(<DateRange {...expected} />)
-    component.find({ type: 'checkbox', value: 'present' }).simulate('change')
-    component.setProps({value: '1-1-2010'})
+    component.find('.present input').simulate('change')
+    expect(updates).toBeGreaterThan(0)
+  })
+
+  it('can receive props', () => {
+    const props = {
+      receiveProps: true
+    }
+    const component = mount(<DateRange {...props} />)
+    component.setProps({to: {date: new Date()}})
+  })
+
+  it('can update date field', () => {
+    let updates = 0
+    const props = {
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<DateRange {...props} />)
+    component.find('.to .day input').simulate('change', { target: { value: '15' } })
+    expect(updates).toBeGreaterThan(0)
+  })
+
+  it('can click on present', () => {
+    let updates = 0
+    const props = {
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<DateRange {...props} />)
+    component.find('.present input').simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
 })

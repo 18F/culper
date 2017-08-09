@@ -90,7 +90,7 @@ describe('citizenship multiple component validation', function () {
         state: {
           Renounced: 'No'
         },
-        expected: true
+        expected: false
       },
       {
         state: {
@@ -116,30 +116,75 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
+            present: true
+          },
           Current: null
         },
         expected: false
       },
       {
         state: {
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
+            present: true
+          },
           Current: 'Yuppers'
         },
         expected: false
       },
       {
         state: {
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
+            present: true
+          },
           Current: 'No'
         },
-        expected: true
+        expected: false
       },
       {
         state: {
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
+            present: true
+          },
           Current: 'Yes'
         },
         expected: false
       },
       {
         state: {
+          Dates: {
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
+            present: true
+          },
           Current: 'Yes',
           CurrentExplanation: {
             value: 'explanation'
@@ -225,6 +270,14 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           HasMultiple: 'Yes',
+          Citizenships: [{}],
+          CitizenshipsBranch: ''
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasMultiple: 'Yes',
           Citizenships: [
             {
               Item: {
@@ -238,7 +291,7 @@ describe('citizenship multiple component validation', function () {
                   to: {
                     date: new Date('1/1/2012')
                   },
-                  present: false
+                  present: true
                 },
                 How: {
                   value: 'Birth'

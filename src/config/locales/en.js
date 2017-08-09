@@ -193,26 +193,10 @@ const en = {
           note: ''
         }
       },
-      verifyFirst: {
-        pattern: {
-          title: 'This field must have 3 digits',
-          message: 'The first part of the social security number must be 3 digits between 0 and 9',
-          note: ''
-        }
-      },
-      verifyMiddle: {
-        pattern: {
-          title: 'This field must have 2 digits',
-          message: 'The middle part of the social security number must be 2 digits between 0 and 9',
-          note: ''
-        }
-      },
-      verifyLast: {
-        pattern: {
-          title: 'This field must have 4 digits',
-          message: 'The last part of the social security number must be 4 digits between 0 and 9',
-          note: ''
-        }
+      mismatch: {
+        title: 'Confirmation mismatch',
+        message: 'The two U.S. Social Security Numbers you entered do not match.',
+        note: ''
       }
     },
     date: {
@@ -480,8 +464,8 @@ const en = {
     },
     country: {
       notfound: {
-        title: 'There is a problem with the Country',
-        message: 'Country name should be one of the available options.',
+        title: 'This Country is not on our current list',
+        message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
         note: ''
       }
     },
@@ -796,7 +780,6 @@ const en = {
       other: 'Other'
     }
   },
-
   identification: {
     intro: {
       title: 'Section 1: Information about you',
@@ -811,15 +794,13 @@ const en = {
     destination: {
       intro: 'Intro',
       review: 'Review Identification',
-      relationships: 'Relationships',
       othernames: 'Other names used',
       name: 'Full name',
-      birthdate: 'Birth date',
-      birthplace: 'Birth place',
-      contacts: 'Contacts',
+      birthdate: 'Date of birth',
+      birthplace: 'Place of birth',
+      contacts: 'Your contact information',
       ssn: 'Social security number',
-      physical: 'Identifying information',
-      psychological: 'Psychological and emotional health'
+      physical: 'Your identifying information'
     },
     name: {
       title: 'Provide your full name',
@@ -999,6 +980,10 @@ const en = {
     },
     ssn: {
       title: 'Provide your U.S. Social Security Number',
+      heading: {
+        verify: 'Please confirm your social security number',
+        verified: 'Thank you for confirming your social security number!'
+      },
       help: {
         title: 'Need help with your U.S. Social Security Number?',
         message: 'If you do not have a U.S. Social Security Number check the "Not Applicable" checkbox',
@@ -1116,7 +1101,6 @@ const en = {
       }
     }
   },
-
   financial: {
     intro: {
       title: 'Section 2: Financial record',
@@ -1201,7 +1185,7 @@ const en = {
         }
       },
       placeholder: {
-        losses: '1000'
+        losses: '0'
       }
     },
     bankruptcy: {
@@ -1280,7 +1264,7 @@ const en = {
       },
       totalAmount: {
         label: 'Amount',
-        placeholder: 'Total amount',
+        placeholder: '0',
         help: {
           title: 'Need help with the total amount?',
           message: 'Provide the total amount (in U.S. dollars) involved in the bankruptcy',
@@ -1351,8 +1335,8 @@ const en = {
         or: 'or'
       },
       placeholder: {
-        year: '2016',
-        amount: '1000'
+        year: '0000',
+        amount: '0'
       },
       help: {
         branch: {
@@ -1425,7 +1409,7 @@ const en = {
         estimated: 'Estimated'
       },
       placeholder: {
-        amount: '1000'
+        amount: '0'
       },
       help: {
         branch: {
@@ -1486,7 +1470,6 @@ const en = {
       placeholder: {
         city: 'Please enter the city',
         state: 'Please enter state or territory within the United States'
-
       },
       help: {
         branch: {
@@ -1560,7 +1543,7 @@ const en = {
         estimated: 'Estimated'
       },
       placeholder: {
-        amount: '10000'
+        amount: '0'
       },
       help: {
         branch: {
@@ -1670,7 +1653,7 @@ const en = {
         estimated: 'Estimated'
       },
       placeholder: {
-        amount: '10000'
+        amount: '0'
       },
       help: {
         branch: {
@@ -1740,7 +1723,6 @@ const en = {
       }
     }
   },
-
   citizenship: {
     intro: {
       title: 'Section 5: Citizenship',
@@ -1779,7 +1761,7 @@ const en = {
         certificateissued: {
           foreignborn: 'Provide the date the certificate was issued',
           naturalized: 'Provide the date the Certificate of Naturalization was issued',
-          derived: 'Provide the date the certificate was issued'
+          derived: 'Provide the date the document was issued'
         },
         certificatename: {
           foreignborn: 'Provide the name in which the certificate was issued',
@@ -1791,7 +1773,7 @@ const en = {
         bornonmilitaryinstallation: 'Were you born on a U.S. military installation?',
         militarybase: 'Provide the name of the base',
         entrydate: 'Provide the date of entry into the U.S.',
-        entrylocation: 'Provide the location of entry into the U.S.',
+        entrylocation: 'Provide your place of entry in the U.S.',
         priorcitizenship: {
           naturalized: 'Provide country(ies) of prior citizenship',
           notcitizen: 'Provide your countr(ies) of citizenship'
@@ -1813,6 +1795,7 @@ const en = {
         documenttype: 'Provide type of document issued'
       },
       label: {
+        explanation: 'Explanation',
         citizenshipstatus: {
           citizen: 'I am a U.S. citizen or national by birth in the U.S. or U.S. territory/commonwealth',
           foreignborn: 'I am a U.S. citizen or national by birth, born to U.S. parent(s), in a foreign country',
@@ -1969,13 +1952,13 @@ const en = {
         }
       }
     },
-
     multiple: {
       heading: {
         title: 'Dual/Multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
+          period: 'During what period of time did you hold citizenship with this country?',
           dates: 'Provide the date range that you held this citizenship, beginning with the date it was acquired through its termination or "Present," whichever is appropriate',
           how: 'How did you acquire this non-U.S. citizenship you now have or previously had?',
           renounced: 'Have you taken any action to renounce your foreign citizenship?',
@@ -2119,15 +2102,14 @@ const en = {
             note: ''
           },
           dates: {
-            title: 'Need help with the dates?',
-            message: 'Provide the dates',
+            title: 'Not sure of the exact dates?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
       }
     }
   },
-
   relationships: {
     intro: {
       title: 'Section 4: Relationships',
@@ -2465,6 +2447,7 @@ const en = {
       label: {
         status: {
           never: 'Never entered into a civil marriage, legally recognized civil union, or legally recognized domestic partnership',
+          married: 'Currently in a civil marriage',
           inCivilUnion: 'Currently in a legally recognized domestic partnership or legally recognized civil union',
           separated: 'Separated',
           annulled: 'Annulled',
@@ -2870,7 +2853,6 @@ const en = {
       }
     }
   },
-
   branch: {
     value: {
       yes: 'Yes',
@@ -2882,7 +2864,6 @@ const en = {
     },
     confirmation: 'Are you sure you would like to change your answer? This will remove any data currently entered.'
   },
-
   address: {
     label: 'This address is',
     spinner: 'Verifying your address',
@@ -2982,11 +2963,9 @@ const en = {
       }
     }
   },
-
   spinner: {
     label: 'Verifying'
   },
-
   suggestions: {
     name: {
       title: 'Alternate names found',
@@ -3005,7 +2984,6 @@ const en = {
       more: 'Add more information'
     }
   },
-
   intro: {
     tour: {
       title: 'One piece at a time',
@@ -3025,7 +3003,6 @@ const en = {
     title: 'Review your answers',
     para: 'View the full section to make sure everything looks right and make changes if needed. You can also skip ahead to the next section and review later.'
   },
-
   military: {
     intro: {
       title: 'Section 6: Military history',
@@ -3369,7 +3346,6 @@ const en = {
       }
     }
   },
-
   history: {
     intro: {
       title: 'Section 3: Your history',
@@ -4849,7 +4825,6 @@ const en = {
         }
       }
     },
-
     education: {
       title: 'List the places you went to school',
       info: 'Do not list education before your 18th birthday, unless to provide a minimum of two years education history.',
@@ -4940,15 +4915,10 @@ const en = {
           message: 'Provide the dates of attendance',
           note: ''
         },
-        school: {
-          title: 'Need help with the school name?',
-          message: 'Provide the school name',
-          note: ''
-        },
         address: {
           title: 'Need help with the school address?',
-          message: 'Provide the street address of the school',
-          note: ''
+          message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
+          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).'
         },
         type: {
           title: 'Need help with the school code?',
@@ -4977,7 +4947,6 @@ const en = {
         }
       }
     },
-
     federal: {
       title: 'Provide all former federal service',
       heading: {
@@ -5893,7 +5862,6 @@ const en = {
         append: 'Add another association'
       }
     },
-
     business: {
       advice: {
         heading: {
@@ -7619,7 +7587,7 @@ const en = {
         heading: {
           seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
           actionTaken: 'Did you take action to seek counseling or treatment?',
-          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment.',
           counselingDates: 'Provide the dates of counseling or treatment',
           treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
           treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
@@ -7671,7 +7639,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7715,7 +7683,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7762,7 +7730,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           agencyName: {
@@ -7776,13 +7744,13 @@ const en = {
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentBeganDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment started',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           treatmentEndDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment ended',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           completedTreatment: {
@@ -7972,7 +7940,6 @@ const en = {
           appendLabel: 'Add another drug involvement',
           itemType: 'Drug involvement'
         }
-
       },
       publicSafety: {
         heading: {
@@ -8394,7 +8361,6 @@ const en = {
       para2: 'Individuals experience a range of reactions to traumatic events. For example, the death of a loved one, divorce, major injury, service in a military combat environment, sexual assault, domestic violence, or other difficult work-related, family, personal, or medical issues may lead to grief, depression, or other responses. The government recognizes that mental health counseling and treatment may provide important support for those who have experienced such events, as well as for those with other mental health conditions. Nothing in this questionnaire is intended to discourage those who might benefit from such treatment from seeking it.',
       para3: '**Mental health treatment and counseling, in and of itself, is not a reason to revoke or deny eligibility** for access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.',
       para4: '**Seeking or receiving mental health care for personal wellness and recovery may contribute favorably to decisions about your eligibility.**'
-
     },
     tour: {
       para: 'Take a guided tour through the section'

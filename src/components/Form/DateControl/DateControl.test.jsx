@@ -343,4 +343,21 @@ describe('The date component', () => {
     component.find('.day input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
+
+  it('populates empty day on estimate click', () => {
+    let toggled = false
+    const props = {
+      month: '1',
+      day: '',
+      year: '2000',
+      showEstimated: true,
+      toggleFocus: (w, changed, el, day, month) => {
+        toggled = true
+      }
+    }
+
+    let component = mount(<DateControl {...props} />)
+    component.find('.estimated input').simulate('change', { target: { checked: true } })
+    expect(toggled).toBe(true)
+  })
 })

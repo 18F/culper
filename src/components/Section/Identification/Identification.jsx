@@ -175,7 +175,7 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.physical')}>
             <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
-                          value={this.props.ApplicantSSN}
+                          {...this.props.ApplicantSSN}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
