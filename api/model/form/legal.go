@@ -53,17 +53,17 @@ func (entity *LegalPoliceOffenses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceOffenses) Save() error {
+func (entity *LegalPoliceOffenses) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceOffenses) Delete() error {
+func (entity *LegalPoliceOffenses) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceOffenses) Get() error {
+func (entity *LegalPoliceOffenses) Get(account int64) error {
 	return nil
 }
 
@@ -93,17 +93,17 @@ func (entity *LegalPoliceAdditionalOffenses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceAdditionalOffenses) Save() error {
+func (entity *LegalPoliceAdditionalOffenses) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceAdditionalOffenses) Delete() error {
+func (entity *LegalPoliceAdditionalOffenses) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceAdditionalOffenses) Get() error {
+func (entity *LegalPoliceAdditionalOffenses) Get(account int64) error {
 	return nil
 }
 
@@ -123,32 +123,32 @@ func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceDomesticViolence) Save() error {
+func (entity *LegalPoliceDomesticViolence) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceDomesticViolence) Delete() error {
+func (entity *LegalPoliceDomesticViolence) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceDomesticViolence) Get() error {
+func (entity *LegalPoliceDomesticViolence) Get(account int64) error {
 	return nil
 }
 
 // Save will create or update the database.
-func (entity *LegalCourt) Save() error {
+func (entity *LegalCourt) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalCourt) Delete() error {
+func (entity *LegalCourt) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalCourt) Get() error {
+func (entity *LegalCourt) Get(account int64) error {
 	return nil
 }
 
@@ -178,17 +178,17 @@ func (entity *LegalInvestigationsDebarred) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsDebarred) Save() error {
+func (entity *LegalInvestigationsDebarred) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsDebarred) Delete() error {
+func (entity *LegalInvestigationsDebarred) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsDebarred) Get() error {
+func (entity *LegalInvestigationsDebarred) Get(account int64) error {
 	return nil
 }
 
@@ -218,17 +218,17 @@ func (entity *LegalInvestigationsHistory) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsHistory) Save() error {
+func (entity *LegalInvestigationsHistory) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsHistory) Delete() error {
+func (entity *LegalInvestigationsHistory) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsHistory) Get() error {
+func (entity *LegalInvestigationsHistory) Get(account int64) error {
 	return nil
 }
 
@@ -258,17 +258,17 @@ func (entity *LegalInvestigationsRevoked) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsRevoked) Save() error {
+func (entity *LegalInvestigationsRevoked) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsRevoked) Delete() error {
+func (entity *LegalInvestigationsRevoked) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsRevoked) Get() error {
+func (entity *LegalInvestigationsRevoked) Get(account int64) error {
 	return nil
 }
 
@@ -298,17 +298,17 @@ func (entity *LegalTechnologyManipulating) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyManipulating) Save() error {
+func (entity *LegalTechnologyManipulating) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyManipulating) Delete() error {
+func (entity *LegalTechnologyManipulating) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyManipulating) Get() error {
+func (entity *LegalTechnologyManipulating) Get(account int64) error {
 	return nil
 }
 
@@ -338,17 +338,17 @@ func (entity *LegalTechnologyUnauthorized) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyUnauthorized) Save() error {
+func (entity *LegalTechnologyUnauthorized) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyUnauthorized) Delete() error {
+func (entity *LegalTechnologyUnauthorized) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyUnauthorized) Get() error {
+func (entity *LegalTechnologyUnauthorized) Get(account int64) error {
 	return nil
 }
 
@@ -378,17 +378,17 @@ func (entity *LegalTechnologyUnlawful) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyUnlawful) Save() error {
+func (entity *LegalTechnologyUnlawful) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyUnlawful) Delete() error {
+func (entity *LegalTechnologyUnlawful) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyUnlawful) Get() error {
+func (entity *LegalTechnologyUnlawful) Get(account int64) error {
 	return nil
 }
 
@@ -418,17 +418,17 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Save() error {
+func (entity *LegalAssociationsActivitiesToOverthrow) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Delete() error {
+func (entity *LegalAssociationsActivitiesToOverthrow) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Get() error {
+func (entity *LegalAssociationsActivitiesToOverthrow) Get(account int64) error {
 	return nil
 }
 
@@ -458,17 +458,17 @@ func (entity *LegalAssociationsAdvocating) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsAdvocating) Save() error {
+func (entity *LegalAssociationsAdvocating) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsAdvocating) Delete() error {
+func (entity *LegalAssociationsAdvocating) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsAdvocating) Get() error {
+func (entity *LegalAssociationsAdvocating) Get(account int64) error {
 	return nil
 }
 
@@ -498,17 +498,17 @@ func (entity *LegalAssociationsEngagedInTerrorism) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Save() error {
+func (entity *LegalAssociationsEngagedInTerrorism) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Delete() error {
+func (entity *LegalAssociationsEngagedInTerrorism) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Get() error {
+func (entity *LegalAssociationsEngagedInTerrorism) Get(account int64) error {
 	return nil
 }
 
@@ -538,17 +538,17 @@ func (entity *LegalAssociationsMembershipOverthrow) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsMembershipOverthrow) Save() error {
+func (entity *LegalAssociationsMembershipOverthrow) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsMembershipOverthrow) Delete() error {
+func (entity *LegalAssociationsMembershipOverthrow) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsMembershipOverthrow) Get() error {
+func (entity *LegalAssociationsMembershipOverthrow) Get(account int64) error {
 	return nil
 }
 
@@ -578,17 +578,17 @@ func (entity *LegalAssociationsMembershipViolence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsMembershipViolence) Save() error {
+func (entity *LegalAssociationsMembershipViolence) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsMembershipViolence) Delete() error {
+func (entity *LegalAssociationsMembershipViolence) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsMembershipViolence) Get() error {
+func (entity *LegalAssociationsMembershipViolence) Get(account int64) error {
 	return nil
 }
 
@@ -618,17 +618,17 @@ func (entity *LegalAssociationsTerrorismAssociation) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsTerrorismAssociation) Save() error {
+func (entity *LegalAssociationsTerrorismAssociation) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsTerrorismAssociation) Delete() error {
+func (entity *LegalAssociationsTerrorismAssociation) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsTerrorismAssociation) Get() error {
+func (entity *LegalAssociationsTerrorismAssociation) Get(account int64) error {
 	return nil
 }
 
@@ -658,16 +658,16 @@ func (entity *LegalAssociationsTerroristOrganization) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsTerroristOrganization) Save() error {
+func (entity *LegalAssociationsTerroristOrganization) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsTerroristOrganization) Delete() error {
+func (entity *LegalAssociationsTerroristOrganization) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsTerroristOrganization) Get() error {
+func (entity *LegalAssociationsTerroristOrganization) Get(account int64) error {
 	return nil
 }

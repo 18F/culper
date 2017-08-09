@@ -69,17 +69,17 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsMarital) Save() error {
+func (entity *RelationshipsMarital) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsMarital) Delete() error {
+func (entity *RelationshipsMarital) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsMarital) Get() error {
+func (entity *RelationshipsMarital) Get(account int64) error {
 	return nil
 }
 
@@ -108,17 +108,17 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsCohabitants) Save() error {
+func (entity *RelationshipsCohabitants) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsCohabitants) Delete() error {
+func (entity *RelationshipsCohabitants) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsCohabitants) Get() error {
+func (entity *RelationshipsCohabitants) Get(account int64) error {
 	return nil
 }
 
@@ -137,17 +137,17 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsPeople) Save() error {
+func (entity *RelationshipsPeople) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsPeople) Delete() error {
+func (entity *RelationshipsPeople) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsPeople) Get() error {
+func (entity *RelationshipsPeople) Get(account int64) error {
 	return nil
 }
 
@@ -166,16 +166,16 @@ func (entity *RelationshipsRelatives) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsRelatives) Save() error {
+func (entity *RelationshipsRelatives) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsRelatives) Delete() error {
+func (entity *RelationshipsRelatives) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsRelatives) Get() error {
+func (entity *RelationshipsRelatives) Get(account int64) error {
 	return nil
 }

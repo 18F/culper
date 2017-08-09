@@ -67,17 +67,17 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitarySelective) Save() error {
+func (entity *MilitarySelective) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitarySelective) Delete() error {
+func (entity *MilitarySelective) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitarySelective) Get() error {
+func (entity *MilitarySelective) Get(account int64) error {
 	return nil
 }
 
@@ -119,17 +119,17 @@ func (entity *MilitaryHistory) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryHistory) Save() error {
+func (entity *MilitaryHistory) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryHistory) Delete() error {
+func (entity *MilitaryHistory) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryHistory) Get() error {
+func (entity *MilitaryHistory) Get(account int64) error {
 	return nil
 }
 
@@ -171,17 +171,17 @@ func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryDisciplinary) Save() error {
+func (entity *MilitaryDisciplinary) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryDisciplinary) Delete() error {
+func (entity *MilitaryDisciplinary) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryDisciplinary) Get() error {
+func (entity *MilitaryDisciplinary) Get(account int64) error {
 	return nil
 }
 
@@ -211,16 +211,16 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryForeign) Save() error {
+func (entity *MilitaryForeign) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryForeign) Delete() error {
+func (entity *MilitaryForeign) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryForeign) Get() error {
+func (entity *MilitaryForeign) Get(account int64) error {
 	return nil
 }

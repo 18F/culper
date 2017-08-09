@@ -26,6 +26,7 @@ class Env {
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointOAuth (service) { return `/auth/${service}` }
+  EndpointSave (payload) { return `/save` }
   EndpointValidateSSN (ssn) { return `/validate/ssn/${ssn}` }
   EndpointValidatePassport (passport) { return `/validate/passport/${passport}` }
   EndpointValidateZipcode (zipcode) { return `/validate/zipcode/${zipcode}` }

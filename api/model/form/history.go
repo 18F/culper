@@ -17,17 +17,17 @@ func (entity *HistoryResidence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryResidence) Save() error {
+func (entity *HistoryResidence) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryResidence) Delete() error {
+func (entity *HistoryResidence) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryResidence) Get() error {
+func (entity *HistoryResidence) Get(account int64) error {
 	return nil
 }
 
@@ -46,17 +46,17 @@ func (entity *HistoryEmployment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryEmployment) Save() error {
+func (entity *HistoryEmployment) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryEmployment) Delete() error {
+func (entity *HistoryEmployment) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryEmployment) Get() error {
+func (entity *HistoryEmployment) Get(account int64) error {
 	return nil
 }
 
@@ -91,17 +91,17 @@ func (entity *HistoryEducation) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryEducation) Save() error {
+func (entity *HistoryEducation) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryEducation) Delete() error {
+func (entity *HistoryEducation) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryEducation) Get() error {
+func (entity *HistoryEducation) Get(account int64) error {
 	return nil
 }
 
@@ -130,16 +130,16 @@ func (entity *HistoryFederal) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryFederal) Save() error {
+func (entity *HistoryFederal) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryFederal) Delete() error {
+func (entity *HistoryFederal) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryFederal) Get() error {
+func (entity *HistoryFederal) Get(account int64) error {
 	return nil
 }

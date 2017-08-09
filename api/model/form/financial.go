@@ -39,17 +39,17 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialBankruptcy) Save() error {
+func (entity *FinancialBankruptcy) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialBankruptcy) Delete() error {
+func (entity *FinancialBankruptcy) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialBankruptcy) Get() error {
+func (entity *FinancialBankruptcy) Get(account int64) error {
 	return nil
 }
 
@@ -91,17 +91,17 @@ func (entity *FinancialGambling) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialGambling) Save() error {
+func (entity *FinancialGambling) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialGambling) Delete() error {
+func (entity *FinancialGambling) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialGambling) Get() error {
+func (entity *FinancialGambling) Get(account int64) error {
 	return nil
 }
 
@@ -143,17 +143,17 @@ func (entity *FinancialTaxes) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialTaxes) Save() error {
+func (entity *FinancialTaxes) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialTaxes) Delete() error {
+func (entity *FinancialTaxes) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialTaxes) Get() error {
+func (entity *FinancialTaxes) Get(account int64) error {
 	return nil
 }
 
@@ -195,17 +195,17 @@ func (entity *FinancialCard) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialCard) Save() error {
+func (entity *FinancialCard) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialCard) Delete() error {
+func (entity *FinancialCard) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialCard) Get() error {
+func (entity *FinancialCard) Get(account int64) error {
 	return nil
 }
 
@@ -247,17 +247,17 @@ func (entity *FinancialCredit) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialCredit) Save() error {
+func (entity *FinancialCredit) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialCredit) Delete() error {
+func (entity *FinancialCredit) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialCredit) Get() error {
+func (entity *FinancialCredit) Get(account int64) error {
 	return nil
 }
 
@@ -299,17 +299,17 @@ func (entity *FinancialDelinquent) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialDelinquent) Save() error {
+func (entity *FinancialDelinquent) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialDelinquent) Delete() error {
+func (entity *FinancialDelinquent) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialDelinquent) Get() error {
+func (entity *FinancialDelinquent) Get(account int64) error {
 	return nil
 }
 
@@ -351,16 +351,16 @@ func (entity *FinancialNonpayment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialNonpayment) Save() error {
+func (entity *FinancialNonpayment) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialNonpayment) Delete() error {
+func (entity *FinancialNonpayment) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialNonpayment) Get() error {
+func (entity *FinancialNonpayment) Get(account int64) error {
 	return nil
 }

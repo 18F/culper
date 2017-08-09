@@ -1,30 +1,70 @@
 package handlers
 
-import "net/http"
+import (
+	"errors"
+	"log"
+	"net/http"
+
+	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/18F/e-QIP-prototype/api/model/form"
+)
 
 func Save(w http.ResponseWriter, r *http.Request) {
-	// vars := mux.Vars(r)
-	// account := vars["account"]
-	// payload := r.FormValue("payload")
-	// fmt.Fprintf(w, "")
+	// Parse the authorization header for the token
+	authHeader := r.Header.Get("Authorization")
+	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
+	if len(matches) == 0 {
+		EncodeErrJSON(w, errors.New("No Authorization token header found"))
+		return
+	}
+	token := matches[1]
+
+	// Validate the JWT token and populate the account ID
+	account := &model.Account{}
+	if ok, err := account.ValidJwtToken(token); !ok {
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	// Get the account information from the data store
+	account.WithContext(db.NewDB())
+	if err := account.Get(); err != nil {
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	// Deserialize the initial payload from a JSON structure
+	payload := &form.Payload{}
+	if err := payload.Unmarshal([]byte(r.FormValue("payload"))); err != nil {
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	// Extract the entity interface of the payload and validate it
+	entity, err := payload.EntityPersister()
+	if err != nil {
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	// Save to storage and report any errors
+	if err = entity.Save(account.ID); err != nil {
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	EncodeErrJSON(w, nil)
 }
 
 func SaveAttachment(w http.ResponseWriter, r *http.Request) {
-	// vars := mux.Vars(r)
-	// account := vars["account"]
-	// fmt.Fprintf(w, "")
+	log.Println("Not implemented: /attachment")
 }
 
 func GetAttachment(w http.ResponseWriter, r *http.Request) {
-	// vars := mux.Vars(r)
-	// account := vars["account"]
-	// id := r.FormValue("id")
-	// fmt.Fprintf(w, "")
+	log.Println("Not implemented: /attachment/{id}")
 }
 
 func DeleteAttachment(w http.ResponseWriter, r *http.Request) {
-	// vars := mux.Vars(r)
-	// account := vars["account"]
-	// id := r.FormValue("id")
-	// fmt.Fprintf(w, "")
+	log.Println("Not implemented: /attachment/{id}/delete")
 }

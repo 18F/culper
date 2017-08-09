@@ -42,16 +42,16 @@ func main() {
 	o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
 
 	// Validation
-	v := r.PathPrefix("/validate").Subrouter()
+	v := r.PathPrefix("/validate").Subrouter().Inject(handlers.JwtTokenValidatorHandler)
 	v.HandleFunc("/address", handlers.ValidateAddress)
 
 	// Account specific actions
-	a := r.PathPrefix("/{account}").Subrouter()
+	a := r.PathPrefix("/{account}").Subrouter().Inject(handlers.JwtTokenValidatorHandler)
 	a.HandleFunc("/save", handlers.Save).Methods("POST")
 	a.HandleFunc("/attachment", handlers.SaveAttachment).Methods("POST")
 	a.HandleFunc("/attachment/{id}", handlers.GetAttachment)
 	a.HandleFunc("/attachment/{id}/delete", handlers.DeleteAttachment).Methods("POST")
 
-	log.Println("Starting API mock server")
+	log.Println("Starting API server")
 	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))
 }

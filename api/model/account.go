@@ -3,6 +3,7 @@ package model
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
@@ -92,16 +93,15 @@ func (a *Account) NewJwtToken() (string, time.Time, error) {
 
 // ValidJwtToken parses a token and determines if the token is valid
 func (a *Account) ValidJwtToken(rawToken string) (bool, error) {
-	token, err := jwt.Parse(rawToken, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
-		}
-		return JwtSecret, nil
-	})
+	token, err := jwt.ParseWithClaims(rawToken, &jwt.StandardClaims{}, keyFunc)
 
 	// Invalid token
 	if err != nil {
 		return false, err
+	}
+
+	if token.Valid {
+		a.ID, err = strconv.ParseInt(token.Claims.(*jwt.StandardClaims).Id, 10, 64)
 	}
 
 	// Everything is good
@@ -138,4 +138,11 @@ func (a *Account) Save() error {
 	}
 
 	return err
+}
+
+func keyFunc(token *jwt.Token) (interface{}, error) {
+	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+		return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+	}
+	return JwtSecret, nil
 }

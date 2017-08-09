@@ -121,6 +121,10 @@ class Api {
     return this.proxy.post(env.EndpointBasicAuthentication(), { username: username, password: password })
   }
 
+  save (payload) {
+    return this.proxySecured.post(env.EndpointSave(), { payload: payload })
+  }
+
   validateSSN (ssn) {
     return this.proxySecured.get(env.EndpointValidateSSN(ssn))
   }

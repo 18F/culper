@@ -75,17 +75,17 @@ func (entity *ForeignPassport) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignPassport) Save() error {
+func (entity *ForeignPassport) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignPassport) Delete() error {
+func (entity *ForeignPassport) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignPassport) Get() error {
+func (entity *ForeignPassport) Get(account int64) error {
 	return nil
 }
 
@@ -114,17 +114,17 @@ func (entity *ForeignContacts) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignContacts) Save() error {
+func (entity *ForeignContacts) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignContacts) Delete() error {
+func (entity *ForeignContacts) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignContacts) Get() error {
+func (entity *ForeignContacts) Get(account int64) error {
 	return nil
 }
 
@@ -163,17 +163,17 @@ func (entity *ForeignTravel) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignTravel) Save() error {
+func (entity *ForeignTravel) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignTravel) Delete() error {
+func (entity *ForeignTravel) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignTravel) Get() error {
+func (entity *ForeignTravel) Get(account int64) error {
 	return nil
 }
 
@@ -202,17 +202,17 @@ func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesBenefits) Save() error {
+func (entity *ForeignActivitiesBenefits) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesBenefits) Delete() error {
+func (entity *ForeignActivitiesBenefits) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesBenefits) Get() error {
+func (entity *ForeignActivitiesBenefits) Get(account int64) error {
 	return nil
 }
 
@@ -241,17 +241,17 @@ func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesDirect) Save() error {
+func (entity *ForeignActivitiesDirect) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesDirect) Delete() error {
+func (entity *ForeignActivitiesDirect) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesDirect) Get() error {
+func (entity *ForeignActivitiesDirect) Get(account int64) error {
 	return nil
 }
 
@@ -280,17 +280,17 @@ func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesIndirect) Save() error {
+func (entity *ForeignActivitiesIndirect) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesIndirect) Delete() error {
+func (entity *ForeignActivitiesIndirect) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesIndirect) Get() error {
+func (entity *ForeignActivitiesIndirect) Get(account int64) error {
 	return nil
 }
 
@@ -319,17 +319,17 @@ func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesRealEstate) Save() error {
+func (entity *ForeignActivitiesRealEstate) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesRealEstate) Delete() error {
+func (entity *ForeignActivitiesRealEstate) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesRealEstate) Get() error {
+func (entity *ForeignActivitiesRealEstate) Get(account int64) error {
 	return nil
 }
 
@@ -358,17 +358,17 @@ func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesSupport) Save() error {
+func (entity *ForeignActivitiesSupport) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesSupport) Delete() error {
+func (entity *ForeignActivitiesSupport) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesSupport) Get() error {
+func (entity *ForeignActivitiesSupport) Get(account int64) error {
 	return nil
 }
 
@@ -397,17 +397,17 @@ func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessAdvice) Save() error {
+func (entity *ForeignBusinessAdvice) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessAdvice) Delete() error {
+func (entity *ForeignBusinessAdvice) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessAdvice) Get() error {
+func (entity *ForeignBusinessAdvice) Get(account int64) error {
 	return nil
 }
 
@@ -436,17 +436,17 @@ func (entity *ForeignBusinessConferences) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessConferences) Save() error {
+func (entity *ForeignBusinessConferences) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessConferences) Delete() error {
+func (entity *ForeignBusinessConferences) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessConferences) Get() error {
+func (entity *ForeignBusinessConferences) Get(account int64) error {
 	return nil
 }
 
@@ -475,17 +475,17 @@ func (entity *ForeignBusinessContact) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessContact) Save() error {
+func (entity *ForeignBusinessContact) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessContact) Delete() error {
+func (entity *ForeignBusinessContact) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessContact) Get() error {
+func (entity *ForeignBusinessContact) Get(account int64) error {
 	return nil
 }
 
@@ -514,17 +514,17 @@ func (entity *ForeignBusinessEmployment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessEmployment) Save() error {
+func (entity *ForeignBusinessEmployment) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessEmployment) Delete() error {
+func (entity *ForeignBusinessEmployment) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessEmployment) Get() error {
+func (entity *ForeignBusinessEmployment) Get(account int64) error {
 	return nil
 }
 
@@ -553,17 +553,17 @@ func (entity *ForeignBusinessFamily) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessFamily) Save() error {
+func (entity *ForeignBusinessFamily) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessFamily) Delete() error {
+func (entity *ForeignBusinessFamily) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessFamily) Get() error {
+func (entity *ForeignBusinessFamily) Get(account int64) error {
 	return nil
 }
 
@@ -592,17 +592,17 @@ func (entity *ForeignBusinessPolitical) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessPolitical) Save() error {
+func (entity *ForeignBusinessPolitical) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessPolitical) Delete() error {
+func (entity *ForeignBusinessPolitical) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessPolitical) Get() error {
+func (entity *ForeignBusinessPolitical) Get(account int64) error {
 	return nil
 }
 
@@ -631,17 +631,17 @@ func (entity *ForeignBusinessSponsorship) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessSponsorship) Save() error {
+func (entity *ForeignBusinessSponsorship) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessSponsorship) Delete() error {
+func (entity *ForeignBusinessSponsorship) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessSponsorship) Get() error {
+func (entity *ForeignBusinessSponsorship) Get(account int64) error {
 	return nil
 }
 
@@ -670,17 +670,17 @@ func (entity *ForeignBusinessVentures) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessVentures) Save() error {
+func (entity *ForeignBusinessVentures) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessVentures) Delete() error {
+func (entity *ForeignBusinessVentures) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessVentures) Get() error {
+func (entity *ForeignBusinessVentures) Get(account int64) error {
 	return nil
 }
 
@@ -709,16 +709,16 @@ func (entity *ForeignBusinessVoting) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessVoting) Save() error {
+func (entity *ForeignBusinessVoting) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessVoting) Delete() error {
+func (entity *ForeignBusinessVoting) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessVoting) Get() error {
+func (entity *ForeignBusinessVoting) Get(account int64) error {
 	return nil
 }

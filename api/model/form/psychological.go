@@ -44,17 +44,17 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalCompetence) Save() error {
+func (entity *PsychologicalCompetence) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalCompetence) Delete() error {
+func (entity *PsychologicalCompetence) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalCompetence) Get() error {
+func (entity *PsychologicalCompetence) Get(account int64) error {
 	return nil
 }
 
@@ -96,17 +96,17 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalConsultations) Save() error {
+func (entity *PsychologicalConsultations) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalConsultations) Delete() error {
+func (entity *PsychologicalConsultations) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalConsultations) Get() error {
+func (entity *PsychologicalConsultations) Get(account int64) error {
 	return nil
 }
 
@@ -180,17 +180,17 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalDiagnoses) Save() error {
+func (entity *PsychologicalDiagnoses) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalDiagnoses) Delete() error {
+func (entity *PsychologicalDiagnoses) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalDiagnoses) Get() error {
+func (entity *PsychologicalDiagnoses) Get(account int64) error {
 	return nil
 }
 
@@ -232,17 +232,17 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalHospitalizations) Save() error {
+func (entity *PsychologicalHospitalizations) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalHospitalizations) Delete() error {
+func (entity *PsychologicalHospitalizations) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalHospitalizations) Get() error {
+func (entity *PsychologicalHospitalizations) Get(account int64) error {
 	return nil
 }
 
@@ -331,17 +331,17 @@ func (entity *PsychologicalExisting) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalExisting) Save() error {
+func (entity *PsychologicalExisting) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalExisting) Delete() error {
+func (entity *PsychologicalExisting) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalExisting) Get() error {
+func (entity *PsychologicalExisting) Get(account int64) error {
 	return nil
 }
 

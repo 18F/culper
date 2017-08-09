@@ -34,17 +34,17 @@ func (entity *IdentificationName) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationName) Save() error {
+func (entity *IdentificationName) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationName) Delete() error {
+func (entity *IdentificationName) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationName) Get() error {
+func (entity *IdentificationName) Get(account int64) error {
 	return nil
 }
 
@@ -76,17 +76,17 @@ func (entity *IdentificationBirthPlace) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationBirthPlace) Save() error {
+func (entity *IdentificationBirthPlace) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationBirthPlace) Delete() error {
+func (entity *IdentificationBirthPlace) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationBirthPlace) Get() error {
+func (entity *IdentificationBirthPlace) Get(account int64) error {
 	return nil
 }
 
@@ -118,17 +118,17 @@ func (entity *IdentificationBirthDate) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationBirthDate) Save() error {
+func (entity *IdentificationBirthDate) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationBirthDate) Delete() error {
+func (entity *IdentificationBirthDate) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationBirthDate) Get() error {
+func (entity *IdentificationBirthDate) Get(account int64) error {
 	return nil
 }
 
@@ -170,17 +170,17 @@ func (entity *IdentificationSSN) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationSSN) Save() error {
+func (entity *IdentificationSSN) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationSSN) Delete() error {
+func (entity *IdentificationSSN) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationSSN) Get() error {
+func (entity *IdentificationSSN) Get(account int64) error {
 	return nil
 }
 
@@ -211,17 +211,17 @@ func (entity *IdentificationContacts) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationContacts) Save() error {
+func (entity *IdentificationContacts) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationContacts) Delete() error {
+func (entity *IdentificationContacts) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationContacts) Get() error {
+func (entity *IdentificationContacts) Get(account int64) error {
 	return nil
 }
 
@@ -264,17 +264,17 @@ func (entity *IdentificationOtherNames) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationOtherNames) Save() error {
+func (entity *IdentificationOtherNames) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationOtherNames) Delete() error {
+func (entity *IdentificationOtherNames) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationOtherNames) Get() error {
+func (entity *IdentificationOtherNames) Get(account int64) error {
 	return nil
 }
 
@@ -369,16 +369,16 @@ func (entity *IdentificationPhysical) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationPhysical) Save() error {
+func (entity *IdentificationPhysical) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationPhysical) Delete() error {
+func (entity *IdentificationPhysical) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationPhysical) Get() error {
+func (entity *IdentificationPhysical) Get(account int64) error {
 	return nil
 }

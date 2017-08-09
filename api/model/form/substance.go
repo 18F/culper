@@ -44,17 +44,17 @@ func (entity *SubstanceDrugUsage) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugUsage) Save() error {
+func (entity *SubstanceDrugUsage) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugUsage) Delete() error {
+func (entity *SubstanceDrugUsage) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugUsage) Get() error {
+func (entity *SubstanceDrugUsage) Get(account int64) error {
 	return nil
 }
 
@@ -96,17 +96,17 @@ func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugPurchase) Save() error {
+func (entity *SubstanceDrugPurchase) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugPurchase) Delete() error {
+func (entity *SubstanceDrugPurchase) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugPurchase) Get() error {
+func (entity *SubstanceDrugPurchase) Get(account int64) error {
 	return nil
 }
 
@@ -148,17 +148,17 @@ func (entity *SubstanceDrugClearance) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugClearance) Save() error {
+func (entity *SubstanceDrugClearance) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugClearance) Delete() error {
+func (entity *SubstanceDrugClearance) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugClearance) Get() error {
+func (entity *SubstanceDrugClearance) Get(account int64) error {
 	return nil
 }
 
@@ -200,17 +200,17 @@ func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugPublicSafety) Save() error {
+func (entity *SubstanceDrugPublicSafety) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugPublicSafety) Delete() error {
+func (entity *SubstanceDrugPublicSafety) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugPublicSafety) Get() error {
+func (entity *SubstanceDrugPublicSafety) Get(account int64) error {
 	return nil
 }
 
@@ -252,17 +252,17 @@ func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugMisuse) Save() error {
+func (entity *SubstanceDrugMisuse) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugMisuse) Delete() error {
+func (entity *SubstanceDrugMisuse) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugMisuse) Get() error {
+func (entity *SubstanceDrugMisuse) Get(account int64) error {
 	return nil
 }
 
@@ -304,17 +304,17 @@ func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugOrdered) Save() error {
+func (entity *SubstanceDrugOrdered) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugOrdered) Delete() error {
+func (entity *SubstanceDrugOrdered) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugOrdered) Get() error {
+func (entity *SubstanceDrugOrdered) Get(account int64) error {
 	return nil
 }
 
@@ -356,17 +356,17 @@ func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugVoluntary) Save() error {
+func (entity *SubstanceDrugVoluntary) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugVoluntary) Delete() error {
+func (entity *SubstanceDrugVoluntary) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugVoluntary) Get() error {
+func (entity *SubstanceDrugVoluntary) Get(account int64) error {
 	return nil
 }
 
@@ -408,17 +408,17 @@ func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholNegative) Save() error {
+func (entity *SubstanceAlcoholNegative) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholNegative) Delete() error {
+func (entity *SubstanceAlcoholNegative) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholNegative) Get() error {
+func (entity *SubstanceAlcoholNegative) Get(account int64) error {
 	return nil
 }
 
@@ -460,17 +460,17 @@ func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholOrdered) Save() error {
+func (entity *SubstanceAlcoholOrdered) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholOrdered) Delete() error {
+func (entity *SubstanceAlcoholOrdered) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholOrdered) Get() error {
+func (entity *SubstanceAlcoholOrdered) Get(account int64) error {
 	return nil
 }
 
@@ -512,17 +512,17 @@ func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholVoluntary) Save() error {
+func (entity *SubstanceAlcoholVoluntary) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholVoluntary) Delete() error {
+func (entity *SubstanceAlcoholVoluntary) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholVoluntary) Get() error {
+func (entity *SubstanceAlcoholVoluntary) Get(account int64) error {
 	return nil
 }
 
@@ -564,16 +564,16 @@ func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholAdditional) Save() error {
+func (entity *SubstanceAlcoholAdditional) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholAdditional) Delete() error {
+func (entity *SubstanceAlcoholAdditional) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholAdditional) Get() error {
+func (entity *SubstanceAlcoholAdditional) Get(account int64) error {
 	return nil
 }

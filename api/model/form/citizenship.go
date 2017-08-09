@@ -154,17 +154,17 @@ func (entity *CitizenshipStatus) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipStatus) Save() error {
+func (entity *CitizenshipStatus) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipStatus) Delete() error {
+func (entity *CitizenshipStatus) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipStatus) Get() error {
+func (entity *CitizenshipStatus) Get(account int64) error {
 	return nil
 }
 
@@ -201,17 +201,17 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipMultiple) Save() error {
+func (entity *CitizenshipMultiple) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipMultiple) Delete() error {
+func (entity *CitizenshipMultiple) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipMultiple) Get() error {
+func (entity *CitizenshipMultiple) Get(account int64) error {
 	return nil
 }
 
@@ -230,16 +230,16 @@ func (entity *CitizenshipPassports) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipPassports) Save() error {
+func (entity *CitizenshipPassports) Save(account int64) error {
 	return nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipPassports) Delete() error {
+func (entity *CitizenshipPassports) Delete(account int64) error {
 	return nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipPassports) Get() error {
+func (entity *CitizenshipPassports) Get(account int64) error {
 	return nil
 }

@@ -38,6 +38,22 @@ func (payload Payload) Entity() (model.Entity, error) {
 	return entity, err
 }
 
+// EntityPersister returns the appropriate entity as an interface
+// based on its type.
+func (payload Payload) EntityPersister() (model.EntityPersister, error) {
+	if payload.Type == "" {
+		return nil, errors.New("Empty payload")
+	}
+
+	entity := persister[payload.Type]()
+	if entity == nil {
+		return nil, errors.New("Could not determine a suitable type")
+	}
+
+	err := entity.Unmarshal(payload.Props)
+	return entity, err
+}
+
 func (payload Payload) Valid() (bool, error) {
 	entity, err := payload.Entity()
 	if err != nil {

@@ -19,7 +19,12 @@ type Validator interface {
 // Persister interface provides common functionality for persisting
 // data to storage.
 type Persister interface {
-	Save() error
-	Delete() error
-	Get() error
+	Save(account int64) error
+	Delete(account int64) error
+	Get(account int64) error
+}
+
+type EntityPersister interface {
+	Entity
+	Persister
 }
