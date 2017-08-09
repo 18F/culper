@@ -1,0 +1,17 @@
+{
+  "type": "clearancelevel",
+  "props": {
+    "Level": {
+      "type": "radio",
+      "props": {
+        "value": "Other"
+      }
+    },
+    "Explanation": {
+      "type": "textarea",
+      "props": {
+        "value": "my explanation"
+      }
+    }
+  }
+}
