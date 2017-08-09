@@ -25,6 +25,10 @@ describe('The enviroment config', () => {
     expect(env.EndpointOAuth(expected)).toBe(`/auth/${expected}`)
   })
 
+  it('returns save endpoint', () => {
+    expect(env.EndpointSave({})).toBe(`/save`)
+  })
+
   it('Returns ValidateSSN Endpoint', () => {
     const expected = '000112222'
     expect(env.EndpointValidateSSN(expected)).toBe(`/validate/ssn/${expected}`)

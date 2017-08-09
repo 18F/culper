@@ -19,7 +19,6 @@ class SavedIndicator extends React.Component {
 
     this.save = this.save.bind(this)
     this.tick = this.tick.bind(this)
-    this.reset = this.reset.bind(this)
     this.mouseEnter = this.mouseEnter.bind(this)
     this.mouseLeave = this.mouseLeave.bind(this)
   }
@@ -47,7 +46,7 @@ class SavedIndicator extends React.Component {
         api
           .save(pending)
           .then(r => {
-            this.reset()
+            this.props.dispatch(updateApplication('Settings', 'saved', new Date()))
             this.setState({animate: false})
           })
           .catch(() => {
@@ -56,10 +55,6 @@ class SavedIndicator extends React.Component {
           })
       })
     }
-  }
-
-  reset (event) {
-    this.props.dispatch(updateApplication('Settings', 'saved', new Date()))
   }
 
   mouseEnter (event) {
@@ -147,7 +142,7 @@ class SavedIndicator extends React.Component {
   }
 }
 
-const bits = (section, subsection, application = {}) => {
+export const bits = (section, subsection, application = {}) => {
   if (!section || !subsection || !application) {
     return null
   }
