@@ -237,6 +237,7 @@ export default class HairColor extends ValidationElement {
 }
 
 HairColor.defaultProps = {
+  name: 'hair',
   value: ''
 }
 
