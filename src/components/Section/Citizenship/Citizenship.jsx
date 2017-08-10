@@ -4,14 +4,12 @@ import { i18n } from '../../../config'
 import SectionElement from '../SectionElement'
 import { SectionViews, SectionView } from '../SectionView'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { hideSelectiveService } from '../../../validators/selectiveservice'
 import Status from './Status'
 import Multiple from './Multiple'
 import Passports from './Multiple/Passports'
 
 class Citizenship extends SectionElement {
   render () {
-    const showSelectiveService = !hideSelectiveService(this.props.Application)
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
@@ -30,8 +28,8 @@ class Citizenship extends SectionElement {
                        showTop={true}
                        back="citizenship/passports"
                        backLabel={i18n.t('citizenship.destination.passports')}
-                       next="military"
-                       nextLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.history')}>
+                       next="military/intro"
+                       nextLabel={i18n.t('military.destination.intro')}>
             <h2>{i18n.t('citizenship.status.heading.title')}</h2>
             <Status name="status"
                     {...this.props.Status}
