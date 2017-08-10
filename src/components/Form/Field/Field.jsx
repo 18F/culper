@@ -20,7 +20,7 @@ export default class Field extends ValidationElement {
     this.handleError = this.handleError.bind(this)
     this.children = this.children.bind(this)
 
-    this.errors = []
+    this.errors = props.errors || []
   }
 
   /**
@@ -73,7 +73,9 @@ export default class Field extends ValidationElement {
       }
     }
 
-    // Explain this...
+    // Store in instance variable to update immediately as opposed to storing in state
+    // which is an asynchronous operation. This prevents the issue where one call
+    // overrides the errors of another call if both are executed almost at the time same.
     this.errors = [...errors]
     this.setState({ errors: errors }, () => {
       if (errors.length && errors.some(err => err.valid === false)) {
@@ -184,7 +186,7 @@ export default class Field extends ValidationElement {
       )
     }
 
-    let stateErrors = this.props.filterErrors(this.state.errors || [])
+    let stateErrors = this.props.filterErrors(this.errors || [])
     let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1)
     const required = stateErrors
       .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
@@ -276,7 +278,7 @@ export default class Field extends ValidationElement {
     // Flag if help container bottom is within current viewport
     const notInView = (winHeight < helpBottom)
 
-    const active = this.state.helpActive || this.state.errors.some(x => x.valid === false)
+    const active = this.state.helpActive || this.errors.some(x => x.valid === false)
 
     if (active && this.props.scrollIntoView && notInView) {
       window.scrollBy({ top: (helpBottom - winHeight), left: 0, behavior: 'smooth' })

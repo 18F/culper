@@ -163,6 +163,10 @@ const en = {
           note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
       },
+      suffix: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       required: {
         title: 'There is a problem with this field',
         message: 'This field is required'
@@ -173,6 +177,30 @@ const en = {
         title: 'The applicant age is not approved',
         message: 'Applicants must be older than 16 and less than 130 years of age',
         note: ''
+      }
+    },
+    email: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      }
+    },
+    height: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      }
+    },
+    weight: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      }
+    },
+    currency: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     ssn: {
@@ -201,6 +229,10 @@ const en = {
         title: 'Confirmation mismatch',
         message: 'The two U.S. Social Security Numbers you entered do not match.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     date: {

@@ -74,7 +74,8 @@ export default class OtherNames extends SubsectionElement {
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
 
-            <Field title={i18n.t('identification.othernames.heading.name')}>
+           <Field title={i18n.t('identification.othernames.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
               <Name name="Name"
                     key="name"
                     bind={true}
