@@ -67,7 +67,8 @@ export default class JobOffer extends ValidationElement {
   render () {
     return (
       <div className="job-offer">
-        <Field title={i18n.t('foreign.business.employment.heading.name')}>
+        <Field title={i18n.t('foreign.business.employment.heading.name')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="employment-name"
                 onUpdate={this.updateName}

@@ -246,7 +246,6 @@ export default class ForeignNational extends ValidationElement {
                          or={i18n.m('foreign.contacts.para.or')}
                          {...this.props.NameNotApplicable}
                          onUpdate={this.updateNameNotApplicable}
-                         required={this.props.required}
                          onError={this.props.onError}>
             <Name name="Name"
                   {...this.props.Name}
@@ -483,7 +482,8 @@ export default class ForeignNational extends ValidationElement {
           required={this.props.required}
           onError={this.props.onError}
           scrollIntoView={this.props.scrollIntoView}>
-          <Field title={i18n.t('foreign.contacts.heading.aliasname')}>
+          <Field title={i18n.t('foreign.contacts.heading.aliasname')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Field>
         </BranchCollection>

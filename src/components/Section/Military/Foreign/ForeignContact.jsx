@@ -65,6 +65,8 @@ export default class ForeignContact extends React.Component {
                 {...this.props.Name}
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
         </Field>
 
@@ -80,6 +82,7 @@ export default class ForeignContact extends React.Component {
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     scrollIntoView={this.props.scrollIntoView}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -91,6 +94,7 @@ export default class ForeignContact extends React.Component {
                 maxlength="100"
                 onUpdate={this.updateTitle}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -104,6 +108,7 @@ export default class ForeignContact extends React.Component {
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -116,6 +121,7 @@ export default class ForeignContact extends React.Component {
                 maxlength="100"
                 onUpdate={this.updateFrequency}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
       </div>

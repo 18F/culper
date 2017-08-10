@@ -58,6 +58,7 @@ export default class Alias extends ValidationElement {
               onUpdate={this.updateName}
               onError={this.props.onError}
               required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
               />
 
         <Show when={this.props.hideMaiden === false}>
@@ -68,12 +69,14 @@ export default class Alias extends ValidationElement {
                   value={this.props.MaidenName}
                   onUpdate={this.updateMaidenName}
                   required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
                   onError={this.props.onError}>
           </Branch>
         </Show>
 
         <Field help="relationships.relatives.help.aliasdates"
                adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <DateRange name="Dates"
                      className="alias-dates"
@@ -85,6 +88,7 @@ export default class Alias extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.alias.reason')}
+               scrollIntoView={this.props.scrollIntoView}
                titleSize="h4">
           <Textarea name="Reason"
                     className="alias-reason"

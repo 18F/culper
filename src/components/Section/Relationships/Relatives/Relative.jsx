@@ -491,14 +491,14 @@ export default class Relative extends ValidationElement {
             </Branch>
             <Show when={this.props.MaidenSameAsListed === 'No'}>
               <Field scrollIntoView={this.props.scrollIntoView}>
-              <Name name="MaidenName"
-                    className="relative-maidenname eapp-field-wrap"
-                    {...this.props.MaidenName}
-                    onError={this.props.onError}
-                    onUpdate={this.updateMaidenName}
-                    required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
-                    />
+                <Name name="MaidenName"
+                      className="relative-maidenname eapp-field-wrap"
+                      {...this.props.MaidenName}
+                      onError={this.props.onError}
+                      onUpdate={this.updateMaidenName}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
                 </Field>
             </Show>
           </div>
@@ -525,6 +525,7 @@ export default class Relative extends ValidationElement {
                        onError={this.props.onError}
                        hideMaiden={mother}
                        required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        bind={true} />
               </div>
             </BranchCollection>

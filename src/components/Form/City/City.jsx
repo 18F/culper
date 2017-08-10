@@ -13,9 +13,7 @@ export default class City extends ValidationElement {
    * Handle the change event.
    */
   handleChange (event) {
-    //this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-    //})
+    super.handleChange(event)
   }
 
   handleError (value, arr) {
