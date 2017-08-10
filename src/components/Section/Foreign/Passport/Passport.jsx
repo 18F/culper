@@ -171,7 +171,7 @@ export default class Passport extends SubsectionElement {
                    adjustFor="buttons"
                    shrink={true}>
               <div>
-                <RadioGroup className="passport-card option-list"
+                <RadioGroup className="option-list"
                             selectedValue={this.props.Card}>
                   <Radio name="passport-book"
                          className="passport-book"
