@@ -59,8 +59,8 @@ class Military extends SectionElement {
                        showTop={true}
                        back="military/foreign"
                        backLabel={i18n.t('military.destination.foreign')}
-                       next="foreign/passport"
-                       nextLabel={i18n.t('foreign.destination.passport')}>
+                       next="foreign/intro"
+                       nextLabel={i18n.t('foreign.destination.intro')}>
             <Show when={showSelectiveService}>
             <h2>{i18n.t('military.selective.heading.born')}</h2>
               <Selective name="selective"
