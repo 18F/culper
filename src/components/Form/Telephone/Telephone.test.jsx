@@ -100,7 +100,7 @@ describe('The Telephone component', () => {
     component.find({ type: 'text', name: 'domestic_second' }).simulate('change', { target: { value: '222' } })
     component.find({ type: 'text', name: 'domestic_third' }).simulate('change', { target: { value: '3333' } })
     component.find({ type: 'text', name: 'domestic_extension' }).simulate('change', { target: { value: '4444' } })
-    component.find({ type: 'radio', name: 'nonumber' }).simulate('change')
+    component.find('.nonumber input').simulate('change')
     component.find('.time.day input').simulate('change')
     component.find('.phonetype-option.work input').simulate('change')
     expect(updated).toBeGreaterThan(8)

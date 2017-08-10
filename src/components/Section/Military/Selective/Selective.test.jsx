@@ -19,7 +19,7 @@ describe('The selective service component', () => {
     }
     const component = mount(<Selective {...expected} />)
     component.find('.born .no input').simulate('change')
-    expect(component.find({type: 'radio', name: 'has_registered', value: 'Yes'}).length).toEqual(0)
+    expect(component.find('.registered .yes input').length).toEqual(0)
   })
 
   it('selects yes on born after and asks if registered', () => {
@@ -29,7 +29,7 @@ describe('The selective service component', () => {
     }
     const component = mount(<Selective {...expected} />)
     component.find('.born .yes input').simulate('change')
-    expect(component.find({type: 'radio', name: 'has_registered', value: 'Yes'}).length).toEqual(1)
+    expect(component.find('.registered .yes input').length).toEqual(1)
   })
 
   it('selects no on registered and is presented with explanation', () => {
