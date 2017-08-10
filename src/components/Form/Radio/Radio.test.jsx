@@ -13,8 +13,8 @@ describe('The radio component', () => {
     }
     const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
-    expect(component.find('input[name="' + expected.name + '"]').hasClass('usa-input-focus')).toEqual(true)
+    expect(component.find('input').length).toEqual(1)
+    expect(component.find('input').hasClass('usa-input-focus')).toEqual(true)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
@@ -41,7 +41,7 @@ describe('The radio component', () => {
     }
     const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
     expect(component.find('label').text()).toEqual(expected.label)
-    expect(component.find('input[name="' + expected.name + '"]').length).toEqual(1)
+    expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 

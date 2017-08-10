@@ -70,7 +70,7 @@ describe('The offense component', () => {
     component.find('.offense-courtdate .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.offense-courtdate .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.offense-sentenced .no input').simulate('change')
-    component.find({ type: 'radio', name: 'awaiting_trial', value: 'Yes' }).simulate('change')
+    component.find('.awaiting-trial .yes input').simulate('change')
     component.find('.awaiting-trial-explanation textarea').simulate('change')
     expect(updates).toBeGreaterThan(6)
   })

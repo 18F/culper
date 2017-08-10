@@ -33,7 +33,7 @@ export default class EyeColor extends ValidationElement {
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
         <RadioGroup className="option-list eapp-extend-labels" selectedValue={this.state.value}>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-black`}
                  label={i18n.t('identification.traits.eye.black')}
                  value="Black"
                  className="black"
@@ -47,7 +47,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-blue`}
                  label={i18n.t('identification.traits.eye.blue')}
                  value="Blue"
                  className="blue"
@@ -61,7 +61,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-brown`}
                  label={i18n.t('identification.traits.eye.brown')}
                  value="Brown"
                  className="brown"
@@ -75,7 +75,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-gray`}
                  label={i18n.t('identification.traits.eye.gray')}
                  value="Gray"
                  className="gray"
@@ -89,7 +89,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-green`}
                  label={i18n.t('identification.traits.eye.green')}
                  value="Green"
                  className="green"
@@ -103,7 +103,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-hazel`}
                  label={i18n.t('identification.traits.eye.hazel')}
                  value="Hazel"
                  className="hazel"
@@ -117,7 +117,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-maroon`}
                  label={i18n.t('identification.traits.eye.maroon')}
                  value="Maroon"
                  className="maroon"
@@ -131,7 +131,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-multi`}
                  label={i18n.t('identification.traits.eye.multi')}
                  value="Multicolored"
                  className="multi"
@@ -145,7 +145,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye-multicolor.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-pink`}
                  label={i18n.t('identification.traits.eye.pink')}
                  value="Pink"
                  className="pink"
@@ -159,7 +159,7 @@ export default class EyeColor extends ValidationElement {
               <Svg src="/img/eye.svg" />
             </div>
           </Radio>
-          <Radio name={this.props.name}
+          <Radio name={`${this.props.name}-unknown`}
                  label={i18n.t('identification.traits.eye.unknown')}
                  value="Unknown"
                  className="unknown"
@@ -179,5 +179,8 @@ export default class EyeColor extends ValidationElement {
   }
 }
 
-EyeColor.defaultProps = {}
+EyeColor.defaultProps = {
+  name: 'eye'
+}
+
 EyeColor.errors = []
