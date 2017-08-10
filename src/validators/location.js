@@ -34,11 +34,15 @@ export default class LocationValidator {
 
   geocode () {
     return new Geocoder().geocode({
+      layout: this.layout,
       street: this.street,
       street2: this.street2,
       city: this.city,
       state: this.state,
-      zipcode: this.zipcode
+      zipcode: this.zipcode,
+      county: this.county,
+      country: this.country,
+      validated: false
     })
   }
 
@@ -177,7 +181,10 @@ export class Geocoder {
   geocode (location) {
     return new Promise((resolve, reject) => {
       api
-        .validateAddress(location)
+        .validate({
+          type: 'location',
+          props: location
+        })
         .then(r => {
           const data = r.data
           if (this.isSystemError(data)) {

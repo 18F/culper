@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"log"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/geo"
@@ -29,14 +30,14 @@ const (
 // Location is a basic input.
 type Location struct {
 	Layout    string `json:"layout"`
-	Street1   string `json:"street"`
-	Street2   string `json:"street2"`
-	City      string `json:"city"`
-	State     string `json:"state"`
-	Zipcode   string `json:"zipcode"`
-	County    string `json:"county"`
-	Country   string `json:"country"`
-	Validated bool   `json:"validated"`
+	Street1   string `json:"street,omitempty"`
+	Street2   string `json:"street2,omitempty"`
+	City      string `json:"city,omitempty"`
+	State     string `json:"state,omitempty"`
+	Zipcode   string `json:"zipcode,omitempty"`
+	County    string `json:"county,omitempty"`
+	Country   string `json:"country,omitempty"`
+	Validated bool   `json:"validated,omitempty"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -46,6 +47,7 @@ func (entity *Location) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Location) Valid() (bool, error) {
+	log.Printf("location: %v", entity)
 	if entity.Validated {
 		return true, nil
 	}

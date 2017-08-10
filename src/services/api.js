@@ -7,14 +7,6 @@ class Api {
       baseURL: env.ApiBaseURL(),
       timeout: 5000
     })
-
-    this.proxySecured = axios.create({
-      baseURL: env.ApiBaseURL(),
-      timeout: 5000,
-      headers: {
-        'Authorization': ''
-      }
-    })
   }
 
   /**
@@ -83,8 +75,6 @@ class Api {
   }
 
   setToken (token) {
-    this.proxySecured.defaults.headers.common.Authorization = token
-
     if (this.supportForLocalStorage()) {
       window.localStorage.setItem('token', token)
     } else {
@@ -122,31 +112,11 @@ class Api {
   }
 
   save (payload) {
-    return this.proxySecured.post(env.EndpointSave(), { payload: payload })
+    return this.proxy.post(env.EndpointSave(), payload, { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
   }
 
-  validateSSN (ssn) {
-    return this.proxySecured.get(env.EndpointValidateSSN(ssn))
-  }
-
-  validatePassport (passport) {
-    return this.proxySecured.get(env.EndpointValidatePassport(passport))
-  }
-
-  validateZipcode (zipcode) {
-    return this.proxySecured.get(env.EndpointValidateZipcode(zipcode))
-  }
-
-  validateAddress (address) {
-    return this.proxySecured.post(env.EndpointValidateAddress(), address)
-  }
-
-  validateApplicantName (name) {
-    return this.proxySecured.post(env.EndpointValidateApplicantName(), name)
-  }
-
-  validateApplicantBirthdate (birthdate) {
-    return this.proxySecured.post(env.EndpointValidateApplicantBirthdate(), birthdate)
+  validate (payload) {
+    return this.proxy.post(env.EndpointValidate(), payload, { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
   }
 }
 

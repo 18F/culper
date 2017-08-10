@@ -1,18 +1,33 @@
 package handlers
 
 import (
-	"log"
+	"io/ioutil"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api/model/form"
 )
 
-// ValidateAddress checks if an entire address is valid
-func ValidateAddress(w http.ResponseWriter, r *http.Request) {
-	var address form.Location
-	DecodeJSON(r.Body, &address)
-	log.Printf("Validating Full Address: [%v]\n", address)
+// Validate checks if an entire address is valid
+func Validate(w http.ResponseWriter, r *http.Request) {
+	// Read the body of the request (which should be in JSON)
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		EncodeErrJSON(w, err)
+		return
+	}
 
-	_, err := address.Valid()
-	EncodeErrJSON(w, err)
+	// Deserialize the initial payload from a JSON structure
+	payload := &form.Payload{}
+	if err := payload.Unmarshal(body); err != nil {
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	// Extract the entity interface of the payload and validate it
+	if ok, err := payload.Valid(); !ok {
+		EncodeErrJSON(w, err)
+		return
+	}
+
+	EncodeErrJSON(w, nil)
 }

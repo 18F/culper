@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"errors"
+	"io/ioutil"
 	"log"
 	"net/http"
 
@@ -34,9 +35,16 @@ func Save(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Read the body of the request (which should be in JSON)
+	body, err := ioutil.ReadAll(r.Body)
+	if err != nil {
+		EncodeErrJSON(w, err)
+		return
+	}
+
 	// Deserialize the initial payload from a JSON structure
 	payload := &form.Payload{}
-	if err := payload.Unmarshal([]byte(r.FormValue("payload"))); err != nil {
+	if err := payload.Unmarshal(body); err != nil {
 		EncodeErrJSON(w, err)
 		return
 	}

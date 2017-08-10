@@ -26,37 +26,11 @@ describe('The enviroment config', () => {
   })
 
   it('returns save endpoint', () => {
-    expect(env.EndpointSave({})).toBe(`/save`)
+    expect(env.EndpointSave({})).toBe(`/me/save`)
   })
 
-  it('Returns ValidateSSN Endpoint', () => {
-    const expected = '000112222'
-    expect(env.EndpointValidateSSN(expected)).toBe(`/validate/ssn/${expected}`)
-  })
-
-  it('Returns ValidatePassport Endpoint', () => {
-    const expected = 'A1234567'
-    expect(env.EndpointValidatePassport(expected)).toBe(`/validate/passport/${expected}`)
-  })
-
-  it('Returns ValidateZipcode Endpoint', () => {
-    const expected = '22202'
-    expect(env.EndpointValidateZipcode(expected)).toBe(`/validate/zipcode/${expected}`)
-  })
-
-  it('Returns ValidateAddress Endpoint', () => {
-    const expected = '/validate/address'
-    expect(env.EndpointValidateAddress()).toBe(expected)
-  })
-
-  it('Returns ValidateName Endpoint', () => {
-    const expected = '/validate/name'
-    expect(env.EndpointValidateName()).toBe(expected)
-  })
-
-  it('Returns ValidateApplicantBirthdate Endpoint', () => {
-    const expected = '/validate/applicant/birthdate'
-    expect(env.EndpointValidateApplicantBirthdate()).toBe(expected)
+  it('returns validation endpoint', () => {
+    expect(env.EndpointValidate({})).toBe(`/me/validate`)
   })
 
   it('Reads api base url', () => {

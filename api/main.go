@@ -41,12 +41,9 @@ func main() {
 	o.HandleFunc("/{service}", handlers.AuthServiceHandler)
 	o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
 
-	// Validation
-	v := r.PathPrefix("/validate").Subrouter().Inject(handlers.JwtTokenValidatorHandler)
-	v.HandleFunc("/address", handlers.ValidateAddress)
-
 	// Account specific actions
-	a := r.PathPrefix("/{account}").Subrouter().Inject(handlers.JwtTokenValidatorHandler)
+	a := r.PathPrefix("/me").Subrouter().Inject(handlers.JwtTokenValidatorHandler)
+	a.HandleFunc("/validate", handlers.Validate).Methods("POST")
 	a.HandleFunc("/save", handlers.Save).Methods("POST")
 	a.HandleFunc("/attachment", handlers.SaveAttachment).Methods("POST")
 	a.HandleFunc("/attachment/{id}", handlers.GetAttachment)
