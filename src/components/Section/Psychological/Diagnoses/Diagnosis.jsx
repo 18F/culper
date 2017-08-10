@@ -186,12 +186,14 @@ export default class Diagnosis extends ValidationElement {
                 <Radio name="effective"
                        label="Yes"
                        value="Yes"
+                       className="yes"
                        onUpdate={this.updateEffective}
                        onError={this.props.onError}>
                 </Radio>
                 <Radio name="effective"
                        label="No"
                        value="No"
+                       className="No"
                        onUpdate={this.updateEffective}
                        onError={this.props.onError}>
                 </Radio>

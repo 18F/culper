@@ -77,6 +77,7 @@ export default class Gambling extends SubsectionElement {
     return (
       <div className="gambling">
         <Branch name="has_gamblingdebt"
+                className="has-gambling-debt"
                 value={this.state.HasGamblingDebt}
                 warning={true}
                 onUpdate={this.onUpdate.bind(this)}

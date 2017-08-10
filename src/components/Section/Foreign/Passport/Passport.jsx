@@ -178,7 +178,7 @@ export default class Passport extends SubsectionElement {
                    shrink={true}
                    scrollIntoView={this.props.scrollIntoView}>
               <div>
-                <RadioGroup className="passport-card option-list"
+                <RadioGroup className="option-list"
                             onError={this.handleError}
                             required={this.props.required}
                             selectedValue={this.props.Card}>

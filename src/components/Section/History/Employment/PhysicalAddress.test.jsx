@@ -17,11 +17,11 @@ describe('The employment physical address component', () => {
     }
 
     const component = mount(<PhysicalAddress name="ac" onUpdate={expected.onUpdate} onBlur={expected.onBlur} onFocus={expected.onFocus} />)
-    const selected = component.find({type: 'radio', name: 'physicalAddress', value: 'Yes'})
+    const selected = component.find('.has-different-address .yes input')
     selected.simulate('change')
     expect(component.find('.has-different').length).toBeGreaterThan(0)
     expect(counter).toBe(1)
-    component.find({type: 'radio', name: 'physicalAddress', value: 'No'}).simulate('change')
+    component.find('.has-different-address .no input').simulate('change')
     expect(component.find('.has-different').length).toBe(0)
   })
 

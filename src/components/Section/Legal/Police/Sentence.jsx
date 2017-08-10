@@ -117,6 +117,7 @@ export default class Sentence extends ValidationElement {
                          {...this.props.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
+                         className="incarceration-dates-na"
                          onError={this.props.onError}
                          required={this.props.required}
                          onUpdate={this.updateIncarcerationDatesNA}>
@@ -139,6 +140,7 @@ export default class Sentence extends ValidationElement {
                          {...this.props.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
+                         className="probation-dates-na"
                          onError={this.props.onError}
                          required={this.props.required}
                          onUpdate={this.updateProbationDatesNA}>
