@@ -449,7 +449,7 @@ class Legal extends SectionElement {
                      {...this.props.History}
                      defaultState={false}
                      dispatch={this.props.dispatch}
-                     onUpdate={this.updateInvestigationsHistory}
+                     onUpdate={this.updateHistory}
                      onError={this.handleError}
                      required={true}
                      scrollIntoView={false}

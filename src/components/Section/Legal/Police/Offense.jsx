@@ -522,7 +522,7 @@ Offense.defaultProps = {
   Explanation: {},
   CourtName: {},
   CourtAddress: {},
-  ChargeType: {},
+  ChargeType: '',
   CourtCharge: {},
   CourtOutcome: {},
   CourtDate: {},

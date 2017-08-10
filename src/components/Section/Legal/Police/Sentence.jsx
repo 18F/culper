@@ -160,7 +160,7 @@ export default class Sentence extends ValidationElement {
 
 Sentence.defaultProps = {
   Description: {},
-  ExceedsYear: {},
+  ExceedsYear: '',
   Incarcerated: '',
   IncarcerationDates: {},
   ProbationDates: {},

@@ -161,6 +161,7 @@ class Psychological extends SectionElement {
             <Show when={this.props.ShowExistingConditions}>
               <div>
                 <hr />
+                {this.props.ShowExistingConditions}
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
                                     ApplicantBirthDate={this.props.ApplicantBirthDate}
@@ -168,7 +169,7 @@ class Psychological extends SectionElement {
                                     dispatch={this.props.dispatch}
                                     onError={this.handleError}
                                     onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
-                                    required={this.props.ShowExistingConditions === 'Yes'}
+                                    required={this.props.ShowExistingConditions}
                                     scrollIntoView={false}
                                     />
               </div>

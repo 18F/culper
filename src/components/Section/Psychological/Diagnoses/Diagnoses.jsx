@@ -107,19 +107,17 @@ export default class Diagnoses extends SubsectionElement {
         <div>
           {i18n.m('psychological.heading.diagnoses')}
         </div>
-        <Field title={i18n.t('psychological.diagnoses.heading.diagnoses')}
+        <h3>{i18n.t('psychological.diagnoses.heading.diagnoses')}</h3>
+        <p>{i18n.t('psychological.diagnoses.heading.examples')}</p>
+        <Branch name="diagnosed"
+          className="diagnosed"
+          value={this.props.Diagnosed}
+          warning={true}
+          onError={this.handleError}
+          required={this.props.required}
+          onUpdate={this.updateDiagnosed}
           scrollIntoView={this.props.scrollIntoView}>
-          <p>{i18n.t('psychological.diagnoses.heading.examples')}</p>
-          <Branch name="diagnosed"
-                  className="diagnosed"
-                  value={this.props.Diagnosed}
-                  warning={true}
-                  onError={this.handleError}
-                  required={this.props.required}
-                  onUpdate={this.updateDiagnosed}
-                  scrollIntoView={this.props.scrollIntoView}>
-          </Branch>
-        </Field>
+        </Branch>
         <Show when={this.props.Diagnosed === 'Yes'}>
           <div>
             <Accordion className="diagnosis-collection"

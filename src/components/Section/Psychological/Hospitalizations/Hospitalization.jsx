@@ -143,7 +143,7 @@ export default class Hospitalization extends ValidationElement {
 }
 
 Hospitalization.defaultProps = {
-  Admission: { value: null },
+  Admission: '',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
