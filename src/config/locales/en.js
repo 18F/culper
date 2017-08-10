@@ -179,30 +179,6 @@ const en = {
         note: ''
       }
     },
-    email: {
-      required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
-      }
-    },
-    height: {
-      required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
-      }
-    },
-    weight: {
-      required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
-      }
-    },
-    currency: {
-      required: {
-        title: 'There is a problem with this field',
-        message: 'This field is required'
-      }
-    },
     ssn: {
       first: {
         pattern: {
@@ -398,6 +374,10 @@ const en = {
         title: 'Weight exceeds accepted limits',
         message: 'We only accept a value between 10 and 999 pounds',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     height: {
@@ -424,12 +404,22 @@ const en = {
           message: 'Inches must be between 0 and 11',
           note: ''
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     location: {
       required: {
         title: 'There is a problem with this field',
         message: 'This field is required'
+      },
+      city: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        }
       },
       toggleablelocation: {
         required: {
@@ -590,6 +580,10 @@ const en = {
         title: 'There is a problem with the losses',
         message: 'The reported losses should have a dollar value.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     telephone: {
@@ -735,6 +729,10 @@ const en = {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     treatment: {
