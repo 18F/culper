@@ -559,6 +559,10 @@ const en = {
       }
     },
     country: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       notfound: {
         title: 'This Country is not on our current list',
         message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
