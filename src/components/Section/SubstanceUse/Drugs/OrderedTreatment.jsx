@@ -192,6 +192,7 @@ export default class OrderedTreatment extends ValidationElement {
                         onUpdate={this.updateDrugType}
                         onError={this.props.onError}
                         required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
