@@ -5,7 +5,7 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
-	pg "gopkg.in/pg.v5"
+	"github.com/go-pg/pg"
 )
 
 // NewDB establishes a new database connection

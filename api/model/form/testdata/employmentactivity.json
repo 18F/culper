@@ -1,0 +1,7 @@
+{
+  "type": "employmentactivity",
+  "props": {
+    "value": "Other",
+    "otherExplanation": "Some other activity"
+  }
+}

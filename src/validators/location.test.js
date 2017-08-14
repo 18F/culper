@@ -273,8 +273,8 @@ describe('the location component', function () {
     }
 
     api.setToken('my-token')
-    const mock = new MockAdapter(api.proxySecured)
-    mock.onPost('/validate/address').reply(200, {
+    const mock = new MockAdapter(api.proxy)
+    mock.onPost('/me/validate').reply(200, {
       Errors: [{
         Error: 'error.geocode.system'
       }]
@@ -304,8 +304,8 @@ describe('the location component', function () {
     }
 
     api.setToken('my-token')
-    const mock = new MockAdapter(api.proxySecured)
-    mock.onPost('/validate/address').reply(200, {
+    const mock = new MockAdapter(api.proxy)
+    mock.onPost('/me/validate').reply(200, {
       Errors: [{
         Error: 'error.geocode.partial'
       }]
@@ -333,8 +333,8 @@ describe('the location component', function () {
     }
 
     api.setToken('my-token')
-    const mock = new MockAdapter(api.proxySecured)
-    mock.onPost('/validate/address').reply(200, {
+    const mock = new MockAdapter(api.proxy)
+    mock.onPost('/me/validate').reply(200, {
       Errors: []
     })
     return new LocationValidator(test.state, null)

@@ -1,0 +1,8 @@
+export default const radio = {
+  type: 'radio',
+  props: {
+    name: '',
+    value: '',
+    checked: false
+  }
+}

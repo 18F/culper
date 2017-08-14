@@ -1,0 +1,11 @@
+import datecontrol from './datecontrol'
+
+export default const daterange = {
+  type: 'daterange',
+  props: {
+    name: '',
+    from: datecontrol,
+    to: datecontrol,
+    present: false
+  }
+}
