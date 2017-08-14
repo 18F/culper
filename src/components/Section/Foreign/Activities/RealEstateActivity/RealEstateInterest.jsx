@@ -172,7 +172,6 @@ export default class RealEstateInterest extends ValidationElement {
                    onUpdate={this.updateAddress}
                    onError={this.props.onError}
                    required={this.props.required}
-                   scrollIntoView={this.props.scrollIntoView}
                    />
         </Field>
 

@@ -134,7 +134,6 @@ export default class Hospitalization extends ValidationElement {
                     onUpdate={this.updateFacilityAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
       </div>

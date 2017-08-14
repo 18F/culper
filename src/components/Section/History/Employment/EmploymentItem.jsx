@@ -215,7 +215,6 @@ export default class EmploymentItem extends ValidationElement {
                       onUpdate={this.onUpdate.bind(this, 'Address')}
                       onError={this.props.onError}
                       label={i18n.t(`${prefix}.address.label`)}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
         </Show>

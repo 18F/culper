@@ -131,7 +131,6 @@ export default class Credit extends SubsectionElement {
                           statePlaceholder={i18n.t('financial.credit.placeholder.state')}
                           cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
                           required={this.props.required}
-                          scrollIntoView={this.props.scrollIntoView}
                           />
             </Field>
 

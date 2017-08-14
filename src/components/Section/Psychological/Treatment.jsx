@@ -79,7 +79,6 @@ export default class Treatment extends ValidationElement {
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
       </div>

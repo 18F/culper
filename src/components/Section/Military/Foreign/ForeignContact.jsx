@@ -81,7 +81,6 @@ export default class ForeignContact extends React.Component {
                     geocode={true}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
-                    scrollIntoView={this.props.scrollIntoView}
                     required={this.props.required}
                     />
         </Field>

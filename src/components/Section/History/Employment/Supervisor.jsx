@@ -110,7 +110,6 @@ export default class Supervisor extends ValidationElement {
                     onUpdate={this.onUpdate.bind(this, 'Address')}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 

@@ -134,7 +134,6 @@ export default class PassportItem extends ValidationElement {
                    onUpdate={this.updateLocation}
                    onError={this.props.onError}
                    required={this.props.required}
-                   scrollIntoView={this.props.scrollIntoView}
                    />
         </Field>
 

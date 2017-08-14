@@ -124,7 +124,6 @@ export default class ReceivedCounseling extends ValidationElement {
                     onUpdate={this.updateTreatmentProviderAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
@@ -163,7 +162,6 @@ export default class ReceivedCounseling extends ValidationElement {
                       onUpdate={this.updateAgencyAddress}
                       required={this.props.required}
                       onError={this.props.onError}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
         </Show>

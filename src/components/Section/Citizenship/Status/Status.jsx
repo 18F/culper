@@ -351,7 +351,6 @@ export default class Status extends SubsectionElement {
                         onUpdate={this.updatePlaceIssued}
                         onError={this.handleError}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
@@ -450,7 +449,6 @@ export default class Status extends SubsectionElement {
                         onUpdate={this.updateEntryLocation}
                         onError={this.handleError}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
@@ -525,7 +523,6 @@ export default class Status extends SubsectionElement {
                         onUpdate={this.updateCertificateCourtAddress}
                         onError={this.handleError}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
@@ -736,7 +733,6 @@ export default class Status extends SubsectionElement {
                         onUpdate={this.updateEntryLocation}
                         onError={this.handleError}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 

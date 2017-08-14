@@ -284,7 +284,6 @@ export default class Person extends React.Component {
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
       </div>

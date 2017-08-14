@@ -224,7 +224,6 @@ export default class OtherOffense extends ValidationElement {
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 

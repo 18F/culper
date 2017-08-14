@@ -219,7 +219,6 @@ export default class CivilUnion extends ValidationElement {
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
@@ -327,7 +326,6 @@ export default class CivilUnion extends ValidationElement {
                       onUpdate={this.updateLocation}
                       onError={this.props.onError}
                       required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
@@ -351,7 +349,6 @@ export default class CivilUnion extends ValidationElement {
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 
@@ -422,7 +419,6 @@ export default class CivilUnion extends ValidationElement {
                             onUpdate={this.updateAddressSeparated}
                             onError={this.props.onError}
                             required={this.props.required}
-                            scrollIntoView={this.props.scrollIntoView}
                             />
                 </NotApplicable>
               </Field>

@@ -101,7 +101,6 @@ export default class TerroristOrganization extends SubsectionElement {
                         geocode={true}
                         bind={true}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 

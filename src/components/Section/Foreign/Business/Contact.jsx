@@ -106,7 +106,6 @@ export default class Contact extends SubsectionElement {
                           className="birthplace foreign-business-contact-location"
                           bind={true}
                           required={this.props.required}
-                          scrollIntoView={this.props.scrollIntoView}
                           />
             </Field>
 

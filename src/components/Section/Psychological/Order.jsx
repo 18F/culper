@@ -100,7 +100,6 @@ export default class Order extends ValidationElement {
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
@@ -154,7 +153,6 @@ export default class Order extends ValidationElement {
                       geocode={true}
                       onError={this.props.onError}
                       required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 

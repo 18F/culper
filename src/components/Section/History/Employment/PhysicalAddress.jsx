@@ -91,7 +91,6 @@ export default class PhysicalAddress extends ValidationElement {
                       onUpdate={this.handleAddressChange}
                       onError={this.props.onError}
                       required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
 

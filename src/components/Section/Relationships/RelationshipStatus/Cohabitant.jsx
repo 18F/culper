@@ -187,7 +187,6 @@ export default class Cohabitant extends ValidationElement {
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Field>
 

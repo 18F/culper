@@ -118,7 +118,6 @@ export default class Sponsorship extends SubsectionElement {
                         className="foreign-business-sponsorship-birthplace"
                         bind={true}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
@@ -131,7 +130,6 @@ export default class Sponsorship extends SubsectionElement {
                         layout={Location.ADDRESS}
                         bind={true}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
@@ -176,7 +174,6 @@ export default class Sponsorship extends SubsectionElement {
                           geocode={true}
                           bind={true}
                           required={this.props.required}
-                          scrollIntoView={this.props.scrollIntoView}
                           />
               </NotApplicable>
             </Field>
@@ -202,7 +199,6 @@ export default class Sponsorship extends SubsectionElement {
                         geocode={true}
                         bind={true}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 

@@ -114,7 +114,6 @@ export default class Federal extends SubsectionElement {
                         geocode={true}
                         bind={true}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
           </Accordion>

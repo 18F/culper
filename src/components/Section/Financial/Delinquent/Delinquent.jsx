@@ -231,7 +231,6 @@ export default class Delinquent extends SubsectionElement {
                         className="delinquent-courtaddress"
                         bind={true}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 

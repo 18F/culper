@@ -265,7 +265,6 @@ export default class Bankruptcy extends ValidationElement {
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
@@ -295,7 +294,6 @@ export default class Bankruptcy extends ValidationElement {
                         onError={this.props.onError}
                         onUpdate={this.updateTrusteeAddress}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
           </div>

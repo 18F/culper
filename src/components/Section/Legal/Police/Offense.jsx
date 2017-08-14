@@ -261,7 +261,6 @@ export default class Offense extends ValidationElement {
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
@@ -310,7 +309,6 @@ export default class Offense extends ValidationElement {
                         onUpdate={this.updateAgencyAddress}
                         onError={this.props.onError}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 
@@ -377,7 +375,6 @@ export default class Offense extends ValidationElement {
                         onUpdate={this.updateCourtAddress}
                         onError={this.props.onError}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
 

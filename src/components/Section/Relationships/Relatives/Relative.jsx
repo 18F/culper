@@ -459,7 +459,6 @@ export default class Relative extends ValidationElement {
                     onError={this.props.onError}
                     onUpdate={this.updateBirthplace}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
@@ -554,7 +553,6 @@ export default class Relative extends ValidationElement {
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
                       />
           </Field>
         </Show>
@@ -699,7 +697,6 @@ export default class Relative extends ValidationElement {
                         onError={this.props.onError}
                         onUpdate={this.updateCourtAddress}
                         required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView}
                         />
             </Field>
           </div>
@@ -987,7 +984,6 @@ export default class Relative extends ValidationElement {
                           onError={this.props.onError}
                           onUpdate={this.updateEmployerAddress}
                           required={this.props.required}
-                          scrollIntoView={this.props.scrollIntoView}
                           />
               </NotApplicable>
             </Field>

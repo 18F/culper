@@ -139,7 +139,6 @@ export default class Divorce extends React.Component {
                     onUpdate={this.updateBirthPlace}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
@@ -180,7 +179,6 @@ export default class Divorce extends React.Component {
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
@@ -273,7 +271,6 @@ export default class Divorce extends React.Component {
                             onUpdate={this.updateDeceasedAddress}
                             onError={this.props.onError}
                             required={this.props.required}
-                            scrollIntoView={this.props.scrollIntoView}
                             />
                 </NotApplicable>
               </Field>
