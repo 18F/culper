@@ -226,8 +226,8 @@ export default class CivilUnion extends ValidationElement {
             </Field>
           </Show>
 
-          <h3>{i18n.t('relationships.civilUnion.heading.ssn')}</h3>
-          <Field help="identification.ssn.help">
+          <Field title={i18n.t('relationships.civilUnion.heading.ssn')}
+                 help="identification.ssn.help">
             <SSN name="ssn"
                  {...this.props.SSN}
                  onUpdate={this.updateSSN}
@@ -236,37 +236,37 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <BranchCollection label={i18n.t('relationships.civilUnion.heading.othernames')}
-            className="othername"
-            appendLabel={i18n.m('relationships.civilUnion.heading.appendOthernames')}
-            items={this.props.OtherNames}
-            onError={this.props.onError}
-            onUpdate={this.updateOtherNames}>
+                            className="othername"
+                            appendLabel={i18n.m('relationships.civilUnion.heading.appendOthernames')}
+                            items={this.props.OtherNames}
+                            onError={this.props.onError}
+                            onUpdate={this.updateOtherNames}>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}>
               <Name name="Othername"
-                bind={true}
-                onError={this.props.onError}
-              />
+                    bind={true}
+                    onError={this.props.onError}
+                    />
             </Field>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.maiden')}
-              help="alias.maiden.help"
-              adjustFor="buttons"
-              shrink={true}>
+                   help="alias.maiden.help"
+                   adjustFor="buttons"
+                   shrink={true}>
               <MaidenName name="MaidenName"
-                bind={true}
-                onError={this.props.onError}
-              />
+                          bind={true}
+                          onError={this.props.onError}
+                          />
             </Field>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.used')}
-              adjustFor="daterange"
-              shrink={true}>
+                   adjustFor="daterange"
+                   shrink={true}>
               <DateRange name="DatesUsed"
-                bind={true}
-                className="datesused"
-                onError={this.props.onError}
-              />
+                         bind={true}
+                         className="datesused"
+                         onError={this.props.onError}
+                         />
             </Field>
           </BranchCollection>
 

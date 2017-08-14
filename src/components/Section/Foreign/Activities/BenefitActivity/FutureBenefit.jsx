@@ -189,7 +189,7 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Branch name="Obligated"
-                className="obligated"
+                className="obligated no-margin-bottom"
                 label={i18n.t('foreign.activities.benefit.future.heading.obligated')}
                 labelSize="h3"
                 value={this.props.Obligated}
@@ -198,15 +198,16 @@ export default class FutureBenefit extends ValidationElement {
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
-          <div>
-            {i18n.m('foreign.activities.benefit.future.label.obligatedExplanation')}
+          <Field title={i18n.t('foreign.activities.benefit.future.label.obligatedExplanation')}
+                 titleSize="label"
+                 adjustFor="textarea">
             <Textarea name="Explanation"
                       className="explanation"
                       {...this.props.ObligatedExplanation}
                       onUpdate={this.updateObligatedExplanation}
                       onError={this.props.onError}
                       />
-          </div>
+          </Field>
         </Show>
       </div>
     )

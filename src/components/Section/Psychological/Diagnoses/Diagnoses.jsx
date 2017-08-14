@@ -104,19 +104,19 @@ export default class Diagnoses extends SubsectionElement {
   render () {
     return (
       <div className="diagnoses">
-        <div>
-          {i18n.m('psychological.heading.diagnoses')}
-        </div>
-        <Field title={i18n.t('psychological.diagnoses.heading.diagnoses')}>
-          <p>{i18n.t('psychological.diagnoses.heading.examples')}</p>
-          <Branch name="diagnosed"
-                  className="diagnosed"
-                  value={this.props.Diagnosed}
-                  warning={true}
-                  onError={this.handleError}
-                  onUpdate={this.updateDiagnosed}>
-          </Branch>
-        </Field>
+        {i18n.m('psychological.heading.diagnoses')}
+
+        <Branch name="diagnosed"
+                label={i18n.t('psychological.diagnoses.heading.diagnoses')}
+                labelSize="h3"
+                className="diagnosed"
+                value={this.props.Diagnosed}
+                warning={true}
+                onError={this.handleError}
+                onUpdate={this.updateDiagnosed}>
+          {i18n.m('psychological.diagnoses.heading.examples')}
+        </Branch>
+
         <Show when={this.props.Diagnosed === 'Yes'}>
           <div>
             <Accordion className="diagnosis-collection"
@@ -135,8 +135,9 @@ export default class Diagnoses extends SubsectionElement {
                          bind={true} />
             </Accordion>
 
-            <h3>{i18n.t('psychological.diagnoses.heading.didNotConsult')}</h3>
             <Branch name="didNotConsult"
+                    label={i18n.t('psychological.diagnoses.heading.didNotConsult')}
+                    labelSize="h3"
                     className="didnotconsult"
                     value={this.props.DidNotConsult}
                     help="psychological.diagnoses.help.didNotConsult"
@@ -144,8 +145,9 @@ export default class Diagnoses extends SubsectionElement {
                     onUpdate={this.updateDidNotConsult}>
             </Branch>
 
-            <h3>{i18n.t('psychological.diagnoses.heading.inTreatment')}</h3>
             <Branch name="inTreatment"
+                    label={i18n.t('psychological.diagnoses.heading.inTreatment')}
+                    labelSize="h3"
                     className="intreatment"
                     value={this.props.InTreatment}
                     help="psychological.diagnoses.help.inTreatment"
@@ -170,7 +172,6 @@ export default class Diagnoses extends SubsectionElement {
             </Show>
           </div>
         </Show>
-
       </div>
     )
   }

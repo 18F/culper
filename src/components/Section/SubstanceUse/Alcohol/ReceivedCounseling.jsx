@@ -132,8 +132,9 @@ export default class ReceivedCounseling extends ValidationElement {
                 />
         </Field>
 
-        <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}</h3>
         <Branch name="UseSameAddress"
+                label={i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}
+                labelSize="h3"
                 className="use-same-address"
                 yesLabel="Same as above"
                 noLabel="Different address"
@@ -192,16 +193,18 @@ export default class ReceivedCounseling extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}</h3>
         <Branch name="CompletedTreatment"
-                className="completed-treatment"
+                label={i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}
+                labelSize="h3"
+                className="completed-treatment no-margin-bottom"
                 value={this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
                 onError={this.props.onError}>
         </Branch>
 
         <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
-          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}>
+          <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
+                 titleSize="label">
             <Textarea name="NoCompletedTreatmentExplanation"
                       className="no-completed-treatment"
                       {...this.props.NoCompletedTreatmentExplanation}

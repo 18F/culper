@@ -127,25 +127,28 @@ export default class DrugInvolvement extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('substance.drugs.involvement.heading.involvementWhileEmployed')}</h3>
         <Branch name="InvolvementWhileEmployed"
+                label={i18n.t('substance.drugs.involvement.heading.involvementWhileEmployed')}
+                labelSize="h3"
                 className="involvement-while-employed"
                 value={this.props.InvolvementWhileEmployed}
                 onError={this.props.onError}
                 onUpdate={this.updateInvolvementWhileEmployed}>
         </Branch>
 
-        <h3>{i18n.t('substance.drugs.involvement.heading.involvementWithClearance')}</h3>
         <Branch name="InvolvementWithClearance"
+                label={i18n.t('substance.drugs.involvement.heading.involvementWithClearance')}
+                labelSize="h3"
                 className="involvement-with-clearance"
                 value={this.props.InvolvementWithClearance}
                 onError={this.props.onError}
                 onUpdate={this.updateInvolvementWithClearance}>
         </Branch>
 
-        <h3>{i18n.t('substance.drugs.involvement.heading.involvementInFuture')}</h3>
         <Branch name="InvolvementInFuture"
-                className="involvement-in-future"
+                label={i18n.t('substance.drugs.involvement.heading.involvementInFuture')}
+                labelSize="h3"
+                className="involvement-in-future no-margin-bottom"
                 value={this.props.InvolvementInFuture}
                 onError={this.props.onError}
                 onUpdate={this.updateInvolvementInFuture}>
@@ -153,7 +156,7 @@ export default class DrugInvolvement extends ValidationElement {
 
         <Show when={this.props.InvolvementInFuture === 'Yes'}>
           <Field title={i18n.t('substance.drugs.involvement.heading.explanation')}
-                 titleSize="h4">
+                 titleSize="label">
             <Textarea name="Explanation"
                       className="explanation"
                       {...this.props.Explanation}

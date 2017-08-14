@@ -110,7 +110,8 @@ export default class ExistingConditions extends SubsectionElement {
           <div>
             <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
             {i18n.m('psychological.existingConditions.para.receivedTreatment')}
-            <Field adjustFor="button">
+            <Field className={this.props.ReceivedTreatment === 'No' ? 'no-margin-bottom' : ''}
+                   adjustFor="button">
               <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment}>
                 <Radio name="treatment"
                        className="treatment yes"
@@ -137,7 +138,8 @@ export default class ExistingConditions extends SubsectionElement {
             </Field>
 
             <Show when={this.props.ReceivedTreatment === 'No'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}>
+              <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
+                     titleSize="label">
                 <Textarea name="Explanation"
                           className="explanation existing-condition-explanation"
                           {...this.props.Explanation}
@@ -164,16 +166,18 @@ export default class ExistingConditions extends SubsectionElement {
               </Accordion>
             </Show>
 
-            <h3>{i18n.t('psychological.existingConditions.heading.didNotFollow')}</h3>
             <Branch name="didNotFollow"
-                    className="eapp-field-wrap didnotfollow"
+                    label={i18n.t('psychological.existingConditions.heading.didNotFollow')}
+                    labelSize="h3"
+                    className="eapp-field-wrap didnotfollow no-margin-bottom"
                     value={this.props.DidNotFollow}
                     onError={this.handleError}
                     onUpdate={this.updateDidNotFollow}>
             </Branch>
 
             <Show when={this.props.DidNotFollow === 'Yes'}>
-              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}>
+              <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
+                     titleSize="label">
                 <Textarea name="DidNotFollowExplanation"
                           className="explanation existing-condition-didnotfollow-explanation"
                           {...this.props.DidNotFollowExplanation}

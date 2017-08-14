@@ -252,8 +252,9 @@ export default class ForeignService extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('military.foreign.heading.maintainscontact')}</h3>
         <Branch name="has_maintainscontact"
+                label={i18n.t('military.foreign.heading.maintainscontact')}
+                labelSize="h3"
                 className="maintainscontact"
                 value={this.props.MaintainsContact}
                 help="military.foreign.help.maintainscontact"

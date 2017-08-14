@@ -127,13 +127,14 @@ export default class CitizenshipItem extends ValidationElement {
             <Branch name="Current"
                     label={i18n.t('citizenship.multiple.heading.citizenship.current')}
                     labelSize="h3"
-                    className="citizenship-current"
+                    className="citizenship-current no-margin-bottom"
                     value={this.props.Current}
                     onUpdate={this.updateCurrent}
                     onError={this.props.onError}
                     />
 
-            <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}>
+            <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}
+                   titleSize="label">
               <Textarea name="CurrentExplanation"
                         {...this.props.CurrentExplanation}
                         className="citizenship-current-explanation"

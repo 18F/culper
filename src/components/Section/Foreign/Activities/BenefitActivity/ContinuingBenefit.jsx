@@ -210,7 +210,7 @@ export default class ContinuingBenefit extends ValidationElement {
         </Field>
 
         <Branch name="Obligated"
-                className="obligated"
+                className="obligated no-margin-bottom"
                 label={i18n.t('foreign.activities.benefit.continuing.heading.obligated')}
                 labelSize="h3"
                 value={this.props.Obligated}
@@ -219,13 +219,16 @@ export default class ContinuingBenefit extends ValidationElement {
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
-          <Textarea name="Explanation"
-                    label={i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
-                    className="explanation"
-                    {...this.props.ObligatedExplanation}
-                    onUpdate={this.updateObligatedExplanation}
-                    onError={this.props.onError}
-                    />
+          <Field title={i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
+                 titleSize="label"
+                 adjustFor="textarea">
+            <Textarea name="Explanation"
+                      className="explanation"
+                      {...this.props.ObligatedExplanation}
+                      onUpdate={this.updateObligatedExplanation}
+                      onError={this.props.onError}
+                      />
+          </Field>
         </Show>
       </div>
     )
