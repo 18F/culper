@@ -32,8 +32,8 @@ class Financial extends SectionElement {
                        showTop={true}
                        back="financial/nonpayment"
                        backLabel={i18n.t('financial.destination.nonpayment')}
-                       next="history"
-                       nextLabel={i18n.t('history.destination.residence')}>
+                       next="history/intro"
+                       nextLabel={i18n.t('history.destination.intro')}>
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}

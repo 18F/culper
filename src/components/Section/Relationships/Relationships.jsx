@@ -120,8 +120,8 @@ class Relationships extends SectionElement {
                        showTop={true}
                        back="relationships/relatives"
                        backLabel={i18n.t('relationships.destination.relatives')}
-                       next="citizenship/status"
-                       nextLabel={i18n.t('citizenship.destination.status')}>
+                       next="citizenship/intro"
+                       nextLabel={i18n.t('citizenship.destination.intro')}>
             <Marital name="marital"
                      {...this.props.Marital}
                      defaultState={false}
