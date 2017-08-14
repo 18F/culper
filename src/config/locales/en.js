@@ -8013,7 +8013,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug misuse',
-          summary: '*Provide your drug misuse details below**',
+          summary: '*Provide your drug misuse details below*',
           appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
           appendLabel: 'Add another drug misuse',
           itemType: 'Drug misuse'
