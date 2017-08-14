@@ -81,6 +81,7 @@ export default class DrugInvolvements extends SubsectionElement {
                      description={i18n.t('substance.drugs.involvement.collection.description')}
                      appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <DrugInvolvement name="DrugInvolvement" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

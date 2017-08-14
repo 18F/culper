@@ -85,6 +85,7 @@ export default class Contact extends SubsectionElement {
                      appendTitle={i18n.t('foreign.business.contact.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.contact.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.contact.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
            <Field title={i18n.t('foreign.business.contact.heading.name')}
              scrollIntoView={this.props.scrollIntoView}>

@@ -80,6 +80,7 @@ export default class Disciplinary extends SubsectionElement {
                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
                      appendMessage={i18n.m('military.disciplinary.collection.appendMessage')}
                      appendLabel={i18n.t('military.disciplinary.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Procedure name="Item"
                        bind={true}

@@ -85,6 +85,7 @@ export default class DirectActivity extends SubsectionElement {
                      description={i18n.t('foreign.activities.direct.collection.description')}
                      appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <DirectInterest name="DirectInterest"
                             bind={true}

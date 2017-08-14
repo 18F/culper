@@ -77,6 +77,7 @@ export default class Unlawful extends SubsectionElement {
                      description={i18n.t('legal.technology.unlawful.collection.description')}
                      appendTitle={i18n.t('legal.technology.unlawful.collection.appendTitle')}
                      appendLabel={i18n.t('legal.technology.unlawful.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.technology.unlawful.heading.date')}
                    help="legal.technology.unlawful.help.date"

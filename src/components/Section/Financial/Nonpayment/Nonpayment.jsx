@@ -107,6 +107,8 @@ export default class Nonpayment extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('financial.nonpayment.collection.summary.title')}
                      appendTitle={i18n.t('financial.nonpayment.collection.appendTitle')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.nonpayment.collection.append')}>
 

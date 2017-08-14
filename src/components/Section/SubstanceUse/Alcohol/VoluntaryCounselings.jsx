@@ -79,6 +79,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <VoluntaryCounseling name="VoluntaryCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

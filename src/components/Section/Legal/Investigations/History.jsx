@@ -80,6 +80,7 @@ export default class History extends SubsectionElement {
                      description={i18n.t('legal.investigations.history.collection.description')}
                      appendTitle={i18n.t('legal.investigations.history.collection.appendTitle')}
                      appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.history.heading.agency')}
                    help="legal.investigations.history.help.agency"

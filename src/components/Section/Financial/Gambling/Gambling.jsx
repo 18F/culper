@@ -93,6 +93,8 @@ export default class Gambling extends SubsectionElement {
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
                      appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
             <Field title={i18n.t('financial.gambling.heading.dates')}

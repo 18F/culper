@@ -78,6 +78,7 @@ export default class Sponsorship extends SubsectionElement {
                      description={i18n.t('foreign.business.sponsorship.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.sponsorship.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
          <Field title={i18n.t('foreign.business.sponsorship.heading.name')}
            scrollIntoView={this.props.scrollIntoView}>

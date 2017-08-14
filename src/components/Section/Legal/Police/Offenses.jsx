@@ -88,6 +88,7 @@ export default class Offenses extends SubsectionElement {
                        appendTitle={i18n.t('legal.police.collection.appendTitle')}
                        appendMessage={i18n.m('legal.police.collection.appendMessage')}
                        appendLabel={i18n.t('legal.police.collection.append')}
+                       required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}>
               <Offense name="Item"
                        bind={true}

@@ -162,6 +162,7 @@ export default class ExistingConditions extends SubsectionElement {
                          description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                          appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
                          appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}
+                         required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}>
                 <Diagnosis name="Diagnosis"
                            ApplicantBirthDate={this.props.ApplicantBirthDate}

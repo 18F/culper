@@ -77,6 +77,7 @@ export default class MembershipViolence extends SubsectionElement {
                      description={i18n.t('legal.associations.violence.collection.description')}
                      appendTitle={i18n.t('legal.associations.violence.collection.appendTitle')}
                      appendLabel={i18n.t('legal.associations.violence.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.violence.heading.organization')}
                    help="legal.associations.violence.help.organization"

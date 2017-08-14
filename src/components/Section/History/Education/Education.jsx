@@ -47,6 +47,7 @@ export default class Education extends SubsectionElement {
                    customSummary={EducationCustomSummary}
                    description={i18n.t('history.education.collection.school.summary.title')}
                    appendLabel={i18n.t('history.education.collection.school.append')}
+                   required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
           <EducationItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
         </Accordion>

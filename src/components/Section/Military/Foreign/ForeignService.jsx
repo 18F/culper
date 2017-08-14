@@ -294,6 +294,7 @@ export default class ForeignService extends ValidationElement {
                        description={i18n.t('military.foreign.collection.contacts.summary.title')}
                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
                        appendLabel={i18n.t('military.foreign.collection.contacts.append')}
+                       required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}>
               <ForeignContact name="Item"
                               bind={true}

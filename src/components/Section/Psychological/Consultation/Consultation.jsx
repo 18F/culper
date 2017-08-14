@@ -77,6 +77,7 @@ export default class Consultation extends SubsectionElement {
                      description={i18n.t('psychological.consultation.collection.description')}
                      appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Order name="Consultation"
                    prefix="consultation"

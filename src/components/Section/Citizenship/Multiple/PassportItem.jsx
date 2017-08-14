@@ -190,6 +190,7 @@ export default class PassportItem extends ValidationElement {
                      onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('citizenship.multiple.collection.travel.summary.title')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('citizenship.multiple.collection.travel.append')}>
             <TravelItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />

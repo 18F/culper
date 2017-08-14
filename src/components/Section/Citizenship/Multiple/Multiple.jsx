@@ -80,6 +80,7 @@ export default class Multiple extends SubsectionElement {
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
                      appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <CitizenshipItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

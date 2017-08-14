@@ -79,6 +79,7 @@ export default class Unauthorized extends SubsectionElement {
                      description={i18n.t('legal.technology.unauthorized.collection.description')}
                      appendTitle={i18n.t('legal.technology.unauthorized.collection.appendTitle')}
                      appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.technology.unauthorized.heading.date')}
                    help="legal.technology.unauthorized.help.date"

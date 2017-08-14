@@ -77,6 +77,7 @@ export default class Advocating extends SubsectionElement {
                      description={i18n.t('legal.associations.advocating.collection.description')}
                      appendTitle={i18n.t('legal.associations.advocating.collection.appendTitle')}
                      appendLabel={i18n.t('legal.associations.advocating.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.advocating.heading.reasons')}
                    help="legal.associations.advocating.help.reasons"

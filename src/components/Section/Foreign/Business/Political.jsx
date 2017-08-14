@@ -78,6 +78,7 @@ export default class Political extends SubsectionElement {
                      description={i18n.t('foreign.business.political.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.business.political.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.political.heading.position')}
               adjustFor="text"

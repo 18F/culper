@@ -104,6 +104,7 @@ export default class BenefitActivity extends SubsectionElement {
                      description={i18n.t('foreign.activities.benefit.collection.description')}
                      appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Benefit name="Benefit"
                      bind={true}

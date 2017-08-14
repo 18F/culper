@@ -76,6 +76,7 @@ export default class Voting extends SubsectionElement {
                      description={i18n.t('foreign.business.voting.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.voting.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.business.voting.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.voting.heading.date')}
                    help="foreign.business.voting.help.date"

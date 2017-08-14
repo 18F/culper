@@ -77,6 +77,7 @@ export default class Manipulating extends SubsectionElement {
                      description={i18n.t('legal.technology.manipulating.collection.description')}
                      appendTitle={i18n.t('legal.technology.manipulating.collection.appendTitle')}
                      appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.technology.manipulating.heading.date')}
                    help="legal.technology.manipulating.help.date"

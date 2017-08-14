@@ -164,6 +164,8 @@ export default class People extends SubsectionElement {
                    validator={(props) => new PersonValidator(props, null).isValid() }
                    onUpdate={this.updateList}
                    onError={this.handleError}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    description={i18n.t('relationships.people.person.collection.description')}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>

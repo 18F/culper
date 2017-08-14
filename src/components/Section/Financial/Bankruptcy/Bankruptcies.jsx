@@ -75,6 +75,8 @@ export default class Bankruptcies extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      summary={this.summary}
                      description={i18n.t('financial.bankruptcy.collection.summary.title')}
                      appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}

@@ -76,6 +76,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                      description={i18n.t('legal.nonCriminalAction.collection.description')}
                      appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
                      appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <NonCriminalCourtAction name="CourtAction" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

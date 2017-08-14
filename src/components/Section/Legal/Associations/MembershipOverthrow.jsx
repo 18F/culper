@@ -77,6 +77,7 @@ export default class MembershipOverthrow extends SubsectionElement {
                      description={i18n.t('legal.associations.overthrow.collection.description')}
                      appendTitle={i18n.t('legal.associations.overthrow.collection.appendTitle')}
                      appendLabel={i18n.t('legal.associations.overthrow.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.overthrow.heading.organization')}
                    help="legal.associations.overthrow.help.organization"

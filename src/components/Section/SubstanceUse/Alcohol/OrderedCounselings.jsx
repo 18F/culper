@@ -102,6 +102,7 @@ export default class OrderedCounselings extends SubsectionElement {
                      description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <OrderedCounseling name="OrderedCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

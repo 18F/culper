@@ -78,6 +78,7 @@ export default class Advice extends SubsectionElement {
                      appendTitle={i18n.t('foreign.business.advice.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.advice.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.advice.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
            <Field title={i18n.t('foreign.business.advice.heading.description')}
              scrollIntoView={this.props.scrollIntoView}>

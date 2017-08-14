@@ -131,6 +131,7 @@ export default class Diagnoses extends SubsectionElement {
                        appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
                        appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
                        appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}
+                       required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}>
               <Diagnosis name="Diagnosis"
                          ApplicantBirthDate={this.props.ApplicantBirthDate}
@@ -171,6 +172,7 @@ export default class Diagnoses extends SubsectionElement {
                          onError={this.handleError}
                          appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
                          appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}
+                         required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}>
                 <Treatment name="Treatment"
                            prefix="diagnoses.professional"

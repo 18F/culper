@@ -77,6 +77,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                      description={i18n.t('legal.associations.activities.collection.description')}
                      appendTitle={i18n.t('legal.associations.activities.collection.appendTitle')}
                      appendLabel={i18n.t('legal.associations.activities.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.activities.heading.reasons')}
                    help="legal.associations.activities.help.reasons"

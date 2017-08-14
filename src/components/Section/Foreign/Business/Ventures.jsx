@@ -80,6 +80,7 @@ export default class Ventures extends SubsectionElement {
                      appendTitle={i18n.t('foreign.business.ventures.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.ventures.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.ventures.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
            <Field title={i18n.t('foreign.business.ventures.heading.name')}
              scrollIntoView={this.props.scrollIntoView}>

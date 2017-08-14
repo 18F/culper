@@ -78,6 +78,7 @@ export default class NegativeImpacts extends SubsectionElement {
                      description={i18n.t('substance.alcohol.negativeImpact.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.negativeImpact.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <NegativeImpact name="NegativeImpact" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

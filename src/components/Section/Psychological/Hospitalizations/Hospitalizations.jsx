@@ -77,6 +77,7 @@ export default class Hospitalizations extends SubsectionElement {
                      description={i18n.t('psychological.hospitalization.collection.description')}
                      appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Hospitalization name="Hospitalization"
                              ApplicantBirthDate={this.props.ApplicantBirthDate}

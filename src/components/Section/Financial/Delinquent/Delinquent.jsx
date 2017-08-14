@@ -105,6 +105,8 @@ export default class Delinquent extends SubsectionElement {
                      description={i18n.t('financial.delinquent.collection.summary.title')}
                      appendTitle={i18n.t('financial.delinquent.collection.appendTitle')}
                      appendMessage={this.message()}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.delinquent.collection.append')}>
 
            <Field title={i18n.t('financial.delinquent.heading.name')}

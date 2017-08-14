@@ -81,6 +81,7 @@ export default class Conferences extends SubsectionElement {
                      appendTitle={i18n.t('foreign.business.conferences.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.conferences.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.conferences.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.conferences.heading.description')}
               help="foreign.business.conferences.help.description"

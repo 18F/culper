@@ -103,6 +103,7 @@ export default class History extends SubsectionElement {
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
                      appendLabel={i18n.t('military.history.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <MilitaryService name="Item"
                              bind={true}

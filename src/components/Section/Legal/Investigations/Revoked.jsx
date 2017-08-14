@@ -78,6 +78,7 @@ export default class Revoked extends SubsectionElement {
                      description={i18n.t('legal.investigations.revoked.collection.description')}
                      appendTitle={i18n.t('legal.investigations.revoked.collection.appendTitle')}
                      appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.revoked.heading.date')}
                    help="legal.investigations.revoked.help.date"

@@ -77,6 +77,7 @@ export default class Employment extends SubsectionElement {
                      description={i18n.t('foreign.business.employment.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.business.employment.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <JobOffer name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

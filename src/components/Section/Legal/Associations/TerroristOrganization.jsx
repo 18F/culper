@@ -79,6 +79,7 @@ export default class TerroristOrganization extends SubsectionElement {
                      description={i18n.t('legal.associations.terrorist.collection.description')}
                      appendTitle={i18n.t('legal.associations.terrorist.collection.appendTitle')}
                      appendLabel={i18n.t('legal.associations.terrorist.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.terrorist.heading.organization')}
                    help="legal.associations.terrorist.help.organization"

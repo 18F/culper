@@ -87,6 +87,8 @@ export default class Card extends SubsectionElement {
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.card.collection.summary.title')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
 

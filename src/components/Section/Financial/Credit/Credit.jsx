@@ -86,6 +86,8 @@ export default class Credit extends SubsectionElement {
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.credit.collection.summary.title')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
 

@@ -77,6 +77,7 @@ export default class Debarred extends SubsectionElement {
                      description={i18n.t('legal.investigations.debarred.collection.description')}
                      appendTitle={i18n.t('legal.investigations.debarred.collection.appendTitle')}
                      appendLabel={i18n.t('legal.investigations.debarred.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.debarred.heading.agency')}
                    help="legal.investigations.debarred.help.agency"

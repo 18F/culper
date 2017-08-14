@@ -9,15 +9,23 @@ export default class RadioGroup extends ValidationElement {
       uid: `${props.name}-${super.guid()}`,
       error: false
     }
+    this.lastSelectedValue = ''
     this.onUpdate = this.onUpdate.bind(this)
+    this.processError = this.processError.bind(this)
+  }
+
+  componentWillReceiveProps (nextProps) {
+    const selectedValue = nextProps.selectedValue
+    if (this.lastSelectedValue !== selectedValue) {
+      this.processError(selectedValue)
+    }
   }
 
   componentDidMount () {
     this.onUpdate({value: this.props.selectedValue})
   }
 
-  onUpdate (option) {
-    const selectedValue = option.value
+  processError (selectedValue) {
     const errors = this.constructor.errors.map(err => {
       return {
         code: err.code,
@@ -25,12 +33,16 @@ export default class RadioGroup extends ValidationElement {
         uid: this.state.uid
       }
     })
-
     this.setState({
       error: errors.some(x => x.valid === false)
     })
-
     this.props.onError(selectedValue, errors)
+    this.lastSelectedValue = selectedValue
+  }
+
+  onUpdate (option) {
+    const selectedValue = option.value
+    this.processError(selectedValue)
   }
 
   render () {

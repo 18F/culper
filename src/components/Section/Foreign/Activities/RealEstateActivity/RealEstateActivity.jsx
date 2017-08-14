@@ -84,6 +84,7 @@ export default class RealEstateActivity extends SubsectionElement {
                      description={i18n.t('foreign.activities.realestate.collection.description')}
                      appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <RealEstateInterest name="RealEstateInterest"
                                 bind={true}

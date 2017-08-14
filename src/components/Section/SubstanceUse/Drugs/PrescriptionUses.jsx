@@ -79,6 +79,7 @@ export default class PrescriptionUses extends SubsectionElement {
                      description={i18n.t('substance.drugs.prescription.collection.description')}
                      appendTitle={i18n.t('substance.drugs.prescription.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <PrescriptionUse name="DrugPrescriptionUse" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>

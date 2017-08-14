@@ -86,6 +86,8 @@ export default class Taxes extends SubsectionElement {
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      description={i18n.t('financial.taxes.collection.summary.title')}
                      appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
                      appendLabel={i18n.t('financial.taxes.collection.append')}>

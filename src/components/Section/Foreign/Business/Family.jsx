@@ -78,6 +78,7 @@ export default class Family extends SubsectionElement {
                      appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.family.collection.appendMessage')}
                      appendLabel={i18n.t('foreign.business.family.collection.append')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
            <Field title={i18n.t('foreign.business.family.heading.name')}
              scrollIntoView={this.props.scrollIntoView}>

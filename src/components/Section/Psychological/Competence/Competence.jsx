@@ -76,6 +76,7 @@ export default class Competence extends SubsectionElement {
                      description={i18n.t('psychological.competence.collection.description')}
                      appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.competence.collection.appendLabel')}
+                     required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Order name="Competence"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}

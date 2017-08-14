@@ -140,6 +140,8 @@ export default class Marital extends SubsectionElement {
                      branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      summary={this.divorceSummary}
                      description={i18n.t('relationships.civilUnion.divorce.collection.description')}
                      appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
