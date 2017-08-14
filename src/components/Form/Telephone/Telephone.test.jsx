@@ -5,6 +5,7 @@ import Telephone from './Telephone'
 describe('The Telephone component', () => {
   it('renders DSN fields', () => {
     const component = mount(<Telephone name="phone" type="DSN" />)
+    expect(component.find('.nonumber').length).toBeGreaterThan(0)
     expect(component.find('a.domestic-number').length).toEqual(1)
     expect(component.find('a.international-number').length).toEqual(1)
     expect(component.find('input[name="dsn_first"]').length).toEqual(1)
@@ -184,5 +185,13 @@ describe('The Telephone component', () => {
     tabbed = false
     component.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
+  })
+
+  it('can disable not applicable on on telephone', () => {
+    const props = {
+      allowNotApplicable: false
+    }
+    const component = mount(<Telephone {...props} />)
+    expect(component.find('.nonumber').length).toBe(0)
   })
 })
