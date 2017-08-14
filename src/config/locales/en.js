@@ -7559,8 +7559,8 @@ const en = {
           used: 'Provide dates of involvement or use'
         },
         label: {
-          circumstances: 'Circumstances',
-          negativeImpact: 'Negative impact'
+          circumstances: 'Provide circumstances',
+          negativeImpact: 'Provide negative impact'
         },
         help: {
           occurred: {
