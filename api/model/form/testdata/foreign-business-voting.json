@@ -1,0 +1,56 @@
+{
+  "type": "foreign.business.voting",
+  "props": {
+    "HasForeignVoting": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "List": {
+      "type": "collection",
+      "props": {
+        "items": [
+          {
+            "Item": {
+              "Date": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "Country": {
+                "type": "country",
+                "props": {
+                  "value": ["Germany"]
+                }
+              },
+              "Reason": {
+                "type": "textarea",
+                "props": {
+                  "value": "my reason"
+                }
+              },
+              "Eligibility": {
+                "type": "text",
+                "props": {
+                  "value": "my elig"
+                }
+              }
+            }
+          }
+        ],
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        }
+      }
+    }
+  }
+}

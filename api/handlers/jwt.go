@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"regexp"
 
@@ -14,20 +15,20 @@ var (
 )
 
 func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
-	fmt.Println("Checking Session Token")
+	log.Println("Checking Session Token")
 
 	authHeader := r.Header.Get("Authorization")
 	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
 	if len(matches) == 0 {
-		return fmt.Errorf("No Authorization token header found")
+		return fmt.Errorf("No authorization token header found")
 	}
 
 	token := matches[1]
 	account := model.Account{}
 	account.WithContext(db.NewDB())
 
-	if valid, err := account.ValidJwtToken(token); err != nil || !valid {
-		return fmt.Errorf("Invalid authorization token")
+	if valid, err := account.ValidJwtToken(token); !valid {
+		return fmt.Errorf("Invalid authorization token: %v", err)
 	}
 
 	return nil

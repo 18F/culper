@@ -1,0 +1,54 @@
+{
+  "type": "supervisor",
+  "props": {
+    "SupervisorName": {
+      "type": "text",
+      "props": {
+        "value": "supervisor name"
+      }
+    },
+    "Title": {
+      "type": "text",
+      "props": {
+        "value": "supervisor title"
+      }
+    },
+    "Email": {
+      "type": "email",
+      "props": {
+        "value": "test@abc.com"
+      }
+    },
+    "EmailNotApplicable": {
+      "type": "notapplicable",
+      "props": {
+        "applicable": true
+      }
+    },
+    "Address": {
+      "type": "location",
+      "props": {
+        "layout": "Address",
+        "street": "123 Some Rd",
+        "street2": "",
+        "city": "Arlington",
+        "state": "VA",
+        "zipcode": "22202",
+        "county": "",
+        "country": "United States",
+        "validated": false
+      }
+    },
+    "Telephone": {
+      "type": "telephone",
+      "props": {
+        "timeOfDay": "Both",
+        "type": "Domestic",
+        "numberType": "Cell",
+        "number": "2128675309",
+        "extension": "",
+        "noNumber": false
+      }
+    }
+  }
+}

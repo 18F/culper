@@ -52,6 +52,8 @@ export default class Address extends ValidationElement {
 
   updateAddressType (cb) {
     let country = ''
+    let city = this.props.city
+
     // POSTOFFICE is used for APO, FPO and DPO
     switch (cb.value) {
       case 'United States':
@@ -60,8 +62,14 @@ export default class Address extends ValidationElement {
         break
     }
 
+    // Clear the city when moving *from* APO/FPO and *to* something else.
+    if (cb.value !== 'POSTOFFICE' && this.props.country === 'POSTOFFICE') {
+      city = ''
+    }
+
     this.update({
       country: country,
+      city: city,
       state: ''
     })
   }

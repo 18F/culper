@@ -1,0 +1,10 @@
+export default const ssn = {
+  type: 'ssn',
+  props: {
+    name: '',
+    first: '',
+    middle: '',
+    last: '',
+    notApplicable: false
+  }
+}
