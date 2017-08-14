@@ -65,7 +65,6 @@
   }
 
   .timeofday {
-    margin-top: -2rem;
     margin-bottom: 2rem;
     margin-left: 1.5rem;
     z-index: 1;
@@ -84,6 +83,7 @@
   .nonumber {
     display: inline-block;
     vertical-align: top;
+    margin-bottom: -2rem;
 
     label {
       width: 13rem;
