@@ -23,32 +23,6 @@ func (entity *Benefit) Unmarshal(raw []byte) error {
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Benefit) Valid() (bool, error) {
-	// if ok, err := entity.Begin.Valid(); !ok {
-	// 	return false, err
-	// }
-
-	// if ok, err := entity.End.Valid(); !ok {
-	// 	return false, err
-	// }
-
-	// f, err := entity.Frequency.Entity()
-	// if err != nil {
-	// 	return false, err
-	// }
-
-	// if ok, err := f.Valid(); !ok {
-	// 	return false, err
-	// }
-
-	// if f.(*Radio).Value == "Other" {
-	// 	if ok, err := entity.OtherFrequency.Valid(); !ok {
-	// 		return false, err
-	// 	}
-	// }
-
-	// if ok, err := entity.Received.Valid(); !ok {
-	// 	return false, err
-	// }
 
 	if ok, err := entity.Country.Valid(); !ok {
 		return false, err
