@@ -1,0 +1,7 @@
+{
+  "type": "checkbox",
+  "props": {
+    "value": "Gray",
+    "checked": true
+  }
+}

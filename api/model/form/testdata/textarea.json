@@ -1,0 +1,6 @@
+{
+  "type": "textarea",
+  "props": {
+    "value": "This is an example textarea"
+  }
+}

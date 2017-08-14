@@ -1,0 +1,36 @@
+{
+  "type": "physicaladdress",
+  "props": {
+    "HasDifferentAddress": {
+      "type": "branch",
+      "props": {
+        "value": "Yes"
+      }
+    },
+    "Address": {
+      "type": "location",
+      "props": {
+        "layout": "Address",
+        "street": "123 Some Rd",
+        "street2": "",
+        "city": "Arlington",
+        "state": "VA",
+        "zipcode": "22202",
+        "county": "",
+        "country": "United States",
+        "validated": false
+      }
+    },
+    "Telephone": {
+      "type": "telephone",
+      "props": {
+        "timeOfDay": "Both",
+        "type": "Domestic",
+        "numberType": "Cell",
+        "number": "2128675309",
+        "extension": "",
+        "noNumber": false
+      }
+    }
+  }
+}
