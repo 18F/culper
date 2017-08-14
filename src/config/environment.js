@@ -26,12 +26,8 @@ class Env {
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointOAuth (service) { return `/auth/${service}` }
-  EndpointValidateSSN (ssn) { return `/validate/ssn/${ssn}` }
-  EndpointValidatePassport (passport) { return `/validate/passport/${passport}` }
-  EndpointValidateZipcode (zipcode) { return `/validate/zipcode/${zipcode}` }
-  EndpointValidateAddress () { return '/validate/address' }
-  EndpointValidateName () { return '/validate/name' }
-  EndpointValidateApplicantBirthdate () { return '/validate/applicant/birthdate' }
+  EndpointSave (payload) { return '/me/save' }
+  EndpointValidate (payload) { return '/me/validate' }
 }
 
 const env = new Env()

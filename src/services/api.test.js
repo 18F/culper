@@ -2,7 +2,6 @@ import { api } from './api'
 import MockAdapter from 'axios-mock-adapter'
 
 describe('The API', () => {
-
   it('can get information on version and endpoints', () => {
     const expected = {}
     const mock = new MockAdapter(api.proxy)
@@ -15,14 +14,6 @@ describe('The API', () => {
         actual = response.data
         expect(actual).toEqual(expected)
       })
-  })
-
-  it('can set authorization token', () => {
-    const token = 'my-token'
-    api.setToken(token)
-
-    let actual = api.proxySecured.defaults.headers.common.Authorization.indexOf(token)
-    expect(actual).not.toEqual(-1)
   })
 
   it('can get PNG for two-factor authentication initialization', () => {
@@ -64,6 +55,22 @@ describe('The API', () => {
       .then(function (response) {
         expect(response.data).toEqual(expected)
       })
+  })
+
+  it('can save via API calls', () => {
+    const mock = new MockAdapter(api.proxy)
+    mock.onPost('/me/save').reply(200, true)
+    api.save({}).then(response => {
+      expect(response.data).toEqual(true)
+    })
+  })
+
+  it('can validate via API calls', () => {
+    const mock = new MockAdapter(api.proxy)
+    mock.onPost('/me/validate').reply(200, true)
+    api.validate({}).then(response => {
+      expect(response.data).toEqual(true)
+    })
   })
 
   it('can parse query parameters from url', () => {

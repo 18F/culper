@@ -1,5 +1,5 @@
-hash: b1321c4dae34982ffbba7a328f985dab74c500d97cd4716a86e93b43ee38387b
-updated: 2016-12-29T20:11:12.435953045Z
+hash: f823ec75644d65a609021504eb79a075c03c6461569fa8c3ac2e5a01887dc436
+updated: 2017-07-26T17:34:13.339480974Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -11,11 +11,19 @@ imports:
   - compute/metadata
   - internal
 - name: github.com/cloudfoundry-community/go-cfenv
-  version: 96ad7376813bfd13c95af69ca5b4ef5725f6b335
+  version: f920e9562d5f951cbf11785728f67258c38a10d0
 - name: github.com/dgrijalva/jwt-go
   version: d2709f9f1f31ebcda9651b03077758c1f3a0018c
 - name: github.com/dgryski/dgoogauth
   version: 96977cbd42e27be71f9f731db6634123de7e861a
+- name: github.com/go-pg/pg
+  version: aa64be8c8bd776472952262525292f5f403bdfb9
+  subpackages:
+  - internal
+  - internal/parser
+  - internal/pool
+  - orm
+  - types
 - name: github.com/go-sql-driver/mysql
   version: 2e00b5cd70399450106cec6431c2e2ce3cae5034
 - name: github.com/golang/protobuf
@@ -116,12 +124,4 @@ imports:
   - stats
   - tap
   - transport
-- name: gopkg.in/pg.v5
-  version: 5299f7df3f5e681a9f4b70ff53908821d27208f7
-  subpackages:
-  - internal
-  - internal/parser
-  - internal/pool
-  - orm
-  - types
 testImports: []

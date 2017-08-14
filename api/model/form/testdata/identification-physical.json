@@ -1,0 +1,42 @@
+{
+  "type": "identification.physical",
+  "props": {
+    "Comments": {
+      "type": "textarea",
+      "props": {
+        "value": ""
+      }
+    },
+    "EyeColor": {
+      "type": "text",
+      "props": {
+        "value": "Green"
+      }
+    },
+    "HairColor": {
+      "type": "text",
+      "props": {
+        "value": "Gray"
+      }
+    },
+    "Height": {
+      "type": "height",
+      "props": {
+        "feet": 6,
+        "inches": 0
+      }
+    },
+    "Sex": {
+      "type": "text",
+      "props": {
+        "value": "male"
+      }
+    },
+    "Weight": {
+      "type": "number",
+      "props": {
+        "value": "200"
+      }
+    }
+  }
+}
