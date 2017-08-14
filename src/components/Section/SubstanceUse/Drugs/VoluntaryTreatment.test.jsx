@@ -16,7 +16,6 @@ describe('The VoluntaryTreatment component', () => {
     component.find('.drug-type-voluntary .cocaine input').simulate('change')
     component.find('.treatment-provider input').simulate('change')
     component.find('.treatment-provider-address .city input').simulate('change')
-    component.find('.treatment-provider-telephone .blocks .cell input').simulate('change')
     component.find('.treatment-dates .from .year input').simulate('change')
     component.find('.treatment-completed .yes input').simulate('change')
     expect(updates).toBe(6)

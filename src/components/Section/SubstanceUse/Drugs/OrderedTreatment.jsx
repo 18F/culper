@@ -214,6 +214,7 @@ export default class OrderedTreatment extends ValidationElement {
                    adjustFor="telephone">
               <Telephone name="TreatmentProviderTelephone"
                          {...this.props.TreatmentProviderTelephone}
+                         showNumberType={false}
                          onUpdate={this.updateTreatmentProviderTelephone}
                          onError={this.props.onError}
                          />
