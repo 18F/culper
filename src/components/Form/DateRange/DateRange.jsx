@@ -80,6 +80,17 @@ export default class DateRange extends ValidationElement {
         estimated: false
       }
     }
+    const errors = futureState.errors.map(err => {
+      if (err.code.indexOf('daterange.to') === -1) {
+        return err
+      }
+      return {
+        code: err.code,
+        valid: null,
+        uid: err.uid
+      }
+    })
+    futureState.errors = errors
 
     this.setState(futureState, () => {
       if (this.props.onUpdate) {
@@ -199,7 +210,7 @@ export default class DateRange extends ValidationElement {
                        onUpdate={this.updateFrom}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
-                       prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}from`}
+                       prefix={this.props.prefix}
                        onError={this.handleErrorFrom}
                        required={this.props.required}
                        />
@@ -221,7 +232,7 @@ export default class DateRange extends ValidationElement {
                        onUpdate={this.updateTo}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
-                       prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}to`}
+                       prefix={this.props.prefix}
                        onError={this.handleErrorTo}
                        required={this.props.required}
                        />

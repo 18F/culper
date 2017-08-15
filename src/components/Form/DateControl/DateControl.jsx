@@ -80,6 +80,8 @@ export default class DateControl extends ValidationElement {
     this.updateDay = this.updateDay.bind(this)
     this.updateYear = this.updateYear.bind(this)
     this.updateEstimated = this.updateEstimated.bind(this)
+    this.handleDisable = this.handleDisable.bind(this)
+    this.errors = []
   }
 
   componentWillReceiveProps (next) {
@@ -102,10 +104,27 @@ export default class DateControl extends ValidationElement {
     }
 
     if (next.disabled !== this.state.disabled) {
-      this.setState({
-        disabled: next.disabled
+      this.handleDisable(next)
+    }
+  }
+
+  handleDisable (nextProps) {
+    let errors = [...this.errors] || []
+    // If disabling component, set all errors to null
+    if (nextProps.disabled) {
+      errors = errors.map(err => {
+        return {
+          code: err.code,
+          valid: null,
+          uid: err.uid
+        }
       })
     }
+    this.props.onError('', errors)
+    this.setState({
+      disabled: nextProps.disabled
+    }, () => {
+    })
   }
 
   update (el, year, month, day, estimated) {
@@ -233,7 +252,7 @@ export default class DateControl extends ValidationElement {
           ? new Date(this.state.year, this.state.month, this.state.day)
           : null
 
-      const existingErr = this.state.errors.some(e => e.valid === false)
+      const existingErr = this.errors.some(e => e.valid === false)
 
       // If the date is valid and there are no child errors...
       let local = []
@@ -277,15 +296,15 @@ export default class DateControl extends ValidationElement {
   storeErrors (arr = [], callback) {
     let errors = [...this.state.errors]
     for (const e of arr) {
-      const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+      const idx = this.errors.findIndex(x => x.uid === e.uid && x.code === e.code)
       if (idx !== -1) {
-        errors[idx] = { ...e }
+        this.errors[idx] = { ...e }
       } else {
-        errors.push({ ...e })
+        this.errors.push({ ...e })
       }
     }
 
-    this.setState({ errors: errors }, () => {
+    this.setState({ errors: [...this.errors] }, () => {
       callback()
     })
   }
@@ -437,7 +456,8 @@ DateControl.defaultProps = {
   },
   onUpdate: (values) => {},
   onError: (value, arr) => { return arr },
-  tab: (el) => { el.focus() }
+  tab: (el) => { el.focus() },
+  notApplicable: false
 }
 
 DateControl.errors = [
