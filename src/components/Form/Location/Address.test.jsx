@@ -50,4 +50,16 @@ describe('The Address component', () => {
     component.find('.address-options .international input').simulate('change')
     expect(updates).toBe(3)
   })
+
+  it('clears city switching from APO/FPO', () => {
+    let city = 'APO'
+    const props = {
+      city: 'APO',
+      country: 'POSTOFFICE',
+      onUpdate: (values) => { city = values.city }
+    }
+    const component = mount(<Address {...props} />)
+    component.find('.address-options .domestic input').simulate('change')
+    expect(city).toBe('')
+  })
 })

@@ -186,7 +186,7 @@ export default class DateRange extends ValidationElement {
                        onUpdate={this.updateFrom}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
-                       prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}from`}
+                       prefix={this.props.prefix}
                        onError={this.handleErrorFrom}
                        />
         </div>
@@ -207,7 +207,7 @@ export default class DateRange extends ValidationElement {
                        onUpdate={this.updateTo}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
-                       prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}to`}
+                       prefix={this.props.prefix}
                        onError={this.handleErrorTo}
                        />
           <div className="from-present">

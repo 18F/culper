@@ -6,6 +6,7 @@ describe('The Telephone component', () => {
   it('renders DSN fields', () => {
     const component = mount(<Telephone name="phone" type="DSN" />)
     expect(component.find('.phonetype').length).toBe(1)
+    expect(component.find('.nonumber').length).toBeGreaterThan(0)
     expect(component.find('a.domestic-number').length).toEqual(1)
     expect(component.find('a.international-number').length).toEqual(1)
     expect(component.find('input[name="dsn_first"]').length).toEqual(1)
@@ -193,5 +194,13 @@ describe('The Telephone component', () => {
     }
     const component = mount(<Telephone {...props} />)
     expect(component.find('.phonetype').length).toBe(0)
+  })
+
+  it('can disable not applicable on on telephone', () => {
+    const props = {
+      allowNotApplicable: false
+    }
+    const component = mount(<Telephone {...props} />)
+    expect(component.find('.nonumber').length).toBe(0)
   })
 })

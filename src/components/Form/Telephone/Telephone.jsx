@@ -301,8 +301,7 @@ export default class Telephone extends ValidationElement {
               value={this.state.dsn.first}
               onChange={this.handleNumberChange('dsn', 'first').bind(this)}
               onError={this.handleErrorDsnFirst}
-              tabNext={() => { this.props.tab(this.refs.dsn_second.refs.text.refs.input) }}
-              />
+              tabNext={() => { this.props.tab(this.refs.dsn_second.refs.text.refs.input) }} />
         <span className="separator">-</span>
         <Text name="dsn_second"
               ref="dsn_second"
@@ -320,17 +319,19 @@ export default class Telephone extends ValidationElement {
               value={this.state.dsn.second}
               onChange={this.handleNumberChange('dsn', 'second').bind(this)}
               onError={this.handleErrorDsnSecond}
-              tabBack={() => { this.props.tab(this.refs.dsn_first.refs.text.refs.input) }}
-              />
-        <span className="separator extension">or</span>
-        <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
-          <Radio name="nonumber"
-                 label={i18n.t('telephone.noNumber.label')}
-                 value="NA"
-                 onUpdate={this.handleNoNumberChange}
-                 onError={this.handleErrorNoNumber}
-                 />
-        </RadioGroup>
+              tabBack={() => { this.props.tab(this.refs.dsn_first.refs.text.refs.input) }} />
+        <Show when={this.props.allowNotApplicable}>
+          <span>
+            <span className="separator extension">or</span>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+              <Radio name="nonumber"
+                     label={i18n.t('telephone.noNumber.label')}
+                     value="NA"
+                     onUpdate={this.handleNoNumberChange}
+                     onError={this.handleErrorNoNumber} />
+            </RadioGroup>
+          </span>
+        </Show>
       </div>
     )
   }
@@ -355,8 +356,7 @@ export default class Telephone extends ValidationElement {
               value={this.state.domestic.first}
               onChange={this.handleNumberChange('domestic', 'first').bind(this)}
               onError={this.handleErrorDomesticFirst}
-              tabNext={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }}
-              />
+              tabNext={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }} />
         <span className="separator">)</span>
         <Text name="domestic_second"
               ref="domestic_second"
@@ -373,8 +373,7 @@ export default class Telephone extends ValidationElement {
               onChange={this.handleNumberChange('domestic', 'second').bind(this)}
               onError={this.handleErrorDomesticSecond}
               tabBack={() => { this.props.tab(this.refs.domestic_first.refs.text.refs.input) }}
-              tabNext={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }}
-              />
+              tabNext={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }} />
         <span className="separator">-</span>
         <Text name="domestic_third"
               ref="domestic_third"
@@ -392,8 +391,7 @@ export default class Telephone extends ValidationElement {
               onChange={this.handleNumberChange('domestic', 'third').bind(this)}
               onError={this.handleErrorDomesticThird}
               tabBack={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }}
-              tabNext={() => { this.props.tab(this.refs.domestic_extension.refs.text.refs.input) }}
-              />
+              tabNext={() => { this.props.tab(this.refs.domestic_extension.refs.text.refs.input) }} />
         <span className="separator pound">#</span>
         <Text name="domestic_extension"
               ref="domestic_extension"
@@ -409,17 +407,19 @@ export default class Telephone extends ValidationElement {
               value={this.state.extension}
               onChange={this.handleExtensionChange.bind(this)}
               onError={this.handleErrorDomesticExtension}
-              tabBack={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }}
-              />
-        <span className="separator extension">or</span>
-        <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
-          <Radio name="nonumber"
-                 label={i18n.t('telephone.noNumber.label')}
-                 value="NA"
-                 onUpdate={this.handleNoNumberChange}
-                 onError={this.handleErrorNoNumber}
-                 />
-        </RadioGroup>
+              tabBack={() => { this.props.tab(this.refs.domestic_third.refs.text.refs.input) }} />
+        <Show when={this.props.allowNotApplicable}>
+          <span>
+            <span className="separator extension">or</span>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+              <Radio name="nonumber"
+                      label={i18n.t('telephone.noNumber.label')}
+                      value="NA"
+                      onUpdate={this.handleNoNumberChange}
+                      onError={this.handleErrorNoNumber} />
+            </RadioGroup>
+          </span>
+        </Show>
       </div>
     )
   }
@@ -443,8 +443,7 @@ export default class Telephone extends ValidationElement {
               value={this.state.international.first}
               onChange={this.handleNumberChange('international', 'first').bind(this)}
               onError={this.handleErrorInternationalFirst}
-              tabNext={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }}
-              />
+              tabNext={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }} />
         <span className="separator">-</span>
         <Text name="int_second"
               ref="int_second"
@@ -461,8 +460,7 @@ export default class Telephone extends ValidationElement {
               onChange={this.handleNumberChange('international', 'second').bind(this)}
               onError={this.handleErrorInternationalSecond}
               tabBack={() => { this.props.tab(this.refs.int_first.refs.text.refs.input) }}
-              tabNext={() => { this.props.tab(this.refs.int_extension.refs.text.refs.input) }}
-              />
+              tabNext={() => { this.props.tab(this.refs.int_extension.refs.text.refs.input) }} />
         <span className="separator pound">#</span>
         <Text name="int_extension"
               ref="int_extension"
@@ -478,17 +476,19 @@ export default class Telephone extends ValidationElement {
               value={this.state.extension}
               onChange={this.handleExtensionChange.bind(this)}
               onError={this.handleErrorInternationalExtension}
-              tabBack={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }}
-              />
-        <span className="separator extension">or</span>
-        <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
-          <Radio name="nonumber"
-                 label={i18n.t('telephone.noNumber.label')}
-                 value="NA"
-                 onUpdate={this.handleNoNumberChange}
-                 onError={this.handleErrorNoNumber}
-                 />
-        </RadioGroup>
+              tabBack={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }} />
+        <Show when={this.props.allowNotApplicable}>
+          <span>
+            <span className="separator extension">or</span>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+              <Radio name="nonumber"
+                     label={i18n.t('telephone.noNumber.label')}
+                     value="NA"
+                     onUpdate={this.handleNoNumberChange}
+                     onError={this.handleErrorNoNumber} />
+            </RadioGroup>
+          </span>
+        </Show>
       </div>
     )
   }
@@ -620,6 +620,7 @@ Telephone.defaultProps = {
   extension: '',
   noNumber: '',
   showNumberType: true,
+  allowNotApplicable: true,
   tab: (input) => { input.focus() },
   onError: (value, arr) => { return arr }
 }
