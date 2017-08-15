@@ -5,7 +5,7 @@ import ReceivedCounseling from './ReceivedCounseling'
 describe('The ReceivedCounseling component', () => {
   it('Renders without errors', () => {
     const component = mount(<ReceivedCounseling />)
-    expect(component.find('.voluntary-counseling').length).toBe(1)
+    expect(component.find('.voluntary-counseling').length).toBe(0)
   })
 
   it('Renders with action taken marked as yes', () => {
@@ -15,11 +15,9 @@ describe('The ReceivedCounseling component', () => {
       UseSameAddress: 'No'
     }
     const component = mount(<ReceivedCounseling {...expected} />)
-    expect(component.find('.voluntary-counseling').length).toBe(1)
     component.find('.treatment-began-date .datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
     component.find('.treatment-end-date .datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
     component.find('input[name="PresentTreatmentEndDate"]').simulate('change', { target: { checked: true } })
-    component.find('input[name="PresentTreatmentEndDate"]').simulate('change', { target: { checked: false } })
     component.find('input[name="TreatmentProviderName"]').simulate('change')
     component.find('.provider-address input[name="address"]').simulate('change')
     component.find('input[name="AgencyName"]').simulate('change')
@@ -35,7 +33,6 @@ describe('The ReceivedCounseling component', () => {
       CompletedTreatment: 'No'
     }
     const component = mount(<ReceivedCounseling {...expected} />)
-    expect(component.find('.voluntary-counseling').length).toBe(1)
     component.find('textarea[name="NoCompletedTreatmentExplanation"]').simulate('change')
     component.find('.use-same-address .yes input').simulate('change')
     expect(updates).toBe(2)

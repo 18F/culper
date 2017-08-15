@@ -30,7 +30,7 @@ describe('The OrderedTreatment component', () => {
     component.find('.treatment-provider-address .city input').simulate('change')
     component.find('.treatment-dates .from .year input').simulate('change')
     component.find('.treatment-completed .yes input').simulate('change')
-    expect(updates).toBe(6)
+    expect(updates).toBe(5)
   })
 
   it('Performs update when action taken is marked yes and no treatment completed', () => {

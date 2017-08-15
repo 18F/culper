@@ -18,7 +18,7 @@ describe('The VoluntaryTreatment component', () => {
     component.find('.treatment-provider-address .city input').simulate('change')
     component.find('.treatment-dates .from .year input').simulate('change')
     component.find('.treatment-completed .yes input').simulate('change')
-    expect(updates).toBe(6)
+    expect(updates).toBe(5)
   })
 
   it('Performs update when no treatment completed', () => {
