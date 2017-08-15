@@ -1,0 +1,7 @@
+{
+  "type": "radio",
+  "props": {
+    "value": "I",
+    "checked": true
+  }
+}

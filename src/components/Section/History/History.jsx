@@ -326,8 +326,8 @@ class History extends SectionElement {
                        showTop={true}
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
-                       next="relationships/status/marital"
-                       nextLabel={i18n.t('relationships.destination.marital')}>
+                       next="relationships/intro"
+                       nextLabel={i18n.t('relationships.destination.intro')}>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>

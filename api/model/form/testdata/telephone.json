@@ -1,0 +1,11 @@
+{
+  "type": "telephone",
+  "props": {
+    "timeOfDay": "Both",
+    "type": "Domestic",
+    "numberType": "Cell",
+    "number": "2128675309",
+    "extension": "",
+    "noNumber": false
+  }
+}

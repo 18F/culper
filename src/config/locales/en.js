@@ -908,7 +908,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Identification intro',
       review: 'Review Identification',
       othernames: 'Other names used',
       name: 'Full name',
@@ -1229,7 +1229,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Financial intro',
       gambling: 'Gambling',
       bankruptcy: 'Bankruptcy',
       taxes: 'Taxes',
@@ -1851,7 +1851,7 @@ const en = {
       para: 'View all the sections associated with citizenship at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Citizenship intro',
       review: 'Review Citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
@@ -2238,7 +2238,7 @@ const en = {
       para: 'View all the sections associated with relationships at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Relationships intro',
       review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
@@ -3131,7 +3131,7 @@ const en = {
       para: 'View all the sections associated with military history at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Military intro',
       selective: 'Selective service record',
       history: 'U.S. military',
       disciplinary: 'Disciplinary procedures',
@@ -3497,7 +3497,7 @@ const en = {
       }
     },
     destination: {
-      intro: 'Intro',
+      intro: 'History intro',
       review: 'Review your history',
       timeline: 'Timeline',
       residence: 'Places you lived',
@@ -5123,7 +5123,7 @@ const en = {
       para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Foreign intro',
       review: 'Review Foreign Activities',
       history: 'Your History',
       tbd: 'TBD',
@@ -6734,6 +6734,10 @@ const en = {
     }
   },
   legal: {
+    intro: {
+      title: 'Section 9: Investigative and criminal history',
+      body: 'You will be asked questions about your criminal history and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -6741,7 +6745,7 @@ const en = {
       para: 'View all the sections associated with investigative & criminal history at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Investigative and criminal history intro',
       police: 'Police record',
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
@@ -7639,7 +7643,7 @@ const en = {
       para: 'View all the sections associated with substance abuse'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Substance use intro',
       police: {
         negative: 'Negative impact',
         ordered: 'Mandatory counseling or treatment',
@@ -8457,7 +8461,7 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Psychological and emotional health intro',
       psychological: 'Psychological and emotional health',
       competence: 'Competence',
       consultation: 'Consultations',

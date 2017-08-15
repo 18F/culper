@@ -128,8 +128,8 @@ class Foreign extends SectionElement {
                        showTop={true}
                        back="foreign/travel"
                        backLabel={i18n.t('foreign.destination.travel')}
-                       next="substance/drugs/usage"
-                       nextLabel={i18n.t('substance.destination.drugs.usage')}
+                       next="substance/intro"
+                       nextLabel={i18n.t('substance.destination.intro')}
                        >
             <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"

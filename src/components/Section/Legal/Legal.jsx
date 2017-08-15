@@ -405,7 +405,7 @@ class Legal extends SectionElement {
                        back="legal/associations/terrorism-activities"
                        backLabel={i18n.t('legal.destination.associations.activities')}
                        next="psychological/intro"
-                       nextLabel={i18n.t('psychological.destination.psychological')}>
+                       nextLabel={i18n.t('psychological.destination.intro')}>
             <Field title={i18n.t('legal.police.heading.title')}
                    titleSize="h2">
               {i18n.m('legal.police.para.intro1')}

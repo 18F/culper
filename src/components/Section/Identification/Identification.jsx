@@ -28,8 +28,8 @@ class Identification extends SectionElement {
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop={true}
-                       next="financial"
-                       nextLabel={i18n.t('financial.destination.gambling')}
+                       next="financial/intro"
+                       nextLabel={i18n.t('financial.destination.intro')}
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
 

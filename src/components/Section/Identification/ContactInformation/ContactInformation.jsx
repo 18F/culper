@@ -112,6 +112,7 @@ export default class ContactInformation extends SubsectionElement {
                    adjustFor="telephone">
               <Telephone name="Telephone"
                          placeholder={i18n.t('identification.contacts.placeholder.telephone')}
+                         allowNotApplicable={false}
                          bind={true}
                          required={this.props.required}
                          />

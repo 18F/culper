@@ -1,0 +1,7 @@
+export default const text = {
+  type: 'text',
+  props: {
+    name: '',
+    value: ''
+  }
+}

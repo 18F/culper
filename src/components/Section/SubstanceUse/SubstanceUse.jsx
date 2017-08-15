@@ -251,8 +251,8 @@ class SubstanceUse extends SectionElement {
                        back="substance/alcohol/additional"
                        backLabel={ i18n.t('substance.destination.police.additional') }
                        showTop={true}
-                       next="legal/police"
-                       nextLabel={ i18n.t('legal.destination.police') }>
+                       next="legal/intro"
+                       nextLabel={ i18n.t('legal.destination.intro') }>
 
             <DrugUses name="druguses"
                       {...this.props.DrugUses}

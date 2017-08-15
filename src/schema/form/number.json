@@ -1,0 +1,7 @@
+export default const number = {
+  type: 'number',
+  props: {
+    name: '',
+    value: ''
+  }
+}
