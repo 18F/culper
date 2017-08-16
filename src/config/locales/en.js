@@ -574,6 +574,10 @@ const en = {
       }
     },
     passport: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       pattern: {
         title: 'There is a problem with the passport number',
         message: [
