@@ -354,7 +354,8 @@ export default class Status extends SubsectionElement {
                         />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentname')}>
+            <Field title={i18n.t('citizenship.status.heading.documentname')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Name name="DocumentName"
                     className="document-name"
                     {...this.props.DocumentName}

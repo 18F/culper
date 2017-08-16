@@ -155,6 +155,7 @@ export default class PassportItem extends ValidationElement {
                 className="passport-number"
                 onUpdate={this.updateNumber}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
