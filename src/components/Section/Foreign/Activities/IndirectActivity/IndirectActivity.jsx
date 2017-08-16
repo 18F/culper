@@ -69,6 +69,7 @@ export default class IndirectActivity extends SubsectionElement {
                 label={i18n.t('foreign.activities.indirect.heading.title')}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                help="foreign.activities.indirect.help.indirectControl"
                 warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateHasInterests}>
