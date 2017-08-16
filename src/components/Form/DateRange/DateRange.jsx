@@ -103,7 +103,7 @@ export default class DateRange extends ValidationElement {
         estimated: false
       }
     }
-    const errors = futureState.errors.map(err => {
+    const errors = this.errors.map(err => {
       if (err.code.indexOf('daterange.to') === -1) {
         return err
       }
@@ -113,7 +113,7 @@ export default class DateRange extends ValidationElement {
         uid: err.uid
       }
     })
-    futureState.errors = errors
+    this.errors = errors
 
     this.setState(futureState, () => {
       if (this.props.onUpdate) {
