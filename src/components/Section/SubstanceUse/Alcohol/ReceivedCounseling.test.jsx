@@ -37,4 +37,32 @@ describe('The ReceivedCounseling component', () => {
     component.find('.use-same-address .yes input').simulate('change')
     expect(updates).toBe(2)
   })
+
+  it('present returns todays date', () => {
+    let checked = false
+    const props = {
+      PresentTreatmentEndDate: false,
+      onUpdate: (values) => {
+        checked = true
+      }
+    }
+
+    const component = mount(<ReceivedCounseling {...props} />)
+    component.find('.present-treatment-end-date input').simulate('change')
+    expect(checked).toBe(true)
+  })
+
+  it('present can be unchecked', () => {
+    let checked = true
+    const props = {
+      PresentTreatmentEndDate: true,
+      onUpdate: (values) => {
+        checked = false
+      }
+    }
+
+    const component = mount(<ReceivedCounseling {...props} />)
+    component.find('.present-treatment-end-date input').simulate('change')
+    expect(checked).toBe(false)
+  })
 })

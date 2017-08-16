@@ -80,6 +80,7 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   updatePresentTreatmentEndDate (values) {
+    console.log('values', values)
     const checked = values.checked
     let endDate = {...this.props.TreatmentEndDate}
 
