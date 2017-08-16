@@ -5104,6 +5104,13 @@ const en = {
           appendLabel: 'Add another direct interest',
           itemType: 'Interest'
         },
+        help: {
+            directControl: {
+              title: 'Need help with the term "Direct control"?',
+              message: 'Direct control means there is *no* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+              note: 'Example: You own a bakery in a foreign country and directly control all aspects of the business such as pricing, baking, etc.'
+            },
+        },
         interest: {
           para: {
             checkAll: 'Check all that apply',
@@ -5215,6 +5222,13 @@ const en = {
           appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
+            help: {
+            indirectControl: {
+              title: 'Need help with the term "Indirect control"?',
+              message: 'Indirect control means there *is* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+              note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
+            },
+        },    
         interest: {
           para: {
             checkAll: 'Check all that apply',
