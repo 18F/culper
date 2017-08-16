@@ -72,6 +72,11 @@ export default class CitizenshipItem extends ValidationElement {
   }
 
   render () {
+    const d = this.props.Dates || {}
+    const to = d.to || {}
+    const from = d.from || {}
+    const showCurrentQuestion = to.date && from.date && !d.present
+
     return (
       <div className="citizenship-item">
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.country')}>
@@ -122,7 +127,7 @@ export default class CitizenshipItem extends ValidationElement {
                     />
         </Field>
 
-        <Show when={(this.props.Dates || {}).present}>
+        <Show when={showCurrentQuestion}>
           <div>
             <Branch name="Current"
                     label={i18n.t('citizenship.multiple.heading.citizenship.current')}
