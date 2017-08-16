@@ -348,7 +348,7 @@ Dropdown.errors = [
       if (props.required) {
         return !!value
       }
-      return null
+      return true
     }
   },
   {

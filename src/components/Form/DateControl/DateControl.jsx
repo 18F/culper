@@ -123,7 +123,6 @@ export default class DateControl extends ValidationElement {
     this.props.onError('', errors)
     this.setState({
       disabled: nextProps.disabled
-    }, () => {
     })
   }
 
@@ -294,7 +293,6 @@ export default class DateControl extends ValidationElement {
   }
 
   storeErrors (arr = [], callback) {
-    let errors = [...this.state.errors]
     for (const e of arr) {
       const idx = this.errors.findIndex(x => x.uid === e.uid && x.code === e.code)
       if (idx !== -1) {

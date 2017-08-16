@@ -459,6 +459,10 @@ const en = {
           }
         },
         country: {
+          required: {
+            title: 'There is a problem with this field',
+            message: 'This field is required'
+          },
           notfound: {
             title: 'This country is not one of the options',
             message: 'Please enter the country that your city of birth is in now.',
