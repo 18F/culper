@@ -54,11 +54,10 @@ export default class Contacts extends SubsectionElement {
   render () {
     return (
       <div className="foreign-contacts">
+        {i18n.m('foreign.contacts.para.definition')}
         <h3>{i18n.t('foreign.contacts.heading.title')}</h3>
-        {i18n.t('foreign.contacts.para.includes')}
+        {i18n.m('foreign.contacts.para.includes')}
         <Branch name="has_foreign_contacts"
-                title={i18n.t('foreign.contacts.para.definition')}
-                help="foreign.contacts.help.branch"
                 value={this.props.HasForeignContacts}
                 warning={true}
                 onUpdate={this.updateHasForeignContacts}
