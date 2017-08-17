@@ -74,7 +74,7 @@ export default class Selective extends SubsectionElement {
           <div>
             <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
-                    className="registered no-margin-bottom"
+                    className={`registered no-margin-bottom ${this.props.HasRegistered === 'No' ? 'no-margin-bottom' : ''}`}
                     value={this.props.HasRegistered}
                     warning={true}
                     onUpdate={this.updateRegistered}
@@ -121,13 +121,13 @@ export default class Selective extends SubsectionElement {
             </Show>
 
             <Show when={this.props.HasRegistered === 'No'}>
-              <Field help="military.selective.help.explanation"
-                     className="no-margin-bottom"
-                     adjustFor="labels"
+              <Field title={i18n.t('military.selective.label.explanation')}
+                     titleSize="label"
+                     help="military.selective.help.explanation"
+                     adjustFor="textarea"
                      scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation"
-                          label={i18n.t('military.selective.label.explanation')}
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.handleError}

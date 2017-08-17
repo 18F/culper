@@ -5228,6 +5228,13 @@ const en = {
           appendLabel: 'Add another direct interest',
           itemType: 'Interest'
         },
+        help: {
+            directControl: {
+              title: 'Need help with the term "Direct control"?',
+              message: 'Direct control means there is *no* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+              note: 'Example: You own a bakery in a foreign country and directly control all aspects of the business such as pricing, baking, etc.'
+            },
+        },
         interest: {
           para: {
             checkAll: 'Check all that apply',
@@ -5339,6 +5346,13 @@ const en = {
           appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
+            help: {
+            indirectControl: {
+              title: 'Need help with the term "Indirect control"?',
+              message: 'Indirect control means there *is* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+              note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
+            },
+        },    
         interest: {
           para: {
             checkAll: 'Check all that apply',
@@ -7683,8 +7697,8 @@ const en = {
           used: 'Provide dates of involvement or use'
         },
         label: {
-          circumstances: 'Circumstances',
-          negativeImpact: 'Negative impact'
+          circumstances: 'Provide circumstances',
+          negativeImpact: 'Provide negative impact'
         },
         help: {
           occurred: {
@@ -7896,7 +7910,7 @@ const en = {
     },
     drugs: {
       heading: {
-        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
+        drugUses: 'In the last seven (7) years, have you illegally used any drugs or controlled substances?',
         drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
         drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
         drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
@@ -8137,7 +8151,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug misuse',
-          summary: '*Provide your drug misuse details below**',
+          summary: '*Provide your drug misuse details below*',
           appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
           appendLabel: 'Add another drug misuse',
           itemType: 'Drug misuse'

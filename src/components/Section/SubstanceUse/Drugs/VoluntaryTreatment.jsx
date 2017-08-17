@@ -109,6 +109,7 @@ export default class VoluntaryTreatment extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="TreatmentProviderTelephone"
                      {...this.props.TreatmentProviderTelephone}
+                     showNumberType={false}
                      onUpdate={this.updateTreatmentProviderTelephone}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -128,9 +129,10 @@ export default class VoluntaryTreatment extends ValidationElement {
                      />
         </Field>
 
-        <h3>{i18n.t('substance.drugs.voluntary.heading.treatmentCompleted')}</h3>
         <Branch name="TreatmentCompleted"
-                className="treatment-completed"
+                label={i18n.t('substance.drugs.voluntary.heading.treatmentCompleted')}
+                labelSize="h3"
+                className="treatment-completed no-margin-bottom"
                 value={this.props.TreatmentCompleted}
                 onError={this.props.onError}
                 required={this.props.required}
@@ -140,8 +142,8 @@ export default class VoluntaryTreatment extends ValidationElement {
 
         <Show when={this.props.TreatmentCompleted === 'No'}>
           <Field title={i18n.t('substance.drugs.voluntary.heading.noTreatmentExplanation')}
-            titleSize="h4"
-            scrollIntoView={this.props.scrollIntoView}>
+                 titleSize="label"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NoTreatmentExplanation"
                       className="no-treatment-explanation"
                       {...this.props.NoTreatmentExplanation}

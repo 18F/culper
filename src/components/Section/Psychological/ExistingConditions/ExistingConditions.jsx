@@ -82,7 +82,6 @@ export default class ExistingConditions extends SubsectionElement {
     const treatmentDate = (o.Diagnosed || {})
     const date = DateSummary(treatmentDate)
     const condition = (o.Condition || {}).value || ''
-    const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
 
     return Summary({
       type: i18n.t('psychological.existingConditions.treatment.collection.itemType'),
@@ -112,8 +111,9 @@ export default class ExistingConditions extends SubsectionElement {
           <div>
             <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
             {i18n.m('psychological.existingConditions.para.receivedTreatment')}
-            <Field adjustFor="button"
-              scrollIntoView={this.props.scrollIntoView}>
+            <Field className={this.props.ReceivedTreatment === 'No' ? 'no-margin-bottom' : ''}
+                   adjustFor="button"
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment} onError={this.handleError} required={this.props.required}>
                 <Radio name="treatment"
                        className="treatment yes"
@@ -141,7 +141,8 @@ export default class ExistingConditions extends SubsectionElement {
 
             <Show when={this.props.ReceivedTreatment === 'No'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
-                scrollIntoView={this.props.scrollIntoView}>
+                     titleSize="label"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation existing-condition-explanation"
                           {...this.props.Explanation}
@@ -173,9 +174,10 @@ export default class ExistingConditions extends SubsectionElement {
               </Accordion>
             </Show>
 
-            <h3>{i18n.t('psychological.existingConditions.heading.didNotFollow')}</h3>
             <Branch name="didNotFollow"
-                    className="eapp-field-wrap didnotfollow"
+                    label={i18n.t('psychological.existingConditions.heading.didNotFollow')}
+                    labelSize="h3"
+                    className="eapp-field-wrap didnotfollow no-margin-bottom"
                     value={this.props.DidNotFollow}
                     onError={this.handleError}
                     required={this.props.required}
@@ -185,7 +187,8 @@ export default class ExistingConditions extends SubsectionElement {
 
             <Show when={this.props.DidNotFollow === 'Yes'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
-                scrollIntoView={this.props.scrollIntoView}>
+                     titleSize="label"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="DidNotFollowExplanation"
                           className="explanation existing-condition-didnotfollow-explanation"
                           {...this.props.DidNotFollowExplanation}

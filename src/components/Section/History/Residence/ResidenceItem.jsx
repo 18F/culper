@@ -167,15 +167,20 @@ export default class ResidenceItem extends ValidationElement {
                    />
           </RadioGroup>
           <div className={`role ${this.showOther(this.state.Role)}`.trim()}>
-            <Text name="RoleOther"
-                  {...this.state.RoleOther}
-                  label={i18n.t('history.residence.label.role.explanation')}
-                  className="other"
-                  maxlength="100"
-                  onUpdate={this.onUpdate.bind(this, 'RoleOther')}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  />
+            <Field title={i18n.t('history.residence.label.role.explanation')}
+                   titleSize="label"
+                   help="section.subsection.help.field-name"
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Text name="RoleOther"
+                    {...this.state.RoleOther}
+                    className="other"
+                    maxlength="100"
+                    onUpdate={this.onUpdate.bind(this, 'RoleOther')}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
+            </Field>
           </div>
         </Field>
 

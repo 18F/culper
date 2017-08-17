@@ -312,9 +312,10 @@ export default class Offense extends ValidationElement {
                         />
             </Field>
 
-            <h3>{i18n.t('legal.police.heading.charged')}</h3>
             <Branch name="was_charged"
-                    className="offense-charged"
+                    label={i18n.t('legal.police.heading.charged')}
+                    labelSize="h3"
+                    className="offense-charged no-margin-bottom"
                     value={this.props.WasCharged}
                     onUpdate={this.updateWasCharged}
                     required={this.props.required}
@@ -325,19 +326,17 @@ export default class Offense extends ValidationElement {
         </Show>
 
         <Show when={this.props.WasCharged === 'No'}>
-          <div>
-            <Field adjustFor="labels"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Explanation"
-                        {...this.props.Explanation}
-                        label={i18n.t('legal.police.label.explanation')}
-                        className="offense-explanation"
-                        onUpdate={this.updateExplanation}
-                        onError={this.props.onError}
-                        required={this.props.required}
-                        />
-            </Field>
-          </div>
+          <Field title={i18n.t('legal.police.label.explanation')}
+                 titleSize="label"
+                 scrollIntoView={this.props.scrollIntoView}>
+            <Textarea name="Explanation"
+                      {...this.props.Explanation}
+                      className="offense-explanation"
+                      onUpdate={this.updateExplanation}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      />
+          </Field>
         </Show>
 
         <Show when={this.props.WasCharged === 'Yes'}>
@@ -478,7 +477,7 @@ export default class Offense extends ValidationElement {
                 <Branch name="awaiting_trial"
                         label={i18n.t('legal.police.heading.awaitingTrial')}
                         labelSize="h4"
-                        className="awaiting-trial"
+                        className="awaiting-trial no-margin-bottom"
                         value={this.props.AwaitingTrial}
                         onError={this.props.onError}
                         required={this.props.required}
@@ -487,7 +486,6 @@ export default class Offense extends ValidationElement {
                         />
                 <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
                        titleSize="label"
-                       adjustFor="labels"
                        scrollIntoView={this.props.scrollIntoView}>
                   <Textarea className="awaiting-trial-explanation"
                             {...this.props.AwaitingTrialExplanation}

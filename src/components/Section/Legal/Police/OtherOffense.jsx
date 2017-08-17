@@ -326,7 +326,7 @@ export default class OtherOffense extends ValidationElement {
             <Branch name="awaiting_trial"
                     label={i18n.t('legal.police.heading.awaitingTrial')}
                     labelSize="h4"
-                    className="awaiting-trial"
+                    className="awaiting-trial no-margin-bottom"
                     value={this.props.AwaitingTrial}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -335,7 +335,6 @@ export default class OtherOffense extends ValidationElement {
             </Branch>
             <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
                    titleSize="label"
-                   adjustFor="labels"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea className="awaiting-trial-explanation"
                         {...this.props.AwaitingTrialExplanation}

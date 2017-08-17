@@ -6,6 +6,11 @@ export default class ReceivedCounseling extends ValidationElement {
   constructor (props) {
     super(props)
 
+    this.state = {
+      presentClicked: false,
+      TreatmentEndDate: this.props.TreatmentEndDate
+    }
+
     this.update = this.update.bind(this)
     this.updateTreatmentProviderName = this.updateTreatmentProviderName.bind(this)
     this.updateTreatmentProviderAddress = this.updateTreatmentProviderAddress.bind(this)
@@ -19,23 +24,26 @@ export default class ReceivedCounseling extends ValidationElement {
     this.updateNoCompletedTreatmentExplanation = this.updateNoCompletedTreatmentExplanation.bind(this)
   }
 
-  update (updateValues) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        CounselingDates: this.props.CounselingDates,
-        TreatmentProviderName: this.props.TreatmentProviderName,
-        TreatmentProviderAddress: this.props.TreatmentProviderAddress,
-        AgencyName: this.props.AgencyName,
-        AgencyAddress: this.props.AgencyAddress,
-        UseSameAddress: this.props.UseSameAddress,
-        TreatmentBeganDate: this.props.TreatmentBeganDate,
-        TreatmentEndDate: this.props.TreatmentEndDate,
-        PresentTreatmentEndDate: this.props.PresentTreatmentEndDate,
-        CompletedTreatment: this.props.CompletedTreatment,
-        NoCompletedTreatmentExplanation: this.props.NoCompletedTreatmentExplanation,
-        ...updateValues
-      })
-    }
+  update (updateValues, clicked = false) {
+    const endDate = updateValues.TreatmentEndDate || this.props.TreatmentEndDate
+    this.setState({ presentClicked: clicked, TreatmentEndDate: endDate }, () => {
+      if (this.props.onUpdate) {
+        this.props.onUpdate({
+          CounselingDates: this.props.CounselingDates,
+          TreatmentProviderName: this.props.TreatmentProviderName,
+          TreatmentProviderAddress: this.props.TreatmentProviderAddress,
+          AgencyName: this.props.AgencyName,
+          AgencyAddress: this.props.AgencyAddress,
+          UseSameAddress: this.props.UseSameAddress,
+          TreatmentBeganDate: this.props.TreatmentBeganDate,
+          TreatmentEndDate: this.props.TreatmentEndDate,
+          PresentTreatmentEndDate: this.props.PresentTreatmentEndDate,
+          CompletedTreatment: this.props.CompletedTreatment,
+          NoCompletedTreatmentExplanation: this.props.NoCompletedTreatmentExplanation,
+          ...updateValues
+        })
+      }
+    })
   }
 
   updateTreatmentProviderName (values) {
@@ -84,9 +92,17 @@ export default class ReceivedCounseling extends ValidationElement {
         year: String(date.getFullYear()),
         day: String(date.getDate())
       }
+    } else {
+      endDate = {
+        date: '',
+        year: '',
+        month: '',
+        day: '',
+        estimated: false
+      }
     }
 
-    this.update({ TreatmentEndDate: endDate, PresentTreatmentEndDate: checked })
+    this.update({ TreatmentEndDate: endDate, PresentTreatmentEndDate: checked }, true)
   }
 
   updateAgencyAddress (values) {
@@ -101,7 +117,7 @@ export default class ReceivedCounseling extends ValidationElement {
     const maxDate = (this.props.TreatmentEndDate || {}).date || new Date()
     const minDate = (this.props.TreatmentBeganDate || {}).date || null
     return (
-      <div className="voluntary-counseling">
+      <div className="received-counseling">
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
           scrollIntoView={this.props.scrollIntoView}>
           <Text name="TreatmentProviderName"
@@ -138,8 +154,9 @@ export default class ReceivedCounseling extends ValidationElement {
                 />
         </Field>
 
-        <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}</h3>
         <Branch name="UseSameAddress"
+                label={i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}
+                labelSize="h3"
                 className="use-same-address"
                 yesLabel="Same as above"
                 noLabel="Different address"
@@ -187,8 +204,8 @@ export default class ReceivedCounseling extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="TreatmentEndDate"
                        className="treatment-end-date"
-                       {...this.props.TreatmentEndDate}
-                       receiveProps={this.props.PresentTreatmentEndDate || false}
+                       {...this.state.TreatmentEndDate}
+                       receiveProps={this.state.presentClicked}
                        prefix="treatment.end"
                        minDate={minDate}
                        disabled={this.props.PresentTreatmentEndDate}
@@ -196,19 +213,25 @@ export default class ReceivedCounseling extends ValidationElement {
                        onError={this.props.onError}
                        required={this.props.required}
                        />
-          <Checkbox name="PresentTreatmentEndDate"
-                    className="present-treatment-end-date"
-                    label="Present"
-                    value="present"
-                    checked={this.props.PresentTreatmentEndDate}
-                    onUpdate={this.updatePresentTreatmentEndDate}
-                    onError={this.props.onError}
-                    />
+          <div className="from-present">
+            <span className="or"> or </span>
+          </div>
+          <div className="from-present">
+            <Checkbox name="PresentTreatmentEndDate"
+                      className="present-treatment-end-date"
+                      label="Present"
+                      value="present"
+                      checked={this.props.PresentTreatmentEndDate}
+                      onUpdate={this.updatePresentTreatmentEndDate}
+                      onError={this.props.onError}
+                      />
+          </div>
         </Field>
 
-        <h3>{i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}</h3>
         <Branch name="CompletedTreatment"
-                className="completed-treatment"
+                label={i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}
+                labelSize="h3"
+                className="completed-treatment no-margin-bottom"
                 value={this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
                 required={this.props.required}
@@ -218,7 +241,8 @@ export default class ReceivedCounseling extends ValidationElement {
 
         <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
           <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
-            scrollIntoView={this.props.scrollIntoView}>
+                 titleSize="label"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NoCompletedTreatmentExplanation"
                       className="no-completed-treatment"
                       {...this.props.NoCompletedTreatmentExplanation}

@@ -217,15 +217,19 @@ export default class Person extends React.Component {
           </CheckboxGroup>
 
           <Show when={this.props.Relationship.includes('Other')}>
-            <Text name="RelationshipOther"
-                  label={i18n.t(`relationships.people.person.label.relationship.explanation`)}
-                  maxlength="100"
-                  className="relationship-other"
-                  {...this.props.RelationshipOther}
-                  onUpdate={this.updateRelationshipOther}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  />
+            <Field title={i18n.t(`relationships.people.person.label.relationship.explanation`)}
+                   titleSize="label"
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Text name="RelationshipOther"
+                    maxlength="100"
+                    className="relationship-other"
+                    {...this.props.RelationshipOther}
+                    onUpdate={this.updateRelationshipOther}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
+            </Field>
           </Show>
         </Field>
 

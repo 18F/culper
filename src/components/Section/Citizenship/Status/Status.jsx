@@ -306,14 +306,17 @@ export default class Status extends SubsectionElement {
               </RadioGroup>
 
               <Show when={this.props.AbroadDocumentation === 'Other'}>
-                <Textarea name="Explanation"
-                          className="citizenship-abroad-explanation"
-                          label={i18n.t('citizenship.status.label.explanation')}
-                          {...this.props.Explanation}
-                          onUpdate={this.updateExplanation}
-                          onError={this.handleError}
-                          required={this.props.required}
-                          />
+                <Field title={i18n.t('citizenship.status.label.explanation')}
+                       titleSize="label"
+                       adjustFor="textarea">
+                  <Textarea name="Explanation"
+                            className="citizenship-abroad-explanation"
+                            {...this.props.Explanation}
+                            onUpdate={this.updateExplanation}
+                            onError={this.handleError}
+                            required={this.props.required}
+                            />
+                </Field>
               </Show>
             </Field>
 
@@ -576,14 +579,18 @@ export default class Status extends SubsectionElement {
               </RadioGroup>
 
               <Show when={this.props.Basis === 'Other'}>
-                <Textarea name="Explanation"
-                          className="citizenship-basis-explanation"
-                          label={i18n.t('citizenship.status.label.explanation')}
-                          {...this.props.Explanation}
-                          onUpdate={this.updateExplanation}
-                          onError={this.handleError}
-                          required={this.props.required}
-                          />
+                <Field title={i18n.t('citizenship.status.label.explanation')}
+                       titleSize="label"
+                       adjustFor="textarea"
+                       scrollIntoView={this.props.scrollIntoView}>
+                  <Textarea name="Explanation"
+                            className="citizenship-basis-explanation"
+                            {...this.props.Explanation}
+                            onUpdate={this.updateExplanation}
+                            onError={this.handleError}
+                            required={this.props.required}
+                            />
+                </Field>
               </Show>
             </Field>
           </div>
@@ -672,14 +679,18 @@ export default class Status extends SubsectionElement {
               </RadioGroup>
 
               <Show when={this.props.Basis === 'Other'}>
-                <Textarea name="Explanation"
-                          className="citizenship-basis-explanation"
-                          label={i18n.t('citizenship.status.label.explanation')}
-                          {...this.props.Explanation}
-                          onUpdate={this.updateExplanation}
-                          onError={this.handleError}
-                          required={this.props.required}
-                          />
+                <Field title={i18n.t('citizenship.status.label.explanation')}
+                       titleSize="label"
+                       adjustFor="textarea"
+                       scrollIntoView={this.props.scrollIntoView}>
+                  <Textarea name="Explanation"
+                            className="citizenship-basis-explanation"
+                            {...this.props.Explanation}
+                            onUpdate={this.updateExplanation}
+                            onError={this.handleError}
+                            required={this.props.required}
+                            />
+                </Field>
               </Show>
             </Field>
           </div>
@@ -805,14 +816,18 @@ export default class Status extends SubsectionElement {
               </RadioGroup>
 
               <Show when={this.props.DocumentType === 'Other'}>
-                <Textarea name="Explanation"
-                          className="citizenship-document-type-explanation"
-                          label={i18n.t('citizenship.status.label.explanation')}
-                          {...this.props.Explanation}
-                          onUpdate={this.updateExplanation}
-                          onError={this.handleError}
-                          required={this.props.required}
-                          />
+                <Field title={i18n.t('citizenship.status.label.explanation')}
+                       titleSize="label"
+                       adjustFor="textarea"
+                       scrollIntoView={this.props.scrollIntoView}>
+                  <Textarea name="Explanation"
+                            className="citizenship-document-type-explanation"
+                            {...this.props.Explanation}
+                            onUpdate={this.updateExplanation}
+                            onError={this.handleError}
+                            required={this.props.required}
+                            />
+                </Field>
               </Show>
             </Field>
 

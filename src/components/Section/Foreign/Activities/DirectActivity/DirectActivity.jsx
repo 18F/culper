@@ -67,6 +67,7 @@ export default class DirectActivity extends SubsectionElement {
                 label={<h3>{i18n.t('foreign.activities.direct.heading.title')}</h3>}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                help="foreign.activities.direct.help.directControl"
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}

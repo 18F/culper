@@ -59,27 +59,32 @@ export default class NegativeImpact extends ValidationElement {
           />
         </Field>
 
-        <h3>{i18n.t('substance.alcohol.negativeImpact.heading.circumstances')}</h3>
-        <Field scrollIntoView={this.props.scrollIntoView}>
+        <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')} />
+
+        <Field title={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
+               titleSize="label"
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Circumstances"
-            className="circumstances"
-            {...this.props.Circumstances}
-            label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
-            onUpdate={this.updateCircumstances}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    className="circumstances"
+                    {...this.props.Circumstances}
+                    onUpdate={this.updateCircumstances}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
-        <Field scrollIntoView={this.props.scrollIntoView}>
+
+        <Field title={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
+               titleSize="label"
+               adjustFor="textarea">
           <Textarea name="NegativeImpact"
-            className="negative-impact-explanation"
-            {...this.props.NegativeImpact}
-            label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
-            onUpdate={this.updateNegativeImpact}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    className="negative-impact-explanation"
+                    {...this.props.NegativeImpact}
+                    onUpdate={this.updateNegativeImpact}
+                    onError={this.props.onError}
+                    />
         </Field>
+
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.used')}
           help={'substance.alcohol.negativeImpact.help.used'}
           adjustFor="daterange"

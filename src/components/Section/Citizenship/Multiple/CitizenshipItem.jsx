@@ -142,7 +142,7 @@ export default class CitizenshipItem extends ValidationElement {
             <Branch name="Current"
                     label={i18n.t('citizenship.multiple.heading.citizenship.current')}
                     labelSize="h3"
-                    className="citizenship-current"
+                    className="citizenship-current no-margin-bottom"
                     value={this.props.Current}
                     onUpdate={this.updateCurrent}
                     onError={this.props.onError}
@@ -151,7 +151,8 @@ export default class CitizenshipItem extends ValidationElement {
                     />
 
             <Field title={i18n.t('citizenship.multiple.heading.citizenship.currentexplanation')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   titleSize="label"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="CurrentExplanation"
                         {...this.props.CurrentExplanation}
                         className="citizenship-current-explanation"

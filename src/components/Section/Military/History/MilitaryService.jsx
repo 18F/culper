@@ -283,8 +283,9 @@ export default class MilitaryService extends ValidationElement {
                      />
         </Field>
 
-        <h3>{i18n.t('military.history.heading.discharged')}</h3>
         <Branch name="has_beendischarged"
+                label={i18n.t('military.history.heading.discharged')}
+                labelSize="h3"
                 className="discharged"
                 value={this.props.HasBeenDischarged}
                 onUpdate={this.updateDischarged}
@@ -349,25 +350,29 @@ export default class MilitaryService extends ValidationElement {
                        />
               </RadioGroup>
               <Show when={this.props.DischargeType === 'Other'}>
-                <Text name="DischargeTypeOther"
-                      {...this.props.DischargeTypeOther}
-                      label={i18n.t('military.history.label.discharge.type.otherex')}
-                      className="discharge-type-otherex"
-                      maxlength="100"
-                      onUpdate={this.updateDischargeTypeOther}
-                      onError={this.props.onError}
-                      required={this.props.required}
-                      />
+                <Field title={i18n.t('military.history.label.discharge.type.otherex')}
+                       titleSize="label"
+                       adjustFor="text"
+                       scrollIntoView={this.props.scrollIntoView}>
+                  <Text name="DischargeTypeOther"
+                        {...this.props.DischargeTypeOther}
+                        className="discharge-type-otherex"
+                        maxlength="100"
+                        onUpdate={this.updateDischargeTypeOther}
+                        onError={this.props.onError}
+                        required={this.props.required}
+                        />
+                </Field>
               </Show>
             </Field>
 
             <Show when={this.props.DischargeType && this.props.DischargeType !== 'Honorable'}>
-              <Field adjustFor="labels"
-                scrollIntoView={this.props.scrollIntoView}>
+              <Field title={i18n.t('military.history.label.discharge.reason')}
+                     adjustFor="textarea"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="DischargeReason"
                           {...this.props.DischargeReason}
                           className="discharge-reason"
-                          label={i18n.t('military.history.label.discharge.reason')}
                           onUpdate={this.updateDischargeReason}
                           onError={this.props.onError}
                           required={this.props.required}

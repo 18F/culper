@@ -180,8 +180,9 @@ export default class Diagnosis extends ValidationElement {
         <Show when={this.props.prefix !== 'existingConditions.diagnosis'}>
           <div>
             <Field title={i18n.t(`psychological.${prefix}.heading.effective`)}
-              adjustFor="buttons"
-              scrollIntoView={this.props.scrollIntoView}>
+                   className="no-margin-bottom"
+                   adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup className="effective" selectedValue={this.props.Effective} onError={this.props.onError} required={this.props.required}>
                 <Radio name="effective"
                        label="Yes"
@@ -202,8 +203,9 @@ export default class Diagnosis extends ValidationElement {
 
             <Show when={this.props.Effective === 'No'}>
               <Field title={i18n.t(`psychological.${prefix}.heading.explanation`)}
-                help={`psychological.${prefix}.help.explanation`}
-                scrollIntoView={this.props.scrollIntoView}>
+                     titleSize="label"
+                     help={`psychological.${prefix}.help.explanation`}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation"
                           {...this.props.Explanation}

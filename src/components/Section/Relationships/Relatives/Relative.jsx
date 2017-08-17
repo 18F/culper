@@ -477,8 +477,9 @@ export default class Relative extends ValidationElement {
 
         <Show when={mother}>
           <div>
-            <h3>{i18n.t('relationships.relatives.heading.maiden')}</h3>
             <Branch name="maiden_diff"
+                    label={i18n.t('relationships.relatives.heading.maiden')}
+                    labelSize="h3"
                     className="eapp-field-wrap relative-maiden-diff"
                     value={this.props.MaidenSameAsListed}
                     yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
@@ -504,35 +505,34 @@ export default class Relative extends ValidationElement {
         </Show>
 
         <Show when={immediateFamily}>
-          <div>
-            <BranchCollection items={this.props.Aliases}
-                              branchName="has_alias"
-                              label={i18n.t('relationships.relatives.heading.alias.branch')}
-                              appendLabel={i18n.t('relationships.relatives.heading.alias.branch')}
-                              className="relative-alias"
-                              onUpdate={this.updateAliases}
-                              required={this.props.required}
-                              scrollIntoView={this.props.scrollIntoView}
-                              onError={this.props.onError}>
-              <div>
-                <Field title={i18n.t('relationships.relatives.heading.needmore')}
-                       scrollIntoView={this.props.scrollIntoView}
-                       className="more title">
-                  <Svg src="/img/date-down-arrow.svg" className="more arrow" />
-                </Field>
-                <Alias name="Item"
-                       onError={this.props.onError}
-                       hideMaiden={mother}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       bind={true} />
-              </div>
-            </BranchCollection>
-          </div>
+          <BranchCollection items={this.props.Aliases}
+                            branchName="has_alias"
+                            label={i18n.t('relationships.relatives.heading.alias.branch')}
+                            appendLabel={i18n.t('relationships.relatives.heading.alias.branch')}
+                            className="relative-alias"
+                            onUpdate={this.updateAliases}
+                            onError={this.props.onError}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}>
+            <div>
+              <Field title={i18n.t('relationships.relatives.heading.needmore')}
+                     className="more title"
+                     scrollIntoView={this.props.scrollIntoView}>
+                <Svg src="/img/date-down-arrow.svg" className="more arrow" />
+              </Field>
+              <Alias name="Item"
+                      onError={this.props.onError}
+                      hideMaiden={mother}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      bind={true} />
+            </div>
+          </BranchCollection>
         </Show>
 
-        <h3>{i18n.t('relationships.relatives.heading.deceased.branch')}</h3>
         <Branch name="is_deceased"
+                label={i18n.t('relationships.relatives.heading.deceased.branch')}
+                labelSize="h3"
                 className="relative-deceased"
                 value={this.props.IsDeceased}
                 onUpdate={this.updateIsDeceased}
@@ -837,14 +837,14 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.address.methods')}
-                  comments={true}
-                  commentsName="MethodsComments"
-                  commentsValue={this.props.MethodsComments}
-                  commentsActive={(this.props.Methods || []).some(x => x === 'Other')}
-                  scrollIntoView={this.props.scrollIntoView}
-                  onUpdate={this.updateMethodsComments}
-                  onError={this.props.onError}
-                  adjustFor="big-buttons">
+                       comments={true}
+                       commentsName="MethodsComments"
+                       commentsValue={this.props.MethodsComments}
+                       commentsActive={(this.props.Methods || []).some(x => x === 'Other')}
+                       onUpdate={this.updateMethodsComments}
+                       onError={this.props.onError}
+                       adjustFor="big-buttons"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <div>
                     {i18n.m('relationships.relatives.para.checkall')}
                     <CheckboxGroup className="relative-methods option-list"
@@ -947,9 +947,9 @@ export default class Relative extends ValidationElement {
                            />
                   </RadioGroup>
                 </Field>
-
               </div>
             </Show>
+
             <Field title={i18n.t('relationships.relatives.heading.employer.name')}
                    adjustFor="buttons"
                    scrollIntoView={this.props.scrollIntoView}

@@ -138,8 +138,9 @@ export default class DrugInvolvement extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('substance.drugs.involvement.heading.involvementWhileEmployed')}</h3>
         <Branch name="InvolvementWhileEmployed"
+                label={i18n.t('substance.drugs.involvement.heading.involvementWhileEmployed')}
+                labelSize="h3"
                 className="involvement-while-employed"
                 value={this.props.InvolvementWhileEmployed}
                 onError={this.props.onError}
@@ -148,8 +149,9 @@ export default class DrugInvolvement extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <h3>{i18n.t('substance.drugs.involvement.heading.involvementWithClearance')}</h3>
         <Branch name="InvolvementWithClearance"
+                label={i18n.t('substance.drugs.involvement.heading.involvementWithClearance')}
+                labelSize="h3"
                 className="involvement-with-clearance"
                 value={this.props.InvolvementWithClearance}
                 onError={this.props.onError}
@@ -158,9 +160,10 @@ export default class DrugInvolvement extends ValidationElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <h3>{i18n.t('substance.drugs.involvement.heading.involvementInFuture')}</h3>
         <Branch name="InvolvementInFuture"
-                className="involvement-in-future"
+                label={i18n.t('substance.drugs.involvement.heading.involvementInFuture')}
+                labelSize="h3"
+                className="involvement-in-future no-margin-bottom"
                 value={this.props.InvolvementInFuture}
                 onError={this.props.onError}
                 required={this.props.required}
@@ -170,8 +173,8 @@ export default class DrugInvolvement extends ValidationElement {
 
         <Show when={this.props.InvolvementInFuture === 'Yes'}>
           <Field title={i18n.t('substance.drugs.involvement.heading.explanation')}
-            titleSize="h4"
-            scrollIntoView={this.props.scrollIntoView}>
+                 titleSize="label"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       className="explanation"
                       {...this.props.Explanation}
