@@ -106,14 +106,17 @@ export class DiplomaItem extends ValidationElement {
                    />
           </RadioGroup>
           <Show when={this.state.Diploma === 'Other'}>
-            <Text name="DiplomaOther"
-                  {...this.state.DiplomaOther}
-                  label={i18n.t('history.education.label.diploma.other')}
-                  className="other"
-                  maxlength="100"
-                  onUpdate={this.updateDiplomaOther}
-                  onError={this.props.onError}
-                  />
+            <Field title={i18n.t('history.education.label.diploma.other')}
+                   titleSize="label"
+                   adjustFor="text">
+              <Text name="DiplomaOther"
+                    {...this.state.DiplomaOther}
+                    className="other"
+                    maxlength="100"
+                    onUpdate={this.updateDiplomaOther}
+                    onError={this.props.onError}
+                    />
+            </Field>
           </Show>
         </Field>
 

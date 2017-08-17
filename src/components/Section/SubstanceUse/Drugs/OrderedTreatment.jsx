@@ -153,9 +153,10 @@ export default class OrderedTreatment extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('substance.drugs.ordered.heading.actionTaken')}</h3>
         <Branch name="ActionTaken"
-                className="action-taken"
+                label={i18n.t('substance.drugs.ordered.heading.actionTaken')}
+                labelSize="h3"
+                className="action-taken no-margin-bottom"
                 value={this.props.ActionTaken}
                 onError={this.props.onError}
                 onUpdate={this.updateActionTaken}>
@@ -163,7 +164,7 @@ export default class OrderedTreatment extends ValidationElement {
 
         <Show when={this.props.ActionTaken === 'No'}>
           <Field title={i18n.t('substance.drugs.ordered.heading.noActionTakenExplanation')}
-                 titleSize="h4">
+                 titleSize="label">
             <Textarea name="NoActionTakenExplanation"
                       className="no-action-taken-explanation"
                       {...this.props.NoActionTakenExplanation}
@@ -206,12 +207,14 @@ export default class OrderedTreatment extends ValidationElement {
                         onError={this.props.onError}
                         />
             </Field>
+
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderTelephone')}
                    className="treatment-provider-telephone"
                    help={'substance.drugs.ordered.help.treatmentProviderTelephone'}
                    adjustFor="telephone">
               <Telephone name="TreatmentProviderTelephone"
                          {...this.props.TreatmentProviderTelephone}
+                         showNumberType={false}
                          onUpdate={this.updateTreatmentProviderTelephone}
                          onError={this.props.onError}
                          />
@@ -228,9 +231,10 @@ export default class OrderedTreatment extends ValidationElement {
                          />
             </Field>
 
-            <h3>{i18n.t('substance.drugs.ordered.heading.treatmentCompleted')}</h3>
             <Branch name="TreatmentCompleted"
-                    className="treatment-completed"
+                    label={i18n.t('substance.drugs.ordered.heading.treatmentCompleted')}
+                    labelSize="h3"
+                    className="treatment-completed no-margin-bottom"
                     value={this.props.TreatmentCompleted}
                     onError={this.props.onError}
                     onUpdate={this.updateTreatmentCompleted}>
@@ -238,7 +242,7 @@ export default class OrderedTreatment extends ValidationElement {
 
             <Show when={this.props.TreatmentCompleted === 'No'}>
               <Field title={i18n.t('substance.drugs.ordered.heading.noTreatmentExplanation')}
-                     titleSize="h4">
+                     titleSize="label">
                 <Textarea name="NoTreatmentExplanation"
                           className="no-treatment-explanation"
                           {...this.props.NoTreatmentExplanation}

@@ -294,13 +294,16 @@ export default class Bankruptcy extends ValidationElement {
                 />
 
         <Show when={this.props.HasDischargeExplanation}>
-          <Textarea name="DischargeExplanation"
-                    label={i18n.t('financial.bankruptcy.label.dischargeExplanation')}
-                    {...this.props.DischargeExplanation}
-                    className="discharge-explanation"
-                    onUpdate={this.updateDischargeExplanation}
-                    onError={this.props.onError}
-                    />
+          <Field title={i18n.t('financial.bankruptcy.label.dischargeExplanation')}
+                 titleSize="label"
+                 adjustFor="textarea">
+            <Textarea name="DischargeExplanation"
+                      {...this.props.DischargeExplanation}
+                      className="discharge-explanation"
+                      onUpdate={this.updateDischargeExplanation}
+                      onError={this.props.onError}
+                      />
+          </Field>
         </Show>
       </div>
     )

@@ -57,27 +57,30 @@ export default class NegativeImpact extends ValidationElement {
                        />
         </Field>
 
-        <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')}
-               adjustFor="labels">
-          <Field>
-            <Textarea name="Circumstances"
-                      className="circumstances"
-                      {...this.props.Circumstances}
-                      label={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
-                      onUpdate={this.updateCircumstances}
-                      onError={this.props.onError}
-                      />
-          </Field>
-          <Field>
-            <Textarea name="NegativeImpact"
-                      className="negative-impact-explanation"
-                      {...this.props.NegativeImpact}
-                      label={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
-                      onUpdate={this.updateNegativeImpact}
-                      onError={this.props.onError}
-                      />
-          </Field>
+        <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')} />
+
+        <Field title={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
+               titleSize="label"
+               adjustFor="textarea">
+          <Textarea name="Circumstances"
+                    className="circumstances"
+                    {...this.props.Circumstances}
+                    onUpdate={this.updateCircumstances}
+                    onError={this.props.onError}
+                    />
         </Field>
+
+        <Field title={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
+               titleSize="label"
+               adjustFor="textarea">
+          <Textarea name="NegativeImpact"
+                    className="negative-impact-explanation"
+                    {...this.props.NegativeImpact}
+                    onUpdate={this.updateNegativeImpact}
+                    onError={this.props.onError}
+                    />
+        </Field>
+
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.used')}
                help={'substance.alcohol.negativeImpact.help.used'}
                adjustFor="daterange">

@@ -70,17 +70,17 @@ export default class DrugUse extends ValidationElement {
     return (
       <div className="drug-use">
         <Field title={i18n.t('substance.drugs.use.heading.drugType')}
-          className="drug-type-use"
-          adjustFor="labels">
+               className="drug-type-use"
+               adjustFor="labels">
           <DrugType name="DrugType"
-            {...this.props.DrugType}
-            onUpdate={this.updateDrugType}
-            onError={this.props.onError}
-          />
+                    {...this.props.DrugType}
+                    onUpdate={this.updateDrugType}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.firstUse')}
-          adjustFor="datecontrol">
+               adjustFor="datecontrol">
           <DateControl name="FirstUse"
                        className="first-use"
                        {...this.props.FirstUse}
@@ -112,24 +112,27 @@ export default class DrugUse extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('substance.drugs.use.heading.useWhileEmployed')}</h3>
         <Branch name="UseWhileEmployed"
+                label={i18n.t('substance.drugs.use.heading.useWhileEmployed')}
+                labelSize="h3"
                 className="use-while-employed"
                 value={this.props.UseWhileEmployed}
                 onError={this.props.onError}
                 onUpdate={this.updateUseWhileEmployed}>
         </Branch>
 
-        <h3>{i18n.t('substance.drugs.use.heading.useWithClearance')}</h3>
         <Branch name="UseWithClearance"
+                label={i18n.t('substance.drugs.use.heading.useWithClearance')}
+                labelSize="h3"
                 className="use-with-clearance"
                 value={this.props.UseWithClearance}
                 onError={this.props.onError}
                 onUpdate={this.updateUseWithClearance}>
         </Branch>
 
-        <h3>{i18n.t('substance.drugs.use.heading.useInFuture')}</h3>
         <Branch name="UseInFuture"
+                label={i18n.t('substance.drugs.use.heading.useInFuture')}
+                labelSize="h3"
                 className="use-in-future"
                 value={this.props.UseInFuture}
                 onError={this.props.onError}

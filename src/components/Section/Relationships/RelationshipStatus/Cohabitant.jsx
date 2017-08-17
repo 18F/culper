@@ -194,8 +194,8 @@ export default class Cohabitant extends ValidationElement {
           </Field>
         </Show>
 
-        <h3>{i18n.t('relationships.cohabitant.heading.ssn')}</h3>
-        <Field help="identification.ssn.help">
+        <Field title={i18n.t('relationships.cohabitant.heading.ssn')}
+               help="identification.ssn.help">
           <SSN name="ssn"
                {...this.props.SSN}
                onUpdate={this.updateSSN}
@@ -204,37 +204,37 @@ export default class Cohabitant extends ValidationElement {
         </Field>
 
         <BranchCollection label={i18n.t('relationships.cohabitant.heading.othernames')}
-          className="cohabitant-othernames"
-          appendLabel={i18n.m('relationships.cohabitant.heading.appendOthernames')}
-          items={this.props.OtherNames}
-          onError={this.props.onError}
-          onUpdate={this.updateOtherNames}>
+                          className="cohabitant-othernames"
+                          appendLabel={i18n.m('relationships.cohabitant.heading.appendOthernames')}
+                          items={this.props.OtherNames}
+                          onError={this.props.onError}
+                          onUpdate={this.updateOtherNames}>
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}>
             <Name name="Othername"
-              bind={true}
-              onError={this.props.onError}
-            />
+                  bind={true}
+                  onError={this.props.onError}
+                  />
           </Field>
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
-            help="alias.maiden.help"
-            adjustFor="buttons"
-            shrink={true}>
+                 help="alias.maiden.help"
+                 adjustFor="buttons"
+                 shrink={true}>
             <MaidenName name="MaidenName"
-              bind={true}
-              onError={this.props.onError}
-            />
+                        bind={true}
+                        onError={this.props.onError}
+                        />
           </Field>
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
-            adjustFor="daterange"
-            shrink={true}>
+                 adjustFor="daterange"
+                 shrink={true}>
             <DateRange name="DatesUsed"
-              bind={true}
-              className="datesused"
-              onError={this.props.onError}
-            />
+                       bind={true}
+                       className="datesused"
+                       onError={this.props.onError}
+                       />
           </Field>
         </BranchCollection>
 

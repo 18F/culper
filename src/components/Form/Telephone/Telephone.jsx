@@ -566,43 +566,45 @@ export default class Telephone extends ValidationElement {
           </RadioGroup>
         </div>
 
-        <div className="phonetype">
-          <label className={this.state.noNumber ? 'disabled' : ''}>Select phone number type</label>
-          <RadioGroup selectedValue={this.state.numberType}>
-            <Radio name="numbertype-cell"
-                   className="phonetype-option cell"
-                   label={i18n.t('telephone.numberType.cell')}
-                   value="Cell"
-                   disabled={this.state.noNumber}
-                   onUpdate={this.handleNumberTypeChange}
-                   onError={this.handleErrorType}
-                   />
-            <Radio name="numbertype-home"
-                   className="phonetype-option home"
-                   label={i18n.t('telephone.numberType.home')}
-                   value="Home"
-                   disabled={this.state.noNumber}
-                   onUpdate={this.handleNumberTypeChange}
-                   onError={this.handleErrorType}
-                   />
-            <Radio name="numbertype-work"
-                   className="phonetype-option work"
-                   label={i18n.t('telephone.numberType.work')}
-                   value="Work"
-                   disabled={this.state.noNumber}
-                   onUpdate={this.handleNumberTypeChange}
-                   onError={this.handleErrorType}
-                   />
-            <Radio name="numbertype-other"
-                   className="phonetype-option other"
-                   label={i18n.t('telephone.numberType.other')}
-                   value="Other"
-                   disabled={this.state.noNumber}
-                   onUpdate={this.handleNumberTypeChange}
-                   onError={this.handleErrorType}
-                   />
-          </RadioGroup>
-        </div>
+        <Show when={this.props.showNumberType}>
+          <div className="phonetype">
+            <label className={this.state.noNumber ? 'disabled' : ''}>Select phone number type</label>
+            <RadioGroup selectedValue={this.state.numberType}>
+              <Radio name="numbertype-cell"
+                    className="phonetype-option cell"
+                    label={i18n.t('telephone.numberType.cell')}
+                    value="Cell"
+                    disabled={this.state.noNumber}
+                    onUpdate={this.handleNumberTypeChange}
+                    onError={this.handleErrorType}
+                    />
+              <Radio name="numbertype-home"
+                    className="phonetype-option home"
+                    label={i18n.t('telephone.numberType.home')}
+                    value="Home"
+                    disabled={this.state.noNumber}
+                    onUpdate={this.handleNumberTypeChange}
+                    onError={this.handleErrorType}
+                    />
+              <Radio name="numbertype-work"
+                    className="phonetype-option work"
+                    label={i18n.t('telephone.numberType.work')}
+                    value="Work"
+                    disabled={this.state.noNumber}
+                    onUpdate={this.handleNumberTypeChange}
+                    onError={this.handleErrorType}
+                    />
+              <Radio name="numbertype-other"
+                    className="phonetype-option other"
+                    label={i18n.t('telephone.numberType.other')}
+                    value="Other"
+                    disabled={this.state.noNumber}
+                    onUpdate={this.handleNumberTypeChange}
+                    onError={this.handleErrorType}
+                    />
+            </RadioGroup>
+          </div>
+        </Show>
       </div>
     )
   }
@@ -617,6 +619,7 @@ Telephone.defaultProps = {
   number: '',
   extension: '',
   noNumber: '',
+  showNumberType: true,
   allowNotApplicable: true,
   tab: (input) => { input.focus() },
   onError: (value, arr) => { return arr }
