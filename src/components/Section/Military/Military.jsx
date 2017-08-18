@@ -131,6 +131,7 @@ class Military extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -146,6 +147,7 @@ class Military extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
+                          scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
 
@@ -161,6 +163,7 @@ class Military extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
         </SectionViews>
@@ -188,7 +191,8 @@ function mapStateToProps (state) {
 
 Military.defaultProps = {
   section: 'military',
-  store: 'Military'
+  store: 'Military',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Military))
