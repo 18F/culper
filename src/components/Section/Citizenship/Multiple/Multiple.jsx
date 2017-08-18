@@ -71,6 +71,7 @@ export default class Multiple extends SubsectionElement {
         <Show when={this.props.HasMultiple === 'Yes'}>
           <Accordion items={this.props.Citizenships}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onError={this.handleError}
