@@ -68,6 +68,7 @@ export default class Debarred extends SubsectionElement {
         <Show when={this.props.HasDebarment === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -121,5 +122,6 @@ Debarred.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalInvestigationsDebarredValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

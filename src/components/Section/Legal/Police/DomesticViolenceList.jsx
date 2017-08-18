@@ -34,6 +34,7 @@ export default class DomesticViolenceList extends SubsectionElement {
                           className="has-order"
                           appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
                           items={this.props.List}
+                          scrollToBottom={this.props.scrollToBottom}
                           onError={this.handleError}
                           onUpdate={this.updateList}>
           <DomesticViolence name="domestic"
@@ -55,5 +56,6 @@ DomesticViolenceList.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DomesticViolenceValidator(props, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }
