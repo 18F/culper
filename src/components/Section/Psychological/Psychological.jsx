@@ -54,7 +54,9 @@ class Psychological extends SectionElement {
                         ApplicantBirthDate={this.props.ApplicantBirthDate}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
-                        onUpdate={this.handleUpdate.bind(this, 'Competence')} />
+                        onUpdate={this.handleUpdate.bind(this, 'Competence')}
+                        scrollToBottom={this.props.scrollToBottom}
+                      />
           </SectionView>
 
           <SectionView name="consultations"
@@ -67,7 +69,9 @@ class Psychological extends SectionElement {
                           ApplicantBirthDate={this.props.ApplicantBirthDate}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+                          onUpdate={this.handleUpdate.bind(this, 'Consultation')}
+                          scrollToBottom={this.props.scrollToBottom}
+                        />
           </SectionView>
           <SectionView name="hospitalizations"
                        back="psychological/consultations"
@@ -79,7 +83,9 @@ class Psychological extends SectionElement {
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')}
+                              scrollToBottom={this.props.scrollToBottom}
+                            />
           </SectionView>
           <SectionView name="diagnoses"
                        back="psychological/hospitalizations"
@@ -92,6 +98,7 @@ class Psychological extends SectionElement {
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
+                       scrollToBottom={this.props.scrollToBottom}
                        />
           </SectionView>
           <SectionView name="conditions"
@@ -105,6 +112,7 @@ class Psychological extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
           <SectionView name="review"
@@ -191,7 +199,8 @@ function mapStateToProps (state) {
 
 Psychological.defaultProps = {
   section: 'psychological',
-  store: 'Psychological'
+  store: 'Psychological',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Psychological))

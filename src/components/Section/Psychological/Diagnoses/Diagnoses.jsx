@@ -159,6 +159,7 @@ export default class Diagnoses extends SubsectionElement {
             <Show when={this.props.InTreatment === 'Yes'}>
               <Accordion defaultState={this.props.defaultState}
                          items={this.props.TreatmentList}
+                         scrollToBottom={this.props.scrollToBottom}
                          branch={this.props.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}
                          summary={this.treatmentSummary}
@@ -191,5 +192,6 @@ Diagnoses.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DiagnosesValidator(props, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }
