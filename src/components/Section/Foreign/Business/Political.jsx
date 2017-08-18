@@ -69,6 +69,7 @@ export default class Political extends SubsectionElement {
         <Show when={this.props.HasForeignPolitical === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -136,5 +137,6 @@ Political.defaultProps = {
   validator: (state, props) => {
     return new ForeignBusinessPoliticalValidator(state, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

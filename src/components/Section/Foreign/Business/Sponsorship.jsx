@@ -69,6 +69,7 @@ export default class Sponsorship extends SubsectionElement {
         <Show when={this.props.HasForeignSponsorship === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -211,5 +212,6 @@ Sponsorship.defaultProps = {
   validator: (state, props) => {
     return new ForeignBusinessSponsorshipValidator(state, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

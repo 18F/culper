@@ -66,6 +66,7 @@ export default class Contacts extends SubsectionElement {
         <Show when={this.props.HasForeignContacts === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -94,5 +95,6 @@ Contacts.defaultProps = {
   validator: (state, props) => {
     return new ForeignContactsValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

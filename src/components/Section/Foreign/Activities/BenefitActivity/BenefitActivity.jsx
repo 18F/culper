@@ -95,6 +95,7 @@ export default class BenefitActivity extends SubsectionElement {
         <Show when={this.props.HasBenefits === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -125,7 +126,8 @@ BenefitActivity.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignBenefitActivityValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }
 
 export const benefitSummary = (item, index) => {

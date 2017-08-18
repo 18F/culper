@@ -67,6 +67,7 @@ export default class Voting extends SubsectionElement {
         <Show when={this.props.HasForeignVoting === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -126,5 +127,6 @@ Voting.defaultProps = {
   validator: (state, props) => {
     return new ForeignBusinessVotingValidator(state, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }
