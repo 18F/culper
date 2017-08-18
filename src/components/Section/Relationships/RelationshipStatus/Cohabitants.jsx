@@ -70,6 +70,7 @@ export default class Cohabitants extends SubsectionElement {
         <Show when={this.props.HasCohabitant === 'Yes'}>
           <Accordion items={this.props.CohabitantList}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.CohabitantListBranch}
                      summary={this.summary}
                      onUpdate={this.updateCohabitantList}
@@ -97,5 +98,6 @@ Cohabitants.defaultProps = {
   validator: (state, props) => {
     return new CohabitantsValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

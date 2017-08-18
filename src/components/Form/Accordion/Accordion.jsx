@@ -37,6 +37,14 @@ export const doScroll = (first, item, scrollTo) => {
   window.scroll({ top: pos - offset - offsetDeux, left: 0, behavior: 'smooth' })
 }
 
+export const scrollToBottom = (selector) => {
+  const el = document.querySelector(selector)
+  if (!el) {
+    return
+  }
+  window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' })
+}
+
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
@@ -266,6 +274,9 @@ export default class Accordion extends ValidationElement {
       return
     }
 
+    if (this.props.scrollToBottom) {
+      scrollToBottom(this.props.scrollToBottom)
+    }
     this.update(this.props.items, value)
   }
 
@@ -488,6 +499,7 @@ Accordion.defaultProps = {
   incomplete: i18n.t('collection.incomplete'),
   caption: null,
   scrollTo: '',
+  scrollToBottom: '',
   timeout: 500,
   sort: null,
   realtime: true,

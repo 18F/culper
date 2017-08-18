@@ -80,6 +80,7 @@ export default class Card extends SubsectionElement {
         <Show when={this.state.HasCardAbuse === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}

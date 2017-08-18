@@ -86,6 +86,7 @@ export default class Gambling extends SubsectionElement {
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
                      onError={this.handleError}
