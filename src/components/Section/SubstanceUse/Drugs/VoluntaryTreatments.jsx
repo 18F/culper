@@ -70,6 +70,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
         <Show when={this.props.TreatmentVoluntary === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -94,5 +95,6 @@ VoluntaryTreatments.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugVoluntaryTreatmentsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

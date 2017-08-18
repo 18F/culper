@@ -93,6 +93,7 @@ export default class OrderedCounselings extends SubsectionElement {
         <Show when={this.props.HasBeenOrdered === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -117,5 +118,6 @@ OrderedCounselings.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new AlcoholOrderedCounselingsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

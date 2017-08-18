@@ -75,6 +75,7 @@ export default class DrugUses extends SubsectionElement {
         <Show when={this.props.UsedDrugs === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -99,5 +100,6 @@ DrugUses.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugUsesValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }
