@@ -92,6 +92,9 @@ export default class VoluntaryTreatment extends ValidationElement {
                     {...this.props.TreatmentProviderAddress}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Provider"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateTreatmentProviderAddress}
                     onError={this.props.onError}
                     />
@@ -145,5 +148,7 @@ export default class VoluntaryTreatment extends ValidationElement {
 }
 
 VoluntaryTreatment.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

@@ -167,6 +167,8 @@ export default class Diagnoses extends SubsectionElement {
                          appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
                 <Treatment name="Treatment"
                            prefix="diagnoses.professional"
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
                            bind={true} />
               </Accordion>
             </Show>
@@ -188,6 +190,7 @@ Diagnoses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'diagnoses',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new DiagnosesValidator(props, props).isValid()

@@ -36,6 +36,8 @@ export default class CoOwners extends ValidationElement {
           <CoOwner name="CoOwner"
                    bind={true}
                    prefix={`${this.props.prefix}.coOwner`}
+                   addressBooks={this.props.addressBooks}
+                   dispatch={this.props.dispatch}
                    onError={this.props.onError}
                    />
         </BranchCollection>
@@ -45,6 +47,8 @@ export default class CoOwners extends ValidationElement {
 }
 
 CoOwner.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

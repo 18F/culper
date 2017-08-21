@@ -86,6 +86,8 @@ export default class IndirectActivity extends SubsectionElement {
                      appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}>
             <IndirectInterest name="IndirectInterest"
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
                               bind={true}
                               />
           </Accordion>
@@ -105,7 +107,8 @@ IndirectActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/indirect',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignIndirectActivityValidator(state, props).isValid()
   }

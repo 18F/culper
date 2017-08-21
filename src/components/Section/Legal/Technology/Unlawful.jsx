@@ -100,6 +100,9 @@ export default class Unlawful extends SubsectionElement {
                         className="legal-technology-unlawful-location"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Incident"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         />
             </Field>
@@ -129,7 +132,8 @@ Unlawful.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/unlawful',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalTechnologyUnlawfulValidator(state, props).isValid()
   }

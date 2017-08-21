@@ -199,6 +199,9 @@ export default class EmploymentItem extends ValidationElement {
                       {...this.props.Address}
                       layout={Location.ADDRESS}
                       geocode={true}
+                      addressBooks={this.props.addressBooks}
+                      addressBook="Employment"
+                      dispatch={this.props.dispatch}
                       onUpdate={this.onUpdate.bind(this, 'Address')}
                       onError={this.props.onError}
                       label={i18n.t(`${prefix}.address.label`)}
@@ -210,6 +213,8 @@ export default class EmploymentItem extends ValidationElement {
           <Field title={i18n.t(`${prefix}.heading.physicalAddress`)}>
             <PhysicalAddress name="PhysicalAddress"
                              {...this.props.PhysicalAddress}
+                             addressBooks={this.props.addressBooks}
+                             dispatch={this.props.dispatch}
                              onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
                              onError={this.props.onError}
                              />
@@ -231,6 +236,8 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showSupervisor()}>
           <Supervisor name="Supervisor"
                       {...this.props.Supervisor}
+                      addressBooks={this.props.addressBooks}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.onUpdate.bind(this, 'Supervisor')}
                       onError={this.props.onError}
                       />
@@ -241,6 +248,8 @@ export default class EmploymentItem extends ValidationElement {
             <h2>{i18n.t(`${prefix}.heading.reference`)}</h2>
             <Reference name="Reference"
                        {...this.props.Reference}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
                        onUpdate={this.onUpdate.bind(this, 'Reference')}
                        onError={this.props.onError}
                        />
@@ -281,5 +290,7 @@ export default class EmploymentItem extends ValidationElement {
 }
 
 EmploymentItem.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

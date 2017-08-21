@@ -96,7 +96,10 @@ export default class Employment extends SubsectionElement {
                    customDetails={this.customEmploymentDetails}
                    description={i18n.t('history.employment.default.collection.summary.title')}
                    appendLabel={i18n.t('history.employment.default.collection.append')}>
-          <EmploymentItem name="Item" bind={true} />
+          <EmploymentItem name="Item"
+                          addressBooks={this.props.addressBooks}
+                          dispatch={this.props.dispatch}
+                          bind={true} />
         </Accordion>
       </div>
     )
@@ -115,6 +118,7 @@ Employment.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'employment',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return props.value.every(x => {

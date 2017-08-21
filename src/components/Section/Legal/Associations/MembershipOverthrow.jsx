@@ -91,6 +91,9 @@ export default class MembershipOverthrow extends SubsectionElement {
                         className="legal-associations-overthrow-address"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Organization"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         />
             </Field>
@@ -157,7 +160,8 @@ MembershipOverthrow.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-overthrow',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalAssociationsOverthrowValidator(state, props).isValid()
   }

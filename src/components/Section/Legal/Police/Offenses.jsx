@@ -87,6 +87,8 @@ export default class Offenses extends SubsectionElement {
                        appendMessage={i18n.m('legal.police.collection.appendMessage')}
                        appendLabel={i18n.t('legal.police.collection.append')}>
               <Offense name="Item"
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
                        bind={true}
                        />
             </Accordion>
@@ -102,7 +104,8 @@ Offenses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/offenses',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new PoliceOffensesValidator(props).isValid()
   },

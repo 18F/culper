@@ -98,6 +98,9 @@ export default class Contact extends SubsectionElement {
                           cityPlaceholder={i18n.t('foreign.business.contact.placeholder.city')}
                           countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
                           className="birthplace foreign-business-contact-location"
+                          addressBooks={this.props.addressBooks}
+                          addressBook="ForeignNational"
+                          dispatch={this.props.dispatch}
                           bind={true}
                           />
             </Field>
@@ -165,7 +168,8 @@ Contact.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignBusinessContactValidator(state, props).isValid()
   },

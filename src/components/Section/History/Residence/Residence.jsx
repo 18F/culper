@@ -96,7 +96,10 @@ export default class Residence extends SubsectionElement {
                    customDetails={this.customResidenceDetails}
                    description={i18n.t('history.residence.collection.summary.title')}
                    appendLabel={i18n.t('history.residence.collection.append')}>
-          <ResidenceItem name="Item" bind={true} />
+          <ResidenceItem name="Item"
+                         addressBooks={this.props.addressBooks}
+                         dispatch={this.props.dispatch}
+                         bind={true} />
         </Accordion>
       </div>
     )
@@ -115,6 +118,7 @@ Residence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'residence',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return props.value.every(x => {

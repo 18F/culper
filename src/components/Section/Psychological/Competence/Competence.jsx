@@ -77,6 +77,8 @@ export default class Competence extends SubsectionElement {
             <Order name="Competence"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
                    prefix="competence"
+                   addressBooks={this.props.addressBooks}
+                   dispatch={this.props.dispatch}
                    bind={true} />
           </Accordion>
         </Show>
@@ -94,6 +96,7 @@ Competence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'competence',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new CompetenceValidator(props, props).isValid()

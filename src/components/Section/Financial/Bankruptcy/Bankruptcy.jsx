@@ -251,6 +251,9 @@ export default class Bankruptcy extends ValidationElement {
                     {...this.props.CourtAddress}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    dispatch={this.props.dispatch}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Court"
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     />
@@ -311,6 +314,8 @@ export default class Bankruptcy extends ValidationElement {
 }
 
 Bankruptcy.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

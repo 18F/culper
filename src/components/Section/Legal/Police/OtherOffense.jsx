@@ -208,6 +208,9 @@ export default class OtherOffense extends ValidationElement {
                     className="offense-courtaddress"
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Court"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     />
@@ -321,6 +324,8 @@ export default class OtherOffense extends ValidationElement {
 }
 
 OtherOffense.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

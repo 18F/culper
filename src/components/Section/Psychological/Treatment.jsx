@@ -71,6 +71,9 @@ export default class Treatment extends ValidationElement {
                     label={i18n.t(`psychological.${prefix}.label.address`)}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Facility"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     />
@@ -82,6 +85,8 @@ export default class Treatment extends ValidationElement {
 
 Treatment.defaultProps = {
   prefix: 'treatment',
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

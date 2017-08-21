@@ -74,7 +74,10 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                      description={i18n.t('legal.nonCriminalAction.collection.description')}
                      appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
                      appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}>
-            <NonCriminalCourtAction name="CourtAction" bind={true} />
+            <NonCriminalCourtAction name="CourtAction"
+                                    addressBooks={this.props.addressBooks}
+                                    dispatch={this.props.dispatch}
+                                    bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -89,7 +92,8 @@ NonCriminalCourtActions.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'court',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalNonCriminalCourtActionsValidator(props).isValid()
   }

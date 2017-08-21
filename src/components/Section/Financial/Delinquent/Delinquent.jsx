@@ -207,6 +207,9 @@ export default class Delinquent extends SubsectionElement {
                         geocode={true}
                         className="delinquent-courtaddress"
                         bind={true}
+                        dispatch={this.props.dispatch}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Court"
                         />
             </Field>
 

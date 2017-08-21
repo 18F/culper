@@ -77,7 +77,10 @@ export default class VoluntaryTreatments extends SubsectionElement {
                      description={i18n.t('substance.drugs.voluntary.collection.description')}
                      appendTitle={i18n.t('substance.drugs.voluntary.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.voluntary.collection.appendLabel')}>
-            <VoluntaryTreatment name="VoluntaryTreatment" bind={true} />
+            <VoluntaryTreatment name="VoluntaryTreatment"
+                                addressBooks={this.props.addressBooks}
+                                dispatch={this.props.dispatch}
+                                bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -91,7 +94,8 @@ VoluntaryTreatments.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/voluntary',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new DrugVoluntaryTreatmentsValidator(props).isValid()
   }

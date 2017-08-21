@@ -143,6 +143,7 @@ class Foreign extends SectionElement {
             <Contacts name="contacts"
                       {...this.props.Contacts}
                       defaultState={false}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
@@ -152,6 +153,7 @@ class Foreign extends SectionElement {
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
                             defaultState={false}
+                            addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
@@ -161,6 +163,7 @@ class Foreign extends SectionElement {
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
                               defaultState={false}
+                              addressBooks={this.props.AddressBooks}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
@@ -188,6 +191,7 @@ class Foreign extends SectionElement {
             <Support name="support"
                      {...this.props.Support}
                      defaultState={false}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
@@ -224,6 +228,7 @@ class Foreign extends SectionElement {
             <Ventures name="ventures"
                       {...this.props.Ventures}
                       defaultState={false}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
@@ -242,6 +247,7 @@ class Foreign extends SectionElement {
             <Contact name="Contact"
                      {...this.props.Contact}
                      defaultState={false}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
@@ -251,6 +257,7 @@ class Foreign extends SectionElement {
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
                          defaultState={false}
+                         addressBooks={this.props.AddressBooks}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
@@ -306,6 +313,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.activity')}>
             <Contacts name="contacts"
                       {...this.props.Contacts}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
@@ -319,6 +327,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
@@ -331,6 +340,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
@@ -344,6 +354,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.realestate')}>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
+                              addressBooks={this.props.AddressBooks}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
@@ -382,6 +393,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.advice')}>
             <Support name="support"
                      {...this.props.Support}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
@@ -447,6 +459,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.events')}>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
@@ -473,6 +486,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.sponsorship')}>
             <Contact name="Contact"
                      {...this.props.Contact}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
@@ -486,6 +500,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.political')}>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         addressBooks={this.props.AddressBooks}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
@@ -537,12 +552,13 @@ class Foreign extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let foreign = app.Foreign || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const foreign = app.Foreign || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const identification = app.Identification || {}
+  const addressBooks = app.AddressBooks || {}
 
-  let identification = app.Identification || {}
   let names = []
   if (identification.ApplicantName) {
     names.push(identification.ApplicantName)
@@ -575,7 +591,8 @@ function mapStateToProps (state) {
     Travel: foreign.Travel || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
-    suggestedNames: names
+    suggestedNames: names,
+    AddressBooks: addressBooks
   }
 }
 

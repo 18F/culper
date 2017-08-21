@@ -77,7 +77,10 @@ export default class OrderedTreatments extends SubsectionElement {
                      description={i18n.t('substance.drugs.ordered.collection.description')}
                      appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}>
-            <OrderedTreatment name="OrderedTreatment" bind={true} />
+            <OrderedTreatment name="OrderedTreatment"
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
+                              bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -91,7 +94,8 @@ OrderedTreatments.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/ordered',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new DrugOrderedTreatmentsValidator(props).isValid()
   }

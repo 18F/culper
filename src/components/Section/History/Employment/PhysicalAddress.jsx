@@ -85,6 +85,9 @@ export default class PhysicalAddress extends ValidationElement {
                       placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
                       layout={Location.ADDRESS}
                       geocode={true}
+                      addressBooks={this.props.addressBooks}
+                      addressBook={this.props.addressBook}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.handleAddressChange}
                       onError={this.props.onError}
                       />
@@ -114,5 +117,8 @@ export default class PhysicalAddress extends ValidationElement {
 }
 
 PhysicalAddress.defaultProps = {
+  addressBooks: {},
+  addressBook: 'Company',
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

@@ -152,6 +152,8 @@ export default class Diagnosis extends ValidationElement {
           <Treatment name="Treatment"
                      {...this.props.Treatment}
                      prefix={`${prefix}.person`}
+                     addressBooks={this.props.addressBooks}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateTreatment}
                      onError={this.props.onError}
                      />
@@ -162,6 +164,8 @@ export default class Diagnosis extends ValidationElement {
           <Treatment name="TreatmentFacility"
                      {...this.props.TreatmentFacility}
                      prefix={`${prefix}.facility`}
+                     addressBooks={this.props.addressBooks}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.updateTreatmentFacility}
                      onError={this.props.onError}
                      />
@@ -211,6 +215,8 @@ export default class Diagnosis extends ValidationElement {
 
 Diagnosis.defaultProps = {
   prefix: 'diagnosis',
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -103,6 +103,9 @@ export default class Card extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        dispatch={this.props.dispatch}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Agency"
                         />
             </Field>
 

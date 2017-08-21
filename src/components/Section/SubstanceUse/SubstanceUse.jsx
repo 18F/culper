@@ -175,6 +175,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.voluntary')}>
             <OrderedTreatments name="ordered"
                                {...this.props.OrderedTreatments}
+                               addressBooks={this.props.AddressBooks}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateOrderedTreatments}
@@ -188,6 +189,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.police.negative')}>
             <VoluntaryTreatments name="voluntary"
                                  {...this.props.VoluntaryTreatments}
+                                 addressBooks={this.props.AddressBooks}
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateVoluntaryTreatments}
@@ -214,6 +216,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.police.voluntary') }>
             <OrderedCounselings name="ordered"
                                 {...this.props.OrderedCounselings}
+                                addressBooks={this.props.AddressBooks}
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
@@ -227,6 +230,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.police.additional') }>
             <VoluntaryCounselings name="voluntary"
                                   {...this.props.VoluntaryCounselings}
+                                  addressBooks={this.props.AddressBooks}
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
@@ -359,10 +363,12 @@ class SubstanceUse extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let substance = app.SubstanceUse || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const substance = app.SubstanceUse || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     SubstanceUse: substance,
     NegativeImpacts: substance.NegativeImpacts || {},
@@ -377,7 +383,8 @@ function mapStateToProps (state) {
     OrderedTreatments: substance.OrderedTreatments || {},
     VoluntaryTreatments: substance.VoluntaryTreatments || {},
     Errors: errors.substance || [],
-    Completed: completed.substance || []
+    Completed: completed.substance || [],
+    AddressBooks: addressBooks
   }
 }
 

@@ -77,7 +77,10 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}>
-            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} />
+            <VoluntaryCounseling name="VoluntaryCounseling"
+                                 addressBooks={this.props.addressBooks}
+                                 dispatch={this.props.dispatch}
+                                 bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -91,7 +94,8 @@ VoluntaryCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/voluntary',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new AlcoholVoluntaryCounselingsValidator(props).isValid()
   }

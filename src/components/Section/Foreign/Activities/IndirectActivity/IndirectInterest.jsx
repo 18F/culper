@@ -312,6 +312,8 @@ export default class IndirectInterest extends ValidationElement {
 
         <CoOwners prefix={prefix}
                   {...this.props.CoOwners}
+                  addressBooks={this.props.addressBooks}
+                  dispatch={this.props.dispatch}
                   onUpdate={this.updateCoOwners}
                   onError={this.props.onError}
                   />
@@ -323,6 +325,8 @@ export default class IndirectInterest extends ValidationElement {
 
 IndirectInterest.defaultProps = {
   prefix: 'activities.indirect.interest',
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -27,6 +27,8 @@ export default class Foreign extends SubsectionElement {
                           onError={this.handleError}>
           <ForeignService name="Item"
                           bind={true}
+                          addressBooks={this.props.addressBooks}
+                          dispatch={this.props.dispatch}
                           defaultState={this.props.defaultState}
                           onError={this.handleError}
                           />
@@ -41,7 +43,8 @@ Foreign.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'foreign',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new MilitaryForeignValidator(state, props).isValid()
   },

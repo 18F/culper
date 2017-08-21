@@ -78,6 +78,8 @@ export default class Bankruptcies extends SubsectionElement {
                      appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
                      appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
             <Bankruptcy name="Bankruptcy"
+                        dispatch={this.props.dispatch}
+                        addressBooks={this.props.addressBooks}
                         bind={true} />
           </Accordion>
         </Show>
@@ -90,6 +92,7 @@ Bankruptcies.defaultProps = {
   List: [],
   ListBranch: '',
   HasBankruptcy: '',
+  addressBooks: {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'bankruptcy',

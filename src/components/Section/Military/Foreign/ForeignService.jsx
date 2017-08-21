@@ -278,6 +278,8 @@ export default class ForeignService extends ValidationElement {
                        appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
               <ForeignContact name="Item"
                               bind={true}
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
                               />
             </Accordion>
           </div>
@@ -288,6 +290,8 @@ export default class ForeignService extends ValidationElement {
 }
 
 ForeignService.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true

@@ -522,6 +522,9 @@ export default class Relative extends ValidationElement {
             <Location name="Address"
                       className="relative-address"
                       {...this.props.Address}
+                      addressBooks={this.props.addressBooks}
+                      addressBook={this.props.addressBook}
+                      dispatch={this.props.dispatch}
                       layout={Location.ADDRESS}
                       geocode={true}
                       onUpdate={this.updateAddress}
@@ -987,6 +990,9 @@ Relative.defaultProps = {
   EmployerAddress: {},
   HasAffiliation: '',
   EmployerRelationship: {},
+  addressBooks: {},
+  addressBook: 'Relative',
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
