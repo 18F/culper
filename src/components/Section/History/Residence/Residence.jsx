@@ -82,7 +82,7 @@ export default class Residence extends SubsectionElement {
   render () {
     return (
       <div className="residence">
-        <Accordion scrollTo={this.props.scrollTo}
+        <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
                    items={this.props.value}
                    sort={this.props.sort}
@@ -105,7 +105,7 @@ export default class Residence extends SubsectionElement {
 
 Residence.defaultProps = {
   value: [],
-  scrollTo: '',
+  scrollToTop: '',
   defaultState: true,
   realtime: false,
   sort: null,

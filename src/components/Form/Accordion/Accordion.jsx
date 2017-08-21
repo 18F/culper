@@ -140,8 +140,8 @@ export default class Accordion extends ValidationElement {
       const timeout = this.props.timeout + (this.props.timeout * shift)
 
       // Get the element to which we should scroll to
-      const scrollTo = this.props.scrollTo
-            ? document.getElementById(this.props.scrollTo)
+      const scrollTo = this.props.scrollToTop
+            ? document.getElementById(this.props.scrollToTop)
             : this.refs.accordion
 
       // Get the identifier to the first item
@@ -498,7 +498,7 @@ Accordion.defaultProps = {
   description: i18n.t('collection.summary'),
   incomplete: i18n.t('collection.incomplete'),
   caption: null,
-  scrollTo: '',
+  scrollToTop: '',
   scrollToBottom: '',
   timeout: 500,
   sort: null,
