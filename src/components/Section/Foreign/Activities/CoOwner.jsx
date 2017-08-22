@@ -52,16 +52,21 @@ export default class CoOwner extends ValidationElement {
     return (
       <div className="co-owner">
 
-        <h3>{i18n.t(`foreign.${prefix}.heading.name`)}</h3>
-        <Name name="Name"
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              />
+        <Field title={i18n.t(`foreign.${prefix}.heading.name`)}
+          scrollIntoView={this.props.scrollIntoView}>
+          <Name name="Name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
+        </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.address`)}
                adjustFor="address"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
                     {...this.props.Address}
                     label={i18n.t(`foreign.${prefix}.label.address`)}
@@ -72,25 +77,30 @@ export default class CoOwner extends ValidationElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.countries`)}
-               help={`foreign.${prefix}.help.countries`}>
+          help={`foreign.${prefix}.help.countries`}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Countries"
                    {...this.props.Countries}
                    multiple={true}
                    onUpdate={this.updateCountries}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
-        <Field title={i18n.t(`foreign.${prefix}.heading.relationshipNature`)}>
+        <Field title={i18n.t(`foreign.${prefix}.heading.relationshipNature`)}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="RelationshipNature"
                     className="relationship-nature"
                     {...this.props.RelationshipNature}
                     onUpdate={this.updateRelationshipNature}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

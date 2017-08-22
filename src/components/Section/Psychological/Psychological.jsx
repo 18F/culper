@@ -123,6 +123,8 @@ class Psychological extends SectionElement {
                         defaultState={false}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
 
             <hr />
@@ -132,6 +134,8 @@ class Psychological extends SectionElement {
                           defaultState={false}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
 
             <hr />
@@ -141,6 +145,8 @@ class Psychological extends SectionElement {
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
+                              required={true}
+                              scrollIntoView={false}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
 
             <hr />
@@ -150,12 +156,15 @@ class Psychological extends SectionElement {
                        defaultState={false}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
                        />
 
             <Show when={this.props.ShowExistingConditions}>
               <div>
                 <hr />
+                {this.props.ShowExistingConditions}
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
                                     ApplicantBirthDate={this.props.ApplicantBirthDate}
@@ -163,6 +172,8 @@ class Psychological extends SectionElement {
                                     dispatch={this.props.dispatch}
                                     onError={this.handleError}
                                     onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                    required={this.props.ShowExistingConditions}
+                                    scrollIntoView={false}
                                     />
               </div>
             </Show>

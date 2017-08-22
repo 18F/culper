@@ -432,6 +432,8 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -442,6 +444,8 @@ class Legal extends SectionElement {
                            dispatch={this.props.dispatch}
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
+                           required={true}
+                           scrollIntoView={false}
                            />
 
             <hr/>
@@ -451,6 +455,8 @@ class Legal extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
+                                  required={true}
+                                  scrollIntoView={false}
                                   />
 
             <hr/>
@@ -458,8 +464,10 @@ class Legal extends SectionElement {
                      {...this.props.History}
                      defaultState={false}
                      dispatch={this.props.dispatch}
-                     onUpdate={this.updateInvestigationsHistory}
+                     onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -469,6 +477,8 @@ class Legal extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateRevoked}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -478,6 +488,8 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateDebarred}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
 
             <hr />
@@ -488,6 +500,8 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateNonCriminalCourtActions}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
             <hr />
             <Unauthorized name="unauthorized"
@@ -497,6 +511,8 @@ class Legal extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateUnauthorized}
                           onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -507,6 +523,8 @@ class Legal extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateManipulating}
                           onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -517,6 +535,8 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateUnlawful}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
 
             <hr />
@@ -526,6 +546,8 @@ class Legal extends SectionElement {
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
                                    onError={this.handleError}
+                                   required={true}
+                                   scrollIntoView={false}
                                    />
 
             <hr />
@@ -534,7 +556,9 @@ class Legal extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateEngagedInTerrorism}
                                 onError={this.handleError}
-                                />
+                                required={true}
+                                scrollIntoView={false}
+                              />
 
             <hr />
             <Advocating name="advocating"
@@ -542,6 +566,8 @@ class Legal extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateAdvocating}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -551,6 +577,8 @@ class Legal extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
                                  onError={this.handleError}
+                                 required={true}
+                                 scrollIntoView={false}
                                  />
 
             <hr />
@@ -560,6 +588,8 @@ class Legal extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateMembershipViolence}
                                 onError={this.handleError}
+                                required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -568,6 +598,8 @@ class Legal extends SectionElement {
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}
+                                   required={true}
+                                   scrollIntoView={false}
                                    />
 
             <hr />
@@ -576,6 +608,8 @@ class Legal extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updateTerrorismAssociation}
                                   onError={this.handleError}
+                                  required={true}
+                                  scrollIntoView={false}
                                   />
           </SectionView>
 

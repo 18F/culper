@@ -63,6 +63,8 @@ export default class Employment extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignEmployment}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.HasForeignEmployment === 'Yes'}>
@@ -74,8 +76,10 @@ export default class Employment extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.employment.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.employment.collection.append')}>
-            <JobOffer name="Item" bind={true} />
+                     appendLabel={i18n.t('foreign.business.employment.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <JobOffer name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

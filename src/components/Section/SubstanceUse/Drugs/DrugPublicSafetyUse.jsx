@@ -38,32 +38,38 @@ export default class DrugPublicSafetyUse extends ValidationElement {
   render () {
     return (
       <div className="drug-public-safety-use">
-        <Field title={i18n.t('substance.drugs.publicSafety.heading.description')}>
+        <Field title={i18n.t('substance.drugs.publicSafety.heading.description')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
             className="description"
             {...this.props.Description}
             onUpdate={this.updateDescription}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
         <Field title={i18n.t('substance.drugs.publicSafety.heading.involvementDates')}
           adjustFor="daterange"
-          help={'substance.drugs.publicSafety.help.involvementDates'}>
+          help={'substance.drugs.publicSafety.help.involvementDates'}
+          scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="InvolvementDates"
             className="involvement-dates"
             {...this.props.InvolvementDates}
             onUpdate={this.updateInvolvementDates}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.publicSafety.heading.estimatedUse')}>
+        <Field title={i18n.t('substance.drugs.publicSafety.heading.estimatedUse')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="EstimatedUse"
             className="estimated-use"
             {...this.props.EstimatedUse}
             onUpdate={this.updateEstimatedUse}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
       </div>

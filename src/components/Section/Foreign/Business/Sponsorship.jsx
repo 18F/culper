@@ -63,7 +63,9 @@ export default class Sponsorship extends SubsectionElement {
                 value={this.props.HasForeignSponsorship}
                 warning={true}
                 onUpdate={this.updateHasForeignSponsorship}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignSponsorship === 'Yes'}>
@@ -75,30 +77,40 @@ export default class Sponsorship extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.business.sponsorship.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.sponsorship.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}>
-            <h3>{i18n.t('foreign.business.sponsorship.heading.name')}</h3>
-            <Name name="Name"
-                  className="foreign-business-sponsorship-name"
-                  bind={true}
-                  />
+                     appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+         <Field title={i18n.t('foreign.business.sponsorship.heading.name')}
+           scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="foreign-business-sponsorship-name"
+                    bind={true}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+          </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.birthdate')}
                    help="foreign.business.sponsorship.help.birthdate"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="BirthdateNotApplicable"
                              label={i18n.t('foreign.business.sponsorship.label.idk')}
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <DateControl name="Birthdate"
                              className="foreign-business-sponsorship-birthdate"
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.birthplace')}
                    adjustFor="birthplace"
-                   validate={false}>
+                   validate={false}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Birthplace"
                         layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                         label={i18n.t('foreign.business.sponsorship.label.birthplace')}
@@ -109,12 +121,14 @@ export default class Sponsorship extends SubsectionElement {
                         addressBook="ForeignNational"
                         dispatch={this.props.dispatch}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.address')}
                    help="foreign.business.sponsorship.help.address"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Address"
                         className="foreign-business-sponsorship-address"
                         layout={Location.ADDRESS}
@@ -122,36 +136,44 @@ export default class Sponsorship extends SubsectionElement {
                         addressBook="ForeignNational"
                         dispatch={this.props.dispatch}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.citizenship')}
                    help="foreign.business.sponsorship.help.citizenship"
-                   adjustFor="country">
+                   adjustFor="country"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Country name="Citizenship"
                        className="foreign-business-sponsorship-citizenship"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.organization')}
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="OrganizationNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Organization"
                       className="foreign-business-sponsorship-organization"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.organizationaddress')}
                    help="foreign.business.sponsorship.help.organizationaddress"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="OrganizationAddressNotApplicable"
                              or={i18n.m('foreign.business.sponsorship.para.or')}
+                             required={this.props.required}
                              bind={true}>
                 <Location name="OrganizationAddress"
                           className="foreign-business-sponsorship-organizationaddress"
@@ -161,21 +183,25 @@ export default class Sponsorship extends SubsectionElement {
                           addressBook="Organization"
                           dispatch={this.props.dispatch}
                           bind={true}
+                          required={this.props.required}
                           />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.dates')}
                    help="foreign.business.sponsorship.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="foreign-business-sponsorship-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.residence')}
-                   adjustFor="address no-buttons">
+              adjustFor="address no-buttons"
+              scrollIntoView={this.props.scrollIntoView}>
               <Location name="Residence"
                         className="foreign-business-sponsorship-residence"
                         disableToggle={true}
@@ -185,22 +211,27 @@ export default class Sponsorship extends SubsectionElement {
                         addressBook="ForeignNational"
                         dispatch={this.props.dispatch}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.stay')}
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Stay"
                         className="foreign-business-sponsorship-stay"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.sponsorship.heading.sponsorship')}
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Sponsorship"
                         className="foreign-business-sponsorship-sponsorship"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

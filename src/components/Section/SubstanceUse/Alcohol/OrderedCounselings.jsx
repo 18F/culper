@@ -87,7 +87,9 @@ export default class OrderedCounselings extends SubsectionElement {
                 value={this.props.HasBeenOrdered}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasBeenOrdered}>
+                required={this.props.required}
+                onUpdate={this.updateHasBeenOrdered}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasBeenOrdered === 'Yes'}>
@@ -99,11 +101,15 @@ export default class OrderedCounselings extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}>
-            <OrderedCounseling name="OrderedCounseling"
-                               addressBooks={this.props.addressBooks}
-                               dispatch={this.props.dispatch}
-                               bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+        <OrderedCounseling name="OrderedCounseling"
+                           bind={true}
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

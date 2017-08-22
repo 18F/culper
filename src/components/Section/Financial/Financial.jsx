@@ -42,6 +42,8 @@ class Financial extends SectionElement {
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
                           onError={this.handleError}
                           defaultState={false}
+                          required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -52,6 +54,8 @@ class Financial extends SectionElement {
                       onUpdate={this.handleUpdate.bind(this, 'Gambling')}
                       onError={this.handleError}
                       defaultState={false}
+                      required={true}
+                      scrollIntoView={false}
                     />
 
             <hr />
@@ -62,6 +66,8 @@ class Financial extends SectionElement {
                    onUpdate={this.handleUpdate.bind(this, 'Taxes')}
                    onError={this.handleError}
                    defaultState={false}
+                   required={true}
+                   scrollIntoView={false}
                    />
 
             <hr />
@@ -73,6 +79,8 @@ class Financial extends SectionElement {
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
                   onError={this.handleError}
                   defaultState={false}
+                  required={true}
+                  scrollIntoView={false}
                   />
 
             <hr />
@@ -84,6 +92,8 @@ class Financial extends SectionElement {
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
                     onError={this.handleError}
                     defaultState={false}
+                    required={true}
+                    scrollIntoView={false}
                     />
 
             <hr />
@@ -102,6 +112,8 @@ class Financial extends SectionElement {
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
                         onError={this.handleError}
                         defaultState={false}
+                        required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -122,6 +134,8 @@ class Financial extends SectionElement {
                         onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
                         onError={this.handleError}
                         defaultState={false}
+                        required={true}
+                        scrollIntoView={false}
                         />
           </SectionView>
 

@@ -65,6 +65,8 @@ export default class Bankruptcies extends SubsectionElement {
                 help="financial.bankruptcy.help"
                 warning={true}
                 onUpdate={this.updateHasBankrupty}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.props.HasBankruptcy === 'Yes'}>
@@ -73,6 +75,8 @@ export default class Bankruptcies extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      summary={this.summary}
                      description={i18n.t('financial.bankruptcy.collection.summary.title')}
                      appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
@@ -80,6 +84,8 @@ export default class Bankruptcies extends SubsectionElement {
             <Bankruptcy name="Bankruptcy"
                         dispatch={this.props.dispatch}
                         addressBooks={this.props.addressBooks}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
                         bind={true} />
           </Accordion>
         </Show>

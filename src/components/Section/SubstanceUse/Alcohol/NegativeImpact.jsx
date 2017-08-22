@@ -45,28 +45,32 @@ export default class NegativeImpact extends ValidationElement {
     return (
       <div className="negative-impact">
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.occurred')}
-               help={'substance.alcohol.negativeImpact.help.occurred'}
-               adjustFor="labels">
+          help={'substance.alcohol.negativeImpact.help.occurred'}
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Occurred"
-                       className="occurred"
-                       {...this.props.Occurred}
-                       label={i18n.t('substance.alcohol.negativeImpact.label.occurred')}
-                       hideDay={true}
-                       onUpdate={this.updateOccurred}
-                       onError={this.props.onError}
-                       />
+            className="occurred"
+            {...this.props.Occurred}
+            label={i18n.t('substance.alcohol.negativeImpact.label.occurred')}
+            hideDay={true}
+            onUpdate={this.updateOccurred}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.circumstances')} />
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.label.circumstances')}
                titleSize="label"
-               adjustFor="textarea">
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Circumstances"
                     className="circumstances"
                     {...this.props.Circumstances}
                     onUpdate={this.updateCircumstances}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -82,14 +86,16 @@ export default class NegativeImpact extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.heading.used')}
-               help={'substance.alcohol.negativeImpact.help.used'}
-               adjustFor="daterange">
+          help={'substance.alcohol.negativeImpact.help.used'}
+          adjustFor="daterange"
+          scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Used"
-                     className="used"
-                     {...this.props.Used}
-                     onUpdate={this.updateUsed}
-                     onError={this.props.onError}
-                     />
+            className="used"
+            {...this.props.Used}
+            onUpdate={this.updateUsed}
+            onError={this.props.onError}
+            required={this.props.required}
+          />
         </Field>
       </div>
     )

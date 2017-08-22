@@ -82,7 +82,6 @@ export default class ExistingConditions extends SubsectionElement {
     const treatmentDate = (o.Diagnosed || {})
     const date = DateSummary(treatmentDate)
     const condition = (o.Condition || {}).value || ''
-    const type = i18n.t('psychological.existingConditions.treatment.collection.itemType')
 
     return Summary({
       type: i18n.t('psychological.existingConditions.treatment.collection.itemType'),
@@ -103,6 +102,8 @@ export default class ExistingConditions extends SubsectionElement {
                 value={this.props.HasCondition}
                 warning={true}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onUpdate={this.updateHasCondition}>
         </Branch>
 
@@ -111,8 +112,9 @@ export default class ExistingConditions extends SubsectionElement {
             <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
             {i18n.m('psychological.existingConditions.para.receivedTreatment')}
             <Field className={this.props.ReceivedTreatment === 'No' ? 'no-margin-bottom' : ''}
-                   adjustFor="button">
-              <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment}>
+                   adjustFor="button"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment} onError={this.handleError} required={this.props.required}>
                 <Radio name="treatment"
                        className="treatment yes"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
@@ -139,12 +141,14 @@ export default class ExistingConditions extends SubsectionElement {
 
             <Show when={this.props.ReceivedTreatment === 'No'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
-                     titleSize="label">
+                     titleSize="label"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation existing-condition-explanation"
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -158,10 +162,14 @@ export default class ExistingConditions extends SubsectionElement {
                          onError={this.handleError}
                          description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                          appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
-                         appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}>
+                         appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}>
                 <Diagnosis name="Diagnosis"
                            ApplicantBirthDate={this.props.ApplicantBirthDate}
                            prefix="existingConditions.diagnosis"
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
                            bind={true} />
               </Accordion>
             </Show>
@@ -172,17 +180,21 @@ export default class ExistingConditions extends SubsectionElement {
                     className="eapp-field-wrap didnotfollow no-margin-bottom"
                     value={this.props.DidNotFollow}
                     onError={this.handleError}
-                    onUpdate={this.updateDidNotFollow}>
+                    required={this.props.required}
+                    onUpdate={this.updateDidNotFollow}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <Show when={this.props.DidNotFollow === 'Yes'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
-                     titleSize="label">
+                     titleSize="label"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="DidNotFollowExplanation"
                           className="explanation existing-condition-didnotfollow-explanation"
                           {...this.props.DidNotFollowExplanation}
                           onUpdate={this.updateDidNotFollowExplanation}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>

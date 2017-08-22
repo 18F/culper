@@ -24,6 +24,10 @@ export default class MultipleDropdown extends ValidationElement {
     this.handleBlur = this.handleBlur.bind(this)
   }
 
+  componentDidMount () {
+    this.handleBlur()
+  }
+
   parseChildren () {
     return !this.props.children
       ? []
@@ -40,10 +44,15 @@ export default class MultipleDropdown extends ValidationElement {
    */
   handleBlur (event) {
     const value = this.state.value
+    const props = {
+      options: this.state.options,
+      value: this.state.value,
+      required: this.props.required
+    }
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: value.length ? err.func(value, { options: this.state.options }) : null,
+        valid: err.func(value, props),
         uid: this.state.uid
       }
     })) || []
@@ -59,6 +68,7 @@ export default class MultipleDropdown extends ValidationElement {
       if (this.props.onUpdate) {
         this.props.onUpdate(value)
       }
+      this.handleBlur()
     })
   }
 
@@ -178,4 +188,14 @@ MultipleDropdown.defaultProps = {
   onError: (value, arr) => { return arr }
 }
 
-MultipleDropdown.errors = []
+MultipleDropdown.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!props.value && !!props.value.length
+      }
+      return true
+    }
+  }
+]

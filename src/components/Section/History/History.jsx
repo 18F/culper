@@ -344,6 +344,8 @@ class History extends SectionElement {
                        onError={this.handleError}
                        addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
+                       scrollIntoView={false}
+                       required={true}
                        />
 
             <Employment value={this.props.Employment}
@@ -356,6 +358,8 @@ class History extends SectionElement {
                         onError={this.handleError}
                         addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
+                        scrollIntoView={false}
+                        required={true}
                         />
 
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
@@ -368,6 +372,8 @@ class History extends SectionElement {
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
+                         scrollIntoView={false}
+                         required={true}
                          />
             </Show>
 
@@ -380,6 +386,8 @@ class History extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
+                     scrollIntoView={false}
+                     required={true}
                      />
           </SectionView>
 

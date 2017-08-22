@@ -51,6 +51,11 @@ describe('The Address component', () => {
     expect(updates).toBe(3)
   })
 
+  it('Validates required', () => {
+    const component = mount(<Address country="Germany" required={true} />)
+    expect(component.find('.usa-input-error').length).toBe(2)
+  })
+
   it('clears city switching from APO/FPO', () => {
     let city = 'APO'
     const props = {

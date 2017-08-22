@@ -57,7 +57,9 @@ export default class PhysicalAddress extends ValidationElement {
               className="has-different-address"
               help="history.employment.default.physicalAddress.help"
               onUpdate={this.onBranchUpdate}
-              onError={this.props.onError}>
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}>
       </Branch>
     )
   }
@@ -77,7 +79,8 @@ export default class PhysicalAddress extends ValidationElement {
                  titleSize="h4"
                  help="history.employment.default.physicalAddress.address.help"
                  adjustFor="labels"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="address"
                       className="address"
                       {...this.props.Address}
@@ -90,18 +93,21 @@ export default class PhysicalAddress extends ValidationElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleAddressChange}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
 
           <Field title={i18n.t('history.employment.default.physicalAddress.heading.telephone')}
                  titleSize="h4"
                  help="history.employment.default.physicalAddress.telephone.help"
-                 adjustFor="telephone">
+                 adjustFor="telephone"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="telephone"
                        {...this.props.Telephone}
                        label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
                        onUpdate={this.updateTelephone}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </Field>
         </div>

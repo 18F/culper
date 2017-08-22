@@ -71,16 +71,20 @@ export default class DrugUse extends ValidationElement {
       <div className="drug-use">
         <Field title={i18n.t('substance.drugs.use.heading.drugType')}
                className="drug-type-use"
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <DrugType name="DrugType"
                     {...this.props.DrugType}
                     onUpdate={this.updateDrugType}
                     onError={this.props.onError}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     />
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.firstUse')}
-               adjustFor="datecontrol">
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="FirstUse"
                        className="first-use"
                        {...this.props.FirstUse}
@@ -88,11 +92,13 @@ export default class DrugUse extends ValidationElement {
                        showEstimated={false}
                        onUpdate={this.updateFirstUse}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('substance.drugs.use.heading.recentUse')}
-               adjustFor="datecontrol">
+          adjustFor="datecontrol"
+          scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="RecentUse"
                        className="recent-use"
                        {...this.props.RecentUse}
@@ -100,15 +106,18 @@ export default class DrugUse extends ValidationElement {
                        showEstimated={false}
                        onUpdate={this.updateRecentUse}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.use.heading.natureOfUse')}>
+        <Field title={i18n.t('substance.drugs.use.heading.natureOfUse')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="NatureOfUse"
                     className="nature-of-use"
                     {...this.props.NatureOfUse}
                     onUpdate={this.updateNatureOfUse}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -118,7 +127,9 @@ export default class DrugUse extends ValidationElement {
                 className="use-while-employed"
                 value={this.props.UseWhileEmployed}
                 onError={this.props.onError}
-                onUpdate={this.updateUseWhileEmployed}>
+                required={this.props.required}
+                onUpdate={this.updateUseWhileEmployed}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Branch name="UseWithClearance"
@@ -127,7 +138,9 @@ export default class DrugUse extends ValidationElement {
                 className="use-with-clearance"
                 value={this.props.UseWithClearance}
                 onError={this.props.onError}
-                onUpdate={this.updateUseWithClearance}>
+                required={this.props.required}
+                onUpdate={this.updateUseWithClearance}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Branch name="UseInFuture"
@@ -136,15 +149,19 @@ export default class DrugUse extends ValidationElement {
                 className="use-in-future"
                 value={this.props.UseInFuture}
                 onError={this.props.onError}
-                onUpdate={this.updateUseInFuture}>
+                required={this.props.required}
+                onUpdate={this.updateUseInFuture}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Field title={i18n.t('substance.drugs.use.heading.explanation')}>
+        <Field title={i18n.t('substance.drugs.use.heading.explanation')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

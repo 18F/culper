@@ -66,7 +66,9 @@ export default class DrugInvolvements extends SubsectionElement {
                 value={this.props.Involved}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateInvolved}>
+                required={this.props.required}
+                onUpdate={this.updateInvolved}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Involved === 'Yes'}>
@@ -78,8 +80,10 @@ export default class DrugInvolvements extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('substance.drugs.involvement.collection.description')}
                      appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}>
-            <DrugInvolvement name="DrugInvolvement" bind={true} />
+                     appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <DrugInvolvement name="DrugInvolvement" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

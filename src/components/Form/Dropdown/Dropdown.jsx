@@ -100,7 +100,10 @@ export default class Dropdown extends ValidationElement {
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: value.length ? err.func(value, { options: this.state.options }) : null,
+        valid: err.func(value, {
+          ...this.props,
+          options: this.state.options
+        }),
         uid: this.state.uid
       }
     })) || []
@@ -233,7 +236,7 @@ export default class Dropdown extends ValidationElement {
    * Style classes applied to the wrapper.
    */
   divClass () {
-    return `dropdown ${this.props.className || ''} ${!this.props.disabled && (this.state.error || this.props.error) ? 'usa-input-error' : ''}`.trim()
+    return `dropdown ${this.props.className || ''} ${!this.props.disabled && this.state.error ? 'usa-input-error' : ''}`.trim()
   }
 
   /**
@@ -244,7 +247,7 @@ export default class Dropdown extends ValidationElement {
       return 'disabled'
     }
 
-    return `${this.state.error || this.props.error ? 'usa-input-error-label' : ''}`.trim()
+    return `${this.state.error ? 'usa-input-error-label' : ''}`.trim()
   }
 
   /**
@@ -255,7 +258,14 @@ export default class Dropdown extends ValidationElement {
       return null
     }
 
-    return `${this.state.focus || this.props.focus ? 'usa-input-focus' : ''} ${this.state.valid ? 'usa-input-success' : ''}`.trim()
+    return `${this.state.focus ? 'usa-input-focus' : ''} ${this.state.valid ? 'usa-input-success' : ''}`.trim()
+  }
+
+  /**
+   * Generated name for the error message.
+   */
+  errorName () {
+    return `${this.props.name || ''}-error`
   }
 
   render () {
@@ -283,7 +293,8 @@ export default class Dropdown extends ValidationElement {
       onKeyDown: this.handleKeyDown,
       onCopy: this.props.clipboard ? this.props.onCopy : this.disallowClipboard,
       onCut: this.props.clipboard ? this.props.onCut : this.disallowClipboard,
-      onPaste: this.props.clipboard ? this.props.onPaste : this.disallowClipboard
+      onPaste: this.props.clipboard ? this.props.onPaste : this.disallowClipboard,
+      'aria-describedby': this.errorName()
     }
 
     return (
@@ -331,6 +342,15 @@ Dropdown.defaultProps = {
 }
 
 Dropdown.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!value
+      }
+      return true
+    }
+  },
   {
     code: 'notfound',
     func: (value, props) => {

@@ -61,12 +61,16 @@ export default class Relatives extends SubsectionElement {
                    onError={this.handleError}
                    summary={this.summary}
                    description={i18n.t('relationships.relatives.collection.summary.title')}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative name="Item"
                     addressBooks={this.props.addressBooks}
                     dispatch={this.props.dispatch}
                     bind={true}
+                    scrollIntoView={this.props.scrollIntoView}
+                    required={this.props.required}
                     />
         </Accordion>
       </div>

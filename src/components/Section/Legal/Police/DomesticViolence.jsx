@@ -51,37 +51,43 @@ export default class DomesticViolence extends ValidationElement {
       <div className="domestic-violence">
         <Field title={i18n.t('legal.police.heading.domesticExplanation')}
                titleSize="h3"
-               help="legal.police.help.domesticExplanation">
+               help="legal.police.help.domesticExplanation"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea className="explanation"
                     name="explanation"
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('legal.police.heading.domesticCourtDate')}
                titleSize="h3"
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Issued"
                        {...this.props.Issued}
                        hideDay={true}
                        className="issued"
                        onUpdate={this.updateIssued}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('legal.police.heading.domesticCourtName')}
                titleSize="h3"
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 {...this.props.CourtName}
                 label={i18n.t('legal.police.label.courtname')}
                 className="domestic-courtname"
                 onUpdate={this.updateCourtName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -89,7 +95,8 @@ export default class DomesticViolence extends ValidationElement {
                titleSize="h3"
                help="legal.police.help.courtaddress"
                adjustFor="address"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="CourtAddress"
                     {...this.props.CourtAddress}
                     label={i18n.t('legal.police.label.address')}
@@ -101,6 +108,7 @@ export default class DomesticViolence extends ValidationElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

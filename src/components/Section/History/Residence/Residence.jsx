@@ -95,11 +95,15 @@ export default class Residence extends SubsectionElement {
                    customSummary={ResidenceCustomSummary}
                    customDetails={this.customResidenceDetails}
                    description={i18n.t('history.residence.collection.summary.title')}
-                   appendLabel={i18n.t('history.residence.collection.append')}>
-          <ResidenceItem name="Item"
-                         addressBooks={this.props.addressBooks}
-                         dispatch={this.props.dispatch}
-                         bind={true} />
+                   appendLabel={i18n.t('history.residence.collection.append')}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}>
+        <ResidenceItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )

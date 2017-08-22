@@ -1,8 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { api } from '../../../services/api'
 import ValidationElement from '../ValidationElement'
-import Field from '../Field'
 import Text from '../Text'
 import Checkbox from '../Checkbox'
 import Show from '../Show'
@@ -10,7 +8,9 @@ import Show from '../Show'
 export default class SSN extends ValidationElement {
   constructor (props) {
     super(props)
-
+    this.state = {
+      uid: `${this.props.name}-${super.guid()}`
+    }
     this.update = this.update.bind(this)
     this.updateFirst = this.updateFirst.bind(this)
     this.updateMiddle = this.updateMiddle.bind(this)
@@ -76,8 +76,16 @@ export default class SSN extends ValidationElement {
       }
     })
 
-    // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    const requiredErrors = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `ssn.${err.code}`,
+        valid: err.func('', this.props),
+        uid: this.state.uid
+      }
+    }))
+
+    this.props.onError(value, requiredErrors)
+    return arr
   }
 
   render () {
@@ -99,6 +107,7 @@ export default class SSN extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               tabNext={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
+              required={this.props.required}
           />
           <Text name="middle"
                 ref="middle"
@@ -114,7 +123,8 @@ export default class SSN extends ValidationElement {
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
                 tabBack={() => { this.props.tab(this.refs.first.refs.text.refs.input) }}
-            tabNext={() => { this.props.tab(this.refs.last.refs.text.refs.input) }}
+                tabNext={() => { this.props.tab(this.refs.last.refs.text.refs.input) }}
+                required={this.props.required}
             />
             <Text name="last"
                   ref="last"
@@ -130,6 +140,7 @@ export default class SSN extends ValidationElement {
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   tabBack={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
+                  required={this.props.required}
               />
               <Show when={!this.props.hideNotApplicable}>
                 <div className="flags">
@@ -153,6 +164,7 @@ export default class SSN extends ValidationElement {
 }
 
 SSN.defaultProps = {
+  name: 'ssn',
   value: '',
   first: '',
   middle: '',
@@ -164,7 +176,19 @@ SSN.defaultProps = {
   valid: false,
   tab: (input) => { input.focus() },
   onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  required: false
 }
 
-SSN.errors = []
+SSN.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required && props.notApplicable === false) {
+        return !!props.first && !!props.middle && !!props.last
+      }
+      return true
+    }
+
+  }
+]

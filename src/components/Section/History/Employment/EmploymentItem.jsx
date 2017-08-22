@@ -122,18 +122,22 @@ export default class EmploymentItem extends ValidationElement {
                             {...this.props.EmploymentActivity}
                             onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
                             onError={this.props.onError}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
 
         <Show when={this.showEmployer()}>
           <Field title={i18n.t(`${prefix}.heading.employer`)}
                  help={`${prefix}.employer.help`}
-                 adjustFor="labels">
+                 adjustFor="labels"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Text name="Employment"
                   {...this.props.Employment}
                   onUpdate={this.onUpdate.bind(this, 'Employment')}
                   onError={this.props.onError}
                   className="text full-width employment"
                   label={i18n.t(`${prefix}.employer.label`)}
+                  required={this.props.required}
                   />
           </Field>
         </Show>
@@ -141,13 +145,15 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.title`)}
                  help={`${prefix}.title.help`}
-                 adjustFor="labels">
+                 adjustFor="labels"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Text name="Title"
                   {...this.props.Title}
                   onUpdate={this.onUpdate.bind(this, 'Title')}
                   className="text employment-title"
                   label={i18n.t(`${prefix}.title.label`)}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Field>
         </Show>
@@ -155,13 +161,15 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showAssignedDuty()}>
           <Field title={i18n.t(`${prefix}.heading.dutyStation`)}
                  help={`${prefix}.dutyStation.help`}
-                 adjustFor="labels">
+                 adjustFor="labels"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Text name="DutyStation"
                   {...this.props.DutyStation}
                   onUpdate={this.onUpdate.bind(this, 'DutyStation')}
                   className="text full-width employment-duty-station"
                   label={i18n.t(`${prefix}.dutyStation.label`)}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Field>
         </Show>
@@ -169,11 +177,14 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showStatus()}>
           <Field title={i18n.t(`${prefix}.heading.status`)}
                  help={`${prefix}.status.help`}
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <EmploymentStatus name="Status"
                               {...this.props.Status}
                               onUpdate={this.onUpdate.bind(this, 'Status')}
                               onError={this.props.onError}
+                              required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView}
                               />
           </Field>
         </Show>
@@ -181,12 +192,14 @@ export default class EmploymentItem extends ValidationElement {
         <Field title={i18n.t(`history.employment.default.heading.datesEmployed`)}
                help={`history.employment.default.datesEmployed.help`}
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.onUpdate.bind(this, 'Dates')}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -210,13 +223,16 @@ export default class EmploymentItem extends ValidationElement {
         </Show>
 
         <Show when={this.showPhysicalAddress()}>
-          <Field title={i18n.t(`${prefix}.heading.physicalAddress`)}>
+          <Field title={i18n.t(`${prefix}.heading.physicalAddress`)}
+            scrollIntoView={this.props.scrollIntoView}>
             <PhysicalAddress name="PhysicalAddress"
                              {...this.props.PhysicalAddress}
                              addressBooks={this.props.addressBooks}
                              dispatch={this.props.dispatch}
                              onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
                              onError={this.props.onError}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
                              />
           </Field>
         </Show>
@@ -224,11 +240,13 @@ export default class EmploymentItem extends ValidationElement {
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.telephone`)}
                  help={`${prefix}.telephone.help`}
-                 adjustFor="telephone">
+                 adjustFor="telephone"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="Telephone"
                        {...this.props.Telephone}
                        onUpdate={this.onUpdate.bind(this, 'Telephone')}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </Field>
         </Show>
@@ -240,6 +258,8 @@ export default class EmploymentItem extends ValidationElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.onUpdate.bind(this, 'Supervisor')}
                       onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Show>
 
@@ -252,6 +272,8 @@ export default class EmploymentItem extends ValidationElement {
                        dispatch={this.props.dispatch}
                        onUpdate={this.onUpdate.bind(this, 'Reference')}
                        onError={this.props.onError}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        />
           </div>
         </Show>
@@ -264,6 +286,8 @@ export default class EmploymentItem extends ValidationElement {
                                 {...this.props.Additional}
                                 onUpdate={this.onUpdate.bind(this, 'Additional')}
                                 onError={this.props.onError}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView}
                                 />
           </div>
         </Show>
@@ -275,12 +299,16 @@ export default class EmploymentItem extends ValidationElement {
                         {...this.props.ReasonLeft}
                         onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
                         onError={this.props.onError}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
                         />
 
             <Reprimand name="Reprimand"
                        {...this.props.Reprimand}
                        onUpdate={this.onUpdate.bind(this, 'Reprimand')}
                        onError={this.props.onError}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        />
           </div>
         </Show>
