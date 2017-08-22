@@ -61,7 +61,9 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                 value={this.props.HasCourtActions}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasCourtActions}>
+                required={this.props.required}
+                onUpdate={this.updateHasCourtActions}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasCourtActions === 'Yes'}>
@@ -74,8 +76,15 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.nonCriminalAction.collection.description')}
                      appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}>
-            <NonCriminalCourtAction name="CourtAction" bind={true} />
+                     appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+        <NonCriminalCourtAction name="CourtAction"
+                                bind={true}
+                                addressBooks={this.props.addressBooks}
+                                dispatch={this.props.dispatch}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -90,7 +99,8 @@ NonCriminalCourtActions.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'court',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalNonCriminalCourtActionsValidator(props).isValid()
   },

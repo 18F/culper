@@ -48,6 +48,21 @@ describe('The generic component', () => {
     expect(component.find('input').hasClass('usa-input-success')).toEqual(true)
   })
 
+  it('renders if field is required', () => {
+    const expected = {
+      name: 'input-error',
+      label: 'Text input required',
+      type: 'text',
+      value: '',
+      required: true,
+      error: false,
+      focus: false,
+      valid: true
+    }
+    const component = mount(<Generic {...expected} />)
+    expect(component.find('.usa-input-error').length).toEqual(1)
+  })
+
   it('renders sane defaults', () => {
     const expected = {
       name: 'input-type-text',

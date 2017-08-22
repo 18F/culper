@@ -113,10 +113,11 @@ export default class Diagnoses extends SubsectionElement {
                 value={this.props.Diagnosed}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateDiagnosed}>
+                onUpdate={this.updateDiagnosed}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('psychological.diagnoses.heading.examples')}
         </Branch>
-
         <Show when={this.props.Diagnosed === 'Yes'}>
           <div>
             <Accordion className="diagnosis-collection"
@@ -129,9 +130,15 @@ export default class Diagnoses extends SubsectionElement {
                        description={i18n.t('psychological.diagnoses.collection.description')}
                        appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
                        appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
-                       appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}>
+                       appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}>
               <Diagnosis name="Diagnosis"
                          ApplicantBirthDate={this.props.ApplicantBirthDate}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
+                         addressBooks={this.props.addressBooks}
+                         dispatch={this.props.dispatch}
                          bind={true} />
             </Accordion>
 
@@ -142,7 +149,9 @@ export default class Diagnoses extends SubsectionElement {
                     value={this.props.DidNotConsult}
                     help="psychological.diagnoses.help.didNotConsult"
                     onError={this.handleError}
-                    onUpdate={this.updateDidNotConsult}>
+                    required={this.props.required}
+                    onUpdate={this.updateDidNotConsult}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <Branch name="inTreatment"
@@ -153,7 +162,9 @@ export default class Diagnoses extends SubsectionElement {
                     help="psychological.diagnoses.help.inTreatment"
                     warning={true}
                     onError={this.handleError}
-                    onUpdate={this.updateInTreatment}>
+                    required={this.props.required}
+                    onUpdate={this.updateInTreatment}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <Show when={this.props.InTreatment === 'Yes'}>
@@ -165,9 +176,15 @@ export default class Diagnoses extends SubsectionElement {
                          summary={this.treatmentSummary}
                          onError={this.handleError}
                          appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
-                         appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}>
+                         appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}>
                 <Treatment name="Treatment"
                            prefix="diagnoses.professional"
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
                            bind={true} />
               </Accordion>
             </Show>
@@ -189,6 +206,7 @@ Diagnoses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'diagnoses',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new DiagnosesValidator(props, props).isValid()

@@ -72,7 +72,9 @@ export default class IndirectActivity extends SubsectionElement {
                 help="foreign.activities.indirect.help.indirectControl"
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasInterests}>
+                required={this.props.required}
+                onUpdate={this.updateHasInterests}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
@@ -85,9 +87,15 @@ export default class IndirectActivity extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.indirect.collection.description')}
                      appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <IndirectInterest name="IndirectInterest"
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
                               bind={true}
+                              required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView}
                               />
           </Accordion>
         </Show>
@@ -106,7 +114,8 @@ IndirectActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/indirect',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignIndirectActivityValidator(state, props).isValid()
   },

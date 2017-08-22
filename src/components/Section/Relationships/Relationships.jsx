@@ -66,6 +66,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.cohabitant')}>
             <Marital name="marital"
                      {...this.props.Marital}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateMarital}
                      onError={this.handleError}
@@ -111,6 +112,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.review')}>
             <Relatives name="relatives"
                        {...this.props.Relatives}
+                       addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updateRelatives}
                        onError={this.handleError}
@@ -129,11 +131,14 @@ class Relationships extends SectionElement {
             <Marital name="marital"
                      {...this.props.Marital}
                      defaultState={false}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateMarital}
                      onError={this.handleError}
                      onSpouseUpdate={this.updateSpouse}
                      currentAddress={this.props.CurrentAddress}
+                     required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -144,6 +149,8 @@ class Relationships extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateCohabitants}
                          onError={this.handleError}
+                         required={true}
+                         scrollIntoView={false}
                          />
 
             <hr/>
@@ -153,15 +160,20 @@ class Relationships extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
             <Relatives name="relatives"
                        {...this.props.Relatives}
                        defaultState={false}
+                       addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updateRelatives}
                        onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
                        />
           </SectionView>
         </SectionViews>
@@ -171,11 +183,13 @@ class Relationships extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let relationships = app.Relationships || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
-  let history = app.History || {}
+  const app = state.application || {}
+  const relationships = app.Relationships || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const history = app.History || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Relationships: relationships,
     Relatives: relationships.Relatives || {},
@@ -185,7 +199,8 @@ function mapStateToProps (state) {
     CurrentAddress: history.CurrentAddress,
     People: relationships.People || {},
     Errors: errors.relationships || [],
-    Completed: completed.relationships || []
+    Completed: completed.relationships || [],
+    AddressBooks: addressBooks
   }
 }
 

@@ -62,7 +62,9 @@ export default class Revoked extends SubsectionElement {
                 value={this.props.HasRevocations}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('legal.investigations.revoked.para.downgrade')}
         </Branch>
 
@@ -76,31 +78,39 @@ export default class Revoked extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.investigations.revoked.collection.description')}
                      appendTitle={i18n.t('legal.investigations.revoked.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.revoked.heading.date')}
                    help="legal.investigations.revoked.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="legal-investigations-revoked-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('legal.investigations.revoked.heading.agency')}
                    help="legal.investigations.revoked.help.agency"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="legal-investigations-revoked-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('legal.investigations.revoked.heading.explanation')}
                    help="legal.investigations.revoked.help.explanation"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Explanation"
                         className="legal-investigations-revoked-explanation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

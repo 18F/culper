@@ -166,47 +166,57 @@ export default class TravelQuestions extends ValidationElement {
     return (
       <div className="foreign-travel-questions">
         <Field title={i18n.t('foreign.travel.heading.country')}
-               adjustFor="country">
+          adjustFor="country"
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    excludeUnitedStates={true}
                    className="foreign-travel-country"
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.dates')}
                help="foreign.travel.help.dates"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
                      className="foreign-travel-dates"
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.days')}
                help="foreign.travel.help.days"
-               adjustFor="p">
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.checkall')}
           <TravelDays name="Days"
                       className="foreign-travel-days"
                       value={this.props.Days}
                       onUpdate={this.updateDays}
                       onError={this.props.onError}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.purpose')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose name="Purpose"
                          className="foreign-travel-purpose"
                          value={this.props.Purpose}
                          onUpdate={this.updatePurpose}
                          onError={this.props.onError}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
                          />
         </Field>
 
@@ -216,17 +226,21 @@ export default class TravelQuestions extends ValidationElement {
                 className="foreign-travel-questioned"
                 value={this.props.Questioned}
                 onUpdate={this.updateQuestioned}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Questioned === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="QuestionedExplanation"
                       {...this.props.QuestionedExplanation}
                       className="foreign-travel-questioned-explanation"
                       onUpdate={this.updateQuestionedExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -237,17 +251,21 @@ export default class TravelQuestions extends ValidationElement {
                 className="foreign-travel-encounter"
                 value={this.props.Encounter}
                 onUpdate={this.updateEncounter}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Encounter === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="EncounterExplanation"
                       {...this.props.EncounterExplanation}
                       className="foreign-travel-encounter-explanation"
                       onUpdate={this.updateEncounterExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -258,17 +276,21 @@ export default class TravelQuestions extends ValidationElement {
                 className="foreign-travel-contacted"
                 value={this.props.Contacted}
                 onUpdate={this.updateContacted}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.Contacted === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="ContactedExplanation"
                       {...this.props.ContactedExplanation}
                       className="foreign-travel-contacted-explanation"
                       onUpdate={this.updateContactedExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -279,6 +301,7 @@ export default class TravelQuestions extends ValidationElement {
                 className="foreign-travel-counter"
                 value={this.props.Counter}
                 onUpdate={this.updateCounter}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Counter === 'Yes'}>
@@ -290,6 +313,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-counter-explanation"
                       onUpdate={this.updateCounterExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -300,6 +324,7 @@ export default class TravelQuestions extends ValidationElement {
                 className="foreign-travel-interest"
                 value={this.props.Interest}
                 onUpdate={this.updateInterest}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Interest === 'Yes'}>
@@ -311,6 +336,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-interest-explanation"
                       onUpdate={this.updateInterestExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -321,6 +347,7 @@ export default class TravelQuestions extends ValidationElement {
                 className="foreign-travel-sensitive"
                 value={this.props.Sensitive}
                 onUpdate={this.updateSensitive}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Sensitive === 'Yes'}>
@@ -332,6 +359,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-sensitive-explanation"
                       onUpdate={this.updateSensitiveExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -342,6 +370,7 @@ export default class TravelQuestions extends ValidationElement {
                 className="foreign-travel-threatened"
                 value={this.props.Threatened}
                 onUpdate={this.updateThreatened}
+                required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.Threatened === 'Yes'}>
@@ -353,6 +382,7 @@ export default class TravelQuestions extends ValidationElement {
                       className="foreign-travel-threatened-explanation"
                       onUpdate={this.updateThreatenedExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

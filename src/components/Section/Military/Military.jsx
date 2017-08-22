@@ -68,6 +68,8 @@ class Military extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateSelective}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         />
               <hr/>
             </Show>
@@ -79,6 +81,8 @@ class Military extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
 
             <Show when={showDisciplinary}>
@@ -91,6 +95,8 @@ class Military extends SectionElement {
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDisciplinary}
                             onError={this.handleError}
+                            required={true}
+                            scrollIntoView={false}
                             />
             </Show>
 
@@ -99,10 +105,13 @@ class Military extends SectionElement {
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     addressBooks={this.props.AddressBooks}
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
           </SectionView>
 
@@ -160,6 +169,7 @@ class Military extends SectionElement {
             {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
@@ -173,10 +183,12 @@ class Military extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let military = app.Military || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const military = app.Military || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Application: app || {},
     Military: military,
@@ -185,7 +197,8 @@ function mapStateToProps (state) {
     Disciplinary: military.Disciplinary || {},
     Foreign: military.Foreign || {},
     Errors: errors.military || [],
-    Completed: completed.military || []
+    Completed: completed.military || [],
+    AddressBooks: addressBooks
   }
 }
 

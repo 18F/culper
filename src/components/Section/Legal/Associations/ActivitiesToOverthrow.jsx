@@ -62,7 +62,9 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                 value={this.props.HasActivities}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasActivities === 'Yes'}>
@@ -75,22 +77,28 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.associations.activities.collection.description')}
                      appendTitle={i18n.t('legal.associations.activities.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.activities.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.activities.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.activities.heading.reasons')}
                    help="legal.associations.activities.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-activities-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.associations.activities.heading.dates')}
                    help="legal.associations.activities.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-activities-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>

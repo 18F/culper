@@ -342,7 +342,10 @@ class History extends SectionElement {
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
+                       addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
+                       scrollIntoView={false}
+                       required={true}
                        />
 
             <Employment value={this.props.Employment}
@@ -353,7 +356,10 @@ class History extends SectionElement {
                         overrideInitial={this.overrideInitial}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
+                        scrollIntoView={false}
+                        required={true}
                         />
 
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
@@ -366,6 +372,8 @@ class History extends SectionElement {
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
+                         scrollIntoView={false}
+                         required={true}
                          />
             </Show>
 
@@ -374,9 +382,12 @@ class History extends SectionElement {
             <Federal name="federal"
                      {...this.props.Federal}
                      defaultState={false}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
+                     scrollIntoView={false}
+                     required={true}
                      />
           </SectionView>
 
@@ -401,6 +412,7 @@ class History extends SectionElement {
                        overrideInitial={this.overrideInitial}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
+                       addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        />
 
@@ -430,6 +442,7 @@ class History extends SectionElement {
                         overrideInitial={this.overrideInitial}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         />
 
@@ -493,6 +506,7 @@ class History extends SectionElement {
             <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.handleUpdate.bind(this, 'Federal')}
                      onError={this.handleError}
@@ -518,11 +532,13 @@ const processDate = (date) => {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let identification = app.Identification || {}
-  let history = app.History || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const identification = app.Identification || {}
+  const history = app.History || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     History: history,
     Residence: history.Residence || [],
@@ -531,7 +547,8 @@ function mapStateToProps (state) {
     Federal: history.Federal || {},
     Errors: errors.history || [],
     Completed: completed.history || [],
-    Birthdate: processDate(identification.ApplicantBirthDate)
+    Birthdate: processDate(identification.ApplicantBirthDate),
+    AddressBooks: addressBooks
   }
 }
 

@@ -35,8 +35,10 @@ export default class Passports extends SubsectionElement {
                           items={this.props.Passports}
                           scrollToBottom={this.props.scrollToBottom}
                           onUpdate={this.updatePassports}
+                          scrollIntoView={this.props.scrollIntoView}
+                          required={this.props.required}
                           onError={this.handleError}>
-          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} />
+          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
         </BranchCollection>
       </div>
     )

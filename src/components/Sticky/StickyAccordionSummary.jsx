@@ -42,6 +42,9 @@ export default class StickyAccordionSummary extends React.Component {
   }
 
   elementOffset () {
+    if (!this.refs.content) {
+      return 0
+    }
     const rect = this.refs.content.getBoundingClientRect()
     const bodyRect = this.props.document().body.getBoundingClientRect()
     const elOffset = rect.top - bodyRect.top
@@ -49,12 +52,18 @@ export default class StickyAccordionSummary extends React.Component {
   }
 
   elementBottomOffset () {
+    if (!this.refs.content) {
+      return 0
+    }
     const elementOffset = this.elementOffset()
     const elementHeight = this.refs.content.clientHeight
     return (elementOffset + elementHeight) - this.props.offset
   }
 
   summaryElement () {
+    if (!this.refs.content) {
+      return null
+    }
     return this.refs.content.querySelector(SUMMARY_CLASS)
   }
 

@@ -52,6 +52,7 @@ class Psychological extends SectionElement {
             <Competence name="Competence"
                         {...this.props.Competence}
                         ApplicantBirthDate={this.props.ApplicantBirthDate}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')}
@@ -67,6 +68,7 @@ class Psychological extends SectionElement {
             <Consultation name="Consultations"
                           {...this.props.Consultations}
                           ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')}
@@ -95,6 +97,7 @@ class Psychological extends SectionElement {
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
                        ApplicantBirthDate={this.props.ApplicantBirthDate}
+                       addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
@@ -128,6 +131,8 @@ class Psychological extends SectionElement {
                         defaultState={false}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
 
             <hr />
@@ -137,6 +142,8 @@ class Psychological extends SectionElement {
                           defaultState={false}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
 
             <hr />
@@ -146,6 +153,8 @@ class Psychological extends SectionElement {
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
+                              required={true}
+                              scrollIntoView={false}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
 
             <hr />
@@ -155,12 +164,15 @@ class Psychological extends SectionElement {
                        defaultState={false}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
                        />
 
             <Show when={this.props.ShowExistingConditions}>
               <div>
                 <hr />
+                {this.props.ShowExistingConditions}
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
                                     ApplicantBirthDate={this.props.ApplicantBirthDate}
@@ -168,6 +180,8 @@ class Psychological extends SectionElement {
                                     dispatch={this.props.dispatch}
                                     onError={this.handleError}
                                     onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                    required={this.props.ShowExistingConditions}
+                                    scrollIntoView={false}
                                     />
               </div>
             </Show>
@@ -179,10 +193,12 @@ class Psychological extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let psychological = app.Psychological || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const psychological = app.Psychological || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Psychological: psychological,
     Competence: psychological.Competence,
@@ -193,7 +209,8 @@ function mapStateToProps (state) {
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
     ShowExistingConditions: showQuestion21E(psychological),
-    ApplicantBirthDate: extractApplicantBirthDate(app)
+    ApplicantBirthDate: extractApplicantBirthDate(app),
+    AddressBooks: addressBooks
   }
 }
 

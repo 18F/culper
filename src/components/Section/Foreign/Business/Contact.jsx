@@ -68,7 +68,9 @@ export default class Contact extends SubsectionElement {
                 value={this.props.HasForeignContact}
                 warning={true}
                 onUpdate={this.updateHasForeignContact}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
@@ -83,15 +85,20 @@ export default class Contact extends SubsectionElement {
                      description={i18n.t('foreign.business.contact.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.contact.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.contact.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.contact.collection.append')}>
-            <h3>{i18n.t('foreign.business.contact.heading.name')}</h3>
-            <Name name="Name"
-                  className="foreign-business-contact-name"
-                  bind={true}
-                  />
-
+                     appendLabel={i18n.t('foreign.business.contact.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+           <Field title={i18n.t('foreign.business.contact.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="foreign-business-contact-name"
+                    bind={true}
+                    required={this.props.required}
+                    />
+           </Field>
             <Field title={i18n.t('foreign.business.contact.heading.location')}
-                   help="foreign.business.contact.help.location">
+              help="foreign.business.contact.help.location"
+              scrollIntoView={this.props.scrollIntoView}>
               <Location name="Location"
                           layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
                           help=""
@@ -99,57 +106,71 @@ export default class Contact extends SubsectionElement {
                           cityPlaceholder={i18n.t('foreign.business.contact.placeholder.city')}
                           countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
                           className="birthplace foreign-business-contact-location"
+                          addressBooks={this.props.addressBooks}
+                          addressBook="ForeignNational"
+                          dispatch={this.props.dispatch}
                           bind={true}
+                          required={this.props.required}
                           />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.date')}
                    help="foreign.business.contact.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="foreign-business-contact-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.governments')}
                    help="foreign.business.contact.help.governments"
-                   adjustFor="country">
+                   adjustFor="country"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Country name="Governments"
                        className="foreign-business-contact-governments"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.establishment')}
                    help="foreign.business.contact.help.establishment"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Establishment"
                         className="foreign-business-contact-establishment"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.representatives')}
                    help="foreign.business.contact.help.representatives"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Representatives"
                         className="foreign-business-contact-representatives"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.contact.heading.purpose')}
                    help="foreign.business.contact.help.purpose"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Purpose"
                         className="foreign-business-contact-purpose"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <SubsequentContacts name="SubsequentContacts" bind={true} />
+            <SubsequentContacts name="SubsequentContacts" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -166,7 +187,8 @@ Contact.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignBusinessContactValidator(state, props).isValid()
   },

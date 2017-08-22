@@ -79,7 +79,9 @@ export default class OtherOffenses extends SubsectionElement {
                 value={this.props.HasOtherOffenses}
                 warning={true}
                 onUpdate={this.updateHasOtherOffenses}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           <ul>
             <li>{i18n.m('legal.police.para.otherOffense.first')}</li>
             <li>{i18n.m('legal.police.para.otherOffense.second')}</li>
@@ -100,9 +102,15 @@ export default class OtherOffenses extends SubsectionElement {
                      description={i18n.t('legal.police.collection.summary.title')}
                      appendTitle={i18n.t('legal.police.collection.appendTitle')}
                      appendMessage={this.otherOffenseBranch()}
-                     appendLabel={i18n.t('legal.police.collection.append')}>
+                     appendLabel={i18n.t('legal.police.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <OtherOffense name="Item"
+                          addressBooks={this.props.addressBooks}
+                          dispatch={this.props.dispatch}
                           bind={true}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
                           />
           </Accordion>
         </Show>
@@ -116,7 +124,8 @@ OtherOffenses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/additionaloffenses',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new PoliceOtherOffensesValidator(props).isValid()
   },

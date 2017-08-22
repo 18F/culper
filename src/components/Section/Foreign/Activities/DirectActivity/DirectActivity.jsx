@@ -70,7 +70,9 @@ export default class DirectActivity extends SubsectionElement {
                 help="foreign.activities.direct.help.directControl"
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasInterests}>
+                required={this.props.required}
+                onUpdate={this.updateHasInterests}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
@@ -84,9 +86,15 @@ export default class DirectActivity extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.direct.collection.description')}
                      appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <DirectInterest name="DirectInterest"
+                            addressBooks={this.props.addressBooks}
+                            dispatch={this.props.dispatch}
                             bind={true}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
           </Accordion>
         </Show>
@@ -105,7 +113,8 @@ DirectActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/direct',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignDirectActivityValidator(state, props).isValid()
   }

@@ -37,10 +37,13 @@ class Financial extends SectionElement {
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
+                          addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
                           onError={this.handleError}
                           defaultState={false}
+                          required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -51,6 +54,8 @@ class Financial extends SectionElement {
                       onUpdate={this.handleUpdate.bind(this, 'Gambling')}
                       onError={this.handleError}
                       defaultState={false}
+                      required={true}
+                      scrollIntoView={false}
                     />
 
             <hr />
@@ -61,26 +66,34 @@ class Financial extends SectionElement {
                    onUpdate={this.handleUpdate.bind(this, 'Taxes')}
                    onError={this.handleError}
                    defaultState={false}
+                   required={true}
+                   scrollIntoView={false}
                    />
 
             <hr />
             <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
+                  addressBooks={this.props.AddressBooks}
                   dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
                   onError={this.handleError}
                   defaultState={false}
+                  required={true}
+                  scrollIntoView={false}
                   />
 
             <hr />
             <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
                     onError={this.handleError}
                     defaultState={false}
+                    required={true}
+                    scrollIntoView={false}
                     />
 
             <hr />
@@ -94,10 +107,13 @@ class Financial extends SectionElement {
             </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
                         onError={this.handleError}
                         defaultState={false}
+                        required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -118,6 +134,8 @@ class Financial extends SectionElement {
                         onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
                         onError={this.handleError}
                         defaultState={false}
+                        required={true}
+                        scrollIntoView={false}
                         />
           </SectionView>
 
@@ -129,6 +147,7 @@ class Financial extends SectionElement {
             <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
+                          addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
                           onError={this.handleError}
@@ -174,6 +193,7 @@ class Financial extends SectionElement {
             <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
+                  addressBooks={this.props.AddressBooks}
                   dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
                   onError={this.handleError}
@@ -189,6 +209,7 @@ class Financial extends SectionElement {
             <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
                     onError={this.handleError}
@@ -211,6 +232,7 @@ class Financial extends SectionElement {
             </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
                         onError={this.handleError}
@@ -249,10 +271,12 @@ class Financial extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let financial = app.Financial || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const financial = app.Financial || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Financial: financial,
     Gambling: financial.Gambling || {},
@@ -263,7 +287,8 @@ function mapStateToProps (state) {
     Delinquent: financial.Delinquent || {},
     Nonpayment: financial.Nonpayment || {},
     Errors: errors.financial || [],
-    Completed: completed.financial || []
+    Completed: completed.financial || [],
+    AddressBooks: addressBooks
   }
 }
 

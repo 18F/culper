@@ -439,7 +439,9 @@ export default class Accordion extends ValidationElement {
               help={this.props.appendHelp}
               value={this.props.branch}
               onUpdate={this.updateAddendum}
-              onError={this.props.onError}>
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}>
         {this.props.appendMessage}
       </Branch>
     )

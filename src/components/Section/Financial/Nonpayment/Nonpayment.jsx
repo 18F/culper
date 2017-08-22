@@ -94,6 +94,8 @@ export default class Nonpayment extends SubsectionElement {
                 value={this.state.HasNonpayment}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
@@ -106,44 +108,56 @@ export default class Nonpayment extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('financial.nonpayment.collection.summary.title')}
                      appendTitle={i18n.t('financial.nonpayment.collection.appendTitle')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.nonpayment.collection.append')}>
 
-            <Field title={i18n.t('financial.nonpayment.heading.name')}>
+           <Field title={i18n.t('financial.nonpayment.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
               <Text name="Name"
                     className="nonpayment-name"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.infractions')}>
+            <Field title={i18n.t('financial.nonpayment.heading.infractions')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Infractions name="Infractions"
                            className="nonpayment-infractions"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.accountnumber')}>
+            <Field title={i18n.t('financial.nonpayment.heading.accountnumber')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="AccountNumber"
                     className="nonpayment-accountnumber"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.propertytype')}>
+            <Field title={i18n.t('financial.nonpayment.heading.propertytype')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="PropertyType"
                     className="nonpayment-propertytype"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.amount')}>
+            <Field title={i18n.t('financial.nonpayment.heading.amount')}
+              scrollIntoView={this.props.scrollIntoView}>
               <div>
                 <Currency name="Amount"
                           className="nonpayment-amount"
                           placeholder={i18n.t('financial.nonpayment.placeholder.amount')}
                           min="1"
                           bind={true}
+                          required={this.props.required}
                           />
                 <div className="flags">
                   <Checkbox name="AmountEstimated"
@@ -157,22 +171,27 @@ export default class Nonpayment extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.reason')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.nonpayment.help.reason">
               <Textarea name="Reason"
                         className="nonpayment-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <Field title={i18n.t('financial.nonpayment.heading.status')}>
+            <Field title={i18n.t('financial.nonpayment.heading.status')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Status"
                     className="nonpayment-status"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.resolved')}
                    adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <NotApplicable name="ResolvedNotApplicable"
                              label={i18n.t('financial.nonpayment.label.notresolved')}
@@ -182,25 +201,30 @@ export default class Nonpayment extends SubsectionElement {
                              className="nonpayment-resolved"
                              hideDay={true}
                              bind={true}
+                             required={this.props.required}
                              />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.date')}
                    adjustFor="labels"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <DateControl name="Date"
                            className="nonpayment-date"
                            hideDay={true}
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('financial.nonpayment.heading.description')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.nonpayment.help.description">
               <Textarea name="Description"
                         className="nonpayment-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

@@ -32,7 +32,11 @@ export default class HairColor extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
-        <RadioGroup className="option-list eapp-extend-labels" selectedValue={this.state.value}>
+        <RadioGroup
+          className="option-list eapp-extend-labels"
+          selectedValue={this.state.value}
+          onError={this.props.onError}
+          required={this.props.required}>
           <Radio name="hair-bald"
                  label={i18n.t('identification.traits.hair.bald')}
                  value="Bald"
@@ -43,6 +47,7 @@ export default class HairColor extends ValidationElement {
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
+                 required={this.props.required}
                  >
             <div className="hair-icon bald">
               <Svg src="/img/bald.svg" />

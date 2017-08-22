@@ -88,7 +88,9 @@ export default class History extends SubsectionElement {
                 help="military.history.help.served"
                 warning={true}
                 onUpdate={this.updateServed}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasServed === 'Yes'}>
@@ -101,9 +103,13 @@ export default class History extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
-                     appendLabel={i18n.t('military.history.collection.append')}>
+                     appendLabel={i18n.t('military.history.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <MilitaryService name="Item"
                              bind={true}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
                              />
           </Accordion>
         </Show>
@@ -117,6 +123,7 @@ History.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'history',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new MilitaryHistoryValidator(props, props).isValid()

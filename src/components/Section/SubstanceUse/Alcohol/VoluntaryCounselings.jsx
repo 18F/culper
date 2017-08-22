@@ -64,7 +64,9 @@ export default class VoluntaryCounselings extends SubsectionElement {
                 value={this.props.SoughtTreatment}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateSoughtTreatment}>
+                required={this.props.required}
+                onUpdate={this.updateSoughtTreatment}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.SoughtTreatment === 'Yes'}>
@@ -77,8 +79,15 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}>
-            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+        <VoluntaryCounseling name="VoluntaryCounseling"
+                             bind={true}
+                             addressBooks={this.props.addressBooks}
+                             dispatch={this.props.dispatch}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -92,7 +101,8 @@ VoluntaryCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/voluntary',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new AlcoholVoluntaryCounselingsValidator(props).isValid()
   },

@@ -64,7 +64,9 @@ export default class TerroristOrganization extends SubsectionElement {
                 value={this.props.HasTerrorist}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasTerrorist === 'Yes'}>
@@ -77,70 +79,89 @@ export default class TerroristOrganization extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.associations.terrorist.collection.description')}
                      appendTitle={i18n.t('legal.associations.terrorist.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.terrorist.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.terrorist.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.terrorist.heading.organization')}
                    help="legal.associations.terrorist.help.organization"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Organization"
                     className="legal-associations-terrorist-organization"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('legal.associations.terrorist.heading.address')}
                    help="legal.associations.terrorist.help.address"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Address"
                         className="legal-associations-terrorist-address"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Organization"
+                        dispatch={this.props.dispatch}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.associations.terrorist.heading.dates')}
                    help="legal.associations.terrorist.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-terrorist-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('legal.associations.terrorist.heading.positions')}
                    help="legal.associations.terrorist.help.positions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="PositionsNotApplicable"
                              or={i18n.m('legal.associations.terrorist.para.or')}
                              label={i18n.t('legal.associations.terrorist.label.noposition')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Positions"
                       className="legal-associations-terrorist-positions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('legal.associations.terrorist.heading.contributions')}
                    help="legal.associations.terrorist.help.contributions"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="ContributionsNotApplicable"
                              or={i18n.m('legal.associations.terrorist.para.or')}
                              label={i18n.t('legal.associations.terrorist.label.nocontribs')}
+                             required={this.props.required}
                              bind={true}>
                 <Text name="Contributions"
                       className="legal-associations-terrorist-contributions"
                       bind={true}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('legal.associations.terrorist.heading.reasons')}
                    help="legal.associations.terrorist.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-terrorist-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -160,7 +181,8 @@ TerroristOrganization.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/terrorist-organization',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalAssociationsTerroristValidator(state, props).isValid()
   },

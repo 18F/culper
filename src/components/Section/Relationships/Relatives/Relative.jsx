@@ -297,8 +297,11 @@ export default class Relative extends ValidationElement {
     return (
       <div className="relative-item">
         <Field title={i18n.t('relationships.relatives.heading.relation')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="big-buttons">
           <RadioGroup className="relative-relation option-list"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.props.Relation}>
             <Radio name="relation-mother"
                    label={i18n.m('relationships.relatives.label.relation.mother')}
@@ -415,28 +418,34 @@ export default class Relative extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <h3>{i18n.t('relationships.relatives.heading.name')}</h3>
-        <Name name="Name"
-              className="relative-name"
-              {...this.props.Name}
-              onError={this.props.onError}
-              onUpdate={this.updateName}
-              />
-
+        <Field title={i18n.t('relationships.relatives.heading.name')}
+          scrollIntoView={this.props.scrollIntoView}>
+            <Name name="Name"
+                  className="relative-name"
+                  {...this.props.Name}
+                  onError={this.props.onError}
+                  onUpdate={this.updateName}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                  />
+        </Field>
         <Field title={i18n.t('relationships.relatives.heading.birthdate')}
                help="relationships.relatives.help.birthdate"
                adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <DateControl name="Birthdate"
                        className="relative-birthdate"
                        {...this.props.Birthdate}
                        onError={this.props.onError}
                        onUpdate={this.updateBirthdate}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.birthplace')}
                adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}
                validate={false}>
           <Location name="Birthplace"
                     label={i18n.t('relationships.relatives.label.birthplace')}
@@ -449,10 +458,12 @@ export default class Relative extends ValidationElement {
                     {...this.props.Birthplace}
                     onError={this.props.onError}
                     onUpdate={this.updateBirthplace}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.citizenship')}
+               scrollIntoView={this.props.scrollIntoView}
                help="relationships.relatives.help.citizenship">
           <Country name="Citizenship"
                    multiple={true}
@@ -460,6 +471,7 @@ export default class Relative extends ValidationElement {
                    className="relative-citizenship"
                    onError={this.props.onError}
                    onUpdate={this.updateCitizenship}
+                   required={this.props.required}
                    />
         </Field>
 
@@ -473,15 +485,21 @@ export default class Relative extends ValidationElement {
                     yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
                     noLabel={i18n.t('relationships.relatives.label.maiden.diff')}
                     onUpdate={this.updateMaidenSameAsListed}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
                     onError={this.props.onError}>
             </Branch>
             <Show when={this.props.MaidenSameAsListed === 'No'}>
-              <Name name="MaidenName"
-                    className="relative-maidenname eapp-field-wrap"
-                    {...this.props.MaidenName}
-                    onError={this.props.onError}
-                    onUpdate={this.updateMaidenName}
-                    />
+              <Field scrollIntoView={this.props.scrollIntoView}>
+                <Name name="MaidenName"
+                      className="relative-maidenname eapp-field-wrap"
+                      {...this.props.MaidenName}
+                      onError={this.props.onError}
+                      onUpdate={this.updateMaidenName}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
+                </Field>
             </Show>
           </div>
         </Show>
@@ -493,15 +511,20 @@ export default class Relative extends ValidationElement {
                             appendLabel={i18n.t('relationships.relatives.heading.alias.branch')}
                             className="relative-alias"
                             onUpdate={this.updateAliases}
-                            onError={this.props.onError}>
+                            onError={this.props.onError}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}>
             <div>
               <Field title={i18n.t('relationships.relatives.heading.needmore')}
-                      className="more title">
+                     className="more title"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Svg src="/img/date-down-arrow.svg" className="more arrow" />
               </Field>
               <Alias name="Item"
                       onError={this.props.onError}
                       hideMaiden={mother}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       bind={true} />
             </div>
           </BranchCollection>
@@ -513,19 +536,26 @@ export default class Relative extends ValidationElement {
                 className="relative-deceased"
                 value={this.props.IsDeceased}
                 onUpdate={this.updateIsDeceased}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}>
         </Branch>
         <Show when={this.props.IsDeceased === 'No'}>
           <Field title={i18n.t('relationships.relatives.heading.deceased.address')}
                  help="relationships.relatives.help.address"
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="address">
             <Location name="Address"
                       className="relative-address"
                       {...this.props.Address}
+                      addressBooks={this.props.addressBooks}
+                      addressBook={this.props.addressBook}
+                      dispatch={this.props.dispatch}
                       layout={Location.ADDRESS}
                       geocode={true}
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
@@ -533,6 +563,7 @@ export default class Relative extends ValidationElement {
         <Show when={validator.requiresCitizenshipDocumentation()}>
           <div>
             <Field title={i18n.t('relationships.relatives.heading.us.title')}
+                   scrollIntoView={this.props.scrollIntoView}
                    titleSize="h2">
               <h3 className="relative-citizenship-documentation">
                 {i18n.t('relationships.relatives.heading.us.documentation')}
@@ -540,6 +571,8 @@ export default class Relative extends ValidationElement {
 
               <label>{i18n.t('relationships.relatives.para.abroad')}</label>
               <RadioGroup className="relative-abroad option-list"
+                          required={this.props.required}
+                          onError={this.props.onError}
                           selectedValue={this.props.CitizenshipDocumentation}>
                 <Radio name="abroad-fs"
                        label={i18n.m('relationships.relatives.label.abroad.fs')}
@@ -559,6 +592,8 @@ export default class Relative extends ValidationElement {
 
               <label>{i18n.t('relationships.relatives.para.naturalized')}</label>
               <RadioGroup className="relative-naturalized option-list"
+                          required={this.props.required}
+                          onError={this.props.onError}
                           selectedValue={this.props.CitizenshipDocumentation}>
                 <Radio name="naturalized-alien"
                        label={i18n.m('relationships.relatives.label.naturalized.alien')}
@@ -585,6 +620,8 @@ export default class Relative extends ValidationElement {
 
               <label>{i18n.t('relationships.relatives.para.derived')}</label>
               <RadioGroup className="relative-derived option-list"
+                          required={this.props.required}
+                          onError={this.props.onError}
                           selectedValue={this.props.CitizenshipDocumentation}>
                 <Radio name="derived-alien"
                        label={i18n.m('relationships.relatives.label.derived.alien')}
@@ -621,32 +658,38 @@ export default class Relative extends ValidationElement {
                           {...this.props.OtherCitizenshipDocumentation}
                           onError={this.props.onError}
                           onUpdate={this.updateOtherCitizenshipDocumentation}
+                          required={this.props.required}
                           />
               </Show>
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.number')}
+                   scrollIntoView={this.props.scrollIntoView}
                    titleSize="h3">
               <Text name="DocumentNumber"
                     className="relative-documentnumber"
                     {...this.props.DocumentNumber}
                     onError={this.props.onError}
                     onUpdate={this.updateDocumentNumber}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.name')}
+                   scrollIntoView={this.props.scrollIntoView}
                    titleSize="h3">
               <Text name="CourtName"
                     className="relative-courtname"
                     {...this.props.CourtName}
                     onError={this.props.onError}
                     onUpdate={this.updateCourtName}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.us.address')}
                    titleSize="h3"
+                   scrollIntoView={this.props.scrollIntoView}
                    help="relationships.relatives.help.courtaddress"
                    adjustFor="labels">
               <Location name="CourtAddress"
@@ -656,6 +699,7 @@ export default class Relative extends ValidationElement {
                         {...this.props.CourtAddress}
                         onError={this.props.onError}
                         onUpdate={this.updateCourtAddress}
+                        required={this.props.required}
                         />
             </Field>
           </div>
@@ -667,10 +711,13 @@ export default class Relative extends ValidationElement {
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
                        comments={false}
+                       scrollIntoView={this.props.scrollIntoView}
                        adjustFor="big-buttons">
                   <div>
                     {i18n.t('relationships.relatives.para.notcitizen')}
                     <RadioGroup className="relative-document option-list"
+                                required={this.props.required}
+                                onError={this.props.onError}
                                 selectedValue={this.props.Document}>
                       <Radio name="document-permanent"
                              label={i18n.m('relationships.relatives.label.document.permanent')}
@@ -729,22 +776,26 @@ export default class Relative extends ValidationElement {
                                 {...this.props.OtherDocument}
                                 onValidate={this.props.onValidate}
                                 onUpdate={this.updateOtherDocument}
+                                required={this.props.required}
                                 />
                     </Show>
                   </div>
                 </Field>
 
-                <Field title={i18n.t('relationships.relatives.heading.address.number')}>
+                <Field title={i18n.t('relationships.relatives.heading.address.number')}
+                  scrollIntoView={this.props.scrollIntoView}>
                   <Text name="ResidenceDocumentNumber"
                         className="relative-residence-documentnumber"
                         {...this.props.ResidenceDocumentNumber}
                         onError={this.props.onError}
                         onUpdate={this.updateResidenceDocumentNumber}
+                        required={this.props.required}
                         />
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.address.expiration')}
                        adjustFor="labels"
+                       scrollIntoView={this.props.scrollIntoView}
                        shrink={true}>
                   <DateControl name="Expiration"
                                className="relative-expiration"
@@ -752,6 +803,7 @@ export default class Relative extends ValidationElement {
                                onError={this.props.onError}
                                onUpdate={this.updateExpiration}
                                maxDate={null}
+                               required={this.props.required}
                                />
                 </Field>
               </div>
@@ -762,24 +814,28 @@ export default class Relative extends ValidationElement {
                 <Field title={i18n.t('relationships.relatives.heading.address.firstcontact')}
                        help="relationships.relatives.help.firstcontact"
                        adjustFor="labels"
+                       scrollIntoView={this.props.scrollIntoView}
                        shrink={true}>
                   <DateControl name="FirstContact"
                                className="relative-first-contact"
                                {...this.props.FirstContact}
                                onError={this.props.onError}
                                onUpdate={this.updateFirstContact}
+                               required={this.props.required}
                                />
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.address.lastcontact')}
                        help="relationships.relatives.help.lastcontact"
                        adjustFor="labels"
+                       scrollIntoView={this.props.scrollIntoView}
                        shrink={true}>
                   <DateControl name="LastContact"
                                className="relative-last-contact"
                                {...this.props.LastContact}
                                onError={this.props.onError}
                                onUpdate={this.updateLastContact}
+                               required={this.props.required}
                                />
                 </Field>
 
@@ -790,10 +846,13 @@ export default class Relative extends ValidationElement {
                        commentsActive={(this.props.Methods || []).some(x => x === 'Other')}
                        onUpdate={this.updateMethodsComments}
                        onError={this.props.onError}
-                       adjustFor="big-buttons">
+                       adjustFor="big-buttons"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <div>
                     {i18n.m('relationships.relatives.para.checkall')}
                     <CheckboxGroup className="relative-methods option-list"
+                                   required={this.props.required}
+                                   onError={this.props.onError}
                                    selectedValues={this.props.Methods}>
                       <Checkbox name="methods-inperson"
                                 label={i18n.m('relationships.relatives.label.methods.inperson')}
@@ -841,8 +900,11 @@ export default class Relative extends ValidationElement {
                        commentsActive={this.props.Frequency === 'Other'}
                        onUpdate={this.updateFrequencyComments}
                        onError={this.props.onError}
+                       scrollIntoView={this.props.scrollIntoView}
                        adjustFor="big-buttons">
                   <RadioGroup className="relative-frequency option-list"
+                              required={this.props.required}
+                              onError={this.props.onError}
                               selectedValue={this.props.Frequency}>
                     <Radio name="frequency-daily"
                            label={i18n.m('relationships.relatives.label.frequency.daily')}
@@ -893,6 +955,7 @@ export default class Relative extends ValidationElement {
 
             <Field title={i18n.t('relationships.relatives.heading.employer.name')}
                    adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
               <NotApplicable name="EmployerNotApplicable"
                              label={i18n.t('relationships.relatives.label.idk')}
@@ -904,11 +967,13 @@ export default class Relative extends ValidationElement {
                       {...this.props.Employer}
                       onError={this.props.onError}
                       onUpdate={this.updateEmployer}
+                      required={this.props.required}
                       />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('relationships.relatives.heading.employer.address')}
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="address">
               <NotApplicable name="EmployerAddressNotApplicable"
                              label={i18n.t('relationships.relatives.label.idk')}
@@ -921,6 +986,7 @@ export default class Relative extends ValidationElement {
                           {...this.props.EmployerAddress}
                           onError={this.props.onError}
                           onUpdate={this.updateEmployerAddress}
+                          required={this.props.required}
                           />
               </NotApplicable>
             </Field>
@@ -936,15 +1002,19 @@ export default class Relative extends ValidationElement {
                       className="relative-affiliation"
                       value={this.props.HasAffiliation}
                       onUpdate={this.updateHasAffiliation}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       onError={this.props.onError}>
               </Branch>
               <Show when={this.props.HasAffiliation === 'Yes'}>
-                <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}>
+                <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}
+                  scrollIntoView={this.props.scrollIntoView}>
                   <Textarea name="EmployerRelationship"
                             className="relative-employer-relationship"
                             {...this.props.EmployerRelationship}
                             onError={this.props.onError}
                             onUpdate={this.updateEmployerRelationship}
+                            required={this.props.required}
                             />
                 </Field>
               </Show>
@@ -987,6 +1057,9 @@ Relative.defaultProps = {
   EmployerAddress: {},
   HasAffiliation: '',
   EmployerRelationship: {},
+  addressBooks: {},
+  addressBook: 'Relative',
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
