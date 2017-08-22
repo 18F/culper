@@ -83,7 +83,6 @@ export default class History extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.history.heading.agency')}
-                   help="legal.investigations.history.help.agency"
                    adjustFor="big-buttons"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="AgencyNotApplicable"
@@ -118,7 +117,6 @@ export default class History extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.investigations.history.heading.issued')}
-                   help="legal.investigations.history.help.issued"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Issued"
@@ -146,7 +144,6 @@ export default class History extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.investigations.history.heading.clearance')}
-                   help="legal.investigations.history.help.clearance"
                    adjustFor="big-button"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="clearanceNotApplicable"
