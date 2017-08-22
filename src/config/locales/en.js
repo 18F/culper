@@ -6758,7 +6758,7 @@ const en = {
   legal: {
     intro: {
       title: 'Section 9: Investigative and criminal history',
-      body: 'You will be asked questions about your criminal history and be asked to provide details if necessary.'
+      body: 'You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.'
     },
     tour: {
       para: 'Take a guided tour through the section'
