@@ -117,6 +117,9 @@ export default class Sponsorship extends SubsectionElement {
                         cityPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.city')}
                         countryPlaceholder={i18n.t('foreign.business.sponsorship.placeholder.country')}
                         className="foreign-business-sponsorship-birthplace"
+                        addressBooks={this.props.addressBooks}
+                        addressBook="ForeignNational"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -129,6 +132,9 @@ export default class Sponsorship extends SubsectionElement {
               <Location name="Address"
                         className="foreign-business-sponsorship-address"
                         layout={Location.ADDRESS}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="ForeignNational"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -173,6 +179,9 @@ export default class Sponsorship extends SubsectionElement {
                           className="foreign-business-sponsorship-organizationaddress"
                           layout={Location.ADDRESS}
                           geocode={true}
+                          addressBooks={this.props.addressBooks}
+                          addressBook="Organization"
+                          dispatch={this.props.dispatch}
                           bind={true}
                           required={this.props.required}
                           />
@@ -198,6 +207,9 @@ export default class Sponsorship extends SubsectionElement {
                         disableToggle={true}
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="ForeignNational"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -238,7 +250,8 @@ Sponsorship.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/sponsorship',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignBusinessSponsorshipValidator(state, props).isValid()
   },

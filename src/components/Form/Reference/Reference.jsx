@@ -227,6 +227,9 @@ export default class Reference extends ValidationElement {
                     label={i18n.t(`${prefix}reference.label.address`)}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook={this.props.addressBook}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.onUpdate.bind(this, 'Address')}
                     onError={this.props.onError}
                     />
@@ -250,5 +253,8 @@ Reference.defaultProps = {
   error: false,
   valid: false,
   prefix: 'reference',
+  addressBooks: {},
+  addressBook: 'Reference',
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

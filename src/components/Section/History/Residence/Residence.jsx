@@ -98,7 +98,12 @@ export default class Residence extends SubsectionElement {
                    appendLabel={i18n.t('history.residence.collection.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
-          <ResidenceItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+        <ResidenceItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -117,6 +122,7 @@ Residence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'residence',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return props.value.every(x => {

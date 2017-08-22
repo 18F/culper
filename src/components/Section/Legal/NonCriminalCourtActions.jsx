@@ -78,7 +78,12 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                      appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <NonCriminalCourtAction name="CourtAction" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+        <NonCriminalCourtAction name="CourtAction"
+                                bind={true}
+                                addressBooks={this.props.addressBooks}
+                                dispatch={this.props.dispatch}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -93,7 +98,8 @@ NonCriminalCourtActions.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'court',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalNonCriminalCourtActionsValidator(props).isValid()
   }

@@ -137,6 +137,8 @@ export default class Diagnoses extends SubsectionElement {
                          ApplicantBirthDate={this.props.ApplicantBirthDate}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}
+                         addressBooks={this.props.addressBooks}
+                         dispatch={this.props.dispatch}
                          bind={true} />
             </Accordion>
 
@@ -178,6 +180,8 @@ export default class Diagnoses extends SubsectionElement {
                          scrollIntoView={this.props.scrollIntoView}>
                 <Treatment name="Treatment"
                            prefix="diagnoses.professional"
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
                            required={this.props.required}
                            scrollIntoView={this.props.scrollIntoView}
                            bind={true} />
@@ -201,6 +205,7 @@ Diagnoses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'diagnoses',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new DiagnosesValidator(props, props).isValid()
