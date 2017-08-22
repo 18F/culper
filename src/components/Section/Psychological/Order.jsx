@@ -97,6 +97,9 @@ export default class Order extends ValidationElement {
                     label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Court"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -175,6 +178,8 @@ export default class Order extends ValidationElement {
 Order.defaultProps = {
   List: [],
   prefix: 'order',
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

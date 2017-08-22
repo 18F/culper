@@ -89,6 +89,8 @@ export default class DirectActivity extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <DirectInterest name="DirectInterest"
+                            addressBooks={this.props.addressBooks}
+                            dispatch={this.props.dispatch}
                             bind={true}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}
@@ -110,7 +112,8 @@ DirectActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/direct',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignDirectActivityValidator(state, props).isValid()
   }

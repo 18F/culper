@@ -1,4 +1,6 @@
 import React from 'react'
+import { updateApplication } from '../../../actions/ApplicationActions'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -8,7 +10,6 @@ import ZipCode from '../ZipCode'
 import Spinner, { SpinnerAction } from '../Spinner'
 import Suggestions from '../Suggestions'
 import Address from './Address'
-import { i18n } from '../../../config'
 import ToggleableLocation from './ToggleableLocation'
 import { LocationValidator } from '../../../validators'
 import { AddressSuggestion } from './AddressSuggestion'
@@ -54,19 +55,29 @@ export default class Location extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        street: this.props.street,
-        street2: this.props.street2,
-        city: this.props.city,
-        zipcode: this.props.zipcode,
-        state: this.props.state,
-        county: this.props.county,
-        country: this.props.country,
-        layout: this.props.layout,
-        validated: this.props.validated,
-        ...queue
-      })
+    const values = {
+      street: this.props.street,
+      street2: this.props.street2,
+      city: this.props.city,
+      zipcode: this.props.zipcode,
+      state: this.props.state,
+      county: this.props.county,
+      country: this.props.country,
+      layout: this.props.layout,
+      validated: this.props.validated,
+      ...queue
+    }
+
+    // Send the update back upstream
+    this.props.onUpdate(values)
+
+    // If there is an associated address book then push the updates there
+    if (this.props.addressBook && values.validated) {
+      const updatedBook = [
+        ...(this.props.addressBooks[this.props.addressBook] || []),
+        values
+      ]
+      this.props.dispatch(updateApplication('AddressBooks', this.props.addressBook, updatedBook))
     }
   }
 
@@ -613,6 +624,10 @@ Location.defaultProps = {
   countryLabel: i18n.t('address.international.country.label'),
   countryPlaceholder: i18n.t('address.international.country.placeholder'),
   required: false,
+  addressBooks: {},
+  addressBook: '',
+  onUpdate: (queue) => {},
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }
 

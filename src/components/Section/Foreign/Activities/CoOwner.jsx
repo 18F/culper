@@ -72,6 +72,9 @@ export default class CoOwner extends ValidationElement {
                     label={i18n.t(`foreign.${prefix}.label.address`)}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="ForeignNational"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -107,6 +110,8 @@ export default class CoOwner extends ValidationElement {
 
 CoOwner.defaultProps = {
   prefix: 'coOwner',
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

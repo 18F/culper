@@ -109,6 +109,9 @@ export default class Manipulating extends SubsectionElement {
                         className="legal-technology-manipulating-location"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Incident"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -141,7 +144,8 @@ Manipulating.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/manipulating',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalTechnologyManipulatingValidator(state, props).isValid()
   }

@@ -98,6 +98,9 @@ export default class MembershipViolence extends SubsectionElement {
                         className="legal-associations-violence-address"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Organization"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -175,7 +178,8 @@ MembershipViolence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-violence-or-force',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalAssociationsViolenceValidator(state, props).isValid()
   }

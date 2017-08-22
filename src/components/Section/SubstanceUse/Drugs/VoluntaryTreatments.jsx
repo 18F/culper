@@ -81,7 +81,12 @@ export default class VoluntaryTreatments extends SubsectionElement {
                      appendLabel={i18n.t('substance.drugs.voluntary.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <VoluntaryTreatment name="VoluntaryTreatment" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <VoluntaryTreatment name="VoluntaryTreatment"
+                                bind={true}
+                                addressBooks={this.props.addressBooks}
+                                dispatch={this.props.dispatch}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -95,7 +100,8 @@ VoluntaryTreatments.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/voluntary',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new DrugVoluntaryTreatmentsValidator(props).isValid()
   }
