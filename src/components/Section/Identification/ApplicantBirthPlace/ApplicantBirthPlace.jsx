@@ -10,7 +10,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <Field>
+        <Field scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
             layout={Location.BIRTHPLACE}
             label={i18n.t('identification.birthplace.label.location')}
@@ -25,6 +25,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
             {...this.props.value}
             onUpdate={this.props.onUpdate}
             onError={this.props.onError}
+            required={this.props.required}
           />
         </Field>
       </div>

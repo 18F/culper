@@ -62,7 +62,9 @@ export default class Consultation extends SubsectionElement {
                 value={this.props.Consulted}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateConsulted}>
+                required={this.props.required}
+                onUpdate={this.updateConsulted}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Consulted === 'Yes'}>
@@ -74,10 +76,14 @@ export default class Consultation extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('psychological.consultation.collection.description')}
                      appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
-                     appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
+                     appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Order name="Consultation"
                    prefix="consultation"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    bind={true} />
           </Accordion>
         </Show>

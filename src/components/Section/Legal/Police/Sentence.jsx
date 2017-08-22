@@ -76,11 +76,13 @@ export default class Sentence extends ValidationElement {
       <div className="sentence">
         <Field title={i18n.t('legal.police.heading.sentenceDescription')}
                titleSize="h4"
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea {...this.props.Description}
                     className="description"
                     name="description"
                     onError={this.props.onError}
+                    required={this.props.required}
                     onUpdate={this.updateDescription} />
         </Field>
 
@@ -90,7 +92,9 @@ export default class Sentence extends ValidationElement {
                 className="exceeds-year"
                 value={this.props.ExceedsYear}
                 onError={this.props.onError}
-                onUpdate={this.updateExceedsYear}>
+                required={this.props.required}
+                onUpdate={this.updateExceedsYear}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Branch name="incarcerated"
@@ -99,25 +103,30 @@ export default class Sentence extends ValidationElement {
                 className="incarcerated"
                 value={this.props.Incarcerated}
                 onError={this.props.onError}
-                onUpdate={this.updateIncarcerated}>
+                required={this.props.required}
+                onUpdate={this.updateIncarcerated}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.incarcerationDates')}
                titleSize="h4"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="IncarcerationDatesNA"
                          {...this.props.IncarcerationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
                          className="incarceration-dates-na"
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateIncarcerationDatesNA}>
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
                        {...this.props.IncarcerationDates}
                        onUpdate={this.updateIncarcerationDates}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </NotApplicable>
         </Field>
@@ -125,19 +134,22 @@ export default class Sentence extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.probationDates')}
                titleSize="h4"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="ProbationDatesNA"
                          {...this.props.ProbationDatesNA}
                          label={i18n.t('legal.police.label.notApplicable')}
                          or={i18n.m('legal.police.para.or')}
                          className="probation-dates-na"
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateProbationDatesNA}>
             <DateRange name="ProbationDates"
                        className="probation-dates"
                        {...this.props.ProbationDates}
                        onUpdate={this.updateProbationDates}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </NotApplicable>
         </Field>
@@ -148,7 +160,7 @@ export default class Sentence extends ValidationElement {
 
 Sentence.defaultProps = {
   Description: {},
-  ExceedsYear: {},
+  ExceedsYear: '',
   Incarcerated: '',
   IncarcerationDates: {},
   ProbationDates: {},

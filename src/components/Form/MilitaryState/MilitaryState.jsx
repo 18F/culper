@@ -51,3 +51,7 @@ export default class MilitaryState extends ValidationElement {
     }
   }
 }
+
+MilitaryState.defaultProps = {
+  required: false
+}

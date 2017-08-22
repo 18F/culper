@@ -84,11 +84,13 @@ export default class ContactInformation extends SubsectionElement {
                      description={i18n.t('identification.contacts.collection.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
             <Field help="identification.contacts.help.email"
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="labels">
               <Email name="Email"
                      label={i18n.t('identification.contacts.label.email')}
                      placeholder={i18n.t('identification.contacts.placeholder.email')}
                      bind={true}
+                     required={this.props.required}
                      />
             </Field>
           </Accordion>
@@ -106,11 +108,13 @@ export default class ContactInformation extends SubsectionElement {
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
             <Field help="identification.contacts.help.phoneNumber"
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="telephone">
               <Telephone name="Telephone"
                          placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                          allowNotApplicable={false}
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>

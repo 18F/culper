@@ -35,10 +35,14 @@ export default class DomesticViolenceList extends SubsectionElement {
                           appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
                           items={this.props.List}
                           onError={this.handleError}
-                          onUpdate={this.updateList}>
+                          required={true}
+                          onUpdate={this.updateList}
+                          scrollIntoView={this.props.scrollIntoView}>
           <DomesticViolence name="domestic"
                             bind={true}
                             onError={this.handleError}
+                            required={true}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
         </BranchCollection>
       </div>

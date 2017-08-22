@@ -40,6 +40,7 @@ export default class Location extends ValidationElement {
     this.onSuggestionDismiss = this.onSuggestionDismiss.bind(this)
     this.handleBlur = this.handleBlur.bind(this)
     this.renderFields = this.renderFields.bind(this)
+    this.handleError = this.handleError.bind(this)
 
     // Instance field to prevent setState calls after unmount
     this.geocodeCancel = false
@@ -235,6 +236,19 @@ export default class Location extends ValidationElement {
     })
   }
 
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `location.${err.code}`,
+        valid: err.valid,
+        uid: err.uid
+      }
+    }) || []
+
+    this.props.onError(value, arr)
+    return arr
+  }
+
   renderFields (fields) {
     return fields.map(field => {
       switch (field) {
@@ -247,9 +261,10 @@ export default class Location extends ValidationElement {
                   placeholder={this.props.streetPlaceholder}
                   value={this.props.street}
                   onChange={this.updateStreet}
-                  onError={this.props.onError}
+                  onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.handleBlur}
+                  required={this.props.required}
                   />
           )
         case 'street2':
@@ -260,9 +275,10 @@ export default class Location extends ValidationElement {
                     optional={true}
                     value={this.props.street2}
                     onChange={this.updateStreet2}
-                    onError={this.props.onError}
+                    onError={this.handleError}
                     onFocus={this.props.onFocus}
                     onBlur={this.props.onBlur}
+                    required={this.props.required}
                     />
           )
         case 'city':
@@ -274,9 +290,10 @@ export default class Location extends ValidationElement {
                 placeholder={this.props.cityPlaceholder}
                 value={this.props.city}
                 onChange={this.updateCity}
-                onError={this.props.onError}
+                onError={this.handleError}
                 onFocus={this.props.onFocus}
                 onBlur={this.handleBlur}
+                required={this.props.required}
                 />
           )
         case 'state':
@@ -289,9 +306,10 @@ export default class Location extends ValidationElement {
                          value={this.props.state}
                          includeStates="true"
                          onChange={this.updateState}
-                         onError={this.props.onError}
+                         onError={this.handleError}
                          onFocus={this.props.onFocus}
                          onBlur={this.handleBlur}
+                         required={this.props.required}
                          />
           )
         case 'stateZipcode':
@@ -305,9 +323,10 @@ export default class Location extends ValidationElement {
                            value={this.props.state}
                            includeStates="true"
                            onChange={this.updateState}
-                           onError={this.props.onError}
+                           onError={this.handleError}
                            onFocus={this.props.onFocus}
                            onBlur={this.handleBlur}
+                           required={this.props.required}
                            />
             <ZipCode name="zipcode"
                      key={`zip-${field}`}
@@ -316,9 +335,10 @@ export default class Location extends ValidationElement {
                      placeholder={this.props.zipcodePlaceholder}
                      value={this.props.zipcode}
                      onChange={this.updateZipcode}
-                     onError={this.props.onError}
+                     onError={this.handleError}
                      onFocus={this.props.onFocus}
                      onBlur={this.handleBlur}
+                     required={this.props.required}
                      />
           </div>
           )
@@ -332,9 +352,10 @@ export default class Location extends ValidationElement {
                    value={this.props.country}
                    excludeUnitedStates="true"
                    onChange={this.updateCountry}
-                   onError={this.props.onError}
+                   onError={this.handleError}
                    onFocus={this.props.onFocus}
                    onBlur={this.handleBlur}
+                   required={this.props.required}
                    />
           )
       }
@@ -354,7 +375,8 @@ export default class Location extends ValidationElement {
           internationalFields={['city', 'country']}
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}
-          onError={this.props.onError}
+          onError={this.handleError}
+          required={this.props.required}
           />
         )
       case Location.US_CITY_STATE_INTERNATIONAL_CITY_COUNTRY:
@@ -366,7 +388,8 @@ export default class Location extends ValidationElement {
           internationalFields={['city', 'country']}
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}
-          onError={this.props.onError}
+          onError={this.handleError}
+          required={this.props.required}
           />
         )
       case Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY:
@@ -377,7 +400,8 @@ export default class Location extends ValidationElement {
           internationalFields={['city', 'country']}
           onBlur={this.handleBlur}
           onUpdate={this.updateToggleableLocation}
-          onError={this.props.onError}
+          onError={this.handleError}
+          required={this.props.required}
           />
         )
       case Location.ADDRESS:
@@ -386,7 +410,8 @@ export default class Location extends ValidationElement {
           {...this.props}
           onBlur={this.handleBlur}
           onUpdate={this.updateAddress}
-          onError={this.props.onError}
+          onError={this.handleError}
+          required={this.props.required}
           />
         )
       case Location.CITY_STATE:
@@ -586,7 +611,9 @@ Location.defaultProps = {
   countyLabel: i18n.t('address.us.county.label'),
   countyPlaceholder: i18n.t('address.us.county.placeholder'),
   countryLabel: i18n.t('address.international.country.label'),
-  countryPlaceholder: i18n.t('address.international.country.placeholder')
+  countryPlaceholder: i18n.t('address.international.country.placeholder'),
+  required: false,
+  onError: (value, arr) => { return arr }
 }
 
 Location.errors = []

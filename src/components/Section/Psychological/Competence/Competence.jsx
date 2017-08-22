@@ -61,7 +61,9 @@ export default class Competence extends SubsectionElement {
                 value={this.props.IsIncompetent}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateIsIncompentent}>
+                required={this.props.required}
+                onUpdate={this.updateIsIncompentent}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.IsIncompetent === 'Yes'}>
@@ -73,10 +75,14 @@ export default class Competence extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('psychological.competence.collection.description')}
                      appendTitle={i18n.t('psychological.competence.collection.appendTitle')}
-                     appendLabel={i18n.t('psychological.competence.collection.appendLabel')}>
+                     appendLabel={i18n.t('psychological.competence.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Order name="Competence"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
                    prefix="competence"
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    bind={true} />
           </Accordion>
         </Show>

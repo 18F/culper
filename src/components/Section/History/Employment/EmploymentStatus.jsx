@@ -31,7 +31,7 @@ export default class EmploymentStatus extends ValidationElement {
 
   render () {
     return (
-      <RadioGroup className="employment-status option-list" selectedValue={this.state.value}>
+      <RadioGroup className="employment-status option-list" selectedValue={this.state.value} required={this.props.required} onError={this.props.onError}>
         <Radio name="employment_status"
                label={i18n.t('history.employment.default.status.fullTime')}
                value="Fulltime"

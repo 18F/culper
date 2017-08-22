@@ -20,6 +20,8 @@ export default class FailureType extends ValidationElement {
   render () {
     return (
       <RadioGroup className={`option-list ${this.props.className || ''}`.trim()}
+                  required={this.props.required}
+                  onError={this.props.onError}
                   selectedValue={this.props.value}>
         <Radio label={i18n.t('financial.taxes.label.file')}
                value="File"

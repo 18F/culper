@@ -65,28 +65,33 @@ export default class VoluntaryTreatment extends ValidationElement {
       <div className="drug-voluntary-treatment">
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.drugType')}
-               className="drug-type-voluntary">
+          className="drug-type-voluntary"
+          scrollIntoView={this.props.scrollIntoView}>
           <DrugType name="DrugType"
                     {...this.props.DrugType}
                     onUpdate={this.updateDrugType}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProvider')}
-               adjustFor="label">
+          adjustFor="label"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="TreatmentProvider"
                 label={i18n.t('substance.drugs.voluntary.para.treatmentProvider')}
                 className="treatment-provider"
                 {...this.props.TreatmentProvider}
                 onUpdate={this.updateTreatmentProvider}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderAddress')}
                adjustFor="address"
-               help={'substance.drugs.voluntary.help.treatmentProviderAddress'}>
+               help={'substance.drugs.voluntary.help.treatmentProviderAddress'}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="TreatmentProviderAddress"
                     className="treatment-provider-address"
                     {...this.props.TreatmentProviderAddress}
@@ -94,28 +99,33 @@ export default class VoluntaryTreatment extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateTreatmentProviderAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentProviderTelephone')}
                className="treatment-provider-telephone"
                help={'substance.drugs.voluntary.help.treatmentProviderTelephone'}
-               adjustFor="telephone">
+               adjustFor="telephone"
+               scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="TreatmentProviderTelephone"
                      {...this.props.TreatmentProviderTelephone}
                      showNumberType={false}
                      onUpdate={this.updateTreatmentProviderTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('substance.drugs.voluntary.heading.treatmentDates')}
                adjustFor="daterange"
-               help={'substance.drugs.voluntary.help.treatmentDates'}>
+               help={'substance.drugs.voluntary.help.treatmentDates'}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="TreatmentDates"
                      className="treatment-dates"
                      {...this.props.TreatmentDates}
                      onUpdate={this.updateTreatmentDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -125,17 +135,21 @@ export default class VoluntaryTreatment extends ValidationElement {
                 className="treatment-completed no-margin-bottom"
                 value={this.props.TreatmentCompleted}
                 onError={this.props.onError}
-                onUpdate={this.updateTreatmentCompleted}>
+                required={this.props.required}
+                onUpdate={this.updateTreatmentCompleted}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.TreatmentCompleted === 'No'}>
           <Field title={i18n.t('substance.drugs.voluntary.heading.noTreatmentExplanation')}
-                 titleSize="label">
+                 titleSize="label"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="NoTreatmentExplanation"
                       className="no-treatment-explanation"
                       {...this.props.NoTreatmentExplanation}
                       onUpdate={this.updateNoTreatmentExplanation}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

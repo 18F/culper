@@ -32,7 +32,10 @@ export default class DrugType extends ValidationElement {
   render () {
     return (
       <div className="drug-type">
-        <RadioGroup name="born" selectedValue={this.props.DrugType}>
+        <RadioGroup name="born"
+          onError={this.props.onError}
+          required={this.props.required}
+          selectedValue={this.props.DrugType}>
           <Radio className="cocaine"
             label={i18n.m('substance.drugs.drugType.label.cocaine')}
             value="Cocaine"
@@ -117,12 +120,14 @@ export default class DrugType extends ValidationElement {
         <Show when={this.props.DrugType === 'Other'}>
           <Field title={i18n.t('substance.drugs.drugType.label.drugTypeOther')}
                  titleSize="label"
-                 adjustFor="textarea">
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="DrugTypeOther"
                       className="drug-type-other"
                       {...this.props.DrugTypeOther}
                       onUpdate={this.updateDrugTypeOther}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

@@ -152,26 +152,33 @@ export default class Cohabitant extends ValidationElement {
                      onDismiss={this.dismissSpouseSuggestion}
                      onSuggestion={this.onSpouseSuggestion}
                      />
-        <h3>{i18n.t('relationships.cohabitant.heading.name')}</h3>
-        <Name name="Name"
-              className="cohabitant-name"
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              />
+       <Field title={i18n.t('relationships.cohabitant.heading.name')}
+         scrollIntoView={this.props.scrollIntoView}>
+          <Name name="Name"
+                className="cohabitant-name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
+      </Field>
 
         <Field help="relationships.cohabitant.help.birthdate"
                title={i18n.t('relationships.cohabitant.heading.birthdate')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="datecontrol">
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
-        <Field title={i18n.t('relationships.cohabitant.heading.birthplace')}>
+        <Field title={i18n.t('relationships.cohabitant.heading.birthplace')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
                       layout={Location.BIRTHPLACE}
                       className="birthplace"
@@ -179,27 +186,32 @@ export default class Cohabitant extends ValidationElement {
                       {...this.props.BirthPlace}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
+                      required={this.props.required}
                       />
         </Field>
 
         <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
           <Field help="relationships.cohabitant.help.foreignBornDocument"
                  title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
+                 scrollIntoView={this.props.scrollIntoView}
                  adjustFor="p">
             <ForeignBornDocuments name="foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
                                   onUpdate={this.updateForeignBornDocument}
                                   onError={this.props.onError}
+                                  required={this.props.required}
                                   />
           </Field>
         </Show>
 
         <Field title={i18n.t('relationships.cohabitant.heading.ssn')}
-               help="identification.ssn.help">
+               help="identification.ssn.help"
+               scrollIntoView={this.props.scrollIntoView}>
           <SSN name="ssn"
                {...this.props.SSN}
                onUpdate={this.updateSSN}
                onError={this.props.onError}
+               required={this.props.required}
                />
         </Field>
 
@@ -208,38 +220,48 @@ export default class Cohabitant extends ValidationElement {
                           appendLabel={i18n.m('relationships.cohabitant.heading.appendOthernames')}
                           items={this.props.OtherNames}
                           onError={this.props.onError}
-                          onUpdate={this.updateOtherNames}>
+                          onUpdate={this.updateOtherNames}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}>
 
-          <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}>
+          <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}
+            scrollIntoView={this.props.scrollIntoView}>
             <Name name="Othername"
                   bind={true}
                   onError={this.props.onError}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
                   />
           </Field>
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
                  help="alias.maiden.help"
                  adjustFor="buttons"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <MaidenName name="MaidenName"
                         bind={true}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
           </Field>
 
           <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
                  adjustFor="daterange"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <DateRange name="DatesUsed"
                        bind={true}
                        className="datesused"
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
           </Field>
         </BranchCollection>
 
         <Field title={i18n.t('relationships.cohabitant.heading.citizenship')}
                help="relationships.cohabitant.help.citizenship"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="country">
           <Country name="Citizenship"
                    {...this.props.Citizenship}
@@ -247,17 +269,20 @@ export default class Cohabitant extends ValidationElement {
                    className="relationships-cohabitant-citizenship"
                    onUpdate={this.updateCitizenship}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
         <Field help="relationships.cohabitant.help.cohabitationBegan"
                title={i18n.t('relationships.cohabitant.heading.cohabitationBegan')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="datecontrol">
           <DateControl name="cohabitationBegan"
                        className="cohabitation-began"
                        {...this.props.CohabitationBegan}
                        onUpdate={this.updateCohabitationBegan}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
       </div>

@@ -74,6 +74,8 @@ export default class Credit extends SubsectionElement {
                 value={this.state.HasCreditCounseling}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
@@ -84,35 +86,44 @@ export default class Credit extends SubsectionElement {
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.credit.collection.summary.title')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
 
             <Field title={i18n.t('financial.credit.heading.explanation')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.credit.help.explanation">
               <Textarea name="Explanation"
                         className="credit-explanation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
-            <Field title={i18n.t('financial.credit.heading.name')}>
+            <Field title={i18n.t('financial.credit.heading.name')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Name"
                     className="credit-name"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('financial.credit.heading.telephone')}
                    help="financial.credit.help.telephone"
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="telephone">
               <Telephone name="Telephone"
                          className="credit-telephone"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('financial.credit.heading.address')}
                    help="financial.credit.help.address"
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="label">
               <Location name="Location"
                           layout={Location.CITY_STATE}
@@ -121,14 +132,17 @@ export default class Credit extends SubsectionElement {
                           help=""
                           statePlaceholder={i18n.t('financial.credit.placeholder.state')}
                           cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
+                          required={this.props.required}
                           />
             </Field>
 
             <Field title={i18n.t('financial.credit.heading.description')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.credit.help.description">
               <Textarea name="Description"
                         className="credit-description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 

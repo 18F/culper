@@ -84,6 +84,8 @@ export default class ResidenceItem extends ValidationElement {
                      {...this.state.Reference}
                      onUpdate={this.onUpdate.bind(this, 'Reference')}
                      onError={this.props.onError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
         </div>
       )
@@ -104,7 +106,8 @@ export default class ResidenceItem extends ValidationElement {
                onUpdate={this.onUpdate.bind(this, 'Comments')}
                onError={this.props.onError}
                adjustFor="address"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
                     {...this.state.Address}
                     label={i18n.t('history.residence.label.address')}
@@ -112,25 +115,31 @@ export default class ResidenceItem extends ValidationElement {
                     geocode={true}
                     onUpdate={this.onUpdate.bind(this, 'Address')}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('history.residence.heading.dates')}
-               help="history.residence.help.dates">
+          help="history.residence.help.dates"
+          scrollIntoView={this.props.scrollIntoView}>
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <DateRange name="Dates"
                      {...this.state.Dates}
                      label={i18n.t('history.residence.label.dates')}
                      onUpdate={this.onUpdate.bind(this, 'Dates')}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('history.residence.heading.role')}
                help="history.residence.help.role"
                adjustFor="big-buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="role option-list"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.state.Role}>
             <Radio name="role-owned"
                    label={i18n.m('history.residence.label.role.owned')}
@@ -161,13 +170,15 @@ export default class ResidenceItem extends ValidationElement {
             <Field title={i18n.t('history.residence.label.role.explanation')}
                    titleSize="label"
                    help="section.subsection.help.field-name"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="RoleOther"
                     {...this.state.RoleOther}
                     className="other"
                     maxlength="100"
                     onUpdate={this.onUpdate.bind(this, 'RoleOther')}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
             </Field>
           </div>
