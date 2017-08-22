@@ -137,6 +137,8 @@ export default class Diagnoses extends SubsectionElement {
                          ApplicantBirthDate={this.props.ApplicantBirthDate}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}
+                         addressBooks={this.props.addressBooks}
+                         dispatch={this.props.dispatch}
                          bind={true} />
             </Accordion>
 
