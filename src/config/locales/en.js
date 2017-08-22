@@ -7157,7 +7157,7 @@ const en = {
           description: 'Summary of revocations',
           item: 'Revoked',
           unknown: '*Provide revocation details below*',
-          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
+          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
           appendLabel: 'Add another revocation'
         },
         help: {
