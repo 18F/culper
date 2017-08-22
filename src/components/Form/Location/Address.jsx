@@ -226,12 +226,12 @@ export default class Address extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.props.addressBook}>
+        <Show when={this.props.addressBook && book.length}>
           <div className="reuse-address">
-            <a className="reuse-address-open-modal" href="#" title={i18n.t('address.addressBook.reuse')} onClick={this.openAddressBook}>
+            <button className="reuse-address-open-modal" title={i18n.t('address.addressBook.reuse')} onClick={this.openAddressBook}>
               <i className="fa fa-address-book-o" aria-hidden="true" />
               <span>{i18n.t('address.addressBook.reuse')}</span>
-            </a>
+            </button>
             <Suggestions show={this.state.showAddressBook}
                          suggestions={book}
                          renderSuggestion={this.renderAddressBookItem}

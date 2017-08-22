@@ -80,7 +80,10 @@
   .reuse-address {
     padding: 1rem 0 1.4rem 0;
 
-    > a {
+    > button {
+      background-color: #fff;
+      padding: 0;
+
       &.reuse-address-open-modal,
       &.reuse-address-open-modal:link,
       &.reuse-address-open-modal:visited,
