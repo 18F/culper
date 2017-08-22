@@ -1,7 +1,6 @@
 import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
-import Branch from '../Branch'
 import MilitaryState from '../MilitaryState'
 import City from '../City'
 import Country from '../Country'
@@ -233,16 +232,21 @@ export default class ToggleableLocation extends ValidationElement {
           required={this.props.required}
           onError={this.props.onError}
           selectedValue={branchValue(this.props.country)}>
+
+          <Show when={this.props.label}>
+            <label>{this.props.label}</label>
+          </Show>
+
           <Radio name={this.props.name}
-                 label={"Yes"}
-                 value={"Yes"}
+                 label={'Yes'}
+                 value={'Yes'}
                  className="yes"
                  onUpdate={this.updateToggle}
                  onError={this.onError}
                  />
           <Radio name={this.props.name}
-                 label={"No"}
-                 value={"No"}
+                 label={'No'}
+                 value={'No'}
                  className="no"
                  onUpdate={this.updateToggle}
                  onError={this.onError}
