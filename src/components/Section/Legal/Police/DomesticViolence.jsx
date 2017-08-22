@@ -103,6 +103,9 @@ export default class DomesticViolence extends ValidationElement {
                     className="domestic-courtaddress"
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Court"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -114,6 +117,8 @@ export default class DomesticViolence extends ValidationElement {
 }
 
 DomesticViolence.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

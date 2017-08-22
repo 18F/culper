@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -9,13 +10,18 @@ import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
 import Show from '../Show'
-import { i18n } from '../../../config'
+import Suggestions from '../Suggestions'
+import { AddressSuggestion } from './AddressSuggestion'
 
 export default class Address extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = { uid: `${this.props.name}-${super.guid()}` }
+    this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
+      showAddressBook: false
+    }
+
     this.update = this.update.bind(this)
     this.updateStreet = this.updateStreet.bind(this)
     this.updateStreet2 = this.updateStreet2.bind(this)
@@ -25,6 +31,10 @@ export default class Address extends ValidationElement {
     this.updateZipcode = this.updateZipcode.bind(this)
     this.updateAddressType = this.updateAddressType.bind(this)
     this.addressTypeFunc = this.addressTypeFunc.bind(this)
+    this.openAddressBook = this.openAddressBook.bind(this)
+    this.closeAddressBook = this.closeAddressBook.bind(this)
+    this.renderAddressBookItem = this.renderAddressBookItem.bind(this)
+    this.selectAddressBookItem = this.selectAddressBookItem.bind(this)
     this.handleError = this.handleError.bind(this)
     this.storeErrors = this.storeErrors.bind(this)
     this.errors = []
@@ -112,6 +122,34 @@ export default class Address extends ValidationElement {
     }
   }
 
+  openAddressBook () {
+    this.setState({ showAddressBook: true })
+  }
+
+  closeAddressBook () {
+    this.setState({ showAddressBook: false })
+  }
+
+  renderAddressBookItem (suggestion) {
+    return (
+      <AddressSuggestion suggestion={suggestion} current={suggestion} />
+    )
+  }
+
+  selectAddressBookItem (suggestion) {
+    this.setState({ showAddressBook: false }, () => {
+      this.update({
+        street: suggestion.street,
+        street2: suggestion.street2,
+        city: suggestion.city,
+        state: suggestion.state,
+        zipcode: suggestion.zipcode,
+        county: suggestion.county,
+        country: suggestion.country
+      })
+    })
+  }
+
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
@@ -147,6 +185,7 @@ export default class Address extends ValidationElement {
   }
 
   render () {
+    const book = this.props.addressBooks[this.props.addressBook] || []
     return (
       <div className="address">
         <Show when={!this.props.disableToggle}>
@@ -186,6 +225,27 @@ export default class Address extends ValidationElement {
             </RadioGroup>
           </div>
         </Show>
+
+        <Show when={this.props.addressBook && book.length}>
+          <div className="reuse-address">
+            <button className="reuse-address-open-modal" title={i18n.t('address.addressBook.reuse')} onClick={this.openAddressBook}>
+              <i className="fa fa-address-book-o" aria-hidden="true" />
+              <span>{i18n.t('address.addressBook.reuse')}</span>
+            </button>
+            <Suggestions show={this.state.showAddressBook}
+                         suggestions={book}
+                         renderSuggestion={this.renderAddressBookItem}
+                         suggestionTitle={i18n.t('suggestions.addressBook.title')}
+                         suggestionParagraph={i18n.m('suggestions.addressBook.para')}
+                         suggestionLabel={i18n.t('suggestions.addressBook.label')}
+                         suggestionUseLabel={i18n.t('suggestions.addressBook.use')}
+                         suggestionDismissLabel={i18n.t('suggestions.addressBook.dismiss')}
+                         onSuggestion={this.selectAddressBookItem}
+                         onDismiss={this.closeAddressBook}
+                         />
+          </div>
+        </Show>
+
         <div className="fields">
           <div>
             <Show when={this.props.country === 'United States'}>
@@ -379,7 +439,9 @@ Address.defaultProps = {
   postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),
-  street2Label: i18n.t('address.us.street2.label')
+  street2Label: i18n.t('address.us.street2.label'),
+  addressBooks: {},
+  addressBook: ''
 }
 
 Address.errors = [

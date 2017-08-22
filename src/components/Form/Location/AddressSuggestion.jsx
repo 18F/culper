@@ -9,13 +9,13 @@ export function AddressSuggestion (props) {
   return (
     <div className="address-suggestion">
       <div>
-        <HighlightedField new={ suggestion.Street } current={current.street} />
+        <HighlightedField new={ suggestion.Street || suggestion.street } current={ current.street } />
       </div>
       <div>
-        <HighlightedField new={ suggestion.Street2 } current={current.street2} />
+        <HighlightedField new={ suggestion.Street2 || suggestion.street2 } current={ current.street2 } />
       </div>
       <div>
-        <HighlightedField new={ suggestion.City } current={current.city} />, <HighlightedField new={ suggestion.State } current={current.state} /> <HighlightedField new={ suggestion.Zipcode } current={current.zipcode} />
+        <HighlightedField new={ suggestion.City || suggestion.city } current={ current.city } />, <HighlightedField new={ suggestion.State || suggestion.state } current={ current.state } /> <HighlightedField new={ suggestion.Zipcode || suggestion.zipcode } current={ current.zipcode } />
       </div>
     </div>
   )

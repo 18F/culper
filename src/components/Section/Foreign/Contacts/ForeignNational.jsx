@@ -544,6 +544,9 @@ export default class ForeignNational extends ValidationElement {
                       className="birthplace"
                       layout={Location.CITY_COUNTRY}
                       {...this.props.Birthplace}
+                      addressBooks={this.props.addressBooks}
+                      addressBook="ForeignNational"
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateBirthplace}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -567,6 +570,9 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.Address}
                       layout={Location.ADDRESS}
                       geocode={true}
+                      addressBooks={this.props.addressBooks}
+                      addressBook="ForeignNational"
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -610,6 +616,9 @@ export default class ForeignNational extends ValidationElement {
                       {...this.props.EmployerAddress}
                       layout={Location.ADDRESS}
                       geocode={true}
+                      addressBooks={this.props.addressBooks}
+                      addressBook="Company"
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateEmployerAddress}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -691,6 +700,8 @@ ForeignNational.defaultProps = {
   EmployerAddress: {},
   HasAffiliations: '',
   Affiliations: {},
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
