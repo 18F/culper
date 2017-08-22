@@ -87,6 +87,9 @@ export default class NonCriminalCourtAction extends ValidationElement {
                     {...this.props.CourtAddress}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Court"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -134,6 +137,8 @@ export default class NonCriminalCourtAction extends ValidationElement {
 }
 
 NonCriminalCourtAction.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

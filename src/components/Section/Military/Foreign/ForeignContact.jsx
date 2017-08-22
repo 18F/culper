@@ -77,6 +77,9 @@ export default class ForeignContact extends React.Component {
           <Location name="Address"
                     className="foreign-contact-address"
                     {...this.props.Address}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="ForeignNational"
+                    dispatch={this.props.dispatch}
                     layout={Location.ADDRESS}
                     geocode={true}
                     onUpdate={this.updateAddress}
@@ -134,6 +137,8 @@ ForeignContact.defaultProps = {
   Title: {},
   Dates: {},
   Frequency: {},
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

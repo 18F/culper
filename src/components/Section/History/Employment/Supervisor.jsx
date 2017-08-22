@@ -107,6 +107,9 @@ export default class Supervisor extends ValidationElement {
                     className="supervisor-address"
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook={this.props.addressBook}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.onUpdate.bind(this, 'Address')}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -137,5 +140,8 @@ Supervisor.defaultProps = {
   EmailNotApplicable: {},
   Address: {},
   Telephone: {},
+  addressBooks: {},
+  addressBook: 'Supervisor',
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

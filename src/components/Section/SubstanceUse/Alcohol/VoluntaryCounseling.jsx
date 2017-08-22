@@ -87,6 +87,9 @@ export default class VoluntaryCounseling extends ValidationElement {
                     {...this.props.TreatmentProviderAddress}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Provider"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateTreatmentProviderAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -136,5 +139,7 @@ export default class VoluntaryCounseling extends ValidationElement {
 }
 
 VoluntaryCounseling.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

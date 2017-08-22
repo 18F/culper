@@ -98,7 +98,12 @@ export default class Employment extends SubsectionElement {
                    appendLabel={i18n.t('history.employment.default.collection.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
-          <EmploymentItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+        <EmploymentItem name="Item"
+                        bind={true}
+                        addressBooks={this.props.addressBooks}
+                        dispatch={this.props.dispatch}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -117,6 +122,7 @@ Employment.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'employment',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return props.value.every(x => {

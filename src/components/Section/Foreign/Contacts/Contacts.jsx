@@ -78,7 +78,13 @@ export default class Contacts extends SubsectionElement {
                      appendLabel={i18n.t('foreign.contacts.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <ForeignNational name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+        <ForeignNational name="Item"
+                         bind={true}
+                         addressBooks={this.props.addressBooks}
+                         dispatch={this.props.dispatch}
+                         bind={true}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -94,6 +100,7 @@ Contacts.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'contacts',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignContactsValidator(props, props).isValid()
