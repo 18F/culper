@@ -1,0 +1,12 @@
+export default const telephone = {
+  type: 'telephone',
+  props: {
+    name: '',
+    timeOfDay: '',
+    type: '',
+    numberType: '',
+    number: '',
+    extension: '',
+    noNumber: false
+  }
+}
