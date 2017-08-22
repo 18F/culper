@@ -117,6 +117,7 @@ export default class ResidenceItem extends ValidationElement {
                     geocode={true}
                     addressBook="Residence"
                     addressBooks={this.props.addressBooks}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.onUpdate.bind(this, 'Address')}
                     onError={this.props.onError}
                     required={this.props.required}
