@@ -24,6 +24,7 @@ export default class Foreign extends SubsectionElement {
                           appendLabel={i18n.t('military.foreign.collection.foreign.appendTitle')}
                           appendSize="h2"
                           onUpdate={this.updateList}
+                          scrollToBottom={this.props.scrollToBottom}
                           required={this.props.required}
                           onError={this.handleError}
                           scrollIntoView={this.props.scrollIntoView}>

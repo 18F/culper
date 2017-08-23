@@ -351,6 +351,7 @@ class Foreign extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -365,6 +366,7 @@ class Foreign extends SectionElement {
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
+                            scrollToBottom={this.props.scrollToBottom}
                             />
           </SectionView>
           <SectionView name="activities/direct"
@@ -378,6 +380,7 @@ class Foreign extends SectionElement {
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
+                            scrollToBottom={this.props.scrollToBottom}
                             />
           </SectionView>
 
@@ -392,6 +395,7 @@ class Foreign extends SectionElement {
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
+                              scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
 
@@ -405,6 +409,7 @@ class Foreign extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
 
@@ -418,6 +423,7 @@ class Foreign extends SectionElement {
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
+                             scrollToBottom={this.props.scrollToBottom}
                              />
           </SectionView>
           <SectionView name="activities/support"
@@ -431,6 +437,7 @@ class Foreign extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -444,6 +451,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -457,6 +465,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -470,6 +479,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -483,6 +493,7 @@ class Foreign extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
+                        scrollToBottom={this.props.scrollToBottom}
                         />
           </SectionView>
 
@@ -497,6 +508,7 @@ class Foreign extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -510,6 +522,7 @@ class Foreign extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
+                         scrollToBottom={this.props.scrollToBottom}
                          />
           </SectionView>
 
@@ -524,6 +537,7 @@ class Foreign extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -538,6 +552,7 @@ class Foreign extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
+                         scrollToBottom={this.props.scrollToBottom}
                          />
           </SectionView>
 
@@ -551,6 +566,7 @@ class Foreign extends SectionElement {
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
+                       scrollToBottom={this.props.scrollToBottom}
                        />
           </SectionView>
 
@@ -564,6 +580,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -577,6 +594,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
         </SectionViews>
@@ -632,7 +650,8 @@ function mapStateToProps (state) {
 
 Foreign.defaultProps = {
   section: 'foreign',
-  store: 'Foreign'
+  store: 'Foreign',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Foreign))

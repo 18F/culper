@@ -70,6 +70,7 @@ export default class Hospitalizations extends SubsectionElement {
         <Show when={this.props.Hospitalized === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -104,5 +105,6 @@ Hospitalizations.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new HospitalizationsValidator(props, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

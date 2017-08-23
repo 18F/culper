@@ -77,6 +77,7 @@ export default class Support extends SubsectionElement {
                      appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.support.collection.append')}
                      required={this.props.required}
+                     scrollToBottom={this.props.scrollToBottom}
                      scrollIntoView={this.props.scrollIntoView}>
            <Field title={i18n.t('foreign.activities.support.heading.name')}
              scrollIntoView={this.props.scrollIntoView}>

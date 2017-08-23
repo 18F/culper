@@ -72,6 +72,7 @@ class Relationships extends SectionElement {
                      onError={this.handleError}
                      onSpouseUpdate={this.updateSpouse}
                      currentAddress={this.props.CurrentAddress}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -86,6 +87,7 @@ class Relationships extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateCohabitants}
                          onError={this.handleError}
+                         scrollToBottom={this.props.scrollToBottom}
                          />
           </SectionView>
 
@@ -99,6 +101,7 @@ class Relationships extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -113,6 +116,7 @@ class Relationships extends SectionElement {
                        dispatch={this.props.dispatch}
                        onUpdate={this.updateRelatives}
                        onError={this.handleError}
+                       scrollToBottom={this.props.scrollToBottom}
                        />
           </SectionView>
 
@@ -202,7 +206,8 @@ function mapStateToProps (state) {
 
 Relationships.defaultProps = {
   section: 'relationships',
-  store: 'Relationships'
+  store: 'Relationships',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 const extractSpouse = (marital) => {

@@ -113,6 +113,7 @@ class SubstanceUse extends SectionElement {
                       dispatch={this.props.dispatch}
                       onError={this.handleError}
                       onUpdate={this.updateDrugUses}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -126,6 +127,7 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updateDrugInvolvements}
+                              scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
 
@@ -139,6 +141,7 @@ class SubstanceUse extends SectionElement {
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateDrugClearanceUses}
+                               scrollToBottom={this.props.scrollToBottom}
                                />
           </SectionView>
 
@@ -152,6 +155,7 @@ class SubstanceUse extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateDrugPublicSafetyUses}
+                                  scrollToBottom={this.props.scrollToBottom}
                                   />
           </SectionView>
 
@@ -165,6 +169,7 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updatePrescriptionUses}
+                              scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
 
@@ -179,6 +184,7 @@ class SubstanceUse extends SectionElement {
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateOrderedTreatments}
+                               scrollToBottom={this.props.scrollToBottom}
                                />
           </SectionView>
 
@@ -193,6 +199,7 @@ class SubstanceUse extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateVoluntaryTreatments}
+                                 scrollToBottom={this.props.scrollToBottom}
                                  />
           </SectionView>
 
@@ -206,6 +213,7 @@ class SubstanceUse extends SectionElement {
                              dispatch={this.props.dispatch}
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
+                             scrollToBottom={this.props.scrollToBottom}
                              />
           </SectionView>
 
@@ -220,6 +228,7 @@ class SubstanceUse extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
 
@@ -234,6 +243,7 @@ class SubstanceUse extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
+                                  scrollToBottom={this.props.scrollToBottom}
                                   />
           </SectionView>
 
@@ -247,6 +257,7 @@ class SubstanceUse extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateReceivedCounselings}
+                                 scrollToBottom={this.props.scrollToBottom}
                                  />
           </SectionView>
 
@@ -412,7 +423,8 @@ function mapStateToProps (state) {
 
 SubstanceUse.defaultProps = {
   section: 'substance',
-  store: 'SubstanceUse'
+  store: 'SubstanceUse',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(SubstanceUse))

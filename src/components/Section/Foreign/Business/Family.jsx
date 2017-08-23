@@ -70,6 +70,7 @@ export default class Family extends SubsectionElement {
         <Show when={this.props.HasForeignFamily === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -147,5 +148,6 @@ Family.defaultProps = {
   validator: (state, props) => {
     return new ForeignBusinessFamilyValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

@@ -72,6 +72,7 @@ export default class Unauthorized extends SubsectionElement {
         <Show when={this.props.HasUnauthorized === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -150,5 +151,6 @@ Unauthorized.defaultProps = {
   dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalTechnologyUnauthorizedValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }
