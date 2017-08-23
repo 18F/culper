@@ -39,6 +39,8 @@ export default class DomesticViolenceList extends SubsectionElement {
                           onUpdate={this.updateList}
                           scrollIntoView={this.props.scrollIntoView}>
           <DomesticViolence name="domestic"
+                            addressBooks={this.props.addressBooks}
+                            dispatch={this.props.dispatch}
                             bind={true}
                             onError={this.handleError}
                             required={true}
@@ -56,7 +58,8 @@ DomesticViolenceList.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/domesticviolence',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new DomesticViolenceValidator(props, props).isValid()
   }

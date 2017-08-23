@@ -122,6 +122,7 @@ History.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'history',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new MilitaryHistoryValidator(props, props).isValid()

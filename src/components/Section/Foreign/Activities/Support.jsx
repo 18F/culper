@@ -95,6 +95,9 @@ export default class Support extends SubsectionElement {
                         className="foreign-activities-support-address"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBook="ForeignNational"
+                        addressBooks={this.props.addressBooks}
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -167,6 +170,7 @@ Support.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/support',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignActivitiesSupportValidator(props, props).isValid()

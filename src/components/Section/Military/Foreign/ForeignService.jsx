@@ -299,6 +299,8 @@ export default class ForeignService extends ValidationElement {
                        scrollIntoView={this.props.scrollIntoView}>
               <ForeignContact name="Item"
                               bind={true}
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
                               required={this.props.required}
                               scrollIntoView={this.props.scrollIntoView}
                               />
@@ -311,6 +313,8 @@ export default class ForeignService extends ValidationElement {
 }
 
 ForeignService.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true

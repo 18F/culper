@@ -79,7 +79,8 @@ export default combineReducers({
   SubstanceUse: reducer('SubstanceUse'),
   Releases: reducer('Releases'),
   Completed: errorReducer('Completed'),
-  Errors: errorReducer('Errors')
+  Errors: errorReducer('Errors'),
+  AddressBooks: reducer('AddressBooks')
 })
 
 // Or alternative...

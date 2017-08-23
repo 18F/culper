@@ -82,6 +82,8 @@ export default class ResidenceItem extends ValidationElement {
           <p>{i18n.t('history.residence.para.reference')}</p>
           <Reference name="Reference"
                      {...this.state.Reference}
+                     addressBooks={this.props.addressBooks}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.onUpdate.bind(this, 'Reference')}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -113,6 +115,9 @@ export default class ResidenceItem extends ValidationElement {
                     label={i18n.t('history.residence.label.address')}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBook="Residence"
+                    addressBooks={this.props.addressBooks}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.onUpdate.bind(this, 'Address')}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -191,5 +196,7 @@ export default class ResidenceItem extends ValidationElement {
 }
 
 ResidenceItem.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }
