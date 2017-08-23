@@ -107,6 +107,7 @@ export default class DateRange extends ValidationElement {
       if (err.code.indexOf('daterange.to') === -1) {
         return err
       }
+
       return {
         code: err.code,
         valid: null,
@@ -116,15 +117,7 @@ export default class DateRange extends ValidationElement {
     this.errors = errors
 
     this.setState(futureState, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          from: this.state.from,
-          to: this.state.to,
-          present: this.state.present,
-          title: this.state.title
-        })
-      }
+      this.update(futureState)
     })
   }
 
