@@ -73,6 +73,7 @@ export default class History extends SubsectionElement {
         <Show when={this.props.HasHistory === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -83,7 +84,6 @@ export default class History extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.history.heading.agency')}
-                   help="legal.investigations.history.help.agency"
                    adjustFor="big-buttons"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="AgencyNotApplicable"
@@ -118,7 +118,6 @@ export default class History extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.investigations.history.heading.issued')}
-                   help="legal.investigations.history.help.issued"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Issued"
@@ -146,7 +145,6 @@ export default class History extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.investigations.history.heading.clearance')}
-                   help="legal.investigations.history.help.clearance"
                    adjustFor="big-button"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="clearanceNotApplicable"
@@ -182,5 +180,6 @@ History.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalInvestigationsHistoryValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

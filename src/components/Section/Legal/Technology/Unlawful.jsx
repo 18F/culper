@@ -70,6 +70,7 @@ export default class Unlawful extends SubsectionElement {
         <Show when={this.props.HasUnlawful === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -148,5 +149,6 @@ Unlawful.defaultProps = {
   dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalTechnologyUnlawfulValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

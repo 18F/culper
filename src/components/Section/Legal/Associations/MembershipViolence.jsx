@@ -70,6 +70,7 @@ export default class MembershipViolence extends SubsectionElement {
         <Show when={this.props.HasViolence === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -182,5 +183,6 @@ MembershipViolence.defaultProps = {
   dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalAssociationsViolenceValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

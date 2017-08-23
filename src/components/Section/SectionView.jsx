@@ -97,3 +97,5 @@ export class SectionViews extends React.Component {
 export function SectionView (props) {
   return (<div>{props.children}</div>)
 }
+
+SectionView.BottomButtonsSelector = '.bottom-btns'

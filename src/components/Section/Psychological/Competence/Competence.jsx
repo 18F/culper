@@ -69,6 +69,7 @@ export default class Competence extends SubsectionElement {
         <Show when={this.props.IsIncompetent === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -106,5 +107,6 @@ Competence.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new CompetenceValidator(props, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

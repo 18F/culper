@@ -99,6 +99,7 @@ export default class Delinquent extends SubsectionElement {
           <Accordion items={this.state.List}
                      branch={this.state.ListBranch}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}

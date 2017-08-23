@@ -70,6 +70,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
         <Show when={this.props.HasActivities === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -120,5 +121,6 @@ ActivitiesToOverthrow.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalAssociationsActivitiesValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

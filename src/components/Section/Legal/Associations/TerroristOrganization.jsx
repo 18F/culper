@@ -72,6 +72,7 @@ export default class TerroristOrganization extends SubsectionElement {
         <Show when={this.props.HasTerrorist === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -184,5 +185,6 @@ TerroristOrganization.defaultProps = {
   dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalAssociationsTerroristValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

@@ -82,6 +82,7 @@ export default class Taxes extends SubsectionElement {
         <Show when={this.state.HasTaxes === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}

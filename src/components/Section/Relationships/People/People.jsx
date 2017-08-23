@@ -155,6 +155,7 @@ export default class People extends SubsectionElement {
         <Accordion scrollTo="scrollToPeople"
                    items={this.props.List}
                    defaultState={this.props.defaultState}
+                   scrollToBottom={this.props.scrollToBottom}
                    realtime={true}
                    sort={this.sort}
                    inject={this.inject}
@@ -188,5 +189,6 @@ People.defaultProps = {
     return new PeopleValidator(props, props).isValid()
   },
   defaultState: true,
-  totalYears: 7
+  totalYears: 7,
+  scrollToBottom: ''
 }

@@ -80,6 +80,7 @@ export default class Offenses extends SubsectionElement {
           <div>
             <Accordion items={this.props.List}
                        defaultState={this.props.defaultState}
+                       scrollToBottom={this.props.scrollToBottom}
                        branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.handleError}
@@ -115,5 +116,6 @@ Offenses.defaultProps = {
   validator: (state, props) => {
     return new PoliceOffensesValidator(props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }
