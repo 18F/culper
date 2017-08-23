@@ -88,7 +88,6 @@ export default class InvestigatingAgency extends ValidationElement {
         <Show when={['U.S. Department of Treasury', 'Foreign government', 'Other'].includes(this.props.Agency)}>
           <Field title={i18n.t('legal.investigations.history.heading.agencyExplanation')}
                  titleSize="label"
-                 help="legal.investigations.history.help.agencyExplanation"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"

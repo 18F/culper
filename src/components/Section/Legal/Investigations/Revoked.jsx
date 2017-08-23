@@ -93,7 +93,6 @@ export default class Revoked extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.investigations.revoked.heading.agency')}
-                   help="legal.investigations.revoked.help.agency"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
