@@ -67,7 +67,11 @@ describe('The date range component', () => {
   it('can click on present', () => {
     let updates = 0
     const props = {
-      onUpdate: () => { updates++ }
+      onUpdate: (values) => {
+        if (values.to && values.to.date) {
+          updates++
+        }
+      }
     }
     const component = mount(<DateRange {...props} />)
     component.find('.present input').simulate('change')
