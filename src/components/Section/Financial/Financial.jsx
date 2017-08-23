@@ -151,6 +151,7 @@ class Financial extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
                           onError={this.handleError}
+                          scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
 
@@ -165,6 +166,7 @@ class Financial extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Gambling')}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -179,6 +181,7 @@ class Financial extends SectionElement {
                    dispatch={this.props.dispatch}
                    onUpdate={this.handleUpdate.bind(this, 'Taxes')}
                    onError={this.handleError}
+                   scrollToBottom={this.props.scrollToBottom}
                    />
           </SectionView>
 
@@ -194,6 +197,7 @@ class Financial extends SectionElement {
                   dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
                   onError={this.handleError}
+                  scrollToBottom={this.props.scrollToBottom}
                   />
           </SectionView>
 
@@ -209,6 +213,7 @@ class Financial extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -231,6 +236,7 @@ class Financial extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
                         onError={this.handleError}
+                        scrollToBottom={this.props.scrollToBottom}
                         />
           </SectionView>
 
@@ -255,6 +261,7 @@ class Financial extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
                         onError={this.handleError}
+                        scrollToBottom={this.props.scrollToBottom}
                         />
           </SectionView>
         </SectionViews>
@@ -287,7 +294,8 @@ function mapStateToProps (state) {
 
 Financial.defaultProps = {
   section: 'financial',
-  store: 'Financial'
+  store: 'Financial',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Financial))

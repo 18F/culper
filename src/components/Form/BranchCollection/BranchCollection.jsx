@@ -1,6 +1,7 @@
 import React from 'react'
 import { Branch } from '../../Form'
 import { newGuid } from '../ValidationElement/ValidationElement'
+import { scrollToBottom } from '../Accordion/Accordion'
 
 export default class BranchCollection extends React.Component {
   constructor (props) {
@@ -61,6 +62,9 @@ export default class BranchCollection extends React.Component {
     } else {
       let items = [...this.props.items]
       items.push(item)
+      if (this.props.scrollToBottom) {
+        scrollToBottom(this.props.scrollToBottom)
+      }
       this.props.onUpdate(items)
     }
   }
@@ -263,7 +267,8 @@ BranchCollection.defaultProps = {
 
   onUpdate: () => {
     console.warn('onUpdate function not provided in BranchCollection. Please add one or your updates will not work')
-  }
+  },
+  scrollToBottom: ''
 }
 
 BranchCollection.errors = []

@@ -70,6 +70,7 @@ export default class Manipulating extends SubsectionElement {
         <Show when={this.props.HasManipulating === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -148,5 +149,6 @@ Manipulating.defaultProps = {
   dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalTechnologyManipulatingValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

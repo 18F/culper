@@ -73,6 +73,7 @@ export default class History extends SubsectionElement {
         <Show when={this.props.HasHistory === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -182,5 +183,6 @@ History.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalInvestigationsHistoryValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

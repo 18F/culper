@@ -405,7 +405,7 @@ class History extends SectionElement {
             <span id="scrollToHistory"></span>
             { this.residenceSummaryProgress() }
             <Residence value={this.props.Residence}
-                       scrollTo="scrollToHistory"
+                       scrollToTop="scrollToHistory"
                        realtime={true}
                        sort={sort}
                        totalYears={this.totalYears()}
@@ -436,7 +436,7 @@ class History extends SectionElement {
             <span id="scrollToHistory"></span>
             { this.employmentSummaryProgress() }
             <Employment value={this.props.Employment}
-                        scrollTo="scrollToHistory"
+                        scrollToTop="scrollToHistory"
                         sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
@@ -485,7 +485,7 @@ class History extends SectionElement {
                 <span id="scrollToHistory"></span>
                 { this.educationSummaryProgress() }
                 <Education value={this.props.Education}
-                           scrollTo="scrollToHistory"
+                           scrollToTop="scrollToHistory"
                            sort={sort}
                            totalYears={this.totalYears()}
                            overrideInitial={this.overrideInitial}

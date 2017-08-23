@@ -71,6 +71,7 @@ export default class Revoked extends SubsectionElement {
         <Show when={this.props.HasRevocations === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -132,5 +133,6 @@ Revoked.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalInvestigationsRevokedValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

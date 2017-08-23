@@ -71,6 +71,7 @@ export default class NegativeImpacts extends SubsectionElement {
         <Show when={this.props.HasImpacts === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -97,5 +98,6 @@ NegativeImpacts.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new AlcoholNegativeImpactsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

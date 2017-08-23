@@ -138,6 +138,7 @@ export default class Marital extends SubsectionElement {
           <span id="scrollToDivorce"></span>
           <Accordion scrollTo="scrollToDivorce"
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      items={this.props.DivorcedList}
                      branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
@@ -174,5 +175,6 @@ Marital.defaultProps = {
   validator: (state, props) => {
     return new MaritalValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

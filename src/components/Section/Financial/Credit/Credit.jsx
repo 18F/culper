@@ -81,6 +81,7 @@ export default class Credit extends SubsectionElement {
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}

@@ -149,6 +149,7 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePoliceOffenses}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -163,6 +164,7 @@ class Legal extends SectionElement {
                            dispatch={this.props.dispatch}
                            onUpdate={this.updatePoliceOtherOffenses}
                            onError={this.handleError}
+                           scrollToBottom={this.props.scrollToBottom}
                            />
           </SectionView>
 
@@ -177,6 +179,7 @@ class Legal extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onUpdate={this.updatePoliceDomesticViolence}
                                   onError={this.handleError}
+                                  scrollToBottom={this.props.scrollToBottom}
                                   />
           </SectionView>
 
@@ -190,6 +193,7 @@ class Legal extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -203,6 +207,7 @@ class Legal extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -216,6 +221,7 @@ class Legal extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateRevoked}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -229,6 +235,7 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateDebarred}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -243,6 +250,7 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateNonCriminalCourtActions}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -257,6 +265,7 @@ class Legal extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateUnauthorized}
                           onError={this.handleError}
+                          scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
 
@@ -271,6 +280,7 @@ class Legal extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateUnauthorized}
                           onError={this.handleError}
+                          scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
 
@@ -285,6 +295,7 @@ class Legal extends SectionElement {
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateManipulating}
                           onError={this.handleError}
+                          scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
 
@@ -299,6 +310,7 @@ class Legal extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateUnlawful}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -313,6 +325,7 @@ class Legal extends SectionElement {
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
                                    onError={this.handleError}
+                                   scrollToBottom={this.props.scrollToBottom}
                                    />
           </SectionView>
 
@@ -327,6 +340,7 @@ class Legal extends SectionElement {
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateTerroristOrganization}
                                    onError={this.handleError}
+                                   scrollToBottom={this.props.scrollToBottom}
                                    />
           </SectionView>
 
@@ -340,6 +354,7 @@ class Legal extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateEngagedInTerrorism}
                                 onError={this.handleError}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
 
@@ -353,6 +368,7 @@ class Legal extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateAdvocating}
                         onError={this.handleError}
+                        scrollToBottom={this.props.scrollToBottom}
                         />
           </SectionView>
 
@@ -367,6 +383,7 @@ class Legal extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.updateMembershipOverthrow}
                                  onError={this.handleError}
+                                 scrollToBottom={this.props.scrollToBottom}
                                  />
           </SectionView>
 
@@ -381,6 +398,7 @@ class Legal extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateMembershipViolence}
                                 onError={this.handleError}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
 
@@ -394,6 +412,7 @@ class Legal extends SectionElement {
                                    dispatch={this.props.dispatch}
                                    onUpdate={this.updateActivitiesToOverthrow}
                                    onError={this.handleError}
+                                   scrollToBottom={this.props.scrollToBottom}
                                    />
           </SectionView>
 
@@ -654,7 +673,8 @@ function mapStateToProps (state) {
 
 Legal.defaultProps = {
   section: 'legal',
-  store: 'Legal'
+  store: 'Legal',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Legal))
