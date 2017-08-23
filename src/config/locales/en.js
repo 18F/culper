@@ -6768,7 +6768,7 @@ const en = {
   legal: {
     intro: {
       title: 'Section 9: Investigative and criminal history',
-      body: 'You will be asked questions about your criminal history and be asked to provide details if necessary.'
+      body: 'You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.'
     },
     tour: {
       para: 'Take a guided tour through the section'
@@ -7167,7 +7167,7 @@ const en = {
           description: 'Summary of revocations',
           item: 'Revoked',
           unknown: '*Provide revocation details below*',
-          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
+          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
           appendLabel: 'Add another revocation'
         },
         help: {
@@ -7182,8 +7182,8 @@ const en = {
             note: ''
           },
           explanation: {
-            title: 'Need help providing an explanation of events?',
-            message: 'Provide any circumstances leading to this action.',
+            title: 'Need help with this explanation?',
+            message: 'Tell us the details of this denial, suspension or revocation action. Go into as much detail as necessary.',
             note: ''
           }
         }

@@ -94,7 +94,6 @@ export default class ClearanceLevel extends ValidationElement {
         <Show when={this.props.Level === 'Other'}>
           <Field title={i18n.t('legal.investigations.history.heading.clearanceExplanation')}
                  titleSize="label"
-                 help="legal.investigations.history.help.clearanceExplanation"
                  adjustFor="textarea"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
