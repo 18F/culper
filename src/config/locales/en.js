@@ -7214,8 +7214,8 @@ const en = {
             note: ''
           },
           explanation: {
-            title: 'Need help providing an explanation of events?',
-            message: 'Provide any circumstances leading to this action.',
+            title: 'Need help with this explanation?',
+            message: 'Tell us the details of this denial, suspension or revocation action. Go into as much detail as necessary.',
             note: ''
           }
         }
