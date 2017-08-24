@@ -1,4 +1,4 @@
-import BankruptcyValidator from './bankruptcy'
+import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import ContactInformationValidator from './contactinformation'
 import IdentificationValidator from './identification'
@@ -85,6 +85,7 @@ import SignatureValidator from './signature'
 
 export {
   BankruptcyValidator,
+  BankruptcyItemValidator,
   BirthPlaceValidator,
   ContactInformationValidator,
   IdentificationValidator,
