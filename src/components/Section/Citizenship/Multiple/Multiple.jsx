@@ -66,19 +66,24 @@ export default class Multiple extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasMultiple}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.HasMultiple === 'Yes'}>
           <Accordion items={this.props.Citizenships}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onError={this.handleError}
                      summary={this.summaryCitizenships}
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
-                     appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}>
-            <CitizenshipItem name="Item" bind={true} />
+                     appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <CitizenshipItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

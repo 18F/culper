@@ -100,7 +100,8 @@ export default class ContinuingBenefit extends ValidationElement {
       <div className="continuing-benefit">
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.began')}
                help={'foreign.activities.benefit.continuing.help.began'}
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
 
           <DateControl name="Began"
                        className="began"
@@ -108,12 +109,14 @@ export default class ContinuingBenefit extends ValidationElement {
                        label={i18n.t('foreign.activities.benefit.continuing.label.began')}
                        onUpdate={this.updateBegan}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.end')}
                help={'foreign.activities.benefit.continuing.help.end'}
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
 
           <DateControl name="End"
                        className="end"
@@ -122,13 +125,15 @@ export default class ContinuingBenefit extends ValidationElement {
                        onUpdate={this.updateEnd}
                        maxDate={null}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.continuing.heading.frequency')}
-               adjustFor="big-buttons">
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
 
-          <RadioGroup className="frequency" selectedValue={this.props.Frequency}>
+          <RadioGroup className="frequency" onError={this.props.onError} required={this.props.required} selectedValue={this.props.Frequency}>
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.continuing.label.frequency.annually')}
                    value="Annually"
@@ -168,26 +173,31 @@ export default class ContinuingBenefit extends ValidationElement {
                         {...this.props.OtherFrequency}
                         onUpdate={this.updateOtherFrequency}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </div>
           </Show>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.country')}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.country')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.value')}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.value')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
                     min="0"
                     onUpdate={this.updateValue}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="ValueEstimated"
@@ -200,32 +210,41 @@ export default class ContinuingBenefit extends ValidationElement {
           </div>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.reason')}>
+        <Field title={i18n.t('foreign.activities.benefit.continuing.heading.reason')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
                     className="reason"
                     {...this.props.Reason}
                     onUpdate={this.updateReason}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Branch name="Obligated"
-                className="obligated"
+                className="obligated no-margin-bottom"
                 label={i18n.t('foreign.activities.benefit.continuing.heading.obligated')}
                 labelSize="h3"
                 value={this.props.Obligated}
                 onError={this.props.onError}
-                onUpdate={this.updateObligated}>
+                required={this.props.required}
+                onUpdate={this.updateObligated}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Obligated === 'Yes'}>
-          <Textarea name="Explanation"
-                    label={i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
-                    className="explanation"
-                    {...this.props.ObligatedExplanation}
-                    onUpdate={this.updateObligatedExplanation}
-                    onError={this.props.onError}
-                    />
+          <Field title={i18n.m('foreign.activities.benefit.continuing.label.obligatedExplanation')}
+                 titleSize="label"
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
+            <Textarea name="Explanation"
+                      className="explanation"
+                      {...this.props.ObligatedExplanation}
+                      onUpdate={this.updateObligatedExplanation}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      />
+          </Field>
         </Show>
       </div>
     )

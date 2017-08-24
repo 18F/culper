@@ -28,8 +28,8 @@ class Identification extends SectionElement {
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop={true}
-                       next="financial"
-                       nextLabel={i18n.t('financial.destination.gambling')}
+                       next="financial/intro"
+                       nextLabel={i18n.t('financial.destination.intro')}
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
 
@@ -39,6 +39,8 @@ class Identification extends SectionElement {
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
+                           required={true}
+                           scrollIntoView={false}
                            />
 
             <hr />
@@ -49,6 +51,8 @@ class Identification extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
@@ -58,6 +62,8 @@ class Identification extends SectionElement {
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
                                 value={this.props.ApplicantBirthDate}
+                                required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -67,6 +73,8 @@ class Identification extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
+                                 required={true}
+                                 scrollIntoView={false}
                                  />
 
             <hr />
@@ -77,15 +85,19 @@ class Identification extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
                                 onError={this.handleError}
+                                required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
             <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
-                          value={this.props.ApplicantSSN}
+                          {...this.props.ApplicantSSN}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'ApplicantSSN')}
                           onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
                           />
 
             <hr />
@@ -95,6 +107,8 @@ class Identification extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Physical')}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
           </SectionView>
 

@@ -67,24 +67,34 @@ export default class DirectActivity extends SubsectionElement {
                 label={<h3>{i18n.t('foreign.activities.direct.heading.title')}</h3>}
                 labelSize="h3"
                 value={this.props.HasInterests}
+                help="foreign.activities.direct.help.directControl"
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasInterests}>
+                required={this.props.required}
+                onUpdate={this.updateHasInterests}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.direct.collection.description')}
                      appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <DirectInterest name="DirectInterest"
+                            addressBooks={this.props.addressBooks}
+                            dispatch={this.props.dispatch}
                             bind={true}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
                             />
           </Accordion>
         </Show>
@@ -103,7 +113,8 @@ DirectActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/direct',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignDirectActivityValidator(state, props).isValid()
   }

@@ -189,7 +189,7 @@ export default class Radio extends ValidationElement {
                htmlFor={this.state.uid}>
           <input className={this.inputClass()}
                  id={this.state.uid}
-                 name={this.props.name}
+                 name={this.state.uid}
                  type="radio"
                  ref="radio"
                  disabled={this.props.disabled}

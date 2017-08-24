@@ -1,0 +1,6 @@
+{
+  "type": "email",
+  "props": {
+    "value": "test@abc.com"
+  }
+}

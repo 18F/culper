@@ -69,21 +69,28 @@ export default class RealEstateActivity extends SubsectionElement {
                 value={this.props.HasInterests}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasInterests}>
+                required={this.props.required}
+                onUpdate={this.updateHasInterests}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasInterests === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.realestate.collection.description')}
                      appendTitle={i18n.t('foreign.activities.realestate.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.realestate.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <RealEstateInterest name="RealEstateInterest"
                                 bind={true}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView}
                                 />
           </Accordion>
         </Show>
@@ -105,5 +112,6 @@ RealEstateActivity.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignRealEstateActivityValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

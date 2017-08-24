@@ -1,0 +1,8 @@
+export default const checkbox = {
+  type: 'checkbox',
+  props: {
+    name: '',
+    value: '',
+    checked: false
+  }
+}

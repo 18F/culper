@@ -90,7 +90,7 @@ describe('The offense component', () => {
     component.find('.offense-sentenced .yes input').simulate('change')
     component.find('.offense-sentenced .yes input').simulate('change')
     component.find('.offense-description textarea').simulate('change', { target: { value: 'Test' } })
-    component.find({ type: 'radio', name: 'exceeding_year', value: 'Yes' }).simulate('change')
+    component.find('.exceeds-year .yes input').simulate('change')
     expect(updates).toBeGreaterThan(6)
   })
 
@@ -125,7 +125,7 @@ describe('The offense component', () => {
     component.find('.offense-courtdate .month input').simulate('change', { target: { name: 'month', value: '1' } })
     component.find('.offense-courtdate .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.offense-sentenced .no input').simulate('change')
-    component.find({ type: 'radio', name: 'awaiting_trial', value: 'Yes' }).simulate('change')
+    component.find('.awaiting-trial .yes input').simulate('change')
     component.find('.awaiting-trial-explanation textarea').simulate('change')
     expect(updates).toBeGreaterThan(6)
   })

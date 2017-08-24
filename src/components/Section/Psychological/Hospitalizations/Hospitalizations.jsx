@@ -44,7 +44,6 @@ export default class Hospitalizations extends SubsectionElement {
     const treatmentDate = (o.TreatmentDate || {})
     const date = DateSummary(treatmentDate)
     const facility = (o.Facility || {}).value || ''
-    const type = i18n.t('psychological.hospitalization.collection.itemType')
 
     return Summary({
       type: i18n.t('psychological.hospitalization.collection.itemType'),
@@ -63,22 +62,29 @@ export default class Hospitalizations extends SubsectionElement {
                 value={this.props.Hospitalized}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHospitalized}>
+                required={this.props.required}
+                onUpdate={this.updateHospitalized}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Hospitalized === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('psychological.hospitalization.collection.description')}
                      appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
-                     appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}>
+                     appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Hospitalization name="Hospitalization"
                              ApplicantBirthDate={this.props.ApplicantBirthDate}
                              bind={true}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
                              />
           </Accordion>
 
@@ -99,5 +105,6 @@ Hospitalizations.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new HospitalizationsValidator(props, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

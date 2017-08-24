@@ -64,12 +64,15 @@ export default class Disciplinary extends SubsectionElement {
                 value={this.props.HasDisciplinary}
                 weight={true}
                 onUpdate={this.updateDisciplinary}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasDisciplinary === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -77,9 +80,13 @@ export default class Disciplinary extends SubsectionElement {
                      description={i18n.t('military.disciplinary.collection.summary.title')}
                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
                      appendMessage={i18n.m('military.disciplinary.collection.appendMessage')}
-                     appendLabel={i18n.t('military.disciplinary.collection.append')}>
+                     appendLabel={i18n.t('military.disciplinary.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Procedure name="Item"
                        bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        />
           </Accordion>
         </Show>

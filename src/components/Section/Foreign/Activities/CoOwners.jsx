@@ -32,11 +32,17 @@ export default class CoOwners extends ValidationElement {
                           appendLabel={i18n.t(`foreign.${prefix}.coOwners.heading.hasCoOwnersAppend`)}
                           items={this.props.List}
                           onError={this.props.onError}
-                          onUpdate={this.updateList}>
+                          required={this.props.required}
+                          onUpdate={this.updateList}
+                          scrollIntoView={this.props.scrollIntoView}>
           <CoOwner name="CoOwner"
                    bind={true}
                    prefix={`${this.props.prefix}.coOwner`}
+                   addressBooks={this.props.addressBooks}
+                   dispatch={this.props.dispatch}
                    onError={this.props.onError}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    />
         </BranchCollection>
       </div>
@@ -45,6 +51,8 @@ export default class CoOwners extends ValidationElement {
 }
 
 CoOwner.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

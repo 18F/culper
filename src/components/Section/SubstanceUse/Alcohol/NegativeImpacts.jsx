@@ -63,20 +63,25 @@ export default class NegativeImpacts extends SubsectionElement {
                 value={this.props.HasImpacts}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasImpacts}>
+                required={this.props.required}
+                onUpdate={this.updateHasImpacts}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasImpacts === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.negativeImpact.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.negativeImpact.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}>
-            <NegativeImpact name="NegativeImpact" bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.negativeImpact.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <NegativeImpact name="NegativeImpact" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -93,5 +98,6 @@ NegativeImpacts.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new AlcoholNegativeImpactsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

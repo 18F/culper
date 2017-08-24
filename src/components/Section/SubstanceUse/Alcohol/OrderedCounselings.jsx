@@ -87,20 +87,30 @@ export default class OrderedCounselings extends SubsectionElement {
                 value={this.props.HasBeenOrdered}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasBeenOrdered}>
+                required={this.props.required}
+                onUpdate={this.updateHasBeenOrdered}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasBeenOrdered === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}>
-            <OrderedCounseling name="OrderedCounseling" bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+        <OrderedCounseling name="OrderedCounseling"
+                           bind={true}
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -114,8 +124,10 @@ OrderedCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/ordered',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new AlcoholOrderedCounselingsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

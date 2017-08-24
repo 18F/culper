@@ -50,49 +50,61 @@ export default class PrescriptionUse extends ValidationElement {
   render () {
     return (
       <div className="prescription-use">
-        <Field title={i18n.t('substance.drugs.prescription.heading.prescriptionName')}>
+        <Field title={i18n.t('substance.drugs.prescription.heading.prescriptionName')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="PrescriptionName"
-            className="prescription-name"
-            {...this.props.PrescriptionName}
-            onUpdate={this.updatePrescriptionName}
-            onError={this.props.onError}
-          />
+                className="prescription-name"
+                {...this.props.PrescriptionName}
+                onUpdate={this.updatePrescriptionName}
+                onError={this.props.onError}
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('substance.drugs.prescription.heading.involvementDates')}
-          adjustFor="daterange"
-          help={'substance.drugs.prescription.help.involvementDates'}>
+               adjustFor="daterange"
+               help={'substance.drugs.prescription.help.involvementDates'}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="InvolvementDates"
-            className="involvement-dates"
-            {...this.props.InvolvementDates}
-            onUpdate={this.updateInvolvementDates}
-            onError={this.props.onError}
-          />
+                     className="involvement-dates"
+                     {...this.props.InvolvementDates}
+                     onUpdate={this.updateInvolvementDates}
+                     onError={this.props.onError}
+                     required={this.props.required}
+                     />
         </Field>
 
-        <Field title={i18n.t('substance.drugs.prescription.heading.reason')}>
+        <Field title={i18n.t('substance.drugs.prescription.heading.reason')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
-            className="reason"
-            {...this.props.Reason}
-            onUpdate={this.updateReason}
-            onError={this.props.onError}
-          />
+                    className="reason"
+                    {...this.props.Reason}
+                    onUpdate={this.updateReason}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
 
-        <h3>{i18n.t('substance.drugs.prescription.heading.useWhileEmployed')}</h3>
         <Branch name="UseWhileEmployed"
-          className="use-while-employed"
-          value={this.props.UseWhileEmployed}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWhileEmployed}>
+                label={i18n.t('substance.drugs.prescription.heading.useWhileEmployed')}
+                labelSize="h3"
+                className="use-while-employed"
+                value={this.props.UseWhileEmployed}
+                onError={this.props.onError}
+                onUpdate={this.updateUseWhileEmployed}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <h3>{i18n.t('substance.drugs.prescription.heading.useWithClearance')}</h3>
         <Branch name="UseWithClearance"
-          className="use-with-clearance"
-          value={this.props.UseWithClearance}
-          onError={this.props.onError}
-          onUpdate={this.updateUseWithClearance}>
+                label={i18n.t('substance.drugs.prescription.heading.useWithClearance')}
+                labelSize="h3"
+                className="use-with-clearance"
+                value={this.props.UseWithClearance}
+                onError={this.props.onError}
+                onUpdate={this.updateUseWithClearance}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
       </div>
     )

@@ -62,34 +62,43 @@ export default class Advocating extends SubsectionElement {
                 value={this.props.HasAdvocated}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasAdvocated === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('legal.associations.advocating.collection.description')}
                      appendTitle={i18n.t('legal.associations.advocating.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.advocating.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.advocating.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.advocating.heading.reasons')}
                    help="legal.associations.advocating.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-advocating-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.associations.advocating.heading.dates')}
                    help="legal.associations.advocating.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-advocating-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>
@@ -112,5 +121,6 @@ Advocating.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalAssociationsAdvocatingValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

@@ -64,20 +64,25 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
                 value={this.props.UsedDrugs}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateUsedDrugs}>
+                required={this.props.required}
+                onUpdate={this.updateUsedDrugs}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.UsedDrugs === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('substance.drugs.publicSafety.collection.description')}
                      appendTitle={i18n.t('substance.drugs.publicSafety.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}>
-            <DrugPublicSafetyUse name="DrugPublicSafetyUse" bind={true} />
+                     appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <DrugPublicSafetyUse name="DrugPublicSafetyUse" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -94,5 +99,6 @@ DrugPublicSafetyUses.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugPublicSafetyUsesValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

@@ -43,10 +43,14 @@ export default class EmploymentActivity extends ValidationElement {
       <div className="employment-activity">
         <div className={this.props.className}>
           <Field help={`history.employment.default.activity.help`}
+                 className={this.state.value === 'Other' ? 'no-margin-bottom' : ''}
                  adjustFor="p"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup name="employment_activity"
                         className="option-list"
+                        required={this.props.required}
+                        onError={this.props.onError}
                         selectedValue={this.state.value}>
               <div>{i18n.t('history.employment.default.activity.title')}</div>
               <Radio
@@ -153,14 +157,17 @@ export default class EmploymentActivity extends ValidationElement {
             </RadioGroup>
           </Field>
           <Show when={this.state.value === 'Other'}>
-            <Field help="history.employment.other.activity.other.help"
-                   adjustFor="labels">
+            <Field title={i18n.t('history.employment.default.activity.other.label')}
+                   titleSize="label"
+                   help="history.employment.other.activity.other.help"
+                   adjustFor="labels"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="otherExplanation"
                         className="other"
                         value={this.state.otherExplanation}
-                        label={i18n.t('history.employment.default.activity.other.label')}
                         onChange={this.updateExplanation}
                         onError={this.props.onError}
+                        required={this.props.required}
                         />
             </Field>
           </Show>

@@ -61,13 +61,16 @@ export default class Family extends SubsectionElement {
                 value={this.props.HasForeignFamily}
                 warning={true}
                 onUpdate={this.updateHasForeignFamily}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
 
         <Show when={this.props.HasForeignFamily === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -75,40 +78,54 @@ export default class Family extends SubsectionElement {
                      description={i18n.t('foreign.business.family.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.family.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.family.collection.append')}>
-            <h3>{i18n.t('foreign.business.family.heading.name')}</h3>
-            <Name name="Name"
-                  className="family-name"
-                  bind={true}
-                  />
+                     appendLabel={i18n.t('foreign.business.family.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+           <Field title={i18n.t('foreign.business.family.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="family-name"
+                    bind={true}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+          </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.agency')}>
+          <Field title={i18n.t('foreign.business.family.heading.agency')}
+            scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="family-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.country')}>
+            <Field title={i18n.t('foreign.business.family.heading.country')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="family-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.family.heading.date')}
                    help="foreign.business.family.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="family-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
-            <Field title={i18n.t('foreign.business.family.heading.circumstances')}>
+            <Field title={i18n.t('foreign.business.family.heading.circumstances')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Circumstances"
                         className="family-circumstances"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -131,5 +148,6 @@ Family.defaultProps = {
   validator: (state, props) => {
     return new ForeignBusinessFamilyValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

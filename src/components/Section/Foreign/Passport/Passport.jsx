@@ -142,6 +142,8 @@ export default class Passport extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 >
         </Branch>
         <Show when={this.props.HasPassport === 'Yes'}>
@@ -159,19 +161,26 @@ export default class Passport extends SubsectionElement {
                          onSuggestion={this.onSuggestion}
                          onDismiss={this.onDismiss}
                          />
-            <Name name="name"
-                  {...this.props.Name}
-                  onUpdate={this.updateName}
-                  onError={this.handleError}
-                  />
+           <Field scrollIntoView={this.props.scrollIntoView}>
+              <Name name="name"
+                    {...this.props.Name}
+                    onUpdate={this.updateName}
+                    onError={this.handleError}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+            </Field>
 
             <Field title={i18n.t('foreign.passport.number')}
                    help="foreign.passport.help.number"
                    errorPrefix="passport"
                    adjustFor="buttons"
-                   shrink={true}>
+                   shrink={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <div>
-                <RadioGroup className="passport-card option-list"
+                <RadioGroup className="option-list"
+                            onError={this.handleError}
+                            required={this.props.required}
                             selectedValue={this.props.Card}>
                   <Radio name="passport-book"
                          className="passport-book"
@@ -199,6 +208,7 @@ export default class Passport extends SubsectionElement {
                       prefix="passport"
                       onUpdate={this.updateNumber}
                       onError={this.handleError}
+                      required={this.props.required}
                       />
               </div>
             </Field>
@@ -206,24 +216,29 @@ export default class Passport extends SubsectionElement {
             <Field title={i18n.t('foreign.passport.issued')}
                    help="foreign.passport.help.issued"
                    adjustFor="labels"
-                   shrink={true}>
+                   shrink={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="issued"
                            className="passport-issued"
                            {...this.props.Issued}
                            onUpdate={this.updateIssued}
                            onError={this.handleError}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('foreign.passport.expiration')}
                    help="foreign.passport.help.expiration"
                    adjustFor="labels"
-                   shrink={true}>
+                   shrink={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="expiration"
                            className="passport-expiration"
                            {...this.props.Expiration}
+                           maxDate={null}
                            onUpdate={this.updateExpiration}
                            onError={this.handleError}
+                           required={this.props.required}
                            />
             </Field>
           </div>

@@ -64,20 +64,25 @@ export default class PrescriptionUses extends SubsectionElement {
                 value={this.props.MisusedDrugs}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateMisusedDrugs}>
+                required={this.props.required}
+                onUpdate={this.updateMisusedDrugs}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.MisusedDrugs === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('substance.drugs.prescription.collection.description')}
                      appendTitle={i18n.t('substance.drugs.prescription.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}>
-            <PrescriptionUse name="DrugPrescriptionUse" bind={true} />
+                     appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <PrescriptionUse name="DrugPrescriptionUse" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -94,5 +99,6 @@ PrescriptionUses.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugPrescriptionUsesValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

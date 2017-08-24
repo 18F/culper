@@ -37,6 +37,14 @@ export const doScroll = (first, item, scrollTo) => {
   window.scroll({ top: pos - offset - offsetDeux, left: 0, behavior: 'smooth' })
 }
 
+export const scrollToBottom = (selector) => {
+  const el = document.querySelector(selector)
+  if (!el) {
+    return
+  }
+  window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' })
+}
+
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
@@ -132,8 +140,8 @@ export default class Accordion extends ValidationElement {
       const timeout = this.props.timeout + (this.props.timeout * shift)
 
       // Get the element to which we should scroll to
-      const scrollTo = this.props.scrollTo
-            ? document.getElementById(this.props.scrollTo)
+      const scrollTo = this.props.scrollToTop
+            ? document.getElementById(this.props.scrollToTop)
             : this.refs.accordion
 
       // Get the identifier to the first item
@@ -266,6 +274,9 @@ export default class Accordion extends ValidationElement {
       return
     }
 
+    if (this.props.scrollToBottom) {
+      scrollToBottom(this.props.scrollToBottom)
+    }
     this.update(this.props.items, value)
   }
 
@@ -428,7 +439,9 @@ export default class Accordion extends ValidationElement {
               help={this.props.appendHelp}
               value={this.props.branch}
               onUpdate={this.updateAddendum}
-              onError={this.props.onError}>
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}>
         {this.props.appendMessage}
       </Branch>
     )
@@ -487,7 +500,8 @@ Accordion.defaultProps = {
   description: i18n.t('collection.summary'),
   incomplete: i18n.t('collection.incomplete'),
   caption: null,
-  scrollTo: '',
+  scrollToTop: '',
+  scrollToBottom: '',
   timeout: 500,
   sort: null,
   realtime: true,

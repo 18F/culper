@@ -63,57 +63,72 @@ export default class Political extends SubsectionElement {
                 value={this.props.HasForeignPolitical}
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignPolitical === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.political.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.political.collection.append')}>
+                     appendLabel={i18n.t('foreign.business.political.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('foreign.business.political.heading.position')}
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Position"
                     className="foreign-business-political-position"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.dates')}
                    help="foreign.business.political.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="foreign-business-political-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.country')}
-                   adjustFor="country">
+              adjustFor="country"
+              scrollIntoView={this.props.scrollIntoView}>
               <Country name="Country"
                        className="foreign-business-political-country"
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.reason')}
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reason"
                         className="foreign-business-political-reason"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.business.political.heading.eligibility')}
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Eligibility"
                     className="foreign-business-political-eligibility"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
           </Accordion>
@@ -136,5 +151,6 @@ Political.defaultProps = {
   validator: (state, props) => {
     return new ForeignBusinessPoliticalValidator(state, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

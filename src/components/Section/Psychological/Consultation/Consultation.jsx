@@ -62,22 +62,31 @@ export default class Consultation extends SubsectionElement {
                 value={this.props.Consulted}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateConsulted}>
+                required={this.props.required}
+                onUpdate={this.updateConsulted}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Consulted === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('psychological.consultation.collection.description')}
                      appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
-                     appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}>
+                     appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Order name="Consultation"
                    prefix="consultation"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   addressBooks={this.props.addressBooks}
+                   dispatch={this.props.dispatch}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    bind={true} />
           </Accordion>
         </Show>
@@ -95,8 +104,10 @@ Consultation.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'consultations',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new ConsultationValidator(props, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

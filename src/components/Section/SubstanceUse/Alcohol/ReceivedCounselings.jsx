@@ -67,20 +67,25 @@ export default class ReceivedCounselings extends SubsectionElement {
                 value={this.props.ReceivedTreatment}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateReceivedTreatment}>
+                required={this.props.required}
+                onUpdate={this.updateReceivedTreatment}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.ReceivedTreatment === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('substance.alcohol.receivedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.receivedCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.receivedCounseling.collection.appendLabel')}>
-            <ReceivedCounseling name="ReceivedCounseling" bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.receivedCounseling.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <ReceivedCounseling name="ReceivedCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -97,5 +102,6 @@ ReceivedCounselings.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new AlcoholReceivedCounselingsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

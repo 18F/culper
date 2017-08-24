@@ -95,7 +95,7 @@ export default class Generic extends ValidationElement {
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: value.length ? err.func(value, this.props) : null,
+        valid: err.func(value, this.props),
         uid: this.state.uid
       }
     })) || []
@@ -209,6 +209,15 @@ Generic.defaultProps = {
 }
 
 Generic.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!value
+      }
+      return true
+    }
+  },
   {
     code: 'length',
     func: (value, props) => {

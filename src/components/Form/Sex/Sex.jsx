@@ -3,6 +3,7 @@ import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Svg from '../Svg'
 import Radio from '../Radio'
+import RadioGroup from '../RadioGroup'
 
 export default class Sex extends ValidationElement {
   constructor (props) {
@@ -48,40 +49,37 @@ export default class Sex extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
-        <div className="blocks">
+        <RadioGroup
+          selectedValue={this.state.value}
+          onError={this.props.onError}
+          required={this.props.required}>
           <Radio name={this.props.name}
-                 label={i18n.t('identification.traits.sex.female')}
-                 placeholder={this.props.placeholder}
-                 required="true"
-                 value="female"
-                 className="female"
-                 checked={this.state.value === 'female'}
-                 error={this.state.error}
-                 valid={this.state.valid}
-                 onChange={this.handleChange}
-                 onError={this.handleError}
-                 >
+            label={i18n.t('identification.traits.sex.female')}
+            placeholder={this.props.placeholder}
+            value="female"
+            className="female"
+            error={this.state.error}
+            valid={this.state.valid}
+            onChange={this.handleChange}
+            onError={this.handleError}>
             <div className="sex-icon">
               <Svg src="/img/female.svg" />
             </div>
           </Radio>
           <Radio name={this.props.name}
-                 label={i18n.t('identification.traits.sex.male')}
-                 placeholder={this.props.placeholder}
-                 required="true"
-                 value="male"
-                 className="male"
-                 checked={this.state.value === 'male'}
-                 error={this.state.error}
-                 valid={this.state.valid}
-                 onChange={this.handleChange}
-                 onError={this.handleError}
-                 >
+            label={i18n.t('identification.traits.sex.male')}
+            placeholder={this.props.placeholder}
+            value="male"
+            className="male"
+            error={this.state.error}
+            valid={this.state.valid}
+            onChange={this.handleChange}
+            onError={this.handleError}>
             <div className="sex-icon">
               <Svg src="/img/male.svg" />
             </div>
           </Radio>
-        </div>
+        </RadioGroup>
       </div>
     )
   }

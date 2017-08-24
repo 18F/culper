@@ -1,4 +1,5 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -9,11 +10,17 @@ import RadioGroup from '../RadioGroup'
 import Radio from '../Radio'
 import ApoFpo from '../ApoFpo'
 import Show from '../Show'
-import { i18n } from '../../../config'
+import Suggestions from '../Suggestions'
+import { AddressSuggestion } from './AddressSuggestion'
 
 export default class Address extends ValidationElement {
   constructor (props) {
     super(props)
+
+    this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
+      showAddressBook: false
+    }
 
     this.update = this.update.bind(this)
     this.updateStreet = this.updateStreet.bind(this)
@@ -24,6 +31,13 @@ export default class Address extends ValidationElement {
     this.updateZipcode = this.updateZipcode.bind(this)
     this.updateAddressType = this.updateAddressType.bind(this)
     this.addressTypeFunc = this.addressTypeFunc.bind(this)
+    this.openAddressBook = this.openAddressBook.bind(this)
+    this.closeAddressBook = this.closeAddressBook.bind(this)
+    this.renderAddressBookItem = this.renderAddressBookItem.bind(this)
+    this.selectAddressBookItem = this.selectAddressBookItem.bind(this)
+    this.handleError = this.handleError.bind(this)
+    this.storeErrors = this.storeErrors.bind(this)
+    this.errors = []
   }
 
   updateStreet (event) {
@@ -51,7 +65,18 @@ export default class Address extends ValidationElement {
   }
 
   updateAddressType (cb) {
+    // Set existing errors to null when toggling fields
+    this.props.onError(cb.value, this.errors.map(err => {
+      return {
+        code: err.code,
+        valid: null,
+        uid: err.uid
+      }
+    }))
+
     let country = ''
+    let city = this.props.city
+
     // POSTOFFICE is used for APO, FPO and DPO
     switch (cb.value) {
       case 'United States':
@@ -60,8 +85,14 @@ export default class Address extends ValidationElement {
         break
     }
 
+    // Clear the city when moving *from* APO/FPO and *to* something else.
+    if (cb.value !== 'POSTOFFICE' && this.props.country === 'POSTOFFICE') {
+      city = ''
+    }
+
     this.update({
       country: country,
+      city: city,
       state: ''
     })
   }
@@ -91,7 +122,70 @@ export default class Address extends ValidationElement {
     }
   }
 
+  openAddressBook () {
+    this.setState({ showAddressBook: true })
+  }
+
+  closeAddressBook () {
+    this.setState({ showAddressBook: false })
+  }
+
+  renderAddressBookItem (suggestion) {
+    return (
+      <AddressSuggestion suggestion={suggestion} current={suggestion} />
+    )
+  }
+
+  selectAddressBookItem (suggestion) {
+    this.setState({ showAddressBook: false }, () => {
+      this.update({
+        street: suggestion.street,
+        street2: suggestion.street2,
+        city: suggestion.city,
+        state: suggestion.state,
+        zipcode: suggestion.zipcode,
+        county: suggestion.county,
+        country: suggestion.country
+      })
+    })
+  }
+
+  handleError (value, arr) {
+    arr = arr.map(err => {
+      return {
+        code: `address.${err.code}`,
+        valid: err.valid,
+        uid: err.uid
+      }
+    })
+
+    const requiredErr = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `address.${err.code}`,
+        valid: err.func(value, {...this.props}),
+        uid: this.state.uid
+      }
+    }))
+
+    this.storeErrors(requiredErr)
+    this.props.onError(value, requiredErr)
+    return arr
+  }
+
+  storeErrors (errors) {
+    let newErrors = [...errors]
+    for (const e of newErrors) {
+      const idx = this.errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+      if (idx !== -1) {
+        this.errors[idx] = { ...e }
+      } else {
+        this.errors.push({ ...e })
+      }
+    }
+  }
+
   render () {
+    const book = this.props.addressBooks[this.props.addressBook] || []
     return (
       <div className="address">
         <Show when={!this.props.disableToggle}>
@@ -131,6 +225,27 @@ export default class Address extends ValidationElement {
             </RadioGroup>
           </div>
         </Show>
+
+        <Show when={this.props.addressBook && book.length}>
+          <div className="reuse-address">
+            <button className="reuse-address-open-modal" title={i18n.t('address.addressBook.reuse')} onClick={this.openAddressBook}>
+              <i className="fa fa-address-book-o" aria-hidden="true" />
+              <span>{i18n.t('address.addressBook.reuse')}</span>
+            </button>
+            <Suggestions show={this.state.showAddressBook}
+                         suggestions={book}
+                         renderSuggestion={this.renderAddressBookItem}
+                         suggestionTitle={i18n.t('suggestions.addressBook.title')}
+                         suggestionParagraph={i18n.m('suggestions.addressBook.para')}
+                         suggestionLabel={i18n.t('suggestions.addressBook.label')}
+                         suggestionUseLabel={i18n.t('suggestions.addressBook.use')}
+                         suggestionDismissLabel={i18n.t('suggestions.addressBook.dismiss')}
+                         onSuggestion={this.selectAddressBookItem}
+                         onDismiss={this.closeAddressBook}
+                         />
+          </div>
+        </Show>
+
         <div className="fields">
           <div>
             <Show when={this.props.country === 'United States'}>
@@ -141,9 +256,10 @@ export default class Address extends ValidationElement {
                         placeholder={this.props.streetPlaceholder}
                         value={this.props.street}
                         onChange={this.updateStreet}
-                        onError={this.props.onError}
+                        onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        required={this.props.required}
                         />
                 <Street name="street2"
                         className="street2"
@@ -151,7 +267,7 @@ export default class Address extends ValidationElement {
                         optional={true}
                         value={this.props.street2}
                         onChange={this.updateStreet2}
-                        onError={this.props.onError}
+                        onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
                         />
@@ -160,9 +276,10 @@ export default class Address extends ValidationElement {
                       label={this.props.cityLabel}
                       value={this.props.city}
                       onChange={this.updateCity}
-                      onError={this.props.onError}
+                      onError={this.handleError}
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
+                      required={this.props.required}
                       />
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
@@ -171,9 +288,10 @@ export default class Address extends ValidationElement {
                                  value={this.props.state}
                                  includeStates="true"
                                  onChange={this.updateState}
-                                 onError={this.props.onError}
+                                 onError={this.handleError}
                                  onFocus={this.props.onFocus}
                                  onBlur={this.props.onBlur}
+                                 required={this.props.required}
                                  />
                   <ZipCode name="zipcode"
                            ref="us_zipcode"
@@ -182,9 +300,10 @@ export default class Address extends ValidationElement {
                            label={this.props.zipcodeLabel}
                            value={this.props.zipcode}
                            onChange={this.updateZipcode}
-                           onError={this.props.onError}
+                           onError={this.handleError}
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
+                           required={this.props.required}
                            />
                 </div>
               </div>
@@ -197,9 +316,10 @@ export default class Address extends ValidationElement {
                         className="mailing street"
                         value={this.props.street}
                         onChange={this.updateStreet}
-                        onError={this.props.onError}
+                        onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        required={this.props.required}
                         />
                 <Street name="street2"
                         className="street2"
@@ -207,7 +327,7 @@ export default class Address extends ValidationElement {
                         optional={true}
                         value={this.props.street2}
                         onChange={this.updateStreet2}
-                        onError={this.props.onError}
+                        onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
                         />
@@ -216,18 +336,20 @@ export default class Address extends ValidationElement {
                       label={this.props.cityLabel}
                       value={this.props.city}
                       onChange={this.updateCity}
-                      onError={this.props.onError}
+                      onError={this.handleError}
                       onFocus={this.props.onFocus}
                       onBlur={this.props.onBlur}
+                      required={this.props.required}
                       />
                 <Country name="country"
                          label={this.props.countryLabel}
                          value={this.props.country}
                          excludeUnitedStates="true"
                          onChange={this.updateCountry}
-                         onError={this.props.onError}
+                         onError={this.handleError}
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}
+                         required={this.props.required}
                          />
               </div>
             </Show>
@@ -239,12 +361,13 @@ export default class Address extends ValidationElement {
                         className="mailing street"
                         value={this.props.street}
                         onChange={this.updateStreet}
-                        onError={this.props.onError}
+                        onError={this.handleError}
                         onFocus={this.props.onFocus}
                         onBlur={this.props.onBlur}
+                        required={this.props.required}
                         />
                 <label>{i18n.t('address.apoFpo.select.label')}</label>
-                <RadioGroup className="apofpo" selectedValue={this.props.city}>
+                <RadioGroup className="apofpo" selectedValue={this.props.city} required={this.props.required} onError={this.handleError}>
                   <Radio name="apoFpoType"
                          className="apo"
                          label={i18n.m('address.apoFpo.apoFpoType.apo.label')}
@@ -279,9 +402,10 @@ export default class Address extends ValidationElement {
                           label={this.props.postOfficeStateLabel}
                           value={this.props.state}
                           onChange={this.updateState}
-                          onError={this.props.onError}
+                          onError={this.handleError}
                           onFocus={this.props.onFocus}
                           onBlur={this.props.onBlur}
+                          required={this.props.required}
                           tabNext={() => { this.props.tab(this.refs.apo_zipcode.refs.zipcode.refs.text.refs.input) }}
                     />
                     <ZipCode name="zipcode"
@@ -291,9 +415,10 @@ export default class Address extends ValidationElement {
                              label={this.props.postOfficeZipcodeLabel}
                              value={this.props.zipcode}
                              onChange={this.updateZipcode}
-                             onError={this.props.onError}
+                             onError={this.handleError}
                              onFocus={this.props.onFocus}
                              onBlur={this.props.onBlur}
+                             required={this.props.required}
                              />
                 </div>
               </div>
@@ -314,7 +439,25 @@ Address.defaultProps = {
   postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
   postOfficeStateLabel: i18n.t('address.apoFpo.apoFpo.label'),
   postOfficeZipcodeLabel: i18n.t('address.apoFpo.zipcode.label'),
-  street2Label: i18n.t('address.us.street2.label')
+  street2Label: i18n.t('address.us.street2.label'),
+  addressBooks: {},
+  addressBook: ''
 }
 
-Address.errors = []
+Address.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        switch (props.country) {
+          case 'United States':
+          case 'POSTOFFICE':
+            return !!props.street && !!props.city && !!props.state && !!props.zipcode
+          default:
+            return !!props.street && !!props.city && !!props.country
+        }
+      }
+      return true
+    }
+  }
+]

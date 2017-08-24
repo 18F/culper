@@ -39,6 +39,18 @@ export const datePart = (part, date) => {
   return ''
 }
 
+const buildDate = (year = '', month = '', day = '') => {
+  let d
+
+  if (year && year.length > 3 && month && day) {
+    d = new Date(parseInt(year), parseInt(month) - 1, parseInt(day))
+  } else {
+    d = ''
+  }
+
+  return d
+}
+
 export default class DateControl extends ValidationElement {
   constructor (props) {
     super(props)
@@ -52,7 +64,7 @@ export default class DateControl extends ValidationElement {
       valid: props.valid,
       maxDate: props.maxDate,
       month: props.month || datePart('m', props.value),
-      day: props.day || props.hideDay ? 1 : datePart('d', props.value),
+      day: props.hideDay ? 1 : (props.day || datePart('d', props.value)),
       year: props.year || datePart('y', props.value),
       errors: []
     }
@@ -63,118 +75,139 @@ export default class DateControl extends ValidationElement {
     this.handleErrorMonth = this.handleErrorMonth.bind(this)
     this.handleErrorDay = this.handleErrorDay.bind(this)
     this.handleErrorYear = this.handleErrorYear.bind(this)
+    this.update = this.update.bind(this)
+    this.updateMonth = this.updateMonth.bind(this)
+    this.updateDay = this.updateDay.bind(this)
+    this.updateYear = this.updateYear.bind(this)
+    this.updateEstimated = this.updateEstimated.bind(this)
+    this.handleDisable = this.handleDisable.bind(this)
+    this.errors = []
   }
 
   componentWillReceiveProps (next) {
     if (next.receiveProps) {
-      let value = ''
       let month = ''
       let day = ''
       let year = ''
 
       if (next.date) {
-        value = next.date
         month = '' + (next.date.getMonth() + 1)
         day = next.date.getDate()
         year = next.date.getFullYear()
-        this.setState({
-          value: value,
-          month: month,
-          day: day,
-          year: year
-        })
       } else {
-        value = next.value
         month = datePart('m', next.value)
         day = datePart('d', next.value)
         year = datePart('y', next.value)
-        this.setState({
-          value: value,
-          month: month,
-          day: day,
-          year: year
-        })
       }
+
+      this.update(null, year, month, day, next.estimated)
     }
+
     if (next.disabled !== this.state.disabled) {
-      this.setState({
-        disabled: next.disabled
-      })
+      this.handleDisable(next)
     }
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    let month = this.state.month
-    let day = this.state.day
-    let year = this.state.year
-    let estimated = this.state.estimated
-    const target = event.target || {}
-    const name = target.name || target.id || ''
-    let changed = {
-      month: false,
-      day: false,
-      year: false
+  handleDisable (nextProps) {
+    let errors = [...this.errors] || []
+    // If disabling component, set all errors to null
+    if (nextProps.disabled) {
+      errors = errors.map(err => {
+        return {
+          code: err.code,
+          valid: null,
+          uid: err.uid
+        }
+      })
     }
+    this.props.onError('', errors)
+    this.setState({
+      disabled: nextProps.disabled
+    })
+  }
 
-    if (name.indexOf('month') !== -1) {
-      month = event.target.value
-      changed.month = true
-    } else if (name.indexOf('day') !== -1) {
-      day = event.target.value
-      changed.day = true
-    } else if (name.indexOf('year') !== -1) {
-      year = event.target.value
-      changed.year = year.length === 4
-    } else if (name.indexOf('estimated') !== -1) {
-      estimated = event.target.checked
-    }
-
-    let d
-    if (year && year.length > 3 && month && day) {
-      d = new Date(year, month - 1, day)
-    } else {
-      d = ''
+  update (el, year, month, day, estimated) {
+    const date = buildDate(year, month, day)
+    const changed = {
+      year: year !== this.state.year,
+      month: month !== this.state.month,
+      day: day !== this.state.day,
+      estimated: estimated !== this.state.estimated
     }
 
     this.setState(
-      {
-        month: month,
-        day: day,
-        year: year,
-        estimated: estimated,
-        value: d
-      },
+      { month: month, day: day, year: year, estimated: estimated, value: date },
       () => {
-        event.target.date = d
+        // Estimate touches the day so we need to toggle focus
+        const toggleForEstimation = changed.estimated
+
+        // Potential for typical day out-of-bounds (including leap year)
+        const toggleForDay = date && (changed.year || changed.month)
+
+        // Any external influence (i.e. clicking `Present` in a date range)
+        const toggleForExternal = el === null && changed.year && changed.month && changed.day
 
         // This will force a blur/validation
-        if (d && (changed.year || changed.month)) {
-          window.setTimeout(() => {
-            this.refs.day.refs.number.refs.input.focus()
-            this.refs.day.refs.number.refs.input.blur()
-
-            if (changed.month) {
-              this.refs.month.refs.autosuggest.input.focus()
-            } else if (event.target.focus) {
-              event.target.focus()
-            }
-          }, 200)
+        if (toggleForEstimation || toggleForDay || toggleForExternal) {
+          this.props.toggleFocus(
+            window,
+            changed,
+            el,
+            this.refs.day.refs.number.refs.input,
+            this.refs.month.refs.autosuggest.input)
         }
 
-        if (this.props.onUpdate) {
-          this.props.onUpdate({
-            name: this.props.name,
-            month: this.state.month,
-            day: this.state.day,
-            year: this.state.year,
-            estimated: this.state.estimated,
-            date: this.state.value
-          })
-        }
+        this.props.onUpdate({
+          name: this.props.name,
+          month: month,
+          day: day,
+          year: year,
+          estimated: estimated,
+          date: date
+        })
       })
+  }
+
+  updateMonth (event) {
+    this.update(
+      this.refs.month.refs.autosuggest.input,
+      this.state.year,
+      event.target.value,
+      this.state.day,
+      this.state.estimated)
+  }
+
+  updateDay (values) {
+    this.update(
+      this.refs.day.refs.number.input,
+      this.state.year,
+      this.state.month,
+      values.value,
+      this.state.estimated)
+  }
+
+  updateYear (values) {
+    this.update(
+      this.refs.year.refs.number.input,
+      values.value,
+      this.state.month,
+      this.state.day,
+      this.state.estimated)
+  }
+
+  updateEstimated (values) {
+    let day = `${this.state.day}`
+    if (values.checked) {
+      if (!day) {
+        day = '15'
+      }
+    }
+    this.update(
+      this.refs.estimated.refs.checkbox,
+      this.state.year,
+      this.state.month,
+      day,
+      values.checked)
   }
 
   handleErrorMonth (value, arr) {
@@ -190,13 +223,25 @@ export default class DateControl extends ValidationElement {
   }
 
   handleError (code, value, arr) {
-    arr = arr.map(err => {
+    let original = arr.map(err => {
       return {
         code: `date.${code}.${err.code}`,
         valid: err.valid,
         uid: err.uid
       }
     })
+
+    // Handle required
+    arr = original.concat(this.constructor.errors
+      .filter(err => err.code === 'required')
+      .map(err => {
+        const props = {...this.props, ...this.state}
+        return {
+          code: `date.${err.code}`,
+          valid: err.func(null, props),
+          uid: this.state.uid
+        }
+      }))
 
     // Introducing local state to the DateControl so it can determine
     // if there were **any** errors found in other child components.
@@ -206,10 +251,11 @@ export default class DateControl extends ValidationElement {
           ? new Date(this.state.year, this.state.month, this.state.day)
           : null
 
-      const existingErr = this.state.errors.some(e => e.valid === false)
+      const existingErr = this.errors.some(e => e.valid === false)
 
       // If the date is valid and there are no child errors...
       let local = []
+      const noneRequiredErrors = this.constructor.errors.filter(err => err.code !== 'required')
       if (date && !existingErr) {
         // Prepare some properties for the error testing
         const props = {
@@ -219,7 +265,7 @@ export default class DateControl extends ValidationElement {
         }
 
         // Call any `onError` binding with error checking specific to the `DateControl`
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: err.func(date, props),
@@ -227,7 +273,7 @@ export default class DateControl extends ValidationElement {
           }
         })
       } else {
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: `${this.props.prefix ? this.props.prefix : 'date'}.${err.code}`,
             valid: null,
@@ -243,21 +289,20 @@ export default class DateControl extends ValidationElement {
     })
 
     // Return the original array of errors to the child control
-    return arr
+    return original
   }
 
   storeErrors (arr = [], callback) {
-    let errors = [...this.state.errors]
     for (const e of arr) {
-      const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+      const idx = this.errors.findIndex(x => x.uid === e.uid && x.code === e.code)
       if (idx !== -1) {
-        errors[idx] = { ...e }
+        this.errors[idx] = { ...e }
       } else {
-        errors.push({ ...e })
+        this.errors.push({ ...e })
       }
     }
 
-    this.setState({ errors: errors }, () => {
+    this.setState({ errors: [...this.errors] }, () => {
       callback()
     })
   }
@@ -287,8 +332,8 @@ export default class DateControl extends ValidationElement {
                       disabled={this.state.disabled}
                       readonly={this.props.readonly}
                       required={this.props.required}
-                      onChange={this.handleChange}
                       beforeChange={this.beforeChange}
+                      onChange={this.updateMonth}
                       onError={this.handleErrorMonth}
                       displayText={this.monthDisplayText}
                       tabNext={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}>
@@ -331,10 +376,11 @@ export default class DateControl extends ValidationElement {
                     receiveProps="true"
                     value={this.state.day}
                     error={this.state.error}
-                    onChange={this.handleChange}
+                    onUpdate={this.updateDay}
                     onError={this.handleErrorDay}
                     tabBack={() => { this.props.tab(this.refs.month.refs.autosuggest.input) }}
                     tabNext={() => { this.props.tab(this.refs.year.refs.number.refs.input) }}
+                    required={this.props.required}
                     />
           </div>
           <div className="usa-form-group year">
@@ -353,9 +399,10 @@ export default class DateControl extends ValidationElement {
                     receiveProps="true"
                     value={this.state.year}
                     error={this.state.error}
-                    onChange={this.handleChange}
+                    onUpdate={this.updateYear}
                     onError={this.handleErrorYear}
                     tabBack={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
+                    required={this.props.required}
                     />
           </div>
         </div>
@@ -369,7 +416,7 @@ export default class DateControl extends ValidationElement {
                       value={this.state.estimated}
                       checked={this.state.estimated}
                       disabled={this.state.disabled}
-                      onChange={this.handleChange}
+                      onUpdate={this.updateEstimated}
                       />
           </div>
         </Show>
@@ -393,11 +440,35 @@ DateControl.defaultProps = {
   prefix: '',
   maxDate: new Date(),
   minDate: null,
+  toggleFocus: (w, changed, el, day, month) => {
+    day.focus()
+    day.blur()
+
+    if (el) {
+      if (changed.month) {
+        month.focus()
+      } else if (el.focus) {
+        el.focus()
+      }
+    }
+  },
+  onUpdate: (values) => {},
   onError: (value, arr) => { return arr },
-  tab: (el) => { el.focus() }
+  tab: (el) => { el.focus() },
+  notApplicable: false
 }
 
 DateControl.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!props.month && !!props.day && !!props.year
+      }
+      return true
+    }
+
+  },
   {
     code: 'max',
     func: (value, props) => {

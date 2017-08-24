@@ -60,7 +60,9 @@ export default class Federal extends SubsectionElement {
                 value={this.props.HasFederalService}
                 warning={true}
                 onUpdate={this.updateBranch}
-                onError={this.handleError}>
+                onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.HasFederalService === 'Yes'}>
           <Accordion items={this.props.List}
@@ -69,39 +71,52 @@ export default class Federal extends SubsectionElement {
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('history.federal.collection.summary.title')}
-                     appendLabel={i18n.t('history.federal.collection.append')}>
+                     appendLabel={i18n.t('history.federal.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('history.federal.heading.dates')}
                    help="history.federal.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
             <Field title={i18n.t('history.federal.heading.name')}
                    className="federal-agency"
-                   help="history.federal.help.name">
+                   help="history.federal.help.name"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Name"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('history.federal.heading.position')}
                    className="federal-position"
-                   help="history.federal.help.position">
+                   help="history.federal.help.position"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Position"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('history.federal.heading.address')}
                    help="history.federal.help.address"
                    className="federal-agency-address"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Address"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Agency"
+                        dispatch={this.props.dispatch}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -118,6 +133,7 @@ Federal.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'federal',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new FederalServiceValidator(props, props).isValid()

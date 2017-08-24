@@ -162,6 +162,14 @@ const en = {
           message: 'Some of these characters aren\'t allowed.',
           note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
+      },
+      suffix: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     birthdate: {
@@ -197,6 +205,10 @@ const en = {
         title: 'Confirmation mismatch',
         message: 'The two U.S. Social Security Numbers you entered do not match.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     date: {
@@ -243,6 +255,10 @@ const en = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be on or after your date of birth.'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     daterange: {
@@ -342,6 +358,10 @@ const en = {
         title: 'There is a problem with the date range',
         message: 'The **from** date should be before the **to** date.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     weight: {
@@ -354,6 +374,10 @@ const en = {
         title: 'Weight exceeds accepted limits',
         message: 'We only accept a value between 10 and 999 pounds',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     height: {
@@ -380,53 +404,129 @@ const en = {
           message: 'Inches must be between 0 and 11',
           note: ''
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
-    address: {
+    location: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       city: {
-        length: {
-          title: 'There is a problem with the City',
-          message: 'City name should be between 2 and 100 characters.',
-          note: ''
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
-      state: {
-        notfound: {
-          title: 'There is a problem with the State',
-          message: [
-            'State name must be one of the available options.',
-            '*and/or*',
-            'The state name is too long.'
-          ],
-          note: ''
+      toggleablelocation: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          required: {
+            title: 'There is a problem with this field',
+            message: 'This field is required'
+          },
+          notfound: {
+            title: 'This country is not one of the options',
+            message: 'Please enter the country that your city of birth is in now.',
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       },
-      county: {
-        length: {
-          title: 'There is a problem with the County',
-          message: 'County name must be between 2 and 100 characters',
-          note: ''
-        }
-      },
-      zipcode: {
-        pattern: {
-          title: 'There is a problem with the ZIP Code',
-          message: 'The ZIP Code should be either 5 or 9 digits.',
-          note: ''
-        }
-      },
-      country: {
-        notfound: {
-          title: 'This country is not one of the options',
-          message: 'Please enter the country that your city of birth is in now.',
-          note: ''
-        }
-      },
-      apofpo: {
-        pattern: {
-          title: 'There is a problem with the State Code',
-          message: 'APO/FPO state code must be 2 letters',
-          note: 'Note: Typically the value is either AA, AE, or AP.'
+      address: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          notfound: {
+            title: 'This country is not one of the options',
+            message: 'Please enter the country that your city of birth is in now.',
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       }
     },
@@ -463,6 +563,10 @@ const en = {
       }
     },
     country: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       notfound: {
         title: 'This Country is not on our current list',
         message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
@@ -470,6 +574,10 @@ const en = {
       }
     },
     passport: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       pattern: {
         title: 'There is a problem with the passport number',
         message: [
@@ -484,6 +592,10 @@ const en = {
         title: 'There is a problem with the losses',
         message: 'The reported losses should have a dollar value.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     telephone: {
@@ -588,6 +700,10 @@ const en = {
             note: ''
           }
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     geocode: {
@@ -625,6 +741,10 @@ const en = {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     treatment: {
@@ -648,6 +768,10 @@ const en = {
           message: 'The date should be after the date treatment began.'
         }
       }
+    },
+    required: {
+      title: 'There is a problem with this field',
+      message: 'This field is required'
     }
     // order: {
     //   datecontrol: {
@@ -792,7 +916,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Identification intro',
       review: 'Review Identification',
       othernames: 'Other names used',
       name: 'Full name',
@@ -981,7 +1105,8 @@ const en = {
     ssn: {
       title: 'Provide your U.S. Social Security Number',
       heading: {
-        verify: 'Please confirm your social security number'
+        verify: 'Please confirm your social security number',
+        verified: 'Thank you for confirming your social security number!'
       },
       help: {
         title: 'Need help with your U.S. Social Security Number?',
@@ -1112,7 +1237,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Financial intro',
       gambling: 'Gambling',
       bankruptcy: 'Bankruptcy',
       taxes: 'Taxes',
@@ -1734,7 +1859,7 @@ const en = {
       para: 'View all the sections associated with citizenship at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Citizenship intro',
       review: 'Review Citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
@@ -2121,7 +2246,7 @@ const en = {
       para: 'View all the sections associated with relationships at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Relationships intro',
       review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
@@ -2960,6 +3085,9 @@ const en = {
           placeholder: 'Enter APO/FPO/DPO'
         }
       }
+    },
+    addressBook: {
+      reuse: 'Choose a previously used address'
     }
   },
   spinner: {
@@ -2981,6 +3109,13 @@ const en = {
       dismiss: 'Keep original address',
       alternate: 'Manually correct this address',
       more: 'Add more information'
+    },
+    addressBook: {
+      title: 'Select previous address',
+      para: 'Choose the desired address from the list below.',
+      label: 'Previous address',
+      use: 'Use this address',
+      dismiss: 'Close address book'
     }
   },
   intro: {
@@ -3014,7 +3149,7 @@ const en = {
       para: 'View all the sections associated with military history at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Military intro',
       selective: 'Selective service record',
       history: 'U.S. military',
       disciplinary: 'Disciplinary procedures',
@@ -3380,7 +3515,7 @@ const en = {
       }
     },
     destination: {
-      intro: 'Intro',
+      intro: 'History intro',
       review: 'Review your history',
       timeline: 'Timeline',
       residence: 'Places you lived',
@@ -4914,11 +5049,6 @@ const en = {
           message: 'Provide the dates of attendance',
           note: ''
         },
-        name: {
-          title: 'Need help with the school name?',
-          message: 'Provide the school name',
-          note: ''
-        },
         address: {
           title: 'Need help with the school address?',
           message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
@@ -5011,7 +5141,7 @@ const en = {
       para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Foreign intro',
       review: 'Review Foreign Activities',
       history: 'Your History',
       tbd: 'TBD',
@@ -5107,6 +5237,13 @@ const en = {
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
           appendLabel: 'Add another direct interest',
           itemType: 'Interest'
+        },
+        help: {
+          directControl: {
+            title: 'Need help with the term "Direct control"?',
+            message: 'Direct control means there are *no* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+            note: 'Example: You own a bakery in a foreign country and you directly control all aspects of the business such as pricing, baking, etc.'
+          }
         },
         interest: {
           para: {
@@ -5218,6 +5355,13 @@ const en = {
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests controlled on your behalf?',
           appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
+        },
+        help: {
+          indirectControl: {
+            title: 'Need help with the term "Indirect control"?',
+            message: 'Indirect control means there *are* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+            note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
+          },
         },
         interest: {
           para: {
@@ -6622,6 +6766,10 @@ const en = {
     }
   },
   legal: {
+    intro: {
+      title: 'Section 9: Investigative and criminal history',
+      body: 'You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -6629,7 +6777,7 @@ const en = {
       para: 'View all the sections associated with investigative & criminal history at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Investigative and criminal history intro',
       police: 'Police record',
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
@@ -7019,7 +7167,7 @@ const en = {
           description: 'Summary of revocations',
           item: 'Revoked',
           unknown: '*Provide revocation details below*',
-          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
+          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
           appendLabel: 'Add another revocation'
         },
         help: {
@@ -7034,8 +7182,8 @@ const en = {
             note: ''
           },
           explanation: {
-            title: 'Need help providing an explanation of events?',
-            message: 'Provide any circumstances leading to this action.',
+            title: 'Need help with this explanation?',
+            message: 'Tell us the details of this denial, suspension or revocation action. Go into as much detail as necessary.',
             note: ''
           }
         }
@@ -7066,8 +7214,8 @@ const en = {
             note: ''
           },
           explanation: {
-            title: 'Need help providing an explanation of events?',
-            message: 'Provide any circumstances leading to this action.',
+            title: 'Need help with this explanation?',
+            message: 'Tell us the details of this denial, suspension or revocation action. Go into as much detail as necessary.',
             note: ''
           }
         }
@@ -7092,8 +7240,8 @@ const en = {
       },
       help: {
         civilActionDate: {
-          title: 'Need help with the civil action date?',
-          message: 'Provide the date of the civil action',
+          title: 'Can\'t remember the exact date?',
+          message: 'Give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         courtName: {
@@ -7102,9 +7250,9 @@ const en = {
           note: ''
         },
         courtAddress: {
-          title: 'Need help with the court address?',
-          message: 'Provide the address of the court',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         natureOfAction: {
           title: 'Need help with the nature of the action?',
@@ -7527,7 +7675,7 @@ const en = {
       para: 'View all the sections associated with substance abuse'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Substance use intro',
       police: {
         negative: 'Negative impact',
         ordered: 'Mandatory counseling or treatment',
@@ -7559,8 +7707,8 @@ const en = {
           used: 'Provide dates of involvement or use'
         },
         label: {
-          circumstances: 'Circumstances',
-          negativeImpact: 'Negative impact'
+          circumstances: 'Provide circumstances',
+          negativeImpact: 'Provide negative impact'
         },
         help: {
           occurred: {
@@ -7591,7 +7739,7 @@ const en = {
         heading: {
           seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
           actionTaken: 'Did you take action to seek counseling or treatment?',
-          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment.',
           counselingDates: 'Provide the dates of counseling or treatment',
           treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
           treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
@@ -7643,7 +7791,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7687,7 +7835,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentProviderTelephone: {
@@ -7734,7 +7882,7 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           agencyName: {
@@ -7748,13 +7896,13 @@ const en = {
             note: 'Note: If you can only find a phone number try calling and asking for the address.'
           },
           treatmentBeganDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment started',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           treatmentEndDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment ended',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           completedTreatment: {
@@ -7772,7 +7920,7 @@ const en = {
     },
     drugs: {
       heading: {
-        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
+        drugUses: 'In the last seven (7) years, have you illegally used any drugs or controlled substances?',
         drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
         drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
         drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
@@ -8013,7 +8161,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug misuse',
-          summary: '*Provide your drug misuse details below**',
+          summary: '*Provide your drug misuse details below*',
           appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
           appendLabel: 'Add another drug misuse',
           itemType: 'Drug misuse'
@@ -8345,7 +8493,7 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Psychological and emotional health intro',
       psychological: 'Psychological and emotional health',
       competence: 'Competence',
       consultation: 'Consultations',
@@ -9160,7 +9308,7 @@ const en = {
       '**b.** To an element of the U.S. Intelligence Community as identified in E.O. 12333, as amended, for use in intelligence activities for the purpose of protecting United States national security interests.',
       '**c.** To any source from which information is requested in the course of an investigation, to the extent necessary to identify the individual, inform the source of the nature and purpose of the investigation, and to identify the type of information requested.',
       '**d.** To the appropriate Federal, state, local, tribal, foreign, or other public authority responsible for investigating, prosecuting, enforcing, or implementing a statute, rule, regulation, or order where OPM becomes aware of an indication of a violation or potential violation of civil or criminal law or regulation.',
-      '**e.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with its current employee’s, contractor employee’s, or military member’s retention; loyalty; qualifications, suitability, or fitness for employment; eligibility for logical or physical access to federallycontrolled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
+      '**e.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with its current employee’s, contractor employee’s, or military member’s retention; loyalty; qualifications, suitability, or fitness for employment; eligibility for logical or physical access to federally-controlled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
       '**f.** To provide information to a congressional office from the record of an individual in response to an inquiry from the congressional office made at the request of that individual. However, the investigative file, or parts thereof, will only be released to a congressional office if OPM receives a notarized authorization or signed statement under 28 U.S.C. 1746 from the subject of the investigation.',
       '**g.** To disclose information to contractors, grantees, or volunteers performing or working on a contract, service, grant, cooperative agreement, or job for the Federal Government.',
       '**h.** For agencies that use adjudicative support services of another agency, at the request of the original agency, the results will be furnished to the agency providing the adjudicative support.',

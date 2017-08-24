@@ -8,7 +8,7 @@ describe('The passport component', () => {
       name: 'passport'
     }
     const component = mount(<Passport name={expected.name} />)
-    expect(component.find('input[name="has_passport"]').length).toEqual(2)
+    expect(component.find('.passport-card').length).toEqual(0)
     expect(component.find('.first input').length).toEqual(0)
     expect(component.find('.number input').length).toEqual(0)
     expect(component.find('.month input').length).toEqual(0)
@@ -21,7 +21,7 @@ describe('The passport component', () => {
       HasPassport: 'Yes'
     }
     const component = mount(<Passport {...expected} />)
-    expect(component.find('input[name="has_passport"]').length).toEqual(2)
+    expect(component.find('.passport-card').length).toEqual(1)
     expect(component.find('.number input').length).toEqual(1)
     expect(component.find('.month input').length).toEqual(2)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -33,7 +33,7 @@ describe('The passport component', () => {
       HasPassport: 'No'
     }
     const component = mount(<Passport name={expected.name} HasPassport="No" />)
-    expect(component.find('input[name="has_passport"]').length).toEqual(2)
+    expect(component.find('.passport-card').length).toEqual(0)
     expect(component.find('.first input').length).toEqual(0)
     expect(component.find('.number input').length).toEqual(0)
     expect(component.find('.month input').length).toEqual(0)
@@ -104,8 +104,8 @@ describe('The passport component', () => {
     component.find('.passport-number input').simulate('change')
     component.find('.passport-issued .day input').simulate('change')
     component.find('.passport-expiration .day input').simulate('change')
-    component.find({type: 'radio', name: 'passport-card', value: 'Card'}).simulate('change')
-    expect(component.find({type: 'radio', name: 'passport-card', value: 'Card'}).hasClass('selected')).toBe(true)
+    component.find('.passport-card input').simulate('change')
+    expect(component.find('.passport-book input').hasClass('selected')).toBe(true)
   })
 
   it('can render with regular expression for passport card', () => {

@@ -77,51 +77,65 @@ export default class Gambling extends SubsectionElement {
     return (
       <div className="gambling">
         <Branch name="has_gamblingdebt"
+                className="has-gambling-debt"
                 value={this.state.HasGamblingDebt}
                 warning={true}
                 onUpdate={this.onUpdate.bind(this)}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
                      appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
             <Field title={i18n.t('financial.gambling.heading.dates')}
+                   scrollIntoView={this.props.scrollIntoView}
                    adjustFor="daterange">
               <DateRange name="Dates"
                          label={i18n.t('financial.gambling.label.dates')}
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
 
-            <Field title={i18n.t('financial.gambling.heading.losses')}>
+            <Field title={i18n.t('financial.gambling.heading.losses')}
+              scrollIntoView={this.props.scrollIntoView}>
               <Currency name="Losses"
                         className="losses"
                         placeholder={i18n.t('financial.gambling.placeholder.losses')}
                         min="1"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('financial.gambling.heading.description')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.gambling.help.description">
               <Textarea name="Description"
                         className="description"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('financial.gambling.heading.actions')}
+                   scrollIntoView={this.props.scrollIntoView}
                    help="financial.gambling.help.actions">
               <Textarea name="Actions"
                         className="actions"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

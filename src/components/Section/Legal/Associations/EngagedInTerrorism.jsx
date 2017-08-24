@@ -62,34 +62,43 @@ export default class EngagedInTerrorism extends SubsectionElement {
                 value={this.props.HasEngaged}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasEngaged === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('legal.associations.engaged.collection.description')}
                      appendTitle={i18n.t('legal.associations.engaged.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.engaged.heading.reasons')}
                    help="legal.associations.engaged.help.reasons"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
                         className="legal-associations-engaged-reasons"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.associations.engaged.heading.dates')}
                    help="legal.associations.engaged.help.dates"
-                   adjustFor="daterange">
+                   adjustFor="daterange"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateRange name="Dates"
                          className="legal-associations-engaged-dates"
                          bind={true}
+                         required={this.props.required}
                          />
             </Field>
           </Accordion>
@@ -112,5 +121,6 @@ EngagedInTerrorism.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalAssociationsEngagedValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

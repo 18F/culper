@@ -82,7 +82,7 @@ export default class Residence extends SubsectionElement {
   render () {
     return (
       <div className="residence">
-        <Accordion scrollTo={this.props.scrollTo}
+        <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
                    items={this.props.value}
                    sort={this.props.sort}
@@ -95,8 +95,15 @@ export default class Residence extends SubsectionElement {
                    customSummary={ResidenceCustomSummary}
                    customDetails={this.customResidenceDetails}
                    description={i18n.t('history.residence.collection.summary.title')}
-                   appendLabel={i18n.t('history.residence.collection.append')}>
-          <ResidenceItem name="Item" bind={true} />
+                   appendLabel={i18n.t('history.residence.collection.append')}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}>
+        <ResidenceItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -105,7 +112,7 @@ export default class Residence extends SubsectionElement {
 
 Residence.defaultProps = {
   value: [],
-  scrollTo: '',
+  scrollToTop: '',
   defaultState: true,
   realtime: false,
   sort: null,
@@ -115,6 +122,7 @@ Residence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'residence',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return props.value.every(x => {

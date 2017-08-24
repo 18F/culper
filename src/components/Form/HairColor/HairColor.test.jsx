@@ -10,7 +10,7 @@ describe('The HairColor component', () => {
       value: ''
     }
     const component = mount(<HairColor name={expected.name} label={expected.label} value={expected.value} />)
-    component.find('input[name="hair-bald"]').simulate('change')
+    component.find('.bald input').simulate('change')
     expect(component.find('input').length).toEqual(14)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
@@ -24,7 +24,7 @@ describe('The HairColor component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<HairColor name={expected.name} label={expected.label} value={expected.value} onUpdate={expected.onUpdate} />)
-    component.find('input[name="hair-bald"]').simulate('change')
+    component.find('.bald input').simulate('change')
     expect(component.find('label.checked').length).toBe(1)
     expect(updates).toBeGreaterThan(0)
   })

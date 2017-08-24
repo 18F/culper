@@ -113,6 +113,7 @@ class SubstanceUse extends SectionElement {
                       dispatch={this.props.dispatch}
                       onError={this.handleError}
                       onUpdate={this.updateDrugUses}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -126,6 +127,7 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updateDrugInvolvements}
+                              scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
 
@@ -139,6 +141,7 @@ class SubstanceUse extends SectionElement {
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateDrugClearanceUses}
+                               scrollToBottom={this.props.scrollToBottom}
                                />
           </SectionView>
 
@@ -152,6 +155,7 @@ class SubstanceUse extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateDrugPublicSafetyUses}
+                                  scrollToBottom={this.props.scrollToBottom}
                                   />
           </SectionView>
 
@@ -165,6 +169,7 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updatePrescriptionUses}
+                              scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
 
@@ -175,9 +180,11 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.voluntary')}>
             <OrderedTreatments name="ordered"
                                {...this.props.OrderedTreatments}
+                               addressBooks={this.props.AddressBooks}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateOrderedTreatments}
+                               scrollToBottom={this.props.scrollToBottom}
                                />
           </SectionView>
 
@@ -188,9 +195,11 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.police.negative')}>
             <VoluntaryTreatments name="voluntary"
                                  {...this.props.VoluntaryTreatments}
+                                 addressBooks={this.props.AddressBooks}
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateVoluntaryTreatments}
+                                 scrollToBottom={this.props.scrollToBottom}
                                  />
           </SectionView>
 
@@ -204,6 +213,7 @@ class SubstanceUse extends SectionElement {
                              dispatch={this.props.dispatch}
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
+                             scrollToBottom={this.props.scrollToBottom}
                              />
           </SectionView>
 
@@ -214,9 +224,11 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.police.voluntary') }>
             <OrderedCounselings name="ordered"
                                 {...this.props.OrderedCounselings}
+                                addressBooks={this.props.AddressBooks}
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
 
@@ -227,9 +239,11 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.police.additional') }>
             <VoluntaryCounselings name="voluntary"
                                   {...this.props.VoluntaryCounselings}
+                                  addressBooks={this.props.AddressBooks}
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
+                                  scrollToBottom={this.props.scrollToBottom}
                                   />
           </SectionView>
 
@@ -243,6 +257,7 @@ class SubstanceUse extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateReceivedCounselings}
+                                 scrollToBottom={this.props.scrollToBottom}
                                  />
           </SectionView>
 
@@ -251,8 +266,8 @@ class SubstanceUse extends SectionElement {
                        back="substance/alcohol/additional"
                        backLabel={ i18n.t('substance.destination.police.additional') }
                        showTop={true}
-                       next="legal/police"
-                       nextLabel={ i18n.t('legal.destination.police') }>
+                       next="legal/intro"
+                       nextLabel={ i18n.t('legal.destination.intro') }>
 
             <DrugUses name="druguses"
                       {...this.props.DrugUses}
@@ -260,6 +275,8 @@ class SubstanceUse extends SectionElement {
                       dispatch={this.props.dispatch}
                       onError={this.handleError}
                       onUpdate={this.updateDrugUses}
+                      required={true}
+                      scrollIntoView={false}
                       />
 
             <hr />
@@ -269,6 +286,8 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updateDrugInvolvements}
+                              required={true}
+                              scrollIntoView={false}
                               />
 
             <hr />
@@ -278,6 +297,8 @@ class SubstanceUse extends SectionElement {
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateDrugClearanceUses}
+                               required={true}
+                               scrollIntoView={false}
                                />
 
             <hr />
@@ -287,6 +308,8 @@ class SubstanceUse extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateDrugPublicSafetyUses}
+                                  required={true}
+                                  scrollIntoView={false}
                                   />
 
             <hr />
@@ -296,6 +319,8 @@ class SubstanceUse extends SectionElement {
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updatePrescriptionUses}
+                              required={true}
+                              scrollIntoView={false}
                               />
 
             <hr />
@@ -305,6 +330,8 @@ class SubstanceUse extends SectionElement {
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateOrderedTreatments}
+                               required={true}
+                               scrollIntoView={false}
                                />
 
             <hr />
@@ -314,7 +341,9 @@ class SubstanceUse extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateVoluntaryTreatments}
-                                 />
+                                 required={true}
+                                 scrollIntoView={false}
+                               />
 
             <hr />
             <NegativeImpacts name="negative"
@@ -323,6 +352,8 @@ class SubstanceUse extends SectionElement {
                              dispatch={this.props.dispatch}
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
+                             required={true}
+                             scrollIntoView={false}
                              />
 
             <hr />
@@ -332,6 +363,8 @@ class SubstanceUse extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
+                                required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr />
@@ -341,6 +374,8 @@ class SubstanceUse extends SectionElement {
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
+                                  required={true}
+                                  scrollIntoView={false}
                                   />
 
             <hr />
@@ -350,6 +385,8 @@ class SubstanceUse extends SectionElement {
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateReceivedCounselings}
+                                 required={true}
+                                 scrollIntoView={false}
                                  />
           </SectionView>
         </SectionViews>
@@ -359,10 +396,12 @@ class SubstanceUse extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let substance = app.SubstanceUse || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const substance = app.SubstanceUse || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     SubstanceUse: substance,
     NegativeImpacts: substance.NegativeImpacts || {},
@@ -377,13 +416,15 @@ function mapStateToProps (state) {
     OrderedTreatments: substance.OrderedTreatments || {},
     VoluntaryTreatments: substance.VoluntaryTreatments || {},
     Errors: errors.substance || [],
-    Completed: completed.substance || []
+    Completed: completed.substance || [],
+    AddressBooks: addressBooks
   }
 }
 
 SubstanceUse.defaultProps = {
   section: 'substance',
-  store: 'SubstanceUse'
+  store: 'SubstanceUse',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(SubstanceUse))

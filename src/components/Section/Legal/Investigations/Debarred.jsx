@@ -62,43 +62,53 @@ export default class Debarred extends SubsectionElement {
                 value={this.props.HasDebarment}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasDebarment === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      description={i18n.t('legal.investigations.debarred.collection.description')}
                      appendTitle={i18n.t('legal.investigations.debarred.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.investigations.debarred.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.investigations.debarred.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.debarred.heading.agency')}
-                   help="legal.investigations.debarred.help.agency"
-                   adjustFor="text">
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
                     className="legal-investigations-debarred-agency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('legal.investigations.debarred.heading.date')}
                    help="legal.investigations.debarred.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="legal-investigations-debarred-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('legal.investigations.debarred.heading.explanation')}
                    help="legal.investigations.debarred.help.explanation"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Explanation"
                         className="legal-investigations-debarred-explanation"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>
@@ -121,5 +131,6 @@ Debarred.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalInvestigationsDebarredValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

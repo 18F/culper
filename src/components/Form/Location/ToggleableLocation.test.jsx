@@ -30,4 +30,16 @@ describe('The ToggleableLocation component', () => {
     component.find('.country input').simulate('change', { target: { value: 'Germany' } })
     expect(updates).toBe(2)
   })
+
+  it('Render if US are required', () => {
+    const fields = ['country', 'city', 'county', 'stateZipcode', 'state', 'what']
+    const component = mount(<ToggleableLocation country="United States" domesticFields={fields} required={true} />)
+    expect(component.find('.usa-input-error').length).toBe(5)
+  })
+
+  it('Render if International fields are required', () => {
+    const fields = ['city', 'country', 'what']
+    const component = mount(<ToggleableLocation country="" internationalFields={fields} required={true} />)
+    expect(component.find('.usa-input-error').length).toBe(2)
+  })
 })
