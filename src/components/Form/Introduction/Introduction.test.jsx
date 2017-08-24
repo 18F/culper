@@ -7,6 +7,8 @@ import { mount } from 'enzyme'
 import AuthenticatedIntroduction, { Introduction } from './Introduction'
 
 describe('The Introduction component', () => {
+  window.token = 'fake-token'
+
   it('logout if "No" is selected', () => {
     let dispatched = 0
     const props = {
@@ -67,6 +69,7 @@ describe('The Introduction component', () => {
   })
 
   it('hidden if not authenticated', () => {
+    window.token = ''
     const middlewares = [thunk]
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
@@ -79,5 +82,6 @@ describe('The Introduction component', () => {
     })
     const component = mount(<Provider store={store}><AuthenticatedIntroduction /></Provider>)
     expect(component.find('.introduction-modal').length).toBe(0)
+    window.token = 'fake-token'
   })
 })
