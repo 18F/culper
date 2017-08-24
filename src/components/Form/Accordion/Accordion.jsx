@@ -45,6 +45,16 @@ export const scrollToBottom = (selector) => {
   window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' })
 }
 
+/**
+ * Checks if the validator is the expected type and contains an isValid func
+ */
+export const validValidator = (validator) => {
+  return validator &&
+    typeof validator === 'function' &&
+    !!validator.prototype.isValid &&
+    typeof validator.prototype.isValid === 'function'
+}
+
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
@@ -325,7 +335,7 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    const closedAndIncomplete = !item.open && !this.props.validator(this.props.transformer(item))
+    const closedAndIncomplete = !item.open && !this.props.isValid(this.props.transformer(item), this.props)
     const svg = closedAndIncomplete
           ? <Svg src="/img/exclamation-point.svg" className="incomplete" alt={this.props.incomplete} />
           : null
@@ -515,7 +525,31 @@ Accordion.defaultProps = {
       </span>
     )
   },
+  /**
+   * A validator that implements an isValid() method that returns whether an item is valid
+   */
   validator: (item) => {
+    return class {
+      isValid () {
+        return true
+      }
+    }
+  },
+
+  /**
+   * Determines if current item is valid. By default, this
+   * utilizes the validator that is passed in. This function
+   * is meant to be used when custom validator behavior is required
+   * that can't be achieved with simply passing in a validator
+   */
+  isValid: (item, props) => {
+    if (props.required) {
+      if (!validValidator(props.validator)) {
+        console.warn('Invalid validator used.')
+        return false
+      }
+      return new props.validator(item).isValid()
+    }
     return true
   },
   transformer: (item) => {
