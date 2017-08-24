@@ -3,6 +3,12 @@ import { mount } from 'enzyme'
 import Accordion from './Accordion'
 import Text from '../Text'
 
+const FalseValidatior = class {
+  isValid () {
+    return false
+  }
+}
+
 describe('The accordion component', () => {
   it('has no items with minimum equal to zero', () => {
     let items = []
@@ -216,7 +222,7 @@ describe('The accordion component', () => {
       items: items,
       defaultState: false,
       initial: false,
-      validator: (props) => { return false },
+      isValid: (props) => { return false },
       summary: (item, index, initial) => { return <span>Summary</span> },
       byline: (item, index, initial) => { return <span className="byline">My custom byline</span> }
     }
@@ -234,7 +240,7 @@ describe('The accordion component', () => {
       items: items,
       defaultState: false,
       initial: false,
-      validator: (props) => { return false },
+      isValid: (props) => { return false },
       summary: (item, index, initial) => { return <span>Summary</span> }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)

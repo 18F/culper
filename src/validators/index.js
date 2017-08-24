@@ -1,6 +1,9 @@
 import BankruptcyValidator from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
-import ContactInformationValidator from './contactinformation'
+import ContactInformationValidator, {
+  ContactEmailValidator,
+  ContactPhoneNumberValidator
+} from './contactinformation'
 import IdentificationValidator from './identification'
 import NameValidator from './name'
 import OtherNamesValidator from './othernames'
@@ -87,6 +90,8 @@ export {
   BankruptcyValidator,
   BirthPlaceValidator,
   ContactInformationValidator,
+  ContactEmailValidator,
+  ContactPhoneNumberValidator,
   IdentificationValidator,
   NameValidator,
   OtherNamesValidator,

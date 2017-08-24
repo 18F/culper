@@ -62,6 +62,7 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
+    this.isValid = this.isValid.bind(this)
 
     // Instance variable. Not stored in state to prevent re-renders and it's not going to
     // be used in the UI.
@@ -317,6 +318,12 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
+   * Validates item using validator
+   */
+  isValid (item) {
+  }
+
+  /**
    * Render the item summary which can be overriden with `customSummary`
    */
   summary (item, index, initial = false) {
@@ -325,7 +332,7 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    const closedAndIncomplete = !item.open && !this.props.validator(this.props.transformer(item))
+    const closedAndIncomplete = !item.open && !this.props.isValid(this.props.transformer(item), this.props)
     const svg = closedAndIncomplete
           ? <Svg src="/img/exclamation-point.svg" className="incomplete" alt={this.props.incomplete} />
           : null
@@ -481,6 +488,13 @@ export default class Accordion extends ValidationElement {
   }
 }
 
+export const validValidator = (validator) => {
+  return validator &&
+    typeof validator === 'function' &&
+    !!validator.prototype.isValid &&
+    typeof validator.prototype.isValid === 'function'
+}
+
 Accordion.defaultProps = {
   initial: true,
   skipWarning: false,
@@ -516,6 +530,20 @@ Accordion.defaultProps = {
     )
   },
   validator: (item) => {
+    return class {
+      isValid () {
+        return true
+      }
+    }
+  },
+  isValid: (item, props) => {
+    if (props.required) {
+      if (!validValidator(props.validator)) {
+        console.warn('Invalid validator used.')
+        return false
+      }
+      return new props.validator(item).isValid()
+    }
     return true
   },
   transformer: (item) => {

@@ -46,7 +46,8 @@ describe('Employment component validation', function () {
                   noNumber: '',
                   number: '2028675309',
                   numberType: 'Cell',
-                  timeOfDay: 'Day'
+                  timeOfDay: 'Day',
+                  type: 'Domestic'
                 },
                 Supervisor: {
                   Address: {
@@ -67,6 +68,7 @@ describe('Employment component validation', function () {
                     noNumber: '',
                     number: '2021112222',
                     numberType: 'Cell',
+                    type: 'Domestic',
                     timeOfDay: 'Day'
                   },
                   Title: {
