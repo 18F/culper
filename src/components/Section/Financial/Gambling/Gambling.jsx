@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { GamblingValidator } from '../../../../validators'
+import { GamblingValidator, GamblingItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, DateRange, Currency, Textarea, Field } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import GamblingItem from './GamblingItem'
 
 export default class Gambling extends SubsectionElement {
   constructor (props) {
@@ -58,7 +59,8 @@ export default class Gambling extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
+  summary (row, index) {
+    const item = row.Item || {}
     const dates = DateSummary(item.Dates)
     const losses = item.Losses && item.Losses.value
         ? `$${this.fancyNumber(item.Losses.value)}`
@@ -95,49 +97,16 @@ export default class Gambling extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
                      required={this.props.required}
+                     validator={GamblingItemValidator}
                      scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
                      appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
-            <Field title={i18n.t('financial.gambling.heading.dates')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   adjustFor="daterange">
-              <DateRange name="Dates"
-                         label={i18n.t('financial.gambling.label.dates')}
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('financial.gambling.heading.losses')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Currency name="Losses"
-                        className="losses"
-                        placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                        min="1"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.gambling.heading.description')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   help="financial.gambling.help.description">
-              <Textarea name="Description"
-                        className="description"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.gambling.heading.actions')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   help="financial.gambling.help.actions">
-              <Textarea name="Actions"
-                        className="actions"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <GamblingItem
+                       name="Item"
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       bind={true}
+                     />
           </Accordion>
         </Show>
       </div>
