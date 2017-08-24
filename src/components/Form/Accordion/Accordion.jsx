@@ -62,7 +62,6 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
-    this.isValid = this.isValid.bind(this)
 
     // Instance variable. Not stored in state to prevent re-renders and it's not going to
     // be used in the UI.
@@ -318,12 +317,6 @@ export default class Accordion extends ValidationElement {
   }
 
   /**
-   * Validates item using validator
-   */
-  isValid (item) {
-  }
-
-  /**
    * Render the item summary which can be overriden with `customSummary`
    */
   summary (item, index, initial = false) {
@@ -529,6 +522,9 @@ Accordion.defaultProps = {
       </span>
     )
   },
+  /**
+   * A validator that implements an isValid() method that returns whether an item is valid
+   */
   validator: (item) => {
     return class {
       isValid () {
@@ -536,6 +532,13 @@ Accordion.defaultProps = {
       }
     }
   },
+
+  /**
+   * Determines if current item is valid. By default, this
+   * utilizes the validator that is passed in. This function
+   * is meant to be used when custom validator behavior is required
+   * that can't be achieved with simply passing in a validator
+   */
   isValid: (item, props) => {
     if (props.required) {
       if (!validValidator(props.validator)) {
