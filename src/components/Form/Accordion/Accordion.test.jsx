@@ -1,13 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Accordion from './Accordion'
+import Accordion, { validValidator } from './Accordion'
 import Text from '../Text'
-
-const FalseValidatior = class {
-  isValid () {
-    return false
-  }
-}
 
 describe('The accordion component', () => {
   it('has no items with minimum equal to zero', () => {
@@ -338,5 +332,36 @@ describe('The accordion component', () => {
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.append-button button').length).toEqual(1)
     expect(component.find('.addendum').length).toEqual(0)
+  })
+
+  it('validates a validator function', () => {
+    const ValidValidator = class {
+      isValid () {
+        return true
+      }
+    }
+    const InvalidValidator = class {}
+    let items = [
+      {
+        func: ValidValidator,
+        expected: true
+      },
+      {
+        func: InvalidValidator,
+        expected: false
+      },
+      {
+        func: {},
+        expected: false
+      },
+      {
+        func: () => {},
+        expected: false
+      }
+    ]
+
+    items.forEach(test => {
+      expect(validValidator(test.func)).toEqual(test.expected)
+    })
   })
 })
