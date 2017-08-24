@@ -43,7 +43,7 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   emailSummary (item, index) {
-    const addr = item.Email && item.Email.value ? item.Email.value : ''
+    const addr = item.Item && item.Item.value ? item.Item.value : ''
     return Summary({
       type: i18n.t('identification.contacts.collection.summary.email'),
       index: index,
