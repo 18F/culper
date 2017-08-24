@@ -7214,8 +7214,8 @@ const en = {
             note: ''
           },
           explanation: {
-            title: 'Need help providing an explanation of events?',
-            message: 'Provide any circumstances leading to this action.',
+            title: 'Need help with this explanation?',
+            message: 'Tell us the details of this denial, suspension or revocation action. Go into as much detail as necessary.',
             note: ''
           }
         }
@@ -7240,8 +7240,8 @@ const en = {
       },
       help: {
         civilActionDate: {
-          title: 'Need help with the civil action date?',
-          message: 'Provide the date of the civil action',
+          title: 'Can\'t remember the exact date?',
+          message: 'Give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         courtName: {
@@ -7250,9 +7250,9 @@ const en = {
           note: ''
         },
         courtAddress: {
-          title: 'Need help with the court address?',
-          message: 'Provide the address of the court',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address.'
         },
         natureOfAction: {
           title: 'Need help with the nature of the action?',
