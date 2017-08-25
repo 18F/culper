@@ -28,36 +28,57 @@ defineSupportCode(({Given, Then, When}) => {
         return completePassport(promise)
       case 'contacts':
         return completeContacts(promise)
-      case 'activities/direct':
-        return promise
-      case 'activities/indirect':
-        return promise
-      case 'activities/realestate':
-        return promise
-      case 'activities/benefits':
-        return promise
-      case 'activities/support':
-        return promise
-      case 'business/advice':
-        return promise
-      case 'business/family':
-        return promise
-      case 'business/employment':
-        return promise
-      case 'business/ventures':
-        return promise
-      case 'business/conferences':
-        return promise
-      case 'business/contact':
-        return completeBusinessContact(promise)
-      case 'business/sponsorship':
-        return completeBusinessSponsorship(promise)
-      case 'business/political':
-        return completeBusinessPolitical(promise)
-      case 'business/voting':
-        return completeBusinessVoting(promise)
       case 'travel':
-        return completeTravel(promise)
+        return completeForeignTravel(promise)
+      default:
+        return promise
+      }
+    })
+
+  When(/^I fill in the foreign (.*?) section (.*?) subsection$/, (section, subsection) => {
+    const parentsection = 'Foreign activities'
+    const sectionurl = 'foreign/' + section
+    let sectionheader = ''
+    if (section.includes('business')) {
+      sectionheader = 'Foreign business, professional activities, and government contacts'
+    } else {
+      sectionheader = 'Foreign activities'
+    }
+    let promise = navigateToSection(parentsection)
+      .then(() => { return navigateToSectionTitle(sectionheader) })
+      .then(() => { return navigateToSubsection(sectionurl, subsection) })
+
+    switch (subsection) {
+      // "activities" subsection
+      case 'direct':
+        return completeActivitiesDirectSupport(promise)
+      case 'indirect':
+        return promise
+      case 'realestate':
+        return promise
+      case 'benefits':
+        return promise
+      case 'support':
+        return promise
+      // "business" subsection
+      case 'advice':
+        return promise
+      case 'family':
+        return promise
+      case 'employment':
+        return promise
+      case 'ventures':
+        return promise
+      case 'conferences':
+        return promise
+      case 'contact':
+        return completeBusinessContact(promise)
+      case 'sponsorship':
+        return completeBusinessSponsorship(promise)
+      case 'political':
+        return completeBusinessPolitical(promise)
+      case 'voting':
+        return completeBusinessVoting(promise)
       default:
         return promise
       }
@@ -99,6 +120,21 @@ const completeContacts = (promise) => {
     .then(() => { return setDomesticAddress('.foreign-contacts .na-employer-address .employer-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
     .then(() => { return setOptionWithPause('.foreign-contacts .has-affiliations .no.block') })
     .then(() => { return setOption('.foreign-contacts .branch.addendum .no.block') })
+}
+
+const completeActivitiesDirectSupport = (promise) => {
+  return promise
+    .then(() => { return setOption('.direct .branch .yes.block') })
+    .then(() => { return setOption('.direct .interest-types .yourself.block') })
+    .then(() => { return setText('.direct .interest-type input', 'Interest type description') })
+    .then(() => { return setDate('.direct .datecontrol.acquired', '1', '1', '2012') })
+    .then(() => { return setText('.direct .how-acquired textarea', 'Description of how acquired') })
+    .then(() => { return setText('.direct .currency .cost input', '10000') })
+    .then(() => { return setText('.direct .currency .value input', '13000') })
+    .then(() => { return setDate('.direct .datecontrol.relinquished', '1', '1', '2014') })
+    .then(() => { return setText('.direct .explanation textarea', 'Explanation of what happened') })
+    .then(() => { return setOption('.direct .co-owners .branch .no.block') })
+    .then(() => { return setOption('.direct .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
@@ -152,7 +188,7 @@ const completeBusinessVoting = (promise) => {
     .then(() => { return setText('.foreign-business-voting-eligibility input', 'No longer eligible') })
 }
 
-const completeTravel = (promise) => {
+const completeForeignTravel = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-travel-outside .branch .yes') })
     .then(() => { return setOption('.foreign-travel-official .branch .no') })
@@ -185,6 +221,15 @@ const navigateToSection = (section) => {
     .click(selector)
     .pause(3000)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-section.png')
+}
+
+const navigateToSectionTitle = (section) => {
+  const selector = '.subsection a[title="' + section + '"]'
+  return client
+    .assert.visible(selector)
+    .click(selector)
+    .pause(3000)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-sectiontitle.png')
 }
 
 const navigateToSubsection = (section, subsection) => {

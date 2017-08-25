@@ -8,18 +8,26 @@ Feature: Foreign
   #   Then I should be in the foreign contacts section
   #   Then I log out
 
-  Scenario: Complete the foreign business contact section
+  # Scenario: Complete the foreign business contact section
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the foreign contacts section
+  #   And I click Next to go to foreign activities
+  #   Then I should be in the foreign activities section
+  #   Then I log out
+
+  Scenario: Complete the foreign activities direct support section
     Given I am a registered user
     And I log in
-    And I fill in the foreign contacts section
-    And I click Next to go to foreign activities
-    Then I should be in the foreign activities section
+    And I fill in the foreign activities section direct subsection
+    And I click Next to go to foreign activities/indirect
+    Then I should be in the foreign activities/indirect section
     Then I log out
 
   # Scenario: Complete the foreign business sponsorship section
   #   Given I am a registered user
   #   And I log in
-  #   And I fill in the foreign business/sponsorship section
+  #   And I fill in the foreign business section sponsorship subsection
   #   And I click Next to go to foreign business/political
   #   Then I should be in the foreign business/political section
   #   Then I log out
