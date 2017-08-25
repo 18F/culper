@@ -16,25 +16,18 @@ const filenum = () => {
 }
 
 defineSupportCode(({Given, Then, When}) => {
-  When(/^I go to the foreign section$/, () => {
-    return navigateToSection('foreign')
-  })
-
-  When(/^I go to the foreign (.*?) section$/, (subsection) => {
-    const section = 'foreign'
-    return navigateToSection(section)
-      .then(() => { return navigateToSubsection(section, subsection) })
-  })
 
   When(/^I fill in the foreign (.*?) section$/, (subsection) => {
     const section = 'foreign'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
+    const sectionTitle = 'Foreign activities'
+    let promise = navigateToSection(sectionTitle)
+      .then(() => { return navigateToSubsection(section, subsection) })
 
     switch (subsection) {
       case 'passport':
         return completePassport(promise)
-      case 'travel':
-        return completeTravel(promise)
+      case 'contacts':
+        return completeContacts(promise)
       case 'activities/direct':
         return promise
       case 'activities/indirect':
@@ -63,29 +56,15 @@ defineSupportCode(({Given, Then, When}) => {
         return completeBusinessPolitical(promise)
       case 'business/voting':
         return completeBusinessVoting(promise)
+      case 'travel':
+        return completeTravel(promise)
       default:
         return promise
       }
     })
 
-  When(/^I fill in the foreign activities (.*?) section$/, (subsection) => {
-    const section = 'foreign'
-    let promise = navigateToSection(section).then(() => { return navigateToSubsection(section, subsection) })
-
-    switch (subsection) {
-    case 'direct':
-      return promise
-    case 'indirect':
-      return promise
-    case 'realestate':
-      return promise
-    case 'benefits':
-      return promise
-    case 'support':
-      return promise
-    default:
-      return promise
-    }
+  When(/^I click Next to go to foreign (.*?)$/, (subsection) => {
+    return navigateToNext(subsection)
   })
 
   Then(/^I should be in the foreign (.*?) section$/, (subsection) => {
@@ -99,6 +78,27 @@ const completePassport = (promise) => {
     .then(() => { return setName('.name', 'Charles', 'F', 'Xavier') })
     .then(() => { return setText('.number input', 'A12345678') })
     .then(() => { return setDate('.datecontrol', '1', '1', '2010') })
+}
+
+const completeContacts = (promise) => {
+  return promise
+    .then(() => { return setOption('.foreign-contacts .branch .yes') })
+    .then(() => { return setName('.foreign-contacts .foreign-national .name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setDate('.foreign-contacts .datecontrol.first-contact', '1', '1', '2010') })
+    .then(() => { return setDate('.foreign-contacts .datecontrol.last-contact', '1', '1', '2012') })
+    .then(() => { return setOption('.foreign-contacts .methods .methods-inperson.block') })
+    .then(() => { return setOption('.foreign-contacts .frequency .frequency-annually.block') })
+    .then(() => { return setOption('.foreign-contacts .relationship .relationship-professional.block') })
+    .then(() => { return setOption('.foreign-contacts .aliases .branch .no') })
+    .then(() => { return setText('.foreign-contacts .country.citizenship input', 'New Zealand') })
+    .then(() => { return setOption('.foreign-contacts .na-birthdate.button .block') })
+    .then(() => { return setText('.foreign-contacts .na-birthplace .location .city input', 'Aukland') })
+    .then(() => { return setText('.foreign-contacts .na-birthplace .location .country input', 'New Zealand') })
+    .then(() => { return setDomesticAddress('.foreign-contacts .na-address .current-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setTextWithPause('.foreign-contacts .na-employer .employer input', 'XMEN') })
+    .then(() => { return setDomesticAddress('.foreign-contacts .na-employer-address .employer-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOptionWithPause('.foreign-contacts .has-affiliations .no.block') })
+    .then(() => { return setOption('.foreign-contacts .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
@@ -177,8 +177,9 @@ const completeTravel = (promise) => {
     .then(() => { return setText('.foreign-travel-threatened-explanation textarea', 'This is an explanation') })
 }
 
+
 const navigateToSection = (section) => {
-  const selector = '.section a[href="/form/' + section + '"]'
+  const selector = '.section a[title="' + section + '"]'
   return client
     .assert.visible(selector)
     .click(selector)
@@ -187,25 +188,13 @@ const navigateToSection = (section) => {
 }
 
 const navigateToSubsection = (section, subsection) => {
-  const crumbs = subsection.split('/')
-  for (let i = 0; i < crumbs.length; i++) {
-    let path = ''
-    for (let j = 0; j < (i + 1); j++) {
-      if (path.length) {
-        path += '/'
-      }
-      path += crumbs[j]
-    }
-
-    const selector = '.section a[href="/form/' + section + '/' + path + '"]'
-    client
-      .assert.visible(selector)
-      .click(selector)
-      .pause(3000)
-      .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
-  }
-
+  const selector = '.subsection a[href="/form/' + section + '/' + subsection + '"]'
   return client
+    .assert.visible(selector)
+    .click(selector)
+    .click(selector)
+    .pause(3000)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-navigate-subsection.png')
 }
 
 const navigateToNext = () => {
@@ -229,10 +218,27 @@ const setOption = (selector) => {
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-option.png')
 }
 
+const setOptionWithPause = (selector) => {
+  return client
+    .assert.visible(selector)
+    .click(selector)
+    .pause(5000)
+    .click(selector)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-option.png')
+}
+
 const setText = (selector, text) => {
   return client
     .assert.visible(selector)
     .setValue(selector, text)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-text.png')
+}
+
+const setTextWithPause = (selector, text) => {
+  return client
+    .assert.visible(selector)
+    .setValue(selector, text)
+    .pause(5000)
     .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-text.png')
 }
 
