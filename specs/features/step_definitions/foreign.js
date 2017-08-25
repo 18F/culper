@@ -51,9 +51,9 @@ defineSupportCode(({Given, Then, When}) => {
     switch (subsection) {
       // "activities" subsection
       case 'direct':
-        return completeActivitiesDirectSupport(promise)
+        return completeActivitiesDirectControl(promise)
       case 'indirect':
-        return promise
+        return completeActivitiesIndirectControl(promise)
       case 'realestate':
         return promise
       case 'benefits':
@@ -122,7 +122,7 @@ const completeContacts = (promise) => {
     .then(() => { return setOption('.foreign-contacts .branch.addendum .no.block') })
 }
 
-const completeActivitiesDirectSupport = (promise) => {
+const completeActivitiesDirectControl = (promise) => {
   return promise
     .then(() => { return setOption('.direct .branch .yes.block') })
     .then(() => { return setOption('.direct .interest-types .yourself.block') })
@@ -135,6 +135,24 @@ const completeActivitiesDirectSupport = (promise) => {
     .then(() => { return setText('.direct .explanation textarea', 'Explanation of what happened') })
     .then(() => { return setOption('.direct .co-owners .branch .no.block') })
     .then(() => { return setOption('.direct .branch.addendum .no.block') })
+}
+
+const completeActivitiesIndirectControl = (promise) => {
+  return promise
+    .then(() => { return setOption('.indirect .branch .yes.block') })
+    .then(() => { return setOption('.indirect .interest-types .yourself.block') })
+    .then(() => { return setText('.indirect .interest-type input', 'Indirect interest type description') })
+    .then(() => { return setText('.indirect input[name="Firstname"]', 'Charles Edward') })
+    .then(() => { return setText('.indirect input[name="Lastname"]', 'Cheese') })
+    .then(() => { return setText('.indirect textarea[name="Relationship"]', 'description of relationship') })
+    .then(() => { return setDate('.indirect .datecontrol.acquired', '1', '1', '2012') })
+    .then(() => { return setText('.indirect .currency .cost input', '10000') })
+    .then(() => { return setText('.indirect .how-acquired textarea', 'Description of how acquired') })
+    .then(() => { return setText('.indirect .currency .value input', '13000') })
+    .then(() => { return setDate('.indirect .datecontrol.sold', '1', '1', '2014') })
+    .then(() => { return setText('.indirect .explanation textarea', 'Explanation of what happened') })
+    .then(() => { return setOption('.indirect .co-owners .branch .no.block') })
+    .then(() => { return setOption('.indirect .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {

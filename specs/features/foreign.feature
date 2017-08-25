@@ -16,12 +16,20 @@ Feature: Foreign
   #   Then I should be in the foreign activities section
   #   Then I log out
 
-  Scenario: Complete the foreign activities direct support section
+  # Scenario: Complete the foreign activities direct control section
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the foreign activities section direct subsection
+  #   And I click Next to go to foreign activities/indirect
+  #   Then I should be in the foreign activities/indirect section
+  #   Then I log out
+
+  Scenario: Complete the foreign activities indirect control section
     Given I am a registered user
     And I log in
-    And I fill in the foreign activities section direct subsection
-    And I click Next to go to foreign activities/indirect
-    Then I should be in the foreign activities/indirect section
+    And I fill in the foreign activities section indirect subsection
+    And I click Next to go to foreign activities/realestate
+    Then I should be in the foreign activities/realestate section
     Then I log out
 
   # Scenario: Complete the foreign business sponsorship section
