@@ -516,10 +516,9 @@ const en = {
         },
         country: {
           notfound: {
-            title: 'This country is not one of the options',
+            title: 'This Country is not on our current list',
             message: [
-              'Country name must be one of the available options.',
-              'If it is not presented as an option select the closest match and make a note in the comments.'
+              'Indicate the country that currently governs the geographic location where you were born. As necessary provide a comment above to clarify.'
             ],
             note: ''
           }
@@ -5134,7 +5133,7 @@ const en = {
   },
   foreign: {
     intro: {
-      title: 'Section 7: Foriegn activities',
+      title: 'Section 7: Foreign activities',
       body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
     },
     tour: {
