@@ -55,7 +55,7 @@ defineSupportCode(({Given, Then, When}) => {
       case 'indirect':
         return completeActivitiesIndirectControl(promise)
       case 'realestate':
-        return promise
+        return completeRealestatePurchase(promise)
       case 'benefits':
         return promise
       case 'support':
@@ -153,6 +153,22 @@ const completeActivitiesIndirectControl = (promise) => {
     .then(() => { return setText('.indirect .explanation textarea', 'Explanation of what happened') })
     .then(() => { return setOption('.indirect .co-owners .branch .no.block') })
     .then(() => { return setOption('.indirect .branch.addendum .no.block') })
+}
+
+const completeRealestatePurchase = (promise) => {
+  return promise
+    .then(() => { return setOption('.realestate .branch .yes') })
+    .then(() => { return setOption('.realestate .interest-types .spouse.block') })
+    .then(() => { return setText('.realestate .realestate-type input', 'House') })
+    .then(() => { return setText('.realestate .location .street input', '123 Main Street') })
+    .then(() => { return setText('.realestate .location .city input', 'Paris') })
+    .then(() => { return setText('.realestate .location .country input', 'France') })
+    .then(() => { return setDate('.realestate .datecontrol.acquired', '1', '1', '2012') })
+    .then(() => { return setText('.realestate .how-acquired textarea', 'Description of how acquired') })
+    .then(() => { return setDate('.realestate .datecontrol.sold', '1', '1', '2014') })
+    .then(() => { return setText('.realestate .currency .cost input', '10000') })
+    .then(() => { return setOption('.realestate .co-owners .branch .no.block') })
+    .then(() => { return setOption('.realestate .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
