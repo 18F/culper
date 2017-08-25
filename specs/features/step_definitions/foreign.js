@@ -55,9 +55,9 @@ defineSupportCode(({Given, Then, When}) => {
       case 'indirect':
         return completeActivitiesIndirectControl(promise)
       case 'realestate':
-        return completeRealestatePurchase(promise)
+        return completeActivitiesRealEstatePurchase(promise)
       case 'benefits':
-        return promise
+        return completeActivitiesBenefits(promise)
       case 'support':
         return promise
       // "business" subsection
@@ -155,7 +155,7 @@ const completeActivitiesIndirectControl = (promise) => {
     .then(() => { return setOption('.indirect .branch.addendum .no.block') })
 }
 
-const completeRealestatePurchase = (promise) => {
+const completeActivitiesRealEstatePurchase = (promise) => {
   return promise
     .then(() => { return setOption('.realestate .branch .yes') })
     .then(() => { return setOption('.realestate .interest-types .spouse.block') })
@@ -169,6 +169,21 @@ const completeRealestatePurchase = (promise) => {
     .then(() => { return setText('.realestate .currency .cost input', '10000') })
     .then(() => { return setOption('.realestate .co-owners .branch .no.block') })
     .then(() => { return setOption('.realestate .branch.addendum .no.block') })
+}
+
+const completeActivitiesBenefits = (promise) => {
+  return promise
+    .then(() => { return setOption('.benefit-activity .branch.has-benefits .yes') })
+    .then(() => { return setOption('.benefit-activity .interest-types .yourself.block') })
+    .then(() => { return setOption('.benefit-activity .benefit-types .block') })
+    .then(() => { return setOption('.benefit-activity .benefit-frequency .block') })
+    .then(() => { return setDate('.benefit-activity .datecontrol.received', '1', '1', '2012') })
+    .then(() => { return setText('.benefit-activity .country input', 'France') })
+    .then(() => { return setText('.benefit-activity .currency .value input', '13000') })
+    .then(() => { return setText('.benefit-activity .reason textarea', 'Description of why the benefit was received') })
+    .then(() => { return setOption('.benefit-activity .obligated .branch .yes.block') })
+    .then(() => { return setText('.benefit-activity .explanation textarea', 'Explanation of obligation') })
+    .then(() => { return setOption('.benefit-activity .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
