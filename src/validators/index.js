@@ -22,7 +22,7 @@ import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
 import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
-import CardAbuseValidator from './cardabuse'
+import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
 import CreditValidator from './credit'
 import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
 import NonpaymentValidator from './nonpayment'
@@ -114,6 +114,7 @@ export {
   TaxesValidator,
   TaxValidator,
   CardAbuseValidator,
+  CardAbuseItemValidator,
   CreditValidator,
   HospitalizationsValidator,
   NonpaymentValidator,

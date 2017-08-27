@@ -1,6 +1,5 @@
-import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
+import { validDateField, validGenericTextfield } from './helpers'
 
 export default class CardAbuseValidator {
   constructor (state = {}, props = {}) {
@@ -34,8 +33,8 @@ export default class CardAbuseValidator {
       return false
     }
 
-    for (const item of this.list) {
-      if (new CardAbuseItemValidator(item, null).isValid() === false) {
+    for (const row of this.list) {
+      if (new CardAbuseItemValidator(row.Item, null).isValid() === false) {
         return false
       }
     }
