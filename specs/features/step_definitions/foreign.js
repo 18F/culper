@@ -59,7 +59,7 @@ defineSupportCode(({Given, Then, When}) => {
       case 'benefits':
         return completeActivitiesBenefits(promise)
       case 'support':
-        return promise
+        return completeActivitiesSupport(promise)
       // "business" subsection
       case 'advice':
         return promise
@@ -186,6 +186,18 @@ const completeActivitiesBenefits = (promise) => {
     .then(() => { return setOption('.benefit-activity .branch.addendum .no.block') })
 }
 
+const completeActivitiesSupport = (promise) => {
+  return promise
+    .then(() => { return setOptionBlind('.foreign-activities-support .branch .yes.block') })
+    .then(() => { return setName('.foreign-activities-support-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setDomesticAddress('.foreign-activities-support-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.foreign-activities-support-relationship textarea', 'Description of relationship') })
+    .then(() => { return setText('.foreign-activities-support .currency .number input', '13000') })
+    .then(() => { return setText('.foreign-activities-support-frequency input', 'Annually') })
+    .then(() => { return setText('.foreign-activities-support-citizenship input', 'United Kingdom') })
+    .then(() => { return setOption('.foreign-activities-support .branch.addendum .no.block') })
+}
+
 const completeBusinessContact = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-business-contact .branch .yes') })
@@ -306,6 +318,17 @@ const shouldBeInSubsection = (section, subsection) => {
 
 const setOption = (selector) => {
   return client
+    .assert.visible(selector)
+    .click(selector)
+    .pause(3000)
+    .saveScreenshot('./screenshots/Foreign/' + filenum() + '-set-option.png')
+}
+
+const setOptionBlind = (selector) => {
+  return client
+    .execute('scrollTo(0, 0)')
+    .getLocationInView(selector)
+    .pause(3000)
     .assert.visible(selector)
     .click(selector)
     .pause(3000)
