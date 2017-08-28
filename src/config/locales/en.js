@@ -7476,7 +7476,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -7502,7 +7502,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -7538,13 +7538,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7595,13 +7595,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7642,7 +7642,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
