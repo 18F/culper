@@ -62,7 +62,7 @@ defineSupportCode(({Given, Then, When}) => {
         return completeActivitiesSupport(promise)
       // "business" subsection
       case 'advice':
-        return promise
+        return completeBusinessAdvice(promise)
       case 'family':
         return promise
       case 'employment':
@@ -196,6 +196,19 @@ const completeActivitiesSupport = (promise) => {
     .then(() => { return setText('.foreign-activities-support-frequency input', 'Annually') })
     .then(() => { return setText('.foreign-activities-support-citizenship input', 'United Kingdom') })
     .then(() => { return setOption('.foreign-activities-support .branch.addendum .no.block') })
+}
+
+const completeBusinessAdvice = (promise) => {
+  return promise
+    .then(() => { return setOption('.foreign-business-advice .branch .yes.block') })
+    .then(() => { return setText('.foreign-business-advice .advice-description textarea', 'Description of advice request') })
+    .then(() => { return setName('.foreign-business-advice .advice-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setText('.foreign-business-advice .advice-organization input', 'Organization Name') })
+    .then(() => { return setText('.foreign-business-advice .advice-country input', 'United Kingdom') })
+    .then(() => { return setDate('.foreign-business-advice .daterange.advice-dates .datecontrol.from', '1', '1', '2012') })
+    .then(() => { return setDate('.foreign-business-advice .daterange.advice-dates .datecontrol.to', '1', '1', '2013') })
+    .then(() => { return setText('.foreign-business-advice .advice-compensation textarea', 'Description of advice compensation') })
+    .then(() => { return setOption('.foreign-business-advice .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
