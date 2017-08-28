@@ -64,7 +64,7 @@ defineSupportCode(({Given, Then, When}) => {
       case 'advice':
         return completeBusinessAdvice(promise)
       case 'family':
-        return promise
+        return completeBusinessAdviceFamily(promise)
       case 'employment':
         return promise
       case 'ventures':
@@ -209,6 +209,17 @@ const completeBusinessAdvice = (promise) => {
     .then(() => { return setDate('.foreign-business-advice .daterange.advice-dates .datecontrol.to', '1', '1', '2013') })
     .then(() => { return setText('.foreign-business-advice .advice-compensation textarea', 'Description of advice compensation') })
     .then(() => { return setOption('.foreign-business-advice .branch.addendum .no.block') })
+}
+
+const completeBusinessAdviceFamily = (promise) => {
+  return promise
+    .then(() => { return setOption('.foreign-business-family .branch .yes.block') })
+    .then(() => { return setName('.foreign-business-family .family-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setText('.foreign-business-family .family-agency input', 'Agency Name') })
+    .then(() => { return setText('.foreign-business-family .family-country input', 'United Kingdom') })
+    .then(() => { return setDate('.foreign-business-family .datecontrol.family-date', '1', '1', '2012') })
+    .then(() => { return setText('.foreign-business-family .family-circumstances textarea', 'Explanation of request circumstances') })
+    .then(() => { return setOption('.foreign-business-family .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {

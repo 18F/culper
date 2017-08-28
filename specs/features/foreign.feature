@@ -56,12 +56,20 @@ Feature: Foreign
   #   Then I should be in the foreign business/advice section
   #   Then I log out
 
-  Scenario: Complete the foreign business advise section
+  # Scenario: Complete the foreign business advice section
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the foreign business section advice subsection
+  #   And I click Next to go to foreign business/family
+  #   Then I should be in the foreign business/family section
+  #   Then I log out
+
+  Scenario: Complete the foreign business family advice section
     Given I am a registered user
     And I log in
-    And I fill in the foreign business section advice subsection
-    And I click Next to go to foreign business/family
-    Then I should be in the foreign business/family section
+    And I fill in the foreign business section family subsection
+    And I click Next to go to foreign business/employment
+    Then I should be in the foreign business/employment section
     Then I log out
 
   # Scenario: Complete the foreign business sponsorship section
