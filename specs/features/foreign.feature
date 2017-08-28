@@ -72,6 +72,14 @@ Feature: Foreign
     Then I should be in the foreign business/employment section
     Then I log out
 
+  # Scenario: Complete the foreign business employment offers section
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the foreign business section employment subsection
+  #   And I click Next to go to foreign business/ventures
+  #   Then I should be in the foreign business/ventures section
+  #   Then I log out
+
   # Scenario: Complete the foreign business sponsorship section
   #   Given I am a registered user
   #   And I log in

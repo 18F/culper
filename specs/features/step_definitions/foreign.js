@@ -66,7 +66,7 @@ defineSupportCode(({Given, Then, When}) => {
       case 'family':
         return completeBusinessAdviceFamily(promise)
       case 'employment':
-        return promise
+        return completeBusinessEmploymentOffer(promise)
       case 'ventures':
         return promise
       case 'conferences':
@@ -220,6 +220,21 @@ const completeBusinessAdviceFamily = (promise) => {
     .then(() => { return setDate('.foreign-business-family .datecontrol.family-date', '1', '1', '2012') })
     .then(() => { return setText('.foreign-business-family .family-circumstances textarea', 'Explanation of request circumstances') })
     .then(() => { return setOption('.foreign-business-family .branch.addendum .no.block') })
+}
+
+const completeBusinessEmploymentOffer = (promise) => {
+  return promise
+    .then(() => { return setOptionBlind('.foreign-business-employment .branch .yes.block') })
+    .then(() => { return setName('.foreign-business-employment .employment-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setText('.foreign-business-employment .employment-description textarea', 'Description of employment offer') })
+    .then(() => { return setDate('.foreign-business-employment .datecontrol.employment-date', '1', '1', '2012') })
+    .then(() => { return setOption('.foreign-business-employment .location.employment-address .no.block') })
+    .then(() => { return setText('.foreign-business-employment .location.employment-address .city input', 'London') })
+    .then(() => { return setText('.foreign-business-employment .location.employment-address .country input', 'United Kingdom') })
+    .then(() => { return setOption('.foreign-business-employment .employment-accepted .blocks.option-list .yes.block') })
+    .then(() => { return setOption('.foreign-business-employment .employment-accepted .blocks.option-list .yes.block') })
+    .then(() => { return setText('.foreign-business-employment .employment-explanation textarea', 'Explanation of employment taken') })
+    .then(() => { return setOption('.foreign-business-employment .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
