@@ -218,7 +218,7 @@ describe('Cohabitant validation', function () {
           HasCohabitant: 'Yes',
           CohabitantList: [
             {
-              Cohabitant: {
+              Item: {
                 Name: {
                   first: 'Foo',
                   firstInitialOnly: false,

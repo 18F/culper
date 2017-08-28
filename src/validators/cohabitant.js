@@ -28,7 +28,7 @@ export default class CohabitantsValidator {
     }
 
     for (let item of this.cohabitantList) {
-      if (!new CohabitantValidator(item.Cohabitant).isValid()) {
+      if (!new CohabitantValidator(item.Item).isValid()) {
         return false
       }
     }

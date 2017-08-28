@@ -36,7 +36,7 @@ import CitizenshipMultipleValidator from './citizenship-multiple'
 import CitizenshipPassportsValidator from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
-import CohabitantsValidator from './cohabitant'
+import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
 import ForeignContactsValidator from './foreigncontacts'
@@ -127,6 +127,7 @@ export {
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,
+  CohabitantValidator,
   RelationshipsValidator,
   PeopleValidator,
   ForeignContactsValidator,
