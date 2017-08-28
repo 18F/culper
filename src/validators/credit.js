@@ -34,7 +34,7 @@ export default class CreditValidator {
     }
 
     for (const item of this.list) {
-      if (new CreditItemValidator(item, null).isValid() === false) {
+      if (new CreditItemValidator(item.Item, null).isValid() === false) {
         return false
       }
     }

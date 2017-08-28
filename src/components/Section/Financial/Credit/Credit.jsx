@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary } from '../../../Summary'
-import { CreditValidator } from '../../../../validators'
+import { CreditValidator, CreditItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Telephone, Text, Textarea, Location } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import CreditItem from './CreditItem'
 
 export default class Credit extends SubsectionElement {
   constructor (props) {
@@ -54,7 +54,7 @@ export default class Credit extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const obj = (item || {})
+    const obj = (item.Item || {})
     const name = (obj.Name || {}).value || ''
 
     return Summary({
@@ -89,67 +89,16 @@ export default class Credit extends SubsectionElement {
                      description={i18n.t('financial.credit.collection.summary.title')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
+                     validator={CreditItemValidator}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
-
-            <Field title={i18n.t('financial.credit.heading.explanation')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   help="financial.credit.help.explanation">
-              <Textarea name="Explanation"
-                        className="credit-explanation"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.name')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Name"
-                    className="credit-name"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.telephone')}
-                   help="financial.credit.help.telephone"
-                   scrollIntoView={this.props.scrollIntoView}
-                   adjustFor="telephone">
-              <Telephone name="Telephone"
-                         className="credit-telephone"
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.address')}
-                   help="financial.credit.help.address"
-                   scrollIntoView={this.props.scrollIntoView}
-                   adjustFor="label">
-              <Location name="Location"
-                          layout={Location.CITY_STATE}
-                          className="credit-location"
-                          dispatch={this.props.dispatch}
-                          addressBooks={this.props.addressBooks}
-                          addressBook="Agency"
-                          bind={true}
-                          help=""
-                          statePlaceholder={i18n.t('financial.credit.placeholder.state')}
-                          cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
-                          required={this.props.required}
-                          />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.description')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   help="financial.credit.help.description">
-              <Textarea name="Description"
-                        className="credit-description"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
+                     <CreditItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>

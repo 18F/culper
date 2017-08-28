@@ -347,7 +347,9 @@ describe('taxes component validation', function () {
           List: [
             {
               Item: {
-                Failure: 'File',
+                Failure: {
+                  value: 'File'
+                },
                 Year: {
                   value: '2000'
                 },

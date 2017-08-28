@@ -206,27 +206,29 @@ describe('credit component validation', function () {
           HasCreditCounseling: 'Yes',
           List: [
             {
-              Explanation: {
-                value: 'Completely forgot'
-              },
-              Name: {
-                value: 'The name'
-              },
-              Telephone: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                timeOfDay: 'Both',
-                extension: ''
-              },
-              Location: {
-                city: 'Arlington',
-                state: 'Virginia',
-                country: 'United States',
-                layout: Location.CITY_STATE
-              },
-              Description: {
-                value: 'The description'
+              Item: {
+                Explanation: {
+                  value: 'Completely forgot'
+                },
+                Name: {
+                  value: 'The name'
+                },
+                Telephone: {
+                  noNumber: '',
+                  number: '7031112222',
+                  numberType: 'Home',
+                  timeOfDay: 'Both',
+                  extension: ''
+                },
+                Location: {
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  country: 'United States',
+                  layout: Location.CITY_STATE
+                },
+                Description: {
+                  value: 'The description'
+                }
               }
             }
           ],
