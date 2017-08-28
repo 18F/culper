@@ -64,13 +64,13 @@ Feature: Foreign
   #   Then I should be in the foreign business/family section
   #   Then I log out
 
-  Scenario: Complete the foreign business family advice section
-    Given I am a registered user
-    And I log in
-    And I fill in the foreign business section family subsection
-    And I click Next to go to foreign business/employment
-    Then I should be in the foreign business/employment section
-    Then I log out
+  # Scenario: Complete the foreign business family advice section
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the foreign business section family subsection
+  #   And I click Next to go to foreign business/employment
+  #   Then I should be in the foreign business/employment section
+  #   Then I log out
 
   # Scenario: Complete the foreign business employment offers section
   #   Given I am a registered user
@@ -79,6 +79,14 @@ Feature: Foreign
   #   And I click Next to go to foreign business/ventures
   #   Then I should be in the foreign business/ventures section
   #   Then I log out
+
+  Scenario: Complete the foreign business other ventures section
+    Given I am a registered user
+    And I log in
+    And I fill in the foreign business section ventures subsection
+    And I click Next to go to foreign business/conferences
+    Then I should be in the foreign business/conferences section
+    Then I log out
 
   # Scenario: Complete the foreign business sponsorship section
   #   Given I am a registered user

@@ -68,7 +68,7 @@ defineSupportCode(({Given, Then, When}) => {
       case 'employment':
         return completeBusinessEmploymentOffer(promise)
       case 'ventures':
-        return promise
+        return completeBusinessOtherVentures(promise)
       case 'conferences':
         return promise
       case 'contact':
@@ -235,6 +235,24 @@ const completeBusinessEmploymentOffer = (promise) => {
     .then(() => { return setOption('.foreign-business-employment .employment-accepted .blocks.option-list .yes.block') })
     .then(() => { return setText('.foreign-business-employment .employment-explanation textarea', 'Explanation of employment taken') })
     .then(() => { return setOption('.foreign-business-employment .branch.addendum .no.block') })
+}
+
+const completeBusinessOtherVentures = (promise) => {
+  return promise
+    .then(() => { return setOptionBlind('.foreign-business-ventures .branch .yes.block') })
+    .then(() => { return setName('.foreign-business-ventures .ventures-name', 'Charles', 'F', 'Xavier') })
+    .then(() => { return setDomesticAddress('.foreign-business-ventures .location.ventures-address', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setText('.foreign-business-ventures .country.ventures-citizenship input', 'United Kingdom') })
+    .then(() => { return setText('.foreign-business-ventures .ventures-description textarea', 'Description of business venture') })
+    .then(() => { return setText('.foreign-business-ventures .ventures-relationship textarea', 'Description of venture relationship') })
+    .then(() => { return setDate('.foreign-business-ventures .daterange.ventures-dates .datecontrol.from', '1', '1', '2012') })
+    .then(() => { return setDate('.foreign-business-ventures .daterange.ventures-dates .datecontrol.to', '1', '1', '2013') })
+    .then(() => { return setText('.foreign-business-ventures .ventures-association textarea', 'Description of venture association') })
+    .then(() => { return setText('.foreign-business-ventures .ventures-position input', 'Venture position') })
+    .then(() => { return setText('.foreign-business-ventures .ventures-service input', 'Venture service provided') })
+    .then(() => { return setText('.foreign-business-ventures .ventures-support input', 'Venture financial support') })
+    .then(() => { return setText('.foreign-business-ventures .ventures-compensation textarea', 'Description of venture compensation') })
+    .then(() => { return setOption('.foreign-business-ventures .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {
