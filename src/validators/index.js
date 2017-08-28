@@ -26,7 +26,7 @@ import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
 import CreditValidator, { CreditItemValidator } from './credit'
 import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
 import NonpaymentValidator from './nonpayment'
-import DelinquentValidator from './delinquent'
+import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator from './psychological'
@@ -120,6 +120,7 @@ export {
   HospitalizationsValidator,
   NonpaymentValidator,
   DelinquentValidator,
+  DelinquentItemValidator,
   DiagnosesValidator,
   ExistingConditionsValidator,
   PsychologicalValidator,

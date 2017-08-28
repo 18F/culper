@@ -33,8 +33,8 @@ export default class DelinquentValidator {
       return false
     }
 
-    for (const item of this.list) {
-      if (new DelinquentItemValidator(item, null).isValid() === false) {
+    for (const row of this.list) {
+      if (new DelinquentItemValidator(row.Item, null).isValid() === false) {
         return false
       }
     }
