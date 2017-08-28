@@ -25,7 +25,7 @@ import TaxesValidator, { TaxValidator } from './taxes'
 import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
 import CreditValidator, { CreditItemValidator } from './credit'
 import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
-import NonpaymentValidator from './nonpayment'
+import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
 import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import ExistingConditionsValidator from './existingconditions'
@@ -119,6 +119,7 @@ export {
   CreditItemValidator,
   HospitalizationsValidator,
   NonpaymentValidator,
+  NonpaymentItemValidator,
   DelinquentValidator,
   DelinquentItemValidator,
   DiagnosesValidator,

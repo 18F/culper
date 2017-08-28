@@ -32,8 +32,8 @@ export default class NonpaymentValidator {
       return false
     }
 
-    for (const item of this.list) {
-      if (new NonpaymentItemValidator(item, null).isValid() === false) {
+    for (const row of this.list) {
+      if (new NonpaymentItemValidator(row.Item, null).isValid() === false) {
         return false
       }
     }
