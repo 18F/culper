@@ -11,19 +11,25 @@ describe('taxes component validation', function () {
       },
       {
         state: {
-          Failure: 'File'
+          Failure: {
+            value: 'File'
+          }
         },
         expected: true
       },
       {
         state: {
-          Failure: 'Pay'
+          Failure: {
+            value: 'Pay'
+          }
         },
         expected: true
       },
       {
         state: {
-          Failure: 'Both'
+          Failure: {
+            value: 'Both'
+          }
         },
         expected: true
       }
@@ -340,34 +346,36 @@ describe('taxes component validation', function () {
           HasTaxes: 'Yes',
           List: [
             {
-              Failure: 'File',
-              Year: {
-                value: '2000'
-              },
-              Reason: {
-                value: 'Completely forgot'
-              },
-              Agency: {
-                value: 'IRS'
-              },
-              TaxType: {
-                value: 'Income'
-              },
-              Amount: {
-                value: '20000'
-              },
-              DateNotApplicable: {
-                applicable: true
-              },
-              Date: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016'),
-                present: false
-              },
-              Description: {
-                value: 'The description'
+              Item: {
+                Failure: 'File',
+                Year: {
+                  value: '2000'
+                },
+                Reason: {
+                  value: 'Completely forgot'
+                },
+                Agency: {
+                  value: 'IRS'
+                },
+                TaxType: {
+                  value: 'Income'
+                },
+                Amount: {
+                  value: '20000'
+                },
+                DateNotApplicable: {
+                  applicable: true
+                },
+                Date: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016'),
+                  present: false
+                },
+                Description: {
+                  value: 'The description'
+                }
               }
             }
           ],

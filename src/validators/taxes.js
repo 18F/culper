@@ -34,7 +34,7 @@ export default class TaxesValidator {
     }
 
     for (const item of this.list) {
-      if (new TaxValidator(item, null).isValid() === false) {
+      if (new TaxValidator(item.Item, null).isValid() === false) {
         return false
       }
     }
@@ -64,7 +64,7 @@ export class TaxValidator {
   }
 
   validFailure () {
-    return !!this.failure && ['File', 'Pay', 'Both'].includes(this.failure)
+    return !!this.failure && ['File', 'Pay', 'Both'].includes(this.failure.value)
   }
 
   validYear () {
