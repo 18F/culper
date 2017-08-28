@@ -18,7 +18,8 @@ describe('The section component', () => {
   })
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
+    window.token = 'fake-token'
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true, token: 'fake-token' } })
     const component = mount(<Provider store={store}><Section /></Provider>)
     expect(component.find('div').length > 0).toBe(true)
   })
