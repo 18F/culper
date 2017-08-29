@@ -516,8 +516,10 @@ const en = {
         },
         country: {
           notfound: {
-            title: 'This country is not one of the options',
-            message: 'Please enter the country that your city of birth is in now.',
+            title: 'This Country is not on our current list',
+            message: [
+              'Indicate the country that currently governs the geographic location where you were born. As necessary provide a comment above to clarify.'
+            ],
             note: ''
           }
         },
@@ -5131,7 +5133,7 @@ const en = {
   },
   foreign: {
     intro: {
-      title: 'Section 7: Foriegn activities',
+      title: 'Section 7: Foreign activities',
       body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
     },
     tour: {
@@ -5361,7 +5363,7 @@ const en = {
             title: 'Need help with the term "Indirect control"?',
             message: 'Indirect control means there *are* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
             note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
-          },
+          }
         },
         interest: {
           para: {
