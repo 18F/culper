@@ -274,17 +274,25 @@ const completeBusinessContact = (promise) => {
   return promise
     .then(() => { return setOption('.foreign-business-contact .branch .yes') })
     .then(() => { return setName('.foreign-business-contact-name', 'Charles', 'F', 'Xavier') })
-    .then(() => { return setDomesticAddress('.foreign-business-contact-location', '13709 Walsingham Rd', 'Largo', 'FL', '33774') })
+    .then(() => { return setOption('.foreign-business-contact-location .toggleable-location .branch .yes.block') })
+    .then(() => { return setText('.foreign-business-contact-location .city input', 'Largo') })
+    .then(() => { return setText('.foreign-business-contact-location .state input', 'FL') })
+    .then(() => { return setText('.foreign-business-contact-location .zipcode input', '33774') })
     .then(() => { return setDate('.foreign-business-contact-date', '1', '1', '2010') })
     .then(() => { return setText('.foreign-business-contact-governments input', 'Germany') })
     .then(() => { return setText('.foreign-business-contact-establishment textarea', 'This is a reason for establishment') })
     .then(() => { return setText('.foreign-business-contact-representatives textarea', 'This is a reason for representatives') })
     .then(() => { return setText('.foreign-business-contact-purpose textarea', 'This is a purpose') })
+    .then(() => { return setOption('.foreign-business-contact-subsequentcontacts .branch .yes.block') })
+    .then(() => { return setText('.foreign-business-contact-subsequent textarea', 'Purpose of subsequent contact') })
+    .then(() => { return setDate('.foreign-business-contact-recent', '1', '1', '2013') })
+    .then(() => { return setText('.foreign-business-contact-future textarea', 'Future contact plans description') })
+    .then(() => { return setOption('.foreign-business-contact .branch.addendum .no.block') })
 }
 
 const completeBusinessSponsorship = (promise) => {
   return promise
-    .then(() => { return setOption('.foreign-business-sponsorship .branch .yes') })
+    .then(() => { return setOptionBlind('.foreign-business-sponsorship .branch .yes') })
     .then(() => { return setName('.foreign-business-sponsorship-name', 'Charles', 'F', 'Xavier') })
     .then(() => { return setDate('.foreign-business-sponsorship-birthdate', '1', '1', '2010') })
     .then(() => { return setOption('.foreign-business-sponsorship-birthplace .branch .yes') })
@@ -303,7 +311,7 @@ const completeBusinessSponsorship = (promise) => {
 
 const completeBusinessPolitical = (promise) => {
   return promise
-    .then(() => { return setOption('.foreign-business-political .branch .yes') })
+    .then(() => { return setOptionBlind('.foreign-business-political .branch .yes') })
     .then(() => { return setText('.foreign-business-political-position input', 'President') })
     .then(() => { return setDate('.foreign-business-political-dates .from', '1', '1', '2010') })
     .then(() => { return setDate('.foreign-business-political-dates .to', '1', '1', '2011') })
@@ -314,7 +322,7 @@ const completeBusinessPolitical = (promise) => {
 
 const completeBusinessVoting = (promise) => {
   return promise
-    .then(() => { return setOption('.foreign-business-voting .branch .yes') })
+    .then(() => { return setOptionBlind('.foreign-business-voting .branch .yes') })
     .then(() => { return setDate('.foreign-business-voting-date', '1', '1', '2010') })
     .then(() => { return setText('.foreign-business-voting-country input', 'Germany') })
     .then(() => { return setText('.foreign-business-voting-reason textarea', 'This is a reason') })
