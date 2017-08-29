@@ -81,7 +81,6 @@ export default class MembershipOverthrow extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.overthrow.heading.organization')}
-                   help="legal.associations.overthrow.help.organization"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Organization"
@@ -119,7 +118,6 @@ export default class MembershipOverthrow extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.positions')}
-                   help="legal.associations.overthrow.help.positions"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="PositionsNotApplicable"
@@ -136,7 +134,6 @@ export default class MembershipOverthrow extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.contributions')}
-                   help="legal.associations.overthrow.help.contributions"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="ContributionsNotApplicable"
@@ -153,7 +150,6 @@ export default class MembershipOverthrow extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.reasons')}
-                   help="legal.associations.overthrow.help.reasons"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
