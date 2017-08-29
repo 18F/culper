@@ -516,8 +516,10 @@ const en = {
         },
         country: {
           notfound: {
-            title: 'This country is not one of the options',
-            message: 'Please enter the country that your city of birth is in now.',
+            title: 'This Country is not on our current list',
+            message: [
+              'Indicate the country that currently governs the geographic location where you were born. As necessary provide a comment above to clarify.'
+            ],
             note: ''
           }
         },
@@ -5131,7 +5133,7 @@ const en = {
   },
   foreign: {
     intro: {
-      title: 'Section 7: Foriegn activities',
+      title: 'Section 7: Foreign activities',
       body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
     },
     tour: {
@@ -5361,7 +5363,7 @@ const en = {
             title: 'Need help with the term "Indirect control"?',
             message: 'Indirect control means there *are* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
             note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
-          },
+          }
         },
         interest: {
           para: {
@@ -7406,7 +7408,7 @@ const en = {
         },
         para: {
           intro: [
-            'The following pertain to your associations. You required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.',
+            'The following pertain to your associations. You are required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.',
             'For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.'
           ],
           or: 'or'
@@ -7429,13 +7431,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7476,7 +7478,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -7502,7 +7504,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -7538,13 +7540,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7595,13 +7597,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7642,7 +7644,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
