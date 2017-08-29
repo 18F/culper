@@ -12,13 +12,16 @@ const applicationState = {
 
 describe('The identification section', () => {
   // Setup
+  window.token = 'fake-token'
   const middlewares = [ thunk ]
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
+    window.token = ''
     const store = mockStore({ authentication: [], application: applicationState })
     const component = mount(<Provider store={store}><Identification /></Provider>)
     expect(component.find('div').length).toEqual(0)
+    window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {

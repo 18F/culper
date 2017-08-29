@@ -15,24 +15,28 @@ describe('The substance use section', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
+    window.token = ''
     const store = mockStore({ authentication: [], application: applicationState })
     const component = mount(<Provider store={store}><SubstanceUse /></Provider>)
     expect(component.find('div').length).toEqual(0)
   })
 
   it('visible when authenticated', () => {
+    window.token = 'fake-token'
     const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
     const component = mount(<Provider store={store}><SubstanceUse /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can review all subsections', () => {
+    window.token = 'fake-token'
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
     const component = mount(<Provider store={store}><SubstanceUse subsection="review" /></Provider>)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
   it('can go to each subsection', () => {
+    window.token = 'fake-token'
     const sections = ['police', 'review']
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
 
