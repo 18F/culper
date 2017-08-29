@@ -65,8 +65,8 @@ export default class ForeignBornDocuments extends ValidationElement {
   render () {
     return (
       <div className="foreign-born-documents">
-          <Field title={i18n.t('foreignBornDocuments.para.bornToUSParents')} titleSize="label">
-            <RadioGroup name="born" selectedValue={this.props.DocumentType}>
+          <Field title={i18n.t('foreignBornDocuments.para.bornToUSParents')} titleSize="label" scrollIntoView={this.props.scrollIntoView}>
+            <RadioGroup name="born" selectedValue={this.props.DocumentType} required={this.props.required} onError={this.props.onError}>
               <Radio className="born"
                      label={i18n.m('foreignBornDocuments.bornToUSParents.label.fs240')}
                      value="FS240"
@@ -87,7 +87,7 @@ export default class ForeignBornDocuments extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('foreignBornDocuments.para.naturalized')} titleSize="label">
-            <RadioGroup name="naturalized" selectedValue={this.props.DocumentType}>
+            <RadioGroup name="naturalized" selectedValue={this.props.DocumentType} required={this.props.required}>
               <Radio className="naturalized alien"
                      label={i18n.m('foreignBornDocuments.naturalized.label.alien')}
                      value="AlienRegistration"

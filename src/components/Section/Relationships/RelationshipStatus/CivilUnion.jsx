@@ -232,6 +232,7 @@ export default class CivilUnion extends ValidationElement {
                                     onUpdate={this.updateForeignBornDocument}
                                     onError={this.props.onError}
                                     required={this.props.required}
+                                    scrollIntoView={this.props.scrollIntoView}
                                     />
             </Field>
           </Show>
