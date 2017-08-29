@@ -1,9 +1,14 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 // ClearanceLevel is a basic input.
 type ClearanceLevel struct {
+	ID          int
 	Level       Payload
 	Explanation Payload
 }
@@ -27,4 +32,16 @@ func (entity *ClearanceLevel) Valid() (bool, error) {
 	}
 
 	return true, nil
+}
+
+func (entity *ClearanceLevel) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *ClearanceLevel) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *ClearanceLevel) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

@@ -4,9 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
 )
 
 type SubstanceDrugUsage struct {
+	ID        int
 	UsedDrugs Payload
 	List      Payload
 }
@@ -44,18 +47,18 @@ func (entity *SubstanceDrugUsage) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugUsage) Save(account int64) error {
-	return nil
+func (entity *SubstanceDrugUsage) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugUsage) Delete(account int64) error {
-	return nil
+func (entity *SubstanceDrugUsage) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugUsage) Get(account int64) error {
-	return nil
+func (entity *SubstanceDrugUsage) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceDrugPurchase struct {
@@ -96,18 +99,18 @@ func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugPurchase) Save(account int64) error {
-	return nil
+func (entity *SubstanceDrugPurchase) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugPurchase) Delete(account int64) error {
-	return nil
+func (entity *SubstanceDrugPurchase) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugPurchase) Get(account int64) error {
-	return nil
+func (entity *SubstanceDrugPurchase) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceDrugClearance struct {
@@ -148,18 +151,18 @@ func (entity *SubstanceDrugClearance) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugClearance) Save(account int64) error {
-	return nil
+func (entity *SubstanceDrugClearance) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugClearance) Delete(account int64) error {
-	return nil
+func (entity *SubstanceDrugClearance) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugClearance) Get(account int64) error {
-	return nil
+func (entity *SubstanceDrugClearance) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceDrugPublicSafety struct {
@@ -200,18 +203,18 @@ func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugPublicSafety) Save(account int64) error {
-	return nil
+func (entity *SubstanceDrugPublicSafety) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugPublicSafety) Delete(account int64) error {
-	return nil
+func (entity *SubstanceDrugPublicSafety) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugPublicSafety) Get(account int64) error {
-	return nil
+func (entity *SubstanceDrugPublicSafety) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceDrugMisuse struct {
@@ -252,18 +255,18 @@ func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugMisuse) Save(account int64) error {
-	return nil
+func (entity *SubstanceDrugMisuse) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugMisuse) Delete(account int64) error {
-	return nil
+func (entity *SubstanceDrugMisuse) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugMisuse) Get(account int64) error {
-	return nil
+func (entity *SubstanceDrugMisuse) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceDrugOrdered struct {
@@ -304,18 +307,18 @@ func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugOrdered) Save(account int64) error {
-	return nil
+func (entity *SubstanceDrugOrdered) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugOrdered) Delete(account int64) error {
-	return nil
+func (entity *SubstanceDrugOrdered) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugOrdered) Get(account int64) error {
-	return nil
+func (entity *SubstanceDrugOrdered) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceDrugVoluntary struct {
@@ -356,18 +359,18 @@ func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceDrugVoluntary) Save(account int64) error {
-	return nil
+func (entity *SubstanceDrugVoluntary) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceDrugVoluntary) Delete(account int64) error {
-	return nil
+func (entity *SubstanceDrugVoluntary) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceDrugVoluntary) Get(account int64) error {
-	return nil
+func (entity *SubstanceDrugVoluntary) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceAlcoholNegative struct {
@@ -408,18 +411,18 @@ func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholNegative) Save(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholNegative) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholNegative) Delete(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholNegative) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholNegative) Get(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholNegative) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceAlcoholOrdered struct {
@@ -460,18 +463,18 @@ func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholOrdered) Save(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholOrdered) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholOrdered) Delete(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholOrdered) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholOrdered) Get(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholOrdered) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceAlcoholVoluntary struct {
@@ -512,18 +515,18 @@ func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholVoluntary) Save(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholVoluntary) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholVoluntary) Delete(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholVoluntary) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholVoluntary) Get(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholVoluntary) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type SubstanceAlcoholAdditional struct {
@@ -564,16 +567,16 @@ func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *SubstanceAlcoholAdditional) Save(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholAdditional) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *SubstanceAlcoholAdditional) Delete(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholAdditional) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *SubstanceAlcoholAdditional) Get(account int64) error {
-	return nil
+func (entity *SubstanceAlcoholAdditional) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

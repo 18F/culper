@@ -4,9 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
 )
 
 type PsychologicalCompetence struct {
+	ID            int
 	IsIncompetent Payload
 	List          Payload
 }
@@ -44,18 +47,18 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalCompetence) Save(account int64) error {
-	return nil
+func (entity *PsychologicalCompetence) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalCompetence) Delete(account int64) error {
-	return nil
+func (entity *PsychologicalCompetence) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalCompetence) Get(account int64) error {
-	return nil
+func (entity *PsychologicalCompetence) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type PsychologicalConsultations struct {
@@ -96,18 +99,18 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalConsultations) Save(account int64) error {
-	return nil
+func (entity *PsychologicalConsultations) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalConsultations) Delete(account int64) error {
-	return nil
+func (entity *PsychologicalConsultations) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalConsultations) Get(account int64) error {
-	return nil
+func (entity *PsychologicalConsultations) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type PsychologicalDiagnoses struct {
@@ -180,18 +183,18 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalDiagnoses) Save(account int64) error {
-	return nil
+func (entity *PsychologicalDiagnoses) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalDiagnoses) Delete(account int64) error {
-	return nil
+func (entity *PsychologicalDiagnoses) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalDiagnoses) Get(account int64) error {
-	return nil
+func (entity *PsychologicalDiagnoses) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type PsychologicalHospitalizations struct {
@@ -232,18 +235,18 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalHospitalizations) Save(account int64) error {
-	return nil
+func (entity *PsychologicalHospitalizations) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalHospitalizations) Delete(account int64) error {
-	return nil
+func (entity *PsychologicalHospitalizations) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalHospitalizations) Get(account int64) error {
-	return nil
+func (entity *PsychologicalHospitalizations) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type PsychologicalExisting struct {
@@ -331,18 +334,18 @@ func (entity *PsychologicalExisting) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalExisting) Save(account int64) error {
-	return nil
+func (entity *PsychologicalExisting) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalExisting) Delete(account int64) error {
-	return nil
+func (entity *PsychologicalExisting) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalExisting) Get(account int64) error {
-	return nil
+func (entity *PsychologicalExisting) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type PsychologicalTreatment struct {
@@ -385,4 +388,16 @@ func (entity *PsychologicalTreatment) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *PsychologicalTreatment) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *PsychologicalTreatment) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *PsychologicalTreatment) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

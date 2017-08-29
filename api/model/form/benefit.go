@@ -1,8 +1,14 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
+)
 
 type Benefit struct {
+	ID                   int
 	Begin                Payload `json:"Begin,omitempty"`
 	End                  Payload `json:"End,omitempty"`
 	Frequency            Payload `json:"Frequency,omitempty"`
@@ -52,4 +58,32 @@ func (entity *Benefit) Valid() (bool, error) {
 	}
 
 	return true, nil
+}
+
+func (entity *Benefit) Save(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	if err := context.CreateTable(&Benefit{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	var err error
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
+}
+
+func (entity *Benefit) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Benefit) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

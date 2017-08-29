@@ -1,9 +1,14 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 // PhysicalAddress is a basic input.
 type PhysicalAddress struct {
+	ID                  int
 	HasDifferentAddress Payload
 	Address             Payload
 	Telephone           Payload
@@ -32,4 +37,16 @@ func (entity *PhysicalAddress) Valid() (bool, error) {
 	}
 
 	return true, nil
+}
+
+func (entity *PhysicalAddress) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *PhysicalAddress) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *PhysicalAddress) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

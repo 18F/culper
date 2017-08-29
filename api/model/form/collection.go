@@ -4,42 +4,39 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
-
-// CollectionItem is an item of named payloads.
-type CollectionItem struct {
-	Item PayloadProperties
-}
-
-// Valid iterates through each named property of an item validating
-// each payload.
-func (item CollectionItem) Valid() (bool, error) {
-	var stack model.ErrorStack
-
-	for k, v := range item.Item {
-		entity, err := v.Entity()
-		if err != nil {
-			stack.Append(k, model.ErrFieldInvalid{"Could not deserialize property value"})
-		} else {
-			if ok, err := entity.Valid(); !ok {
-				stack.Append(k, err)
-			}
-		}
-	}
-
-	return !stack.HasErrors(), stack
-}
 
 // Collection represents a structure composed of items in a structured
 // format.
 type Collection struct {
-	Branch Payload          `json:"branch,omitempty"`
-	Items  []CollectionItem `json:"items"`
+	PayloadBranch Payload `json:"branch,omitempty" sql:"-"`
+
+	// Validator specific fields
+	Branch *Branch           `json:"-"`
+	Items  []*CollectionItem `json:"items" sql:"-"`
+
+	// Persister specific fields
+	ID       int
+	BranchID int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *Collection) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err == nil {
+		return err
+	}
+
+	branch, err := entity.PayloadBranch.Entity()
+	if err == nil {
+		return err
+	}
+	entity.Branch = branch.(*Branch)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -54,16 +51,63 @@ func (entity *Collection) Valid() (bool, error) {
 	}
 
 	// Custom errors
-	eb, err := entity.Branch.Entity()
-	if err == nil {
-		if ok, err := eb.Valid(); !ok {
+	if entity.Branch != nil {
+		if ok, err := entity.Branch.Valid(); !ok {
 			stack.Append("Item", err)
 		} else {
-			if eb.(*Branch).Value != "No" {
+			if entity.Branch.Value != "No" {
 				stack.Append("Collection", model.ErrFieldInvalid{"Collection branch value is required"})
 			}
 		}
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	// Custom errors
+	var err error
+	if entity.Branch != nil {
+		branchID, err := entity.Branch.Save(context, account)
+		if err != nil {
+			return 0, err
+		}
+		entity.BranchID = branchID
+	}
+
+	if err = context.CreateTable(&Collection{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	if err != nil {
+		return entity.ID, err
+	}
+
+	// Iterate through each property in `Items` saving them as we go.
+	for _, item := range entity.Items {
+		if _, err := item.Save(context, account, entity.ID); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
+}
+
+func (entity *Collection) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Collection) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

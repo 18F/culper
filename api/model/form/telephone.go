@@ -6,6 +6,7 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/go-pg/pg"
 )
 
 var (
@@ -16,6 +17,7 @@ var (
 
 // Telephone is a basic input.
 type Telephone struct {
+	ID         int
 	TimeOfDay  string `json:"timeOfDay"`
 	Type       string `json:"type"`
 	NumberType string `json:"numberType"`
@@ -65,4 +67,16 @@ func (entity *Telephone) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *Telephone) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Telephone) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Telephone) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

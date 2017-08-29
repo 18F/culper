@@ -1,9 +1,14 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 // ForeignBornDocument is a basic input.
 type ForeignBornDocument struct {
+	ID                              int
 	DocumentType                    Payload
 	OtherExplanation                Payload
 	DocumentNumber                  Payload
@@ -41,4 +46,16 @@ func (entity *ForeignBornDocument) Valid() (bool, error) {
 	}
 
 	return true, nil
+}
+
+func (entity *ForeignBornDocument) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *ForeignBornDocument) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *ForeignBornDocument) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

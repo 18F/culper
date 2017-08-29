@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/go-pg/pg"
 )
 
 // Height is a basic input.
 type Height struct {
+	ID     int
 	Feet   int `json:"feet"`
 	Inches int `json:"inches"`
 }
@@ -30,4 +32,16 @@ func (entity *Height) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *Height) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Height) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Height) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

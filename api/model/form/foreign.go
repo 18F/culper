@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 	"regexp"
+
+	"github.com/go-pg/pg"
 )
 
 var (
@@ -12,6 +14,7 @@ var (
 )
 
 type ForeignPassport struct {
+	ID           int
 	HasPassports Payload
 	Name         Payload
 	Card         Payload
@@ -75,18 +78,18 @@ func (entity *ForeignPassport) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignPassport) Save(account int64) error {
-	return nil
+func (entity *ForeignPassport) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignPassport) Delete(account int64) error {
-	return nil
+func (entity *ForeignPassport) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignPassport) Get(account int64) error {
-	return nil
+func (entity *ForeignPassport) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignContacts struct {
@@ -114,18 +117,18 @@ func (entity *ForeignContacts) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignContacts) Save(account int64) error {
-	return nil
+func (entity *ForeignContacts) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignContacts) Delete(account int64) error {
-	return nil
+func (entity *ForeignContacts) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignContacts) Get(account int64) error {
-	return nil
+func (entity *ForeignContacts) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignTravel struct {
@@ -163,18 +166,18 @@ func (entity *ForeignTravel) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignTravel) Save(account int64) error {
-	return nil
+func (entity *ForeignTravel) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignTravel) Delete(account int64) error {
-	return nil
+func (entity *ForeignTravel) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignTravel) Get(account int64) error {
-	return nil
+func (entity *ForeignTravel) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignActivitiesBenefits struct {
@@ -202,18 +205,18 @@ func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesBenefits) Save(account int64) error {
-	return nil
+func (entity *ForeignActivitiesBenefits) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesBenefits) Delete(account int64) error {
-	return nil
+func (entity *ForeignActivitiesBenefits) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesBenefits) Get(account int64) error {
-	return nil
+func (entity *ForeignActivitiesBenefits) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignActivitiesDirect struct {
@@ -241,18 +244,18 @@ func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesDirect) Save(account int64) error {
-	return nil
+func (entity *ForeignActivitiesDirect) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesDirect) Delete(account int64) error {
-	return nil
+func (entity *ForeignActivitiesDirect) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesDirect) Get(account int64) error {
-	return nil
+func (entity *ForeignActivitiesDirect) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignActivitiesIndirect struct {
@@ -280,18 +283,18 @@ func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesIndirect) Save(account int64) error {
-	return nil
+func (entity *ForeignActivitiesIndirect) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesIndirect) Delete(account int64) error {
-	return nil
+func (entity *ForeignActivitiesIndirect) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesIndirect) Get(account int64) error {
-	return nil
+func (entity *ForeignActivitiesIndirect) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignActivitiesRealEstate struct {
@@ -319,18 +322,18 @@ func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesRealEstate) Save(account int64) error {
-	return nil
+func (entity *ForeignActivitiesRealEstate) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesRealEstate) Delete(account int64) error {
-	return nil
+func (entity *ForeignActivitiesRealEstate) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesRealEstate) Get(account int64) error {
-	return nil
+func (entity *ForeignActivitiesRealEstate) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignActivitiesSupport struct {
@@ -358,18 +361,18 @@ func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesSupport) Save(account int64) error {
-	return nil
+func (entity *ForeignActivitiesSupport) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesSupport) Delete(account int64) error {
-	return nil
+func (entity *ForeignActivitiesSupport) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesSupport) Get(account int64) error {
-	return nil
+func (entity *ForeignActivitiesSupport) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessAdvice struct {
@@ -397,18 +400,18 @@ func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessAdvice) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessAdvice) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessAdvice) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessAdvice) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessAdvice) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessAdvice) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessConferences struct {
@@ -436,18 +439,18 @@ func (entity *ForeignBusinessConferences) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessConferences) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessConferences) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessConferences) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessConferences) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessConferences) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessConferences) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessContact struct {
@@ -475,18 +478,18 @@ func (entity *ForeignBusinessContact) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessContact) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessContact) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessContact) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessContact) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessContact) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessContact) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessEmployment struct {
@@ -514,18 +517,18 @@ func (entity *ForeignBusinessEmployment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessEmployment) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessEmployment) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessEmployment) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessEmployment) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessEmployment) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessEmployment) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessFamily struct {
@@ -553,18 +556,18 @@ func (entity *ForeignBusinessFamily) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessFamily) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessFamily) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessFamily) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessFamily) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessFamily) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessFamily) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessPolitical struct {
@@ -592,18 +595,18 @@ func (entity *ForeignBusinessPolitical) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessPolitical) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessPolitical) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessPolitical) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessPolitical) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessPolitical) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessPolitical) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessSponsorship struct {
@@ -631,18 +634,18 @@ func (entity *ForeignBusinessSponsorship) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessSponsorship) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessSponsorship) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessSponsorship) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessSponsorship) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessSponsorship) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessSponsorship) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessVentures struct {
@@ -670,18 +673,18 @@ func (entity *ForeignBusinessVentures) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessVentures) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessVentures) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessVentures) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessVentures) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessVentures) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessVentures) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type ForeignBusinessVoting struct {
@@ -709,16 +712,16 @@ func (entity *ForeignBusinessVoting) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessVoting) Save(account int64) error {
-	return nil
+func (entity *ForeignBusinessVoting) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessVoting) Delete(account int64) error {
-	return nil
+func (entity *ForeignBusinessVoting) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessVoting) Get(account int64) error {
-	return nil
+func (entity *ForeignBusinessVoting) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

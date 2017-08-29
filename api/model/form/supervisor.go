@@ -1,9 +1,14 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 // Supervisor is a basic input.
 type Supervisor struct {
+	ID                 int
 	SupervisorName     Payload
 	Title              Payload
 	Email              Payload
@@ -47,4 +52,16 @@ func (entity *Supervisor) Valid() (bool, error) {
 	}
 
 	return true, nil
+}
+
+func (entity *Supervisor) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Supervisor) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Supervisor) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

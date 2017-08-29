@@ -4,9 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
 )
 
 type CitizenshipStatus struct {
+	ID                          int
 	CitizenshipStatus           Payload
 	AbroadDocumentation         Payload
 	Explanation                 Payload
@@ -154,18 +157,18 @@ func (entity *CitizenshipStatus) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipStatus) Save(account int64) error {
-	return nil
+func (entity *CitizenshipStatus) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipStatus) Delete(account int64) error {
-	return nil
+func (entity *CitizenshipStatus) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipStatus) Get(account int64) error {
-	return nil
+func (entity *CitizenshipStatus) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type CitizenshipMultiple struct {
@@ -201,18 +204,18 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipMultiple) Save(account int64) error {
-	return nil
+func (entity *CitizenshipMultiple) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipMultiple) Delete(account int64) error {
-	return nil
+func (entity *CitizenshipMultiple) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipMultiple) Get(account int64) error {
-	return nil
+func (entity *CitizenshipMultiple) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type CitizenshipPassports struct {
@@ -230,16 +233,16 @@ func (entity *CitizenshipPassports) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipPassports) Save(account int64) error {
-	return nil
+func (entity *CitizenshipPassports) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipPassports) Delete(account int64) error {
-	return nil
+func (entity *CitizenshipPassports) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipPassports) Get(account int64) error {
-	return nil
+func (entity *CitizenshipPassports) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

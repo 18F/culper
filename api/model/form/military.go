@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
 )
 
 type MilitarySelective struct {
@@ -67,18 +69,18 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitarySelective) Save(account int64) error {
-	return nil
+func (entity *MilitarySelective) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitarySelective) Delete(account int64) error {
-	return nil
+func (entity *MilitarySelective) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitarySelective) Get(account int64) error {
-	return nil
+func (entity *MilitarySelective) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type MilitaryHistory struct {
@@ -119,18 +121,18 @@ func (entity *MilitaryHistory) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryHistory) Save(account int64) error {
-	return nil
+func (entity *MilitaryHistory) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryHistory) Delete(account int64) error {
-	return nil
+func (entity *MilitaryHistory) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryHistory) Get(account int64) error {
-	return nil
+func (entity *MilitaryHistory) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type MilitaryDisciplinary struct {
@@ -171,18 +173,18 @@ func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryDisciplinary) Save(account int64) error {
-	return nil
+func (entity *MilitaryDisciplinary) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryDisciplinary) Delete(account int64) error {
-	return nil
+func (entity *MilitaryDisciplinary) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryDisciplinary) Get(account int64) error {
-	return nil
+func (entity *MilitaryDisciplinary) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type MilitaryForeign struct {
@@ -211,16 +213,16 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryForeign) Save(account int64) error {
-	return nil
+func (entity *MilitaryForeign) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryForeign) Delete(account int64) error {
-	return nil
+func (entity *MilitaryForeign) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryForeign) Get(account int64) error {
-	return nil
+func (entity *MilitaryForeign) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

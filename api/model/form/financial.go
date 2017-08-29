@@ -4,9 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
 )
 
 type FinancialBankruptcy struct {
+	ID            int
 	HasBankruptcy Payload
 	List          Payload
 }
@@ -39,18 +42,18 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialBankruptcy) Save(account int64) error {
-	return nil
+func (entity *FinancialBankruptcy) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialBankruptcy) Delete(account int64) error {
-	return nil
+func (entity *FinancialBankruptcy) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialBankruptcy) Get(account int64) error {
-	return nil
+func (entity *FinancialBankruptcy) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type FinancialGambling struct {
@@ -91,18 +94,18 @@ func (entity *FinancialGambling) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialGambling) Save(account int64) error {
-	return nil
+func (entity *FinancialGambling) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialGambling) Delete(account int64) error {
-	return nil
+func (entity *FinancialGambling) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialGambling) Get(account int64) error {
-	return nil
+func (entity *FinancialGambling) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type FinancialTaxes struct {
@@ -143,18 +146,18 @@ func (entity *FinancialTaxes) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialTaxes) Save(account int64) error {
-	return nil
+func (entity *FinancialTaxes) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialTaxes) Delete(account int64) error {
-	return nil
+func (entity *FinancialTaxes) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialTaxes) Get(account int64) error {
-	return nil
+func (entity *FinancialTaxes) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type FinancialCard struct {
@@ -195,18 +198,18 @@ func (entity *FinancialCard) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialCard) Save(account int64) error {
-	return nil
+func (entity *FinancialCard) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialCard) Delete(account int64) error {
-	return nil
+func (entity *FinancialCard) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialCard) Get(account int64) error {
-	return nil
+func (entity *FinancialCard) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type FinancialCredit struct {
@@ -247,18 +250,18 @@ func (entity *FinancialCredit) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialCredit) Save(account int64) error {
-	return nil
+func (entity *FinancialCredit) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialCredit) Delete(account int64) error {
-	return nil
+func (entity *FinancialCredit) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialCredit) Get(account int64) error {
-	return nil
+func (entity *FinancialCredit) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type FinancialDelinquent struct {
@@ -299,18 +302,18 @@ func (entity *FinancialDelinquent) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialDelinquent) Save(account int64) error {
-	return nil
+func (entity *FinancialDelinquent) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialDelinquent) Delete(account int64) error {
-	return nil
+func (entity *FinancialDelinquent) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialDelinquent) Get(account int64) error {
-	return nil
+func (entity *FinancialDelinquent) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type FinancialNonpayment struct {
@@ -351,16 +354,16 @@ func (entity *FinancialNonpayment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialNonpayment) Save(account int64) error {
-	return nil
+func (entity *FinancialNonpayment) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialNonpayment) Delete(account int64) error {
-	return nil
+func (entity *FinancialNonpayment) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialNonpayment) Get(account int64) error {
-	return nil
+func (entity *FinancialNonpayment) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

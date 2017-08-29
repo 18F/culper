@@ -1,9 +1,14 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 // Sentence is a basic input.
 type Sentence struct {
+	ID                   int
 	Description          Payload
 	ExceedsYear          Payload
 	Incarcerated         Payload
@@ -49,4 +54,16 @@ func (entity *Sentence) Valid() (bool, error) {
 	}
 
 	return true, nil
+}
+
+func (entity *Sentence) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Sentence) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Sentence) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

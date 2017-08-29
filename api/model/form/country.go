@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/go-pg/pg"
 )
 
 // Country is a basic input.
 type Country struct {
+	ID    int
 	Value []string `json:"value"`
 }
 
@@ -25,4 +27,16 @@ func (entity *Country) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *Country) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Country) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Country) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

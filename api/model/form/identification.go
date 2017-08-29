@@ -4,12 +4,22 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 // IdentificationName subsection of identification section.
 type IdentificationName struct {
-	Name Payload `json:"name"`
-	name Name
+	Payload Payload `json:"name" sql:"-"`
+
+	// Validator specific fields
+	Name *Name
+
+	// Persister specific fields
+	ID        int
+	AccountID int64
+	NameID    int
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -19,39 +29,68 @@ func (entity *IdentificationName) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	name, err := entity.Name.Entity()
+	name, err := entity.Payload.Entity()
 	if err != nil {
 		return err
 	}
-	entity.name = *name.(*Name)
+	entity.Name = name.(*Name)
 
 	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationName) Valid() (bool, error) {
-	return entity.name.Valid()
+	return entity.Name.Valid()
 }
 
 // Save will create or update the database.
-func (entity *IdentificationName) Save(account int64) error {
-	return nil
+func (entity *IdentificationName) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
+	nameID, err := entity.Name.Save(context, account)
+	if err != nil {
+		return nameID, err
+	}
+	entity.NameID = nameID
+
+	err = context.CreateTable(&IdentificationName{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationName) Delete(account int64) error {
-	return nil
+func (entity *IdentificationName) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationName) Get(account int64) error {
-	return nil
+func (entity *IdentificationName) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // IdentificationBirthPlace subsection of identification section.
 type IdentificationBirthPlace struct {
-	Location Payload `json:"location"`
-	location Location
+	Payload Payload `json:"location" sql:"-"`
+
+	// Validator specific fields
+	Location *Location
+
+	// Persister specific fields
+	ID         int
+	AccountID  int64
+	LocationID int
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -61,39 +100,68 @@ func (entity *IdentificationBirthPlace) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	location, err := entity.Location.Entity()
+	location, err := entity.Payload.Entity()
 	if err != nil {
 		return err
 	}
-	entity.location = *location.(*Location)
+	entity.Location = location.(*Location)
 
 	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationBirthPlace) Valid() (bool, error) {
-	return entity.location.Valid()
+	return entity.Location.Valid()
 }
 
 // Save will create or update the database.
-func (entity *IdentificationBirthPlace) Save(account int64) error {
-	return nil
+func (entity *IdentificationBirthPlace) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
+	locationID, err := entity.Location.Save(context, account)
+	if err != nil {
+		return locationID, err
+	}
+	entity.LocationID = locationID
+
+	err = context.CreateTable(&IdentificationBirthPlace{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationBirthPlace) Delete(account int64) error {
-	return nil
+func (entity *IdentificationBirthPlace) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationBirthPlace) Get(account int64) error {
-	return nil
+func (entity *IdentificationBirthPlace) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // IdentificationBirthDate subsection of identification section.
 type IdentificationBirthDate struct {
-	Date Payload `json:"date"`
-	date DateControl
+	Payload Payload `json:"date" sql:"-"`
+
+	// Validator specific fields
+	Date *DateControl
+
+	// Persister specific fields
+	ID        int
+	AccountID int64
+	DateID    int
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -103,40 +171,69 @@ func (entity *IdentificationBirthDate) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	date, err := entity.Date.Entity()
+	date, err := entity.Payload.Entity()
 	if err != nil {
 		return err
 	}
-	entity.date = *date.(*DateControl)
+	entity.Date = date.(*DateControl)
 
 	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationBirthDate) Valid() (bool, error) {
-	return entity.date.Valid()
+	return entity.Date.Valid()
 }
 
 // Save will create or update the database.
-func (entity *IdentificationBirthDate) Save(account int64) error {
-	return nil
+func (entity *IdentificationBirthDate) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
+	dateID, err := entity.Date.Save(context, account)
+	if err != nil {
+		return dateID, err
+	}
+	entity.DateID = dateID
+
+	err = context.CreateTable(&IdentificationBirthDate{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationBirthDate) Delete(account int64) error {
-	return nil
+func (entity *IdentificationBirthDate) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationBirthDate) Get(account int64) error {
-	return nil
+func (entity *IdentificationBirthDate) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // IdentificationSSN subsection of identification section.
 type IdentificationSSN struct {
-	SSN      Payload `json:"ssn"`
-	Verified bool    `json:"verified"`
-	ssn      SSN
+	Payload Payload `json:"ssn" sql:"-"`
+
+	// Validator specific fields
+	Verified bool `json:"verified"`
+	SSN      *SSN
+
+	// Persister specific fields
+	ID        int
+	AccountID int64
+	SSNID     int
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -146,18 +243,18 @@ func (entity *IdentificationSSN) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	ssn, err := entity.SSN.Entity()
+	ssn, err := entity.Payload.Entity()
 	if err != nil {
 		return err
 	}
-	entity.ssn = *ssn.(*SSN)
+	entity.SSN = ssn.(*SSN)
 
 	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationSSN) Valid() (bool, error) {
-	if ok, err := entity.ssn.Valid(); !ok {
+	if ok, err := entity.SSN.Valid(); !ok {
 		return ok, err
 	}
 
@@ -170,40 +267,89 @@ func (entity *IdentificationSSN) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationSSN) Save(account int64) error {
-	return nil
+func (entity *IdentificationSSN) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
+	id, err := entity.SSN.Save(context, account)
+	if err != nil {
+		return id, err
+	}
+	entity.SSNID = id
+
+	err = context.CreateTable(&IdentificationSSN{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationSSN) Delete(account int64) error {
-	return nil
+func (entity *IdentificationSSN) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationSSN) Get(account int64) error {
-	return nil
+func (entity *IdentificationSSN) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // IdentificationContacts subsection of identification section.
 type IdentificationContacts struct {
-	Emails       Payload
-	PhoneNumbers Payload
+	PayloadEmails       Payload `json:"Emails" sql:"-"`
+	PayloadPhoneNumbers Payload `json:"PhoneNumbers" sql:"-"`
+
+	// Validator specific fields
+	Emails       *Collection `json:"-"`
+	PhoneNumbers *Collection `json:"-"`
+
+	// Persister specific fields
+	ID             int
+	AccountID      int64
+	EmailsID       int
+	PhoneNumbersID int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *IdentificationContacts) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	emails, err := entity.PayloadEmails.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Emails = emails.(*Collection)
+
+	phoneNumbers, err := entity.PayloadPhoneNumbers.Entity()
+	if err != nil {
+		return err
+	}
+	entity.PhoneNumbers = phoneNumbers.(*Collection)
+
+	return nil
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationContacts) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	if _, err := entity.Emails.Entity(); err != nil {
+	if ok, err := entity.Emails.Valid(); !ok {
 		stack.Append("Emails", err)
 	}
 
-	if _, err := entity.PhoneNumbers.Entity(); err != nil {
+	if ok, err := entity.PhoneNumbers.Valid(); !ok {
 		stack.Append("PhoneNumbers", err)
 	}
 
@@ -211,51 +357,97 @@ func (entity *IdentificationContacts) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationContacts) Save(account int64) error {
-	return nil
+func (entity *IdentificationContacts) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
+	var err error
+	emailsID, err := entity.Emails.Save(context, account)
+	if err != nil {
+		return emailsID, err
+	}
+	entity.EmailsID = emailsID
+
+	phoneNumbersID, err := entity.PhoneNumbers.Save(context, account)
+	if err != nil {
+		return phoneNumbersID, err
+	}
+	entity.PhoneNumbersID = phoneNumbersID
+
+	err = context.CreateTable(&IdentificationContacts{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationContacts) Delete(account int64) error {
-	return nil
+func (entity *IdentificationContacts) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationContacts) Get(account int64) error {
-	return nil
+func (entity *IdentificationContacts) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // IdentificationOtherNames subsection of identification section.
 type IdentificationOtherNames struct {
-	HasOtherNames Payload
-	List          Payload
+	PayloadHasOtherNames Payload `json:"HasOtherNames" sql:"-"`
+	PayloadList          Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasOtherNames *Branch     `json:"-"`
+	List          *Collection `json:"-"`
+
+	// Persister specific fields
+	ID              int
+	AccountID       int64
+	HasOtherNamesID int
+	ListID          int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *IdentificationOtherNames) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	branch, err := entity.PayloadHasOtherNames.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasOtherNames = branch.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return nil
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationOtherNames) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasOtherNames.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasOtherNames.Valid(); !ok {
 		stack.Append("OtherNames", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasOtherNames.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("OtherNames", err)
 		}
 	}
@@ -264,35 +456,75 @@ func (entity *IdentificationOtherNames) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationOtherNames) Save(account int64) error {
-	return nil
+func (entity *IdentificationOtherNames) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
+	var err error
+	branchID, err := entity.HasOtherNames.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.HasOtherNamesID = branchID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&IdentificationOtherNames{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationOtherNames) Delete(account int64) error {
-	return nil
+func (entity *IdentificationOtherNames) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationOtherNames) Get(account int64) error {
-	return nil
+func (entity *IdentificationOtherNames) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // IdentificationPhysical subsection of identification section.
 type IdentificationPhysical struct {
-	Comments  Payload
-	EyeColor  Payload
-	HairColor Payload
-	Height    Payload
-	Sex       Payload
-	Weight    Payload
+	PayloadComments  Payload `json:"Comments" sql:"-"`
+	PayloadEyeColor  Payload `json:"EyeColor" sql:"-"`
+	PayloadHairColor Payload `json:"HairColor" sql:"-"`
+	PayloadHeight    Payload `json:"Height" sql:"-"`
+	PayloadSex       Payload `json:"Sex" sql:"-"`
+	PayloadWeight    Payload `json:"Weight" sql:"-"`
 
-	comments Textarea
-	eye      Text
-	hair     Text
-	sex      Text
-	height   Height
-	weight   Number
+	// Validator specific fields
+	Comments  *Textarea `json:"-"`
+	EyeColor  *Text     `json:"-"`
+	HairColor *Text     `json:"-"`
+	Sex       *Text     `json:"-"`
+	Height    *Height   `json:"-"`
+	Weight    *Number   `json:"-"`
+
+	// Persister specific fields
+	ID          int
+	AccountID   int64
+	CommentsID  int
+	EyeColorID  int
+	HairColorID int
+	SexID       int
+	HeightID    int
+	WeightID    int
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -302,41 +534,41 @@ func (entity *IdentificationPhysical) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	comments, err := entity.Comments.Entity()
+	comments, err := entity.PayloadComments.Entity()
 	if err != nil {
 		return err
 	}
-	entity.comments = *comments.(*Textarea)
+	entity.Comments = comments.(*Textarea)
 
-	eye, err := entity.EyeColor.Entity()
+	eye, err := entity.PayloadEyeColor.Entity()
 	if err != nil {
 		return err
 	}
-	entity.eye = *eye.(*Text)
+	entity.EyeColor = eye.(*Text)
 
-	hair, err := entity.HairColor.Entity()
+	hair, err := entity.PayloadHairColor.Entity()
 	if err != nil {
 		return err
 	}
-	entity.hair = *hair.(*Text)
+	entity.HairColor = hair.(*Text)
 
-	sex, err := entity.Sex.Entity()
+	sex, err := entity.PayloadSex.Entity()
 	if err != nil {
 		return err
 	}
-	entity.sex = *sex.(*Text)
+	entity.Sex = sex.(*Text)
 
-	height, err := entity.Height.Entity()
+	height, err := entity.PayloadHeight.Entity()
 	if err != nil {
 		return err
 	}
-	entity.height = *height.(*Height)
+	entity.Height = height.(*Height)
 
-	weight, err := entity.Weight.Entity()
+	weight, err := entity.PayloadWeight.Entity()
 	if err != nil {
 		return err
 	}
-	entity.weight = *weight.(*Number)
+	entity.Weight = weight.(*Number)
 
 	return err
 }
@@ -345,23 +577,23 @@ func (entity *IdentificationPhysical) Unmarshal(raw []byte) error {
 func (entity *IdentificationPhysical) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	if ok, err := entity.eye.Valid(); !ok {
+	if ok, err := entity.EyeColor.Valid(); !ok {
 		stack.Append("ApplicantPhysical", err)
 	}
 
-	if ok, err := entity.hair.Valid(); !ok {
+	if ok, err := entity.HairColor.Valid(); !ok {
 		stack.Append("ApplicantPhysical", err)
 	}
 
-	if ok, err := entity.sex.Valid(); !ok {
+	if ok, err := entity.Sex.Valid(); !ok {
 		stack.Append("ApplicantPhysical", err)
 	}
 
-	if ok, err := entity.height.Valid(); !ok {
+	if ok, err := entity.Height.Valid(); !ok {
 		stack.Append("ApplicantPhysical", err)
 	}
 
-	if ok, err := entity.weight.Valid(); !ok {
+	if ok, err := entity.Weight.Valid(); !ok {
 		stack.Append("ApplicantPhysical", err)
 	}
 
@@ -369,16 +601,69 @@ func (entity *IdentificationPhysical) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *IdentificationPhysical) Save(account int64) error {
-	return nil
+func (entity *IdentificationPhysical) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
+	var err error
+	commentsID, err := entity.Comments.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.CommentsID = commentsID
+
+	eyeID, err := entity.EyeColor.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.EyeColorID = eyeID
+
+	hairID, err := entity.HairColor.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.HairColorID = hairID
+
+	sexID, err := entity.Sex.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.SexID = sexID
+
+	heightID, err := entity.Height.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.HeightID = heightID
+
+	weightID, err := entity.Weight.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.WeightID = weightID
+
+	err = context.CreateTable(&IdentificationPhysical{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
-func (entity *IdentificationPhysical) Delete(account int64) error {
-	return nil
+func (entity *IdentificationPhysical) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *IdentificationPhysical) Get(account int64) error {
-	return nil
+func (entity *IdentificationPhysical) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

@@ -4,10 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/go-pg/pg"
 )
 
 // DateRange is a basic input.
 type DateRange struct {
+	ID      int
 	From    Payload `json:"from"`
 	To      Payload `json:"to"`
 	Present bool    `json:"present"`
@@ -54,4 +56,16 @@ func (entity *DateRange) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *DateRange) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *DateRange) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *DateRange) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

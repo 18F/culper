@@ -1,6 +1,10 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 // LegalCourt structure
 type LegalCourt struct {
@@ -53,18 +57,18 @@ func (entity *LegalPoliceOffenses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceOffenses) Save(account int64) error {
-	return nil
+func (entity *LegalPoliceOffenses) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceOffenses) Delete(account int64) error {
-	return nil
+func (entity *LegalPoliceOffenses) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceOffenses) Get(account int64) error {
-	return nil
+func (entity *LegalPoliceOffenses) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalPoliceAdditionalOffenses structure
@@ -93,18 +97,18 @@ func (entity *LegalPoliceAdditionalOffenses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceAdditionalOffenses) Save(account int64) error {
-	return nil
+func (entity *LegalPoliceAdditionalOffenses) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceAdditionalOffenses) Delete(account int64) error {
-	return nil
+func (entity *LegalPoliceAdditionalOffenses) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceAdditionalOffenses) Get(account int64) error {
-	return nil
+func (entity *LegalPoliceAdditionalOffenses) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalPoliceDomesticViolence structure
@@ -123,33 +127,33 @@ func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceDomesticViolence) Save(account int64) error {
-	return nil
+func (entity *LegalPoliceDomesticViolence) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceDomesticViolence) Delete(account int64) error {
-	return nil
+func (entity *LegalPoliceDomesticViolence) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceDomesticViolence) Get(account int64) error {
-	return nil
+func (entity *LegalPoliceDomesticViolence) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Save will create or update the database.
-func (entity *LegalCourt) Save(account int64) error {
-	return nil
+func (entity *LegalCourt) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalCourt) Delete(account int64) error {
-	return nil
+func (entity *LegalCourt) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalCourt) Get(account int64) error {
-	return nil
+func (entity *LegalCourt) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalInvestigationsDebarred structure
@@ -178,18 +182,18 @@ func (entity *LegalInvestigationsDebarred) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsDebarred) Save(account int64) error {
-	return nil
+func (entity *LegalInvestigationsDebarred) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsDebarred) Delete(account int64) error {
-	return nil
+func (entity *LegalInvestigationsDebarred) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
-// Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsDebarred) Get(account int64) error {
-	return nil
+// Get will retrieve the entity from the (int, database).
+func (entity *LegalInvestigationsDebarred) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalInvestigationsHistory structure
@@ -218,18 +222,18 @@ func (entity *LegalInvestigationsHistory) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsHistory) Save(account int64) error {
-	return nil
+func (entity *LegalInvestigationsHistory) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsHistory) Delete(account int64) error {
-	return nil
+func (entity *LegalInvestigationsHistory) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsHistory) Get(account int64) error {
-	return nil
+func (entity *LegalInvestigationsHistory) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalInvestigationsRevoked structure
@@ -258,18 +262,18 @@ func (entity *LegalInvestigationsRevoked) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsRevoked) Save(account int64) error {
-	return nil
+func (entity *LegalInvestigationsRevoked) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsRevoked) Delete(account int64) error {
-	return nil
+func (entity *LegalInvestigationsRevoked) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsRevoked) Get(account int64) error {
-	return nil
+func (entity *LegalInvestigationsRevoked) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalTechnologyManipulating structure
@@ -298,18 +302,18 @@ func (entity *LegalTechnologyManipulating) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyManipulating) Save(account int64) error {
-	return nil
+func (entity *LegalTechnologyManipulating) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyManipulating) Delete(account int64) error {
-	return nil
+func (entity *LegalTechnologyManipulating) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyManipulating) Get(account int64) error {
-	return nil
+func (entity *LegalTechnologyManipulating) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalTechnologyUnauthorized structure
@@ -338,18 +342,18 @@ func (entity *LegalTechnologyUnauthorized) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyUnauthorized) Save(account int64) error {
-	return nil
+func (entity *LegalTechnologyUnauthorized) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyUnauthorized) Delete(account int64) error {
-	return nil
+func (entity *LegalTechnologyUnauthorized) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyUnauthorized) Get(account int64) error {
-	return nil
+func (entity *LegalTechnologyUnauthorized) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalTechnologyUnlawful structure
@@ -378,18 +382,18 @@ func (entity *LegalTechnologyUnlawful) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyUnlawful) Save(account int64) error {
-	return nil
+func (entity *LegalTechnologyUnlawful) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyUnlawful) Delete(account int64) error {
-	return nil
+func (entity *LegalTechnologyUnlawful) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyUnlawful) Get(account int64) error {
-	return nil
+func (entity *LegalTechnologyUnlawful) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalAssociationsActivitiesToOverthrow structure
@@ -418,18 +422,18 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Save(account int64) error {
-	return nil
+func (entity *LegalAssociationsActivitiesToOverthrow) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Delete(account int64) error {
-	return nil
+func (entity *LegalAssociationsActivitiesToOverthrow) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Get(account int64) error {
-	return nil
+func (entity *LegalAssociationsActivitiesToOverthrow) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalAssociationsAdvocating structure
@@ -458,18 +462,18 @@ func (entity *LegalAssociationsAdvocating) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsAdvocating) Save(account int64) error {
-	return nil
+func (entity *LegalAssociationsAdvocating) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsAdvocating) Delete(account int64) error {
-	return nil
+func (entity *LegalAssociationsAdvocating) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsAdvocating) Get(account int64) error {
-	return nil
+func (entity *LegalAssociationsAdvocating) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalAssociationsEngagedInTerrorism structure
@@ -498,18 +502,18 @@ func (entity *LegalAssociationsEngagedInTerrorism) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Save(account int64) error {
-	return nil
+func (entity *LegalAssociationsEngagedInTerrorism) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Delete(account int64) error {
-	return nil
+func (entity *LegalAssociationsEngagedInTerrorism) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Get(account int64) error {
-	return nil
+func (entity *LegalAssociationsEngagedInTerrorism) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalAssociationsMembershipOverthrow structure
@@ -538,18 +542,18 @@ func (entity *LegalAssociationsMembershipOverthrow) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsMembershipOverthrow) Save(account int64) error {
-	return nil
+func (entity *LegalAssociationsMembershipOverthrow) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsMembershipOverthrow) Delete(account int64) error {
-	return nil
+func (entity *LegalAssociationsMembershipOverthrow) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsMembershipOverthrow) Get(account int64) error {
-	return nil
+func (entity *LegalAssociationsMembershipOverthrow) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalAssociationsMembershipViolence structure
@@ -578,18 +582,18 @@ func (entity *LegalAssociationsMembershipViolence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsMembershipViolence) Save(account int64) error {
-	return nil
+func (entity *LegalAssociationsMembershipViolence) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsMembershipViolence) Delete(account int64) error {
-	return nil
+func (entity *LegalAssociationsMembershipViolence) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsMembershipViolence) Get(account int64) error {
-	return nil
+func (entity *LegalAssociationsMembershipViolence) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalAssociationsTerrorismAssociation structure
@@ -618,18 +622,18 @@ func (entity *LegalAssociationsTerrorismAssociation) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsTerrorismAssociation) Save(account int64) error {
-	return nil
+func (entity *LegalAssociationsTerrorismAssociation) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsTerrorismAssociation) Delete(account int64) error {
-	return nil
+func (entity *LegalAssociationsTerrorismAssociation) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsTerrorismAssociation) Get(account int64) error {
-	return nil
+func (entity *LegalAssociationsTerrorismAssociation) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // LegalAssociationsTerroristOrganization structure
@@ -658,16 +662,16 @@ func (entity *LegalAssociationsTerroristOrganization) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsTerroristOrganization) Save(account int64) error {
-	return nil
+func (entity *LegalAssociationsTerroristOrganization) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsTerroristOrganization) Delete(account int64) error {
-	return nil
+func (entity *LegalAssociationsTerroristOrganization) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsTerroristOrganization) Get(account int64) error {
-	return nil
+func (entity *LegalAssociationsTerroristOrganization) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

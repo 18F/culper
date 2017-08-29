@@ -6,10 +6,14 @@ import (
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 // DateControl is a basic input.
 type DateControl struct {
+	ID        int
 	Month     string    `json:"month"`
 	Day       string    `json:"day"`
 	Year      string    `json:"year"`
@@ -43,4 +47,32 @@ func (entity *DateControl) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *DateControl) Save(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	if err := context.CreateTable(&DateControl{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	var err error
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
+}
+
+func (entity *DateControl) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *DateControl) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

@@ -1,9 +1,14 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 // Reference is a basic input.
 type Reference struct {
+	ID                 int
 	FullName           Payload
 	LastContact        Payload
 	Relationship       Payload
@@ -65,4 +70,16 @@ func (entity *Reference) Valid() (bool, error) {
 	}
 
 	return true, nil
+}
+
+func (entity *Reference) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Reference) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Reference) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

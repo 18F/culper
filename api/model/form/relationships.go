@@ -4,9 +4,12 @@ import (
 	"encoding/json"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
 )
 
 type RelationshipsMarital struct {
+	ID           int
 	Status       Payload
 	CivilUnion   PayloadProperties
 	DivorcedList Payload
@@ -69,18 +72,18 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsMarital) Save(account int64) error {
-	return nil
+func (entity *RelationshipsMarital) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsMarital) Delete(account int64) error {
-	return nil
+func (entity *RelationshipsMarital) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsMarital) Get(account int64) error {
-	return nil
+func (entity *RelationshipsMarital) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type RelationshipsCohabitants struct {
@@ -108,18 +111,18 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsCohabitants) Save(account int64) error {
-	return nil
+func (entity *RelationshipsCohabitants) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsCohabitants) Delete(account int64) error {
-	return nil
+func (entity *RelationshipsCohabitants) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsCohabitants) Get(account int64) error {
-	return nil
+func (entity *RelationshipsCohabitants) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type RelationshipsPeople struct {
@@ -137,18 +140,18 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsPeople) Save(account int64) error {
-	return nil
+func (entity *RelationshipsPeople) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsPeople) Delete(account int64) error {
-	return nil
+func (entity *RelationshipsPeople) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsPeople) Get(account int64) error {
-	return nil
+func (entity *RelationshipsPeople) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type RelationshipsRelatives struct {
@@ -166,16 +169,16 @@ func (entity *RelationshipsRelatives) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsRelatives) Save(account int64) error {
-	return nil
+func (entity *RelationshipsRelatives) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsRelatives) Delete(account int64) error {
-	return nil
+func (entity *RelationshipsRelatives) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsRelatives) Get(account int64) error {
-	return nil
+func (entity *RelationshipsRelatives) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

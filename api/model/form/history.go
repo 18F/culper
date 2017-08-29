@@ -1,6 +1,10 @@
 package form
 
-import "encoding/json"
+import (
+	"encoding/json"
+
+	"github.com/go-pg/pg"
+)
 
 type HistoryResidence struct {
 	List Payload
@@ -17,18 +21,18 @@ func (entity *HistoryResidence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryResidence) Save(account int64) error {
-	return nil
+func (entity *HistoryResidence) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryResidence) Delete(account int64) error {
-	return nil
+func (entity *HistoryResidence) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryResidence) Get(account int64) error {
-	return nil
+func (entity *HistoryResidence) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type HistoryEmployment struct {
@@ -46,18 +50,18 @@ func (entity *HistoryEmployment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryEmployment) Save(account int64) error {
-	return nil
+func (entity *HistoryEmployment) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryEmployment) Delete(account int64) error {
-	return nil
+func (entity *HistoryEmployment) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryEmployment) Get(account int64) error {
-	return nil
+func (entity *HistoryEmployment) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type HistoryEducation struct {
@@ -91,18 +95,18 @@ func (entity *HistoryEducation) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryEducation) Save(account int64) error {
-	return nil
+func (entity *HistoryEducation) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryEducation) Delete(account int64) error {
-	return nil
+func (entity *HistoryEducation) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryEducation) Get(account int64) error {
-	return nil
+func (entity *HistoryEducation) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 type HistoryFederal struct {
@@ -130,16 +134,16 @@ func (entity *HistoryFederal) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryFederal) Save(account int64) error {
-	return nil
+func (entity *HistoryFederal) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryFederal) Delete(account int64) error {
-	return nil
+func (entity *HistoryFederal) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryFederal) Get(account int64) error {
-	return nil
+func (entity *HistoryFederal) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

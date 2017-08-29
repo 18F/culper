@@ -5,10 +5,12 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/go-pg/pg"
 )
 
 // EmploymentActivity is a basic input.
 type EmploymentActivity struct {
+	ID               int
 	Value            string `json:"value"`
 	OtherExplanation string `json:"otherExplanation,omitempty"`
 }
@@ -34,4 +36,16 @@ func (entity *EmploymentActivity) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *EmploymentActivity) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *EmploymentActivity) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *EmploymentActivity) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

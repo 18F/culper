@@ -6,10 +6,12 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/go-pg/pg"
 )
 
 // Number is a basic input.
 type Number struct {
+	ID    int
 	Value string `json:"value"`
 }
 
@@ -29,4 +31,16 @@ func (entity *Number) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *Number) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Number) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *Number) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }
