@@ -70,7 +70,7 @@ defineSupportCode(({Given, Then, When}) => {
       case 'ventures':
         return completeBusinessOtherVentures(promise)
       case 'conferences':
-        return promise
+        return completeBusinessConferences(promise)
       case 'contact':
         return completeBusinessContact(promise)
       case 'sponsorship':
@@ -253,6 +253,21 @@ const completeBusinessOtherVentures = (promise) => {
     .then(() => { return setText('.foreign-business-ventures .ventures-support input', 'Venture financial support') })
     .then(() => { return setText('.foreign-business-ventures .ventures-compensation textarea', 'Description of venture compensation') })
     .then(() => { return setOption('.foreign-business-ventures .branch.addendum .no.block') })
+}
+
+const completeBusinessConferences = (promise) => {
+  return promise
+    .then(() => { return setOptionBlind('.foreign-business-conferences .branch .yes.block') })
+    .then(() => { return setText('.foreign-business-conferences .conferences-description textarea', 'Description of business conference') })
+    .then(() => { return setText('.foreign-business-conferences .conferences-sponsor input', 'Conference Sponsor') })
+    .then(() => { return setText('.foreign-business-conferences .conferences-city input', 'London') })
+    .then(() => { return setText('.foreign-business-conferences .conferences-country input', 'United Kingdom') })
+    .then(() => { return setDate('.foreign-business-conferences .daterange.conferences-dates .datecontrol.from', '1', '1', '2012') })
+    .then(() => { return setDate('.foreign-business-conferences .daterange.conferences-dates .datecontrol.to', '1', '4', '2012') })
+    .then(() => { return setText('.foreign-business-conferences .conferences-purpose textarea', 'Purpose of business conference') })
+    .then(() => { return setOption('.foreign-business-conferences .foreign-business-conferences-contacts .yes.block') })
+    .then(() => { return setText('.foreign-business-conferences .conferences-explanation textarea', 'Explanation of conference contacts') })
+    .then(() => { return setOption('.foreign-business-conferences .branch.addendum .no.block') })
 }
 
 const completeBusinessContact = (promise) => {

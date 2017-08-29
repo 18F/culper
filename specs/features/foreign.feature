@@ -80,13 +80,29 @@ Feature: Foreign
   #   Then I should be in the foreign business/ventures section
   #   Then I log out
 
-  Scenario: Complete the foreign business other ventures section
+  # Scenario: Complete the foreign business other ventures section
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the foreign business section ventures subsection
+  #   And I click Next to go to foreign business/conferences
+  #   Then I should be in the foreign business/conferences section
+  #   Then I log out
+
+  Scenario: Complete the foreign business conferences section
     Given I am a registered user
     And I log in
-    And I fill in the foreign business section ventures subsection
-    And I click Next to go to foreign business/conferences
-    Then I should be in the foreign business/conferences section
+    And I fill in the foreign business section conferences subsection
+    And I click Next to go to foreign business/contact
+    Then I should be in the foreign business/contact section
     Then I log out
+
+  # Scenario: Complete the foreign business family contact section
+  #   Given I am a registered user
+  #   And I log in
+  #   And I fill in the foreign business section contact subsection
+  #   And I click Next to go to foreign business/sponsorship
+  #   Then I should be in the foreign business/sponsorship section
+  #   Then I log out
 
   # Scenario: Complete the foreign business sponsorship section
   #   Given I am a registered user
