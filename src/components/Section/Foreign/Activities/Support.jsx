@@ -62,6 +62,8 @@ export default class Support extends SubsectionElement {
                 warning={true}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.HasForeignSupport === 'Yes'}>
@@ -73,38 +75,50 @@ export default class Support extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('foreign.activities.support.collection.summary.title')}
                      appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.support.collection.append')}>
-            <h3>{i18n.t('foreign.activities.support.heading.name')}</h3>
-            <Name name="Name"
-                  className="foreign-activities-support-name"
-                  bind={true}
-                  />
+                     appendLabel={i18n.t('foreign.activities.support.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+           <Field title={i18n.t('foreign.activities.support.heading.name')}
+             scrollIntoView={this.props.scrollIntoView}>
+              <Name name="Name"
+                    className="foreign-activities-support-name"
+                    bind={true}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
+           </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.address')}
-                   adjustFor="address">
+              adjustFor="address"
+              scrollIntoView={this.props.scrollIntoView}>
               <Location name="Address"
                         className="foreign-activities-support-address"
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.relationship')}
-                   adjustFor="textarea">
+              adjustFor="textarea"
+              scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Relationship"
                         className="foreign-activities-support-relationship"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.amount')}
                    help="foreign.activities.support.help.amount"
-                   adjustFor="currency">
+                   adjustFor="currency"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Currency name="Amount"
                         className="foreign-activities-support-amount"
                         bind={true}
                         min="0"
+                        required={this.props.required}
                         />
               <div className="flags">
                 <Checkbox name="AmountEstimated"
@@ -117,20 +131,24 @@ export default class Support extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.frequency')}
-                   adjustFor="text">
+              adjustFor="text"
+              scrollIntoView={this.props.scrollIntoView}>
               <Text name="Frequency"
                     className="foreign-activities-support-frequency"
                     bind={true}
+                    required={this.props.required}
                     />
             </Field>
 
             <Field title={i18n.t('foreign.activities.support.heading.citizenship')}
                    help="foreign.activities.support.help.citizenship"
-                   adjustFor="country">
+                   adjustFor="country"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Country name="Citizenship"
                        className="foreign-activities-support-citizenship"
                        multiple={true}
                        bind={true}
+                       required={this.props.required}
                        />
             </Field>
           </Accordion>

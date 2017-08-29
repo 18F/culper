@@ -52,8 +52,11 @@ export class DiplomaItem extends ValidationElement {
         <Field title={i18n.t('history.education.heading.diploma')}
                help="history.education.help.diploma"
                adjustFor="big-buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="diploma option-list"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.state.Diploma}>
             <Radio name="diploma-highschool"
                    className="diploma-highschool"
@@ -106,27 +109,34 @@ export class DiplomaItem extends ValidationElement {
                    />
           </RadioGroup>
           <Show when={this.state.Diploma === 'Other'}>
-            <Text name="DiplomaOther"
-                  {...this.state.DiplomaOther}
-                  label={i18n.t('history.education.label.diploma.other')}
-                  className="other"
-                  maxlength="100"
-                  onUpdate={this.updateDiplomaOther}
-                  onError={this.props.onError}
-                  />
+            <Field title={i18n.t('history.education.label.diploma.other')}
+                   titleSize="label"
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Text name="DiplomaOther"
+                    {...this.state.DiplomaOther}
+                    className="other"
+                    maxlength="100"
+                    onUpdate={this.updateDiplomaOther}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
+            </Field>
           </Show>
         </Field>
 
         <Field title={i18n.t('history.education.heading.date')}
                help="history.education.help.date"
                adjustFor="label"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.state.Date}
                        className="date-awarded"
                        hideDay={true}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
       </div>

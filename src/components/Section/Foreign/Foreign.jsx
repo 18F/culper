@@ -137,6 +137,8 @@ class Foreign extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -146,6 +148,8 @@ class Foreign extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -155,6 +159,8 @@ class Foreign extends SectionElement {
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
+                            required={true}
+                            scrollIntoView={false}
                             />
 
             <hr/>
@@ -164,6 +170,8 @@ class Foreign extends SectionElement {
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
+                              required={true}
+                              scrollIntoView={false}
                               />
 
             <hr/>
@@ -173,6 +181,8 @@ class Foreign extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
+                                required={true}
+                                scrollIntoView={false}
                                 />
 
             <hr/>
@@ -182,6 +192,8 @@ class Foreign extends SectionElement {
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
+                             required={true}
+                             scrollIntoView={false}
                              />
 
             <hr/>
@@ -191,6 +203,8 @@ class Foreign extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -200,6 +214,8 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -209,6 +225,8 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -218,6 +236,8 @@ class Foreign extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         />
 
             <hr/>
@@ -227,6 +247,8 @@ class Foreign extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
 
             <hr/>
@@ -236,6 +258,8 @@ class Foreign extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
+                         required={true}
+                         scrollIntoView={false}
                          />
 
             <hr/>
@@ -245,6 +269,8 @@ class Foreign extends SectionElement {
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
 
             <hr/>
@@ -254,6 +280,8 @@ class Foreign extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
+                         required={true}
+                         scrollIntoView={false}
                          />
 
             <hr/>
@@ -263,6 +291,8 @@ class Foreign extends SectionElement {
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
                        />
 
             <hr/>
@@ -272,6 +302,8 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
 
             <hr/>
@@ -281,6 +313,8 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
           </SectionView>
 

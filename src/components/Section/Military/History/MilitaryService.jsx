@@ -104,8 +104,11 @@ export default class MilitaryService extends ValidationElement {
       <div className="military-service">
         <Field title={i18n.t('military.history.heading.service')}
                adjustFor="big-buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="service option-list eapp-extend-labels"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.props.Service}>
             <Radio name="service-airforce"
                    className="service-airforce"
@@ -190,8 +193,11 @@ export default class MilitaryService extends ValidationElement {
         <Show when={this.props.Service === 'AirNationalGuard' || this.props.Service === 'ArmyNationalGuard'}>
           <Field title={i18n.t('military.history.heading.status')}
                  adjustFor="buttons"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup className="status option-list"
+                        required={this.props.required}
+                        onError={this.props.onError}
                         selectedValue={this.props.Status}>
               <Radio name="status-activeduty"
                      className="status-activeduty"
@@ -220,8 +226,11 @@ export default class MilitaryService extends ValidationElement {
 
         <Field title={i18n.t('military.history.heading.officer')}
                adjustFor="buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="officer option-list"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.props.Officer}>
             <Radio name="officer-officer"
                    className="officer-officer"
@@ -248,34 +257,41 @@ export default class MilitaryService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.history.heading.number')}
-               help="military.history.help.number">
+          help="military.history.help.number"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="ServiceNumber"
                 {...this.props.ServiceNumber}
                 className="service-number"
                 onUpdate={this.updateServiceNumber}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field title={i18n.t('military.history.heading.dates')}
                help="military.history.help.dates"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      className="dates"
                      {...this.props.Dates}
                      label={i18n.t('military.history.label.dates')}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
-        <h3>{i18n.t('military.history.heading.discharged')}</h3>
         <Branch name="has_beendischarged"
+                label={i18n.t('military.history.heading.discharged')}
+                labelSize="h3"
                 className="discharged"
                 value={this.props.HasBeenDischarged}
                 onUpdate={this.updateDischarged}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasBeenDischarged === 'Yes'}>
@@ -284,8 +300,11 @@ export default class MilitaryService extends ValidationElement {
 
             <Field title={i18n.t('military.history.heading.discharge.type')}
                    adjustFor="big-buttons"
-                   shrink={true}>
+                   shrink={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup className="discharge-type option-list"
+                          required={this.props.required}
+                          onError={this.props.onError}
                           selectedValue={this.props.DischargeType}>
                 <Radio name="discharge-type-honorable"
                        className="discharge-type-honorable"
@@ -331,25 +350,32 @@ export default class MilitaryService extends ValidationElement {
                        />
               </RadioGroup>
               <Show when={this.props.DischargeType === 'Other'}>
-                <Text name="DischargeTypeOther"
-                      {...this.props.DischargeTypeOther}
-                      label={i18n.t('military.history.label.discharge.type.otherex')}
-                      className="discharge-type-otherex"
-                      maxlength="100"
-                      onUpdate={this.updateDischargeTypeOther}
-                      onError={this.props.onError}
-                      />
+                <Field title={i18n.t('military.history.label.discharge.type.otherex')}
+                       titleSize="label"
+                       adjustFor="text"
+                       scrollIntoView={this.props.scrollIntoView}>
+                  <Text name="DischargeTypeOther"
+                        {...this.props.DischargeTypeOther}
+                        className="discharge-type-otherex"
+                        maxlength="100"
+                        onUpdate={this.updateDischargeTypeOther}
+                        onError={this.props.onError}
+                        required={this.props.required}
+                        />
+                </Field>
               </Show>
             </Field>
 
             <Show when={this.props.DischargeType && this.props.DischargeType !== 'Honorable'}>
-              <Field adjustFor="labels">
+              <Field title={i18n.t('military.history.label.discharge.reason')}
+                     adjustFor="textarea"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="DischargeReason"
                           {...this.props.DischargeReason}
                           className="discharge-reason"
-                          label={i18n.t('military.history.label.discharge.reason')}
                           onUpdate={this.updateDischargeReason}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -357,13 +383,15 @@ export default class MilitaryService extends ValidationElement {
             <Field title={i18n.t('military.history.heading.discharge.date')}
                    help="military.history.help.discharge.date"
                    adjustFor="labels"
-                   shrink={true}>
+                   shrink={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="DischargeDate"
                            {...this.props.DischargeDate}
                            className="discharge-date"
                            hideDay={true}
                            onUpdate={this.updateDischargeDate}
                            onError={this.props.onError}
+                           required={this.props.required}
                            />
             </Field>
           </div>

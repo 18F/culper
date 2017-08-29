@@ -89,7 +89,9 @@ export default class BenefitActivity extends SubsectionElement {
                 value={this.props.HasBenefits}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasBenefits}>
+                required={this.props.required}
+                onUpdate={this.updateHasBenefits}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasBenefits === 'Yes'}>
@@ -101,9 +103,13 @@ export default class BenefitActivity extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('foreign.activities.benefit.collection.description')}
                      appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}>
+                     appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Benefit name="Benefit"
                      bind={true}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
         </Show>

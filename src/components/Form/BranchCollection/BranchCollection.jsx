@@ -101,7 +101,9 @@ export default class BranchCollection extends React.Component {
               value={props.value}
               warning={props.warning}
               onUpdate={props.onUpdate}
-              onError={props.onError}>
+              required={this.props.required}
+              onError={props.onError}
+              scrollIntoView={this.props.scrollIntoView}>
         {props.children}
       </Branch>
     )

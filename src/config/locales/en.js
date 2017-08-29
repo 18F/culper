@@ -162,6 +162,14 @@ const en = {
           message: 'Some of these characters aren\'t allowed.',
           note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
+      },
+      suffix: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     birthdate: {
@@ -197,6 +205,10 @@ const en = {
         title: 'Confirmation mismatch',
         message: 'The two U.S. Social Security Numbers you entered do not match.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     date: {
@@ -243,6 +255,10 @@ const en = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be on or after your date of birth.'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     daterange: {
@@ -342,6 +358,10 @@ const en = {
         title: 'There is a problem with the date range',
         message: 'The **from** date should be before the **to** date.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     weight: {
@@ -354,6 +374,10 @@ const en = {
         title: 'Weight exceeds accepted limits',
         message: 'We only accept a value between 10 and 999 pounds',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     height: {
@@ -380,53 +404,129 @@ const en = {
           message: 'Inches must be between 0 and 11',
           note: ''
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
-    address: {
+    location: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       city: {
-        length: {
-          title: 'There is a problem with the City',
-          message: 'City name should be between 2 and 100 characters.',
-          note: ''
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
-      state: {
-        notfound: {
-          title: 'There is a problem with the State',
-          message: [
-            'State name must be one of the available options.',
-            '*and/or*',
-            'The state name is too long.'
-          ],
-          note: ''
+      toggleablelocation: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          required: {
+            title: 'There is a problem with this field',
+            message: 'This field is required'
+          },
+          notfound: {
+            title: 'This country is not one of the options',
+            message: 'Please enter the country that your city of birth is in now.',
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       },
-      county: {
-        length: {
-          title: 'There is a problem with the County',
-          message: 'County name must be between 2 and 100 characters',
-          note: ''
-        }
-      },
-      zipcode: {
-        pattern: {
-          title: 'There is a problem with the ZIP Code',
-          message: 'The ZIP Code should be either 5 or 9 digits.',
-          note: ''
-        }
-      },
-      country: {
-        notfound: {
-          title: 'This country is not one of the options',
-          message: 'Please enter the country that your city of birth is in now.',
-          note: ''
-        }
-      },
-      apofpo: {
-        pattern: {
-          title: 'There is a problem with the State Code',
-          message: 'APO/FPO state code must be 2 letters',
-          note: 'Note: Typically the value is either AA, AE, or AP.'
+      address: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          notfound: {
+            title: 'This country is not one of the options',
+            message: 'Please enter the country that your city of birth is in now.',
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       }
     },
@@ -463,6 +563,10 @@ const en = {
       }
     },
     country: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       notfound: {
         title: 'This Country is not on our current list',
         message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
@@ -470,6 +574,10 @@ const en = {
       }
     },
     passport: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       pattern: {
         title: 'There is a problem with the passport number',
         message: [
@@ -484,6 +592,10 @@ const en = {
         title: 'There is a problem with the losses',
         message: 'The reported losses should have a dollar value.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     telephone: {
@@ -588,6 +700,10 @@ const en = {
             note: ''
           }
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     geocode: {
@@ -625,6 +741,10 @@ const en = {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     treatment: {
@@ -648,6 +768,10 @@ const en = {
           message: 'The date should be after the date treatment began.'
         }
       }
+    },
+    required: {
+      title: 'There is a problem with this field',
+      message: 'This field is required'
     }
     // order: {
     //   datecontrol: {
@@ -5104,6 +5228,13 @@ const en = {
           appendLabel: 'Add another direct interest',
           itemType: 'Interest'
         },
+        help: {
+            directControl: {
+              title: 'Need help with the term "Direct control"?',
+              message: 'Direct control means there is *no* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+              note: 'Example: You own a bakery in a foreign country and directly control all aspects of the business such as pricing, baking, etc.'
+            },
+        },
         interest: {
           para: {
             checkAll: 'Check all that apply',
@@ -5215,6 +5346,13 @@ const en = {
           appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
         },
+            help: {
+            indirectControl: {
+              title: 'Need help with the term "Indirect control"?',
+              message: 'Indirect control means there *is* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+              note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
+            },
+        },    
         interest: {
           para: {
             checkAll: 'Check all that apply',
@@ -7559,8 +7697,8 @@ const en = {
           used: 'Provide dates of involvement or use'
         },
         label: {
-          circumstances: 'Circumstances',
-          negativeImpact: 'Negative impact'
+          circumstances: 'Provide circumstances',
+          negativeImpact: 'Provide negative impact'
         },
         help: {
           occurred: {
@@ -7772,7 +7910,7 @@ const en = {
     },
     drugs: {
       heading: {
-        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
+        drugUses: 'In the last seven (7) years, have you illegally used any drugs or controlled substances?',
         drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
         drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
         drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
@@ -8013,7 +8151,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug misuse',
-          summary: '*Provide your drug misuse details below**',
+          summary: '*Provide your drug misuse details below*',
           appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
           appendLabel: 'Add another drug misuse',
           itemType: 'Drug misuse'

@@ -62,7 +62,9 @@ export default class Manipulating extends SubsectionElement {
                 value={this.props.HasManipulating}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasManipulating === 'Yes'}>
@@ -74,42 +76,52 @@ export default class Manipulating extends SubsectionElement {
                      onError={this.handleError}
                      description={i18n.t('legal.technology.manipulating.collection.description')}
                      appendTitle={i18n.t('legal.technology.manipulating.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}>
+                     appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.technology.manipulating.heading.date')}
                    help="legal.technology.manipulating.help.date"
-                   adjustFor="datecontrol">
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="Date"
                            className="legal-technology-manipulating-date"
                            bind={true}
+                           required={this.props.required}
                            />
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.incident')}
                    help="legal.technology.manipulating.help.incident"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Incident"
                         className="legal-technology-manipulating-incident"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.location')}
                    help="legal.technology.manipulating.help.location"
-                   adjustFor="address">
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="Location"
                         className="legal-technology-manipulating-location"
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.action')}
                    help="legal.technology.manipulating.help.action"
-                   adjustFor="textarea">
+                   adjustFor="textarea"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Action"
                         className="legal-technology-manipulating-action"
                         bind={true}
+                        required={this.props.required}
                         />
             </Field>
           </Accordion>

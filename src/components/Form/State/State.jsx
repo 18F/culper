@@ -114,7 +114,8 @@ export default class State extends ValidationElement {
 
 State.defaultProps = {
   value: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  required: false
 }
 
 State.errors = []

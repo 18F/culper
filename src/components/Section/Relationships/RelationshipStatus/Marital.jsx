@@ -72,8 +72,9 @@ export default class Marital extends SubsectionElement {
   render () {
     return (
       <div className="marital">
-        <Field title={i18n.t('relationships.marital.heading.title')}>
-          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status}>
+        <Field title={i18n.t('relationships.marital.heading.title')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
                    value="Never"
@@ -127,6 +128,8 @@ export default class Marital extends SubsectionElement {
                       onSpouseUpdate={this.props.onSpouseUpdate}
                       currentAddress={this.props.currentAddress}
                       defaultState={this.props.defaultState}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Show>
         <Show when={this.showDivorce()}>
@@ -137,12 +140,16 @@ export default class Marital extends SubsectionElement {
                      branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      summary={this.divorceSummary}
                      description={i18n.t('relationships.civilUnion.divorce.collection.description')}
                      appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
                      appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
             <Divorce name="Divorce"
                      bind={true}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
         </Show>

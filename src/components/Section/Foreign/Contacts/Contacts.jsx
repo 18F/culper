@@ -54,15 +54,16 @@ export default class Contacts extends SubsectionElement {
   render () {
     return (
       <div className="foreign-contacts">
+        {i18n.m('foreign.contacts.para.definition')}
         <h3>{i18n.t('foreign.contacts.heading.title')}</h3>
-        {i18n.t('foreign.contacts.para.includes')}
+        {i18n.m('foreign.contacts.para.includes')}
         <Branch name="has_foreign_contacts"
-                title={i18n.t('foreign.contacts.para.definition')}
-                help="foreign.contacts.help.branch"
                 value={this.props.HasForeignContacts}
                 warning={true}
                 onUpdate={this.updateHasForeignContacts}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
         <Show when={this.props.HasForeignContacts === 'Yes'}>
           <Accordion items={this.props.List}
@@ -74,8 +75,10 @@ export default class Contacts extends SubsectionElement {
                      description={i18n.t('foreign.contacts.collection.summary.title')}
                      appendTitle={i18n.t('foreign.contacts.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.contacts.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.contacts.collection.append')}>
-            <ForeignNational name="Item" bind={true} />
+                     appendLabel={i18n.t('foreign.contacts.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <ForeignNational name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

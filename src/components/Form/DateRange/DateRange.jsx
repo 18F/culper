@@ -16,8 +16,7 @@ export default class DateRange extends ValidationElement {
       present: props.present,
       presentClicked: false,
       title: props.title || 'Date Range',
-      error: false,
-      errors: []
+      error: false
     }
 
     this.storeErrors = this.storeErrors.bind(this)
@@ -29,6 +28,30 @@ export default class DateRange extends ValidationElement {
     this.handleErrorFrom = this.handleErrorFrom.bind(this)
     this.handleErrorTo = this.handleErrorTo.bind(this)
     this.handleErrorPresent = this.handleErrorPresent.bind(this)
+    this.handleDisable = this.handleDisable.bind(this)
+    this.errors = []
+  }
+
+  componentWillReceiveProps (nextProps) {
+    if (nextProps.disabled !== this.props.disabled) {
+      // Check when disable flag is updated
+      this.handleDisable(nextProps)
+    }
+  }
+
+  handleDisable (nextProps) {
+    let errors = [...this.errors] || []
+    if (nextProps.disabled) {
+      errors = errors.map(err => {
+        return {
+          code: err.code,
+          valid: null,
+          uid: err.uid
+        }
+      })
+    }
+    this.props.onError('', errors)
+    this.setState()
   }
 
   update (queue) {
@@ -80,6 +103,17 @@ export default class DateRange extends ValidationElement {
         estimated: false
       }
     }
+    const errors = this.errors.map(err => {
+      if (err.code.indexOf('daterange.to') === -1) {
+        return err
+      }
+      return {
+        code: err.code,
+        valid: null,
+        uid: err.uid
+      }
+    })
+    this.errors = errors
 
     this.setState(futureState, () => {
       if (this.props.onUpdate) {
@@ -95,7 +129,7 @@ export default class DateRange extends ValidationElement {
   }
 
   storeErrors (arr = [], callback) {
-    let errors = [...this.state.errors]
+    let errors = [...this.errors]
     for (const e of arr) {
       const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
       if (idx !== -1) {
@@ -104,10 +138,8 @@ export default class DateRange extends ValidationElement {
         errors.push({ ...e })
       }
     }
-
-    this.setState({ errors: errors }, () => {
-      callback()
-    })
+    this.errors = [...errors]
+    callback()
   }
 
   handleErrorFrom (value, arr) {
@@ -131,11 +163,24 @@ export default class DateRange extends ValidationElement {
       }
     })
 
+    // Handle required
+    arr = arr.concat(this.constructor.errors
+      .filter(err => err.code === 'required')
+      .map(err => {
+        const value = { ...this.state }
+        return {
+          code: `daterange.${err.code}`,
+          valid: err.func(value, this.props),
+          uid: this.state.uid
+        }
+      }))
+
     // Introducing local state to the DateControl so it can determine
     // if there were **any** errors found in other child components.
     this.storeErrors(arr, () => {
-      const existingErr = this.state.errors.some(e => e.valid === false)
+      const existingErr = this.errors.some(e => e.valid === false)
       let local = []
+      const noneRequiredErrors = this.constructor.errors.filter(err => err.code !== 'required')
 
       if (!existingErr && this.state.from.date && this.state.to.date) {
         // Prepare some properties for the error testing
@@ -144,7 +189,7 @@ export default class DateRange extends ValidationElement {
           to: this.state.to
         }
 
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: err.code,
             valid: err.func(null, props),
@@ -152,7 +197,7 @@ export default class DateRange extends ValidationElement {
           }
         })
       } else {
-        local = this.constructor.errors.map(err => {
+        local = noneRequiredErrors.map(err => {
           return {
             code: err.code,
             valid: null,
@@ -186,8 +231,10 @@ export default class DateRange extends ValidationElement {
                        onUpdate={this.updateFrom}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
-                       prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}from`}
+                       prefix={this.props.prefix}
                        onError={this.handleErrorFrom}
+                       disabled={this.props.disabled}
+                       required={this.props.required}
                        />
         </div>
         <div className="arrow">
@@ -203,12 +250,13 @@ export default class DateRange extends ValidationElement {
                        {...this.state.to}
                        estimated={this.state.estimated}
                        receiveProps={this.state.presentClicked}
-                       disabled={this.state.present}
+                       disabled={this.state.present || this.props.disabled}
                        onUpdate={this.updateTo}
                        minDate={this.props.minDate}
                        maxDate={this.props.maxDate}
-                       prefix={`${this.props.prefix ? this.props.prefix + '.' : ''}to`}
+                       prefix={this.props.prefix}
                        onError={this.handleErrorTo}
+                       required={this.props.required}
                        />
           <div className="from-present">
             <span className="or"> or </span>
@@ -236,10 +284,27 @@ DateRange.defaultProps = {
   prefix: '',
   minDate: null,
   maxDate: new Date(),
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  disabled: false
 }
 
 DateRange.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required && !props.disabled) {
+        return !!value.from &&
+          !!value.from.day &&
+          !!value.from.month &&
+          !!value.from.year &&
+          !!value.to &&
+          !!value.to.day &&
+          !!value.to.month &&
+          !!value.to.year
+      }
+      return true
+    }
+  },
   {
     code: 'daterange.order',
     func: (value, props) => {

@@ -69,17 +69,21 @@ export default class Diagnosis extends ValidationElement {
     const prefix = this.props.prefix
     return (
       <div className="diagnosis">
-        <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}>
+        <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}
+          scrollIntoView={this.props.scrollIntoView}>
           <Show when={this.props.prefix === 'existingConditions.diagnosis'}>
             <Text name="Condition"
                   className="diagnosis-condition"
                   value={this.props.Condition}
                   onUpdate={this.updateCondition}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Show>
           <Show when={this.props.prefix === 'diagnosis'}>
             <RadioGroup className="diagnosis-condition"
+                        onError={this.props.onError}
+                        required={this.props.required}
                         selectedValue={this.props.Condition}>
               <Radio name="diagnosis-condition-psychotic"
                      label={i18n.m('psychological.diagnosis.label.psychotic')}
@@ -136,7 +140,8 @@ export default class Diagnosis extends ValidationElement {
 
         <Field title={i18n.t(`psychological.${prefix}.heading.diagnosed`)}
                help={`psychological.${prefix}.help.diagnosed`}
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Diagnosed"
                      {...this.props.Diagnosed}
                      receiveProps={this.props.receiveProps}
@@ -144,6 +149,7 @@ export default class Diagnosis extends ValidationElement {
                      prefix={prefix}
                      minDate={this.props.ApplicantBirthDate}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
@@ -154,6 +160,8 @@ export default class Diagnosis extends ValidationElement {
                      prefix={`${prefix}.person`}
                      onUpdate={this.updateTreatment}
                      onError={this.props.onError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
         </div>
 
@@ -164,14 +172,18 @@ export default class Diagnosis extends ValidationElement {
                      prefix={`${prefix}.facility`}
                      onUpdate={this.updateTreatmentFacility}
                      onError={this.props.onError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
         </div>
 
         <Show when={this.props.prefix !== 'existingConditions.diagnosis'}>
           <div>
             <Field title={i18n.t(`psychological.${prefix}.heading.effective`)}
-                   adjustFor="buttons">
-              <RadioGroup className="effective" selectedValue={this.props.Effective}>
+                   className="no-margin-bottom"
+                   adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <RadioGroup className="effective" selectedValue={this.props.Effective} onError={this.props.onError} required={this.props.required}>
                 <Radio name="effective"
                        label="Yes"
                        value="Yes"
@@ -191,12 +203,15 @@ export default class Diagnosis extends ValidationElement {
 
             <Show when={this.props.Effective === 'No'}>
               <Field title={i18n.t(`psychological.${prefix}.heading.explanation`)}
-                     help={`psychological.${prefix}.help.explanation`}>
+                     titleSize="label"
+                     help={`psychological.${prefix}.help.explanation`}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation"
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.props.onError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>

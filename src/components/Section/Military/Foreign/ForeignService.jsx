@@ -124,8 +124,11 @@ export default class ForeignService extends ValidationElement {
       <div className="foreign-service">
         <Field title={i18n.t('military.foreign.heading.organization')}
                adjustFor="big-buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="organization option-list"
+                      onError={this.props.onError}
+                      required={this.props.required}
                       selectedValue={this.props.Organization}>
             <Radio name="organization-military"
                    className="organization-military"
@@ -179,85 +182,102 @@ export default class ForeignService extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.name')}>
+        <Field title={i18n.t('military.foreign.heading.name')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
                 {...this.props.Name}
                 className="foreign-service-name"
                 maxlength="100"
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.dates')}
                help="military.foreign.help.dates"
                adjustFor="daterange"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      className="foreign-service-dates"
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.country')}
-               adjustFor="country">
+              adjustFor="country"
+              scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    className="foreign-service-country"
                    maxlength="100"
                    onUpdate={this.updateCountry}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.rank')}>
+        <Field title={i18n.t('military.foreign.heading.rank')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Rank"
                 {...this.props.Rank}
                 className="foreign-service-rank"
                 maxlength="100"
                 onUpdate={this.updateRank}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.division')}>
+        <Field title={i18n.t('military.foreign.heading.division')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Division"
                 {...this.props.Division}
                 className="foreign-service-division"
                 maxlength="100"
                 onUpdate={this.updateDivision}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.circumstances')}>
+        <Field title={i18n.t('military.foreign.heading.circumstances')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Circumstances"
                     {...this.props.Circumstances}
                     className="foreign-service-circumstances"
                     maxlength="100"
                     onUpdate={this.updateCircumstances}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
-        <Field title={i18n.t('military.foreign.heading.left')}>
+        <Field title={i18n.t('military.foreign.heading.left')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="ReasonLeft"
                     {...this.props.ReasonLeft}
                     className="foreign-service-left"
                     maxlength="100"
                     onUpdate={this.updateReasonLeft}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
-        <h3>{i18n.t('military.foreign.heading.maintainscontact')}</h3>
         <Branch name="has_maintainscontact"
+                label={i18n.t('military.foreign.heading.maintainscontact')}
+                labelSize="h3"
                 className="maintainscontact"
                 value={this.props.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}>
         </Branch>
 
@@ -274,9 +294,13 @@ export default class ForeignService extends ValidationElement {
                        summary={this.summary}
                        description={i18n.t('military.foreign.collection.contacts.summary.title')}
                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}
-                       appendLabel={i18n.t('military.foreign.collection.contacts.append')}>
+                       appendLabel={i18n.t('military.foreign.collection.contacts.append')}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}>
               <ForeignContact name="Item"
                               bind={true}
+                              required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView}
                               />
             </Accordion>
           </div>

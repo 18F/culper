@@ -4,7 +4,6 @@ import DateRange from './DateRange'
 
 describe('The date range component', () => {
   it('handles dates in reversed order', () => {
-    let updates = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
@@ -12,7 +11,6 @@ describe('The date range component', () => {
       error: true,
       focus: false,
       valid: false,
-      onUpdate: () => { updates++ },
       present: true,
       from: {
         date: new Date('4/1/2010')
@@ -22,8 +20,6 @@ describe('The date range component', () => {
       }
     }
     const component = mount(<DateRange {...expected} />)
-    component.find('input[name="present"]').simulate('change')
-    expect(updates).toBeGreaterThan(0)
     expect(component.find('.to.usa-input-error').length).toBe(1)
   })
 
