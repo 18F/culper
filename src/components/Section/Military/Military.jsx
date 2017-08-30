@@ -174,8 +174,6 @@ class Military extends SectionElement {
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
                      scrollToBottom={this.props.scrollToBottom}
-                     required={true}
-                     scrollIntoView={false}
                      />
           </SectionView>
         </SectionViews>
