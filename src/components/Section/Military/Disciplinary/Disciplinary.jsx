@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { MilitaryDisciplinaryValidator } from '../../../../validators'
+import { MilitaryDisciplinaryValidator, ProcedureValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import Procedure from './Procedure'
@@ -76,6 +76,7 @@ export default class Disciplinary extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ProcedureValidator}
                      summary={this.summary}
                      description={i18n.t('military.disciplinary.collection.summary.title')}
                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
