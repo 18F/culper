@@ -70,6 +70,7 @@ export default class Manipulating extends SubsectionElement {
         <Show when={this.props.HasManipulating === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -91,7 +92,6 @@ export default class Manipulating extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.incident')}
-                   help="legal.technology.manipulating.help.incident"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Incident"
@@ -102,20 +102,21 @@ export default class Manipulating extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.location')}
-                   help="legal.technology.manipulating.help.location"
                    adjustFor="address"
                    scrollIntoView={this.props.scrollIntoView}>
               <Location name="Location"
                         className="legal-technology-manipulating-location"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Incident"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.technology.manipulating.heading.action')}
-                   help="legal.technology.manipulating.help.action"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Action"
@@ -141,8 +142,10 @@ Manipulating.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/manipulating',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalTechnologyManipulatingValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

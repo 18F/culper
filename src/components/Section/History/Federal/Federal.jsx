@@ -112,6 +112,9 @@ export default class Federal extends SubsectionElement {
               <Location name="Address"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Agency"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -130,6 +133,7 @@ Federal.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'federal',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new FederalServiceValidator(props, props).isValid()

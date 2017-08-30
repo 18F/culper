@@ -91,6 +91,7 @@ class Citizenship extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Multiple')}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
           <SectionView name="passports"
@@ -104,6 +105,7 @@ class Citizenship extends SectionElement {
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Passports')}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
         </SectionViews>
@@ -130,7 +132,8 @@ function mapStateToProps (state) {
 
 Citizenship.defaultProps = {
   section: 'citizenship',
-  store: 'Citizenship'
+  store: 'Citizenship',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Citizenship))

@@ -81,6 +81,7 @@ export default class Credit extends SubsectionElement {
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -128,6 +129,9 @@ export default class Credit extends SubsectionElement {
               <Location name="Location"
                           layout={Location.CITY_STATE}
                           className="credit-location"
+                          dispatch={this.props.dispatch}
+                          addressBooks={this.props.addressBooks}
+                          addressBook="Agency"
                           bind={true}
                           help=""
                           statePlaceholder={i18n.t('financial.credit.placeholder.state')}
@@ -157,6 +161,7 @@ Credit.defaultProps = {
   HasCreditCounseling: '',
   List: [],
   ListBranch: '',
+  addressBooks: {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'credit',

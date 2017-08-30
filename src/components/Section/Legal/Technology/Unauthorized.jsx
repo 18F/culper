@@ -72,6 +72,7 @@ export default class Unauthorized extends SubsectionElement {
         <Show when={this.props.HasUnauthorized === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -93,7 +94,6 @@ export default class Unauthorized extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.incident')}
-                   help="legal.technology.unauthorized.help.incident"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Incident"
@@ -104,20 +104,21 @@ export default class Unauthorized extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
-                   help="legal.technology.unauthorized.help.location"
                    adjustFor="address"
                    scrollIntoView={this.props.scrollIntoView}>
               <Location name="Location"
                         className="legal-technology-unauthorized-location"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Incident"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
             </Field>
 
             <Field title={i18n.t('legal.technology.unauthorized.heading.action')}
-                   help="legal.technology.unauthorized.help.action"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Action"
@@ -143,8 +144,10 @@ Unauthorized.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/unauthorized',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalTechnologyUnauthorizedValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

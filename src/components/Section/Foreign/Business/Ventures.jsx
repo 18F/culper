@@ -72,6 +72,7 @@ export default class Ventures extends SubsectionElement {
         <Show when={this.props.HasForeignVentures === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -99,6 +100,9 @@ export default class Ventures extends SubsectionElement {
               <Location name="Address"
                         className="ventures-address"
                         layout={Location.ADDRESS}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="ForeignNational"
+                        dispatch={this.props.dispatch}
                         geocode={true}
                         bind={true}
                         required={this.props.required}
@@ -212,9 +216,11 @@ Ventures.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/ventures',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignBusinessVenturesValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

@@ -71,6 +71,10 @@ class Api {
       token = this.getQueryValue('token')
     }
 
+    if (env.IsTest()) {
+      token = window.token
+    }
+
     return token
   }
 
@@ -109,6 +113,10 @@ class Api {
 
   login (username, password) {
     return this.proxy.post(env.EndpointBasicAuthentication(), { username: username, password: password })
+  }
+
+  refresh () {
+    return this.proxy.post(env.EndpointRefresh(), {}, { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
   }
 
   save (payload) {

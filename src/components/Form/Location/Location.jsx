@@ -1,4 +1,6 @@
 import React from 'react'
+import { updateApplication } from '../../../actions/ApplicationActions'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -8,7 +10,6 @@ import ZipCode from '../ZipCode'
 import Spinner, { SpinnerAction } from '../Spinner'
 import Suggestions from '../Suggestions'
 import Address from './Address'
-import { i18n } from '../../../config'
 import ToggleableLocation from './ToggleableLocation'
 import { LocationValidator } from '../../../validators'
 import { AddressSuggestion } from './AddressSuggestion'
@@ -46,6 +47,7 @@ export default class Location extends ValidationElement {
     this.geocodeCancel = false
 
     this.state = {
+      uid: `${this.props.name}-${super.guid()}`,
       geocodeResult: props.geocodeResult,
       spinner: this.props.spinner,
       spinnerState: SpinnerAction.ACTION_SPIN,
@@ -54,20 +56,107 @@ export default class Location extends ValidationElement {
   }
 
   update (queue) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        street: this.props.street,
-        street2: this.props.street2,
-        city: this.props.city,
-        zipcode: this.props.zipcode,
-        state: this.props.state,
-        county: this.props.county,
-        country: this.props.country,
-        layout: this.props.layout,
-        validated: this.props.validated,
-        ...queue
-      })
+    const values = {
+      uid: this.state.uid,
+      street: this.props.street,
+      street2: this.props.street2,
+      city: this.props.city,
+      zipcode: this.props.zipcode,
+      state: this.props.state,
+      county: this.props.county,
+      country: this.props.country,
+      layout: this.props.layout,
+      validated: this.props.validated,
+      ...queue
     }
+
+    // Send the update back upstream
+    this.props.onUpdate(values)
+
+    // If there is an associated address book then push the updates there
+    if (this.props.addressBook) {
+      const updatedBook = this.appendToAddressBook(this.props.addressBooks, this.props.addressBook, values)
+      this.props.dispatch(updateApplication('AddressBooks', this.props.addressBook, updatedBook))
+    }
+  }
+
+  appendToAddressBook (books, name, address) {
+    let book = books[name] || []
+
+    // If this is a full address and domestic then it must be validate
+    if (address.layout === Layouts.US_ADDRESS && address.country === 'United States' && !address.validated) {
+      return book
+    }
+
+    // Make sure there are **some values** at least
+    switch (address.country) {
+      case 'United States':
+      case 'POSTOFFICE':
+        if (!address.street || !address.city || !address.state || !address.zipcode) {
+          return book
+        }
+        break
+
+      default:
+        if (!address.street || !address.city | !address.country) {
+          return book
+        }
+        break
+    }
+
+    // Look to see if we can just update it first.
+    let updated = false
+    for (let i = 0; i < book.length; i++) {
+      // If this address matches the same location let us just update it.
+      if (book[i].uid === address.uid) {
+        updated = true
+        book[i] = address
+      }
+    }
+
+    // If this address matches something that pre-exists somewhere else no need
+    // to append to the address book.
+    let skip = true
+    book = book.filter(a => {
+      switch (address.country) {
+        case 'United States':
+        case 'POSTOFFICE':
+          if (a.street.toLowerCase() === address.street.toLowerCase() &&
+              a.city.toLowerCase() === address.city.toLowerCase() &&
+              a.state.toLowerCase() === address.state.toLowerCase() &&
+              a.zipcode.toLowerCase() === address.zipcode.toLowerCase()) {
+            updated = true
+            if (skip) {
+              skip = false
+              return true
+            }
+            return false
+          }
+          break
+
+        default:
+          if (a.street.toLowerCase() === address.street.toLowerCase() &&
+              a.city.toLowerCase() === address.city.toLowerCase() &&
+              a.country.toLowerCase() === address.country.toLowerCase()) {
+            updated = true
+            if (skip) {
+              skip = false
+              return true
+            }
+            return false
+          }
+          break
+      }
+
+      return true
+    })
+
+    // If not updated the append to the list.
+    if (!updated) {
+      book.push(address)
+    }
+
+    return book
   }
 
   animateCloseWithSuggestions () {
@@ -269,17 +358,17 @@ export default class Location extends ValidationElement {
           )
         case 'street2':
           return (
-            <Street name="street2"
-                    className="street2"
-                    label={this.props.street2Label}
-                    optional={true}
-                    value={this.props.street2}
-                    onChange={this.updateStreet2}
-                    onError={this.handleError}
-                    onFocus={this.props.onFocus}
-                    onBlur={this.props.onBlur}
-                    required={this.props.required}
-                    />
+          <Street name="street2"
+                  className="street2"
+                  label={this.props.street2Label}
+                  optional={true}
+                  value={this.props.street2}
+                  onChange={this.updateStreet2}
+                  onError={this.handleError}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  required={this.props.required}
+                  />
           )
         case 'city':
           return (
@@ -593,6 +682,7 @@ Location.US_ADDRESS = Layouts.US_ADDRESS
 Location.STREET_CITY = Layouts.STREET_CITY
 
 Location.defaultProps = {
+  name: 'location',
   layout: Layouts.ADDRESS,
   validated: false,
   geocode: false,
@@ -613,6 +703,10 @@ Location.defaultProps = {
   countryLabel: i18n.t('address.international.country.label'),
   countryPlaceholder: i18n.t('address.international.country.placeholder'),
   required: false,
+  addressBooks: {},
+  addressBook: '',
+  onUpdate: (queue) => {},
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }
 

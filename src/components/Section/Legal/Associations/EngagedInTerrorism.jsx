@@ -70,6 +70,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
         <Show when={this.props.HasEngaged === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -80,7 +81,6 @@ export default class EngagedInTerrorism extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.engaged.heading.reasons')}
-                   help="legal.associations.engaged.help.reasons"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
@@ -120,5 +120,6 @@ EngagedInTerrorism.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalAssociationsEngagedValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

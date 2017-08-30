@@ -80,6 +80,7 @@ export default class Offenses extends SubsectionElement {
           <div>
             <Accordion items={this.props.List}
                        defaultState={this.props.defaultState}
+                       scrollToBottom={this.props.scrollToBottom}
                        branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.handleError}
@@ -91,6 +92,8 @@ export default class Offenses extends SubsectionElement {
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}>
               <Offense name="Item"
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
                        bind={true}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
@@ -108,9 +111,11 @@ Offenses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/offenses',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new PoliceOffensesValidator(props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

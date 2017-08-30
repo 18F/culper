@@ -70,6 +70,7 @@ export default class Debarred extends SubsectionElement {
         <Show when={this.props.HasDebarment === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -80,7 +81,6 @@ export default class Debarred extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.investigations.debarred.heading.agency')}
-                   help="legal.investigations.debarred.help.agency"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Agency"
@@ -131,5 +131,6 @@ Debarred.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalInvestigationsDebarredValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

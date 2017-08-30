@@ -95,6 +95,7 @@ export default class OrderedCounselings extends SubsectionElement {
         <Show when={this.props.HasBeenOrdered === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -104,7 +105,12 @@ export default class OrderedCounselings extends SubsectionElement {
                      appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <OrderedCounseling name="OrderedCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+        <OrderedCounseling name="OrderedCounseling"
+                           bind={true}
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -118,8 +124,10 @@ OrderedCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/ordered',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new AlcoholOrderedCounselingsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

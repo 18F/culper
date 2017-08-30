@@ -348,6 +348,9 @@ export default class CivilUnion extends ValidationElement {
                       {...this.props.Address}
                       layout={Location.ADDRESS}
                       geocode={true}
+                      addressBooks={this.props.addressBooks}
+                      addressBook="Relative"
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -461,6 +464,8 @@ CivilUnion.defaultProps = {
   AddressSeparatedNotApplicable: {},
   Divorced: '',
   UseCurrentAddress: false,
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true

@@ -123,6 +123,8 @@ export default class Marital extends SubsectionElement {
         <Show when={['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)}>
           <CivilUnion name="civilUnion"
                       {...this.props.CivilUnion}
+                      addressBooks={this.props.addressBooks}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateCivilUnion}
                       onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
@@ -136,6 +138,7 @@ export default class Marital extends SubsectionElement {
           <span id="scrollToDivorce"></span>
           <Accordion scrollTo="scrollToDivorce"
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      items={this.props.DivorcedList}
                      branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
@@ -167,9 +170,11 @@ Marital.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/marital',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new MaritalValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

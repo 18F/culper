@@ -82,6 +82,7 @@ export default class Card extends SubsectionElement {
         <Show when={this.state.HasCardAbuse === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -110,6 +111,9 @@ export default class Card extends SubsectionElement {
                         layout={Location.ADDRESS}
                         geocode={true}
                         bind={true}
+                        dispatch={this.props.dispatch}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Agency"
                         required={this.props.required}
                         />
             </Field>

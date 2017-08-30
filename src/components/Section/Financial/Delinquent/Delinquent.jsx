@@ -99,6 +99,7 @@ export default class Delinquent extends SubsectionElement {
           <Accordion items={this.state.List}
                      branch={this.state.ListBranch}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -232,6 +233,9 @@ export default class Delinquent extends SubsectionElement {
                         geocode={true}
                         className="delinquent-courtaddress"
                         bind={true}
+                        dispatch={this.props.dispatch}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Court"
                         required={this.props.required}
                         />
             </Field>

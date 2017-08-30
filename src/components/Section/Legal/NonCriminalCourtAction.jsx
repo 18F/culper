@@ -67,7 +67,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.courtName')}
-          help={'legal.nonCriminalAction.help.courtName'}
           scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 className="court-name"
@@ -87,6 +86,9 @@ export default class NonCriminalCourtAction extends ValidationElement {
                     {...this.props.CourtAddress}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Court"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -94,7 +96,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.natureOfAction')}
-          help={'legal.nonCriminalAction.help.natureOfAction'}
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="NatureOfAction"
                     className="nature-of-action"
@@ -106,7 +107,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.resultsOfAction')}
-          help={'legal.nonCriminalAction.help.resultsOfAction'}
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="ResultsOfAction"
                     className="results-of-action"
@@ -118,7 +118,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.principalPartyNames')}
-          help={'legal.nonCriminalAction.help.principalPartyNames'}
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="PrincipalPartyNames"
                     className="principal-party-names"
@@ -134,6 +133,8 @@ export default class NonCriminalCourtAction extends ValidationElement {
 }
 
 NonCriminalCourtAction.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

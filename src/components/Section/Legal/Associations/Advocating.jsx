@@ -70,6 +70,7 @@ export default class Advocating extends SubsectionElement {
         <Show when={this.props.HasAdvocated === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -80,7 +81,6 @@ export default class Advocating extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.advocating.heading.reasons')}
-                   help="legal.associations.advocating.help.reasons"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
@@ -120,5 +120,6 @@ Advocating.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalAssociationsAdvocatingValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

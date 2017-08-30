@@ -228,6 +228,7 @@ export default class Dropdown extends ValidationElement {
 
   onSuggestionSelected (event) {
     this.setState({ focus: false }, () => {
+      this.handleValidation(event)
       this.props.tabNext()
     })
   }

@@ -258,6 +258,9 @@ export default class Offense extends ValidationElement {
                     label={i18n.t('legal.police.label.address')}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Incident"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -306,6 +309,9 @@ export default class Offense extends ValidationElement {
                         label={i18n.t('legal.police.label.address')}
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Agency"
+                        dispatch={this.props.dispatch}
                         onUpdate={this.updateAgencyAddress}
                         onError={this.props.onError}
                         required={this.props.required}
@@ -371,6 +377,9 @@ export default class Offense extends ValidationElement {
                         className="offense-courtaddress"
                         geocode={true}
                         layout={Location.ADDRESS}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Court"
+                        dispatch={this.props.dispatch}
                         onUpdate={this.updateCourtAddress}
                         onError={this.props.onError}
                         required={this.props.required}
@@ -525,6 +534,8 @@ Offense.defaultProps = {
   Sentence: {},
   AwaitingTrial: '',
   AwaitingTrialExplanation: {},
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

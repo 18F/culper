@@ -70,6 +70,7 @@ export default class MembershipViolence extends SubsectionElement {
         <Show when={this.props.HasViolence === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -80,7 +81,6 @@ export default class MembershipViolence extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.violence.heading.organization')}
-                   help="legal.associations.violence.help.organization"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Organization"
@@ -98,6 +98,9 @@ export default class MembershipViolence extends SubsectionElement {
                         className="legal-associations-violence-address"
                         layout={Location.ADDRESS}
                         geocode={true}
+                        addressBooks={this.props.addressBooks}
+                        addressBook="Organization"
+                        dispatch={this.props.dispatch}
                         bind={true}
                         required={this.props.required}
                         />
@@ -115,7 +118,6 @@ export default class MembershipViolence extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.violence.heading.positions')}
-                   help="legal.associations.violence.help.positions"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="PositionsNotApplicable"
@@ -132,7 +134,6 @@ export default class MembershipViolence extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.violence.heading.contributions')}
-                   help="legal.associations.violence.help.contributions"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="ContributionsNotApplicable"
@@ -149,7 +150,6 @@ export default class MembershipViolence extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.violence.heading.reasons')}
-                   help="legal.associations.violence.help.reasons"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
@@ -175,8 +175,10 @@ MembershipViolence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/membership-violence-or-force',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalAssociationsViolenceValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

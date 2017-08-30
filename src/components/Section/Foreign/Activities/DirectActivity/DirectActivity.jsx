@@ -79,6 +79,7 @@ export default class DirectActivity extends SubsectionElement {
         <Show when={this.props.HasInterests === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -89,6 +90,8 @@ export default class DirectActivity extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <DirectInterest name="DirectInterest"
+                            addressBooks={this.props.addressBooks}
+                            dispatch={this.props.dispatch}
                             bind={true}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}
@@ -110,7 +113,8 @@ DirectActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/direct',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new ForeignDirectActivityValidator(state, props).isValid()
   }

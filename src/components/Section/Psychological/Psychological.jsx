@@ -52,9 +52,12 @@ class Psychological extends SectionElement {
             <Competence name="Competence"
                         {...this.props.Competence}
                         ApplicantBirthDate={this.props.ApplicantBirthDate}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
-                        onUpdate={this.handleUpdate.bind(this, 'Competence')} />
+                        onUpdate={this.handleUpdate.bind(this, 'Competence')}
+                        scrollToBottom={this.props.scrollToBottom}
+                      />
           </SectionView>
 
           <SectionView name="consultations"
@@ -65,9 +68,12 @@ class Psychological extends SectionElement {
             <Consultation name="Consultations"
                           {...this.props.Consultations}
                           ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+                          onUpdate={this.handleUpdate.bind(this, 'Consultation')}
+                          scrollToBottom={this.props.scrollToBottom}
+                        />
           </SectionView>
           <SectionView name="hospitalizations"
                        back="psychological/consultations"
@@ -79,7 +85,9 @@ class Psychological extends SectionElement {
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')}
+                              scrollToBottom={this.props.scrollToBottom}
+                            />
           </SectionView>
           <SectionView name="diagnoses"
                        back="psychological/hospitalizations"
@@ -89,9 +97,11 @@ class Psychological extends SectionElement {
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
                        ApplicantBirthDate={this.props.ApplicantBirthDate}
+                       addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
+                       scrollToBottom={this.props.scrollToBottom}
                        />
           </SectionView>
           <SectionView name="conditions"
@@ -105,6 +115,7 @@ class Psychological extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
           <SectionView name="review"
@@ -182,10 +193,12 @@ class Psychological extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let psychological = app.Psychological || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const psychological = app.Psychological || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Psychological: psychological,
     Competence: psychological.Competence,
@@ -196,13 +209,15 @@ function mapStateToProps (state) {
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
     ShowExistingConditions: showQuestion21E(psychological),
-    ApplicantBirthDate: extractApplicantBirthDate(app)
+    ApplicantBirthDate: extractApplicantBirthDate(app),
+    AddressBooks: addressBooks
   }
 }
 
 Psychological.defaultProps = {
   section: 'psychological',
-  store: 'Psychological'
+  store: 'Psychological',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Psychological))

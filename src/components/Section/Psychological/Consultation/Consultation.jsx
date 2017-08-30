@@ -70,6 +70,7 @@ export default class Consultation extends SubsectionElement {
         <Show when={this.props.Consulted === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -82,6 +83,8 @@ export default class Consultation extends SubsectionElement {
             <Order name="Consultation"
                    prefix="consultation"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   addressBooks={this.props.addressBooks}
+                   dispatch={this.props.dispatch}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}
                    bind={true} />
@@ -101,8 +104,10 @@ Consultation.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'psychological',
   subsection: 'consultations',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new ConsultationValidator(props, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

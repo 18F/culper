@@ -72,6 +72,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
         <Show when={this.props.SoughtTreatment === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -81,7 +82,12 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <VoluntaryCounseling name="VoluntaryCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+        <VoluntaryCounseling name="VoluntaryCounseling"
+                             bind={true}
+                             addressBooks={this.props.addressBooks}
+                             dispatch={this.props.dispatch}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -95,8 +101,10 @@ VoluntaryCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/voluntary',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new AlcoholVoluntaryCounselingsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

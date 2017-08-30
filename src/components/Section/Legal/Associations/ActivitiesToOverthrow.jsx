@@ -70,6 +70,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
         <Show when={this.props.HasActivities === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
@@ -80,7 +81,6 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.activities.heading.reasons')}
-                   help="legal.associations.activities.help.reasons"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"
@@ -120,5 +120,6 @@ ActivitiesToOverthrow.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new LegalAssociationsActivitiesValidator(state, props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

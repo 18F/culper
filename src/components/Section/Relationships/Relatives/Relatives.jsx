@@ -56,6 +56,7 @@ export default class Relatives extends SubsectionElement {
 
         <Accordion items={this.props.List}
                    defaultState={this.props.defaultState}
+                   scrollToBottom={this.props.scrollToBottom}
                    branch={this.props.ListBranch}
                    onUpdate={this.updateList}
                    onError={this.handleError}
@@ -66,6 +67,8 @@ export default class Relatives extends SubsectionElement {
                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative name="Item"
+                    addressBooks={this.props.addressBooks}
+                    dispatch={this.props.dispatch}
                     bind={true}
                     scrollIntoView={this.props.scrollIntoView}
                     required={this.props.required}
@@ -83,9 +86,11 @@ Relatives.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'relatives',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new RelativesValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }
