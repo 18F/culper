@@ -35,8 +35,8 @@ import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
 import CitizenshipValidator from './citizenship'
-import CitizenshipMultipleValidator from './citizenship-multiple'
-import CitizenshipPassportsValidator from './citizenship-passports'
+import CitizenshipMultipleValidator, { CitizenshipItemValidator } from './citizenship-multiple'
+import CitizenshipPassportsValidator, { TravelItemValidator } from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
@@ -128,7 +128,9 @@ export {
   HospitalizationValidator,
   CitizenshipValidator,
   CitizenshipMultipleValidator,
+  CitizenshipItemValidator,
   CitizenshipPassportsValidator,
+  TravelItemValidator,
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,
