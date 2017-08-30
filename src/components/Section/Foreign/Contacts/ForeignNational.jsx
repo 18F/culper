@@ -676,7 +676,9 @@ export default class ForeignNational extends ValidationElement {
 
 ForeignNational.defaultProps = {
   Name: {},
-  NameNotApplicable: {},
+  NameNotApplicable: {
+    applicable: true
+  },
   NameExplanation: {},
   FirstContact: {},
   LastContact: {},
