@@ -40,7 +40,7 @@ export default class DirectActivity extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DirectInterest || {}
+    const o = (item || {}).Item || {}
     const who = (o.InterestTypes || []).join(', ')
     const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''

@@ -43,6 +43,7 @@ import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncon
 import ForeignDirectActivityValidator from './foreigndirectactivity'
 import ForeignDirectInterestValidator from './foreigndirectinterest'
 import ForeignIndirectActivityValidator from './foreignindirectactivity'
+import ForeignIndirectInterestValidator from './foreignindirectinterest'
 import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
 import ForeignBenefitActivityValidator from './foreignbenefitactivity'
 import ForeignActivitiesSupportValidator from './foreignsupport'
@@ -135,6 +136,7 @@ export {
   ForeignDirectActivityValidator,
   ForeignDirectInterestValidator,
   ForeignIndirectActivityValidator,
+  ForeignIndirectInterestValidator,
   ForeignRealEstateActivityValidator,
   ForeignBenefitActivityValidator,
   ForeignActivitiesSupportValidator,
