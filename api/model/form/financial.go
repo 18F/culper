@@ -6,33 +6,55 @@ import (
 	"github.com/18F/e-QIP-prototype/api/model"
 
 	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 type FinancialBankruptcy struct {
-	ID            int
-	HasBankruptcy Payload
-	List          Payload
+	PayloadHasBankruptcy Payload `json:"HasBankruptcy" sql:"-"`
+	PayloadList          Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasBankruptcy *Branch     `json:"-"`
+	List          *Collection `json:"-"`
+
+	// Persister specific fields
+	ID              int
+	AccountID       int64
+	HasBankruptcyID int
+	ListID          int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *FinancialBankruptcy) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasBankruptcy, err := entity.PayloadHasBankruptcy.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasBankruptcy = hasBankruptcy.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialBankruptcy) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasBankruptcy.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasBankruptcy.Valid(); !ok {
 		stack.Append("Bankruptcy", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
+	if entity.HasBankruptcy.Value == "Yes" {
 		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("Bankruptcy", err)
 		}
@@ -43,7 +65,36 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *FinancialBankruptcy) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasBankruptcyID, err := entity.HasBankruptcy.Save(context, account)
+	if err != nil {
+		return hasBankruptcyID, err
+	}
+	entity.HasBankruptcyID = hasBankruptcyID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&FinancialBankruptcy{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -57,35 +108,52 @@ func (entity *FinancialBankruptcy) Get(context *pg.DB, account int64) (int, erro
 }
 
 type FinancialGambling struct {
-	HasGamblingDebt Payload
-	List            Payload
+	PayloadHasGamblingDebt Payload `json:"HasGamblingDebt" sql:"-"`
+	PayloadList            Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasGamblingDebt *Branch     `json:"-"`
+	List            *Collection `json:"-"`
+
+	// Persister specific fields
+	ID                int
+	AccountID         int64
+	HasGamblingDebtID int
+	ListID            int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *FinancialGambling) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasGamblingDebt, err := entity.PayloadHasGamblingDebt.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasGamblingDebt = hasGamblingDebt.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialGambling) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasGamblingDebt.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasGamblingDebt.Valid(); !ok {
 		stack.Append("Gambling", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasGamblingDebt.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("Gambling", err)
 		}
 	}
@@ -95,7 +163,36 @@ func (entity *FinancialGambling) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *FinancialGambling) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasGamblingDebtID, err := entity.HasGamblingDebt.Save(context, account)
+	if err != nil {
+		return hasGamblingDebtID, err
+	}
+	entity.HasGamblingDebtID = hasGamblingDebtID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&FinancialGambling{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -109,35 +206,52 @@ func (entity *FinancialGambling) Get(context *pg.DB, account int64) (int, error)
 }
 
 type FinancialTaxes struct {
-	HasTaxes Payload
-	List     Payload
+	PayloadHasTaxes Payload `json:"HasTaxes" sql:"-"`
+	PayloadList     Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasTaxes *Branch     `json:"-"`
+	List     *Collection `json:"-"`
+
+	// Persister specific fields
+	ID         int
+	AccountID  int64
+	HasTaxesID int
+	ListID     int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *FinancialTaxes) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasTaxes, err := entity.PayloadHasTaxes.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasTaxes = hasTaxes.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialTaxes) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasTaxes.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasTaxes.Valid(); !ok {
 		stack.Append("Taxes", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasTaxes.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("Taxes", err)
 		}
 	}
@@ -147,7 +261,36 @@ func (entity *FinancialTaxes) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *FinancialTaxes) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasTaxesID, err := entity.HasTaxes.Save(context, account)
+	if err != nil {
+		return hasTaxesID, err
+	}
+	entity.HasTaxesID = hasTaxesID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&FinancialTaxes{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -161,35 +304,52 @@ func (entity *FinancialTaxes) Get(context *pg.DB, account int64) (int, error) {
 }
 
 type FinancialCard struct {
-	HasCardAbuse Payload
-	List         Payload
+	PayloadHasCardAbuse Payload `json:"HasCardAbuse" sql:"-"`
+	PayloadList         Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasCardAbuse *Branch     `json:"-"`
+	List         *Collection `json:"-"`
+
+	// Persister specific fields
+	ID             int
+	AccountID      int64
+	HasCardAbuseID int
+	ListID         int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *FinancialCard) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasCardAbuse, err := entity.PayloadHasCardAbuse.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasCardAbuse = hasCardAbuse.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialCard) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasCardAbuse.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasCardAbuse.Valid(); !ok {
 		stack.Append("CardAbuse", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasCardAbuse.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("CardAbuse", err)
 		}
 	}
@@ -199,7 +359,36 @@ func (entity *FinancialCard) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *FinancialCard) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasCardAbuseID, err := entity.HasCardAbuse.Save(context, account)
+	if err != nil {
+		return hasCardAbuseID, err
+	}
+	entity.HasCardAbuseID = hasCardAbuseID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&FinancialCard{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -213,35 +402,52 @@ func (entity *FinancialCard) Get(context *pg.DB, account int64) (int, error) {
 }
 
 type FinancialCredit struct {
-	HasCreditCounseling Payload
-	List                Payload
+	PayloadHasCreditCounseling Payload `json:"HasCreditCounseling" sql:"-"`
+	PayloadList                Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasCreditCounseling *Branch     `json:"-"`
+	List                *Collection `json:"-"`
+
+	// Persister specific fields
+	ID                    int
+	AccountID             int64
+	HasCreditCounselingID int
+	ListID                int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *FinancialCredit) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasCreditCounseling, err := entity.PayloadHasCreditCounseling.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasCreditCounseling = hasCreditCounseling.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialCredit) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasCreditCounseling.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasCreditCounseling.Valid(); !ok {
 		stack.Append("CreditCounseling", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasCreditCounseling.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("CreditCounseling", err)
 		}
 	}
@@ -251,7 +457,36 @@ func (entity *FinancialCredit) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *FinancialCredit) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasCreditCounselingID, err := entity.HasCreditCounseling.Save(context, account)
+	if err != nil {
+		return hasCreditCounselingID, err
+	}
+	entity.HasCreditCounselingID = hasCreditCounselingID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&FinancialCredit{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -265,35 +500,52 @@ func (entity *FinancialCredit) Get(context *pg.DB, account int64) (int, error) {
 }
 
 type FinancialDelinquent struct {
-	HasDelinquent Payload
-	List          Payload
+	PayloadHasDelinquent Payload `json:"HasDelinquent" sql:"-"`
+	PayloadList          Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasDelinquent *Branch     `json:"-"`
+	List          *Collection `json:"-"`
+
+	// Persister specific fields
+	ID              int
+	AccountID       int64
+	HasDelinquentID int
+	ListID          int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *FinancialDelinquent) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasDelinquent, err := entity.PayloadHasDelinquent.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasDelinquent = hasDelinquent.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialDelinquent) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasDelinquent.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasDelinquent.Valid(); !ok {
 		stack.Append("Delinquent", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasDelinquent.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("Delinquent", err)
 		}
 	}
@@ -303,7 +555,36 @@ func (entity *FinancialDelinquent) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *FinancialDelinquent) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasDelinquentID, err := entity.HasDelinquent.Save(context, account)
+	if err != nil {
+		return hasDelinquentID, err
+	}
+	entity.HasDelinquentID = hasDelinquentID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&FinancialDelinquent{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -317,35 +598,52 @@ func (entity *FinancialDelinquent) Get(context *pg.DB, account int64) (int, erro
 }
 
 type FinancialNonpayment struct {
-	HasNonpayment Payload
-	List          Payload
+	PayloadHasNonpayment Payload `json:"HasNonpayment" sql:"-"`
+	PayloadList          Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasNonpayment *Branch     `json:"-"`
+	List          *Collection `json:"-"`
+
+	// Persister specific fields
+	ID              int
+	AccountID       int64
+	HasNonpaymentID int
+	ListID          int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *FinancialNonpayment) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasNonpayment, err := entity.PayloadHasNonpayment.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasNonpayment = hasNonpayment.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialNonpayment) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasNonpayment.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasNonpayment.Valid(); !ok {
 		stack.Append("Nonpayment", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasNonpayment.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("Nonpayment", err)
 		}
 	}
@@ -355,7 +653,36 @@ func (entity *FinancialNonpayment) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *FinancialNonpayment) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasNonpaymentID, err := entity.HasNonpayment.Save(context, account)
+	if err != nil {
+		return hasNonpaymentID, err
+	}
+	entity.HasNonpaymentID = hasNonpaymentID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&FinancialNonpayment{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.

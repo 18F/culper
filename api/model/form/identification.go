@@ -11,7 +11,7 @@ import (
 
 // IdentificationName subsection of identification section.
 type IdentificationName struct {
-	Payload Payload `json:"name" sql:"-"`
+	PayloadName Payload `json:"Name" sql:"-"`
 
 	// Validator specific fields
 	Name *Name
@@ -29,7 +29,7 @@ func (entity *IdentificationName) Unmarshal(raw []byte) error {
 		return err
 	}
 
-	name, err := entity.Payload.Entity()
+	name, err := entity.PayloadName.Entity()
 	if err != nil {
 		return err
 	}

@@ -6,30 +6,56 @@ import (
 	"github.com/18F/e-QIP-prototype/api/model"
 
 	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 type RelationshipsMarital struct {
-	ID           int
-	Status       Payload
-	CivilUnion   PayloadProperties
-	DivorcedList Payload
+	PayloadStatus       Payload           `json:"Status" sql:"-"`
+	PayloadCivilUnion   PayloadProperties `json:"CivilUnion" sql:"-"`
+	PayloadDivorcedList Payload           `json:"DivorcedList" sql:"-"`
+
+	// Validator specific fields
+	Status       *Radio            `json:"-"`
+	CivilUnion   PayloadProperties // TODO: Look at breaking this down
+	DivorcedList *Collection       `json:"-"`
+
+	// Persister specific fields
+	ID             int
+	AccountID      int64
+	StatusID       int
+	CivilUnionID   int
+	DivorcedListID int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *RelationshipsMarital) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	status, err := entity.PayloadStatus.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Status = status.(*Radio)
+
+	// CivilUnion   PayloadProperties // TODO: Look at breaking this down
+
+	divorcedList, err := entity.PayloadDivorcedList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.DivorcedList = divorcedList.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *RelationshipsMarital) Valid() (bool, error) {
-	status, err := entity.Status.Entity()
-	if err != nil {
-		return false, err
-	}
-
 	var stack model.ErrorStack
 
-	sv := status.(*Radio).Value
+	sv := entity.Status.Value
 	switch {
 	case sv == "InCivilUnion" || sv == "Separated":
 		// Check if the civil union information is valid
@@ -73,7 +99,42 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *RelationshipsMarital) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	statusID, err := entity.Status.Save(context, account)
+	if err != nil {
+		return statusID, err
+	}
+	entity.StatusID = statusID
+
+	civilUnionID, err := entity.CivilUnion.Save(context, account)
+	if err != nil {
+		return civilUnionID, err
+	}
+	entity.CivilUnionID = civilUnionID
+
+	divorcedListID, err := entity.DivorcedList.Save(context, account)
+	if err != nil {
+		return divorcedListID, err
+	}
+	entity.DivorcedListID = divorcedListID
+
+	err = context.CreateTable(&RelationshipsMarital{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -87,23 +148,45 @@ func (entity *RelationshipsMarital) Get(context *pg.DB, account int64) (int, err
 }
 
 type RelationshipsCohabitants struct {
-	HasCohabitant  Payload
-	CohabitantList Payload
+	PayloadHasCohabitant  Payload `json:"HasCohabitant" sql:"-"`
+	PayloadCohabitantList Payload `json:"CohabitantList" sql:"-"`
+
+	// Validator specific fields
+	HasCohabitant  *Branch     `json:"-"`
+	CohabitantList *Collection `json:"-"`
+
+	// Persister specific fields
+	ID               int
+	AccountID        int64
+	HasCohabitantID  int
+	CohabitantListID int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *RelationshipsCohabitants) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasCohabitant, err := entity.PayloadHasCohabitant.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasCohabitant = hasCohabitant.(*Branch)
+
+	cohabitantList, err := entity.PayloadCohabitantList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.CohabitantList = cohabitantList.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *RelationshipsCohabitants) Valid() (bool, error) {
-	b, err := entity.HasCohabitant.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if b.(*Branch).Value == "No" {
+	if entity.HasCohabitant.Value == "No" {
 		return true, nil
 	}
 
@@ -112,7 +195,36 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *RelationshipsCohabitants) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasCohabitantID, err := entity.HasCohabitant.Save(context, account)
+	if err != nil {
+		return hasCohabitantID, err
+	}
+	entity.HasCohabitantID = hasCohabitantID
+
+	cohabitantListID, err := entity.CohabitantList.Save(context, account)
+	if err != nil {
+		return cohabitantListID, err
+	}
+	entity.CohabitantListID = cohabitantListID
+
+	err = context.CreateTable(&RelationshipsCohabitants{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -126,12 +238,31 @@ func (entity *RelationshipsCohabitants) Get(context *pg.DB, account int64) (int,
 }
 
 type RelationshipsPeople struct {
-	List Payload
+	PayloadList Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	List *Collection `json:"-"`
+
+	// Persister specific fields
+	ID        int
+	AccountID int64
+	ListID    int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *RelationshipsPeople) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -141,7 +272,30 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *RelationshipsPeople) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&RelationshipsPeople{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -155,12 +309,31 @@ func (entity *RelationshipsPeople) Get(context *pg.DB, account int64) (int, erro
 }
 
 type RelationshipsRelatives struct {
-	List Payload
+	PayloadList Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	List *Collection `json:"-"`
+
+	// Persister specific fields
+	ID        int
+	AccountID int64
+	ListID    int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *RelationshipsRelatives) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -170,7 +343,30 @@ func (entity *RelationshipsRelatives) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *RelationshipsRelatives) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&RelationshipsRelatives{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.

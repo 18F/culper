@@ -6,39 +6,56 @@ import (
 	"github.com/18F/e-QIP-prototype/api/model"
 
 	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 type SubstanceDrugUsage struct {
-	ID        int
-	UsedDrugs Payload
-	List      Payload
+	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
+	PayloadList      Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	UsedDrugs *Branch     `json:"-"`
+	List      *Collection `json:"-"`
+
+	// Persister specific fields
+	ID          int
+	AccountID   int64
+	UsedDrugsID int
+	ListID      int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceDrugUsage) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	usedDrugs, err := entity.PayloadUsedDrugs.Entity()
+	if err != nil {
+		return err
+	}
+	entity.UsedDrugs = usedDrugs.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugUsage) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.UsedDrugs.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.UsedDrugs.Valid(); !ok {
 		stack.Append("DrugUsage", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.UsedDrugs.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugUsage", err)
 		}
 	}
@@ -48,7 +65,36 @@ func (entity *SubstanceDrugUsage) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceDrugUsage) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
+	if err != nil {
+		return usedDrugsID, err
+	}
+	entity.UsedDrugsID = usedDrugsID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceDrugUsage{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -62,35 +108,52 @@ func (entity *SubstanceDrugUsage) Get(context *pg.DB, account int64) (int, error
 }
 
 type SubstanceDrugPurchase struct {
-	Involved Payload
-	List     Payload
+	PayloadInvolved Payload `json:"Involved" sql:"-"`
+	PayloadList     Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	Involved *Branch     `json:"-"`
+	List     *Collection `json:"-"`
+
+	// Persister specific fields
+	ID         int
+	AccountID  int64
+	InvolvedID int
+	ListID     int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceDrugPurchase) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	involved, err := entity.PayloadInvolved.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Involved = involved.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.Involved.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.Involved.Valid(); !ok {
 		stack.Append("DrugPurchase", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.Involved.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugPurchase", err)
 		}
 	}
@@ -100,7 +163,36 @@ func (entity *SubstanceDrugPurchase) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceDrugPurchase) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	involvedID, err := entity.Involved.Save(context, account)
+	if err != nil {
+		return involvedID, err
+	}
+	entity.InvolvedID = involvedID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceDrugPurchase{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -114,35 +206,52 @@ func (entity *SubstanceDrugPurchase) Get(context *pg.DB, account int64) (int, er
 }
 
 type SubstanceDrugClearance struct {
-	UsedDrugs Payload
-	List      Payload
+	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
+	PayloadList      Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	UsedDrugs *Branch     `json:"-"`
+	List      *Collection `json:"-"`
+
+	// Persister specific fields
+	ID          int
+	AccountID   int64
+	UsedDrugsID int
+	ListID      int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceDrugClearance) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	usedDrugs, err := entity.PayloadUsedDrugs.Entity()
+	if err != nil {
+		return err
+	}
+	entity.UsedDrugs = usedDrugs.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugClearance) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.UsedDrugs.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.UsedDrugs.Valid(); !ok {
 		stack.Append("DrugClearance", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.UsedDrugs.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugClearance", err)
 		}
 	}
@@ -152,7 +261,36 @@ func (entity *SubstanceDrugClearance) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceDrugClearance) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
+	if err != nil {
+		return usedDrugsID, err
+	}
+	entity.UsedDrugsID = usedDrugsID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceDrugClearance{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -166,35 +304,52 @@ func (entity *SubstanceDrugClearance) Get(context *pg.DB, account int64) (int, e
 }
 
 type SubstanceDrugPublicSafety struct {
-	UsedDrugs Payload
-	List      Payload
+	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
+	PayloadList      Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	UsedDrugs *Branch     `json:"-"`
+	List      *Collection `json:"-"`
+
+	// Persister specific fields
+	ID          int
+	AccountID   int64
+	UsedDrugsID int
+	ListID      int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceDrugPublicSafety) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	usedDrugs, err := entity.PayloadUsedDrugs.Entity()
+	if err != nil {
+		return err
+	}
+	entity.UsedDrugs = usedDrugs.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.UsedDrugs.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.UsedDrugs.Valid(); !ok {
 		stack.Append("PublicSafety", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.UsedDrugs.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("PublicSafety", err)
 		}
 	}
@@ -204,7 +359,36 @@ func (entity *SubstanceDrugPublicSafety) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceDrugPublicSafety) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
+	if err != nil {
+		return usedDrugsID, err
+	}
+	entity.UsedDrugsID = usedDrugsID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceDrugPublicSafety{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -218,35 +402,52 @@ func (entity *SubstanceDrugPublicSafety) Get(context *pg.DB, account int64) (int
 }
 
 type SubstanceDrugMisuse struct {
-	UsedDrugs Payload
-	List      Payload
+	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
+	PayloadList      Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	UsedDrugs *Branch     `json:"-"`
+	List      *Collection `json:"-"`
+
+	// Persister specific fields
+	ID          int
+	AccountID   int64
+	UsedDrugsID int
+	ListID      int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceDrugMisuse) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	usedDrugs, err := entity.PayloadUsedDrugs.Entity()
+	if err != nil {
+		return err
+	}
+	entity.UsedDrugs = usedDrugs.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.UsedDrugs.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.UsedDrugs.Valid(); !ok {
 		stack.Append("DrugMisuse", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.UsedDrugs.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugMisuse", err)
 		}
 	}
@@ -256,7 +457,36 @@ func (entity *SubstanceDrugMisuse) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceDrugMisuse) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
+	if err != nil {
+		return usedDrugsID, err
+	}
+	entity.UsedDrugsID = usedDrugsID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceDrugMisuse{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -270,35 +500,52 @@ func (entity *SubstanceDrugMisuse) Get(context *pg.DB, account int64) (int, erro
 }
 
 type SubstanceDrugOrdered struct {
-	Involved Payload
-	List     Payload
+	PayloadInvolved Payload `json:"Involved" sql:"-"`
+	PayloadList     Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	Involved *Branch     `json:"-"`
+	List     *Collection `json:"-"`
+
+	// Persister specific fields
+	ID         int
+	AccountID  int64
+	InvolvedID int
+	ListID     int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceDrugOrdered) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	involved, err := entity.PayloadInvolved.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Involved = involved.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.Involved.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.Involved.Valid(); !ok {
 		stack.Append("DrugOrdered", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.Involved.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugOrdered", err)
 		}
 	}
@@ -308,7 +555,36 @@ func (entity *SubstanceDrugOrdered) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceDrugOrdered) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	involvedID, err := entity.Involved.Save(context, account)
+	if err != nil {
+		return involvedID, err
+	}
+	entity.InvolvedID = involvedID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceDrugOrdered{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -322,35 +598,52 @@ func (entity *SubstanceDrugOrdered) Get(context *pg.DB, account int64) (int, err
 }
 
 type SubstanceDrugVoluntary struct {
-	Involved Payload
-	List     Payload
+	PayloadInvolved Payload `json:"Involved" sql:"-"`
+	PayloadList     Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	Involved *Branch     `json:"-"`
+	List     *Collection `json:"-"`
+
+	// Persister specific fields
+	ID         int
+	AccountID  int64
+	InvolvedID int
+	ListID     int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceDrugVoluntary) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	involved, err := entity.PayloadInvolved.Entity()
+	if err != nil {
+		return err
+	}
+	entity.Involved = involved.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.Involved.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.Involved.Valid(); !ok {
 		stack.Append("DrugVoluntary", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.Involved.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("DrugVoluntary", err)
 		}
 	}
@@ -360,7 +653,36 @@ func (entity *SubstanceDrugVoluntary) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceDrugVoluntary) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	involvedID, err := entity.Involved.Save(context, account)
+	if err != nil {
+		return involvedID, err
+	}
+	entity.InvolvedID = involvedID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceDrugVoluntary{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -374,35 +696,52 @@ func (entity *SubstanceDrugVoluntary) Get(context *pg.DB, account int64) (int, e
 }
 
 type SubstanceAlcoholNegative struct {
-	HasImpacts Payload
-	List       Payload
+	PayloadHasImpacts Payload `json:"HasImpacts" sql:"-"`
+	PayloadList       Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasImpacts *Branch     `json:"-"`
+	List       *Collection `json:"-"`
+
+	// Persister specific fields
+	ID           int
+	AccountID    int64
+	HasImpactsID int
+	ListID       int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceAlcoholNegative) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasImpacts, err := entity.PayloadHasImpacts.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasImpacts = hasImpacts.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasImpacts.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasImpacts.Valid(); !ok {
 		stack.Append("AlcoholNegative", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasImpacts.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("AlcoholNegative", err)
 		}
 	}
@@ -412,7 +751,36 @@ func (entity *SubstanceAlcoholNegative) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceAlcoholNegative) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasImpactsID, err := entity.HasImpacts.Save(context, account)
+	if err != nil {
+		return hasImpactsID, err
+	}
+	entity.HasImpactsID = hasImpactsID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceAlcoholNegative{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -426,35 +794,52 @@ func (entity *SubstanceAlcoholNegative) Get(context *pg.DB, account int64) (int,
 }
 
 type SubstanceAlcoholOrdered struct {
-	HasBeenOrdered Payload
-	List           Payload
+	PayloadHasBeenOrdered Payload `json:"HasBeenOrdered" sql:"-"`
+	PayloadList           Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	HasBeenOrdered *Branch     `json:"-"`
+	List           *Collection `json:"-"`
+
+	// Persister specific fields
+	ID               int
+	AccountID        int64
+	HasBeenOrderedID int
+	ListID           int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceAlcoholOrdered) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	hasBeenOrdered, err := entity.PayloadHasBeenOrdered.Entity()
+	if err != nil {
+		return err
+	}
+	entity.HasBeenOrdered = hasBeenOrdered.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.HasBeenOrdered.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.HasBeenOrdered.Valid(); !ok {
 		stack.Append("AlcoholOrdered", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.HasBeenOrdered.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("AlcoholOrdered", err)
 		}
 	}
@@ -464,7 +849,36 @@ func (entity *SubstanceAlcoholOrdered) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceAlcoholOrdered) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	hasBeenOrderedID, err := entity.HasBeenOrdered.Save(context, account)
+	if err != nil {
+		return hasBeenOrderedID, err
+	}
+	entity.HasBeenOrderedID = hasBeenOrderedID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceAlcoholOrdered{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -478,35 +892,52 @@ func (entity *SubstanceAlcoholOrdered) Get(context *pg.DB, account int64) (int, 
 }
 
 type SubstanceAlcoholVoluntary struct {
-	SoughtTreatment Payload
-	List            Payload
+	PayloadSoughtTreatment Payload `json:"SoughtTreatment" sql:"-"`
+	PayloadList            Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	SoughtTreatment *Branch     `json:"-"`
+	List            *Collection `json:"-"`
+
+	// Persister specific fields
+	ID                int
+	AccountID         int64
+	SoughtTreatmentID int
+	ListID            int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceAlcoholVoluntary) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	soughtTreatment, err := entity.PayloadSoughtTreatment.Entity()
+	if err != nil {
+		return err
+	}
+	entity.SoughtTreatment = soughtTreatment.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.SoughtTreatment.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.SoughtTreatment.Valid(); !ok {
 		stack.Append("AlcoholVoluntary", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.SoughtTreatment.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("AlcoholVoluntary", err)
 		}
 	}
@@ -516,7 +947,36 @@ func (entity *SubstanceAlcoholVoluntary) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceAlcoholVoluntary) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	soughtTreatmentID, err := entity.SoughtTreatment.Save(context, account)
+	if err != nil {
+		return soughtTreatmentID, err
+	}
+	entity.SoughtTreatmentID = soughtTreatmentID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceAlcoholVoluntary{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
@@ -530,35 +990,52 @@ func (entity *SubstanceAlcoholVoluntary) Get(context *pg.DB, account int64) (int
 }
 
 type SubstanceAlcoholAdditional struct {
-	ReceivedTreatment Payload
-	List              Payload
+	PayloadReceivedTreatment Payload `json:"ReceivedTreatment" sql:"-"`
+	PayloadList              Payload `json:"List" sql:"-"`
+
+	// Validator specific fields
+	ReceivedTreatment *Branch     `json:"-"`
+	List              *Collection `json:"-"`
+
+	// Persister specific fields
+	ID                  int
+	AccountID           int64
+	ReceivedTreatmentID int
+	ListID              int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *SubstanceAlcoholAdditional) Unmarshal(raw []byte) error {
-	return json.Unmarshal(raw, entity)
+	err := json.Unmarshal(raw, entity)
+	if err != nil {
+		return err
+	}
+
+	receivedTreatment, err := entity.PayloadReceivedTreatment.Entity()
+	if err != nil {
+		return err
+	}
+	entity.ReceivedTreatment = receivedTreatment.(*Branch)
+
+	list, err := entity.PayloadList.Entity()
+	if err != nil {
+		return err
+	}
+	entity.List = list.(*Collection)
+
+	return err
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	b, err := entity.ReceivedTreatment.Entity()
-	if err != nil {
-		return false, err
-	}
-
-	if ok, err := b.Valid(); !ok {
+	if ok, err := entity.ReceivedTreatment.Valid(); !ok {
 		stack.Append("AlcoholAdditional", err)
 	}
 
-	if b.(*Branch).Value == "Yes" {
-		l, err := entity.List.Entity()
-		if err != nil {
-			return false, err
-		}
-
-		if ok, err := l.Valid(); !ok {
+	if entity.ReceivedTreatment.Value == "Yes" {
+		if ok, err := entity.List.Valid(); !ok {
 			stack.Append("AlcoholAdditional", err)
 		}
 	}
@@ -568,7 +1045,36 @@ func (entity *SubstanceAlcoholAdditional) Valid() (bool, error) {
 
 // Save will create or update the database.
 func (entity *SubstanceAlcoholAdditional) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	var err error
+	receivedTreatmentID, err := entity.ReceivedTreatment.Save(context, account)
+	if err != nil {
+		return receivedTreatmentID, err
+	}
+	entity.ReceivedTreatmentID = receivedTreatmentID
+
+	listID, err := entity.List.Save(context, account)
+	if err != nil {
+		return listID, err
+	}
+	entity.ListID = listID
+
+	err = context.CreateTable(&SubstanceAlcoholAdditional{}, &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	})
+	if err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Delete will remove the entity from the database.
