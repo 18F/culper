@@ -494,8 +494,6 @@ class Foreign extends SectionElement {
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         scrollToBottom={this.props.scrollToBottom}
-                        required={true}
-                        scrollIntoView={false}
                         />
           </SectionView>
 
