@@ -51,7 +51,7 @@ import ForeignBenefitValidator from './foreignbenefit'
 import ForeignActivitiesSupportValidator, { SupportValidator } from './foreignsupport'
 import ForeignBusinessAdviceValidator, { AdviceValidator } from './foreignbusinessadvice'
 import ForeignBusinessFamilyValidator, { FamilyValidator } from './foreignbusinessfamily'
-import ForeignBusinessEmploymentValidator from './foreignbusinessemployment'
+import ForeignBusinessEmploymentValidator, { ForeignBusinessEmploymentItemValidator } from './foreignbusinessemployment'
 import ForeignBusinessVenturesValidator from './foreignbusinessventures'
 import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
 import ForeignBusinessContactValidator from './foreignbusinesscontact'
@@ -150,6 +150,7 @@ export {
   ForeignBusinessFamilyValidator,
   FamilyValidator,
   ForeignBusinessEmploymentValidator,
+  ForeignBusinessEmploymentItemValidator,
   ForeignBusinessVenturesValidator,
   ForeignBusinessConferencesValidator,
   ForeignBusinessContactValidator,
