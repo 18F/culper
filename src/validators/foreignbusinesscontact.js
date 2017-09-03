@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
 export default class ForeignBusinessContactValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignContact = props.HasForeignContact
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasForeignContact = data.HasForeignContact
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -23,7 +23,7 @@ export default class ForeignBusinessContactValidator {
         return false
       }
 
-      return this.list.every(item => new ContactValidator(null, item).isValid())
+      return this.list.every(item => new ContactValidator(item.Item).isValid())
     }
 
     return false
@@ -35,15 +35,15 @@ export default class ForeignBusinessContactValidator {
 }
 
 export class ContactValidator {
-  constructor (state = {}, props = {}) {
-    this.name = props.Name
-    this.location = props.Location
-    this.date = props.Date
-    this.governments = props.Governments
-    this.establishment = props.Establishment
-    this.representatives = props.Representatives
-    this.purpose = props.Purpose
-    this.subsequentContacts = props.SubsequentContacts
+  constructor (data = {}) {
+    this.name = data.Name
+    this.location = data.Location
+    this.date = data.Date
+    this.governments = data.Governments
+    this.establishment = data.Establishment
+    this.representatives = data.Representatives
+    this.purpose = data.Purpose
+    this.subsequentContacts = data.SubsequentContacts
   }
 
   validName () {
