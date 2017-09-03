@@ -59,13 +59,13 @@ import AlcoholNegativeImpactsValidator from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
 import AlcoholReceivedCounselingsValidator from './alcoholreceivedcounseling'
-import DrugUsesValidator from './druguses'
-import DrugInvolvementsValidator from './druginvolvements'
-import DrugClearanceUsesValidator from './drugclearanceuses'
-import DrugPublicSafetyUsesValidator from './drugpublicsafetyuses'
-import DrugPrescriptionUsesValidator from './drugprescriptionuses'
-import DrugOrderedTreatmentsValidator from './drugorderedtreatments'
-import DrugVoluntaryTreatmentsValidator from './drugvoluntarytreatments'
+import DrugUsesValidator, { DrugUseValidator } from './druguses'
+import DrugInvolvementsValidator, { DrugInvolvementValidator } from './druginvolvements'
+import DrugClearanceUsesValidator, { DrugClearanceUseValidator } from './drugclearanceuses'
+import DrugPublicSafetyUsesValidator, { DrugPublicSafetyUseValidator } from './drugpublicsafetyuses'
+import DrugPrescriptionUsesValidator, { DrugPrescriptionUseValidator } from './drugprescriptionuses'
+import DrugOrderedTreatmentsValidator, { DrugOrderedTreatmentValidator } from './drugorderedtreatments'
+import DrugVoluntaryTreatmentsValidator, { DrugVoluntaryTreatmentValidator } from './drugvoluntarytreatments'
 import LegalNonCriminalCourtActionsValidator from './legalnoncriminalcourtactions'
 import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
 import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
@@ -150,12 +150,19 @@ export {
   AlcoholVoluntaryCounselingsValidator,
   AlcoholReceivedCounselingsValidator,
   DrugUsesValidator,
+  DrugUseValidator,
   DrugInvolvementsValidator,
+  DrugInvolvementValidator,
   DrugClearanceUsesValidator,
+  DrugClearanceUseValidator,
   DrugPublicSafetyUsesValidator,
+  DrugPublicSafetyUseValidator,
   DrugPrescriptionUsesValidator,
+  DrugPrescriptionUseValidator,
   DrugOrderedTreatmentsValidator,
+  DrugOrderedTreatmentValidator,
   DrugVoluntaryTreatmentsValidator,
+  DrugVoluntaryTreatmentValidator,
   LegalNonCriminalCourtActionsValidator,
   LegalInvestigationsHistoryValidator,
   LegalInvestigationsRevokedValidator,

@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class DrugUsesValidator {
-  constructor (state) {
-    this.usedDrugs = state.UsedDrugs
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.usedDrugs = data.UsedDrugs
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validUsedDrugs () {
@@ -26,7 +26,7 @@ export default class DrugUsesValidator {
     }
 
     for (const item of this.list) {
-      const result = new DrugUseValidator(item.DrugUse, null).isValid()
+      const result = new DrugUseValidator(item.Item, null).isValid()
       if (!result) {
         return false
       }
@@ -42,15 +42,15 @@ export default class DrugUsesValidator {
 }
 
 export class DrugUseValidator {
-  constructor (state) {
-    this.drugType = state.DrugType
-    this.firstUse = state.FirstUse
-    this.recentUse = state.RecentUse
-    this.natureOfUse = state.NatureOfUse
-    this.useWhileEmployed = state.UseWhileEmployed
-    this.useWithClearance = state.UseWithClearance
-    this.useInFuture = state.UseInFuture
-    this.explanation = state.Explanation
+  constructor (data = {}) {
+    this.drugType = data.DrugType
+    this.firstUse = data.FirstUse
+    this.recentUse = data.RecentUse
+    this.natureOfUse = data.NatureOfUse
+    this.useWhileEmployed = data.UseWhileEmployed
+    this.useWithClearance = data.UseWithClearance
+    this.useInFuture = data.UseInFuture
+    this.explanation = data.Explanation
   }
 
   isValid () {

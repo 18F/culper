@@ -45,7 +45,7 @@ describe('Drug Ordered Treatment Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              OrderedTreatment: {
+              Item: {
                 OrderedBy: ['Employer'],
                 Explanation: {
                   value: 'The explanation'
@@ -91,7 +91,7 @@ describe('Drug Ordered Treatment Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              OrderedTreatment: {
+              Item: {
                 OrderedBy: ['Employer'],
                 Explanation: {
                   value: 'The explanation'
@@ -140,7 +140,7 @@ describe('Drug Ordered Treatment Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              OrderedTreatment: {
+              Item: {
                 OrderedBy: ['Employer'],
                 Explanation: {
                   value: 'The explanation'
@@ -161,7 +161,7 @@ describe('Drug Ordered Treatment Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              OrderedTreatment: {
+              Item: {
                 OrderedBy: ['Employer'],
                 Explanation: {
                   value: 'The explanation'

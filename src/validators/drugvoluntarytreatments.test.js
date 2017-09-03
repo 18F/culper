@@ -1,4 +1,5 @@
 import DrugVoluntaryTreatmentsValidator, { DrugVoluntaryTreatmentValidator } from './drugvoluntarytreatments'
+import Location from '../components/Form/Location'
 
 describe('Drug Voluntary Treatment Validation', function () {
   it('should validate drug ordered treatments', function () {
@@ -45,7 +46,7 @@ describe('Drug Voluntary Treatment Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              VoluntaryTreatment: {
+              Item: {
                 DrugType: 'Cocaine',
                 TreatmentProvider: {
                   value: 'Provider'
