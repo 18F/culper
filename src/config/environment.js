@@ -1,5 +1,6 @@
 import { hashHistory, browserHistory } from 'react-router'
 
+
 class Env {
   History () {
     const useHashRouting = process.env.HASH_ROUTING || ''
