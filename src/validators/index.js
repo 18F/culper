@@ -58,7 +58,7 @@ import ForeignBusinessContactValidator, { ContactValidator } from './foreignbusi
 import ForeignBusinessSponsorshipValidator, { SponsorshipValidator } from './foreignbusinesssponsorship'
 import ForeignBusinessPoliticalValidator, { PoliticalValidator } from './foreignbusinesspolitical'
 import ForeignBusinessVotingValidator, { VotingValidator } from './foreignbusinessvoting'
-import ForeignTravelValidator from './foreigntravel.js'
+import ForeignTravelValidator, { TravelValidator } from './foreigntravel.js'
 import AlcoholNegativeImpactsValidator from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
@@ -164,6 +164,7 @@ export {
   ForeignBusinessVotingValidator,
   VotingValidator,
   ForeignTravelValidator,
+  TravelValidator,
   AlcoholNegativeImpactsValidator,
   AlcoholOrderedCounselingsValidator,
   AlcoholVoluntaryCounselingsValidator,
