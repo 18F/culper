@@ -3,28 +3,28 @@ import SentenceValidator from './sentence'
 import { validGenericTextfield, validDateField, validBranch } from './helpers'
 
 export default class OffenseValidator {
-  constructor (state = {}, props = {}) {
-    this.date = state.Date
-    this.description = state.Description
-    this.involvedViolence = state.InvolvedViolence
-    this.involvedFirearms = state.InvolvedFirearms
-    this.involvedSubstances = state.InvolvedSubstances
-    this.address = state.Address
-    this.wasCited = state.WasCited
-    this.citedBy = state.CitedBy
-    this.agencyAddress = state.AgencyAddress
-    this.wasCharged = state.WasCharged
-    this.explanation = state.Explanation
-    this.courtName = state.CourtName
-    this.courtAddress = state.CourtAddress
-    this.chargeType = state.ChargeType
-    this.courtCharge = state.CourtCharge
-    this.courtOutcome = state.CourtOutcome
-    this.courtDate = state.CourtDate
-    this.sentence = state.Sentence
-    this.wasSentenced = state.WasSentenced
-    this.awaitingTrial = state.AwaitingTrial
-    this.awaitingTrialExplanation = state.AwaitingTrialExplanation
+  constructor (data = {}) {
+    this.date = data.Date
+    this.description = data.Description
+    this.involvedViolence = data.InvolvedViolence
+    this.involvedFirearms = data.InvolvedFirearms
+    this.involvedSubstances = data.InvolvedSubstances
+    this.address = data.Address
+    this.wasCited = data.WasCited
+    this.citedBy = data.CitedBy
+    this.agencyAddress = data.AgencyAddress
+    this.wasCharged = data.WasCharged
+    this.explanation = data.Explanation
+    this.courtName = data.CourtName
+    this.courtAddress = data.CourtAddress
+    this.chargeType = data.ChargeType
+    this.courtCharge = data.CourtCharge
+    this.courtOutcome = data.CourtOutcome
+    this.courtDate = data.CourtDate
+    this.sentence = data.Sentence
+    this.wasSentenced = data.WasSentenced
+    this.awaitingTrial = data.AwaitingTrial
+    this.awaitingTrialExplanation = data.AwaitingTrialExplanation
   }
 
   validDate () {

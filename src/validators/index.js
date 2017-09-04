@@ -17,6 +17,7 @@ import MilitaryDisciplinaryValidator from './militarydisciplinary'
 import MilitaryForeignValidator from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
+import OtherOffenseValidator from './otheroffense'
 import DomesticViolenceValidator from './domesticviolence'
 import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
@@ -102,6 +103,7 @@ export {
   MilitaryForeignValidator,
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
+  OtherOffenseValidator,
   DomesticViolenceValidator,
   OffenseValidator,
   FederalServiceValidator,
