@@ -1,10 +1,10 @@
 import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
 
 export default class LegalInvestigationsDebarredValidator {
-  constructor (state = {}, props = {}) {
-    this.hasDebarment = props.HasDebarment
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasDebarment = data.HasDebarment
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -21,7 +21,7 @@ export default class LegalInvestigationsDebarredValidator {
         return false
       }
 
-      return this.list.every(item => new DebarredValidator(null, item).isValid())
+      return this.list.every(item => new DebarredValidator(item.Item).isValid())
     }
 
     return false
@@ -33,10 +33,10 @@ export default class LegalInvestigationsDebarredValidator {
 }
 
 export class DebarredValidator {
-  constructor (state = {}, props = {}) {
-    this.agency = props.Agency
-    this.date = props.Date
-    this.explanation = props.Explanation
+  constructor (data = {}) {
+    this.agency = data.Agency
+    this.date = data.Date
+    this.explanation = data.Explanation
   }
 
   validAgency () {

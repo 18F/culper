@@ -101,17 +101,19 @@ describe('Legal investigations revoked component validation', function () {
           HasRevocations: 'Yes',
           List: [
             {
-              Date: {
-                date: new Date('1/1/2010'),
-                day: '1',
-                month: '1',
-                year: '2010'
-              },
-              Agency: {
-                value: 'U.S. Department of Defense'
-              },
-              Explanation: {
-                value: 'this is an explanation'
+              Item: {
+                Date: {
+                  date: new Date('1/1/2010'),
+                  day: '1',
+                  month: '1',
+                  year: '2010'
+                },
+                Agency: {
+                  value: 'U.S. Department of Defense'
+                },
+                Explanation: {
+                  value: 'this is an explanation'
+                }
               }
             }
           ],
