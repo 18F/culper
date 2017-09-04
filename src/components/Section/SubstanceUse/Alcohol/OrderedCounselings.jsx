@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { AlcoholOrderedCounselingsValidator } from '../../../../validators'
+import { AlcoholOrderedCounselingsValidator, OrderedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import OrderedCounseling from './OrderedCounseling'
@@ -42,7 +42,7 @@ export default class OrderedCounselings extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).OrderedCounseling || {}
+    const o = (item || {}).Item || {}
     const counselingDates = DateSummary(o.CounselingDates)
 
     let seekers = []
@@ -100,12 +100,13 @@ export default class OrderedCounselings extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={OrderedCounselingValidator}
                      description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-        <OrderedCounseling name="OrderedCounseling"
+        <OrderedCounseling name="Item"
                            bind={true}
                            addressBooks={this.props.addressBooks}
                            dispatch={this.props.dispatch}

@@ -55,10 +55,10 @@ import ForeignBusinessSponsorshipValidator from './foreignbusinesssponsorship'
 import ForeignBusinessPoliticalValidator from './foreignbusinesspolitical'
 import ForeignBusinessVotingValidator from './foreignbusinessvoting'
 import ForeignTravelValidator from './foreigntravel.js'
-import AlcoholNegativeImpactsValidator from './alcoholnegativeimpact'
-import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
-import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
-import AlcoholReceivedCounselingsValidator from './alcoholreceivedcounseling'
+import AlcoholNegativeImpactsValidator, { NegativeImpactValidator } from './alcoholnegativeimpact'
+import AlcoholOrderedCounselingsValidator, { OrderedCounselingValidator } from './alcoholorderedcounseling'
+import AlcoholVoluntaryCounselingsValidator, { VoluntaryCounselingValidator } from './alcoholvoluntarycounseling'
+import AlcoholReceivedCounselingsValidator, { ReceivedCounselingValidator } from './alcoholreceivedcounseling'
 import DrugUsesValidator, { DrugUseValidator } from './druguses'
 import DrugInvolvementsValidator, { DrugInvolvementValidator } from './druginvolvements'
 import DrugClearanceUsesValidator, { DrugClearanceUseValidator } from './drugclearanceuses'
@@ -146,9 +146,13 @@ export {
   ForeignBusinessVotingValidator,
   ForeignTravelValidator,
   AlcoholNegativeImpactsValidator,
+  NegativeImpactValidator,
   AlcoholOrderedCounselingsValidator,
+  OrderedCounselingValidator,
   AlcoholVoluntaryCounselingsValidator,
+  VoluntaryCounselingValidator,
   AlcoholReceivedCounselingsValidator,
+  ReceivedCounselingValidator,
   DrugUsesValidator,
   DrugUseValidator,
   DrugInvolvementsValidator,

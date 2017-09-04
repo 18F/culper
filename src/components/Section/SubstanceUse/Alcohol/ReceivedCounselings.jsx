@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { AlcoholReceivedCounselingsValidator } from '../../../../validators'
+import { AlcoholReceivedCounselingsValidator, ReceivedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import ReceivedCounseling from './ReceivedCounseling'
@@ -42,7 +42,7 @@ export default class ReceivedCounselings extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).ReceivedCounseling || {}
+    const o = (item || {}).Item || {}
     const counselor = o.TreatmentProviderName ? o.TreatmentProviderName.value : ''
     const counselingDates = DateSummary({
       from: o.TreatmentBeganDate,
@@ -80,12 +80,13 @@ export default class ReceivedCounselings extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ReceivedCounselingValidator}
                      description={i18n.t('substance.alcohol.receivedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.receivedCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.receivedCounseling.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <ReceivedCounseling name="ReceivedCounseling" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <ReceivedCounseling name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

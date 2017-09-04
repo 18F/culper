@@ -39,7 +39,7 @@ describe('ordered counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new VoluntaryCounselingValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new VoluntaryCounselingValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 
@@ -68,7 +68,7 @@ describe('ordered counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new VoluntaryCounselingValidator(test.state, null).validCompletedTreatment()).toBe(test.expected)
+      expect(new VoluntaryCounselingValidator(test.state).validCompletedTreatment()).toBe(test.expected)
     })
   })
 
@@ -80,7 +80,7 @@ describe('ordered counseling component validation', function () {
           SoughtTreatment: 'Yes',
           List: [
             {
-              VoluntaryCounseling: {
+              Item: {
                 CounselingDates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -139,13 +139,13 @@ describe('ordered counseling component validation', function () {
         state: {
           SoughtTreatment: 'Yes',
           ListBranch: 'No',
-          List: [{VoluntaryCounseling: {}}]
+          List: [{Item: {}}]
         },
         expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new VoluntaryCounselingsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new VoluntaryCounselingsValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 })
