@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import NonCriminalCourtActions from './NonCriminalCourtActions'
+import { Location } from '../../Form'
 
 describe('The NonCriminalCourtActions component', () => {
   it('Renders without errors', () => {
@@ -24,7 +25,7 @@ describe('The NonCriminalCourtActions component', () => {
       HasCourtActions: 'Yes',
       ListBranch: 'No',
       List: [{
-        CourtAction: {
+        Item: {
           CivilActionDate: {
             day: '1',
             month: '1',
