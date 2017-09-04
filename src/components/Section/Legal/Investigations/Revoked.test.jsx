@@ -29,11 +29,13 @@ describe('The legal investigations revoked component', () => {
       HasRevocations: 'Yes',
       List: [
         {
-          Agency: {
-            value: 'U.S. Department of Defense'
-          },
-          Date: {
-            date: new Date('1/1/2010')
+          Item: {
+            Agency: {
+              value: 'U.S. Department of Defense'
+            },
+            Date: {
+              date: new Date('1/1/2010')
+            }
           }
         }
       ],

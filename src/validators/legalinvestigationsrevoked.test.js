@@ -5,13 +5,13 @@ describe('Legal investigations revoked component validation', function () {
   it('validate date completed', () => {
     const tests = [
       {
-        props: {
+        state: {
           Date: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Date: {
             date: new Date('1/1/2010'),
             day: '1',
@@ -29,13 +29,13 @@ describe('Legal investigations revoked component validation', function () {
   it('validate agency information', () => {
     const tests = [
       {
-        props: {
+        state: {
           Agency: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Agency: {
             value: 'U.S. Department of Defense'
           }
@@ -50,13 +50,13 @@ describe('Legal investigations revoked component validation', function () {
   it('validate explanation', () => {
     const tests = [
       {
-        props: {
+        state: {
           Explanation: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Explanation: {
             value: 'this is an explanation'
           }
@@ -71,17 +71,17 @@ describe('Legal investigations revoked component validation', function () {
   it('validate investigation revocations', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasRevocations: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasRevocations: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -89,7 +89,7 @@ describe('Legal investigations revoked component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasRevocations: 'Yes',
           List: [{}],
           ListBranch: ''
@@ -97,7 +97,7 @@ describe('Legal investigations revoked component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasRevocations: 'Yes',
           List: [
             {
