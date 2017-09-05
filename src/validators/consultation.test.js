@@ -9,7 +9,7 @@ describe('Consultation validation', function () {
           Consulted: 'Yes',
           List: [
             {
-              Consultation: {
+              Item: {
                 CourtName: {
                   value: 'Circuit Court'
                 },
@@ -67,7 +67,7 @@ describe('Consultation validation', function () {
           Consulted: 'Yes',
           List: [
             {
-              Consultation: {
+              Item: {
                 CourtName: null,
                 CourtAddress: {
                   country: 'United States',

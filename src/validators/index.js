@@ -28,9 +28,11 @@ import HospitalizationsValidator, { HospitalizationValidator } from './hospitali
 import NonpaymentValidator from './nonpayment'
 import DelinquentValidator from './delinquent'
 import DiagnosesValidator from './diagnoses'
+import DiagnosisValidator, { ExistingConditionsDiagnosisValidator } from './diagnosis'
 import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
+import TreatmentValidator from './treatment'
 import CitizenshipValidator from './citizenship'
 import CitizenshipMultipleValidator from './citizenship-multiple'
 import CitizenshipPassportsValidator from './citizenship-passports'
@@ -82,6 +84,7 @@ import LegalAssociationsActivitiesValidator from './legalassociationsactivities'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
+import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 
 export {
   BankruptcyValidator,
@@ -117,9 +120,12 @@ export {
   NonpaymentValidator,
   DelinquentValidator,
   DiagnosesValidator,
+  ExistingConditionsDiagnosisValidator,
+  DiagnosisValidator,
   ExistingConditionsValidator,
   PsychologicalValidator,
   CompetenceValidator,
+  TreatmentValidator,
   HospitalizationValidator,
   CitizenshipValidator,
   CitizenshipMultipleValidator,
@@ -171,5 +177,8 @@ export {
   LegalAssociationsActivitiesValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
-  SignatureValidator
+  SignatureValidator,
+  OrderValidator,
+  CompetenceOrderValidator,
+  ConsultationOrderValidator
 }
