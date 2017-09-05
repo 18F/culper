@@ -16,7 +16,8 @@ describe('The AddressSuggestion component', () => {
           street: '123 Some Rd',
           city: 'Arlington',
           state: 'VA',
-          zipcode: '22202'
+          zipcode: '22202',
+          country: 'United States'
         },
         expected: 0
       },
@@ -31,7 +32,8 @@ describe('The AddressSuggestion component', () => {
           street: '123 Some Road',
           city: 'Arlington',
           state: 'VA',
-          zipcode: '22202'
+          zipcode: '22202',
+          country: 'United States'
         },
         expected: 1
       },
@@ -46,7 +48,8 @@ describe('The AddressSuggestion component', () => {
           street: '123 Some Road',
           city: 'A-Town',
           state: 'MD',
-          zipcode: '22201'
+          zipcode: '22201',
+          country: 'United States'
         },
         expected: 4
       }

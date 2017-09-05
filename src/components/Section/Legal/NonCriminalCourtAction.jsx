@@ -67,7 +67,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.courtName')}
-          help={'legal.nonCriminalAction.help.courtName'}
           scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 className="court-name"
@@ -97,7 +96,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.natureOfAction')}
-          help={'legal.nonCriminalAction.help.natureOfAction'}
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="NatureOfAction"
                     className="nature-of-action"
@@ -109,7 +107,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.resultsOfAction')}
-          help={'legal.nonCriminalAction.help.resultsOfAction'}
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="ResultsOfAction"
                     className="results-of-action"
@@ -121,7 +118,6 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.principalPartyNames')}
-          help={'legal.nonCriminalAction.help.principalPartyNames'}
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="PrincipalPartyNames"
                     className="principal-party-names"

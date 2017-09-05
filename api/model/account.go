@@ -15,7 +15,7 @@ var (
 	JwtSecret         = []byte("more secrets!")
 	Issuer            = "eqip"
 	BasicAuthAudience = "Basic"
-	Expiration        = time.Hour * 24
+	Expiration        = time.Hour * 1
 
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
