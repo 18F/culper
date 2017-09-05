@@ -364,4 +364,25 @@ describe('The accordion component', () => {
       expect(validValidator(test.func)).toEqual(test.expected)
     })
   })
+
+  it('validates default validator', () => {
+    const defaultValidatorClass = Accordion.defaultProps.validator()
+    expect(new defaultValidatorClass().isValid()).toEqual(true)
+  })
+
+  it('validates default isValid func', () => {
+    const defaultValidatorClass = Accordion.defaultProps.validator()
+    const defaultIsValid = Accordion.defaultProps.isValid
+
+    const props = {
+      validator: defaultValidatorClass,
+      required: true
+    }
+
+    // Check if valid validator is passed in
+    expect(defaultIsValid(null, props)).toEqual(true)
+
+    // Check is invalid validator is passed in
+    expect(defaultIsValid(null, { required: true })).toEqual(false)
+  })
 })
