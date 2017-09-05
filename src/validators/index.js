@@ -74,7 +74,7 @@ import LegalInvestigationsDebarredValidator, { DebarredValidator } from './legal
 import LegalTechnologyUnauthorizedValidator, { UnauthorizedValidator } from './legaltechnologyunauthorized'
 import LegalTechnologyManipulatingValidator, { ManipulatingValidator } from './legaltechnologymanipulating'
 import LegalTechnologyUnlawfulValidator, { UnlawfulValidator } from './legaltechnologyunlawful'
-import LegalAssociationsTerroristValidator from './legalassociationsterrorist'
+import LegalAssociationsTerroristValidator, { TerroristValidator } from './legalassociationsterrorist'
 import LegalAssociationsOverthrowValidator from './legalassociationsoverthrow'
 import LegalAssociationsViolenceValidator from './legalassociationsviolence'
 import LegalAssociationsEngagedValidator from './legalassociationsengaged'
@@ -173,6 +173,7 @@ export {
   LegalTechnologyUnlawfulValidator,
   UnlawfulValidator,
   LegalAssociationsTerroristValidator,
+  TerroristValidator,
   LegalAssociationsOverthrowValidator,
   LegalAssociationsViolenceValidator,
   LegalAssociationsEngagedValidator,
