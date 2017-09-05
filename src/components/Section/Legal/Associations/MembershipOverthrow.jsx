@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsOverthrowValidator } from '../../../../validators'
+import { LegalAssociationsOverthrowValidator, OverthrowValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import MembershipOverthrowItem from './MembershipOverthrowItem'
 
 export default class MembershipOverthrow extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class MembershipOverthrow extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Dates)
     const details = (o.Organization || {}).value || ''
 
@@ -62,6 +63,7 @@ export default class MembershipOverthrow extends SubsectionElement {
                 value={this.props.HasOverthrow}
                 warning={true}
                 onError={this.handleError}
+                validator={OverthrowValidator}
                 required={this.props.required}
                 onUpdate={this.updateBranch}
                 scrollIntoView={this.props.scrollIntoView}>
@@ -80,88 +82,13 @@ export default class MembershipOverthrow extends SubsectionElement {
                      appendLabel={i18n.t('legal.associations.overthrow.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Field title={i18n.t('legal.associations.overthrow.heading.organization')}
-                   help="legal.associations.overthrow.help.organization"
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Organization"
-                    className="legal-associations-overthrow-organization"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.overthrow.heading.address')}
-                   help="legal.associations.overthrow.help.address"
-                   adjustFor="address"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Location name="Address"
-                        className="legal-associations-overthrow-address"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        addressBooks={this.props.addressBooks}
-                        addressBook="Organization"
-                        dispatch={this.props.dispatch}
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.overthrow.heading.dates')}
-                   help="legal.associations.overthrow.help.dates"
-                   adjustFor="daterange"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateRange name="Dates"
-                         className="legal-associations-overthrow-dates"
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.overthrow.heading.positions')}
-                   help="legal.associations.overthrow.help.positions"
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <NotApplicable name="PositionsNotApplicable"
-                             or={i18n.m('legal.associations.overthrow.para.or')}
-                             label={i18n.t('legal.associations.overthrow.label.noposition')}
-                             required={this.props.required}
-                             bind={true}>
-                <Text name="Positions"
-                      className="legal-associations-overthrow-positions"
-                      bind={true}
-                      required={this.props.required}
-                      />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('legal.associations.overthrow.heading.contributions')}
-                   help="legal.associations.overthrow.help.contributions"
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <NotApplicable name="ContributionsNotApplicable"
-                             or={i18n.m('legal.associations.overthrow.para.or')}
-                             label={i18n.t('legal.associations.overthrow.label.nocontribs')}
-                             required={this.props.required}
-                             bind={true}>
-                <Text name="Contributions"
-                      className="legal-associations-overthrow-contributions"
-                      bind={true}
-                      required={this.props.required}
-                      />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('legal.associations.overthrow.heading.reasons')}
-                   help="legal.associations.overthrow.help.reasons"
-                   adjustFor="textarea"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Reasons"
-                        className="legal-associations-overthrow-reasons"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <MembershipOverthrowItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -182,7 +109,7 @@ MembershipOverthrow.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalAssociationsOverthrowValidator(state, props).isValid()
+    return new LegalAssociationsOverthrowValidator(props).isValid()
   },
   scrollToBottom: ''
 }
