@@ -46,7 +46,8 @@ export const scrollToBottom = (selector) => {
 }
 
 /**
- * Checks if the validator is the expected type and contains an isValid func
+ * Checks if the validator is the expected type and contains an isValid func.
+ * TODO: Remove once everything has been refactored
  */
 export const validValidator = (validator) => {
   return validator &&
@@ -492,7 +493,7 @@ export default class Accordion extends ValidationElement {
 }
 
 Accordion.defaultProps = {
-  initial: true,
+  initial: false,
   skipWarning: false,
   minimum: 1,
   defaultState: true,
