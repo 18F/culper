@@ -63,17 +63,22 @@ export const validPhoneNumber = (phone) => {
   if (phone.noNumber === 'NA') {
     return true
   }
-  if (!phone.number) {
-    return false
-  }
   if (!phone.numberType) {
     return false
   }
   if (!phone.timeOfDay) {
     return false
   }
-
-  return true
+  switch (phone.type) {
+    case 'Domestic':
+      return phone.number.length === 10
+    case 'DSN':
+      return phone.number.length === 7
+    case 'International':
+      return phone.number.length > 10
+    default:
+      return false
+  }
 }
 
 /**

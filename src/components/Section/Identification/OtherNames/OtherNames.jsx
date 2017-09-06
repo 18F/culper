@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { OtherNamesValidator } from '../../../../validators'
+import { OtherNamesValidator, OtherNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
@@ -70,6 +70,8 @@ export default class OtherNames extends SubsectionElement {
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     required={this.props.required}
+                     validator={OtherNameValidator}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>

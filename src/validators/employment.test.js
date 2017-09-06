@@ -39,6 +39,7 @@ describe('Employment component validation', function () {
             noNumber: '',
             number: '2028675309',
             numberType: 'Cell',
+            type: 'Domestic',
             timeOfDay: 'Day'
           },
           Supervisor: {
@@ -60,7 +61,8 @@ describe('Employment component validation', function () {
               noNumber: '',
               number: '2021112222',
               numberType: 'Cell',
-              timeOfDay: 'Day'
+              timeOfDay: 'Day',
+              type: 'Domestic'
             },
             Title: {
               value: 'The Foo'
@@ -136,6 +138,7 @@ describe('Employment component validation', function () {
             noNumber: '',
             number: '2028675309',
             numberType: 'Cell',
+            type: 'Domestic',
             timeOfDay: 'Day'
           },
           Supervisor: {
@@ -157,6 +160,7 @@ describe('Employment component validation', function () {
               noNumber: '',
               number: '2021112222',
               numberType: 'Cell',
+              type: 'Domestic',
               timeOfDay: 'Day'
             },
             Title: {
@@ -245,6 +249,7 @@ describe('Employment component validation', function () {
             noNumber: '',
             number: '2028675309',
             numberType: 'Cell',
+            type: 'Domestic',
             timeOfDay: 'Day'
           },
           Supervisor: {
@@ -266,6 +271,7 @@ describe('Employment component validation', function () {
               noNumber: '',
               number: '2021112222',
               numberType: 'Cell',
+              type: 'Domestic',
               timeOfDay: 'Day'
             },
             Title: {
@@ -342,6 +348,7 @@ describe('Employment component validation', function () {
             noNumber: '',
             number: '2028675309',
             numberType: 'Cell',
+            type: 'Domestic',
             timeOfDay: 'Day'
           },
           Supervisor: {
@@ -363,6 +370,7 @@ describe('Employment component validation', function () {
               noNumber: '',
               number: '2021112222',
               numberType: 'Cell',
+              type: 'Domestic',
               timeOfDay: 'Day'
             },
             Title: {
@@ -481,6 +489,7 @@ describe('Employment component validation', function () {
             noNumber: '',
             number: '2028675309',
             numberType: 'Cell',
+            type: 'Domestic',
             timeOfDay: 'Day'
           },
           ReasonLeft: {
@@ -522,6 +531,7 @@ describe('Employment component validation', function () {
               noNumber: '',
               number: '7031112222',
               numberType: 'Home',
+              type: 'Domestic',
               timeOfDay: 'Both',
               extension: ''
             },
@@ -609,6 +619,7 @@ describe('Employment component validation', function () {
               number: '7031112222',
               numberType: 'Home',
               timeOfDay: 'Both',
+              type: 'Domestic',
               extension: ''
             },
             Email: {
@@ -883,6 +894,7 @@ describe('Employment component validation', function () {
             noNumber: '',
             number: '2028675309',
             numberType: 'Cell',
+            type: 'Domestic',
             timeOfDay: 'Day'
           }
         },
@@ -923,6 +935,7 @@ describe('Employment component validation', function () {
               noNumber: '',
               number: '2028675309',
               numberType: 'Cell',
+              type: 'Domestic',
               timeOfDay: 'Day'
             }
           }
