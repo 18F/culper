@@ -1,9 +1,12 @@
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
-import ContactInformationValidator from './contactinformation'
+import ContactInformationValidator, {
+  ContactEmailValidator,
+  ContactPhoneNumberValidator
+} from './contactinformation'
 import IdentificationValidator from './identification'
 import NameValidator from './name'
-import OtherNamesValidator from './othernames'
+import OtherNamesValidator, { OtherNameValidator } from './othernames'
 import PassportValidator from './passport'
 import PhysicalValidator from './physical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
@@ -88,9 +91,12 @@ export {
   BankruptcyItemValidator,
   BirthPlaceValidator,
   ContactInformationValidator,
+  ContactEmailValidator,
+  ContactPhoneNumberValidator,
   IdentificationValidator,
   NameValidator,
   OtherNamesValidator,
+  OtherNameValidator,
   PassportValidator,
   PhysicalValidator,
   GamblingValidator,
