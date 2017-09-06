@@ -123,7 +123,7 @@ Gambling.defaultProps = {
   subsection: 'gambling',
   dispatch: () => {},
   validator: (state, props) => {
-    return new GamblingValidator(state, props).isValid()
+    return new GamblingValidator(state).isValid()
   },
   defaultState: true
 }

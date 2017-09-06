@@ -2,10 +2,10 @@ import LocationValidator from './location'
 import { validDateField, validGenericTextfield } from './helpers'
 
 export default class CardAbuseValidator {
-  constructor (state = {}, props = {}) {
-    this.hasCardAbuse = state.HasCardAbuse
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasCardAbuse = data.HasCardAbuse
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validHasCardAbuse () {
@@ -49,14 +49,14 @@ export default class CardAbuseValidator {
 }
 
 export class CardAbuseItemValidator {
-  constructor (state = {}, props = {}) {
-    this.agency = state.Agency
-    this.address = state.Address
-    this.date = state.Date
-    this.reason = state.Reason
-    this.amount = state.Amount
-    this.amountEstimated = state.AmountEstimated
-    this.description = state.Description
+  constructor (data = {}) {
+    this.agency = data.Agency
+    this.address = data.Address
+    this.date = data.Date
+    this.reason = data.Reason
+    this.amount = data.Amount
+    this.amountEstimated = data.AmountEstimated
+    this.description = data.Description
   }
 
   validAgency () {

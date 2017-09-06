@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class TaxesValidator {
-  constructor (state = {}, props = {}) {
-    this.hasTaxes = state.HasTaxes
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasTaxes = data.HasTaxes
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validHasTaxes () {
@@ -49,18 +49,18 @@ export default class TaxesValidator {
 }
 
 export class TaxValidator {
-  constructor (state = {}, props = {}) {
-    this.failure = state.Failure
-    this.year = state.Year
-    this.yearEstimated = state.YearEstimated
-    this.reason = state.Reason
-    this.agency = state.Agency
-    this.taxType = state.TaxType
-    this.amount = state.Amount
-    this.amountEstimated = state.AmountEstimated
-    this.date = state.Date
-    this.dateNotApplicable = state.DateNotApplicable
-    this.description = state.Description
+  constructor (data = {}) {
+    this.failure = data.Failure
+    this.year = data.Year
+    this.yearEstimated = data.YearEstimated
+    this.reason = data.Reason
+    this.agency = data.Agency
+    this.taxType = data.TaxType
+    this.amount = data.Amount
+    this.amountEstimated = data.AmountEstimated
+    this.date = data.Date
+    this.dateNotApplicable = data.DateNotApplicable
+    this.description = data.Description
   }
 
   validFailure () {

@@ -117,7 +117,7 @@ Card.defaultProps = {
   subsection: 'card',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CardAbuseValidator(state, props).isValid()
+    return new CardAbuseValidator(state).isValid()
   },
   defaultState: true
 }

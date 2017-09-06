@@ -1,10 +1,10 @@
 import DateRangeValidator from './daterange'
 
 export default class GamblingValidator {
-  constructor (state, props) {
-    this.hasGamblingDebt = state.HasGamblingDebt
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data) {
+    this.hasGamblingDebt = data.HasGamblingDebt
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validHasGamblingDebt () {

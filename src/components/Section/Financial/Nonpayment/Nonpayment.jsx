@@ -133,6 +133,6 @@ Nonpayment.defaultProps = {
   subsection: 'nonpayment',
   dispatch: () => {},
   validator: (state, props) => {
-    return new NonpaymentValidator(state, props).isValid()
+    return new NonpaymentValidator(state).isValid()
   }
 }

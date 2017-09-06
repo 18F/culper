@@ -3,8 +3,7 @@ import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
 import { DelinquentValidator, DelinquentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, DateControl, Currency, Field,
-         NotApplicable, Location, Checkbox, Text, Textarea } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
 import DelinquentItem from './DelinquentItem'
 
 export default class Delinquent extends SubsectionElement {
@@ -134,7 +133,7 @@ Delinquent.defaultProps = {
   subsection: 'delinquent',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DelinquentValidator(state, props).isValid()
+    return new DelinquentValidator(state).isValid()
   },
   defaultState: true
 }

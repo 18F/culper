@@ -114,7 +114,7 @@ Taxes.defaultProps = {
   subsection: 'taxes',
   dispatch: () => {},
   validator: (state, props) => {
-    return new TaxesValidator(state, props).isValid()
+    return new TaxesValidator(state).isValid()
   },
   defaultState: true
 }

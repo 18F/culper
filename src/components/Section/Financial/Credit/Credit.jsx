@@ -116,7 +116,7 @@ Credit.defaultProps = {
   subsection: 'credit',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CreditValidator(state, props).isValid()
+    return new CreditValidator(state).isValid()
   },
   defaultState: true
 }

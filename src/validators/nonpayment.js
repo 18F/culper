@@ -1,10 +1,10 @@
 import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class NonpaymentValidator {
-  constructor (state = {}, props = {}) {
-    this.hasNonpayment = state.HasNonpayment
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasNonpayment = data.HasNonpayment
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validHasNonpayment () {
@@ -48,19 +48,19 @@ export default class NonpaymentValidator {
 }
 
 export class NonpaymentItemValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.infractions = state.Infractions || []
-    this.accountNumber = state.AccountNumber
-    this.propertyType = state.PropertyType
-    this.amount = state.Amount
-    this.amountEstimated = state.AmountEstimated
-    this.reason = state.Reason
-    this.status = state.Status
-    this.date = state.Date
-    this.resolved = state.Resolved
-    this.resolvedNotApplicable = state.ResolvedNotApplicable
-    this.description = state.Description
+  constructor (data = {}) {
+    this.name = data.Name
+    this.infractions = data.Infractions || []
+    this.accountNumber = data.AccountNumber
+    this.propertyType = data.PropertyType
+    this.amount = data.Amount
+    this.amountEstimated = data.AmountEstimated
+    this.reason = data.Reason
+    this.status = data.Status
+    this.date = data.Date
+    this.resolved = data.Resolved
+    this.resolvedNotApplicable = data.ResolvedNotApplicable
+    this.description = data.Description
   }
 
   validName () {
