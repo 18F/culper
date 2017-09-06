@@ -27,7 +27,7 @@ func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
 	account := model.Account{}
 	account.WithContext(db.NewDB())
 
-	if valid, err := account.ValidJwtToken(token); !valid {
+	if valid, err := account.ValidJwtToken(token, model.TwoFactorAudience); !valid {
 		return fmt.Errorf("Invalid authorization token: %v", err)
 	}
 
@@ -49,13 +49,13 @@ func JwtTokenRefresh(w http.ResponseWriter, r *http.Request) {
 	token := matches[1]
 	account := model.Account{}
 	account.WithContext(db.NewDB())
-	if valid, err := account.ValidJwtToken(token); !valid {
+	if valid, err := account.ValidJwtToken(token, model.TwoFactorAudience); !valid {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Generate a new token
-	signedToken, _, err := account.NewJwtToken()
+	signedToken, _, err := account.NewJwtToken(model.TwoFactorAudience)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

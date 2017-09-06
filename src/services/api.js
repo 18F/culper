@@ -99,16 +99,15 @@ class Api {
   }
 
   twoFactor (account, token) {
-    // TODO: Fix secure proxy
     if (token) {
-      return this.proxy.post(env.EndpointTwoFactorVerify(account), { token: token })
+      return this.proxy.post(env.EndpointTwoFactorVerify(account), { token: token }, { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
     }
 
-    return this.proxy.get(env.EndpointTwoFactor(account))
+    return this.proxy.get(env.EndpointTwoFactor(account), { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
   }
 
   twoFactorReset (account) {
-    return this.proxy.get(env.EndpointTwoFactorReset(account))
+    return this.proxy.get(env.EndpointTwoFactorReset(account), { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
   }
 
   login (username, password) {
