@@ -210,13 +210,19 @@ describe('The accordion component', () => {
     let items = [
       { uuid: '1', open: false }
     ]
+    const Validator = class {
+      isValid () {
+        return false
+      }
+    }
 
     const expected = {
       minimum: 1,
       items: items,
       defaultState: false,
       initial: false,
-      isValid: (props) => { return false },
+      required: true,
+      validator: Validator,
       summary: (item, index, initial) => { return <span>Summary</span> },
       byline: (item, index, initial) => { return <span className="byline">My custom byline</span> }
     }
@@ -229,12 +235,19 @@ describe('The accordion component', () => {
       { uuid: '1', open: false }
     ]
 
+    const Validator = class {
+      isValid () {
+        return false
+      }
+    }
+
     const expected = {
       minimum: 1,
       items: items,
       defaultState: false,
       initial: false,
-      isValid: (props) => { return false },
+      isValid: Validator,
+      required: true,
       summary: (item, index, initial) => { return <span>Summary</span> }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
@@ -368,21 +381,5 @@ describe('The accordion component', () => {
   it('validates default validator', () => {
     const defaultValidatorClass = Accordion.defaultProps.validator()
     expect(new defaultValidatorClass().isValid()).toEqual(true)
-  })
-
-  it('validates default isValid func', () => {
-    const defaultValidatorClass = Accordion.defaultProps.validator()
-    const defaultIsValid = Accordion.defaultProps.isValid
-
-    const props = {
-      validator: defaultValidatorClass,
-      required: true
-    }
-
-    // Check if valid validator is passed in
-    expect(defaultIsValid(null, props)).toEqual(true)
-
-    // Check is invalid validator is passed in
-    expect(defaultIsValid(null, { required: true })).toEqual(false)
   })
 })

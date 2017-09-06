@@ -73,6 +73,7 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
+    this.isValid = this.isValid.bind(this)
 
     // Instance variable. Not stored in state to prevent re-renders and it's not going to
     // be used in the UI.
@@ -336,7 +337,7 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    const closedAndIncomplete = !item.open && !this.props.isValid(this.props.transformer(item), this.props)
+    const closedAndIncomplete = !item.open && !this.isValid(this.props.transformer(item))
     const svg = closedAndIncomplete
           ? <Svg src="/img/exclamation-point.svg" className="incomplete" alt={this.props.incomplete} />
           : null
@@ -468,6 +469,21 @@ export default class Accordion extends ValidationElement {
       : null
   }
 
+  /**
+   * Determines if current item is valid. By default, this
+   * utilizes the validator that is passed in.
+   * */
+  isValid (item) {
+    if (this.props.required) {
+      if (!validValidator(this.props.validator)) {
+        console.warn('Invalid validator used.')
+        return false
+      }
+      return new this.props.validator(item).isValid()
+    }
+    return true
+  }
+
   render () {
     const klass = `accordion ${this.props.className}`.trim()
     const description = this.props.items.length < 2 ? '' : this.props.description
@@ -526,32 +542,12 @@ Accordion.defaultProps = {
       </span>
     )
   },
-  /**
-   * A validator that implements an isValid() method that returns whether an item is valid
-   */
   validator: (item) => {
     return class {
       isValid () {
         return true
       }
     }
-  },
-
-  /**
-   * Determines if current item is valid. By default, this
-   * utilizes the validator that is passed in. This function
-   * is meant to be used when custom validator behavior is required
-   * that can't be achieved with simply passing in a validator
-   */
-  isValid: (item, props) => {
-    if (props.required) {
-      if (!validValidator(props.validator)) {
-        console.warn('Invalid validator used.')
-        return false
-      }
-      return new props.validator(item).isValid()
-    }
-    return true
   },
   transformer: (item) => {
     return item && item.Item ? item.Item : item
