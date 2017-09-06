@@ -99,12 +99,64 @@ func (entity *FinancialBankruptcy) Save(context *pg.DB, account int64) (int, err
 
 // Delete will remove the entity from the database.
 func (entity *FinancialBankruptcy) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialBankruptcy{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasBankruptcy.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *FinancialBankruptcy) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialBankruptcy{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasBankruptcyID != 0 {
+		if _, err := entity.HasBankruptcy.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type FinancialGambling struct {
@@ -197,12 +249,64 @@ func (entity *FinancialGambling) Save(context *pg.DB, account int64) (int, error
 
 // Delete will remove the entity from the database.
 func (entity *FinancialGambling) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialGambling{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasGamblingDebt.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *FinancialGambling) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialGambling{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasGamblingDebtID != 0 {
+		if _, err := entity.HasGamblingDebt.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type FinancialTaxes struct {
@@ -295,12 +399,64 @@ func (entity *FinancialTaxes) Save(context *pg.DB, account int64) (int, error) {
 
 // Delete will remove the entity from the database.
 func (entity *FinancialTaxes) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialTaxes{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasTaxes.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *FinancialTaxes) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialTaxes{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasTaxesID != 0 {
+		if _, err := entity.HasTaxes.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type FinancialCard struct {
@@ -393,12 +549,64 @@ func (entity *FinancialCard) Save(context *pg.DB, account int64) (int, error) {
 
 // Delete will remove the entity from the database.
 func (entity *FinancialCard) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialCard{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasCardAbuse.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *FinancialCard) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialCard{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasCardAbuseID != 0 {
+		if _, err := entity.HasCardAbuse.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type FinancialCredit struct {
@@ -491,12 +699,64 @@ func (entity *FinancialCredit) Save(context *pg.DB, account int64) (int, error) 
 
 // Delete will remove the entity from the database.
 func (entity *FinancialCredit) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialCredit{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasCreditCounseling.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *FinancialCredit) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialCredit{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasCreditCounselingID != 0 {
+		if _, err := entity.HasCreditCounseling.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type FinancialDelinquent struct {
@@ -589,12 +849,64 @@ func (entity *FinancialDelinquent) Save(context *pg.DB, account int64) (int, err
 
 // Delete will remove the entity from the database.
 func (entity *FinancialDelinquent) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialDelinquent{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasDelinquent.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *FinancialDelinquent) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialDelinquent{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasDelinquentID != 0 {
+		if _, err := entity.HasDelinquent.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type FinancialNonpayment struct {
@@ -687,10 +999,62 @@ func (entity *FinancialNonpayment) Save(context *pg.DB, account int64) (int, err
 
 // Delete will remove the entity from the database.
 func (entity *FinancialNonpayment) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialNonpayment{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasNonpayment.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *FinancialNonpayment) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&FinancialNonpayment{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasNonpaymentID != 0 {
+		if _, err := entity.HasNonpayment.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }

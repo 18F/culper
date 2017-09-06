@@ -139,12 +139,84 @@ func (entity *MilitarySelective) Save(context *pg.DB, account int64) (int, error
 
 // Delete will remove the entity from the database.
 func (entity *MilitarySelective) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitarySelective{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.WasBornAfter.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasRegistered.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.RegistrationNumber.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Explanation.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *MilitarySelective) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitarySelective{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.WasBornAfterID != 0 {
+		if _, err := entity.WasBornAfter.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.HasRegisteredID != 0 {
+		if _, err := entity.HasRegistered.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.RegistrationNumberID != 0 {
+		if _, err := entity.RegistrationNumber.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ExplanationID != 0 {
+		if _, err := entity.Explanation.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type MilitaryHistory struct {
@@ -237,12 +309,64 @@ func (entity *MilitaryHistory) Save(context *pg.DB, account int64) (int, error) 
 
 // Delete will remove the entity from the database.
 func (entity *MilitaryHistory) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitaryHistory{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasServed.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *MilitaryHistory) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitaryHistory{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasServedID != 0 {
+		if _, err := entity.HasServed.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type MilitaryDisciplinary struct {
@@ -335,12 +459,64 @@ func (entity *MilitaryDisciplinary) Save(context *pg.DB, account int64) (int, er
 
 // Delete will remove the entity from the database.
 func (entity *MilitaryDisciplinary) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitaryDisciplinary{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasDisciplinary.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *MilitaryDisciplinary) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitaryDisciplinary{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasDisciplinaryID != 0 {
+		if _, err := entity.HasDisciplinary.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type MilitaryForeign struct {
@@ -412,10 +588,52 @@ func (entity *MilitaryForeign) Save(context *pg.DB, account int64) (int, error) 
 
 // Delete will remove the entity from the database.
 func (entity *MilitaryForeign) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitaryForeign{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *MilitaryForeign) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&MilitaryForeign{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }

@@ -99,12 +99,64 @@ func (entity *SubstanceDrugUsage) Save(context *pg.DB, account int64) (int, erro
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceDrugUsage) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugUsage{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.UsedDrugs.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceDrugUsage) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugUsage{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.UsedDrugsID != 0 {
+		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceDrugPurchase struct {
@@ -197,12 +249,64 @@ func (entity *SubstanceDrugPurchase) Save(context *pg.DB, account int64) (int, e
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceDrugPurchase) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugPurchase{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Involved.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceDrugPurchase) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugPurchase{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.InvolvedID != 0 {
+		if _, err := entity.Involved.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceDrugClearance struct {
@@ -295,12 +399,64 @@ func (entity *SubstanceDrugClearance) Save(context *pg.DB, account int64) (int, 
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceDrugClearance) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugClearance{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.UsedDrugs.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceDrugClearance) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugClearance{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.UsedDrugsID != 0 {
+		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceDrugPublicSafety struct {
@@ -393,12 +549,64 @@ func (entity *SubstanceDrugPublicSafety) Save(context *pg.DB, account int64) (in
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceDrugPublicSafety) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugPublicSafety{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.UsedDrugs.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceDrugPublicSafety) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugPublicSafety{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.UsedDrugsID != 0 {
+		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceDrugMisuse struct {
@@ -491,12 +699,64 @@ func (entity *SubstanceDrugMisuse) Save(context *pg.DB, account int64) (int, err
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceDrugMisuse) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugMisuse{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.UsedDrugs.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceDrugMisuse) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugMisuse{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.UsedDrugsID != 0 {
+		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceDrugOrdered struct {
@@ -589,12 +849,64 @@ func (entity *SubstanceDrugOrdered) Save(context *pg.DB, account int64) (int, er
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceDrugOrdered) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugOrdered{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Involved.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceDrugOrdered) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugOrdered{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.InvolvedID != 0 {
+		if _, err := entity.Involved.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceDrugVoluntary struct {
@@ -687,12 +999,64 @@ func (entity *SubstanceDrugVoluntary) Save(context *pg.DB, account int64) (int, 
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceDrugVoluntary) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugVoluntary{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Involved.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceDrugVoluntary) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceDrugVoluntary{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.InvolvedID != 0 {
+		if _, err := entity.Involved.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceAlcoholNegative struct {
@@ -785,12 +1149,64 @@ func (entity *SubstanceAlcoholNegative) Save(context *pg.DB, account int64) (int
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceAlcoholNegative) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholNegative{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasImpacts.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceAlcoholNegative) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholNegative{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasImpactsID != 0 {
+		if _, err := entity.HasImpacts.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceAlcoholOrdered struct {
@@ -883,12 +1299,64 @@ func (entity *SubstanceAlcoholOrdered) Save(context *pg.DB, account int64) (int,
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceAlcoholOrdered) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholOrdered{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasBeenOrdered.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceAlcoholOrdered) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholOrdered{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasBeenOrderedID != 0 {
+		if _, err := entity.HasBeenOrdered.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceAlcoholVoluntary struct {
@@ -981,12 +1449,64 @@ func (entity *SubstanceAlcoholVoluntary) Save(context *pg.DB, account int64) (in
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceAlcoholVoluntary) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholVoluntary{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.SoughtTreatment.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceAlcoholVoluntary) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholVoluntary{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.SoughtTreatmentID != 0 {
+		if _, err := entity.SoughtTreatment.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type SubstanceAlcoholAdditional struct {
@@ -1079,10 +1599,62 @@ func (entity *SubstanceAlcoholAdditional) Save(context *pg.DB, account int64) (i
 
 // Delete will remove the entity from the database.
 func (entity *SubstanceAlcoholAdditional) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholAdditional{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.ReceivedTreatment.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *SubstanceAlcoholAdditional) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&SubstanceAlcoholAdditional{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.ReceivedTreatmentID != 0 {
+		if _, err := entity.ReceivedTreatment.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }

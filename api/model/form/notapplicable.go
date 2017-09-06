@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 
 	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 // NotApplicable is a basic input.
@@ -23,13 +24,57 @@ func (entity *NotApplicable) Valid() (bool, error) {
 }
 
 func (entity *NotApplicable) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&NotApplicable{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *NotApplicable) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&NotApplicable{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *NotApplicable) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&NotApplicable{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	return entity.ID, err
 }

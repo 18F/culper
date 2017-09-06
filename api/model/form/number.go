@@ -6,7 +6,9 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
 	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 // Number is a basic input.
@@ -34,13 +36,57 @@ func (entity *Number) Valid() (bool, error) {
 }
 
 func (entity *Number) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Number{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *Number) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Number{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *Number) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Number{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	return entity.ID, err
 }

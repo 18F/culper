@@ -73,3 +73,66 @@ func (item CollectionItem) Save(context *pg.DB, account int64, collectionID int)
 
 	return item.ID, nil
 }
+
+func (item CollectionItem) Delete(context *pg.DB, account int64, collectionID int) (int, error) {
+	item.CollectionID = collectionID
+
+	for k, v := range item.Item {
+		item.Name = k
+
+		entity, err := v.Entity()
+		if err != nil {
+			return item.ID, err
+		}
+
+		id, err := entity.Delete(context, account)
+		if err != nil {
+			return item.ID, err
+		}
+		item.ItemID = id
+	}
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&CollectionItem{}, options); err != nil {
+		return item.ID, err
+	}
+
+	if item.ID != 0 {
+		err = context.Delete(item)
+	}
+
+	return item.ID, err
+}
+
+func (item CollectionItem) Get(context *pg.DB, account int64, collectionID int) (int, error) {
+	item.CollectionID = collectionID
+
+	if item.ID != 0 {
+		err := context.Select(item)
+		if err != nil {
+			return item.ID, err
+		}
+	}
+
+	for k, v := range item.Item {
+		item.Name = k
+
+		entity, err := v.Entity()
+		if err != nil {
+			return item.ID, err
+		}
+
+		id, err := entity.Get(context, account)
+		if err != nil {
+			return item.ID, err
+		}
+		item.ItemID = id
+	}
+
+	return item.ID, nil
+}

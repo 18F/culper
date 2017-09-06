@@ -19,22 +19,25 @@ type Collection struct {
 	Items  []*CollectionItem `json:"items" sql:"-"`
 
 	// Persister specific fields
-	ID       int
-	BranchID int
+	ID        int
+	AccountID int64
+	BranchID  int
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *Collection) Unmarshal(raw []byte) error {
 	err := json.Unmarshal(raw, entity)
-	if err == nil {
+	if err != nil {
 		return err
 	}
 
-	branch, err := entity.PayloadBranch.Entity()
-	if err == nil {
-		return err
+	if entity.PayloadBranch.Type != "" {
+		branch, err := entity.PayloadBranch.Entity()
+		if err != nil {
+			return err
+		}
+		entity.Branch = branch.(*Branch)
 	}
-	entity.Branch = branch.(*Branch)
 
 	return err
 }
@@ -51,7 +54,7 @@ func (entity *Collection) Valid() (bool, error) {
 	}
 
 	// Custom errors
-	if entity.Branch != nil {
+	if entity.PayloadBranch.Type != "" {
 		if ok, err := entity.Branch.Valid(); !ok {
 			stack.Append("Item", err)
 		} else {
@@ -65,6 +68,8 @@ func (entity *Collection) Valid() (bool, error) {
 }
 
 func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
+	entity.AccountID = account
+
 	options := &orm.CreateTableOptions{
 		Temp:        false,
 		IfNotExists: true,
@@ -72,7 +77,7 @@ func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
 
 	// Custom errors
 	var err error
-	if entity.Branch != nil {
+	if entity.PayloadBranch.Type != "" {
 		branchID, err := entity.Branch.Save(context, account)
 		if err != nil {
 			return 0, err
@@ -105,9 +110,65 @@ func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
 }
 
 func (entity *Collection) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Collection{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.PayloadBranch.Type != "" {
+		if _, err = entity.Branch.Delete(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	for _, item := range entity.Items {
+		if _, err = item.Delete(context, account, entity.ID); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *Collection) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Collection{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.BranchID != 0 {
+		if _, err := entity.Branch.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	for _, item := range entity.Items {
+		if _, err = item.Get(context, account, entity.ID); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }

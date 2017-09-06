@@ -5,6 +5,8 @@ import (
 	"errors"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
 )
 
 // Payload is a basic structure to encapsulate a generic structure.
@@ -12,10 +14,6 @@ type Payload struct {
 	Type  string          `json:"type"`
 	Props json.RawMessage `json:"props"`
 }
-
-// PayloadProperties is a structure of JSON where it is an object
-// of named properties which each value being that of a Payload.
-type PayloadProperties map[string]Payload
 
 // Unmarshal basic payload structure.
 func (payload *Payload) Unmarshal(raw []byte) error {
@@ -61,4 +59,20 @@ func (payload Payload) Valid() (bool, error) {
 	}
 
 	return entity.Valid()
+}
+
+// PayloadProperties is a structure of JSON where it is an object
+// of named properties which each value being that of a Payload.
+type PayloadProperties map[string]Payload
+
+func (entity *PayloadProperties) Save(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *PayloadProperties) Delete(context *pg.DB, account int64) (int, error) {
+	return 0, nil
+}
+
+func (entity *PayloadProperties) Get(context *pg.DB, account int64) (int, error) {
+	return 0, nil
 }

@@ -61,8 +61,7 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 		// Check if the civil union information is valid
 		for k, v := range entity.CivilUnion {
 			if k == "Divorced" {
-				// Check if there was a divorce mentioned in the civil
-				// union
+				// Check if there was a divorce mentioned in the civil union
 				divorced, err := v.Entity()
 				if err != nil {
 					return false, err
@@ -108,11 +107,13 @@ func (entity *RelationshipsMarital) Save(context *pg.DB, account int64) (int, er
 	}
 	entity.StatusID = statusID
 
-	civilUnionID, err := entity.CivilUnion.Save(context, account)
+	// TODO: Work on payload properties
+	_, err = entity.CivilUnion.Save(context, account)
 	if err != nil {
-		return civilUnionID, err
+		return 0, err
+		// return civilUnionID, err
 	}
-	entity.CivilUnionID = civilUnionID
+	// entity.CivilUnionID = civilUnionID
 
 	divorcedListID, err := entity.DivorcedList.Save(context, account)
 	if err != nil {
@@ -139,12 +140,74 @@ func (entity *RelationshipsMarital) Save(context *pg.DB, account int64) (int, er
 
 // Delete will remove the entity from the database.
 func (entity *RelationshipsMarital) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsMarital{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Status.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.CivilUnion.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.DivorcedList.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsMarital) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsMarital{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.StatusID != 0 {
+		if _, err := entity.Status.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.CivilUnionID != 0 {
+		if _, err := entity.CivilUnion.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.DivorcedListID != 0 {
+		if _, err := entity.DivorcedList.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type RelationshipsCohabitants struct {
@@ -229,12 +292,64 @@ func (entity *RelationshipsCohabitants) Save(context *pg.DB, account int64) (int
 
 // Delete will remove the entity from the database.
 func (entity *RelationshipsCohabitants) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsCohabitants{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasCohabitant.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.CohabitantList.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsCohabitants) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsCohabitants{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasCohabitantID != 0 {
+		if _, err := entity.HasCohabitant.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.CohabitantListID != 0 {
+		if _, err := entity.CohabitantList.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type RelationshipsPeople struct {
@@ -300,12 +415,54 @@ func (entity *RelationshipsPeople) Save(context *pg.DB, account int64) (int, err
 
 // Delete will remove the entity from the database.
 func (entity *RelationshipsPeople) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsPeople{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsPeople) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsPeople{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 type RelationshipsRelatives struct {
@@ -371,10 +528,52 @@ func (entity *RelationshipsRelatives) Save(context *pg.DB, account int64) (int, 
 
 // Delete will remove the entity from the database.
 func (entity *RelationshipsRelatives) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsRelatives{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *RelationshipsRelatives) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&RelationshipsRelatives{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }

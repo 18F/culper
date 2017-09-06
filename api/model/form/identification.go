@@ -72,12 +72,54 @@ func (entity *IdentificationName) Save(context *pg.DB, account int64) (int, erro
 
 // Delete will remove the entity from the database.
 func (entity *IdentificationName) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationName{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Name.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationName) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationName{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.NameID != 0 {
+		if _, err := entity.Name.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 // IdentificationBirthPlace subsection of identification section.
@@ -143,12 +185,54 @@ func (entity *IdentificationBirthPlace) Save(context *pg.DB, account int64) (int
 
 // Delete will remove the entity from the database.
 func (entity *IdentificationBirthPlace) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationBirthPlace{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Location.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationBirthPlace) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationBirthPlace{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.LocationID != 0 {
+		if _, err := entity.Location.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 // IdentificationBirthDate subsection of identification section.
@@ -214,12 +298,54 @@ func (entity *IdentificationBirthDate) Save(context *pg.DB, account int64) (int,
 
 // Delete will remove the entity from the database.
 func (entity *IdentificationBirthDate) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationBirthDate{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Date.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationBirthDate) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationBirthDate{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.DateID != 0 {
+		if _, err := entity.Date.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 // IdentificationSSN subsection of identification section.
@@ -295,12 +421,54 @@ func (entity *IdentificationSSN) Save(context *pg.DB, account int64) (int, error
 
 // Delete will remove the entity from the database.
 func (entity *IdentificationSSN) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationSSN{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.SSN.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationSSN) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationSSN{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.SSNID != 0 {
+		if _, err := entity.SSN.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 // IdentificationContacts subsection of identification section.
@@ -392,12 +560,64 @@ func (entity *IdentificationContacts) Save(context *pg.DB, account int64) (int, 
 
 // Delete will remove the entity from the database.
 func (entity *IdentificationContacts) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationContacts{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Emails.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.PhoneNumbers.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationContacts) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationContacts{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.EmailsID != 0 {
+		if _, err := entity.Emails.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.PhoneNumbersID != 0 {
+		if _, err := entity.PhoneNumbers.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 // IdentificationOtherNames subsection of identification section.
@@ -491,12 +711,64 @@ func (entity *IdentificationOtherNames) Save(context *pg.DB, account int64) (int
 
 // Delete will remove the entity from the database.
 func (entity *IdentificationOtherNames) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationOtherNames{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HasOtherNames.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationOtherNames) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationOtherNames{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.HasOtherNamesID != 0 {
+		if _, err := entity.HasOtherNames.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ListID != 0 {
+		if _, err := entity.List.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }
 
 // IdentificationPhysical subsection of identification section.
@@ -660,10 +932,102 @@ func (entity *IdentificationPhysical) Save(context *pg.DB, account int64) (int, 
 
 // Delete will remove the entity from the database.
 func (entity *IdentificationPhysical) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationPhysical{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Comments.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.EyeColor.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.HairColor.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Sex.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Height.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err = entity.Weight.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Get will retrieve the entity from the database.
 func (entity *IdentificationPhysical) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	entity.AccountID = account
+
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&IdentificationPhysical{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	if entity.CommentsID != 0 {
+		if _, err := entity.Comments.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.EyeColorID != 0 {
+		if _, err := entity.EyeColor.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.HairColorID != 0 {
+		if _, err := entity.HairColor.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.SexID != 0 {
+		if _, err := entity.Sex.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.HeightID != 0 {
+		if _, err := entity.Height.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.WeightID != 0 {
+		if _, err := entity.Weight.Get(context, account); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	return entity.ID, err
 }

@@ -70,9 +70,37 @@ func (entity *DateControl) Save(context *pg.DB, account int64) (int, error) {
 }
 
 func (entity *DateControl) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&DateControl{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *DateControl) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&DateControl{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	return entity.ID, err
 }

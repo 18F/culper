@@ -70,11 +70,39 @@ func (entity *Location) Save(context *pg.DB, account int64) (int, error) {
 }
 
 func (entity *Location) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Location{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *Location) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Location{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Valid checks the value(s) against an battery of tests.

@@ -7,6 +7,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 var (
@@ -70,13 +71,57 @@ func (entity *Telephone) Valid() (bool, error) {
 }
 
 func (entity *Telephone) Save(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Telephone{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *Telephone) Delete(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Telephone{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
 }
 
 func (entity *Telephone) Get(context *pg.DB, account int64) (int, error) {
-	return 0, nil
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Telephone{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	return entity.ID, err
 }

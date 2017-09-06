@@ -195,7 +195,7 @@ func TestPayloadValidate(t *testing.T) {
 	}
 }
 
-func TestPayloadSave(t *testing.T) {
+func TestPayloadPersistence(t *testing.T) {
 	tests := []struct {
 		Data string
 	}{
@@ -209,94 +209,94 @@ func TestPayloadSave(t *testing.T) {
 		{Data: "testdata/identification-ssn.json"},
 
 		// Section: Financial
-		// {Data: "testdata/financial-bankruptcy.json"},
-		// {Data: "testdata/financial-gambling.json"},
-		// {Data: "testdata/financial-taxes.json"},
-		// {Data: "testdata/financial-card.json"},
-		// {Data: "testdata/financial-credit.json"},
-		// {Data: "testdata/financial-delinquent.json"},
-		// {Data: "testdata/financial-nonpayment.json"},
+		{Data: "testdata/financial-bankruptcy.json"},
+		{Data: "testdata/financial-gambling.json"},
+		{Data: "testdata/financial-taxes.json"},
+		{Data: "testdata/financial-card.json"},
+		{Data: "testdata/financial-credit.json"},
+		{Data: "testdata/financial-delinquent.json"},
+		{Data: "testdata/financial-nonpayment.json"},
 
 		// Section: Your history
-		// {Data: "testdata/history-residence.json"},
-		// {Data: "testdata/history-employment.json"},
-		// {Data: "testdata/history-education.json"},
-		// {Data: "testdata/history-federal.json"},
+		{Data: "testdata/history-residence.json"},
+		{Data: "testdata/history-employment.json"},
+		{Data: "testdata/history-education.json"},
+		{Data: "testdata/history-federal.json"},
 
 		// Section: Relationships
-		// {Data: "testdata/relationships-marital.json"},
-		// {Data: "testdata/relationships-cohabitants.json"},
-		// {Data: "testdata/relationships-people.json"},
-		// {Data: "testdata/relationships-relatives.json"},
+		{Data: "testdata/relationships-marital.json"},
+		{Data: "testdata/relationships-cohabitants.json"},
+		{Data: "testdata/relationships-people.json"},
+		{Data: "testdata/relationships-relatives.json"},
 
 		// Section: Citizenship
-		// {Data: "testdata/citizenship-status.json"},
-		// {Data: "testdata/citizenship-multiple.json"},
-		// {Data: "testdata/citizenship-passports.json"},
+		{Data: "testdata/citizenship-status.json"},
+		{Data: "testdata/citizenship-multiple.json"},
+		{Data: "testdata/citizenship-passports.json"},
 
 		// Section: Military history
-		// {Data: "testdata/military-selective.json"},
-		// {Data: "testdata/military-history.json"},
-		// {Data: "testdata/military-foreign.json"},
-		// {Data: "testdata/military-disciplinary.json"},
+		{Data: "testdata/military-selective.json"},
+		{Data: "testdata/military-history.json"},
+		{Data: "testdata/military-foreign.json"},
+		{Data: "testdata/military-disciplinary.json"},
 
 		// Section: Foreign activities
-		// {Data: "testdata/foreign-passport.json"},
-		// {Data: "testdata/foreign-contacts.json"},
-		// {Data: "testdata/foreign-travel.json"},
-		// {Data: "testdata/foreign-activities-benefits.json"},
-		// {Data: "testdata/foreign-activities-direct.json"},
-		// {Data: "testdata/foreign-activities-indirect.json"},
-		// {Data: "testdata/foreign-activities-realestate.json"},
-		// {Data: "testdata/foreign-activities-support.json"},
-		// {Data: "testdata/foreign-business-advice.json"},
-		// {Data: "testdata/foreign-business-conferences.json"},
-		// {Data: "testdata/foreign-business-contact.json"},
-		// {Data: "testdata/foreign-business-employment.json"},
-		// {Data: "testdata/foreign-business-family.json"},
-		// {Data: "testdata/foreign-business-political.json"},
-		// {Data: "testdata/foreign-business-sponsorship.json"},
-		// {Data: "testdata/foreign-business-ventures.json"},
-		// {Data: "testdata/foreign-business-voting.json"},
+		{Data: "testdata/foreign-passport.json"},
+		{Data: "testdata/foreign-contacts.json"},
+		{Data: "testdata/foreign-travel.json"},
+		{Data: "testdata/foreign-activities-benefits.json"},
+		{Data: "testdata/foreign-activities-direct.json"},
+		{Data: "testdata/foreign-activities-indirect.json"},
+		{Data: "testdata/foreign-activities-realestate.json"},
+		{Data: "testdata/foreign-activities-support.json"},
+		{Data: "testdata/foreign-business-advice.json"},
+		{Data: "testdata/foreign-business-conferences.json"},
+		{Data: "testdata/foreign-business-contact.json"},
+		{Data: "testdata/foreign-business-employment.json"},
+		{Data: "testdata/foreign-business-family.json"},
+		{Data: "testdata/foreign-business-political.json"},
+		{Data: "testdata/foreign-business-sponsorship.json"},
+		{Data: "testdata/foreign-business-ventures.json"},
+		{Data: "testdata/foreign-business-voting.json"},
 
 		// Section: Substance use
-		// {Data: "testdata/substance-drug-usage.json"},
-		// {Data: "testdata/substance-drug-purchase.json"},
-		// {Data: "testdata/substance-drug-clearance.json"},
-		// {Data: "testdata/substance-drug-publicsafety.json"},
-		// {Data: "testdata/substance-drug-misuse.json"},
-		// {Data: "testdata/substance-drug-ordered.json"},
-		// {Data: "testdata/substance-drug-voluntary.json"},
-		// {Data: "testdata/substance-alcohol-negative.json"},
-		// {Data: "testdata/substance-alcohol-ordered.json"},
-		// {Data: "testdata/substance-alcohol-voluntary.json"},
-		// {Data: "testdata/substance-alcohol-additional.json"},
+		{Data: "testdata/substance-drug-usage.json"},
+		{Data: "testdata/substance-drug-purchase.json"},
+		{Data: "testdata/substance-drug-clearance.json"},
+		{Data: "testdata/substance-drug-publicsafety.json"},
+		{Data: "testdata/substance-drug-misuse.json"},
+		{Data: "testdata/substance-drug-ordered.json"},
+		{Data: "testdata/substance-drug-voluntary.json"},
+		{Data: "testdata/substance-alcohol-negative.json"},
+		{Data: "testdata/substance-alcohol-ordered.json"},
+		{Data: "testdata/substance-alcohol-voluntary.json"},
+		{Data: "testdata/substance-alcohol-additional.json"},
 
 		// Section: Investigative and criminal history
-		// {Data: "testdata/legal-associations-activities-to-overthrow.json"},
-		// {Data: "testdata/legal-associations-advocating.json"},
-		// {Data: "testdata/legal-associations-engaged-in-terrorism.json"},
-		// {Data: "testdata/legal-associations-membership-overthrow.json"},
-		// {Data: "testdata/legal-associations-membership-violence-or-force.json"},
-		// {Data: "testdata/legal-associations-terrorism-association.json"},
-		// {Data: "testdata/legal-associations-terrorist-organization.json"},
-		// {Data: "testdata/legal-court.json"},
-		// {Data: "testdata/legal-investigations-debarred.json"},
-		// {Data: "testdata/legal-investigations-history.json"},
-		// {Data: "testdata/legal-investigations-revoked.json"},
-		// {Data: "testdata/legal-police-additionaloffenses.json"},
-		// {Data: "testdata/legal-police-domesticviolence.json"},
-		// {Data: "testdata/legal-police-offenses.json"},
-		// {Data: "testdata/legal-technology-manipulating.json"},
-		// {Data: "testdata/legal-technology-unauthorized.json"},
-		// {Data: "testdata/legal-technology-unlawful.json"},
+		{Data: "testdata/legal-associations-activities-to-overthrow.json"},
+		{Data: "testdata/legal-associations-advocating.json"},
+		{Data: "testdata/legal-associations-engaged-in-terrorism.json"},
+		{Data: "testdata/legal-associations-membership-overthrow.json"},
+		{Data: "testdata/legal-associations-membership-violence-or-force.json"},
+		{Data: "testdata/legal-associations-terrorism-association.json"},
+		{Data: "testdata/legal-associations-terrorist-organization.json"},
+		{Data: "testdata/legal-court.json"},
+		{Data: "testdata/legal-investigations-debarred.json"},
+		{Data: "testdata/legal-investigations-history.json"},
+		{Data: "testdata/legal-investigations-revoked.json"},
+		{Data: "testdata/legal-police-additionaloffenses.json"},
+		{Data: "testdata/legal-police-domesticviolence.json"},
+		{Data: "testdata/legal-police-offenses.json"},
+		{Data: "testdata/legal-technology-manipulating.json"},
+		{Data: "testdata/legal-technology-unauthorized.json"},
+		{Data: "testdata/legal-technology-unlawful.json"},
 
 		// Section: Psychological and emotional health
-		// {Data: "testdata/psychological-competence.json"},
-		// {Data: "testdata/psychological-consultations.json"},
-		// {Data: "testdata/psychological-hospitalizations.json"},
-		// {Data: "testdata/psychological-diagnoses.json"},
-		// {Data: "testdata/psychological-existing.json"},
+		{Data: "testdata/psychological-competence.json"},
+		{Data: "testdata/psychological-consultations.json"},
+		{Data: "testdata/psychological-hospitalizations.json"},
+		{Data: "testdata/psychological-diagnoses.json"},
+		{Data: "testdata/psychological-existing.json"},
 	}
 
 	for _, test := range tests {
@@ -321,7 +321,13 @@ func TestPayloadSave(t *testing.T) {
 		var account int64 = 1
 		context := db.NewDB()
 		if _, err := entity.Save(context, account); err != nil {
-			t.Fatalf("Error with [%s]: %v\n\nEntity: %v", test.Data, err, entity)
+			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)
+		}
+		if _, err := entity.Get(context, account); err != nil {
+			t.Fatalf("Error getting [%s]: %v\n\nEntity: %v", test.Data, err, entity)
+		}
+		if _, err := entity.Delete(context, account); err != nil {
+			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}
 	}
 }
