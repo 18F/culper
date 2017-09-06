@@ -6,7 +6,7 @@ import ContactInformationValidator, {
 } from './contactinformation'
 import IdentificationValidator from './identification'
 import NameValidator from './name'
-import OtherNamesValidator from './othernames'
+import OtherNamesValidator, { OtherNameValidator } from './othernames'
 import PassportValidator from './passport'
 import PhysicalValidator from './physical'
 import GamblingValidator from './gambling'
@@ -95,6 +95,7 @@ export {
   IdentificationValidator,
   NameValidator,
   OtherNamesValidator,
+  OtherNameValidator,
   PassportValidator,
   PhysicalValidator,
   GamblingValidator,
