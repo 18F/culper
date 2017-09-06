@@ -56,9 +56,15 @@ describe('OtherNames validation', function () {
                 value: 'Foo'
               },
               DatesUsed: {
-                from: new Date('1/1/2015'),
-                to: new Date('1/1/2016'),
-                present: false
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2012')
+                }
+              },
+              Reason: {
+                value: 'Testing'
               }
             }
           ]
@@ -84,9 +90,16 @@ describe('OtherNames validation', function () {
                 value: 'Foo'
               },
               DatesUsed: {
-                from: new Date('1/1/2015'),
-                to: new Date('1/1/2016'),
+                from: {
+                  date: new Date('1/1/2010')
+                },
+                to: {
+                  date: new Date('1/1/2012')
+                },
                 present: false
+              },
+              Reason: {
+                value: 'Testing'
               }
             }
           ]
@@ -167,8 +180,12 @@ describe('OtherNames validation', function () {
       {
         state: {
           DatesUsed: {
-            from: new Date('1/1/2015'),
-            to: new Date('1/1/2016'),
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
             present: false
           }
         },
@@ -183,8 +200,12 @@ describe('OtherNames validation', function () {
       {
         state: {
           DatesUsed: {
-            from: null,
-            to: new Date('1/1/2016')
+            from: {
+              date: null
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
           }
         },
         expected: false
@@ -192,8 +213,12 @@ describe('OtherNames validation', function () {
       {
         state: {
           DatesUsed: {
-            from: new Date('1/1/2016'),
-            to: null
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: null
+            },
           }
         },
         expected: false
@@ -223,9 +248,16 @@ describe('OtherNames validation', function () {
             value: 'Foo'
           },
           DatesUsed: {
-            from: new Date('1/1/2015'),
-            to: new Date('1/1/2016'),
+            from: {
+              date: new Date('1/1/2010')
+            },
+            to: {
+              date: new Date('1/1/2012')
+            },
             present: false
+          },
+          Reason: {
+            value: 'Testing'
           }
         },
         expected: true
