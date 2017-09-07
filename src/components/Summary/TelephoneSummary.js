@@ -6,26 +6,26 @@ export const TelephoneSummary = (props, unknown = '') => {
   }
 
   let number = ''
-  if (props.Telephone && !props.noNumber && props.Telephone.number) {
-    number = props.Telephone.number
+  if (props.Item && !props.noNumber && props.Item.number) {
+    number = props.Item.number
 
-    switch (props.Telephone.type) {
+    switch (props.Item.type) {
       case 'DSN':
         number = `${number.slice(0, 3)}-${number.slice(3, 7)}`
         break
 
       case 'International':
         number = `+${number.slice(0, 3)} ${number.slice(3, 13)}`
-        if (props.Telephone.extension) {
-          number += ` x${props.Telephone.extension}`
+        if (props.Item.extension) {
+          number += ` x${props.Item.extension}`
         }
         break
 
       case 'Domestic':
       default:
         number = `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`
-        if (props.Telephone.extension) {
-          number += ` x${props.Telephone.extension}`
+        if (props.Item.extension) {
+          number += ` x${props.Item.extension}`
         }
         break
     }

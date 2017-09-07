@@ -33,3 +33,34 @@ func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
 
 	return nil
 }
+
+func JwtTokenRefresh(w http.ResponseWriter, r *http.Request) {
+	log.Println("Refreshing Session Token")
+
+	// Check if the token was passed with the request
+	authHeader := r.Header.Get("Authorization")
+	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
+	if len(matches) == 0 {
+		http.Error(w, "No authorization token header found", http.StatusInternalServerError)
+		return
+	}
+
+	// Validate the token
+	token := matches[1]
+	account := model.Account{}
+	account.WithContext(db.NewDB())
+	if valid, err := account.ValidJwtToken(token); !valid {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Generate a new token
+	signedToken, _, err := account.NewJwtToken()
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Send the new token with a more recent expiration
+	fmt.Fprintf(w, signedToken)
+}
