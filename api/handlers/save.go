@@ -23,7 +23,7 @@ func Save(w http.ResponseWriter, r *http.Request) {
 
 	// Validate the JWT token and populate the account ID
 	account := &model.Account{}
-	if ok, err := account.ValidJwtToken(token); !ok {
+	if ok, err := account.ValidJwtToken(token, model.TwoFactorAudience); !ok {
 		EncodeErrJSON(w, err)
 		return
 	}

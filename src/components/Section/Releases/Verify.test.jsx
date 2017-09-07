@@ -87,14 +87,14 @@ describe('The verify component', () => {
         Contacts: {
           PhoneNumbers: [
             {
-              Telephone: {
+              Item: {
                 type: 'Domestic',
                 number: '2028675309',
                 extension: '1234'
               }
             },
             {
-              Telephone: {
+              Item: {
                 type: 'Domestic',
                 number: '1231231234',
                 extension: ''
