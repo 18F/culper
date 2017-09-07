@@ -103,7 +103,7 @@ Multiple.defaultProps = {
   subsection: 'multiple',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipMultipleValidator(props, props).isValid()
+    return new CitizenshipMultipleValidator(props).isValid()
   },
   defaultState: true
 }

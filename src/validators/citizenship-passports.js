@@ -4,8 +4,8 @@ import NameValidator from './name'
 import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
 export default class CitizenshipPassportsValidator {
-  constructor (state = {}) {
-    this.passports = state.Passports || []
+  constructor (data = {}) {
+    this.passports = data.Passports || []
   }
 
   validPassports () {
@@ -29,15 +29,15 @@ export default class CitizenshipPassportsValidator {
 }
 
 export class PassportItemValidator {
-  constructor (state = {}, props = {}) {
-    this.country = state.Country
-    this.issued = state.Issued
-    this.location = state.Location
-    this.name = state.Name
-    this.number = state.Number
-    this.expiration = state.Expiration
-    this.used = state.Used
-    this.countries = state.Countries
+  constructor (data = {}) {
+    this.country = data.Country
+    this.issued = data.Issued
+    this.location = data.Location
+    this.name = data.Name
+    this.number = data.Number
+    this.expiration = data.Expiration
+    this.used = data.Used
+    this.countries = data.Countries
   }
 
   validCountry () {
@@ -99,9 +99,9 @@ export class PassportItemValidator {
 }
 
 export class TravelItemValidator {
-  constructor (state = {}, props = {}) {
-    this.country = state.Country
-    this.dates = state.Dates
+  constructor (data = {}) {
+    this.country = data.Country
+    this.dates = data.Dates
   }
 
   validCountry () {
