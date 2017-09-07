@@ -36,6 +36,10 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 
 	// Associate with a database context.
 	account.WithContext(db.NewDB())
+	if err := account.Get(); err != nil {
+		Error(w, r, err)
+		return
+	}
 
 	// Validate the user name and password combination
 	if err := account.BasicAuthentication(respBody.Password); err != nil {
@@ -44,7 +48,7 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Generate jwt token
-	signedToken, _, err := account.NewJwtToken()
+	signedToken, _, err := account.NewJwtToken(model.BasicAuthAudience)
 	if err != nil {
 		Error(w, r, err)
 		return
