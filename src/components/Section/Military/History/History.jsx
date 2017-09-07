@@ -127,7 +127,7 @@ History.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryHistoryValidator(props, props).isValid()
+    return new MilitaryHistoryValidator(props).isValid()
   },
   defaultState: true
 }

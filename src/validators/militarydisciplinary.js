@@ -7,10 +7,10 @@ export const hideDisciplinaryProcedures = (store = {}) => {
 }
 
 export default class MilitaryDisciplinaryValidator {
-  constructor (state = {}, props = {}) {
-    this.hasDisciplinary = state.HasDisciplinary
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasDisciplinary = data.HasDisciplinary
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validDisciplinary () {
@@ -46,12 +46,12 @@ export default class MilitaryDisciplinaryValidator {
 }
 
 export class ProcedureValidator {
-  constructor (state = {}, props = {}) {
-    this.date = state.Date
-    this.offenses = state.Offenses
-    this.name = state.Name
-    this.court = state.Court
-    this.outcome = state.Outcome
+  constructor (data = {}) {
+    this.date = data.Date
+    this.offenses = data.Offenses
+    this.name = data.Name
+    this.court = data.Court
+    this.outcome = data.Outcome
   }
 
   validDate () {
