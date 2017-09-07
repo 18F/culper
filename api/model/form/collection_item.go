@@ -40,21 +40,6 @@ func (item CollectionItem) Valid() (bool, error) {
 func (item CollectionItem) Save(context *pg.DB, account int64, collectionID int) (int, error) {
 	item.CollectionID = collectionID
 
-	for k, v := range item.Item {
-		item.Name = k
-
-		entity, err := v.Entity()
-		if err != nil {
-			return item.ID, err
-		}
-
-		id, err := entity.Save(context, account)
-		if err != nil {
-			return item.ID, err
-		}
-		item.ItemID = id
-	}
-
 	options := &orm.CreateTableOptions{
 		Temp:        false,
 		IfNotExists: true,
@@ -65,10 +50,32 @@ func (item CollectionItem) Save(context *pg.DB, account int64, collectionID int)
 		return item.ID, err
 	}
 
-	if item.ID == 0 {
-		err = context.Insert(item)
-	} else {
-		err = context.Update(item)
+	for k, v := range item.Item {
+		newItem := &CollectionItem{
+			CollectionID: collectionID,
+			Name:         k,
+		}
+
+		entity, err := v.Entity()
+		if err != nil {
+			return item.ID, err
+		}
+
+		id, err := entity.Save(context, account)
+		if err != nil {
+			return item.ID, err
+		}
+		newItem.ItemID = id
+
+		if newItem.ID == 0 {
+			err = context.Insert(newItem)
+		} else {
+			err = context.Update(newItem)
+		}
+
+		if err != nil {
+			return item.ID, err
+		}
 	}
 
 	return item.ID, nil

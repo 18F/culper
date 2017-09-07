@@ -15,9 +15,10 @@ type RelationshipsMarital struct {
 	PayloadDivorcedList Payload           `json:"DivorcedList" sql:"-"`
 
 	// Validator specific fields
-	Status       *Radio            `json:"-"`
-	CivilUnion   PayloadProperties // TODO: Look at breaking this down
-	DivorcedList *Collection       `json:"-"`
+	Status     *Radio      `json:"-"`
+	CivilUnion *CivilUnion `json:"-"`
+	// CivilUnion   CivilUnion  `json:"CivilUnion" sql:"-"`
+	DivorcedList *Collection `json:"-"`
 
 	// Persister specific fields
 	ID             int
@@ -40,7 +41,7 @@ func (entity *RelationshipsMarital) Unmarshal(raw []byte) error {
 	}
 	entity.Status = status.(*Radio)
 
-	// CivilUnion   PayloadProperties // TODO: Look at breaking this down
+	entity.CivilUnion = &CivilUnion{Items: entity.PayloadCivilUnion}
 
 	divorcedList, err := entity.PayloadDivorcedList.Entity()
 	if err != nil {
@@ -59,7 +60,7 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 	switch {
 	case sv == "InCivilUnion" || sv == "Separated":
 		// Check if the civil union information is valid
-		for k, v := range entity.CivilUnion {
+		for k, v := range entity.CivilUnion.Items {
 			if k == "Divorced" {
 				// Check if there was a divorce mentioned in the civil union
 				divorced, err := v.Entity()
@@ -107,11 +108,9 @@ func (entity *RelationshipsMarital) Save(context *pg.DB, account int64) (int, er
 	}
 	entity.StatusID = statusID
 
-	// TODO: Work on payload properties
 	_, err = entity.CivilUnion.Save(context, account)
 	if err != nil {
 		return 0, err
-		// return civilUnionID, err
 	}
 	// entity.CivilUnionID = civilUnionID
 
