@@ -91,7 +91,6 @@ export default class Federal extends SubsectionElement {
 
             <Field title={i18n.t('history.federal.heading.name')}
                    className="federal-agency"
-                   help="history.federal.help.name"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Name"
                     bind={true}
@@ -101,7 +100,6 @@ export default class Federal extends SubsectionElement {
 
             <Field title={i18n.t('history.federal.heading.position')}
                    className="federal-position"
-                   help="history.federal.help.position"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Position"
                     bind={true}

@@ -5095,12 +5095,12 @@ const en = {
       help: {
         branch: {
           title: 'Need more information about former federal service?',
-          message: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+          message: 'Please list all federal service even if older than 10 years.',
           note: ''
         },
         dates: {
-          title: 'Need help with the dates employed?',
-          message: 'The dates you were employed',
+          title: 'Need help with the dates of employment?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         name: {
@@ -5115,8 +5115,8 @@ const en = {
         },
         address: {
           title: 'Need help with the address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
-          note: ''
+          message: 'Try looking up the agency name, this could help you find the address.',
+          note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       },
       collection: {

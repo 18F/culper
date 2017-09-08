@@ -80,7 +80,7 @@ describe('The date component', () => {
     const component = mount(<DateControl {...expected} />)
     expect(component.find('label').length).toEqual(children)
     expect(component.find('.day input').length).toEqual(1)
-    expect(component.find('.month input').nodes[0].value).toEqual('1 (January)')
+    expect(component.find('.month input').nodes[0].value).toEqual('1')
     expect(component.find('.day input').nodes[0].value).toEqual('28')
     expect(component.find('.year input').nodes[0].value).toEqual('2016')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
