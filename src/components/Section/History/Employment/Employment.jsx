@@ -95,6 +95,8 @@ export default class Employment extends SubsectionElement {
                    customSummary={EmploymentCustomSummary}
                    customDetails={this.customEmploymentDetails}
                    description={i18n.t('history.employment.default.collection.summary.title')}
+                   appendTitle={i18n.t('history.employment.default.collection.appendTitle')}
+                   appendMessage={i18n.m('history.employment.default.collection.appendMessage')}
                    appendLabel={i18n.t('history.employment.default.collection.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
