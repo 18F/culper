@@ -3629,6 +3629,14 @@ const en = {
         collection: {
           caption: 'Employment activities',
           append: 'Add another employer',
+          appendTitle: 'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
+          appendMessage: [
+            '- Fired from a job?',
+            '- Quit a job after being told you would be fired?',
+            '- Have you left a job by mutual agreement following charges or allegations of misconduct?',
+            '- Left a job by mutual agreement following notice of unsatisfactory performance?',
+            '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?'
+          ],
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
