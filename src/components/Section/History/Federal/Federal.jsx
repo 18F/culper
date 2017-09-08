@@ -11,13 +11,14 @@ export default class Federal extends SubsectionElement {
 
     this.update = this.update.bind(this)
     this.updateBranch = this.updateBranch.bind(this)
-    this.updateCollection = this.updateCollection.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       HasFederalService: this.props.HasFederalService,
       List: this.props.List,
+      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -25,13 +26,15 @@ export default class Federal extends SubsectionElement {
   updateBranch (value, event) {
     this.update({
       HasFederalService: value,
-      List: value === 'Yes' ? this.props.List : []
+      List: value === 'Yes' ? this.props.List : [],
+      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
-  updateCollection (values) {
+  updateList (values) {
     this.update({
-      List: values.items
+      List: values.items,
+      ListBranch: values.branch
     })
   }
 
@@ -66,11 +69,13 @@ export default class Federal extends SubsectionElement {
         </Branch>
         <Show when={this.props.HasFederalService === 'Yes'}>
           <Accordion items={this.props.List}
+                     branch={this.props.ListBranch}
                      defaultState={this.props.defaultState}
-                     onUpdate={this.updateCollection}
+                     onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('history.federal.collection.summary.title')}
+                     appendTitle={i18n.t('history.federal.collection.appendTitle')}
                      appendLabel={i18n.t('history.federal.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
@@ -129,6 +134,7 @@ export default class Federal extends SubsectionElement {
 Federal.defaultProps = {
   HasFederalService: '',
   List: [],
+  ListBranch: '',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'history',
