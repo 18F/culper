@@ -21,16 +21,9 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Validate the token
-	authHeader := r.Header.Get("Authorization")
-	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
-	if len(matches) == 0 {
-		http.Error(w, "No authorization token header found", http.StatusInternalServerError)
-		return
-	}
-
-	jwtToken := matches[1]
-	if valid, err := account.ValidJwtToken(jwtToken, model.BasicAuthAudience); !valid {
+	// Valid token and audience
+	_, err = checkToken(r, account, model.BasicAuthAudience)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -55,16 +48,9 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Validate the token
-	authHeader := r.Header.Get("Authorization")
-	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
-	if len(matches) == 0 {
-		http.Error(w, "No authorization token header found", http.StatusInternalServerError)
-		return
-	}
-
-	jwtToken := matches[1]
-	if valid, err := account.ValidJwtToken(jwtToken, model.BasicAuthAudience); !valid {
+	// Valid token and audience
+	_, err = checkToken(r, account, model.BasicAuthAudience)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -131,16 +117,9 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Validate the token
-	authHeader := r.Header.Get("Authorization")
-	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
-	if len(matches) == 0 {
-		http.Error(w, "No authorization token header found", http.StatusInternalServerError)
-		return
-	}
-
-	jwtToken := matches[1]
-	if valid, err := account.ValidJwtToken(jwtToken, model.BasicAuthAudience); !valid {
+	// Valid token and audience
+	jwtToken, err := checkToken(r, account, model.BasicAuthAudience)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
