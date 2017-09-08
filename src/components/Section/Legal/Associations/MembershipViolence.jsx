@@ -3,7 +3,8 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsViolenceValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateRange,
+         Location, Text, Textarea, NotApplicable, Currency } from '../../../Form'
 
 export default class MembershipViolence extends SubsectionElement {
   constructor (props) {
@@ -141,11 +142,11 @@ export default class MembershipViolence extends SubsectionElement {
                              label={i18n.t('legal.associations.violence.label.nocontribs')}
                              required={this.props.required}
                              bind={true}>
-                <Text name="Contributions"
-                      className="legal-associations-violence-contributions"
-                      bind={true}
-                      required={this.props.required}
-                      />
+                <Currency name="Contributions"
+                          className="legal-associations-violence-contributions"
+                          bind={true}
+                          required={this.props.required}
+                          />
               </NotApplicable>
             </Field>
 
