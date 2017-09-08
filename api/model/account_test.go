@@ -59,17 +59,17 @@ func TestJwtToken(t *testing.T) {
 		ID: 1,
 	}
 
-	token, _, err := a.NewJwtToken()
+	token, _, err := a.NewJwtToken(BasicAuthAudience)
 	if err != nil {
 		t.Fatal(err)
 	}
 
-	valid, _ := a.ValidJwtToken(token)
+	valid, _ := a.ValidJwtToken(token, BasicAuthAudience)
 	if !valid {
 		t.Fatalf("Expected Jwt Token to be valid")
 	}
 
-	valid, _ = a.ValidJwtToken("badtoken")
+	valid, _ = a.ValidJwtToken("badtoken", BasicAuthAudience)
 	if valid {
 		t.Fatalf("Expected Jwt Token to be invalid")
 	}

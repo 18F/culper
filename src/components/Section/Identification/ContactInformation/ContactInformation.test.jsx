@@ -22,34 +22,34 @@ describe('The ContactInformation component', () => {
     const expected = {
       PhoneNumbers: [
         {
-          Telephone: {
+          Item: {
             type: 'Domestic',
             number: '2028675309',
             extension: '1234'
           }
         },
         {
-          Telephone: {
+          Item: {
             type: 'Domestic',
             number: '2028675309',
             extension: ''
           }
         },
         {
-          Telephone: {
+          Item: {
             type: 'DSN',
             number: '8675309'
           }
         },
         {
-          Telephone: {
+          Item: {
             type: 'International',
             number: '0011234567890',
             extension: '1234'
           }
         },
         {
-          Telephone: {
+          Item: {
             type: 'International',
             number: '0011234567890',
             extension: ''
@@ -70,12 +70,12 @@ describe('The ContactInformation component', () => {
     const expected = {
       Emails: [
         {
-          Email: {
+          Item: {
             value: 'test@abc.com'
           }
         },
         {
-          Email: {}
+          Item: {}
         }
       ]
     }

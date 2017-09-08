@@ -1,4 +1,5 @@
 import DrugVoluntaryTreatmentsValidator, { DrugVoluntaryTreatmentValidator } from './drugvoluntarytreatments'
+import Location from '../components/Form/Location'
 
 describe('Drug Voluntary Treatment Validation', function () {
   it('should validate drug ordered treatments', function () {
@@ -63,6 +64,7 @@ describe('Drug Voluntary Treatment Validation', function () {
                   number: '7031112222',
                   numberType: 'Home',
                   timeOfDay: 'Both',
+                  type: 'Domestic',
                   extension: ''
                 },
                 TreatmentDates: {

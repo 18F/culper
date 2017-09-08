@@ -8,13 +8,16 @@ import Navigation from './Navigation'
 
 describe('The navigation component', () => {
   // Setup
+  window.token = 'fake-token'
   const middlewares = [ thunk ]
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
+    window.token = ''
     const store = mockStore({ authentication: {} })
     const component = mount(<Provider store={store}><Navigation /></Provider>)
     expect(component.find('div').length).toEqual(0)
+    window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {
