@@ -56,7 +56,7 @@ export const ResidenceSummary = (item, errors, open) => {
   const address = AddressSummary(item.Address, i18n.m('history.residence.collection.summary.unknown'))
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-        ? <Svg src="/img/exclamation-point.svg" />
+        ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
         : null
 
   return (
@@ -126,7 +126,7 @@ export const EmploymentSummary = (item, errors, open) => {
         : i18n.m('history.employment.default.collection.summary.unknown')
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-        ? <Svg src="/img/exclamation-point.svg" />
+        ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
         : null
 
   return (
@@ -200,7 +200,7 @@ export const EducationSummary = (item, errors, open) => {
   const school = (item.Name && item.Name.value ? item.Name.value : i18n.m('history.education.collection.school.summary.unknown'))
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
-        ? <Svg src="/img/exclamation-point.svg" />
+        ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
         : null
 
   return (
