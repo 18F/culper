@@ -3583,7 +3583,7 @@ const en = {
       help: {
         dates: {
           title: 'Need help with the date range?',
-          message: 'Provide the date range of your residence',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         address: {
@@ -8469,27 +8469,27 @@ const en = {
     help: {
       contact: {
         title: 'Need help with the date of last contact?',
-        message: 'Please provide the date of last contact with this person',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       relationship: {
         title: 'Need help defining your relationship?',
-        message: 'Please define your relationship with the person during this period',
+        message: 'Please define your relationship with the person during this period.',
         note: ''
       },
       email: {
         title: 'Need help with the email address?',
-        message: 'A current e-mail address to contact this character reference',
+        message: 'A current e-mail address to contact this character reference.',
         note: ''
       },
       phone: {
         title: 'Need help with a telephone number?',
-        message: 'One or more telephone numbers to contact this character reference',
+        message: 'One or more telephone numbers to contact this character reference.',
         note: ''
       },
       address: {
         title: 'Need help with the address?',
-        message: 'The current address of the character reference',
+        message: 'The current address of the character reference.',
         note: ''
       }
     }
