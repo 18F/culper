@@ -10,16 +10,18 @@ import { InjectGaps, EmploymentCustomSummary, EmploymentCaption } from '../summa
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
 
-const byline = (item, index, initial, translation, validator) => {
-  if (!item.open && !initial && item.Item && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.t(translation)}</div>
+const byline = (item, index, initial, translation, required, validator) => {
+  switch (true) {
+    // If item is required and not currently opened and is not valid, show message
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="incomplete">{i18n.m(translation)}</div>
       </div>
-    )
+      )
+    default:
+      return null
   }
-
-  return null
 }
 
 export default class Employment extends SubsectionElement {
@@ -33,7 +35,7 @@ export default class Employment extends SubsectionElement {
   }
 
   customEmploymentByline (item, index, initial) {
-    return byline(item, index, this.props.overrideInitial(initial), 'history.employment.default.collection.summary.incomplete', (item) => {
+    return byline(item, index, this.props.overrideInitial(initial), 'history.employment.default.collection.summary.incomplete', this.props.required, (item) => {
       return new EmploymentValidator(item, null).isValid()
     })
   }

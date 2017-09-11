@@ -11,23 +11,17 @@ import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
 const byline = (item, index, initial, translation, required, validator) => {
-  if (required && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+  switch (true) {
+    // If item is required and not currently opened and is not valid, show message
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
         <div className="incomplete">{i18n.m(translation)}</div>
       </div>
-    )
+      )
+    default:
+      return null
   }
-
-  if (!item.open && !initial && item.Item && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.m(translation)}</div>
-      </div>
-    )
-  }
-
-  return null
 }
 
 export default class Residence extends SubsectionElement {
