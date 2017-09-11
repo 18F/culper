@@ -10,7 +10,15 @@ import { InjectGaps, ResidenceCustomSummary, ResidenceCaption } from '../summari
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
-const byline = (item, index, initial, translation, validator) => {
+const byline = (item, index, initial, translation, required, validator) => {
+  if (required && !validator(item.Item)) {
+    return (
+      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="incomplete">{i18n.m(translation)}</div>
+      </div>
+    )
+  }
+
   if (!item.open && !initial && item.Item && !validator(item.Item)) {
     return (
       <div className={`byline ${openState(item, initial)} fade in`.trim()}>
@@ -33,7 +41,7 @@ export default class Residence extends SubsectionElement {
   }
 
   customResidenceByline (item, index, initial) {
-    return byline(item, index, this.props.overrideInitial(initial), 'history.residence.collection.summary.incomplete', (item) => {
+    return byline(item, index, this.props.overrideInitial(initial), 'history.residence.collection.summary.incomplete', this.props.required, (item) => {
       return new ResidenceValidator(item, null).isValid()
     })
   }
