@@ -15,8 +15,8 @@ export default class ContactInformationValidator {
       return false
     }
 
-    for (const item of this.emails) {
-      if (!item.Email || !validGenericTextfield(item.Email)) {
+    for (const email of this.emails) {
+      if (!new ContactEmailValidator(email.Item).isValid()) {
         return false
       }
     }
@@ -35,7 +35,7 @@ export default class ContactInformationValidator {
 
     let successful = 0
     for (const item of this.phoneNumbers) {
-      if (!item.Telephone || !validPhoneNumber(item.Telephone)) {
+      if (!new ContactPhoneNumberValidator(item.Item).isValid()) {
         continue
       }
       successful++
@@ -49,5 +49,25 @@ export default class ContactInformationValidator {
    */
   isValid () {
     return this.validEmails() && this.validPhoneNumbers()
+  }
+}
+
+export class ContactEmailValidator {
+  constructor (data) {
+    this.email = data
+  }
+
+  isValid () {
+    return validGenericTextfield(this.email)
+  }
+}
+
+export class ContactPhoneNumberValidator {
+  constructor (data) {
+    this.phoneNumber = data
+  }
+
+  isValid () {
+    return validPhoneNumber(this.phoneNumber)
   }
 }

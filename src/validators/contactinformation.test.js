@@ -7,12 +7,12 @@ describe('Contact Information validation', function () {
         state: {
           Emails: [
             {
-              Email: {
+              Item: {
                 value: 'foobar@local.dev'
               }
             },
             {
-              Email: {
+              Item: {
                 value: 'foobar@local.dev'
               }
             }
@@ -24,7 +24,7 @@ describe('Contact Information validation', function () {
         state: {
           Emails: [
             {
-              Email: {
+              Item: {
                 value: 'foobar@local.dev'
               }
             }
@@ -36,10 +36,10 @@ describe('Contact Information validation', function () {
         state: {
           Emails: [
             {
-              Email: null
+              Item: null
             },
             {
-              Email: {
+              Item: {
                 value: 'foobar@local.dev'
               }
             }
@@ -60,19 +60,21 @@ describe('Contact Information validation', function () {
         state: {
           PhoneNumbers: [
             {
-              Telephone: {
+              Item: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               }
             },
             {
-              Telephone: {
+              Item: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               }
@@ -85,10 +87,11 @@ describe('Contact Information validation', function () {
         state: {
           PhoneNumbers: [
             {
-              Telephone: {
+              Item: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               }
@@ -101,10 +104,11 @@ describe('Contact Information validation', function () {
         state: {
           PhoneNumbers: [
             {
-              Telephone: {
+              Item: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               }
@@ -135,31 +139,33 @@ describe('Contact Information validation', function () {
         state: {
           Emails: [
             {
-              Email: {
+              Item: {
                 value: 'foobar2@local.dev'
               }
             },
             {
-              Email: {
+              Item: {
                 value: 'foobar2@local.dev'
               }
             }
           ],
           PhoneNumbers: [
             {
-              Telephone: {
+              Item: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               }
             },
             {
-              Telephone: {
+              Item: {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               }

@@ -12,11 +12,6 @@ import { push } from '../middleware/history'
  */
 function AuthenticatedView (WrappedComponent) {
   return connect(mapStateToProps)(class RequiresAuth extends React.Component {
-
-    constructor (props) {
-      super(props)
-    }
-
     componentWillReceiveProps (nextProps) {
       this.checkAuthentication()
     }
@@ -26,16 +21,14 @@ function AuthenticatedView (WrappedComponent) {
     }
 
     checkAuthentication () {
-      if (!this.props.authenticated || !this.props.twofactor) {
+      if (!api.getToken() || !this.props.authenticated || !this.props.twofactor) {
         this.props.dispatch(push('/login'))
       }
     }
 
     render () {
-      if (this.props.authenticated && this.props.twofactor) {
-        return (
-          <WrappedComponent {...this.props} />
-        )
+      if (api.getToken() && this.props.authenticated && this.props.twofactor) {
+        return (<WrappedComponent {...this.props} />)
       }
       return null
     }
@@ -46,8 +39,7 @@ function mapStateToProps (state) {
   const auth = state.authentication
   return {
     authenticated: auth.authenticated,
-    twofactor: auth.twofactor,
-    token: auth.token
+    twofactor: auth.twofactor
   }
 }
 

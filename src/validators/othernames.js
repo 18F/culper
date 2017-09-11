@@ -1,9 +1,11 @@
 import NameValidator from './name'
+import { validGenericTextfield } from './helpers'
+import DateRangeValidator from './daterange'
 
 export default class OtherNamesValidator {
-  constructor (state, props) {
-    this.hasOtherNames = state.HasOtherNames
-    this.list = state.List
+  constructor (data) {
+    this.hasOtherNames = data.HasOtherNames
+    this.list = data.List
   }
 
   /**
@@ -55,10 +57,11 @@ export default class OtherNamesValidator {
  * Validates a single instance of an other name
  */
 export class OtherNameValidator {
-  constructor (state, props) {
-    this.name = state.Name
-    this.maidenName = state.MaidenName
-    this.datesUsed = state.DatesUsed
+  constructor (data) {
+    this.name = data.Name
+    this.maidenName = data.MaidenName
+    this.datesUsed = data.DatesUsed
+    this.reason = data.Reason
   }
 
   /**
@@ -82,10 +85,11 @@ export class OtherNameValidator {
    * Validates the other names dates used
    */
   validDatesUsed () {
-    if (!this.datesUsed || !this.datesUsed.from || (!this.datesUsed.to && !this.datesUsed.present)) {
-      return false
-    }
-    return true
+    return new DateRangeValidator(this.datesUsed).isValid()
+  }
+
+  validReason () {
+    return validGenericTextfield(this.reason)
   }
 
   /**
@@ -94,6 +98,7 @@ export class OtherNameValidator {
   isValid () {
     return this.validName() &&
       this.validMaidenName() &&
-      this.validDatesUsed()
+      this.validDatesUsed() &&
+      this.validReason()
   }
 }

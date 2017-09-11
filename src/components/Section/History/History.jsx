@@ -466,6 +466,7 @@ class History extends SectionElement {
                     value={this.props.Education.HasAttended}
                     help="history.education.help.attendance"
                     label={i18n.t('history.education.label.attendance')}
+                    labelSize="h3"
                     warning={true}
                     onUpdate={this.updateBranchAttendance}
                     >
@@ -475,6 +476,7 @@ class History extends SectionElement {
                       value={this.props.Education.HasDegree10}
                       help="history.education.help.degree10"
                       label={i18n.t('history.education.label.degree10')}
+                      labelSize="h3"
                       warning={true}
                       onUpdate={this.updateBranchDegree10}
                       >

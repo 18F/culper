@@ -71,6 +71,10 @@ class Api {
       token = this.getQueryValue('token')
     }
 
+    if (env.IsTest()) {
+      token = window.token
+    }
+
     return token
   }
 
@@ -80,6 +84,10 @@ class Api {
     } else {
       document.cookie = 'token=' + token
     }
+  }
+
+  bearerToken () {
+    return { 'Authorization': `Bearer ${this.getToken()}` }
   }
 
   supportForLocalStorage () {
@@ -94,29 +102,42 @@ class Api {
     return this.proxy.get('/')
   }
 
+  get (endpoint, secure = true) {
+    const headers = secure ? { headers: this.bearerToken() } : {}
+    return this.proxy.get(endpoint, headers)
+  }
+
+  post (endpoint, params = {}, secure = true) {
+    const headers = secure ? { headers: this.bearerToken() } : {}
+    return this.proxy.post(endpoint, params, headers)
+  }
+
   twoFactor (account, token) {
-    // TODO: Fix secure proxy
     if (token) {
-      return this.proxy.post(env.EndpointTwoFactorVerify(account), { token: token })
+      return this.post(env.EndpointTwoFactorVerify(account), { token: token })
     }
 
-    return this.proxy.get(env.EndpointTwoFactor(account))
+    return this.get(env.EndpointTwoFactor(account))
   }
 
   twoFactorReset (account) {
-    return this.proxy.get(env.EndpointTwoFactorReset(account))
+    return this.get(env.EndpointTwoFactorReset(account))
   }
 
   login (username, password) {
-    return this.proxy.post(env.EndpointBasicAuthentication(), { username: username, password: password })
+    return this.post(env.EndpointBasicAuthentication(), { username: username, password: password }, false)
+  }
+
+  refresh () {
+    return this.post(env.EndpointRefresh())
   }
 
   save (payload) {
-    return this.proxy.post(env.EndpointSave(), payload, { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
+    return this.post(env.EndpointSave(), payload)
   }
 
   validate (payload) {
-    return this.proxy.post(env.EndpointValidate(), payload, { headers: { 'Authorization': `Bearer ${this.getToken()}` } })
+    return this.post(env.EndpointValidate(), payload)
   }
 }
 
