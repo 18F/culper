@@ -85,6 +85,7 @@ import LegalAssociationsActivitiesValidator from './legalassociationsactivities'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
+import { nameIsEmpty } from './helpers'
 
 export {
   BankruptcyValidator,
@@ -178,5 +179,6 @@ export {
   LegalAssociationsActivitiesValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
-  SignatureValidator
+  SignatureValidator,
+  nameIsEmpty
 }

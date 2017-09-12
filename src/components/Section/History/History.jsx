@@ -145,7 +145,7 @@ class History extends SectionElement {
       return dates
     }
 
-    for (const i of this.excludeGaps(this.props.Employment.items)) {
+    for (const i of this.excludeGaps(this.props.Employment.List)) {
       if (!i.Item) {
         continue
       }
@@ -256,7 +256,7 @@ class History extends SectionElement {
       for (const t of types) {
         let items = []
         if (t === 'Employment') {
-          items = ((this.props.History[t] && this.props.History[t].ListItems) || [])
+          items = ((this.props.History[t] && this.props.History[t].List) || [])
         } else {
           items = this.props.History[t]
         }
@@ -553,7 +553,7 @@ function mapStateToProps (state) {
   return {
     History: history,
     Residence: history.Residence || [],
-    Employment: history.Employment || { items: [], branch: '' },
+    Employment: history.Employment || { List: [], ListBranch: '' },
     Education: history.Education || { HasAttended: '', HasDegree10: '', List: [] },
     Federal: history.Federal || {},
     Errors: errors.history || [],

@@ -1,8 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, BranchCollection, DateRange, Reference, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
+import { ValidationElement, BranchCollection, DateRange, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
+import Reference from './Reference'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -111,6 +112,7 @@ export default class EducationItem extends ValidationElement {
                      onValidate={this.props.onValidate}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
+                     onError={this.props.onError}
                      />
         </div>
       )

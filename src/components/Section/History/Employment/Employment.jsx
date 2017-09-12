@@ -63,8 +63,8 @@ export default class Employment extends SubsectionElement {
     })
 
     this.props.onUpdate({
-      items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
-      branch: ''
+      List: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+      ListBranch: ''
     })
   }
 
@@ -90,13 +90,11 @@ export default class Employment extends SubsectionElement {
   }
 
   render () {
-    console.log('render: ', this.props.branch)
-    console.log('render: ', this.props.items)
     return (
       <div className="employment">
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.ListItems}
+                   items={this.props.List}
                    branch={this.props.ListBranch}
                    sort={this.props.sort}
                    inject={this.inject}
@@ -127,7 +125,7 @@ export default class Employment extends SubsectionElement {
 
 Employment.defaultProps = {
   value: [],
-  ListItems: [],
+  List: [],
   ListBranch: '',
   scrollToTop: '',
   defaultState: true,
@@ -142,8 +140,8 @@ Employment.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return props.ListItems.every(x => {
-      return new EmploymentValidator(x.Item, null).isValid()
+    return props.List.every(x => {
+      return props.ListBranch === 'No' && new EmploymentValidator(x.Item, null).isValid()
     })
   }
 }
