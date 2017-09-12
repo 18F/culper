@@ -8479,18 +8479,18 @@ const en = {
       },
       email: {
         title: 'Need help with the email address?',
-        message: 'A current e-mail address to contact this character reference.',
+        message: 'Please use an active email address.',
         note: ''
       },
       phone: {
         title: 'Need help with a telephone number?',
-        message: 'One or more telephone numbers to contact this character reference.',
+        message: 'Please use an active phone number.',
         note: ''
       },
       address: {
         title: 'Need help with the address?',
-        message: 'The current address of the character reference.',
-        note: ''
+        message: 'Please use an active address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       }
     }
   },
