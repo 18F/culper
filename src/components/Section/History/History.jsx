@@ -363,7 +363,7 @@ class History extends SectionElement {
                         />
 
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
-              <Education value={this.props.Education.List}
+              <Education value={this.props.Education}
                          defaultState={false}
                          realtime={true}
                          sort={sort}
