@@ -32,11 +32,19 @@ export default class Employment extends SubsectionElement {
     this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
     this.fillGap = this.fillGap.bind(this)
     this.inject = this.inject.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   customEmploymentByline (item, index, initial) {
     return byline(item, index, this.props.overrideInitial(initial), 'history.employment.default.collection.summary.incomplete', this.props.required, (item) => {
       return new EmploymentValidator(item, null).isValid()
+    })
+  }
+
+  updateList (values) {
+    this.props.onUpdate({
+      List: values.items,
+      ListBranch: values.branch
     })
   }
 
@@ -82,15 +90,18 @@ export default class Employment extends SubsectionElement {
   }
 
   render () {
+    console.log('render: ', this.props.branch)
+    console.log('render: ', this.props.items)
     return (
       <div className="employment">
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.value}
+                   items={this.props.ListItems}
+                   branch={this.props.ListBranch}
                    sort={this.props.sort}
                    inject={this.inject}
                    realtime={this.props.realtime}
-                   onUpdate={this.props.onUpdate}
+                   onUpdate={this.updateList}
                    onError={this.handleError}
                    caption={EmploymentCaption}
                    byline={this.customEmploymentByline}
@@ -116,6 +127,8 @@ export default class Employment extends SubsectionElement {
 
 Employment.defaultProps = {
   value: [],
+  ListItems: [],
+  ListBranch: '',
   scrollToTop: '',
   defaultState: true,
   realtime: false,
@@ -129,7 +142,7 @@ Employment.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return props.value.every(x => {
+    return props.ListItems.every(x => {
       return new EmploymentValidator(x.Item, null).isValid()
     })
   }
