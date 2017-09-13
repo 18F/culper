@@ -56,7 +56,7 @@ Passports.defaultProps = {
   subsection: 'passports',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipPassportsValidator(props, props).isValid()
+    return new CitizenshipPassportsValidator(props).isValid()
   },
   defaultState: true
 }
