@@ -7,6 +7,9 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/geo"
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 // Different potential layouts used by the frontend.
@@ -29,6 +32,7 @@ const (
 
 // Location is a basic input.
 type Location struct {
+	ID        int
 	Layout    string `json:"layout"`
 	Street1   string `json:"street,omitempty"`
 	Street2   string `json:"street2,omitempty"`
@@ -43,6 +47,62 @@ type Location struct {
 // Unmarshal bytes in to the entity properties.
 func (entity *Location) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
+}
+
+func (entity *Location) Save(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	if err := context.CreateTable(&Location{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	var err error
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
+}
+
+func (entity *Location) Delete(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Location{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
+}
+
+func (entity *Location) Get(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Location{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	return entity.ID, err
 }
 
 // Valid checks the value(s) against an battery of tests.

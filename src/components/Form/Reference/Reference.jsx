@@ -111,7 +111,6 @@ export default class Reference extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.relationship`)}
-               help={`${prefix}reference.help.relationship`}
                comments={true}
                commentsName="Comments"
                commentsValue={this.state.Comments}
