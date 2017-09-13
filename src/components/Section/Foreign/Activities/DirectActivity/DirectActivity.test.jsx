@@ -21,7 +21,7 @@ describe('The DirectActivity component', () => {
     const expected = {
       HasInterests: 'Yes',
       List: [{
-        DirectInterest: {
+        Item: {
           InterestType: {
             value: 'Foo'
           },
@@ -39,7 +39,7 @@ describe('The DirectActivity component', () => {
     const expected = {
       HasInterests: 'Yes',
       List: [{
-        DirectInterest: {
+        Item: {
           InterestTypes: ['Yourself']
         },
         open: true
@@ -68,7 +68,7 @@ describe('The DirectActivity component', () => {
       HasInterests: 'Yes',
       List: [
         {
-          DirectInterest: {
+          Item: {
             InterestTypes: ['Yourself'],
             InterestType: {
               value: 'Some type'

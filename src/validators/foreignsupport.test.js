@@ -181,36 +181,38 @@ describe('Foreign activities support component validation', function () {
           HasForeignSupport: 'Yes',
           List: [
             {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              Address: {
-                street: '1234 Some Rd',
-                city: 'Munich',
-                country: 'Germany',
-                layout: Location.ADDRESS
-              },
-              Relationship: {
-                value: 'this is the relationship'
-              },
-              Amount: {
-                value: '1000'
-              },
-              Frequency: {
-                value: 'Daily'
-              },
-              Citizenship: {
-                value: [
-                  { name: 'United States', value: 'United States' },
-                  { name: 'Germany', value: 'Germany' }
-                ]
+              Item: {
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
+                },
+                Address: {
+                  street: '1234 Some Rd',
+                  city: 'Munich',
+                  country: 'Germany',
+                  layout: Location.ADDRESS
+                },
+                Relationship: {
+                  value: 'this is the relationship'
+                },
+                Amount: {
+                  value: '1000'
+                },
+                Frequency: {
+                  value: 'Daily'
+                },
+                Citizenship: {
+                  value: [
+                    { name: 'United States', value: 'United States' },
+                    { name: 'Germany', value: 'Germany' }
+                  ]
+                }
               }
             }
           ],

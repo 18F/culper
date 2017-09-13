@@ -1,4 +1,4 @@
-import ForeignBusinessEmploymentValidator, { EmploymentValidator } from './foreignbusinessemployment'
+import ForeignBusinessEmploymentValidator, { ForeignBusinessEmploymentItemValidator } from './foreignbusinessemployment'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
@@ -28,7 +28,7 @@ describe('Foreign business employment component validation', function () {
       }
     ]
 
-    battery(tests, EmploymentValidator, 'validName')
+    battery(tests, ForeignBusinessEmploymentItemValidator, 'validName')
   })
 
   it('validate foreign business employment description', () => {
@@ -49,7 +49,7 @@ describe('Foreign business employment component validation', function () {
       }
     ]
 
-    battery(tests, EmploymentValidator, 'validDescription')
+    battery(tests, ForeignBusinessEmploymentItemValidator, 'validDescription')
   })
 
   it('validate foreign business employment date', () => {
@@ -73,7 +73,7 @@ describe('Foreign business employment component validation', function () {
       }
     ]
 
-    battery(tests, EmploymentValidator, 'validDate')
+    battery(tests, ForeignBusinessEmploymentItemValidator, 'validDate')
   })
 
   it('validate foreign business employment address', () => {
@@ -96,7 +96,7 @@ describe('Foreign business employment component validation', function () {
       }
     ]
 
-    battery(tests, EmploymentValidator, 'validAddress')
+    battery(tests, ForeignBusinessEmploymentItemValidator, 'validAddress')
   })
 
   it('validate foreign business employment acceptance', () => {
@@ -139,7 +139,7 @@ describe('Foreign business employment component validation', function () {
       }
     ]
 
-    battery(tests, EmploymentValidator, 'validAcceptance')
+    battery(tests, ForeignBusinessEmploymentItemValidator, 'validAcceptance')
   })
 
   it('validate foreign business employment', () => {

@@ -2,10 +2,10 @@ import NameValidator from './name'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class ForeignBusinessFamilyValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignFamily = state.HasForeignFamily
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasForeignFamily = data.HasForeignFamily
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -22,7 +22,7 @@ export default class ForeignBusinessFamilyValidator {
         return false
       }
 
-      return this.list.every(item => new FamilyValidator(item, null).isValid())
+      return this.list.every(item => new FamilyValidator(item.Item).isValid())
     }
 
     return false
@@ -34,12 +34,12 @@ export default class ForeignBusinessFamilyValidator {
 }
 
 export class FamilyValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.agency = state.Agency
-    this.country = state.Country
-    this.date = state.Date
-    this.circumstances = state.Circumstances
+  constructor (data = {}) {
+    this.name = data.Name
+    this.agency = data.Agency
+    this.country = data.Country
+    this.date = data.Date
+    this.circumstances = data.Circumstances
   }
 
   validName () {

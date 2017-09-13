@@ -114,7 +114,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBenefitValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignBenefitValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -131,7 +131,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBenefitValidator(null, test.props).validBenefit()).toBe(test.expected)
+      expect(new ForeignBenefitValidator(test.props).validBenefit()).toBe(test.expected)
     })
   })
 
@@ -164,7 +164,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignBenefitValidator(null, test.props).validBenefitType()).toBe(test.expected)
+      expect(new ForeignBenefitValidator(test.props).validBenefitType()).toBe(test.expected)
     })
   })
 
@@ -196,7 +196,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OneTimeBenefitValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new OneTimeBenefitValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -226,7 +226,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OneTimeBenefitValidator(null, test.props).validObligatedExplanation()).toBe(test.expected)
+      expect(new OneTimeBenefitValidator(test.props).validObligatedExplanation()).toBe(test.expected)
     })
   })
 
@@ -259,7 +259,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new FutureBenefitValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new FutureBenefitValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -289,7 +289,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new FutureBenefitValidator(null, test.props).validObligatedExplanation()).toBe(test.expected)
+      expect(new FutureBenefitValidator(test.props).validObligatedExplanation()).toBe(test.expected)
     })
   })
 
@@ -327,7 +327,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContinuingBenefitValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ContinuingBenefitValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -357,7 +357,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContinuingBenefitValidator(null, test.props).validObligatedExplanation()).toBe(test.expected)
+      expect(new ContinuingBenefitValidator(test.props).validObligatedExplanation()).toBe(test.expected)
     })
   })
 
@@ -387,7 +387,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContinuingBenefitValidator(null, test.props).validFrequency()).toBe(test.expected)
+      expect(new ContinuingBenefitValidator(test.props).validFrequency()).toBe(test.expected)
     })
   })
 
@@ -417,7 +417,7 @@ describe('Foreign Born Benefits', function () {
     ]
 
     tests.forEach(test => {
-      expect(new FutureBenefitValidator(null, test.props).validFrequency()).toBe(test.expected)
+      expect(new FutureBenefitValidator(test.props).validFrequency()).toBe(test.expected)
     })
   })
 })

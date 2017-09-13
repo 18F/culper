@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../../config'
 import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
-import { ForeignIndirectActivityValidator } from '../../../../../validators'
+import { ForeignIndirectActivityValidator, ForeignIndirectInterestValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import IndirectInterest from './IndirectInterest'
 
@@ -40,7 +40,7 @@ export default class IndirectActivity extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).IndirectInterest || {}
+    const o = (item || {}).Item || {}
     const firstname = (o.Firstname || {}).value ? o.Firstname.value : ''
     const lastname = (o.Lastname || {}).value ? o.Lastname.value : ''
     const name = `${firstname} ${lastname}`.trim()
@@ -85,12 +85,13 @@ export default class IndirectActivity extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ForeignIndirectInterestValidator}
                      description={i18n.t('foreign.activities.indirect.collection.description')}
                      appendTitle={i18n.t('foreign.activities.indirect.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.indirect.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <IndirectInterest name="IndirectInterest"
+            <IndirectInterest name="Item"
                               addressBooks={this.props.addressBooks}
                               dispatch={this.props.dispatch}
                               bind={true}
@@ -117,7 +118,7 @@ IndirectActivity.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignIndirectActivityValidator(state, props).isValid()
+    return new ForeignIndirectActivityValidator(props).isValid()
   },
   scrollToBottom: ''
 }

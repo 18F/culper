@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ForeignBusinessEmploymentValidator } from '../../../../validators'
+import { ForeignBusinessEmploymentValidator, ForeignBusinessEmploymentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import JobOffer from './JobOffer'
@@ -73,6 +73,7 @@ export default class Employment extends SubsectionElement {
                      scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
+                     validator={ForeignBusinessEmploymentItemValidator}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.employment.collection.summary.title')}
@@ -80,7 +81,11 @@ export default class Employment extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.employment.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <JobOffer name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+                     <JobOffer name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>

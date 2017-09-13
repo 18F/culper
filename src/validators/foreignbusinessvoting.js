@@ -1,10 +1,10 @@
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class ForeignBusinessVotingValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignVoting = props.HasForeignVoting
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasForeignVoting = data.HasForeignVoting
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -21,7 +21,7 @@ export default class ForeignBusinessVotingValidator {
         return false
       }
 
-      return this.list.every(item => new VotingValidator(null, item).isValid())
+      return this.list.every(item => new VotingValidator(item.Item).isValid())
     }
 
     return false
@@ -33,11 +33,11 @@ export default class ForeignBusinessVotingValidator {
 }
 
 export class VotingValidator {
-  constructor (state = {}, props = {}) {
-    this.date = props.Date
-    this.country = props.Country
-    this.reason = props.Reason
-    this.eligibility = props.Eligibility
+  constructor (data = {}) {
+    this.date = data.Date
+    this.country = data.Country
+    this.reason = data.Reason
+    this.eligibility = data.Eligibility
   }
 
   validDate () {

@@ -42,22 +42,26 @@ import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
-import ForeignContactsValidator from './foreigncontacts'
+import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
 import ForeignDirectActivityValidator from './foreigndirectactivity'
+import ForeignDirectInterestValidator from './foreigndirectinterest'
 import ForeignIndirectActivityValidator from './foreignindirectactivity'
+import ForeignIndirectInterestValidator from './foreignindirectinterest'
 import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
+import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
 import ForeignBenefitActivityValidator from './foreignbenefitactivity'
-import ForeignActivitiesSupportValidator from './foreignsupport'
-import ForeignBusinessAdviceValidator from './foreignbusinessadvice'
-import ForeignBusinessFamilyValidator from './foreignbusinessfamily'
-import ForeignBusinessEmploymentValidator from './foreignbusinessemployment'
-import ForeignBusinessVenturesValidator from './foreignbusinessventures'
-import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
-import ForeignBusinessContactValidator from './foreignbusinesscontact'
-import ForeignBusinessSponsorshipValidator from './foreignbusinesssponsorship'
-import ForeignBusinessPoliticalValidator from './foreignbusinesspolitical'
-import ForeignBusinessVotingValidator from './foreignbusinessvoting'
-import ForeignTravelValidator from './foreigntravel.js'
+import ForeignBenefitValidator from './foreignbenefit'
+import ForeignActivitiesSupportValidator, { SupportValidator } from './foreignsupport'
+import ForeignBusinessAdviceValidator, { AdviceValidator } from './foreignbusinessadvice'
+import ForeignBusinessFamilyValidator, { FamilyValidator } from './foreignbusinessfamily'
+import ForeignBusinessEmploymentValidator, { ForeignBusinessEmploymentItemValidator } from './foreignbusinessemployment'
+import ForeignBusinessVenturesValidator, { VenturesValidator } from './foreignbusinessventures'
+import ForeignBusinessConferencesValidator, { ConferencesValidator } from './foreignbusinessconferences'
+import ForeignBusinessContactValidator, { ContactValidator } from './foreignbusinesscontact'
+import ForeignBusinessSponsorshipValidator, { SponsorshipValidator } from './foreignbusinesssponsorship'
+import ForeignBusinessPoliticalValidator, { PoliticalValidator } from './foreignbusinesspolitical'
+import ForeignBusinessVotingValidator, { VotingValidator } from './foreignbusinessvoting'
+import ForeignTravelValidator, { TravelValidator } from './foreigntravel.js'
 import AlcoholNegativeImpactsValidator from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
@@ -148,21 +152,37 @@ export {
   RelationshipsValidator,
   PeopleValidator,
   ForeignContactsValidator,
+  ForeignNationalValidator,
   ForeignDirectActivityValidator,
+  ForeignDirectInterestValidator,
   ForeignIndirectActivityValidator,
+  ForeignIndirectInterestValidator,
   ForeignRealEstateActivityValidator,
+  ForeignRealEstateInterestValidator,
   ForeignBenefitActivityValidator,
+  ForeignBenefitValidator,
   ForeignActivitiesSupportValidator,
+  SupportValidator,
   ForeignBusinessAdviceValidator,
+  AdviceValidator,
   ForeignBusinessFamilyValidator,
+  FamilyValidator,
   ForeignBusinessEmploymentValidator,
+  ForeignBusinessEmploymentItemValidator,
   ForeignBusinessVenturesValidator,
+  VenturesValidator,
   ForeignBusinessConferencesValidator,
+  ConferencesValidator,
   ForeignBusinessContactValidator,
+  ContactValidator,
   ForeignBusinessSponsorshipValidator,
+  SponsorshipValidator,
   ForeignBusinessPoliticalValidator,
+  PoliticalValidator,
   ForeignBusinessVotingValidator,
+  VotingValidator,
   ForeignTravelValidator,
+  TravelValidator,
   AlcoholNegativeImpactsValidator,
   AlcoholOrderedCounselingsValidator,
   AlcoholVoluntaryCounselingsValidator,
