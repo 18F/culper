@@ -2,7 +2,6 @@ import React from 'react'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
-import Dropdown from '../Dropdown'
 import Show from '../Show'
 import { daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
@@ -154,7 +153,7 @@ export default class DateControl extends ValidationElement {
             changed,
             el,
             this.refs.day.refs.number.refs.input,
-            this.refs.month.refs.autosuggest.input)
+            this.refs.month.refs.number.refs.input)
         }
 
         this.props.onUpdate({
@@ -168,11 +167,11 @@ export default class DateControl extends ValidationElement {
       })
   }
 
-  updateMonth (event) {
+  updateMonth (values) {
     this.update(
-      this.refs.month.refs.autosuggest.input,
+      this.refs.month.refs.number.refs.input,
       this.state.year,
-      event.target.value,
+      values.value,
       this.state.day,
       this.state.estimated)
   }
@@ -321,44 +320,26 @@ export default class DateControl extends ValidationElement {
       <div className={klass}>
         <div>
           <div className="usa-form-group month">
-            <Dropdown name="month"
-                      ref="month"
-                      label="Month"
-                      placeholder="00"
-                      maxlength="2"
-                      receiveProps={this.props.receiveProps}
-                      value={this.state.month}
-                      error={this.state.error}
-                      disabled={this.state.disabled}
-                      readonly={this.props.readonly}
-                      required={this.props.required}
-                      beforeChange={this.beforeChange}
-                      onChange={this.updateMonth}
-                      onError={this.handleErrorMonth}
-                      displayText={this.monthDisplayText}
-                      tabNext={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}>
-              <option key="jan" value="1">January</option>
-              <option key="feb" value="2">February</option>
-              <option key="mar" value="3">March</option>
-              <option key="apr" value="4">April</option>
-              <option key="may" value="5">May</option>
-              <option key="jun" value="6">June</option>
-              <option key="jul" value="7">July</option>
-              <option key="aug" value="8">August</option>
-              <option key="sep" value="9">September</option>
-              <option key="ja0" value="01">January</option>
-              <option key="fe0" value="02">February</option>
-              <option key="ma0" value="03">March</option>
-              <option key="ap0" value="04">April</option>
-              <option key="ma0" value="05">May</option>
-              <option key="ju0" value="06">June</option>
-              <option key="ju0" value="07">July</option>
-              <option key="au0" value="08">August</option>
-              <option key="se0" value="09">September</option>
-              <option key="oct" value="10">October</option>
-              <option key="nov" value="11">November</option>
-              <option key="dec" value="12">December</option>
-            </Dropdown>
+            <Number id="month"
+                    name="month"
+                    ref="month"
+                    label="Month"
+                    placeholder="00"
+                    disabled={this.state.disabled}
+                    max="12"
+                    maxlength="2"
+                    min="1"
+                    readonly={this.props.readonly}
+                    required={this.props.required}
+                    step="1"
+                    receiveProps="true"
+                    value={this.state.month}
+                    error={this.state.error}
+                    onUpdate={this.updateMonth}
+                    onError={this.handleErrorMonth}
+                    tabNext={() => { this.props.tab(this.refs.day.refs.number.refs.input) }}
+                    required={this.props.required}
+                    />
           </div>
           <div className={`usa-form-group day ${this.props.hideDay === true ? 'hidden' : ''}`}>
             <Number id="day"
@@ -378,7 +359,7 @@ export default class DateControl extends ValidationElement {
                     error={this.state.error}
                     onUpdate={this.updateDay}
                     onError={this.handleErrorDay}
-                    tabBack={() => { this.props.tab(this.refs.month.refs.autosuggest.input) }}
+                    tabBack={() => { this.props.tab(this.refs.month.refs.number.refs.input) }}
                     tabNext={() => { this.props.tab(this.refs.year.refs.number.refs.input) }}
                     required={this.props.required}
                     />

@@ -3583,7 +3583,7 @@ const en = {
       help: {
         dates: {
           title: 'Need help with the date range?',
-          message: 'Provide the date range of your residence',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         address: {
@@ -3629,6 +3629,14 @@ const en = {
         collection: {
           caption: 'Employment activities',
           append: 'Add another employer',
+          appendTitle: 'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
+          appendMessage: [
+            '- Fired from a job?',
+            '- Quit a job after being told you would be fired?',
+            '- Have you left a job by mutual agreement following charges or allegations of misconduct?',
+            '- Left a job by mutual agreement following notice of unsatisfactory performance?',
+            '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?'
+          ],
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
@@ -5048,13 +5056,13 @@ const en = {
         },
         dates: {
           title: 'Need help with the dates of attendance?',
-          message: 'Provide the dates of attendance',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         address: {
           title: 'Need help with the school address?',
           message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
-          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx). Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx). <br> Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         type: {
           title: 'Need help with the school code?',
@@ -5095,12 +5103,12 @@ const en = {
       help: {
         branch: {
           title: 'Need more information about former federal service?',
-          message: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+          message: 'Please list all federal service even if older than 10 years.',
           note: ''
         },
         dates: {
-          title: 'Need help with the dates employed?',
-          message: 'The dates you were employed',
+          title: 'Need help with the dates of employment?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         name: {
@@ -5115,8 +5123,8 @@ const en = {
         },
         address: {
           title: 'Need help with the address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
-          note: ''
+          message: 'Try looking up the agency name, this could help you find the address.',
+          note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       },
       collection: {
@@ -5127,6 +5135,7 @@ const en = {
           nodates: 'NA',
           unknown: '*Provide federal service below*'
         },
+        appendTitle: 'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
         append: 'Add another former federal service'
       }
     }
@@ -8460,28 +8469,28 @@ const en = {
     help: {
       contact: {
         title: 'Need help with the date of last contact?',
-        message: 'Please provide the date of last contact with this person',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       relationship: {
         title: 'Need help defining your relationship?',
-        message: 'Please define your relationship with the person during this period',
+        message: 'Please define your relationship with the person during this period.',
         note: ''
       },
       email: {
         title: 'Need help with the email address?',
-        message: 'A current e-mail address to contact this character reference',
+        message: 'Please use an active email address.',
         note: ''
       },
       phone: {
         title: 'Need help with a telephone number?',
-        message: 'One or more telephone numbers to contact this character reference',
+        message: 'Please use an active phone number.',
         note: ''
       },
       address: {
         title: 'Need help with the address?',
-        message: 'The current address of the character reference',
-        note: ''
+        message: 'Please use an active address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       }
     }
   },
