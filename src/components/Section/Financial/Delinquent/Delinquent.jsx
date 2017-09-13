@@ -1,11 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { DelinquentValidator } from '../../../../validators'
+import { DelinquentValidator, DelinquentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, DateControl, Currency, Field,
-         NotApplicable, Location, Checkbox, Text, Textarea } from '../../../Form'
-import Infractions from './Infractions'
+import { Branch, Show, Accordion } from '../../../Form'
+import DelinquentItem from './DelinquentItem'
 
 export default class Delinquent extends SubsectionElement {
   constructor (props) {
@@ -54,7 +53,7 @@ export default class Delinquent extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const obj = (item || {})
+    const obj = (item.Item || {})
     const date = (obj.Date || {})
     const from = DateSummary({date: date})
     const name = (obj.Name || {}).value || ''
@@ -106,149 +105,18 @@ export default class Delinquent extends SubsectionElement {
                      description={i18n.t('financial.delinquent.collection.summary.title')}
                      appendTitle={i18n.t('financial.delinquent.collection.appendTitle')}
                      appendMessage={this.message()}
+                     validator={DelinquentItemValidator}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.delinquent.collection.append')}>
+                     <DelinquentItem name="Item"
+                       bind={true}
+                       dispatch={this.props.dispatch}
+                       addressBooks={this.props.addressBooks}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
 
-           <Field title={i18n.t('financial.delinquent.heading.name')}
-             scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Name"
-                    className="delinquent-name"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.infractions')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Infractions name="Infractions"
-                           className="delinquent-infractions"
-                           bind={true}
-                           required={this.props.required}
-                           />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.accountnumber')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="AccountNumber"
-                    className="delinquent-accountnumber"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.propertytype')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="PropertyType"
-                    className="delinquent-propertytype"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.amount')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <div>
-                <Currency name="Amount"
-                          className="delinquent-amount"
-                          placeholder={i18n.t('financial.delinquent.placeholder.amount')}
-                          min="1"
-                          bind={true}
-                          required={this.props.required}
-                          />
-                <div className="flags">
-                  <Checkbox name="AmountEstimated"
-                            ref="estimated"
-                            label={i18n.t('financial.delinquent.label.estimated')}
-                            toggle="false"
-                            bind={true}
-                            />
-                </div>
-              </div>
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.reason')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   help="financial.delinquent.help.reason">
-              <Textarea name="Reason"
-                        className="delinquent-reason"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.status')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Status"
-                    className="delinquent-status"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.date')}
-                   adjustFor="labels"
-                   scrollIntoView={this.props.scrollIntoView}
-                   shrink={true}>
-              <DateControl name="Date"
-                           className="delinquent-date"
-                           hideDay={true}
-                           bind={true}
-                           required={this.props.required}
-                           />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.resolved')}
-                   adjustFor="label"
-                   scrollIntoView={this.props.scrollIntoView}
-                   shrink={true}>
-              <NotApplicable name="ResolvedNotApplicable"
-                             label={i18n.t('financial.delinquent.label.notresolved')}
-                             or={i18n.m('financial.delinquent.para.or')}
-                             bind={true}>
-                <DateControl name="Resolved"
-                             className="delinquent-resolved"
-                             hideDay={true}
-                             bind={true}
-                             required={this.props.required}
-                             />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.courtname')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="CourtName"
-                    className="delinquent-courtname"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.courtaddress')}
-                   help="financial.delinquent.help.courtaddress"
-                   scrollIntoView={this.props.scrollIntoView}
-                   adjustFor="address">
-              <Location name="CourtAddress"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        className="delinquent-courtaddress"
-                        bind={true}
-                        dispatch={this.props.dispatch}
-                        addressBooks={this.props.addressBooks}
-                        addressBook="Court"
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.delinquent.heading.description')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   help="financial.delinquent.help.description">
-              <Textarea name="Description"
-                        className="delinquent-description"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
           </Accordion>
         </Show>
       </div>
@@ -265,7 +133,7 @@ Delinquent.defaultProps = {
   subsection: 'delinquent',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DelinquentValidator(state, props).isValid()
+    return new DelinquentValidator(state).isValid()
   },
   defaultState: true
 }
