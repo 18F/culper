@@ -10,7 +10,7 @@ describe('The telephone summary', () => {
 
   it('display DSN format', () => {
     const phone = {
-      Telephone: {
+      Item: {
         type: 'DSN',
         number: '8675309'
       }
@@ -21,7 +21,7 @@ describe('The telephone summary', () => {
 
   it('display international format', () => {
     const phone = {
-      Telephone: {
+      Item: {
         type: 'International',
         number: '0011234567890',
         extension: '1234'
@@ -33,7 +33,7 @@ describe('The telephone summary', () => {
 
   it('display domestic format', () => {
     const phone = {
-      Telephone: {
+      Item: {
         type: 'Domestic',
         number: '2028675309',
         extension: '1234'

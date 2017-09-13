@@ -41,10 +41,6 @@ defineSupportCode(({Given, Then, When}) => {
     }
   })
 
-  When(/^I click next$/, () => {
-    return navigateToNext()
-  })
-
   Then(/^I should be in the relationships (.*?) section$/, (subsection) => {
     return shouldBeInSubsection('relationships', subsection)
   })
@@ -181,14 +177,6 @@ const navigateToSubsection = (section, subsection) => {
     .click(selector)
     .pause(3000)
     .saveScreenshot('./screenshots/Relationships/' + filenum() + '-navigate-subsection.png')
-}
-
-const navigateToNext = () => {
-  return client
-    .assert.visible('button.next')
-    .click('button.next')
-    .pause(3000)
-    .saveScreenshot('./screenshots/Relationships/' + filenum() + '-navigate-next.png')
 }
 
 const shouldBeInSubsection = (section, subsection) => {

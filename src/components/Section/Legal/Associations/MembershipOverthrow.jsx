@@ -3,7 +3,8 @@ import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsOverthrowValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
+import { Accordion, Branch, Show, Field, DateRange,
+         Location, Text, Textarea, NotApplicable, Currency } from '../../../Form'
 
 export default class MembershipOverthrow extends SubsectionElement {
   constructor (props) {
@@ -81,7 +82,6 @@ export default class MembershipOverthrow extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.overthrow.heading.organization')}
-                   help="legal.associations.overthrow.help.organization"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <Text name="Organization"
@@ -119,7 +119,6 @@ export default class MembershipOverthrow extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.positions')}
-                   help="legal.associations.overthrow.help.positions"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="PositionsNotApplicable"
@@ -136,7 +135,6 @@ export default class MembershipOverthrow extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.contributions')}
-                   help="legal.associations.overthrow.help.contributions"
                    adjustFor="text"
                    scrollIntoView={this.props.scrollIntoView}>
               <NotApplicable name="ContributionsNotApplicable"
@@ -144,16 +142,15 @@ export default class MembershipOverthrow extends SubsectionElement {
                              label={i18n.t('legal.associations.overthrow.label.nocontribs')}
                              required={this.props.required}
                              bind={true}>
-                <Text name="Contributions"
-                      className="legal-associations-overthrow-contributions"
-                      bind={true}
-                      required={this.props.required}
-                      />
+                <Currency name="Contributions"
+                          className="legal-associations-overthrow-contributions"
+                          bind={true}
+                          required={this.props.required}
+                          />
               </NotApplicable>
             </Field>
 
             <Field title={i18n.t('legal.associations.overthrow.heading.reasons')}
-                   help="legal.associations.overthrow.help.reasons"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"

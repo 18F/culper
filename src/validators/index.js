@@ -1,12 +1,15 @@
-import BankruptcyValidator from './bankruptcy'
+import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
-import ContactInformationValidator from './contactinformation'
+import ContactInformationValidator, {
+  ContactEmailValidator,
+  ContactPhoneNumberValidator
+} from './contactinformation'
 import IdentificationValidator from './identification'
 import NameValidator from './name'
-import OtherNamesValidator from './othernames'
+import OtherNamesValidator, { OtherNameValidator } from './othernames'
 import PassportValidator from './passport'
 import PhysicalValidator from './physical'
-import GamblingValidator from './gambling'
+import GamblingValidator, { GamblingItemValidator } from './gambling'
 import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
 import EducationValidator from './education'
@@ -22,11 +25,11 @@ import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
 import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
-import CardAbuseValidator from './cardabuse'
-import CreditValidator from './credit'
+import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
+import CreditValidator, { CreditItemValidator } from './credit'
 import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
-import NonpaymentValidator from './nonpayment'
-import DelinquentValidator from './delinquent'
+import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
+import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import DiagnosisValidator, { ExistingConditionsDiagnosisValidator } from './diagnosis'
 import ExistingConditionsValidator from './existingconditions'
@@ -88,14 +91,19 @@ import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } 
 
 export {
   BankruptcyValidator,
+  BankruptcyItemValidator,
   BirthPlaceValidator,
   ContactInformationValidator,
+  ContactEmailValidator,
+  ContactPhoneNumberValidator,
   IdentificationValidator,
   NameValidator,
   OtherNamesValidator,
+  OtherNameValidator,
   PassportValidator,
   PhysicalValidator,
   GamblingValidator,
+  GamblingItemValidator,
   ResidenceValidator,
   EmploymentValidator,
   EducationValidator,
@@ -115,10 +123,14 @@ export {
   TaxesValidator,
   TaxValidator,
   CardAbuseValidator,
+  CardAbuseItemValidator,
   CreditValidator,
+  CreditItemValidator,
   HospitalizationsValidator,
   NonpaymentValidator,
+  NonpaymentItemValidator,
   DelinquentValidator,
+  DelinquentItemValidator,
   DiagnosesValidator,
   ExistingConditionsDiagnosisValidator,
   DiagnosisValidator,

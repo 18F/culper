@@ -210,13 +210,19 @@ describe('The accordion component', () => {
     let items = [
       { uuid: '1', open: false }
     ]
+    const Validator = class {
+      isValid () {
+        return false
+      }
+    }
 
     const expected = {
       minimum: 1,
       items: items,
       defaultState: false,
       initial: false,
-      isValid: (props) => { return false },
+      required: true,
+      validator: Validator,
       summary: (item, index, initial) => { return <span>Summary</span> },
       byline: (item, index, initial) => { return <span className="byline">My custom byline</span> }
     }
@@ -229,12 +235,19 @@ describe('The accordion component', () => {
       { uuid: '1', open: false }
     ]
 
+    const Validator = class {
+      isValid () {
+        return false
+      }
+    }
+
     const expected = {
       minimum: 1,
       items: items,
       defaultState: false,
       initial: false,
-      isValid: (props) => { return false },
+      isValid: Validator,
+      required: true,
       summary: (item, index, initial) => { return <span>Summary</span> }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
@@ -363,5 +376,10 @@ describe('The accordion component', () => {
     items.forEach(test => {
       expect(validValidator(test.func)).toEqual(test.expected)
     })
+  })
+
+  it('validates default validator', () => {
+    const defaultValidatorClass = Accordion.defaultProps.validator()
+    expect(new defaultValidatorClass().isValid()).toEqual(true)
   })
 })
