@@ -370,44 +370,46 @@ describe('nonpayment component validation', function () {
           HasNonpayment: 'Yes',
           List: [
             {
-              Name: {
-                value: 'The name'
-              },
-              Infractions: [],
-              AccountNumber: {
-                value: 'ABC1234567890'
-              },
-              PropertyType: {
-                value: 'ABC1234567890'
-              },
-              Amount: {
-                value: '20000'
-              },
-              Reason: {
-                value: 'Completely forgot'
-              },
-              Status: {
-                value: 'Paid'
-              },
-              Date: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016'),
-                present: false
-              },
-              ResolvedNotApplicable: {
-                applicable: true
-              },
-              Resolved: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016'),
-                present: false
-              },
-              Description: {
-                value: 'The description'
+              Item: {
+                Name: {
+                  value: 'The name'
+                },
+                Infractions: [],
+                AccountNumber: {
+                  value: 'ABC1234567890'
+                },
+                PropertyType: {
+                  value: 'ABC1234567890'
+                },
+                Amount: {
+                  value: '20000'
+                },
+                Reason: {
+                  value: 'Completely forgot'
+                },
+                Status: {
+                  value: 'Paid'
+                },
+                Date: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016'),
+                  present: false
+                },
+                ResolvedNotApplicable: {
+                  applicable: true
+                },
+                Resolved: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016'),
+                  present: false
+                },
+                Description: {
+                  value: 'The description'
+                }
               }
             }
           ],

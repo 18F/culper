@@ -13,7 +13,7 @@
   }
 
   .suggestion-btn {
-    padding: 2rem;
+    width: 100%;
 
     i {
       margin-left: 1rem;
@@ -21,6 +21,12 @@
   }
 
   .suggestion {
+    padding: 2rem 0;
+
+    h5 {
+      margin-top: 0;
+    }
+
     .value {
       display: inline-block;
       text-align: left;
@@ -64,5 +70,10 @@
     .right {
       float: right;
     }
+  }
+
+  .suggestion + .suggestion,
+  .suggestion:not(:first-child) {
+    border-top: 2px solid $eapp-grey;
   }
 }

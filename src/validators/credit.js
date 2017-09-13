@@ -2,10 +2,10 @@ import LocationValidator from './location'
 import { validPhoneNumber, validGenericTextfield } from './helpers'
 
 export default class CreditValidator {
-  constructor (state = {}, props = {}) {
-    this.hasCreditCounseling = state.HasCreditCounseling
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasCreditCounseling = data.HasCreditCounseling
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validHasCreditCounseling () {
@@ -34,7 +34,7 @@ export default class CreditValidator {
     }
 
     for (const item of this.list) {
-      if (new CreditItemValidator(item, null).isValid() === false) {
+      if (new CreditItemValidator(item.Item, null).isValid() === false) {
         return false
       }
     }
@@ -49,12 +49,12 @@ export default class CreditValidator {
 }
 
 export class CreditItemValidator {
-  constructor (state = {}, props = {}) {
-    this.explanation = state.Explanation
-    this.name = state.Name
-    this.telephone = state.Telephone
-    this.location = state.Location
-    this.description = state.Description
+  constructor (data = {}) {
+    this.explanation = data.Explanation
+    this.name = data.Name
+    this.telephone = data.Telephone
+    this.location = data.Location
+    this.description = data.Description
   }
 
   validExplanation () {

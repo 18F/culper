@@ -6,10 +6,10 @@ import { validGenericMonthYear, validGenericTextfield, validBranch } from './hel
  * Validates an entire Bankruptcy section
  */
 export default class BankruptcyValidator {
-  constructor (state, props) {
-    this.hasBankruptcy = props.HasBankruptcy
-    this.list = props.List
-    this.listBranch = props.ListBranch
+  constructor (data) {
+    this.hasBankruptcy = data.HasBankruptcy
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   /**
@@ -41,7 +41,7 @@ export default class BankruptcyValidator {
     }
 
     for (const item of this.list) {
-      const result = new BankruptcyItemValidator(null, item.Bankruptcy).isValid()
+      const result = new BankruptcyItemValidator(item.Item).isValid()
       if (!result) {
         return false
       }
@@ -63,20 +63,20 @@ export default class BankruptcyValidator {
  * Helper for validating single instances of a bankruptcy item
  */
 export class BankruptcyItemValidator {
-  constructor (state = {}, props = {}) {
-    this.petitionType = props.PetitionType
-    this.courtAddress = props.CourtAddress
-    this.courtInvolved = props.CourtInvolved
-    this.courtNumber = props.CourtNumber
-    this.nameDebt = props.NameDebt
-    this.totalAmount = props.TotalAmount
-    this.dateFiled = props.DateFiled
-    this.dateDischarged = props.DateDischarged
-    this.dateDischargedNotApplicable = props.DateDischargedNotApplicable
-    this.hasDischargeExplanation = props.HasDischargeExplanation
-    this.dischargeExplanation = props.DischargeExplanation
-    this.trustee = props.Trustee
-    this.trusteeAddress = props.TrusteeAddress
+  constructor (data = {}) {
+    this.petitionType = data.PetitionType
+    this.courtAddress = data.CourtAddress
+    this.courtInvolved = data.CourtInvolved
+    this.courtNumber = data.CourtNumber
+    this.nameDebt = data.NameDebt
+    this.totalAmount = data.TotalAmount
+    this.dateFiled = data.DateFiled
+    this.dateDischarged = data.DateDischarged
+    this.dateDischargedNotApplicable = data.DateDischargedNotApplicable
+    this.hasDischargeExplanation = data.HasDischargeExplanation
+    this.dischargeExplanation = data.DischargeExplanation
+    this.trustee = data.Trustee
+    this.trusteeAddress = data.TrusteeAddress
   }
 
   validPetitionType () {

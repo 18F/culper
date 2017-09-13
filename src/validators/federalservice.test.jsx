@@ -20,7 +20,16 @@ describe('Federal service component validation', function () {
       {
         state: {
           HasFederalService: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasFederalService: 'Yes',
+          List: [{}],
+          ListBranch: ''
         },
         expected: false
       },
@@ -53,7 +62,8 @@ describe('Federal service component validation', function () {
                 layout: Location.ADDRESS
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }
