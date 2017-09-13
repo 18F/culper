@@ -63,7 +63,6 @@ export default class UnauthorizedItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.unauthorized.heading.incident')}
-          help="legal.technology.unauthorized.help.incident"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Incident"
@@ -76,7 +75,6 @@ export default class UnauthorizedItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
-          help="legal.technology.unauthorized.help.location"
           adjustFor="address"
           scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
@@ -94,7 +92,6 @@ export default class UnauthorizedItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.unauthorized.heading.action')}
-          help="legal.technology.unauthorized.help.action"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Action"

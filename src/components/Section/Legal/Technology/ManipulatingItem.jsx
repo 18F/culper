@@ -63,7 +63,6 @@ export default class ManipulatingItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.manipulating.heading.incident')}
-          help="legal.technology.manipulating.help.incident"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Incident"
@@ -76,7 +75,6 @@ export default class ManipulatingItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.manipulating.heading.location')}
-          help="legal.technology.manipulating.help.location"
           adjustFor="address"
           scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
@@ -94,7 +92,6 @@ export default class ManipulatingItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.manipulating.heading.action')}
-          help="legal.technology.manipulating.help.action"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Action"

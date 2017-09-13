@@ -34,7 +34,6 @@ export default class EngagedInTerrorismItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.associations.engaged.heading.reasons')}
-          help="legal.associations.engaged.help.reasons"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"

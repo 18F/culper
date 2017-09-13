@@ -19,11 +19,11 @@ export const hideSelectiveService = (store = {}) => {
 }
 
 export default class SelectiveServiceValidator {
-  constructor (state, props) {
-    this.wasBornAfter = state.WasBornAfter
-    this.hasRegistered = state.HasRegistered
-    this.registrationNumber = state.RegistrationNumber
-    this.explanation = state.Explanation
+  constructor (data) {
+    this.wasBornAfter = data.WasBornAfter
+    this.hasRegistered = data.HasRegistered
+    this.registrationNumber = data.RegistrationNumber
+    this.explanation = data.Explanation
   }
 
   validBornAfter () {

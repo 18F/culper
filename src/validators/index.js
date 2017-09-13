@@ -1,20 +1,23 @@
-import BankruptcyValidator from './bankruptcy'
+import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
-import ContactInformationValidator from './contactinformation'
+import ContactInformationValidator, {
+  ContactEmailValidator,
+  ContactPhoneNumberValidator
+} from './contactinformation'
 import IdentificationValidator from './identification'
 import NameValidator from './name'
-import OtherNamesValidator from './othernames'
+import OtherNamesValidator, { OtherNameValidator } from './othernames'
 import PassportValidator from './passport'
 import PhysicalValidator from './physical'
-import GamblingValidator from './gambling'
+import GamblingValidator, { GamblingItemValidator } from './gambling'
 import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
 import EducationValidator from './education'
 import FederalServiceValidator from './federalservice'
 import SelectiveServiceValidator from './selectiveservice'
-import MilitaryHistoryValidator from './militaryhistory'
-import MilitaryDisciplinaryValidator from './militarydisciplinary'
-import MilitaryForeignValidator from './militaryforeign'
+import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
+import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydisciplinary'
+import MilitaryForeignValidator, { ForeignServiceValidator, ForeignContactValidator } from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import OtherOffenseValidator from './otheroffense'
@@ -23,18 +26,18 @@ import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
 import ConsultationValidator from './consultation'
 import TaxesValidator, { TaxValidator } from './taxes'
-import CardAbuseValidator from './cardabuse'
-import CreditValidator from './credit'
+import CardAbuseValidator, { CardAbuseItemValidator } from './cardabuse'
+import CreditValidator, { CreditItemValidator } from './credit'
 import HospitalizationsValidator, { HospitalizationValidator } from './hospitalization'
-import NonpaymentValidator from './nonpayment'
-import DelinquentValidator from './delinquent'
+import NonpaymentValidator, { NonpaymentItemValidator } from './nonpayment'
+import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import ExistingConditionsValidator from './existingconditions'
 import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
 import CitizenshipValidator from './citizenship'
-import CitizenshipMultipleValidator from './citizenship-multiple'
-import CitizenshipPassportsValidator from './citizenship-passports'
+import CitizenshipMultipleValidator, { CitizenshipItemValidator } from './citizenship-multiple'
+import CitizenshipPassportsValidator, { TravelItemValidator } from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
@@ -86,21 +89,30 @@ import SignatureValidator from './signature'
 
 export {
   BankruptcyValidator,
+  BankruptcyItemValidator,
   BirthPlaceValidator,
   ContactInformationValidator,
+  ContactEmailValidator,
+  ContactPhoneNumberValidator,
   IdentificationValidator,
   NameValidator,
   OtherNamesValidator,
+  OtherNameValidator,
   PassportValidator,
   PhysicalValidator,
   GamblingValidator,
+  GamblingItemValidator,
   ResidenceValidator,
   EmploymentValidator,
   EducationValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
+  MilitaryServiceValidator,
   MilitaryDisciplinaryValidator,
+  ProcedureValidator,
   MilitaryForeignValidator,
+  ForeignServiceValidator,
+  ForeignContactValidator,
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
   OtherOffenseValidator,
@@ -114,10 +126,14 @@ export {
   TaxesValidator,
   TaxValidator,
   CardAbuseValidator,
+  CardAbuseItemValidator,
   CreditValidator,
+  CreditItemValidator,
   HospitalizationsValidator,
   NonpaymentValidator,
+  NonpaymentItemValidator,
   DelinquentValidator,
+  DelinquentItemValidator,
   DiagnosesValidator,
   ExistingConditionsValidator,
   PsychologicalValidator,
@@ -125,7 +141,9 @@ export {
   HospitalizationValidator,
   CitizenshipValidator,
   CitizenshipMultipleValidator,
+  CitizenshipItemValidator,
   CitizenshipPassportsValidator,
+  TravelItemValidator,
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,

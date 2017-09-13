@@ -34,7 +34,6 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.associations.activities.heading.reasons')}
-          help="legal.associations.activities.help.reasons"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"
@@ -47,7 +46,6 @@ export default class ActivitiesToOverthrowItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.associations.activities.heading.dates')}
-          help="legal.associations.activities.help.dates"
           adjustFor="daterange"
           scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"

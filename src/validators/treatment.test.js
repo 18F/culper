@@ -22,6 +22,7 @@ describe('Treatment validation', function () {
             number: '7031112222',
             numberType: 'Home',
             timeOfDay: 'Both',
+            type: 'Domestic',
             extension: ''
           }
         },

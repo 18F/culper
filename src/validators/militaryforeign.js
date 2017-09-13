@@ -4,8 +4,8 @@ import NameValidator from './name'
 import { validGenericTextfield } from './helpers'
 
 export default class MilitaryForeignValidator {
-  constructor (state, props) {
-    this.list = props.List || []
+  constructor (data) {
+    this.list = data.List || []
   }
 
   validItems () {
@@ -36,18 +36,18 @@ export default class MilitaryForeignValidator {
 }
 
 export class ForeignServiceValidator {
-  constructor (state = {}, props = {}) {
-    this.organization = state.Organization
-    this.name = state.Name
-    this.dates = state.Dates
-    this.country = state.Country
-    this.rank = state.Rank
-    this.division = state.Division
-    this.circumstances = state.Circumstances
-    this.reasonLeft = state.ReasonLeft
-    this.maintainsContact = state.MaintainsContact
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.organization = data.Organization
+    this.name = data.Name
+    this.dates = data.Dates
+    this.country = data.Country
+    this.rank = data.Rank
+    this.division = data.Division
+    this.circumstances = data.Circumstances
+    this.reasonLeft = data.ReasonLeft
+    this.maintainsContact = data.MaintainsContact
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validOrganization () {
@@ -101,7 +101,7 @@ export class ForeignServiceValidator {
     }
 
     for (const contact of this.list) {
-      if (new ForeignContactValidator(contact.Item, null).isValid() === false) {
+      if (new ForeignContactValidator(contact.Item).isValid() === false) {
         return false
       }
     }
@@ -123,12 +123,12 @@ export class ForeignServiceValidator {
 }
 
 export class ForeignContactValidator {
-  constructor (state, props) {
-    this.name = state.Name
-    this.address = state.Address
-    this.title = state.Title
-    this.dates = state.Dates
-    this.frequency = state.Frequency
+  constructor (data) {
+    this.name = data.Name
+    this.address = data.Address
+    this.title = data.Title
+    this.dates = data.Dates
+    this.frequency = data.Frequency
   }
 
   validName () {

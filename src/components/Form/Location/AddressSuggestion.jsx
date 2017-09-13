@@ -6,19 +6,38 @@ import React from 'react'
 export function AddressSuggestion (props) {
   const suggestion = props.suggestion
   const current = props.current
-  return (
-    <div className="address-suggestion">
-      <div>
-        <HighlightedField new={ suggestion.Street || suggestion.street } current={ current.street } />
-      </div>
-      <div>
-        <HighlightedField new={ suggestion.Street2 || suggestion.street2 } current={ current.street2 } />
-      </div>
-      <div>
-        <HighlightedField new={ suggestion.City || suggestion.city } current={ current.city } />, <HighlightedField new={ suggestion.State || suggestion.state } current={ current.state } /> <HighlightedField new={ suggestion.Zipcode || suggestion.zipcode } current={ current.zipcode } />
-      </div>
-    </div>
-  )
+
+  switch (current.country) {
+    case 'United States':
+    case 'POSTOFFICE':
+      return (
+        <div className="address-suggestion">
+          <div>
+            <HighlightedField new={ suggestion.Street || suggestion.street } current={ current.street } />
+          </div>
+          <div>
+            <HighlightedField new={ suggestion.Street2 || suggestion.street2 } current={ current.street2 } />
+          </div>
+          <div>
+            <HighlightedField new={ suggestion.City || suggestion.city } current={ current.city } />, <HighlightedField new={ suggestion.State || suggestion.state } current={ current.state } /> <HighlightedField new={ suggestion.Zipcode || suggestion.zipcode } current={ current.zipcode } />
+          </div>
+        </div>
+      )
+    default:
+      return (
+        <div className="address-suggestion">
+          <div>
+            <HighlightedField new={ suggestion.Street || suggestion.street } current={ current.street } />
+          </div>
+          <div>
+            <HighlightedField new={ suggestion.Street2 || suggestion.street2 } current={ current.street2 } />
+          </div>
+          <div>
+            <HighlightedField new={ suggestion.City || suggestion.city } current={ current.city } />, <HighlightedField new={ suggestion.Country || suggestion.country } current={ current.country } />
+          </div>
+        </div>
+      )
+  }
 }
 
 /**

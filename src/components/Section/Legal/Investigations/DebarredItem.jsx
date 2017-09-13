@@ -42,7 +42,6 @@ export default class DebarredItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.investigations.debarred.heading.agency')}
-          help="legal.investigations.debarred.help.agency"
           adjustFor="text"
           scrollIntoView={this.props.scrollIntoView}>
           <Text name="Agency"
