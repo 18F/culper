@@ -81,7 +81,6 @@ export default class Advocating extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <Field title={i18n.t('legal.associations.advocating.heading.reasons')}
-                   help="legal.associations.advocating.help.reasons"
                    adjustFor="textarea"
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="Reasons"

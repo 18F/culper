@@ -1,4 +1,5 @@
 import DrugOrderedTreatmentsValidator, { DrugOrderedTreatmentValidator } from './drugorderedtreatments'
+import Location from '../components/Form/Location'
 
 describe('Drug Ordered Treatment Validation', function () {
   it('should validate drug ordered treatments', function () {
@@ -68,6 +69,7 @@ describe('Drug Ordered Treatment Validation', function () {
                   number: '7031112222',
                   numberType: 'Home',
                   timeOfDay: 'Both',
+                  type: 'Domestic',
                   extension: ''
                 },
                 TreatmentDates: {
@@ -113,6 +115,7 @@ describe('Drug Ordered Treatment Validation', function () {
                   noNumber: '',
                   number: '7031112222',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
