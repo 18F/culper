@@ -51,7 +51,7 @@ Foreign.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new MilitaryForeignValidator(state, props).isValid()
+    return new MilitaryForeignValidator(props).isValid()
   },
   defaultState: true
 }

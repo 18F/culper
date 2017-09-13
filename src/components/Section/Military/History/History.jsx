@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { MilitaryHistoryValidator } from '../../../../validators'
+import { MilitaryHistoryValidator, MilitaryServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -104,6 +104,7 @@ export default class History extends SubsectionElement {
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
                      appendLabel={i18n.t('military.history.collection.append')}
+                     validator={MilitaryServiceValidator}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
             <MilitaryService name="Item"
@@ -126,7 +127,7 @@ History.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryHistoryValidator(props, props).isValid()
+    return new MilitaryHistoryValidator(props).isValid()
   },
   defaultState: true
 }

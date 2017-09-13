@@ -1,34 +1,8 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Nonpayment from './Nonpayment'
+import NonpaymentItem from './NonpaymentItem'
 
-describe('The nonpayment component', () => {
-  it('no error on empty', () => {
-    const expected = {
-      name: 'nonpayment'
-    }
-    const component = mount(<Nonpayment {...expected} />)
-    expect(component.find('.branch').length).toBeGreaterThan(0)
-    expect(component.find('.accordion').length).toBe(0)
-  })
-
-  it('displays fields when "yes" is selected', () => {
-    const expected = {
-      name: 'nonpayment',
-      HasNonpayment: 'Yes'
-    }
-    const component = mount(<Nonpayment {...expected} />)
-    expect(component.find('.accordion').length).toBe(1)
-  })
-
-  it('does not display any fields when "no" is selected', () => {
-    const expected = {
-      name: 'nonpayment',
-      HasNonpayment: 'No'
-    }
-    const component = mount(<Nonpayment {...expected} />)
-    expect(component.find('.accordion').length).toBe(0)
-  })
+describe('The nonpayment item component', () => {
 
   it('triggers updates when changing values', () => {
     let updates = 0
@@ -38,13 +12,13 @@ describe('The nonpayment component', () => {
         updates++
       }
     }
-    const component = mount(<Nonpayment {...expected} />)
-    component.find('.branch .yes input').simulate('change')
+    const component = mount(<NonpaymentItem {...expected} />)
     component.find('.nonpayment-name input').simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-infractions input').first().simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-accountnumber input').simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-propertytype input').simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-amount input[type="text"]').simulate('change', { target: { value: '10000' } })
+    component.find('.nonpayment-amount-notapplicable .block input[name="AmountEstimated"]').simulate('change')
     component.find('.nonpayment-reason textarea').simulate('change', { target: { value: 'Reason for not filing' } })
     component.find('.nonpayment-status input').simulate('change', { target: { value: 'Reason for not filing' } })
     component.find('.nonpayment-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
