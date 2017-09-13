@@ -33,7 +33,7 @@ ReactDOM.render(
  */
 function onEnter () {
   const token = api.getToken()
-  if (token.length) {
+  if (token && token.length) {
     store.dispatch(handleLoginSuccess())
     store.dispatch(handleTwoFactorSuccess())
   }

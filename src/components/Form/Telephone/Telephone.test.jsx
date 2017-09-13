@@ -203,4 +203,81 @@ describe('The Telephone component', () => {
     const component = mount(<Telephone {...props} />)
     expect(component.find('.nonumber').length).toBe(0)
   })
+
+  it('can validate telephone required fields', () => {
+    const tests = [
+      {
+        telephone: {
+          numberType: 'Home',
+          type: 'Domestic',
+          domestic: {
+            first: '111',
+            second: '111',
+            third: '1111'
+          },
+          required: true
+        },
+        expected: true
+      },
+      {
+        telephone: {
+          numberType: 'Home',
+          type: 'DSN',
+          dsn: {
+            first: '111',
+            second: '111'
+          },
+          required: true
+        },
+        expected: true
+      },
+      {
+        telephone: {
+          numberType: 'Home',
+          type: 'International',
+          international: {
+            first: '111',
+            second: '1111',
+            third: '1111'
+          },
+          required: true
+        },
+        expected: true
+      },
+      {
+        telephone: {
+          numberType: '',
+          domestic: {
+            first: '111',
+            second: '111',
+            third: '1111'
+          },
+          required: true
+        },
+        expected: false
+      },
+      {
+        telephone: {
+          showNumberType: true,
+          numberType: '',
+          required: true
+        },
+        expected: false
+      },
+      {
+        telephone: {
+          numberType: 'Home',
+          noNumber: 'NA',
+          required: true,
+          showNumberType: true,
+          allowNotApplicable: true
+        },
+        expected: true
+      }
+    ]
+    const errorHandler = Telephone.errors.find(e => e.code === 'required').func
+    tests.forEach(test => {
+      expect(errorHandler(null, test.telephone)).toBe(test.expected)
+    })
+  })
 })
