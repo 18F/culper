@@ -1,11 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
-import { validGenericTextfield, validDateField, BranchCollection, validBranch } from './helpers'
+import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
 export default class CitizenshipPassportsValidator {
-  constructor (state = {}) {
-    this.passports = state.Passports || []
+  constructor (data = {}) {
+    this.passports = data.Passports || []
   }
 
   validPassports () {
@@ -29,19 +29,19 @@ export default class CitizenshipPassportsValidator {
 }
 
 export class PassportItemValidator {
-  constructor (state = {}, props = {}) {
-    this.country = state.Country
-    this.issued = state.Issued
-    this.location = state.Location
-    this.name = state.Name
-    this.number = state.Number
-    this.expiration = state.Expiration
-    this.used = state.Used
-    this.countries = state.Countries
+  constructor (data = {}) {
+    this.country = data.Country
+    this.issued = data.Issued
+    this.location = data.Location
+    this.name = data.Name
+    this.number = data.Number
+    this.expiration = data.Expiration
+    this.used = data.Used
+    this.countries = data.Countries
   }
 
   validCountry () {
-    return !!this.country && this.country.length > 0
+    return validGenericTextfield(this.country)
   }
 
   validIssued () {
@@ -78,7 +78,7 @@ export class PassportItemValidator {
     }
 
     for (const country of this.countries) {
-      if (new TravelValidator(country.Item, null).isValid() !== true) {
+      if (new TravelItemValidator(country.Item, null).isValid() !== true) {
         return false
       }
     }
@@ -98,14 +98,14 @@ export class PassportItemValidator {
   }
 }
 
-export class TravelValidator {
-  constructor (state = {}, props = {}) {
-    this.country = state.Country
-    this.dates = state.Dates
+export class TravelItemValidator {
+  constructor (data = {}) {
+    this.country = data.Country
+    this.dates = data.Dates
   }
 
   validCountry () {
-    return !!this.country && this.country.length > 0
+    return validGenericTextfield(this.country)
   }
 
   validDates () {
