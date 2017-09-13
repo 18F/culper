@@ -131,7 +131,6 @@ export default class ResidenceItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.residence.heading.role')}
-               help="history.residence.help.role"
                adjustFor="big-buttons"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>

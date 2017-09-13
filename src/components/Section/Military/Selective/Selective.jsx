@@ -149,6 +149,6 @@ Selective.defaultProps = {
   subsection: 'selective',
   dispatch: () => {},
   validator: (state, props) => {
-    return new SelectiveServiceValidator(props, props).isValid()
+    return new SelectiveServiceValidator(props).isValid()
   }
 }

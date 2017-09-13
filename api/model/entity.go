@@ -1,9 +1,14 @@
 package model
 
+import (
+	"github.com/go-pg/pg"
+)
+
 // Entity is a structure which can marshall, validate, and persist.
 type Entity interface {
 	Marshaller
 	Validator
+	Persister
 }
 
 // Marshaller is structure which can marshal and unmarshal JSON.
@@ -19,12 +24,7 @@ type Validator interface {
 // Persister interface provides common functionality for persisting
 // data to storage.
 type Persister interface {
-	Save(account int64) error
-	Delete(account int64) error
-	Get(account int64) error
-}
-
-type EntityPersister interface {
-	Entity
-	Persister
+	Save(context *pg.DB, account int64) (int, error)
+	Delete(context *pg.DB, account int64) (int, error)
+	Get(context *pg.DB, account int64) (int, error)
 }
