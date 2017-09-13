@@ -1,4 +1,4 @@
 #! /bin/bash
 
-./build.sh
+# ./build.sh
 go test $(go list ./... | grep -v /vendor/)
