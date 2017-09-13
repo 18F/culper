@@ -194,7 +194,6 @@ export default class EducationItem extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('history.education.heading.type')}
-                 help="history.education.help.type"
                  adjustFor="big-buttons"
                  shrink={true}
                  scrollIntoView={this.props.scrollIntoView}>
@@ -235,8 +234,7 @@ export default class EducationItem extends ValidationElement {
 
           {this.reference()}
 
-          <BranchCollection help="history.education.help.degree"
-                            label={i18n.t('history.education.heading.degree')}
+          <BranchCollection label={i18n.t('history.education.heading.degree')}
                             appendLabel={i18n.t('history.education.heading.degreeTail')}
                             className="receive-degree"
                             items={this.state.Diplomas}

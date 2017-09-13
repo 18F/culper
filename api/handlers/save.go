@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,19 +11,13 @@ import (
 )
 
 func Save(w http.ResponseWriter, r *http.Request) {
-	// Parse the authorization header for the token
-	authHeader := r.Header.Get("Authorization")
-	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
-	if len(matches) == 0 {
-		EncodeErrJSON(w, errors.New("No Authorization token header found"))
-		return
-	}
-	token := matches[1]
-
-	// Validate the JWT token and populate the account ID
 	account := &model.Account{}
-	if ok, err := account.ValidJwtToken(token, model.TwoFactorAudience); !ok {
-		EncodeErrJSON(w, err)
+	account.WithContext(db.NewDB())
+
+	// Valid token and audience while populating the audience ID
+	_, err := checkToken(r, account, model.TwoFactorAudience)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
