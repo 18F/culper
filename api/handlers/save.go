@@ -22,6 +22,8 @@ func Save(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Get the account information from the data store
+	context := db.NewDB()
+	account.WithContext(context)
 	if err := account.Get(); err != nil {
 		EncodeErrJSON(w, err)
 		return
@@ -42,14 +44,14 @@ func Save(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Extract the entity interface of the payload and validate it
-	entity, err := payload.EntityPersister()
+	entity, err := payload.Entity()
 	if err != nil {
 		EncodeErrJSON(w, err)
 		return
 	}
 
 	// Save to storage and report any errors
-	if err = entity.Save(account.ID); err != nil {
+	if _, err = entity.Save(context, account.ID); err != nil {
 		EncodeErrJSON(w, err)
 		return
 	}
