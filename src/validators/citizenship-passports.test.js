@@ -1,4 +1,4 @@
-import CitizenshipPassportsValidator, { PassportItemValidator, TravelValidator } from './citizenship-passports'
+import CitizenshipPassportsValidator, { PassportItemValidator, TravelItemValidator } from './citizenship-passports'
 import { battery } from './helpers'
 import Location from '../components/Form/Location'
 
@@ -31,7 +31,9 @@ describe('citizenship multiple component validation', function () {
             {
               Has: 'Yes',
               Item: {
-                Country: 'United States',
+                Country: {
+                  value: 'United States'
+                },
                 Issued: {
                   day: '1',
                   month: '1',
@@ -91,7 +93,9 @@ describe('citizenship multiple component validation', function () {
             {
               Has: 'Yes',
               Item: {
-                Country: 'United States',
+                Country: {
+                  value: 'United States'
+                },
                 Issued: {
                   day: '1',
                   month: '1',
@@ -126,7 +130,9 @@ describe('citizenship multiple component validation', function () {
                 Countries: [
                   {
                     Item: {
-                      Country: 'United States',
+                      Country: {
+                        value: 'United States'
+                      },
                       Dates: {
                         from: {
                           date: new Date('1/1/2010')
@@ -153,19 +159,23 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
-          Country: ''
+          Country: {
+            value: ''
+          }
         },
         expected: false
       },
       {
         state: {
-          Country: 'United States'
+          Country: {
+            value: 'United States'
+          }
         },
         expected: true
       }
     ]
 
-    battery(tests, TravelValidator, 'validCountry')
+    battery(tests, TravelItemValidator, 'validCountry')
   })
 
   it('can validate travel dates', () => {
@@ -192,7 +202,7 @@ describe('citizenship multiple component validation', function () {
       }
     ]
 
-    battery(tests, TravelValidator, 'validDates')
+    battery(tests, TravelItemValidator, 'validDates')
   })
 
   it('can validate passport country', () => {
@@ -205,7 +215,9 @@ describe('citizenship multiple component validation', function () {
       },
       {
         state: {
-          Country: 'United States'
+          Country: {
+            value: 'United States'
+          }
         },
         expected: true
       }
@@ -386,7 +398,9 @@ describe('citizenship multiple component validation', function () {
           Countries: [
             {
               Item: {
-                Country: 'United States',
+                Country: {
+                  value: 'United States'
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2010')

@@ -5,13 +5,13 @@ describe('Foreign business voting component validation', function () {
   it('validate foreign business voting dates', () => {
     const tests = [
       {
-        props: {
+        state: {
           Date: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Date: {
             day: '1',
             month: '1',
@@ -29,13 +29,13 @@ describe('Foreign business voting component validation', function () {
   it('validate foreign business voting country', () => {
     const tests = [
       {
-        props: {
+        state: {
           Country: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Country: {
             value: 'Germany'
           }
@@ -50,13 +50,13 @@ describe('Foreign business voting component validation', function () {
   it('validate foreign business voting reason', () => {
     const tests = [
       {
-        props: {
+        state: {
           Reason: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Reason: {
             value: 'this is the reason'
           }
@@ -71,13 +71,13 @@ describe('Foreign business voting component validation', function () {
   it('validate foreign business voting eligibility', () => {
     const tests = [
       {
-        props: {
+        state: {
           Eligibility: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Eligibility: {
             value: 'this is the eligibility'
           }
@@ -92,17 +92,17 @@ describe('Foreign business voting component validation', function () {
   it('validate foreign business voting', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignVoting: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasForeignVoting: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -110,7 +110,7 @@ describe('Foreign business voting component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignVoting: 'Yes',
           List: [{}],
           ListBranch: 'No'
@@ -118,24 +118,26 @@ describe('Foreign business voting component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignVoting: 'Yes',
           List: [
             {
-              Date: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              Country: {
-                value: 'Germany'
-              },
-              Reason: {
-                value: 'this is the reason'
-              },
-              Eligibility: {
-                value: 'this is the eligibility'
+              Item: {
+                Date: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Country: {
+                  value: 'Germany'
+                },
+                Reason: {
+                  value: 'this is the reason'
+                },
+                Eligibility: {
+                  value: 'this is the eligibility'
+                }
               }
             }
           ],

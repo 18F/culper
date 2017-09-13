@@ -15,9 +15,9 @@ import EmploymentValidator from './employment'
 import EducationValidator from './education'
 import FederalServiceValidator from './federalservice'
 import SelectiveServiceValidator from './selectiveservice'
-import MilitaryHistoryValidator from './militaryhistory'
-import MilitaryDisciplinaryValidator from './militarydisciplinary'
-import MilitaryForeignValidator from './militaryforeign'
+import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
+import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydisciplinary'
+import MilitaryForeignValidator, { ForeignServiceValidator, ForeignContactValidator } from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import DomesticViolenceValidator from './domesticviolence'
@@ -37,29 +37,33 @@ import PsychologicalValidator from './psychological'
 import CompetenceValidator from './competence'
 import TreatmentValidator from './treatment'
 import CitizenshipValidator from './citizenship'
-import CitizenshipMultipleValidator from './citizenship-multiple'
-import CitizenshipPassportsValidator from './citizenship-passports'
+import CitizenshipMultipleValidator, { CitizenshipItemValidator } from './citizenship-multiple'
+import CitizenshipPassportsValidator, { TravelItemValidator } from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
 import CohabitantsValidator from './cohabitant'
 import RelationshipsValidator from './relationships'
 import PeopleValidator from './people'
-import ForeignContactsValidator from './foreigncontacts'
+import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
 import ForeignDirectActivityValidator from './foreigndirectactivity'
+import ForeignDirectInterestValidator from './foreigndirectinterest'
 import ForeignIndirectActivityValidator from './foreignindirectactivity'
+import ForeignIndirectInterestValidator from './foreignindirectinterest'
 import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
+import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
 import ForeignBenefitActivityValidator from './foreignbenefitactivity'
-import ForeignActivitiesSupportValidator from './foreignsupport'
-import ForeignBusinessAdviceValidator from './foreignbusinessadvice'
-import ForeignBusinessFamilyValidator from './foreignbusinessfamily'
-import ForeignBusinessEmploymentValidator from './foreignbusinessemployment'
-import ForeignBusinessVenturesValidator from './foreignbusinessventures'
-import ForeignBusinessConferencesValidator from './foreignbusinessconferences'
-import ForeignBusinessContactValidator from './foreignbusinesscontact'
-import ForeignBusinessSponsorshipValidator from './foreignbusinesssponsorship'
-import ForeignBusinessPoliticalValidator from './foreignbusinesspolitical'
-import ForeignBusinessVotingValidator from './foreignbusinessvoting'
-import ForeignTravelValidator from './foreigntravel.js'
+import ForeignBenefitValidator from './foreignbenefit'
+import ForeignActivitiesSupportValidator, { SupportValidator } from './foreignsupport'
+import ForeignBusinessAdviceValidator, { AdviceValidator } from './foreignbusinessadvice'
+import ForeignBusinessFamilyValidator, { FamilyValidator } from './foreignbusinessfamily'
+import ForeignBusinessEmploymentValidator, { ForeignBusinessEmploymentItemValidator } from './foreignbusinessemployment'
+import ForeignBusinessVenturesValidator, { VenturesValidator } from './foreignbusinessventures'
+import ForeignBusinessConferencesValidator, { ConferencesValidator } from './foreignbusinessconferences'
+import ForeignBusinessContactValidator, { ContactValidator } from './foreignbusinesscontact'
+import ForeignBusinessSponsorshipValidator, { SponsorshipValidator } from './foreignbusinesssponsorship'
+import ForeignBusinessPoliticalValidator, { PoliticalValidator } from './foreignbusinesspolitical'
+import ForeignBusinessVotingValidator, { VotingValidator } from './foreignbusinessvoting'
+import ForeignTravelValidator, { TravelValidator } from './foreigntravel.js'
 import AlcoholNegativeImpactsValidator from './alcoholnegativeimpact'
 import AlcoholOrderedCounselingsValidator from './alcoholorderedcounseling'
 import AlcoholVoluntaryCounselingsValidator from './alcoholvoluntarycounseling'
@@ -109,8 +113,12 @@ export {
   EducationValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
+  MilitaryServiceValidator,
   MilitaryDisciplinaryValidator,
+  ProcedureValidator,
   MilitaryForeignValidator,
+  ForeignServiceValidator,
+  ForeignContactValidator,
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
   DomesticViolenceValidator,
@@ -141,28 +149,46 @@ export {
   HospitalizationValidator,
   CitizenshipValidator,
   CitizenshipMultipleValidator,
+  CitizenshipItemValidator,
   CitizenshipPassportsValidator,
+  TravelItemValidator,
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,
   RelationshipsValidator,
   PeopleValidator,
   ForeignContactsValidator,
+  ForeignNationalValidator,
   ForeignDirectActivityValidator,
+  ForeignDirectInterestValidator,
   ForeignIndirectActivityValidator,
+  ForeignIndirectInterestValidator,
   ForeignRealEstateActivityValidator,
+  ForeignRealEstateInterestValidator,
   ForeignBenefitActivityValidator,
+  ForeignBenefitValidator,
   ForeignActivitiesSupportValidator,
+  SupportValidator,
   ForeignBusinessAdviceValidator,
+  AdviceValidator,
   ForeignBusinessFamilyValidator,
+  FamilyValidator,
   ForeignBusinessEmploymentValidator,
+  ForeignBusinessEmploymentItemValidator,
   ForeignBusinessVenturesValidator,
+  VenturesValidator,
   ForeignBusinessConferencesValidator,
+  ConferencesValidator,
   ForeignBusinessContactValidator,
+  ContactValidator,
   ForeignBusinessSponsorshipValidator,
+  SponsorshipValidator,
   ForeignBusinessPoliticalValidator,
+  PoliticalValidator,
   ForeignBusinessVotingValidator,
+  VotingValidator,
   ForeignTravelValidator,
+  TravelValidator,
   AlcoholNegativeImpactsValidator,
   AlcoholOrderedCounselingsValidator,
   AlcoholVoluntaryCounselingsValidator,

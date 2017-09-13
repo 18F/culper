@@ -25,7 +25,7 @@ export default class ForeignDirectActivityValidator {
     }
 
     return this.list.every((item) => {
-      return new ForeignDirectInterestValidator(null, item.DirectInterest).isValid()
+      return new ForeignDirectInterestValidator(item.Item).isValid()
     })
   }
 }

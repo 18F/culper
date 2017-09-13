@@ -40,7 +40,7 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryForeignValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new MilitaryForeignValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -174,7 +174,7 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new MilitaryForeignValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new MilitaryForeignValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -245,7 +245,7 @@ describe('Military foreign validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ForeignServiceValidator(test.state, null).validMaintainsContact()).toBe(test.expected)
+      expect(new ForeignServiceValidator(test.state).validMaintainsContact()).toBe(test.expected)
     })
   })
 })

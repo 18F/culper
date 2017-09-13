@@ -17,7 +17,7 @@ describe('Direct Interest validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignDirectInterestValidator(null, test.props).validInterestTypes()).toBe(test.expected)
+      expect(new ForeignDirectInterestValidator(test.props).validInterestTypes()).toBe(test.expected)
     })
   })
 
@@ -62,7 +62,7 @@ describe('Direct Interest validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignDirectInterestValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignDirectInterestValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 })
