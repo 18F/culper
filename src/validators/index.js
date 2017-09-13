@@ -15,9 +15,9 @@ import EmploymentValidator from './employment'
 import EducationValidator from './education'
 import FederalServiceValidator from './federalservice'
 import SelectiveServiceValidator from './selectiveservice'
-import MilitaryHistoryValidator from './militaryhistory'
-import MilitaryDisciplinaryValidator from './militarydisciplinary'
-import MilitaryForeignValidator from './militaryforeign'
+import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
+import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydisciplinary'
+import MilitaryForeignValidator, { ForeignServiceValidator, ForeignContactValidator } from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
 import DomesticViolenceValidator from './domesticviolence'
@@ -106,8 +106,12 @@ export {
   EducationValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
+  MilitaryServiceValidator,
   MilitaryDisciplinaryValidator,
+  ProcedureValidator,
   MilitaryForeignValidator,
+  ForeignServiceValidator,
+  ForeignContactValidator,
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
   DomesticViolenceValidator,
