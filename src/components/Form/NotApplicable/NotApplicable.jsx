@@ -10,7 +10,6 @@ export default class NotApplicable extends React.Component {
       applicable: props.applicable
     }
     this.errors = []
-
     this.onUpdate = this.onUpdate.bind(this)
   }
 
@@ -41,10 +40,6 @@ export default class NotApplicable extends React.Component {
         }
       }
     })
-  }
-
-  handleError () {
-
   }
 
   renderChildren () {
