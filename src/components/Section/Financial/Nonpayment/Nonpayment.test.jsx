@@ -41,7 +41,7 @@ describe('The nonpayment component', () => {
     const component = mount(<Nonpayment {...expected} />)
     component.find('.branch .yes input').simulate('change')
     component.find('.nonpayment-name input').simulate('change', { target: { value: 'IRS' } })
-    // component.find('.nonpayment-infractions input').simulate('change', { target: { value: 'IRS' } })
+    component.find('.nonpayment-infractions input').first().simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-accountnumber input').simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-propertytype input').simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-amount input[type="text"]').simulate('change', { target: { value: '10000' } })

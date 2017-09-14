@@ -23,7 +23,7 @@ export default class ForeignActivitiesSupportValidator {
         return false
       }
 
-      return this.list.every(item => new SupportValidator(item, null).isValid())
+      return this.list.every(item => new SupportValidator(item.Item, null).isValid())
     }
 
     return false

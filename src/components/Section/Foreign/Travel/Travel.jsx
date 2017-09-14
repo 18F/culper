@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ForeignTravelValidator } from '../../../../validators'
+import { ForeignTravelValidator, TravelValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import TravelQuestions from './TravelQuestions'
@@ -93,6 +93,7 @@ export default class Travel extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={TravelValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.travel.collection.summary.title')}
                      appendTitle={i18n.t('foreign.travel.collection.appendTitle')}
@@ -119,7 +120,7 @@ Travel.defaultProps = {
   subsection: 'travel',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignTravelValidator(state, props).isValid()
+    return new ForeignTravelValidator(props).isValid()
   },
   defaultState: true,
   scrollToBottom: ''

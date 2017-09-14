@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validGenericTextfield, validBranch } from './helpers'
 
 export default class HospitalizationsValidator {
-  constructor (state = {}, props) {
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
-    this.hospitalized = state.Hospitalized
+  constructor (data = {}) {
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
+    this.hospitalized = data.Hospitalized
   }
 
   validList () {
@@ -23,7 +23,7 @@ export default class HospitalizationsValidator {
     }
 
     for (let item of this.list) {
-      if (!new HospitalizationValidator(item.Hospitalization).isValid()) {
+      if (!new HospitalizationValidator(item.Item).isValid()) {
         return false
       }
     }
@@ -41,12 +41,12 @@ export default class HospitalizationsValidator {
 }
 
 export class HospitalizationValidator {
-  constructor (state = {}, props) {
-    this.treatmentDate = state.TreatmentDate
-    this.admission = state.Admission || { value: null }
-    this.facility = state.Facility
-    this.facilityAddress = state.FacilityAddress
-    this.explanation = state.Explanation
+  constructor (data = {}) {
+    this.treatmentDate = data.TreatmentDate
+    this.admission = data.Admission || { value: null }
+    this.facility = data.Facility
+    this.facilityAddress = data.FacilityAddress
+    this.explanation = data.Explanation
   }
 
   validTreatmentDate () {

@@ -2,10 +2,10 @@ import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
 import { validBranch } from './helpers'
 
 export default class ForeignRealEstateActivityValidator {
-  constructor (state, props = {}) {
-    this.hasInterests = props.HasInterests || ''
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasInterests = data.HasInterests || ''
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   isValid () {
@@ -25,7 +25,7 @@ export default class ForeignRealEstateActivityValidator {
     }
 
     return this.list.every((item) => {
-      return new ForeignRealEstateInterestValidator(null, item.RealEstateInterest).isValid()
+      return new ForeignRealEstateInterestValidator(item.Item).isValid()
     })
   }
 }

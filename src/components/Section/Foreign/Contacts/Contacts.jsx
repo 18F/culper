@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary } from '../../../Summary'
-import { ForeignContactsValidator } from '../../../../validators'
+import { ForeignContactsValidator, ForeignNationalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import ForeignNational from './ForeignNational'
@@ -72,6 +72,7 @@ export default class Contacts extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ForeignNationalValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.contacts.collection.summary.title')}
                      appendTitle={i18n.t('foreign.contacts.collection.appendTitle')}

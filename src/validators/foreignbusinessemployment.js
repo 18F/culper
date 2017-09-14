@@ -23,7 +23,7 @@ export default class ForeignBusinessEmploymentValidator {
         return false
       }
 
-      return this.list.every(item => new EmploymentValidator(item.Item, null).isValid())
+      return this.list.every(item => new ForeignBusinessEmploymentItemValidator(item.Item, null).isValid())
     }
 
     return false
@@ -34,7 +34,7 @@ export default class ForeignBusinessEmploymentValidator {
   }
 }
 
-export class EmploymentValidator {
+export class ForeignBusinessEmploymentItemValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
     this.description = state.Description
