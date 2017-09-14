@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugPrescriptionUsesValidator {
-  constructor (state = {}) {
-    this.usedDrugs = state.MisusedDrugs
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.usedDrugs = data.MisusedDrugs
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validMisusedDrugs () {
@@ -26,7 +26,7 @@ export default class DrugPrescriptionUsesValidator {
     }
 
     for (const item of this.list) {
-      const result = new DrugPrescriptionUseValidator(item.DrugPrescriptionUse, null).isValid()
+      const result = new DrugPrescriptionUseValidator(item.Item, null).isValid()
       if (!result) {
         return false
       }
@@ -42,12 +42,12 @@ export default class DrugPrescriptionUsesValidator {
 }
 
 export class DrugPrescriptionUseValidator {
-  constructor (state = {}) {
-    this.prescriptionName = state.PrescriptionName
-    this.involvementDates = state.InvolvementDates
-    this.reason = state.Reason
-    this.useWhileEmployed = state.UseWhileEmployed
-    this.useWithClearance = state.UseWithClearance
+  constructor (data = {}) {
+    this.prescriptionName = data.PrescriptionName
+    this.involvementDates = data.InvolvementDates
+    this.reason = data.Reason
+    this.useWhileEmployed = data.UseWhileEmployed
+    this.useWithClearance = data.UseWithClearance
   }
 
   isValid () {

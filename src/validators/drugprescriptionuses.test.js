@@ -45,7 +45,7 @@ describe('Drug Prescription Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              DrugPrescriptionUse: {
+              Item: {
                 InvolvementDates: {
                   from: {
                     date: new Date('1/1/2010')

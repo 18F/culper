@@ -4,7 +4,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import VoluntaryTreatment from './VoluntaryTreatment'
-import { DrugVoluntaryTreatmentsValidator } from '../../../../validators'
+import { DrugVoluntaryTreatmentsValidator, DrugVoluntaryTreatmentValidator } from '../../../../validators'
 
 export default class VoluntaryTreatments extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).VoluntaryTreatment || {}
+    const o = (item || {}).Item || {}
     const range = DateSummary(o.TreatmentDates)
     const name = (o.TreatmentProvider || {}).value
 
@@ -77,12 +77,13 @@ export default class VoluntaryTreatments extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugVoluntaryTreatmentValidator}
                      description={i18n.t('substance.drugs.voluntary.collection.description')}
                      appendTitle={i18n.t('substance.drugs.voluntary.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.voluntary.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <VoluntaryTreatment name="VoluntaryTreatment"
+            <VoluntaryTreatment name="Item"
                                 bind={true}
                                 addressBooks={this.props.addressBooks}
                                 dispatch={this.props.dispatch}
