@@ -207,7 +207,8 @@ export default class EmploymentItem extends ValidationElement {
           <Field title={i18n.t(`${prefix}.heading.address`)}
                  help={`${prefix}.address.help`}
                  adjustFor="address"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="Address"
                       {...this.props.Address}
                       layout={Location.ADDRESS}
@@ -218,6 +219,7 @@ export default class EmploymentItem extends ValidationElement {
                       onUpdate={this.onUpdate.bind(this, 'Address')}
                       onError={this.props.onError}
                       label={i18n.t(`${prefix}.address.label`)}
+                      required={this.props.required}
                       />
           </Field>
         </Show>

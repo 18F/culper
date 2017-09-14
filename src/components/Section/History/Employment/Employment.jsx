@@ -141,7 +141,7 @@ Employment.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return props.List.every(x => {
-      return props.ListBranch === 'No' && new EmploymentValidator(x.Item, null).isValid()
+      return props.ListBranch === 'No' && new EmploymentValidator(x.Item).isValid()
     })
   }
 }
