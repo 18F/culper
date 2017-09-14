@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsViolenceValidator } from '../../../../validators'
+import { LegalAssociationsViolenceValidator, ViolenceValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange,
-         Location, Text, Textarea, NotApplicable, Currency } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import MembershipViolenceItem from './MembershipViolenceItem'
 
 export default class MembershipViolence extends SubsectionElement {
   constructor (props) {
@@ -40,7 +40,7 @@ export default class MembershipViolence extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Dates)
     const details = (o.Organization || {}).value || ''
 
@@ -76,89 +76,19 @@ export default class MembershipViolence extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ViolenceValidator}
                      description={i18n.t('legal.associations.violence.collection.description')}
                      appendTitle={i18n.t('legal.associations.violence.collection.appendTitle')}
                      appendLabel={i18n.t('legal.associations.violence.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Field title={i18n.t('legal.associations.violence.heading.organization')}
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Organization"
-                    className="legal-associations-violence-organization"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.violence.heading.address')}
-                   help="legal.associations.violence.help.address"
-                   adjustFor="address"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Location name="Address"
-                        className="legal-associations-violence-address"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        addressBooks={this.props.addressBooks}
-                        addressBook="Organization"
-                        dispatch={this.props.dispatch}
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.violence.heading.dates')}
-                   help="legal.associations.violence.help.dates"
-                   adjustFor="daterange"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateRange name="Dates"
-                         className="legal-associations-violence-dates"
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.violence.heading.positions')}
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <NotApplicable name="PositionsNotApplicable"
-                             or={i18n.m('legal.associations.violence.para.or')}
-                             label={i18n.t('legal.associations.violence.label.noposition')}
-                             required={this.props.required}
-                             bind={true}>
-                <Text name="Positions"
-                      className="legal-associations-violence-positions"
-                      bind={true}
-                      required={this.props.required}
-                      />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('legal.associations.violence.heading.contributions')}
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <NotApplicable name="ContributionsNotApplicable"
-                             or={i18n.m('legal.associations.violence.para.or')}
-                             label={i18n.t('legal.associations.violence.label.nocontribs')}
-                             required={this.props.required}
-                             bind={true}>
-                <Currency name="Contributions"
-                          className="legal-associations-violence-contributions"
-                          bind={true}
-                          required={this.props.required}
-                          />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('legal.associations.violence.heading.reasons')}
-                   adjustFor="textarea"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Reasons"
-                        className="legal-associations-violence-reasons"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <MembershipViolenceItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -179,7 +109,7 @@ MembershipViolence.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalAssociationsViolenceValidator(state, props).isValid()
+    return new LegalAssociationsViolenceValidator(props).isValid()
   },
   scrollToBottom: ''
 }

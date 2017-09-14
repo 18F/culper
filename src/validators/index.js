@@ -17,6 +17,7 @@ import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydis
 import MilitaryForeignValidator, { ForeignServiceValidator, ForeignContactValidator } from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
+import OtherOffenseValidator from './otheroffense'
 import DomesticViolenceValidator from './domesticviolence'
 import OffenseValidator from './offense'
 import RelativesValidator, { RelativeValidator, AliasValidator } from './relatives'
@@ -49,6 +50,14 @@ import ForeignIndirectInterestValidator from './foreignindirectinterest'
 import ForeignRealEstateActivityValidator from './foreignrealestateactivity'
 import ForeignRealEstateInterestValidator from './foreignrealestateinterest'
 import ForeignBenefitActivityValidator from './foreignbenefitactivity'
+import LegalNonCriminalCourtActionsValidator, { NonCriminalCourtActionValidator } from './legalnoncriminalcourtactions'
+import LegalInvestigationsHistoryValidator, { HistoryValidator } from './legalinvestigationshistory'
+import LegalInvestigationsRevokedValidator, { RevokedValidator } from './legalinvestigationsrevoked'
+import LegalInvestigationsDebarredValidator, { DebarredValidator } from './legalinvestigationsdebarred'
+import LegalTechnologyUnauthorizedValidator, { UnauthorizedValidator } from './legaltechnologyunauthorized'
+import LegalTechnologyManipulatingValidator, { ManipulatingValidator } from './legaltechnologymanipulating'
+import LegalTechnologyUnlawfulValidator, { UnlawfulValidator } from './legaltechnologyunlawful'
+import LegalAssociationsTerroristValidator, { TerroristValidator } from './legalassociationsterrorist'
 import ForeignBenefitValidator from './foreignbenefit'
 import ForeignActivitiesSupportValidator, { SupportValidator } from './foreignsupport'
 import ForeignBusinessAdviceValidator, { AdviceValidator } from './foreignbusinessadvice'
@@ -72,19 +81,11 @@ import DrugPublicSafetyUsesValidator, { DrugPublicSafetyUseValidator } from './d
 import DrugPrescriptionUsesValidator, { DrugPrescriptionUseValidator } from './drugprescriptionuses'
 import DrugOrderedTreatmentsValidator, { DrugOrderedTreatmentValidator } from './drugorderedtreatments'
 import DrugVoluntaryTreatmentsValidator, { DrugVoluntaryTreatmentValidator } from './drugvoluntarytreatments'
-import LegalNonCriminalCourtActionsValidator from './legalnoncriminalcourtactions'
-import LegalInvestigationsHistoryValidator from './legalinvestigationshistory'
-import LegalInvestigationsRevokedValidator from './legalinvestigationsrevoked'
-import LegalInvestigationsDebarredValidator from './legalinvestigationsdebarred'
-import LegalTechnologyUnauthorizedValidator from './legaltechnologyunauthorized'
-import LegalTechnologyManipulatingValidator from './legaltechnologymanipulating'
-import LegalTechnologyUnlawfulValidator from './legaltechnologyunlawful'
-import LegalAssociationsTerroristValidator from './legalassociationsterrorist'
 import LegalAssociationsOverthrowValidator from './legalassociationsoverthrow'
 import LegalAssociationsViolenceValidator from './legalassociationsviolence'
-import LegalAssociationsEngagedValidator from './legalassociationsengaged'
-import LegalAssociationsAdvocatingValidator from './legalassociationsadvocating'
-import LegalAssociationsActivitiesValidator from './legalassociationsactivities'
+import LegalAssociationsEngagedValidator, { EngagedValidator } from './legalassociationsengaged'
+import LegalAssociationsAdvocatingValidator, { AdvocatingValidator } from './legalassociationsadvocating'
+import LegalAssociationsActivitiesValidator, { ActivitiesValidator } from './legalassociationsactivities'
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
@@ -118,6 +119,7 @@ export {
   ForeignContactValidator,
   PoliceOffensesValidator,
   PoliceOtherOffensesValidator,
+  OtherOffenseValidator,
   DomesticViolenceValidator,
   OffenseValidator,
   FederalServiceValidator,
@@ -209,18 +211,29 @@ export {
   DrugVoluntaryTreatmentsValidator,
   DrugVoluntaryTreatmentValidator,
   LegalNonCriminalCourtActionsValidator,
+  NonCriminalCourtActionValidator,
   LegalInvestigationsHistoryValidator,
+  HistoryValidator,
   LegalInvestigationsRevokedValidator,
+  RevokedValidator,
   LegalInvestigationsDebarredValidator,
+  DebarredValidator,
   LegalTechnologyUnauthorizedValidator,
+  UnauthorizedValidator,
   LegalTechnologyManipulatingValidator,
+  ManipulatingValidator,
   LegalTechnologyUnlawfulValidator,
+  UnlawfulValidator,
   LegalAssociationsTerroristValidator,
+  TerroristValidator,
   LegalAssociationsOverthrowValidator,
   LegalAssociationsViolenceValidator,
   LegalAssociationsEngagedValidator,
+  EngagedValidator,
   LegalAssociationsAdvocatingValidator,
+  AdvocatingValidator,
   LegalAssociationsActivitiesValidator,
+  ActivitiesValidator,
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
