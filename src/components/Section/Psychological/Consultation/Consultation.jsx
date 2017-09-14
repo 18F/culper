@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ConsultationValidator } from '../../../../validators'
+import { ConsultationValidator, ConsultationOrderValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import Order from '../Order'
@@ -40,7 +40,7 @@ export default class Consultation extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).Consultation || {}
+    const o = (item || {}).Item || {}
     const occurred = DateSummary(o.Occurred || {})
     const courtName = (o.CourtName || {}).value || ''
 
@@ -75,12 +75,13 @@ export default class Consultation extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ConsultationOrderValidator}
                      description={i18n.t('psychological.consultation.collection.description')}
                      appendTitle={i18n.t('psychological.consultation.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.consultation.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Order name="Consultation"
+            <Order name="Item"
                    prefix="consultation"
                    ApplicantBirthDate={this.props.ApplicantBirthDate}
                    addressBooks={this.props.addressBooks}
@@ -107,7 +108,7 @@ Consultation.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new ConsultationValidator(props, props).isValid()
+    return new ConsultationValidator(props).isValid()
   },
   scrollToBottom: ''
 }

@@ -37,3 +37,15 @@ export default class DiagnosisValidator {
       this.validEffective()
   }
 }
+export class ExistingConditionsDiagnosisValidator extends DiagnosisValidator {
+  constructor (data = {}) {
+    super(data)
+    this.condition = data.Condition || ''
+    this.diagnosed = data.Diagnosed || {}
+    this.treatment = data.Treatment || {}
+    this.effective = data.Effective || {}
+    this.treatmentFacility = data.TreatmentFacility || {}
+    this.explanation = data.Explanation || {}
+    this.prefix = 'existingConditions.diagnosis'
+  }
+}
