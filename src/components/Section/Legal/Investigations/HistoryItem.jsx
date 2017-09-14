@@ -106,7 +106,7 @@ export default class HistoryItem extends ValidationElement {
               onUpdate={this.updateAgency}
               onError={this.props.onError}
               className="legal-investigations-history-agency"
-              required={this.props.required}
+              required={this.props.required && this.props.AgencyNotApplicable.applicable}
               scrollIntoView={this.props.scrollIntoView}
             />
           </NotApplicable>
@@ -194,5 +194,8 @@ export default class HistoryItem extends ValidationElement {
 
 HistoryItem.defaultProps = {
   onUpdate: (queue) => {},
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  AgencyNotApplicable: {
+    applicable: true
+  }
 }

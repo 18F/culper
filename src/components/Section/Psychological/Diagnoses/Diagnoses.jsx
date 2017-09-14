@@ -1,9 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { DiagnosesValidator } from '../../../../validators'
+import { DiagnosesValidator, DiagnosisValidator, TreatmentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Accordion, Branch, Show, Field } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
 import Diagnosis from './Diagnosis'
 import Treatment from '../Treatment'
 
@@ -127,13 +127,14 @@ export default class Diagnoses extends SubsectionElement {
                        onUpdate={this.updateDiagnosisList}
                        summary={this.summary}
                        onError={this.handleError}
+                       validator={DiagnosisValidator}
                        description={i18n.t('psychological.diagnoses.collection.description')}
                        appendTitle={i18n.t('psychological.diagnoses.collection.appendTitle')}
                        appendMessage={i18n.m('psychological.diagnoses.collection.appendMessage')}
                        appendLabel={i18n.t('psychological.diagnoses.collection.appendLabel')}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}>
-              <Diagnosis name="Diagnosis"
+              <Diagnosis name="Item"
                          ApplicantBirthDate={this.props.ApplicantBirthDate}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}
@@ -175,11 +176,12 @@ export default class Diagnoses extends SubsectionElement {
                          onUpdate={this.updateTreatmentList}
                          summary={this.treatmentSummary}
                          onError={this.handleError}
+                         validator={TreatmentValidator}
                          appendTitle={i18n.t('psychological.diagnoses.treatment.collection.appendTitle')}
                          appendLabel={i18n.t('psychological.diagnoses.treatment.collection.appendLabel')}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}>
-                <Treatment name="Treatment"
+                <Treatment name="Item"
                            prefix="diagnoses.professional"
                            addressBooks={this.props.addressBooks}
                            dispatch={this.props.dispatch}
@@ -209,7 +211,7 @@ Diagnoses.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new DiagnosesValidator(props, props).isValid()
+    return new DiagnosesValidator(props).isValid()
   },
   scrollToBottom: ''
 }

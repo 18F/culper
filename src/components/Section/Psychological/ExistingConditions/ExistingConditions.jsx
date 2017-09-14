@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ExistingConditionsValidator } from '../../../../validators'
+import { ExistingConditionsValidator, ExistingConditionsDiagnosisValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show, RadioGroup, Radio, Field, Textarea } from '../../../Form'
 import Diagnosis from '../Diagnoses/Diagnosis'
@@ -160,12 +160,13 @@ export default class ExistingConditions extends SubsectionElement {
                          onUpdate={this.updateTreatmentList}
                          summary={this.summary}
                          onError={this.handleError}
+                         validator={ExistingConditionsDiagnosisValidator}
                          description={i18n.t('psychological.existingConditions.treatment.collection.description')}
                          appendTitle={i18n.t('psychological.existingConditions.treatment.collection.appendTitle')}
                          appendLabel={i18n.t('psychological.existingConditions.treatment.collection.appendLabel')}
                          required={this.props.required}
                          scrollIntoView={this.props.scrollIntoView}>
-                <Diagnosis name="Diagnosis"
+                <Diagnosis name="Item"
                            ApplicantBirthDate={this.props.ApplicantBirthDate}
                            prefix="existingConditions.diagnosis"
                            required={this.props.required}

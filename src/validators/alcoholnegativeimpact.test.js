@@ -30,7 +30,7 @@ describe('negative impact component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NegativeImpactValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new NegativeImpactValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 
@@ -62,7 +62,7 @@ describe('negative impact component validation', function () {
           HasImpacts: 'Yes',
           ListBranch: 'No',
           List: [{
-            NegativeImpact: {
+            Item: {
               Occurred: {
                 month: '1',
                 year: '2010'
@@ -92,7 +92,7 @@ describe('negative impact component validation', function () {
           HasImpacts: 'Yes',
           ListBranch: 'No',
           List: [{
-            NegativeImpact: {
+            Item: {
               Occurred: {
                 month: '1',
                 year: '2010'
@@ -118,7 +118,7 @@ describe('negative impact component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new NegativeImpactsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new NegativeImpactsValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 })

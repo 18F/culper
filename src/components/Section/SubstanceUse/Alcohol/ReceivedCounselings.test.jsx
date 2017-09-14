@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import ReceivedCounselings from './ReceivedCounselings'
+import { Location } from '../../../Form'
 
 describe('The ReceivedCounselings component', () => {
   it('Renders without errors', () => {
@@ -24,7 +25,7 @@ describe('The ReceivedCounselings component', () => {
       ReceivedTreatment: 'Yes',
       ListBranch: 'No',
       List: [{
-        ReceivedCounseling: {
+        Item: {
           UseSameAddress: 'Yes',
           TreatmentProviderName: {
             value: 'The name'

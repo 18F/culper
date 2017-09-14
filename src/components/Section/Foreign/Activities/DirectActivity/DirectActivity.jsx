@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../../config'
 import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
-import { ForeignDirectActivityValidator } from '../../../../../validators'
+import { ForeignDirectActivityValidator, ForeignDirectInterestValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import DirectInterest from './DirectInterest'
 
@@ -40,7 +40,7 @@ export default class DirectActivity extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DirectInterest || {}
+    const o = (item || {}).Item || {}
     const who = (o.InterestTypes || []).join(', ')
     const interestType = (o.InterestType || {}).value ? o.InterestType.value : ''
     const cost = (o.Cost || {}).value ? '$' + o.Cost.value : ''
@@ -84,12 +84,13 @@ export default class DirectActivity extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ForeignDirectInterestValidator}
                      description={i18n.t('foreign.activities.direct.collection.description')}
                      appendTitle={i18n.t('foreign.activities.direct.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.direct.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <DirectInterest name="DirectInterest"
+            <DirectInterest name="Item"
                             addressBooks={this.props.addressBooks}
                             dispatch={this.props.dispatch}
                             bind={true}

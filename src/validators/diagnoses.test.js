@@ -8,7 +8,7 @@ describe('Diagnoses validation', function () {
         state: {
           InTreatment: 'Yes',
           TreatmentList: [{
-            Treatment: {
+            Item: {
               Name: {
                 value: 'Circuit Court'
               },
@@ -70,7 +70,7 @@ describe('Diagnoses validation', function () {
         state: {
           Diagnosed: 'Yes',
           DiagnosisList: [{
-            Diagnosis: {
+            Item: {
               Condition: {
                 value: 'Test'
               },
