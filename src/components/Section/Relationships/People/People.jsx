@@ -170,7 +170,12 @@ export default class People extends SubsectionElement {
                    description={i18n.t('relationships.people.person.collection.description')}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
-          <Person name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+          <Person name="Item"
+                  bind={true}
+                  addressBooks={this.props.addressBooks}
+                  dispatch={this.props.dispatch}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -184,6 +189,7 @@ People.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'people',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new PeopleValidator(props, props).isValid()

@@ -98,6 +98,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.relatives')}>
             <People name="people"
                     {...this.props.People}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
@@ -157,6 +158,7 @@ class Relationships extends SectionElement {
             <People name="people"
                     {...this.props.People}
                     defaultState={false}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
