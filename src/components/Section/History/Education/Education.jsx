@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { EducationValidator } from '../../../../validators'
+import { EducationValidator, EducationItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
@@ -30,7 +30,7 @@ export default class Education extends SubsectionElement {
 
   customEducationByline (item, index, initial) {
     return byline(item, index, this.props.overrideInitial(initial), 'history.education.collection.school.summary.incomplete', this.props.required, (item) => {
-      return new EducationValidator(item, null).isValid()
+      return new EducationItemValidator(item).isValid()
     })
   }
 

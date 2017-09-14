@@ -45,7 +45,7 @@ describe('Drug Involvement Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              DrugInvolvement: {
+              Item: {
                 DrugType: {
                   DrugType: 'Cocaine',
                   DrugTypeOther: null

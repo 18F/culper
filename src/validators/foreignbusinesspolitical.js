@@ -1,11 +1,11 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
+import { validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessPoliticalValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignPolitical = props.HasForeignPolitical
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasForeignPolitical = data.HasForeignPolitical
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -22,7 +22,7 @@ export default class ForeignBusinessPoliticalValidator {
         return false
       }
 
-      return this.list.every(item => new PoliticalValidator(null, item).isValid())
+      return this.list.every(item => new PoliticalValidator(item.Item).isValid())
     }
 
     return false
@@ -34,12 +34,12 @@ export default class ForeignBusinessPoliticalValidator {
 }
 
 export class PoliticalValidator {
-  constructor (state = {}, props = {}) {
-    this.position = props.Position
-    this.dates = props.Dates
-    this.country = props.Country
-    this.reason = props.Reason
-    this.eligibility = props.Eligibility
+  constructor (data = {}) {
+    this.position = data.Position
+    this.dates = data.Dates
+    this.country = data.Country
+    this.reason = data.Reason
+    this.eligibility = data.Eligibility
   }
 
   validPosition () {
@@ -51,7 +51,7 @@ export class PoliticalValidator {
   }
 
   validCountry () {
-    return !!this.country && !!this.country.value
+    return validGenericTextfield(this.country)
   }
 
   validReason () {

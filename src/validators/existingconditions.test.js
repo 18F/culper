@@ -47,7 +47,7 @@ describe('Diagnosis validation', function () {
           ReceivedTreatment: 'Yes',
           TreatmentList: [
             {
-              Diagnosis: {
+              Item: {
                 Condition: 'Test',
                 Effective: 'Yes',
                 Explanation: {
@@ -173,7 +173,7 @@ describe('Diagnosis validation', function () {
           Explanation: null,
           TreatmentList: [
             {
-              Diagnosis: {
+              Item: {
                 Condition: {
                   value: 'Test'
                 },

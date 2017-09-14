@@ -45,7 +45,7 @@ describe('Drug Use Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              DrugClearanceUse: {
+              Item: {
                 InvolvementDates: {
                   from: {
                     date: new Date('1/1/2010')

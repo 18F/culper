@@ -4,7 +4,7 @@ import { gaps, gaps2 } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
-import { ResidenceValidator, EmploymentValidator, EducationValidator } from '../../../validators'
+import { ResidenceValidator, EmploymentValidator, EducationValidator, EducationItemValidator } from '../../../validators'
 import { openState, chevron } from '../../Form/Accordion/Accordion'
 
 export const CustomSummary = (validation, summary, more, item, index, initial, callback, toggle, openText, remove, byline) => {
@@ -243,7 +243,7 @@ const DiplomaSummary = (item, errors) => {
 
 export const EducationCustomSummary = (item, index, initial, callback, toggle, openText, remove, byline) => {
   return CustomSummary(
-    (x) => { return new EducationValidator(x, null).isValid() },
+    (x) => { return new EducationItemValidator(x).isValid() },
     (x, e) => { return EducationSummary(x, e, item.open) },
     (x, e) => {
       return DiplomaSummary(x, e)

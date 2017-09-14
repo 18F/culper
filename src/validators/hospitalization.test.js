@@ -94,7 +94,7 @@ describe('Hospitalization validation', function () {
           Hospitalized: 'Yes',
           List: [
             {
-              Hospitalization: {
+              Item: {
                 Facility: {
                   value: 'Place 1'
                 },
@@ -131,7 +131,7 @@ describe('Hospitalization validation', function () {
           Hospitalized: 'Nope',
           List: [
             {
-              Hospitalization: {
+              Item: {
                 Facility: {
                   value: 'Place 1'
                 },

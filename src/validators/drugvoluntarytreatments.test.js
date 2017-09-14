@@ -46,7 +46,7 @@ describe('Drug Voluntary Treatment Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              VoluntaryTreatment: {
+              Item: {
                 DrugType: 'Cocaine',
                 TreatmentProvider: {
                   value: 'Provider'

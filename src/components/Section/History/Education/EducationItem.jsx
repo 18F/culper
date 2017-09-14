@@ -242,6 +242,7 @@ export default class EducationItem extends ValidationElement {
                             items={this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
                             onError={this.props.onError}
+                            required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}>
             <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView}  />
           </BranchCollection>

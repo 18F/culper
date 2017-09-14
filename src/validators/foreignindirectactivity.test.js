@@ -28,7 +28,7 @@ describe('Foreign Indirect Activity validation', function () {
           HasInterests: 'Yes',
           List: [
             {
-              IndirectInterest: {
+              Item: {
                 InterestTypes: ['Yourself'],
                 InterestType: {
                   value: 'Some type'
@@ -79,7 +79,7 @@ describe('Foreign Indirect Activity validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignIndirectActivityValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignIndirectActivityValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 })

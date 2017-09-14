@@ -95,18 +95,21 @@ export default class Reference extends ValidationElement {
           <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>
           <Field title={i18n.t(`${prefix}reference.heading.phone`)}
             help={`${prefix}reference.help.phone`}
-            adjustFor="telephone">
+            adjustFor="telephone"
+            scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="Phone"
               className="reference-phone"
               {...this.props.Phone}
               onUpdate={this.updatePhone}
               onError={this.props.onError}
+              required={this.props.required}
             />
           </Field>
 
           <Field title={i18n.t(`${prefix}reference.heading.email`)}
             help={`${prefix}reference.help.email`}
-            adjustFor="label">
+            adjustFor="label"
+            scrollIntoView={this.props.scrollIntoView}>
             <NotApplicable name="EmailNotApplicable"
               {...this.props.EmailNotApplicable}
               label={i18n.t('reference.label.idk')}
@@ -118,13 +121,15 @@ export default class Reference extends ValidationElement {
                 label={i18n.t(`${prefix}reference.label.email`)}
                 onUpdate={this.updateEmail}
                 onError={this.props.onError}
+                required={this.props.required}
               />
             </NotApplicable>
           </Field>
 
           <Field title={i18n.t(`${prefix}reference.heading.address`)}
             help={`${prefix}reference.help.address`}
-            adjustFor="address">
+            adjustFor="address"
+            scrollIntoView={this.props.scrollIntoView}>
             <p>{i18n.t(`${prefix}reference.para.address`)}</p>
             <Location name="Address"
               className="reference-address"
@@ -137,6 +142,7 @@ export default class Reference extends ValidationElement {
               dispatch={this.props.dispatch}
               onUpdate={this.updateAddress}
               onError={this.props.onError}
+              required={this.props.required}
             />
           </Field>
         </Show>
