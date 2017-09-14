@@ -4,7 +4,7 @@ import { gaps, gaps2 } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
-import { ResidenceValidator, EmploymentValidator, EducationValidator, EducationItemValidator } from '../../../validators'
+import { ResidenceValidator, EmploymentValidator, EducationItemValidator } from '../../../validators'
 import { openState, chevron } from '../../Form/Accordion/Accordion'
 
 export const CustomSummary = (validation, summary, more, item, index, initial, callback, toggle, openText, remove, byline) => {
