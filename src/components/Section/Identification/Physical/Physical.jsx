@@ -38,6 +38,11 @@ export default class Physical extends SubsectionElement {
 
     return (
       <div className={klass}>
+        <Field title={i18n.t('identification.traits.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
         <Field title={i18n.t('identification.traits.heading.height')}
                help="identification.traits.help.height"
                adjustFor='labels'

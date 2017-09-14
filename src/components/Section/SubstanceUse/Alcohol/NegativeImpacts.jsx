@@ -57,8 +57,9 @@ export default class NegativeImpacts extends SubsectionElement {
   render () {
     return (
       <div className="negative-impacts">
-        <h2>{i18n.t('substance.alcohol.heading.negativeImpact')}</h2>
         <Branch name="has_impacts"
+                label={i18n.t('substance.alcohol.heading.negativeImpact')}
+                labelSize="h2"
                 className="has-impacts"
                 value={this.props.HasImpacts}
                 warning={true}

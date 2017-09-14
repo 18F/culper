@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Svg } from '../../../Form'
+import { Field, Accordion, Svg } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import Person from './Person'
 import PeopleValidator, { PersonValidator } from '../../../../validators/people'
@@ -132,8 +132,11 @@ export default class People extends SubsectionElement {
   render () {
     return (
       <div className="people">
-        <h2>{i18n.t('relationships.people.heading.title')}</h2>
-        {i18n.m('relationships.people.para.intro')}
+        <Field title={i18n.t('relationships.people.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom">
+          {i18n.m('relationships.people.para.intro')}
+        </Field>
 
         <span id="scrollToPeople"></span>
         <div className="summaryprogress progress">

@@ -65,7 +65,7 @@ export default class RealEstateActivity extends SubsectionElement {
       <div className="realestate">
         <Branch name="has_interests"
                 label={i18n.t('foreign.activities.realestate.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasInterests}
                 warning={true}
                 onError={this.handleError}

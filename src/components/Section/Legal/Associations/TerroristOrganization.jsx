@@ -59,7 +59,7 @@ export default class TerroristOrganization extends SubsectionElement {
 
         <Branch name="has_terrorist"
                 label={i18n.t('legal.associations.terrorist.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-associations-terrorist-has-terrorist"
                 value={this.props.HasTerrorist}
                 warning={true}

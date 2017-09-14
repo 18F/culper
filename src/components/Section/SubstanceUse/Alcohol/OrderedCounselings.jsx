@@ -81,8 +81,9 @@ export default class OrderedCounselings extends SubsectionElement {
   render () {
     return (
       <div className="ordered-counselings">
-        <h2>{i18n.t('substance.alcohol.heading.orderedCounseling')}</h2>
         <Branch name="HasBeenOrdered"
+                label={i18n.t('substance.alcohol.heading.orderedCounseling')}
+                labelSize="h2"
                 className="has-been-ordered"
                 value={this.props.HasBeenOrdered}
                 warning={true}

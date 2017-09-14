@@ -57,8 +57,9 @@ export default class Hospitalizations extends SubsectionElement {
   render () {
     return (
       <div className="hospitalizations">
-        <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
+                label={i18n.t('psychological.heading.hospitalization')}
+                labelSize="h2"
                 value={this.props.Hospitalized}
                 warning={true}
                 onError={this.handleError}

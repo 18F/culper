@@ -5,6 +5,7 @@ import { push } from '../../../middleware/history'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import { Field } from '../../Form'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
 import OrderedCounselings from './Alcohol/OrderedCounselings'
 import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
@@ -99,8 +100,11 @@ class SubstanceUse extends SectionElement {
                        backLabel={ i18n.t('foreign.destination.review') }
                        next="substance/drugs/usage"
                        nextLabel={i18n.t('substance.destination.drugs.usage')}>
-            <h2>{i18n.t('substance.intro.title')}</h2>
-            {i18n.m('substance.intro.body')}
+            <Field title={i18n.t('substance.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('substance.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="drugs/usage"

@@ -56,15 +56,16 @@ export default class Consultation extends SubsectionElement {
   render () {
     return (
       <div className="consultation">
-        <h2>{i18n.t('psychological.heading.consultation')}</h2>
-        { i18n.m('psychological.heading.consultation2') }
         <Branch name="is_incompetent"
+                label={i18n.t('psychological.heading.consultation')}
+                labelSize="h2"
                 value={this.props.Consulted}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
                 onUpdate={this.updateConsulted}
                 scrollIntoView={this.props.scrollIntoView}>
+        { i18n.m('psychological.heading.consultation2') }
         </Branch>
 
         <Show when={this.props.Consulted === 'Yes'}>

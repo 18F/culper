@@ -167,7 +167,7 @@ export default class Field extends ValidationElement {
       return null
     }
 
-    const klass = `toggle ${this.state.helpActive ? 'active' : ''} ${this.props.adjustFor ? `adjust-for-${this.props.adjustFor}` : ''}`.trim()
+    const klass = `toggle ${this.props.titleSize} ${this.state.helpActive ? 'active' : ''} ${this.props.adjustFor ? `adjust-for-${this.props.adjustFor}` : ''}`.trim()
 
     return (
       <a href="javascript:;"
