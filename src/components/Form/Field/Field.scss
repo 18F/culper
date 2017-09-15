@@ -25,7 +25,8 @@
     }
 
     &.h2 {
-      font-size: 2.75rem;
+      font-size: 2.3rem;
+      line-height: 1.6;
     }
 
     &.h3 {
@@ -63,7 +64,8 @@
       }
 
       &.h2 {
-        font-size: 2.75rem;
+        font-size: 2.3rem;
+        line-height: 1.6;
       }
 
       &.h3 {
@@ -163,7 +165,7 @@
         }
 
         > .comments-button {
-          display: block;
+          display: inline-block;
 
           i {
             margin-left: 1rem;
