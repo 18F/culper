@@ -70,6 +70,8 @@ export default class Taxes extends SubsectionElement {
     return (
       <div className="taxes">
         <Branch name="has_taxes"
+                label={i18n.t('financial.taxes.title')}
+                labelSize="h2"
                 className="taxes-branch"
                 value={this.state.HasTaxes}
                 warning={true}

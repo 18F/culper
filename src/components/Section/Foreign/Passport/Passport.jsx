@@ -127,6 +127,12 @@ export default class Passport extends SubsectionElement {
 
     return (
       <div className="passport">
+        <Field title={i18n.t('foreign.passport.title')}
+               titleSize="h2"
+               help="foreign.passport.branch.help"
+               className="no-margin-bottom"
+               />
+
         <p>
           {i18n.t('foreign.passport.info.text')}
         </p>
@@ -135,9 +141,9 @@ export default class Passport extends SubsectionElement {
             {i18n.t('foreign.passport.info.link')}
           </a>
         </p>
-        <h3>{i18n.t('foreign.passport.question.title')}</h3>
         <Branch name="has_passport"
-                help="foreign.passport.branch.help"
+                label={i18n.t('foreign.passport.question.title')}
+                labelSize="h3"
                 value={this.props.HasPassport}
                 warning={true}
                 onUpdate={this.updateBranch}
@@ -148,7 +154,10 @@ export default class Passport extends SubsectionElement {
         </Branch>
         <Show when={this.props.HasPassport === 'Yes'}>
           <div>
-            <h3>{i18n.t('foreign.passport.name')}</h3>
+            <Field title={i18n.t('foreign.passport.name')}
+                   titleSize="h3"
+                   className="no-margin-bottom"
+                   />
             <Suggestions show={this.showSuggestions()}
                          suggestions={this.props.suggestedNames}
                          renderSuggestion={this.renderSuggestion}

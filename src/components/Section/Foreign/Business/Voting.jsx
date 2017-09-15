@@ -57,7 +57,7 @@ export default class Voting extends SubsectionElement {
       <div className="foreign-business-voting">
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignVoting}
                 warning={true}
                 onUpdate={this.updateHasForeignVoting}

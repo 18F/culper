@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { Summary, NameSummary } from '../../../Summary'
 import { RelativesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Accordion } from '../../../Form'
+import { Field, Accordion } from '../../../Form'
 import Relative from './Relative'
 
 export default class Relatives extends SubsectionElement {
@@ -51,8 +51,11 @@ export default class Relatives extends SubsectionElement {
   render () {
     return (
       <div className="relatives">
-        <h2>{i18n.t('relationships.relatives.heading.title')}</h2>
-        {i18n.m('relationships.relatives.para.opportunity')}
+        <Field title={i18n.t('relationships.relatives.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom">
+          {i18n.m('relationships.relatives.para.opportunity')}
+        </Field>
 
         <Accordion items={this.props.List}
                    defaultState={this.props.defaultState}

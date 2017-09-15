@@ -56,7 +56,7 @@ export default class Advice extends SubsectionElement {
       <div className="foreign-business-advice">
         <Branch name="has_foreign_advice"
                 label={i18n.t('foreign.business.advice.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 adjustFor="p"
                 value={this.props.HasForeignAdvice}
                 warning={true}

@@ -284,8 +284,12 @@ export default class ForeignService extends ValidationElement {
 
         <Show when={this.props.MaintainsContact === 'Yes'}>
           <div>
-            <h2>{i18n.t('military.foreign.heading.contact.details')}</h2>
-            {i18n.m('military.foreign.para.contact')}
+            <Field title={i18n.t('military.foreign.heading.contact.details')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('military.foreign.para.contact')}
+            </Field>
+
             <Accordion className="foreign-contacts-collection"
                        items={this.props.List}
                        defaultState={this.props.defaultState}
