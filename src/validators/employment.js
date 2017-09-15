@@ -184,6 +184,7 @@ export default class EmploymentValidator {
         this.validEmployment() &&
         this.validStatus() &&
         this.validAddress() &&
+        this.validPhysicalAddress() &&
         this.validTelephone() &&
         this.validSupervisor() &&
         this.validAdditionalActivity() &&

@@ -161,7 +161,7 @@ export default class EmploymentItem extends ValidationElement {
 
   showPhysicalAddress () {
     const activity = (this.props.EmploymentActivity || {}).value
-    return activity && ['SelfEmployment'].includes(activity)
+    return activity && ['SelfEmployment', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(activity)
   }
 
   showSupervisor () {
