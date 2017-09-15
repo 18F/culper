@@ -58,8 +58,9 @@ export default class PrescriptionUses extends SubsectionElement {
   render () {
     return (
       <div className="prescription-uses">
-        <h2>{i18n.m('substance.drugs.heading.prescriptionUses')}</h2>
         <Branch name="Misused"
+                label={i18n.m('substance.drugs.heading.prescriptionUses')}
+                labelSize="h2"
                 className="misused"
                 value={this.props.MisusedDrugs}
                 warning={true}

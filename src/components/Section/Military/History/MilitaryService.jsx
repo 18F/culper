@@ -296,7 +296,10 @@ export default class MilitaryService extends ValidationElement {
 
         <Show when={this.props.HasBeenDischarged === 'Yes'}>
           <div>
-            <h2>{i18n.t('military.history.heading.details')}</h2>
+            <Field title={i18n.t('military.history.heading.details')}
+                   titleSize="h2"
+                   className="no-margin-bottom"
+                   />
 
             <Field title={i18n.t('military.history.heading.discharge.type')}
                    adjustFor="big-buttons"

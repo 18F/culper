@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { Field, Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import CitizenshipItem from './CitizenshipItem'
 
@@ -58,6 +58,11 @@ export default class Multiple extends SubsectionElement {
   render () {
     return (
       <div className="multiple">
+        <Field title={i18n.t('citizenship.multiple.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
         <Branch name="has_multiple"
                 label={i18n.t('citizenship.multiple.heading.hasmultiple')}
                 labelSize="h3"

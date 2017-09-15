@@ -56,7 +56,7 @@ export default class Support extends SubsectionElement {
       <div className="foreign-activities-support">
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignSupport}
                 warning={true}
                 onUpdate={this.updateHasForeignSupport}

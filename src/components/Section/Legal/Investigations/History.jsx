@@ -58,7 +58,7 @@ export default class History extends SubsectionElement {
       <div className="investigations-history">
         <Branch name="has_history"
                 label={i18n.t('legal.investigations.history.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-investigations-history-has-history"
                 value={this.props.HasHistory}
                 warning={true}

@@ -60,7 +60,7 @@ export default class Unauthorized extends SubsectionElement {
 
         <Branch name="has_unauthorized"
                 label={i18n.t('legal.technology.unauthorized.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-technology-unauthorized-has-unauthorized"
                 value={this.props.HasUnauthorized}
                 warning={true}

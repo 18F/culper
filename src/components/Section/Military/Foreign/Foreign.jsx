@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { MilitaryForeignValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { BranchCollection } from '../../../Form'
+import { Field, BranchCollection } from '../../../Form'
 import ForeignService from './ForeignService'
 
 export default class Foreign extends SubsectionElement {
@@ -21,6 +21,9 @@ export default class Foreign extends SubsectionElement {
       <div className="foreign">
         <BranchCollection items={this.props.List}
                           branchName="has_foreign"
+                          label={i18n.t('military.foreign.heading.title')}
+                          labelSize="h2"
+                          content={i18n.m('military.foreign.para.served')}
                           appendLabel={i18n.t('military.foreign.collection.foreign.appendTitle')}
                           appendSize="h2"
                           onUpdate={this.updateList}

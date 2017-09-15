@@ -59,7 +59,7 @@ export default class Political extends SubsectionElement {
       <div className="foreign-business-political">
         <Branch name="has_foreign_political"
                 label={i18n.t('foreign.business.political.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignPolitical}
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
