@@ -89,6 +89,8 @@ export default class Nonpayment extends SubsectionElement {
     return (
       <div className="nonpayment">
         <Branch name="has_nonpayment"
+                label={i18n.t('financial.nonpayment.title')}
+                labelSize="h2"
                 className="nonpayment-branch"
                 value={this.state.HasNonpayment}
                 warning={true}
@@ -96,6 +98,16 @@ export default class Nonpayment extends SubsectionElement {
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
+          <ul>
+            <li>{i18n.m('financial.nonpayment.para.repo')}</li>
+            <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
+            <li>{i18n.m('financial.nonpayment.para.collections')}</li>
+            <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
+            <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
+            <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
+            <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
+            <li>{i18n.m('financial.nonpayment.para.any')}</li>
+          </ul>
         </Branch>
         <Show when={this.state.HasNonpayment === 'Yes'}>
           <Accordion items={this.state.List}
@@ -112,11 +124,11 @@ export default class Nonpayment extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}
                      appendMessage={this.message()}
                      appendLabel={i18n.t('financial.nonpayment.collection.append')}>
-                     <NonpaymentItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <NonpaymentItem name="Item"
+                            bind={true}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
+                            />
           </Accordion>
         </Show>
       </div>

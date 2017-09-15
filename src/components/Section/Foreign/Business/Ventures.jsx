@@ -57,7 +57,7 @@ export default class Ventures extends SubsectionElement {
       <div className="foreign-business-ventures">
         <Branch name="has_foreign_ventures"
                 label={i18n.t('foreign.business.ventures.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 adjustFor="p"
                 help="foreign.business.ventures.help.branch"
                 value={this.props.HasForeignVentures}

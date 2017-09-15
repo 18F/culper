@@ -214,8 +214,9 @@ export default class Offense extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.involvement')}</h3>
         <Branch name="involved_violence"
+                label={i18n.t('legal.police.heading.involvement')}
+                labelSize="h3"
                 adjustFor="p"
                 className="offense-violence"
                 value={this.props.InvolvedViolence}
@@ -267,8 +268,9 @@ export default class Offense extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.cited')}</h3>
         <Branch name="was_cited"
+                label={i18n.t('legal.police.heading.cited')}
+                labelSize="h3"
                 adjustFor="p"
                 className="offense-cited"
                 value={this.props.WasCited}
@@ -286,9 +288,12 @@ export default class Offense extends ValidationElement {
               <Svg src="/img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
-            <h2>{i18n.t('legal.police.heading.citedagency')}</h2>
+            <Field title={i18n.t('legal.police.heading.citedagency')}
+                   titleSize="h2"
+                   className="no-margin-bottom"
+                   />
             <Field title={i18n.t('legal.police.heading.citedby')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="CitedBy"
                     {...this.props.CitedBy}
                     className="offense-citedby"
@@ -348,14 +353,14 @@ export default class Offense extends ValidationElement {
         <Show when={this.props.WasCharged === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
-              className="more title"
-              scrollIntoView={this.props.scrollIntoView}>
+                   className="more title"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Svg src="/img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
             <Field title={i18n.t('legal.police.heading.courtname')}
-              adjustFor="labels"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="labels"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="CourtName"
                     {...this.props.CourtName}
                     label={i18n.t('legal.police.label.courtname')}
@@ -386,8 +391,12 @@ export default class Offense extends ValidationElement {
                         />
             </Field>
 
-            <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
-            {i18n.m('legal.police.para.chargedetails')}
+            <Field title={i18n.t('legal.police.heading.chargedetails')}
+                   titleSize="h3"
+                   className="no-margin-bottom">
+              {i18n.m('legal.police.para.chargedetails')}
+            </Field>
+
             <Field title={i18n.t('legal.police.heading.chargeType')}
                    titleSize="h4"
                    adjustFor="buttons"
@@ -454,8 +463,9 @@ export default class Offense extends ValidationElement {
                            />
             </Field>
 
-            <h3>{i18n.t('legal.police.heading.sentenced')}</h3>
             <Branch name="was_sentenced"
+                    label={i18n.t('legal.police.heading.sentenced')}
+                    labelSize="h3"
                     className="offense-sentenced"
                     value={this.props.WasSentenced}
                     onUpdate={this.updateWasSentenced}
@@ -467,8 +477,8 @@ export default class Offense extends ValidationElement {
             <Show when={this.props.WasSentenced === 'Yes'}>
               <div>
                 <Field title={i18n.t('legal.police.heading.needmore')}
-                  className="more title"
-                  scrollIntoView={this.props.scrollIntoView}>
+                       className="more title"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <Svg src="/img/date-down-arrow.svg" className="more arrow" />
                 </Field>
                 <Sentence name="Sentence"

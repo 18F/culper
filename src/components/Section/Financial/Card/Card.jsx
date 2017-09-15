@@ -71,6 +71,8 @@ export default class Card extends SubsectionElement {
     return (
       <div className="card-abuse">
         <Branch name="has_cardabuse"
+                label={i18n.t('financial.card.title')}
+                labelSize="h2"
                 className="card-branch"
                 value={this.state.HasCardAbuse}
                 warning={true}

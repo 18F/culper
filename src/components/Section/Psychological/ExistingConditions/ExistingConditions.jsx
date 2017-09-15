@@ -95,9 +95,9 @@ export default class ExistingConditions extends SubsectionElement {
   render () {
     return (
       <div className="existingconditions">
-        <h3>{i18n.t('psychological.existingConditions.heading.hasCondition')}</h3>
-        {i18n.m('psychological.existingConditions.para.hasCondition')}
         <Branch name="hascondition"
+                label={i18n.t('psychological.existingConditions.heading.hasCondition')}
+                labelSize="h2"
                 className="eapp-field-wrap hascondition"
                 value={this.props.HasCondition}
                 warning={true}
@@ -105,15 +105,17 @@ export default class ExistingConditions extends SubsectionElement {
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onUpdate={this.updateHasCondition}>
+          {i18n.m('psychological.existingConditions.para.hasCondition')}
         </Branch>
 
         <Show when={this.props.HasCondition === 'Yes'}>
           <div>
-            <h3>{i18n.t('psychological.existingConditions.heading.receivedTreatment')}</h3>
-            {i18n.m('psychological.existingConditions.para.receivedTreatment')}
-            <Field className={this.props.ReceivedTreatment === 'No' ? 'no-margin-bottom' : ''}
+            <Field title={i18n.t('psychological.existingConditions.heading.receivedTreatment')}
+                   titleSize="h3"
+                   className={this.props.ReceivedTreatment === 'No' ? 'no-margin-bottom' : ''}
                    adjustFor="button"
                    scrollIntoView={this.props.scrollIntoView}>
+              {i18n.m('psychological.existingConditions.para.receivedTreatment')}
               <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment} onError={this.handleError} required={this.props.required}>
                 <Radio name="treatment"
                        className="treatment yes"

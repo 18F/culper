@@ -58,7 +58,7 @@ export default class Manipulating extends SubsectionElement {
       <div className="legal-technology-manipulating">
         <Branch name="has_manipulating"
                 label={i18n.t('legal.technology.manipulating.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-technology-manipulating-has-manipulating"
                 value={this.props.HasManipulating}
                 warning={true}
