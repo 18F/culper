@@ -14,101 +14,177 @@ export default class EmploymentItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      EmploymentActivity: props.EmploymentActivity,
-      Employment: props.Employment,
-      Dates: props.Dates,
-      Title: props.Title,
-      DutyStation: props.DutyStation,
-      Status: props.Status,
-      Address: props.Address,
-      Telephone: props.Telephone,
-      Supervisor: props.Supervisor,
-      Reference: props.Reference,
-      PhysicalAddress: props.PhysicalAddress,
-      Additional: props.Additional,
-      ReasonLeft: props.ReasonLeft,
-      Reprimand: props.Reprimand
-    }
+    this.updateEmploymentActivity = this.updateEmploymentActivity.bind(this)
+    this.updateEmployment = this.updateEmployment.bind(this)
+    this.updateDates = this.updateDates.bind(this)
+    this.updateTitle = this.updateTitle.bind(this)
+    this.updateDutyStation = this.updateDutyStation.bind(this)
+    this.updateStatus = this.updateStatus.bind(this)
+    this.updateAddress = this.updateAddress.bind(this)
+    this.updateTelephone = this.updateTelephone.bind(this)
+    this.updateSupervisor = this.updateSupervisor.bind(this)
+    this.updateReference = this.updateReference.bind(this)
+    this.updatePhysicalAddress = this.updatePhysicalAddress.bind(this)
+    this.updateAdditional = this.updateAdditional.bind(this)
+    this.updateReasonLeft = this.updateReasonLeft.bind(this)
+    this.updateReprimand = this.updateReprimand.bind(this)
   }
 
-  onUpdate (field, values) {
-    this.setState({
-      [field]: values
-    }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          EmploymentActivity: this.state.EmploymentActivity,
-          Employment: this.state.Employment,
-          Dates: this.state.Dates,
-          Title: this.state.Title,
-          DutyStation: this.state.DutyStation,
-          Status: this.state.Status,
-          Address: this.state.Address,
-          Telephone: this.state.Telephone,
-          Supervisor: this.state.Supervisor,
-          Reference: this.state.Reference,
-          PhysicalAddress: this.state.PhysicalAddress,
-          Additional: this.state.Additional,
-          ReasonLeft: this.state.ReasonLeft,
-          Reprimand: this.state.Reprimand
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      EmploymentActivity: this.props.EmploymentActivity,
+      Employment: this.props.Employment,
+      Dates: this.props.Dates,
+      Title: this.props.Title,
+      DutyStation: this.props.DutyStation,
+      Status: this.props.Status,
+      Address: this.props.Address,
+      Telephone: this.props.Telephone,
+      Supervisor: this.props.Supervisor,
+      Reference: this.props.Reference,
+      PhysicalAddress: this.props.PhysicalAddress,
+      Additional: this.props.Additional,
+      ReasonLeft: this.props.ReasonLeft,
+      Reprimand: this.props.Reprimand,
+      ...queue
+    })
+  }
+
+  updateEmploymentActivity (values) {
+    this.update({
+      EmploymentActivity: values
+    })
+  }
+
+  updateEmployment (values) {
+    this.update({
+      Employment: values
+    })
+  }
+
+  updateDates (values) {
+    this.update({
+      Dates: values
+    })
+  }
+
+  updateTitle (values) {
+    this.update({
+      Title: values
+    })
+  }
+
+  updateDutyStation (values) {
+    this.update({
+      DutyStation: values
+    })
+  }
+
+  updateStatus (values) {
+    this.update({
+      Status: values
+    })
+  }
+
+  updateAddress (values) {
+    this.update({
+      Address: values
+    })
+  }
+
+  updateTelephone (values) {
+    this.update({
+      Telephone: values
+    })
+  }
+
+  updateSupervisor (values) {
+    this.update({
+      Supervisor: values
+    })
+  }
+
+  updateReference (values) {
+    this.update({
+      Reference: values
+    })
+  }
+
+  updatePhysicalAddress (values) {
+    this.update({
+      PhysicalAddress: values
+    })
+  }
+
+  updateAdditional (values) {
+    this.update({
+      Additional: values
+    })
+  }
+
+  updateReasonLeft (values) {
+    this.update({
+      ReasonLeft: values
+    })
+  }
+
+  updateReprimand (values) {
+    this.update({
+      Reprimand: values
     })
   }
 
   showStatus () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && !['Unemployment'].includes(activity)
   }
 
   showAdditionalActivity () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && ['OtherFederal', 'StateGovernment', 'FederalContractor', 'Other', 'NonGovernment'].includes(activity)
   }
 
   showReference () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && ['SelfEmployment', 'Unemployment'].includes(activity)
   }
 
   showAssignedDuty () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && ['ActiveMilitary', 'NationalGuard', 'USPHS'].includes(activity)
   }
 
   showEmployer () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && !['Unemployment', 'ActiveMilitary', 'NationalGuard', 'USPHS'].includes(activity)
   }
 
   showPhysicalAddress () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && ['SelfEmployment'].includes(activity)
   }
 
   showSupervisor () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(activity)
   }
 
   showEmployed () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     return activity && !['Unemployment'].includes(activity)
   }
 
   showLeaving () {
-    const activity = (this.state.EmploymentActivity || {}).value
+    const activity = (this.props.EmploymentActivity || {}).value
     const sevenYearsAgo = daysAgo(today, 365 * 7)
-    const from = (this.state.Dates || {}).from
-    const to = (this.state.Dates || {}).to
+    const from = (this.props.Dates || {}).from
+    const to = (this.props.Dates || {}).to
     return (from && from.date >= sevenYearsAgo) || (to && to.date >= sevenYearsAgo) &&
       ['ActiveMilitary', 'NationalGuard', 'USPHS', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'SelfEmployment', 'Unemployment', 'Other'].includes(activity)
   }
 
   localizeByActivity () {
-    const activity = (this.state.EmploymentActivity || {}).value || 'default'
+    const activity = (this.props.EmploymentActivity || {}).value || 'default'
     return activity.toLowerCase()
   }
 
@@ -118,12 +194,13 @@ export default class EmploymentItem extends ValidationElement {
       <div>
         <Field title={i18n.t(`history.employment.default.heading.activity`)}
                titleSize="h3"
+               help="history.employment.default.activity.help"
                className="no-margin-bottom"
                />
 
         <EmploymentActivity name="EmploymentActivity"
                             {...this.props.EmploymentActivity}
-                            onUpdate={this.onUpdate.bind(this, 'EmploymentActivity')}
+                            onUpdate={this.updateEmploymentActivity}
                             onError={this.props.onError}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}
@@ -136,7 +213,7 @@ export default class EmploymentItem extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="Employment"
                   {...this.props.Employment}
-                  onUpdate={this.onUpdate.bind(this, 'Employment')}
+                  onUpdate={this.updateEmployment}
                   onError={this.props.onError}
                   className="text full-width employment"
                   label={i18n.t(`${prefix}.employer.label`)}
@@ -152,7 +229,7 @@ export default class EmploymentItem extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="Title"
                   {...this.props.Title}
-                  onUpdate={this.onUpdate.bind(this, 'Title')}
+                  onUpdate={this.updateTitle}
                   className="text employment-title"
                   label={i18n.t(`${prefix}.title.label`)}
                   onError={this.props.onError}
@@ -168,7 +245,7 @@ export default class EmploymentItem extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="DutyStation"
                   {...this.props.DutyStation}
-                  onUpdate={this.onUpdate.bind(this, 'DutyStation')}
+                  onUpdate={this.updateDutyStation}
                   className="text full-width employment-duty-station"
                   label={i18n.t(`${prefix}.dutyStation.label`)}
                   onError={this.props.onError}
@@ -184,7 +261,7 @@ export default class EmploymentItem extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <EmploymentStatus name="Status"
                               {...this.props.Status}
-                              onUpdate={this.onUpdate.bind(this, 'Status')}
+                              onUpdate={this.updateStatus}
                               onError={this.props.onError}
                               required={this.props.required}
                               scrollIntoView={this.props.scrollIntoView}
@@ -200,7 +277,7 @@ export default class EmploymentItem extends ValidationElement {
           <DateRange name="Dates"
                      {...this.props.Dates}
                      receiveProps={this.props.receiveProps}
-                     onUpdate={this.onUpdate.bind(this, 'Dates')}
+                     onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
                      />
@@ -218,7 +295,7 @@ export default class EmploymentItem extends ValidationElement {
                       addressBooks={this.props.addressBooks}
                       addressBook="Employment"
                       dispatch={this.props.dispatch}
-                      onUpdate={this.onUpdate.bind(this, 'Address')}
+                      onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       label={i18n.t(`${prefix}.address.label`)}
                       />
@@ -232,7 +309,7 @@ export default class EmploymentItem extends ValidationElement {
                              {...this.props.PhysicalAddress}
                              addressBooks={this.props.addressBooks}
                              dispatch={this.props.dispatch}
-                             onUpdate={this.onUpdate.bind(this, 'PhysicalAddress')}
+                             onUpdate={this.updatePhysicalAddress}
                              onError={this.props.onError}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView}
@@ -247,7 +324,7 @@ export default class EmploymentItem extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="Telephone"
                        {...this.props.Telephone}
-                       onUpdate={this.onUpdate.bind(this, 'Telephone')}
+                       onUpdate={this.updateTelephone}
                        onError={this.props.onError}
                        required={this.props.required}
                        />
@@ -259,7 +336,7 @@ export default class EmploymentItem extends ValidationElement {
                       {...this.props.Supervisor}
                       addressBooks={this.props.addressBooks}
                       dispatch={this.props.dispatch}
-                      onUpdate={this.onUpdate.bind(this, 'Supervisor')}
+                      onUpdate={this.updateSupervisor}
                       onError={this.props.onError}
                       required={this.props.required}
                       scrollIntoView={this.props.scrollIntoView}
@@ -277,7 +354,7 @@ export default class EmploymentItem extends ValidationElement {
                        {...this.props.Reference}
                        addressBooks={this.props.addressBooks}
                        dispatch={this.props.dispatch}
-                       onUpdate={this.onUpdate.bind(this, 'Reference')}
+                       onUpdate={this.updateReference}
                        onError={this.props.onError}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
@@ -295,7 +372,7 @@ export default class EmploymentItem extends ValidationElement {
 
             <AdditionalActivity name="Additional"
                                 {...this.props.Additional}
-                                onUpdate={this.onUpdate.bind(this, 'Additional')}
+                                onUpdate={this.updateAdditional}
                                 onError={this.props.onError}
                                 required={this.props.required}
                                 scrollIntoView={this.props.scrollIntoView}
@@ -312,7 +389,7 @@ export default class EmploymentItem extends ValidationElement {
 
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
-                        onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}
+                        onUpdate={this.updateReasonLeft}
                         onError={this.props.onError}
                         required={this.props.required}
                         scrollIntoView={this.props.scrollIntoView}
@@ -320,7 +397,7 @@ export default class EmploymentItem extends ValidationElement {
 
             <Reprimand name="Reprimand"
                        {...this.props.Reprimand}
-                       onUpdate={this.onUpdate.bind(this, 'Reprimand')}
+                       onUpdate={this.updateReprimand}
                        onError={this.props.onError}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
@@ -335,5 +412,6 @@ export default class EmploymentItem extends ValidationElement {
 EmploymentItem.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
