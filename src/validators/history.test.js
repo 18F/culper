@@ -39,6 +39,17 @@ describe('Employment component validation', function () {
                   zipcode: '22202',
                   layout: Location.ADDRESS
                 },
+                PhysicalAddress: {
+                  HasDifferentAddress: 'Yes',
+                  Address: {
+                    country: 'United States',
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                },
                 Additional: {
                   List: [{ Has: 'No' }]
                 },
