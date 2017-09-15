@@ -86,6 +86,8 @@ export default class Delinquent extends SubsectionElement {
     return (
       <div className="delinquent">
         <Branch name="has_delinquent"
+                label={i18n.t('financial.delinquent.title')}
+                labelSize="h2"
                 className="delinquent-branch eapp-field-wrap"
                 value={this.state.HasDelinquent}
                 warning={true}
@@ -93,6 +95,13 @@ export default class Delinquent extends SubsectionElement {
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
+          {i18n.m('financial.delinquent.para.details')}
+          <ul>
+            <li>{i18n.m('financial.delinquent.para.alimony')}</li>
+            <li>{i18n.m('financial.delinquent.para.judgement')}</li>
+            <li>{i18n.m('financial.delinquent.para.lien')}</li>
+            <li>{i18n.m('financial.delinquent.para.federal')}</li>
+          </ul>
         </Branch>
         <Show when={this.state.HasDelinquent === 'Yes'}>
           <Accordion items={this.state.List}
@@ -109,13 +118,13 @@ export default class Delinquent extends SubsectionElement {
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.delinquent.collection.append')}>
-                     <DelinquentItem name="Item"
-                       bind={true}
-                       dispatch={this.props.dispatch}
-                       addressBooks={this.props.addressBooks}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <DelinquentItem name="Item"
+                            bind={true}
+                            dispatch={this.props.dispatch}
+                            addressBooks={this.props.addressBooks}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
+                            />
 
           </Accordion>
         </Show>

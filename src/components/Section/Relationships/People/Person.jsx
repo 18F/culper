@@ -283,6 +283,9 @@ export default class Person extends React.Component {
                     label={i18n.t('relationships.people.person.label.address')}
                     className="address"
                     {...this.props.Address}
+                    addressBooks={this.props.addressBooks}
+                    addressBook={this.props.addressBook}
+                    dispatch={this.props.dispatch}
                     layout={Location.ADDRESS}
                     geocode={true}
                     onUpdate={this.updateAddress}
@@ -297,6 +300,9 @@ export default class Person extends React.Component {
 
 Person.defaultProps = {
   Relationship: [],
+  addressBooks: {},
+  addressBook: 'Reference',
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

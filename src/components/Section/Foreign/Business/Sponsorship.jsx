@@ -57,7 +57,7 @@ export default class Sponsorship extends SubsectionElement {
       <div className="foreign-business-sponsorship">
         <Branch name="has_foreign_sponsorship"
                 label={i18n.t('foreign.business.sponsorship.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 help="foreign.business.sponsorship.help.branch"
                 value={this.props.HasForeignSponsorship}
                 warning={true}

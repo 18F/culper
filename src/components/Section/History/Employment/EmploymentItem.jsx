@@ -85,7 +85,7 @@ export default class EmploymentItem extends ValidationElement {
 
   showPhysicalAddress () {
     const activity = (this.state.EmploymentActivity || {}).value
-    return activity && ['SelfEmployment'].includes(activity)
+    return activity && ['SelfEmployment', 'OtherFederal', 'StateGovernment', 'FederalContractor', 'NonGovernment', 'Other'].includes(activity)
   }
 
   showSupervisor () {
@@ -116,7 +116,10 @@ export default class EmploymentItem extends ValidationElement {
     const prefix = `history.employment.${this.localizeByActivity()}`.trim()
     return (
       <div>
-        <h3>{i18n.t(`history.employment.default.heading.activity`)}</h3>
+        <Field title={i18n.t(`history.employment.default.heading.activity`)}
+               titleSize="h3"
+               className="no-margin-bottom"
+               />
 
         <EmploymentActivity name="EmploymentActivity"
                             {...this.props.EmploymentActivity}
@@ -265,7 +268,11 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showReference()}>
           <div>
-            <h2>{i18n.t(`${prefix}.heading.reference`)}</h2>
+            <Field title={i18n.t(`${prefix}.heading.reference`)}
+                   titleSize="h2"
+                   className="no-margin-bottom"
+                   />
+
             <Reference name="Reference"
                        {...this.props.Reference}
                        addressBooks={this.props.addressBooks}
@@ -280,8 +287,12 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showAdditionalActivity()}>
           <div>
-            <h2>{i18n.t(`${prefix}.heading.additionalActivity`)}</h2>
-            <p>{i18n.t(`${prefix}.para.additionalActivity`)}</p>
+            <Field title={i18n.t(`${prefix}.heading.additionalActivity`)}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m(`${prefix}.para.additionalActivity`)}
+            </Field>
+
             <AdditionalActivity name="Additional"
                                 {...this.props.Additional}
                                 onUpdate={this.onUpdate.bind(this, 'Additional')}
@@ -294,7 +305,11 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showLeaving()}>
           <div>
-            <h3>{i18n.t('history.employment.default.left.title')}</h3>
+            <Field title={i18n.t('history.employment.default.left.title')}
+                   titleSize="h3"
+                   className="no-margin-bottom"
+                   />
+
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
                         onUpdate={this.onUpdate.bind(this, 'ReasonLeft')}

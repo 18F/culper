@@ -54,11 +54,17 @@ export default class OtherNames extends SubsectionElement {
   render () {
     return (
       <div className="other-names">
-        <p>{i18n.t('identification.othernames.info')}</p>
-        <h3>{i18n.t('identification.othernames.branch.question')}</h3>
+        <Field title={i18n.t('identification.othernames.title')}
+               titleSize="h2"
+               help="identification.othernames.branch.help"
+               className="no-margin-bottom">
+          {i18n.m('identification.othernames.info')}
+        </Field>
+
         <Branch name="has_othernames"
+                label={i18n.t('identification.othernames.branch.question')}
+                labelSize="h3"
                 value={this.props.HasOtherNames}
-                help="identification.othernames.branch.help"
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}

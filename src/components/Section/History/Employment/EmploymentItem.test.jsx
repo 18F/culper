@@ -8,7 +8,7 @@ describe('The employment component', () => {
       name: 'employment'
     }
     const component = mount(<EmploymentItem {...expected} />)
-    expect(component.find('h3').length).toBeGreaterThan(0)
+    expect(component.find('.h3').length).toBeGreaterThan(0)
   })
 
   it('can populate values for Military, NationalGuard and USPHS', () => {

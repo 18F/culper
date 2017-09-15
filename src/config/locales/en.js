@@ -7175,11 +7175,11 @@ const en = {
           downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
         },
         collection: {
-          description: 'Summary of revocations',
-          item: 'Revoked',
-          unknown: '*Provide revocation details below*',
+          description: 'Summary of denials',
+          item: 'Denial',
+          unknown: '*Provide denial details below*',
           appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
-          appendLabel: 'Add another revocation'
+          appendLabel: 'Add another denial'
         },
         help: {
           date: {
