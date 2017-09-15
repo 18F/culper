@@ -108,7 +108,7 @@ export default class Diagnoses extends SubsectionElement {
 
         <Branch name="diagnosed"
                 label={i18n.t('psychological.diagnoses.heading.diagnoses')}
-                labelSize="h3"
+                labelSize="h2"
                 className="diagnosed"
                 value={this.props.Diagnosed}
                 warning={true}

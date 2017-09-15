@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import { Summary, NameSummary } from '../../../Summary'
 import { ForeignContactsValidator, ForeignNationalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { Field, Branch, Show, Accordion } from '../../../Form'
 import ForeignNational from './ForeignNational'
 
 export default class Contacts extends SubsectionElement {
@@ -55,16 +55,18 @@ export default class Contacts extends SubsectionElement {
     return (
       <div className="foreign-contacts">
         {i18n.m('foreign.contacts.para.definition')}
-        <h3>{i18n.t('foreign.contacts.heading.title')}</h3>
-        {i18n.m('foreign.contacts.para.includes')}
+
         <Branch name="has_foreign_contacts"
+                label={i18n.t('foreign.contacts.heading.title')}
+                labelSize="h2"
                 value={this.props.HasForeignContacts}
                 warning={true}
                 onUpdate={this.updateHasForeignContacts}
                 onError={this.handleError}
                 required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                />
+                scrollIntoView={this.props.scrollIntoView}>
+          {i18n.m('foreign.contacts.para.includes')}
+        </Branch>
         <Show when={this.props.HasForeignContacts === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}

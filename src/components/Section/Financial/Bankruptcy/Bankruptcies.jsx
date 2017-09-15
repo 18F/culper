@@ -60,6 +60,8 @@ export default class Bankruptcies extends SubsectionElement {
     return (
       <div className="bankruptcies">
         <Branch name="has_bankruptcydebt"
+                label={i18n.t('financial.bankruptcy.title')}
+                labelSize="h2"
                 className="bankruptcy-branch"
                 value={this.props.HasBankruptcy}
                 help="financial.bankruptcy.help"

@@ -73,8 +73,9 @@ export default class OtherOffenses extends SubsectionElement {
   render () {
     return (
       <div className="police-other-offenses">
-        <h2>{i18n.t('legal.police.para.otherOffense.intro')}</h2>
         <Branch name="has_otheroffenses"
+                label={i18n.t('legal.police.para.otherOffense.intro')}
+                labelSize="h2"
                 className="has-otheroffenses"
                 value={this.props.HasOtherOffenses}
                 warning={true}

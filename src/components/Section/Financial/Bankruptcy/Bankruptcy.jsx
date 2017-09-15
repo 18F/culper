@@ -129,8 +129,9 @@ export default class Bankruptcy extends ValidationElement {
   render () {
     return (
       <div className="bankruptcy">
-        <h3>{i18n.t('financial.bankruptcy.heading.petitionType')}</h3>
-        <Field help="financial.bankruptcy.petitionType.help"
+        <Field title={i18n.t('financial.bankruptcy.heading.petitionType')}
+               titleSize="h3"
+               help="financial.bankruptcy.petitionType.help"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="buttons">
           <RadioGroup className="petition-chapters" selectedValue={this.props.PetitionType} required={this.props.required} onError={this.props.onError}>
@@ -232,15 +233,17 @@ export default class Bankruptcy extends ValidationElement {
           </div>
         </Field>
 
-        <h3>{i18n.t('financial.bankruptcy.heading.nameDebt')}</h3>
-        <Name name="NameDebt"
-              className="namedebt"
-              {...this.props.NameDebt}
-              onUpdate={this.updateNameDebt}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-              />
+        <Field title={i18n.t('financial.bankruptcy.heading.nameDebt')}
+               titleSize="h3">
+          <Name name="NameDebt"
+                className="namedebt"
+                {...this.props.NameDebt}
+                onUpdate={this.updateNameDebt}
+                onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
+        </Field>
 
         <Field title={i18n.t('financial.bankruptcy.heading.courtInvolved')} scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtInvolved"

@@ -85,7 +85,10 @@ export default class ApplicantSSN extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <Field help="identification.ssn.help" scrollIntoView={this.props.scrollIntoView}>
+        <Field title={i18n.t('identification.ssn.title')}
+               titleSize="h2"
+               help="identification.ssn.help"
+               scrollIntoView={this.props.scrollIntoView}>
           <SSN name="ssn"
                {...this.props.ssn}
                className="applicant-ssn-initial"

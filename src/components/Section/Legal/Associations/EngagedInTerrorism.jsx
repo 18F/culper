@@ -58,7 +58,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
       <div className="legal-associations-engaged">
         <Branch name="has_engaged"
                 label={i18n.t('legal.associations.engaged.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-associations-engaged-has-engaged"
                 value={this.props.HasEngaged}
                 warning={true}

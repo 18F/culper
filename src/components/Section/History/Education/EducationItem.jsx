@@ -103,8 +103,12 @@ export default class EducationItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h2>{i18n.t('history.education.heading.reference')}</h2>
-          <p>{i18n.t('history.education.para.reference')}</p>
+          <Field title={i18n.t('history.education.heading.reference')}
+                 titleSize="h2"
+                 className="no-margin-bottom">
+            {i18n.m('history.education.para.reference')}
+          </Field>
+
           <Reference name="Reference"
                      {...this.state.Reference}
                      onUpdate={this.updateReference}
@@ -241,7 +245,7 @@ export default class EducationItem extends ValidationElement {
                             onUpdate={this.updateDiplomas}
                             onError={this.props.onError}
                             scrollIntoView={this.props.scrollIntoView}>
-            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView}  />
+            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </BranchCollection>
         </div>
       </div>
