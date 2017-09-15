@@ -57,11 +57,6 @@ export default class Federal extends SubsectionElement {
   render () {
     return (
       <div className="federal">
-        <Field title={i18n.t('history.federal.title')}
-               titleSize="h2"
-               className="no-margin-bottom"
-               />
-
         <Branch name="has_federalservice"
                 label={i18n.t('history.federal.heading.branch')}
                 labelSize="h2"
