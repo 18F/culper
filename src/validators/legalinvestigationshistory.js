@@ -1,10 +1,10 @@
 import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
 
 export default class LegalInvestigationsHistoryValidator {
-  constructor (state = {}, props = {}) {
-    this.hasHistory = props.HasHistory
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasHistory = data.HasHistory
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -21,7 +21,7 @@ export default class LegalInvestigationsHistoryValidator {
         return false
       }
 
-      return this.list.every(item => new HistoryValidator(null, item).isValid())
+      return this.list.every(item => new HistoryValidator(item.Item).isValid())
     }
 
     return false
@@ -33,16 +33,16 @@ export default class LegalInvestigationsHistoryValidator {
 }
 
 export class HistoryValidator {
-  constructor (state = {}, props = {}) {
-    this.agencyNotApplicable = props.AgencyNotApplicable
-    this.agency = props.Agency
-    this.completedNotApplicable = props.CompletedNotApplicable
-    this.completed = props.Completed
-    this.issued = props.Issued // optional
-    this.grantedNotApplicable = props.GrantedNotApplicable
-    this.granted = props.Granted
-    this.clearanceNotApplicable = props.ClearanceNotApplicable
-    this.clearance = props.Clearance
+  constructor (data = {}) {
+    this.agencyNotApplicable = data.AgencyNotApplicable
+    this.agency = data.Agency
+    this.completedNotApplicable = data.CompletedNotApplicable
+    this.completed = data.Completed
+    this.issued = data.Issued // optional
+    this.grantedNotApplicable = data.GrantedNotApplicable
+    this.granted = data.Granted
+    this.clearanceNotApplicable = data.ClearanceNotApplicable
+    this.clearance = data.Clearance
   }
 
   validAgency () {

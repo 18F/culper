@@ -24,7 +24,7 @@ describe('The NegativeImpacts component', () => {
       HasImpacts: 'Yes',
       ListBranch: 'No',
       List: [{
-        NegativeImpact: {
+        Item: {
           Occurred: {
             month: '1',
             year: '2010'

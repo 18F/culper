@@ -4,7 +4,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import DrugClearanceUse from './DrugClearanceUse'
-import { DrugClearanceUsesValidator } from '../../../../validators'
+import { DrugClearanceUsesValidator, DrugClearanceUseValidator } from '../../../../validators'
 
 export default class DrugClearanceUses extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class DrugClearanceUses extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DrugClearanceUse || {}
+    const o = (item || {}).Item || {}
     const range = DateSummary(o.InvolvementDates)
     const description = (o.Description || {}).value
 
@@ -78,12 +78,13 @@ export default class DrugClearanceUses extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugClearanceUseValidator}
                      description={i18n.t('substance.drugs.clearance.collection.description')}
                      appendTitle={i18n.t('substance.drugs.clearance.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.clearance.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <DrugClearanceUse name="DrugClearanceUse" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+                     <DrugClearanceUse name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

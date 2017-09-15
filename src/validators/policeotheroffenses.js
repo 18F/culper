@@ -2,10 +2,10 @@ import OtherOffenseValidator from './otheroffense'
 import { validBranch } from './helpers'
 
 export default class PoliceOtherOffensesValidator {
-  constructor (state = {}, props = {}) {
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
-    this.hasOtherOffenses = state.HasOtherOffenses
+  constructor (data = {}) {
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
+    this.hasOtherOffenses = data.HasOtherOffenses
   }
 
   validItems () {
@@ -22,7 +22,7 @@ export default class PoliceOtherOffensesValidator {
     }
 
     for (const otherOffense of this.list) {
-      if (new OtherOffenseValidator(otherOffense.Item, null).isValid() !== true) {
+      if (new OtherOffenseValidator(otherOffense.Item).isValid() !== true) {
         return false
       }
     }

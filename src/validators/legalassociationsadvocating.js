@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield } from './helpers'
 
 export default class LegalAssociationAdvocatingValidator {
-  constructor (state = {}, props = {}) {
-    this.hasAdvocated = props.HasAdvocated
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasAdvocated = data.HasAdvocated
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -22,7 +22,7 @@ export default class LegalAssociationAdvocatingValidator {
         return false
       }
 
-      return this.list.every(item => new AdvocatingValidator(null, item).isValid())
+      return this.list.every(item => new AdvocatingValidator(item.Item).isValid())
     }
 
     return false
@@ -34,9 +34,9 @@ export default class LegalAssociationAdvocatingValidator {
 }
 
 export class AdvocatingValidator {
-  constructor (state = {}, props = {}) {
-    this.reasons = props.Reasons
-    this.dates = props.Dates
+  constructor (data = {}) {
+    this.reasons = data.Reasons
+    this.dates = data.Dates
   }
 
   validReasons () {

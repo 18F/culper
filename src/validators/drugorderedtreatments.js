@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugOrderedTreatmentsValidator {
-  constructor (state) {
-    this.involved = state.TreatmentOrdered
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.involved = data.TreatmentOrdered
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validTreatmentOrdered () {
@@ -27,7 +27,7 @@ export default class DrugOrderedTreatmentsValidator {
     }
 
     for (const item of this.list) {
-      const result = new DrugOrderedTreatmentValidator(item.OrderedTreatment, null).isValid()
+      const result = new DrugOrderedTreatmentValidator(item.Item, null).isValid()
       if (!result) {
         return false
       }
@@ -43,18 +43,18 @@ export default class DrugOrderedTreatmentsValidator {
 }
 
 export class DrugOrderedTreatmentValidator {
-  constructor (state = {}) {
-    this.orderedBy = state.OrderedBy
-    this.explanation = state.Explanation
-    this.actionTaken = state.ActionTaken
-    this.noActionTakenExplanation = state.NoActionTakenExplanation
-    this.drugType = state.DrugType
-    this.treatmentProvider = state.TreatmentProvider
-    this.treatmentProviderAddress = state.TreatmentProviderAddress
-    this.treatmentProviderTelephone = state.TreatmentProviderTelephone
-    this.treatmentDates = state.TreatmentDates
-    this.treatmentCompleted = state.TreatmentCompleted
-    this.noTreatmentExplanation = state.NoTreatmentExplanation
+  constructor (data = {}) {
+    this.orderedBy = data.OrderedBy
+    this.explanation = data.Explanation
+    this.actionTaken = data.ActionTaken
+    this.noActionTakenExplanation = data.NoActionTakenExplanation
+    this.drugType = data.DrugType
+    this.treatmentProvider = data.TreatmentProvider
+    this.treatmentProviderAddress = data.TreatmentProviderAddress
+    this.treatmentProviderTelephone = data.TreatmentProviderTelephone
+    this.treatmentDates = data.TreatmentDates
+    this.treatmentCompleted = data.TreatmentCompleted
+    this.noTreatmentExplanation = data.NoTreatmentExplanation
   }
 
   validActionTaken () {

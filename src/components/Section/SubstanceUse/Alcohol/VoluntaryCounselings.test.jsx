@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import VoluntaryCounselings from './VoluntaryCounselings'
+import { Location } from '../../../Form'
 
 describe('The VoluntaryCounselings component', () => {
   it('Renders without errors', () => {
@@ -24,7 +25,7 @@ describe('The VoluntaryCounselings component', () => {
       SoughtTreatment: 'Yes',
       ListBranch: 'No',
       List: [{
-        VoluntaryCounseling: {
+        Item: {
           CounselingDates: {
             from: {
               date: new Date('1/1/2010')

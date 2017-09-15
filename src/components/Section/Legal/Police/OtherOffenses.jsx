@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PoliceOtherOffensesValidator } from '../../../../validators'
+import { PoliceOtherOffensesValidator, OtherOffenseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -99,6 +99,7 @@ export default class OtherOffenses extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={OtherOffenseValidator}
                      summary={this.summary}
                      description={i18n.t('legal.police.collection.summary.title')}
                      appendTitle={i18n.t('legal.police.collection.appendTitle')}

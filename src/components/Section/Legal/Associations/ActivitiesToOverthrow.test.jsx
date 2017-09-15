@@ -29,12 +29,14 @@ describe('The legal associations activities component', () => {
       HasActivities: 'Yes',
       List: [
         {
-          Dates: {
-            from: { date: new Date('1/1/2010') },
-            to: { date: new Date('1/1/2011') }
-          },
-          Reasons: {
-            value: 'It was a tuesday'
+          Item: {
+            Dates: {
+              from: { date: new Date('1/1/2010') },
+              to: { date: new Date('1/1/2011') }
+            },
+            Reasons: {
+              value: 'It was a tuesday'
+            }
           }
         }
       ],

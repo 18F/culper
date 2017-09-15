@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalInvestigationsRevokedValidator } from '../../../../validators'
+import { LegalInvestigationsRevokedValidator, RevokedValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Text, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import RevokedItem from './RevokedItem'
 
 export default class Revoked extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class Revoked extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Date)
     const agency = (o.Agency || {}).value || ''
 
@@ -76,42 +77,17 @@ export default class Revoked extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={RevokedValidator}
                      description={i18n.t('legal.investigations.revoked.collection.description')}
                      appendTitle={i18n.t('legal.investigations.revoked.collection.appendTitle')}
                      appendLabel={i18n.t('legal.investigations.revoked.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Field title={i18n.t('legal.investigations.revoked.heading.date')}
-                   help="legal.investigations.revoked.help.date"
-                   adjustFor="datecontrol"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateControl name="Date"
-                           className="legal-investigations-revoked-date"
-                           bind={true}
-                           required={this.props.required}
-                           />
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.revoked.heading.agency')}
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Agency"
-                    className="legal-investigations-revoked-agency"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.revoked.heading.explanation')}
-                   help="legal.investigations.revoked.help.explanation"
-                   adjustFor="textarea"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Explanation"
-                        className="legal-investigations-revoked-explanation"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <RevokedItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -131,7 +107,7 @@ Revoked.defaultProps = {
   subsection: 'investigations/revoked',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalInvestigationsRevokedValidator(state, props).isValid()
+    return new LegalInvestigationsRevokedValidator(props).isValid()
   },
   scrollToBottom: ''
 }
