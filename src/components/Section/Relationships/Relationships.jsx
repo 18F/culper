@@ -6,7 +6,6 @@ import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
-import { RelationshipsValidator } from '../../../validators'
 import Relatives from './Relatives'
 import Marital from './RelationshipStatus/Marital'
 import Cohabitants from './RelationshipStatus/Cohabitants'
@@ -77,8 +76,6 @@ class Relationships extends SectionElement {
                      onSpouseUpdate={this.updateSpouse}
                      currentAddress={this.props.CurrentAddress}
                      scrollToBottom={this.props.scrollToBottom}
-                     required={true}
-                     scrollIntoView={false}
                      />
           </SectionView>
 

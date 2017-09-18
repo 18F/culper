@@ -4,9 +4,9 @@ import DateRangeValidator from './daterange'
 import { validDateField, validGenericTextfield } from './helpers'
 
 export default class RelativesValidator {
-  constructor (state = {}, props = {}) {
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validItems () {
@@ -33,36 +33,36 @@ export default class RelativesValidator {
 }
 
 export class RelativeValidator {
-  constructor (state = {}, props = {}) {
-    this.relation = state.Relation || []
-    this.name = state.Name
-    this.birthdate = state.Birthdate
-    this.birthplace = state.Birthplace
-    this.citizenship = state.Citizenship
-    this.maidenSameAsListed = state.MaidenSameAsListed
-    this.maidenName = state.MaidenName
-    this.aliases = state.Aliases || []
-    this.isDeceased = state.IsDeceased
-    this.address = state.Address
-    this.citizenshipDocumentation = state.CitizenshipDocumentation
-    this.otherCitizenshipDocumentation = state.OtherCitizenshipDocumentation
-    this.documentNumber = state.DocumentNumber
-    this.courtName = state.CourtName
-    this.courtAddress = state.CourtAddress
-    this.document = state.Document
-    this.otherDocument = state.OtherDocument
-    this.residenceDocumentNumber = state.ResidenceDocumentNumber
-    this.expiration = state.Expiration
-    this.firstContact = state.FirstContact
-    this.lastContact = state.LastContact
-    this.methods = state.Methods || []
-    this.methodsComments = state.MethodsComments
-    this.frequency = state.Frequency
-    this.frequencyComments = state.FrequencyComments
-    this.employer = state.Employer
-    this.employerAddress = state.EmployerAddress
-    this.hasAffiliation = state.HasAffiliation
-    this.employerRelationship = state.EmployerRelationship
+  constructor (data = {}) {
+    this.relation = data.Relation || []
+    this.name = data.Name
+    this.birthdate = data.Birthdate
+    this.birthplace = data.Birthplace
+    this.citizenship = data.Citizenship
+    this.maidenSameAsListed = data.MaidenSameAsListed
+    this.maidenName = data.MaidenName
+    this.aliases = data.Aliases || []
+    this.isDeceased = data.IsDeceased
+    this.address = data.Address
+    this.citizenshipDocumentation = data.CitizenshipDocumentation
+    this.otherCitizenshipDocumentation = data.OtherCitizenshipDocumentation
+    this.documentNumber = data.DocumentNumber
+    this.courtName = data.CourtName
+    this.courtAddress = data.CourtAddress
+    this.document = data.Document
+    this.otherDocument = data.OtherDocument
+    this.residenceDocumentNumber = data.ResidenceDocumentNumber
+    this.expiration = data.Expiration
+    this.firstContact = data.FirstContact
+    this.lastContact = data.LastContact
+    this.methods = data.Methods || []
+    this.methodsComments = data.MethodsComments
+    this.frequency = data.Frequency
+    this.frequencyComments = data.FrequencyComments
+    this.employer = data.Employer
+    this.employerAddress = data.EmployerAddress
+    this.hasAffiliation = data.HasAffiliation
+    this.employerRelationship = data.EmployerRelationship
   }
 
   citizen () {
