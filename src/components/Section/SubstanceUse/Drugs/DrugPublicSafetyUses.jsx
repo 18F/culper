@@ -4,7 +4,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import DrugPublicSafetyUse from './DrugPublicSafetyUse'
-import { DrugPublicSafetyUsesValidator } from '../../../../validators'
+import { DrugPublicSafetyUsesValidator, DrugPublicSafetyUseValidator } from '../../../../validators'
 
 export default class DrugPublicSafetyUses extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DrugPublicSafetyUse || {}
+    const o = (item || {}).Item || {}
     const range = DateSummary(o.InvolvementDates)
     const description = (o.Description || {}).value
 
@@ -58,8 +58,9 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
   render () {
     return (
       <div className="drug-public-safety-uses">
-        <h2>{i18n.m('substance.drugs.heading.drugPublicSafetyUses')}</h2>
         <Branch name="UsedDrugs"
+                label={i18n.m('substance.drugs.heading.drugPublicSafetyUses')}
+                labelSize="h2"
                 className="used-drugs"
                 value={this.props.UsedDrugs}
                 warning={true}
@@ -77,12 +78,13 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugPublicSafetyUseValidator}
                      description={i18n.t('substance.drugs.publicSafety.collection.description')}
                      appendTitle={i18n.t('substance.drugs.publicSafety.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.publicSafety.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <DrugPublicSafetyUse name="DrugPublicSafetyUse" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <DrugPublicSafetyUse name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>

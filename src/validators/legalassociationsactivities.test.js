@@ -5,13 +5,13 @@ describe('Legal associations activities component validation', function () {
   it('validate dates', () => {
     const tests = [
       {
-        props: {
+        state: {
           Dates: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Dates: {
             from: {
               date: new Date('1/1/2010')
@@ -32,13 +32,13 @@ describe('Legal associations activities component validation', function () {
   it('validate reasons', () => {
     const tests = [
       {
-        props: {
+        state: {
           Reasons: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Reasons: {
             value: 'this is the reasons'
           }
@@ -53,17 +53,17 @@ describe('Legal associations activities component validation', function () {
   it('validate associations activities in terrorism', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasActivities: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasActivities: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -71,7 +71,7 @@ describe('Legal associations activities component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasActivities: 'Yes',
           List: [{}],
           ListBranch: ''
@@ -79,21 +79,23 @@ describe('Legal associations activities component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasActivities: 'Yes',
           List: [
             {
-              Reasons: {
-                value: 'this is the reasons'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Reasons: {
+                  value: 'this is the reasons'
                 },
-                to: {
-                  date: new Date('1/1/2012')
-                },
-                present: false
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                }
               }
             }
           ],

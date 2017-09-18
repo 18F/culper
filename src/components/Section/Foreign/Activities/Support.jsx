@@ -1,10 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ForeignActivitiesSupportValidator } from '../../../../validators'
+import { ForeignActivitiesSupportValidator, SupportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Text, Textarea, Currency, Name, Location, Country,
-         Checkbox } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import SupportItem from './SupportItem'
 
 export default class Support extends SubsectionElement {
   constructor (props) {
@@ -57,7 +56,7 @@ export default class Support extends SubsectionElement {
       <div className="foreign-activities-support">
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignSupport}
                 warning={true}
                 onUpdate={this.updateHasForeignSupport}
@@ -72,6 +71,7 @@ export default class Support extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={SupportValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.activities.support.collection.summary.title')}
                      appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
@@ -79,82 +79,13 @@ export default class Support extends SubsectionElement {
                      required={this.props.required}
                      scrollToBottom={this.props.scrollToBottom}
                      scrollIntoView={this.props.scrollIntoView}>
-           <Field title={i18n.t('foreign.activities.support.heading.name')}
-             scrollIntoView={this.props.scrollIntoView}>
-              <Name name="Name"
-                    className="foreign-activities-support-name"
-                    bind={true}
-                    required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
-                    />
-           </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.address')}
-              adjustFor="address"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Location name="Address"
-                        className="foreign-activities-support-address"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        addressBook="ForeignNational"
-                        addressBooks={this.props.addressBooks}
-                        dispatch={this.props.dispatch}
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.relationship')}
-              adjustFor="textarea"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Relationship"
-                        className="foreign-activities-support-relationship"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.amount')}
-                   help="foreign.activities.support.help.amount"
-                   adjustFor="currency"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Currency name="Amount"
-                        className="foreign-activities-support-amount"
-                        bind={true}
-                        min="0"
-                        required={this.props.required}
-                        />
-              <div className="flags">
-                <Checkbox name="AmountEstimated"
-                          ref="estimated"
-                          label={i18n.t('foreign.activities.support.label.estimated')}
-                          toggle="false"
-                          bind={true}
-                          />
-              </div>
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.frequency')}
-              adjustFor="text"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Frequency"
-                    className="foreign-activities-support-frequency"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.citizenship')}
-                   help="foreign.activities.support.help.citizenship"
-                   adjustFor="country"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Country name="Citizenship"
-                       className="foreign-activities-support-citizenship"
-                       multiple={true}
+                     <SupportItem name="Item"
                        bind={true}
+                       dispatch={this.props.dispatch}
+                       addressBooks={this.props.addressBooks}
                        required={this.props.required}
-                       />
-            </Field>
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>

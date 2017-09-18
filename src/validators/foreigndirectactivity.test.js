@@ -28,7 +28,7 @@ describe('Foreign Direct Activity validation', function () {
           HasInterests: 'Yes',
           List: [
             {
-              DirectInterest: {
+              Item: {
                 InterestTypes: ['Yourself'],
                 InterestType: {
                   value: 'Some type'

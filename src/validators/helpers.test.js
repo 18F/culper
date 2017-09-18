@@ -170,9 +170,43 @@ describe('Helpers for validators', function () {
           number: '7031112222',
           numberType: 'Home',
           timeOfDay: 'Both',
+          type: 'Domestic',
           extension: ''
         },
         expected: true
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '0237031112222',
+          numberType: 'Home',
+          timeOfDay: 'Both',
+          type: 'International',
+          extension: ''
+        },
+        expected: true
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '1234567',
+          numberType: 'Home',
+          timeOfDay: 'Both',
+          type: 'DSN',
+          extension: ''
+        },
+        expected: true
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '1234567',
+          numberType: 'Home',
+          timeOfDay: 'Both',
+          type: 'Unknown',
+          extension: ''
+        },
+        expected: false
       },
       {
         phone: {

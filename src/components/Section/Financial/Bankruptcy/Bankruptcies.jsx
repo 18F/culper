@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { BankruptcyValidator } from '../../../../validators'
+import { BankruptcyValidator, BankruptcyItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import Bankruptcy from './Bankruptcy'
@@ -43,7 +43,7 @@ export default class Bankruptcies extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const b = item.Bankruptcy || {}
+    const b = item.Item || {}
     const from = DateSummary(b.DateFiled)
     const address = AddressSummary(b.CourtAddress)
 
@@ -60,6 +60,8 @@ export default class Bankruptcies extends SubsectionElement {
     return (
       <div className="bankruptcies">
         <Branch name="has_bankruptcydebt"
+                label={i18n.t('financial.bankruptcy.title')}
+                labelSize="h2"
                 className="bankruptcy-branch"
                 value={this.props.HasBankruptcy}
                 help="financial.bankruptcy.help"
@@ -77,12 +79,13 @@ export default class Bankruptcies extends SubsectionElement {
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      required={this.props.required}
+                     validator={BankruptcyItemValidator}
                      scrollIntoView={this.props.scrollIntoView}
                      summary={this.summary}
                      description={i18n.t('financial.bankruptcy.collection.summary.title')}
                      appendTitle={i18n.t('financial.bankruptcy.collection.summary.appendTitle')}
                      appendLabel={i18n.t('financial.bankruptcy.collection.append')}>
-            <Bankruptcy name="Bankruptcy"
+            <Bankruptcy name="Item"
                         dispatch={this.props.dispatch}
                         addressBooks={this.props.addressBooks}
                         required={this.props.required}
@@ -105,7 +108,7 @@ Bankruptcies.defaultProps = {
   subsection: 'bankruptcy',
   dispatch: () => {},
   validator: (state, props) => {
-    return new BankruptcyValidator(state, props).isValid()
+    return new BankruptcyValidator(props).isValid()
   },
   defaultState: true
 }

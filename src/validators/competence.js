@@ -1,4 +1,4 @@
-import OrderValidator from './order'
+import { CompetenceOrderValidator } from './order'
 
 export default class CompetenceValidator {
   constructor (state = {}, props) {
@@ -21,7 +21,7 @@ export default class CompetenceValidator {
     }
 
     for (let order of this.list) {
-      if (!new OrderValidator(order.Competence, { prefix: 'competence' }).isValid()) {
+      if (!new CompetenceOrderValidator(order.Item).isValid()) {
         return false
       }
     }

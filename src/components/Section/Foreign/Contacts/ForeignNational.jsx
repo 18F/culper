@@ -348,6 +348,7 @@ export default class ForeignNational extends ValidationElement {
 
         <Show when={this.props.Methods.some(x => x === 'Other')}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
+                 titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="MethodsExplanation"
                       className="methods-explanation"
@@ -428,6 +429,7 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
+               className={this.props.Relationship.some(x => x === 'Other') ? 'no-margin-bottom' : ''}
                adjustFor="p"
                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
@@ -676,7 +678,9 @@ export default class ForeignNational extends ValidationElement {
 
 ForeignNational.defaultProps = {
   Name: {},
-  NameNotApplicable: {},
+  NameNotApplicable: {
+    applicable: true
+  },
   NameExplanation: {},
   FirstContact: {},
   LastContact: {},

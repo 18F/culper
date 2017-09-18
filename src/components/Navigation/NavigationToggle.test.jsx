@@ -7,6 +7,8 @@ import { mount } from 'enzyme'
 import AuthenticatedNavigationToggle, { NavigationToggle } from './NavigationToggle'
 
 describe('The navigation toggle component', () => {
+  window.token = 'fake-token'
+
   it('can logout', () => {
     let dispatched = 0
     const props = {
@@ -62,6 +64,7 @@ describe('The navigation toggle component', () => {
   })
 
   it('hidden when not authenticated and mobile', () => {
+    window.token = ''
     const middlewares = [ thunk ]
     const mockStore = configureMockStore(middlewares)
     const store = mockStore({
@@ -74,5 +77,6 @@ describe('The navigation toggle component', () => {
     })
     const component = mount(<Provider store={store}><AuthenticatedNavigationToggle /></Provider>)
     expect(component.find('.navigation-override').length).toBe(0)
+    window.token = 'fake-token'
   })
 })

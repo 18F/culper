@@ -39,6 +39,17 @@ describe('Employment component validation', function () {
                   zipcode: '22202',
                   layout: Location.ADDRESS
                 },
+                PhysicalAddress: {
+                  HasDifferentAddress: 'Yes',
+                  Address: {
+                    country: 'United States',
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                },
                 Additional: {
                   List: [{ Has: 'No' }]
                 },
@@ -46,7 +57,8 @@ describe('Employment component validation', function () {
                   noNumber: '',
                   number: '2028675309',
                   numberType: 'Cell',
-                  timeOfDay: 'Day'
+                  timeOfDay: 'Day',
+                  type: 'Domestic'
                 },
                 Supervisor: {
                   Address: {
@@ -67,6 +79,7 @@ describe('Employment component validation', function () {
                     noNumber: '',
                     number: '2021112222',
                     numberType: 'Cell',
+                    type: 'Domestic',
                     timeOfDay: 'Day'
                   },
                   Title: {

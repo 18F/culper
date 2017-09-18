@@ -21,6 +21,13 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	// Valid token and audience
+	_, err = checkToken(r, account, model.BasicAuthAudience)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
 	png := ""
 	if !account.TokenUsed {
 		png, err = twofactor.Generate(account.Username, account.Token)
@@ -36,6 +43,13 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 // TwofactorVerifyHandler verifies a token provided by the end user.
 func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	account, err := getAccountFromRequest(r)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Valid token and audience
+	_, err = checkToken(r, account, model.BasicAuthAudience)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -63,7 +77,15 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "")
+	// Generate a new token
+	signedToken, _, err := account.NewJwtToken(model.TwoFactorAudience)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Send the new token with a more recent expiration
+	fmt.Fprintf(w, signedToken)
 }
 
 // TwofactorEmailHandler sends a token to the user by email.
@@ -88,22 +110,16 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// Sanity check for username
-	vars := mux.Vars(r)
-	username := vars["account"]
-	if username == "" {
-		http.Error(w, "No username provided", http.StatusInternalServerError)
+	// Retrieve the current account information
+	account, err := getAccountFromRequest(r)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
-	// Retrieve the current account information
-	account := &model.Account{
-		Username: username,
-	}
-
-	dbContext := db.NewDB()
-	account.WithContext(dbContext)
-	if err := account.Get(); err != nil {
+	// Valid token and audience
+	jwtToken, err := checkToken(r, account, model.BasicAuthAudience)
+	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -116,7 +132,7 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	fmt.Fprintf(w, "")
+	fmt.Fprintf(w, jwtToken)
 }
 
 func getAccountFromRequest(r *http.Request) (*model.Account, error) {

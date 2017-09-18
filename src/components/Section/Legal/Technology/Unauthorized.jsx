@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalTechnologyUnauthorizedValidator } from '../../../../validators'
+import { LegalTechnologyUnauthorizedValidator, UnauthorizedValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import UnauthorizedItem from './UnauthorizedItem'
 
 export default class Unauthorized extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class Unauthorized extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
@@ -59,7 +60,7 @@ export default class Unauthorized extends SubsectionElement {
 
         <Branch name="has_unauthorized"
                 label={i18n.t('legal.technology.unauthorized.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-technology-unauthorized-has-unauthorized"
                 value={this.props.HasUnauthorized}
                 warning={true}
@@ -77,59 +78,19 @@ export default class Unauthorized extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={UnauthorizedValidator}
                      description={i18n.t('legal.technology.unauthorized.collection.description')}
                      appendTitle={i18n.t('legal.technology.unauthorized.collection.appendTitle')}
                      appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Field title={i18n.t('legal.technology.unauthorized.heading.date')}
-                   help="legal.technology.unauthorized.help.date"
-                   adjustFor="datecontrol"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateControl name="Date"
-                           className="legal-technology-unauthorized-date"
-                           bind={true}
-                           required={this.props.required}
-                           />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.unauthorized.heading.incident')}
-                   help="legal.technology.unauthorized.help.incident"
-                   adjustFor="textarea"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Incident"
-                        className="legal-technology-unauthorized-incident"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
-                   help="legal.technology.unauthorized.help.location"
-                   adjustFor="address"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Location name="Location"
-                        className="legal-technology-unauthorized-location"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        addressBooks={this.props.addressBooks}
-                        addressBook="Incident"
-                        dispatch={this.props.dispatch}
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.unauthorized.heading.action')}
-                   help="legal.technology.unauthorized.help.action"
-                   adjustFor="textarea"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Action"
-                        className="legal-technology-unauthorized-action"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <UnauthorizedItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -150,7 +111,7 @@ Unauthorized.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalTechnologyUnauthorizedValidator(state, props).isValid()
+    return new LegalTechnologyUnauthorizedValidator(props).isValid()
   },
   scrollToBottom: ''
 }

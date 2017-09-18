@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class NegativeImpactsValidator {
-  constructor (state, props) {
-    this.hasImpacts = state.HasImpacts
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasImpacts = data.HasImpacts
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validHasImpacts () {
@@ -26,7 +26,7 @@ export default class NegativeImpactsValidator {
     }
 
     for (const item of this.list) {
-      const result = new NegativeImpactValidator(item.NegativeImpact, null).isValid()
+      const result = new NegativeImpactValidator(item.Item).isValid()
       if (!result) {
         return false
       }
@@ -42,11 +42,11 @@ export default class NegativeImpactsValidator {
 }
 
 export class NegativeImpactValidator {
-  constructor (state, props) {
-    this.occurred = state.Occurred
-    this.circumstances = state.Circumstances
-    this.negativeImpact = state.NegativeImpact
-    this.used = state.Used
+  constructor (data = {}) {
+    this.occurred = data.Occurred
+    this.circumstances = data.Circumstances
+    this.negativeImpact = data.NegativeImpact
+    this.used = data.Used
   }
 
   isValid () {

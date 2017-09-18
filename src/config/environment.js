@@ -1,5 +1,6 @@
 import { hashHistory, browserHistory } from 'react-router'
 
+
 class Env {
   History () {
     const useHashRouting = process.env.HASH_ROUTING || ''
@@ -20,8 +21,13 @@ class Env {
     return url
   }
 
+  IsTest () {
+    return process.env.NODE_ENV === 'test'
+  }
+
   AllowTwoFactorReset () { return process.env.ALLOW_2FA_RESET || false }
   EndpointBasicAuthentication () { return '/auth/basic' }
+  EndpointRefresh () { return '/refresh' }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }

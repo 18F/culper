@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../../config'
 import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
-import { ForeignBenefitActivityValidator } from '../../../../../validators'
+import { ForeignBenefitActivityValidator, ForeignBenefitValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import Benefit from './Benefit'
 
@@ -40,7 +40,7 @@ export default class BenefitActivity extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).Benefit || {}
+    const o = (item || {}).Item || {}
     const benefit = {}
     const who = (o.InterestTypes || []).join(', ')
 
@@ -85,7 +85,7 @@ export default class BenefitActivity extends SubsectionElement {
         <Branch name="has_benefit"
                 className="has-benefits"
                 label={i18n.t('foreign.activities.benefit.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasBenefits}
                 warning={true}
                 onError={this.handleError}
@@ -102,12 +102,13 @@ export default class BenefitActivity extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ForeignBenefitValidator}
                      description={i18n.t('foreign.activities.benefit.collection.description')}
                      appendTitle={i18n.t('foreign.activities.benefit.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.activities.benefit.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Benefit name="Benefit"
+            <Benefit name="Item"
                      bind={true}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
@@ -131,7 +132,7 @@ BenefitActivity.defaultProps = {
   subsection: 'activities/benefits',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBenefitActivityValidator(state, props).isValid()
+    return new ForeignBenefitActivityValidator(props).isValid()
   },
   scrollToBottom: ''
 }

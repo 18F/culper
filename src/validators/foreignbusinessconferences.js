@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield, BranchCollection } from './helpers'
 
 export default class ForeignBusinessConferencesValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignConferences = state.HasForeignConferences
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasForeignConferences = data.HasForeignConferences
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -22,7 +22,7 @@ export default class ForeignBusinessConferencesValidator {
         return false
       }
 
-      return this.list.every(item => new ConferencesValidator(item, null).isValid())
+      return this.list.every(item => new ConferencesValidator(item.Item, null).isValid())
     }
 
     return false
@@ -34,14 +34,14 @@ export default class ForeignBusinessConferencesValidator {
 }
 
 export class ConferencesValidator {
-  constructor (state = {}, props = {}) {
-    this.description = state.Description
-    this.sponsor = state.Sponsor
-    this.city = state.City
-    this.country = state.Country
-    this.dates = state.Dates
-    this.purpose = state.Purpose
-    this.contacts = state.Contacts
+  constructor (data = {}) {
+    this.description = data.Description
+    this.sponsor = data.Sponsor
+    this.city = data.City
+    this.country = data.Country
+    this.dates = data.Dates
+    this.purpose = data.Purpose
+    this.contacts = data.Contacts
   }
 
   validDescription () {

@@ -2,10 +2,10 @@ import LocationValidator from './location'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalTechnologyUnlawfulValidator {
-  constructor (state = {}, props = {}) {
-    this.hasUnlawful = props.HasUnlawful
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasUnlawful = data.HasUnlawful
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -22,7 +22,7 @@ export default class LegalTechnologyUnlawfulValidator {
         return false
       }
 
-      return this.list.every(item => new UnlawfulValidator(null, item).isValid())
+      return this.list.every(item => new UnlawfulValidator(item.Item).isValid())
     }
 
     return false
@@ -34,11 +34,11 @@ export default class LegalTechnologyUnlawfulValidator {
 }
 
 export class UnlawfulValidator {
-  constructor (state = {}, props = {}) {
-    this.date = props.Date
-    this.incident = props.Incident
-    this.location = props.Location
-    this.action = props.Action
+  constructor (data = {}) {
+    this.date = data.Date
+    this.incident = data.Incident
+    this.location = data.Location
+    this.action = data.Action
   }
 
   validDate () {

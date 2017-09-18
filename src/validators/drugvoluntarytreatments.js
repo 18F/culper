@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugVoluntaryTreatmentsValidator {
-  constructor (state) {
-    this.involved = state.TreatmentVoluntary
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.involved = data.TreatmentVoluntary
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validTreatmentVoluntary () {
@@ -27,7 +27,7 @@ export default class DrugVoluntaryTreatmentsValidator {
     }
 
     for (const item of this.list) {
-      const result = new DrugVoluntaryTreatmentValidator(item.VoluntaryTreatment, null).isValid()
+      const result = new DrugVoluntaryTreatmentValidator(item.Item).isValid()
       if (!result) {
         return false
       }
@@ -43,14 +43,14 @@ export default class DrugVoluntaryTreatmentsValidator {
 }
 
 export class DrugVoluntaryTreatmentValidator {
-  constructor (state = {}) {
-    this.drugType = state.DrugType
-    this.treatmentProvider = state.TreatmentProvider
-    this.treatmentProviderAddress = state.TreatmentProviderAddress
-    this.treatmentProviderTelephone = state.TreatmentProviderTelephone
-    this.treatmentDates = state.TreatmentDates
-    this.treatmentCompleted = state.TreatmentCompleted
-    this.noTreatmentExplanation = state.NoTreatmentExplanation
+  constructor (data = {}) {
+    this.drugType = data.DrugType
+    this.treatmentProvider = data.TreatmentProvider
+    this.treatmentProviderAddress = data.TreatmentProviderAddress
+    this.treatmentProviderTelephone = data.TreatmentProviderTelephone
+    this.treatmentDates = data.TreatmentDates
+    this.treatmentCompleted = data.TreatmentCompleted
+    this.noTreatmentExplanation = data.NoTreatmentExplanation
   }
 
   validTreatmentCompleted () {

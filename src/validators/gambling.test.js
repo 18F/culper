@@ -47,23 +47,25 @@ describe('gambling debt component validation', function () {
           HasGamblingDebt: 'Yes',
           List: [
             {
-              Losses: {
-                value: 10
-              },
-              Description: {
-                value: 'Blah blah blah'
-              },
-              Actions: {
-                value: 'Some action'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2015')
+              Item: {
+                Losses: {
+                  value: 10
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Description: {
+                  value: 'Blah blah blah'
                 },
-                present: false
+                Actions: {
+                  value: 'Some action'
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2015')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                }
               }
             }
           ],
@@ -76,19 +78,21 @@ describe('gambling debt component validation', function () {
           HasGamblingDebt: 'Yes',
           List: [
             {
-              Losses: {
-                value: 10
-              },
-              Description: {
-                value: 'Blah blah blah'
-              },
-              Actions: {
-                value: 'Some action'
-              },
-              Dates: {
-                from: null,
-                to: new Date('1/1/2016'),
-                present: false
+              Item: {
+                Losses: {
+                  value: 10
+                },
+                Description: {
+                  value: 'Blah blah blah'
+                },
+                Actions: {
+                  value: 'Some action'
+                },
+                Dates: {
+                  from: null,
+                  to: new Date('1/1/2016'),
+                  present: false
+                }
               }
             }
           ],
@@ -101,23 +105,25 @@ describe('gambling debt component validation', function () {
           HasGamblingDebt: 'Yes',
           List: [
             {
-              Losses: {
-                value: 10
-              },
-              Description: {
-                value: 'Blah blah blah'
-              },
-              Actions: {
-                value: ''
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2015')
+              Item: {
+                Losses: {
+                  value: 10
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Description: {
+                  value: 'Blah blah blah'
                 },
-                present: false
+                Actions: {
+                  value: ''
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2015')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                }
               }
             }
           ],
@@ -130,23 +136,25 @@ describe('gambling debt component validation', function () {
           HasGamblingDebt: 'Yes',
           List: [
             {
-              Losses: {
-                value: 10
-              },
-              Description: {
-                value: ''
-              },
-              Actions: {
-                value: 'Foo'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2015')
+              Item: {
+                Losses: {
+                  value: 10
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Description: {
+                  value: ''
                 },
-                present: false
+                Actions: {
+                  value: 'Foo'
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2015')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                }
               }
             }
           ],
@@ -159,23 +167,25 @@ describe('gambling debt component validation', function () {
           HasGamblingDebt: 'Yes',
           List: [
             {
-              Losses: {
-                value: 0
-              },
-              Description: {
-                value: ''
-              },
-              Actions: {
-                value: 'Foo'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2015')
+              Item: {
+                Losses: {
+                  value: 0
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Description: {
+                  value: ''
                 },
-                present: false
+                Actions: {
+                  value: 'Foo'
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2015')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                }
               }
             }
           ],
@@ -221,23 +231,25 @@ describe('gambling debt component validation', function () {
           HasGamblingDebt: 'Yes',
           List: [
             {
-              Losses: {
-                value: 10
-              },
-              Description: {
-                value: 'Blah blah blah'
-              },
-              Actions: {
-                value: 'Some action'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2015')
+              Item: {
+                Losses: {
+                  value: 10
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Description: {
+                  value: 'Blah blah blah'
                 },
-                present: false
+                Actions: {
+                  value: 'Some action'
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2015')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                }
               }
             }
           ],

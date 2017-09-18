@@ -103,8 +103,12 @@ export default class EducationItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h2>{i18n.t('history.education.heading.reference')}</h2>
-          <p>{i18n.t('history.education.para.reference')}</p>
+          <Field title={i18n.t('history.education.heading.reference')}
+                 titleSize="h2"
+                 className="no-margin-bottom">
+            {i18n.m('history.education.para.reference')}
+          </Field>
+
           <Reference name="Reference"
                      {...this.state.Reference}
                      onUpdate={this.updateReference}
@@ -194,7 +198,6 @@ export default class EducationItem extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('history.education.heading.type')}
-                 help="history.education.help.type"
                  adjustFor="big-buttons"
                  shrink={true}
                  scrollIntoView={this.props.scrollIntoView}>
@@ -235,15 +238,14 @@ export default class EducationItem extends ValidationElement {
 
           {this.reference()}
 
-          <BranchCollection help="history.education.help.degree"
-                            label={i18n.t('history.education.heading.degree')}
+          <BranchCollection label={i18n.t('history.education.heading.degree')}
                             appendLabel={i18n.t('history.education.heading.degreeTail')}
                             className="receive-degree"
                             items={this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
                             onError={this.props.onError}
                             scrollIntoView={this.props.scrollIntoView}>
-            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView}  />
+            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </BranchCollection>
         </div>
       </div>

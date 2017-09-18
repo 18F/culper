@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class DrugInvolvementsValidator {
-  constructor (state) {
-    this.involved = state.Involved
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.involved = data.Involved
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validInvolved () {
@@ -26,7 +26,7 @@ export default class DrugInvolvementsValidator {
     }
 
     for (const item of this.list) {
-      const result = new DrugInvolvementValidator(item.DrugInvolvement, null).isValid()
+      const result = new DrugInvolvementValidator(item.Item).isValid()
       if (!result) {
         return false
       }
@@ -42,16 +42,16 @@ export default class DrugInvolvementsValidator {
 }
 
 export class DrugInvolvementValidator {
-  constructor (state) {
-    this.drugType = state.DrugType
-    this.firstInvolvement = state.FirstInvolvement
-    this.recentInvolvement = state.RecentInvolvement
-    this.natureOfInvolvement = state.NatureOfInvolvement
-    this.involvementWhileEmployed = state.InvolvementWhileEmployed
-    this.involvementWithClearance = state.InvolvementWithClearance
-    this.involvementInFuture = state.InvolvementInFuture
-    this.reasons = state.Reasons
-    this.explanation = state.Explanation
+  constructor (data = {}) {
+    this.drugType = data.DrugType
+    this.firstInvolvement = data.FirstInvolvement
+    this.recentInvolvement = data.RecentInvolvement
+    this.natureOfInvolvement = data.NatureOfInvolvement
+    this.involvementWhileEmployed = data.InvolvementWhileEmployed
+    this.involvementWithClearance = data.InvolvementWithClearance
+    this.involvementInFuture = data.InvolvementInFuture
+    this.reasons = data.Reasons
+    this.explanation = data.Explanation
   }
 
   validFuture () {

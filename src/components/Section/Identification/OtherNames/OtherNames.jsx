@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { OtherNamesValidator } from '../../../../validators'
+import { OtherNamesValidator, OtherNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
@@ -54,11 +54,17 @@ export default class OtherNames extends SubsectionElement {
   render () {
     return (
       <div className="other-names">
-        <p>{i18n.t('identification.othernames.info')}</p>
-        <h3>{i18n.t('identification.othernames.branch.question')}</h3>
+        <Field title={i18n.t('identification.othernames.title')}
+               titleSize="h2"
+               help="identification.othernames.branch.help"
+               className="no-margin-bottom">
+          {i18n.m('identification.othernames.info')}
+        </Field>
+
         <Branch name="has_othernames"
+                label={i18n.t('identification.othernames.branch.question')}
+                labelSize="h3"
                 value={this.props.HasOtherNames}
-                help="identification.othernames.branch.help"
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
@@ -70,6 +76,8 @@ export default class OtherNames extends SubsectionElement {
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     required={this.props.required}
+                     validator={OtherNameValidator}
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>

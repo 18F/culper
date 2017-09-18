@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class OrderedCounselingsValidator {
-  constructor (state, props) {
-    this.hasBeenOrdered = state.HasBeenOrdered
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasBeenOrdered = data.HasBeenOrdered
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validHasBeenOrdered () {
@@ -27,7 +27,7 @@ export default class OrderedCounselingsValidator {
     }
 
     for (const item of this.list) {
-      const result = new OrderedCounselingValidator(item.OrderedCounseling, null).isValid()
+      const result = new OrderedCounselingValidator(item.Item).isValid()
       if (!result) {
         return false
       }
@@ -43,17 +43,17 @@ export default class OrderedCounselingsValidator {
 }
 
 export class OrderedCounselingValidator {
-  constructor (state, props) {
-    this.seekers = state.Seekers
-    this.otherSeeker = state.OtherSeeker
-    this.actionTaken = state.ActionTaken
-    this.noActionTakenExplanation = state.NoActionTakenExplanation
-    this.counselingDates = state.CounselingDates
-    this.treatmentProviderName = state.TreatmentProviderName
-    this.treatmentProviderAddress = state.TreatmentProviderAddress
-    this.treatmentProviderTelephone = state.TreatmentProviderTelephone
-    this.completedTreatment = state.CompletedTreatment
-    this.noCompletedTreatmentExplanation = state.NoCompletedTreatmentExplanation
+  constructor (data = {}) {
+    this.seekers = data.Seekers
+    this.otherSeeker = data.OtherSeeker
+    this.actionTaken = data.ActionTaken
+    this.noActionTakenExplanation = data.NoActionTakenExplanation
+    this.counselingDates = data.CounselingDates
+    this.treatmentProviderName = data.TreatmentProviderName
+    this.treatmentProviderAddress = data.TreatmentProviderAddress
+    this.treatmentProviderTelephone = data.TreatmentProviderTelephone
+    this.completedTreatment = data.CompletedTreatment
+    this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 
   validSeekers () {

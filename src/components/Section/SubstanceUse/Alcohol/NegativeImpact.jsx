@@ -76,11 +76,13 @@ export default class NegativeImpact extends ValidationElement {
 
         <Field title={i18n.t('substance.alcohol.negativeImpact.label.negativeImpact')}
                titleSize="label"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="textarea">
           <Textarea name="NegativeImpact"
                     className="negative-impact-explanation"
                     {...this.props.NegativeImpact}
                     onUpdate={this.updateNegativeImpact}
+                    required={this.props.required}
                     onError={this.props.onError}
                     />
         </Field>

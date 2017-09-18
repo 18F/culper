@@ -4,10 +4,10 @@ import LocationValidator from './location'
 import { validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessVenturesValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignVentures = state.HasForeignVentures
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasForeignVentures = data.HasForeignVentures
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -24,7 +24,7 @@ export default class ForeignBusinessVenturesValidator {
         return false
       }
 
-      return this.list.every(item => new VenturesValidator(item, null).isValid())
+      return this.list.every(item => new VenturesValidator(item.Item).isValid())
     }
 
     return false
@@ -36,18 +36,18 @@ export default class ForeignBusinessVenturesValidator {
 }
 
 export class VenturesValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.address = state.Address
-    this.citizenship = state.Citizenship
-    this.description = state.Description
-    this.relationship = state.Relationship
-    this.dates = state.Dates
-    this.association = state.Association
-    this.position = state.Position
-    this.service = state.Service
-    this.support = state.Support
-    this.compensation = state.Compensation
+  constructor (data = {}) {
+    this.name = data.Name
+    this.address = data.Address
+    this.citizenship = data.Citizenship
+    this.description = data.Description
+    this.relationship = data.Relationship
+    this.dates = data.Dates
+    this.association = data.Association
+    this.position = data.Position
+    this.service = data.Service
+    this.support = data.Support
+    this.compensation = data.Compensation
   }
 
   validName () {

@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary, NameSummary } from '../../../Summary'
-import { ForeignBusinessVenturesValidator } from '../../../../validators'
+import { ForeignBusinessVenturesValidator, VenturesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Text, Textarea, Name, Country, DateRange, Location } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import VenturesItem from './VenturesItem'
 
 export default class Ventures extends SubsectionElement {
   constructor (props) {
@@ -39,7 +39,7 @@ export default class Ventures extends SubsectionElement {
   }
 
   summary (item, index) {
-    const obj = item || {}
+    const obj = ((item && item.Item) || {})
     const date = DateSummary(item.Dates)
     const name = NameSummary(obj.Name)
 
@@ -57,7 +57,7 @@ export default class Ventures extends SubsectionElement {
       <div className="foreign-business-ventures">
         <Branch name="has_foreign_ventures"
                 label={i18n.t('foreign.business.ventures.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 adjustFor="p"
                 help="foreign.business.ventures.help.branch"
                 value={this.props.HasForeignVentures}
@@ -76,6 +76,7 @@ export default class Ventures extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={VenturesValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.business.ventures.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.ventures.collection.appendTitle')}
@@ -83,123 +84,11 @@ export default class Ventures extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.ventures.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-           <Field title={i18n.t('foreign.business.ventures.heading.name')}
-             scrollIntoView={this.props.scrollIntoView}>
-              <Name name="Name"
-                    className="ventures-name"
-                    bind={true}
-                    required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.address')}
-                   help="foreign.business.ventures.help.address"
-                   adjustFor="address"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Location name="Address"
-                        className="ventures-address"
-                        layout={Location.ADDRESS}
-                        addressBooks={this.props.addressBooks}
-                        addressBook="ForeignNational"
-                        dispatch={this.props.dispatch}
-                        geocode={true}
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.citizenship')}
-              help="foreign.business.ventures.help.citizenship"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Country name="Citizenship"
-                       className="ventures-citizenship"
-                       multiple={true}
+                     <VenturesItem name="Item"
                        bind={true}
                        required={this.props.required}
-                       />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.description')}
-              help="foreign.business.ventures.help.description"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Description"
-                        className="ventures-description"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.relationship')}
-              help="foreign.business.ventures.help.relationship"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Relationship"
-                        className="ventures-relationship"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.dates')}
-                   help="foreign.business.ventures.help.dates"
-                   adjustFor="daterange"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateRange name="Dates"
-                         className="ventures-dates"
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.association')}
-              help="foreign.business.ventures.help.association"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Association"
-                        className="ventures-association"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.position')}
-              help="foreign.business.ventures.help.position"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Position"
-                    className="ventures-position"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.service')}
-              help="foreign.business.ventures.help.service"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Service"
-                    className="ventures-service"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.support')}
-              help="foreign.business.ventures.help.support"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Support"
-                    className="ventures-support"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.ventures.heading.compensation')}
-              help="foreign.business.ventures.help.compensation"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Compensation"
-                        className="ventures-compensation"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -219,7 +108,7 @@ Ventures.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessVenturesValidator(props, props).isValid()
+    return new ForeignBusinessVenturesValidator(props).isValid()
   },
   defaultState: true,
   scrollToBottom: ''

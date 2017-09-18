@@ -52,3 +52,27 @@ export default class OrderValidator {
       this.validAppeals()
   }
 }
+
+export class CompetenceOrderValidator extends OrderValidator {
+  constructor (data = {}) {
+    super(data)
+    this.prefix = 'competence'
+    this.courtAddress = data.CourtAddress
+    this.courtName = data.CourtName
+    this.occurred = data.Occurred
+    this.appeals = data.Appeals
+  }
+
+}
+
+export class ConsultationOrderValidator extends OrderValidator {
+  constructor (data = {}) {
+    super(data)
+    this.prefix = 'consultation'
+    this.courtAddress = data.CourtAddress
+    this.courtName = data.CourtName
+    this.occurred = data.Occurred
+    this.appeals = data.Appeals
+  }
+
+}
