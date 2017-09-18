@@ -15,6 +15,7 @@ describe('The employment component', () => {
     let updates = 0
     const expected = {
       name: 'employment',
+      EmploymentActivity: { value: 'ActiveMilitary' },
       onUpdate: () => { updates++ }
     }
     const selectors = [
@@ -28,13 +29,12 @@ describe('The employment component', () => {
     ]
 
     const component = mount(<EmploymentItem {...expected} />)
-    component.find({type: 'radio', value: 'ActiveMilitary'}).simulate('change')
-
     selectors.forEach(selector => {
       var len = component.find(selector).length
       expect(len).toBeGreaterThan(0)
     })
 
+    component.find({type: 'radio', value: 'ActiveMilitary'}).simulate('change')
     expect(updates).toBe(1)
   })
 })

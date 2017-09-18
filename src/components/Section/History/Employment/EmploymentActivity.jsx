@@ -42,8 +42,7 @@ export default class EmploymentActivity extends ValidationElement {
     return (
       <div className="employment-activity">
         <div className={this.props.className}>
-          <Field help={`history.employment.default.activity.help`}
-                 className={this.state.value === 'Other' ? 'no-margin-bottom' : ''}
+          <Field className={this.state.value === 'Other' ? 'no-margin-bottom' : ''}
                  adjustFor="p"
                  shrink={true}
                  scrollIntoView={this.props.scrollIntoView}>
