@@ -24,8 +24,24 @@ jobs:
   deploy_development:
     machine: true
     steps:
+      - checkout
       - run:
-          name: Deploy to development environment
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+      - deploy:
           command: |
             set -x
             ./bin/deploy.sh dev
@@ -33,8 +49,24 @@ jobs:
   deploy_staging:
     machine: true
     steps:
+      - checkout
       - run:
-          name: Deploy to staging environment
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+      - deploy:
           command: |
             set -x
             ./bin/deploy.sh staging
@@ -42,8 +74,24 @@ jobs:
   deploy_production:
     machine: true
     steps:
+      - checkout
       - run:
-          name: Deploy to production environment
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+      - deploy:
           command: |
             set -x
             ./bin/deploy.sh production
@@ -52,20 +100,25 @@ workflows:
   version: 2
   build_and_deploy:
     jobs:
-      - build
+      - build:
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                - release
       - deploy_staging:
-          requires:
-            - build
           filters:
             branches:
-              only: master
+              only:
+                - master
       - deploy_development:
-          requires:
-            - build
           filters:
             branches:
-              only: develop
+              only:
+                - develop
       - deploy_production:
           filters:
             branches:
-              only: release
+              only:
+                - release

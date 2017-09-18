@@ -1,7 +1,7 @@
 import React from 'react'
 import { LoginOAuth, TwoFactor } from '../../components'
 import { connect } from 'react-redux'
-import { i18n } from '../../config'
+import { i18n, env } from '../../config'
 import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Text, Show } from '../../components/Form'
@@ -19,6 +19,7 @@ class Login extends React.Component {
     this.onUsernameChange = this.onUsernameChange.bind(this)
     this.onPasswordChange = this.onPasswordChange.bind(this)
     this.login = this.login.bind(this)
+    this.mfa = env.MultipleFactorAuthentication()
   }
 
   componentDidMount () {
@@ -137,6 +138,7 @@ class Login extends React.Component {
   }
 
   render () {
+    const mfa = env.MultipleFactorAuthentication()
     return (
       <div className="login eapp-core" id="login">
         <div id="seal-header" className="seal-header text-center">
@@ -146,8 +148,8 @@ class Login extends React.Component {
           </div>
         </div>
         <div className="content">
-          {this.props.authenticated && !this.props.twofactor && this.twofactorForm()}
-          {!this.props.authenticated && !this.props.twofactor && this.loginForm()}
+          {this.props.authenticated && mfa.enabled && !this.props.twofactor && this.twofactorForm()}
+          {!this.props.authenticated && this.loginForm()}
         </div>
       </div>
     )

@@ -1,3 +1,4 @@
+import { env } from '../config'
 import { api } from '../services/api'
 import AuthConstants from './AuthConstants'
 import { push } from '../middleware/history'
@@ -12,8 +13,12 @@ export function login (username, password) {
     return api
       .login(username, password)
       .then(response => {
+        const mfa = env.MultipleFactorAuthentication()
         api.setToken(response.data)
         dispatch(handleLoginSuccess(response.data))
+        if (!mfa.enabled) {
+          dispatch(push('/form/identification/name'))
+        }
       })
       .catch(error => {
         switch (error.response.status) {
