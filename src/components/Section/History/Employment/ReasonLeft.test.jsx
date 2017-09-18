@@ -47,25 +47,25 @@ describe('The reason left component', () => {
     const expectations = [
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: 'Yes', Reason: {Reason: 'Fired'}}],
+        Reasons: [{Has: 'Yes', Item: {Reason: 'Fired'}}],
         explanationText: i18n.t('history.employment.default.left.fired.text'),
         dateText: i18n.t('history.employment.default.left.fired.date')
       },
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: 'Yes', Reason: {Reason: 'Quit'}}],
+        Reasons: [{Has: 'Yes', Item: {Reason: 'Quit'}}],
         explanationText: i18n.t('history.employment.default.left.quit.text'),
         dateText: i18n.t('history.employment.default.left.quit.date')
       },
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: 'Yes', Reason: {Reason: 'Charges'}}],
+        Reasons: [{Has: 'Yes', Item: {Reason: 'Charges'}}],
         explanationText: i18n.t('history.employment.default.left.charges.text'),
         dateText: i18n.t('history.employment.default.left.charges.date')
       },
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: 'Yes', Reason: {Reason: 'Performance'}}],
+        Reasons: [{Has: 'Yes', Item: {Reason: 'Performance'}}],
         explanationText: i18n.t('history.employment.default.left.performance.text'),
         dateText: i18n.t('history.employment.default.left.performance.date')
       }
