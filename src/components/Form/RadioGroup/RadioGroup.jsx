@@ -72,7 +72,9 @@ export default class RadioGroup extends ValidationElement {
         <child.type {...child.props} name={name || child.props.name} checked={checked} onUpdate={onUpdate}></child.type>
       )
     })
-    const classes = ['blocks', this.props.className, (this.state.error === true ? 'usa-input-error' : '')].join(' ').trim()
+
+    const errorClass = ((this.state.error === true && this.props.disabled === false) ? 'usa-input-error' : '')
+    const classes = ['blocks', this.props.className, errorClass].join(' ').trim()
     return (
       <div className={classes}>{children}</div>
     )
@@ -80,7 +82,8 @@ export default class RadioGroup extends ValidationElement {
 }
 
 RadioGroup.defaultProps = {
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  disabled: false
 }
 
 RadioGroup.errors = [

@@ -61,12 +61,15 @@ export default class Disciplinary extends SubsectionElement {
     return (
       <div className="disciplinary">
         <Branch name="has_disciplinary"
+                label={i18n.t('military.disciplinary.heading.title')}
+                labelSize="h2"
                 value={this.props.HasDisciplinary}
                 weight={true}
                 onUpdate={this.updateDisciplinary}
                 required={this.props.required}
                 onError={this.handleError}
                 scrollIntoView={this.props.scrollIntoView}>
+            {i18n.m('military.disciplinary.para.info')}
         </Branch>
 
         <Show when={this.props.HasDisciplinary === 'Yes'}>

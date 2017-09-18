@@ -5,6 +5,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { Field } from '../../Form'
 import { RelationshipsValidator } from '../../../validators'
 import Relatives from './Relatives'
 import Marital from './RelationshipStatus/Marital'
@@ -55,8 +56,11 @@ class Relationships extends SectionElement {
                        backLabel={i18n.t('history.destination.review')}
                        next="relationships/status/marital"
                        nextLabel={i18n.t('relationships.destination.marital')}>
-            <h2>{i18n.t('relationships.intro.title')}</h2>
-            {i18n.m('relationships.intro.body')}
+            <Field title={i18n.t('relationships.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('relationships.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="status/marital"
@@ -98,6 +102,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.relatives')}>
             <People name="people"
                     {...this.props.People}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}
@@ -157,6 +162,7 @@ class Relationships extends SectionElement {
             <People name="people"
                     {...this.props.People}
                     defaultState={false}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updatePeople}
                     onError={this.handleError}

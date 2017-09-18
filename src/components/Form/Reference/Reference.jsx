@@ -89,15 +89,17 @@ export default class Reference extends ValidationElement {
 
     return (
       <div className={klass}>
-        <h3>{i18n.t(`${prefix}reference.heading.name`)}</h3>
-        <Name name="FullName"
-              prefix={`${this.props.prefix}.name`}
-              className="reference-name"
-              {...this.state.FullName}
-              onUpdate={this.onUpdate.bind(this, 'FullName')}
-              onError={this.props.onError}
-              required={this.props.required}
-              />
+        <Field title={i18n.t(`${prefix}reference.heading.name`)}
+               titleSize="h3">
+          <Name name="FullName"
+                prefix={`${this.props.prefix}.name`}
+                className="reference-name"
+                {...this.state.FullName}
+                onUpdate={this.onUpdate.bind(this, 'FullName')}
+                onError={this.props.onError}
+                required={this.props.required}
+                />
+        </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.contact`)}
                help={`${prefix}reference.help.contact`}
@@ -191,8 +193,11 @@ export default class Reference extends ValidationElement {
           </Show>
         </Field>
 
-        <h2>{i18n.t(`${prefix}reference.heading.correspondence`)}</h2>
-        <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>
+        <Field title={i18n.t(`${prefix}reference.heading.correspondence`)}
+               titleSize="h2"
+               className="no-margin-bottom">
+          {i18n.m(`${prefix}reference.para.correspondence`)}
+        </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.phone`)}
                help={`${prefix}reference.help.phone`}

@@ -59,8 +59,9 @@ export default class Federal extends SubsectionElement {
   render () {
     return (
       <div className="federal">
-        <h3>{i18n.t('history.federal.heading.branch')}</h3>
         <Branch name="has_federalservice"
+                label={i18n.t('history.federal.heading.branch')}
+                labelSize="h2"
                 help="history.federal.help.branch"
                 value={this.props.HasFederalService}
                 warning={true}

@@ -71,8 +71,12 @@ export default class ResidenceItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h2>{i18n.t('history.residence.heading.reference')}</h2>
-          <p>{i18n.t('history.residence.para.reference')}</p>
+          <Field title={i18n.t('history.residence.heading.reference')}
+                 titleSize="h2"
+                 className="no-margin-bottom">
+            {i18n.m('history.residence.para.reference')}
+          </Field>
+
           <Reference name="Reference"
                      {...this.state.Reference}
                      addressBooks={this.props.addressBooks}

@@ -70,6 +70,8 @@ export default class Credit extends SubsectionElement {
     return (
       <div className="credit-counseling">
         <Branch name="has_credit"
+                label={i18n.t('financial.credit.title')}
+                labelSize="h2"
                 className="credit-branch"
                 value={this.state.HasCreditCounseling}
                 warning={true}

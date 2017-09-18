@@ -79,6 +79,8 @@ export default class Gambling extends SubsectionElement {
     return (
       <div className="gambling">
         <Branch name="has_gamblingdebt"
+                label={i18n.t('financial.gambling.title')}
+                labelSize="h2"
                 className="has-gambling-debt"
                 value={this.state.HasGamblingDebt}
                 warning={true}

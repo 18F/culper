@@ -29,11 +29,13 @@ describe('The legal investigations history component', () => {
       HasHistory: 'Yes',
       List: [
         {
-          Agency: {
-            Agency: 'U.S. Department of Defense'
-          },
-          Granted: {
-            date: new Date('1/1/2010')
+          Item: {
+            Agency: {
+              Agency: 'U.S. Department of Defense'
+            },
+            Granted: {
+              date: new Date('1/1/2010')
+            }
           }
         }
       ],

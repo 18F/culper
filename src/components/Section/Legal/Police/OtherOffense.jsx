@@ -166,8 +166,9 @@ export default class OtherOffense extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.involvement')}</h3>
         <Branch name="involved_violence"
+                label={i18n.t('legal.police.heading.involvement')}
+                labelSize="h3"
                 className="offense-violence"
                 value={this.props.InvolvedViolence}
                 onUpdate={this.updateInvolvedViolence}
@@ -230,8 +231,11 @@ export default class OtherOffense extends ValidationElement {
                     />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
-        {i18n.m('legal.police.para.chargedetails')}
+        <Field title={i18n.t('legal.police.heading.chargedetails')}
+               titleSize="h3"
+               className="no-margin-bottom">
+          {i18n.m('legal.police.para.chargedetails')}
+        </Field>
 
         <Field title={i18n.t('legal.police.heading.chargeType')}
                titleSize="h4"
@@ -298,8 +302,9 @@ export default class OtherOffense extends ValidationElement {
                        />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.otherOffenseSentenced')}</h3>
         <Branch name="was_sentenced"
+                label={i18n.t('legal.police.heading.otherOffenseSentenced')}
+                labelSize="h3"
                 className="offense-sentenced"
                 value={this.props.WasSentenced}
                 onUpdate={this.updateWasSentenced}

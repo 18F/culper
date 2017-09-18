@@ -72,8 +72,18 @@ export default class ContactInformation extends SubsectionElement {
 
     return (
       <div className="contact">
-        <h3>{i18n.t('identification.contacts.heading.email')}</h3>
-        <p>{i18n.t('identification.contacts.para.email')}</p>
+        <Field title={i18n.t('identification.contacts.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
+        <Field title={i18n.t('identification.contacts.heading.email')}
+               titleSize="h3"
+               help="identification.contacts.help.email"
+               className="no-margin-bottom">
+          {i18n.m('identification.contacts.para.email')}
+        </Field>
+
         <div className={klass + ' email-collection'}>
           <Accordion minimum={2}
                      items={this.props.Emails}
@@ -85,11 +95,11 @@ export default class ContactInformation extends SubsectionElement {
                      validator={ContactEmailValidator}
                      description={i18n.t('identification.contacts.collection.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
-            <Field help="identification.contacts.help.email"
+            <Field title={i18n.t('identification.contacts.label.email')}
+                   titleSize="label"
                    scrollIntoView={this.props.scrollIntoView}
                    adjustFor="labels">
               <Email name="Item"
-                     label={i18n.t('identification.contacts.label.email')}
                      placeholder={i18n.t('identification.contacts.placeholder.email')}
                      bind={true}
                      required={this.props.required}
@@ -98,8 +108,13 @@ export default class ContactInformation extends SubsectionElement {
           </Accordion>
         </div>
 
-        <h3>{i18n.t('identification.contacts.heading.phoneNumber')}</h3>
-        <p>{i18n.t('identification.contacts.para.phoneNumber')}</p>
+        <Field title={i18n.t('identification.contacts.heading.phoneNumber')}
+               titleSize="h3"
+               help="identification.contacts.help.phoneNumber"
+               className="no-margin-bottom">
+          {i18n.m('identification.contacts.para.phoneNumber')}
+        </Field>
+
         <div className={klass + ' telephone-collection'}>
           <Accordion minimum={2}
                      items={this.props.PhoneNumbers}
@@ -111,8 +126,7 @@ export default class ContactInformation extends SubsectionElement {
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
-            <Field help="identification.contacts.help.phoneNumber"
-                   scrollIntoView={this.props.scrollIntoView}
+            <Field scrollIntoView={this.props.scrollIntoView}
                    adjustFor="telephone">
               <Telephone name="Item"
                          placeholder={i18n.t('identification.contacts.placeholder.telephone')}

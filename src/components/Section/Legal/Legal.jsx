@@ -123,8 +123,11 @@ class Legal extends SectionElement {
                        backLabel={i18n.t('substance.destination.review')}
                        next="legal/police/intro"
                        nextLabel={i18n.t('legal.destination.police')}>
-            <h2>{i18n.t('legal.intro.title')}</h2>
-            {i18n.m('legal.intro.body')}
+            <Field title={i18n.t('legal.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('legal.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="police/intro"
@@ -132,10 +135,13 @@ class Legal extends SectionElement {
                        backLabel={i18n.t('legal.destination.intro')}
                        next="legal/police/offenses"
                        nextLabel={i18n.t('legal.destination.offenses')}>
-            <h2>{i18n.t('legal.police.heading.title')}</h2>
-            {i18n.m('legal.police.para.intro1')}
-            {i18n.m('legal.police.para.intro2')}
-            {i18n.m('legal.police.para.intro3')}
+            <Field title={i18n.t('legal.police.heading.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('legal.police.para.intro1')}
+              {i18n.m('legal.police.para.intro2')}
+              {i18n.m('legal.police.para.intro3')}
+            </Field>
           </SectionView>
 
           <SectionView name="police/offenses"
@@ -245,13 +251,13 @@ class Legal extends SectionElement {
                        next="legal/technology/unauthorized"
                        nextLabel={i18n.t('legal.destination.technology.unauthorized')}>
             <NonCriminalCourtActions name="courtactions"
-                      {...this.props.NonCriminalCourtActions}
-                      addressBooks={this.props.AddressBooks}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.updateNonCriminalCourtActions}
-                      onError={this.handleError}
-                      scrollToBottom={this.props.scrollToBottom}
-                      />
+                                     {...this.props.NonCriminalCourtActions}
+                                     addressBooks={this.props.AddressBooks}
+                                     dispatch={this.props.dispatch}
+                                     onUpdate={this.updateNonCriminalCourtActions}
+                                     onError={this.handleError}
+                                     scrollToBottom={this.props.scrollToBottom}
+                                     />
           </SectionView>
 
           <SectionView name="technology"
@@ -438,7 +444,8 @@ class Legal extends SectionElement {
                        next="psychological/intro"
                        nextLabel={i18n.t('psychological.destination.intro')}>
             <Field title={i18n.t('legal.police.heading.title')}
-                   titleSize="h2">
+                   titleSize="h2"
+                   className="no-margin-bottom">
               {i18n.m('legal.police.para.intro1')}
               {i18n.m('legal.police.para.intro2')}
               {i18n.m('legal.police.para.intro3')}
@@ -513,15 +520,15 @@ class Legal extends SectionElement {
 
             <hr />
             <NonCriminalCourtActions name="courtactions"
-                      {...this.props.NonCriminalCourtActions}
-                      addressBooks={this.props.AddressBooks}
-                      defaultState={false}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.updateNonCriminalCourtActions}
-                      onError={this.handleError}
-                      required={true}
-                      scrollIntoView={false}
-                      />
+                                     {...this.props.NonCriminalCourtActions}
+                                     addressBooks={this.props.AddressBooks}
+                                     defaultState={false}
+                                     dispatch={this.props.dispatch}
+                                     onUpdate={this.updateNonCriminalCourtActions}
+                                     onError={this.handleError}
+                                     required={true}
+                                     scrollIntoView={false}
+                                     />
             <hr />
             <Unauthorized name="unauthorized"
                           {...this.props.Unauthorized}
@@ -577,7 +584,7 @@ class Legal extends SectionElement {
                                 onError={this.handleError}
                                 required={true}
                                 scrollIntoView={false}
-                              />
+                                />
 
             <hr />
             <Advocating name="advocating"

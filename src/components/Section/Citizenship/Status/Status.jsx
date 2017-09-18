@@ -221,6 +221,11 @@ export default class Status extends SubsectionElement {
   render () {
     return (
       <div className="status">
+        <Field title={i18n.t('citizenship.status.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
         <Field title={i18n.t('citizenship.status.heading.citizenshipstatus')}
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>

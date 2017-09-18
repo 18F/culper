@@ -5,13 +5,13 @@ describe('Legal investigations history component validation', function () {
   it('validate agency information', () => {
     const tests = [
       {
-        props: {
+        state: {
           Agency: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Agency: {},
           AgencyNotApplicable: {
             applicable: false
@@ -20,7 +20,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Agency: {
             Agency: 'U.S. Department of Defense'
           }
@@ -28,7 +28,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Agency: {
             Agency: 'Other',
             Explanation: {
@@ -39,7 +39,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Agency: {
             Agency: 'Foreign government',
             Explanation: {
@@ -50,7 +50,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Agency: {
             Agency: 'U.S. Department of Treasury',
             Explanation: {
@@ -68,13 +68,13 @@ describe('Legal investigations history component validation', function () {
   it('validate date completed', () => {
     const tests = [
       {
-        props: {
+        state: {
           Completed: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Completed: {},
           CompletedNotApplicable: {
             applicable: false
@@ -83,7 +83,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Completed: {
             date: new Date('1/1/2010'),
             day: '1',
@@ -102,13 +102,13 @@ describe('Legal investigations history component validation', function () {
   // it('validate issued by', () => {
   //   const tests = [
   //     {
-  //       props: {
+  //       state: {
   //         Issued: {}
   //       },
   //       expected: false
   //     },
   //     {
-  //       props: {
+  //       state: {
   //         Issued: {
   //           value: 'Some other agency'
   //         }
@@ -123,13 +123,13 @@ describe('Legal investigations history component validation', function () {
   it('validate date granted', () => {
     const tests = [
       {
-        props: {
+        state: {
           Granted: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Granted: {},
           GrantedNotApplicable: {
             applicable: false
@@ -138,7 +138,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Granted: {
             date: new Date('1/1/2010'),
             day: '1',
@@ -156,13 +156,13 @@ describe('Legal investigations history component validation', function () {
   it('validate clearance level information', () => {
     const tests = [
       {
-        props: {
+        state: {
           Clearance: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Clearance: {},
           ClearanceNotApplicable: {
             applicable: false
@@ -171,7 +171,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Clearance: {
             Level: 'Top Secret'
           }
@@ -179,7 +179,7 @@ describe('Legal investigations history component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Clearance: {
             Level: 'Other',
             Explanation: {
@@ -197,17 +197,17 @@ describe('Legal investigations history component validation', function () {
   it('validate investigations history', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasHistory: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasHistory: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -215,7 +215,7 @@ describe('Legal investigations history component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasHistory: 'Yes',
           List: [{}],
           ListBranch: ''
@@ -223,28 +223,30 @@ describe('Legal investigations history component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasHistory: 'Yes',
           List: [
             {
-              Agency: {},
-              AgencyNotApplicable: {
-                applicable: false
-              },
-              Completed: {},
-              CompletedNotApplicable: {
-                applicable: false
-              },
-              Issued: {
-                value: 'Some other agency'
-              },
-              Granted: {},
-              GrantedNotApplicable: {
-                applicable: false
-              },
-              Clearance: {},
-              ClearanceNotApplicable: {
-                applicable: false
+              Item: {
+                Agency: {},
+                AgencyNotApplicable: {
+                  applicable: false
+                },
+                Completed: {},
+                CompletedNotApplicable: {
+                  applicable: false
+                },
+                Issued: {
+                  value: 'Some other agency'
+                },
+                Granted: {},
+                GrantedNotApplicable: {
+                  applicable: false
+                },
+                Clearance: {},
+                ClearanceNotApplicable: {
+                  applicable: false
+                }
               }
             }
           ],

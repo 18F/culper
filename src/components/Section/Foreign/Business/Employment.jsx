@@ -58,7 +58,7 @@ export default class Employment extends SubsectionElement {
       <div className="foreign-business-employment">
         <Branch name="has_foreign_employment"
                 label={i18n.t('foreign.business.employment.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignEmployment}
                 warning={true}
                 onUpdate={this.updateHasForeignEmployment}

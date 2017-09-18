@@ -56,7 +56,7 @@ export default class Family extends SubsectionElement {
       <div className="foreign-business-family">
         <Branch name="has_foreign_family"
                 label={i18n.t('foreign.business.family.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 adjustFor="p"
                 value={this.props.HasForeignFamily}
                 warning={true}

@@ -60,8 +60,9 @@ export default class DrugInvolvements extends SubsectionElement {
   render () {
     return (
       <div className="drug-involvements">
-        <h2>{i18n.m('substance.drugs.heading.drugInvolvement')}</h2>
         <Branch name="Involved"
+                label={i18n.m('substance.drugs.heading.drugInvolvement')}
+                labelSize="h2"
                 className="involved"
                 value={this.props.Involved}
                 warning={true}

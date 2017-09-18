@@ -1,10 +1,10 @@
-import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
+import { validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalInvestigationsRevokedValidator {
-  constructor (state = {}, props = {}) {
-    this.hasRevocations = props.HasRevocations
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasRevocations = data.HasRevocations
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -21,7 +21,7 @@ export default class LegalInvestigationsRevokedValidator {
         return false
       }
 
-      return this.list.every(item => new RevokedValidator(null, item).isValid())
+      return this.list.every(item => new RevokedValidator(item.Item).isValid())
     }
 
     return false
@@ -33,10 +33,10 @@ export default class LegalInvestigationsRevokedValidator {
 }
 
 export class RevokedValidator {
-  constructor (state = {}, props = {}) {
-    this.date = props.Date
-    this.agency = props.Agency
-    this.explanation = props.Explanation
+  constructor (data = {}) {
+    this.date = data.Date
+    this.agency = data.Agency
+    this.explanation = data.Explanation
   }
 
   validDate () {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PoliceOffensesValidator } from '../../../../validators'
+import { PoliceOffensesValidator, OffenseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -59,8 +59,9 @@ export default class Offenses extends SubsectionElement {
   render () {
     return (
       <div className="police-offenses">
-        <h2>{i18n.t('legal.police.heading.questions')}</h2>
         <Branch name="has_offenses"
+                label={i18n.t('legal.police.heading.questions')}
+                labelSize="h2"
                 className="has-offenses"
                 value={this.props.HasOffenses}
                 warning={true}
@@ -84,6 +85,7 @@ export default class Offenses extends SubsectionElement {
                        branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.handleError}
+                       validator={OffenseValidator}
                        summary={this.summary}
                        description={i18n.t('legal.police.collection.summary.title')}
                        appendTitle={i18n.t('legal.police.collection.appendTitle')}
