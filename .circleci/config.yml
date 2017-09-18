@@ -1,0 +1,71 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+
+  deploy_development:
+    machine: true
+    steps:
+      - run:
+          name: Deploy to development environment
+          command: |
+            set -x
+            ./bin/deploy.sh dev
+
+  deploy_staging:
+    machine: true
+    steps:
+      - run:
+          name: Deploy to staging environment
+          command: |
+            set -x
+            ./bin/deploy.sh staging
+
+  deploy_production:
+    machine: true
+    steps:
+      - run:
+          name: Deploy to production environment
+          command: |
+            set -x
+            ./bin/deploy.sh production
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build
+      - deploy_staging:
+          requires:
+            - build
+          filters:
+            branches:
+              only: master
+      - deploy_development:
+          requires:
+            - build
+          filters:
+            branches:
+              only: develop
+      - deploy_production:
+          filters:
+            branches:
+              only: release
