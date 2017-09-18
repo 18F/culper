@@ -223,18 +223,13 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
-            <Field help="relationships.civilUnion.help.foreignBornDocument"
-                   title={i18n.t('relationships.civilUnion.heading.foreignBornDocument')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   adjustFor="p">
-              <ForeignBornDocuments name="foreignBornDocument"
-                                    {...this.props.ForeignBornDocument}
-                                    onUpdate={this.updateForeignBornDocument}
-                                    onError={this.props.onError}
-                                    required={this.props.required}
-                                    scrollIntoView={this.props.scrollIntoView}
-                                    />
-            </Field>
+            <ForeignBornDocuments name="foreignBornDocument"
+              {...this.props.ForeignBornDocument}
+              onUpdate={this.updateForeignBornDocument}
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}
+            />
           </Show>
 
           <Field title={i18n.t('relationships.civilUnion.heading.ssn')}
@@ -439,6 +434,7 @@ export default class CivilUnion extends ValidationElement {
                   help="relationships.civilUnion.help.divorced"
                   onUpdate={this.updateDivorced}
                   required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
                   onError={this.props.onError}>
           </Branch>
         </div>

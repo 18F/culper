@@ -41,6 +41,7 @@ import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
 import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import RelationshipsValidator from './relationships'
+import DivorceValidator from './divorce'
 import PeopleValidator from './people'
 import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
 import ForeignDirectActivityValidator from './foreigndirectactivity'
@@ -156,6 +157,7 @@ export {
   CohabitantsValidator,
   CohabitantValidator,
   RelationshipsValidator,
+  DivorceValidator,
   PeopleValidator,
   ForeignContactsValidator,
   ForeignNationalValidator,

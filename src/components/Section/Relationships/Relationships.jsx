@@ -77,6 +77,8 @@ class Relationships extends SectionElement {
                      onSpouseUpdate={this.updateSpouse}
                      currentAddress={this.props.CurrentAddress}
                      scrollToBottom={this.props.scrollToBottom}
+                     required={true}
+                     scrollIntoView={false}
                      />
           </SectionView>
 
