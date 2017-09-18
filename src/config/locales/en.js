@@ -24,7 +24,8 @@ const en = {
     submit: 'Submit',
     twofactor: {
       title: 'Two-factor authentication',
-      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.'
+      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.',
+      disabled: 'Multiple factor authentication is currently disabled.'
     },
     placeholder: {
       username: 'Username',

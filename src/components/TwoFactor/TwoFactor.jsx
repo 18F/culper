@@ -54,11 +54,14 @@ class TwoFactor extends React.Component {
   }
 
   render () {
-    const reset = env.AllowTwoFactorReset()
+    const mfa = env.MultipleFactorAuthentication()
+    const reset = mfa.enabled && mfa.resettable
           ? <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
           : ''
 
-    if (!this.props.qrcode) {
+    if (!mfa.enabled) {
+      return i18n.m('twofactor.disabled')
+    } else if (!this.props.qrcode) {
       return (
         <form onSubmit={this.handleSubmit}>
           <div className="twofactor-component">
