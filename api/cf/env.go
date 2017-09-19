@@ -133,3 +133,12 @@ func TwofactorDisabled() bool {
 	}
 	return true
 }
+
+// TwofactorResettable returns a boolean indicating whether the system allows
+// for an account to reset the multiple factor authentication assigned to it.
+func TwofactorResettable() bool {
+	if UserService("ALLOW", "2FA_RESET") == "" {
+		return false
+	}
+	return true
+}
