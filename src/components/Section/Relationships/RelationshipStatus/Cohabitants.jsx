@@ -82,7 +82,8 @@ export default class Cohabitants extends SubsectionElement {
                      required={this.props.required}
                      description={i18n.t('relationships.cohabitant.collection.description')}
                      appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
-                     appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}>
+                     appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
                      <Cohabitant name="Item"
                        spouse={this.props.spouse}
                        required={this.props.required}

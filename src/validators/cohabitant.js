@@ -76,8 +76,9 @@ export class CohabitantValidator {
       return false
     }
 
-    return branchValidator.each(item => {
-      return new NameValidator(item.Othername).isValid() &&
+    return branchValidator.each(row => {
+      const item = row.Item
+      return new NameValidator(item.OtherName).isValid() &&
         new DateRangeValidator(item.DatesUsed) &&
         validBranch((item.MaidenName || {}).value)
     })

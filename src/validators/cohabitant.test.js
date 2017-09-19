@@ -45,27 +45,29 @@ describe('Cohabitant validation', function () {
           OtherNames: [
             {
               Has: 'Yes',
-              Othername: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              MaidenName: {
-                value: 'No'
-              },
-              DatesUsed: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                OtherName: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                MaidenName: {
+                  value: 'No'
                 },
-                present: false
+                DatesUsed: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                }
               }
             },
             {
@@ -137,27 +139,29 @@ describe('Cohabitant validation', function () {
           OtherNames: [
             {
               Has: 'Yes',
-              Othername: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              MaidenName: {
-                value: 'No'
-              },
-              DatesUsed: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                OtherName: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                MaidenName: {
+                  value: 'No'
                 },
-                present: false
+                DatesUsed: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                }
               }
             },
             {
@@ -251,27 +255,29 @@ describe('Cohabitant validation', function () {
                 OtherNames: [
                   {
                     Has: 'Yes',
-                    Othername: {
-                      first: 'Foo',
-                      firstInitialOnly: false,
-                      middle: 'J',
-                      middleInitialOnly: true,
-                      noMiddleName: false,
-                      last: 'Bar',
-                      lastInitialOnly: false,
-                      suffix: 'Jr'
-                    },
-                    MaidenName: {
-                      value: 'No'
-                    },
-                    DatesUsed: {
-                      from: {
-                        date: new Date('1/1/2010')
+                    Item: {
+                      OtherName: {
+                        first: 'Foo',
+                        firstInitialOnly: false,
+                        middle: 'J',
+                        middleInitialOnly: true,
+                        noMiddleName: false,
+                        last: 'Bar',
+                        lastInitialOnly: false,
+                        suffix: 'Jr'
                       },
-                      to: {
-                        date: new Date('1/1/2016')
+                      MaidenName: {
+                        value: 'No'
                       },
-                      present: false
+                      DatesUsed: {
+                        from: {
+                          date: new Date('1/1/2010')
+                        },
+                        to: {
+                          date: new Date('1/1/2016')
+                        },
+                        present: false
+                      }
                     }
                   },
                   {

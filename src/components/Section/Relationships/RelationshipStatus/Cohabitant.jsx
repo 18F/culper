@@ -4,6 +4,7 @@ import { Field, DateControl, Name, BranchCollection, ForeignBornDocuments, SSN,
          MaidenName, DateRange, ValidationElement,
          Suggestions, Show, Country, Location } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
+import OtherName from './OtherName'
 
 export default class Cohabitant extends ValidationElement {
   constructor (props) {
@@ -191,17 +192,15 @@ export default class Cohabitant extends ValidationElement {
         </Field>
 
         <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
-          <Field help="relationships.cohabitant.help.foreignBornDocument"
-                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
-                 scrollIntoView={this.props.scrollIntoView}
-                 adjustFor="p">
             <ForeignBornDocuments name="foreignBornDocument"
+                                  title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
+                                  help="relationships.cohabitant.help.foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
                                   onUpdate={this.updateForeignBornDocument}
                                   onError={this.props.onError}
                                   required={this.props.required}
+                                  scrollIntoView={this.props.scrollIntoView}
                                   />
-          </Field>
         </Show>
 
         <Field title={i18n.t('relationships.cohabitant.heading.ssn')}
@@ -223,40 +222,11 @@ export default class Cohabitant extends ValidationElement {
                           onUpdate={this.updateOtherNames}
                           required={this.props.required}
                           scrollIntoView={this.props.scrollIntoView}>
-
-          <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}
-            scrollIntoView={this.props.scrollIntoView}>
-            <Name name="Othername"
-                  bind={true}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  scrollIntoView={this.props.scrollIntoView}
-                  />
-          </Field>
-
-          <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
-                 help="alias.maiden.help"
-                 adjustFor="buttons"
-                 shrink={true}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <MaidenName name="MaidenName"
-                        bind={true}
-                        onError={this.props.onError}
-                        required={this.props.required}
-                        />
-          </Field>
-
-          <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
-                 adjustFor="daterange"
-                 shrink={true}
-                 scrollIntoView={this.props.scrollIntoView}>
-            <DateRange name="DatesUsed"
-                       bind={true}
-                       className="datesused"
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
-          </Field>
+                          <OtherName name="Item"
+                            bind={true}
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
+                          />
         </BranchCollection>
 
         <Field title={i18n.t('relationships.cohabitant.heading.citizenship')}
