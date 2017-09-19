@@ -50,9 +50,8 @@ export const scrollToBottom = (selector) => {
  * TODO: Remove once everything has been refactored
  */
 export const validValidator = (validator) => {
-  return validator &&
+  return !!validator &&
     typeof validator === 'function' &&
-    !!validator.prototype.isValid &&
     typeof validator.prototype.isValid === 'function'
 }
 

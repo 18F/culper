@@ -370,6 +370,22 @@ describe('The accordion component', () => {
       {
         func: () => {},
         expected: false
+      },
+      {
+        func: true,
+        expected: false
+      },
+      {
+        func: 1,
+        expected: false
+      },
+      {
+        func: 'invalid',
+        expected: false
+      },
+      {
+        func: null,
+        expected: false
       }
     ]
 
