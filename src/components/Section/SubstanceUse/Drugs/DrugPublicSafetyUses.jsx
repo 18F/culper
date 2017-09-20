@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -100,7 +102,7 @@ DrugPublicSafetyUses.defaultProps = {
   subsection: 'drugs/publicsafety',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DrugPublicSafetyUsesValidator(props).isValid()
+    return validate(schematize('substance.drug.publicsafety', props))
   },
   scrollToBottom: ''
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { AlcoholOrderedCounselingsValidator, OrderedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -129,7 +131,7 @@ OrderedCounselings.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new AlcoholOrderedCounselingsValidator(props).isValid()
+    return validate(schematize('substance.alcohol.ordered', props))
   },
   scrollToBottom: ''
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { FederalServiceValidator, FederalServiceItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -107,7 +109,7 @@ Federal.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new FederalServiceValidator(props).isValid()
+    return validate(schematize('history.federal', props))
   },
   defaultState: true
 }

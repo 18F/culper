@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -106,7 +108,7 @@ VoluntaryTreatments.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new DrugVoluntaryTreatmentsValidator(props).isValid()
+    return validate(schematize('substance.drug.voluntary', props))
   },
   scrollToBottom: ''
 }

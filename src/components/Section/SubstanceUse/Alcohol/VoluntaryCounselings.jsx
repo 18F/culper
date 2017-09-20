@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { AlcoholVoluntaryCounselingsValidator, VoluntaryCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -106,7 +108,7 @@ VoluntaryCounselings.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new AlcoholVoluntaryCounselingsValidator(props).isValid()
+    return validate(schematize('substance.alcohol.voluntary', props))
   },
   scrollToBottom: ''
 }

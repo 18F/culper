@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { EducationValidator, EducationItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
@@ -78,6 +80,6 @@ Education.defaultProps = {
   subsection: 'education',
   dispatch: () => {},
   validator: (state, props) => {
-    return new EducationValidator(props.value, props.value).isValid()
+    return validate(schematize('history.education', props))
   }
 }

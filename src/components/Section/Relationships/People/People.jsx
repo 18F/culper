@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Field, Accordion, Svg } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import Person from './Person'
@@ -195,7 +197,7 @@ People.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new PeopleValidator(props, props).isValid()
+    return validate(schematize('relationships.people', props))
   },
   defaultState: true,
   totalYears: 7,

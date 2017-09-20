@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { CohabitantsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -102,7 +104,7 @@ Cohabitants.defaultProps = {
   subsection: 'status/cohabitant',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CohabitantsValidator(props, props).isValid()
+    return validate(schematize('relationships.cohabitants', props))
   },
   defaultState: true,
   scrollToBottom: ''

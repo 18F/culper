@@ -55,6 +55,28 @@ import { psychologicalConsultations } from './psychological-consultations'
 import { psychologicalDiagnoses } from './psychological-diagnoses'
 import { psychologicalExisting } from './psychological-existing'
 import { psychologicalHospitalizations } from './psychological-hospitalizations'
+import { substanceAlcoholAdditional } from './substance-alcohol-additional'
+import { substanceAlcoholNegative } from './substance-alcohol-negative'
+import { substanceAlcoholOrdered } from './substance-alcohol-ordered'
+import { substanceAlcoholVoluntary } from './substance-alcohol-voluntary'
+import { substanceDrugClearance } from './substance-drug-clearance'
+import { substanceDrugMisuse } from './substance-drug-misuse'
+import { substanceDrugOrdered } from './substance-drug-ordered'
+import { substanceDrugPublicSafety } from './substance-drug-publicsafety'
+import { substanceDrugPurchase } from './substance-drug-purchase'
+import { substanceDrugUsage } from './substance-drug-usage'
+import { substanceDrugVoluntary } from './substance-drug-voluntary'
+import { citizenshipMultiple } from './citizenship-multiple'
+import { citizenshipPassports } from './citizenship-passports'
+import { citizenshipStatus } from './citizenship-status'
+import { relationshipsCohabitants } from './relationships-cohabitants'
+import { relationshipsMarital } from './relationships-marital'
+import { relationshipsPeople } from './relationships-people'
+import { relationshipsRelatives } from './relationships-relatives'
+import { historyEducation } from './history-education'
+import { historyEmployment } from './history-employment'
+import { historyFederal } from './history-federal'
+import { historyResidence } from './history-residence'
 
 export {
   identificationName,
@@ -113,5 +135,27 @@ export {
   psychologicalConsultations,
   psychologicalDiagnoses,
   psychologicalExisting,
-  psychologicalHospitalizations
+  psychologicalHospitalizations,
+  substanceAlcoholAdditional,
+  substanceAlcoholNegative,
+  substanceAlcoholOrdered,
+  substanceAlcoholVoluntary,
+  substanceDrugClearance,
+  substanceDrugMisuse,
+  substanceDrugOrdered,
+  substanceDrugPublicSafety,
+  substanceDrugPurchase,
+  substanceDrugUsage,
+  substanceDrugVoluntary,
+  citizenshipMultiple,
+  citizenshipPassports,
+  citizenshipStatus,
+  relationshipsCohabitants,
+  relationshipsMarital,
+  relationshipsPeople,
+  relationshipsRelatives,
+  historyEducation,
+  historyEmployment,
+  historyFederal,
+  historyResidence
 }

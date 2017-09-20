@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { CitizenshipPassportsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, BranchCollection } from '../../../Form'
@@ -61,7 +63,7 @@ Passports.defaultProps = {
   subsection: 'passports',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipPassportsValidator(props).isValid()
+    return validate(schematize('citizenship.passports', props))
   },
   defaultState: true
 }

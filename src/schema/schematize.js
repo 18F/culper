@@ -138,38 +138,38 @@ const transform = {
   'financial.nonpayment': (data) => {
     return section.financialNonpayment(data)
   },
-  'history.residence': (data) => {
-    return {}
+  'history.education': (data) => {
+    return section.historyEducation(data)
   },
   'history.employment': (data) => {
-    return {}
-  },
-  'history.education': (data) => {
-    return {}
+    return section.historyEmployment(data)
   },
   'history.federal': (data) => {
-    return {}
+    return section.historyFederal(data)
   },
-  'relationships.marital': (data) => {
-    return {}
+  'history.residence': (data) => {
+    return section.historyResidence(data)
   },
   'relationships.cohabitants': (data) => {
-    return {}
+    return section.relationshipsCohabitants(data)
+  },
+  'relationships.marital': (data) => {
+    return section.relationshipsMarital(data)
   },
   'relationships.people': (data) => {
-    return {}
+    return section.relationshipsPeople(data)
   },
   'relationships.relatives': (data) => {
-    return {}
-  },
-  'citizenship.status': (data) => {
-    return {}
+    return section.relationshipsRelatives(data)
   },
   'citizenship.multiple': (data) => {
-    return {}
+    return section.citizenshipMultiple(data)
   },
   'citizenship.passports': (data) => {
-    return {}
+    return section.citizenshipPassports(data)
+  },
+  'citizenship.status': (data) => {
+    return section.citizenshipStatus(data)
   },
   'military.selective': (data) => {
     return section.militarySelective(data)
@@ -234,38 +234,38 @@ const transform = {
   'foreign.business.voting': (data) => {
     return section.foreignBusinessVoting(data)
   },
-  'substance.drug.clearance': (data) => {
-    return {}
-  },
-  'substance.drug.misuse': (data) => {
-    return {}
-  },
-  'substance.drug.ordered': (data) => {
-    return {}
-  },
-  'substance.drug.publicsafety': (data) => {
-    return {}
-  },
-  'substance.drug.purchase': (data) => {
-    return {}
-  },
-  'substance.drug.usage': (data) => {
-    return {}
-  },
-  'substance.drug.voluntary': (data) => {
-    return {}
+  'substance.alcohol.additional': (data) => {
+    return section.substanceAlcoholAdditional(data)
   },
   'substance.alcohol.negative': (data) => {
-    return {}
+    return section.substanceAlcoholNegative(data)
   },
   'substance.alcohol.ordered': (data) => {
-    return {}
+    return section.substanceAlcoholOrdered(data)
   },
   'substance.alcohol.voluntary': (data) => {
-    return {}
+    return section.substanceAlcoholVoluntary(data)
   },
-  'substance.alcohol.additional': (data) => {
-    return {}
+  'substance.drug.clearance': (data) => {
+    return section.substanceDrugClearance(data)
+  },
+  'substance.drug.misuse': (data) => {
+    return section.substanceDrugMisuse(data)
+  },
+  'substance.drug.ordered': (data) => {
+    return section.substanceDrugOrdered(data)
+  },
+  'substance.drug.publicsafety': (data) => {
+    return section.substanceDrugPublicsafety(data)
+  },
+  'substance.drug.purchase': (data) => {
+    return section.substanceDrugPurchase(data)
+  },
+  'substance.drug.usage': (data) => {
+    return section.substanceDrugUsage(data)
+  },
+  'substance.drug.voluntary': (data) => {
+    return section.substanceDrugVoluntary(data)
   },
   'legal.associations.activities-to-overthrow': (data) => {
     return section.legalAssociationsActivitiesToOverthrow(data)

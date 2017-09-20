@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { EmploymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
@@ -140,8 +142,6 @@ Employment.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return props.List.every(x => {
-      return props.ListBranch === 'No' && new EmploymentValidator(x.Item).isValid()
-    })
+    return validate(schematize('history.employment', props))
   }
 }

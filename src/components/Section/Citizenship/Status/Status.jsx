@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { CitizenshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Field, RadioGroup, Radio, Textarea,
@@ -920,6 +922,6 @@ Status.defaultProps = {
   subsection: 'status',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipValidator(props, props).isValid()
+    return validate(schematize('citizenship.status', props))
   }
 }

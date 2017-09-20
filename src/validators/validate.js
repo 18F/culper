@@ -137,38 +137,42 @@ const validators = {
   'financial.nonpayment': (data) => {
     return new logic.NonpaymentValidator(data).isValid()
   },
-  'history.residence': (data) => {
-    return false
+  'history.education': (data) => {
+    return new logic.EducationValidator(data).isValid()
   },
   'history.employment': (data) => {
-    return false
-  },
-  'history.education': (data) => {
-    return false
+    return data.List.every(x => {
+      return data.ListBranch === 'No' && new logic.EmploymentValidator(x.Item).isValid()
+    })
   },
   'history.federal': (data) => {
-    return false
+    return new logic.FederalServiceValidator(data).isValid()
   },
-  'relationships.marital': (data) => {
-    return false
+  'history.residence': (data) => {
+    return data.value.every(x => {
+      return new logic.ResidenceValidator(x.Item, null).isValid()
+    })
   },
   'relationships.cohabitants': (data) => {
-    return false
+    return new logic.CohabitantsValidator(data).isValid()
+  },
+  'relationships.marital': (data) => {
+    return new logic.MaritalValidator(data).isValid()
   },
   'relationships.people': (data) => {
-    return false
+    return new logic.PeopleValidator(data).isValid()
   },
   'relationships.relatives': (data) => {
-    return false
-  },
-  'citizenship.status': (data) => {
-    return false
+    return new logic.RelativesValidator(data).isValid()
   },
   'citizenship.multiple': (data) => {
-    return false
+    return new logic.CitizenshipMultipleValidator(data).isValid()
   },
   'citizenship.passports': (data) => {
-    return false
+    return new logic.CitizenshipPassportsValidator(data).isValid()
+  },
+  'citizenship.status': (data) => {
+    return new logic.CitizenshipValidator(data).isValid()
   },
   'military.selective': (data) => {
     return new logic.SelectiveServiceValidator(data).isValid()
@@ -233,38 +237,38 @@ const validators = {
   'foreign.business.voting': (data) => {
     return new logic.ForeignBusinessVotingValidator(data).isValid()
   },
-  'substance.drug.clearance': (data) => {
-    return false
-  },
-  'substance.drug.misuse': (data) => {
-    return false
-  },
-  'substance.drug.ordered': (data) => {
-    return false
-  },
-  'substance.drug.publicsafety': (data) => {
-    return false
-  },
-  'substance.drug.purchase': (data) => {
-    return false
-  },
-  'substance.drug.usage': (data) => {
-    return false
-  },
-  'substance.drug.voluntary': (data) => {
-    return false
+  'substance.alcohol.additional': (data) => {
+    return new logic.AlcoholReceivedCounselingsValidator(data).isValid()
   },
   'substance.alcohol.negative': (data) => {
-    return false
+    return new logic.AlcoholNegativeImpactsValidator(data).isValid()
   },
   'substance.alcohol.ordered': (data) => {
-    return false
+    return new logic.AlcoholOrderedCounselingsValidator(data).isValid()
   },
   'substance.alcohol.voluntary': (data) => {
-    return false
+    return new logic.AlcoholVoluntaryCounselingsValidator(data).isValid()
   },
-  'substance.alcohol.additional': (data) => {
-    return false
+  'substance.drug.clearance': (data) => {
+    return new logic.DrugClearanceUsesValidator(data).isValid()
+  },
+  'substance.drug.misuse': (data) => {
+    return new logic.DrugPrescriptionUsesValidator(data).isValid()
+  },
+  'substance.drug.ordered': (data) => {
+    return new logic.DrugOrderedTreatmentsValidator(data).isValid()
+  },
+  'substance.drug.publicsafety': (data) => {
+    return new logic.DrugPublicSafetyUsesValidator(data).isValid()
+  },
+  'substance.drug.purchase': (data) => {
+    return new logic.DrugInvolvementsValidator(data).isValid()
+  },
+  'substance.drug.usage': (data) => {
+    return new logic.DrugUsesValidator(data).isValid()
+  },
+  'substance.drug.voluntary': (data) => {
+    return new logic.DrugVoluntaryTreatmentsValidator(data).isValid()
   },
   'legal.associations.activities-to-overthrow': (data) => {
     return new logic.LegalAssociationsActivitiesValidator(data).isValid()

@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Branch, Show, Accordion } from '../../../Form'
@@ -108,7 +110,7 @@ Multiple.defaultProps = {
   subsection: 'multiple',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipMultipleValidator(props).isValid()
+    return validate(schematize('citizenship.multiple', props))
   },
   defaultState: true
 }
