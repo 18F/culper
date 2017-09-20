@@ -114,6 +114,10 @@ export class RelativeValidator {
   }
 
   validMaidenName () {
+    if (this.relation !== 'Mother') {
+      return true
+    }
+
     if (!!this.maidenSameAsListed && this.maidenSameAsListed === 'Yes') {
       return true
     }
