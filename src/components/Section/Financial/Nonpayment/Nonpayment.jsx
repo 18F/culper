@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { NonpaymentValidator, NonpaymentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Summary, DateSummary } from '../../../Summary'
@@ -145,6 +147,6 @@ Nonpayment.defaultProps = {
   subsection: 'nonpayment',
   dispatch: () => {},
   validator: (state, props) => {
-    return new NonpaymentValidator(state).isValid()
+    return validate(schematize('financial.nonpayment', props))
   }
 }

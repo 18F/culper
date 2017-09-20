@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator, ContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -112,7 +114,7 @@ Contact.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessContactValidator(props).isValid()
+    return validate(schematize('foreign.business.contact', props))
   },
   defaultState: true,
   scrollToBottom: ''

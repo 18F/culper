@@ -1,7 +1,0 @@
-export default const notapplicable = {
-  type: 'notapplicable',
-  props: {
-    name: '',
-    applicable: true
-  }
-}

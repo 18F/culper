@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { BankruptcyValidator, BankruptcyItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -108,7 +110,7 @@ Bankruptcies.defaultProps = {
   subsection: 'bankruptcy',
   dispatch: () => {},
   validator: (state, props) => {
-    return new BankruptcyValidator(props).isValid()
+    return validate(schematize('financial.bankruptcy', props))
   },
   defaultState: true
 }

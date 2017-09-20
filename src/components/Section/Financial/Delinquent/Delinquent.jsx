@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { DelinquentValidator, DelinquentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -142,7 +144,7 @@ Delinquent.defaultProps = {
   subsection: 'delinquent',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DelinquentValidator(state).isValid()
+    return validate(schematize('financial.delinquent', props))
   },
   defaultState: true
 }

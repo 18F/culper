@@ -1,3 +1,4 @@
+import { validate } from './validate'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import ContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './contactinformation'
@@ -91,6 +92,7 @@ import LocationValidator from './location'
 import SignatureValidator from './signature'
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 
+export default validate
 export {
   BankruptcyValidator,
   BankruptcyItemValidator,

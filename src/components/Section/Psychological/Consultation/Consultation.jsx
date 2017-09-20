@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ConsultationValidator, ConsultationOrderValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -109,7 +111,7 @@ Consultation.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new ConsultationValidator(props).isValid()
+    return validate(schematize('psychological.consultations', props))
   },
   scrollToBottom: ''
 }

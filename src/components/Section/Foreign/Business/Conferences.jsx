@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessConferencesValidator, ConferencesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -107,7 +109,7 @@ Conferences.defaultProps = {
   subsection: 'business/conferences',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessConferencesValidator(props).isValid()
+    return validate(schematize('foreign.business.conferences', props))
   },
   defaultState: true,
   scrollToBottom: ''

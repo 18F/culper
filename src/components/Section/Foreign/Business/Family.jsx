@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { ForeignBusinessFamilyValidator, FamilyValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -107,7 +109,7 @@ Family.defaultProps = {
   subsection: 'business/family',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessFamilyValidator(props).isValid()
+    return validate(schematize('foreign.business.family', props))
   },
   defaultState: true,
   scrollToBottom: ''

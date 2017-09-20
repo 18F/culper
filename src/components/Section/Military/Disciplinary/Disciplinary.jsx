@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { MilitaryDisciplinaryValidator, ProcedureValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -106,7 +108,7 @@ Disciplinary.defaultProps = {
   subsection: 'disciplinary',
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryDisciplinaryValidator(props).isValid()
+    return validate(schematize('military.disciplinary', props))
   },
   defaultState: true
 }

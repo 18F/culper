@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { CompetenceValidator, CompetenceOrderValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -108,7 +110,7 @@ Competence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new CompetenceValidator(props).isValid()
+    return validate(schematize('psychological.competence', props))
   },
   scrollToBottom: ''
 }

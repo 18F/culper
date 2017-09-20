@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { MilitaryHistoryValidator, MilitaryServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -129,7 +131,7 @@ History.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryHistoryValidator(props).isValid()
+    return validate(schematize('military.history', props))
   },
   defaultState: true
 }

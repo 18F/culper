@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { OtherNamesValidator, OtherNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -139,7 +141,7 @@ OtherNames.defaultProps = {
   subsection: 'othernames',
   dispatch: () => {},
   validator: (state, props) => {
-    return new OtherNamesValidator(props, props).isValid()
+    return validate(schematize('identification.othernames', props.value))
   },
   defaultState: true,
   required: false

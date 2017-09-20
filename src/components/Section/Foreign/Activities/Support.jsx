@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { ForeignActivitiesSupportValidator, SupportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -105,7 +107,7 @@ Support.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignActivitiesSupportValidator(props, props).isValid()
+    return validate(schematize('foreign.activities.support', props))
   },
   defaultState: true
 }

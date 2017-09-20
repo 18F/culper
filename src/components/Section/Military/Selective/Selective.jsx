@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { SelectiveServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Text, Textarea, Field } from '../../../Form'
@@ -152,6 +154,6 @@ Selective.defaultProps = {
   subsection: 'selective',
   dispatch: () => {},
   validator: (state, props) => {
-    return new SelectiveServiceValidator(props).isValid()
+    return validate(schematize('military.selective', props))
   }
 }

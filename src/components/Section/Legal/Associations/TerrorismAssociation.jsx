@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsTerrorismValidator } from '../../../../validators'
 import { Branch, Show, Field, Textarea } from '../../../Form'
@@ -80,6 +82,6 @@ TerrorismAssociation.defaultProps = {
   subsection: 'associations/terrorism-association',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsTerrorismValidator(state, props).isValid()
+    return validate(schematize('legal.associations.terrorism-assocation', props))
   }
 }

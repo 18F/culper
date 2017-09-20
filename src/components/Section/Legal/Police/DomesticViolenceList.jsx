@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { DomesticViolenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { BranchCollection } from '../../../Form'
@@ -62,7 +64,7 @@ DomesticViolenceList.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new DomesticViolenceValidator(props, props).isValid()
+    return validate(schematize('legal.police.domesticviolence', props))
   },
   scrollToBottom: ''
 }

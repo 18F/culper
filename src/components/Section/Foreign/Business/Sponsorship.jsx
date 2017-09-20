@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessSponsorshipValidator, SponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -105,7 +107,7 @@ Sponsorship.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessSponsorshipValidator(props).isValid()
+    return validate(schematize('foreign.business.sponsorship', props))
   },
   defaultState: true,
   scrollToBottom: ''

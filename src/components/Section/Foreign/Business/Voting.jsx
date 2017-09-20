@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessVotingValidator, VotingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -103,7 +105,7 @@ Voting.defaultProps = {
   subsection: 'business/voting',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessVotingValidator(props).isValid()
+    return validate(schematize('foreign.business.voting', props))
   },
   defaultState: true,
   scrollToBottom: ''

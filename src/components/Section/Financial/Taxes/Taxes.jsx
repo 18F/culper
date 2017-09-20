@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary } from '../../../Summary'
 import { TaxesValidator, TaxValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -116,7 +118,7 @@ Taxes.defaultProps = {
   subsection: 'taxes',
   dispatch: () => {},
   validator: (state, props) => {
-    return new TaxesValidator(state).isValid()
+    return validate(schematize('financial.taxes', props))
   },
   defaultState: true
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsEngagedValidator, EngagedValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
@@ -106,7 +108,7 @@ EngagedInTerrorism.defaultProps = {
   subsection: 'associations/engaged-in-terrorism',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsEngagedValidator(props).isValid()
+    return validate(schematize('legal.associations.engaged-in-terrorism', props))
   },
   scrollToBottom: ''
 }

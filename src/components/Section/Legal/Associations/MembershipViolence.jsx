@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsViolenceValidator, ViolenceValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
@@ -109,7 +111,7 @@ MembershipViolence.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalAssociationsViolenceValidator(props).isValid()
+    return validate(schematize('legal.associations.membership-violence-or-force', props))
   },
   scrollToBottom: ''
 }

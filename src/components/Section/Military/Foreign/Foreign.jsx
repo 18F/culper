@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { MilitaryForeignValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, BranchCollection } from '../../../Form'
@@ -54,7 +56,7 @@ Foreign.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new MilitaryForeignValidator(props).isValid()
+    return validate(schematize('military.foreign', props))
   },
   defaultState: true
 }

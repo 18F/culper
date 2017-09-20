@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ExistingConditionsValidator, ExistingConditionsDiagnosisValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -218,7 +220,7 @@ ExistingConditions.defaultProps = {
   subsection: 'conditions',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ExistingConditionsValidator(props, props).isValid()
+    return validate(schematize('psychological.existing', props))
   },
   prefix: 'existingConditions.diagnosis'
 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsDebarredValidator, DebarredValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
@@ -106,7 +108,7 @@ Debarred.defaultProps = {
   subsection: 'investigations/debarred',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalInvestigationsDebarredValidator(props).isValid()
+    return validate(schematize('legal.investigations.debarred', props))
   },
   scrollToBottom: ''
 }

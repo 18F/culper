@@ -1,8 +1,9 @@
 import React from 'react'
-import LocationValidator from '../../../../validators/location'
+import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Location, Field } from '../../../Form'
-import { i18n } from '../../../../config'
 
 export default class ApplicantBirthPlace extends SubsectionElement {
   render () {
@@ -43,7 +44,7 @@ ApplicantBirthPlace.defaultProps = {
   subsection: 'birthplace',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LocationValidator(props.value, props).isValid()
+    return validate(schematize('identification.birthplace', props))
   }
 }
 

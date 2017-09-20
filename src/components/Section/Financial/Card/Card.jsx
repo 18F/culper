@@ -1,6 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { CardAbuseValidator, CardAbuseItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -119,7 +121,7 @@ Card.defaultProps = {
   subsection: 'card',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CardAbuseValidator(state).isValid()
+    return validate(schematize('financial.card', props))
   },
   defaultState: true
 }

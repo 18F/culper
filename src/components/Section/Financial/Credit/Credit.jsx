@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary } from '../../../Summary'
 import { CreditValidator, CreditItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -118,7 +120,7 @@ Credit.defaultProps = {
   subsection: 'credit',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CreditValidator(state).isValid()
+    return validate(schematize('financial.credit', props))
   },
   defaultState: true
 }

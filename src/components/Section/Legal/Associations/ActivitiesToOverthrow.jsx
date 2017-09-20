@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsActivitiesValidator, ActivitiesValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
@@ -107,7 +109,7 @@ ActivitiesToOverthrow.defaultProps = {
   subsection: 'associations/activities-to-overthrow',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsActivitiesValidator(props).isValid()
+    return validate(schematize('legal.associations.activities-to-overthrow', props))
   },
   scrollToBottom: ''
 }

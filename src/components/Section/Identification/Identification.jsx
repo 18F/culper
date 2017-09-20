@@ -66,10 +66,10 @@ class Identification extends SectionElement {
                         />
             <hr />
             <ApplicantBirthDate name="birthdate"
+                                {...this.props.ApplicantBirthDate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
-                                value={this.props.ApplicantBirthDate}
                                 required={true}
                                 scrollIntoView={false}
                                 />
@@ -134,10 +134,10 @@ class Identification extends SectionElement {
                        back="identification/othernames"
                        backLabel={i18n.t('identification.destination.othernames')}>
             <ApplicantBirthDate name="birthdate"
+                                {...this.props.ApplicantBirthDate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
                                 onError={this.handleError}
-                                value={this.props.ApplicantBirthDate}
                                 />
           </SectionView>
 
@@ -206,7 +206,7 @@ function mapStateToProps (state) {
   return {
     Identification: identification,
     ApplicantName: identification.ApplicantName || {},
-    ApplicantBirthDate: processApplicantBirthDate(identification.ApplicantBirthDate) || {},
+    ApplicantBirthDate: identification.ApplicantBirthDate || {},
     ApplicantBirthPlace: identification.ApplicantBirthPlace || {},
     ApplicantSSN: identification.ApplicantSSN || {},
     OtherNames: identification.OtherNames || {},
@@ -215,19 +215,6 @@ function mapStateToProps (state) {
     Errors: errors.identification || [],
     Completed: completed.identification || []
   }
-}
-
-export function processApplicantBirthDate (birthDate) {
-  if (!birthDate) {
-    return null
-  }
-
-  let d = null
-  const { month, day, year } = birthDate
-  if (month && day && year) {
-    d = new Date(year, month - 1, day)
-  }
-  return d
 }
 
 Identification.defaultProps = {

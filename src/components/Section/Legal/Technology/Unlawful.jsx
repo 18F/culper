@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyUnlawfulValidator, UnlawfulValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
@@ -109,7 +111,7 @@ Unlawful.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalTechnologyUnlawfulValidator(props).isValid()
+    return validate(schematize('legal.technology.unlawful', props))
   },
   scrollToBottom: ''
 }

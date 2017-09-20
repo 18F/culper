@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schematize from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignTravelValidator, TravelValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -120,7 +122,7 @@ Travel.defaultProps = {
   subsection: 'travel',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignTravelValidator(props).isValid()
+    return validate(schematize('foreign.travel', props))
   },
   defaultState: true,
   scrollToBottom: ''

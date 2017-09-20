@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import schematize from '../../../../../schema'
+import validate from '../../../../../validators'
 import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignBenefitActivityValidator, ForeignBenefitValidator } from '../../../../../validators'
@@ -132,7 +134,7 @@ BenefitActivity.defaultProps = {
   subsection: 'activities/benefits',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBenefitActivityValidator(props).isValid()
+    return validate(schematize('foreign.activities.benefits', props))
   },
   scrollToBottom: ''
 }
