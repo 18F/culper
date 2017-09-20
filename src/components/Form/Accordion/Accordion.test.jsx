@@ -246,7 +246,7 @@ describe('The accordion component', () => {
       items: items,
       defaultState: false,
       initial: false,
-      isValid: Validator,
+      validator: Validator,
       required: true,
       summary: (item, index, initial) => { return <span>Summary</span> }
     }
@@ -345,57 +345,5 @@ describe('The accordion component', () => {
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.append-button button').length).toEqual(1)
     expect(component.find('.addendum').length).toEqual(0)
-  })
-
-  it('validates a validator function', () => {
-    const ValidValidator = class {
-      isValid () {
-        return true
-      }
-    }
-    const InvalidValidator = class {}
-    let items = [
-      {
-        func: ValidValidator,
-        expected: true
-      },
-      {
-        func: InvalidValidator,
-        expected: false
-      },
-      {
-        func: {},
-        expected: false
-      },
-      {
-        func: () => {},
-        expected: false
-      },
-      {
-        func: true,
-        expected: false
-      },
-      {
-        func: 1,
-        expected: false
-      },
-      {
-        func: 'invalid',
-        expected: false
-      },
-      {
-        func: null,
-        expected: false
-      }
-    ]
-
-    items.forEach(test => {
-      expect(validValidator(test.func)).toEqual(test.expected)
-    })
-  })
-
-  it('validates default validator', () => {
-    const defaultValidatorClass = Accordion.defaultProps.validator()
-    expect(new defaultValidatorClass().isValid()).toEqual(true)
   })
 })
