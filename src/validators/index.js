@@ -10,8 +10,8 @@ import PhysicalValidator from './physical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
-import EducationValidator from './education'
-import FederalServiceValidator from './federalservice'
+import EducationValidator, { EducationItemValidator } from './education'
+import FederalServiceValidator, { FederalServiceItemValidator } from './federalservice'
 import SelectiveServiceValidator from './selectiveservice'
 import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
 import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydisciplinary'
@@ -90,6 +90,7 @@ import LegalAssociationsActivitiesValidator, { ActivitiesValidator } from './leg
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
+import { nameIsEmpty } from './helpers'
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 
 export default validate
@@ -111,6 +112,7 @@ export {
   ResidenceValidator,
   EmploymentValidator,
   EducationValidator,
+  EducationItemValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
   MilitaryServiceValidator,
@@ -125,6 +127,7 @@ export {
   DomesticViolenceValidator,
   OffenseValidator,
   FederalServiceValidator,
+  FederalServiceItemValidator,
   RelativesValidator,
   RelativeValidator,
   AliasValidator,
@@ -239,6 +242,7 @@ export {
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
+  nameIsEmpty,
   OrderValidator,
   CompetenceOrderValidator,
   ConsultationOrderValidator

@@ -192,12 +192,6 @@ export default class EmploymentItem extends ValidationElement {
     const prefix = `history.employment.${this.localizeByActivity()}`.trim()
     return (
       <div>
-        <Field title={i18n.t(`history.employment.default.heading.activity`)}
-               titleSize="h3"
-               help="history.employment.default.activity.help"
-               className="no-margin-bottom"
-               />
-
         <EmploymentActivity name="EmploymentActivity"
                             {...this.props.EmploymentActivity}
                             onUpdate={this.updateEmploymentActivity}
@@ -287,7 +281,8 @@ export default class EmploymentItem extends ValidationElement {
           <Field title={i18n.t(`${prefix}.heading.address`)}
                  help={`${prefix}.address.help`}
                  adjustFor="address"
-                 shrink={true}>
+                 shrink={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="Address"
                       {...this.props.Address}
                       layout={Location.ADDRESS}
@@ -298,23 +293,22 @@ export default class EmploymentItem extends ValidationElement {
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       label={i18n.t(`${prefix}.address.label`)}
+                      required={this.props.required}
                       />
           </Field>
         </Show>
 
         <Show when={this.showPhysicalAddress()}>
-          <Field title={i18n.t(`${prefix}.heading.physicalAddress`)}
-            scrollIntoView={this.props.scrollIntoView}>
-            <PhysicalAddress name="PhysicalAddress"
-                             {...this.props.PhysicalAddress}
-                             addressBooks={this.props.addressBooks}
-                             dispatch={this.props.dispatch}
-                             onUpdate={this.updatePhysicalAddress}
-                             onError={this.props.onError}
-                             required={this.props.required}
-                             scrollIntoView={this.props.scrollIntoView}
-                             />
-          </Field>
+          <PhysicalAddress name="PhysicalAddress"
+                           {...this.props.PhysicalAddress}
+                           title={i18n.t(`${prefix}.heading.physicalAddress`)}
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
+                           onUpdate={this.updatePhysicalAddress}
+                           onError={this.props.onError}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
+                           />
         </Show>
 
         <Show when={this.showEmployed()}>
@@ -382,11 +376,6 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showLeaving()}>
           <div>
-            <Field title={i18n.t('history.employment.default.left.title')}
-                   titleSize="h3"
-                   className="no-margin-bottom"
-                   />
-
             <ReasonLeft name="ReasonLeft"
                         {...this.props.ReasonLeft}
                         onUpdate={this.updateReasonLeft}
