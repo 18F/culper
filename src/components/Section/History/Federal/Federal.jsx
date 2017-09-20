@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { FederalServiceValidator } from '../../../../validators'
+import { FederalServiceValidator, FederalServiceItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field, DateRange, Text, Location } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
+import FederalItem from './FederalItem'
 
 export default class Federal extends SubsectionElement {
   constructor (props) {
@@ -42,6 +43,7 @@ export default class Federal extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
+    item = ((item && item.Item) || {})
     const agency = item && item.Name && item.Name.value ? item.Name.value : ''
     const dates = DateSummary(item.Dates)
 
@@ -79,50 +81,14 @@ export default class Federal extends SubsectionElement {
                      appendTitle={i18n.t('history.federal.collection.appendTitle')}
                      appendLabel={i18n.t('history.federal.collection.append')}
                      required={this.props.required}
+                     validator={FederalServiceItemValidator}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Field title={i18n.t('history.federal.heading.dates')}
-                   help="history.federal.help.dates"
-                   adjustFor="daterange"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateRange name="Dates"
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('history.federal.heading.name')}
-                   className="federal-agency"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Name"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('history.federal.heading.position')}
-                   className="federal-position"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Position"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('history.federal.heading.address')}
-                   help="history.federal.help.address"
-                   className="federal-agency-address"
-                   adjustFor="address"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Location name="Address"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        addressBooks={this.props.addressBooks}
-                        addressBook="Agency"
-                        dispatch={this.props.dispatch}
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <FederalItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       onError={this.props.onError}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -141,7 +107,7 @@ Federal.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new FederalServiceValidator(props, props).isValid()
+    return new FederalServiceValidator(props).isValid()
   },
   defaultState: true
 }

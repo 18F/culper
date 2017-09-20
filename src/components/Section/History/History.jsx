@@ -63,7 +63,7 @@ class History extends SectionElement {
   }
 
   updateEmployment (values) {
-    this.handleUpdate('Employment', values.items)
+    this.handleUpdate('Employment', values)
   }
 
   updateEducation (values) {
@@ -145,7 +145,7 @@ class History extends SectionElement {
       return dates
     }
 
-    for (const i of this.excludeGaps(this.props.Employment)) {
+    for (const i of this.excludeGaps(this.props.Employment.List)) {
       if (!i.Item) {
         continue
       }
@@ -254,13 +254,20 @@ class History extends SectionElement {
       const start = daysAgo(today, 365 * this.totalYears())
 
       for (const t of types) {
+        let items = []
+        if (t === 'Employment') {
+          items = ((this.props.History[t] && this.props.History[t].List) || [])
+        } else {
+          items = this.props.History[t]
+        }
+
         // If there is no history it should still display the exiting message
-        if (!this.props.History[t]) {
+        if (!items) {
           holes += 1
           continue
         }
 
-        const list = this.props.History[t].filter(item => {
+        const list = items.filter(item => {
           return item.Item && item.Item.Dates
         })
 
@@ -352,6 +359,7 @@ class History extends SectionElement {
                        />
 
             <Employment value={this.props.Employment}
+                        {...this.props.Employment}
                         defaultState={false}
                         realtime={true}
                         sort={sort}
@@ -366,7 +374,7 @@ class History extends SectionElement {
                         />
 
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
-              <Education value={this.props.Education.List}
+              <Education value={this.props.Education}
                          defaultState={false}
                          realtime={true}
                          sort={sort}
@@ -453,6 +461,7 @@ class History extends SectionElement {
             <span id="scrollToHistory"></span>
             { this.employmentSummaryProgress() }
             <Employment value={this.props.Employment}
+                        {...this.props.Employment}
                         scrollToTop="scrollToHistory"
                         sort={sort}
                         totalYears={this.totalYears()}
@@ -567,7 +576,7 @@ function mapStateToProps (state) {
   return {
     History: history,
     Residence: history.Residence || [],
-    Employment: history.Employment || [],
+    Employment: history.Employment || { List: [], ListBranch: '' },
     Education: history.Education || { HasAttended: '', HasDegree10: '', List: [] },
     Federal: history.Federal || {},
     Errors: errors.history || [],

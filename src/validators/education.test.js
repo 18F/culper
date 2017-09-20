@@ -386,7 +386,11 @@ describe('Education component validation', function () {
                 Name: {
                   value: 'School name'
                 },
-                Reference: null,
+                Reference: {
+                  FullNameNotApplicable: {
+                    applicable: false
+                  }
+                },
                 Type: 'High School',
                 Address: {
                   country: 'United States',

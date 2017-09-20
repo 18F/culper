@@ -90,15 +90,17 @@ describe('Employment component validation', function () {
                   Reasons: [
                     {
                       Has: 'Yes',
-                      Reason: 'Fired',
-                      Date: {
-                        date: new Date('1/1/2016'),
-                        day: '1',
-                        month: '1',
-                        year: '2016'
-                      },
-                      Text: {
-                        value: 'Some excuse'
+                      Item: {
+                        Reason: 'Fired',
+                        Date: {
+                          date: new Date('1/1/2016'),
+                          day: '1',
+                          month: '1',
+                          year: '2016'
+                        },
+                        Text: {
+                          value: 'Some excuse'
+                        }
                       }
                     }
                   ]
@@ -106,14 +108,16 @@ describe('Employment component validation', function () {
                 Reprimand: {
                   Reasons: [
                     {
-                      Date: {
-                        date: new Date('1/1/2015'),
-                        month: '1',
-                        year: '2015'
-                      },
                       Has: 'Yes',
-                      Text: {
-                        value: 'Foo'
+                      Item: {
+                        Date: {
+                          date: new Date('1/1/2015'),
+                          month: '1',
+                          year: '2015'
+                        },
+                        Text: {
+                          value: 'Foo'
+                        }
                       }
                     }
                   ]

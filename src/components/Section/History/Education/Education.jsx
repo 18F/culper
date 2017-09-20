@@ -1,22 +1,24 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { EducationValidator } from '../../../../validators'
+import { EducationValidator, EducationItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { EducationCustomSummary, EducationCaption } from '../summaries'
 import EducationItem from './EducationItem'
 
-const byline = (item, index, initial, translation, validator) => {
-  if (!item.open && !initial && item.Item && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.t(translation)}</div>
+const byline = (item, index, initial, translation, required, validator) => {
+  switch (true) {
+    // If item is required and not currently opened and is not valid, show message
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="incomplete">{i18n.m(translation)}</div>
       </div>
-    )
+      )
+    default:
+      return null
   }
-
-  return null
 }
 
 export default class Education extends SubsectionElement {
@@ -27,8 +29,8 @@ export default class Education extends SubsectionElement {
   }
 
   customEducationByline (item, index, initial) {
-    return byline(item, index, this.props.overrideInitial(initial), 'history.education.collection.school.summary.incomplete', (item) => {
-      return new EducationValidator(item, null).isValid()
+    return byline(item, index, this.props.overrideInitial(initial), 'history.education.collection.school.summary.incomplete', this.props.required, (item) => {
+      return new EducationItemValidator(item).isValid()
     })
   }
 
@@ -49,7 +51,13 @@ export default class Education extends SubsectionElement {
                    appendLabel={i18n.t('history.education.collection.school.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
-          <EducationItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+                   <EducationItem name="Item"
+                     bind={true}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
+                     addressBooks={this.props.addressBooks}
+                     dispatch={this.props.dispatch}
+                   />
         </Accordion>
       </div>
     )

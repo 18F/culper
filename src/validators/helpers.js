@@ -224,3 +224,13 @@ export const validSSN = (ssn) => {
   return !!ssn.first && !!ssn.middle && !!ssn.last &&
     ssn.first.length === 3 && ssn.middle.length === 2 && ssn.last.length === 4
 }
+
+export const nameIsEmpty = (name) => {
+  switch (true) {
+    case !name:
+    case !name.first && !name.middle && !name.last:
+      return true
+    default:
+      return false
+  }
+}
