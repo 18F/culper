@@ -4,6 +4,8 @@ import (
 	"encoding/json"
 	"fmt"
 	"net/http"
+
+	"github.com/18F/e-QIP-prototype/api/cf"
 )
 
 var (
@@ -14,34 +16,119 @@ var (
 	APIVersion = "v1"
 )
 
+type endpoint struct {
+	Path        string
+	Description string
+	Verbs       []string
+}
+
 // rootHandler accepts GET requests to get all endpoints that the API
 // supports.
 func RootHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("X-Eqip-Media-Type", fmt.Sprintf("%s.%s", APIName, APIVersion))
 	w.Header().Set("Content-Type", "application/json")
 
-	// TODO: Update the structure to include HTTP verbs
-	json.NewEncoder(w).Encode(struct {
-		Endpoints map[string]string `json:"endpoints"`
-	}{
-		Endpoints: map[string]string{
-			"root":                                     "/",
-			"web token refresh":                        "/refresh",
-			"two factor authentication":                "/2fa",
-			"two factor authentication for an account": "/2fa/{account}",
-			"verification":                             "/2fa/{account}/verify",
-			"email":                                    "/2fa/{account}/email",
-			"reset":                                    "/2fa/{account}/reset",
-			"authentication":                           "/auth",
-			"basic authentication":                     "/auth/basic",
-			"oauth entrypoint":                         "/auth/{service}",
-			"oauth callback":                           "/auth/{service}/callback",
-			"me":                                       "/me",
-			"validation":                               "/me/validate",
-			"save":                                     "/save",
-			"store attachment":                         "/attachment",
-			"get attachment":                           "/attachment/{id}",
-			"delete attachment":                        "/attachment/{id}/delete",
+	// Core set of endpoints
+	endpoints := []endpoint{
+		endpoint{
+			Path:        "/",
+			Description: "root",
+			Verbs:       []string{"GET"},
 		},
+		endpoint{
+			Path:        "/refresh",
+			Description: "web token refresh",
+			Verbs:       []string{"POST"},
+		},
+		endpoint{
+			Path:        "/auth",
+			Description: "authentication",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/auth/basic",
+			Description: "basic authentication",
+			Verbs:       []string{"POST"},
+		},
+		endpoint{
+			Path:        "/auth/:service",
+			Description: "oauth entrypoint",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/auth/:service/callback",
+			Description: "oauth callback",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/me",
+			Description: "me",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/me/validate",
+			Description: "validation",
+			Verbs:       []string{"POST"},
+		},
+		endpoint{
+			Path:        "/me/save",
+			Description: "save",
+			Verbs:       []string{"POST", "PUT"},
+		},
+		endpoint{
+			Path:        "/me/attachment",
+			Description: "store attachment",
+			Verbs:       []string{"POST", "PUT"},
+		},
+		endpoint{
+			Path:        "/me/attachment/:id",
+			Description: "get attachment",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/me/attachment/:id/delete",
+			Description: "delete attachment",
+			Verbs:       []string{"POST", "DELETE"},
+		},
+	}
+
+	if !cf.TwofactorDisabled() {
+		mfa := []endpoint{
+			endpoint{
+				Path:        "/2fa",
+				Description: "two factor authentication",
+				Verbs:       []string{"GET"},
+			},
+			endpoint{
+				Path:        "/2fa/:account",
+				Description: "two factor authentication for an account",
+				Verbs:       []string{"GET"},
+			},
+			endpoint{
+				Path:        "/2fa/:account/verify",
+				Description: "two factor verification",
+				Verbs:       []string{"POST"},
+			},
+			endpoint{
+				Path:        "/2fa/:account/email",
+				Description: "two factor email",
+				Verbs:       []string{"POST"},
+			},
+		}
+		endpoints = append(endpoints, mfa...)
+
+		if cf.TwofactorResettable() {
+			endpoints = append(endpoints, endpoint{
+				Path:        "/2fa/:account/reset",
+				Description: "two factor reset",
+				Verbs:       []string{"GET"},
+			})
+		}
+	}
+
+	json.NewEncoder(w).Encode(struct {
+		Endpoints []endpoint `json:"endpoints"`
+	}{
+		Endpoints: endpoints,
 	})
 }

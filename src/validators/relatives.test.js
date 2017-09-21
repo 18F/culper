@@ -191,11 +191,13 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
+          Relation: 'Mother'
         },
         expected: false
       },
       {
         state: {
+          Relation: 'Mother',
           MaidenName: {}
         },
         expected: false
@@ -209,6 +211,7 @@ describe('Relatives validation', function () {
       },
       {
         state: {
+          Relation: 'Mother',
           MaidenName: {
             first: 'Foo',
             firstInitialOnly: false,

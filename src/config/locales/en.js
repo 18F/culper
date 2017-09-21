@@ -416,10 +416,33 @@ const en = {
         title: 'There is a problem with this field',
         message: 'This field is required'
       },
+      street: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        }
+      },
+      state: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        }
+      },
       city: {
         required: {
           title: 'There is a problem with this field',
           message: 'This field is required'
+        }
+      },
+      zipcode: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        pattern: {
+          title: 'There is a problem with the ZIP Code',
+          message: 'The ZIP Code should be either 5 or 9 digits.',
+          note: ''
         }
       },
       toggleablelocation: {
