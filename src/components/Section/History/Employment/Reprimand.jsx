@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, Textarea, DateControl, BranchCollection } from '../../../Form'
+import { ValidationElement, BranchCollection } from '../../../Form'
+import ReprimandItem from './ReprimandItem'
 
 export default class Reprimand extends ValidationElement {
   constructor (props) {
@@ -42,33 +43,11 @@ export default class Reprimand extends ValidationElement {
         onError={this.props.onError}
         required={this.props.required}
         scrollIntoView={this.props.scrollIntoView}>
-        <div>
-          <Field title={i18n.t('history.employment.default.reprimand.description.label')}
-            titleSize="h4"
-            className="explanation-left"
-            required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}>
-            <Textarea name="Text"
-              bind={true}
-              maxlength="100"
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Field>
-          <Field title={i18n.t('history.employment.default.reprimand.date.label')}
-            titleSize="h4"
-            className="date-left"
-            adjustFor="labels"
-            shrink={true}
-            scrollIntoView={this.props.scrollIntoView}>
-            <DateControl name="Date"
-              bind={true}
-              hideDay={true}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
-          </Field>
-        </div>
+        <ReprimandItem name="Item"
+          bind={true}
+          required={this.props.required}
+          scrollIntoView={this.props.scrollIntoView}
+        />
       </BranchCollection>
     )
   }
@@ -77,3 +56,4 @@ export default class Reprimand extends ValidationElement {
 Reprimand.defaultProps = {
   onError: (value, arr) => { return arr }
 }
+

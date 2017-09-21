@@ -72,15 +72,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -88,14 +90,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: '2015'
-                },
                 Has: 'Yes',
-                Text: {
-                  value: 'Foo'
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
+                  }
                 }
               }
             ]
@@ -171,15 +175,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -187,14 +193,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: '2015'
-                },
                 Has: 'Yes',
-                Text: {
-                  value: 'Foo'
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
+                  }
                 }
               }
             ]
@@ -293,15 +301,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -309,14 +319,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: '2015'
-                },
                 Has: 'Yes',
-                Text: {
-                  value: 'Foo'
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
+                  }
                 }
               }
             ]
@@ -403,15 +415,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -419,14 +433,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: '2015'
-                },
                 Has: 'Yes',
-                Text: {
-                  value: 'Foo'
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
+                  }
                 }
               }
             ]
@@ -518,15 +534,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -572,14 +590,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: '2015'
-                },
                 Has: 'Yes',
-                Text: {
-                  value: 'Foo'
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
+                  }
                 }
               }
             ]
@@ -991,15 +1011,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -1025,15 +1047,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: null,
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: null,
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -1095,15 +1119,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: null,
-                  year: '2016'
-                },
-                Text: {
-                  value: 'Some excuse'
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: null,
+                    year: '2016'
+                  },
+                  Text: {
+                    value: 'Some excuse'
+                  }
                 }
               }
             ]
@@ -1149,15 +1175,17 @@ describe('Employment component validation', function () {
             Reasons: [
               {
                 Has: 'Yes',
-                Reason: 'Fired',
-                Date: {
-                  date: new Date('1/1/2016'),
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                Text: {
-                  value: null
+                Item: {
+                  Reason: 'Fired',
+                  Date: {
+                    date: new Date('1/1/2016'),
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  Text: {
+                    value: null
+                  }
                 }
               }
             ]
@@ -1191,14 +1219,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: '2015'
-                },
                 Has: 'Yes',
-                Text: {
-                  value: 'Foo'
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: 'Foo'
+                  }
                 }
               }
             ]
@@ -1242,14 +1272,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: '2015'
-                },
                 Has: 'Yes',
-                Text: {
-                  value: null
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: '2015'
+                  },
+                  Text: {
+                    value: null
+                  }
                 }
               }
             ]
@@ -1274,14 +1306,16 @@ describe('Employment component validation', function () {
           Reprimand: {
             Reasons: [
               {
-                Date: {
-                  date: new Date('1/1/2015'),
-                  month: '1',
-                  year: null
-                },
                 Has: 'Yes',
-                Text: {
-                  value: 'Hello'
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2015'),
+                    month: '1',
+                    year: null
+                  },
+                  Text: {
+                    value: 'Hello'
+                  }
                 }
               }
             ]
