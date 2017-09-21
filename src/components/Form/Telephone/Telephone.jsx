@@ -651,26 +651,21 @@ Telephone.errors = [
         if (props.allowNotApplicable && props.noNumber === 'NA') {
           return true
         }
-        let valid = true
         switch (props.type) {
           case 'Domestic':
-            valid = valid && !!props.domestic.first &&
+            return !!props.domestic.first &&
               !!props.domestic.second &&
               !!props.domestic.third
-            break
           case 'DSN':
-            valid = valid && !!props.dsn.first &&
+            return !!props.dsn.first &&
               !!props.dsn.second
-            break
           case 'International':
-            valid = valid && !!props.international.first &&
+            return !!props.international.first &&
               !!props.international.second &&
               !!props.international.third
-            break
           default:
-            valid = false
+            return false
         }
-        return valid
       }
       return true
     }

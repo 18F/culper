@@ -165,7 +165,7 @@ export default class People extends SubsectionElement {
                    branch={this.props.ListBranch}
                    summary={this.summary}
                    customDetails={this.customDetails}
-                   validator={(props) => new PersonValidator(props, null).isValid() }
+                   validator={PersonValidator}
                    onUpdate={this.updateList}
                    onError={this.handleError}
                    required={this.props.required}

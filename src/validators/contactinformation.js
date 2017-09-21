@@ -34,8 +34,8 @@ export default class ContactInformationValidator {
     }
 
     let successful = 0
-    for (const item of this.phoneNumbers) {
-      if (!new ContactPhoneNumberValidator(item.Item).isValid()) {
+    for (const phoneNumber of this.phoneNumbers) {
+      if (!new ContactPhoneNumberValidator(phoneNumber.Item).isValid()) {
         continue
       }
       successful++
