@@ -168,6 +168,8 @@ export default class Person extends React.Component {
                adjustFor="labels">
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
+                         required={this.props.required}
+                         onError={this.props.onError}
                          selectedValues={this.props.Relationship}>
             <Checkbox name="relationship-neighbor"
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}

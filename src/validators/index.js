@@ -9,8 +9,8 @@ import PhysicalValidator from './physical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import ResidenceValidator from './residence'
 import EmploymentValidator from './employment'
-import EducationValidator from './education'
-import FederalServiceValidator from './federalservice'
+import EducationValidator, { EducationItemValidator } from './education'
+import FederalServiceValidator, { FederalServiceItemValidator } from './federalservice'
 import SelectiveServiceValidator from './selectiveservice'
 import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
 import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydisciplinary'
@@ -39,9 +39,10 @@ import CitizenshipMultipleValidator, { CitizenshipItemValidator } from './citize
 import CitizenshipPassportsValidator, { TravelItemValidator } from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
-import CohabitantsValidator from './cohabitant'
+import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import RelationshipsValidator from './relationships'
-import PeopleValidator from './people'
+import DivorceValidator from './divorce'
+import PeopleValidator, { PersonValidator } from './people'
 import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
 import ForeignDirectActivityValidator from './foreigndirectactivity'
 import ForeignDirectInterestValidator from './foreigndirectinterest'
@@ -89,6 +90,7 @@ import LegalAssociationsActivitiesValidator, { ActivitiesValidator } from './leg
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
+import { nameIsEmpty } from './helpers'
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 
 export {
@@ -109,6 +111,7 @@ export {
   ResidenceValidator,
   EmploymentValidator,
   EducationValidator,
+  EducationItemValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
   MilitaryServiceValidator,
@@ -123,6 +126,7 @@ export {
   DomesticViolenceValidator,
   OffenseValidator,
   FederalServiceValidator,
+  FederalServiceItemValidator,
   RelativesValidator,
   RelativeValidator,
   AliasValidator,
@@ -154,8 +158,11 @@ export {
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,
+  CohabitantValidator,
   RelationshipsValidator,
+  DivorceValidator,
   PeopleValidator,
+  PersonValidator,
   ForeignContactsValidator,
   ForeignNationalValidator,
   ForeignDirectActivityValidator,
@@ -237,6 +244,7 @@ export {
   LegalAssociationsTerrorismValidator,
   LocationValidator,
   SignatureValidator,
+  nameIsEmpty,
   OrderValidator,
   CompetenceOrderValidator,
   ConsultationOrderValidator

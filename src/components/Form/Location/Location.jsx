@@ -367,7 +367,6 @@ export default class Location extends ValidationElement {
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
-                  required={this.props.required}
                   />
           )
         case 'city':

@@ -1,8 +1,8 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validGenericTextfield } from './helpers'
+import { validNotApplicable, validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
 import LocationValidator from './location'
-import ReferenceValidator from './reference'
+import NameValidator from './name'
 
 export default class EducationValidator {
   constructor (state = {}, props = {}) {
@@ -33,7 +33,7 @@ export default class EducationValidator {
     }
 
     for (const edu of this.list) {
-      if (new EducationItemValidator(edu.Item, null).isValid() === false) {
+      if (!new EducationItemValidator(edu.Item, null).isValid()) {
         return false
       }
     }
@@ -70,7 +70,7 @@ export class EducationItemValidator {
   }
 
   validType () {
-    return this.type && this.type.length > 0
+    return (!!this.type && this.type.length > 0)
   }
 
   validReference () {
@@ -122,5 +122,44 @@ export class EducationItemValidator {
       this.validType() &&
       this.validReference() &&
       this.validDiplomas()
+  }
+}
+
+export class ReferenceValidator {
+  constructor (data = {}) {
+    this.fullName = data.FullName
+    this.fullNameNotApplicable = data.FullNameNotApplicable
+    this.phone = data.Phone
+    this.email = data.Email
+    this.emailNotApplicable = data.EmailNotApplicable
+    this.address = data.Address
+  }
+
+  validFullName () {
+    return validNotApplicable(this.fullNameNotApplicable, () => {
+      return new NameValidator(this.fullName).isValid()
+    })
+  }
+
+  validPhone () {
+    return validPhoneNumber(this.phone)
+  }
+
+  validEmail () {
+    return validNotApplicable(this.emailNotApplicable, () => { return validGenericTextfield(this.email) })
+  }
+
+  validAddress () {
+    return new LocationValidator(this.address).isValid()
+  }
+
+  isValid () {
+    if (this.fullNameNotApplicable && !this.fullNameNotApplicable.applicable) {
+      return true
+    }
+    return this.validFullName() &&
+      this.validPhone() &&
+      this.validEmail() &&
+      this.validAddress()
   }
 }

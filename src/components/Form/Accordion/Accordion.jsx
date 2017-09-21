@@ -45,17 +45,6 @@ export const scrollToBottom = (selector) => {
   window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' })
 }
 
-/**
- * Checks if the validator is the expected type and contains an isValid func.
- * TODO: Remove once everything has been refactored
- */
-export const validValidator = (validator) => {
-  return validator &&
-    typeof validator === 'function' &&
-    !!validator.prototype.isValid &&
-    typeof validator.prototype.isValid === 'function'
-}
-
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
@@ -361,7 +350,7 @@ export default class Accordion extends ValidationElement {
           </a>
         </div>
         <Show when={closedAndIncomplete && !initial}>
-          {this.props.byline(item, index, initial, this.props.incomplete)}
+          {this.props.byline(item, index, initial, this.props.incomplete, this.props.required)}
         </Show>
       </div>
     )
@@ -475,10 +464,6 @@ export default class Accordion extends ValidationElement {
    * */
   isValid (item) {
     if (this.props.required) {
-      if (!validValidator(this.props.validator)) {
-        console.warn('Invalid validator used.')
-        return false
-      }
       return new this.props.validator(item).isValid()
     }
     return true
