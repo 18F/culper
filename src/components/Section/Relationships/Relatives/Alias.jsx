@@ -51,6 +51,7 @@ export default class Alias extends ValidationElement {
     return (
       <div className="relative-alias">
         <Field title={i18n.t('relationships.relatives.heading.alias.title')}
+               scrollIntoView={this.props.scrollIntoView}
                titleSize="h3">
           {i18n.m('relationships.relatives.para.alias')}
           <Name name="Name"

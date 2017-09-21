@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import schematize from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
-import { RelativesValidator } from '../../../../validators'
+import { RelativesValidator, RelativeValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion } from '../../../Form'
 import Relative from './Relative'
@@ -68,6 +68,7 @@ export default class Relatives extends SubsectionElement {
                    summary={this.summary}
                    description={i18n.t('relationships.relatives.collection.summary.title')}
                    required={this.props.required}
+                   validator={RelativeValidator}
                    scrollIntoView={this.props.scrollIntoView}
                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.relatives.collection.append')}>

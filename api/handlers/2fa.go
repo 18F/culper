@@ -4,7 +4,6 @@ import (
 	"errors"
 	"fmt"
 	"net/http"
-	"os"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
@@ -126,7 +125,7 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if os.Getenv("ALLOW_2FA_RESET") == "" {
+	if cf.TwofactorResettable() {
 		http.Error(w, "Reset two-factor authentication not allowed on this server", http.StatusUnauthorized)
 		return
 	}

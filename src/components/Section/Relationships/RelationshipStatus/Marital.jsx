@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import schematize from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { MaritalValidator } from '../../../../validators'
+import { MaritalValidator, DivorceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Show, RadioGroup, Radio, Accordion } from '../../../Form'
 import CivilUnion from './CivilUnion'
@@ -49,7 +49,7 @@ export default class Marital extends SubsectionElement {
   }
 
   divorceSummary (item, index) {
-    const o = (item || {}).Divorce || {}
+    const o = (item || {}).Item || {}
     const date = DateSummary(o.DateDivorced)
     const name = NameSummary(o.Name)
     return Summary({
@@ -146,12 +146,13 @@ export default class Marital extends SubsectionElement {
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
                      required={this.props.required}
+                     validator={DivorceValidator}
                      scrollIntoView={this.props.scrollIntoView}
                      summary={this.divorceSummary}
                      description={i18n.t('relationships.civilUnion.divorce.collection.description')}
                      appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
                      appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
-            <Divorce name="Divorce"
+            <Divorce name="Item"
                      bind={true}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}

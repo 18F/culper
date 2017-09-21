@@ -41,9 +41,10 @@ import CitizenshipMultipleValidator, { CitizenshipItemValidator } from './citize
 import CitizenshipPassportsValidator, { TravelItemValidator } from './citizenship-passports'
 import CivilUnionValidator from './civilunion'
 import MaritalValidator from './marital'
-import CohabitantsValidator from './cohabitant'
+import CohabitantsValidator, { CohabitantValidator } from './cohabitant'
 import RelationshipsValidator from './relationships'
-import PeopleValidator from './people'
+import DivorceValidator from './divorce'
+import PeopleValidator, { PersonValidator } from './people'
 import ForeignContactsValidator, { ForeignNationalValidator } from './foreigncontacts'
 import ForeignDirectActivityValidator from './foreigndirectactivity'
 import ForeignDirectInterestValidator from './foreigndirectinterest'
@@ -162,8 +163,11 @@ export {
   CivilUnionValidator,
   MaritalValidator,
   CohabitantsValidator,
+  CohabitantValidator,
   RelationshipsValidator,
+  DivorceValidator,
   PeopleValidator,
+  PersonValidator,
   ForeignContactsValidator,
   ForeignNationalValidator,
   ForeignDirectActivityValidator,
