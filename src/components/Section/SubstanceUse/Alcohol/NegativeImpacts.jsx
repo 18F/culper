@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { AlcoholNegativeImpactsValidator, NegativeImpactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -101,7 +101,7 @@ NegativeImpacts.defaultProps = {
   subsection: 'alcohol/negative',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('substance.alcohol.negative', props))
+    return validate(schema('substance.alcohol.negative', props))
   },
   scrollToBottom: ''
 }

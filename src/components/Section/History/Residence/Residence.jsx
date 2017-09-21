@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { ResidenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -129,6 +129,6 @@ Residence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('history.residence', props))
+    return validate(schema('history.residence', props))
   }
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsHistoryValidator, HistoryValidator } from '../../../../validators'
@@ -108,7 +108,7 @@ History.defaultProps = {
   subsection: 'investigations/history',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('legal.investigations.history', props))
+    return validate(schema('legal.investigations.history', props))
   },
   scrollToBottom: ''
 }

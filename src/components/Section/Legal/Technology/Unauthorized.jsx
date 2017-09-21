@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalTechnologyUnauthorizedValidator, UnauthorizedValidator } from '../../../../validators'
@@ -113,7 +113,7 @@ Unauthorized.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return validate(schematize('legal.technology.unauthorized', props))
+    return validate(schema('legal.technology.unauthorized', props))
   },
   scrollToBottom: ''
 }

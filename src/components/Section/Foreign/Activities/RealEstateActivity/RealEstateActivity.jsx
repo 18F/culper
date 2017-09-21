@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import schematize from '../../../../../schema'
+import schema from '../../../../../schema'
 import validate from '../../../../../validators'
 import { Summary, AddressSummary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
@@ -114,7 +114,7 @@ RealEstateActivity.defaultProps = {
   subsection: 'activities/realestate',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.activities.realestate', props))
+    return validate(schema('foreign.activities.realestate', props))
   },
   scrollToBottom: ''
 }

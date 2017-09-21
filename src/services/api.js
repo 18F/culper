@@ -71,7 +71,7 @@ class Api {
       token = this.getQueryValue('token')
     }
 
-    if (env.IsTest()) {
+    if (token === null && env.IsTest()) {
       token = window.token
     }
 

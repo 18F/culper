@@ -45,33 +45,4 @@ describe('The identification section', () => {
       expect(component.find('div').length).toBeGreaterThan(0)
     })
   })
-
-  it('can process applicant birthdate in mapStateToProps', () => {
-    const tests = [
-      {
-        birthdate: {
-          month: 1,
-          day: 1,
-          year: 2010
-        },
-        expected: new Date('1/1/2010')
-      },
-      {
-        birthdate: {
-          month: null,
-          day: 1,
-          year: 2010
-        },
-        expected: null
-      },
-      {
-        birthdate: null,
-        expected: null
-      }
-    ]
-
-    tests.forEach(test => {
-      expect(processApplicantBirthDate(test.birthdate)).toEqual(test.expected)
-    })
-  })
 })

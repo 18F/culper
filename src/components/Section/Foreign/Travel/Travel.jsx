@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignTravelValidator, TravelValidator } from '../../../../validators'
@@ -122,7 +122,7 @@ Travel.defaultProps = {
   subsection: 'travel',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.travel', props))
+    return validate(schema('foreign.travel', props))
   },
   defaultState: true,
   scrollToBottom: ''

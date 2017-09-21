@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Location, Field } from '../../../Form'
@@ -44,7 +44,7 @@ ApplicantBirthPlace.defaultProps = {
   subsection: 'birthplace',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('identification.birthplace', props))
+    return validate(schema('identification.birthplace', props))
   }
 }
 

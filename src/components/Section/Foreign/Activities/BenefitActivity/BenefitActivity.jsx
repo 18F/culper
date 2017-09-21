@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import schematize from '../../../../../schema'
+import schema from '../../../../../schema'
 import validate from '../../../../../validators'
 import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
@@ -134,7 +134,7 @@ BenefitActivity.defaultProps = {
   subsection: 'activities/benefits',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.activities.benefits', props))
+    return validate(schema('foreign.activities.benefits', props))
   },
   scrollToBottom: ''
 }

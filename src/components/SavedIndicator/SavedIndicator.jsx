@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { updateApplication } from '../../actions/ApplicationActions'
 import { i18n } from '../../config'
+import schema from '../../schema'
 import { api } from '../../services'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { Show } from '../Form'
@@ -39,7 +40,7 @@ class SavedIndicator extends React.Component {
     const application = this.props.app
     const section = this.props.section.section
     const subsection = this.props.section.subsection
-    const pending = bits(section, subsection, application)
+    const pending = schema(bits(section, subsection, application), false)
 
     if (pending) {
       this.setState({elapsed: 0, animate: true}, () => {

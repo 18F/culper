@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { PassportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -280,6 +280,6 @@ Passport.defaultProps = {
   subsection: 'passport',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.passport', props))
+    return validate(schema('foreign.passport', props))
   }
 }

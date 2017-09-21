@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { ForeignContactsValidator, ForeignNationalValidator } from '../../../../validators'
@@ -109,7 +109,7 @@ Contacts.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.contacts', props))
+    return validate(schema('foreign.contacts', props))
   },
   defaultState: true,
   scrollToBottom: ''

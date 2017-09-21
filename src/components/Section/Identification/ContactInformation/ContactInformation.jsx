@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { ContactEmailValidator, ContactPhoneNumberValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -153,7 +153,7 @@ ContactInformation.defaultProps = {
   subsection: 'contacts',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('identification.contacts', props))
+    return validate(schema('identification.contacts', props))
   },
   defaultState: true
 }

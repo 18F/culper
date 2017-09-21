@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { GamblingValidator, GamblingItemValidator } from '../../../../validators'
@@ -127,7 +127,7 @@ Gambling.defaultProps = {
   subsection: 'gambling',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('financial.gambling', props))
+    return validate(schema('financial.gambling', props))
   },
   defaultState: true
 }

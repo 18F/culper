@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { env, i18n } from '../../config'
-import { login, qrcode, twofactor, twofactorreset } from '../../actions/AuthActions'
+import { qrcode, twofactor, twofactorreset } from '../../actions/AuthActions'
 
 class TwoFactor extends React.Component {
   constructor (props) {

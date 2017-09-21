@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsOverthrowValidator, OverthrowValidator } from '../../../../validators'
@@ -111,7 +111,7 @@ MembershipOverthrow.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return validate(schematize('legal.associations.membership-overthrow', props))
+    return validate(schema('legal.associations.membership-overthrow', props))
   },
   scrollToBottom: ''
 }

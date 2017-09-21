@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalInvestigationsRevokedValidator, RevokedValidator } from '../../../../validators'
@@ -109,7 +109,7 @@ Revoked.defaultProps = {
   subsection: 'investigations/revoked',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('legal.investigations.revoked', props))
+    return validate(schema('legal.investigations.revoked', props))
   },
   scrollToBottom: ''
 }

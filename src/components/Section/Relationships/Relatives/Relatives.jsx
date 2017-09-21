@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { RelativesValidator, RelativeValidator } from '../../../../validators'
@@ -95,7 +95,7 @@ Relatives.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('relationships.relatives', props))
+    return validate(schema('relationships.relatives', props))
   },
   defaultState: true,
   scrollToBottom: ''

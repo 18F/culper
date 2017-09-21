@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Name, Field } from '../../../Form'
@@ -36,7 +36,7 @@ ApplicantName.defaultProps = {
   dispatch: () => {},
   required: false,
   validator: (state, props) => {
-    return validate(schematize('identification.name', props.value))
+    return validate(schema('identification.name', props.value))
   }
 }
 

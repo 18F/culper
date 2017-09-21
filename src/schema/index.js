@@ -1,3 +1,3 @@
-import { schematize } from './schematize'
+import { schema } from './schema'
 
-export default schematize
+export default schema

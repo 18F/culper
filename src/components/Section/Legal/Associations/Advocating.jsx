@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { LegalAssociationsAdvocatingValidator, AdvocatingValidator } from '../../../../validators'
@@ -108,7 +108,7 @@ Advocating.defaultProps = {
   subsection: 'associations/advocating',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('legal.associations.advocating', props))
+    return validate(schema('legal.associations.advocating', props))
   },
   scrollToBottom: ''
 }

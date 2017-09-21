@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { DomesticViolenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -64,7 +64,7 @@ DomesticViolenceList.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return validate(schematize('legal.police.domesticviolence', props))
+    return validate(schema('legal.police.domesticviolence', props))
   },
   scrollToBottom: ''
 }

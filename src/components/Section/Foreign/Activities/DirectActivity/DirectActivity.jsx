@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
-import schematize from '../../../../../schema'
+import schema from '../../../../../schema'
 import validate from '../../../../../validators'
 import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
@@ -119,6 +119,6 @@ DirectActivity.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.activities.direct', props))
+    return validate(schema('foreign.activities.direct', props))
   }
 }

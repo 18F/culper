@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { ForeignBusinessAdviceValidator, AdviceValidator } from '../../../../validators'
@@ -109,7 +109,7 @@ Advice.defaultProps = {
   subsection: 'business/advice',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.business.advice', props))
+    return validate(schema('foreign.business.advice', props))
   },
   defaultState: true,
   scrollToBottom: ''

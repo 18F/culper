@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { MaritalValidator, DivorceValidator } from '../../../../validators'
@@ -176,7 +176,7 @@ Marital.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('relationships.marital', props))
+    return validate(schema('relationships.marital', props))
   },
   defaultState: true,
   scrollToBottom: ''

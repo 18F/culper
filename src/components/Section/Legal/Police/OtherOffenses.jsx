@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { PoliceOtherOffensesValidator, OtherOffenseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -131,7 +131,7 @@ OtherOffenses.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return validate(schematize('legal.police.additionaloffenses', props))
+    return validate(schema('legal.police.additionaloffenses', props))
   },
   defaultState: true,
   scrollToBottom: ''

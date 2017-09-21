@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Height, Weight, HairColor, EyeColor, Sex } from '../../../Form'
@@ -129,7 +129,7 @@ Physical.defaultProps = {
   subsection: 'physical',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('identification.physical', props))
+    return validate(schema('identification.physical', props))
   },
   required: false
 }

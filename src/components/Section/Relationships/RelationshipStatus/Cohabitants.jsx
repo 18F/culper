@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { CohabitantsValidator } from '../../../../validators'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
@@ -108,7 +108,7 @@ Cohabitants.defaultProps = {
   subsection: 'status/cohabitant',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('relationships.cohabitants', props))
+    return validate(schema('relationships.cohabitants', props))
   },
   defaultState: true,
   scrollToBottom: ''

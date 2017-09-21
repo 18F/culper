@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator, ForeignBusinessEmploymentItemValidator } from '../../../../validators'
@@ -105,7 +105,7 @@ Employment.defaultProps = {
   subsection: 'business/employment',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('foreign.business.employment', props))
+    return validate(schema('foreign.business.employment', props))
   },
   defaultState: true,
   scrollToBottom: ''

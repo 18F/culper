@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import schematize from '../../../../schema'
+import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { AlcoholReceivedCounselingsValidator, ReceivedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -105,7 +105,7 @@ ReceivedCounselings.defaultProps = {
   subsection: 'alcohol/additional',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('substance.alcohol.additional', props))
+    return validate(schema('substance.alcohol.additional', props))
   },
   scrollToBottom: ''
 }

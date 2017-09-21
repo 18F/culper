@@ -2,6 +2,7 @@ import { benefit } from './benefit'
 import { branch } from './branch'
 import { checkbox } from './checkbox'
 import { checkboxgroup } from './checkboxgroup'
+import { civilunion } from './civilunion'
 import { clearancelevel } from './clearancelevel'
 import { collection } from './collection'
 import { contacts } from './contacts'
@@ -20,6 +21,7 @@ import { name } from './name'
 import { notapplicable } from './notapplicable'
 import { number } from './number'
 import { physicaladdress } from './physicaladdress'
+import { psychologicalTreatment } from './psychologicalTreatment'
 import { radio } from './radio'
 import { reasonleft } from './reasonleft'
 import { reference } from './reference'
@@ -35,6 +37,7 @@ export {
   branch,
   checkbox,
   checkboxgroup,
+  civilunion,
   clearancelevel,
   collection,
   contacts,
@@ -53,6 +56,7 @@ export {
   notapplicable,
   number,
   physicaladdress,
+  psychologicalTreatment,
   radio,
   reasonleft,
   reference,

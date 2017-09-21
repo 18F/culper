@@ -1,7 +1,7 @@
 import * as form from './form'
 import * as section from './section'
 
-export const schematize = (type, props, raw = true) => {
+export const schema = (type, props, raw = true) => {
   return {
     type: type,
     props: raw ? props : transform[type](props)
@@ -22,7 +22,7 @@ const transform = {
     return form.checkboxgroup(data)
   },
   'clearancelevel': (data) => {
-    return form.clearnancelevel(data)
+    return form.clearancelevel(data)
   },
   'collection': (data) => {
     return form.collection(data)
@@ -256,7 +256,7 @@ const transform = {
     return section.substanceDrugOrdered(data)
   },
   'substance.drug.publicsafety': (data) => {
-    return section.substanceDrugPublicsafety(data)
+    return section.substanceDrugPublicSafety(data)
   },
   'substance.drug.purchase': (data) => {
     return section.substanceDrugPurchase(data)
@@ -334,6 +334,6 @@ const transform = {
     return section.psychologicalHospitalizations(data)
   },
   'psychological.treatment': (data) => {
-    return section.psychologicalTreatment(data)
+    return form.psychologicalTreatment(data)
   }
 }
