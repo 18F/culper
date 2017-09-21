@@ -1,6 +1,11 @@
+import { benefit } from './benefit'
 import { branch } from './branch'
 import { checkbox } from './checkbox'
+import { checkboxgroup } from './checkboxgroup'
 import { clearancelevel } from './clearancelevel'
+import { collection } from './collection'
+import { contacts } from './contacts'
+import { coowners } from './coowners'
 import { country } from './country'
 import { datecontrol } from './datecontrol'
 import { daterange } from './daterange'
@@ -26,9 +31,14 @@ import { text } from './text'
 import { textarea } from './textarea'
 
 export {
+  benefit,
   branch,
   checkbox,
+  checkboxgroup,
   clearancelevel,
+  collection,
+  contacts,
+  coowners,
   country,
   datecontrol,
   daterange,

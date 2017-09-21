@@ -1,4 +1,5 @@
-import { validate } from './validate'
+import { validate, walkValidationTree } from './validate'
+import DateControlValidator from './datecontrol'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import ContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './contactinformation'
@@ -90,11 +91,13 @@ import LegalAssociationsActivitiesValidator, { ActivitiesValidator } from './leg
 import LegalAssociationsTerrorismValidator from './legalassociationsterrorism'
 import LocationValidator from './location'
 import SignatureValidator from './signature'
-import { nameIsEmpty } from './helpers'
+import { nameIsEmpty, validSSN } from './helpers'
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 
 export default validate
 export {
+  walkValidationTree,
+  DateControlValidator,
   BankruptcyValidator,
   BankruptcyItemValidator,
   BirthPlaceValidator,
@@ -243,6 +246,7 @@ export {
   LocationValidator,
   SignatureValidator,
   nameIsEmpty,
+  validSSN,
   OrderValidator,
   CompetenceOrderValidator,
   ConsultationOrderValidator

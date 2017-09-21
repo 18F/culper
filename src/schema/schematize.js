@@ -1,10 +1,10 @@
 import * as form from './form'
 import * as section from './section'
 
-export const schematize = (type, props) => {
+export const schematize = (type, props, raw = true) => {
   return {
     type: type,
-    props: transform[type](props)
+    props: raw ? props : transform[type](props)
   }
 }
 

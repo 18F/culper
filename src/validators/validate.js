@@ -149,7 +149,7 @@ const validators = {
     return new logic.FederalServiceValidator(data).isValid()
   },
   'history.residence': (data) => {
-    return data.value.every(x => {
+    return data.List.every(x => {
       return new logic.ResidenceValidator(x.Item, null).isValid()
     })
   },
@@ -339,4 +339,38 @@ const validators = {
   'psychological.treatment': (data) => {
     return false
   }
+}
+
+// Walk through the validation tree of a piece of information.
+// This is useful when all values within a particular chunk of
+// data does not contain validations based on branching.
+export const walkValidationTree = (data) => {
+  // No data, no love.
+  if (!data) {
+    return false
+  }
+
+  // If the data matches the signature of a payload we know
+  // how to proceed with normal validation logic.
+  if (data.type && data.props) {
+    return validators(data)
+  }
+
+  // The data may be an object with named properties
+  // potentially containing payload. We want to "mine"
+  // for these and extract their results.
+  for (const property in data) {
+    // When the property is not specific to this instance
+    // skip it and go to the next.
+    if (!data.hasOwnProperty(property)) {
+      continue
+    }
+
+    const result = walkValidationTree(data[property])
+    if (!result) {
+      return false
+    }
+  }
+
+  return true
 }

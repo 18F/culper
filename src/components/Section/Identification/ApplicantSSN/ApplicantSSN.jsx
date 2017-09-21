@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schematize from '../../../../schema'
-import validate from '../../../../validators'
+import validate, { validSSN } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, SSN, Show } from '../../../Form'
 
@@ -134,7 +134,7 @@ ApplicantSSN.defaultProps = {
   dispatch: () => {},
   required: false,
   validator: (state, props) => {
-    return validate(schematize('identification.ssn', props.value))
+    return validate(schematize('identification.ssn', props))
   }
 }
 

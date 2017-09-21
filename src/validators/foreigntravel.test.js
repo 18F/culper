@@ -1,3 +1,5 @@
+import schematize from '../schema'
+import validate from '.'
 import ForeignTravelValidator, { TravelValidator } from './foreigntravel'
 import { battery } from './helpers'
 
@@ -427,6 +429,9 @@ describe('Foreign travel component validation', function () {
       }
     ]
 
-    battery(tests, ForeignTravelValidator, 'isValid')
+    // battery(tests, ForeignTravelValidator, 'isValid')
+    tests.forEach(test => {
+      expect(validate(schematize('foreign.travel', test.state))).toBe(test.expected)
+    })
   })
 })

@@ -141,7 +141,7 @@ OtherNames.defaultProps = {
   subsection: 'othernames',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('identification.othernames', props.value))
+    return validate(schematize('identification.othernames', props))
   },
   defaultState: true,
   required: false

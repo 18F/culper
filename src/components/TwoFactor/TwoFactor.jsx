@@ -7,7 +7,7 @@ class TwoFactor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      token: ''
+      token: this.props.token
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -54,13 +54,13 @@ class TwoFactor extends React.Component {
   }
 
   render () {
-    const mfa = env.MultipleFactorAuthentication()
+    const mfa = this.props.mfa || env.MultipleFactorAuthentication()
     const reset = mfa.enabled && mfa.resettable
           ? <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
           : ''
 
     if (!mfa.enabled) {
-      return i18n.m('twofactor.disabled')
+      return <div>>i18n.m('twofactor.disabled')</div>
     } else if (!this.props.qrcode) {
       return (
         <form onSubmit={this.handleSubmit}>

@@ -129,7 +129,7 @@ Physical.defaultProps = {
   subsection: 'physical',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schematize('identification.physical', props.value))
+    return validate(schematize('identification.physical', props))
   },
   required: false
 }
