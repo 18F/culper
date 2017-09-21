@@ -6,6 +6,7 @@ export default class FederalServiceValidator {
   constructor (state = {}, props = {}) {
     this.hasFederalService = state.HasFederalService
     this.list = state.List
+    this.listBranch = state.ListBranch
   }
 
   validList () {
@@ -15,6 +16,10 @@ export default class FederalServiceValidator {
 
     if (this.hasFederalService === 'Yes') {
       if (!this.list || this.list.length === 0) {
+        return false
+      }
+
+      if (this.listBranch !== 'No') {
         return false
       }
 

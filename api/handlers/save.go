@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"errors"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -12,24 +11,19 @@ import (
 )
 
 func Save(w http.ResponseWriter, r *http.Request) {
-	// Parse the authorization header for the token
-	authHeader := r.Header.Get("Authorization")
-	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
-	if len(matches) == 0 {
-		EncodeErrJSON(w, errors.New("No Authorization token header found"))
-		return
-	}
-	token := matches[1]
-
-	// Validate the JWT token and populate the account ID
 	account := &model.Account{}
-	if ok, err := account.ValidJwtToken(token, model.TwoFactorAudience); !ok {
-		EncodeErrJSON(w, err)
+	account.WithContext(db.NewDB())
+
+	// Valid token and audience while populating the audience ID
+	_, err := checkToken(r, account, model.TwoFactorAudience)
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Get the account information from the data store
-	account.WithContext(db.NewDB())
+	context := db.NewDB()
+	account.WithContext(context)
 	if err := account.Get(); err != nil {
 		EncodeErrJSON(w, err)
 		return
@@ -50,14 +44,14 @@ func Save(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Extract the entity interface of the payload and validate it
-	entity, err := payload.EntityPersister()
+	entity, err := payload.Entity()
 	if err != nil {
 		EncodeErrJSON(w, err)
 		return
 	}
 
 	// Save to storage and report any errors
-	if err = entity.Save(account.ID); err != nil {
+	if _, err = entity.Save(context, account.ID); err != nil {
 		EncodeErrJSON(w, err)
 		return
 	}
