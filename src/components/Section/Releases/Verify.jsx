@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { i18n } from '../../../config'
 import { SSN } from './helpers'
 import { Field } from '../../Form'

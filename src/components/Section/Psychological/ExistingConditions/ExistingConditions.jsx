@@ -220,7 +220,7 @@ ExistingConditions.defaultProps = {
   subsection: 'conditions',
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schema('psychological.existing', props))
+    return validate(schema('psychological.conditions', props))
   },
   prefix: 'existingConditions.diagnosis'
 }

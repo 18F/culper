@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation, env } from '../../config'
@@ -36,7 +36,7 @@ class Navigation extends React.Component {
 
     const pathname = this.props.location().pathname
 
-    return section.subsections.map(subsection => {
+    const subsections = section.subsections.map(subsection => {
       if (subsection.hidden) {
         return ''
       }
@@ -61,7 +61,7 @@ class Navigation extends React.Component {
       }
 
       return (
-        <div key={subsection.name} className="subsection" >
+        <div key={subsection.name} className="subsection">
           <Link to={subUrl} className={subClass}>
             <span className="section-name">
               {subsection.name}
@@ -72,6 +72,12 @@ class Navigation extends React.Component {
         </div>
       )
     })
+
+    return (
+      <div key={`top-${url}`}>
+        {subsections}
+      </div>
+    )
   }
 
   render () {
@@ -80,11 +86,11 @@ class Navigation extends React.Component {
 
     const nav = navigation.map((section) => {
       if (section.hidden) {
-        return ''
+        return null
       }
 
       if (section.hiddenFunc && section.hiddenFunc(this.props.application)) {
-        return ''
+        return null
       }
 
       const url = `/form/${section.url}`
@@ -124,14 +130,16 @@ class Navigation extends React.Component {
 
     return (
       <div className="form-navigation">
-        {nav}
+        {nav.filter(x => !!x)}
       </div>
     )
   }
 }
 
 Navigation.defaultProps = {
-  location: () => { return env.History().getCurrentLocation() }
+  location: () => {
+    return env.History().location
+  }
 }
 
 function mapStateToProps (state) {

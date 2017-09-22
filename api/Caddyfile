@@ -3,6 +3,7 @@
     gzip
     log stdout
     errors stdout
+    timeouts none
 
     proxy /api http://api:3000 {
         without /api

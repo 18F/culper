@@ -189,9 +189,9 @@ describe('The saved indicator component', () => {
       { section: 'relationships', subsection: 'status/cohabitant', application: application },
       { section: 'relationships', subsection: 'people', application: application },
       { section: 'relationships', subsection: 'relatives', application: application },
-      { section: 'citizenships', subsection: 'status', application: application },
-      { section: 'citizenships', subsection: 'multiple', application: application },
-      { section: 'citizenships', subsection: 'passports', application: application },
+      { section: 'citizenship', subsection: 'status', application: application },
+      { section: 'citizenship', subsection: 'multiple', application: application },
+      { section: 'citizenship', subsection: 'passports', application: application },
       { section: 'military', subsection: 'selective', application: application },
       { section: 'military', subsection: 'history', application: application },
       { section: 'military', subsection: 'disciplinary', application: application },
@@ -209,7 +209,7 @@ describe('The saved indicator component', () => {
       { section: 'foreign', subsection: 'business/ventures', application: application },
       { section: 'foreign', subsection: 'business/conferences', application: application },
       { section: 'foreign', subsection: 'business/contact', application: application },
-      { section: 'foreign', subsection: 'business/sponsorships', application: application },
+      { section: 'foreign', subsection: 'business/sponsorship', application: application },
       { section: 'foreign', subsection: 'business/political', application: application },
       { section: 'foreign', subsection: 'business/voting', application: application },
       { section: 'foreign', subsection: 'travel', application: application },
@@ -242,13 +242,16 @@ describe('The saved indicator component', () => {
       { section: 'legal', subsection: 'associations/activities-to-overthrow', application: application },
       { section: 'legal', subsection: 'associations/terrorism-association', application: application },
       { section: 'psycholigical', subsection: 'competence', application: application },
-      { section: 'psycholigical', subsection: 'consultation', application: application },
+      { section: 'psycholigical', subsection: 'consultations', application: application },
       { section: 'psycholigical', subsection: 'hospitalizations', application: application },
       { section: 'psycholigical', subsection: 'diagnoses', application: application },
       { section: 'psycholigical', subsection: 'conditions', application: application }
     ]
 
     tests.forEach(test => {
+      if (bits(test.section, test.subsection, test.application) === null) {
+        console.log(`Failure on ${test.section} and ${test.subsection}`)
+      }
       expect(bits(test.section, test.subsection, test.application)).toBe(true)
     })
   })

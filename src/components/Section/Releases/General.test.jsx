@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import { MemoryRouter } from 'react-router'
 import General from './General'
 
 describe('The General Release component', () => {
@@ -8,7 +9,7 @@ describe('The General Release component', () => {
     const expected = {
       onUpdate: () => { updates++ }
     }
-    const component = mount(<General {...expected} />)
+    const component = mount(<MemoryRouter><General {...expected} /></MemoryRouter>)
     expect(component.find('.general-release').length).toBe(1)
     component.find('.fullname input').simulate('change')
     expect(updates).toBe(1)

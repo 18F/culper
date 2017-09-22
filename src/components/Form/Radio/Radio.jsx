@@ -21,9 +21,11 @@ export default class Radio extends ValidationElement {
   }
 
   componentWillReceiveProps (newProps) {
-    this.setState({
-      checked: newProps.checked
-    })
+    if (this.refs.radio && newProps.checked != this.state.checked) {
+      this.setState({
+        checked: newProps.checked
+      })
+    }
   }
 
   /**

@@ -445,7 +445,7 @@ describe('Schema', function () {
         data: {}
       },
       {
-        type: 'psychological.existing',
+        type: 'psychological.conditions',
         data: {}
       },
       {
