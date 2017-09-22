@@ -1,5 +1,5 @@
 {
-  "type": "relationships.marital",
+  "type": "relationships.status.marital",
   "props": {
     "Status": {
       "type": "radio",

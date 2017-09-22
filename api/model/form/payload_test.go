@@ -85,8 +85,8 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/history-federal.json"},
 
 		// Section: Relationships
-		{Data: "testdata/relationships-marital.json"},
-		{Data: "testdata/relationships-cohabitants.json"},
+		{Data: "testdata/relationships-status-marital.json"},
+		{Data: "testdata/relationships-status-cohabitant.json"},
 		{Data: "testdata/relationships-people.json"},
 		{Data: "testdata/relationships-relatives.json"},
 
@@ -157,7 +157,7 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/psychological-consultations.json"},
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
-		{Data: "testdata/psychological-existing.json"},
+		{Data: "testdata/psychological-conditions.json"},
 	}
 
 	// HTTP test server to field any third party requests
@@ -224,8 +224,8 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/history-federal.json"},
 
 		// Section: Relationships
-		{Data: "testdata/relationships-marital.json"},
-		{Data: "testdata/relationships-cohabitants.json"},
+		{Data: "testdata/relationships-status-marital.json"},
+		{Data: "testdata/relationships-status-cohabitant.json"},
 		{Data: "testdata/relationships-people.json"},
 		{Data: "testdata/relationships-relatives.json"},
 
@@ -296,7 +296,7 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/psychological-consultations.json"},
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
-		{Data: "testdata/psychological-existing.json"},
+		{Data: "testdata/psychological-conditions.json"},
 	}
 
 	for _, test := range tests {

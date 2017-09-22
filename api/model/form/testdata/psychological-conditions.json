@@ -1,5 +1,5 @@
 {
-  "type": "psychological.existing",
+  "type": "psychological.conditions",
   "props": {
     "HasCondition": {
       "type": "branch",

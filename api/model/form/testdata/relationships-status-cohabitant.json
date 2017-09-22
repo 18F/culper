@@ -1,5 +1,5 @@
 {
-  "type": "relationships.cohabitants",
+  "type": "relationships.status.cohabitant",
   "props": {
     "HasCohabitant": {
       "type": "branch",

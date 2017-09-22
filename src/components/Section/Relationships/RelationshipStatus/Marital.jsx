@@ -176,7 +176,7 @@ Marital.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schema('relationships.marital', props))
+    return validate(schema('relationships.status.marital', props))
   },
   defaultState: true,
   scrollToBottom: ''

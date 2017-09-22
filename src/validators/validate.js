@@ -95,26 +95,26 @@ const validators = {
   'textarea': (data) => {
     return logic.validGenericTextfield(data)
   },
-  'identification.name': (data) => {
-    return new logic.NameValidator(data).isValid()
-  },
-  'identification.contacts': (data) => {
-    return new logic.ContactInformationValidator(data).isValid()
-  },
-  'identification.othernames': (data) => {
-    return new logic.OtherNamesValidator(data).isValid()
-  },
   'identification.birthdate': (data) => {
     return new logic.DateControlValidator(data).isValid()
   },
   'identification.birthplace': (data) => {
     return new logic.BirthPlaceValidator(data).isValid()
   },
-  'identification.ssn': (data) => {
-    return logic.validSSN(data) && data.verified
+  'identification.contacts': (data) => {
+    return new logic.ContactInformationValidator(data).isValid()
+  },
+  'identification.name': (data) => {
+    return new logic.NameValidator(data).isValid()
+  },
+  'identification.othernames': (data) => {
+    return new logic.OtherNamesValidator(data).isValid()
   },
   'identification.physical': (data) => {
     return new logic.PhysicalValidator(data).isValid()
+  },
+  'identification.ssn': (data) => {
+    return logic.validSSN(data) && data.verified
   },
   'financial.bankruptcy': (data) => {
     return new logic.BankruptcyValidator(data).isValid()
@@ -153,10 +153,10 @@ const validators = {
       return new logic.ResidenceValidator(x.Item, null).isValid()
     })
   },
-  'relationships.cohabitants': (data) => {
+  'relationships.status.cohabitant': (data) => {
     return new logic.CohabitantsValidator(data).isValid()
   },
-  'relationships.marital': (data) => {
+  'relationships.status.marital': (data) => {
     return new logic.MaritalValidator(data).isValid()
   },
   'relationships.people': (data) => {
@@ -185,15 +185,6 @@ const validators = {
   },
   'military.foreign': (data) => {
     return new logic.MilitaryForeignValidator(data).isValid()
-  },
-  'foreign.passport': (data) => {
-    return new logic.PassportValidator(data).isValid()
-  },
-  'foreign.contacts': (data) => {
-    return new logic.ForeignContactsValidator(data).isValid()
-  },
-  'foreign.travel': (data) => {
-    return new logic.ForeignTravelValidator(data).isValid()
   },
   'foreign.activities.benefits': (data) => {
     return new logic.ForeignBenefitActivityValidator(data).isValid()
@@ -236,6 +227,15 @@ const validators = {
   },
   'foreign.business.voting': (data) => {
     return new logic.ForeignBusinessVotingValidator(data).isValid()
+  },
+  'foreign.contacts': (data) => {
+    return new logic.ForeignContactsValidator(data).isValid()
+  },
+  'foreign.passport': (data) => {
+    return new logic.PassportValidator(data).isValid()
+  },
+  'foreign.travel': (data) => {
+    return new logic.ForeignTravelValidator(data).isValid()
   },
   'substance.alcohol.additional': (data) => {
     return new logic.AlcoholReceivedCounselingsValidator(data).isValid()
@@ -324,14 +324,14 @@ const validators = {
   'psychological.competence': (data) => {
     return new logic.CompetenceValidator(data).isValid()
   },
+  'psychological.conditions': (data) => {
+    return new logic.ExistingConditionsValidator(data).isValid()
+  },
   'psychological.consultations': (data) => {
     return new logic.ConsultationValidator(data).isValid()
   },
   'psychological.diagnoses': (data) => {
     return new logic.DiagnosesValidator(data).isValid()
-  },
-  'psychological.existing': (data) => {
-    return new logic.ExistingConditionsValidator(data).isValid()
   },
   'psychological.hospitalizations': (data) => {
     return new logic.HospitalizationsValidator(data).isValid()

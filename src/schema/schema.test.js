@@ -209,11 +209,11 @@ describe('Schema', function () {
         data: {}
       },
       {
-        type: 'relationships.cohabitants',
+        type: 'relationships.status.cohabitant',
         data: {}
       },
       {
-        type: 'relationships.marital',
+        type: 'relationships.status.marital',
         data: {}
       },
       {

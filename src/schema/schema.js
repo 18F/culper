@@ -96,26 +96,26 @@ const transform = {
   'textarea': (data) => {
     return form.textarea(data)
   },
-  'identification.name': (data) => {
-    return section.identificationName(data)
-  },
-  'identification.contacts': (data) => {
-    return section.identificationContacts(data)
-  },
-  'identification.othernames': (data) => {
-    return section.identificationOthernames(data)
-  },
   'identification.birthdate': (data) => {
     return section.identificationBirthdate(data)
   },
   'identification.birthplace': (data) => {
     return section.identificationBirthplace(data)
   },
-  'identification.ssn': (data) => {
-    return section.identificationSSN(data)
+  'identification.contacts': (data) => {
+    return section.identificationContacts(data)
+  },
+  'identification.name': (data) => {
+    return section.identificationName(data)
+  },
+  'identification.othernames': (data) => {
+    return section.identificationOthernames(data)
   },
   'identification.physical': (data) => {
     return section.identificationPhysical(data)
+  },
+  'identification.ssn': (data) => {
+    return section.identificationSSN(data)
   },
   'financial.bankruptcy': (data) => {
     return section.financialBankruptcy(data)
@@ -150,10 +150,10 @@ const transform = {
   'history.residence': (data) => {
     return section.historyResidence(data)
   },
-  'relationships.cohabitants': (data) => {
+  'relationships.status.cohabitant': (data) => {
     return section.relationshipsCohabitants(data)
   },
-  'relationships.marital': (data) => {
+  'relationships.status.marital': (data) => {
     return section.relationshipsMarital(data)
   },
   'relationships.people': (data) => {
@@ -182,15 +182,6 @@ const transform = {
   },
   'military.foreign': (data) => {
     return section.militaryForeign(data)
-  },
-  'foreign.passport': (data) => {
-    return section.foreignPassport(data)
-  },
-  'foreign.contacts': (data) => {
-    return section.foreignContacts(data)
-  },
-  'foreign.travel': (data) => {
-    return section.foreignTravel(data)
   },
   'foreign.activities.benefits': (data) => {
     return section.foreignActivitiesBenefits(data)
@@ -233,6 +224,15 @@ const transform = {
   },
   'foreign.business.voting': (data) => {
     return section.foreignBusinessVoting(data)
+  },
+  'foreign.contacts': (data) => {
+    return section.foreignContacts(data)
+  },
+  'foreign.passport': (data) => {
+    return section.foreignPassport(data)
+  },
+  'foreign.travel': (data) => {
+    return section.foreignTravel(data)
   },
   'substance.alcohol.additional': (data) => {
     return section.substanceAlcoholAdditional(data)
@@ -321,14 +321,14 @@ const transform = {
   'psychological.competence': (data) => {
     return section.psychologicalCompetence(data)
   },
+  'psychological.conditions': (data) => {
+    return section.psychologicalExisting(data)
+  },
   'psychological.consultations': (data) => {
     return section.psychologicalConsultations(data)
   },
   'psychological.diagnoses': (data) => {
     return section.psychologicalDiagnoses(data)
-  },
-  'psychological.existing': (data) => {
-    return section.psychologicalExisting(data)
   },
   'psychological.hospitalizations': (data) => {
     return section.psychologicalHospitalizations(data)
