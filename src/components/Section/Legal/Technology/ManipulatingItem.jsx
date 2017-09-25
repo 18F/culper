@@ -75,6 +75,7 @@ export default class ManipulatingItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.manipulating.heading.location')}
+          elp="legal.technology.manipulating.help.location"
           adjustFor="address"
           scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
