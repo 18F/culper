@@ -19,8 +19,8 @@ class Financial extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="identification/review"
-                       backLabel={i18n.t('identification.destination.review')}
+                       back="foreign/review"
+                       backLabel={i18n.t('foreign.destination.review')}
                        next="financial/bankruptcy"
                        nextLabel={i18n.t('financial.destination.bankruptcy')}>
             <Field title={i18n.t('financial.intro.title')}
@@ -36,8 +36,8 @@ class Financial extends SectionElement {
                        showTop={true}
                        back="financial/nonpayment"
                        backLabel={i18n.t('financial.destination.nonpayment')}
-                       next="history/intro"
-                       nextLabel={i18n.t('history.destination.intro')}>
+                       next="substance/intro"
+                       nextLabel={i18n.t('substance.destination.intro')}>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
                           addressBooks={this.props.AddressBooks}
