@@ -192,6 +192,9 @@ export default class EducationItem extends ValidationElement {
                       {...this.state.Address}
                       label={i18n.t('history.education.label.address')}
                       layout={Location.ADDRESS}
+                      dispatch={this.props.dispatch}
+                      addressBooks={this.props.addressBooks}
+                      addressBook="Education"
                       geocode={true}
                       onUpdate={this.updateAddress}
                       onError={this.props.onError}
