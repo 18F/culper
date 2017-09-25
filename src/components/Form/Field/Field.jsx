@@ -302,7 +302,7 @@ export default class Field extends ValidationElement {
           {this.icon()}
         </span>
         <div className="table expand">
-          <span className="messages" ref="helpMessage">
+          <span className="messages help-messages" ref="helpMessage">
             {this.helpMessage()}
           </span>
         </div>
@@ -316,7 +316,7 @@ export default class Field extends ValidationElement {
           </span>
         </div>
         <div className="table expand">
-          <span className="messages" ref="errorMessages">
+          <span className="messages error-messages" ref="errorMessages">
             {this.errorMessages()}
           </span>
         </div>

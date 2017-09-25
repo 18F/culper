@@ -38,6 +38,7 @@ var paths = {
     './src/img/*'
   ],
   css: 'eqip.css',
+  printCss: 'eqip.print.css',
   destination: {
     root: './dist',
     css: './dist/css',
@@ -52,7 +53,8 @@ gulp.task('copy', ['clean'], copy)
 gulp.task('fonts', ['clean'], fonts)
 gulp.task('images', ['clean'], images)
 gulp.task('lint', [], sasslint(paths.sass.local[0], paths.sass.rules))
-gulp.task('sass', ['clean'], convert)
+gulp.task('print', printCss)
+gulp.task('sass', ['clean', 'print'], convert)
 gulp.task('build', ['clean', 'copy', 'fonts', 'images', 'sass'], compile)
 gulp.task('watchdog', ['build'], watchdog)
 gulp.task('default', ['build'])
@@ -101,6 +103,17 @@ function convert () {
       includePaths: [ paths.sass.vars ]
     }))
     .pipe(concat(paths.css))
+    .pipe(gulp.dest(paths.destination.css))
+}
+
+function printCss () {
+  'use strict'
+  return gulp
+    .src('./src/sass/print.scss')
+    .pipe(sass({
+      includePaths: [ paths.sass.vars ]
+    }))
+    .pipe(concat(paths.printCss))
     .pipe(gulp.dest(paths.destination.css))
 }
 
