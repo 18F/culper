@@ -3754,15 +3754,15 @@ const en = {
         datesEmployed: {
           help: {
             title: 'Need help with the dates you were employed?',
-            message: 'Select the dates you were employed',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         },
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Provide the address',
+            title: 'Need help with this address?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -3806,7 +3806,12 @@ const en = {
             note: ''
           },
           address: {
-            label: 'This address is'
+            label: 'This address is',
+            help: {
+              title: 'Need help with this address?',
+              message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+              note: ''
+           }
           },
           heading: {
             telephone: 'Provide telephone number',
@@ -3847,7 +3852,7 @@ const en = {
           datesEmployed: {
             help: {
               title: 'Need help with the dates of employment?',
-              message: 'Provide dates of employment',
+              message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
               note: ''
             }
           }
