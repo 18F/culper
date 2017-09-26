@@ -217,7 +217,6 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.title`)}
-                 help={`${prefix}.title.help`}
                  adjustFor="labels"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="Title"
@@ -232,7 +231,6 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showAssignedDuty()}>
           <Field title={i18n.t(`${prefix}.heading.dutyStation`)}
-                 help={`${prefix}.dutyStation.help`}
                  adjustFor="labels"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="DutyStation"
@@ -247,7 +245,6 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showStatus()}>
           <Field title={i18n.t(`${prefix}.heading.status`)}
-                 help={`${prefix}.status.help`}
                  shrink={true}
                  scrollIntoView={this.props.scrollIntoView}>
             <EmploymentStatus name="Status"
@@ -297,7 +294,6 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.telephone`)}
-                 help={`${prefix}.telephone.help`}
                  adjustFor="telephone"
                  scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="Telephone"
