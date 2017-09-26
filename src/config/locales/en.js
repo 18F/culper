@@ -3673,7 +3673,7 @@ const en = {
           title: 'Government employment',
           help: {
             title: 'Need help with your employment activity?',
-            message: 'Select your employment activity',
+            message: 'State Government (Non-Federal employment). Non-government employment excludes self-employment, if you were self employed choose "Self-employment". ',
             note: ''
           },
           other: {
@@ -3894,7 +3894,7 @@ const en = {
           },
           heading: {
             name: 'Provide the name of your supervisor',
-            title: 'Provide the position title of your supervisor',
+            title: 'Provide the rank/position title of your supervisor',
             email: 'Provide the email address of your supervisor',
             address: 'Provide the physical work location of your supervisor',
             telephone: 'Provide the telephone number for this supervisor'
