@@ -383,6 +383,7 @@ class History extends SectionElement {
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
+                         addressBooks={this.props.AddressBooks}
                          scrollIntoView={false}
                          required={true}
                          />
@@ -527,6 +528,7 @@ class History extends SectionElement {
                            onUpdate={this.updateEducation}
                            onError={this.handleError}
                            dispatch={this.props.dispatch}
+                           addressBooks={this.props.AddressBooks}
                            />
               </div>
             </Show>
