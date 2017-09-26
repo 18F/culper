@@ -3727,7 +3727,7 @@ const en = {
             date: 'Provide the date you quit after being told you would be fired'
           },
           charges: {
-            option: 'Charges',
+            option: 'Misconduct',
             text: 'Provide the charges or allegations of misconduct',
             date: 'Provide the date you left following the charges or allegations of misconduct'
           },
