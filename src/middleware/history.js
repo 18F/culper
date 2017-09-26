@@ -22,6 +22,17 @@ export const findPosition = (el) => {
 export const PUSH_STATE = 'PUSH'
 
 /**
+ * Action requesting a history push state
+ */
+export const push = (path, scrollTo = 'scrollTo') => {
+  return {
+    type: PUSH_STATE,
+    to: path,
+    scrollTo: scrollTo
+  }
+}
+
+/**
  * historyMiddleware is a custom middleware function for redux that allows history actions to be
  * dispatched in order to change router paths.
  */
@@ -103,15 +114,4 @@ export const clearErrorsMiddleware = store => next => action => {
 
   // Allow redux to continue the flow and executing the next middleware
   next(action)
-}
-
-/**
- * Action requesting a history push state
- */
-export function push (path, scrollTo = 'scrollTo') {
-  return {
-    type: PUSH_STATE,
-    to: path,
-    scrollTo: scrollTo
-  }
 }
