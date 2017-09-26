@@ -225,7 +225,6 @@ export default class EmploymentItem extends ValidationElement {
                   {...this.props.Title}
                   onUpdate={this.updateTitle}
                   className="text employment-title"
-                  label={i18n.t(`${prefix}.title.label`)}
                   onError={this.props.onError}
                   required={this.props.required}
                   />
@@ -241,7 +240,6 @@ export default class EmploymentItem extends ValidationElement {
                   {...this.props.DutyStation}
                   onUpdate={this.updateDutyStation}
                   className="text full-width employment-duty-station"
-                  label={i18n.t(`${prefix}.dutyStation.label`)}
                   onError={this.props.onError}
                   required={this.props.required}
                   />
