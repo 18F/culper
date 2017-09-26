@@ -48,7 +48,6 @@ export default class Supervisor extends ValidationElement {
     return (
       <div className="supervisor">
         <Field title={i18n.t('history.employment.default.supervisor.heading.name')}
-               help="history.employment.default.supervisor.name.help"
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="SupervisorName"
@@ -61,7 +60,6 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.title')}
-               help="history.employment.default.supervisor.title.help"
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Title"
@@ -74,7 +72,6 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.email')}
-               help="history.employment.default.supervisor.email.help"
                adjustFor="label"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
@@ -114,7 +111,6 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.telephone')}
-               help="history.employment.default.supervisor.telephone.help"
                adjustFor="telephone"
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="Telephone"
