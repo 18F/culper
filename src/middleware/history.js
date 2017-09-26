@@ -2,7 +2,7 @@ import { env } from '../config'
 import { reducer } from '../reducers/application'
 import SectionConstants from '../actions/SectionConstants'
 import { updateApplication, clearErrors } from '../actions/ApplicationActions'
-import { bits } from '../components/SavedIndicator'
+import { sectionData } from '../components/Section/sectionData'
 import schema, { unschema } from '../schema'
 import { api } from '../services'
 
@@ -77,7 +77,7 @@ export const saveMiddleware = store => next => action => {
     if (action.previous && action.previous.section && action.previous.application) {
       const section = action.previous.section
       const application = action.previous.application
-      const pending = bits(section.section, section.subsection, application)
+      const pending = sectionData(section.section, section.subsection, application)
       if (pending) {
         const payload = schema(`${section.section}/${section.subsection}`.replace('/', '.'), pending, false)
         api

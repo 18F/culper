@@ -1,2 +1,2 @@
-import SavedIndicator, { bits } from './SavedIndicator'
-export { SavedIndicator, bits }
+import SavedIndicator from './SavedIndicator'
+export { SavedIndicator }
