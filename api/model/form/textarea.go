@@ -11,7 +11,7 @@ import (
 
 // Textarea is a basic input.
 type Textarea struct {
-	ID    int
+	ID    int    `json:"-"`
 	Value string `json:"value"`
 }
 

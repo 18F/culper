@@ -14,9 +14,9 @@ type Contacts struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	ListID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

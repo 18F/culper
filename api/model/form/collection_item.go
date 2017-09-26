@@ -11,11 +11,11 @@ import (
 type CollectionItem struct {
 	Item PayloadProperties `sql:"-"`
 
-	ID           int
-	CollectionID int
-	Name         string
-	Table        string
-	ItemID       int
+	ID           int    `json:"-"`
+	CollectionID int    `json:"-"`
+	Name         string `json:"-"`
+	Table        string `json:"-"`
+	ItemID       int    `json:"-"`
 }
 
 // Valid iterates through each named property of an item validating

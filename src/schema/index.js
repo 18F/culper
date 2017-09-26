@@ -1,3 +1,4 @@
-import { schema } from './schema'
+import { schema, unschema } from './schema'
 
 export default schema
+export { unschema }

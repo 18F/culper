@@ -18,10 +18,10 @@ type PsychologicalCompetence struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	IsIncompetentID int
-	ListID          int
+	ID              int   `json:"-"`
+	AccountID       int64 `json:"-"`
+	IsIncompetentID int   `json:"-"`
+	ListID          int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -168,10 +168,10 @@ type PsychologicalConsultations struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	ConsultedID int
-	ListID      int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	ConsultedID int   `json:"-"`
+	ListID      int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -324,13 +324,13 @@ type PsychologicalDiagnoses struct {
 	TreatmentList *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	DiagnosedID     int
-	DidNotConsultID int
-	DiagnosisListID int
-	InTreatmentID   int
-	TreatmentListID int
+	ID              int   `json:"-"`
+	AccountID       int64 `json:"-"`
+	DiagnosedID     int   `json:"-"`
+	DidNotConsultID int   `json:"-"`
+	DiagnosisListID int   `json:"-"`
+	InTreatmentID   int   `json:"-"`
+	TreatmentListID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -557,10 +557,10 @@ type PsychologicalHospitalizations struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HospitalizedID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HospitalizedID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -715,14 +715,14 @@ type PsychologicalExisting struct {
 	DidNotFollowExplanation *Textarea   `json:"-"`
 
 	// Persister specific fields
-	ID                        int
-	AccountID                 int64
-	HasConditionID            int
-	ReceivedTreatmentID       int
-	ExplanationID             int
-	TreatmentListID           int
-	DidNotFollowID            int
-	DidNotFollowExplanationID int
+	ID                        int   `json:"-"`
+	AccountID                 int64 `json:"-"`
+	HasConditionID            int   `json:"-"`
+	ReceivedTreatmentID       int   `json:"-"`
+	ExplanationID             int   `json:"-"`
+	TreatmentListID           int   `json:"-"`
+	DidNotFollowID            int   `json:"-"`
+	DidNotFollowExplanationID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -981,11 +981,11 @@ type PsychologicalTreatment struct {
 	Address *Location  `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	NameID    int
-	PhoneID   int
-	AddressID int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	NameID    int   `json:"-"`
+	PhoneID   int   `json:"-"`
+	AddressID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

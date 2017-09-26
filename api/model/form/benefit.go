@@ -34,19 +34,19 @@ type Benefit struct {
 	ObligatedExplanation *Textarea    `json:"-"`
 
 	// Persister specific fields
-	ID                     int
-	AccountID              int64
-	BeginID                int
-	EndID                  int
-	FrequencyID            int
-	OtherFrequencyID       int
-	ReceivedID             int
-	CountryID              int
-	ValueID                int
-	ValueEstimatedID       int
-	ReasonID               int
-	ObligatedID            int
-	ObligatedExplanationID int
+	ID                     int   `json:"-"`
+	AccountID              int64 `json:"-"`
+	BeginID                int   `json:"-"`
+	EndID                  int   `json:"-"`
+	FrequencyID            int   `json:"-"`
+	OtherFrequencyID       int   `json:"-"`
+	ReceivedID             int   `json:"-"`
+	CountryID              int   `json:"-"`
+	ValueID                int   `json:"-"`
+	ValueEstimatedID       int   `json:"-"`
+	ReasonID               int   `json:"-"`
+	ObligatedID            int   `json:"-"`
+	ObligatedExplanationID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

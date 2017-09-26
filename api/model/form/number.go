@@ -13,7 +13,7 @@ import (
 
 // Number is a basic input.
 type Number struct {
-	ID    int
+	ID    int    `json:"-"`
 	Value string `json:"value"`
 }
 

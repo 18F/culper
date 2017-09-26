@@ -17,9 +17,9 @@ type IdentificationName struct {
 	Name *Name
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	NameID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	NameID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -130,9 +130,9 @@ type IdentificationBirthPlace struct {
 	Location *Location
 
 	// Persister specific fields
-	ID         int
-	AccountID  int64
-	LocationID int
+	ID         int   `json:"-"`
+	AccountID  int64 `json:"-"`
+	LocationID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -243,9 +243,9 @@ type IdentificationBirthDate struct {
 	Date *DateControl
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	DateID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	DateID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -357,9 +357,9 @@ type IdentificationSSN struct {
 	SSN      *SSN
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	SSNID     int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	SSNID     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -481,10 +481,10 @@ type IdentificationContacts struct {
 	PhoneNumbers *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	EmailsID       int
-	PhoneNumbersID int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	EmailsID       int   `json:"-"`
+	PhoneNumbersID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -630,10 +630,10 @@ type IdentificationOtherNames struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasOtherNamesID int
-	ListID          int
+	ID              int   `json:"-"`
+	AccountID       int64 `json:"-"`
+	HasOtherNamesID int   `json:"-"`
+	ListID          int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -789,14 +789,14 @@ type IdentificationPhysical struct {
 	Weight    *Number   `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	CommentsID  int
-	EyeColorID  int
-	HairColorID int
-	SexID       int
-	HeightID    int
-	WeightID    int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	CommentsID  int   `json:"-"`
+	EyeColorID  int   `json:"-"`
+	HairColorID int   `json:"-"`
+	SexID       int   `json:"-"`
+	HeightID    int   `json:"-"`
+	WeightID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

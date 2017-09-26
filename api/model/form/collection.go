@@ -19,9 +19,9 @@ type Collection struct {
 	Items  []*CollectionItem `json:"items" sql:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	BranchID  int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	BranchID  int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

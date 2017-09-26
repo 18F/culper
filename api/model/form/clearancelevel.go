@@ -17,10 +17,10 @@ type ClearanceLevel struct {
 	Explanation *Textarea `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	LevelID       int
-	ExplanationID int
+	ID            int   `json:"-"`
+	AccountID     int64 `json:"-"`
+	LevelID       int   `json:"-"`
+	ExplanationID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

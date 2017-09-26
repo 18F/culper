@@ -11,7 +11,7 @@ import (
 
 // Text is a basic input.
 type Text struct {
-	ID    int
+	ID    int    `json:"-"`
 	Value string `json:"value"`
 }
 

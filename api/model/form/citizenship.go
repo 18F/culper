@@ -64,33 +64,33 @@ type CitizenshipStatus struct {
 	ResidenceStatus             *Text        `json:"-"`
 
 	// Persister specific fields
-	ID                            int
-	AccountID                     int64
-	CitizenshipStatusID           int
-	AbroadDocumentationID         int
-	ExplanationID                 int
-	DocumentNumberID              int
-	DocumentIssuedID              int
-	DocumentNameID                int
-	DocumentExpirationID          int
-	DocumentTypeID                int
-	PlaceIssuedID                 int
-	CertificateNumberID           int
-	CertificateIssuedID           int
-	CertificateNameID             int
-	CertificateCourtNameID        int
-	CertificateCourtAddressID     int
-	BornOnMilitaryInstallationID  int
-	MilitaryBaseID                int
-	EntryDateID                   int
-	EntryLocationID               int
-	PriorCitizenshipID            int
-	HasAlienRegistrationID        int
-	AlienRegistrationNumberID     int
-	AlienRegistrationExpirationID int
-	BasisID                       int
-	PermanentResidentCardNumberID int
-	ResidenceStatusID             int
+	ID                            int   `json:"-"`
+	AccountID                     int64 `json:"-"`
+	CitizenshipStatusID           int   `json:"-"`
+	AbroadDocumentationID         int   `json:"-"`
+	ExplanationID                 int   `json:"-"`
+	DocumentNumberID              int   `json:"-"`
+	DocumentIssuedID              int   `json:"-"`
+	DocumentNameID                int   `json:"-"`
+	DocumentExpirationID          int   `json:"-"`
+	DocumentTypeID                int   `json:"-"`
+	PlaceIssuedID                 int   `json:"-"`
+	CertificateNumberID           int   `json:"-"`
+	CertificateIssuedID           int   `json:"-"`
+	CertificateNameID             int   `json:"-"`
+	CertificateCourtNameID        int   `json:"-"`
+	CertificateCourtAddressID     int   `json:"-"`
+	BornOnMilitaryInstallationID  int   `json:"-"`
+	MilitaryBaseID                int   `json:"-"`
+	EntryDateID                   int   `json:"-"`
+	EntryLocationID               int   `json:"-"`
+	PriorCitizenshipID            int   `json:"-"`
+	HasAlienRegistrationID        int   `json:"-"`
+	AlienRegistrationNumberID     int   `json:"-"`
+	AlienRegistrationExpirationID int   `json:"-"`
+	BasisID                       int   `json:"-"`
+	PermanentResidentCardNumberID int   `json:"-"`
+	ResidenceStatusID             int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -669,10 +669,10 @@ type CitizenshipMultiple struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	HasMultipleID int
-	ListID        int
+	ID            int   `json:"-"`
+	AccountID     int64 `json:"-"`
+	HasMultipleID int   `json:"-"`
+	ListID        int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -789,9 +789,9 @@ type CitizenshipPassports struct {
 	Passports *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	PassportsID int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	PassportsID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

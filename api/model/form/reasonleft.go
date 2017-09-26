@@ -19,11 +19,11 @@ type ReasonLeft struct {
 	ReasonDescription *Textarea   `json:"-"`
 
 	// Persister specific fields
-	ID                  int
-	AccountID           int64
-	CommentsID          int
-	ReasonsID           int
-	ReasonDescriptionID int
+	ID                  int   `json:"-"`
+	AccountID           int64 `json:"-"`
+	CommentsID          int   `json:"-"`
+	ReasonsID           int   `json:"-"`
+	ReasonDescriptionID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

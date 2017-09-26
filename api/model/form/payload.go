@@ -32,8 +32,14 @@ func (payload Payload) Entity() (model.Entity, error) {
 		return nil, errors.New("Could not determine a suitable type")
 	}
 
-	err := entity.Unmarshal(payload.Props)
-	return entity, err
+	// If there is a payload present we want to try and unmarshal it
+	if payload.Props != nil {
+		if err := entity.Unmarshal(payload.Props); err != nil {
+			return entity, err
+		}
+	}
+
+	return entity, nil
 }
 
 // // EntityPersister returns the appropriate entity as an interface

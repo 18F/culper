@@ -22,12 +22,12 @@ type MilitarySelective struct {
 	Explanation        *Textarea `json:"-"`
 
 	// Persister specific fields
-	ID                   int
-	AccountID            int64
-	WasBornAfterID       int
-	HasRegisteredID      int
-	RegistrationNumberID int
-	ExplanationID        int
+	ID                   int   `json:"-"`
+	AccountID            int64 `json:"-"`
+	WasBornAfterID       int   `json:"-"`
+	HasRegisteredID      int   `json:"-"`
+	RegistrationNumberID int   `json:"-"`
+	ExplanationID        int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -228,10 +228,10 @@ type MilitaryHistory struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	HasServedID int
-	ListID      int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	HasServedID int   `json:"-"`
+	ListID      int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -378,10 +378,10 @@ type MilitaryDisciplinary struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	HasDisciplinaryID int
-	ListID            int
+	ID                int   `json:"-"`
+	AccountID         int64 `json:"-"`
+	HasDisciplinaryID int   `json:"-"`
+	ListID            int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -526,9 +526,9 @@ type MilitaryForeign struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	ListID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

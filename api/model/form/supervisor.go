@@ -25,14 +25,14 @@ type Supervisor struct {
 	Telephone          *Telephone     `json:"-"`
 
 	// Persister specific fields
-	ID                   int
-	AccountID            int64
-	SupervisorNameID     int
-	TitleID              int
-	EmailID              int
-	EmailNotApplicableID int
-	AddressID            int
-	TelephoneID          int
+	ID                   int   `json:"-"`
+	AccountID            int64 `json:"-"`
+	SupervisorNameID     int   `json:"-"`
+	TitleID              int   `json:"-"`
+	EmailID              int   `json:"-"`
+	EmailNotApplicableID int   `json:"-"`
+	AddressID            int   `json:"-"`
+	TelephoneID          int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

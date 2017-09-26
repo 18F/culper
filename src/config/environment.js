@@ -48,6 +48,7 @@ class Env {
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointOAuth (service) { return `/auth/${service}` }
   EndpointSave (payload) { return '/me/save' }
+  EndpointSection (type) { return `/me/section?type=${type || ''}` }
   EndpointValidate (payload) { return '/me/validate' }
 }
 

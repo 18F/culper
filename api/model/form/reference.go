@@ -29,16 +29,16 @@ type Reference struct {
 	Address            *Location      `json:"-"`
 
 	// Persister specific fields
-	ID                   int
-	AccountID            int64
-	FullNameID           int
-	LastContactID        int
-	RelationshipID       int
-	RelationshipOtherID  int
-	PhoneID              int
-	EmailID              int
-	EmailNotApplicableID int
-	AddressID            int
+	ID                   int   `json:"-"`
+	AccountID            int64 `json:"-"`
+	FullNameID           int   `json:"-"`
+	LastContactID        int   `json:"-"`
+	RelationshipID       int   `json:"-"`
+	RelationshipOtherID  int   `json:"-"`
+	PhoneID              int   `json:"-"`
+	EmailID              int   `json:"-"`
+	EmailNotApplicableID int   `json:"-"`
+	AddressID            int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

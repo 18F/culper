@@ -13,7 +13,7 @@ import (
 
 // DateControl is a basic input.
 type DateControl struct {
-	ID        int
+	ID        int       `json:"-"`
 	Month     string    `json:"month"`
 	Day       string    `json:"day"`
 	Year      string    `json:"year"`

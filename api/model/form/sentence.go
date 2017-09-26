@@ -27,15 +27,15 @@ type Sentence struct {
 	ProbationDatesNA     *NotApplicable `json:"-"`
 
 	// Persister specific fields
-	ID                     int
-	AccountID              int64
-	DescriptionID          int
-	ExceedsYearID          int
-	IncarceratedID         int
-	IncarcerationDatesID   int
-	IncarcerationDatesNAID int
-	ProbationDatesID       int
-	ProbationDatesNAID     int
+	ID                     int   `json:"-"`
+	AccountID              int64 `json:"-"`
+	DescriptionID          int   `json:"-"`
+	ExceedsYearID          int   `json:"-"`
+	IncarceratedID         int   `json:"-"`
+	IncarcerationDatesID   int   `json:"-"`
+	IncarcerationDatesNAID int   `json:"-"`
+	ProbationDatesID       int   `json:"-"`
+	ProbationDatesNAID     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

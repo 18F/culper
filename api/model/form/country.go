@@ -10,7 +10,7 @@ import (
 
 // Country is a basic input.
 type Country struct {
-	ID    int
+	ID    int      `json:"-"`
 	Value []string `json:"value"`
 }
 

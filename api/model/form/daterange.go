@@ -20,10 +20,10 @@ type DateRange struct {
 	To   *DateControl `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	FromID    int
-	ToID      int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	FromID    int   `json:"-"`
+	ToID      int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

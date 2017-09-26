@@ -11,11 +11,11 @@ import (
 type CivilUnion struct {
 	Items PayloadProperties `sql:"-"`
 
-	ID        int
-	AccountID int64
-	Name      string
-	Table     string
-	ItemID    int
+	ID        int    `json:"-"`
+	AccountID int64  `json:"-"`
+	Name      string `json:"-"`
+	Table     string `json:"-"`
+	ItemID    int    `json:"-"`
 }
 
 // Valid iterates through each named property of an item validating

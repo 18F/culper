@@ -2,14 +2,19 @@ import SectionConstants from './SectionConstants'
 
 export function updateSection (section, subsection) {
   return function (dispatch, getState) {
-    return dispatch(handleSectionUpdate(section, subsection))
+    let previous = {}
+    if (getState) {
+      previous = getState()
+    }
+    return dispatch(handleSectionUpdate(section, subsection, previous))
   }
 }
 
-export function handleSectionUpdate (section, subsection, scrollTo = 'scrollTo') {
+export function handleSectionUpdate (section, subsection, previous = {}, scrollTo = 'scrollTo') {
   return {
     type: SectionConstants.SECTION_UPDATE,
     section: section,
-    subsection: subsection
+    subsection: subsection,
+    previous: previous
   }
 }

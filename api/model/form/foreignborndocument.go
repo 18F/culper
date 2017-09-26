@@ -23,13 +23,13 @@ type ForeignBornDocument struct {
 	DocumentExpirationNotApplicable *NotApplicable `json:"-"`
 
 	// Persister specific fields
-	ID                                int
-	AccountID                         int64
-	DocumentTypeID                    int
-	OtherExplanationID                int
-	DocumentNumberID                  int
-	DocumentExpirationID              int
-	DocumentExpirationNotApplicableID int
+	ID                                int   `json:"-"`
+	AccountID                         int64 `json:"-"`
+	DocumentTypeID                    int   `json:"-"`
+	OtherExplanationID                int   `json:"-"`
+	DocumentNumberID                  int   `json:"-"`
+	DocumentExpirationID              int   `json:"-"`
+	DocumentExpirationNotApplicableID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

@@ -21,11 +21,11 @@ type RelationshipsMarital struct {
 	DivorcedList *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	StatusID       int
-	CivilUnionID   int
-	DivorcedListID int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	StatusID       int   `json:"-"`
+	CivilUnionID   int   `json:"-"`
+	DivorcedListID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -218,10 +218,10 @@ type RelationshipsCohabitants struct {
 	CohabitantList *Collection `json:"-"`
 
 	// Persister specific fields
-	ID               int
-	AccountID        int64
-	HasCohabitantID  int
-	CohabitantListID int
+	ID               int   `json:"-"`
+	AccountID        int64 `json:"-"`
+	HasCohabitantID  int   `json:"-"`
+	CohabitantListID int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -358,9 +358,9 @@ type RelationshipsPeople struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	ListID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -471,9 +471,9 @@ type RelationshipsRelatives struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	ListID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

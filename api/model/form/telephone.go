@@ -18,7 +18,7 @@ var (
 
 // Telephone is a basic input.
 type Telephone struct {
-	ID         int
+	ID         int    `json:"-"`
 	TimeOfDay  string `json:"timeOfDay"`
 	Type       string `json:"type"`
 	NumberType string `json:"numberType"`

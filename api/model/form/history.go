@@ -14,9 +14,9 @@ type HistoryResidence struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	ListID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -127,9 +127,9 @@ type HistoryEmployment struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	ListID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -244,11 +244,11 @@ type HistoryEducation struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	HasAttendedID int
-	HasDegree10ID int
-	ListID        int
+	ID            int   `json:"-"`
+	AccountID     int64 `json:"-"`
+	HasAttendedID int   `json:"-"`
+	HasDegree10ID int   `json:"-"`
+	ListID        int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -409,10 +409,10 @@ type HistoryFederal struct {
 	List              *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                  int
-	AccountID           int64
-	HasFederalServiceID int
-	ListID              int
+	ID                  int   `json:"-"`
+	AccountID           int64 `json:"-"`
+	HasFederalServiceID int   `json:"-"`
+	ListID              int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

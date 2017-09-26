@@ -1,4 +1,4 @@
-import { schema } from './schema'
+import { schema, unschema } from './schema'
 
 describe('Schema', function () {
   it('wraps top layer', function () {
@@ -16,6 +16,349 @@ describe('Schema', function () {
     expect(actual.props.HasOtherNames.props).toEqual({ value: 'Yes' })
     expect(actual.props.List.type).toEqual('collection')
     expect(actual.props.List.props.items).toEqual(data.List)
+  })
+
+  it('can unwrap schema structure', function () {
+    const tests = [
+      {
+        given: {
+          foo: {
+            bar: [0, 1, 2, 3],
+            meh: 'does not affect basic JSON structures',
+            bool: false,
+            i: 3,
+            dt: new Date('1/1/2010')
+          }
+        },
+        expected: {
+          foo: {
+            bar: [0, 1, 2, 3],
+            meh: 'does not affect basic JSON structures',
+            bool: false,
+            i: 3,
+            dt: new Date('1/1/2010')
+          }
+        }
+      },
+      {
+        given: {
+          type: 'branch',
+          props: {
+            value: 'Yes'
+          }
+        },
+        expected: {
+          value: 'Yes'
+        }
+      },
+      {
+        given: {
+          type: 'daterange',
+          props: {
+            from: {
+              type: 'datecontrol',
+              props: {
+                month: '7',
+                day: '1',
+                year: '2017',
+                estimated: false,
+                date: '2017-07-01T00:00:00Z'
+              }
+            },
+            to: {
+              type: 'datecontrol',
+              props: {
+                month: '7',
+                day: '25',
+                year: '2017',
+                estimated: false,
+                date: '2017-07-25T00:00:00Z'
+              }
+            },
+            present: false
+          }
+        },
+        expected: {
+          from: {
+            month: '7',
+            day: '1',
+            year: '2017',
+            estimated: false,
+            date: '2017-07-01T00:00:00Z'
+          },
+          to: {
+            month: '7',
+            day: '25',
+            year: '2017',
+            estimated: false,
+            date: '2017-07-25T00:00:00Z'
+          },
+          present: false
+        }
+      },
+      {
+        given: {
+          type: 'name',
+          props: {
+            first: 'John',
+            firstInitialOnly: false,
+            last: 'Smith',
+            lastInitialOnly: false,
+            middle: 'H',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            suffix: 'Other',
+            suffixOther: 'XX'
+          }
+        },
+        expected: {
+          first: 'John',
+          firstInitialOnly: false,
+          last: 'Smith',
+          lastInitialOnly: false,
+          middle: 'H',
+          middleInitialOnly: true,
+          noMiddleName: false,
+          suffix: 'Other',
+          suffixOther: 'XX'
+        }
+      },
+      {
+        given: {
+          type: 'collection',
+          props: {
+            items: [
+              {
+                Item: {
+                  DatesUsed: {
+                    type: 'daterange',
+                    props: {
+                      from: {
+                        type: 'datecontrol',
+                        props: {
+                          month: '7',
+                          day: '1',
+                          year: '2017',
+                          estimated: false,
+                          date: '2017-07-01T00:00:00Z'
+                        }
+                      },
+                      to: {
+                        type: 'datecontrol',
+                        props: {
+                          month: '7',
+                          day: '25',
+                          year: '2017',
+                          estimated: false,
+                          date: '2017-07-25T00:00:00Z'
+                        }
+                      },
+                      present: false
+                    }
+                  },
+                  MaidenName: {
+                    type: 'branch',
+                    props: {
+                      value: 'No'
+                    }
+                  },
+                  Name: {
+                    type: 'name',
+                    props: {
+                      first: 'John',
+                      firstInitialOnly: false,
+                      last: 'Smith',
+                      lastInitialOnly: false,
+                      middle: 'H',
+                      middleInitialOnly: true,
+                      noMiddleName: false,
+                      suffix: 'Other',
+                      suffixOther: 'XX'
+                    }
+                  },
+                  Reason: {
+                    type: 'textarea',
+                    props: {
+                      value: 'Just another name used'
+                    }
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: {
+          items: [
+            {
+              Item: {
+                DatesUsed: {
+                  from: {
+                    month: '7',
+                    day: '1',
+                    year: '2017',
+                    estimated: false,
+                    date: '2017-07-01T00:00:00Z'
+                  },
+                  to: {
+                    month: '7',
+                    day: '25',
+                    year: '2017',
+                    estimated: false,
+                    date: '2017-07-25T00:00:00Z'
+                  },
+                  present: false
+                },
+                MaidenName: {
+                  value: 'No'
+                },
+                Name: {
+                  first: 'John',
+                  firstInitialOnly: false,
+                  last: 'Smith',
+                  lastInitialOnly: false,
+                  middle: 'H',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  suffix: 'Other',
+                  suffixOther: 'XX'
+                },
+                Reason: {
+                  value: 'Just another name used'
+                }
+              }
+            }
+          ]
+        }
+      },
+      {
+        given: {
+          type: 'identification.othernames',
+          props: {
+            HasOtherNames: {
+              type: 'branch',
+              props: {
+                value: 'Yes'
+              }
+            },
+            List: {
+              type: 'collection',
+              props: {
+                items: [
+                  {
+                    Item: {
+                      DatesUsed: {
+                        type: 'daterange',
+                        props: {
+                          from: {
+                            type: 'datecontrol',
+                            props: {
+                              month: '7',
+                              day: '1',
+                              year: '2017',
+                              estimated: false,
+                              date: '2017-07-01T00:00:00Z'
+                            }
+                          },
+                          to: {
+                            type: 'datecontrol',
+                            props: {
+                              month: '7',
+                              day: '25',
+                              year: '2017',
+                              estimated: false,
+                              date: '2017-07-25T00:00:00Z'
+                            }
+                          },
+                          present: false
+                        }
+                      },
+                      MaidenName: {
+                        type: 'branch',
+                        props: {
+                          value: 'No'
+                        }
+                      },
+                      Name: {
+                        type: 'name',
+                        props: {
+                          first: 'John',
+                          firstInitialOnly: false,
+                          last: 'Smith',
+                          lastInitialOnly: false,
+                          middle: 'H',
+                          middleInitialOnly: true,
+                          noMiddleName: false,
+                          suffix: 'Other',
+                          suffixOther: 'XX'
+                        }
+                      },
+                      Reason: {
+                        type: 'textarea',
+                        props: {
+                          value: 'Just another name used'
+                        }
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        },
+        expected: {
+          HasOtherNames: {
+            value: 'Yes'
+          },
+          List: {
+            items: [
+              {
+                Item: {
+                  DatesUsed: {
+                    from: {
+                      month: '7',
+                      day: '1',
+                      year: '2017',
+                      estimated: false,
+                      date: '2017-07-01T00:00:00Z'
+                    },
+                    to: {
+                      month: '7',
+                      day: '25',
+                      year: '2017',
+                      estimated: false,
+                      date: '2017-07-25T00:00:00Z'
+                    },
+                    present: false
+                  },
+                  MaidenName: {
+                    value: 'No'
+                  },
+                  Name: {
+                    first: 'John',
+                    firstInitialOnly: false,
+                    last: 'Smith',
+                    lastInitialOnly: false,
+                    middle: 'H',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    suffix: 'Other',
+                    suffixOther: 'XX'
+                  },
+                  Reason: {
+                    value: 'Just another name used'
+                  }
+                }
+              }
+            ]
+          }
+        }
+      }
+    ]
+
+    tests.forEach(test => {
+      const actual = unschema(test.given)
+      expect(actual).toEqual(test.expected)
+    })
   })
 
   it('valid payload types', function () {

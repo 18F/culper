@@ -12,7 +12,7 @@ import (
 
 // Name is a basic input.
 type Name struct {
-	ID                int
+	ID                int    `json:"-"`
 	First             string `json:"first"`
 	FirstInitialOnly  bool   `json:"firstInitialOnly"`
 	Middle            string `json:"middle"`

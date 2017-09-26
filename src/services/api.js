@@ -136,6 +136,10 @@ class Api {
     return this.post(env.EndpointSave(), payload)
   }
 
+  section (type) {
+    return this.get(env.EndpointSection(type))
+  }
+
   validate (payload) {
     return this.post(env.EndpointValidate(), payload)
   }

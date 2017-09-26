@@ -33,15 +33,15 @@ type ForeignPassport struct {
 	Comments     *Textarea    `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasPassportsID int
-	NameID         int
-	CardID         int
-	NumberID       int
-	IssuedID       int
-	ExpirationID   int
-	CommentsID     int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasPassportsID int   `json:"-"`
+	NameID         int   `json:"-"`
+	CardID         int   `json:"-"`
+	NumberID       int   `json:"-"`
+	IssuedID       int   `json:"-"`
+	ExpirationID   int   `json:"-"`
+	CommentsID     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -312,10 +312,10 @@ type ForeignContacts struct {
 	List               *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                   int
-	AccountID            int64
-	HasForeignContactsID int
-	ListID               int
+	ID                   int   `json:"-"`
+	AccountID            int64 `json:"-"`
+	HasForeignContactsID int   `json:"-"`
+	ListID               int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -456,11 +456,11 @@ type ForeignTravel struct {
 	List                     *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                         int
-	AccountID                  int64
-	HasForeignTravelOutsideID  int
-	HasForeignTravelOfficialID int
-	ListID                     int
+	ID                         int   `json:"-"`
+	AccountID                  int64 `json:"-"`
+	HasForeignTravelOutsideID  int   `json:"-"`
+	HasForeignTravelOfficialID int   `json:"-"`
+	ListID                     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -625,10 +625,10 @@ type ForeignActivitiesBenefits struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	HasBenefitsID int
-	ListID        int
+	ID            int   `json:"-"`
+	AccountID     int64 `json:"-"`
+	HasBenefitsID int   `json:"-"`
+	ListID        int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -767,10 +767,10 @@ type ForeignActivitiesDirect struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasInterestsID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasInterestsID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -909,10 +909,10 @@ type ForeignActivitiesIndirect struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasInterestsID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasInterestsID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1051,10 +1051,10 @@ type ForeignActivitiesRealEstate struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasInterestsID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasInterestsID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1193,10 +1193,10 @@ type ForeignActivitiesSupport struct {
 	List              *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                  int
-	AccountID           int64
-	HasForeignSupportID int
-	ListID              int
+	ID                  int   `json:"-"`
+	AccountID           int64 `json:"-"`
+	HasForeignSupportID int   `json:"-"`
+	ListID              int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1335,10 +1335,10 @@ type ForeignBusinessAdvice struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int
-	AccountID          int64
-	HasForeignAdviceID int
-	ListID             int
+	ID                 int   `json:"-"`
+	AccountID          int64 `json:"-"`
+	HasForeignAdviceID int   `json:"-"`
+	ListID             int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1477,10 +1477,10 @@ type ForeignBusinessConferences struct {
 	List                  *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                      int
-	AccountID               int64
-	HasForeignConferencesID int
-	ListID                  int
+	ID                      int   `json:"-"`
+	AccountID               int64 `json:"-"`
+	HasForeignConferencesID int   `json:"-"`
+	ListID                  int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1619,10 +1619,10 @@ type ForeignBusinessContact struct {
 	List              *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                  int
-	AccountID           int64
-	HasForeignContactID int
-	ListID              int
+	ID                  int   `json:"-"`
+	AccountID           int64 `json:"-"`
+	HasForeignContactID int   `json:"-"`
+	ListID              int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1761,10 +1761,10 @@ type ForeignBusinessEmployment struct {
 	List                 *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                     int
-	AccountID              int64
-	HasForeignEmploymentID int
-	ListID                 int
+	ID                     int   `json:"-"`
+	AccountID              int64 `json:"-"`
+	HasForeignEmploymentID int   `json:"-"`
+	ListID                 int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1903,10 +1903,10 @@ type ForeignBusinessFamily struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int
-	AccountID          int64
-	HasForeignFamilyID int
-	ListID             int
+	ID                 int   `json:"-"`
+	AccountID          int64 `json:"-"`
+	HasForeignFamilyID int   `json:"-"`
+	ListID             int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2045,10 +2045,10 @@ type ForeignBusinessPolitical struct {
 	List                *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                    int
-	AccountID             int64
-	HasForeignPoliticalID int
-	ListID                int
+	ID                    int   `json:"-"`
+	AccountID             int64 `json:"-"`
+	HasForeignPoliticalID int   `json:"-"`
+	ListID                int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2187,10 +2187,10 @@ type ForeignBusinessSponsorship struct {
 	List                  *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                      int
-	AccountID               int64
-	HasForeignSponsorshipID int
-	ListID                  int
+	ID                      int   `json:"-"`
+	AccountID               int64 `json:"-"`
+	HasForeignSponsorshipID int   `json:"-"`
+	ListID                  int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2329,10 +2329,10 @@ type ForeignBusinessVentures struct {
 	List               *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                   int
-	AccountID            int64
-	HasForeignVenturesID int
-	ListID               int
+	ID                   int   `json:"-"`
+	AccountID            int64 `json:"-"`
+	HasForeignVenturesID int   `json:"-"`
+	ListID               int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2471,10 +2471,10 @@ type ForeignBusinessVoting struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int
-	AccountID          int64
-	HasForeignVotingID int
-	ListID             int
+	ID                 int   `json:"-"`
+	AccountID          int64 `json:"-"`
+	HasForeignVotingID int   `json:"-"`
+	ListID             int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

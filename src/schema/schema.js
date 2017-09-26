@@ -8,6 +8,54 @@ export const schema = (type, props, raw = true) => {
   }
 }
 
+export const unschema = (data) => {
+  // The absence of something is nothing
+  if (data === undefined || data === null) {
+    return null
+  }
+
+  // Payload scructure
+  if (data.type && data.props) {
+    return unschema(data.props)
+  }
+
+  // An array is a type of object so we check for this first
+  if (data instanceof Array) {
+    let output = []
+
+    for (let x = 0; x < data.length; x++) {
+      output[x] = unschema(data[x])
+    }
+
+    return output
+  }
+
+  // A date is a type of object so we check for this first
+  if (data instanceof Date) {
+    return data
+  }
+
+  // Check for other types of objects
+  if (data instanceof Object) {
+    let output = {}
+
+    for (const property in data) {
+      // When the property is not specific to this instance
+      // skip it and go to the next.
+      if (!data.hasOwnProperty(property)) {
+        continue
+      }
+
+      output[property] = unschema(data[property])
+    }
+
+    return output
+  }
+
+  // If not an object nor an array work with the raw value
+  return data
+}
+
 const transform = {
   'benefit': (data) => {
     return form.benefit(data)

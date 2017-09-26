@@ -32,7 +32,7 @@ const (
 
 // Location is a basic input.
 type Location struct {
-	ID        int
+	ID        int    `json:"-"`
 	Layout    string `json:"layout"`
 	Street1   string `json:"street,omitempty"`
 	Street2   string `json:"street2,omitempty"`

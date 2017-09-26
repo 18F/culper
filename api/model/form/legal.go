@@ -17,10 +17,10 @@ type LegalCourt struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	HasCourtActionsID int
-	ListID            int
+	ID                int   `json:"-"`
+	AccountID         int64 `json:"-"`
+	HasCourtActionsID int   `json:"-"`
+	ListID            int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -160,10 +160,10 @@ type LegalPoliceOffenses struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	HasOffensesID int
-	ListID        int
+	ID            int   `json:"-"`
+	AccountID     int64 `json:"-"`
+	HasOffensesID int   `json:"-"`
+	ListID        int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -303,10 +303,10 @@ type LegalPoliceAdditionalOffenses struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int
-	AccountID          int64
-	HasOtherOffensesID int
-	ListID             int
+	ID                 int   `json:"-"`
+	AccountID          int64 `json:"-"`
+	HasOtherOffensesID int   `json:"-"`
+	ListID             int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -444,9 +444,9 @@ type LegalPoliceDomesticViolence struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int   `json:"-"`
+	AccountID int64 `json:"-"`
+	ListID    int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -560,10 +560,10 @@ type LegalInvestigationsDebarred struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasDebarmentID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasDebarmentID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -703,10 +703,10 @@ type LegalInvestigationsHistory struct {
 	List       *Collection `json:"-"`
 
 	// Persister specific fields
-	ID           int
-	AccountID    int64
-	HasHistoryID int
-	ListID       int
+	ID           int   `json:"-"`
+	AccountID    int64 `json:"-"`
+	HasHistoryID int   `json:"-"`
+	ListID       int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -846,10 +846,10 @@ type LegalInvestigationsRevoked struct {
 	List           *Collection `json:"-"`
 
 	// Persister specific fields
-	ID               int
-	AccountID        int64
-	HasRevocationsID int
-	ListID           int
+	ID               int   `json:"-"`
+	AccountID        int64 `json:"-"`
+	HasRevocationsID int   `json:"-"`
+	ListID           int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -989,10 +989,10 @@ type LegalTechnologyManipulating struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	HasManipulatingID int
-	ListID            int
+	ID                int   `json:"-"`
+	AccountID         int64 `json:"-"`
+	HasManipulatingID int   `json:"-"`
+	ListID            int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1132,10 +1132,10 @@ type LegalTechnologyUnauthorized struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	HasUnauthorizedID int
-	ListID            int
+	ID                int   `json:"-"`
+	AccountID         int64 `json:"-"`
+	HasUnauthorizedID int   `json:"-"`
+	ListID            int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1275,10 +1275,10 @@ type LegalTechnologyUnlawful struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	HasUnlawfulID int
-	ListID        int
+	ID            int   `json:"-"`
+	AccountID     int64 `json:"-"`
+	HasUnlawfulID int   `json:"-"`
+	ListID        int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1418,10 +1418,10 @@ type LegalAssociationsActivitiesToOverthrow struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasActivitiesID int
-	ListID          int
+	ID              int   `json:"-"`
+	AccountID       int64 `json:"-"`
+	HasActivitiesID int   `json:"-"`
+	ListID          int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1561,10 +1561,10 @@ type LegalAssociationsAdvocating struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasAdvocatedID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasAdvocatedID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1704,10 +1704,10 @@ type LegalAssociationsEngagedInTerrorism struct {
 	List       *Collection `json:"-"`
 
 	// Persister specific fields
-	ID           int
-	AccountID    int64
-	HasEngagedID int
-	ListID       int
+	ID           int   `json:"-"`
+	AccountID    int64 `json:"-"`
+	HasEngagedID int   `json:"-"`
+	ListID       int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1847,10 +1847,10 @@ type LegalAssociationsMembershipOverthrow struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasOverthrowID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasOverthrowID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1990,10 +1990,10 @@ type LegalAssociationsMembershipViolence struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	HasViolenceID int
-	ListID        int
+	ID            int   `json:"-"`
+	AccountID     int64 `json:"-"`
+	HasViolenceID int   `json:"-"`
+	ListID        int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2133,10 +2133,10 @@ type LegalAssociationsTerrorismAssociation struct {
 	Explanation  *Textarea `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasTerrorismID int
-	ExplanationID  int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasTerrorismID int   `json:"-"`
+	ExplanationID  int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2276,10 +2276,10 @@ type LegalAssociationsTerroristOrganization struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasTerroristID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasTerroristID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

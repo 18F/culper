@@ -12,7 +12,7 @@ import (
 
 // Branch is a basic yes/no input.
 type Branch struct {
-	ID    int
+	ID    int    `json:"-"`
 	Value string `json:"value"`
 }
 

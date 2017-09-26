@@ -18,10 +18,10 @@ type SubstanceDrugUsage struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	UsedDrugsID int
-	ListID      int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	UsedDrugsID int   `json:"-"`
+	ListID      int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -168,10 +168,10 @@ type SubstanceDrugPurchase struct {
 	List     *Collection `json:"-"`
 
 	// Persister specific fields
-	ID         int
-	AccountID  int64
-	InvolvedID int
-	ListID     int
+	ID         int   `json:"-"`
+	AccountID  int64 `json:"-"`
+	InvolvedID int   `json:"-"`
+	ListID     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -318,10 +318,10 @@ type SubstanceDrugClearance struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	UsedDrugsID int
-	ListID      int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	UsedDrugsID int   `json:"-"`
+	ListID      int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -468,10 +468,10 @@ type SubstanceDrugPublicSafety struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	UsedDrugsID int
-	ListID      int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	UsedDrugsID int   `json:"-"`
+	ListID      int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -618,10 +618,10 @@ type SubstanceDrugMisuse struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	UsedDrugsID int
-	ListID      int
+	ID          int   `json:"-"`
+	AccountID   int64 `json:"-"`
+	UsedDrugsID int   `json:"-"`
+	ListID      int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -768,10 +768,10 @@ type SubstanceDrugOrdered struct {
 	List     *Collection `json:"-"`
 
 	// Persister specific fields
-	ID         int
-	AccountID  int64
-	InvolvedID int
-	ListID     int
+	ID         int   `json:"-"`
+	AccountID  int64 `json:"-"`
+	InvolvedID int   `json:"-"`
+	ListID     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -918,10 +918,10 @@ type SubstanceDrugVoluntary struct {
 	List     *Collection `json:"-"`
 
 	// Persister specific fields
-	ID         int
-	AccountID  int64
-	InvolvedID int
-	ListID     int
+	ID         int   `json:"-"`
+	AccountID  int64 `json:"-"`
+	InvolvedID int   `json:"-"`
+	ListID     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1068,10 +1068,10 @@ type SubstanceAlcoholNegative struct {
 	List       *Collection `json:"-"`
 
 	// Persister specific fields
-	ID           int
-	AccountID    int64
-	HasImpactsID int
-	ListID       int
+	ID           int   `json:"-"`
+	AccountID    int64 `json:"-"`
+	HasImpactsID int   `json:"-"`
+	ListID       int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1218,10 +1218,10 @@ type SubstanceAlcoholOrdered struct {
 	List           *Collection `json:"-"`
 
 	// Persister specific fields
-	ID               int
-	AccountID        int64
-	HasBeenOrderedID int
-	ListID           int
+	ID               int   `json:"-"`
+	AccountID        int64 `json:"-"`
+	HasBeenOrderedID int   `json:"-"`
+	ListID           int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1368,10 +1368,10 @@ type SubstanceAlcoholVoluntary struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	SoughtTreatmentID int
-	ListID            int
+	ID                int   `json:"-"`
+	AccountID         int64 `json:"-"`
+	SoughtTreatmentID int   `json:"-"`
+	ListID            int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1518,10 +1518,10 @@ type SubstanceAlcoholAdditional struct {
 	List              *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                  int
-	AccountID           int64
-	ReceivedTreatmentID int
-	ListID              int
+	ID                  int   `json:"-"`
+	AccountID           int64 `json:"-"`
+	ReceivedTreatmentID int   `json:"-"`
+	ListID              int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

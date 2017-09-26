@@ -29,7 +29,7 @@ func PublicURI() string {
 func DatabaseURI(label string) string {
 	current, err := cfenv.Current()
 	if err != nil {
-		log.Printf("Error retrieving the current Cloud Foundry environment: %v", err)
+		log.Println("Cloud Foundry environment not found")
 	}
 	return getDatabase(current, label)
 }

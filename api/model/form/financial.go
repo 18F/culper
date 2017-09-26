@@ -18,10 +18,10 @@ type FinancialBankruptcy struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasBankruptcyID int
-	ListID          int
+	ID              int   `json:"-"`
+	AccountID       int64 `json:"-"`
+	HasBankruptcyID int   `json:"-"`
+	ListID          int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -168,10 +168,10 @@ type FinancialGambling struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	HasGamblingDebtID int
-	ListID            int
+	ID                int   `json:"-"`
+	AccountID         int64 `json:"-"`
+	HasGamblingDebtID int   `json:"-"`
+	ListID            int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -318,10 +318,10 @@ type FinancialTaxes struct {
 	List     *Collection `json:"-"`
 
 	// Persister specific fields
-	ID         int
-	AccountID  int64
-	HasTaxesID int
-	ListID     int
+	ID         int   `json:"-"`
+	AccountID  int64 `json:"-"`
+	HasTaxesID int   `json:"-"`
+	ListID     int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -468,10 +468,10 @@ type FinancialCard struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasCardAbuseID int
-	ListID         int
+	ID             int   `json:"-"`
+	AccountID      int64 `json:"-"`
+	HasCardAbuseID int   `json:"-"`
+	ListID         int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -618,10 +618,10 @@ type FinancialCredit struct {
 	List                *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                    int
-	AccountID             int64
-	HasCreditCounselingID int
-	ListID                int
+	ID                    int   `json:"-"`
+	AccountID             int64 `json:"-"`
+	HasCreditCounselingID int   `json:"-"`
+	ListID                int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -768,10 +768,10 @@ type FinancialDelinquent struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasDelinquentID int
-	ListID          int
+	ID              int   `json:"-"`
+	AccountID       int64 `json:"-"`
+	HasDelinquentID int   `json:"-"`
+	ListID          int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -918,10 +918,10 @@ type FinancialNonpayment struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasNonpaymentID int
-	ListID          int
+	ID              int   `json:"-"`
+	AccountID       int64 `json:"-"`
+	HasNonpaymentID int   `json:"-"`
+	ListID          int   `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.

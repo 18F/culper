@@ -9,7 +9,7 @@ import (
 
 // CheckboxGroup is a basic input.
 type CheckboxGroup struct {
-	ID     int
+	ID     int      `json:"-"`
 	Values []string `json:"values"`
 }
 
