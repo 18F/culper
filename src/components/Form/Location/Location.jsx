@@ -1,6 +1,6 @@
 import React from 'react'
 import { updateApplication } from '../../../actions/ApplicationActions'
-import { i18n } from '../../../config'
+import { i18n, env } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -359,6 +359,7 @@ export default class Location extends ValidationElement {
         case 'street2':
           return (
           <Street name="street2"
+                  key={field}
                   className="street2"
                   label={this.props.street2Label}
                   optional={true}
@@ -519,7 +520,9 @@ export default class Location extends ValidationElement {
       case null:
       case undefined:
       default:
-        console.warn('Location layout not specified. Add one please')
+        if (!env.IsTest()) {
+          console.warn('Location layout not specified. Add one please')
+        }
         return null
     }
   }

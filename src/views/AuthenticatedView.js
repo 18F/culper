@@ -11,7 +11,7 @@ import { push } from '../middleware/history'
  *
  * Note that we wrap with connect to include access to dispatcher.
  */
-function AuthenticatedView (WrappedComponent) {
+const AuthenticatedView = (WrappedComponent) => {
   return connect(mapStateToProps)(class RequiresAuth extends React.Component {
     componentWillReceiveProps (nextProps) {
       this.checkAuthentication()

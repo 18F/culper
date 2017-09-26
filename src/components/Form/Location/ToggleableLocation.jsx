@@ -1,5 +1,6 @@
 import React from 'react'
 import { env } from '../../../config'
+import { newGuid } from '../ValidationElement'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -233,7 +234,7 @@ export default class ToggleableLocation extends ValidationElement {
     })
 
     return (
-      <div className="toggleable-location" key={super.guid()}>
+      <div className="toggleable-location">
         <RadioGroup
           className="option-list branch"
           required={this.props.required}
