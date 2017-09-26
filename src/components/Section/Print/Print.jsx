@@ -22,6 +22,10 @@ import Credit from '../Financial/Credit'
 import Delinquent from '../Financial/Delinquent'
 import Nonpayment from '../Financial/Nonpayment'
 
+import Relatives from '../Relationships/Relatives'
+import Marital from '../Relationships/RelationshipStatus/Marital'
+import Cohabitants from '../Relationships/RelationshipStatus/Cohabitants'
+import People from '../Relationships/People'
 
 class Print extends SectionElement {
   constructor (props) {
@@ -32,7 +36,7 @@ class Print extends SectionElement {
     return (
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name="print"
+          <SectionView name=""
             back=""
             backLabel=""
             next=""
@@ -83,9 +87,69 @@ class Print extends SectionElement {
               scrollIntoView={false}
             />
 
+          { this.relationships() }
           { this.financial() }
           </SectionView>
         </SectionViews>
+      </div>
+    )
+  }
+
+  relationships () {
+    return (
+      <div>
+        <Marital name="marital"
+          {...this.props.Marital}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onUpdate={this.updateMarital}
+          onError={this.handleError}
+          onSpouseUpdate={this.updateSpouse}
+          currentAddress={this.props.CurrentAddress}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Cohabitants name="cohabitants"
+          {...this.props.Cohabitants}
+          defaultState={false}
+          spouse={this.props.Spouse}
+          dispatch={this.props.dispatch}
+          onUpdate={this.updateCohabitants}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <People name="people"
+          {...this.props.People}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onUpdate={this.updatePeople}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Relatives name="relatives"
+          {...this.props.Relatives}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onUpdate={this.updateRelatives}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+
+  history () {
+    return (
+      <div>
       </div>
     )
   }
@@ -176,8 +240,9 @@ class Print extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let identification = app.Identification || {}
+  const app = state.application || {}
+  const identification = app.Identification || {}
+  const relationships = app.Relationships || {}
   const financial = app.Financial || {}
   let errors = app.Errors || {}
   let completed = app.Completed || {}
@@ -190,6 +255,13 @@ function mapStateToProps (state) {
     OtherNames: identification.OtherNames || {},
     Contacts: identification.Contacts || {},
     Physical: identification.Physical || {},
+
+    // Relationships
+    Relationships: relationships,
+    Relatives: relationships.Relatives || {},
+    Marital: relationships.Marital || {},
+    Cohabitants: relationships.Cohabitants || {},
+    People: relationships.People || {},
 
     // Financial
     Financial: financial,

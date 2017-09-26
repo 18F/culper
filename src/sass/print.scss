@@ -118,11 +118,25 @@
   .bottom-btns,
   .btn-wrap,
 
+  /* Hide reuse address text */
+  .address .reuse-address,
+
   /* Saved Indicator */
   .saved-indicator,
 
-  /* Top Section navigation buttons
+  /* Top Section navigation buttons */
   .top-btns,
+
+  /* Hide selective service help message */
+  .selective .field .table .messages,
+
+  /* Hide NA button when applicable */
+  .not-applicable.enable .button,
+
+  /* Hide content when not applicable */
+  .not-applicable.disable .content,
+
+  .multiple-dropdown .ic-tokens .inline-flex .ic-tokeninput .ic-tokeninput-input,
 
   /* Accordion validator error box */
   .accordion .byline .incomplete,
@@ -171,5 +185,29 @@
   .usa-input-error .block > label {
     border: 1px solid #000 !important;
     border-width: 1px !important;
+  }
+
+  .not-applicable.disable {
+    opacity: 1;
+  }
+
+  /* Make selected multidropdown values have a black border */
+  .multiple-dropdown .ic-tokens .inline-flex.ic-token {
+    border: 3px solid black;
+  }
+
+  /* Give accordion summaries border */
+  .accordion .items .summary-container .summary {
+    border-top: 2px solid black;
+  }
+
+  .accordion .items .summary-container .summary  a {
+    color: #000 !important;
+  }
+
+
+  /* Force expand of accordion when in print screen */
+  .accordion .details.close.animate {
+    animation-name: initial;
   }
 }
