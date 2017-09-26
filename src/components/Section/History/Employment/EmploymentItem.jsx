@@ -295,19 +295,6 @@ export default class EmploymentItem extends ValidationElement {
           </Field>
         </Show>
 
-        <Show when={this.showPhysicalAddress()}>
-          <PhysicalAddress name="PhysicalAddress"
-                           {...this.props.PhysicalAddress}
-                           title={i18n.t(`${prefix}.heading.physicalAddress`)}
-                           addressBooks={this.props.addressBooks}
-                           dispatch={this.props.dispatch}
-                           onUpdate={this.updatePhysicalAddress}
-                           onError={this.props.onError}
-                           required={this.props.required}
-                           scrollIntoView={this.props.scrollIntoView}
-                           />
-        </Show>
-
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.telephone`)}
                  help={`${prefix}.telephone.help`}
@@ -320,6 +307,19 @@ export default class EmploymentItem extends ValidationElement {
                        required={this.props.required}
                        />
           </Field>
+        </Show>
+        
+        <Show when={this.showPhysicalAddress()}>
+          <PhysicalAddress name="PhysicalAddress"
+                           {...this.props.PhysicalAddress}
+                           title={i18n.t(`${prefix}.heading.physicalAddress`)}
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
+                           onUpdate={this.updatePhysicalAddress}
+                           onError={this.props.onError}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
+                           />
         </Show>
 
         <Show when={this.showSupervisor()}>
