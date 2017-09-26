@@ -3810,7 +3810,7 @@ const en = {
           },
           heading: {
             telephone: 'Provide telephone number',
-            address: 'Provide the address of physical location'
+            address: 'Provide the work address where you are/were physically located'
           }
         },
         additionalActivity: {
