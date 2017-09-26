@@ -96,8 +96,8 @@ class SubstanceUse extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="foreign/review"
-                       backLabel={ i18n.t('foreign.destination.review') }
+                       back="financial/review"
+                       backLabel={ i18n.t('financial.destination.review') }
                        next="substance/drugs/usage"
                        nextLabel={i18n.t('substance.destination.drugs.usage')}>
             <Field title={i18n.t('substance.intro.title')}

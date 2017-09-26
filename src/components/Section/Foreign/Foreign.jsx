@@ -132,8 +132,8 @@ class Foreign extends SectionElement {
                        showTop={true}
                        back="foreign/travel"
                        backLabel={i18n.t('foreign.destination.travel')}
-                       next="substance/intro"
-                       nextLabel={i18n.t('substance.destination.intro')}
+                       next="financial/intro"
+                       nextLabel={i18n.t('financial.destination.intro')}
                        >
             <Passport name="passport"
                       {...this.props.Passport}
