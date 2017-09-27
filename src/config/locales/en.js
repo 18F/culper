@@ -3381,7 +3381,7 @@ const en = {
           item: 'Procedure',
           unknown: '*Provide the disciplinary procedure below*'
         },
-        appendTitle: 'Additional disciplinary procedures',
+        appendTitle: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         append: 'Add additional disciplinary procedures'
       }
