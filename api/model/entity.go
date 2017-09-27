@@ -1,7 +1,7 @@
 package model
 
 import (
-	"github.com/go-pg/pg"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // Entity is a structure which can marshall, validate, and persist.
@@ -24,7 +24,7 @@ type Validator interface {
 // Persister interface provides common functionality for persisting
 // data to storage.
 type Persister interface {
-	Save(context *pg.DB, account int64) (int, error)
-	Delete(context *pg.DB, account int64) (int, error)
-	Get(context *pg.DB, account int64) (int, error)
+	Save(context *db.DatabaseContext, account int) (int, error)
+	Delete(context *db.DatabaseContext, account int) (int, error)
+	Get(context *db.DatabaseContext, account int) (int, error)
 }

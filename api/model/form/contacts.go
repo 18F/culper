@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 type Contacts struct {
@@ -14,9 +13,9 @@ type Contacts struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int   `json:"-"`
-	AccountID int64 `json:"-"`
-	ListID    int   `json:"-"`
+	ID        int `json:"-"`
+	AccountID int `json:"-"`
+	ListID    int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -40,15 +39,10 @@ func (entity *Contacts) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-func (entity *Contacts) Save(context *pg.DB, account int64) (int, error) {
+func (entity *Contacts) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&Contacts{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -67,45 +61,37 @@ func (entity *Contacts) Save(context *pg.DB, account int64) (int, error) {
 	return entity.ID, err
 }
 
-func (entity *Contacts) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *Contacts) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Contacts{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Contacts) Get(context *pg.DB, account int64) (int, error) {
+func (entity *Contacts) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Contacts{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
@@ -114,5 +100,5 @@ func (entity *Contacts) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

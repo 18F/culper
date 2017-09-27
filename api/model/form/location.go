@@ -2,14 +2,11 @@ package form
 
 import (
 	"encoding/json"
-	"log"
 	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/geo"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // Different potential layouts used by the frontend.
@@ -49,13 +46,8 @@ func (entity *Location) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
-func (entity *Location) Save(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	if err := context.CreateTable(&Location{}, options); err != nil {
+func (entity *Location) Save(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -69,45 +61,36 @@ func (entity *Location) Save(context *pg.DB, account int64) (int, error) {
 	return entity.ID, err
 }
 
-func (entity *Location) Delete(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Location{}, options); err != nil {
+func (entity *Location) Delete(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Location) Get(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Location{}, options); err != nil {
+func (entity *Location) Get(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Location) Valid() (bool, error) {
-	log.Printf("location: %v", entity)
 	if entity.Validated {
 		return true, nil
 	}

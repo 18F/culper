@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 type RelationshipsMarital struct {
@@ -21,11 +19,10 @@ type RelationshipsMarital struct {
 	DivorcedList *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	StatusID       int   `json:"-"`
-	CivilUnionID   int   `json:"-"`
-	DivorcedListID int   `json:"-"`
+	ID             int `json:"-"`
+	StatusID       int `json:"-"`
+	CivilUnionID   int `json:"-"`
+	DivorcedListID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -98,10 +95,13 @@ func (entity *RelationshipsMarital) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsMarital) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	statusID, err := entity.Status.Save(context, account)
 	if err != nil {
 		return statusID, err
@@ -120,72 +120,60 @@ func (entity *RelationshipsMarital) Save(context *pg.DB, account int64) (int, er
 	}
 	entity.DivorcedListID = divorcedListID
 
-	err = context.CreateTable(&RelationshipsMarital{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsMarital) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsMarital) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsMarital{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Status.Delete(context, account); err != nil {
+	if _, err := entity.Status.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CivilUnion.Delete(context, account); err != nil {
+	if _, err := entity.CivilUnion.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DivorcedList.Delete(context, account); err != nil {
+	if _, err := entity.DivorcedList.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsMarital) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsMarital{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.StatusID != 0 {
@@ -206,7 +194,7 @@ func (entity *RelationshipsMarital) Get(context *pg.DB, account int64) (int, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type RelationshipsCohabitants struct {
@@ -218,10 +206,9 @@ type RelationshipsCohabitants struct {
 	CohabitantList *Collection `json:"-"`
 
 	// Persister specific fields
-	ID               int   `json:"-"`
-	AccountID        int64 `json:"-"`
-	HasCohabitantID  int   `json:"-"`
-	CohabitantListID int   `json:"-"`
+	ID               int `json:"-"`
+	HasCohabitantID  int `json:"-"`
+	CohabitantListID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -256,10 +243,13 @@ func (entity *RelationshipsCohabitants) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsCohabitants) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsCohabitants) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasCohabitantID, err := entity.HasCohabitant.Save(context, account)
 	if err != nil {
 		return hasCohabitantID, err
@@ -272,68 +262,56 @@ func (entity *RelationshipsCohabitants) Save(context *pg.DB, account int64) (int
 	}
 	entity.CohabitantListID = cohabitantListID
 
-	err = context.CreateTable(&RelationshipsCohabitants{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsCohabitants) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsCohabitants) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsCohabitants{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasCohabitant.Delete(context, account); err != nil {
+	if _, err := entity.HasCohabitant.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CohabitantList.Delete(context, account); err != nil {
+	if _, err := entity.CohabitantList.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsCohabitants) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsCohabitants) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsCohabitants{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasCohabitantID != 0 {
@@ -348,7 +326,7 @@ func (entity *RelationshipsCohabitants) Get(context *pg.DB, account int64) (int,
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type RelationshipsPeople struct {
@@ -358,9 +336,8 @@ type RelationshipsPeople struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int   `json:"-"`
-	AccountID int64 `json:"-"`
-	ListID    int   `json:"-"`
+	ID     int `json:"-"`
+	ListID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -385,74 +362,65 @@ func (entity *RelationshipsPeople) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsPeople) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsPeople) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&RelationshipsPeople{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsPeople) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsPeople) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsPeople{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsPeople) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsPeople) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsPeople{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
@@ -461,7 +429,7 @@ func (entity *RelationshipsPeople) Get(context *pg.DB, account int64) (int, erro
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type RelationshipsRelatives struct {
@@ -471,9 +439,8 @@ type RelationshipsRelatives struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int   `json:"-"`
-	AccountID int64 `json:"-"`
-	ListID    int   `json:"-"`
+	ID     int `json:"-"`
+	ListID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -498,74 +465,65 @@ func (entity *RelationshipsRelatives) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *RelationshipsRelatives) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsRelatives) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&RelationshipsRelatives{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *RelationshipsRelatives) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsRelatives) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsRelatives{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *RelationshipsRelatives) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *RelationshipsRelatives) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&RelationshipsRelatives{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
@@ -574,5 +532,5 @@ func (entity *RelationshipsRelatives) Get(context *pg.DB, account int64) (int, e
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

@@ -4,9 +4,8 @@ import (
 	"encoding/json"
 	"errors"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
 )
 
 // Payload is a basic structure to encapsulate a generic structure.
@@ -71,14 +70,14 @@ func (payload Payload) Valid() (bool, error) {
 // of named properties which each value being that of a Payload.
 type PayloadProperties map[string]Payload
 
-func (entity *PayloadProperties) Save(context *pg.DB, account int64) (int, error) {
+func (entity *PayloadProperties) Save(context *db.DatabaseContext, account int) (int, error) {
 	return 0, nil
 }
 
-func (entity *PayloadProperties) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *PayloadProperties) Delete(context *db.DatabaseContext, account int) (int, error) {
 	return 0, nil
 }
 
-func (entity *PayloadProperties) Get(context *pg.DB, account int64) (int, error) {
+func (entity *PayloadProperties) Get(context *db.DatabaseContext, account int) (int, error) {
 	return 0, nil
 }

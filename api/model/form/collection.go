@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // Collection represents a structure composed of items in a structured
@@ -19,9 +17,9 @@ type Collection struct {
 	Items  []*CollectionItem `json:"items" sql:"-"`
 
 	// Persister specific fields
-	ID        int   `json:"-"`
-	AccountID int64 `json:"-"`
-	BranchID  int   `json:"-"`
+	ID        int `json:"-"`
+	AccountID int `json:"-"`
+	BranchID  int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -67,16 +65,14 @@ func (entity *Collection) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
+func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
 	}
 
 	// Custom errors
-	var err error
 	if entity.PayloadBranch.Type != "" {
 		branchID, err := entity.Branch.Save(context, account)
 		if err != nil {
@@ -85,18 +81,14 @@ func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
 		entity.BranchID = branchID
 	}
 
-	if err = context.CreateTable(&Collection{}, options); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
-	}
-
-	if err != nil {
-		return entity.ID, err
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	// Iterate through each property in `Items` saving them as we go.
@@ -106,56 +98,48 @@ func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Collection) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *Collection) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Collection{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.PayloadBranch.Type != "" {
-		if _, err = entity.Branch.Delete(context, account); err != nil {
+		if _, err := entity.Branch.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	for _, item := range entity.Items {
-		if _, err = item.Delete(context, account, entity.ID); err != nil {
+		if _, err := item.Delete(context, account, entity.ID); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Collection) Get(context *pg.DB, account int64) (int, error) {
+func (entity *Collection) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Collection{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.BranchID != 0 {
@@ -165,10 +149,10 @@ func (entity *Collection) Get(context *pg.DB, account int64) (int, error) {
 	}
 
 	for _, item := range entity.Items {
-		if _, err = item.Get(context, account, entity.ID); err != nil {
+		if _, err := item.Get(context, account, entity.ID); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

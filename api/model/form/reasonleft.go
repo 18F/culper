@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // ReasonLeft is a basic input.
@@ -19,11 +18,11 @@ type ReasonLeft struct {
 	ReasonDescription *Textarea   `json:"-"`
 
 	// Persister specific fields
-	ID                  int   `json:"-"`
-	AccountID           int64 `json:"-"`
-	CommentsID          int   `json:"-"`
-	ReasonsID           int   `json:"-"`
-	ReasonDescriptionID int   `json:"-"`
+	ID                  int `json:"-"`
+	AccountID           int `json:"-"`
+	CommentsID          int `json:"-"`
+	ReasonsID           int `json:"-"`
+	ReasonDescriptionID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -67,15 +66,10 @@ func (entity *ReasonLeft) Valid() (bool, error) {
 	return true, nil
 }
 
-func (entity *ReasonLeft) Save(context *pg.DB, account int64) (int, error) {
+func (entity *ReasonLeft) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&ReasonLeft{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -98,61 +92,57 @@ func (entity *ReasonLeft) Save(context *pg.DB, account int64) (int, error) {
 	entity.ReasonDescriptionID = reasonDescriptionID
 
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *ReasonLeft) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *ReasonLeft) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ReasonLeft{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Comments.Delete(context, account); err != nil {
+	if _, err := entity.Comments.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Reasons.Delete(context, account); err != nil {
+	if _, err := entity.Reasons.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ReasonDescription.Delete(context, account); err != nil {
+	if _, err := entity.ReasonDescription.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *ReasonLeft) Get(context *pg.DB, account int64) (int, error) {
+func (entity *ReasonLeft) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ReasonLeft{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.CommentsID != 0 {
@@ -173,5 +163,5 @@ func (entity *ReasonLeft) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

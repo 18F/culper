@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 type PsychologicalCompetence struct {
@@ -18,10 +16,9 @@ type PsychologicalCompetence struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int   `json:"-"`
-	AccountID       int64 `json:"-"`
-	IsIncompetentID int   `json:"-"`
-	ListID          int   `json:"-"`
+	ID              int `json:"-"`
+	IsIncompetentID int `json:"-"`
+	ListID          int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -64,10 +61,13 @@ func (entity *PsychologicalCompetence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalCompetence) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalCompetence) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	isIncompetentID, err := entity.IsIncompetent.Save(context, account)
 	if err != nil {
 		return isIncompetentID, err
@@ -80,68 +80,56 @@ func (entity *PsychologicalCompetence) Save(context *pg.DB, account int64) (int,
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&PsychologicalCompetence{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalCompetence) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalCompetence) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalCompetence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.IsIncompetent.Delete(context, account); err != nil {
+	if _, err := entity.IsIncompetent.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalCompetence) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalCompetence) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalCompetence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.IsIncompetentID != 0 {
@@ -156,7 +144,7 @@ func (entity *PsychologicalCompetence) Get(context *pg.DB, account int64) (int, 
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type PsychologicalConsultations struct {
@@ -168,10 +156,9 @@ type PsychologicalConsultations struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int   `json:"-"`
-	AccountID   int64 `json:"-"`
-	ConsultedID int   `json:"-"`
-	ListID      int   `json:"-"`
+	ID          int `json:"-"`
+	ConsultedID int `json:"-"`
+	ListID      int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -214,10 +201,13 @@ func (entity *PsychologicalConsultations) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalConsultations) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalConsultations) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	consultedID, err := entity.Consulted.Save(context, account)
 	if err != nil {
 		return consultedID, err
@@ -230,68 +220,56 @@ func (entity *PsychologicalConsultations) Save(context *pg.DB, account int64) (i
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&PsychologicalConsultations{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalConsultations) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalConsultations) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalConsultations{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Consulted.Delete(context, account); err != nil {
+	if _, err := entity.Consulted.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalConsultations) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalConsultations) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalConsultations{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ConsultedID != 0 {
@@ -306,7 +284,7 @@ func (entity *PsychologicalConsultations) Get(context *pg.DB, account int64) (in
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type PsychologicalDiagnoses struct {
@@ -324,13 +302,12 @@ type PsychologicalDiagnoses struct {
 	TreatmentList *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int   `json:"-"`
-	AccountID       int64 `json:"-"`
-	DiagnosedID     int   `json:"-"`
-	DidNotConsultID int   `json:"-"`
-	DiagnosisListID int   `json:"-"`
-	InTreatmentID   int   `json:"-"`
-	TreatmentListID int   `json:"-"`
+	ID              int `json:"-"`
+	DiagnosedID     int `json:"-"`
+	DidNotConsultID int `json:"-"`
+	DiagnosisListID int `json:"-"`
+	InTreatmentID   int `json:"-"`
+	TreatmentListID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -405,10 +382,13 @@ func (entity *PsychologicalDiagnoses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalDiagnoses) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalDiagnoses) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	diagnosedID, err := entity.Diagnosed.Save(context, account)
 	if err != nil {
 		return diagnosedID, err
@@ -439,80 +419,68 @@ func (entity *PsychologicalDiagnoses) Save(context *pg.DB, account int64) (int, 
 	}
 	entity.TreatmentListID = treatmentListID
 
-	err = context.CreateTable(&PsychologicalDiagnoses{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalDiagnoses) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalDiagnoses) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalDiagnoses{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Diagnosed.Delete(context, account); err != nil {
+	if _, err := entity.Diagnosed.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DidNotConsult.Delete(context, account); err != nil {
+	if _, err := entity.DidNotConsult.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DiagnosisList.Delete(context, account); err != nil {
+	if _, err := entity.DiagnosisList.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.InTreatment.Delete(context, account); err != nil {
+	if _, err := entity.InTreatment.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.TreatmentList.Delete(context, account); err != nil {
+	if _, err := entity.TreatmentList.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalDiagnoses) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalDiagnoses) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalDiagnoses{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.DiagnosedID != 0 {
@@ -545,7 +513,7 @@ func (entity *PsychologicalDiagnoses) Get(context *pg.DB, account int64) (int, e
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type PsychologicalHospitalizations struct {
@@ -557,10 +525,9 @@ type PsychologicalHospitalizations struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HospitalizedID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HospitalizedID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -603,10 +570,13 @@ func (entity *PsychologicalHospitalizations) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalHospitalizations) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalHospitalizations) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hospitalizedID, err := entity.Hospitalized.Save(context, account)
 	if err != nil {
 		return hospitalizedID, err
@@ -619,68 +589,56 @@ func (entity *PsychologicalHospitalizations) Save(context *pg.DB, account int64)
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&PsychologicalHospitalizations{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalHospitalizations) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalHospitalizations) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalHospitalizations{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Hospitalized.Delete(context, account); err != nil {
+	if _, err := entity.Hospitalized.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalHospitalizations) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalHospitalizations) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalHospitalizations{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HospitalizedID != 0 {
@@ -695,7 +653,7 @@ func (entity *PsychologicalHospitalizations) Get(context *pg.DB, account int64) 
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type PsychologicalExisting struct {
@@ -715,14 +673,13 @@ type PsychologicalExisting struct {
 	DidNotFollowExplanation *Textarea   `json:"-"`
 
 	// Persister specific fields
-	ID                        int   `json:"-"`
-	AccountID                 int64 `json:"-"`
-	HasConditionID            int   `json:"-"`
-	ReceivedTreatmentID       int   `json:"-"`
-	ExplanationID             int   `json:"-"`
-	TreatmentListID           int   `json:"-"`
-	DidNotFollowID            int   `json:"-"`
-	DidNotFollowExplanationID int   `json:"-"`
+	ID                        int `json:"-"`
+	HasConditionID            int `json:"-"`
+	ReceivedTreatmentID       int `json:"-"`
+	ExplanationID             int `json:"-"`
+	TreatmentListID           int `json:"-"`
+	DidNotFollowID            int `json:"-"`
+	DidNotFollowExplanationID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -811,10 +768,13 @@ func (entity *PsychologicalExisting) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *PsychologicalExisting) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalExisting) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasConditionID, err := entity.HasCondition.Save(context, account)
 	if err != nil {
 		return hasConditionID, err
@@ -851,84 +811,72 @@ func (entity *PsychologicalExisting) Save(context *pg.DB, account int64) (int, e
 	}
 	entity.DidNotFollowExplanationID = didNotFollowExplanationID
 
-	err = context.CreateTable(&PsychologicalExisting{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *PsychologicalExisting) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalExisting) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalExisting{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasCondition.Delete(context, account); err != nil {
+	if _, err := entity.HasCondition.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ReceivedTreatment.Delete(context, account); err != nil {
+	if _, err := entity.ReceivedTreatment.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Explanation.Delete(context, account); err != nil {
+	if _, err := entity.Explanation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.TreatmentList.Delete(context, account); err != nil {
+	if _, err := entity.TreatmentList.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DidNotFollow.Delete(context, account); err != nil {
+	if _, err := entity.DidNotFollow.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DidNotFollowExplanation.Delete(context, account); err != nil {
+	if _, err := entity.DidNotFollowExplanation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *PsychologicalExisting) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalExisting) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalExisting{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasConditionID != 0 {
@@ -967,7 +915,7 @@ func (entity *PsychologicalExisting) Get(context *pg.DB, account int64) (int, er
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type PsychologicalTreatment struct {
@@ -981,11 +929,10 @@ type PsychologicalTreatment struct {
 	Address *Location  `json:"-"`
 
 	// Persister specific fields
-	ID        int   `json:"-"`
-	AccountID int64 `json:"-"`
-	NameID    int   `json:"-"`
-	PhoneID   int   `json:"-"`
-	AddressID int   `json:"-"`
+	ID        int `json:"-"`
+	NameID    int `json:"-"`
+	PhoneID   int `json:"-"`
+	AddressID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1035,10 +982,13 @@ func (entity *PsychologicalTreatment) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *PsychologicalTreatment) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalTreatment) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	nameID, err := entity.Name.Save(context, account)
 	if err != nil {
 		return nameID, err
@@ -1057,70 +1007,58 @@ func (entity *PsychologicalTreatment) Save(context *pg.DB, account int64) (int, 
 	}
 	entity.AddressID = addressID
 
-	err = context.CreateTable(&PsychologicalTreatment{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *PsychologicalTreatment) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalTreatment) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalTreatment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Name.Delete(context, account); err != nil {
+	if _, err := entity.Name.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Phone.Delete(context, account); err != nil {
+	if _, err := entity.Phone.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Address.Delete(context, account); err != nil {
+	if _, err := entity.Address.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *PsychologicalTreatment) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *PsychologicalTreatment) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&PsychologicalTreatment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.NameID != 0 {
@@ -1141,5 +1079,5 @@ func (entity *PsychologicalTreatment) Get(context *pg.DB, account int64) (int, e
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

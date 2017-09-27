@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // DateRange is a basic input.
@@ -20,10 +18,10 @@ type DateRange struct {
 	To   *DateControl `json:"-"`
 
 	// Persister specific fields
-	ID        int   `json:"-"`
-	AccountID int64 `json:"-"`
-	FromID    int   `json:"-"`
-	ToID      int   `json:"-"`
+	ID        int `json:"-"`
+	AccountID int `json:"-"`
+	FromID    int `json:"-"`
+	ToID      int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -67,15 +65,10 @@ func (entity *DateRange) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *DateRange) Save(context *pg.DB, account int64) (int, error) {
+func (entity *DateRange) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&DateRange{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -100,49 +93,41 @@ func (entity *DateRange) Save(context *pg.DB, account int64) (int, error) {
 	return entity.ID, err
 }
 
-func (entity *DateRange) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *DateRange) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&DateRange{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.From.Delete(context, account); err != nil {
+	if _, err := entity.From.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.To.Delete(context, account); err != nil {
+	if _, err := entity.To.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *DateRange) Get(context *pg.DB, account int64) (int, error) {
+func (entity *DateRange) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&DateRange{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.FromID != 0 {
@@ -157,5 +142,5 @@ func (entity *DateRange) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

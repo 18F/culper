@@ -1,10 +1,8 @@
 package form
 
 import (
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // CollectionItem is an item of named payloads.
@@ -37,16 +35,10 @@ func (item CollectionItem) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (item CollectionItem) Save(context *pg.DB, account int64, collectionID int) (int, error) {
+func (item CollectionItem) Save(context *db.DatabaseContext, account int, collectionID int) (int, error) {
 	item.CollectionID = collectionID
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CollectionItem{}, options); err != nil {
+	if err := context.CheckTable(item); err != nil {
 		return item.ID, err
 	}
 
@@ -81,7 +73,7 @@ func (item CollectionItem) Save(context *pg.DB, account int64, collectionID int)
 	return item.ID, nil
 }
 
-func (item CollectionItem) Delete(context *pg.DB, account int64, collectionID int) (int, error) {
+func (item CollectionItem) Delete(context *db.DatabaseContext, account int, collectionID int) (int, error) {
 	item.CollectionID = collectionID
 
 	for k, v := range item.Item {
@@ -99,25 +91,25 @@ func (item CollectionItem) Delete(context *pg.DB, account int64, collectionID in
 		item.ItemID = id
 	}
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CollectionItem{}, options); err != nil {
+	if err := context.CheckTable(item); err != nil {
 		return item.ID, err
 	}
 
 	if item.ID != 0 {
-		err = context.Delete(item)
+		if err := context.Delete(item); err != nil {
+			return item.ID, err
+		}
 	}
 
-	return item.ID, err
+	return item.ID, nil
 }
 
-func (item CollectionItem) Get(context *pg.DB, account int64, collectionID int) (int, error) {
+func (item CollectionItem) Get(context *db.DatabaseContext, account int, collectionID int) (int, error) {
 	item.CollectionID = collectionID
+
+	if err := context.CheckTable(item); err != nil {
+		return item.ID, err
+	}
 
 	if item.ID != 0 {
 		err := context.Select(item)

@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // Reference is a basic input.
@@ -29,16 +28,16 @@ type Reference struct {
 	Address            *Location      `json:"-"`
 
 	// Persister specific fields
-	ID                   int   `json:"-"`
-	AccountID            int64 `json:"-"`
-	FullNameID           int   `json:"-"`
-	LastContactID        int   `json:"-"`
-	RelationshipID       int   `json:"-"`
-	RelationshipOtherID  int   `json:"-"`
-	PhoneID              int   `json:"-"`
-	EmailID              int   `json:"-"`
-	EmailNotApplicableID int   `json:"-"`
-	AddressID            int   `json:"-"`
+	ID                   int `json:"-"`
+	AccountID            int `json:"-"`
+	FullNameID           int `json:"-"`
+	LastContactID        int `json:"-"`
+	RelationshipID       int `json:"-"`
+	RelationshipOtherID  int `json:"-"`
+	PhoneID              int `json:"-"`
+	EmailID              int `json:"-"`
+	EmailNotApplicableID int `json:"-"`
+	AddressID            int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -137,15 +136,10 @@ func (entity *Reference) Valid() (bool, error) {
 	return true, nil
 }
 
-func (entity *Reference) Save(context *pg.DB, account int64) (int, error) {
+func (entity *Reference) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&Reference{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -198,81 +192,77 @@ func (entity *Reference) Save(context *pg.DB, account int64) (int, error) {
 	entity.AddressID = addressID
 
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Reference) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *Reference) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Reference{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.FullName.Delete(context, account); err != nil {
+	if _, err := entity.FullName.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.LastContact.Delete(context, account); err != nil {
+	if _, err := entity.LastContact.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Relationship.Delete(context, account); err != nil {
+	if _, err := entity.Relationship.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.RelationshipOther.Delete(context, account); err != nil {
+	if _, err := entity.RelationshipOther.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Phone.Delete(context, account); err != nil {
+	if _, err := entity.Phone.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Email.Delete(context, account); err != nil {
+	if _, err := entity.Email.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.EmailNotApplicable.Delete(context, account); err != nil {
+	if _, err := entity.EmailNotApplicable.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Address.Delete(context, account); err != nil {
+	if _, err := entity.Address.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Reference) Get(context *pg.DB, account int64) (int, error) {
+func (entity *Reference) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Reference{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.FullNameID != 0 {
@@ -323,5 +313,5 @@ func (entity *Reference) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

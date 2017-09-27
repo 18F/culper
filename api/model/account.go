@@ -6,9 +6,8 @@ import (
 	"strconv"
 	"time"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	jwt "github.com/dgrijalva/jwt-go"
-
-	"github.com/go-pg/pg"
 )
 
 var (
@@ -30,18 +29,18 @@ var (
 
 // Account represents a user account
 type Account struct {
-	ID        int64
+	ID        int
 	Username  string
 	Firstname string
 	Lastname  string
 	Token     string
 	TokenUsed bool
 	Email     string
-	db        *pg.DB
+	db        *db.DatabaseContext
 }
 
 // WithContext sets a db connection for a particular model
-func (a *Account) WithContext(ctx *pg.DB) {
+func (a *Account) WithContext(ctx *db.DatabaseContext) {
 	a.db = ctx
 }
 
@@ -50,19 +49,14 @@ func (a *Account) BasicAuthentication(password string) error {
 	var basicMembership BasicAuthMembership
 
 	// Find if basic auth record exists for given account username
-	err := a.db.Model(&basicMembership).
+	err := a.db.Database.Model(&basicMembership).
 		Column("basic_auth_membership.*", "Account").
 		Where("Account.username = ?", a.Username).
 		Select()
 
 	if err != nil {
 		fmt.Printf("Basic Authentication Error: [%v]\n", err)
-		switch err {
-		case pg.ErrNoRows:
-			return ErrAccoundDoesNotExist
-		default:
-			return ErrDatastoreConnection
-		}
+		return ErrAccoundDoesNotExist
 	}
 
 	// Check if plaintext password matches hashed password
@@ -78,7 +72,7 @@ func (a *Account) BasicAuthentication(password string) error {
 func (a *Account) NewJwtToken(audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(Expiration)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Id:        strconv.FormatInt(a.ID, 10),
+		Id:        strconv.FormatInt(int64(a.ID), 10),
 		Issuer:    Issuer,
 		Audience:  audience,
 		ExpiresAt: expiresAt.Unix(),
@@ -102,7 +96,7 @@ func (a *Account) ValidJwtToken(rawToken, audience string) (bool, error) {
 
 	if token.Valid {
 		claims := token.Claims.(*jwt.StandardClaims)
-		a.ID, err = strconv.ParseInt(claims.Id, 10, 64)
+		a.ID, err = strconv.Atoi(claims.Id)
 		if err != nil {
 			return false, err
 		}
@@ -118,31 +112,31 @@ func (a *Account) ValidJwtToken(rawToken, audience string) (bool, error) {
 
 // Get account from the database
 func (a *Account) Get() error {
-	if a.db == nil {
+	if a.db.Database == nil {
 		return errors.New("No database context found")
 	}
 
 	if a.ID == 0 {
-		return a.db.
+		return a.db.Database.
 			Model(a).
 			Where("Account.username = ?", a.Username).
 			Select()
 	}
 
-	return a.db.Select(a)
+	return a.db.Database.Select(a)
 }
 
 // Save a database entity
 func (a *Account) Save() error {
-	if a.db == nil {
+	if a.db.Database == nil {
 		return errors.New("No database context found")
 	}
 
 	var err error
 	if a.ID == 0 {
-		err = a.db.Insert(a)
+		err = a.db.Database.Insert(a)
 	} else {
-		err = a.db.Update(a)
+		err = a.db.Database.Update(a)
 	}
 
 	return err

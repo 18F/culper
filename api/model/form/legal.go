@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // LegalCourt structure
@@ -17,10 +16,9 @@ type LegalCourt struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int   `json:"-"`
-	AccountID         int64 `json:"-"`
-	HasCourtActionsID int   `json:"-"`
-	ListID            int   `json:"-"`
+	ID                int `json:"-"`
+	HasCourtActionsID int `json:"-"`
+	ListID            int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -55,10 +53,13 @@ func (entity *LegalCourt) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalCourt) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalCourt) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasCourtActionsID, err := entity.HasCourtActions.Save(context, account)
 	if err != nil {
 		return hasCourtActionsID, err
@@ -71,68 +72,56 @@ func (entity *LegalCourt) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalCourt{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalCourt) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalCourt) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalCourt{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasCourtActions.Delete(context, account); err != nil {
+	if _, err := entity.HasCourtActions.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalCourt) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalCourt) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalCourt{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasCourtActionsID != 0 {
@@ -147,7 +136,7 @@ func (entity *LegalCourt) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalPoliceOffenses structure
@@ -160,10 +149,9 @@ type LegalPoliceOffenses struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int   `json:"-"`
-	AccountID     int64 `json:"-"`
-	HasOffensesID int   `json:"-"`
-	ListID        int   `json:"-"`
+	ID            int `json:"-"`
+	HasOffensesID int `json:"-"`
+	ListID        int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -198,10 +186,13 @@ func (entity *LegalPoliceOffenses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceOffenses) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceOffenses) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasOffensesID, err := entity.HasOffenses.Save(context, account)
 	if err != nil {
 		return hasOffensesID, err
@@ -214,68 +205,56 @@ func (entity *LegalPoliceOffenses) Save(context *pg.DB, account int64) (int, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalPoliceOffenses{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceOffenses) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceOffenses) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalPoliceOffenses{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasOffenses.Delete(context, account); err != nil {
+	if _, err := entity.HasOffenses.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceOffenses) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceOffenses) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalPoliceOffenses{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasOffensesID != 0 {
@@ -290,7 +269,7 @@ func (entity *LegalPoliceOffenses) Get(context *pg.DB, account int64) (int, erro
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalPoliceAdditionalOffenses structure
@@ -303,10 +282,9 @@ type LegalPoliceAdditionalOffenses struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int   `json:"-"`
-	AccountID          int64 `json:"-"`
-	HasOtherOffensesID int   `json:"-"`
-	ListID             int   `json:"-"`
+	ID                 int `json:"-"`
+	HasOtherOffensesID int `json:"-"`
+	ListID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -341,10 +319,13 @@ func (entity *LegalPoliceAdditionalOffenses) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceAdditionalOffenses) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceAdditionalOffenses) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasOtherOffensesID, err := entity.HasOtherOffenses.Save(context, account)
 	if err != nil {
 		return hasOtherOffensesID, err
@@ -357,68 +338,56 @@ func (entity *LegalPoliceAdditionalOffenses) Save(context *pg.DB, account int64)
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalPoliceAdditionalOffenses{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceAdditionalOffenses) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceAdditionalOffenses) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalPoliceAdditionalOffenses{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasOtherOffenses.Delete(context, account); err != nil {
+	if _, err := entity.HasOtherOffenses.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceAdditionalOffenses) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceAdditionalOffenses) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalPoliceAdditionalOffenses{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasOtherOffensesID != 0 {
@@ -433,7 +402,7 @@ func (entity *LegalPoliceAdditionalOffenses) Get(context *pg.DB, account int64) 
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalPoliceDomesticViolence structure
@@ -444,9 +413,8 @@ type LegalPoliceDomesticViolence struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int   `json:"-"`
-	AccountID int64 `json:"-"`
-	ListID    int   `json:"-"`
+	ID     int `json:"-"`
+	ListID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -471,74 +439,65 @@ func (entity *LegalPoliceDomesticViolence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalPoliceDomesticViolence) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceDomesticViolence) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalPoliceDomesticViolence{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalPoliceDomesticViolence) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceDomesticViolence) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalPoliceDomesticViolence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalPoliceDomesticViolence) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalPoliceDomesticViolence) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalPoliceDomesticViolence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
@@ -547,7 +506,7 @@ func (entity *LegalPoliceDomesticViolence) Get(context *pg.DB, account int64) (i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalInvestigationsDebarred structure
@@ -560,10 +519,9 @@ type LegalInvestigationsDebarred struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasDebarmentID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HasDebarmentID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -598,10 +556,13 @@ func (entity *LegalInvestigationsDebarred) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsDebarred) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsDebarred) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasDebarmentID, err := entity.HasDebarment.Save(context, account)
 	if err != nil {
 		return hasDebarmentID, err
@@ -614,68 +575,56 @@ func (entity *LegalInvestigationsDebarred) Save(context *pg.DB, account int64) (
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalInvestigationsDebarred{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsDebarred) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsDebarred) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalInvestigationsDebarred{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasDebarment.Delete(context, account); err != nil {
+	if _, err := entity.HasDebarment.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the (int, database).
-func (entity *LegalInvestigationsDebarred) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsDebarred) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalInvestigationsDebarred{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasDebarmentID != 0 {
@@ -690,7 +639,7 @@ func (entity *LegalInvestigationsDebarred) Get(context *pg.DB, account int64) (i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalInvestigationsHistory structure
@@ -703,10 +652,9 @@ type LegalInvestigationsHistory struct {
 	List       *Collection `json:"-"`
 
 	// Persister specific fields
-	ID           int   `json:"-"`
-	AccountID    int64 `json:"-"`
-	HasHistoryID int   `json:"-"`
-	ListID       int   `json:"-"`
+	ID           int `json:"-"`
+	HasHistoryID int `json:"-"`
+	ListID       int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -741,10 +689,13 @@ func (entity *LegalInvestigationsHistory) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsHistory) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsHistory) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasHistoryID, err := entity.HasHistory.Save(context, account)
 	if err != nil {
 		return hasHistoryID, err
@@ -757,68 +708,56 @@ func (entity *LegalInvestigationsHistory) Save(context *pg.DB, account int64) (i
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalInvestigationsHistory{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsHistory) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsHistory) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalInvestigationsHistory{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasHistory.Delete(context, account); err != nil {
+	if _, err := entity.HasHistory.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsHistory) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsHistory) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalInvestigationsHistory{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasHistoryID != 0 {
@@ -833,7 +772,7 @@ func (entity *LegalInvestigationsHistory) Get(context *pg.DB, account int64) (in
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalInvestigationsRevoked structure
@@ -846,10 +785,9 @@ type LegalInvestigationsRevoked struct {
 	List           *Collection `json:"-"`
 
 	// Persister specific fields
-	ID               int   `json:"-"`
-	AccountID        int64 `json:"-"`
-	HasRevocationsID int   `json:"-"`
-	ListID           int   `json:"-"`
+	ID               int `json:"-"`
+	HasRevocationsID int `json:"-"`
+	ListID           int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -884,10 +822,13 @@ func (entity *LegalInvestigationsRevoked) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalInvestigationsRevoked) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsRevoked) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasRevocationsID, err := entity.HasRevocations.Save(context, account)
 	if err != nil {
 		return hasRevocationsID, err
@@ -900,68 +841,56 @@ func (entity *LegalInvestigationsRevoked) Save(context *pg.DB, account int64) (i
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalInvestigationsRevoked{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalInvestigationsRevoked) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsRevoked) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalInvestigationsRevoked{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasRevocations.Delete(context, account); err != nil {
+	if _, err := entity.HasRevocations.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalInvestigationsRevoked) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalInvestigationsRevoked) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalInvestigationsRevoked{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasRevocationsID != 0 {
@@ -976,7 +905,7 @@ func (entity *LegalInvestigationsRevoked) Get(context *pg.DB, account int64) (in
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalTechnologyManipulating structure
@@ -989,10 +918,9 @@ type LegalTechnologyManipulating struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int   `json:"-"`
-	AccountID         int64 `json:"-"`
-	HasManipulatingID int   `json:"-"`
-	ListID            int   `json:"-"`
+	ID                int `json:"-"`
+	HasManipulatingID int `json:"-"`
+	ListID            int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1027,10 +955,13 @@ func (entity *LegalTechnologyManipulating) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyManipulating) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyManipulating) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasManipulatingID, err := entity.HasManipulating.Save(context, account)
 	if err != nil {
 		return hasManipulatingID, err
@@ -1043,68 +974,56 @@ func (entity *LegalTechnologyManipulating) Save(context *pg.DB, account int64) (
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalTechnologyManipulating{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyManipulating) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyManipulating) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalTechnologyManipulating{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasManipulating.Delete(context, account); err != nil {
+	if _, err := entity.HasManipulating.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyManipulating) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyManipulating) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalTechnologyManipulating{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasManipulatingID != 0 {
@@ -1119,7 +1038,7 @@ func (entity *LegalTechnologyManipulating) Get(context *pg.DB, account int64) (i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalTechnologyUnauthorized structure
@@ -1132,10 +1051,9 @@ type LegalTechnologyUnauthorized struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int   `json:"-"`
-	AccountID         int64 `json:"-"`
-	HasUnauthorizedID int   `json:"-"`
-	ListID            int   `json:"-"`
+	ID                int `json:"-"`
+	HasUnauthorizedID int `json:"-"`
+	ListID            int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1170,10 +1088,13 @@ func (entity *LegalTechnologyUnauthorized) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyUnauthorized) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyUnauthorized) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasUnauthorizedID, err := entity.HasUnauthorized.Save(context, account)
 	if err != nil {
 		return hasUnauthorizedID, err
@@ -1186,68 +1107,56 @@ func (entity *LegalTechnologyUnauthorized) Save(context *pg.DB, account int64) (
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalTechnologyUnauthorized{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyUnauthorized) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyUnauthorized) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalTechnologyUnauthorized{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasUnauthorized.Delete(context, account); err != nil {
+	if _, err := entity.HasUnauthorized.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyUnauthorized) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyUnauthorized) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalTechnologyUnauthorized{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasUnauthorizedID != 0 {
@@ -1262,7 +1171,7 @@ func (entity *LegalTechnologyUnauthorized) Get(context *pg.DB, account int64) (i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalTechnologyUnlawful structure
@@ -1275,10 +1184,9 @@ type LegalTechnologyUnlawful struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int   `json:"-"`
-	AccountID     int64 `json:"-"`
-	HasUnlawfulID int   `json:"-"`
-	ListID        int   `json:"-"`
+	ID            int `json:"-"`
+	HasUnlawfulID int `json:"-"`
+	ListID        int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1313,10 +1221,13 @@ func (entity *LegalTechnologyUnlawful) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalTechnologyUnlawful) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyUnlawful) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasUnlawfulID, err := entity.HasUnlawful.Save(context, account)
 	if err != nil {
 		return hasUnlawfulID, err
@@ -1329,68 +1240,56 @@ func (entity *LegalTechnologyUnlawful) Save(context *pg.DB, account int64) (int,
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalTechnologyUnlawful{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalTechnologyUnlawful) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyUnlawful) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalTechnologyUnlawful{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasUnlawful.Delete(context, account); err != nil {
+	if _, err := entity.HasUnlawful.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalTechnologyUnlawful) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalTechnologyUnlawful) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalTechnologyUnlawful{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasUnlawfulID != 0 {
@@ -1405,7 +1304,7 @@ func (entity *LegalTechnologyUnlawful) Get(context *pg.DB, account int64) (int, 
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalAssociationsActivitiesToOverthrow structure
@@ -1418,10 +1317,9 @@ type LegalAssociationsActivitiesToOverthrow struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int   `json:"-"`
-	AccountID       int64 `json:"-"`
-	HasActivitiesID int   `json:"-"`
-	ListID          int   `json:"-"`
+	ID              int `json:"-"`
+	HasActivitiesID int `json:"-"`
+	ListID          int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1456,10 +1354,13 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsActivitiesToOverthrow) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasActivitiesID, err := entity.HasActivities.Save(context, account)
 	if err != nil {
 		return hasActivitiesID, err
@@ -1472,68 +1373,56 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Save(context *pg.DB, accou
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalAssociationsActivitiesToOverthrow{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsActivitiesToOverthrow) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsActivitiesToOverthrow{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasActivities.Delete(context, account); err != nil {
+	if _, err := entity.HasActivities.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsActivitiesToOverthrow) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsActivitiesToOverthrow) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsActivitiesToOverthrow{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasActivitiesID != 0 {
@@ -1548,7 +1437,7 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Get(context *pg.DB, accoun
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalAssociationsAdvocating structure
@@ -1561,10 +1450,9 @@ type LegalAssociationsAdvocating struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasAdvocatedID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HasAdvocatedID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1599,10 +1487,13 @@ func (entity *LegalAssociationsAdvocating) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsAdvocating) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsAdvocating) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasAdvocatedID, err := entity.HasAdvocated.Save(context, account)
 	if err != nil {
 		return hasAdvocatedID, err
@@ -1615,68 +1506,56 @@ func (entity *LegalAssociationsAdvocating) Save(context *pg.DB, account int64) (
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalAssociationsAdvocating{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsAdvocating) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsAdvocating) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsAdvocating{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasAdvocated.Delete(context, account); err != nil {
+	if _, err := entity.HasAdvocated.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsAdvocating) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsAdvocating) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsAdvocating{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasAdvocatedID != 0 {
@@ -1691,7 +1570,7 @@ func (entity *LegalAssociationsAdvocating) Get(context *pg.DB, account int64) (i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalAssociationsEngagedInTerrorism structure
@@ -1704,10 +1583,9 @@ type LegalAssociationsEngagedInTerrorism struct {
 	List       *Collection `json:"-"`
 
 	// Persister specific fields
-	ID           int   `json:"-"`
-	AccountID    int64 `json:"-"`
-	HasEngagedID int   `json:"-"`
-	ListID       int   `json:"-"`
+	ID           int `json:"-"`
+	HasEngagedID int `json:"-"`
+	ListID       int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1742,10 +1620,13 @@ func (entity *LegalAssociationsEngagedInTerrorism) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsEngagedInTerrorism) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasEngagedID, err := entity.HasEngaged.Save(context, account)
 	if err != nil {
 		return hasEngagedID, err
@@ -1758,68 +1639,56 @@ func (entity *LegalAssociationsEngagedInTerrorism) Save(context *pg.DB, account 
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalAssociationsEngagedInTerrorism{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsEngagedInTerrorism) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsEngagedInTerrorism{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasEngaged.Delete(context, account); err != nil {
+	if _, err := entity.HasEngaged.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsEngagedInTerrorism) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsEngagedInTerrorism) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsEngagedInTerrorism{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasEngagedID != 0 {
@@ -1834,7 +1703,7 @@ func (entity *LegalAssociationsEngagedInTerrorism) Get(context *pg.DB, account i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalAssociationsMembershipOverthrow structure
@@ -1847,10 +1716,9 @@ type LegalAssociationsMembershipOverthrow struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasOverthrowID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HasOverthrowID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1885,10 +1753,13 @@ func (entity *LegalAssociationsMembershipOverthrow) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsMembershipOverthrow) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsMembershipOverthrow) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasOverthrowID, err := entity.HasOverthrow.Save(context, account)
 	if err != nil {
 		return hasOverthrowID, err
@@ -1901,68 +1772,56 @@ func (entity *LegalAssociationsMembershipOverthrow) Save(context *pg.DB, account
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalAssociationsMembershipOverthrow{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsMembershipOverthrow) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsMembershipOverthrow) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsMembershipOverthrow{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasOverthrow.Delete(context, account); err != nil {
+	if _, err := entity.HasOverthrow.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsMembershipOverthrow) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsMembershipOverthrow) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsMembershipOverthrow{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasOverthrowID != 0 {
@@ -1977,7 +1836,7 @@ func (entity *LegalAssociationsMembershipOverthrow) Get(context *pg.DB, account 
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalAssociationsMembershipViolence structure
@@ -1990,10 +1849,9 @@ type LegalAssociationsMembershipViolence struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int   `json:"-"`
-	AccountID     int64 `json:"-"`
-	HasViolenceID int   `json:"-"`
-	ListID        int   `json:"-"`
+	ID            int `json:"-"`
+	HasViolenceID int `json:"-"`
+	ListID        int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2028,10 +1886,13 @@ func (entity *LegalAssociationsMembershipViolence) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsMembershipViolence) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsMembershipViolence) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasViolenceID, err := entity.HasViolence.Save(context, account)
 	if err != nil {
 		return hasViolenceID, err
@@ -2044,68 +1905,56 @@ func (entity *LegalAssociationsMembershipViolence) Save(context *pg.DB, account 
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalAssociationsMembershipViolence{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsMembershipViolence) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsMembershipViolence) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsMembershipViolence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasViolence.Delete(context, account); err != nil {
+	if _, err := entity.HasViolence.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsMembershipViolence) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsMembershipViolence) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsMembershipViolence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasViolenceID != 0 {
@@ -2120,7 +1969,7 @@ func (entity *LegalAssociationsMembershipViolence) Get(context *pg.DB, account i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalAssociationsTerrorismAssociation structure
@@ -2133,10 +1982,9 @@ type LegalAssociationsTerrorismAssociation struct {
 	Explanation  *Textarea `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasTerrorismID int   `json:"-"`
-	ExplanationID  int   `json:"-"`
+	ID             int `json:"-"`
+	HasTerrorismID int `json:"-"`
+	ExplanationID  int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2171,10 +2019,13 @@ func (entity *LegalAssociationsTerrorismAssociation) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsTerrorismAssociation) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsTerrorismAssociation) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasTerrorismID, err := entity.HasTerrorism.Save(context, account)
 	if err != nil {
 		return hasTerrorismID, err
@@ -2187,68 +2038,56 @@ func (entity *LegalAssociationsTerrorismAssociation) Save(context *pg.DB, accoun
 	}
 	entity.ExplanationID = explanationID
 
-	err = context.CreateTable(&LegalAssociationsTerrorismAssociation{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsTerrorismAssociation) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsTerrorismAssociation) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsTerrorismAssociation{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasTerrorism.Delete(context, account); err != nil {
+	if _, err := entity.HasTerrorism.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Explanation.Delete(context, account); err != nil {
+	if _, err := entity.Explanation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsTerrorismAssociation) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsTerrorismAssociation) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsTerrorismAssociation{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasTerrorismID != 0 {
@@ -2263,7 +2102,7 @@ func (entity *LegalAssociationsTerrorismAssociation) Get(context *pg.DB, account
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // LegalAssociationsTerroristOrganization structure
@@ -2276,10 +2115,9 @@ type LegalAssociationsTerroristOrganization struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasTerroristID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HasTerroristID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2314,10 +2152,13 @@ func (entity *LegalAssociationsTerroristOrganization) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *LegalAssociationsTerroristOrganization) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsTerroristOrganization) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasTerroristID, err := entity.HasTerrorist.Save(context, account)
 	if err != nil {
 		return hasTerroristID, err
@@ -2330,68 +2171,56 @@ func (entity *LegalAssociationsTerroristOrganization) Save(context *pg.DB, accou
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&LegalAssociationsTerroristOrganization{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *LegalAssociationsTerroristOrganization) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsTerroristOrganization) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsTerroristOrganization{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasTerrorist.Delete(context, account); err != nil {
+	if _, err := entity.HasTerrorist.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *LegalAssociationsTerroristOrganization) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *LegalAssociationsTerroristOrganization) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&LegalAssociationsTerroristOrganization{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasTerroristID != 0 {
@@ -2406,5 +2235,5 @@ func (entity *LegalAssociationsTerroristOrganization) Get(context *pg.DB, accoun
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

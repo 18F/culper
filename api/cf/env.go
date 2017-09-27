@@ -142,3 +142,12 @@ func TwofactorResettable() bool {
 	}
 	return true
 }
+
+// IsTest returns if the environment is in a test environment
+func IsTest() bool {
+	e := os.Getenv("ALLOW_2FA_RESET")
+	if e == "test" || e == "development" {
+		return true
+	}
+	return false
+}

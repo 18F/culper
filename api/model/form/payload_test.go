@@ -318,7 +318,7 @@ func TestPayloadPersistence(t *testing.T) {
 			t.Fatalf("Failed to unpackage the payload for [%s]: %v", test.Data, err)
 		}
 
-		var account int64 = 1
+		account := 1
 		context := db.NewDB()
 		if _, err := entity.Save(context, account); err != nil {
 			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)

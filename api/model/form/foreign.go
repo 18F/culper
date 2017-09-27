@@ -5,8 +5,7 @@ import (
 	"errors"
 	"regexp"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 var (
@@ -33,15 +32,14 @@ type ForeignPassport struct {
 	Comments     *Textarea    `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasPassportsID int   `json:"-"`
-	NameID         int   `json:"-"`
-	CardID         int   `json:"-"`
-	NumberID       int   `json:"-"`
-	IssuedID       int   `json:"-"`
-	ExpirationID   int   `json:"-"`
-	CommentsID     int   `json:"-"`
+	ID             int `json:"-"`
+	HasPassportsID int `json:"-"`
+	NameID         int `json:"-"`
+	CardID         int `json:"-"`
+	NumberID       int `json:"-"`
+	IssuedID       int `json:"-"`
+	ExpirationID   int `json:"-"`
+	CommentsID     int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -128,10 +126,13 @@ func (entity *ForeignPassport) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignPassport) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignPassport) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasPassportsID, err := entity.HasPassports.Save(context, account)
 	if err != nil {
 		return hasPassportsID, err
@@ -174,88 +175,76 @@ func (entity *ForeignPassport) Save(context *pg.DB, account int64) (int, error) 
 	}
 	entity.CommentsID = commentsID
 
-	err = context.CreateTable(&ForeignPassport{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignPassport) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignPassport) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignPassport{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasPassports.Delete(context, account); err != nil {
+	if _, err := entity.HasPassports.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Name.Delete(context, account); err != nil {
+	if _, err := entity.Name.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Card.Delete(context, account); err != nil {
+	if _, err := entity.Card.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Number.Delete(context, account); err != nil {
+	if _, err := entity.Number.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Issued.Delete(context, account); err != nil {
+	if _, err := entity.Issued.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Expiration.Delete(context, account); err != nil {
+	if _, err := entity.Expiration.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Comments.Delete(context, account); err != nil {
+	if _, err := entity.Comments.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignPassport) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignPassport) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignPassport{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasPassportsID != 0 {
@@ -300,7 +289,7 @@ func (entity *ForeignPassport) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignContacts struct {
@@ -312,10 +301,9 @@ type ForeignContacts struct {
 	List               *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                   int   `json:"-"`
-	AccountID            int64 `json:"-"`
-	HasForeignContactsID int   `json:"-"`
-	ListID               int   `json:"-"`
+	ID                   int `json:"-"`
+	HasForeignContactsID int `json:"-"`
+	ListID               int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -350,10 +338,13 @@ func (entity *ForeignContacts) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignContacts) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignContacts) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignContactsID, err := entity.HasForeignContacts.Save(context, account)
 	if err != nil {
 		return hasForeignContactsID, err
@@ -366,68 +357,56 @@ func (entity *ForeignContacts) Save(context *pg.DB, account int64) (int, error) 
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignContacts{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignContacts) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignContacts) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignContacts{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignContacts.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignContacts.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignContacts) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignContacts) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignContacts{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignContactsID != 0 {
@@ -442,7 +421,7 @@ func (entity *ForeignContacts) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignTravel struct {
@@ -456,11 +435,10 @@ type ForeignTravel struct {
 	List                     *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                         int   `json:"-"`
-	AccountID                  int64 `json:"-"`
-	HasForeignTravelOutsideID  int   `json:"-"`
-	HasForeignTravelOfficialID int   `json:"-"`
-	ListID                     int   `json:"-"`
+	ID                         int `json:"-"`
+	HasForeignTravelOutsideID  int `json:"-"`
+	HasForeignTravelOfficialID int `json:"-"`
+	ListID                     int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -505,10 +483,13 @@ func (entity *ForeignTravel) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignTravel) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignTravel) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignTravelOutsideID, err := entity.HasForeignTravelOutside.Save(context, account)
 	if err != nil {
 		return hasForeignTravelOutsideID, err
@@ -527,72 +508,60 @@ func (entity *ForeignTravel) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignTravel{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignTravel) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignTravel) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignTravel{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignTravelOutside.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignTravelOutside.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignTravelOfficial.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignTravelOfficial.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignTravel) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignTravel) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignTravel{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignTravelOutsideID != 0 {
@@ -613,7 +582,7 @@ func (entity *ForeignTravel) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignActivitiesBenefits struct {
@@ -625,10 +594,9 @@ type ForeignActivitiesBenefits struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int   `json:"-"`
-	AccountID     int64 `json:"-"`
-	HasBenefitsID int   `json:"-"`
-	ListID        int   `json:"-"`
+	ID            int `json:"-"`
+	HasBenefitsID int `json:"-"`
+	ListID        int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -663,10 +631,13 @@ func (entity *ForeignActivitiesBenefits) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesBenefits) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesBenefits) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasBenefitsID, err := entity.HasBenefits.Save(context, account)
 	if err != nil {
 		return hasBenefitsID, err
@@ -679,68 +650,50 @@ func (entity *ForeignActivitiesBenefits) Save(context *pg.DB, account int64) (in
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignActivitiesBenefits{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesBenefits) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesBenefits) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesBenefits{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasBenefits.Delete(context, account); err != nil {
+	if _, err := entity.HasBenefits.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID != 0 {
-		err = context.Delete(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesBenefits) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesBenefits) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesBenefits{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasBenefitsID != 0 {
@@ -755,7 +708,7 @@ func (entity *ForeignActivitiesBenefits) Get(context *pg.DB, account int64) (int
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignActivitiesDirect struct {
@@ -767,10 +720,9 @@ type ForeignActivitiesDirect struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasInterestsID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HasInterestsID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -805,10 +757,13 @@ func (entity *ForeignActivitiesDirect) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesDirect) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesDirect) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasInterestsID, err := entity.HasInterests.Save(context, account)
 	if err != nil {
 		return hasInterestsID, err
@@ -821,68 +776,56 @@ func (entity *ForeignActivitiesDirect) Save(context *pg.DB, account int64) (int,
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignActivitiesDirect{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesDirect) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesDirect) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesDirect{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasInterests.Delete(context, account); err != nil {
+	if _, err := entity.HasInterests.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesDirect) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesDirect) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesDirect{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasInterestsID != 0 {
@@ -897,7 +840,7 @@ func (entity *ForeignActivitiesDirect) Get(context *pg.DB, account int64) (int, 
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignActivitiesIndirect struct {
@@ -909,10 +852,9 @@ type ForeignActivitiesIndirect struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasInterestsID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HasInterestsID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -947,10 +889,13 @@ func (entity *ForeignActivitiesIndirect) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesIndirect) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesIndirect) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasInterestsID, err := entity.HasInterests.Save(context, account)
 	if err != nil {
 		return hasInterestsID, err
@@ -963,68 +908,56 @@ func (entity *ForeignActivitiesIndirect) Save(context *pg.DB, account int64) (in
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignActivitiesIndirect{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesIndirect) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesIndirect) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesIndirect{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasInterests.Delete(context, account); err != nil {
+	if _, err := entity.HasInterests.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesIndirect) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesIndirect) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesIndirect{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasInterestsID != 0 {
@@ -1039,7 +972,7 @@ func (entity *ForeignActivitiesIndirect) Get(context *pg.DB, account int64) (int
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignActivitiesRealEstate struct {
@@ -1051,10 +984,9 @@ type ForeignActivitiesRealEstate struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int   `json:"-"`
-	AccountID      int64 `json:"-"`
-	HasInterestsID int   `json:"-"`
-	ListID         int   `json:"-"`
+	ID             int `json:"-"`
+	HasInterestsID int `json:"-"`
+	ListID         int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1089,10 +1021,13 @@ func (entity *ForeignActivitiesRealEstate) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesRealEstate) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesRealEstate) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasInterestsID, err := entity.HasInterests.Save(context, account)
 	if err != nil {
 		return hasInterestsID, err
@@ -1105,68 +1040,56 @@ func (entity *ForeignActivitiesRealEstate) Save(context *pg.DB, account int64) (
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignActivitiesRealEstate{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesRealEstate) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesRealEstate) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesRealEstate{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasInterests.Delete(context, account); err != nil {
+	if _, err := entity.HasInterests.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesRealEstate) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesRealEstate) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesRealEstate{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasInterestsID != 0 {
@@ -1181,7 +1104,7 @@ func (entity *ForeignActivitiesRealEstate) Get(context *pg.DB, account int64) (i
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignActivitiesSupport struct {
@@ -1193,10 +1116,9 @@ type ForeignActivitiesSupport struct {
 	List              *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                  int   `json:"-"`
-	AccountID           int64 `json:"-"`
-	HasForeignSupportID int   `json:"-"`
-	ListID              int   `json:"-"`
+	ID                  int `json:"-"`
+	HasForeignSupportID int `json:"-"`
+	ListID              int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1231,10 +1153,13 @@ func (entity *ForeignActivitiesSupport) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignActivitiesSupport) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesSupport) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignSupportID, err := entity.HasForeignSupport.Save(context, account)
 	if err != nil {
 		return hasForeignSupportID, err
@@ -1247,68 +1172,56 @@ func (entity *ForeignActivitiesSupport) Save(context *pg.DB, account int64) (int
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignActivitiesSupport{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignActivitiesSupport) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesSupport) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesSupport{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignSupport.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignSupport.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignActivitiesSupport) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignActivitiesSupport) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignActivitiesSupport{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignSupportID != 0 {
@@ -1323,7 +1236,7 @@ func (entity *ForeignActivitiesSupport) Get(context *pg.DB, account int64) (int,
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessAdvice struct {
@@ -1335,10 +1248,9 @@ type ForeignBusinessAdvice struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int   `json:"-"`
-	AccountID          int64 `json:"-"`
-	HasForeignAdviceID int   `json:"-"`
-	ListID             int   `json:"-"`
+	ID                 int `json:"-"`
+	HasForeignAdviceID int `json:"-"`
+	ListID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1373,10 +1285,13 @@ func (entity *ForeignBusinessAdvice) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessAdvice) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessAdvice) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignAdviceID, err := entity.HasForeignAdvice.Save(context, account)
 	if err != nil {
 		return hasForeignAdviceID, err
@@ -1389,68 +1304,56 @@ func (entity *ForeignBusinessAdvice) Save(context *pg.DB, account int64) (int, e
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessAdvice{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessAdvice) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessAdvice) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessAdvice{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignAdvice.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignAdvice.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessAdvice) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessAdvice) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessAdvice{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignAdviceID != 0 {
@@ -1465,7 +1368,7 @@ func (entity *ForeignBusinessAdvice) Get(context *pg.DB, account int64) (int, er
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessConferences struct {
@@ -1477,10 +1380,9 @@ type ForeignBusinessConferences struct {
 	List                  *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                      int   `json:"-"`
-	AccountID               int64 `json:"-"`
-	HasForeignConferencesID int   `json:"-"`
-	ListID                  int   `json:"-"`
+	ID                      int `json:"-"`
+	HasForeignConferencesID int `json:"-"`
+	ListID                  int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1515,10 +1417,13 @@ func (entity *ForeignBusinessConferences) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessConferences) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessConferences) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignConferencesID, err := entity.HasForeignConferences.Save(context, account)
 	if err != nil {
 		return hasForeignConferencesID, err
@@ -1531,68 +1436,56 @@ func (entity *ForeignBusinessConferences) Save(context *pg.DB, account int64) (i
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessConferences{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessConferences) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessConferences) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessConferences{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignConferences.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignConferences.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessConferences) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessConferences) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessConferences{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignConferencesID != 0 {
@@ -1607,7 +1500,7 @@ func (entity *ForeignBusinessConferences) Get(context *pg.DB, account int64) (in
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessContact struct {
@@ -1619,10 +1512,9 @@ type ForeignBusinessContact struct {
 	List              *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                  int   `json:"-"`
-	AccountID           int64 `json:"-"`
-	HasForeignContactID int   `json:"-"`
-	ListID              int   `json:"-"`
+	ID                  int `json:"-"`
+	HasForeignContactID int `json:"-"`
+	ListID              int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1657,10 +1549,13 @@ func (entity *ForeignBusinessContact) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessContact) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessContact) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignContactID, err := entity.HasForeignContact.Save(context, account)
 	if err != nil {
 		return hasForeignContactID, err
@@ -1673,68 +1568,56 @@ func (entity *ForeignBusinessContact) Save(context *pg.DB, account int64) (int, 
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessContact{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessContact) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessContact) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessContact{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignContact.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignContact.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessContact) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessContact) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessContact{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignContactID != 0 {
@@ -1749,7 +1632,7 @@ func (entity *ForeignBusinessContact) Get(context *pg.DB, account int64) (int, e
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessEmployment struct {
@@ -1761,10 +1644,9 @@ type ForeignBusinessEmployment struct {
 	List                 *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                     int   `json:"-"`
-	AccountID              int64 `json:"-"`
-	HasForeignEmploymentID int   `json:"-"`
-	ListID                 int   `json:"-"`
+	ID                     int `json:"-"`
+	HasForeignEmploymentID int `json:"-"`
+	ListID                 int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1799,10 +1681,13 @@ func (entity *ForeignBusinessEmployment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessEmployment) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessEmployment) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignEmploymentID, err := entity.HasForeignEmployment.Save(context, account)
 	if err != nil {
 		return hasForeignEmploymentID, err
@@ -1815,68 +1700,56 @@ func (entity *ForeignBusinessEmployment) Save(context *pg.DB, account int64) (in
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessEmployment{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessEmployment) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessEmployment) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessEmployment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignEmployment.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignEmployment.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessEmployment) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessEmployment) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessEmployment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignEmploymentID != 0 {
@@ -1891,7 +1764,7 @@ func (entity *ForeignBusinessEmployment) Get(context *pg.DB, account int64) (int
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessFamily struct {
@@ -1903,10 +1776,9 @@ type ForeignBusinessFamily struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int   `json:"-"`
-	AccountID          int64 `json:"-"`
-	HasForeignFamilyID int   `json:"-"`
-	ListID             int   `json:"-"`
+	ID                 int `json:"-"`
+	HasForeignFamilyID int `json:"-"`
+	ListID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1941,10 +1813,13 @@ func (entity *ForeignBusinessFamily) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessFamily) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessFamily) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignFamilyID, err := entity.HasForeignFamily.Save(context, account)
 	if err != nil {
 		return hasForeignFamilyID, err
@@ -1957,68 +1832,56 @@ func (entity *ForeignBusinessFamily) Save(context *pg.DB, account int64) (int, e
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessFamily{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessFamily) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessFamily) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessFamily{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignFamily.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignFamily.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessFamily) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessFamily) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessFamily{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignFamilyID != 0 {
@@ -2033,7 +1896,7 @@ func (entity *ForeignBusinessFamily) Get(context *pg.DB, account int64) (int, er
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessPolitical struct {
@@ -2045,10 +1908,9 @@ type ForeignBusinessPolitical struct {
 	List                *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                    int   `json:"-"`
-	AccountID             int64 `json:"-"`
-	HasForeignPoliticalID int   `json:"-"`
-	ListID                int   `json:"-"`
+	ID                    int `json:"-"`
+	HasForeignPoliticalID int `json:"-"`
+	ListID                int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2083,10 +1945,13 @@ func (entity *ForeignBusinessPolitical) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessPolitical) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessPolitical) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignPoliticalID, err := entity.HasForeignPolitical.Save(context, account)
 	if err != nil {
 		return hasForeignPoliticalID, err
@@ -2099,68 +1964,56 @@ func (entity *ForeignBusinessPolitical) Save(context *pg.DB, account int64) (int
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessPolitical{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessPolitical) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessPolitical) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessPolitical{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignPolitical.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignPolitical.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessPolitical) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessPolitical) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessPolitical{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignPoliticalID != 0 {
@@ -2175,7 +2028,7 @@ func (entity *ForeignBusinessPolitical) Get(context *pg.DB, account int64) (int,
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessSponsorship struct {
@@ -2187,10 +2040,9 @@ type ForeignBusinessSponsorship struct {
 	List                  *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                      int   `json:"-"`
-	AccountID               int64 `json:"-"`
-	HasForeignSponsorshipID int   `json:"-"`
-	ListID                  int   `json:"-"`
+	ID                      int `json:"-"`
+	HasForeignSponsorshipID int `json:"-"`
+	ListID                  int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2225,10 +2077,13 @@ func (entity *ForeignBusinessSponsorship) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessSponsorship) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessSponsorship) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignSponsorshipID, err := entity.HasForeignSponsorship.Save(context, account)
 	if err != nil {
 		return hasForeignSponsorshipID, err
@@ -2241,68 +2096,56 @@ func (entity *ForeignBusinessSponsorship) Save(context *pg.DB, account int64) (i
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessSponsorship{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessSponsorship) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessSponsorship) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessSponsorship{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignSponsorship.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignSponsorship.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessSponsorship) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessSponsorship) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessSponsorship{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignSponsorshipID != 0 {
@@ -2317,7 +2160,7 @@ func (entity *ForeignBusinessSponsorship) Get(context *pg.DB, account int64) (in
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessVentures struct {
@@ -2329,10 +2172,9 @@ type ForeignBusinessVentures struct {
 	List               *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                   int   `json:"-"`
-	AccountID            int64 `json:"-"`
-	HasForeignVenturesID int   `json:"-"`
-	ListID               int   `json:"-"`
+	ID                   int `json:"-"`
+	HasForeignVenturesID int `json:"-"`
+	ListID               int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2367,10 +2209,13 @@ func (entity *ForeignBusinessVentures) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessVentures) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessVentures) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignVenturesID, err := entity.HasForeignVentures.Save(context, account)
 	if err != nil {
 		return hasForeignVenturesID, err
@@ -2383,68 +2228,56 @@ func (entity *ForeignBusinessVentures) Save(context *pg.DB, account int64) (int,
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessVentures{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessVentures) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessVentures) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessVentures{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignVentures.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignVentures.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessVentures) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessVentures) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessVentures{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignVenturesID != 0 {
@@ -2459,7 +2292,7 @@ func (entity *ForeignBusinessVentures) Get(context *pg.DB, account int64) (int, 
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 type ForeignBusinessVoting struct {
@@ -2471,10 +2304,9 @@ type ForeignBusinessVoting struct {
 	List             *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                 int   `json:"-"`
-	AccountID          int64 `json:"-"`
-	HasForeignVotingID int   `json:"-"`
-	ListID             int   `json:"-"`
+	ID                 int `json:"-"`
+	HasForeignVotingID int `json:"-"`
+	ListID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -2509,10 +2341,13 @@ func (entity *ForeignBusinessVoting) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *ForeignBusinessVoting) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessVoting) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasForeignVotingID, err := entity.HasForeignVoting.Save(context, account)
 	if err != nil {
 		return hasForeignVotingID, err
@@ -2525,68 +2360,56 @@ func (entity *ForeignBusinessVoting) Save(context *pg.DB, account int64) (int, e
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&ForeignBusinessVoting{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *ForeignBusinessVoting) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessVoting) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessVoting{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasForeignVoting.Delete(context, account); err != nil {
+	if _, err := entity.HasForeignVoting.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *ForeignBusinessVoting) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *ForeignBusinessVoting) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ForeignBusinessVoting{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasForeignVotingID != 0 {
@@ -2601,5 +2424,5 @@ func (entity *ForeignBusinessVoting) Get(context *pg.DB, account int64) (int, er
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

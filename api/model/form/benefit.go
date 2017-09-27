@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 type Benefit struct {
@@ -34,19 +33,19 @@ type Benefit struct {
 	ObligatedExplanation *Textarea    `json:"-"`
 
 	// Persister specific fields
-	ID                     int   `json:"-"`
-	AccountID              int64 `json:"-"`
-	BeginID                int   `json:"-"`
-	EndID                  int   `json:"-"`
-	FrequencyID            int   `json:"-"`
-	OtherFrequencyID       int   `json:"-"`
-	ReceivedID             int   `json:"-"`
-	CountryID              int   `json:"-"`
-	ValueID                int   `json:"-"`
-	ValueEstimatedID       int   `json:"-"`
-	ReasonID               int   `json:"-"`
-	ObligatedID            int   `json:"-"`
-	ObligatedExplanationID int   `json:"-"`
+	ID                     int `json:"-"`
+	AccountID              int `json:"-"`
+	BeginID                int `json:"-"`
+	EndID                  int `json:"-"`
+	FrequencyID            int `json:"-"`
+	OtherFrequencyID       int `json:"-"`
+	ReceivedID             int `json:"-"`
+	CountryID              int `json:"-"`
+	ValueID                int `json:"-"`
+	ValueEstimatedID       int `json:"-"`
+	ReasonID               int `json:"-"`
+	ObligatedID            int `json:"-"`
+	ObligatedExplanationID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -163,15 +162,10 @@ func (entity *Benefit) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *Benefit) Save(context *pg.DB, account int64) (int, error) {
+func (entity *Benefit) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&Benefit{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -261,96 +255,88 @@ func (entity *Benefit) Save(context *pg.DB, account int64) (int, error) {
 }
 
 // Delete will remove the entity from the database.
-func (entity *Benefit) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *Benefit) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Benefit{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.BeginID != 0 {
-		if _, err = entity.Begin.Delete(context, account); err != nil {
+		if _, err := entity.Begin.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.EndID != 0 {
-		if _, err = entity.End.Delete(context, account); err != nil {
+		if _, err := entity.End.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.FrequencyID != 0 {
-		if _, err = entity.Frequency.Delete(context, account); err != nil {
+		if _, err := entity.Frequency.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.OtherFrequencyID != 0 {
-		if _, err = entity.OtherFrequency.Delete(context, account); err != nil {
+		if _, err := entity.OtherFrequency.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ReceivedID != 0 {
-		if _, err = entity.Received.Delete(context, account); err != nil {
+		if _, err := entity.Received.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	if _, err = entity.Country.Delete(context, account); err != nil {
+	if _, err := entity.Country.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Value.Delete(context, account); err != nil {
+	if _, err := entity.Value.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ValueEstimated.Delete(context, account); err != nil {
+	if _, err := entity.ValueEstimated.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Reason.Delete(context, account); err != nil {
+	if _, err := entity.Reason.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Obligated.Delete(context, account); err != nil {
+	if _, err := entity.Obligated.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ObligatedExplanation.Delete(context, account); err != nil {
+	if _, err := entity.ObligatedExplanation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *Benefit) Get(context *pg.DB, account int64) (int, error) {
+func (entity *Benefit) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Benefit{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.BeginID != 0 {
@@ -419,5 +405,5 @@ func (entity *Benefit) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

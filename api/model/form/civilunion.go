@@ -1,10 +1,8 @@
 package form
 
 import (
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // CivilUnion is an item of named payloads.
@@ -12,7 +10,7 @@ type CivilUnion struct {
 	Items PayloadProperties `sql:"-"`
 
 	ID        int    `json:"-"`
-	AccountID int64  `json:"-"`
+	AccountID int    `json:"-"`
 	Name      string `json:"-"`
 	Table     string `json:"-"`
 	ItemID    int    `json:"-"`
@@ -37,16 +35,10 @@ func (entity *CivilUnion) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *CivilUnion) Save(context *pg.DB, account int64) (int, error) {
+func (entity *CivilUnion) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CivilUnion{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -81,7 +73,7 @@ func (entity *CivilUnion) Save(context *pg.DB, account int64) (int, error) {
 	return entity.ID, nil
 }
 
-func (entity *CivilUnion) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *CivilUnion) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	for k, v := range entity.Items {
@@ -99,25 +91,25 @@ func (entity *CivilUnion) Delete(context *pg.DB, account int64) (int, error) {
 		entity.ItemID = id
 	}
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CivilUnion{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *CivilUnion) Get(context *pg.DB, account int64) (int, error) {
+func (entity *CivilUnion) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
+
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
 
 	if entity.ID != 0 {
 		err := context.Select(entity)

@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // Supervisor is a basic input.
@@ -25,14 +24,14 @@ type Supervisor struct {
 	Telephone          *Telephone     `json:"-"`
 
 	// Persister specific fields
-	ID                   int   `json:"-"`
-	AccountID            int64 `json:"-"`
-	SupervisorNameID     int   `json:"-"`
-	TitleID              int   `json:"-"`
-	EmailID              int   `json:"-"`
-	EmailNotApplicableID int   `json:"-"`
-	AddressID            int   `json:"-"`
-	TelephoneID          int   `json:"-"`
+	ID                   int `json:"-"`
+	AccountID            int `json:"-"`
+	SupervisorNameID     int `json:"-"`
+	TitleID              int `json:"-"`
+	EmailID              int `json:"-"`
+	EmailNotApplicableID int `json:"-"`
+	AddressID            int `json:"-"`
+	TelephoneID          int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -108,15 +107,10 @@ func (entity *Supervisor) Valid() (bool, error) {
 	return true, nil
 }
 
-func (entity *Supervisor) Save(context *pg.DB, account int64) (int, error) {
+func (entity *Supervisor) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&Supervisor{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -157,73 +151,69 @@ func (entity *Supervisor) Save(context *pg.DB, account int64) (int, error) {
 	entity.TelephoneID = telephoneID
 
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Supervisor) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *Supervisor) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Supervisor{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.SupervisorName.Delete(context, account); err != nil {
+	if _, err := entity.SupervisorName.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Title.Delete(context, account); err != nil {
+	if _, err := entity.Title.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Email.Delete(context, account); err != nil {
+	if _, err := entity.Email.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.EmailNotApplicable.Delete(context, account); err != nil {
+	if _, err := entity.EmailNotApplicable.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Address.Delete(context, account); err != nil {
+	if _, err := entity.Address.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Telephone.Delete(context, account); err != nil {
+	if _, err := entity.Telephone.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Supervisor) Get(context *pg.DB, account int64) (int, error) {
+func (entity *Supervisor) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Supervisor{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.SupervisorNameID != 0 {
@@ -262,5 +252,5 @@ func (entity *Supervisor) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

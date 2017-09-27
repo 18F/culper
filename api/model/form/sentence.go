@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // Sentence is a basic input.
@@ -27,15 +26,15 @@ type Sentence struct {
 	ProbationDatesNA     *NotApplicable `json:"-"`
 
 	// Persister specific fields
-	ID                     int   `json:"-"`
-	AccountID              int64 `json:"-"`
-	DescriptionID          int   `json:"-"`
-	ExceedsYearID          int   `json:"-"`
-	IncarceratedID         int   `json:"-"`
-	IncarcerationDatesID   int   `json:"-"`
-	IncarcerationDatesNAID int   `json:"-"`
-	ProbationDatesID       int   `json:"-"`
-	ProbationDatesNAID     int   `json:"-"`
+	ID                     int `json:"-"`
+	AccountID              int `json:"-"`
+	DescriptionID          int `json:"-"`
+	ExceedsYearID          int `json:"-"`
+	IncarceratedID         int `json:"-"`
+	IncarcerationDatesID   int `json:"-"`
+	IncarcerationDatesNAID int `json:"-"`
+	ProbationDatesID       int `json:"-"`
+	ProbationDatesNAID     int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -123,15 +122,10 @@ func (entity *Sentence) Valid() (bool, error) {
 	return true, nil
 }
 
-func (entity *Sentence) Save(context *pg.DB, account int64) (int, error) {
+func (entity *Sentence) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&Sentence{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -178,77 +172,73 @@ func (entity *Sentence) Save(context *pg.DB, account int64) (int, error) {
 	entity.ProbationDatesNAID = probationDatesNAID
 
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Sentence) Delete(context *pg.DB, account int64) (int, error) {
+func (entity *Sentence) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Sentence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Description.Delete(context, account); err != nil {
+	if _, err := entity.Description.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ExceedsYear.Delete(context, account); err != nil {
+	if _, err := entity.ExceedsYear.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Incarcerated.Delete(context, account); err != nil {
+	if _, err := entity.Incarcerated.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.IncarcerationDates.Delete(context, account); err != nil {
+	if _, err := entity.IncarcerationDates.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.IncarcerationDatesNA.Delete(context, account); err != nil {
+	if _, err := entity.IncarcerationDatesNA.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ProbationDates.Delete(context, account); err != nil {
+	if _, err := entity.ProbationDates.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ProbationDatesNA.Delete(context, account); err != nil {
+	if _, err := entity.ProbationDatesNA.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Sentence) Get(context *pg.DB, account int64) (int, error) {
+func (entity *Sentence) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Sentence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.DescriptionID != 0 {
@@ -293,5 +283,5 @@ func (entity *Sentence) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }

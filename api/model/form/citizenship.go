@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 type CitizenshipStatus struct {
@@ -64,33 +62,32 @@ type CitizenshipStatus struct {
 	ResidenceStatus             *Text        `json:"-"`
 
 	// Persister specific fields
-	ID                            int   `json:"-"`
-	AccountID                     int64 `json:"-"`
-	CitizenshipStatusID           int   `json:"-"`
-	AbroadDocumentationID         int   `json:"-"`
-	ExplanationID                 int   `json:"-"`
-	DocumentNumberID              int   `json:"-"`
-	DocumentIssuedID              int   `json:"-"`
-	DocumentNameID                int   `json:"-"`
-	DocumentExpirationID          int   `json:"-"`
-	DocumentTypeID                int   `json:"-"`
-	PlaceIssuedID                 int   `json:"-"`
-	CertificateNumberID           int   `json:"-"`
-	CertificateIssuedID           int   `json:"-"`
-	CertificateNameID             int   `json:"-"`
-	CertificateCourtNameID        int   `json:"-"`
-	CertificateCourtAddressID     int   `json:"-"`
-	BornOnMilitaryInstallationID  int   `json:"-"`
-	MilitaryBaseID                int   `json:"-"`
-	EntryDateID                   int   `json:"-"`
-	EntryLocationID               int   `json:"-"`
-	PriorCitizenshipID            int   `json:"-"`
-	HasAlienRegistrationID        int   `json:"-"`
-	AlienRegistrationNumberID     int   `json:"-"`
-	AlienRegistrationExpirationID int   `json:"-"`
-	BasisID                       int   `json:"-"`
-	PermanentResidentCardNumberID int   `json:"-"`
-	ResidenceStatusID             int   `json:"-"`
+	ID                            int `json:"-"`
+	CitizenshipStatusID           int `json:"-"`
+	AbroadDocumentationID         int `json:"-"`
+	ExplanationID                 int `json:"-"`
+	DocumentNumberID              int `json:"-"`
+	DocumentIssuedID              int `json:"-"`
+	DocumentNameID                int `json:"-"`
+	DocumentExpirationID          int `json:"-"`
+	DocumentTypeID                int `json:"-"`
+	PlaceIssuedID                 int `json:"-"`
+	CertificateNumberID           int `json:"-"`
+	CertificateIssuedID           int `json:"-"`
+	CertificateNameID             int `json:"-"`
+	CertificateCourtNameID        int `json:"-"`
+	CertificateCourtAddressID     int `json:"-"`
+	BornOnMilitaryInstallationID  int `json:"-"`
+	MilitaryBaseID                int `json:"-"`
+	EntryDateID                   int `json:"-"`
+	EntryLocationID               int `json:"-"`
+	PriorCitizenshipID            int `json:"-"`
+	HasAlienRegistrationID        int `json:"-"`
+	AlienRegistrationNumberID     int `json:"-"`
+	AlienRegistrationExpirationID int `json:"-"`
+	BasisID                       int `json:"-"`
+	PermanentResidentCardNumberID int `json:"-"`
+	ResidenceStatusID             int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -363,10 +360,9 @@ func (entity *CitizenshipStatus) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipStatus) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *CitizenshipStatus) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
 	citizenshipStatusID, err := entity.CitizenshipStatus.Save(context, account)
 	if err != nil {
 		return citizenshipStatusID, err
@@ -517,146 +513,142 @@ func (entity *CitizenshipStatus) Save(context *pg.DB, account int64) (int, error
 	}
 	entity.ResidenceStatusID = residenceStatusID
 
-	err = context.CreateTable(&CitizenshipStatus{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipStatus) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *CitizenshipStatus) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CitizenshipStatus{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CitizenshipStatus.Delete(context, account); err != nil {
+	if _, err := entity.CitizenshipStatus.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.AbroadDocumentation.Delete(context, account); err != nil {
+	if _, err := entity.AbroadDocumentation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Explanation.Delete(context, account); err != nil {
+	if _, err := entity.Explanation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DocumentNumber.Delete(context, account); err != nil {
+	if _, err := entity.DocumentNumber.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DocumentIssued.Delete(context, account); err != nil {
+	if _, err := entity.DocumentIssued.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DocumentName.Delete(context, account); err != nil {
+	if _, err := entity.DocumentName.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DocumentExpiration.Delete(context, account); err != nil {
+	if _, err := entity.DocumentExpiration.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.DocumentType.Delete(context, account); err != nil {
+	if _, err := entity.DocumentType.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.PlaceIssued.Delete(context, account); err != nil {
+	if _, err := entity.PlaceIssued.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CertificateNumber.Delete(context, account); err != nil {
+	if _, err := entity.CertificateNumber.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CertificateIssued.Delete(context, account); err != nil {
+	if _, err := entity.CertificateIssued.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CertificateName.Delete(context, account); err != nil {
+	if _, err := entity.CertificateName.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CertificateCourtName.Delete(context, account); err != nil {
+	if _, err := entity.CertificateCourtName.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.CertificateCourtAddress.Delete(context, account); err != nil {
+	if _, err := entity.CertificateCourtAddress.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.BornOnMilitaryInstallation.Delete(context, account); err != nil {
+	if _, err := entity.BornOnMilitaryInstallation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.MilitaryBase.Delete(context, account); err != nil {
+	if _, err := entity.MilitaryBase.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.EntryDate.Delete(context, account); err != nil {
+	if _, err := entity.EntryDate.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.EntryLocation.Delete(context, account); err != nil {
+	if _, err := entity.EntryLocation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.PriorCitizenship.Delete(context, account); err != nil {
+	if _, err := entity.PriorCitizenship.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasAlienRegistration.Delete(context, account); err != nil {
+	if _, err := entity.HasAlienRegistration.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.AlienRegistrationNumber.Delete(context, account); err != nil {
+	if _, err := entity.AlienRegistrationNumber.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.AlienRegistrationExpiration.Delete(context, account); err != nil {
+	if _, err := entity.AlienRegistrationExpiration.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Basis.Delete(context, account); err != nil {
+	if _, err := entity.Basis.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.PermanentResidentCardNumber.Delete(context, account); err != nil {
+	if _, err := entity.PermanentResidentCardNumber.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.ResidenceStatus.Delete(context, account); err != nil {
+	if _, err := entity.ResidenceStatus.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipStatus) Get(context *pg.DB, account int64) (int, error) {
+func (entity *CitizenshipStatus) Get(context *db.DatabaseContext, account int) (int, error) {
 	return 0, nil
 }
 
@@ -669,10 +661,9 @@ type CitizenshipMultiple struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int   `json:"-"`
-	AccountID     int64 `json:"-"`
-	HasMultipleID int   `json:"-"`
-	ListID        int   `json:"-"`
+	ID            int `json:"-"`
+	HasMultipleID int `json:"-"`
+	ListID        int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -715,10 +706,13 @@ func (entity *CitizenshipMultiple) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipMultiple) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *CitizenshipMultiple) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
 	hasMultipleID, err := entity.HasMultiple.Save(context, account)
 	if err != nil {
 		return hasMultipleID, err
@@ -731,54 +725,46 @@ func (entity *CitizenshipMultiple) Save(context *pg.DB, account int64) (int, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&CitizenshipMultiple{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipMultiple) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *CitizenshipMultiple) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CitizenshipMultiple{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasMultiple.Delete(context, account); err != nil {
+	if _, err := entity.HasMultiple.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
+	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipMultiple) Get(context *pg.DB, account int64) (int, error) {
+func (entity *CitizenshipMultiple) Get(context *db.DatabaseContext, account int) (int, error) {
 	return 0, nil
 }
 
@@ -789,9 +775,8 @@ type CitizenshipPassports struct {
 	Passports *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int   `json:"-"`
-	AccountID   int64 `json:"-"`
-	PassportsID int   `json:"-"`
+	ID          int `json:"-"`
+	PassportsID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -816,15 +801,10 @@ func (entity *CitizenshipPassports) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *CitizenshipPassports) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *CitizenshipPassports) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
-	err = context.CreateTable(&CitizenshipPassports{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -835,55 +815,51 @@ func (entity *CitizenshipPassports) Save(context *pg.DB, account int64) (int, er
 	entity.PassportsID = passportsID
 
 	if entity.ID == 0 {
-		err = context.Insert(entity)
+		if err := context.Insert(entity); err != nil {
+			return entity.ID, err
+		}
 	} else {
-		err = context.Update(entity)
+		if err := context.Update(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *CitizenshipPassports) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *CitizenshipPassports) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CitizenshipPassports{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Passports.Delete(context, account); err != nil {
+	if _, err := entity.Passports.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *CitizenshipPassports) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *CitizenshipPassports) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CitizenshipPassports{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.PassportsID != 0 {
@@ -892,5 +868,5 @@ func (entity *CitizenshipPassports) Get(context *pg.DB, account int64) (int, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
