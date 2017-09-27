@@ -24,6 +24,7 @@ jobs:
           name: Code coverage
           command: |
             set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
             docker-compose run frontend npm run coverage
 
   deploy_development:
@@ -46,15 +47,16 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
-      - deploy:
-          command: |
-            set -x
-            ./bin/deploy.sh dev
       - run:
           name: Code coverage
           command: |
             set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
             docker-compose run frontend npm run coverage
+      - deploy:
+          command: |
+            set -x
+            ./bin/deploy.sh dev
 
   deploy_staging:
     machine: true
@@ -76,15 +78,16 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
-      - deploy:
-          command: |
-            set -x
-            ./bin/deploy.sh staging
       - run:
           name: Code coverage
           command: |
             set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
             docker-compose run frontend npm run coverage
+      - deploy:
+          command: |
+            set -x
+            ./bin/deploy.sh staging
 
   deploy_production:
     machine: true
@@ -106,15 +109,16 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
-      - deploy:
-          command: |
-            set -x
-            ./bin/deploy.sh production
       - run:
           name: Code coverage
           command: |
             set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
             docker-compose run frontend npm run coverage
+      - deploy:
+          command: |
+            set -x
+            ./bin/deploy.sh production
 
 workflows:
   version: 2
