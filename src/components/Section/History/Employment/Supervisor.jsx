@@ -48,13 +48,11 @@ export default class Supervisor extends ValidationElement {
     return (
       <div className="supervisor">
         <Field title={i18n.t('history.employment.default.supervisor.heading.name')}
-               help="history.employment.default.supervisor.name.help"
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="SupervisorName"
                 className="text full-width"
                 {...this.props.SupervisorName}
-                label={i18n.t('history.employment.default.supervisor.name.label')}
                 onError={this.props.onError}
                 onUpdate={this.onUpdate.bind(this, 'SupervisorName')}
                 required={this.props.required}
@@ -62,13 +60,11 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.title')}
-               help="history.employment.default.supervisor.title.help"
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="Title"
                 {...this.props.Title}
                 className="text full-width supervisor-title"
-                label={i18n.t('history.employment.default.supervisor.title.label')}
                 onUpdate={this.onUpdate.bind(this, 'Title')}
                 onError={this.props.onError}
                 required={this.props.required}
@@ -76,7 +72,6 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.email')}
-               help="history.employment.default.supervisor.email.help"
                adjustFor="label"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
@@ -89,7 +84,6 @@ export default class Supervisor extends ValidationElement {
             <Email name="Email"
                    {...this.props.Email}
                    className="text supervisor-email"
-                   label={i18n.t('history.employment.default.supervisor.email.label')}
                    onUpdate={this.onUpdate.bind(this, 'Email')}
                    onError={this.props.onError}
                    required={this.props.required}
@@ -117,7 +111,6 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.telephone')}
-               help="history.employment.default.supervisor.telephone.help"
                adjustFor="telephone"
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="Telephone"

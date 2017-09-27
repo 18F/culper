@@ -3673,7 +3673,7 @@ const en = {
           title: 'Government employment',
           help: {
             title: 'Need help with your employment activity?',
-            message: 'Select your employment activity',
+            message: 'State Government (Non-Federal employment). Non-government employment excludes self-employment, if you were self employed choose "Self-employment". ',
             note: ''
           },
           other: {
@@ -3727,7 +3727,7 @@ const en = {
             date: 'Provide the date you quit after being told you would be fired'
           },
           charges: {
-            option: 'Charges',
+            option: 'Misconduct',
             text: 'Provide the charges or allegations of misconduct',
             date: 'Provide the date you left following the charges or allegations of misconduct'
           },
@@ -3754,15 +3754,15 @@ const en = {
         datesEmployed: {
           help: {
             title: 'Need help with the dates you were employed?',
-            message: 'Select the dates you were employed',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         },
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Provide the address',
+            title: 'Need help with this address?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -3806,11 +3806,16 @@ const en = {
             note: ''
           },
           address: {
-            label: 'This address is'
+            label: 'This address is',
+            help: {
+              title: 'Need help with this address?',
+              message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+              note: ''
+           }
           },
           heading: {
             telephone: 'Provide telephone number',
-            address: 'Provide the address of physical location'
+            address: 'Provide the work address where you are/were physically located'
           }
         },
         additionalActivity: {
@@ -3847,7 +3852,7 @@ const en = {
           datesEmployed: {
             help: {
               title: 'Need help with the dates of employment?',
-              message: 'Provide dates of employment',
+              message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
               note: ''
             }
           }
@@ -3894,7 +3899,7 @@ const en = {
           },
           heading: {
             name: 'Provide the name of your supervisor',
-            title: 'Provide the position title of your supervisor',
+            title: 'Provide the rank/position title of your supervisor',
             email: 'Provide the email address of your supervisor',
             address: 'Provide the physical work location of your supervisor',
             telephone: 'Provide the telephone number for this supervisor'
@@ -3910,7 +3915,7 @@ const en = {
           title: 'Provide the most recent position title',
           reference: 'Provide a reference',
           status: 'Select the employment status for this position',
-          address: 'Provide the address of employment',
+          address: 'Provide the address of employer',
           supervisor: 'Your Supervisor',
           telephone: 'Provide your employment telephone number',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',

@@ -34,14 +34,12 @@ export default class AdditionalActivity extends ValidationElement {
                           labelSize="h4"
                           appendLabel={i18n.t('history.employment.default.additionalActivity.collection.append')}
                           appendSize="h4"
-                          help="history.employment.default.additionalActivity.help"
                           items={this.state.List}
                           onUpdate={this.myDispatch}
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('history.employment.default.additionalActivity.heading.position')}
                  titleSize="h4"
-                 help="history.employment.default.additionalActivity.position.help"
                  adjustFor="labels"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="Position"
@@ -54,7 +52,6 @@ export default class AdditionalActivity extends ValidationElement {
 
           <Field title={i18n.t('history.employment.default.additionalActivity.heading.supervisor')}
                  titleSize="h4"
-                 help="history.employment.default.additionalActivity.supervisor.help"
                  adjustFor="labels"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="Supervisor"
