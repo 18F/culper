@@ -23,7 +23,7 @@ describe('The BenefitActivity component', () => {
       HasBenefits: 'Yes',
       List: [
         {
-          Benefit: {
+          Item: {
             InterestTypes: ['Yourself'],
             BenefitType: 'Educational',
             BenefitFrequency: 'OneTime',
@@ -65,7 +65,7 @@ describe('The BenefitActivity component', () => {
         HasBenefits: 'Yes',
         List: [
           {
-            Benefit: {
+            Item: {
               InterestTypes: ['Yourself'],
               BenefitFrequency: 'OneTime',
               OneTimeBenefit: {
@@ -87,7 +87,7 @@ describe('The BenefitActivity component', () => {
         HasBenefits: 'Yes',
         List: [
           {
-            Benefit: {
+            Item: {
               InterestTypes: ['Yourself'],
               BenefitFrequency: 'Future',
               FutureBenefit: {
@@ -109,7 +109,7 @@ describe('The BenefitActivity component', () => {
         HasBenefits: 'Yes',
         List: [
           {
-            Benefit: {
+            Item: {
               InterestTypes: ['Yourself'],
               BenefitFrequency: 'Continuing',
               ContinuingBenefit: {

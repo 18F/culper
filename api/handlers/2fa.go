@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/twofactor"
@@ -15,6 +16,11 @@ import (
 // TwofactorHandler is the initial entry and subscription for two-factor
 // authentication.
 func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
+	if cf.TwofactorDisabled() {
+		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
+		return
+	}
+
 	account, err := getAccountFromRequest(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -42,6 +48,11 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 
 // TwofactorVerifyHandler verifies a token provided by the end user.
 func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
+	if cf.TwofactorDisabled() {
+		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
+		return
+	}
+
 	account, err := getAccountFromRequest(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -90,6 +101,11 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 
 // TwofactorEmailHandler sends a token to the user by email.
 func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
+	if cf.TwofactorDisabled() {
+		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
+		return
+	}
+
 	account, err := getAccountFromRequest(r)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -105,6 +121,11 @@ func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
+	if cf.TwofactorDisabled() {
+		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
+		return
+	}
+
 	if os.Getenv("ALLOW_2FA_RESET") == "" {
 		http.Error(w, "Reset two-factor authentication not allowed on this server", http.StatusUnauthorized)
 		return

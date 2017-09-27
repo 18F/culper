@@ -6,7 +6,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Svg, Show, Branch } from '../../Form'
+import { Field, Svg, Show, Branch } from '../../Form'
 import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
@@ -63,7 +63,7 @@ class History extends SectionElement {
   }
 
   updateEmployment (values) {
-    this.handleUpdate('Employment', values.items)
+    this.handleUpdate('Employment', values)
   }
 
   updateEducation (values) {
@@ -145,7 +145,7 @@ class History extends SectionElement {
       return dates
     }
 
-    for (const i of this.excludeGaps(this.props.Employment)) {
+    for (const i of this.excludeGaps(this.props.Employment.List)) {
       if (!i.Item) {
         continue
       }
@@ -254,13 +254,20 @@ class History extends SectionElement {
       const start = daysAgo(today, 365 * this.totalYears())
 
       for (const t of types) {
+        let items = []
+        if (t === 'Employment') {
+          items = ((this.props.History[t] && this.props.History[t].List) || [])
+        } else {
+          items = this.props.History[t]
+        }
+
         // If there is no history it should still display the exiting message
-        if (!this.props.History[t]) {
+        if (!items) {
           holes += 1
           continue
         }
 
-        const list = this.props.History[t].filter(item => {
+        const list = items.filter(item => {
           return item.Item && item.Item.Dates
         })
 
@@ -316,8 +323,11 @@ class History extends SectionElement {
                        backLabel={i18n.t('financial.destination.review')}
                        next="history/residence"
                        nextLabel={i18n.t('history.destination.residence')}>
-            <h2>{i18n.t('history.intro.title')}</h2>
-            {i18n.m('history.intro.body')}
+            <Field title={i18n.t('history.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('history.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="review"
@@ -349,6 +359,7 @@ class History extends SectionElement {
                        />
 
             <Employment value={this.props.Employment}
+                        {...this.props.Employment}
                         defaultState={false}
                         realtime={true}
                         sort={sort}
@@ -363,7 +374,7 @@ class History extends SectionElement {
                         />
 
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
-              <Education value={this.props.Education.List}
+              <Education value={this.props.Education}
                          defaultState={false}
                          realtime={true}
                          sort={sort}
@@ -378,7 +389,6 @@ class History extends SectionElement {
             </Show>
 
             <hr />
-            <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
                      defaultState={false}
@@ -396,12 +406,20 @@ class History extends SectionElement {
                        backLabel={i18n.t('history.destination.intro')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
-            <h2>{i18n.t('history.residence.title')}</h2>
-            <h3>{i18n.t('history.residence.info')}</h3>
-            {i18n.m('history.residence.info2')}
-            {i18n.m('history.residence.info3a')}
-            {i18n.m('history.residence.info3b')}
-            {i18n.m('history.residence.info3c')}
+            <Field title={i18n.t('history.residence.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom"
+                   />
+
+            <Field title={i18n.t('history.residence.info')}
+                   titleSize="h3"
+                   className="no-margin-bottom">
+              {i18n.m('history.residence.info2')}
+              {i18n.m('history.residence.info3a')}
+              {i18n.m('history.residence.info3b')}
+              {i18n.m('history.residence.info3c')}
+            </Field>
+
             <span id="scrollToHistory"></span>
             { this.residenceSummaryProgress() }
             <Residence value={this.props.Residence}
@@ -419,8 +437,11 @@ class History extends SectionElement {
             <Show when={this.hasGaps(['Residence'])}>
               <div className="not-complete">
                 <hr className="section-divider" />
-                <h2>{i18n.t('history.residence.heading.exiting')}</h2>
-                {i18n.m('history.residence.para.exiting')}
+                <Field title={i18n.t('history.residence.heading.exiting')}
+                       titleSize="h2"
+                       className="no-margin-bottom">
+                  {i18n.m('history.residence.para.exiting')}
+                </Field>
               </div>
             </Show>
           </SectionView>
@@ -430,12 +451,17 @@ class History extends SectionElement {
                        backLabel={i18n.t('history.destination.residence')}
                        next="history/education"
                        nextLabel={i18n.t('history.destination.education')}>
-            <h2>{i18n.t('history.employment.heading.employment')}</h2>
-            {i18n.m('history.employment.para.employment')}
-            {i18n.m('history.employment.para.employment2')}
+            <Field title={i18n.t('history.employment.heading.employment')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('history.employment.para.employment')}
+              {i18n.m('history.employment.para.employment2')}
+            </Field>
+
             <span id="scrollToHistory"></span>
             { this.employmentSummaryProgress() }
             <Employment value={this.props.Employment}
+                        {...this.props.Employment}
                         scrollToTop="scrollToHistory"
                         sort={sort}
                         totalYears={this.totalYears()}
@@ -449,8 +475,11 @@ class History extends SectionElement {
             <Show when={this.hasGaps(['Employment'])}>
               <div className="not-complete">
                 <hr className="section-divider" />
-                <h2>{i18n.t('history.employment.heading.exiting')}</h2>
-                {i18n.m('history.employment.para.exiting')}
+                <Field title={i18n.t('history.employment.heading.exiting')}
+                       titleSize="h2"
+                       className="no-margin-bottom">
+                  {i18n.m('history.employment.para.exiting')}
+                </Field>
               </div>
             </Show>
           </SectionView>
@@ -460,8 +489,12 @@ class History extends SectionElement {
                        backLabel={i18n.t('history.destination.employment')}
                        next="history/federal"
                        nextLabel={i18n.t('history.destination.federal')}>
-            <h2>{i18n.t('history.education.title')}</h2>
-            <p>{i18n.t('history.education.info')}</p>
+            <Field title={i18n.t('history.education.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('history.education.info')}
+            </Field>
+
             <Branch name="branch_school"
                     value={this.props.Education.HasAttended}
                     help="history.education.help.attendance"
@@ -505,7 +538,6 @@ class History extends SectionElement {
                        next="history/review"
                        nextLabel={i18n.t('history.destination.review')}
                        >
-            <h2>{i18n.t('history.federal.title')}</h2>
             <Federal name="federal"
                      {...this.props.Federal}
                      addressBooks={this.props.AddressBooks}
@@ -544,7 +576,7 @@ function mapStateToProps (state) {
   return {
     History: history,
     Residence: history.Residence || [],
-    Employment: history.Employment || [],
+    Employment: history.Employment || { List: [], ListBranch: '' },
     Education: history.Education || { HasAttended: '', HasDegree10: '', List: [] },
     Federal: history.Federal || {},
     Errors: errors.history || [],

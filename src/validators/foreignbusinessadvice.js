@@ -3,10 +3,10 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessAdviceValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignAdvice = state.HasForeignAdvice
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasForeignAdvice = data.HasForeignAdvice
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -23,7 +23,7 @@ export default class ForeignBusinessAdviceValidator {
         return false
       }
 
-      return this.list.every(item => new AdviceValidator(item, null).isValid())
+      return this.list.every(item => new AdviceValidator(item.Item).isValid())
     }
 
     return false
@@ -35,13 +35,13 @@ export default class ForeignBusinessAdviceValidator {
 }
 
 export class AdviceValidator {
-  constructor (state = {}, props = {}) {
-    this.description = state.Description
-    this.name = state.Name
-    this.organization = state.Organization
-    this.country = state.Country
-    this.dates = state.Dates
-    this.compensation = state.Compensation // optional
+  constructor (data = {}) {
+    this.description = data.Description
+    this.name = data.Name
+    this.organization = data.Organization
+    this.country = data.Country
+    this.dates = data.Dates
+    this.compensation = data.Compensation // optional
   }
 
   validDescription () {

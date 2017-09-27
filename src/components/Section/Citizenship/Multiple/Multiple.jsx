@@ -1,8 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { CitizenshipMultipleValidator } from '../../../../validators'
+import { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { Field, Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import CitizenshipItem from './CitizenshipItem'
 
@@ -58,6 +58,11 @@ export default class Multiple extends SubsectionElement {
   render () {
     return (
       <div className="multiple">
+        <Field title={i18n.t('citizenship.multiple.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
         <Branch name="has_multiple"
                 label={i18n.t('citizenship.multiple.heading.hasmultiple')}
                 labelSize="h3"
@@ -77,6 +82,7 @@ export default class Multiple extends SubsectionElement {
                      branch={this.props.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onError={this.handleError}
+                     validator={CitizenshipItemValidator}
                      summary={this.summaryCitizenships}
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
@@ -102,7 +108,7 @@ Multiple.defaultProps = {
   subsection: 'multiple',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipMultipleValidator(props, props).isValid()
+    return new CitizenshipMultipleValidator(props).isValid()
   },
   defaultState: true
 }

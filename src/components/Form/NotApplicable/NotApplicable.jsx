@@ -9,7 +9,7 @@ export default class NotApplicable extends React.Component {
     this.state = {
       applicable: props.applicable
     }
-
+    this.errors = []
     this.onUpdate = this.onUpdate.bind(this)
   }
 
@@ -20,6 +20,24 @@ export default class NotApplicable extends React.Component {
           name: this.props.name,
           applicable: this.state.applicable
         })
+
+        let lastErrors = [...this.errors]
+        if (!this.state.applicable) {
+          // If not applicable, we set all validators to valid
+          // since we shouldn't take into account their values
+          lastErrors = lastErrors.map(err => {
+            return {
+              code: err.code,
+              valid: true,
+              uid: err.uid
+            }
+          })
+          this.props.onError('', [...lastErrors])
+        } else {
+          // If we are applicable, then let's send up that last set
+          // of errors
+          this.props.onError('', [...this.errors])
+        }
       }
     })
   }
@@ -28,7 +46,21 @@ export default class NotApplicable extends React.Component {
     return React.Children.map(this.props.children, (child) => {
       let extendedProps = {
         disabled: !this.state.applicable,
-        onError: this.props.onError
+        onError: (value, arr) => {
+          let errors = [...this.errors]
+          for (const e of arr) {
+            const idx = errors.findIndex(x => x.uid === e.uid && x.code === e.code)
+            if (idx !== -1) {
+              errors[idx] = { ...e }
+            } else {
+              errors.push({ ...e })
+            }
+          }
+          // Store latest errors
+          this.errors = [...errors]
+          this.props.onError(value, arr)
+          return arr
+        }
       }
 
       return React.cloneElement(child, {

@@ -49,7 +49,9 @@ export default class ReasonLeft extends ValidationElement {
   render () {
     return (
       <div className="reason-leaving">
-        <Field help="history.employment.default.reasonDescription"
+        <Field title={i18n.t('history.employment.default.left.title')}
+               titleSize="h3"
+               help="history.employment.default.reasonDescription"
                comments={true}
                commentsName="comments"
                commentsValue={this.state.Comments}
@@ -73,7 +75,7 @@ export default class ReasonLeft extends ValidationElement {
                           required={this.props.required}
                           scrollIntoView={this.props.scrollIntoView}
                           >
-          <ReasonOptions name="Reason" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+          <ReasonOptions name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
         </BranchCollection>
       </div>
     )

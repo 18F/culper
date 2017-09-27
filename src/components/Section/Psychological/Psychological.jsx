@@ -4,7 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Show } from '../../Form'
+import { Show, Field } from '../../Form'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
@@ -37,11 +37,15 @@ class Psychological extends SectionElement {
                        backLabel={ i18n.t('legal.destination.review') }
                        next="psychological/competence"
                        nextLabel={ i18n.t('psychological.destination.competence') }>
-            <h2>{ i18n.t('psychological.heading.intro') }</h2>
-            { i18n.m('psychological.intro.para1') }
-            { i18n.m('psychological.intro.para2') }
-            { i18n.m('psychological.intro.para3') }
-            { i18n.m('psychological.intro.para4') }
+            <Field title={ i18n.t('psychological.heading.intro') }
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              { i18n.m('psychological.intro.para1') }
+              { i18n.m('psychological.intro.para2') }
+              { i18n.m('psychological.intro.para3') }
+              { i18n.m('psychological.intro.para4') }
+            </Field>
+
           </SectionView>
 
           <SectionView name="competence"
@@ -172,7 +176,6 @@ class Psychological extends SectionElement {
             <Show when={this.props.ShowExistingConditions}>
               <div>
                 <hr />
-                {this.props.ShowExistingConditions}
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
                                     ApplicantBirthDate={this.props.ApplicantBirthDate}

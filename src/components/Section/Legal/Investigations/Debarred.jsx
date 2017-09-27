@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalInvestigationsDebarredValidator } from '../../../../validators'
+import { LegalInvestigationsDebarredValidator, DebarredValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Text, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import DebarredItem from './DebarredItem'
 
 export default class Debarred extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class Debarred extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Date)
     const agency = (o.Agency || {}).value || ''
 
@@ -57,7 +58,7 @@ export default class Debarred extends SubsectionElement {
       <div className="investigations-debarred">
         <Branch name="has_debarred"
                 label={i18n.t('legal.investigations.debarred.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-investigations-debarred-has-debarment"
                 value={this.props.HasDebarment}
                 warning={true}
@@ -75,42 +76,17 @@ export default class Debarred extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DebarredValidator}
                      description={i18n.t('legal.investigations.debarred.collection.description')}
                      appendTitle={i18n.t('legal.investigations.debarred.collection.appendTitle')}
                      appendLabel={i18n.t('legal.investigations.debarred.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Field title={i18n.t('legal.investigations.debarred.heading.agency')}
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Agency"
-                    className="legal-investigations-debarred-agency"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.debarred.heading.date')}
-                   help="legal.investigations.debarred.help.date"
-                   adjustFor="datecontrol"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateControl name="Date"
-                           className="legal-investigations-debarred-date"
-                           bind={true}
-                           required={this.props.required}
-                           />
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.debarred.heading.explanation')}
-                   help="legal.investigations.debarred.help.explanation"
-                   adjustFor="textarea"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Explanation"
-                        className="legal-investigations-debarred-explanation"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <DebarredItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -130,7 +106,7 @@ Debarred.defaultProps = {
   subsection: 'investigations/debarred',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalInvestigationsDebarredValidator(state, props).isValid()
+    return new LegalInvestigationsDebarredValidator(props).isValid()
   },
   scrollToBottom: ''
 }

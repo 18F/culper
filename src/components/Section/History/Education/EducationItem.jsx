@@ -1,8 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, BranchCollection, DateRange, Reference, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
+import { ValidationElement, BranchCollection, DateRange, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
 import { DiplomaItem } from './Diploma'
 import { today, daysAgo } from '../dateranges'
+import Reference from './Reference'
 
 // We need to determine how far back 3 years ago was
 const threeYearsAgo = daysAgo(today, 365 * 3)
@@ -103,14 +104,19 @@ export default class EducationItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h2>{i18n.t('history.education.heading.reference')}</h2>
-          <p>{i18n.t('history.education.para.reference')}</p>
+          <Field title={i18n.t('history.education.heading.reference')}
+                 titleSize="h2"
+                 className="no-margin-bottom">
+            {i18n.m('history.education.para.reference')}
+          </Field>
+
           <Reference name="Reference"
                      {...this.state.Reference}
                      onUpdate={this.updateReference}
                      onValidate={this.props.onValidate}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
+                     onError={this.props.onError}
                      />
         </div>
       )
@@ -240,8 +246,9 @@ export default class EducationItem extends ValidationElement {
                             items={this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
                             onError={this.props.onError}
+                            required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}>
-            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView}  />
+            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </BranchCollection>
         </div>
       </div>

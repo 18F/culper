@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary } from '../../../Summary'
-import { ForeignBusinessFamilyValidator } from '../../../../validators'
+import { ForeignBusinessFamilyValidator, FamilyValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Text, Textarea, Name, Country, DateControl } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import FamilyItem from './FamilyItem'
 
 export default class Family extends SubsectionElement {
   constructor (props) {
@@ -39,7 +39,7 @@ export default class Family extends SubsectionElement {
   }
 
   summary (item, index) {
-    const obj = item || {}
+    const obj = ((item && item.Item) || {})
     const name = NameSummary(obj.Name)
 
     return Summary({
@@ -56,7 +56,7 @@ export default class Family extends SubsectionElement {
       <div className="foreign-business-family">
         <Branch name="has_foreign_family"
                 label={i18n.t('foreign.business.family.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 adjustFor="p"
                 value={this.props.HasForeignFamily}
                 warning={true}
@@ -74,6 +74,7 @@ export default class Family extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={FamilyValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.business.family.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.family.collection.appendTitle')}
@@ -81,53 +82,13 @@ export default class Family extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.family.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-           <Field title={i18n.t('foreign.business.family.heading.name')}
-             scrollIntoView={this.props.scrollIntoView}>
-              <Name name="Name"
-                    className="family-name"
-                    bind={true}
-                    required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
-                    />
-          </Field>
-
-          <Field title={i18n.t('foreign.business.family.heading.agency')}
-            scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Agency"
-                    className="family-agency"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.family.heading.country')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Country name="Country"
-                       className="family-country"
+                     <FamilyItem
+                       name="Item"
                        bind={true}
+                       onError={this.props.onError}
                        required={this.props.required}
-                       />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.family.heading.date')}
-                   help="foreign.business.family.help.date"
-                   adjustFor="datecontrol"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateControl name="Date"
-                           className="family-date"
-                           bind={true}
-                           required={this.props.required}
-                           />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.family.heading.circumstances')}
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Circumstances"
-                        className="family-circumstances"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -146,7 +107,7 @@ Family.defaultProps = {
   subsection: 'business/family',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessFamilyValidator(props, props).isValid()
+    return new ForeignBusinessFamilyValidator(props).isValid()
   },
   defaultState: true,
   scrollToBottom: ''

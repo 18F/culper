@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import OrderedCounselings from './OrderedCounselings'
+import { Location } from '../../../Form'
 
 describe('The OrderedCounselings component', () => {
   it('Renders without errors', () => {
@@ -24,7 +25,7 @@ describe('The OrderedCounselings component', () => {
       HasBeenOrdered: 'Yes',
       ListBranch: 'No',
       List: [{
-        OrderedCounseling: {
+        Item: {
           ActionTaken: 'Yes',
           CounselingDates: {
             from: {
@@ -67,7 +68,7 @@ describe('The OrderedCounselings component', () => {
       HasBeenOrdered: 'Yes',
       ListBranch: 'No',
       List: [{
-        OrderedCounseling: {
+        Item: {
           Seekers: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'CourtOfficial', 'NotOrdered', 'Other']
         }
       }]

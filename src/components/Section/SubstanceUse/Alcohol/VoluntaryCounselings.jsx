@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { AlcoholVoluntaryCounselingsValidator } from '../../../../validators'
+import { AlcoholVoluntaryCounselingsValidator, VoluntaryCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import VoluntaryCounseling from './VoluntaryCounseling'
@@ -42,7 +42,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).VoluntaryCounseling || {}
+    const o = (item || {}).Item || {}
     const counselor = o.TreatmentProviderName ? o.TreatmentProviderName.value : ''
     const counselingDates = DateSummary(o.CounselingDates)
 
@@ -58,8 +58,9 @@ export default class VoluntaryCounselings extends SubsectionElement {
   render () {
     return (
       <div className="voluntary-counselings">
-        <h2>{i18n.t('substance.alcohol.heading.voluntaryCounseling')}</h2>
         <Branch name="SoughtTreatment"
+                label={i18n.t('substance.alcohol.heading.voluntaryCounseling')}
+                labelSize="h2"
                 className="sought-treatment"
                 value={this.props.SoughtTreatment}
                 warning={true}
@@ -77,12 +78,13 @@ export default class VoluntaryCounselings extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={VoluntaryCounselingValidator}
                      description={i18n.t('substance.alcohol.voluntaryCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendTitle')}
                      appendLabel={i18n.t('substance.alcohol.voluntaryCounseling.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-        <VoluntaryCounseling name="VoluntaryCounseling"
+        <VoluntaryCounseling name="Item"
                              bind={true}
                              addressBooks={this.props.addressBooks}
                              dispatch={this.props.dispatch}

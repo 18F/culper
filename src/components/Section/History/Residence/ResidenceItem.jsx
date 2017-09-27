@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateRange, Reference, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
+import { ValidationElement, DateRange, Reference, Text, RadioGroup, Radio, Field, Location, Show } from '../../../Form'
 import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
@@ -59,13 +59,6 @@ export default class ResidenceItem extends ValidationElement {
   }
 
   /**
-   * Some fields are only visible if `Other` is selected
-   */
-  showOther (value) {
-    return !value || ['Owned', 'Rented', 'Military'].includes(value) ? 'hidden' : ''
-  }
-
-  /**
    * Certain elements are present if the date range of the residency was
    * within the last 3 years.
    */
@@ -78,8 +71,12 @@ export default class ResidenceItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h2>{i18n.t('history.residence.heading.reference')}</h2>
-          <p>{i18n.t('history.residence.para.reference')}</p>
+          <Field title={i18n.t('history.residence.heading.reference')}
+                 titleSize="h2"
+                 className="no-margin-bottom">
+            {i18n.m('history.residence.para.reference')}
+          </Field>
+
           <Reference name="Reference"
                      {...this.state.Reference}
                      addressBooks={this.props.addressBooks}
@@ -170,23 +167,23 @@ export default class ResidenceItem extends ValidationElement {
                    onError={this.props.onError}
                    />
           </RadioGroup>
-          <div className={`role ${this.showOther(this.state.Role)}`.trim()}>
-            <Field title={i18n.t('history.residence.label.role.explanation')}
-                   titleSize="label"
-                   help="section.subsection.help.field-name"
-                   adjustFor="text"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Text name="RoleOther"
-                    {...this.state.RoleOther}
-                    className="other"
-                    maxlength="100"
-                    onUpdate={this.onUpdate.bind(this, 'RoleOther')}
-                    onError={this.props.onError}
-                    required={this.props.required}
-                    />
-            </Field>
-          </div>
         </Field>
+        <Show when={this.state.Role && !['Owned', 'Rented', 'Military'].includes(this.state.Role)}>
+          <Field title={i18n.t('history.residence.label.role.explanation')}
+            titleSize="label"
+            help="section.subsection.help.field-name"
+            adjustFor="text"
+            scrollIntoView={this.props.scrollIntoView}>
+            <Text name="RoleOther"
+              {...this.state.RoleOther}
+              className="other"
+              maxlength="100"
+              onUpdate={this.onUpdate.bind(this, 'RoleOther')}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </Field>
+        </Show>
 
         {this.reference()}
       </div>

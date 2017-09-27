@@ -7,6 +7,7 @@ import (
 	"net/http"
 	"regexp"
 
+	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
 )
@@ -22,7 +23,8 @@ func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience
-	_, err := checkToken(r, account, model.TwoFactorAudience)
+	audience := targetAudience()
+	_, err := checkToken(r, account, audience)
 	if err != nil {
 		return fmt.Errorf("Invalid authorization token: %v", err)
 	}
@@ -37,14 +39,15 @@ func JwtTokenRefresh(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience
-	_, err := checkToken(r, account, model.TwoFactorAudience)
+	audience := targetAudience()
+	_, err := checkToken(r, account, audience)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Generate a new token
-	signedToken, _, err := account.NewJwtToken(model.TwoFactorAudience)
+	signedToken, _, err := account.NewJwtToken(audience)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -67,4 +70,11 @@ func checkToken(r *http.Request, account *model.Account, audience string) (strin
 	}
 
 	return jwtToken, nil
+}
+
+func targetAudience() string {
+	if cf.TwofactorDisabled() {
+		return model.BasicAuthAudience
+	}
+	return model.TwoFactorAudience
 }

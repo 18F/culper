@@ -2,10 +2,10 @@ import ForeignIndirectInterestValidator from './foreignindirectinterest'
 import { validBranch } from './helpers'
 
 export default class ForeignIndirectActivityValidator {
-  constructor (state, props = {}) {
-    this.hasInterests = props.HasInterests || ''
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasInterests = data.HasInterests || ''
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   isValid () {
@@ -25,7 +25,7 @@ export default class ForeignIndirectActivityValidator {
     }
 
     return this.list.every((item) => {
-      return new ForeignIndirectInterestValidator(null, item.IndirectInterest).isValid()
+      return new ForeignIndirectInterestValidator(item.Item).isValid()
     })
   }
 }

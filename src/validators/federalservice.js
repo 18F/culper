@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validGenericTextfield } from './helpers'
 
 export default class FederalServiceValidator {
-  constructor (state = {}, props = {}) {
-    this.hasFederalService = state.HasFederalService
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasFederalService = data.HasFederalService
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -23,7 +23,7 @@ export default class FederalServiceValidator {
         return false
       }
 
-      return this.list.every(item => new FederalServiceItemValidator(item, null).isValid())
+      return this.list.every(item => new FederalServiceItemValidator(item.Item).isValid())
     }
 
     return false
@@ -35,11 +35,11 @@ export default class FederalServiceValidator {
 }
 
 export class FederalServiceItemValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.position = state.Position
-    this.dates = state.Dates
-    this.address = state.Address
+  constructor (data = {}) {
+    this.name = data.Name
+    this.position = data.Position
+    this.dates = data.Dates
+    this.address = data.Address
   }
 
   validName () {

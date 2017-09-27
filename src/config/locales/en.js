@@ -24,7 +24,8 @@ const en = {
     submit: 'Submit',
     twofactor: {
       title: 'Two-factor authentication',
-      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.'
+      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.',
+      disabled: 'Multiple factor authentication is currently disabled.'
     },
     placeholder: {
       username: 'Username',
@@ -5092,7 +5093,6 @@ const en = {
       }
     },
     federal: {
-      title: 'Provide all former federal service',
       heading: {
         branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
         dates: 'Provide dates of federal civilian employment',
@@ -7175,11 +7175,11 @@ const en = {
           downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
         },
         collection: {
-          description: 'Summary of revocations',
-          item: 'Revoked',
-          unknown: '*Provide revocation details below*',
+          description: 'Summary of denials',
+          item: 'Denial',
+          unknown: '*Provide denial details below*',
           appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
-          appendLabel: 'Add another revocation'
+          appendLabel: 'Add another denial'
         },
         help: {
           date: {

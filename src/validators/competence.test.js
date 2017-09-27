@@ -9,7 +9,7 @@ describe('Competence validation', function () {
           IsIncompetent: 'Yes',
           List: [
             {
-              Competence: {
+              Item: {
                 CourtName: {
                   value: 'Circuit Court'
                 },
@@ -67,7 +67,7 @@ describe('Competence validation', function () {
           IsIncompetent: 'Yes',
           List: [
             {
-              Competence: {
+              Item: {
                 CourtName: null,
                 CourtAddress: {
                   country: 'United States',

@@ -89,24 +89,29 @@ export default class Reference extends ValidationElement {
 
     return (
       <div className={klass}>
-        <h3>{i18n.t(`${prefix}reference.heading.name`)}</h3>
-        <Name name="FullName"
-              prefix={`${this.props.prefix}.name`}
-              className="reference-name"
-              {...this.state.FullName}
-              onUpdate={this.onUpdate.bind(this, 'FullName')}
-              onError={this.props.onError}
-              />
+        <Field title={i18n.t(`${prefix}reference.heading.name`)}
+               titleSize="h3">
+          <Name name="FullName"
+                prefix={`${this.props.prefix}.name`}
+                className="reference-name"
+                {...this.state.FullName}
+                onUpdate={this.onUpdate.bind(this, 'FullName')}
+                onError={this.props.onError}
+                required={this.props.required}
+                />
+        </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.contact`)}
                help={`${prefix}reference.help.contact`}
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="LastContact"
                        className="reference-last-contact"
                        {...this.state.LastContact}
                        onUpdate={this.onUpdate.bind(this, 'LastContact')}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
@@ -117,9 +122,12 @@ export default class Reference extends ValidationElement {
                commentsAdd={`${prefix}reference.label.relationship.comments`}
                onUpdate={this.onUpdate.bind(this, 'Comments')}
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <label>{i18n.t(`${prefix}reference.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
+                         required={this.props.required}
+                         onError={this.props.onError}
                          selectedValues={this.state.Relationship}>
             <Checkbox name="relationship-neighbor"
                       className="reference-relationship-neighbor"
@@ -180,21 +188,27 @@ export default class Reference extends ValidationElement {
                   {...this.state.RelationshipOther}
                   onUpdate={this.updateRelationshipOther}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </Show>
         </Field>
 
-        <h2>{i18n.t(`${prefix}reference.heading.correspondence`)}</h2>
-        <p>{i18n.t(`${prefix}reference.para.correspondence`)}</p>
+        <Field title={i18n.t(`${prefix}reference.heading.correspondence`)}
+               titleSize="h2"
+               className="no-margin-bottom">
+          {i18n.m(`${prefix}reference.para.correspondence`)}
+        </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.phone`)}
                help={`${prefix}reference.help.phone`}
-               adjustFor="telephone">
+               adjustFor="telephone"
+               scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="Phone"
                      className="reference-phone"
                      {...this.state.Phone}
                      onUpdate={this.onUpdate.bind(this, 'Phone')}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
