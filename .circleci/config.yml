@@ -20,6 +20,11 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            docker-compose run frontend npm run coverage
 
   deploy_development:
     machine: true
@@ -45,6 +50,11 @@ jobs:
           command: |
             set -x
             ./bin/deploy.sh dev
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            docker-compose run frontend npm run coverage
 
   deploy_staging:
     machine: true
@@ -70,6 +80,11 @@ jobs:
           command: |
             set -x
             ./bin/deploy.sh staging
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            docker-compose run frontend npm run coverage
 
   deploy_production:
     machine: true
@@ -95,6 +110,11 @@ jobs:
           command: |
             set -x
             ./bin/deploy.sh production
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            docker-compose run frontend npm run coverage
 
 workflows:
   version: 2
