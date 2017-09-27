@@ -186,7 +186,7 @@ export default class Field extends ValidationElement {
   helpMessage () {
     if (this.state.helpActive && this.props.help) {
       return (
-        <div className="message help" key={super.guid()}>
+        <div className="message help">
           <i className="fa fa-question"></i>
           {message(this.props.help)}
           <a href="javascript:;;" className="close" onClick={this.toggleHelp}>
