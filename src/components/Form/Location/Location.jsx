@@ -343,69 +343,52 @@ export default class Location extends ValidationElement {
       switch (field) {
         case 'street':
           return (
-          <Street name="street"
+            <Street name="street"
+                    key={field}
+                    className="street"
+                    label={this.props.streetLabel}
+                    placeholder={this.props.streetPlaceholder}
+                    value={this.props.street}
+                    onChange={this.updateStreet}
+                    onError={this.handleError}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.handleBlur}
+                    required={this.props.required}
+                    />
+          )
+        case 'street2':
+          return (
+            <Street name="street2"
+                    key={field}
+                    className="street2"
+                    label={this.props.street2Label}
+                    optional={true}
+                    value={this.props.street2}
+                    onChange={this.updateStreet2}
+                    onError={this.handleError}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.props.onBlur}
+                    />
+          )
+        case 'city':
+          return (
+            <City name="city"
+                  className="city"
                   key={field}
-                  className="street"
-                  label={this.props.streetLabel}
-                  placeholder={this.props.streetPlaceholder}
-                  value={this.props.street}
-                  onChange={this.updateStreet}
+                  label={this.props.cityLabel}
+                  placeholder={this.props.cityPlaceholder}
+                  value={this.props.city}
+                  onChange={this.updateCity}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.handleBlur}
                   required={this.props.required}
                   />
           )
-        case 'street2':
-          return (
-          <Street name="street2"
-                  key={field}
-                  className="street2"
-                  label={this.props.street2Label}
-                  optional={true}
-                  value={this.props.street2}
-                  onChange={this.updateStreet2}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  />
-          )
-        case 'city':
-          return (
-          <City name="city"
-                className="city"
-                key={field}
-                label={this.props.cityLabel}
-                placeholder={this.props.cityPlaceholder}
-                value={this.props.city}
-                onChange={this.updateCity}
-                onError={this.handleError}
-                onFocus={this.props.onFocus}
-                onBlur={this.handleBlur}
-                required={this.props.required}
-                />
-          )
         case 'state':
           return (
-          <MilitaryState name="state"
-                         key={field}
-                         className="state"
-                         label={this.props.stateLabel}
-                         placeholder={this.props.statePlaceholder}
-                         value={this.props.state}
-                         includeStates="true"
-                         onChange={this.updateState}
-                         onError={this.handleError}
-                         onFocus={this.props.onFocus}
-                         onBlur={this.handleBlur}
-                         required={this.props.required}
-                         />
-          )
-        case 'stateZipcode':
-          return (
-          <div className="state-zip-wrap">
             <MilitaryState name="state"
-                           key={`state-${field}`}
+                           key={field}
                            className="state"
                            label={this.props.stateLabel}
                            placeholder={this.props.statePlaceholder}
@@ -417,35 +400,50 @@ export default class Location extends ValidationElement {
                            onBlur={this.handleBlur}
                            required={this.props.required}
                            />
-            <ZipCode name="zipcode"
-                     key={`zip-${field}`}
-                     className="zipcode"
-                     label={this.props.zipcodeLabel}
-                     placeholder={this.props.zipcodePlaceholder}
-                     value={this.props.zipcode}
-                     onChange={this.updateZipcode}
+          )
+        case 'stateZipcode':
+          return (
+            <div className="state-zip-wrap" key={`state-zip-${field}`}>
+              <MilitaryState name="state"
+                             className="state"
+                             label={this.props.stateLabel}
+                             placeholder={this.props.statePlaceholder}
+                             value={this.props.state}
+                             includeStates="true"
+                             onChange={this.updateState}
+                             onError={this.handleError}
+                             onFocus={this.props.onFocus}
+                             onBlur={this.handleBlur}
+                             required={this.props.required}
+                             />
+              <ZipCode name="zipcode"
+                       className="zipcode"
+                       label={this.props.zipcodeLabel}
+                       placeholder={this.props.zipcodePlaceholder}
+                       value={this.props.zipcode}
+                       onChange={this.updateZipcode}
+                       onError={this.handleError}
+                       onFocus={this.props.onFocus}
+                       onBlur={this.handleBlur}
+                       required={this.props.required}
+                       />
+            </div>
+          )
+        case 'country':
+          return (
+            <Country name="country"
+                     className="country"
+                     key={field}
+                     label={this.props.countryLabel}
+                     placeholder={this.props.countryPlaceholder}
+                     value={this.props.country}
+                     excludeUnitedStates="true"
+                     onChange={this.updateCountry}
                      onError={this.handleError}
                      onFocus={this.props.onFocus}
                      onBlur={this.handleBlur}
                      required={this.props.required}
                      />
-          </div>
-          )
-        case 'country':
-          return (
-          <Country name="country"
-                   className="country"
-                   key={field}
-                   label={this.props.countryLabel}
-                   placeholder={this.props.countryPlaceholder}
-                   value={this.props.country}
-                   excludeUnitedStates="true"
-                   onChange={this.updateCountry}
-                   onError={this.handleError}
-                   onFocus={this.props.onFocus}
-                   onBlur={this.handleBlur}
-                   required={this.props.required}
-                   />
           )
       }
     })

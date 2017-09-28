@@ -43,7 +43,6 @@ describe('The MultipleDropdown component', () => {
   })
 
   it('avoids infinite loop if value is a string', () => {
-    let updates = 0
     const expected = {
       name: 'multiple-dropdown',
       value: '',

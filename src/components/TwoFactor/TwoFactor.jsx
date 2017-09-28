@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { env, i18n } from '../../config'
 import { qrcode, twofactor, twofactorreset } from '../../actions/AuthActions'
+import { Show } from '../Form'
 
 class TwoFactor extends React.Component {
   constructor (props) {
@@ -21,6 +22,9 @@ class TwoFactor extends React.Component {
   }
 
   base64png () {
+    if (!this.props.qrcode) {
+      return ''
+    }
     return 'data:image/png;base64,' + this.props.qrcode
   }
 
@@ -54,31 +58,22 @@ class TwoFactor extends React.Component {
   }
 
   render () {
+    const qr = this.base64png()
     const mfa = this.props.mfa || env.MultipleFactorAuthentication()
-    const reset = mfa.enabled && mfa.resettable
-          ? <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
-          : ''
 
     if (!mfa.enabled) {
-      return <div>>i18n.m('twofactor.disabled')</div>
-    } else if (!this.props.qrcode) {
-      return (
-        <form onSubmit={this.handleSubmit}>
-          <div className="twofactor-component">
-            <input type="text" name="token" value={this.state.token} onChange={this.handleChange} ref="token" aria-label="Token" autoFocus />
-            { reset }
-            { this.errorMessage() }
-            <button type="submit">{i18n.t('twofactor.verify')}</button>
-          </div>
-        </form>
-      )
+      return <div>{i18n.m('twofactor.disabled')}</div>
     } else {
       return (
         <form onSubmit={this.handleSubmit}>
           <div className="twofactor-component">
-            <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={this.base64png()} />
+            <Show when={qr}>
+              <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={qr} />
+            </Show>
             <input type="text" name="token" value={this.state.token} onChange={this.handleChange} ref="token" aria-label="Token" autoFocus />
-            { reset }
+            <Show when={mfa.resettable}>
+              <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
+            </Show>
             { this.errorMessage() }
             <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>
