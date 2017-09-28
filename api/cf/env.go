@@ -128,7 +128,7 @@ func getDatabase(current *cfenv.App, label string) string {
 // TwofactorDisabled returns a boolean indicating whether the system allows for
 // multiple factor authentication.
 func TwofactorDisabled() bool {
-	if os.Getenv("DISABLE_2FA") == "" {
+	if UserService("DISABLE", "2FA") == "" {
 		return false
 	}
 	return true
@@ -137,7 +137,7 @@ func TwofactorDisabled() bool {
 // TwofactorResettable returns a boolean indicating whether the system allows
 // for an account to reset the multiple factor authentication assigned to it.
 func TwofactorResettable() bool {
-	if os.Getenv("ALLOW_2FA_RESET") == "" {
+	if UserService("ALLOW", "2FA_RESET") == "" {
 		return false
 	}
 	return true
@@ -145,7 +145,7 @@ func TwofactorResettable() bool {
 
 // IsTest returns if the environment is in a test environment
 func IsTest() bool {
-	e := os.Getenv("ALLOW_2FA_RESET")
+	e := UserService("NODE", "ENV")
 	if e == "test" || e == "development" {
 		return true
 	}
