@@ -21,10 +21,10 @@ type MilitarySelective struct {
 
 	// Persister specific fields
 	ID                   int `json:"-"`
-	WasBornAfterID       int `json:"-"`
-	HasRegisteredID      int `json:"-"`
-	RegistrationNumberID int `json:"-"`
-	ExplanationID        int `json:"-"`
+	WasBornAfterID       int `json:"-" pg:", fk:WasBornAfter"`
+	HasRegisteredID      int `json:"-" pg:", fk:HasRegistered"`
+	RegistrationNumberID int `json:"-" pg:", fk:RegistrationNumber"`
+	ExplanationID        int `json:"-" pg:", fk:Explanation"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -96,6 +96,18 @@ func (entity *MilitarySelective) Save(context *db.DatabaseContext, account int) 
 		return entity.ID, err
 	}
 
+	context.Find(&MilitarySelective{ID: account}, func(result interface{}) {
+		previous := result.(*MilitarySelective)
+		entity.WasBornAfterID = previous.WasBornAfterID
+		entity.WasBornAfter.ID = previous.WasBornAfterID
+		entity.HasRegisteredID = previous.HasRegisteredID
+		entity.HasRegistered.ID = previous.HasRegisteredID
+		entity.RegistrationNumberID = previous.RegistrationNumberID
+		entity.RegistrationNumber.ID = previous.RegistrationNumberID
+		entity.ExplanationID = previous.ExplanationID
+		entity.Explanation.ID = previous.ExplanationID
+	})
+
 	wasBornAfterID, err := entity.WasBornAfter.Save(context, account)
 	if err != nil {
 		return wasBornAfterID, err
@@ -120,14 +132,8 @@ func (entity *MilitarySelective) Save(context *db.DatabaseContext, account int) 
 	}
 	entity.ExplanationID = explanationID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -140,6 +146,18 @@ func (entity *MilitarySelective) Delete(context *db.DatabaseContext, account int
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&MilitarySelective{ID: account}, func(result interface{}) {
+		previous := result.(*MilitarySelective)
+		entity.WasBornAfterID = previous.WasBornAfterID
+		entity.WasBornAfter.ID = previous.WasBornAfterID
+		entity.HasRegisteredID = previous.HasRegisteredID
+		entity.HasRegistered.ID = previous.HasRegisteredID
+		entity.RegistrationNumberID = previous.RegistrationNumberID
+		entity.RegistrationNumber.ID = previous.RegistrationNumberID
+		entity.ExplanationID = previous.ExplanationID
+		entity.Explanation.ID = previous.ExplanationID
+	})
 
 	if _, err := entity.WasBornAfter.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -181,24 +199,28 @@ func (entity *MilitarySelective) Get(context *db.DatabaseContext, account int) (
 	}
 
 	if entity.WasBornAfterID != 0 {
+		entity.WasBornAfter = &Branch{ID: entity.WasBornAfterID}
 		if _, err := entity.WasBornAfter.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.HasRegisteredID != 0 {
+		entity.HasRegistered = &Branch{ID: entity.HasRegisteredID}
 		if _, err := entity.HasRegistered.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.RegistrationNumberID != 0 {
+		entity.RegistrationNumber = &Text{ID: entity.RegistrationNumberID}
 		if _, err := entity.RegistrationNumber.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ExplanationID != 0 {
+		entity.Explanation = &Textarea{ID: entity.ExplanationID}
 		if _, err := entity.Explanation.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -217,8 +239,8 @@ type MilitaryHistory struct {
 
 	// Persister specific fields
 	ID          int `json:"-"`
-	HasServedID int `json:"-"`
-	ListID      int `json:"-"`
+	HasServedID int `json:"-" pg:", fk:HasServed"`
+	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -268,6 +290,14 @@ func (entity *MilitaryHistory) Save(context *db.DatabaseContext, account int) (i
 		return entity.ID, err
 	}
 
+	context.Find(&MilitaryHistory{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryHistory)
+		entity.HasServedID = previous.HasServedID
+		entity.HasServed.ID = previous.HasServedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasServedID, err := entity.HasServed.Save(context, account)
 	if err != nil {
 		return hasServedID, err
@@ -280,14 +310,8 @@ func (entity *MilitaryHistory) Save(context *db.DatabaseContext, account int) (i
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -300,6 +324,14 @@ func (entity *MilitaryHistory) Delete(context *db.DatabaseContext, account int) 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&MilitaryHistory{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryHistory)
+		entity.HasServedID = previous.HasServedID
+		entity.HasServed.ID = previous.HasServedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasServed.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -333,12 +365,14 @@ func (entity *MilitaryHistory) Get(context *db.DatabaseContext, account int) (in
 	}
 
 	if entity.HasServedID != 0 {
+		entity.HasServed = &Branch{ID: entity.HasServedID}
 		if _, err := entity.HasServed.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -357,8 +391,8 @@ type MilitaryDisciplinary struct {
 
 	// Persister specific fields
 	ID                int `json:"-"`
-	HasDisciplinaryID int `json:"-"`
-	ListID            int `json:"-"`
+	HasDisciplinaryID int `json:"-" pg:", fk:HasDisciplinary"`
+	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -408,6 +442,14 @@ func (entity *MilitaryDisciplinary) Save(context *db.DatabaseContext, account in
 		return entity.ID, err
 	}
 
+	context.Find(&MilitaryDisciplinary{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryDisciplinary)
+		entity.HasDisciplinaryID = previous.HasDisciplinaryID
+		entity.HasDisciplinary.ID = previous.HasDisciplinaryID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasDisciplinaryID, err := entity.HasDisciplinary.Save(context, account)
 	if err != nil {
 		return hasDisciplinaryID, err
@@ -420,14 +462,8 @@ func (entity *MilitaryDisciplinary) Save(context *db.DatabaseContext, account in
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -440,6 +476,14 @@ func (entity *MilitaryDisciplinary) Delete(context *db.DatabaseContext, account 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&MilitaryDisciplinary{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryDisciplinary)
+		entity.HasDisciplinaryID = previous.HasDisciplinaryID
+		entity.HasDisciplinary.ID = previous.HasDisciplinaryID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasDisciplinary.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -473,12 +517,14 @@ func (entity *MilitaryDisciplinary) Get(context *db.DatabaseContext, account int
 	}
 
 	if entity.HasDisciplinaryID != 0 {
+		entity.HasDisciplinary = &Branch{ID: entity.HasDisciplinaryID}
 		if _, err := entity.HasDisciplinary.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -495,7 +541,7 @@ type MilitaryForeign struct {
 
 	// Persister specific fields
 	ID     int `json:"-"`
-	ListID int `json:"-"`
+	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -533,20 +579,20 @@ func (entity *MilitaryForeign) Save(context *db.DatabaseContext, account int) (i
 		return entity.ID, err
 	}
 
+	context.Find(&MilitaryForeign{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryForeign)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -559,6 +605,12 @@ func (entity *MilitaryForeign) Delete(context *db.DatabaseContext, account int) 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&MilitaryForeign{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryForeign)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -588,6 +640,7 @@ func (entity *MilitaryForeign) Get(context *db.DatabaseContext, account int) (in
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}

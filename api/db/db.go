@@ -70,18 +70,50 @@ func (context *DatabaseContext) RawBytes(sql []byte) error {
 	return context.Raw(string(sql))
 }
 
+// Find will check if the model exists and run the additional functionality.
+func (context *DatabaseContext) Find(query interface{}, callback func(query interface{})) {
+	if count, err := context.Database.Model(query).Count(); count > 0 && err == nil {
+		context.Select(query)
+		callback(query)
+	}
+}
+
+// Insert persists the new model in the data store
 func (context *DatabaseContext) Insert(query ...interface{}) error {
-	return context.Database.Insert(query)
+	return context.Database.Insert(query...)
 }
 
+// Update persists the existing model in the data store
 func (context *DatabaseContext) Update(query ...interface{}) error {
-	return context.Database.Update(query)
+	return context.Database.Update(query...)
 }
 
+// Save persists the model in the data store
+func (context *DatabaseContext) Save(query ...interface{}) error {
+	for _, q := range query {
+		count, err := context.Database.Model(q).Count()
+		log.Printf("count: %d, err: %v", count, err)
+		if count == 0 {
+			err = context.Insert(q)
+		} else if count > 0 {
+			err = context.Update(q)
+		}
+
+		// If there were no rows found we already handle this.
+		if err != nil && err != pg.ErrNoRows {
+			return err
+		}
+	}
+
+	return nil
+}
+
+// Delete removes the model from the data store
 func (context *DatabaseContext) Delete(query interface{}) error {
 	return context.Database.Delete(query)
 }
 
+// Select returns the model from the data store
 func (context *DatabaseContext) Select(query interface{}) error {
 	return context.Database.Select(query)
 }

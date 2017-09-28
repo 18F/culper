@@ -116,5 +116,5 @@ var transform = map[string]func() model.Entity{
 	"psychological.diagnoses":                         func() model.Entity { return &PsychologicalDiagnoses{} },
 	"psychological.conditions":                        func() model.Entity { return &PsychologicalExisting{} },
 	"psychological.hospitalizations":                  func() model.Entity { return &PsychologicalHospitalizations{} },
-	"psychological.treatment":                         func() model.Entity { return &PsychologicalTreatment{} },
+	"psychological.treatment":                         func() model.Entity { return &Treatment{} },
 }

@@ -17,8 +17,8 @@ type FinancialBankruptcy struct {
 
 	// Persister specific fields
 	ID              int `json:"-"`
-	HasBankruptcyID int `json:"-"`
-	ListID          int `json:"-"`
+	HasBankruptcyID int `json:"-" pg:", fk:HasBankruptcy"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -68,7 +68,14 @@ func (entity *FinancialBankruptcy) Save(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
-	var err error
+	context.Find(&FinancialBankruptcy{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialBankruptcy)
+		entity.HasBankruptcyID = previous.HasBankruptcyID
+		entity.HasBankruptcy.ID = previous.HasBankruptcyID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasBankruptcyID, err := entity.HasBankruptcy.Save(context, account)
 	if err != nil {
 		return hasBankruptcyID, err
@@ -81,14 +88,8 @@ func (entity *FinancialBankruptcy) Save(context *db.DatabaseContext, account int
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -101,6 +102,14 @@ func (entity *FinancialBankruptcy) Delete(context *db.DatabaseContext, account i
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&FinancialBankruptcy{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialBankruptcy)
+		entity.HasBankruptcyID = previous.HasBankruptcyID
+		entity.HasBankruptcy.ID = previous.HasBankruptcyID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasBankruptcy.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -134,12 +143,14 @@ func (entity *FinancialBankruptcy) Get(context *db.DatabaseContext, account int)
 	}
 
 	if entity.HasBankruptcyID != 0 {
+		entity.HasBankruptcy = &Branch{ID: entity.HasBankruptcyID}
 		if _, err := entity.HasBankruptcy.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -158,8 +169,8 @@ type FinancialGambling struct {
 
 	// Persister specific fields
 	ID                int `json:"-"`
-	HasGamblingDebtID int `json:"-"`
-	ListID            int `json:"-"`
+	HasGamblingDebtID int `json:"-" pg:", fk:HasGamblingDebt"`
+	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -209,6 +220,14 @@ func (entity *FinancialGambling) Save(context *db.DatabaseContext, account int) 
 		return entity.ID, err
 	}
 
+	context.Find(&FinancialGambling{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialGambling)
+		entity.HasGamblingDebtID = previous.HasGamblingDebtID
+		entity.HasGamblingDebt.ID = previous.HasGamblingDebtID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasGamblingDebtID, err := entity.HasGamblingDebt.Save(context, account)
 	if err != nil {
 		return hasGamblingDebtID, err
@@ -221,14 +240,8 @@ func (entity *FinancialGambling) Save(context *db.DatabaseContext, account int) 
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -241,6 +254,14 @@ func (entity *FinancialGambling) Delete(context *db.DatabaseContext, account int
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&FinancialGambling{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialGambling)
+		entity.HasGamblingDebtID = previous.HasGamblingDebtID
+		entity.HasGamblingDebt.ID = previous.HasGamblingDebtID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasGamblingDebt.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -274,12 +295,14 @@ func (entity *FinancialGambling) Get(context *db.DatabaseContext, account int) (
 	}
 
 	if entity.HasGamblingDebtID != 0 {
+		entity.HasGamblingDebt = &Branch{ID: entity.HasGamblingDebtID}
 		if _, err := entity.HasGamblingDebt.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -298,8 +321,8 @@ type FinancialTaxes struct {
 
 	// Persister specific fields
 	ID         int `json:"-"`
-	HasTaxesID int `json:"-"`
-	ListID     int `json:"-"`
+	HasTaxesID int `json:"-" pg:", fk:HasTaxes"`
+	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -349,6 +372,14 @@ func (entity *FinancialTaxes) Save(context *db.DatabaseContext, account int) (in
 		return entity.ID, err
 	}
 
+	context.Find(&FinancialTaxes{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialTaxes)
+		entity.HasTaxesID = previous.HasTaxesID
+		entity.HasTaxes.ID = previous.HasTaxesID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasTaxesID, err := entity.HasTaxes.Save(context, account)
 	if err != nil {
 		return hasTaxesID, err
@@ -365,14 +396,8 @@ func (entity *FinancialTaxes) Save(context *db.DatabaseContext, account int) (in
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -385,6 +410,14 @@ func (entity *FinancialTaxes) Delete(context *db.DatabaseContext, account int) (
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&FinancialTaxes{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialTaxes)
+		entity.HasTaxesID = previous.HasTaxesID
+		entity.HasTaxes.ID = previous.HasTaxesID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasTaxes.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -418,12 +451,14 @@ func (entity *FinancialTaxes) Get(context *db.DatabaseContext, account int) (int
 	}
 
 	if entity.HasTaxesID != 0 {
+		entity.HasTaxes = &Branch{ID: entity.HasTaxesID}
 		if _, err := entity.HasTaxes.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -442,8 +477,8 @@ type FinancialCard struct {
 
 	// Persister specific fields
 	ID             int `json:"-"`
-	HasCardAbuseID int `json:"-"`
-	ListID         int `json:"-"`
+	HasCardAbuseID int `json:"-" pg:", fk:HasCardAbuse"`
+	ListID         int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -493,6 +528,14 @@ func (entity *FinancialCard) Save(context *db.DatabaseContext, account int) (int
 		return entity.ID, err
 	}
 
+	context.Find(&FinancialCard{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCard)
+		entity.HasCardAbuseID = previous.HasCardAbuseID
+		entity.HasCardAbuse.ID = previous.HasCardAbuseID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasCardAbuseID, err := entity.HasCardAbuse.Save(context, account)
 	if err != nil {
 		return hasCardAbuseID, err
@@ -509,14 +552,8 @@ func (entity *FinancialCard) Save(context *db.DatabaseContext, account int) (int
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -529,6 +566,14 @@ func (entity *FinancialCard) Delete(context *db.DatabaseContext, account int) (i
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&FinancialCard{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCard)
+		entity.HasCardAbuseID = previous.HasCardAbuseID
+		entity.HasCardAbuse.ID = previous.HasCardAbuseID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasCardAbuse.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -562,12 +607,14 @@ func (entity *FinancialCard) Get(context *db.DatabaseContext, account int) (int,
 	}
 
 	if entity.HasCardAbuseID != 0 {
+		entity.HasCardAbuse = &Branch{ID: entity.HasCardAbuseID}
 		if _, err := entity.HasCardAbuse.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -586,8 +633,8 @@ type FinancialCredit struct {
 
 	// Persister specific fields
 	ID                    int `json:"-"`
-	HasCreditCounselingID int `json:"-"`
-	ListID                int `json:"-"`
+	HasCreditCounselingID int `json:"-" pg:", fk:HasCreditCounseling"`
+	ListID                int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -637,6 +684,14 @@ func (entity *FinancialCredit) Save(context *db.DatabaseContext, account int) (i
 		return entity.ID, err
 	}
 
+	context.Find(&FinancialCredit{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCredit)
+		entity.HasCreditCounselingID = previous.HasCreditCounselingID
+		entity.HasCreditCounseling.ID = previous.HasCreditCounselingID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasCreditCounselingID, err := entity.HasCreditCounseling.Save(context, account)
 	if err != nil {
 		return hasCreditCounselingID, err
@@ -653,14 +708,8 @@ func (entity *FinancialCredit) Save(context *db.DatabaseContext, account int) (i
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -673,6 +722,14 @@ func (entity *FinancialCredit) Delete(context *db.DatabaseContext, account int) 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&FinancialCredit{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCredit)
+		entity.HasCreditCounselingID = previous.HasCreditCounselingID
+		entity.HasCreditCounseling.ID = previous.HasCreditCounselingID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasCreditCounseling.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -706,12 +763,14 @@ func (entity *FinancialCredit) Get(context *db.DatabaseContext, account int) (in
 	}
 
 	if entity.HasCreditCounselingID != 0 {
+		entity.HasCreditCounseling = &Branch{ID: entity.HasCreditCounselingID}
 		if _, err := entity.HasCreditCounseling.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -730,8 +789,8 @@ type FinancialDelinquent struct {
 
 	// Persister specific fields
 	ID              int `json:"-"`
-	HasDelinquentID int `json:"-"`
-	ListID          int `json:"-"`
+	HasDelinquentID int `json:"-" pg:", fk:HasDelinquent"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -781,6 +840,14 @@ func (entity *FinancialDelinquent) Save(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
+	context.Find(&FinancialDelinquent{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialDelinquent)
+		entity.HasDelinquentID = previous.HasDelinquentID
+		entity.HasDelinquent.ID = previous.HasDelinquentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasDelinquentID, err := entity.HasDelinquent.Save(context, account)
 	if err != nil {
 		return hasDelinquentID, err
@@ -793,18 +860,8 @@ func (entity *FinancialDelinquent) Save(context *db.DatabaseContext, account int
 	}
 	entity.ListID = listID
 
-	if err := context.CheckTable(entity); err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -817,6 +874,14 @@ func (entity *FinancialDelinquent) Delete(context *db.DatabaseContext, account i
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&FinancialDelinquent{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialDelinquent)
+		entity.HasDelinquentID = previous.HasDelinquentID
+		entity.HasDelinquent.ID = previous.HasDelinquentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasDelinquent.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -850,12 +915,14 @@ func (entity *FinancialDelinquent) Get(context *db.DatabaseContext, account int)
 	}
 
 	if entity.HasDelinquentID != 0 {
+		entity.HasDelinquent = &Branch{ID: entity.HasDelinquentID}
 		if _, err := entity.HasDelinquent.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -874,8 +941,8 @@ type FinancialNonpayment struct {
 
 	// Persister specific fields
 	ID              int `json:"-"`
-	HasNonpaymentID int `json:"-"`
-	ListID          int `json:"-"`
+	HasNonpaymentID int `json:"-" pg:", fk:HasNonpayment"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -925,6 +992,14 @@ func (entity *FinancialNonpayment) Save(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
+	context.Find(&FinancialNonpayment{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialNonpayment)
+		entity.HasNonpaymentID = previous.HasNonpaymentID
+		entity.HasNonpayment.ID = previous.HasNonpaymentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasNonpaymentID, err := entity.HasNonpayment.Save(context, account)
 	if err != nil {
 		return hasNonpaymentID, err
@@ -937,18 +1012,8 @@ func (entity *FinancialNonpayment) Save(context *db.DatabaseContext, account int
 	}
 	entity.ListID = listID
 
-	if err := context.CheckTable(entity); err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -961,6 +1026,14 @@ func (entity *FinancialNonpayment) Delete(context *db.DatabaseContext, account i
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&FinancialNonpayment{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialNonpayment)
+		entity.HasNonpaymentID = previous.HasNonpaymentID
+		entity.HasNonpayment.ID = previous.HasNonpaymentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasNonpayment.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -994,12 +1067,14 @@ func (entity *FinancialNonpayment) Get(context *db.DatabaseContext, account int)
 	}
 
 	if entity.HasNonpaymentID != 0 {
+		entity.HasNonpayment = &Branch{ID: entity.HasNonpaymentID}
 		if _, err := entity.HasNonpayment.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}

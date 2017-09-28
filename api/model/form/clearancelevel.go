@@ -78,13 +78,11 @@ func (entity *ClearanceLevel) Save(context *db.DatabaseContext, account int) (in
 	}
 	entity.ExplanationID = explanationID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 func (entity *ClearanceLevel) Delete(context *db.DatabaseContext, account int) (int, error) {

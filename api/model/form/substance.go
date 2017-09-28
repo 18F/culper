@@ -17,8 +17,8 @@ type SubstanceDrugUsage struct {
 
 	// Persister specific fields
 	ID          int `json:"-"`
-	UsedDrugsID int `json:"-"`
-	ListID      int `json:"-"`
+	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
+	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -68,6 +68,14 @@ func (entity *SubstanceDrugUsage) Save(context *db.DatabaseContext, account int)
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceDrugUsage{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugUsage)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
 	if err != nil {
 		return usedDrugsID, err
@@ -80,14 +88,8 @@ func (entity *SubstanceDrugUsage) Save(context *db.DatabaseContext, account int)
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -100,6 +102,14 @@ func (entity *SubstanceDrugUsage) Delete(context *db.DatabaseContext, account in
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceDrugUsage{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugUsage)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.UsedDrugs.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -133,12 +143,14 @@ func (entity *SubstanceDrugUsage) Get(context *db.DatabaseContext, account int) 
 	}
 
 	if entity.UsedDrugsID != 0 {
+		entity.UsedDrugs = &Branch{ID: entity.UsedDrugsID}
 		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -157,8 +169,8 @@ type SubstanceDrugPurchase struct {
 
 	// Persister specific fields
 	ID         int `json:"-"`
-	InvolvedID int `json:"-"`
-	ListID     int `json:"-"`
+	InvolvedID int `json:"-" pg:", fk:Involved"`
+	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -208,6 +220,14 @@ func (entity *SubstanceDrugPurchase) Save(context *db.DatabaseContext, account i
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceDrugPurchase{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugPurchase)
+		entity.InvolvedID = previous.InvolvedID
+		entity.Involved.ID = previous.InvolvedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	involvedID, err := entity.Involved.Save(context, account)
 	if err != nil {
 		return involvedID, err
@@ -220,14 +240,8 @@ func (entity *SubstanceDrugPurchase) Save(context *db.DatabaseContext, account i
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -240,6 +254,14 @@ func (entity *SubstanceDrugPurchase) Delete(context *db.DatabaseContext, account
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceDrugPurchase{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugPurchase)
+		entity.InvolvedID = previous.InvolvedID
+		entity.Involved.ID = previous.InvolvedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.Involved.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -273,12 +295,14 @@ func (entity *SubstanceDrugPurchase) Get(context *db.DatabaseContext, account in
 	}
 
 	if entity.InvolvedID != 0 {
+		entity.Involved = &Branch{ID: entity.InvolvedID}
 		if _, err := entity.Involved.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -297,8 +321,8 @@ type SubstanceDrugClearance struct {
 
 	// Persister specific fields
 	ID          int `json:"-"`
-	UsedDrugsID int `json:"-"`
-	ListID      int `json:"-"`
+	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
+	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -348,6 +372,14 @@ func (entity *SubstanceDrugClearance) Save(context *db.DatabaseContext, account 
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceDrugClearance{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugClearance)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
 	if err != nil {
 		return usedDrugsID, err
@@ -360,14 +392,8 @@ func (entity *SubstanceDrugClearance) Save(context *db.DatabaseContext, account 
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -380,6 +406,14 @@ func (entity *SubstanceDrugClearance) Delete(context *db.DatabaseContext, accoun
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceDrugClearance{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugClearance)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.UsedDrugs.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -413,12 +447,14 @@ func (entity *SubstanceDrugClearance) Get(context *db.DatabaseContext, account i
 	}
 
 	if entity.UsedDrugsID != 0 {
+		entity.UsedDrugs = &Branch{ID: entity.UsedDrugsID}
 		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -437,8 +473,8 @@ type SubstanceDrugPublicSafety struct {
 
 	// Persister specific fields
 	ID          int `json:"-"`
-	UsedDrugsID int `json:"-"`
-	ListID      int `json:"-"`
+	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
+	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -488,6 +524,14 @@ func (entity *SubstanceDrugPublicSafety) Save(context *db.DatabaseContext, accou
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceDrugPublicSafety{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugPublicSafety)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
 	if err != nil {
 		return usedDrugsID, err
@@ -500,14 +544,8 @@ func (entity *SubstanceDrugPublicSafety) Save(context *db.DatabaseContext, accou
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -520,6 +558,14 @@ func (entity *SubstanceDrugPublicSafety) Delete(context *db.DatabaseContext, acc
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceDrugPublicSafety{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugPublicSafety)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.UsedDrugs.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -553,12 +599,14 @@ func (entity *SubstanceDrugPublicSafety) Get(context *db.DatabaseContext, accoun
 	}
 
 	if entity.UsedDrugsID != 0 {
+		entity.UsedDrugs = &Branch{ID: entity.UsedDrugsID}
 		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -577,8 +625,8 @@ type SubstanceDrugMisuse struct {
 
 	// Persister specific fields
 	ID          int `json:"-"`
-	UsedDrugsID int `json:"-"`
-	ListID      int `json:"-"`
+	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
+	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -628,6 +676,14 @@ func (entity *SubstanceDrugMisuse) Save(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceDrugMisuse{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugMisuse)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	usedDrugsID, err := entity.UsedDrugs.Save(context, account)
 	if err != nil {
 		return usedDrugsID, err
@@ -640,14 +696,8 @@ func (entity *SubstanceDrugMisuse) Save(context *db.DatabaseContext, account int
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -660,6 +710,14 @@ func (entity *SubstanceDrugMisuse) Delete(context *db.DatabaseContext, account i
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceDrugMisuse{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugMisuse)
+		entity.UsedDrugsID = previous.UsedDrugsID
+		entity.UsedDrugs.ID = previous.UsedDrugsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.UsedDrugs.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -693,12 +751,14 @@ func (entity *SubstanceDrugMisuse) Get(context *db.DatabaseContext, account int)
 	}
 
 	if entity.UsedDrugsID != 0 {
+		entity.UsedDrugs = &Branch{ID: entity.UsedDrugsID}
 		if _, err := entity.UsedDrugs.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -717,8 +777,8 @@ type SubstanceDrugOrdered struct {
 
 	// Persister specific fields
 	ID         int `json:"-"`
-	InvolvedID int `json:"-"`
-	ListID     int `json:"-"`
+	InvolvedID int `json:"-" pg:", fk:Involved"`
+	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -768,6 +828,14 @@ func (entity *SubstanceDrugOrdered) Save(context *db.DatabaseContext, account in
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceDrugOrdered{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugOrdered)
+		entity.InvolvedID = previous.InvolvedID
+		entity.Involved.ID = previous.InvolvedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	involvedID, err := entity.Involved.Save(context, account)
 	if err != nil {
 		return involvedID, err
@@ -780,14 +848,8 @@ func (entity *SubstanceDrugOrdered) Save(context *db.DatabaseContext, account in
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -800,6 +862,14 @@ func (entity *SubstanceDrugOrdered) Delete(context *db.DatabaseContext, account 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceDrugOrdered{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugOrdered)
+		entity.InvolvedID = previous.InvolvedID
+		entity.Involved.ID = previous.InvolvedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.Involved.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -833,12 +903,14 @@ func (entity *SubstanceDrugOrdered) Get(context *db.DatabaseContext, account int
 	}
 
 	if entity.InvolvedID != 0 {
+		entity.Involved = &Branch{ID: entity.InvolvedID}
 		if _, err := entity.Involved.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -857,8 +929,8 @@ type SubstanceDrugVoluntary struct {
 
 	// Persister specific fields
 	ID         int `json:"-"`
-	InvolvedID int `json:"-"`
-	ListID     int `json:"-"`
+	InvolvedID int `json:"-" pg:", fk:Involved"`
+	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -908,6 +980,14 @@ func (entity *SubstanceDrugVoluntary) Save(context *db.DatabaseContext, account 
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceDrugVoluntary{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugVoluntary)
+		entity.InvolvedID = previous.InvolvedID
+		entity.Involved.ID = previous.InvolvedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	involvedID, err := entity.Involved.Save(context, account)
 	if err != nil {
 		return involvedID, err
@@ -920,14 +1000,8 @@ func (entity *SubstanceDrugVoluntary) Save(context *db.DatabaseContext, account 
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -940,6 +1014,14 @@ func (entity *SubstanceDrugVoluntary) Delete(context *db.DatabaseContext, accoun
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceDrugVoluntary{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceDrugVoluntary)
+		entity.InvolvedID = previous.InvolvedID
+		entity.Involved.ID = previous.InvolvedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.Involved.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -973,12 +1055,14 @@ func (entity *SubstanceDrugVoluntary) Get(context *db.DatabaseContext, account i
 	}
 
 	if entity.InvolvedID != 0 {
+		entity.Involved = &Branch{ID: entity.InvolvedID}
 		if _, err := entity.Involved.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -997,8 +1081,8 @@ type SubstanceAlcoholNegative struct {
 
 	// Persister specific fields
 	ID           int `json:"-"`
-	HasImpactsID int `json:"-"`
-	ListID       int `json:"-"`
+	HasImpactsID int `json:"-" pg:", fk:HasImpacts"`
+	ListID       int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1048,6 +1132,14 @@ func (entity *SubstanceAlcoholNegative) Save(context *db.DatabaseContext, accoun
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceAlcoholNegative{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholNegative)
+		entity.HasImpactsID = previous.HasImpactsID
+		entity.HasImpacts.ID = previous.HasImpactsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasImpactsID, err := entity.HasImpacts.Save(context, account)
 	if err != nil {
 		return hasImpactsID, err
@@ -1060,14 +1152,8 @@ func (entity *SubstanceAlcoholNegative) Save(context *db.DatabaseContext, accoun
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -1080,6 +1166,14 @@ func (entity *SubstanceAlcoholNegative) Delete(context *db.DatabaseContext, acco
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceAlcoholNegative{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholNegative)
+		entity.HasImpactsID = previous.HasImpactsID
+		entity.HasImpacts.ID = previous.HasImpactsID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasImpacts.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -1113,12 +1207,14 @@ func (entity *SubstanceAlcoholNegative) Get(context *db.DatabaseContext, account
 	}
 
 	if entity.HasImpactsID != 0 {
+		entity.HasImpacts = &Branch{ID: entity.HasImpactsID}
 		if _, err := entity.HasImpacts.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -1137,8 +1233,8 @@ type SubstanceAlcoholOrdered struct {
 
 	// Persister specific fields
 	ID               int `json:"-"`
-	HasBeenOrderedID int `json:"-"`
-	ListID           int `json:"-"`
+	HasBeenOrderedID int `json:"-" pg:", fk:HasBeenOrdered"`
+	ListID           int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1188,6 +1284,14 @@ func (entity *SubstanceAlcoholOrdered) Save(context *db.DatabaseContext, account
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceAlcoholOrdered{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholOrdered)
+		entity.HasBeenOrderedID = previous.HasBeenOrderedID
+		entity.HasBeenOrdered.ID = previous.HasBeenOrderedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasBeenOrderedID, err := entity.HasBeenOrdered.Save(context, account)
 	if err != nil {
 		return hasBeenOrderedID, err
@@ -1200,14 +1304,8 @@ func (entity *SubstanceAlcoholOrdered) Save(context *db.DatabaseContext, account
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -1220,6 +1318,14 @@ func (entity *SubstanceAlcoholOrdered) Delete(context *db.DatabaseContext, accou
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceAlcoholOrdered{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholOrdered)
+		entity.HasBeenOrderedID = previous.HasBeenOrderedID
+		entity.HasBeenOrdered.ID = previous.HasBeenOrderedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.HasBeenOrdered.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -1253,12 +1359,14 @@ func (entity *SubstanceAlcoholOrdered) Get(context *db.DatabaseContext, account 
 	}
 
 	if entity.HasBeenOrderedID != 0 {
+		entity.HasBeenOrdered = &Branch{ID: entity.HasBeenOrderedID}
 		if _, err := entity.HasBeenOrdered.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -1277,8 +1385,8 @@ type SubstanceAlcoholVoluntary struct {
 
 	// Persister specific fields
 	ID                int `json:"-"`
-	SoughtTreatmentID int `json:"-"`
-	ListID            int `json:"-"`
+	SoughtTreatmentID int `json:"-" pg:", fk:SoughtTreatment"`
+	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1328,6 +1436,14 @@ func (entity *SubstanceAlcoholVoluntary) Save(context *db.DatabaseContext, accou
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceAlcoholVoluntary{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholVoluntary)
+		entity.SoughtTreatmentID = previous.SoughtTreatmentID
+		entity.SoughtTreatment.ID = previous.SoughtTreatmentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	soughtTreatmentID, err := entity.SoughtTreatment.Save(context, account)
 	if err != nil {
 		return soughtTreatmentID, err
@@ -1340,14 +1456,8 @@ func (entity *SubstanceAlcoholVoluntary) Save(context *db.DatabaseContext, accou
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -1360,6 +1470,14 @@ func (entity *SubstanceAlcoholVoluntary) Delete(context *db.DatabaseContext, acc
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceAlcoholVoluntary{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholVoluntary)
+		entity.SoughtTreatmentID = previous.SoughtTreatmentID
+		entity.SoughtTreatment.ID = previous.SoughtTreatmentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.SoughtTreatment.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -1393,12 +1511,14 @@ func (entity *SubstanceAlcoholVoluntary) Get(context *db.DatabaseContext, accoun
 	}
 
 	if entity.SoughtTreatmentID != 0 {
+		entity.SoughtTreatment = &Branch{ID: entity.SoughtTreatmentID}
 		if _, err := entity.SoughtTreatment.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -1417,8 +1537,8 @@ type SubstanceAlcoholAdditional struct {
 
 	// Persister specific fields
 	ID                  int `json:"-"`
-	ReceivedTreatmentID int `json:"-"`
-	ListID              int `json:"-"`
+	ReceivedTreatmentID int `json:"-" pg:", fk:ReceivedTreatment"`
+	ListID              int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -1468,6 +1588,14 @@ func (entity *SubstanceAlcoholAdditional) Save(context *db.DatabaseContext, acco
 		return entity.ID, err
 	}
 
+	context.Find(&SubstanceAlcoholAdditional{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholAdditional)
+		entity.ReceivedTreatmentID = previous.ReceivedTreatmentID
+		entity.ReceivedTreatment.ID = previous.ReceivedTreatmentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	receivedTreatmentID, err := entity.ReceivedTreatment.Save(context, account)
 	if err != nil {
 		return receivedTreatmentID, err
@@ -1480,14 +1608,8 @@ func (entity *SubstanceAlcoholAdditional) Save(context *db.DatabaseContext, acco
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -1500,6 +1622,14 @@ func (entity *SubstanceAlcoholAdditional) Delete(context *db.DatabaseContext, ac
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&SubstanceAlcoholAdditional{ID: account}, func(result interface{}) {
+		previous := result.(*SubstanceAlcoholAdditional)
+		entity.ReceivedTreatmentID = previous.ReceivedTreatmentID
+		entity.ReceivedTreatment.ID = previous.ReceivedTreatmentID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.ReceivedTreatment.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -1533,12 +1663,14 @@ func (entity *SubstanceAlcoholAdditional) Get(context *db.DatabaseContext, accou
 	}
 
 	if entity.ReceivedTreatmentID != 0 {
+		entity.ReceivedTreatment = &Branch{ID: entity.ReceivedTreatmentID}
 		if _, err := entity.ReceivedTreatment.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}

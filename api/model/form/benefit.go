@@ -35,17 +35,17 @@ type Benefit struct {
 	// Persister specific fields
 	ID                     int `json:"-"`
 	AccountID              int `json:"-"`
-	BeginID                int `json:"-"`
-	EndID                  int `json:"-"`
-	FrequencyID            int `json:"-"`
-	OtherFrequencyID       int `json:"-"`
-	ReceivedID             int `json:"-"`
-	CountryID              int `json:"-"`
-	ValueID                int `json:"-"`
-	ValueEstimatedID       int `json:"-"`
-	ReasonID               int `json:"-"`
-	ObligatedID            int `json:"-"`
-	ObligatedExplanationID int `json:"-"`
+	BeginID                int `json:"-" pg:",fk:Begin"`
+	EndID                  int `json:"-" pg:",fk:End"`
+	FrequencyID            int `json:"-" pg:",fk:Frequency"`
+	OtherFrequencyID       int `json:"-" pg:",fk:OtherFrequency"`
+	ReceivedID             int `json:"-" pg:",fk:Received"`
+	CountryID              int `json:"-" pg:",fk:Country"`
+	ValueID                int `json:"-" pg:",fk:Value"`
+	ValueEstimatedID       int `json:"-" pg:",fk:ValueEstimated"`
+	ReasonID               int `json:"-" pg:",fk:Reason"`
+	ObligatedID            int `json:"-" pg:",fk:Obligated"`
+	ObligatedExplanationID int `json:"-" pg:",fk:ObligatedExplanation"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -245,13 +245,11 @@ func (entity *Benefit) Save(context *db.DatabaseContext, account int) (int, erro
 	}
 	entity.ObligatedExplanationID = obligatedExplanationID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.

@@ -59,13 +59,7 @@ func (entity *CivilUnion) Save(context *db.DatabaseContext, account int) (int, e
 		}
 		newItem.ItemID = id
 
-		if newItem.ID == 0 {
-			err = context.Insert(newItem)
-		} else {
-			err = context.Update(newItem)
-		}
-
-		if err != nil {
+		if err := context.Save(newItem); err != nil {
 			return entity.ID, err
 		}
 	}

@@ -13,16 +13,15 @@ type RelationshipsMarital struct {
 	PayloadDivorcedList Payload           `json:"DivorcedList" sql:"-"`
 
 	// Validator specific fields
-	Status     *Radio      `json:"-"`
-	CivilUnion *CivilUnion `json:"-"`
-	// CivilUnion   CivilUnion  `json:"CivilUnion" sql:"-"`
+	Status       *Radio      `json:"-"`
+	CivilUnion   *CivilUnion `json:"-"`
 	DivorcedList *Collection `json:"-"`
 
 	// Persister specific fields
 	ID             int `json:"-"`
-	StatusID       int `json:"-"`
-	CivilUnionID   int `json:"-"`
-	DivorcedListID int `json:"-"`
+	StatusID       int `json:"-" pg:", fk:Status"`
+	CivilUnionID   int `json:"-" pg:", fk:CivilUnion"`
+	DivorcedListID int `json:"-" pg:", fk:DivorcedList"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -102,6 +101,16 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 		return entity.ID, err
 	}
 
+	context.Find(&RelationshipsMarital{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsMarital)
+		entity.StatusID = previous.StatusID
+		entity.Status.ID = previous.StatusID
+		entity.CivilUnionID = previous.CivilUnionID
+		entity.CivilUnion.ID = previous.CivilUnionID
+		entity.DivorcedListID = previous.DivorcedListID
+		entity.DivorcedList.ID = previous.DivorcedListID
+	})
+
 	statusID, err := entity.Status.Save(context, account)
 	if err != nil {
 		return statusID, err
@@ -120,14 +129,8 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 	}
 	entity.DivorcedListID = divorcedListID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -140,6 +143,16 @@ func (entity *RelationshipsMarital) Delete(context *db.DatabaseContext, account 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&RelationshipsMarital{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsMarital)
+		entity.StatusID = previous.StatusID
+		entity.Status.ID = previous.StatusID
+		entity.CivilUnionID = previous.CivilUnionID
+		entity.CivilUnion.ID = previous.CivilUnionID
+		entity.DivorcedListID = previous.DivorcedListID
+		entity.DivorcedList.ID = previous.DivorcedListID
+	})
 
 	if _, err := entity.Status.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -177,18 +190,21 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 	}
 
 	if entity.StatusID != 0 {
+		entity.Status = &Radio{ID: entity.StatusID}
 		if _, err := entity.Status.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.CivilUnionID != 0 {
+		entity.CivilUnion = &CivilUnion{ID: entity.CivilUnionID}
 		if _, err := entity.CivilUnion.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.DivorcedListID != 0 {
+		entity.DivorcedList = &Collection{ID: entity.DivorcedListID}
 		if _, err := entity.DivorcedList.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -207,8 +223,8 @@ type RelationshipsCohabitants struct {
 
 	// Persister specific fields
 	ID               int `json:"-"`
-	HasCohabitantID  int `json:"-"`
-	CohabitantListID int `json:"-"`
+	HasCohabitantID  int `json:"-" pg:", fk:HasCohabitant"`
+	CohabitantListID int `json:"-" pg:", fk:CohabitantList"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -250,6 +266,14 @@ func (entity *RelationshipsCohabitants) Save(context *db.DatabaseContext, accoun
 		return entity.ID, err
 	}
 
+	context.Find(&RelationshipsCohabitants{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsCohabitants)
+		entity.HasCohabitantID = previous.HasCohabitantID
+		entity.HasCohabitant.ID = previous.HasCohabitantID
+		entity.CohabitantListID = previous.CohabitantListID
+		entity.CohabitantList.ID = previous.CohabitantListID
+	})
+
 	hasCohabitantID, err := entity.HasCohabitant.Save(context, account)
 	if err != nil {
 		return hasCohabitantID, err
@@ -262,14 +286,8 @@ func (entity *RelationshipsCohabitants) Save(context *db.DatabaseContext, accoun
 	}
 	entity.CohabitantListID = cohabitantListID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -282,6 +300,14 @@ func (entity *RelationshipsCohabitants) Delete(context *db.DatabaseContext, acco
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&RelationshipsCohabitants{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsCohabitants)
+		entity.HasCohabitantID = previous.HasCohabitantID
+		entity.HasCohabitant.ID = previous.HasCohabitantID
+		entity.CohabitantListID = previous.CohabitantListID
+		entity.CohabitantList.ID = previous.CohabitantListID
+	})
 
 	if _, err := entity.HasCohabitant.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -315,12 +341,14 @@ func (entity *RelationshipsCohabitants) Get(context *db.DatabaseContext, account
 	}
 
 	if entity.HasCohabitantID != 0 {
+		entity.HasCohabitant = &Branch{ID: entity.HasCohabitantID}
 		if _, err := entity.HasCohabitant.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.CohabitantListID != 0 {
+		entity.CohabitantList = &Collection{ID: entity.CohabitantListID}
 		if _, err := entity.CohabitantList.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -337,7 +365,7 @@ type RelationshipsPeople struct {
 
 	// Persister specific fields
 	ID     int `json:"-"`
-	ListID int `json:"-"`
+	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -369,20 +397,20 @@ func (entity *RelationshipsPeople) Save(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
+	context.Find(&RelationshipsPeople{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsPeople)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -395,6 +423,12 @@ func (entity *RelationshipsPeople) Delete(context *db.DatabaseContext, account i
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&RelationshipsPeople{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsPeople)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -424,6 +458,7 @@ func (entity *RelationshipsPeople) Get(context *db.DatabaseContext, account int)
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -440,7 +475,7 @@ type RelationshipsRelatives struct {
 
 	// Persister specific fields
 	ID     int `json:"-"`
-	ListID int `json:"-"`
+	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -472,20 +507,20 @@ func (entity *RelationshipsRelatives) Save(context *db.DatabaseContext, account 
 		return entity.ID, err
 	}
 
+	context.Find(&RelationshipsRelatives{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsRelatives)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -498,6 +533,12 @@ func (entity *RelationshipsRelatives) Delete(context *db.DatabaseContext, accoun
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&RelationshipsRelatives{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsRelatives)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -527,6 +568,7 @@ func (entity *RelationshipsRelatives) Get(context *db.DatabaseContext, account i
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}

@@ -19,7 +19,7 @@ type Collection struct {
 	// Persister specific fields
 	ID        int `json:"-"`
 	AccountID int `json:"-"`
-	BranchID  int `json:"-"`
+	BranchID  int `json:"-" pg:",fk:Branch"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -72,8 +72,21 @@ func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, e
 		return entity.ID, err
 	}
 
+	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Collection)
+		// Handle if there is a branch
+		if previous.BranchID != 0 {
+			if entity.Branch == nil {
+				entity.Branch = &Branch{}
+			}
+			entity.Branch.ID = previous.BranchID
+			entity.BranchID = previous.BranchID
+		}
+	})
+
 	// Custom errors
 	if entity.PayloadBranch.Type != "" {
+		entity.Branch = &Branch{ID: entity.BranchID}
 		branchID, err := entity.Branch.Save(context, account)
 		if err != nil {
 			return 0, err
@@ -81,14 +94,8 @@ func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, e
 		entity.BranchID = branchID
 	}
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	// Iterate through each property in `Items` saving them as we go.
@@ -143,6 +150,7 @@ func (entity *Collection) Get(context *db.DatabaseContext, account int) (int, er
 	}
 
 	if entity.BranchID != 0 {
+		entity.Branch = &Branch{ID: entity.BranchID}
 		if _, err := entity.Branch.Get(context, account); err != nil {
 			return entity.ID, err
 		}

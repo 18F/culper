@@ -51,14 +51,11 @@ func (entity *Location) Save(context *db.DatabaseContext, account int) (int, err
 		return entity.ID, err
 	}
 
-	var err error
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 func (entity *Location) Delete(context *db.DatabaseContext, account int) (int, error) {

@@ -150,14 +150,8 @@ func (entity *Supervisor) Save(context *db.DatabaseContext, account int) (int, e
 	}
 	entity.TelephoneID = telephoneID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil

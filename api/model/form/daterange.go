@@ -84,13 +84,11 @@ func (entity *DateRange) Save(context *db.DatabaseContext, account int) (int, er
 	}
 	entity.ToID = toID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 func (entity *DateRange) Delete(context *db.DatabaseContext, account int) (int, error) {

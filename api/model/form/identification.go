@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
@@ -16,7 +17,7 @@ type IdentificationName struct {
 
 	// Persister specific fields
 	ID     int `json:"-"`
-	NameID int `json:"-"`
+	NameID int `json:"-" pg:", fk:Name"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -44,13 +45,15 @@ func (entity *IdentificationName) Valid() (bool, error) {
 func (entity *IdentificationName) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.ID = account
 
-	exists := false
-	previous := &IdentificationName{ID: entity.ID}
-	if _, err := previous.Get(context, account); err == nil {
-		exists = true
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&IdentificationName{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationName)
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID
-	}
+	})
 
 	nameID, err := entity.Name.Save(context, account)
 	if err != nil {
@@ -58,18 +61,8 @@ func (entity *IdentificationName) Save(context *db.DatabaseContext, account int)
 	}
 	entity.NameID = nameID
 
-	if err := context.CheckTable(entity); err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
-	}
-
-	if exists {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -129,7 +122,7 @@ type IdentificationBirthPlace struct {
 
 	// Persister specific fields
 	ID         int `json:"-"`
-	LocationID int `json:"-"`
+	LocationID int `json:"-" pg:", fk:Location"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -161,20 +154,20 @@ func (entity *IdentificationBirthPlace) Save(context *db.DatabaseContext, accoun
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationBirthPlace{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationBirthPlace)
+		entity.LocationID = previous.LocationID
+		entity.Location.ID = previous.LocationID
+	})
+
 	locationID, err := entity.Location.Save(context, account)
 	if err != nil {
 		return locationID, err
 	}
 	entity.LocationID = locationID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -216,6 +209,7 @@ func (entity *IdentificationBirthPlace) Get(context *db.DatabaseContext, account
 	}
 
 	if entity.LocationID != 0 {
+		entity.Location = &Location{ID: entity.LocationID}
 		if _, err := entity.Location.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -233,7 +227,7 @@ type IdentificationBirthDate struct {
 
 	// Persister specific fields
 	ID     int `json:"-"`
-	DateID int `json:"-"`
+	DateID int `json:"-" pg:", fk:Date"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -265,20 +259,22 @@ func (entity *IdentificationBirthDate) Save(context *db.DatabaseContext, account
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationBirthDate{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationBirthDate)
+		entity.DateID = previous.DateID
+		entity.Date.ID = previous.DateID
+	})
+
 	dateID, err := entity.Date.Save(context, account)
 	if err != nil {
+		log.Println("Error on saving Date")
 		return dateID, err
 	}
 	entity.DateID = dateID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		log.Println("Error on saving IdentificationBirthDate")
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -320,6 +316,7 @@ func (entity *IdentificationBirthDate) Get(context *db.DatabaseContext, account 
 	}
 
 	if entity.DateID != 0 {
+		entity.Date = &DateControl{ID: entity.DateID}
 		if _, err := entity.Date.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -334,11 +331,11 @@ type IdentificationSSN struct {
 
 	// Validator specific fields
 	Verified bool `json:"verified"`
-	SSN      *SSN
+	SSN      *SSN `json:"-"`
 
 	// Persister specific fields
 	ID    int `json:"-"`
-	SSNID int `json:"-"`
+	SSNID int `json:"-" pg:", fk:SSN"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -379,20 +376,20 @@ func (entity *IdentificationSSN) Save(context *db.DatabaseContext, account int) 
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationSSN{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationSSN)
+		entity.SSNID = previous.SSNID
+		entity.SSN.ID = previous.SSNID
+	})
+
 	id, err := entity.SSN.Save(context, account)
 	if err != nil {
 		return id, err
 	}
 	entity.SSNID = id
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -434,6 +431,7 @@ func (entity *IdentificationSSN) Get(context *db.DatabaseContext, account int) (
 	}
 
 	if entity.SSNID != 0 {
+		entity.SSN = &SSN{ID: entity.SSNID}
 		if _, err := entity.SSN.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -453,8 +451,8 @@ type IdentificationContacts struct {
 
 	// Persister specific fields
 	ID             int `json:"-"`
-	EmailsID       int `json:"-"`
-	PhoneNumbersID int `json:"-"`
+	EmailsID       int `json:"-" pg:", fk:Emails"`
+	PhoneNumbersID int `json:"-" pg:", fk:PhoneNumbers"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -502,6 +500,14 @@ func (entity *IdentificationContacts) Save(context *db.DatabaseContext, account 
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationContacts{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationContacts)
+		entity.EmailsID = previous.EmailsID
+		entity.Emails.ID = previous.EmailsID
+		entity.PhoneNumbersID = previous.PhoneNumbersID
+		entity.PhoneNumbers.ID = previous.PhoneNumbersID
+	})
+
 	emailsID, err := entity.Emails.Save(context, account)
 	if err != nil {
 		return emailsID, err
@@ -514,14 +520,8 @@ func (entity *IdentificationContacts) Save(context *db.DatabaseContext, account 
 	}
 	entity.PhoneNumbersID = phoneNumbersID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -567,12 +567,14 @@ func (entity *IdentificationContacts) Get(context *db.DatabaseContext, account i
 	}
 
 	if entity.EmailsID != 0 {
+		entity.Emails = &Collection{ID: entity.EmailsID}
 		if _, err := entity.Emails.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.PhoneNumbersID != 0 {
+		entity.PhoneNumbers = &Collection{ID: entity.PhoneNumbersID}
 		if _, err := entity.PhoneNumbers.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -592,8 +594,8 @@ type IdentificationOtherNames struct {
 
 	// Persister specific fields
 	ID              int `json:"-"`
-	HasOtherNamesID int `json:"-"`
-	ListID          int `json:"-"`
+	HasOtherNamesID int `json:"-" pg:", fk:HasOtherNames"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -643,6 +645,14 @@ func (entity *IdentificationOtherNames) Save(context *db.DatabaseContext, accoun
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationOtherNames{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationOtherNames)
+		entity.HasOtherNamesID = previous.HasOtherNamesID
+		entity.HasOtherNames.ID = previous.HasOtherNamesID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	branchID, err := entity.HasOtherNames.Save(context, account)
 	if err != nil {
 		return entity.ID, err
@@ -655,14 +665,8 @@ func (entity *IdentificationOtherNames) Save(context *db.DatabaseContext, accoun
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -708,12 +712,14 @@ func (entity *IdentificationOtherNames) Get(context *db.DatabaseContext, account
 	}
 
 	if entity.HasOtherNamesID != 0 {
+		entity.HasOtherNames = &Branch{ID: entity.HasOtherNamesID}
 		if _, err := entity.HasOtherNames.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -741,12 +747,12 @@ type IdentificationPhysical struct {
 
 	// Persister specific fields
 	ID          int `json:"-"`
-	CommentsID  int `json:"-"`
-	EyeColorID  int `json:"-"`
-	HairColorID int `json:"-"`
-	SexID       int `json:"-"`
-	HeightID    int `json:"-"`
-	WeightID    int `json:"-"`
+	CommentsID  int `json:"-" pg:", fk:Comments"`
+	EyeColorID  int `json:"-" pg:", fk:EyeColor"`
+	HairColorID int `json:"-" pg:", fk:HairColor"`
+	SexID       int `json:"-" pg:", fk:Sex"`
+	HeightID    int `json:"-" pg:", fk:Height"`
+	WeightID    int `json:"-" pg:", fk:Weight"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -830,6 +836,22 @@ func (entity *IdentificationPhysical) Save(context *db.DatabaseContext, account 
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationPhysical{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationPhysical)
+		entity.CommentsID = previous.CommentsID
+		entity.Comments.ID = previous.CommentsID
+		entity.EyeColorID = previous.EyeColorID
+		entity.EyeColor.ID = previous.EyeColorID
+		entity.HairColorID = previous.HairColorID
+		entity.HairColor.ID = previous.HairColorID
+		entity.SexID = previous.SexID
+		entity.Sex.ID = previous.SexID
+		entity.HeightID = previous.HeightID
+		entity.Height.ID = previous.HeightID
+		entity.WeightID = previous.WeightID
+		entity.Weight.ID = previous.WeightID
+	})
+
 	commentsID, err := entity.Comments.Save(context, account)
 	if err != nil {
 		return entity.ID, err
@@ -866,14 +888,8 @@ func (entity *IdentificationPhysical) Save(context *db.DatabaseContext, account 
 	}
 	entity.WeightID = weightID
 
-	if entity.ID == 0 {
-		if err := context.Insert(entity); err != nil {
-			return entity.ID, err
-		}
-	} else {
-		if err := context.Update(entity); err != nil {
-			return entity.ID, err
-		}
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -935,36 +951,42 @@ func (entity *IdentificationPhysical) Get(context *db.DatabaseContext, account i
 	}
 
 	if entity.CommentsID != 0 {
+		entity.Comments = &Textarea{ID: entity.CommentsID}
 		if _, err := entity.Comments.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.EyeColorID != 0 {
+		entity.EyeColor = &Text{ID: entity.EyeColorID}
 		if _, err := entity.EyeColor.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.HairColorID != 0 {
+		entity.HairColor = &Text{ID: entity.HairColorID}
 		if _, err := entity.HairColor.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.SexID != 0 {
+		entity.Sex = &Text{ID: entity.SexID}
 		if _, err := entity.Sex.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.HeightID != 0 {
+		entity.Height = &Height{ID: entity.HeightID}
 		if _, err := entity.Height.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.WeightID != 0 {
+		entity.Weight = &Number{ID: entity.WeightID}
 		if _, err := entity.Weight.Get(context, account); err != nil {
 			return entity.ID, err
 		}
