@@ -72,13 +72,11 @@ func (entity *Treatment) Valid() (bool, error) {
 }
 
 func (entity *Treatment) Save(context *db.DatabaseContext, account int) (int, error) {
-	entity.ID = account
-
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	context.Find(&Treatment{ID: account}, func(result interface{}) {
+	context.Find(&Treatment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Treatment)
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID
@@ -114,13 +112,11 @@ func (entity *Treatment) Save(context *db.DatabaseContext, account int) (int, er
 }
 
 func (entity *Treatment) Delete(context *db.DatabaseContext, account int) (int, error) {
-	entity.ID = account
-
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	context.Find(&Treatment{ID: account}, func(result interface{}) {
+	context.Find(&Treatment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Treatment)
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID

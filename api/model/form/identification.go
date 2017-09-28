@@ -2,7 +2,6 @@ package form
 
 import (
 	"encoding/json"
-	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
@@ -267,13 +266,11 @@ func (entity *IdentificationBirthDate) Save(context *db.DatabaseContext, account
 
 	dateID, err := entity.Date.Save(context, account)
 	if err != nil {
-		log.Println("Error on saving Date")
 		return dateID, err
 	}
 	entity.DateID = dateID
 
 	if err := context.Save(entity); err != nil {
-		log.Println("Error on saving IdentificationBirthDate")
 		return entity.ID, err
 	}
 

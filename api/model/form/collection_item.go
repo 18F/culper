@@ -1,8 +1,6 @@
 package form
 
 import (
-	"log"
-
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
 )
@@ -41,7 +39,6 @@ func (item CollectionItem) Save(context *db.DatabaseContext, account int, collec
 	item.CollectionID = collectionID
 
 	if err := context.CheckTable(&CollectionItem{}); err != nil {
-		log.Println("Failed to check collection item table")
 		return item.ID, err
 	}
 
