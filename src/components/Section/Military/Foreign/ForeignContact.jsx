@@ -71,6 +71,7 @@ export default class ForeignContact extends React.Component {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.contact.address')}
+               help="military.foreign.help.contact.address"
                adjustFor="address"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
