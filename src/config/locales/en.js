@@ -3381,7 +3381,7 @@ const en = {
           item: 'Procedure',
           unknown: '*Provide the disciplinary procedure below*'
         },
-        appendTitle: 'Additional disciplinary procedures',
+        appendTitle: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         append: 'Add additional disciplinary procedures'
       }
@@ -3481,6 +3481,11 @@ const en = {
             title: 'Need help with this date range?',
             message: 'Tell us the full time range you were in contact with this person.',
             note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          },
+          address: {
+            title: 'Need help with this addresse?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            note: ''
           },
           frequency: {
             title: 'Need help with this question?',
