@@ -3482,6 +3482,11 @@ const en = {
             message: 'Tell us the full time range you were in contact with this person.',
             note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
+          address: {
+            title: 'Need help with this addresse?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            note: ''
+          },
           frequency: {
             title: 'Need help with this question?',
             message: 'Tell us how often you were in contact with this person.',
