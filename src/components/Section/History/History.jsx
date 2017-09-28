@@ -319,8 +319,8 @@ class History extends SectionElement {
       <div className="history">
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="financial/review"
-                       backLabel={i18n.t('financial.destination.review')}
+                       back="relationships/review"
+                       backLabel={i18n.t('relationships.destination.review')}
                        next="history/residence"
                        nextLabel={i18n.t('history.destination.residence')}>
             <Field title={i18n.t('history.intro.title')}
@@ -336,8 +336,8 @@ class History extends SectionElement {
                        showTop={true}
                        back="history/federal"
                        backLabel={i18n.t('history.destination.federal')}
-                       next="relationships/intro"
-                       nextLabel={i18n.t('relationships.destination.intro')}>
+                       next="citizenship/intro"
+                       nextLabel={i18n.t('citizenship.destination.intro')}>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
@@ -383,6 +383,7 @@ class History extends SectionElement {
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}
+                         addressBooks={this.props.AddressBooks}
                          scrollIntoView={false}
                          required={true}
                          />
@@ -527,6 +528,7 @@ class History extends SectionElement {
                            onUpdate={this.updateEducation}
                            onError={this.handleError}
                            dispatch={this.props.dispatch}
+                           addressBooks={this.props.AddressBooks}
                            />
               </div>
             </Show>

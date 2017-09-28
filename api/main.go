@@ -45,9 +45,9 @@ func main() {
 	a := r.PathPrefix("/me").Subrouter().Inject(handlers.JwtTokenValidatorHandler)
 	a.HandleFunc("/validate", handlers.Validate).Methods("POST")
 	a.HandleFunc("/save", handlers.Save).Methods("POST", "PUT")
-	a.HandleFunc("/attachment", handlers.SaveAttachment).Methods("POST")
+	a.HandleFunc("/attachment", handlers.SaveAttachment).Methods("POST", "PUT")
 	a.HandleFunc("/attachment/{id}", handlers.GetAttachment)
-	a.HandleFunc("/attachment/{id}/delete", handlers.DeleteAttachment).Methods("POST")
+	a.HandleFunc("/attachment/{id}/delete", handlers.DeleteAttachment).Methods("POST", "DELETE")
 
 	// Handle refreshing web tokens
 	r.HandleFunc("/refresh", handlers.JwtTokenRefresh).Methods("POST")

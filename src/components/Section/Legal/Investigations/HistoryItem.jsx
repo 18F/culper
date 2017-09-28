@@ -36,7 +36,8 @@ export default class HistoryItem extends ValidationElement {
 
   updateAgencyNotApplicable (values) {
     this.update({
-      AgencyNotApplicable: values
+      AgencyNotApplicable: values,
+      Agency: null
     })
   }
 
@@ -78,7 +79,8 @@ export default class HistoryItem extends ValidationElement {
 
   updateClearanceNotApplicable (values) {
     this.update({
-      ClearanceNotApplicable: values
+      ClearanceNotApplicable: values,
+      Clearance: null
     })
   }
 

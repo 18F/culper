@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CohabitantsValidator } from '../../../../validators'
+import { CohabitantValidator } from '../../../../validators/cohabitant'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import Cohabitant from './Cohabitant'
@@ -40,7 +41,7 @@ export default class Cohabitants extends SubsectionElement {
 
   summary (item, index) {
     const itemType = i18n.t('relationships.cohabitant.collection.itemType')
-    const o = (item || {}).Cohabitant || {}
+    const o = (item || {}).Item || {}
     const date = (o.CohabitationBegan || {}).date ? `${o.CohabitationBegan.month}/${o.CohabitationBegan.year}` : ''
     const name = o.Name
           ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
@@ -77,10 +78,13 @@ export default class Cohabitants extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateCohabitantList}
                      onError={this.handleError}
+                     validator={CohabitantValidator}
+                     required={this.props.required}
                      description={i18n.t('relationships.cohabitant.collection.description')}
                      appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
-                     appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}>
-                     <Cohabitant name="Cohabitant"
+                     appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <Cohabitant name="Item"
                        spouse={this.props.spouse}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}

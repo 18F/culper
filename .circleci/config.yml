@@ -20,6 +20,12 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
 
   deploy_development:
     machine: true
@@ -41,6 +47,12 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
       - deploy:
           command: |
             set -x
@@ -66,6 +78,12 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
       - deploy:
           command: |
             set -x
@@ -91,6 +109,12 @@ jobs:
           command: |
             set -x
             docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
       - deploy:
           command: |
             set -x
