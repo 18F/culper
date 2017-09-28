@@ -51,7 +51,6 @@ export default class ReasonLeft extends ValidationElement {
       <div className="reason-leaving">
         <Field title={i18n.t('history.employment.default.left.title')}
                titleSize="h3"
-               help="history.employment.default.reasonDescription"
                comments={true}
                commentsName="comments"
                commentsValue={this.state.Comments}
@@ -67,7 +66,6 @@ export default class ReasonLeft extends ValidationElement {
 
         <BranchCollection label={i18n.t('history.employment.default.left.branch')}
                           appendLabel={i18n.t('history.employment.default.left.append')}
-                          help="history.employment.default.reasonOptions"
                           content={i18n.m('history.employment.default.left.list')}
                           items={this.state.Reasons}
                           onUpdate={this.updateReasons}

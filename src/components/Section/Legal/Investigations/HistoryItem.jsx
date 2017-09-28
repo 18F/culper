@@ -94,101 +94,104 @@ export default class HistoryItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.investigations.history.heading.agency')}
-          adjustFor="big-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="AgencyNotApplicable"
-            {...this.props.AgencyNotApplicable}
-            onUpdate={this.updateAgencyNotApplicable}
-            onError={this.props.onError}
-            or={i18n.m('legal.investigations.history.para.or')}
-            label={i18n.t('legal.investigations.history.label.idk')}
-            required={this.props.required}>
+                         className="legal-investigations-history-agency-notapplicable"
+                         {...this.props.AgencyNotApplicable}
+                         onUpdate={this.updateAgencyNotApplicable}
+                         onError={this.props.onError}
+                         or={i18n.m('legal.investigations.history.para.or')}
+                         label={i18n.t('legal.investigations.history.label.idk')}
+                         required={this.props.required}>
             <InvestigatingAgency name="Agency"
-              {...this.props.Agency}
-              onUpdate={this.updateAgency}
-              onError={this.props.onError}
-              className="legal-investigations-history-agency"
-              required={this.props.required && this.props.AgencyNotApplicable.applicable}
-              scrollIntoView={this.props.scrollIntoView}
-            />
+                                 {...this.props.Agency}
+                                 onUpdate={this.updateAgency}
+                                 onError={this.props.onError}
+                                 className="legal-investigations-history-agency"
+                                 required={this.props.required && this.props.AgencyNotApplicable.applicable}
+                                 scrollIntoView={this.props.scrollIntoView}
+                                 />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('legal.investigations.history.heading.completed')}
-          help="legal.investigations.history.help.completed"
-          adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.investigations.history.help.completed"
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="CompletedNotApplicable"
-            {...this.props.CompletedNotApplicable}
-            onUpdate={this.updateCompletedNotApplicable}
-            onError={this.props.onError}
-            or={i18n.m('legal.investigations.history.para.or')}
-            label={i18n.t('legal.investigations.history.label.idk')}
-            required={this.props.required}>
+                         className="legal-investigations-history-completed-notapplicable"
+                         {...this.props.CompletedNotApplicable}
+                         onUpdate={this.updateCompletedNotApplicable}
+                         onError={this.props.onError}
+                         or={i18n.m('legal.investigations.history.para.or')}
+                         label={i18n.t('legal.investigations.history.label.idk')}
+                         required={this.props.required}>
             <DateControl name="Completed"
-              {...this.props.Completed}
-              onUpdate={this.updateCompleted}
-              onError={this.props.onError}
-              className="legal-investigations-history-completed"
-              required={this.props.required}
-            />
+                         {...this.props.Completed}
+                         onUpdate={this.updateCompleted}
+                         onError={this.props.onError}
+                         className="legal-investigations-history-completed"
+                         required={this.props.required}
+                         />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('legal.investigations.history.heading.issued')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Issued"
-            {...this.props.Issued}
-            onUpdate={this.updateIssued}
-            onError={this.props.onError}
-            className="legal-investigations-history-issued"
-            required={this.props.required}
-          />
+                {...this.props.Issued}
+                onUpdate={this.updateIssued}
+                onError={this.props.onError}
+                className="legal-investigations-history-issued"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('legal.investigations.history.heading.granted')}
-          help="legal.investigations.history.help.granted"
-          adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.investigations.history.help.granted"
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="GrantedNotApplicable"
-            {...this.props.GrantedNotApplicable}
-            onUpdate={this.updateGrantedNotApplicable}
-            onError={this.props.onError}
-            or={i18n.m('legal.investigations.history.para.or')}
-            label={i18n.t('legal.investigations.history.label.idk')}
-            required={this.props.required}>
+                         className="legal-investigations-history-granted-notapplicable"
+                         {...this.props.GrantedNotApplicable}
+                         onUpdate={this.updateGrantedNotApplicable}
+                         onError={this.props.onError}
+                         or={i18n.m('legal.investigations.history.para.or')}
+                         label={i18n.t('legal.investigations.history.label.idk')}
+                         required={this.props.required}>
             <DateControl name="Granted"
-              {...this.props.Granted}
-              onUpdate={this.updateGranted}
-              onError={this.props.onError}
-              className="legal-investigations-history-granted"
-              required={this.props.required}
-            />
+                         {...this.props.Granted}
+                         onUpdate={this.updateGranted}
+                         onError={this.props.onError}
+                         className="legal-investigations-history-granted"
+                         required={this.props.required}
+                         />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('legal.investigations.history.heading.clearance')}
-          adjustFor="big-button"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="big-button"
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="ClearanceNotApplicable"
-            {...this.props.ClearanceNotApplicable}
-            onUpdate={this.updateClearanceNotApplicable}
-            onError={this.props.onError}
-            or={i18n.m('legal.investigations.history.para.or')}
-            label={i18n.t('legal.investigations.history.label.idk')}
-            required={this.props.required}>
+                         className="legal-investigations-history-clearance-notapplicable"
+                         {...this.props.ClearanceNotApplicable}
+                         onUpdate={this.updateClearanceNotApplicable}
+                         onError={this.props.onError}
+                         or={i18n.m('legal.investigations.history.para.or')}
+                         label={i18n.t('legal.investigations.history.label.idk')}
+                         required={this.props.required}>
             <ClearanceLevel name="Clearance"
-              {...this.props.Clearance}
-              onUpdate={this.updateClearance}
-              onError={this.props.onError}
-              className="legal-investigations-history-clearance"
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-            />
+                            {...this.props.Clearance}
+                            onUpdate={this.updateClearance}
+                            onError={this.props.onError}
+                            className="legal-investigations-history-clearance"
+                            required={this.props.required}
+                            scrollIntoView={this.props.scrollIntoView}
+                            />
           </NotApplicable>
         </Field>
-
       </div>
     )
   }

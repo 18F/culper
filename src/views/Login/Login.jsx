@@ -138,7 +138,6 @@ class Login extends React.Component {
   }
 
   render () {
-    const mfa = env.MultipleFactorAuthentication()
     return (
       <div className="login eapp-core" id="login">
         <div id="seal-header" className="seal-header text-center">
@@ -148,7 +147,7 @@ class Login extends React.Component {
           </div>
         </div>
         <div className="content">
-          {this.props.authenticated && mfa.enabled && !this.props.twofactor && this.twofactorForm()}
+          {this.props.authenticated && this.mfa.enabled && !this.props.twofactor && this.twofactorForm()}
           {!this.props.authenticated && this.loginForm()}
         </div>
       </div>

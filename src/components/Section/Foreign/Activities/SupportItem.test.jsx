@@ -14,7 +14,10 @@ describe('The SupportItem component', () => {
     component.find('.foreign-activities-support-address .mailing input').simulate('change')
     component.find('.foreign-activities-support-relationship textarea').simulate('change')
     component.find('.foreign-activities-support-amount input').simulate('change')
+    component.find('.foreign-activities-support-amount-estimated input').simulate('change')
     component.find('.foreign-activities-support-frequency input').simulate('change')
-    expect(updates).toBe(5)
+    component.find('.foreign-activities-support-citizenship .ic-tokeninput input').get(0).value = 'United States'
+    component.find('.foreign-activities-support-citizenship .ic-tokeninput input').simulate('keydown', { keyCode: 13, target: { value: 'United States' } })
+    expect(updates).toBe(7)
   })
 })

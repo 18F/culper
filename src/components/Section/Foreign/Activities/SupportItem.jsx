@@ -130,6 +130,7 @@ export default class SupportItem extends ValidationElement {
           <div className="flags">
             <Checkbox name="AmountEstimated"
               ref="estimated"
+              className="foreign-activities-support-amount-estimated"
               label={i18n.t('foreign.activities.support.label.estimated')}
               toggle="false"
               checked={this.props.AmountEstimated}

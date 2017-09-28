@@ -75,6 +75,7 @@ export default class UnauthorizedItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
+          help="legal.technology.unauthorized.help.location"
           adjustFor="address"
           scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"

@@ -15,6 +15,7 @@ describe('The advice item component', () => {
     component.find('.advice-organization input').simulate('change')
     component.find('.advice-dates .to .day input').simulate('change')
     component.find('.advice-compensation textarea').simulate('change')
-    expect(updates).toBe(5)
+    component.find('.advice-country .react-autosuggest__container input').simulate('change', { target: { value: 'C' } })
+    expect(updates).toBe(6)
   })
 })
