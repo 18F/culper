@@ -8,7 +8,7 @@ class TwoFactor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      token: this.props.token
+      code: this.props.code
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -29,20 +29,20 @@ class TwoFactor extends React.Component {
   }
 
   handleChange (event) {
-    this.setState({ token: event.target.value })
+    this.setState({ code: event.target.value })
   }
 
   handleSubmit (event) {
     // Send request to API to validate token
     event.preventDefault()
-    if (this.state.token !== '') {
-      this.props.dispatch(twofactor(this.props.username, this.state.token))
+    if (this.state.code !== '') {
+      this.props.dispatch(twofactor(this.props.username, this.state.code))
     }
   }
 
   handleReset (event) {
     event.preventDefault()
-    this.setState({ token: '' }, () => {
+    this.setState({ code: '' }, () => {
       this.props.dispatch(twofactorreset(this.props.username))
     })
   }
@@ -70,7 +70,7 @@ class TwoFactor extends React.Component {
             <Show when={qr}>
               <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={qr} />
             </Show>
-            <input type="text" name="token" value={this.state.token} onChange={this.handleChange} ref="token" aria-label="Token" autoFocus />
+            <input type="text" name="code" value={this.state.code} onChange={this.handleChange} aria-label="Token" autoFocus />
             <Show when={mfa.resettable}>
               <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
             </Show>

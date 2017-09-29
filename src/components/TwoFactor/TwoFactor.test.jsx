@@ -69,13 +69,13 @@ describe('The two factor authenictaction component', () => {
     const props = {
       error: 'test error',
       username: 'test',
-      token: '123456',
+      code: '123456',
       mfa: {
         enabled: true,
         resettable: true
       }
     }
-    const store2 = mockStore({ authentication: { token: props.token } })
+    const store2 = mockStore({ authentication: { token: props.code } })
     const component = mount(<Provider store={store2}><TwoFactor {...props} /></Provider>)
     component.find('.reset').simulate('click')
     component.find('input').simulate('change', { event: { target: { value: '7' } } })
