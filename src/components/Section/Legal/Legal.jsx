@@ -684,4 +684,190 @@ Legal.defaultProps = {
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
+export class LegalSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Field title={i18n.t('legal.police.heading.title')}
+          titleSize="h2"
+          className="no-margin-bottom">
+          {i18n.m('legal.police.para.intro1')}
+          {i18n.m('legal.police.para.intro2')}
+          {i18n.m('legal.police.para.intro3')}
+        </Field>
+
+        <Offenses name="offenses"
+          {...this.props.PoliceOffenses}
+          addressBooks={this.props.AddressBooks}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr/>
+        <OtherOffenses name="otheroffenses"
+          {...this.props.PoliceOtherOffenses}
+          addressBooks={this.props.AddressBooks}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr/>
+        <DomesticViolenceList name="domesticviolence"
+          {...this.props.PoliceDomesticViolence}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr/>
+        <History name="history"
+          {...this.props.History}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+      <hr/>
+      <Revoked name="revoked"
+        {...this.props.Revoked}
+        defaultState={false}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr/>
+      <Debarred name="debarred"
+        {...this.props.Debarred}
+        defaultState={false}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <NonCriminalCourtActions name="courtactions"
+        {...this.props.NonCriminalCourtActions}
+        addressBooks={this.props.AddressBooks}
+        defaultState={false}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+      <hr />
+      <Unauthorized name="unauthorized"
+        {...this.props.Unauthorized}
+        addressBooks={this.props.AddressBooks}
+        defaultState={false}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <Manipulating name="manipulating"
+        {...this.props.Manipulating}
+        addressBooks={this.props.AddressBooks}
+        defaultState={false}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <Unlawful name="unlawful"
+        {...this.props.Unlawful}
+        addressBooks={this.props.AddressBooks}
+        defaultState={false}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <TerroristOrganization name="terroristOrganization"
+        {...this.props.TerroristOrganization}
+        addressBooks={this.props.AddressBooks}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <EngagedInTerrorism name="engagedInTerrorism"
+        {...this.props.EngagedInTerrorism}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <Advocating name="advocating"
+        {...this.props.Advocating}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <MembershipOverthrow name="membershipOverthrow"
+        {...this.props.MembershipOverthrow}
+        addressBooks={this.props.AddressBooks}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <MembershipViolence name="membershipViolence"
+        {...this.props.MembershipViolence}
+        addressBooks={this.props.AddressBooks}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <ActivitiesToOverthrow name="activitiesToOverthrow"
+        {...this.props.ActivitiesToOverthrow}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+
+      <hr />
+      <TerrorismAssociation name="terrorismAssociation"
+        {...this.props.TerrorismAssociation}
+        dispatch={this.props.dispatch}
+        onError={this.props.onError}
+        required={true}
+        scrollIntoView={false}
+      />
+    </div>
+    )
+  }
+}
+
 export default connect(mapStateToProps)(AuthenticatedView(Legal))
