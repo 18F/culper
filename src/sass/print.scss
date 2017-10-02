@@ -2,10 +2,16 @@
   .print-view {
     display: none;
   }
+
+  .print-btn {
+    padding: 2rem;
+    width: 20rem;
+    margin: 0 auto;
+    display: block;
+  }
 }
 
 @media only print {
-
   body,
   html {
     /* Force all text to be black */
@@ -51,7 +57,6 @@
   .eapp-title > .title {
     color: #000 !important;
   }
-
 
   /* Set heights for various header elements */
   .header-container {
@@ -136,70 +141,53 @@
     opacity: 1;
   }
 
-
   /* Get rid of left blue border within accordion */
   .accordion .summary .left.open,
   .accordion .item .details {
     border-left: 0;
   }
 
+  /* Hide the print button */
+  .print-btn,
   /* Hide progress bar under header */
   .usa-banner,
   .eapp-progress,
-
   /* All help icons */
   .field > .icon,
-
   /* Logout button */
   .usa-header .eapp-header .eapp-logout,
-
   /* Section navigation buttons for top and bottom */
   .top-btns,
   .bottom-btns,
   .btn-wrap,
-
   /* Hide reuse address text */
   .address .reuse-address,
-
   /* Saved Indicator */
   .saved-indicator,
-
   /* Top Section navigation buttons */
   .top-btns,
-
   /* Hide selective service help message */
   .selective .field .table .messages,
-
   /* Hide NA button when applicable */
   .not-applicable.enable .button,
-
   /* Hide content when not applicable */
   .not-applicable.disable .content,
-
   .multiple-dropdown .ic-tokens .inline-flex .ic-tokeninput .ic-tokeninput-input,
-
   /* Accordion validator error box */
   .accordion .byline .incomplete,
-
   /* Append button for accordions */
   .accordion .append-button,
-
   /* Close accordion link at the bottom */
   .accordion .item .details > .close,
-
   /* Remove button on accordion */
   .accordion .summary .right,
-
   /* Close link inside the accordion row */
   .accordion .summary .left .button-with-icon,
   .accordion .summary .right .button-with-icon,
-
   /* Add comment link */
   .field > .table > .content > .component > .comments-button,
-
   /* Help messages box */
   .field > .table > .messages.help-messages,
-
   /* Field error box */
   .field > .table > .messages.error-messages {
     display: none !important;
@@ -241,10 +229,10 @@
     border-top: 2px solid black;
   }
 
+  /* Make accordion summary links black */
   .accordion .items .summary-container .summary  a {
     color: #000 !important;
   }
-
 
   /* Force expand of accordion when in print screen */
   .accordion .details.close.animate {

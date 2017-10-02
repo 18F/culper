@@ -131,18 +131,27 @@ class Print extends SectionElement {
     })
   }
 
+  handlePrint () {
+    window.print()
+  }
+
   render () {
     return (
-      <div className="print-view">
-        <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-          <SectionView name=""
-            back=""
-            backLabel=""
-            next=""
-            nextLabel={ i18n.t('releases.destination.generalMedical') }>
-            { this.sections() }
-          </SectionView>
-        </SectionViews>
+      <div>
+        <button className="print-btn" onClick={this.handlePrint}>
+          Print
+        </button>
+        <div className="print-view">
+          <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
+            <SectionView name=""
+              back=""
+              backLabel=""
+              next=""
+              nextLabel="">
+              { this.sections() }
+            </SectionView>
+          </SectionViews>
+        </div>
       </div>
     )
   }
@@ -153,7 +162,7 @@ function mapStateToProps (state) {
   const app = state.application || {}
   const identification = app.Identification || {}
   const relationships = app.Relationships || {}
-  const history = app.History
+  const history = app.History || {}
   const historyResidence = history.Residence || []
   const historyEmployment = history.Employment || { List: [], ListBranch: '' }
   const historyEducation = history.Education || { HasAttended: '', HasDegree10: '', List: [] }
