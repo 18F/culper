@@ -83,7 +83,6 @@ export default class Disciplinary extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('military.disciplinary.collection.summary.title')}
                      appendTitle={i18n.t('military.disciplinary.collection.appendTitle')}
-                     appendMessage={i18n.m('military.disciplinary.collection.appendMessage')}
                      appendLabel={i18n.t('military.disciplinary.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>

@@ -210,7 +210,6 @@ export default class EmploymentItem extends ValidationElement {
                   onUpdate={this.updateEmployment}
                   onError={this.props.onError}
                   className="text full-width employment"
-                  label={i18n.t(`${prefix}.employer.label`)}
                   required={this.props.required}
                   />
           </Field>
@@ -218,14 +217,12 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.title`)}
-                 help={`${prefix}.title.help`}
                  adjustFor="labels"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="Title"
                   {...this.props.Title}
                   onUpdate={this.updateTitle}
                   className="text employment-title"
-                  label={i18n.t(`${prefix}.title.label`)}
                   onError={this.props.onError}
                   required={this.props.required}
                   />
@@ -234,14 +231,12 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showAssignedDuty()}>
           <Field title={i18n.t(`${prefix}.heading.dutyStation`)}
-                 help={`${prefix}.dutyStation.help`}
                  adjustFor="labels"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="DutyStation"
                   {...this.props.DutyStation}
                   onUpdate={this.updateDutyStation}
                   className="text full-width employment-duty-station"
-                  label={i18n.t(`${prefix}.dutyStation.label`)}
                   onError={this.props.onError}
                   required={this.props.required}
                   />
@@ -250,7 +245,6 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showStatus()}>
           <Field title={i18n.t(`${prefix}.heading.status`)}
-                 help={`${prefix}.status.help`}
                  shrink={true}
                  scrollIntoView={this.props.scrollIntoView}>
             <EmploymentStatus name="Status"
@@ -298,6 +292,19 @@ export default class EmploymentItem extends ValidationElement {
           </Field>
         </Show>
 
+        <Show when={this.showEmployed()}>
+          <Field title={i18n.t(`${prefix}.heading.telephone`)}
+                 adjustFor="telephone"
+                 scrollIntoView={this.props.scrollIntoView}>
+            <Telephone name="Telephone"
+                       {...this.props.Telephone}
+                       onUpdate={this.updateTelephone}
+                       onError={this.props.onError}
+                       required={this.props.required}
+                       />
+          </Field>
+        </Show>
+        
         <Show when={this.showPhysicalAddress()}>
           <PhysicalAddress name="PhysicalAddress"
                            {...this.props.PhysicalAddress}
@@ -309,20 +316,6 @@ export default class EmploymentItem extends ValidationElement {
                            required={this.props.required}
                            scrollIntoView={this.props.scrollIntoView}
                            />
-        </Show>
-
-        <Show when={this.showEmployed()}>
-          <Field title={i18n.t(`${prefix}.heading.telephone`)}
-                 help={`${prefix}.telephone.help`}
-                 adjustFor="telephone"
-                 scrollIntoView={this.props.scrollIntoView}>
-            <Telephone name="Telephone"
-                       {...this.props.Telephone}
-                       onUpdate={this.updateTelephone}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       />
-          </Field>
         </Show>
 
         <Show when={this.showSupervisor()}>

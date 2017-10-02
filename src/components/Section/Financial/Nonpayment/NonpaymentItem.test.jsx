@@ -3,7 +3,6 @@ import { mount } from 'enzyme'
 import NonpaymentItem from './NonpaymentItem'
 
 describe('The nonpayment item component', () => {
-
   it('triggers updates when changing values', () => {
     let updates = 0
     const expected = {
@@ -22,12 +21,8 @@ describe('The nonpayment item component', () => {
     component.find('.nonpayment-reason textarea').simulate('change', { target: { value: 'Reason for not filing' } })
     component.find('.nonpayment-status input').simulate('change', { target: { value: 'Reason for not filing' } })
     component.find('.nonpayment-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.nonpayment-date .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.nonpayment-date .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.nonpayment-resolved .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    component.find('.nonpayment-resolved .month input').simulate('change', { target: { name: 'month', value: '1' } })
-    component.find('.nonpayment-resolved .year input').simulate('change', { target: { name: 'year', value: '2005' } })
     component.find('.nonpayment-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
-    expect(updates).toBeGreaterThan(11)
+    expect(updates).toBe(11)
   })
 })
