@@ -6,7 +6,6 @@ import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
-import { RelationshipsValidator } from '../../../validators'
 import Relatives from './Relatives'
 import Marital from './RelationshipStatus/Marital'
 import Cohabitants from './RelationshipStatus/Cohabitants'
@@ -52,8 +51,8 @@ class Relationships extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="history/review"
-                       backLabel={i18n.t('history.destination.review')}
+                       back="identification/review"
+                       backLabel={i18n.t('identification.destination.review')}
                        next="relationships/status/marital"
                        nextLabel={i18n.t('relationships.destination.marital')}>
             <Field title={i18n.t('relationships.intro.title')}
@@ -131,8 +130,8 @@ class Relationships extends SectionElement {
                        showTop={true}
                        back="relationships/relatives"
                        backLabel={i18n.t('relationships.destination.relatives')}
-                       next="citizenship/intro"
-                       nextLabel={i18n.t('citizenship.destination.intro')}>
+                       next="history/intro"
+                       nextLabel={i18n.t('history.destination.intro')}>
             <Marital name="marital"
                      {...this.props.Marital}
                      defaultState={false}
