@@ -43,6 +43,13 @@ func (entity *SubstanceDrugUsage) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *SubstanceDrugUsage) Marshal() Payload {
+	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.drug.usage", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *SubstanceDrugUsage) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -159,6 +166,16 @@ func (entity *SubstanceDrugUsage) Get(context *db.DatabaseContext, account int) 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceDrugUsage) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceDrugUsage) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceDrugPurchase struct {
 	PayloadInvolved Payload `json:"Involved" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -193,6 +210,13 @@ func (entity *SubstanceDrugPurchase) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceDrugPurchase) Marshal() Payload {
+	entity.PayloadInvolved = entity.Involved.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.drug.purchase", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -311,6 +335,16 @@ func (entity *SubstanceDrugPurchase) Get(context *db.DatabaseContext, account in
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceDrugPurchase) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceDrugPurchase) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceDrugClearance struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -345,6 +379,13 @@ func (entity *SubstanceDrugClearance) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceDrugClearance) Marshal() Payload {
+	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.drug.clearance", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -463,6 +504,16 @@ func (entity *SubstanceDrugClearance) Get(context *db.DatabaseContext, account i
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceDrugClearance) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceDrugClearance) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceDrugPublicSafety struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -497,6 +548,13 @@ func (entity *SubstanceDrugPublicSafety) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceDrugPublicSafety) Marshal() Payload {
+	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.drug.publicsafety", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -615,6 +673,16 @@ func (entity *SubstanceDrugPublicSafety) Get(context *db.DatabaseContext, accoun
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceDrugPublicSafety) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceDrugPublicSafety) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceDrugMisuse struct {
 	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -649,6 +717,13 @@ func (entity *SubstanceDrugMisuse) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceDrugMisuse) Marshal() Payload {
+	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.drug.misuse", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -767,6 +842,16 @@ func (entity *SubstanceDrugMisuse) Get(context *db.DatabaseContext, account int)
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceDrugMisuse) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceDrugMisuse) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceDrugOrdered struct {
 	PayloadInvolved Payload `json:"Involved" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -801,6 +886,13 @@ func (entity *SubstanceDrugOrdered) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceDrugOrdered) Marshal() Payload {
+	entity.PayloadInvolved = entity.Involved.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.drug.ordered", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -919,6 +1011,16 @@ func (entity *SubstanceDrugOrdered) Get(context *db.DatabaseContext, account int
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceDrugOrdered) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceDrugOrdered) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceDrugVoluntary struct {
 	PayloadInvolved Payload `json:"Involved" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -953,6 +1055,13 @@ func (entity *SubstanceDrugVoluntary) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceDrugVoluntary) Marshal() Payload {
+	entity.PayloadInvolved = entity.Involved.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.drug.voluntary", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1071,6 +1180,16 @@ func (entity *SubstanceDrugVoluntary) Get(context *db.DatabaseContext, account i
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceDrugVoluntary) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceDrugVoluntary) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceAlcoholNegative struct {
 	PayloadHasImpacts Payload `json:"HasImpacts" sql:"-"`
 	PayloadList       Payload `json:"List" sql:"-"`
@@ -1105,6 +1224,13 @@ func (entity *SubstanceAlcoholNegative) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceAlcoholNegative) Marshal() Payload {
+	entity.PayloadHasImpacts = entity.HasImpacts.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.alcohol.negative", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1223,6 +1349,16 @@ func (entity *SubstanceAlcoholNegative) Get(context *db.DatabaseContext, account
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceAlcoholNegative) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceAlcoholNegative) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceAlcoholOrdered struct {
 	PayloadHasBeenOrdered Payload `json:"HasBeenOrdered" sql:"-"`
 	PayloadList           Payload `json:"List" sql:"-"`
@@ -1257,6 +1393,13 @@ func (entity *SubstanceAlcoholOrdered) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceAlcoholOrdered) Marshal() Payload {
+	entity.PayloadHasBeenOrdered = entity.HasBeenOrdered.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.alcohol.ordered", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1375,6 +1518,16 @@ func (entity *SubstanceAlcoholOrdered) Get(context *db.DatabaseContext, account 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceAlcoholOrdered) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceAlcoholOrdered) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceAlcoholVoluntary struct {
 	PayloadSoughtTreatment Payload `json:"SoughtTreatment" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -1409,6 +1562,13 @@ func (entity *SubstanceAlcoholVoluntary) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceAlcoholVoluntary) Marshal() Payload {
+	entity.PayloadSoughtTreatment = entity.SoughtTreatment.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.alcohol.voluntary", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1527,6 +1687,16 @@ func (entity *SubstanceAlcoholVoluntary) Get(context *db.DatabaseContext, accoun
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *SubstanceAlcoholVoluntary) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceAlcoholVoluntary) SetID(id int) {
+	entity.ID = id
+}
+
 type SubstanceAlcoholAdditional struct {
 	PayloadReceivedTreatment Payload `json:"ReceivedTreatment" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -1561,6 +1731,13 @@ func (entity *SubstanceAlcoholAdditional) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *SubstanceAlcoholAdditional) Marshal() Payload {
+	entity.PayloadReceivedTreatment = entity.ReceivedTreatment.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("substance.alcohol.additional", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1677,4 +1854,14 @@ func (entity *SubstanceAlcoholAdditional) Get(context *db.DatabaseContext, accou
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *SubstanceAlcoholAdditional) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SubstanceAlcoholAdditional) SetID(id int) {
+	entity.ID = id
 }

@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
@@ -40,6 +41,12 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *Collection) Marshal() Payload {
+	entity.PayloadBranch = entity.Branch.Marshal()
+	return MarshalPayloadEntity("collection", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Collection) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -65,7 +72,57 @@ func (entity *Collection) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the Collection entity.
 func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.AccountID = account
+
+	log.Println("1.0")
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	log.Println("1.1")
+	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Collection)
+		// Handle if there is a branch
+		if previous.BranchID != 0 {
+			if entity.Branch == nil {
+				entity.Branch = &Branch{}
+			}
+			entity.Branch.ID = previous.BranchID
+			entity.BranchID = previous.BranchID
+		}
+	})
+
+	log.Println("1.2")
+	// Custom errors
+	if entity.PayloadBranch.Type != "" {
+		branchID, err := entity.Branch.Save(context, account)
+		if err != nil {
+			return 0, err
+		}
+		entity.BranchID = branchID
+	}
+
+	log.Println("1.3")
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
+	}
+
+	log.Println("1.4")
+	// Iterate through each property in `Items` saving them as we go.
+	for i, item := range entity.Items {
+		if _, err := item.Save(context, account, entity.ID, i+1); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	log.Println("1.5")
+	return entity.ID, nil
+}
+
+// Delete the Collection entity.
+func (entity *Collection) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
@@ -84,45 +141,15 @@ func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, e
 		}
 	})
 
-	// Custom errors
-	if entity.PayloadBranch.Type != "" {
-		entity.Branch = &Branch{ID: entity.BranchID}
-		branchID, err := entity.Branch.Save(context, account)
-		if err != nil {
-			return 0, err
-		}
-		entity.BranchID = branchID
-	}
-
-	if err := context.Save(entity); err != nil {
-		return entity.ID, err
-	}
-
-	// Iterate through each property in `Items` saving them as we go.
-	for _, item := range entity.Items {
-		if _, err := item.Save(context, account, entity.ID); err != nil {
-			return entity.ID, err
-		}
-	}
-
-	return entity.ID, nil
-}
-
-func (entity *Collection) Delete(context *db.DatabaseContext, account int) (int, error) {
-	entity.AccountID = account
-
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.PayloadBranch.Type != "" {
 		if _, err := entity.Branch.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	for _, item := range entity.Items {
-		if _, err := item.Delete(context, account, entity.ID); err != nil {
+	entity.collectionItemIDs(context)
+	for i, item := range entity.Items {
+		if _, err := item.Delete(context, account, entity.ID, i+1); err != nil {
 			return entity.ID, err
 		}
 	}
@@ -136,12 +163,25 @@ func (entity *Collection) Delete(context *db.DatabaseContext, account int) (int,
 	return entity.ID, nil
 }
 
+// Get the Collection entity.
 func (entity *Collection) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Collection)
+		// Handle if there is a branch
+		if previous.BranchID != 0 {
+			if entity.Branch == nil {
+				entity.Branch = &Branch{}
+			}
+			entity.Branch.ID = previous.BranchID
+			entity.BranchID = previous.BranchID
+		}
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -150,17 +190,41 @@ func (entity *Collection) Get(context *db.DatabaseContext, account int) (int, er
 	}
 
 	if entity.BranchID != 0 {
-		entity.Branch = &Branch{ID: entity.BranchID}
 		if _, err := entity.Branch.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	for _, item := range entity.Items {
-		if _, err := item.Get(context, account, entity.ID); err != nil {
+	entity.collectionItemIDs(context)
+	for i, item := range entity.Items {
+		if _, err := item.Get(context, account, entity.ID, i+1); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Collection) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Collection) SetID(id int) {
+	entity.ID = id
+}
+
+// collectionItemIDs the Collection item identifiers.
+func (entity *Collection) collectionItemIDs(context *db.DatabaseContext) {
+	var count int
+	context.Database.
+		Model(&CollectionItem{}).
+		ColumnExpr("max(index) as max").
+		Where("id = ?", entity.ID).
+		Select(&count)
+	entity.Items = []*CollectionItem{}
+	for i := 0; i < count; i++ {
+		entity.Items = append(entity.Items, &CollectionItem{ID: entity.ID, Index: i + 1})
+	}
 }

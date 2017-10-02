@@ -24,6 +24,11 @@ func (entity *DateControl) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *DateControl) Marshal() Payload {
+	return MarshalPayloadEntity("datecontrol", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *DateControl) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -85,4 +90,14 @@ func (entity *DateControl) Get(context *db.DatabaseContext, account int) (int, e
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *DateControl) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *DateControl) SetID(id int) {
+	entity.ID = id
 }

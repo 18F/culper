@@ -61,6 +61,15 @@ func (entity *MilitarySelective) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *MilitarySelective) Marshal() Payload {
+	entity.PayloadWasBornAfter = entity.WasBornAfter.Marshal()
+	entity.PayloadHasRegistered = entity.HasRegistered.Marshal()
+	entity.PayloadRegistrationNumber = entity.RegistrationNumber.Marshal()
+	entity.PayloadExplanation = entity.Explanation.Marshal()
+	return MarshalPayloadEntity("military.selective", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *MilitarySelective) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -229,6 +238,16 @@ func (entity *MilitarySelective) Get(context *db.DatabaseContext, account int) (
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *MilitarySelective) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitarySelective) SetID(id int) {
+	entity.ID = id
+}
+
 type MilitaryHistory struct {
 	PayloadHasServed Payload `json:"HasServed" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -263,6 +282,13 @@ func (entity *MilitaryHistory) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *MilitaryHistory) Marshal() Payload {
+	entity.PayloadHasServed = entity.HasServed.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("military.history", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -381,6 +407,16 @@ func (entity *MilitaryHistory) Get(context *db.DatabaseContext, account int) (in
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *MilitaryHistory) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitaryHistory) SetID(id int) {
+	entity.ID = id
+}
+
 type MilitaryDisciplinary struct {
 	PayloadHasDisciplinary Payload `json:"HasDisciplinary" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -415,6 +451,13 @@ func (entity *MilitaryDisciplinary) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *MilitaryDisciplinary) Marshal() Payload {
+	entity.PayloadHasDisciplinary = entity.HasDisciplinary.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("military.disciplinary", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -533,6 +576,16 @@ func (entity *MilitaryDisciplinary) Get(context *db.DatabaseContext, account int
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *MilitaryDisciplinary) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitaryDisciplinary) SetID(id int) {
+	entity.ID = id
+}
+
 type MilitaryForeign struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -558,6 +611,12 @@ func (entity *MilitaryForeign) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *MilitaryForeign) Marshal() Payload {
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("military.foreign", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -647,4 +706,14 @@ func (entity *MilitaryForeign) Get(context *db.DatabaseContext, account int) (in
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *MilitaryForeign) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitaryForeign) SetID(id int) {
+	entity.ID = id
 }

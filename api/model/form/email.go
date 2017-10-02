@@ -20,6 +20,11 @@ func (entity *Email) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *Email) Marshal() Payload {
+	return MarshalPayloadEntity("email", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Email) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -71,4 +76,14 @@ func (entity *Email) Get(context *db.DatabaseContext, account int) (int, error) 
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Email) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Email) SetID(id int) {
+	entity.ID = id
 }

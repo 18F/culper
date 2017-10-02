@@ -46,6 +46,13 @@ func (entity *DateRange) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *DateRange) Marshal() Payload {
+	entity.PayloadFrom = entity.From.Marshal()
+	entity.PayloadTo = entity.To.Marshal()
+	return MarshalPayloadEntity("daterange", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *DateRange) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -65,6 +72,7 @@ func (entity *DateRange) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the DateRange entity.
 func (entity *DateRange) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
@@ -91,6 +99,7 @@ func (entity *DateRange) Save(context *db.DatabaseContext, account int) (int, er
 	return entity.ID, nil
 }
 
+// Delete the DateRange entity.
 func (entity *DateRange) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
@@ -115,6 +124,7 @@ func (entity *DateRange) Delete(context *db.DatabaseContext, account int) (int, 
 	return entity.ID, nil
 }
 
+// Get the DateRange entity.
 func (entity *DateRange) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
@@ -129,16 +139,28 @@ func (entity *DateRange) Get(context *db.DatabaseContext, account int) (int, err
 	}
 
 	if entity.FromID != 0 {
+		entity.From = &DateControl{ID: entity.FromID}
 		if _, err := entity.From.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ToID != 0 {
+		entity.To = &DateControl{ID: entity.ToID}
 		if _, err := entity.To.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *DateRange) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *DateRange) SetID(id int) {
+	entity.ID = id
 }

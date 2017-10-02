@@ -53,6 +53,14 @@ func (entity *PhysicalAddress) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *PhysicalAddress) Marshal() Payload {
+	entity.PayloadHasDifferentAddress = entity.HasDifferentAddress.Marshal()
+	entity.PayloadAddress = entity.Address.Marshal()
+	entity.PayloadTelephone = entity.Telephone.Marshal()
+	return MarshalPayloadEntity("physicaladdress", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *PhysicalAddress) Valid() (bool, error) {
 	if entity.HasDifferentAddress.Value == "Yes" {
@@ -68,12 +76,32 @@ func (entity *PhysicalAddress) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the PhysicalAddress entity.
 func (entity *PhysicalAddress) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&PhysicalAddress{ID: account}, func(result interface{}) {
+		previous := result.(*PhysicalAddress)
+		if entity.HasDifferentAddress == nil {
+			entity.HasDifferentAddress = &Branch{}
+		}
+		entity.HasDifferentAddress.ID = previous.HasDifferentAddressID
+		entity.HasDifferentAddressID = previous.HasDifferentAddressID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	hasDifferentAddressID, err := entity.HasDifferentAddress.Save(context, account)
 	if err != nil {
@@ -100,12 +128,32 @@ func (entity *PhysicalAddress) Save(context *db.DatabaseContext, account int) (i
 	return entity.ID, nil
 }
 
+// Delete the PhysicalAddress entity.
 func (entity *PhysicalAddress) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&PhysicalAddress{ID: account}, func(result interface{}) {
+		previous := result.(*PhysicalAddress)
+		if entity.HasDifferentAddress == nil {
+			entity.HasDifferentAddress = &Branch{}
+		}
+		entity.HasDifferentAddress.ID = previous.HasDifferentAddressID
+		entity.HasDifferentAddressID = previous.HasDifferentAddressID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	if _, err := entity.HasDifferentAddress.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -128,12 +176,32 @@ func (entity *PhysicalAddress) Delete(context *db.DatabaseContext, account int) 
 	return entity.ID, nil
 }
 
+// Get the PhysicalAddress entity.
 func (entity *PhysicalAddress) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&PhysicalAddress{ID: account}, func(result interface{}) {
+		previous := result.(*PhysicalAddress)
+		if entity.HasDifferentAddress == nil {
+			entity.HasDifferentAddress = &Branch{}
+		}
+		entity.HasDifferentAddress.ID = previous.HasDifferentAddressID
+		entity.HasDifferentAddressID = previous.HasDifferentAddressID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -160,4 +228,14 @@ func (entity *PhysicalAddress) Get(context *db.DatabaseContext, account int) (in
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *PhysicalAddress) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *PhysicalAddress) SetID(id int) {
+	entity.ID = id
 }

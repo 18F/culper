@@ -46,6 +46,11 @@ func (entity *Location) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *Location) Marshal() Payload {
+	return MarshalPayloadEntity("location", entity)
+}
+
 func (entity *Location) Save(context *db.DatabaseContext, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -562,3 +567,13 @@ var (
 		"Zimbabwe",
 	}
 )
+
+// ID returns the entity identifier.
+func (entity *Location) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Location) SetID(id int) {
+	entity.ID = id
+}

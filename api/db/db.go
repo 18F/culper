@@ -91,11 +91,10 @@ func (context *DatabaseContext) Update(query ...interface{}) error {
 // Save persists the model in the data store
 func (context *DatabaseContext) Save(query ...interface{}) error {
 	for _, q := range query {
-		count, err := context.Database.Model(q).Count()
-		log.Printf("count: %d, err: %v", count, err)
-		if count == 0 {
+		var err error
+		if err = context.Select(q); err != nil {
 			err = context.Insert(q)
-		} else if count > 0 {
+		} else {
 			err = context.Update(q)
 		}
 

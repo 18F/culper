@@ -53,6 +53,14 @@ func (entity *ReasonLeft) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *ReasonLeft) Marshal() Payload {
+	entity.PayloadComments = entity.Comments.Marshal()
+	entity.PayloadReasons = entity.Reasons.Marshal()
+	entity.PayloadReasonDescription = entity.ReasonDescription.Marshal()
+	return MarshalPayloadEntity("reasonleft", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *ReasonLeft) Valid() (bool, error) {
 	if ok, err := entity.ReasonDescription.Valid(); !ok {
@@ -66,12 +74,32 @@ func (entity *ReasonLeft) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the ReasonLeft entity.
 func (entity *ReasonLeft) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ReasonLeft{ID: account}, func(result interface{}) {
+		previous := result.(*ReasonLeft)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.Reasons == nil {
+			entity.Reasons = &Collection{}
+		}
+		entity.Reasons.ID = previous.ReasonsID
+		entity.ReasonsID = previous.ReasonsID
+		if entity.ReasonDescription == nil {
+			entity.ReasonDescription = &Textarea{}
+		}
+		entity.ReasonDescription.ID = previous.ReasonDescriptionID
+		entity.ReasonDescriptionID = previous.ReasonDescriptionID
+	})
 
 	commentsID, err := entity.Comments.Save(context, account)
 	if err != nil {
@@ -98,12 +126,32 @@ func (entity *ReasonLeft) Save(context *db.DatabaseContext, account int) (int, e
 	return entity.ID, nil
 }
 
+// Delete the ReasonLeft entity.
 func (entity *ReasonLeft) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ReasonLeft{ID: account}, func(result interface{}) {
+		previous := result.(*ReasonLeft)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.Reasons == nil {
+			entity.Reasons = &Collection{}
+		}
+		entity.Reasons.ID = previous.ReasonsID
+		entity.ReasonsID = previous.ReasonsID
+		if entity.ReasonDescription == nil {
+			entity.ReasonDescription = &Textarea{}
+		}
+		entity.ReasonDescription.ID = previous.ReasonDescriptionID
+		entity.ReasonDescriptionID = previous.ReasonDescriptionID
+	})
 
 	if _, err := entity.Comments.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -126,12 +174,32 @@ func (entity *ReasonLeft) Delete(context *db.DatabaseContext, account int) (int,
 	return entity.ID, nil
 }
 
+// Get the ReasonLeft entity.
 func (entity *ReasonLeft) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ReasonLeft{ID: account}, func(result interface{}) {
+		previous := result.(*ReasonLeft)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.Reasons == nil {
+			entity.Reasons = &Collection{}
+		}
+		entity.Reasons.ID = previous.ReasonsID
+		entity.ReasonsID = previous.ReasonsID
+		if entity.ReasonDescription == nil {
+			entity.ReasonDescription = &Textarea{}
+		}
+		entity.ReasonDescription.ID = previous.ReasonDescriptionID
+		entity.ReasonDescriptionID = previous.ReasonDescriptionID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -158,4 +226,14 @@ func (entity *ReasonLeft) Get(context *db.DatabaseContext, account int) (int, er
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *ReasonLeft) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ReasonLeft) SetID(id int) {
+	entity.ID = id
 }

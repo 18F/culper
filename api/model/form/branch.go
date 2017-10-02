@@ -19,6 +19,11 @@ func (entity *Branch) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *Branch) Marshal() Payload {
+	return MarshalPayloadEntity("branch", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Branch) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -35,6 +40,7 @@ func (entity *Branch) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
+// Save the Branch entity.
 func (entity *Branch) Save(context *db.DatabaseContext, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -47,6 +53,7 @@ func (entity *Branch) Save(context *db.DatabaseContext, account int) (int, error
 	return entity.ID, nil
 }
 
+// Delete the Branch entity.
 func (entity *Branch) Delete(context *db.DatabaseContext, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -61,6 +68,7 @@ func (entity *Branch) Delete(context *db.DatabaseContext, account int) (int, err
 	return entity.ID, nil
 }
 
+// Get the Branch entity.
 func (entity *Branch) Get(context *db.DatabaseContext, account int) (int, error) {
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
@@ -73,4 +81,14 @@ func (entity *Branch) Get(context *db.DatabaseContext, account int) (int, error)
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Branch) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Branch) SetID(id int) {
+	entity.ID = id
 }

@@ -34,17 +34,33 @@ func (entity *CoOwners) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *CoOwners) Marshal() Payload {
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("coowners", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *CoOwners) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
+// Save the CoOwners entity.
 func (entity *CoOwners) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&CoOwners{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*CoOwners)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
 
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
@@ -59,12 +75,22 @@ func (entity *CoOwners) Save(context *db.DatabaseContext, account int) (int, err
 	return entity.ID, nil
 }
 
+// Delete the CoOwners entity.
 func (entity *CoOwners) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&CoOwners{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*CoOwners)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -79,12 +105,22 @@ func (entity *CoOwners) Delete(context *db.DatabaseContext, account int) (int, e
 	return entity.ID, nil
 }
 
+// Get the CoOwners entity.
 func (entity *CoOwners) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&CoOwners{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*CoOwners)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -99,4 +135,14 @@ func (entity *CoOwners) Get(context *db.DatabaseContext, account int) (int, erro
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *CoOwners) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *CoOwners) SetID(id int) {
+	entity.ID = id
 }

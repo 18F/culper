@@ -52,6 +52,11 @@ func (entity *Treatment) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *Treatment) Marshal() Payload {
+	return MarshalPayloadEntity("psychological.treatment", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Treatment) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -182,4 +187,14 @@ func (entity *Treatment) Get(context *db.DatabaseContext, account int) (int, err
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Treatment) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Treatment) SetID(id int) {
+	entity.ID = id
 }

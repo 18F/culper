@@ -48,7 +48,11 @@ func Section(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	EncodeJSON(w, entity)
+
+	EncodeJSON(w, entity.Marshal())
+	// log.Printf("%v", js)
+	// w.Header().Set("Content-Type", "application/json")
+	// w.Write(js)
 }
 
 func Save(w http.ResponseWriter, r *http.Request) {

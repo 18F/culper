@@ -94,6 +94,18 @@ func (entity *ForeignPassport) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *ForeignPassport) Marshal() Payload {
+	entity.PayloadHasPassports = entity.HasPassports.Marshal()
+	entity.PayloadName = entity.Name.Marshal()
+	entity.PayloadCard = entity.Card.Marshal()
+	entity.PayloadNumber = entity.Number.Marshal()
+	entity.PayloadIssued = entity.Issued.Marshal()
+	entity.PayloadExpiration = entity.Expiration.Marshal()
+	entity.PayloadComments = entity.Comments.Marshal()
+	return MarshalPayloadEntity("foreign.passport", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *ForeignPassport) Valid() (bool, error) {
 	if entity.HasPassports.Value == "No" {
@@ -329,6 +341,16 @@ func (entity *ForeignPassport) Get(context *db.DatabaseContext, account int) (in
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignPassport) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignPassport) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignContacts struct {
 	PayloadHasForeignContacts Payload `json:"HasForeignContacts" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
@@ -363,6 +385,13 @@ func (entity *ForeignContacts) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignContacts) Marshal() Payload {
+	entity.PayloadHasForeignContacts = entity.HasForeignContacts.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.contacts", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -473,6 +502,16 @@ func (entity *ForeignContacts) Get(context *db.DatabaseContext, account int) (in
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignContacts) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignContacts) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignTravel struct {
 	PayloadHasForeignTravelOutside  Payload `json:"HasForeignTravelOutside" sql:"-"`
 	PayloadHasForeignTravelOfficial Payload `json:"HasForeignTravelOfficial" sql:"-"`
@@ -516,6 +555,14 @@ func (entity *ForeignTravel) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignTravel) Marshal() Payload {
+	entity.PayloadHasForeignTravelOutside = entity.HasForeignTravelOutside.Marshal()
+	entity.PayloadHasForeignTravelOfficial = entity.HasForeignTravelOfficial.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.travel", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -651,6 +698,16 @@ func (entity *ForeignTravel) Get(context *db.DatabaseContext, account int) (int,
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignTravel) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignTravel) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignActivitiesBenefits struct {
 	PayloadHasBenefits Payload `json:"HasBenefits" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
@@ -685,6 +742,13 @@ func (entity *ForeignActivitiesBenefits) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignActivitiesBenefits) Marshal() Payload {
+	entity.PayloadHasBenefits = entity.HasBenefits.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.activities.benefits", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -797,6 +861,16 @@ func (entity *ForeignActivitiesBenefits) Get(context *db.DatabaseContext, accoun
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignActivitiesBenefits) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignActivitiesBenefits) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignActivitiesDirect struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -831,6 +905,13 @@ func (entity *ForeignActivitiesDirect) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignActivitiesDirect) Marshal() Payload {
+	entity.PayloadHasInterests = entity.HasInterests.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.activities.direct", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -941,6 +1022,16 @@ func (entity *ForeignActivitiesDirect) Get(context *db.DatabaseContext, account 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignActivitiesDirect) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignActivitiesDirect) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignActivitiesIndirect struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -975,6 +1066,13 @@ func (entity *ForeignActivitiesIndirect) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignActivitiesIndirect) Marshal() Payload {
+	entity.PayloadHasInterests = entity.HasInterests.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.activities.indirect", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1085,6 +1183,16 @@ func (entity *ForeignActivitiesIndirect) Get(context *db.DatabaseContext, accoun
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignActivitiesIndirect) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignActivitiesIndirect) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignActivitiesRealEstate struct {
 	PayloadHasInterests Payload `json:"HasInterests" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -1119,6 +1227,13 @@ func (entity *ForeignActivitiesRealEstate) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignActivitiesRealEstate) Marshal() Payload {
+	entity.PayloadHasInterests = entity.HasInterests.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.activities.realestate", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1229,6 +1344,16 @@ func (entity *ForeignActivitiesRealEstate) Get(context *db.DatabaseContext, acco
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignActivitiesRealEstate) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignActivitiesRealEstate) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignActivitiesSupport struct {
 	PayloadHasForeignSupport Payload `json:"HasForeignSupport" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -1263,6 +1388,13 @@ func (entity *ForeignActivitiesSupport) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignActivitiesSupport) Marshal() Payload {
+	entity.PayloadHasForeignSupport = entity.HasForeignSupport.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.activities.support", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1373,6 +1505,16 @@ func (entity *ForeignActivitiesSupport) Get(context *db.DatabaseContext, account
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignActivitiesSupport) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignActivitiesSupport) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessAdvice struct {
 	PayloadHasForeignAdvice Payload `json:"HasForeignAdvice" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
@@ -1407,6 +1549,13 @@ func (entity *ForeignBusinessAdvice) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessAdvice) Marshal() Payload {
+	entity.PayloadHasForeignAdvice = entity.HasForeignAdvice.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.advice", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1517,6 +1666,16 @@ func (entity *ForeignBusinessAdvice) Get(context *db.DatabaseContext, account in
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessAdvice) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessAdvice) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessConferences struct {
 	PayloadHasForeignConferences Payload `json:"HasForeignConferences" sql:"-"`
 	PayloadList                  Payload `json:"List" sql:"-"`
@@ -1551,6 +1710,13 @@ func (entity *ForeignBusinessConferences) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessConferences) Marshal() Payload {
+	entity.PayloadHasForeignConferences = entity.HasForeignConferences.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.conferences", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1661,6 +1827,16 @@ func (entity *ForeignBusinessConferences) Get(context *db.DatabaseContext, accou
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessConferences) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessConferences) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessContact struct {
 	PayloadHasForeignContact Payload `json:"HasForeignContact" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -1695,6 +1871,13 @@ func (entity *ForeignBusinessContact) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessContact) Marshal() Payload {
+	entity.PayloadHasForeignContact = entity.HasForeignContact.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.contact", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1805,6 +1988,16 @@ func (entity *ForeignBusinessContact) Get(context *db.DatabaseContext, account i
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessContact) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessContact) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessEmployment struct {
 	PayloadHasForeignEmployment Payload `json:"HasForeignEmployment" sql:"-"`
 	PayloadList                 Payload `json:"List" sql:"-"`
@@ -1839,6 +2032,13 @@ func (entity *ForeignBusinessEmployment) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessEmployment) Marshal() Payload {
+	entity.PayloadHasForeignEmployment = entity.HasForeignEmployment.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.employment", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1949,6 +2149,16 @@ func (entity *ForeignBusinessEmployment) Get(context *db.DatabaseContext, accoun
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessEmployment) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessEmployment) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessFamily struct {
 	PayloadHasForeignFamily Payload `json:"HasForeignFamily" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
@@ -1983,6 +2193,13 @@ func (entity *ForeignBusinessFamily) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessFamily) Marshal() Payload {
+	entity.PayloadHasForeignFamily = entity.HasForeignFamily.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.family", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2093,6 +2310,16 @@ func (entity *ForeignBusinessFamily) Get(context *db.DatabaseContext, account in
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessFamily) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessFamily) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessPolitical struct {
 	PayloadHasForeignPolitical Payload `json:"HasForeignPolitical" sql:"-"`
 	PayloadList                Payload `json:"List" sql:"-"`
@@ -2127,6 +2354,13 @@ func (entity *ForeignBusinessPolitical) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessPolitical) Marshal() Payload {
+	entity.PayloadHasForeignPolitical = entity.HasForeignPolitical.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.political", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2237,6 +2471,16 @@ func (entity *ForeignBusinessPolitical) Get(context *db.DatabaseContext, account
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessPolitical) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessPolitical) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessSponsorship struct {
 	PayloadHasForeignSponsorship Payload `json:"HasForeignSponsorship" sql:"-"`
 	PayloadList                  Payload `json:"List" sql:"-"`
@@ -2271,6 +2515,13 @@ func (entity *ForeignBusinessSponsorship) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessSponsorship) Marshal() Payload {
+	entity.PayloadHasForeignSponsorship = entity.HasForeignSponsorship.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.sponsorship", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2381,6 +2632,16 @@ func (entity *ForeignBusinessSponsorship) Get(context *db.DatabaseContext, accou
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessSponsorship) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessSponsorship) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessVentures struct {
 	PayloadHasForeignVentures Payload `json:"HasForeignVentures" sql:"-"`
 	PayloadList               Payload `json:"List" sql:"-"`
@@ -2415,6 +2676,13 @@ func (entity *ForeignBusinessVentures) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessVentures) Marshal() Payload {
+	entity.PayloadHasForeignVentures = entity.HasForeignVentures.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.ventures", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2525,6 +2793,16 @@ func (entity *ForeignBusinessVentures) Get(context *db.DatabaseContext, account 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessVentures) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessVentures) SetID(id int) {
+	entity.ID = id
+}
+
 type ForeignBusinessVoting struct {
 	PayloadHasForeignVoting Payload `json:"HasForeignVoting" sql:"-"`
 	PayloadList             Payload `json:"List" sql:"-"`
@@ -2559,6 +2837,13 @@ func (entity *ForeignBusinessVoting) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *ForeignBusinessVoting) Marshal() Payload {
+	entity.PayloadHasForeignVoting = entity.HasForeignVoting.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("foreign.business.voting", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2667,4 +2952,14 @@ func (entity *ForeignBusinessVoting) Get(context *db.DatabaseContext, account in
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *ForeignBusinessVoting) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBusinessVoting) SetID(id int) {
+	entity.ID = id
 }

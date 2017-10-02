@@ -31,6 +31,11 @@ func (entity *Telephone) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *Telephone) Marshal() Payload {
+	return MarshalPayloadEntity("telephone", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Telephone) Valid() (bool, error) {
 	if entity.NoNumber {
@@ -107,4 +112,14 @@ func (entity *Telephone) Get(context *db.DatabaseContext, account int) (int, err
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Telephone) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Telephone) SetID(id int) {
+	entity.ID = id
 }

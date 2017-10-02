@@ -19,6 +19,11 @@ func (entity *Textarea) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *Textarea) Marshal() Payload {
+	return MarshalPayloadEntity("textarea", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Textarea) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -68,4 +73,14 @@ func (entity *Textarea) Get(context *db.DatabaseContext, account int) (int, erro
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Textarea) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Textarea) SetID(id int) {
+	entity.ID = id
 }

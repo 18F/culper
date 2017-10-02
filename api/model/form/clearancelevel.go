@@ -44,6 +44,13 @@ func (entity *ClearanceLevel) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *ClearanceLevel) Marshal() Payload {
+	entity.PayloadLevel = entity.Level.Marshal()
+	entity.PayloadExplanation = entity.Explanation.Marshal()
+	return MarshalPayloadEntity("clearancelevel", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *ClearanceLevel) Valid() (bool, error) {
 	if ok, err := entity.Level.Valid(); !ok {
@@ -59,12 +66,27 @@ func (entity *ClearanceLevel) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the ClearanceLevel entity.
 func (entity *ClearanceLevel) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ClearanceLevel{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ClearanceLevel)
+		if entity.Level == nil {
+			entity.Level = &Radio{}
+		}
+		entity.Level.ID = previous.LevelID
+		entity.LevelID = previous.LevelID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
+		entity.Explanation.ID = previous.ExplanationID
+		entity.ExplanationID = previous.ExplanationID
+	})
 
 	levelID, err := entity.Level.Save(context, account)
 	if err != nil {
@@ -85,12 +107,27 @@ func (entity *ClearanceLevel) Save(context *db.DatabaseContext, account int) (in
 	return entity.ID, nil
 }
 
+// Delete the ClearanceLevel entity.
 func (entity *ClearanceLevel) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ClearanceLevel{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ClearanceLevel)
+		if entity.Level == nil {
+			entity.Level = &Radio{}
+		}
+		entity.Level.ID = previous.LevelID
+		entity.LevelID = previous.LevelID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
+		entity.Explanation.ID = previous.ExplanationID
+		entity.ExplanationID = previous.ExplanationID
+	})
 
 	if _, err := entity.Level.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -109,12 +146,27 @@ func (entity *ClearanceLevel) Delete(context *db.DatabaseContext, account int) (
 	return entity.ID, nil
 }
 
+// Get the ClearanceLevel entity.
 func (entity *ClearanceLevel) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ClearanceLevel{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ClearanceLevel)
+		if entity.Level == nil {
+			entity.Level = &Radio{}
+		}
+		entity.Level.ID = previous.LevelID
+		entity.LevelID = previous.LevelID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
+		entity.Explanation.ID = previous.ExplanationID
+		entity.ExplanationID = previous.ExplanationID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -135,4 +187,14 @@ func (entity *ClearanceLevel) Get(context *db.DatabaseContext, account int) (int
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *ClearanceLevel) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ClearanceLevel) SetID(id int) {
+	entity.ID = id
 }

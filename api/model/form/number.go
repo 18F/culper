@@ -20,6 +20,11 @@ func (entity *Number) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *Number) Marshal() Payload {
+	return MarshalPayloadEntity("number", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Number) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -71,4 +76,14 @@ func (entity *Number) Get(context *db.DatabaseContext, account int) (int, error)
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Number) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Number) SetID(id int) {
+	entity.ID = id
 }

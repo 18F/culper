@@ -3,174 +3,178 @@ export const sectionData = (section, subsection, application = {}) => {
     return null
   }
 
+  const wrap = (obj) => {
+    return obj || {}
+  }
+
   switch (`${section}/${subsection}`) {
     case 'identification/birthdate':
-      return application.Identification.ApplicantBirthDate
+      return wrap(application.Identification).ApplicantBirthDate
     case 'identification/birthplace':
-      return application.Identification.ApplicantBirthPlace
+      return wrap(application.Identification).ApplicantBirthPlace
     case 'identification/contacts':
-      return application.Identification.Contacts
+      return wrap(application.Identification).Contacts
     case 'identification/name':
-      return application.Identification.ApplicantName
+      return wrap(application.Identification).ApplicantName
     case 'identification/othernames':
-      return application.Identification.OtherNames
+      return wrap(application.Identification).OtherNames
     case 'identification/physical':
-      return application.Identification.Physical
+      return wrap(application.Identification).Physical
     case 'identification/ssn':
-      return application.Identification.ApplicantSSN
+      return wrap(application.Identification).ApplicantSSN
 
     case 'financial/bankruptcy':
-      return application.Financial.Bankruptcy
+      return wrap(application.Financial).Bankruptcy
     case 'financial/gambling':
-      return application.Financial.Gambling
+      return wrap(application.Financial).Gambling
     case 'financial/taxes':
-      return application.Financial.Taxes
+      return wrap(application.Financial).Taxes
     case 'financial/card':
-      return application.Financial.Card
+      return wrap(application.Financial).Card
     case 'financial/credit':
-      return application.Financial.Credit
+      return wrap(application.Financial).Credit
     case 'financial/delinquent':
-      return application.Financial.Delinquent
+      return wrap(application.Financial).Delinquent
     case 'financial/nonpayment':
-      return application.Financial.Nonpayment
+      return wrap(application.Financial).Nonpayment
 
     case 'history/education':
-      return application.History.Education
+      return wrap(application.History).Education
     case 'history/employment':
-      return application.History.Employment
+      return wrap(application.History).Employment
     case 'history/federal':
-      return application.History.Federal
+      return wrap(application.History).Federal
     case 'history/residence':
-      return application.History.Residence
+      return wrap(application.History).Residence
 
     case 'relationships/status/marital':
-      return application.Relationships.Marital
+      return wrap(application.Relationships).Marital
     case 'relationships/status/cohabitant':
-      return application.Relationships.Cohabitants
+      return wrap(application.Relationships).Cohabitants
     case 'relationships/people':
-      return application.Relationships.People
+      return wrap(application.Relationships).People
     case 'relationships/relatives':
       return application.Relationships.Relatives
 
     case 'citizenship/multiple':
-      return application.Citizenships.Multiple
+      return wrap(application.Citizenships).Multiple
     case 'citizenship/passports':
-      return application.Citizenships.Passports
+      return wrap(application.Citizenships).Passports
     case 'citizenship/status':
-      return application.Citizenships.Status
+      return wrap(application.Citizenships).Status
 
     case 'military/selective':
-      return application.Military.Selective
+      return wrap(application.Military).Selective
     case 'military/history':
-      return application.Military.History
+      return wrap(application.Military).History
     case 'military/disciplinary':
-      return application.Military.Disciplinary
+      return wrap(application.Military).Disciplinary
     case 'military/foreign':
-      return application.Military.Foreign
+      return wrap(application.Military).Foreign
 
     case 'foreign/activities/benefits':
-      return application.Foreign.BenefitActivity
+      return wrap(application.Foreign).BenefitActivity
     case 'foreign/activities/direct':
-      return application.Foreign.DirectActivity
+      return wrap(application.Foreign).DirectActivity
     case 'foreign/activities/indirect':
-      return application.Foreign.IndirectActivity
+      return wrap(application.Foreign).IndirectActivity
     case 'foreign/activities/realestate':
-      return application.Foreign.RealEstateActivity
+      return wrap(application.Foreign).RealEstateActivity
     case 'foreign/activities/support':
-      return application.Foreign.Support
+      return wrap(application.Foreign).Support
     case 'foreign/business/advice':
-      return application.Foreign.Advice
+      return wrap(application.Foreign).Advice
     case 'foreign/business/conferences':
-      return application.Foreign.Conferences
+      return wrap(application.Foreign).Conferences
     case 'foreign/business/contact':
-      return application.Foreign.Contact
+      return wrap(application.Foreign).Contact
     case 'foreign/business/employment':
-      return application.Foreign.Employment
+      return wrap(application.Foreign).Employment
     case 'foreign/business/family':
-      return application.Foreign.Family
+      return wrap(application.Foreign).Family
     case 'foreign/business/political':
-      return application.Foreign.Political
+      return wrap(application.Foreign).Political
     case 'foreign/business/sponsorship':
-      return application.Foreign.Sponsorship
+      return wrap(application.Foreign).Sponsorship
     case 'foreign/business/ventures':
-      return application.Foreign.Ventures
+      return wrap(application.Foreign).Ventures
     case 'foreign/business/voting':
-      return application.Foreign.Voting
+      return wrap(application.Foreign).Voting
     case 'foreign/contacts':
-      return application.Foreign.Contacts
+      return wrap(application.Foreign).Contacts
     case 'foreign/passport':
-      return application.Foreign.Passport
+      return wrap(application.Foreign).Passport
     case 'foreign/travel':
-      return application.Foreign.Travel
+      return wrap(application.Foreign).Travel
 
     case 'substance/alcohol/additional':
-      return application.SubstanceUse.ReceivedCounselings
+      return wrap(application.SubstanceUse).ReceivedCounselings
     case 'substance/alcohol/negative':
-      return application.SubstanceUse.NegativeImpacts
+      return wrap(application.SubstanceUse).NegativeImpacts
     case 'substance/alcohol/ordered':
-      return application.SubstanceUse.OrderedCounselings
+      return wrap(application.SubstanceUse).OrderedCounselings
     case 'substance/alcohol/voluntary':
-      return application.SubstanceUse.VoluntaryCounselings
+      return wrap(application.SubstanceUse).VoluntaryCounselings
     case 'substance/drugs/clearance':
-      return application.SubstanceUse.DrugClearanceUses
+      return wrap(application.SubstanceUse).DrugClearanceUses
     case 'substance/drugs/misuse':
-      return application.SubstanceUse.PrescriptionUses
+      return wrap(application.SubstanceUse).PrescriptionUses
     case 'substance/drugs/ordered':
-      return application.SubstanceUse.OrderedTreatments
+      return wrap(application.SubstanceUse).OrderedTreatments
     case 'substance/drugs/publicsafety':
-      return application.SubstanceUse.DrugPublicSafetyUses
+      return wrap(application.SubstanceUse).DrugPublicSafetyUses
     case 'substance/drugs/purchase':
-      return application.SubstanceUse.DrugInvolvements
+      return wrap(application.SubstanceUse).DrugInvolvements
     case 'substance/drugs/usage':
-      return application.SubstanceUse.DrugUses
+      return wrap(application.SubstanceUse).DrugUses
     case 'substance/drugs/voluntary':
-      return application.SubstanceUse.VoluntaryTreatments
+      return wrap(application.SubstanceUse).VoluntaryTreatments
 
     case 'legal/associations/activities-to-overthrow':
-      return application.Legal.ActivitiesToOverthrow
+      return wrap(application.Legal).ActivitiesToOverthrow
     case 'legal/associations/advocating':
-      return application.Legal.Advocating
+      return wrap(application.Legal).Advocating
     case 'legal/associations/engaged-in-terrorism':
-      return application.Legal.EngagedInTerrorism
+      return wrap(application.Legal).EngagedInTerrorism
     case 'legal/associations/membership-overthrow':
-      return application.Legal.MembershipOverthrow
+      return wrap(application.Legal).MembershipOverthrow
     case 'legal/associations/membership-violence-or-force':
-      return application.Legal.MembershipViolence
+      return wrap(application.Legal).MembershipViolence
     case 'legal/associations/terrorism-association':
-      return application.Legal.TerrorismAssociation
+      return wrap(application.Legal).TerrorismAssociation
     case 'legal/associations/terrorist-organization':
-      return application.Legal.TerroristOrganization
+      return wrap(application.Legal).TerroristOrganization
     case 'legal/court':
-      return application.Legal.NonCriminalCourtActions
+      return wrap(application.Legal).NonCriminalCourtActions
     case 'legal/investigations/debarred':
-      return application.Legal.Debarred
+      return wrap(application.Legal).Debarred
     case 'legal/investigations/history':
-      return application.Legal.History
+      return wrap(application.Legal).History
     case 'legal/investigations/revoked':
-      return application.Legal.Revoked
+      return wrap(application.Legal).Revoked
     case 'legal/police/additionaloffenses':
-      return application.Legal.PoliceOtherOffenses
+      return wrap(application.Legal).PoliceOtherOffenses
     case 'legal/police/domesticviolence':
-      return application.Legal.PoliceDomesticViolence
+      return wrap(application.Legal).PoliceDomesticViolence
     case 'legal/police/offenses':
-      return application.Legal.PoliceOffenses
+      return wrap(application.Legal).PoliceOffenses
     case 'legal/technology/manipulating':
-      return application.Legal.Manipulating
+      return wrap(application.Legal).Manipulating
     case 'legal/technology/unauthorized':
-      return application.Legal.Unauthorized
+      return wrap(application.Legal).Unauthorized
     case 'legal/technology/unlawful':
-      return application.Legal.Unlawful
+      return wrap(application.Legal).Unlawful
 
     case 'psycholigical/competence':
-      return application.Psychological.Competence
+      return wrap(application.Psychological).Competence
     case 'psycholigical/conditions':
-      return application.Psychological.ExistingConditions
+      return wrap(application.Psychological).ExistingConditions
     case 'psycholigical/consultations':
-      return application.Psychological.Consultations
+      return wrap(application.Psychological).Consultations
     case 'psycholigical/diagnoses':
-      return application.Psychological.Diagnoses
+      return wrap(application.Psychological).Diagnoses
     case 'psycholigical/hospitalizations':
-      return application.Psychological.Hospitalizations
+      return wrap(application.Psychological).Hospitalizations
   }
 
   return null

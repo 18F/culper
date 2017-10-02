@@ -35,6 +35,12 @@ func (entity *IdentificationName) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *IdentificationName) Marshal() Payload {
+	entity.PayloadName = entity.Name.Marshal()
+	return MarshalPayloadEntity("identification.name", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *IdentificationName) Valid() (bool, error) {
 	return entity.Name.Valid()
@@ -112,6 +118,16 @@ func (entity *IdentificationName) Get(context *db.DatabaseContext, account int) 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *IdentificationName) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationName) SetID(id int) {
+	entity.ID = id
+}
+
 // IdentificationBirthPlace subsection of identification section.
 type IdentificationBirthPlace struct {
 	Payload Payload `json:"location" sql:"-"`
@@ -138,6 +154,12 @@ func (entity *IdentificationBirthPlace) Unmarshal(raw []byte) error {
 	entity.Location = location.(*Location)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *IdentificationBirthPlace) Marshal() Payload {
+	entity.Payload = entity.Location.Marshal()
+	return MarshalPayloadEntity("identification.birthplace", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -217,6 +239,16 @@ func (entity *IdentificationBirthPlace) Get(context *db.DatabaseContext, account
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *IdentificationBirthPlace) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationBirthPlace) SetID(id int) {
+	entity.ID = id
+}
+
 // IdentificationBirthDate subsection of identification section.
 type IdentificationBirthDate struct {
 	Payload Payload `json:"date" sql:"-"`
@@ -243,6 +275,12 @@ func (entity *IdentificationBirthDate) Unmarshal(raw []byte) error {
 	entity.Date = date.(*DateControl)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *IdentificationBirthDate) Marshal() Payload {
+	entity.Payload = entity.Date.Marshal()
+	return MarshalPayloadEntity("identification.birthdate", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -322,6 +360,16 @@ func (entity *IdentificationBirthDate) Get(context *db.DatabaseContext, account 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *IdentificationBirthDate) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationBirthDate) SetID(id int) {
+	entity.ID = id
+}
+
 // IdentificationSSN subsection of identification section.
 type IdentificationSSN struct {
 	Payload Payload `json:"ssn" sql:"-"`
@@ -349,6 +397,12 @@ func (entity *IdentificationSSN) Unmarshal(raw []byte) error {
 	entity.SSN = ssn.(*SSN)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *IdentificationSSN) Marshal() Payload {
+	entity.Payload = entity.SSN.Marshal()
+	return MarshalPayloadEntity("identification.ssn", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -437,6 +491,16 @@ func (entity *IdentificationSSN) Get(context *db.DatabaseContext, account int) (
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *IdentificationSSN) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationSSN) SetID(id int) {
+	entity.ID = id
+}
+
 // IdentificationContacts subsection of identification section.
 type IdentificationContacts struct {
 	PayloadEmails       Payload `json:"Emails" sql:"-"`
@@ -472,6 +536,13 @@ func (entity *IdentificationContacts) Unmarshal(raw []byte) error {
 	entity.PhoneNumbers = phoneNumbers.(*Collection)
 
 	return nil
+}
+
+// Marshal to payload structure
+func (entity *IdentificationContacts) Marshal() Payload {
+	entity.PayloadEmails = entity.Emails.Marshal()
+	entity.PayloadPhoneNumbers = entity.PhoneNumbers.Marshal()
+	return MarshalPayloadEntity("identification.contacts", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -580,6 +651,16 @@ func (entity *IdentificationContacts) Get(context *db.DatabaseContext, account i
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *IdentificationContacts) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationContacts) SetID(id int) {
+	entity.ID = id
+}
+
 // IdentificationOtherNames subsection of identification section.
 type IdentificationOtherNames struct {
 	PayloadHasOtherNames Payload `json:"HasOtherNames" sql:"-"`
@@ -591,8 +672,8 @@ type IdentificationOtherNames struct {
 
 	// Persister specific fields
 	ID              int `json:"-"`
-	HasOtherNamesID int `json:"-" pg:", fk:HasOtherNames"`
-	ListID          int `json:"-" pg:", fk:List"`
+	HasOtherNamesID int `json:"-" pg:", fk:Branch"`
+	ListID          int `json:"-" pg:", fk:Collection"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -615,6 +696,13 @@ func (entity *IdentificationOtherNames) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return nil
+}
+
+// Marshal to payload structure
+func (entity *IdentificationOtherNames) Marshal() Payload {
+	entity.PayloadHasOtherNames = entity.HasOtherNames.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("identification.othernames", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -644,10 +732,16 @@ func (entity *IdentificationOtherNames) Save(context *db.DatabaseContext, accoun
 
 	context.Find(&IdentificationOtherNames{ID: account}, func(result interface{}) {
 		previous := result.(*IdentificationOtherNames)
-		entity.HasOtherNamesID = previous.HasOtherNamesID
+		if entity.HasOtherNames == nil {
+			entity.HasOtherNames = &Branch{}
+		}
 		entity.HasOtherNames.ID = previous.HasOtherNamesID
-		entity.ListID = previous.ListID
+		entity.HasOtherNamesID = previous.HasOtherNamesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
 	})
 
 	branchID, err := entity.HasOtherNames.Save(context, account)
@@ -677,6 +771,20 @@ func (entity *IdentificationOtherNames) Delete(context *db.DatabaseContext, acco
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationOtherNames{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationOtherNames)
+		if entity.HasOtherNames == nil {
+			entity.HasOtherNames = &Branch{}
+		}
+		entity.HasOtherNames.ID = previous.HasOtherNamesID
+		entity.HasOtherNamesID = previous.HasOtherNamesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
+
 	if _, err := entity.HasOtherNames.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -702,6 +810,20 @@ func (entity *IdentificationOtherNames) Get(context *db.DatabaseContext, account
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationOtherNames{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationOtherNames)
+		if entity.HasOtherNames == nil {
+			entity.HasOtherNames = &Branch{}
+		}
+		entity.HasOtherNames.ID = previous.HasOtherNamesID
+		entity.HasOtherNamesID = previous.HasOtherNamesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
+
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err
@@ -723,6 +845,16 @@ func (entity *IdentificationOtherNames) Get(context *db.DatabaseContext, account
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *IdentificationOtherNames) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationOtherNames) SetID(id int) {
+	entity.ID = id
 }
 
 // IdentificationPhysical subsection of identification section.
@@ -796,6 +928,17 @@ func (entity *IdentificationPhysical) Unmarshal(raw []byte) error {
 	entity.Weight = weight.(*Number)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *IdentificationPhysical) Marshal() Payload {
+	entity.PayloadComments = entity.Comments.Marshal()
+	entity.PayloadEyeColor = entity.EyeColor.Marshal()
+	entity.PayloadHairColor = entity.HairColor.Marshal()
+	entity.PayloadHeight = entity.Height.Marshal()
+	entity.PayloadSex = entity.Sex.Marshal()
+	entity.PayloadWeight = entity.Weight.Marshal()
+	return MarshalPayloadEntity("identification.physical", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -990,4 +1133,14 @@ func (entity *IdentificationPhysical) Get(context *db.DatabaseContext, account i
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *IdentificationPhysical) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *IdentificationPhysical) SetID(id int) {
+	entity.ID = id
 }

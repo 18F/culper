@@ -43,6 +43,13 @@ func (entity *LegalCourt) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *LegalCourt) Marshal() Payload {
+	entity.PayloadHasCourtActions = entity.HasCourtActions.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.court", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *LegalCourt) Valid() (bool, error) {
 	if entity.HasCourtActions.Value == "No" {
@@ -151,6 +158,16 @@ func (entity *LegalCourt) Get(context *db.DatabaseContext, account int) (int, er
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalCourt) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalCourt) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalPoliceOffenses structure
 type LegalPoliceOffenses struct {
 	PayloadHasOffenses Payload `json:"HasOffenses" sql:"-"`
@@ -186,6 +203,13 @@ func (entity *LegalPoliceOffenses) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalPoliceOffenses) Marshal() Payload {
+	entity.PayloadHasOffenses = entity.HasOffenses.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.police.offenses", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -296,6 +320,16 @@ func (entity *LegalPoliceOffenses) Get(context *db.DatabaseContext, account int)
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalPoliceOffenses) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalPoliceOffenses) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalPoliceAdditionalOffenses structure
 type LegalPoliceAdditionalOffenses struct {
 	PayloadHasOtherOffenses Payload `json:"HasOtherOffenses" sql:"-"`
@@ -331,6 +365,13 @@ func (entity *LegalPoliceAdditionalOffenses) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalPoliceAdditionalOffenses) Marshal() Payload {
+	entity.PayloadHasOtherOffenses = entity.HasOtherOffenses.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.police.additionaloffenses", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -441,6 +482,16 @@ func (entity *LegalPoliceAdditionalOffenses) Get(context *db.DatabaseContext, ac
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalPoliceAdditionalOffenses) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalPoliceAdditionalOffenses) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalPoliceDomesticViolence structure
 type LegalPoliceDomesticViolence struct {
 	PayloadList Payload `json:"List" sql:"-"`
@@ -467,6 +518,12 @@ func (entity *LegalPoliceDomesticViolence) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalPoliceDomesticViolence) Marshal() Payload {
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.police.domesticviolence", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -552,6 +609,16 @@ func (entity *LegalPoliceDomesticViolence) Get(context *db.DatabaseContext, acco
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalPoliceDomesticViolence) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalPoliceDomesticViolence) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalInvestigationsDebarred structure
 type LegalInvestigationsDebarred struct {
 	PayloadHasDebarment Payload `json:"HasDebarment" sql:"-"`
@@ -587,6 +654,13 @@ func (entity *LegalInvestigationsDebarred) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalInvestigationsDebarred) Marshal() Payload {
+	entity.PayloadHasDebarment = entity.HasDebarment.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.investigations.debarred", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -697,6 +771,16 @@ func (entity *LegalInvestigationsDebarred) Get(context *db.DatabaseContext, acco
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalInvestigationsDebarred) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalInvestigationsDebarred) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalInvestigationsHistory structure
 type LegalInvestigationsHistory struct {
 	PayloadHasHistory Payload `json:"HasHistory" sql:"-"`
@@ -732,6 +816,13 @@ func (entity *LegalInvestigationsHistory) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalInvestigationsHistory) Marshal() Payload {
+	entity.PayloadHasHistory = entity.HasHistory.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.investigations.history", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -842,6 +933,16 @@ func (entity *LegalInvestigationsHistory) Get(context *db.DatabaseContext, accou
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalInvestigationsHistory) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalInvestigationsHistory) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalInvestigationsRevoked structure
 type LegalInvestigationsRevoked struct {
 	PayloadHasRevocations Payload `json:"HasRevocations" sql:"-"`
@@ -877,6 +978,13 @@ func (entity *LegalInvestigationsRevoked) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalInvestigationsRevoked) Marshal() Payload {
+	entity.PayloadHasRevocations = entity.HasRevocations.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.investigations.revoked", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -987,6 +1095,16 @@ func (entity *LegalInvestigationsRevoked) Get(context *db.DatabaseContext, accou
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalInvestigationsRevoked) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalInvestigationsRevoked) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalTechnologyManipulating structure
 type LegalTechnologyManipulating struct {
 	PayloadHasManipulating Payload `json:"HasManipulating" sql:"-"`
@@ -1022,6 +1140,13 @@ func (entity *LegalTechnologyManipulating) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalTechnologyManipulating) Marshal() Payload {
+	entity.PayloadHasManipulating = entity.HasManipulating.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.technology.manipulating", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1132,6 +1257,16 @@ func (entity *LegalTechnologyManipulating) Get(context *db.DatabaseContext, acco
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalTechnologyManipulating) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalTechnologyManipulating) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalTechnologyUnauthorized structure
 type LegalTechnologyUnauthorized struct {
 	PayloadHasUnauthorized Payload `json:"HasUnauthorized" sql:"-"`
@@ -1167,6 +1302,13 @@ func (entity *LegalTechnologyUnauthorized) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalTechnologyUnauthorized) Marshal() Payload {
+	entity.PayloadHasUnauthorized = entity.HasUnauthorized.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.technology.unauthorized", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1277,6 +1419,16 @@ func (entity *LegalTechnologyUnauthorized) Get(context *db.DatabaseContext, acco
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalTechnologyUnauthorized) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalTechnologyUnauthorized) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalTechnologyUnlawful structure
 type LegalTechnologyUnlawful struct {
 	PayloadHasUnlawful Payload `json:"HasUnlawful" sql:"-"`
@@ -1312,6 +1464,13 @@ func (entity *LegalTechnologyUnlawful) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalTechnologyUnlawful) Marshal() Payload {
+	entity.PayloadHasUnlawful = entity.HasUnlawful.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.technology.unlawful", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1422,6 +1581,16 @@ func (entity *LegalTechnologyUnlawful) Get(context *db.DatabaseContext, account 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalTechnologyUnlawful) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalTechnologyUnlawful) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalAssociationsActivitiesToOverthrow structure
 type LegalAssociationsActivitiesToOverthrow struct {
 	PayloadHasActivities Payload `json:"HasActivities" sql:"-"`
@@ -1457,6 +1626,13 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Unmarshal(raw []byte) erro
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalAssociationsActivitiesToOverthrow) Marshal() Payload {
+	entity.PayloadHasActivities = entity.HasActivities.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.associations.activities-to-overthrow", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1567,6 +1743,16 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Get(context *db.DatabaseCo
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalAssociationsActivitiesToOverthrow) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalAssociationsActivitiesToOverthrow) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalAssociationsAdvocating structure
 type LegalAssociationsAdvocating struct {
 	PayloadHasAdvocated Payload `json:"HasAdvocated" sql:"-"`
@@ -1602,6 +1788,13 @@ func (entity *LegalAssociationsAdvocating) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalAssociationsAdvocating) Marshal() Payload {
+	entity.PayloadHasAdvocated = entity.HasAdvocated.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.associations.advocating", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1712,6 +1905,16 @@ func (entity *LegalAssociationsAdvocating) Get(context *db.DatabaseContext, acco
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalAssociationsAdvocating) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalAssociationsAdvocating) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalAssociationsEngagedInTerrorism structure
 type LegalAssociationsEngagedInTerrorism struct {
 	PayloadHasEngaged Payload `json:"HasEngaged" sql:"-"`
@@ -1747,6 +1950,13 @@ func (entity *LegalAssociationsEngagedInTerrorism) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalAssociationsEngagedInTerrorism) Marshal() Payload {
+	entity.PayloadHasEngaged = entity.HasEngaged.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.associations.engaged-in-terrorism", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1857,6 +2067,16 @@ func (entity *LegalAssociationsEngagedInTerrorism) Get(context *db.DatabaseConte
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalAssociationsEngagedInTerrorism) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalAssociationsEngagedInTerrorism) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalAssociationsMembershipOverthrow structure
 type LegalAssociationsMembershipOverthrow struct {
 	PayloadHasOverthrow Payload `json:"HasOverthrow" sql:"-"`
@@ -1892,6 +2112,13 @@ func (entity *LegalAssociationsMembershipOverthrow) Unmarshal(raw []byte) error 
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalAssociationsMembershipOverthrow) Marshal() Payload {
+	entity.PayloadHasOverthrow = entity.HasOverthrow.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.associations.membership-overthrow", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2002,6 +2229,16 @@ func (entity *LegalAssociationsMembershipOverthrow) Get(context *db.DatabaseCont
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalAssociationsMembershipOverthrow) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalAssociationsMembershipOverthrow) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalAssociationsMembershipViolence structure
 type LegalAssociationsMembershipViolence struct {
 	PayloadHasViolence Payload `json:"HasViolence" sql:"-"`
@@ -2037,6 +2274,13 @@ func (entity *LegalAssociationsMembershipViolence) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalAssociationsMembershipViolence) Marshal() Payload {
+	entity.PayloadHasViolence = entity.HasViolence.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.associations.membership-violence-or-force", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2147,6 +2391,16 @@ func (entity *LegalAssociationsMembershipViolence) Get(context *db.DatabaseConte
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalAssociationsMembershipViolence) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalAssociationsMembershipViolence) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalAssociationsTerrorismAssociation structure
 type LegalAssociationsTerrorismAssociation struct {
 	PayloadHasTerrorism Payload `json:"HasTerrorism" sql:"-"`
@@ -2182,6 +2436,13 @@ func (entity *LegalAssociationsTerrorismAssociation) Unmarshal(raw []byte) error
 	entity.Explanation = explanation.(*Textarea)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalAssociationsTerrorismAssociation) Marshal() Payload {
+	entity.PayloadHasTerrorism = entity.HasTerrorism.Marshal()
+	entity.PayloadExplanation = entity.Explanation.Marshal()
+	return MarshalPayloadEntity("legal.associations.terrorism-association", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2292,6 +2553,16 @@ func (entity *LegalAssociationsTerrorismAssociation) Get(context *db.DatabaseCon
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *LegalAssociationsTerrorismAssociation) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalAssociationsTerrorismAssociation) SetID(id int) {
+	entity.ID = id
+}
+
 // LegalAssociationsTerroristOrganization structure
 type LegalAssociationsTerroristOrganization struct {
 	PayloadHasTerrorist Payload `json:"HasTerrorist" sql:"-"`
@@ -2327,6 +2598,13 @@ func (entity *LegalAssociationsTerroristOrganization) Unmarshal(raw []byte) erro
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *LegalAssociationsTerroristOrganization) Marshal() Payload {
+	entity.PayloadHasTerrorist = entity.HasTerrorist.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("legal.associations.terrorism-organization", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -2435,4 +2713,14 @@ func (entity *LegalAssociationsTerroristOrganization) Get(context *db.DatabaseCo
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *LegalAssociationsTerroristOrganization) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *LegalAssociationsTerroristOrganization) SetID(id int) {
+	entity.ID = id
 }

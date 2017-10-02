@@ -71,6 +71,16 @@ func (entity *ForeignBornDocument) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *ForeignBornDocument) Marshal() Payload {
+	entity.PayloadDocumentType = entity.DocumentType.Marshal()
+	entity.PayloadOtherExplanation = entity.OtherExplanation.Marshal()
+	entity.PayloadDocumentNumber = entity.DocumentNumber.Marshal()
+	entity.PayloadDocumentExpiration = entity.DocumentExpiration.Marshal()
+	entity.PayloadDocumentExpirationNotApplicable = entity.DocumentExpirationNotApplicable.Marshal()
+	return MarshalPayloadEntity("foreignborndocument", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *ForeignBornDocument) Valid() (bool, error) {
 	if entity.DocumentType.Value == "Other" {
@@ -88,12 +98,42 @@ func (entity *ForeignBornDocument) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the ForeignBornDocument entity.
 func (entity *ForeignBornDocument) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ForeignBornDocument{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ForeignBornDocument)
+		if entity.DocumentType == nil {
+			entity.DocumentType = &Radio{}
+		}
+		entity.DocumentType.ID = previous.DocumentTypeID
+		entity.DocumentTypeID = previous.DocumentTypeID
+		if entity.OtherExplanation == nil {
+			entity.OtherExplanation = &Textarea{}
+		}
+		entity.OtherExplanation.ID = previous.OtherExplanationID
+		entity.OtherExplanationID = previous.OtherExplanationID
+		if entity.DocumentNumber == nil {
+			entity.DocumentNumber = &Text{}
+		}
+		entity.DocumentNumber.ID = previous.DocumentNumberID
+		entity.DocumentNumberID = previous.DocumentNumberID
+		if entity.DocumentExpiration == nil {
+			entity.DocumentExpiration = &DateControl{}
+		}
+		entity.DocumentExpiration.ID = previous.DocumentExpirationID
+		entity.DocumentExpirationID = previous.DocumentExpirationID
+		if entity.DocumentExpirationNotApplicable == nil {
+			entity.DocumentExpirationNotApplicable = &NotApplicable{}
+		}
+		entity.DocumentExpirationNotApplicable.ID = previous.DocumentExpirationNotApplicableID
+		entity.DocumentExpirationNotApplicableID = previous.DocumentExpirationNotApplicableID
+	})
 
 	documentTypeID, err := entity.DocumentType.Save(context, account)
 	if err != nil {
@@ -132,12 +172,42 @@ func (entity *ForeignBornDocument) Save(context *db.DatabaseContext, account int
 	return entity.ID, nil
 }
 
+// Delete the ForeignBornDocument entity.
 func (entity *ForeignBornDocument) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ForeignBornDocument{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ForeignBornDocument)
+		if entity.DocumentType == nil {
+			entity.DocumentType = &Radio{}
+		}
+		entity.DocumentType.ID = previous.DocumentTypeID
+		entity.DocumentTypeID = previous.DocumentTypeID
+		if entity.OtherExplanation == nil {
+			entity.OtherExplanation = &Textarea{}
+		}
+		entity.OtherExplanation.ID = previous.OtherExplanationID
+		entity.OtherExplanationID = previous.OtherExplanationID
+		if entity.DocumentNumber == nil {
+			entity.DocumentNumber = &Text{}
+		}
+		entity.DocumentNumber.ID = previous.DocumentNumberID
+		entity.DocumentNumberID = previous.DocumentNumberID
+		if entity.DocumentExpiration == nil {
+			entity.DocumentExpiration = &DateControl{}
+		}
+		entity.DocumentExpiration.ID = previous.DocumentExpirationID
+		entity.DocumentExpirationID = previous.DocumentExpirationID
+		if entity.DocumentExpirationNotApplicable == nil {
+			entity.DocumentExpirationNotApplicable = &NotApplicable{}
+		}
+		entity.DocumentExpirationNotApplicable.ID = previous.DocumentExpirationNotApplicableID
+		entity.DocumentExpirationNotApplicableID = previous.DocumentExpirationNotApplicableID
+	})
 
 	if _, err := entity.DocumentType.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -168,12 +238,42 @@ func (entity *ForeignBornDocument) Delete(context *db.DatabaseContext, account i
 	return entity.ID, nil
 }
 
+// Get the ForeignBornDocument entity.
 func (entity *ForeignBornDocument) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ForeignBornDocument{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ForeignBornDocument)
+		if entity.DocumentType == nil {
+			entity.DocumentType = &Radio{}
+		}
+		entity.DocumentType.ID = previous.DocumentTypeID
+		entity.DocumentTypeID = previous.DocumentTypeID
+		if entity.OtherExplanation == nil {
+			entity.OtherExplanation = &Textarea{}
+		}
+		entity.OtherExplanation.ID = previous.OtherExplanationID
+		entity.OtherExplanationID = previous.OtherExplanationID
+		if entity.DocumentNumber == nil {
+			entity.DocumentNumber = &Text{}
+		}
+		entity.DocumentNumber.ID = previous.DocumentNumberID
+		entity.DocumentNumberID = previous.DocumentNumberID
+		if entity.DocumentExpiration == nil {
+			entity.DocumentExpiration = &DateControl{}
+		}
+		entity.DocumentExpiration.ID = previous.DocumentExpirationID
+		entity.DocumentExpirationID = previous.DocumentExpirationID
+		if entity.DocumentExpirationNotApplicable == nil {
+			entity.DocumentExpirationNotApplicable = &NotApplicable{}
+		}
+		entity.DocumentExpirationNotApplicable.ID = previous.DocumentExpirationNotApplicableID
+		entity.DocumentExpirationNotApplicableID = previous.DocumentExpirationNotApplicableID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -212,4 +312,14 @@ func (entity *ForeignBornDocument) Get(context *db.DatabaseContext, account int)
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *ForeignBornDocument) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ForeignBornDocument) SetID(id int) {
+	entity.ID = id
 }

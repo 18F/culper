@@ -43,6 +43,13 @@ func (entity *PsychologicalCompetence) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *PsychologicalCompetence) Marshal() Payload {
+	entity.PayloadIsIncompetent = entity.IsIncompetent.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("psychological.competence", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *PsychologicalCompetence) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -159,6 +166,16 @@ func (entity *PsychologicalCompetence) Get(context *db.DatabaseContext, account 
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *PsychologicalCompetence) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *PsychologicalCompetence) SetID(id int) {
+	entity.ID = id
+}
+
 type PsychologicalConsultations struct {
 	PayloadConsulted Payload `json:"Consulted" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
@@ -193,6 +210,13 @@ func (entity *PsychologicalConsultations) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *PsychologicalConsultations) Marshal() Payload {
+	entity.PayloadConsulted = entity.Consulted.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("psychological.consultations", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -311,6 +335,16 @@ func (entity *PsychologicalConsultations) Get(context *db.DatabaseContext, accou
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *PsychologicalConsultations) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *PsychologicalConsultations) SetID(id int) {
+	entity.ID = id
+}
+
 type PsychologicalDiagnoses struct {
 	PayloadDiagnosed     Payload `json:"Diagnosed" sql:"-"`
 	PayloadDidNotConsult Payload `json:"DidNotConsult" sql:"-"`
@@ -372,6 +406,16 @@ func (entity *PsychologicalDiagnoses) Unmarshal(raw []byte) error {
 	entity.TreatmentList = treatmentList.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *PsychologicalDiagnoses) Marshal() Payload {
+	entity.PayloadDiagnosed = entity.Diagnosed.Marshal()
+	entity.PayloadDidNotConsult = entity.DidNotConsult.Marshal()
+	entity.PayloadDiagnosisList = entity.DiagnosisList.Marshal()
+	entity.PayloadInTreatment = entity.InTreatment.Marshal()
+	entity.PayloadTreatmentList = entity.TreatmentList.Marshal()
+	return MarshalPayloadEntity("psychological.diagnoses", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -567,6 +611,16 @@ func (entity *PsychologicalDiagnoses) Get(context *db.DatabaseContext, account i
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *PsychologicalDiagnoses) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *PsychologicalDiagnoses) SetID(id int) {
+	entity.ID = id
+}
+
 type PsychologicalHospitalizations struct {
 	PayloadHospitalized Payload `json:"Hospitalized" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -601,6 +655,13 @@ func (entity *PsychologicalHospitalizations) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *PsychologicalHospitalizations) Marshal() Payload {
+	entity.PayloadHospitalized = entity.Hospitalized.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("psychological.hospitalizations", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -719,6 +780,16 @@ func (entity *PsychologicalHospitalizations) Get(context *db.DatabaseContext, ac
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *PsychologicalHospitalizations) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *PsychologicalHospitalizations) SetID(id int) {
+	entity.ID = id
+}
+
 type PsychologicalExisting struct {
 	PayloadHasCondition            Payload `json:"HasCondition" sql:"-"`
 	PayloadReceivedTreatment       Payload `json:"ReceivedTreatment" sql:"-"`
@@ -789,6 +860,17 @@ func (entity *PsychologicalExisting) Unmarshal(raw []byte) error {
 	entity.DidNotFollowExplanation = didNotFollowExplanation.(*Textarea)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *PsychologicalExisting) Marshal() Payload {
+	entity.PayloadHasCondition = entity.HasCondition.Marshal()
+	entity.PayloadReceivedTreatment = entity.ReceivedTreatment.Marshal()
+	entity.PayloadExplanation = entity.Explanation.Marshal()
+	entity.PayloadTreatmentList = entity.TreatmentList.Marshal()
+	entity.PayloadDidNotFollow = entity.DidNotFollow.Marshal()
+	entity.PayloadDidNotFollowExplanation = entity.DidNotFollowExplanation.Marshal()
+	return MarshalPayloadEntity("psychological.conditions", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1011,4 +1093,14 @@ func (entity *PsychologicalExisting) Get(context *db.DatabaseContext, account in
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *PsychologicalExisting) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *PsychologicalExisting) SetID(id int) {
+	entity.ID = id
 }

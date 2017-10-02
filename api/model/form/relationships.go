@@ -48,6 +48,14 @@ func (entity *RelationshipsMarital) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *RelationshipsMarital) Marshal() Payload {
+	entity.PayloadStatus = entity.Status.Marshal()
+	entity.PayloadCivilUnion = entity.CivilUnion.Items
+	entity.PayloadDivorcedList = entity.DivorcedList.Marshal()
+	return MarshalPayloadEntity("relationships.status.marital", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *RelationshipsMarital) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -103,12 +111,21 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 
 	context.Find(&RelationshipsMarital{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsMarital)
-		entity.StatusID = previous.StatusID
+		if entity.Status == nil {
+			entity.Status = &Radio{}
+		}
 		entity.Status.ID = previous.StatusID
-		entity.CivilUnionID = previous.CivilUnionID
+		entity.StatusID = previous.StatusID
+		if entity.CivilUnion == nil {
+			entity.CivilUnion = &CivilUnion{}
+		}
 		entity.CivilUnion.ID = previous.CivilUnionID
-		entity.DivorcedListID = previous.DivorcedListID
+		entity.CivilUnionID = previous.CivilUnionID
+		if entity.DivorcedList == nil {
+			entity.DivorcedList = &Collection{}
+		}
 		entity.DivorcedList.ID = previous.DivorcedListID
+		entity.DivorcedListID = previous.DivorcedListID
 	})
 
 	statusID, err := entity.Status.Save(context, account)
@@ -116,12 +133,6 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 		return statusID, err
 	}
 	entity.StatusID = statusID
-
-	_, err = entity.CivilUnion.Save(context, account)
-	if err != nil {
-		return 0, err
-	}
-	// entity.CivilUnionID = civilUnionID
 
 	divorcedListID, err := entity.DivorcedList.Save(context, account)
 	if err != nil {
@@ -132,6 +143,13 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
+
+	entity.CivilUnion.ID = entity.ID
+	civilUnionID, err := entity.CivilUnion.Save(context, account)
+	if err != nil {
+		return entity.ID, err
+	}
+	entity.CivilUnionID = civilUnionID
 
 	return entity.ID, nil
 }
@@ -146,12 +164,21 @@ func (entity *RelationshipsMarital) Delete(context *db.DatabaseContext, account 
 
 	context.Find(&RelationshipsMarital{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsMarital)
-		entity.StatusID = previous.StatusID
+		if entity.Status == nil {
+			entity.Status = &Radio{}
+		}
 		entity.Status.ID = previous.StatusID
-		entity.CivilUnionID = previous.CivilUnionID
+		entity.StatusID = previous.StatusID
+		if entity.CivilUnion == nil {
+			entity.CivilUnion = &CivilUnion{}
+		}
 		entity.CivilUnion.ID = previous.CivilUnionID
-		entity.DivorcedListID = previous.DivorcedListID
+		entity.CivilUnionID = previous.CivilUnionID
+		if entity.DivorcedList == nil {
+			entity.DivorcedList = &Collection{}
+		}
 		entity.DivorcedList.ID = previous.DivorcedListID
+		entity.DivorcedListID = previous.DivorcedListID
 	})
 
 	if _, err := entity.Status.Delete(context, account); err != nil {
@@ -183,6 +210,25 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
+	context.Find(&RelationshipsMarital{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsMarital)
+		if entity.Status == nil {
+			entity.Status = &Radio{}
+		}
+		entity.Status.ID = previous.StatusID
+		entity.StatusID = previous.StatusID
+		if entity.CivilUnion == nil {
+			entity.CivilUnion = &CivilUnion{}
+		}
+		entity.CivilUnion.ID = previous.CivilUnionID
+		entity.CivilUnionID = previous.CivilUnionID
+		if entity.DivorcedList == nil {
+			entity.DivorcedList = &Collection{}
+		}
+		entity.DivorcedList.ID = previous.DivorcedListID
+		entity.DivorcedListID = previous.DivorcedListID
+	})
+
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
 			return entity.ID, err
@@ -211,6 +257,16 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *RelationshipsMarital) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *RelationshipsMarital) SetID(id int) {
+	entity.ID = id
 }
 
 type RelationshipsCohabitants struct {
@@ -247,6 +303,13 @@ func (entity *RelationshipsCohabitants) Unmarshal(raw []byte) error {
 	entity.CohabitantList = cohabitantList.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *RelationshipsCohabitants) Marshal() Payload {
+	entity.PayloadHasCohabitant = entity.HasCohabitant.Marshal()
+	entity.PayloadCohabitantList = entity.CohabitantList.Marshal()
+	return MarshalPayloadEntity("relationships.status.cohabitant", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -357,6 +420,16 @@ func (entity *RelationshipsCohabitants) Get(context *db.DatabaseContext, account
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *RelationshipsCohabitants) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *RelationshipsCohabitants) SetID(id int) {
+	entity.ID = id
+}
+
 type RelationshipsPeople struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -382,6 +455,12 @@ func (entity *RelationshipsPeople) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *RelationshipsPeople) Marshal() Payload {
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("relationships.people", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -467,6 +546,16 @@ func (entity *RelationshipsPeople) Get(context *db.DatabaseContext, account int)
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *RelationshipsPeople) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *RelationshipsPeople) SetID(id int) {
+	entity.ID = id
+}
+
 type RelationshipsRelatives struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -492,6 +581,12 @@ func (entity *RelationshipsRelatives) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *RelationshipsRelatives) Marshal() Payload {
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("relationships.relatives", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -575,4 +670,14 @@ func (entity *RelationshipsRelatives) Get(context *db.DatabaseContext, account i
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *RelationshipsRelatives) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *RelationshipsRelatives) SetID(id int) {
+	entity.ID = id
 }

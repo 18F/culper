@@ -250,6 +250,11 @@ func (entity *CitizenshipStatus) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *CitizenshipStatus) Marshal() Payload {
+	return MarshalPayloadEntity("citizenship.status", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *CitizenshipStatus) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -941,6 +946,16 @@ func (entity *CitizenshipStatus) Get(context *db.DatabaseContext, account int) (
 	return entity.ID, nil
 }
 
+// ID returns the entity identifier.
+func (entity *CitizenshipStatus) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *CitizenshipStatus) SetID(id int) {
+	entity.ID = id
+}
+
 type CitizenshipMultiple struct {
 	PayloadHasMultiple Payload `json:"HasMultiple" sql:"-"`
 	PayloadList        Payload `json:"List" sql:"-"`
@@ -975,6 +990,11 @@ func (entity *CitizenshipMultiple) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *CitizenshipMultiple) Marshal() Payload {
+	return MarshalPayloadEntity("citizenship.multiple", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1091,6 +1111,16 @@ func (entity *CitizenshipMultiple) Get(context *db.DatabaseContext, account int)
 	return entity.ID, nil
 }
 
+// ID returns the entity identifier.
+func (entity *CitizenshipMultiple) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *CitizenshipMultiple) SetID(id int) {
+	entity.ID = id
+}
+
 type CitizenshipPassports struct {
 	PayloadPassports Payload `json:"Passports" sql:"-"`
 
@@ -1117,6 +1147,11 @@ func (entity *CitizenshipPassports) Unmarshal(raw []byte) error {
 	entity.Passports = passports.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *CitizenshipPassports) Marshal() Payload {
+	return MarshalPayloadEntity("citizenship.passports", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1196,4 +1231,14 @@ func (entity *CitizenshipPassports) Get(context *db.DatabaseContext, account int
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *CitizenshipPassports) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *CitizenshipPassports) SetID(id int) {
+	entity.ID = id
 }

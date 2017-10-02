@@ -43,6 +43,13 @@ func (entity *FinancialBankruptcy) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialBankruptcy) Marshal() Payload {
+	entity.PayloadHasBankruptcy = entity.HasBankruptcy.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("financial.bankruptcy", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialBankruptcy) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -159,6 +166,16 @@ func (entity *FinancialBankruptcy) Get(context *db.DatabaseContext, account int)
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *FinancialBankruptcy) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialBankruptcy) SetID(id int) {
+	entity.ID = id
+}
+
 type FinancialGambling struct {
 	PayloadHasGamblingDebt Payload `json:"HasGamblingDebt" sql:"-"`
 	PayloadList            Payload `json:"List" sql:"-"`
@@ -193,6 +210,13 @@ func (entity *FinancialGambling) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *FinancialGambling) Marshal() Payload {
+	entity.PayloadHasGamblingDebt = entity.HasGamblingDebt.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("financial.gambling", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -311,6 +335,16 @@ func (entity *FinancialGambling) Get(context *db.DatabaseContext, account int) (
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *FinancialGambling) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialGambling) SetID(id int) {
+	entity.ID = id
+}
+
 type FinancialTaxes struct {
 	PayloadHasTaxes Payload `json:"HasTaxes" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
@@ -345,6 +379,13 @@ func (entity *FinancialTaxes) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *FinancialTaxes) Marshal() Payload {
+	entity.PayloadHasTaxes = entity.HasTaxes.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("financial.taxes", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -467,6 +508,16 @@ func (entity *FinancialTaxes) Get(context *db.DatabaseContext, account int) (int
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *FinancialTaxes) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialTaxes) SetID(id int) {
+	entity.ID = id
+}
+
 type FinancialCard struct {
 	PayloadHasCardAbuse Payload `json:"HasCardAbuse" sql:"-"`
 	PayloadList         Payload `json:"List" sql:"-"`
@@ -501,6 +552,13 @@ func (entity *FinancialCard) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *FinancialCard) Marshal() Payload {
+	entity.PayloadHasCardAbuse = entity.HasCardAbuse.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("financial.card", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -623,6 +681,16 @@ func (entity *FinancialCard) Get(context *db.DatabaseContext, account int) (int,
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *FinancialCard) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialCard) SetID(id int) {
+	entity.ID = id
+}
+
 type FinancialCredit struct {
 	PayloadHasCreditCounseling Payload `json:"HasCreditCounseling" sql:"-"`
 	PayloadList                Payload `json:"List" sql:"-"`
@@ -657,6 +725,13 @@ func (entity *FinancialCredit) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *FinancialCredit) Marshal() Payload {
+	entity.PayloadHasCreditCounseling = entity.HasCreditCounseling.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("financial.credit", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -779,6 +854,16 @@ func (entity *FinancialCredit) Get(context *db.DatabaseContext, account int) (in
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *FinancialCredit) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialCredit) SetID(id int) {
+	entity.ID = id
+}
+
 type FinancialDelinquent struct {
 	PayloadHasDelinquent Payload `json:"HasDelinquent" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -813,6 +898,13 @@ func (entity *FinancialDelinquent) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *FinancialDelinquent) Marshal() Payload {
+	entity.PayloadHasDelinquent = entity.HasDelinquent.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("financial.delinquent", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -931,6 +1023,16 @@ func (entity *FinancialDelinquent) Get(context *db.DatabaseContext, account int)
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *FinancialDelinquent) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialDelinquent) SetID(id int) {
+	entity.ID = id
+}
+
 type FinancialNonpayment struct {
 	PayloadHasNonpayment Payload `json:"HasNonpayment" sql:"-"`
 	PayloadList          Payload `json:"List" sql:"-"`
@@ -965,6 +1067,13 @@ func (entity *FinancialNonpayment) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *FinancialNonpayment) Marshal() Payload {
+	entity.PayloadHasNonpayment = entity.HasNonpayment.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("financial.nonpayment", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1081,4 +1190,14 @@ func (entity *FinancialNonpayment) Get(context *db.DatabaseContext, account int)
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialNonpayment) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialNonpayment) SetID(id int) {
+	entity.ID = id
 }

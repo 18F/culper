@@ -57,6 +57,7 @@ export const sectionMiddleware = store => next => action => {
       api
         .section(payloadType)
         .then(r => {
+          console.log('shit we got from the server:', r.data)
           store.dispatch(updateApplication(action.section, action.subsection, unschema(r.data)))
         })
         .catch(() => {
@@ -87,7 +88,7 @@ export const saveMiddleware = store => next => action => {
           })
           .catch(() => {
             if (console && console.warn) {
-              console.warn(`Failed to save data for the "${section}" section and "${subsection}" subsection`)
+              console.warn(`Failed to save data for the "${section.section}" section and "${section.subsection}" subsection`)
             }
           })
       }

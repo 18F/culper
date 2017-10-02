@@ -80,6 +80,17 @@ func (entity *Supervisor) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *Supervisor) Marshal() Payload {
+	entity.PayloadSupervisorName = entity.SupervisorName.Marshal()
+	entity.PayloadTitle = entity.Title.Marshal()
+	entity.PayloadEmail = entity.Email.Marshal()
+	entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
+	entity.PayloadAddress = entity.Address.Marshal()
+	entity.PayloadTelephone = entity.Telephone.Marshal()
+	return MarshalPayloadEntity("supervisor", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Supervisor) Valid() (bool, error) {
 	if ok, err := entity.SupervisorName.Valid(); !ok {
@@ -107,12 +118,47 @@ func (entity *Supervisor) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the Supervisor entity.
 func (entity *Supervisor) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Supervisor{ID: account}, func(result interface{}) {
+		previous := result.(*Supervisor)
+		if entity.SupervisorName == nil {
+			entity.SupervisorName = &Text{}
+		}
+		entity.SupervisorName.ID = previous.SupervisorNameID
+		entity.SupervisorNameID = previous.SupervisorNameID
+		if entity.Title == nil {
+			entity.Title = &Text{}
+		}
+		entity.Title.ID = previous.TitleID
+		entity.TitleID = previous.TitleID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	supervisorNameID, err := entity.SupervisorName.Save(context, account)
 	if err != nil {
@@ -157,12 +203,47 @@ func (entity *Supervisor) Save(context *db.DatabaseContext, account int) (int, e
 	return entity.ID, nil
 }
 
+// Delete the Supervisor entity.
 func (entity *Supervisor) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Supervisor{ID: account}, func(result interface{}) {
+		previous := result.(*Supervisor)
+		if entity.SupervisorName == nil {
+			entity.SupervisorName = &Text{}
+		}
+		entity.SupervisorName.ID = previous.SupervisorNameID
+		entity.SupervisorNameID = previous.SupervisorNameID
+		if entity.Title == nil {
+			entity.Title = &Text{}
+		}
+		entity.Title.ID = previous.TitleID
+		entity.TitleID = previous.TitleID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	if _, err := entity.SupervisorName.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -197,12 +278,47 @@ func (entity *Supervisor) Delete(context *db.DatabaseContext, account int) (int,
 	return entity.ID, nil
 }
 
+// Get the Supervisor entity.
 func (entity *Supervisor) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Supervisor{ID: account}, func(result interface{}) {
+		previous := result.(*Supervisor)
+		if entity.SupervisorName == nil {
+			entity.SupervisorName = &Text{}
+		}
+		entity.SupervisorName.ID = previous.SupervisorNameID
+		entity.SupervisorNameID = previous.SupervisorNameID
+		if entity.Title == nil {
+			entity.Title = &Text{}
+		}
+		entity.Title.ID = previous.TitleID
+		entity.TitleID = previous.TitleID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -247,4 +363,14 @@ func (entity *Supervisor) Get(context *db.DatabaseContext, account int) (int, er
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Supervisor) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Supervisor) SetID(id int) {
+	entity.ID = id
 }

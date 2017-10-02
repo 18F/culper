@@ -98,6 +98,19 @@ func (entity *Reference) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *Reference) Marshal() Payload {
+	entity.PayloadFullName = entity.FullName.Marshal()
+	entity.PayloadLastContact = entity.LastContact.Marshal()
+	entity.PayloadRelationship = entity.Relationship.Marshal()
+	entity.PayloadRelationshipOther = entity.RelationshipOther.Marshal()
+	entity.PayloadPhone = entity.Phone.Marshal()
+	entity.PayloadEmail = entity.Email.Marshal()
+	entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
+	entity.PayloadAddress = entity.Address.Marshal()
+	return MarshalPayloadEntity("reference", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Reference) Valid() (bool, error) {
 	if ok, err := entity.FullName.Valid(); !ok {
@@ -136,12 +149,57 @@ func (entity *Reference) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the Reference entity.
 func (entity *Reference) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Reference{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Reference)
+		if entity.FullName == nil {
+			entity.FullName = &Name{}
+		}
+		entity.FullName.ID = previous.FullNameID
+		entity.FullNameID = previous.FullNameID
+		if entity.LastContact == nil {
+			entity.LastContact = &DateControl{}
+		}
+		entity.LastContact.ID = previous.LastContactID
+		entity.LastContactID = previous.LastContactID
+		if entity.Relationship == nil {
+			entity.Relationship = &CheckboxGroup{}
+		}
+		entity.Relationship.ID = previous.RelationshipID
+		entity.RelationshipID = previous.RelationshipID
+		if entity.RelationshipOther == nil {
+			entity.RelationshipOther = &Text{}
+		}
+		entity.RelationshipOther.ID = previous.RelationshipOtherID
+		entity.RelationshipOtherID = previous.RelationshipOtherID
+		if entity.Phone == nil {
+			entity.Phone = &Telephone{}
+		}
+		entity.Phone.ID = previous.PhoneID
+		entity.PhoneID = previous.PhoneID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+	})
 
 	fullNameID, err := entity.FullName.Save(context, account)
 	if err != nil {
@@ -198,12 +256,57 @@ func (entity *Reference) Save(context *db.DatabaseContext, account int) (int, er
 	return entity.ID, nil
 }
 
+// Delete the Reference entity.
 func (entity *Reference) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Reference{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Reference)
+		if entity.FullName == nil {
+			entity.FullName = &Name{}
+		}
+		entity.FullName.ID = previous.FullNameID
+		entity.FullNameID = previous.FullNameID
+		if entity.LastContact == nil {
+			entity.LastContact = &DateControl{}
+		}
+		entity.LastContact.ID = previous.LastContactID
+		entity.LastContactID = previous.LastContactID
+		if entity.Relationship == nil {
+			entity.Relationship = &CheckboxGroup{}
+		}
+		entity.Relationship.ID = previous.RelationshipID
+		entity.RelationshipID = previous.RelationshipID
+		if entity.RelationshipOther == nil {
+			entity.RelationshipOther = &Text{}
+		}
+		entity.RelationshipOther.ID = previous.RelationshipOtherID
+		entity.RelationshipOtherID = previous.RelationshipOtherID
+		if entity.Phone == nil {
+			entity.Phone = &Telephone{}
+		}
+		entity.Phone.ID = previous.PhoneID
+		entity.PhoneID = previous.PhoneID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+	})
 
 	if _, err := entity.FullName.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -246,12 +349,57 @@ func (entity *Reference) Delete(context *db.DatabaseContext, account int) (int, 
 	return entity.ID, nil
 }
 
+// Get the Reference entity.
 func (entity *Reference) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Reference{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Reference)
+		if entity.FullName == nil {
+			entity.FullName = &Name{}
+		}
+		entity.FullName.ID = previous.FullNameID
+		entity.FullNameID = previous.FullNameID
+		if entity.LastContact == nil {
+			entity.LastContact = &DateControl{}
+		}
+		entity.LastContact.ID = previous.LastContactID
+		entity.LastContactID = previous.LastContactID
+		if entity.Relationship == nil {
+			entity.Relationship = &CheckboxGroup{}
+		}
+		entity.Relationship.ID = previous.RelationshipID
+		entity.RelationshipID = previous.RelationshipID
+		if entity.RelationshipOther == nil {
+			entity.RelationshipOther = &Text{}
+		}
+		entity.RelationshipOther.ID = previous.RelationshipOtherID
+		entity.RelationshipOtherID = previous.RelationshipOtherID
+		if entity.Phone == nil {
+			entity.Phone = &Telephone{}
+		}
+		entity.Phone.ID = previous.PhoneID
+		entity.PhoneID = previous.PhoneID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -308,4 +456,14 @@ func (entity *Reference) Get(context *db.DatabaseContext, account int) (int, err
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Reference) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Reference) SetID(id int) {
+	entity.ID = id
 }

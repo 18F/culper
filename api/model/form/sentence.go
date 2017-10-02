@@ -89,6 +89,18 @@ func (entity *Sentence) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *Sentence) Marshal() Payload {
+	entity.PayloadDescription = entity.Description.Marshal()
+	entity.PayloadExceedsYear = entity.ExceedsYear.Marshal()
+	entity.PayloadIncarcerated = entity.Incarcerated.Marshal()
+	entity.PayloadIncarcerationDates = entity.IncarcerationDates.Marshal()
+	entity.PayloadIncarcerationDatesNA = entity.IncarcerationDatesNA.Marshal()
+	entity.PayloadProbationDates = entity.ProbationDates.Marshal()
+	entity.PayloadProbationDatesNA = entity.ProbationDatesNA.Marshal()
+	return MarshalPayloadEntity("sentence", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Sentence) Valid() (bool, error) {
 	if ok, err := entity.Description.Valid(); !ok {
@@ -122,12 +134,52 @@ func (entity *Sentence) Valid() (bool, error) {
 	return true, nil
 }
 
+// Save the Sentence entity.
 func (entity *Sentence) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Sentence{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Sentence)
+		if entity.Description == nil {
+			entity.Description = &Textarea{}
+		}
+		entity.Description.ID = previous.DescriptionID
+		entity.DescriptionID = previous.DescriptionID
+		if entity.ExceedsYear == nil {
+			entity.ExceedsYear = &Branch{}
+		}
+		entity.ExceedsYear.ID = previous.ExceedsYearID
+		entity.ExceedsYearID = previous.ExceedsYearID
+		if entity.Incarcerated == nil {
+			entity.Incarcerated = &Branch{}
+		}
+		entity.Incarcerated.ID = previous.IncarceratedID
+		entity.IncarceratedID = previous.IncarceratedID
+		if entity.IncarcerationDates == nil {
+			entity.IncarcerationDates = &DateRange{}
+		}
+		entity.IncarcerationDates.ID = previous.IncarcerationDatesID
+		entity.IncarcerationDatesID = previous.IncarcerationDatesID
+		if entity.IncarcerationDatesNA == nil {
+			entity.IncarcerationDatesNA = &NotApplicable{}
+		}
+		entity.IncarcerationDatesNA.ID = previous.IncarcerationDatesNAID
+		entity.IncarcerationDatesNAID = previous.IncarcerationDatesNAID
+		if entity.ProbationDates == nil {
+			entity.ProbationDates = &DateRange{}
+		}
+		entity.ProbationDates.ID = previous.ProbationDatesID
+		entity.ProbationDatesID = previous.ProbationDatesID
+		if entity.ProbationDatesNA == nil {
+			entity.ProbationDatesNA = &NotApplicable{}
+		}
+		entity.ProbationDatesNA.ID = previous.ProbationDatesNAID
+		entity.ProbationDatesNAID = previous.ProbationDatesNAID
+	})
 
 	descriptionID, err := entity.Description.Save(context, account)
 	if err != nil {
@@ -178,12 +230,52 @@ func (entity *Sentence) Save(context *db.DatabaseContext, account int) (int, err
 	return entity.ID, nil
 }
 
+// Delete the Sentence entity.
 func (entity *Sentence) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Sentence{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Sentence)
+		if entity.Description == nil {
+			entity.Description = &Textarea{}
+		}
+		entity.Description.ID = previous.DescriptionID
+		entity.DescriptionID = previous.DescriptionID
+		if entity.ExceedsYear == nil {
+			entity.ExceedsYear = &Branch{}
+		}
+		entity.ExceedsYear.ID = previous.ExceedsYearID
+		entity.ExceedsYearID = previous.ExceedsYearID
+		if entity.Incarcerated == nil {
+			entity.Incarcerated = &Branch{}
+		}
+		entity.Incarcerated.ID = previous.IncarceratedID
+		entity.IncarceratedID = previous.IncarceratedID
+		if entity.IncarcerationDates == nil {
+			entity.IncarcerationDates = &DateRange{}
+		}
+		entity.IncarcerationDates.ID = previous.IncarcerationDatesID
+		entity.IncarcerationDatesID = previous.IncarcerationDatesID
+		if entity.IncarcerationDatesNA == nil {
+			entity.IncarcerationDatesNA = &NotApplicable{}
+		}
+		entity.IncarcerationDatesNA.ID = previous.IncarcerationDatesNAID
+		entity.IncarcerationDatesNAID = previous.IncarcerationDatesNAID
+		if entity.ProbationDates == nil {
+			entity.ProbationDates = &DateRange{}
+		}
+		entity.ProbationDates.ID = previous.ProbationDatesID
+		entity.ProbationDatesID = previous.ProbationDatesID
+		if entity.ProbationDatesNA == nil {
+			entity.ProbationDatesNA = &NotApplicable{}
+		}
+		entity.ProbationDatesNA.ID = previous.ProbationDatesNAID
+		entity.ProbationDatesNAID = previous.ProbationDatesNAID
+	})
 
 	if _, err := entity.Description.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -222,12 +314,52 @@ func (entity *Sentence) Delete(context *db.DatabaseContext, account int) (int, e
 	return entity.ID, nil
 }
 
+// Get the Sentence entity.
 func (entity *Sentence) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Sentence{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Sentence)
+		if entity.Description == nil {
+			entity.Description = &Textarea{}
+		}
+		entity.Description.ID = previous.DescriptionID
+		entity.DescriptionID = previous.DescriptionID
+		if entity.ExceedsYear == nil {
+			entity.ExceedsYear = &Branch{}
+		}
+		entity.ExceedsYear.ID = previous.ExceedsYearID
+		entity.ExceedsYearID = previous.ExceedsYearID
+		if entity.Incarcerated == nil {
+			entity.Incarcerated = &Branch{}
+		}
+		entity.Incarcerated.ID = previous.IncarceratedID
+		entity.IncarceratedID = previous.IncarceratedID
+		if entity.IncarcerationDates == nil {
+			entity.IncarcerationDates = &DateRange{}
+		}
+		entity.IncarcerationDates.ID = previous.IncarcerationDatesID
+		entity.IncarcerationDatesID = previous.IncarcerationDatesID
+		if entity.IncarcerationDatesNA == nil {
+			entity.IncarcerationDatesNA = &NotApplicable{}
+		}
+		entity.IncarcerationDatesNA.ID = previous.IncarcerationDatesNAID
+		entity.IncarcerationDatesNAID = previous.IncarcerationDatesNAID
+		if entity.ProbationDates == nil {
+			entity.ProbationDates = &DateRange{}
+		}
+		entity.ProbationDates.ID = previous.ProbationDatesID
+		entity.ProbationDatesID = previous.ProbationDatesID
+		if entity.ProbationDatesNA == nil {
+			entity.ProbationDatesNA = &NotApplicable{}
+		}
+		entity.ProbationDatesNA.ID = previous.ProbationDatesNAID
+		entity.ProbationDatesNAID = previous.ProbationDatesNAID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {
@@ -278,4 +410,14 @@ func (entity *Sentence) Get(context *db.DatabaseContext, account int) (int, erro
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Sentence) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Sentence) SetID(id int) {
+	entity.ID = id
 }

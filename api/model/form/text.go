@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"log"
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/db"
@@ -17,6 +18,11 @@ type Text struct {
 // Unmarshal bytes in to the entity properties.
 func (entity *Text) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
+}
+
+// Marshal to payload structure
+func (entity *Text) Marshal() Payload {
+	return MarshalPayloadEntity("text", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -68,4 +74,15 @@ func (entity *Text) Get(context *db.DatabaseContext, account int) (int, error) {
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Text) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Text) SetID(id int) {
+	log.Println("Setting text ID to", id)
+	entity.ID = id
 }

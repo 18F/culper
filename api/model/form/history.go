@@ -33,6 +33,12 @@ func (entity *HistoryResidence) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *HistoryResidence) Marshal() Payload {
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("history.residence", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *HistoryResidence) Valid() (bool, error) {
 	return entity.List.Valid()
@@ -116,6 +122,16 @@ func (entity *HistoryResidence) Get(context *db.DatabaseContext, account int) (i
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *HistoryResidence) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryResidence) SetID(id int) {
+	entity.ID = id
+}
+
 type HistoryEmployment struct {
 	PayloadList Payload `json:"List" sql:"-"`
 
@@ -141,6 +157,12 @@ func (entity *HistoryEmployment) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *HistoryEmployment) Marshal() Payload {
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("history.employment", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -226,6 +248,16 @@ func (entity *HistoryEmployment) Get(context *db.DatabaseContext, account int) (
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *HistoryEmployment) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryEmployment) SetID(id int) {
+	entity.ID = id
+}
+
 type HistoryEducation struct {
 	PayloadHasAttended Payload `json:"HasAttended" sql:"-"`
 	PayloadHasDegree10 Payload `json:"HasDegree10" sql:"-"`
@@ -269,6 +301,14 @@ func (entity *HistoryEducation) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *HistoryEducation) Marshal() Payload {
+	entity.PayloadHasAttended = entity.HasAttended.Marshal()
+	entity.PayloadHasDegree10 = entity.HasDegree10.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("history.education", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -400,6 +440,16 @@ func (entity *HistoryEducation) Get(context *db.DatabaseContext, account int) (i
 	return entity.ID, nil
 }
 
+// GetID returns the entity identifier.
+func (entity *HistoryEducation) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryEducation) SetID(id int) {
+	entity.ID = id
+}
+
 type HistoryFederal struct {
 	PayloadHasFederalService Payload `json:"HasFederalService" sql:"-"`
 	PayloadList              Payload `json:"List" sql:"-"`
@@ -434,6 +484,13 @@ func (entity *HistoryFederal) Unmarshal(raw []byte) error {
 	entity.List = list.(*Collection)
 
 	return err
+}
+
+// Marshal to payload structure
+func (entity *HistoryFederal) Marshal() Payload {
+	entity.PayloadHasFederalService = entity.HasFederalService.Marshal()
+	entity.PayloadList = entity.List.Marshal()
+	return MarshalPayloadEntity("history.federal", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -542,4 +599,14 @@ func (entity *HistoryFederal) Get(context *db.DatabaseContext, account int) (int
 	}
 
 	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *HistoryFederal) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryFederal) SetID(id int) {
+	entity.ID = id
 }

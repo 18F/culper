@@ -18,6 +18,11 @@ func (entity *Radio) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
+// Marshal to payload structure
+func (entity *Radio) Marshal() Payload {
+	return MarshalPayloadEntity("radio", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Radio) Valid() (bool, error) {
 	return true, nil
@@ -61,4 +66,14 @@ func (entity *Radio) Get(context *db.DatabaseContext, account int) (int, error) 
 	}
 
 	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Radio) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Radio) SetID(id int) {
+	entity.ID = id
 }
