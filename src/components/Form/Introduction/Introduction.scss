@@ -1,7 +1,12 @@
 @import 'eqip-colors';
 
+.introduction-modal {
+  z-index: 9999;
+}
+
 .introduction-modal .modal {
   background-color: rgba(255, 255, 255, 0.95) !important;
+  z-index: 9999;
 
   .introduction-content {
     width: 50%;
@@ -9,6 +14,9 @@
     height: 90vh;
     margin-top: 5vh !important;
     margin-bottom: 5vh !important;
+    padding: 0;
+    border: none;
+    box-shadow: none;
 
     @media only screen and (max-height: 850px) {
       height: 100vh;
@@ -20,7 +28,7 @@
       overflow-y: scroll;
       max-height: 55vh;
       padding: 0 5rem;
-      border: 1px solid $eapp-grey;
+      border: 2px solid $eapp-grey;
 
       hr {
         margin-top: 4rem;
@@ -29,7 +37,7 @@
 
     .introduction-acceptance {
       max-height: 40vh;
-      padding: 0;
+      padding-top: 2rem;
       margin: 4rem 5rem 0 5rem;
       border-top: 1px solid $eapp-grey;
     }
