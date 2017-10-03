@@ -20,7 +20,7 @@ export class Consent extends React.Component {
         <Modal show={this.props.settings.consented !== 'Yes'} className="consent-content">
           <div>
             <div className="consent-legal">
-              {i18n.m('consent.contents')}
+              {i18n.m2('consent.contents')}
             </div>
             <button name="consent"
                     className="consent-acceptance"
