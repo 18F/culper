@@ -1,0 +1,255 @@
+@media only screen {
+  .print-view {
+    display: none;
+  }
+
+  .print-btn {
+    padding: 2rem;
+    width: 20rem;
+    margin: 0 auto;
+    display: block;
+  }
+}
+
+@media only print {
+  body,
+  html {
+    /* Force all text to be black */
+    color: #000 !important;
+  }
+  .section-print-container {
+    page-break-after: always;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  .field.branch,
+  .blocks.option-list,
+  input,
+  textarea,
+  .daterange {
+    page-break-inside: avoid;
+  }
+
+  .field {
+    $pfield: &;
+    page-break-inside: avoid;
+
+    .field {
+      page-break-inside: avoid;
+
+      // If we are in a nested field then make its parent avoid breaking.
+      @at-root #{$pfield} {
+        page-break-inside: auto;
+      }
+    }
+  }
+
+  .print-view {
+    display: unset;
+    page-break-after: auto;
+    h3.section-print-header {
+      border-bottom: 2px solid black;
+      padding-bottom: 1.2rem;
+      margin-bottom: 4.2rem;
+    }
+  }
+
+  label.checkbox::before {
+    border: 1px solid black;
+  }
+
+  label.checkbox.checked::before {
+    border: 1px solid #000;
+    background-color: #000;
+  }
+
+  /* Set main header text to black */
+  .eapp-title > .title .crumb,
+  .eapp-title > .title {
+    color: #000 !important;
+  }
+
+  /* Set heights for various header elements */
+  .header-container {
+
+    .usa-banner-header {
+      display: none;
+    }
+
+    .usa-header,
+    .usa-header > .eapp-structure-wrap {
+      height: 7rem;
+      min-height: 7rem;
+      background-color: #fff;
+      border-bottom: 2px solid #000;
+    }
+
+    .usa-header.usa-header-basic {
+      .eapp-structure-wrap.eapp-header > .eapp-structure-row {
+        .eapp-structure-right {
+          .eapp-logout {
+            display: none;
+          }
+
+          .title {
+            max-height: 5rem;
+            margin-top: -0.5rem;
+
+            .title-text {
+              transition: font-size 400ms ease-out;
+              font-size: 1.8rem;
+              line-height: 1;
+            }
+
+            .crumb {
+              transition: font-size 400ms ease-out;
+              font-size: 1rem;
+            }
+          }
+        }
+
+        .eapp-structure-left.eapp-logo {
+          height: 5.7rem;
+          min-height: 5.7rem;
+
+          img,
+          span,
+          a {
+            height: 0;
+            font-size: 0;
+            opacity: 1;
+          }
+        }
+      }
+    }
+  }
+
+  .eapp-structure-wrap {
+    .eapp-structure-row {
+      .eapp-structure-left {
+        display: none;
+      }
+    }
+  }
+
+  /* Get rid of accordion gray background */
+  .accordion {
+    background-color: #fff;
+  }
+
+  /* Remove background from options and checkboxes */
+  .block label {
+    background-color: #fff;
+    opacity: 0.6;
+  }
+
+  /* Set selected checkboxes with thick border */
+  .block label.checked {
+    border: 3px solid black;
+    background-color: #fff;
+    color: #000;
+    font-weight: 600;
+    opacity: 1;
+  }
+
+  /* Get rid of left blue border within accordion */
+  .accordion .summary .left.open,
+  .accordion .item .details {
+    border-left: 0;
+  }
+
+  /* Hide the print button */
+  .print-btn,
+  /* Hide progress bar under header */
+  .usa-banner,
+  .eapp-progress,
+  /* All help icons */
+  .field > .icon,
+  /* Logout button */
+  .usa-header .eapp-header .eapp-logout,
+  /* Section navigation buttons for top and bottom */
+  .top-btns,
+  .bottom-btns,
+  .btn-wrap,
+  /* Hide reuse address text */
+  .address .reuse-address,
+  /* Saved Indicator */
+  .saved-indicator,
+  /* Top Section navigation buttons */
+  .top-btns,
+  /* Hide selective service help message */
+  .selective .field .table .messages,
+  /* Hide NA button when applicable */
+  .not-applicable.enable .button,
+  /* Hide content when not applicable */
+  .not-applicable.disable .content,
+  .multiple-dropdown .ic-tokens .inline-flex .ic-tokeninput .ic-tokeninput-input,
+  /* Accordion validator error box */
+  .accordion .byline .incomplete,
+  /* Append button for accordions */
+  .accordion .append-button,
+  /* Close accordion link at the bottom */
+  .accordion .item .details > .close,
+  /* Remove button on accordion */
+  .accordion .summary .right,
+  /* Close link inside the accordion row */
+  .accordion .summary .left .button-with-icon,
+  .accordion .summary .right .button-with-icon,
+  /* Add comment link */
+  .field > .table > .content > .component > .comments-button,
+  /* Help messages box */
+  .field > .table > .messages.help-messages,
+  /* Field error box */
+  .field > .table > .messages.error-messages {
+    display: none !important;
+  }
+
+  /* Reduce margin under fields to use less paper */
+  .field {
+    margin-bottom: 1rem;
+  }
+
+  /* Make error and valid border black */
+  input[type='text'].usa-input-success,
+  input[type='number'].usa-input-success,
+  input[type='email'].usa-input-success,
+  textarea.usa-input-success,
+  select.usa-input-success
+  input.usa-input-success,
+  textarea.usa-input-success,
+  select.usa-input-success,
+  .usa-input-error input,
+  .usa-input-error textarea,
+  .usa-input-error select,
+  .usa-input-error .block > label {
+    border: 1px solid #000 !important;
+    border-width: 1px !important;
+  }
+
+  .not-applicable.disable {
+    opacity: 1;
+  }
+
+  /* Make selected multidropdown values have a black border */
+  .multiple-dropdown .ic-tokens .inline-flex.ic-token {
+    border: 3px solid black;
+  }
+
+  /* Give accordion summaries border */
+  .accordion .items .summary-container .summary {
+    border-top: 2px solid black;
+  }
+
+  /* Make accordion summary links black */
+  .accordion .items .summary-container .summary  a {
+    color: #000 !important;
+  }
+
+  /* Force expand of accordion when in print screen */
+  .accordion .details.close.animate {
+    animation-name: initial;
+  }
+}

@@ -253,4 +253,83 @@ Financial.defaultProps = {
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
+export class FinancialSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Bankruptcies name="bankruptcy"
+          {...this.props.Bankruptcy}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <Gambling name="gambling"
+          {...this.props.Gambling}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Taxes name="taxes"
+          {...this.props.Taxes}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Card name="card"
+          {...this.props.Card}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Credit name="credit"
+          {...this.props.Credit}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Delinquent name="delinquent"
+          {...this.props.Delinquent}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Nonpayment name="nonpayment"
+          {...this.props.Nonpayment}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
 export default connect(mapStateToProps)(AuthenticatedView(Financial))

@@ -1,2 +1,3 @@
-import SubstanceUse from './SubstanceUse'
+import SubstanceUse, { SubstanceUseSections } from './SubstanceUse'
 export default SubstanceUse
+export { SubstanceUseSections }
