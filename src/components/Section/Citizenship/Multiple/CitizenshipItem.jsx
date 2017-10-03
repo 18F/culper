@@ -122,7 +122,7 @@ export default class CitizenshipItem extends ValidationElement {
         <Branch name="Renounced"
                 label={i18n.t('citizenship.multiple.heading.citizenship.renounced')}
                 labelSize="h3"
-                className="citizenship-renounced"
+                className="citizenship-renounced no-margin-bottom"
                 value={this.props.Renounced}
                 onUpdate={this.updateRenounced}
                 onError={this.props.onError}
@@ -131,6 +131,7 @@ export default class CitizenshipItem extends ValidationElement {
                 />
 
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}
+            titleSize="label"
             scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="RenouncedExplanation"
                     {...this.props.RenouncedExplanation}
