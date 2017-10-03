@@ -2675,7 +2675,7 @@ const en = {
         help: {
           birthdate: {
             title: 'Need help with the birthdate?',
-            message: 'Provide the date of birth',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           birthplace: {
