@@ -33,6 +33,20 @@
     page-break-inside: avoid;
   }
 
+  .field {
+    $pfield: &;
+    page-break-inside: avoid;
+
+    .field {
+      page-break-inside: avoid;
+
+      // If we are in a nested field then make its parent avoid breaking.
+      @at-root #{$pfield} {
+        page-break-inside: auto;
+      }
+    }
+  }
+
   .print-view {
     display: unset;
     page-break-after: auto;
