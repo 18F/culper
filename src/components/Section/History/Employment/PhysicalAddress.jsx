@@ -52,7 +52,9 @@ export default class PhysicalAddress extends ValidationElement {
 
   options () {
     return (
-      <Branch name="physicalAddress"
+      <Branch label={this.props.title}
+              labelSize="h3"
+              name="physicalAddress"
               value={this.state.HasDifferentAddress}
               className="has-different-address"
               help="history.employment.default.physicalAddress.help"
@@ -123,6 +125,7 @@ export default class PhysicalAddress extends ValidationElement {
 }
 
 PhysicalAddress.defaultProps = {
+  title: '',
   addressBooks: {},
   addressBook: 'Company',
   dispatch: (action) => {},

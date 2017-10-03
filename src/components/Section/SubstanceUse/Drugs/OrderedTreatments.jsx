@@ -4,7 +4,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import OrderedTreatment from './OrderedTreatment'
-import { DrugOrderedTreatmentsValidator } from '../../../../validators'
+import { DrugOrderedTreatmentsValidator, DrugOrderedTreatmentValidator } from '../../../../validators'
 
 export default class OrderedTreatments extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class OrderedTreatments extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).OrderedTreatment || {}
+    const o = (item || {}).Item || {}
     const range = DateSummary(o.TreatmentDates)
     const explanation = (o.Explanation || {}).value
 
@@ -58,8 +58,9 @@ export default class OrderedTreatments extends SubsectionElement {
   render () {
     return (
       <div className="ordered-treatments">
-        <h2>{i18n.m('substance.drugs.heading.orderedTreatments')}</h2>
         <Branch name="TreatmentOrdered"
+                label={i18n.m('substance.drugs.heading.orderedTreatments')}
+                labelSize="h2"
                 className="treatment-ordered"
                 value={this.props.TreatmentOrdered}
                 warning={true}
@@ -77,12 +78,13 @@ export default class OrderedTreatments extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugOrderedTreatmentValidator}
                      description={i18n.t('substance.drugs.ordered.collection.description')}
                      appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
                      appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <OrderedTreatment name="OrderedTreatment"
+            <OrderedTreatment name="Item"
                               bind={true}
                               addressBooks={this.props.addressBooks}
                               dispatch={this.props.dispatch}

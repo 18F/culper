@@ -29,11 +29,13 @@ describe('The legal technology unlawful access component', () => {
       HasUnlawful: 'Yes',
       List: [
         {
-          Date: {
-            date: new Date('1/1/2010')
-          },
-          Incident: {
-            value: 'Looked over the shoulder'
+          Item: {
+            Date: {
+              date: new Date('1/1/2010')
+            },
+            Incident: {
+              value: 'Looked over the shoulder'
+            }
           }
         }
       ],

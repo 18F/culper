@@ -2,20 +2,20 @@ import { validGenericTextfield, validGenericMonthYear, validNotApplicable } from
 import ForeignCoOwnersValidator from './foreigncoowner'
 
 export default class ForeignIndirectInterestValidator {
-  constructor (state, props = {}) {
-    this.interestTypes = props.InterestTypes
-    this.interestType = props.InterestType
-    this.firstname = props.Firstname
-    this.lastname = props.Lastname
-    this.relationship = props.Relationship
-    this.acquired = props.Acquired
-    this.howAcquired = props.HowAcquired
-    this.cost = props.Cost
-    this.value = props.Value
-    this.sold = props.Sold
-    this.soldNotApplicable = props.SoldNotApplicable
-    this.explanation = props.Explanation
-    this.coOwners = props.CoOwners
+  constructor (data = {}) {
+    this.interestTypes = data.InterestTypes
+    this.interestType = data.InterestType
+    this.firstname = data.Firstname
+    this.lastname = data.Lastname
+    this.relationship = data.Relationship
+    this.acquired = data.Acquired
+    this.howAcquired = data.HowAcquired
+    this.cost = data.Cost
+    this.value = data.Value
+    this.sold = data.Sold
+    this.soldNotApplicable = data.SoldNotApplicable
+    this.explanation = data.Explanation
+    this.coOwners = data.CoOwners
   }
 
   validInterestTypes () {

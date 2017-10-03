@@ -48,34 +48,38 @@ describe('The federal component', () => {
       HasFederalService: 'Yes',
       List: [
         {
-          Name: {
-            value: 'Acme'
-          },
-          Position: {
-            value: ' Chief Anvil Engineer'
-          },
-          Dates: {
-            from: {
-              date: new Date(2017, 1, 1)
+          Item: {
+            Name: {
+              value: 'Acme'
             },
-            to: {
-              date: new Date(2017, 2, 1)
+            Position: {
+              value: ' Chief Anvil Engineer'
+            },
+            Dates: {
+              from: {
+                date: new Date(2017, 1, 1)
+              },
+              to: {
+                date: new Date(2017, 2, 1)
+              }
             }
           }
         },
         {
-          Name: {
-            value: 'Quills R Us'
-          },
-          Position: {
-            value: 'I wrote stuff'
-          },
-          Dates: {
-            from: {
-              date: new Date(2017, 2, 1)
+          Item: {
+            Name: {
+              value: 'Quills R Us'
             },
-            to: {
-              date: new Date(2017, 3, 1)
+            Position: {
+              value: 'I wrote stuff'
+            },
+            Dates: {
+              from: {
+                date: new Date(2017, 2, 1)
+              },
+              to: {
+                date: new Date(2017, 3, 1)
+              }
             }
           }
         }

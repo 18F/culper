@@ -95,15 +95,18 @@ export default class EmploymentValidator {
           continue
         }
 
-        if (!r.Reason) {
+        if (!r.Item) {
+          return false
+        }
+        if (!r.Item.Reason) {
           return false
         }
 
-        if (!validDateField(r.Date)) {
+        if (!validDateField(r.Item.Date)) {
           return false
         }
 
-        if (!validGenericTextfield(r.Text)) {
+        if (!validGenericTextfield(r.Item.Text)) {
           return false
         }
       }
@@ -135,12 +138,14 @@ export default class EmploymentValidator {
         if (r.Has === 'No') {
           continue
         }
-
-        if (!validGenericTextfield(r.Text)) {
+        if (!r.Item) {
+          return false
+        }
+        if (!validGenericTextfield(r.Item.Text)) {
           return false
         }
 
-        if (!validGenericMonthYear(r.Date)) {
+        if (!validGenericMonthYear(r.Item.Date)) {
           return false
         }
       }
@@ -184,6 +189,7 @@ export default class EmploymentValidator {
         this.validEmployment() &&
         this.validStatus() &&
         this.validAddress() &&
+        this.validPhysicalAddress() &&
         this.validTelephone() &&
         this.validSupervisor() &&
         this.validAdditionalActivity() &&

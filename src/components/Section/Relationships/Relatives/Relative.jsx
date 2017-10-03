@@ -563,11 +563,12 @@ export default class Relative extends ValidationElement {
         <Show when={validator.requiresCitizenshipDocumentation()}>
           <div>
             <Field title={i18n.t('relationships.relatives.heading.us.title')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   titleSize="h2">
-              <h3 className="relative-citizenship-documentation">
-                {i18n.t('relationships.relatives.heading.us.documentation')}
-              </h3>
+                   titleSize="h2"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Field title={i18n.t('relationships.relatives.heading.us.documentation')}
+                     titleSize="h3"
+                     className="relative-citizenship-documentation no-margin-bottom"
+                     />
 
               <label>{i18n.t('relationships.relatives.para.abroad')}</label>
               <RadioGroup className="relative-abroad option-list"

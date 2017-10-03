@@ -2,10 +2,10 @@ import LocationValidator from './location'
 import { validBranch, validDateField, validGenericTextfield } from './helpers'
 
 export default class NonCriminalCourtActionsValidator {
-  constructor (state, props) {
-    this.hasCourtActions = state.HasCourtActions
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data) {
+    this.hasCourtActions = data.HasCourtActions
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validHasCourtActions () {
@@ -26,7 +26,7 @@ export default class NonCriminalCourtActionsValidator {
     }
 
     for (const item of this.list) {
-      const result = new NonCriminalCourtActionValidator(item.CourtAction, null).isValid()
+      const result = new NonCriminalCourtActionValidator(item.Item).isValid()
       if (!result) {
         return false
       }
@@ -42,13 +42,13 @@ export default class NonCriminalCourtActionsValidator {
 }
 
 export class NonCriminalCourtActionValidator {
-  constructor (state = {}) {
-    this.civilActionDate = state.CivilActionDate
-    this.courtName = state.CourtName
-    this.courtAddress = state.CourtAddress
-    this.natureOfAction = state.NatureOfAction
-    this.resultsOfAction = state.ResultsOfAction
-    this.principalPartyNames = state.PrincipalPartyNames
+  constructor (data = {}) {
+    this.civilActionDate = data.CivilActionDate
+    this.courtName = data.CourtName
+    this.courtAddress = data.CourtAddress
+    this.natureOfAction = data.NatureOfAction
+    this.resultsOfAction = data.ResultsOfAction
+    this.principalPartyNames = data.PrincipalPartyNames
   }
 
   isValid () {

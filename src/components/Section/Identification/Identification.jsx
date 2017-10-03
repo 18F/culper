@@ -4,6 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { Field } from '../../Form'
 import ApplicantName from './ApplicantName'
 import ApplicantSSN from './ApplicantSSN'
 import ApplicantBirthPlace from './ApplicantBirthPlace'
@@ -20,20 +21,21 @@ class Identification extends SectionElement {
           <SectionView name="intro"
                        next="identification/name"
                        nextLabel={i18n.t('identification.destination.name')}>
-            <h2>{i18n.t('identification.intro.title')}</h2>
-            {i18n.m('identification.intro.body')}
+            <Field title={i18n.t('identification.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('identification.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="review"
                        title={i18n.t('review.title')}
                        para={i18n.m('review.para')}
                        showTop={true}
-                       next="financial/intro"
-                       nextLabel={i18n.t('financial.destination.intro')}
+                       next="relationships/intro"
+                       nextLabel={i18n.t('relationships.destination.intro')}
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
-
-            <h2>{i18n.t('identification.name.title')}</h2>
             <ApplicantName name="name"
                            value={this.props.ApplicantName}
                            dispatch={this.props.dispatch}
@@ -42,43 +44,7 @@ class Identification extends SectionElement {
                            required={true}
                            scrollIntoView={false}
                            />
-
             <hr />
-            <h2>{i18n.t('identification.othernames.title')}</h2>
-            <OtherNames name="othernames"
-                        {...this.props.OtherNames}
-                        defaultState={false}
-                        dispatch={this.props.dispatch}
-                        onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
-                        onError={this.handleError}
-                        required={true}
-                        scrollIntoView={false}
-                        />
-
-            <hr />
-            <h2>{i18n.t('identification.birthdate.title')}</h2>
-            <ApplicantBirthDate name="birthdate"
-                                dispatch={this.props.dispatch}
-                                onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
-                                onError={this.handleError}
-                                value={this.props.ApplicantBirthDate}
-                                required={true}
-                                scrollIntoView={false}
-                                />
-
-            <hr />
-            <h2>{i18n.t('identification.birthplace.title')}</h2>
-            <ApplicantBirthPlace name="birthplace"
-                                 value={this.props.ApplicantBirthPlace}
-                                 dispatch={this.props.dispatch}
-                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
-                                 onError={this.handleError}
-                                 required={true}
-                                 scrollIntoView={false}
-                                 />
-
-            <hr />
-            <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 defaultState={false}
@@ -88,9 +54,35 @@ class Identification extends SectionElement {
                                 required={true}
                                 scrollIntoView={false}
                                 />
-
             <hr />
-            <h2>{i18n.t('identification.ssn.title')}</h2>
+            <OtherNames name="othernames"
+                        {...this.props.OtherNames}
+                        defaultState={false}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
+                        onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
+                        />
+            <hr />
+            <ApplicantBirthDate name="birthdate"
+                                dispatch={this.props.dispatch}
+                                onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
+                                onError={this.handleError}
+                                value={this.props.ApplicantBirthDate}
+                                required={true}
+                                scrollIntoView={false}
+                                />
+            <hr />
+            <ApplicantBirthPlace name="birthplace"
+                                 value={this.props.ApplicantBirthPlace}
+                                 dispatch={this.props.dispatch}
+                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
+                                 onError={this.handleError}
+                                 required={true}
+                                 scrollIntoView={false}
+                                 />
+            <hr />
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
                           dispatch={this.props.dispatch}
@@ -99,9 +91,7 @@ class Identification extends SectionElement {
                           required={true}
                           scrollIntoView={false}
                           />
-
             <hr />
-            <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
                       dispatch={this.props.dispatch}
@@ -117,7 +107,6 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.intro')}
                        next="identification/contacts"
                        nextLabel={i18n.t('identification.destination.contacts')}>
-            <h2>{i18n.t('identification.name.title')}</h2>
             <ApplicantName name="name"
                            value={this.props.ApplicantName}
                            dispatch={this.props.dispatch}
@@ -131,7 +120,6 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.contacts')}
                        next="identification/birthdate"
                        nextLabel={i18n.t('identification.destination.birthdate')}>
-            <h2>{i18n.t('identification.othernames.title')}</h2>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         dispatch={this.props.dispatch}
@@ -145,7 +133,6 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.birthplace')}
                        back="identification/othernames"
                        backLabel={i18n.t('identification.destination.othernames')}>
-            <h2>{i18n.t('identification.birthdate.title')}</h2>
             <ApplicantBirthDate name="birthdate"
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthDate')}
@@ -159,7 +146,6 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.ssn')}
                        back="identification/birthdate"
                        backLabel={i18n.t('identification.destination.birthdate')}>
-            <h2>{i18n.t('identification.birthplace.title')}</h2>
             <ApplicantBirthPlace name="birthplace"
                                  value={this.props.ApplicantBirthPlace}
                                  dispatch={this.props.dispatch}
@@ -173,7 +159,6 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.name')}
                        next="identification/othernames"
                        nextLabel={i18n.t('identification.destination.othernames')}>
-            <h2>{i18n.t('identification.contacts.title')}</h2>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 dispatch={this.props.dispatch}
@@ -187,7 +172,6 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.birthplace')}
                        next="identification/physical"
                        nextLabel={i18n.t('identification.destination.physical')}>
-            <h2>{i18n.t('identification.ssn.title')}</h2>
             <ApplicantSSN name="ssn"
                           {...this.props.ApplicantSSN}
                           dispatch={this.props.dispatch}
@@ -201,7 +185,6 @@ class Identification extends SectionElement {
                        backLabel={i18n.t('identification.destination.ssn')}
                        next="identification/review"
                        nextLabel={i18n.t('identification.destination.review')}>
-            <h2>{i18n.t('identification.traits.title')}</h2>
             <Physical name="physical"
                       {...this.props.Physical}
                       dispatch={this.props.dispatch}
@@ -250,6 +233,72 @@ export function processApplicantBirthDate (birthDate) {
 Identification.defaultProps = {
   section: 'identification',
   store: 'Identification'
+}
+
+export class IdentificationSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <ApplicantName name="name"
+          value={this.props.ApplicantName}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ContactInformation name="contacts"
+          {...this.props.Contacts}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <OtherNames name="othernames"
+          {...this.props.OtherNames}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ApplicantBirthDate name="birthdate"
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          value={this.props.ApplicantBirthDate}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ApplicantBirthPlace name="birthplace"
+          value={this.props.ApplicantBirthPlace}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ApplicantSSN name="ssn"
+          {...this.props.ApplicantSSN}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <Physical name="physical"
+          {...this.props.Physical}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Identification))

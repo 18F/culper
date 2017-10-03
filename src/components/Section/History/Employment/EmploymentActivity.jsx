@@ -42,10 +42,11 @@ export default class EmploymentActivity extends ValidationElement {
     return (
       <div className="employment-activity">
         <div className={this.props.className}>
-          <Field help={`history.employment.default.activity.help`}
+          <Field title={i18n.t(`history.employment.default.heading.activity`)}
+                 titleSize="h3"
+                 help="history.employment.default.activity.help"
                  className={this.state.value === 'Other' ? 'no-margin-bottom' : ''}
                  adjustFor="p"
-                 shrink={true}
                  scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup name="employment_activity"
                         className="option-list"

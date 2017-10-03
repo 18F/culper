@@ -22,7 +22,7 @@ describe('The RealEstateActivity component', () => {
     const expected = {
       HasInterests: 'Yes',
       List: [{
-        RealEstateInterest: {
+        Item: {
           InterestTypes: ['Yourself']
         },
         open: true
@@ -39,7 +39,7 @@ describe('The RealEstateActivity component', () => {
         props: {
           HasInterests: 'Yes',
           List: [{
-            RealEstateInterest: {
+            Item: {
               InterestTypes: ['Yourself'],
               Address: {
                 country: 'United States',
@@ -59,7 +59,7 @@ describe('The RealEstateActivity component', () => {
         props: {
           HasInterests: 'Yes',
           List: [{
-            RealEstateInterest: {
+            Item: {
               InterestTypes: ['Yourself'],
               Address: {
                 street: '1 Rd',
@@ -77,7 +77,7 @@ describe('The RealEstateActivity component', () => {
         props: {
           HasInterests: 'Yes',
           List: [{
-            RealEstateInterest: {
+            Item: {
               InterestTypes: ['Yourself'],
               Address: {
                 country: 'United States',
@@ -120,7 +120,7 @@ describe('The RealEstateActivity component', () => {
       HasInterests: 'Yes',
       List: [
         {
-          RealEstateInterest: {
+          Item: {
             InterestTypes: ['Yourself'],
             RealEstateType: {
               value: 'Bar'

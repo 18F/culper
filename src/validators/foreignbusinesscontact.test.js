@@ -6,13 +6,13 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact name', () => {
     const tests = [
       {
-        props: {
+        state: {
           Name: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -34,13 +34,13 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact location', () => {
     const tests = [
       {
-        props: {
+        state: {
           Location: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Location: {
             country: 'United States',
             city: 'Arlington',
@@ -59,13 +59,13 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact date', () => {
     const tests = [
       {
-        props: {
+        state: {
           Date: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Date: {
             day: '1',
             month: '1',
@@ -83,13 +83,13 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact governments', () => {
     const tests = [
       {
-        props: {
+        state: {
           Governments: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Governments: {
             value: [
               { name: 'Germany', value: 'Germany' }
@@ -106,13 +106,13 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact establishment', () => {
     const tests = [
       {
-        props: {
+        state: {
           Establishment: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Establishment: {
             value: 'this is the establishment'
           }
@@ -127,13 +127,13 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact representatives', () => {
     const tests = [
       {
-        props: {
+        state: {
           Representatives: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Representatives: {
             value: 'this is the representatives'
           }
@@ -148,13 +148,13 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact purpose', () => {
     const tests = [
       {
-        props: {
+        state: {
           Purpose: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Purpose: {
             value: 'this is the purpose'
           }
@@ -169,19 +169,19 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact subsequent contacts', () => {
     const tests = [
       {
-        props: {
+        state: {
           SubsequentContacts: null
         },
         expected: false
       },
       {
-        props: {
+        state: {
           SubsequentContacts: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           SubsequentContacts: {
             List: [
               {
@@ -193,7 +193,7 @@ describe('Foreign business contact component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           SubsequentContacts: {
             List: [
               {
@@ -205,7 +205,7 @@ describe('Foreign business contact component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           SubsequentContacts: {
             List: [
               {
@@ -218,7 +218,7 @@ describe('Foreign business contact component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           SubsequentContacts: {
             List: [
               {
@@ -249,17 +249,17 @@ describe('Foreign business contact component validation', function () {
   it('validate foreign business contact', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignContact: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasForeignContact: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -267,7 +267,7 @@ describe('Foreign business contact component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignContact: 'Yes',
           List: [{}],
           ListBranch: 'No'
@@ -275,51 +275,53 @@ describe('Foreign business contact component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignContact: 'Yes',
           List: [
             {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              Location: {
-                country: 'United States',
-                city: 'Arlington',
-                zipcode: '22202',
-                state: 'VA',
-                layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
-              },
-              Date: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              Governments: {
-                value: [{ name: 'Germany', value: 'Germany' }]
-              },
-              Establishment: {
-                value: 'this is the establishment'
-              },
-              Representatives: {
-                value: 'this is the representatives'
-              },
-              Purpose: {
-                value: 'this is the purpose'
-              },
-              SubsequentContacts: {
-                List: [
-                  {
-                    Has: 'No'
-                  }
-                ]
+              Item: {
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
+                },
+                Location: {
+                  country: 'United States',
+                  city: 'Arlington',
+                  zipcode: '22202',
+                  state: 'VA',
+                  layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+                },
+                Date: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Governments: {
+                  value: [{ name: 'Germany', value: 'Germany' }]
+                },
+                Establishment: {
+                  value: 'this is the establishment'
+                },
+                Representatives: {
+                  value: 'this is the representatives'
+                },
+                Purpose: {
+                  value: 'this is the purpose'
+                },
+                SubsequentContacts: {
+                  List: [
+                    {
+                      Has: 'No'
+                    }
+                  ]
+                }
               }
             }
           ],

@@ -1,3 +1,4 @@
+import { env } from '../config'
 import { api } from '../services/api'
 import AuthConstants from './AuthConstants'
 import { push } from '../middleware/history'
@@ -11,8 +12,13 @@ export function login (username, password) {
   return function (dispatch, getState) {
     return api
       .login(username, password)
-      .then(r => {
-        dispatch(handleLoginSuccess(r.data))
+      .then(response => {
+        const mfa = env.MultipleFactorAuthentication()
+        api.setToken(response.data)
+        dispatch(handleLoginSuccess(response.data))
+        if (!mfa.enabled) {
+          dispatch(push('/form/identification/name'))
+        }
       })
       .catch(error => {
         switch (error.response.status) {
@@ -29,7 +35,6 @@ export function login (username, password) {
 export function logout () {
   return function (dispatch, getState) {
     api.setToken('')
-    // TODO server side call to invalidate token
     dispatch({
       type: AuthConstants.LOGOUT
     })
@@ -52,7 +57,7 @@ export function twofactor (account, token) {
     return api
       .twoFactor(account, token)
       .then(response => {
-        api.setToken(getState().authentication.token)
+        api.setToken(response.data)
         dispatch(handleTwoFactorSuccess())
         dispatch(push('/form/identification/name'))
       })
@@ -68,7 +73,7 @@ export function twofactorreset (account) {
     return api
       .twoFactorReset(account)
       .then(response => {
-        api.setToken('')
+        api.setToken(response.data)
         dispatch(handleTwoFactorError('Two factor authentication reset'))
         dispatch(qrcode(account))
       })

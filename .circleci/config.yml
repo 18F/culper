@@ -1,0 +1,148 @@
+version: 2
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
+
+  deploy_development:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
+      - deploy:
+          command: |
+            set -x
+            ./bin/deploy.sh dev
+
+  deploy_staging:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
+      - deploy:
+          command: |
+            set -x
+            ./bin/deploy.sh staging
+
+  deploy_production:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: Build docker images
+          command: |
+            set -x
+            cp .env.test .env
+            docker-compose build
+      - run:
+          name: Run unit tests for API
+          command: |
+            set -x
+            docker-compose run api ./test.sh
+      - run:
+          name: Run unit tests for the front end
+          command: |
+            set -x
+            docker-compose run frontend npm test
+      - run:
+          name: Code coverage
+          command: |
+            set -x
+            echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
+            docker-compose run frontend npm run coverage
+      - deploy:
+          command: |
+            set -x
+            ./bin/deploy.sh production
+
+workflows:
+  version: 2
+  build_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore:
+                - master
+                - develop
+                - release
+      - deploy_staging:
+          filters:
+            branches:
+              only:
+                - master
+      - deploy_development:
+          filters:
+            branches:
+              only:
+                - develop
+      - deploy_production:
+          filters:
+            branches:
+              only:
+                - release

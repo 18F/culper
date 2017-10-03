@@ -2,10 +2,10 @@ import LocationValidator from './location'
 import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class DelinquentValidator {
-  constructor (state = {}, props = {}) {
-    this.hasDelinquent = state.HasDelinquent
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasDelinquent = data.HasDelinquent
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validHasDelinquent () {
@@ -33,8 +33,8 @@ export default class DelinquentValidator {
       return false
     }
 
-    for (const item of this.list) {
-      if (new DelinquentItemValidator(item, null).isValid() === false) {
+    for (const row of this.list) {
+      if (new DelinquentItemValidator(row.Item, null).isValid() === false) {
         return false
       }
     }
@@ -49,21 +49,21 @@ export default class DelinquentValidator {
 }
 
 export class DelinquentItemValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.infractions = state.Infractions || []
-    this.accountNumber = state.AccountNumber
-    this.propertyType = state.PropertyType
-    this.amount = state.Amount
-    this.amountEstimated = state.AmountEstimated
-    this.reason = state.Reason
-    this.status = state.Status
-    this.date = state.Date
-    this.resolved = state.Resolved
-    this.resolvedNotApplicable = state.ResolvedNotApplicable
-    this.courtName = state.CourtName
-    this.courtAddress = state.CourtAddress
-    this.description = state.Description
+  constructor (data = {}) {
+    this.name = data.Name
+    this.infractions = data.Infractions || []
+    this.accountNumber = data.AccountNumber
+    this.propertyType = data.PropertyType
+    this.amount = data.Amount
+    this.amountEstimated = data.AmountEstimated
+    this.reason = data.Reason
+    this.status = data.Status
+    this.date = data.Date
+    this.resolved = data.Resolved
+    this.resolvedNotApplicable = data.ResolvedNotApplicable
+    this.courtName = data.CourtName
+    this.courtAddress = data.CourtAddress
+    this.description = data.Description
   }
 
   validName () {

@@ -169,19 +169,19 @@ Please refer to the [contributing documentation][18].
 
 
 [badge_chat]: https://img.shields.io/badge/chat-slack-green.svg
-[badge_ci_18f]: https://travis-ci.org/18F/e-QIP-prototype.svg?branch=master
+[badge_ci_18f]: https://circleci.com/gh/18F/e-QIP-prototype.svg?style=shield
 [badge_cc_18f]: https://codeclimate.com/github/18F/e-QIP-prototype/badges/gpa.svg
 [badge_cov_18f]: https://codecov.io/gh/18F/e-QIP-prototype/branch/master/graph/badge.svg
 [badge_goreportcard_18f]: https://goreportcard.com/badge/github.com/18F/e-QIP-prototype
-[badge_ci_tt]: https://travis-ci.org/truetandem/e-QIP-prototype.svg?branch=master
+[badge_ci_tt]: https://circleci.com/gh/truetandem/e-QIP-prototype.svg?style=shield
 [badge_cc_tt]: https://codeclimate.com/github/truetandem/e-QIP-prototype/badges/gpa.svg
 [badge_cov_tt]: https://codecov.io/gh/truetandem/e-QIP-prototype/branch/master/graph/badge.svg
 [badge_goreportcard_tt]: https://goreportcard.com/badge/github.com/truetandem/e-QIP-prototype
 [1]: https://gsa-tts.slack.com/messages/acq-e-qip-vendor
-[2]: https://travis-ci.org/18F/e-QIP-prototype
+[2]: https://circleci.com/gh/18F/e-QIP-prototype
 [3]: https://codeclimate.com/github/18F/e-QIP-prototype
 [4]: https://continua11y.18f.gov/18F/e-QIP-prototype
-[5]: https://travis-ci.org/truetandem/e-QIP-prototype
+[5]: https://circleci.com/gh/truetandem/e-QIP-prototype
 [6]: https://codeclimate.com/github/truetandem/e-QIP-prototype
 [7]: https://continua11y.18f.gov/truetandem/e-QIP-prototype
 [8]: https://playbook.cio.gov/#plays_index_anchor

@@ -645,10 +645,27 @@ Telephone.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required) {
-        return !!props.domestic.first &&
-          !!props.domestic.second &&
-          !!props.domestic.third &&
-          !!props.numberType
+        if (props.showNumberType && !props.numberType) {
+          return false
+        }
+        if (props.allowNotApplicable && props.noNumber === 'NA') {
+          return true
+        }
+        switch (props.type) {
+          case 'Domestic':
+            return !!props.domestic.first &&
+              !!props.domestic.second &&
+              !!props.domestic.third
+          case 'DSN':
+            return !!props.dsn.first &&
+              !!props.dsn.second
+          case 'International':
+            return !!props.international.first &&
+              !!props.international.second &&
+              !!props.international.third
+          default:
+            return false
+        }
       }
       return true
     }

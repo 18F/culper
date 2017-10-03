@@ -4,13 +4,13 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Show } from '../../Form'
+import { Show, Field } from '../../Form'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
 import ExistingConditions from './ExistingConditions/ExistingConditions'
-import PsychologicalValidator, { showQuestion21E } from '../../../validators/psychological'
+import { showQuestion21E } from '../../../validators/psychological'
 import { extractApplicantBirthDate } from '../extractors'
 
 class Psychological extends SectionElement {
@@ -37,11 +37,15 @@ class Psychological extends SectionElement {
                        backLabel={ i18n.t('legal.destination.review') }
                        next="psychological/competence"
                        nextLabel={ i18n.t('psychological.destination.competence') }>
-            <h2>{ i18n.t('psychological.heading.intro') }</h2>
-            { i18n.m('psychological.intro.para1') }
-            { i18n.m('psychological.intro.para2') }
-            { i18n.m('psychological.intro.para3') }
-            { i18n.m('psychological.intro.para4') }
+            <Field title={ i18n.t('psychological.heading.intro') }
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              { i18n.m('psychological.intro.para1') }
+              { i18n.m('psychological.intro.para2') }
+              { i18n.m('psychological.intro.para3') }
+              { i18n.m('psychological.intro.para4') }
+            </Field>
+
           </SectionView>
 
           <SectionView name="competence"
@@ -172,7 +176,6 @@ class Psychological extends SectionElement {
             <Show when={this.props.ShowExistingConditions}>
               <div>
                 <hr />
-                {this.props.ShowExistingConditions}
                 <ExistingConditions name="ExistingConditions"
                                     {...this.props.ExistingConditions}
                                     ApplicantBirthDate={this.props.ApplicantBirthDate}
@@ -218,6 +221,73 @@ Psychological.defaultProps = {
   section: 'psychological',
   store: 'Psychological',
   scrollToBottom: SectionView.BottomButtonsSelector
+}
+
+export class PsychologicalSections extends React.Component {
+  render () {
+    const showExisting = showQuestion21E(this.props)
+    return (
+      <div>
+        <Competence name="Competence"
+          {...this.props.Competence}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Consultation name="Consultations"
+          {...this.props.Consultations}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Hospitalizations name="Hospitalizations"
+          {...this.props.Hospitalizations}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Diagnoses name="Diagnoses"
+          {...this.props.Diagnoses}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <Show when={showExisting}>
+          <div>
+            <hr />
+            <ExistingConditions name="ExistingConditions"
+              {...this.props.ExistingConditions}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={false}
+            />
+          </div>
+        </Show>
+    </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Psychological))

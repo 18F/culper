@@ -62,6 +62,7 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
+    this.isValid = this.isValid.bind(this)
 
     // Instance variable. Not stored in state to prevent re-renders and it's not going to
     // be used in the UI.
@@ -325,7 +326,7 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    const closedAndIncomplete = !item.open && !this.props.validator(this.props.transformer(item))
+    const closedAndIncomplete = !item.open && !this.isValid(this.props.transformer(item))
     const svg = closedAndIncomplete
           ? <Svg src="/img/exclamation-point.svg" className="incomplete" alt={this.props.incomplete} />
           : null
@@ -349,7 +350,7 @@ export default class Accordion extends ValidationElement {
           </a>
         </div>
         <Show when={closedAndIncomplete && !initial}>
-          {this.props.byline(item, index, initial, this.props.incomplete)}
+          {this.props.byline(item, index, initial, this.props.incomplete, this.props.required)}
         </Show>
       </div>
     )
@@ -457,6 +458,17 @@ export default class Accordion extends ValidationElement {
       : null
   }
 
+  /**
+   * Determines if current item is valid. By default, this
+   * utilizes the validator that is passed in.
+   * */
+  isValid (item) {
+    if (this.props.required) {
+      return new this.props.validator(item).isValid()
+    }
+    return true
+  }
+
   render () {
     const klass = `accordion ${this.props.className}`.trim()
     const description = this.props.items.length < 2 ? '' : this.props.description
@@ -482,7 +494,7 @@ export default class Accordion extends ValidationElement {
 }
 
 Accordion.defaultProps = {
-  initial: true,
+  initial: false,
   skipWarning: false,
   minimum: 1,
   defaultState: true,
@@ -516,7 +528,11 @@ Accordion.defaultProps = {
     )
   },
   validator: (item) => {
-    return true
+    return class {
+      isValid () {
+        return true
+      }
+    }
   },
   transformer: (item) => {
     return item && item.Item ? item.Item : item

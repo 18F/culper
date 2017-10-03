@@ -1,15 +1,15 @@
 import { validGenericTextfield, validCurrency, validDateField, validBranch } from './helpers'
 
 export default class ForeignBenefitValidator {
-  constructor (state = {}, props = {}) {
-    this.interestTypes = props.InterestTypes
-    this.benefitType = props.BenefitType
-    this.otherBenefitType = props.OtherBenefitType
-    this.benefitFrequency = props.BenefitFrequency
-    this.oneTimeBenefit = props.OneTimeBenefit
-    this.futureBenefit = props.FutureBenefit
-    this.continuingBenefit = props.ContinuingBenefit
-    this.otherBenefit = props.OtherBenefit
+  constructor (data = {}) {
+    this.interestTypes = data.InterestTypes || []
+    this.benefitType = data.BenefitType
+    this.otherBenefitType = data.OtherBenefitType
+    this.benefitFrequency = data.BenefitFrequency
+    this.oneTimeBenefit = data.OneTimeBenefit
+    this.futureBenefit = data.FutureBenefit
+    this.continuingBenefit = data.ContinuingBenefit
+    this.otherBenefit = data.OtherBenefit
   }
 
   validInterestTypes () {
@@ -37,11 +37,11 @@ export default class ForeignBenefitValidator {
   validBenefit () {
     switch (this.benefitFrequency) {
       case 'OneTime':
-        return new OneTimeBenefitValidator(null, this.oneTimeBenefit).isValid()
+        return new OneTimeBenefitValidator(this.oneTimeBenefit).isValid()
       case 'Future':
-        return new FutureBenefitValidator(null, this.futureBenefit).isValid()
+        return new FutureBenefitValidator(this.futureBenefit).isValid()
       case 'Continuing':
-        return new ContinuingBenefitValidator(null, this.continuingBenefit).isValid()
+        return new ContinuingBenefitValidator(this.continuingBenefit).isValid()
       case 'Other':
         return validGenericTextfield(this.otherBenefit)
       default:
@@ -58,13 +58,13 @@ export default class ForeignBenefitValidator {
 }
 
 export class OneTimeBenefitValidator {
-  constructor (state = {}, props = {}) {
-    this.received = props.Received
-    this.country = props.Country
-    this.value = props.Value
-    this.reason = props.Reason
-    this.obligated = props.Obligated
-    this.obligatedExplanation = props.ObligatedExplanation
+  constructor (data = {}) {
+    this.received = data.Received
+    this.country = data.Country
+    this.value = data.Value
+    this.reason = data.Reason
+    this.obligated = data.Obligated
+    this.obligatedExplanation = data.ObligatedExplanation
   }
 
   validReceived () {
@@ -108,15 +108,15 @@ export class OneTimeBenefitValidator {
 }
 
 export class FutureBenefitValidator {
-  constructor (state = {}, props = {}) {
-    this.begin = props.Begin
-    this.frequency = props.Frequency
-    this.otherFrequency = props.OtherFrequency
-    this.country = props.Country
-    this.value = props.Value
-    this.reason = props.Reason
-    this.obligated = props.Obligated
-    this.obligatedExplanation = props.ObligatedExplanation
+  constructor (data = {}) {
+    this.begin = data.Begin
+    this.frequency = data.Frequency
+    this.otherFrequency = data.OtherFrequency
+    this.country = data.Country
+    this.value = data.Value
+    this.reason = data.Reason
+    this.obligated = data.Obligated
+    this.obligatedExplanation = data.ObligatedExplanation
   }
 
   validBegin () {
@@ -175,16 +175,16 @@ export class FutureBenefitValidator {
 }
 
 export class ContinuingBenefitValidator {
-  constructor (state = {}, props = {}) {
-    this.began = props.Began
-    this.end = props.End
-    this.frequency = props.Frequency
-    this.otherFrequency = props.OtherFrequency
-    this.country = props.Country
-    this.value = props.Value
-    this.reason = props.Reason
-    this.obligated = props.Obligated
-    this.obligatedExplanation = props.ObligatedExplanation
+  constructor (data = {}) {
+    this.began = data.Began
+    this.end = data.End
+    this.frequency = data.Frequency
+    this.otherFrequency = data.OtherFrequency
+    this.country = data.Country
+    this.value = data.Value
+    this.reason = data.Reason
+    this.obligated = data.Obligated
+    this.obligatedExplanation = data.ObligatedExplanation
   }
 
   validBegan () {

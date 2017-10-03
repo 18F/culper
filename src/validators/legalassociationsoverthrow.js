@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validGenericTextfield, validNotApplicable } from './helpers'
 
 export default class LegalAssociationOverthrowValidator {
-  constructor (state = {}, props = {}) {
-    this.hasOverthrow = props.HasOverthrow
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasOverthrow = data.HasOverthrow
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -23,7 +23,7 @@ export default class LegalAssociationOverthrowValidator {
         return false
       }
 
-      return this.list.every(item => new OverthrowValidator(null, item).isValid())
+      return this.list.every(item => new OverthrowValidator(item.Item).isValid())
     }
 
     return false
@@ -35,15 +35,15 @@ export default class LegalAssociationOverthrowValidator {
 }
 
 export class OverthrowValidator {
-  constructor (state = {}, props = {}) {
-    this.organization = props.Organization
-    this.address = props.Address
-    this.dates = props.Dates
-    this.positions = props.Positions
-    this.positionsNotApplicable = props.PositionsNotApplicable
-    this.contributions = props.Contributions
-    this.contributionsNotApplicable = props.ContributionsNotApplicable
-    this.reasons = props.Reasons
+  constructor (data = {}) {
+    this.organization = data.Organization
+    this.address = data.Address
+    this.dates = data.Dates
+    this.positions = data.Positions
+    this.positionsNotApplicable = data.PositionsNotApplicable
+    this.contributions = data.Contributions
+    this.contributionsNotApplicable = data.ContributionsNotApplicable
+    this.reasons = data.Reasons
   }
 
   validOrganization () {

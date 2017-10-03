@@ -5,6 +5,7 @@ import { push } from '../../../middleware/history'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import { Field } from '../../Form'
 import NegativeImpacts from './Alcohol/NegativeImpacts'
 import OrderedCounselings from './Alcohol/OrderedCounselings'
 import VoluntaryCounselings from './Alcohol/VoluntaryCounselings'
@@ -95,12 +96,15 @@ class SubstanceUse extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="foreign/review"
-                       backLabel={ i18n.t('foreign.destination.review') }
+                       back="financial/review"
+                       backLabel={ i18n.t('financial.destination.review') }
                        next="substance/drugs/usage"
                        nextLabel={i18n.t('substance.destination.drugs.usage')}>
-            <h2>{i18n.t('substance.intro.title')}</h2>
-            {i18n.m('substance.intro.body')}
+            <Field title={i18n.t('substance.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('substance.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="drugs/usage"
@@ -425,6 +429,124 @@ SubstanceUse.defaultProps = {
   section: 'substance',
   store: 'SubstanceUse',
   scrollToBottom: SectionView.BottomButtonsSelector
+}
+
+export class SubstanceUseSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <DrugUses name="druguses"
+          {...this.props.DrugUses}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <DrugInvolvements name="druginvolvements"
+          {...this.props.DrugInvolvements}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <DrugClearanceUses name="drugclearanceuses"
+          {...this.props.DrugClearanceUses}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          onUpdate={this.updateDrugClearanceUses}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <DrugPublicSafetyUses name="drugpublicsafety"
+          {...this.props.DrugPublicSafetyUses}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <PrescriptionUses name="prescriptionuses"
+          {...this.props.PrescriptionUses}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <OrderedTreatments name="ordered"
+          {...this.props.OrderedTreatments}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <VoluntaryTreatments name="voluntary"
+          {...this.props.VoluntaryTreatments}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <NegativeImpacts name="negative"
+          defaultState={false}
+          {...this.props.NegativeImpacts}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <OrderedCounselings name="ordered"
+          defaultState={false}
+          {...this.props.OrderedCounselings}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <VoluntaryCounselings name="voluntary"
+          defaultState={false}
+          {...this.props.VoluntaryCounselings}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <ReceivedCounselings name="additional"
+          defaultState={false}
+          {...this.props.ReceivedCounselings}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+</div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(SubstanceUse))

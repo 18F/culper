@@ -4,10 +4,10 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
 
 export default class ForeignBusinessSponsorshipValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignSponsorship = props.HasForeignSponsorship
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasForeignSponsorship = data.HasForeignSponsorship
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -24,7 +24,7 @@ export default class ForeignBusinessSponsorshipValidator {
         return false
       }
 
-      return this.list.every(item => new SponsorshipValidator(null, item).isValid())
+      return this.list.every(item => new SponsorshipValidator(item.Item).isValid())
     }
 
     return false
@@ -36,21 +36,21 @@ export default class ForeignBusinessSponsorshipValidator {
 }
 
 export class SponsorshipValidator {
-  constructor (state = {}, props = {}) {
-    this.name = props.Name
-    this.birthdate = props.Birthdate
-    this.birthdateNotApplicable = props.BirthdateNotApplicable
-    this.birthplace = props.Birthplace
-    this.address = props.Address
-    this.citizenship = props.Citizenship
-    this.organization = props.Organization
-    this.organizationNotApplicable = props.OrganizationNotApplicable
-    this.organizationAddress = props.OrganizationAddress
-    this.organizationAddressNotApplicable = props.OrganizationAddressNotApplicable
-    this.dates = props.Dates
-    this.residence = props.Residence
-    this.stay = props.Stay
-    this.sponsorship = props.Sponsorship
+  constructor (data = {}) {
+    this.name = data.Name
+    this.birthdate = data.Birthdate
+    this.birthdateNotApplicable = data.BirthdateNotApplicable
+    this.birthplace = data.Birthplace
+    this.address = data.Address
+    this.citizenship = data.Citizenship
+    this.organization = data.Organization
+    this.organizationNotApplicable = data.OrganizationNotApplicable
+    this.organizationAddress = data.OrganizationAddress
+    this.organizationAddressNotApplicable = data.OrganizationAddressNotApplicable
+    this.dates = data.Dates
+    this.residence = data.Residence
+    this.stay = data.Stay
+    this.sponsorship = data.Sponsorship
   }
 
   validName () {
@@ -58,7 +58,7 @@ export class SponsorshipValidator {
   }
 
   validBirthdate () {
-    return validNotApplicable(this.birtdateNotApplicable, () => {
+    return validNotApplicable(this.birthdateNotApplicable, () => {
       return !!this.birthdate && validDateField(this.birthdate)
     })
   }
