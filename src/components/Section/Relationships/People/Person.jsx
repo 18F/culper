@@ -279,6 +279,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.address')}
+               help="relationships.people.person.help.address"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="address">
           <Location name="Address"
