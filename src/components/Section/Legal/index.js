@@ -1,2 +1,3 @@
-import Legal from './Legal'
+import Legal, { LegalSections } from './Legal'
 export default Legal
+export { LegalSections }

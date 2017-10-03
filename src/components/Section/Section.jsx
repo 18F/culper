@@ -14,6 +14,7 @@ import Psychological from './Psychological'
 import SubstanceUse from './SubstanceUse'
 import Design from './Design'
 import Releases from './Releases'
+import Print from './Print/Print'
 import { SectionView, SectionViews } from './SectionView'
 
 class Section extends React.Component {
@@ -75,6 +76,9 @@ class Section extends React.Component {
         </SectionView>
         <SectionView name="releases">
           <Releases subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="print">
+          <Print subsection={this.props.subsection} />
         </SectionView>
       </SectionViews>
     )
