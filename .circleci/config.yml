@@ -145,4 +145,4 @@ workflows:
           filters:
             branches:
               only:
-                - circle-changes
+                - master
