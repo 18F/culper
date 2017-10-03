@@ -5,22 +5,14 @@ set -e
 SPACE=$1
 
 #
-# Determine what environment to configure based on the
-# originating repository.
+# Determine what environment to configure based on the repo/branch
 #
-# Reference: https://docs.travis-ci.com/user/environment-variables
-#
-# if [ "$TRAVIS_REPO_SLUG" = "18F/e-QIP-prototype" ]; then
-#   ENV_FILE=".env.production"
-# elif [ "$TRAVIS_REPO_SLUG" = "truetandem/e-QIP-prototype" ]; then
-#   ENV_FILE=".env.staging"
-# else
-#   ENV_FILE=".env.test"
-# fi
 
-if [ "$SPACE" = "production" ]; then
+# Use CircleCI's ENV variables
+# TODO: Remove CIRCLE vars and use "staging" space if/when we're in one repo; else when Circle implements `owner` as a job filter.
+if [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
   ENV_FILE=".env.production"
-elif [ "$SPACE" = "staging" ]; then
+elif [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
   ENV_FILE=".env.staging"
 elif [ "$SPACE" = "dev" ]; then
   ENV_FILE=".env.dev"
