@@ -2750,7 +2750,7 @@ const en = {
         },
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2839,7 +2839,7 @@ const en = {
       help: {
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2879,7 +2879,7 @@ const en = {
         },
         dateDivorced: {
           title: 'Need help with providing date divorced/dissolved?',
-          message: 'Provide the date divorced/dissolved, annulled or widowed',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         foreignBornDocument: {
