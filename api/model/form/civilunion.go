@@ -10,7 +10,7 @@ import (
 
 // CivilUnion is an item of named payloads.
 type CivilUnion struct {
-	Items PayloadProperties `sql:"-"`
+	Items PayloadProperties `json:"," sql:"-"`
 
 	ID        int    `json:"-" sql:",pk"`
 	AccountID int    `json:"-" sql:",pk"`
@@ -78,7 +78,12 @@ func (cu *CivilUnion) Delete(context *db.DatabaseContext, account int) (int, err
 		return cu.ID, err
 	}
 
-	cu.Each(func(name, entityType string, entity Entity, err error) error {
+	err := cu.Each(func(name, entityType string, entity Entity, err error) error {
+		// If there is no property name skip it.
+		if name == "" {
+			return nil
+		}
+
 		item := &CivilUnion{
 			ID:        cu.ID,
 			AccountID: account,
@@ -94,10 +99,8 @@ func (cu *CivilUnion) Delete(context *db.DatabaseContext, account int) (int, err
 		return context.Delete(item)
 	})
 
-	if cu.ID != 0 {
-		if err := context.Delete(cu); err != nil {
-			return cu.ID, err
-		}
+	if err != nil {
+		return cu.ID, err
 	}
 
 	return cu.ID, nil
@@ -111,15 +114,7 @@ func (cu *CivilUnion) Get(context *db.DatabaseContext, account int) (int, error)
 		return cu.ID, err
 	}
 
-	if cu.ID != 0 {
-		err := context.Select(cu)
-		if err != nil {
-			return cu.ID, err
-		}
-	}
-
 	cu.getItemPropertyNames(context)
-	props := make(map[string]Payload)
 	err := cu.Each(func(name, entityType string, entity Entity, err error) error {
 		item := &CivilUnion{
 			ID:        cu.ID,
@@ -131,7 +126,7 @@ func (cu *CivilUnion) Get(context *db.DatabaseContext, account int) (int, error)
 		if err := context.Select(item); err != nil {
 			return err
 		}
-		entity = transform[entityType]()
+		entity = transform[item.Table]()
 		entity.SetID(item.ItemID)
 
 		if err := context.CheckTable(entity); err != nil {
@@ -142,12 +137,10 @@ func (cu *CivilUnion) Get(context *db.DatabaseContext, account int) (int, error)
 			return err
 		}
 
-		// cu.Items[name] = entity
-		props[name] = entity.Marshal()
+		cu.Items[name] = entity.Marshal()
 		return nil
 	})
 
-	cu.Items = props
 	return cu.ID, err
 }
 

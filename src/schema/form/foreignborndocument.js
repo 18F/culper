@@ -5,7 +5,7 @@ import { text } from './text'
 import { datecontrol } from './datecontrol'
 import { notapplicable } from './notapplicable'
 
-export const foreignborndocument = (data) => {
+export const foreignborndocument = (data = {}) => {
   return general('foreignborndocument', {
     DocumentType: radio(data.DocumentType),
     OtherExplanation: textarea(data.OtherExplanation),

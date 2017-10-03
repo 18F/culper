@@ -133,7 +133,7 @@ type IdentificationBirthPlace struct {
 	Payload Payload `json:"location" sql:"-"`
 
 	// Validator specific fields
-	Location *Location
+	Location *Location `json:"-"`
 
 	// Persister specific fields
 	ID         int `json:"-"`
@@ -978,18 +978,36 @@ func (entity *IdentificationPhysical) Save(context *db.DatabaseContext, account 
 
 	context.Find(&IdentificationPhysical{ID: account}, func(result interface{}) {
 		previous := result.(*IdentificationPhysical)
-		entity.CommentsID = previous.CommentsID
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
 		entity.Comments.ID = previous.CommentsID
-		entity.EyeColorID = previous.EyeColorID
+		entity.CommentsID = previous.CommentsID
+		if entity.EyeColor == nil {
+			entity.EyeColor = &Text{}
+		}
 		entity.EyeColor.ID = previous.EyeColorID
-		entity.HairColorID = previous.HairColorID
+		entity.EyeColorID = previous.EyeColorID
+		if entity.HairColor == nil {
+			entity.HairColor = &Text{}
+		}
 		entity.HairColor.ID = previous.HairColorID
-		entity.SexID = previous.SexID
+		entity.HairColorID = previous.HairColorID
+		if entity.Sex == nil {
+			entity.Sex = &Text{}
+		}
 		entity.Sex.ID = previous.SexID
-		entity.HeightID = previous.HeightID
+		entity.SexID = previous.SexID
+		if entity.Height == nil {
+			entity.Height = &Height{}
+		}
 		entity.Height.ID = previous.HeightID
-		entity.WeightID = previous.WeightID
+		entity.HeightID = previous.HeightID
+		if entity.Weight == nil {
+			entity.Weight = &Number{}
+		}
 		entity.Weight.ID = previous.WeightID
+		entity.WeightID = previous.WeightID
 	})
 
 	commentsID, err := entity.Comments.Save(context, account)
@@ -1043,6 +1061,40 @@ func (entity *IdentificationPhysical) Delete(context *db.DatabaseContext, accoun
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationPhysical{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationPhysical)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.EyeColor == nil {
+			entity.EyeColor = &Text{}
+		}
+		entity.EyeColor.ID = previous.EyeColorID
+		entity.EyeColorID = previous.EyeColorID
+		if entity.HairColor == nil {
+			entity.HairColor = &Text{}
+		}
+		entity.HairColor.ID = previous.HairColorID
+		entity.HairColorID = previous.HairColorID
+		if entity.Sex == nil {
+			entity.Sex = &Text{}
+		}
+		entity.Sex.ID = previous.SexID
+		entity.SexID = previous.SexID
+		if entity.Height == nil {
+			entity.Height = &Height{}
+		}
+		entity.Height.ID = previous.HeightID
+		entity.HeightID = previous.HeightID
+		if entity.Weight == nil {
+			entity.Weight = &Number{}
+		}
+		entity.Weight.ID = previous.WeightID
+		entity.WeightID = previous.WeightID
+	})
+
 	if _, err := entity.Comments.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -1083,6 +1135,40 @@ func (entity *IdentificationPhysical) Get(context *db.DatabaseContext, account i
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&IdentificationPhysical{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationPhysical)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.EyeColor == nil {
+			entity.EyeColor = &Text{}
+		}
+		entity.EyeColor.ID = previous.EyeColorID
+		entity.EyeColorID = previous.EyeColorID
+		if entity.HairColor == nil {
+			entity.HairColor = &Text{}
+		}
+		entity.HairColor.ID = previous.HairColorID
+		entity.HairColorID = previous.HairColorID
+		if entity.Sex == nil {
+			entity.Sex = &Text{}
+		}
+		entity.Sex.ID = previous.SexID
+		entity.SexID = previous.SexID
+		if entity.Height == nil {
+			entity.Height = &Height{}
+		}
+		entity.Height.ID = previous.HeightID
+		entity.HeightID = previous.HeightID
+		if entity.Weight == nil {
+			entity.Weight = &Number{}
+		}
+		entity.Weight.ID = previous.WeightID
+		entity.WeightID = previous.WeightID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Select(entity); err != nil {

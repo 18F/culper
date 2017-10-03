@@ -53,11 +53,10 @@ export const historyMiddleware = store => next => action => {
 export const sectionMiddleware = store => next => action => {
   if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
     if (action.section && action.subsection) {
-      const payloadType = `${action.section}/${action.subsection}`.replace('/', '.')
+      const payloadType = `${action.section}/${action.subsection}`.replace(/\//g, '.')
       api
         .section(payloadType)
         .then(r => {
-          console.log('shit we got from the server:', r.data)
           store.dispatch(updateApplication(action.section, action.subsection, unschema(r.data)))
         })
         .catch(() => {
@@ -80,7 +79,7 @@ export const saveMiddleware = store => next => action => {
       const application = action.previous.application
       const pending = sectionData(section.section, section.subsection, application)
       if (pending) {
-        const payload = schema(`${section.section}/${section.subsection}`.replace('/', '.'), pending, false)
+        const payload = schema(`${section.section}/${section.subsection}`.replace(/\//g, '.'), pending, false)
         api
           .save(payload)
           .then(r => {

@@ -47,8 +47,14 @@ func (ci *CollectionItem) Save(context *db.DatabaseContext, account, collectionI
 	log.Println("1.4.2")
 	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
 		log.Println("1.4.2.1")
-		if err != nil {
-			return err
+		log.Println("name: ", name)
+		log.Println("entity type: ", entityType)
+		log.Println("err: ", err)
+
+		// If a named payload was not ablet to be decoded then skip the saving
+		// bit.
+		if entityType == "" {
+			return nil
 		}
 
 		item := &CollectionItem{

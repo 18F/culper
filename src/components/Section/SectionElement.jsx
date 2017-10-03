@@ -27,7 +27,7 @@ export default class SectionElement extends React.Component {
   }
 
   handleUpdate (field, values) {
-    // const id = `${this.props.section}/${this.props.subsection}`.replace('/', '.')
+    // const id = `${this.props.section}/${this.props.subsection}`.replace(/\//g, '.')
     // this.props.dispatch(updateApplication(this.props.store, field, schema(id, values, false)))
     this.props.dispatch(updateApplication(this.props.store, field, values))
   }

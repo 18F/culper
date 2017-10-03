@@ -42,7 +42,7 @@ class SavedIndicator extends React.Component {
     const section = this.props.section.section
     const subsection = this.props.section.subsection
     const pending = sectionData(section, subsection, application)
-    const payload = schema(`${section}/${subsection}`.replace('/', '.'), pending, false)
+    const payload = schema(`${section}/${subsection}`.replace(/\//g, '.'), pending, false)
 
     if (pending) {
       this.setState({elapsed: 0, animate: true}, () => {

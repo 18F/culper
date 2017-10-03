@@ -145,11 +145,11 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 	}
 
 	entity.CivilUnion.ID = entity.ID
-	civilUnionID, err := entity.CivilUnion.Save(context, account)
+	_, err = entity.CivilUnion.Save(context, account)
 	if err != nil {
 		return entity.ID, err
 	}
-	entity.CivilUnionID = civilUnionID
+	entity.CivilUnionID = entity.ID // civilUnionID
 
 	return entity.ID, nil
 }
@@ -172,8 +172,8 @@ func (entity *RelationshipsMarital) Delete(context *db.DatabaseContext, account 
 		if entity.CivilUnion == nil {
 			entity.CivilUnion = &CivilUnion{}
 		}
-		entity.CivilUnion.ID = previous.CivilUnionID
-		entity.CivilUnionID = previous.CivilUnionID
+		entity.CivilUnion.ID = entity.ID // previous.CivilUnionID
+		entity.CivilUnionID = entity.ID  // previous.CivilUnionID
 		if entity.DivorcedList == nil {
 			entity.DivorcedList = &Collection{}
 		}
@@ -210,6 +210,12 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
+	if entity.ID != 0 {
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	context.Find(&RelationshipsMarital{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsMarital)
 		if entity.Status == nil {
@@ -220,8 +226,8 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 		if entity.CivilUnion == nil {
 			entity.CivilUnion = &CivilUnion{}
 		}
-		entity.CivilUnion.ID = previous.CivilUnionID
-		entity.CivilUnionID = previous.CivilUnionID
+		entity.CivilUnion.ID = entity.ID // previous.CivilUnionID
+		entity.CivilUnionID = entity.ID  // previous.CivilUnionID
 		if entity.DivorcedList == nil {
 			entity.DivorcedList = &Collection{}
 		}
@@ -229,28 +235,19 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 		entity.DivorcedListID = previous.DivorcedListID
 	})
 
-	if entity.ID != 0 {
-		if err := context.Select(entity); err != nil {
-			return entity.ID, err
-		}
-	}
-
 	if entity.StatusID != 0 {
-		entity.Status = &Radio{ID: entity.StatusID}
 		if _, err := entity.Status.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.CivilUnionID != 0 {
-		entity.CivilUnion = &CivilUnion{ID: entity.CivilUnionID}
 		if _, err := entity.CivilUnion.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.DivorcedListID != 0 {
-		entity.DivorcedList = &Collection{ID: entity.DivorcedListID}
 		if _, err := entity.DivorcedList.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -331,8 +328,14 @@ func (entity *RelationshipsCohabitants) Save(context *db.DatabaseContext, accoun
 
 	context.Find(&RelationshipsCohabitants{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsCohabitants)
+		if entity.HasCohabitant == nil {
+			entity.HasCohabitant = &Branch{}
+		}
 		entity.HasCohabitantID = previous.HasCohabitantID
 		entity.HasCohabitant.ID = previous.HasCohabitantID
+		if entity.CohabitantList == nil {
+			entity.CohabitantList = &Collection{}
+		}
 		entity.CohabitantListID = previous.CohabitantListID
 		entity.CohabitantList.ID = previous.CohabitantListID
 	})
@@ -366,8 +369,14 @@ func (entity *RelationshipsCohabitants) Delete(context *db.DatabaseContext, acco
 
 	context.Find(&RelationshipsCohabitants{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsCohabitants)
+		if entity.HasCohabitant == nil {
+			entity.HasCohabitant = &Branch{}
+		}
 		entity.HasCohabitantID = previous.HasCohabitantID
 		entity.HasCohabitant.ID = previous.HasCohabitantID
+		if entity.CohabitantList == nil {
+			entity.CohabitantList = &Collection{}
+		}
 		entity.CohabitantListID = previous.CohabitantListID
 		entity.CohabitantList.ID = previous.CohabitantListID
 	})
@@ -403,15 +412,27 @@ func (entity *RelationshipsCohabitants) Get(context *db.DatabaseContext, account
 		}
 	}
 
+	context.Find(&RelationshipsCohabitants{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsCohabitants)
+		if entity.HasCohabitant == nil {
+			entity.HasCohabitant = &Branch{}
+		}
+		entity.HasCohabitantID = previous.HasCohabitantID
+		entity.HasCohabitant.ID = previous.HasCohabitantID
+		if entity.CohabitantList == nil {
+			entity.CohabitantList = &Collection{}
+		}
+		entity.CohabitantListID = previous.CohabitantListID
+		entity.CohabitantList.ID = previous.CohabitantListID
+	})
+
 	if entity.HasCohabitantID != 0 {
-		entity.HasCohabitant = &Branch{ID: entity.HasCohabitantID}
 		if _, err := entity.HasCohabitant.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.CohabitantListID != 0 {
-		entity.CohabitantList = &Collection{ID: entity.CohabitantListID}
 		if _, err := entity.CohabitantList.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -478,6 +499,9 @@ func (entity *RelationshipsPeople) Save(context *db.DatabaseContext, account int
 
 	context.Find(&RelationshipsPeople{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsPeople)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -505,6 +529,9 @@ func (entity *RelationshipsPeople) Delete(context *db.DatabaseContext, account i
 
 	context.Find(&RelationshipsPeople{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsPeople)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -536,8 +563,16 @@ func (entity *RelationshipsPeople) Get(context *db.DatabaseContext, account int)
 		}
 	}
 
+	context.Find(&RelationshipsPeople{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsPeople)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	if entity.ListID != 0 {
-		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
@@ -604,6 +639,9 @@ func (entity *RelationshipsRelatives) Save(context *db.DatabaseContext, account 
 
 	context.Find(&RelationshipsRelatives{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsRelatives)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -631,6 +669,9 @@ func (entity *RelationshipsRelatives) Delete(context *db.DatabaseContext, accoun
 
 	context.Find(&RelationshipsRelatives{ID: account}, func(result interface{}) {
 		previous := result.(*RelationshipsRelatives)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -662,8 +703,16 @@ func (entity *RelationshipsRelatives) Get(context *db.DatabaseContext, account i
 		}
 	}
 
+	context.Find(&RelationshipsRelatives{ID: account}, func(result interface{}) {
+		previous := result.(*RelationshipsRelatives)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	if entity.ListID != 0 {
-		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}

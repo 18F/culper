@@ -45,14 +45,11 @@ func Section(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if _, err = entity.Get(context, account.ID); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		EncodeJSON(w, `{}`)
 		return
 	}
 
 	EncodeJSON(w, entity.Marshal())
-	// log.Printf("%v", js)
-	// w.Header().Set("Content-Type", "application/json")
-	// w.Write(js)
 }
 
 func Save(w http.ResponseWriter, r *http.Request) {
