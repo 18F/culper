@@ -1,0 +1,56 @@
+@import 'eqip-colors';
+
+.consent-modal .modal {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  z-index: 9999;
+
+  .modal-wrap {
+    // Originally this is a `table-cell` but the consent form is not embed within
+    // a CSS `table`
+    display: block !important;
+  }
+
+  .consent-content {
+    width: 50%;
+    min-width: 100rem;
+    height: 90vh;
+    margin-top: 5vh !important;
+    margin-bottom: 5vh !important;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+
+    @media only screen and (max-height: 850px) {
+      height: 100vh;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    .consent-legal {
+      overflow-y: scroll;
+      max-height: 55vh;
+      padding: 0 5rem;
+      border: 2px solid $eapp-grey;
+
+      hr {
+        margin-top: 4rem;
+      }
+    }
+
+    .consent-acceptance {
+      display: block;
+      margin: 2rem auto;
+      padding: 2rem;
+    }
+
+    .field {
+      .title {
+        max-width: initial;
+      }
+
+      .table > .content > .component > div {
+        max-width: initial;
+      }
+    }
+  }
+}

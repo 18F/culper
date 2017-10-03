@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
 import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
-import { Text, Show } from '../../components/Form'
+import { Consent, Text, Show } from '../../components/Form'
 
 class Login extends React.Component {
   constructor (props) {
@@ -55,10 +55,21 @@ class Login extends React.Component {
       return ''
     }
 
+    const msg = this.props.error.indexOf('pg: ') === -1
+          ? this.props.error
+          : i18n.m('login.error.generic')
+
     return (
-      <div className="eapp-error-message message">
-        <i className="fa fa-exclamation"></i>
-        {this.props.error}
+      <div className="field no-margin-bottom">
+        <div className="table">
+          <div className="messages">
+            <div className="message error">
+              <i className="fa fa-exclamation"></i>
+              <h5>{i18n.t('login.error.title')}</h5>
+              <p>{msg}</p>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }
@@ -140,6 +151,7 @@ class Login extends React.Component {
   render () {
     return (
       <div className="login eapp-core" id="login">
+        <Consent dispatch={this.props.dispatch} />
         <div id="seal-header" className="seal-header text-center">
           <div className="content">
             <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
