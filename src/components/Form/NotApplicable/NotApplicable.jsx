@@ -73,11 +73,11 @@ export default class NotApplicable extends React.Component {
   render () {
     // Append on any classes passed down
     const klass = `${this.props.className || ''}`.trim()
-    const dithered = this.state.applicable ? '' : 'disabled'
+    const dithered = this.state.applicable ? 'enable' : 'disable'
 
     // When there is nothing special do the status quo
     return (
-      <div className={`not-applicable ${this.props.or ? 'with-or' : ''}`.trim()}>
+      <div className={`not-applicable ${dithered} ${this.props.or ? 'with-or' : ''}`.trim()}>
         <div className={`${klass} ${dithered} content`.trim()}>
           {this.renderChildren()}
         </div>

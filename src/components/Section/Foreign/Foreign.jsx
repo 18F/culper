@@ -640,4 +640,171 @@ Foreign.defaultProps = {
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
+export class ForeignSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Passport name="passport"
+          {...this.props.Passport}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Contacts name="contacts"
+          {...this.props.Contacts}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <DirectActivity name="directActivity"
+          {...this.props.DirectActivity}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <IndirectActivity name="indirectActivity"
+          {...this.props.IndirectActivity}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <RealEstateActivity name="realEstateActivity"
+          {...this.props.RealEstateActivity}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <BenefitActivity name="benefitActivity"
+          {...this.props.BenefitActivity}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Support name="support"
+          {...this.props.Support}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Advice name="advice"
+          {...this.props.Advice}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Family name="family"
+          {...this.props.Family}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Employment name="employment"
+          {...this.props.Employment}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Ventures name="ventures"
+          {...this.props.Ventures}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Conferences name="Conferences"
+          {...this.props.Conferences}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Contact name="Contact"
+          {...this.props.Contact}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Sponsorship name="Sponsorship"
+          {...this.props.Sponsorship}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Political name="Political"
+          {...this.props.Political}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Voting name="Voting"
+          {...this.props.Voting}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Travel name="Travel"
+          {...this.props.Travel}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
+
 export default connect(mapStateToProps)(AuthenticatedView(Foreign))
