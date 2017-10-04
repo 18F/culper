@@ -57,6 +57,24 @@ class I18n {
 
     return markdown(text)
   }
+
+  m2 (id, locale = 'en') {
+    const text = this.value(id, locale)
+    const localeId = this.localeId(id, locale)
+    if (!this.valid(text)) {
+      return localeId
+    }
+
+    if (this.isArray(text)) {
+      let block = ''
+      for (let i = 0; i < text.length; i++) {
+        block += text[i] + '\n'
+      }
+      return markdown(block, `${localeId}`)
+    }
+
+    return markdown(text)
+  }
 }
 
 export const i18n = new I18n()

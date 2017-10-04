@@ -194,7 +194,6 @@ export default class Cohabitant extends ValidationElement {
         <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
             <ForeignBornDocuments name="foreignBornDocument"
                                   title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
-                                  help="relationships.cohabitant.help.foreignBornDocument"
                                   {...this.props.ForeignBornDocument}
                                   onUpdate={this.updateForeignBornDocument}
                                   onError={this.props.onError}
@@ -204,7 +203,6 @@ export default class Cohabitant extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('relationships.cohabitant.heading.ssn')}
-               help="identification.ssn.help"
                scrollIntoView={this.props.scrollIntoView}>
           <SSN name="ssn"
                {...this.props.SSN}
