@@ -1886,14 +1886,14 @@ const en = {
     },
     destination: {
       intro: 'Citizenship intro',
-      review: 'Review Citizenship',
+      review: 'Review citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
       passports: 'Foreign passports'
     },
     status: {
       heading: {
-        title: 'Citizenship Status',
+        title: 'Citizenship status',
         citizenshipstatus: 'Provide your current citizenship status',
         abroad: 'Provide type of documentation of U.S. citizen born abroad',
         documentnumber: {
@@ -2104,7 +2104,7 @@ const en = {
     },
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship',
+        title: 'Dual/multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
