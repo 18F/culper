@@ -1890,14 +1890,14 @@ const en = {
     },
     destination: {
       intro: 'Citizenship intro',
-      review: 'Review Citizenship',
+      review: 'Review citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
       passports: 'Foreign passports'
     },
     status: {
       heading: {
-        title: 'Citizenship Status',
+        title: 'Citizenship status',
         citizenshipstatus: 'Provide your current citizenship status',
         abroad: 'Provide type of documentation of U.S. citizen born abroad',
         documentnumber: {
@@ -2108,7 +2108,7 @@ const en = {
     },
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship',
+        title: 'Dual/multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
@@ -2648,9 +2648,9 @@ const en = {
         heading: {
           name: 'Provide the full name',
           address: 'Provide location',
-          birthdate: 'Provide birthdate',
+          birthdate: 'Provide the date of birth',
           telephone: 'Provide telephone number',
-          birthplace: 'Provide the place of birth.',
+          birthplace: 'Provide the place of birth',
           dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
           recognized: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
           deceased: 'Is this person deceased?',
@@ -2679,7 +2679,7 @@ const en = {
         help: {
           birthdate: {
             title: 'Need help with the birthdate?',
-            message: 'Provide the date of birth',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           birthplace: {
@@ -2754,7 +2754,7 @@ const en = {
         },
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2806,9 +2806,9 @@ const en = {
         address: 'Provide location',
         birthdate: 'Provide birthdate',
         telephone: 'Provide telephone number',
-        birthplace: 'Provide the place of birth.',
-        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
-        ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
+        birthplace: 'Provide the place of birth',
+        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+        ssn: 'Provide your cohabitant’s U.S. Social Security Number',
         othernames: 'Has your cohabitant used another name?',
         appendOthernames: 'Has your cohabitant used any other names?',
         citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
@@ -2843,7 +2843,7 @@ const en = {
       help: {
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2883,7 +2883,7 @@ const en = {
         },
         dateDivorced: {
           title: 'Need help with providing date divorced/dissolved?',
-          message: 'Provide the date divorced/dissolved, annulled or widowed',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         foreignBornDocument: {
@@ -2902,8 +2902,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help with when deciding if you have had a cohabitant?',
-          message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
+          title: 'Need help deciding whether or not you have had a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
           note: ''
         },
         citizenship: {

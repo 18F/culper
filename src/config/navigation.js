@@ -58,9 +58,9 @@ const navigation = [
     url: 'citizenship',
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Citizenship Status', url: 'status' },
-      { name: 'Dual/Multiple Citizenship', url: 'multiple' },
-      { name: 'Foreign Passports', url: 'passports' },
+      { name: 'Citizenship status', url: 'status' },
+      { name: 'Dual/multiple citizenship', url: 'multiple' },
+      { name: 'Foreign passports', url: 'passports' },
       { exclude: true, name: 'Review', url: 'review' }
     ]
   },
@@ -250,6 +250,13 @@ const navigation = [
     subsections: [
       { name: 'Headings', url: 'headings' }
     ]
+  },
+  {
+    title: 'SF-86 Submission',
+    name: 'Print',
+    url: 'print',
+    hidden: false,
+    exclude: true
   }
 ]
 

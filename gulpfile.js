@@ -38,6 +38,7 @@ var paths = {
     './src/img/*'
   ],
   css: 'eqip.css',
+  printCss: 'eqip.print.css',
   destination: {
     root: './dist',
     css: './dist/css',
