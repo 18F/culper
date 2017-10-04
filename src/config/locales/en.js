@@ -2609,14 +2609,14 @@ const en = {
     civilUnion: {
       heading: {
         name: 'Provide full name',
-        birthdate: 'Provide birthdate',
+        birthdate: 'Provide the date of birth',
         birthplace: 'Provide place of birth',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Has this person used another name?',
         appendOthernames: 'Has this person used any other names?',
         citizenship: 'Provide country(ies) of citizenship',
-        location: 'Provide location',
+        location: 'Provide the location',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2643,7 +2643,7 @@ const en = {
       divorce: {
         heading: {
           name: 'Provide the full name',
-          address: 'Provide location',
+          address: 'Provide the location',
           birthdate: 'Provide the date of birth',
           telephone: 'Provide telephone number',
           birthplace: 'Provide the place of birth',
