@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from './config'
 import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from './components'
+import { Introduction } from './components/Form'
 import StickyHeader from './components/Sticky/StickyHeader'
 import { connect } from 'react-redux'
 import { env } from './config'
@@ -34,12 +35,25 @@ import { logout } from './actions/AuthActions'
 class App extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      instructions: false
+    }
     this.logout = this.logout.bind(this)
+    this.showInstructions = this.showInstructions.bind(this)
+    this.dismissInstructions = this.dismissInstructions.bind(this)
   }
 
   logout () {
     this.props.dispatch(logout())
     window.location = window.location.pathname
+  }
+
+  showInstructions (event) {
+    this.setState({ instructions: true })
+  }
+
+  dismissInstructions () {
+    this.setState({ instructions: false })
   }
 
   designClass () {
@@ -122,6 +136,7 @@ class App extends React.Component {
                     </div>
                     <div className={klassTitle}>
                       <div className="eapp-logout mobile-hidden">
+                        <button onClick={this.showInstructions} className="instructions">{i18n.t('app.instructions')}</button>
                         {logoutButton}
                       </div>
                       <SectionTitle />
@@ -145,6 +160,9 @@ class App extends React.Component {
               &nbsp;
             </div>
             <div className={klassCore}>
+              <Introduction forceOpen={this.state.instructions}
+                            onDismiss={this.dismissInstructions}
+                            dispatch={this.props.dispatch} />
               {this.props.children}
               &nbsp;
             </div>
