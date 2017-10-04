@@ -9,6 +9,7 @@ const en = {
   },
   app: {
     logout: 'Logout',
+    instructions: 'Instructions',
     skip: 'Skip to main content',
     banner: {
       title: 'An official website of the United States government',
@@ -22,6 +23,10 @@ const en = {
     title: 'Login',
     para: 'Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.',
     submit: 'Submit',
+    error: {
+      title: 'Sorry, but we couldn\'t log you in!',
+      generic: 'The username or password was incorrect.'
+    },
     twofactor: {
       title: 'Two-factor authentication',
       para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.',
@@ -1886,14 +1891,14 @@ const en = {
     },
     destination: {
       intro: 'Citizenship intro',
-      review: 'Review Citizenship',
+      review: 'Review citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
       passports: 'Foreign passports'
     },
     status: {
       heading: {
-        title: 'Citizenship Status',
+        title: 'Citizenship status',
         citizenshipstatus: 'Provide your current citizenship status',
         abroad: 'Provide type of documentation of U.S. citizen born abroad',
         documentnumber: {
@@ -2104,7 +2109,7 @@ const en = {
     },
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship',
+        title: 'Dual/multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
@@ -2644,9 +2649,9 @@ const en = {
         heading: {
           name: 'Provide the full name',
           address: 'Provide location',
-          birthdate: 'Provide birthdate',
+          birthdate: 'Provide the date of birth',
           telephone: 'Provide telephone number',
-          birthplace: 'Provide the place of birth.',
+          birthplace: 'Provide the place of birth',
           dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
           recognized: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
           deceased: 'Is this person deceased?',
@@ -2675,7 +2680,7 @@ const en = {
         help: {
           birthdate: {
             title: 'Need help with the birthdate?',
-            message: 'Provide the date of birth',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           birthplace: {
@@ -2750,7 +2755,7 @@ const en = {
         },
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2802,9 +2807,9 @@ const en = {
         address: 'Provide location',
         birthdate: 'Provide birthdate',
         telephone: 'Provide telephone number',
-        birthplace: 'Provide the place of birth.',
-        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
-        ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
+        birthplace: 'Provide the place of birth',
+        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+        ssn: 'Provide your cohabitant’s U.S. Social Security Number',
         othernames: 'Has your cohabitant used another name?',
         appendOthernames: 'Has your cohabitant used any other names?',
         citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
@@ -2839,7 +2844,7 @@ const en = {
       help: {
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2879,7 +2884,7 @@ const en = {
         },
         dateDivorced: {
           title: 'Need help with providing date divorced/dissolved?',
-          message: 'Provide the date divorced/dissolved, annulled or widowed',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         foreignBornDocument: {
@@ -2898,8 +2903,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help with when deciding if you have had a cohabitant?',
-          message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
+          title: 'Need help deciding whether or not you have had a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
           note: ''
         },
         citizenship: {
@@ -3816,7 +3821,7 @@ const en = {
               title: 'Need help with this address?',
               message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
               note: ''
-           }
+            }
           },
           heading: {
             telephone: 'Provide telephone number',
@@ -9297,10 +9302,46 @@ const en = {
     zambia: 'Zambia',
     zimbabwe: 'Zimbabwe'
   },
+  consent: {
+    contents: [
+      '# Free Wi-FI access points are not secure',
+      'The information collected through the application process is sensitive and should never be transmitted over free public Wi-Fi access points.',
+      '',
+      'Bad actors can easily intercept any data travelling across these unsecure connections.',
+      'Protect your data by only using secure, encrypted connections.',
+      '# Standard mandatory notice and consent provision for all DOD information system user agreements',
+      'By signing this document, you acknowledge and consent that when you access Department of Defense (DoD) information systems:',
+      '  * You are accessing a U.S. Government (USG) information system (IS) (which includes any device attached to this information system) that is provided for U.S. Governmentauthorized use only.',
+      '  * You consent to the following conditions:',
+      '    - The U.S. Government routinely intercepts and monitors communications on this information system for purposes including, but not limited to, penetration testing, communications security (COMSEC) monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.',
+      '    - At any time, the U.S. Government may inspect and seize data stored on this information system.',
+      '    - Communications using, or data stored on, this information system are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any U.S. Government-authorized purpose.',
+      '    - This information system includes security measures (e.g., authentication and access controls) to protect U.S. Government interests--not for your personal benefit or privacy.',
+      '    - Notwithstanding the above, using an information system does not constitute consent to personnel misconduct, law enforcement, or counterintelligence investigative searching or monitoring of the content of privileged communications or data (including work product) that are related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Under these circumstances, such communications and work product are private and confidential, as further explained below:',
+      '      * Nothing in this User Agreement shall be interpreted to limit the user\'s consent to, or in any other way restrict or affect, any U.S. Government actions for purposes of network administration, operation, protection, or defense, or for communications security. This includes all communications',
+      '      * The user consents to interception/capture and seizure of ALL communications and data for any authorized purpose (including personnel misconduct, law enforcement, or counterintelligence investigation). However, consent to interception/capture or seizure of communications and data is not consent to the use of privileged communications or data for personnel misconduct, law enforcement, or counterintelligence investigation against any party and does not negate any applicable privilege or confidentiality that otherwise applies.',
+      '      * Whether any particular communication or data qualifies for the protection of a privilege, or is covered by a duty of confidentiality, is determined in accordance with established legal standards and DoD policy. Users are strongly encouraged to seek personal legal counsel on such matters prior to using an information system if the user intends to rely on the protections of a privilege or confidentiality.',
+      '      * Users should take reasonable steps to identify such communications or data that the user asserts are protected by any such privilege or confidentiality. However, the user\'s identification or assertion of a privilege or confidentiality is not sufficient to create such protection where none exists under established legal standards and DoD policy.',
+      '      * A user\'s failure to take reasonable steps to identify such communications or data as privileged or confidential does not waive the privilege or confidentiality if such protections otherwise exist under established legal standards and DoD policy. However, in such cases the U.S. Government is authorized to take reasonable actions to identify such communication or data as being subject to a privilege or confidentiality, and such actions do not negate any applicable privilege or confidentiality.',
+      '      * These conditions preserve the confidentiality of the communication or data, and the legal protections regarding the use and disclosure of privileged information, and thus such communications and data are private and confidential. Further, the U.S. Government shall take all reasonable measures to protect the content of captured/seized privileged communications and data to ensure they are appropriately protected.',
+      '    - In cases when the user has consented to content searching or monitoring of communications or data for personnel misconduct, law enforcement, or counterintelligence investigative searching, (i.e., for all communications and data other than privileged communications or data that are related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants), the U.S. Government may, solely at its discretion and in accordance with DoD policy, elect to apply a privilege or other restriction on the U.S. Government\'s otherwise-authorized use or disclosure of such information.',
+      '    - All of the above conditions apply regardless of whether the access or use of an information system includes the display of a Notice and Consent Banner ("banner"). When a banner is used, the banner functions to remind the user of the conditions that are set forth in this User Agreement, regardless of whether the banner describes these conditions in full detail or provides a summary of such conditions, and regardless of whether the banner expressly references this User Agreement.'
+    ],
+    acceptance: {
+      title: 'I\'ve read & consent to terms in this user agreement',
+      para: []
+    }
+  },
   introduction: {
     contents: [
       '# Questionnaire for National Security Positions',
       '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
+      '## Instructions for Completing this Form ',
+      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
+      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
+      '3. Do not abbreviate the names of cities or foreign countries.',
+      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
+      '---',
       'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
       '---',
       '# How to save your progress',
@@ -9325,12 +9366,6 @@ const en = {
       '# Your Personal Interview',
       'Some investigations will include an interview with you as a routine part of the investigative process. The investigator may ask you to explain your answers to any question on this form. This provides you the opportunity to update, clarify, and explain information on your form more completely, which often assists in completing your investigation. It is imperative that the interview be conducted as soon as possible after you are contacted. Postponements will delay the processing of your investigation, and declining to be interviewed may result in your investigation being delayed or canceled.',
       'For the interview, you will be required to provide photo identification, such as a valid state driver\'s license. You may be required to provide other documents to verify your identity, as instructed by your investigator. These documents may include certification of any legal name change, Social Security card, passport, and/or your birth certificate. You may also be asked to provide documents regarding information that you provide on this form, or about other matters requiring specific attention. These matters include (a) alien registration or naturalization documentation; (b) delinquent loans or taxes, bankruptcies, judgments, liens, or other financial obligations; (c) agreements involving child custody or support, alimony, or property settlements; (d) arrests, convictions, probation, and/or parole; or (e) other matters described in court records.',
-      '---',
-      '# Instructions for Completing this Form ',
-      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
-      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
-      '3. Do not abbreviate the names of cities or foreign countries.',
-      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
       '---',
       '# Final Determination on Your Eligibility',
       'Final determination on your eligibility for a national security position is the responsibility of the Federal agency that requested your investigation and the agency that conducted your investigation. You will be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, or sexual orientation when granting access to classified information.',
