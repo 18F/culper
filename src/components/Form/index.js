@@ -37,6 +37,7 @@ import EyeColor from './EyeColor'
 import Sex from './Sex'
 import IntroHeader from './IntroHeader'
 import Introduction from './Introduction'
+import Consent from './Consent'
 import Branch from './Branch'
 import Reference from './Reference'
 import Show from './Show'
@@ -76,6 +77,7 @@ export {
   EyeColor,
   Sex,
   Introduction,
+  Consent,
   IntroHeader,
   Branch,
   Reference,
