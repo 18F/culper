@@ -9,6 +9,7 @@ const en = {
   },
   app: {
     logout: 'Logout',
+    instructions: 'Instructions',
     skip: 'Skip to main content',
     banner: {
       title: 'An official website of the United States government',
@@ -3816,7 +3817,7 @@ const en = {
               title: 'Need help with this address?',
               message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
               note: ''
-           }
+            }
           },
           heading: {
             telephone: 'Provide telephone number',
@@ -9301,6 +9302,12 @@ const en = {
     contents: [
       '# Questionnaire for National Security Positions',
       '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
+      '## Instructions for Completing this Form ',
+      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
+      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
+      '3. Do not abbreviate the names of cities or foreign countries.',
+      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
+      '---',
       'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
       '---',
       '# How to save your progress',
@@ -9325,12 +9332,6 @@ const en = {
       '# Your Personal Interview',
       'Some investigations will include an interview with you as a routine part of the investigative process. The investigator may ask you to explain your answers to any question on this form. This provides you the opportunity to update, clarify, and explain information on your form more completely, which often assists in completing your investigation. It is imperative that the interview be conducted as soon as possible after you are contacted. Postponements will delay the processing of your investigation, and declining to be interviewed may result in your investigation being delayed or canceled.',
       'For the interview, you will be required to provide photo identification, such as a valid state driver\'s license. You may be required to provide other documents to verify your identity, as instructed by your investigator. These documents may include certification of any legal name change, Social Security card, passport, and/or your birth certificate. You may also be asked to provide documents regarding information that you provide on this form, or about other matters requiring specific attention. These matters include (a) alien registration or naturalization documentation; (b) delinquent loans or taxes, bankruptcies, judgments, liens, or other financial obligations; (c) agreements involving child custody or support, alimony, or property settlements; (d) arrests, convictions, probation, and/or parole; or (e) other matters described in court records.',
-      '---',
-      '# Instructions for Completing this Form ',
-      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
-      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
-      '3. Do not abbreviate the names of cities or foreign countries.',
-      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
       '---',
       '# Final Determination on Your Eligibility',
       'Final determination on your eligibility for a national security position is the responsibility of the Federal agency that requested your investigation and the agency that conducted your investigation. You will be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, or sexual orientation when granting access to classified information.',
