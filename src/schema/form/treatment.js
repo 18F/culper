@@ -3,7 +3,7 @@ import { name } from './name'
 import { telephone } from './telephone'
 import { location } from './location'
 
-export const psychologicalTreatment = (data = {}) => {
+export const treatment = (data = {}) => {
   return general('psychological.treatment', {
     Name: name(data.Name),
     Phone: telephone(data.Phone),

@@ -21,7 +21,7 @@ import { name } from './name'
 import { notapplicable } from './notapplicable'
 import { number } from './number'
 import { physicaladdress } from './physicaladdress'
-import { psychologicalTreatment } from './psychologicalTreatment'
+import { treatment } from './treatment'
 import { radio } from './radio'
 import { reasonleft } from './reasonleft'
 import { reference } from './reference'
@@ -56,7 +56,7 @@ export {
   notapplicable,
   number,
   physicaladdress,
-  psychologicalTreatment,
+  treatment,
   radio,
   reasonleft,
   reference,

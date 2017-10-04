@@ -382,6 +382,6 @@ const transform = {
     return section.psychologicalHospitalizations(data)
   },
   'psychological.treatment': (data) => {
-    return form.psychologicalTreatment(data)
+    return form.treatment(data)
   }
 }

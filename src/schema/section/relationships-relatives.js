@@ -1,7 +1,7 @@
 import * as form from '../form'
 
 export const relationshipsRelatives = (data = {}) => {
-  const items = (data.List || {}).map(x => {
+  const items = (data.List || []).map(x => {
     return {
       Item: {
         Relation: form.radio(x.Item.Relation),
