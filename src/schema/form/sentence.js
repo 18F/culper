@@ -4,7 +4,7 @@ import { branch } from './branch'
 import { daterange } from './daterange'
 import { notapplicable } from './notapplicable'
 
-export const sentence = (data) => {
+export const sentence = (data = {}) => {
   return general('sentence', {
     Description: textarea(data.Description),
     ExceedsYear: branch(data.ExceedsYear),

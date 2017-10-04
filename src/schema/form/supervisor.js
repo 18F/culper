@@ -5,7 +5,7 @@ import { notapplicable } from './notapplicable'
 import { location } from './location'
 import { telephone } from './telephone'
 
-export const supervisor = (data) => {
+export const supervisor = (data = {}) => {
   return general('supervisor', {
     SupervisorName: text(data.SupervisorName),
     Title: text(data.Title),

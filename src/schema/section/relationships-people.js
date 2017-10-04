@@ -1,7 +1,7 @@
 import * as form from '../form'
 
 export const relationshipsPeople = (data = {}) => {
-  const items = data.List.map(x => {
+  const items = (data.List || []).map(x => {
     return {
       Item: {
         Address: form.location(x.Item.Address),

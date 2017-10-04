@@ -8,7 +8,7 @@ import { telephone } from './telephone'
 import { notapplicable } from './notapplicable'
 import { location } from './location'
 
-export const reference = (data) => {
+export const reference = (data = {}) => {
   return general('reference', {
     FullName: name(data.FullName),
     LastContact: datecontrol(data.LastContact),

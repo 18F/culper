@@ -1,7 +1,7 @@
 import * as form from '../form'
 
 export const identificationOthernames = (data = {}) => {
-  const names = data.List.map(x => {
+  const names = (data.List || []).map(x => {
     return {
       Item: {
         Name: form.name(x.Name),

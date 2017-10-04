@@ -1,5 +1,5 @@
 import { general } from './general'
 
-export const employmentactivity = (data) => {
+export const employmentactivity = (data = {}) => {
   return general('employmentactivity', data)
 }

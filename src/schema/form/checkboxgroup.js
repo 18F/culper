@@ -1,5 +1,5 @@
 import { general } from './general'
 
-export const checkboxgroup = (data) => {
+export const checkboxgroup = (data = {}) => {
   return general('checkboxgroup', data)
 }
