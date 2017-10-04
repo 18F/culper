@@ -354,7 +354,6 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.telephone')}
-                 help="relationships.civilUnion.help.telephone"
                  scrollIntoView={this.props.scrollIntoView}
                  adjustFor="telephone">
             <Telephone name="Telephone"
@@ -366,8 +365,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.email')}
-                 scrollIntoView={this.props.scrollIntoView}
-                 help="relationships.civilUnion.help.email">
+                 scrollIntoView={this.props.scrollIntoView}>
             <Email name="Email"
                    {...this.props.Email}
                    onUpdate={this.updateEmail}
@@ -381,7 +379,6 @@ export default class CivilUnion extends ValidationElement {
                   label={i18n.t('relationships.civilUnion.heading.separated')}
                   labelSize="h3"
                   value={this.props.Separated}
-                  help="relationships.civilUnion.help.separated"
                   onUpdate={this.updateSeparated}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
@@ -405,8 +402,7 @@ export default class CivilUnion extends ValidationElement {
 
               <Field title={i18n.t('relationships.civilUnion.heading.addressSeparated')}
                      className="address-separated"
-                     scrollIntoView={this.props.scrollIntoView}
-                     help="relationships.civilUnion.help.addressSeparated">
+                     scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="OtherNameNotApplicable"
                                applicable={this.props.AddressSeparatedNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
@@ -431,7 +427,6 @@ export default class CivilUnion extends ValidationElement {
                   labelSize="h3"
                   className="divorced"
                   value={this.props.Divorced}
-                  help="relationships.civilUnion.help.divorced"
                   onUpdate={this.updateDivorced}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
