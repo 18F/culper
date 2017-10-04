@@ -2898,8 +2898,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help with when deciding if you have had a cohabitant?',
-          message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
+          title: 'Need help deciding whether or not you have had a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
           note: ''
         },
         citizenship: {
