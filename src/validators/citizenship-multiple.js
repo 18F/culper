@@ -70,7 +70,7 @@ export class CitizenshipItemValidator {
   }
 
   validCurrent () {
-    if (!this.dates || !this.dates.present) {
+    if (!this.dates || this.dates.present) {
       return true
     }
 
