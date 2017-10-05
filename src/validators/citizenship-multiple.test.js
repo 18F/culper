@@ -127,7 +127,7 @@ describe('citizenship multiple component validation', function () {
           },
           Current: null
         },
-        expected: false
+        expected: true
       },
       {
         state: {
@@ -142,7 +142,7 @@ describe('citizenship multiple component validation', function () {
           },
           Current: 'Yuppers'
         },
-        expected: false
+        expected: true
       },
       {
         state: {
@@ -157,7 +157,7 @@ describe('citizenship multiple component validation', function () {
           },
           Current: 'No'
         },
-        expected: false
+        expected: true
       },
       {
         state: {
@@ -172,7 +172,7 @@ describe('citizenship multiple component validation', function () {
           },
           Current: 'Yes'
         },
-        expected: false
+        expected: true
       },
       {
         state: {
