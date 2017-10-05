@@ -21,4 +21,16 @@ describe('The print section', () => {
     const component = mount(<Provider store={store}><Print /></Provider>)
     expect(component.find('.section-print-container').length).toBe(10)
   })
+
+  it('launches print dialog', () => {
+    let printed = false
+    window.print = function () {
+      printed = true
+    }
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
+    const component = mount(<Provider store={store}><Print /></Provider>)
+    console.log(component.html())
+    component.find('.print-btn').simulate('click')
+    expect(printed).toBe(true)
+  })
 })
