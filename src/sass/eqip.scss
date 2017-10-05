@@ -151,8 +151,20 @@ a:focus {
       font-family: $eapp-sans;
       font-size: 1.6rem;
 
+      button {
+        display: inline-block;
+        color: $eapp-grey;
+        background: none;
+        font-weight: initial;
+        font-size: 1.6rem;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
       a {
-        display: block;
+        display: inline-block;
         padding: 1rem 1.5rem;
         color: $eapp-grey;
         text-decoration: none;
