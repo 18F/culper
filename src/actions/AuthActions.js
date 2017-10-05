@@ -17,7 +17,7 @@ export function login (username, password) {
         api.setToken(response.data)
         dispatch(handleLoginSuccess(response.data))
         if (!mfa.enabled) {
-          dispatch(push('/form/identification/name'))
+          dispatch(push('/form/identification/intro'))
         }
       })
       .catch(error => {
