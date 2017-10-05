@@ -76,6 +76,16 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			Verbs:       []string{"POST", "PUT"},
 		},
 		endpoint{
+			Path:        "/me/form",
+			Description: "returns the form in its entirety",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/me/section?:id",
+			Description: "returns the form section",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
 			Path:        "/me/attachment",
 			Description: "store attachment",
 			Verbs:       []string{"POST", "PUT"},

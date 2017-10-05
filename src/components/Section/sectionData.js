@@ -54,7 +54,7 @@ export const sectionData = (section, subsection, application = {}) => {
     case 'relationships/people':
       return wrap(application.Relationships).People
     case 'relationships/relatives':
-      return application.Relationships.Relatives
+      return wrap(application.Relationships).Relatives
 
     case 'citizenship/multiple':
       return wrap(application.Citizenships).Multiple

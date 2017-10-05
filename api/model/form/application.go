@@ -3,6 +3,7 @@ package form
 import (
 	"crypto/sha512"
 	"encoding/json"
+	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 )
@@ -18,7 +19,7 @@ var (
 	catalogue = []sectionInformation{
 		sectionInformation{
 			name:       "Identification",
-			subsection: "Name",
+			subsection: "ApplicantName",
 			payload:    "identification.name",
 		},
 		sectionInformation{
@@ -28,22 +29,22 @@ var (
 		},
 		sectionInformation{
 			name:       "Identification",
-			subsection: "Othernames",
+			subsection: "OtherNames",
 			payload:    "identification.othernames",
 		},
 		sectionInformation{
 			name:       "Identification",
-			subsection: "Birthdate",
+			subsection: "ApplicationBirthDate",
 			payload:    "identification.birthdate",
 		},
 		sectionInformation{
 			name:       "Identification",
-			subsection: "Birthplace",
+			subsection: "ApplicationBirthPlace",
 			payload:    "identification.birthplace",
 		},
 		sectionInformation{
 			name:       "Identification",
-			subsection: "Ssn",
+			subsection: "ApplicationSSN",
 			payload:    "identification.ssn",
 		},
 		sectionInformation{
@@ -108,12 +109,12 @@ var (
 		},
 		sectionInformation{
 			name:       "Relationships",
-			subsection: "Status",
+			subsection: "Marital",
 			payload:    "relationships.status.marital",
 		},
 		sectionInformation{
 			name:       "Relationships",
-			subsection: "Status",
+			subsection: "Cohabitants",
 			payload:    "relationships.status.cohabitant",
 		},
 		sectionInformation{
@@ -127,17 +128,17 @@ var (
 			payload:    "relationships.relatives",
 		},
 		sectionInformation{
-			name:       "Citizenship",
+			name:       "Citizenships",
 			subsection: "Status",
 			payload:    "citizenship.status",
 		},
 		sectionInformation{
-			name:       "Citizenship",
+			name:       "Citizenships",
 			subsection: "Multiple",
 			payload:    "citizenship.multiple",
 		},
 		sectionInformation{
-			name:       "Citizenship",
+			name:       "Citizenships",
 			subsection: "Passports",
 			payload:    "citizenship.passports",
 		},
@@ -178,212 +179,212 @@ var (
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Activities",
+			subsection: "BenefitActivity",
 			payload:    "foreign.activities.benefits",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Activities",
+			subsection: "DirectActivity",
 			payload:    "foreign.activities.direct",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Activities",
+			subsection: "IndirectActivity",
 			payload:    "foreign.activities.indirect",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Activities",
+			subsection: "RealEstateActivity",
 			payload:    "foreign.activities.realestate",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Activities",
+			subsection: "Support",
 			payload:    "foreign.activities.support",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Advice",
 			payload:    "foreign.business.advice",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Conferences",
 			payload:    "foreign.business.conferences",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Contact",
 			payload:    "foreign.business.contact",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Employment",
 			payload:    "foreign.business.employment",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Family",
 			payload:    "foreign.business.family",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Political",
 			payload:    "foreign.business.political",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Sponsorship",
 			payload:    "foreign.business.sponsorship",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Ventures",
 			payload:    "foreign.business.ventures",
 		},
 		sectionInformation{
 			name:       "Foreign",
-			subsection: "Business",
+			subsection: "Voting",
 			payload:    "foreign.business.voting",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Drug",
+			subsection: "DrugClearanceUses",
 			payload:    "substance.drug.clearance",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Drug",
+			subsection: "PrescriptionUses",
 			payload:    "substance.drug.misuse",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Drug",
+			subsection: "OrderedTreatments",
 			payload:    "substance.drug.ordered",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Drug",
+			subsection: "DrugPublicSafetyUses",
 			payload:    "substance.drug.publicsafety",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Drug",
+			subsection: "DrugInvolvements",
 			payload:    "substance.drug.purchase",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Drug",
+			subsection: "DrugUses",
 			payload:    "substance.drug.usage",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Drug",
+			subsection: "VoluntaryTreatments",
 			payload:    "substance.drug.voluntary",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Alcohol",
+			subsection: "NegativeImpacts",
 			payload:    "substance.alcohol.negative",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Alcohol",
+			subsection: "OrderedCounselings",
 			payload:    "substance.alcohol.ordered",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Alcohol",
+			subsection: "VoluntaryCounselings",
 			payload:    "substance.alcohol.voluntary",
 		},
 		sectionInformation{
 			name:       "Substance",
-			subsection: "Alcohol",
+			subsection: "ReceivedCounselings",
 			payload:    "substance.alcohol.additional",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Associations",
+			subsection: "ActivitiesToOverthrow",
 			payload:    "legal.associations.activities-to-overthrow",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Associations",
+			subsection: "Advocating",
 			payload:    "legal.associations.advocating",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Associations",
+			subsection: "EngagedInTerrorism",
 			payload:    "legal.associations.engaged-in-terrorism",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Associations",
+			subsection: "MembershipOverthrow",
 			payload:    "legal.associations.membership-overthrow",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Associations",
+			subsection: "MembershipViolence",
 			payload:    "legal.associations.membership-violence-or-force",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Associations",
+			subsection: "TerrorismAssociation",
 			payload:    "legal.associations.terrorism-association",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Associations",
+			subsection: "TerroristOrganization",
 			payload:    "legal.associations.terrorist-organization",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Court",
+			subsection: "NonCriminalCourtActions",
 			payload:    "legal.court",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Investigations",
+			subsection: "Debarred",
 			payload:    "legal.investigations.debarred",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Investigations",
+			subsection: "History",
 			payload:    "legal.investigations.history",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Investigations",
+			subsection: "Revoked",
 			payload:    "legal.investigations.revoked",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Police",
+			subsection: "PoliceOtherOffenses",
 			payload:    "legal.police.additionaloffenses",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Police",
+			subsection: "PoliceDomesticViolence",
 			payload:    "legal.police.domesticviolence",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Police",
+			subsection: "PoliceOffenses",
 			payload:    "legal.police.offenses",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Technology",
+			subsection: "Manipulating",
 			payload:    "legal.technology.manipulating",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Technology",
+			subsection: "Unauthorized",
 			payload:    "legal.technology.unauthorized",
 		},
 		sectionInformation{
 			name:       "Legal",
-			subsection: "Technology",
+			subsection: "Unlawful",
 			payload:    "legal.technology.unlawful",
 		},
 		sectionInformation{
@@ -403,7 +404,7 @@ var (
 		},
 		sectionInformation{
 			name:       "Psychological",
-			subsection: "Conditions",
+			subsection: "ExistingConditions",
 			payload:    "psychological.conditions",
 		},
 		sectionInformation{
@@ -414,11 +415,10 @@ var (
 	}
 )
 
-// Application represents all of the state.
-type Application map[string][]byte
+// Application returns the application state in JSON format.
+func Application(context *db.DatabaseContext, account int) []byte {
+	application := make(map[string][]byte)
 
-// GetState returns the application state in JSON format.
-func (application *Application) GetState(context *db.DatabaseContext, account int) []byte {
 	for _, section := range catalogue {
 		payload := &Payload{
 			Type: section.payload,
@@ -426,30 +426,38 @@ func (application *Application) GetState(context *db.DatabaseContext, account in
 
 		entity, err := payload.Entity()
 		if err != nil {
-			application[section.name] = subsection(section.subsection, `{}`)
+			// application[section.name] = subsection(section.subsection, Payload{})
 			continue
 		}
 
 		if _, err = entity.Get(context, account); err != nil {
-			application[section.name] = subsection(section.subsection, `{}`)
+			// application[section.name] = subsection(section.subsection, Payload{})
 			continue
 		}
 
 		application[section.name] = subsection(section.subsection, entity.Marshal())
 	}
 
-	js, _ := json.Marshal(entity)
+	js, _ := json.MarshalIndent(application, "", "  ")
+	log.Println(string(js))
 	return js
 }
 
 // Signature returns the computed hash checksum of the application state
-func (application *Application) Signature(context *db.DatabaseContext, account int) []byte {
-	return sha512.Sum512(application.GetState(context, account))
+func Signature(context *db.DatabaseContext, account int) [sha512.Size]byte {
+	return sha512.Sum512(Application(context, account))
 }
 
 func subsection(name string, payload Payload) []byte {
-	var simple map[string]Payload
+	log.Println("subsection:", name)
+	log.Println("payload:", payload)
+
+	simple := make(map[string]Payload)
 	simple[name] = payload
-	raw, _ := json.Marshal(simple)
+	raw, err := json.Marshal(simple)
+	if err != nil {
+		return []byte{}
+	}
+
 	return raw
 }

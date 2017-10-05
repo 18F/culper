@@ -29,8 +29,7 @@ func AllSections(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	application := &form.Application
-	EncodeJSON(w, application.GetState(context, account.ID))
+	EncodeJSON(w, form.Application(context, account.ID))
 }
 
 func Section(w http.ResponseWriter, r *http.Request) {
