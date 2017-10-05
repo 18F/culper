@@ -75,7 +75,7 @@ export default class CitizenshipItem extends ValidationElement {
     const d = this.props.Dates || {}
     const to = d.to || {}
     const from = d.from || {}
-    const showCurrentQuestion = to.date && from.date && d.present
+    const showCurrentQuestion = to.date && from.date && !d.present
 
     return (
       <div className="citizenship-item">

@@ -24,7 +24,7 @@ describe('The citizenship item component', () => {
         to: {
           date: new Date('1/1/2010')
         },
-        present: true
+        present: false
       }
     }
     const component = mount(<CitizenshipItem {...props} />)
@@ -43,7 +43,7 @@ describe('The citizenship item component', () => {
         to: {
           date: new Date('1/1/2012')
         },
-        present: true
+        present: false
       },
       Current: 'Yes',
       onUpdate: () => { updates++ }
