@@ -10,6 +10,29 @@ import (
 	"github.com/18F/e-QIP-prototype/api/model/form"
 )
 
+func AllSections(w http.ResponseWriter, r *http.Request) {
+	account := &model.Account{}
+	account.WithContext(db.NewDB())
+
+	// Valid token and audience while populating the audience ID
+	_, err := checkToken(r, account, targetAudience())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Get the account information from the data store
+	context := db.NewDB()
+	account.WithContext(context)
+	if err := account.Get(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	application := &form.Application
+	EncodeJSON(w, application.GetState(context, account.ID))
+}
+
 func Section(w http.ResponseWriter, r *http.Request) {
 	account := &model.Account{}
 	account.WithContext(db.NewDB())

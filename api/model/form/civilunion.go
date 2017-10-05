@@ -54,14 +54,29 @@ func (cu *CivilUnion) Save(context *db.DatabaseContext, account int) (int, error
 			Table:     entityType,
 		}
 
-		id, err := entity.Save(context, account)
-		if err != nil {
-			return err
-		}
-		item.ItemID = id
+		_ = context.Select(item)
+		exists := item.ItemID != 0
 
-		if err := context.Save(item); err != nil {
-			return err
+		if exists {
+			entity.SetID(item.ItemID)
+			if err := context.Update(entity); err != nil {
+				return err
+			}
+		} else {
+			if err := context.Insert(entity); err != nil {
+				return err
+			}
+		}
+		item.ItemID = entity.GetID()
+
+		if exists {
+			if err := context.Update(item); err != nil {
+				return err
+			}
+		} else {
+			if err := context.Insert(item); err != nil {
+				return err
+			}
 		}
 
 		return nil
@@ -90,6 +105,17 @@ func (cu *CivilUnion) Delete(context *db.DatabaseContext, account int) (int, err
 			Name:      name,
 			Table:     entityType,
 		}
+
+		// Make sure an entity is there and that it has the proper ID set.
+		if item.Table == "" {
+			if entity == nil {
+				return nil
+			}
+			entity.Get(context, account)
+		} else {
+			entity = transform[item.Table]()
+		}
+		entity.SetID(item.ItemID)
 
 		_, err = entity.Delete(context, account)
 		if err != nil {
@@ -128,10 +154,6 @@ func (cu *CivilUnion) Get(context *db.DatabaseContext, account int) (int, error)
 		}
 		entity = transform[item.Table]()
 		entity.SetID(item.ItemID)
-
-		if err := context.CheckTable(entity); err != nil {
-			return err
-		}
 
 		if _, err = entity.Get(context, account); err != nil {
 			return err

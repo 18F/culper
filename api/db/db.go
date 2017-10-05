@@ -91,10 +91,8 @@ func (context *DatabaseContext) Update(query ...interface{}) error {
 // Save persists the model in the data store
 func (context *DatabaseContext) Save(query ...interface{}) error {
 	for _, q := range query {
-		var err error
-		if err = context.Select(q); err != nil {
-			err = context.Insert(q)
-		} else {
+		err := context.Insert(q)
+		if err != nil {
 			err = context.Update(q)
 		}
 

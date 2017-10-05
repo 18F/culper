@@ -76,6 +76,12 @@ func (entity *Collection) Valid() (bool, error) {
 func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
+	// If there is a branch payload but the branch if non-existent
+	// create one so it may be assigned to.
+	if entity.PayloadBranch.Type != "" && entity.Branch == nil {
+		entity.Branch = &Branch{}
+	}
+
 	log.Println("1.0")
 	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err

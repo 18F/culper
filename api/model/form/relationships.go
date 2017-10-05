@@ -140,16 +140,16 @@ func (entity *RelationshipsMarital) Save(context *db.DatabaseContext, account in
 	}
 	entity.DivorcedListID = divorcedListID
 
-	if err := context.Save(entity); err != nil {
-		return entity.ID, err
-	}
-
-	entity.CivilUnion.ID = entity.ID
+	entity.CivilUnion.ID = account
 	_, err = entity.CivilUnion.Save(context, account)
 	if err != nil {
 		return entity.ID, err
 	}
-	entity.CivilUnionID = entity.ID // civilUnionID
+	entity.CivilUnionID = account
+
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
+	}
 
 	return entity.ID, nil
 }
@@ -226,8 +226,8 @@ func (entity *RelationshipsMarital) Get(context *db.DatabaseContext, account int
 		if entity.CivilUnion == nil {
 			entity.CivilUnion = &CivilUnion{}
 		}
-		entity.CivilUnion.ID = entity.ID // previous.CivilUnionID
-		entity.CivilUnionID = entity.ID  // previous.CivilUnionID
+		entity.CivilUnion.ID = account
+		entity.CivilUnionID = account
 		if entity.DivorcedList == nil {
 			entity.DivorcedList = &Collection{}
 		}
