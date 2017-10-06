@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -29,7 +30,8 @@ func AllSections(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	EncodeJSON(w, form.Application(context, account.ID))
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprint(w, string(form.Application(context, account.ID)))
 }
 
 func Section(w http.ResponseWriter, r *http.Request) {

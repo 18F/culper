@@ -3,7 +3,6 @@ package form
 import (
 	"crypto/sha512"
 	"encoding/json"
-	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 )
@@ -417,7 +416,7 @@ var (
 
 // Application returns the application state in JSON format.
 func Application(context *db.DatabaseContext, account int) []byte {
-	application := make(map[string][]byte)
+	application := make(map[string]map[string]Payload)
 
 	for _, section := range catalogue {
 		payload := &Payload{
@@ -426,12 +425,10 @@ func Application(context *db.DatabaseContext, account int) []byte {
 
 		entity, err := payload.Entity()
 		if err != nil {
-			// application[section.name] = subsection(section.subsection, Payload{})
 			continue
 		}
 
 		if _, err = entity.Get(context, account); err != nil {
-			// application[section.name] = subsection(section.subsection, Payload{})
 			continue
 		}
 
@@ -439,7 +436,6 @@ func Application(context *db.DatabaseContext, account int) []byte {
 	}
 
 	js, _ := json.MarshalIndent(application, "", "  ")
-	log.Println(string(js))
 	return js
 }
 
@@ -448,16 +444,8 @@ func Signature(context *db.DatabaseContext, account int) [sha512.Size]byte {
 	return sha512.Sum512(Application(context, account))
 }
 
-func subsection(name string, payload Payload) []byte {
-	log.Println("subsection:", name)
-	log.Println("payload:", payload)
-
+func subsection(name string, payload Payload) map[string]Payload {
 	simple := make(map[string]Payload)
 	simple[name] = payload
-	raw, err := json.Marshal(simple)
-	if err != nil {
-		return []byte{}
-	}
-
-	return raw
+	return simple
 }

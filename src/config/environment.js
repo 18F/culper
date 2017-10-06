@@ -49,6 +49,7 @@ class Env {
   EndpointOAuth (service) { return `/auth/${service}` }
   EndpointSave (payload) { return '/me/save' }
   EndpointSection (type) { return `/me/section?type=${type || ''}` }
+  EndpointForm () { return '/me/form' }
   EndpointValidate (payload) { return '/me/validate' }
 }
 

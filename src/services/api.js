@@ -140,6 +140,10 @@ class Api {
     return this.get(env.EndpointSection(type))
   }
 
+  form () {
+    return this.get(env.EndpointForm())
+  }
+
   validate (payload) {
     return this.post(env.EndpointValidate(), payload)
   }

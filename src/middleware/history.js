@@ -1,9 +1,8 @@
 import { env } from '../config'
-import { reducer } from '../reducers/application'
 import SectionConstants from '../actions/SectionConstants'
 import { updateApplication, clearErrors } from '../actions/ApplicationActions'
 import { sectionData } from '../components/Section/sectionData'
-import schema, { unschema } from '../schema'
+import schema from '../schema'
 import { api } from '../services'
 
 export const findPosition = (el) => {
@@ -49,23 +48,24 @@ export const historyMiddleware = store => next => action => {
   next(action)
 }
 
-// Save the previous section's answers
+// Retrieve the section's answers
 export const sectionMiddleware = store => next => action => {
-  if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
-    if (action.section && action.subsection) {
-      const payloadType = `${action.section}/${action.subsection}`.replace(/\//g, '.')
-      api
-        .section(payloadType)
-        .then(r => {
-          store.dispatch(updateApplication(action.section, action.subsection, unschema(r.data)))
-        })
-        .catch(() => {
-          if (console && console.warn) {
-            console.warn(`Failed to retrieve data for the "${action.section}" section and "${action.subsection}" subsection`)
-          }
-        })
-    }
-  }
+  // TODO: Remove if no longer necessary
+  // if (action.type === SectionConstants.SECTION_UPDATE || action.type === SectionConstants.SUBSECTION_UPDATE) {
+  //   if (action.section && action.subsection) {
+  //     const payloadType = `${action.section}/${action.subsection}`.replace(/\//g, '.')
+  //     api
+  //       .section(payloadType)
+  //       .then(r => {
+  //         store.dispatch(updateApplication(action.section, action.subsection, unschema(r.data)))
+  //       })
+  //       .catch(() => {
+  //         if (console && console.warn) {
+  //           console.warn(`Failed to retrieve data for the "${action.section}" section and "${action.subsection}" subsection`)
+  //         }
+  //       })
+  //   }
+  // }
 
   // Allow redux to continue the flow and executing the next middleware
   next(action)

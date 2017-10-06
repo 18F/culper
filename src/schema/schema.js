@@ -14,11 +14,6 @@ export const unschema = (data) => {
     return null
   }
 
-  // Payload scructure
-  if (data.type && data.props) {
-    return unschema(data.props)
-  }
-
   // An array is a type of object so we check for this first
   if (data instanceof Array) {
     let output = []
@@ -27,6 +22,7 @@ export const unschema = (data) => {
       output[x] = unschema(data[x])
     }
 
+    console.log('unwrapped array:', output)
     return output
   }
 
@@ -37,6 +33,11 @@ export const unschema = (data) => {
 
   // Check for other types of objects
   if (data instanceof Object) {
+    // Payload scructure
+    if (hasProperty(data, 'type') && hasProperty(data, 'props')) {
+      return unschema(data.props)
+    }
+
     let output = {}
 
     for (const property in data) {
@@ -49,11 +50,17 @@ export const unschema = (data) => {
       output[property] = unschema(data[property])
     }
 
+    console.log('unwrapped object:', output)
     return output
   }
 
   // If not an object nor an array work with the raw value
+  console.log('unwrapped nothing:', data)
   return data
+}
+
+const hasProperty = (obj, propertyName) => {
+  return propertyName in obj
 }
 
 const transform = {

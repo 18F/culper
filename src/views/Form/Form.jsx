@@ -1,5 +1,6 @@
 import React from 'react'
 import { push } from '../../middleware/history'
+import { getApplicationState } from '../../actions/ApplicationActions'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator } from '../../components'
 
@@ -10,8 +11,8 @@ import { Section, SavedIndicator } from '../../components'
 //  3. The section and subsection are known so the section will
 //     display the subsection only.
 class Form extends React.Component {
-
   componentWillMount () {
+    this.props.dispatch(getApplicationState())
     this.defaultRedirect()
   }
 
@@ -22,7 +23,7 @@ class Form extends React.Component {
   defaultRedirect () {
     const params = this.props.params || this.props.match.params
     if (!params.section) {
-      this.props.dispatch(push('form/identification'))
+      this.props.dispatch(push('form/identification/intro'))
     }
   }
 
