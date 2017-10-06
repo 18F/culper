@@ -28,7 +28,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
                     countryPlaceholder={i18n.t('identification.birthplace.placeholder.country')}
                     {...this.props.value}
                     onUpdate={this.props.onUpdate}
-                    onError={this.props.onError}
+                    onError={this.handleError}
                     required={this.props.required}
                     />
         </Field>

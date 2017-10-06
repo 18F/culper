@@ -10,7 +10,7 @@ import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
 import ExistingConditions from './ExistingConditions/ExistingConditions'
-import PsychologicalValidator, { showQuestion21E } from '../../../validators/psychological'
+import { showQuestion21E } from '../../../validators/psychological'
 import { extractApplicantBirthDate } from '../extractors'
 
 class Psychological extends SectionElement {
@@ -221,6 +221,73 @@ Psychological.defaultProps = {
   section: 'psychological',
   store: 'Psychological',
   scrollToBottom: SectionView.BottomButtonsSelector
+}
+
+export class PsychologicalSections extends React.Component {
+  render () {
+    const showExisting = showQuestion21E(this.props)
+    return (
+      <div>
+        <Competence name="Competence"
+          {...this.props.Competence}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Consultation name="Consultations"
+          {...this.props.Consultations}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Hospitalizations name="Hospitalizations"
+          {...this.props.Hospitalizations}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Diagnoses name="Diagnoses"
+          {...this.props.Diagnoses}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <Show when={showExisting}>
+          <div>
+            <hr />
+            <ExistingConditions name="ExistingConditions"
+              {...this.props.ExistingConditions}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={false}
+            />
+          </div>
+        </Show>
+    </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Psychological))

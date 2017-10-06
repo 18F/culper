@@ -2,7 +2,6 @@ import React from 'react'
 import { push } from '../../middleware/history'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator } from '../../components'
-import { Introduction } from '../../components/Form'
 
 // The concept is that we have three different inputs:
 //  1. The index which just brings up the first entry of the form.

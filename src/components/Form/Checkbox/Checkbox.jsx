@@ -113,7 +113,7 @@ export default class Checkbox extends ValidationElement {
    * Style classes applied to the label element.
    */
   labelClass () {
-    let klass = ''
+    let klass = 'checkbox'
 
     if (this.state.error) {
       klass += ' usa-input-error-label'

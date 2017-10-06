@@ -209,17 +209,18 @@ export default class ForeignBornDocuments extends ValidationElement {
               onFocus={this.props.onFocus}
             />
           </RadioGroup>
+
+          <Show when={this.props.DocumentType === 'Other'}>
+            <Textarea name="otherExplanation"
+              className="other-explanation"
+              label="Provide explanation"
+              {...this.props.OtherExplanation}
+              onUpdate={this.updateOtherExplanation}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </Show>
         </Field>
-      <Show when={this.props.DocumentType === 'Other'}>
-        <Textarea name="otherExplanation"
-          className="other-explanation"
-          label="Provide explanation"
-          {...this.props.OtherExplanation}
-          onUpdate={this.updateOtherExplanation}
-          onError={this.props.onError}
-          required={this.props.required}
-        />
-      </Show>
 
       <Field title={i18n.t('foreignBornDocuments.heading.documentNumber')}
         scrollIntoView={this.props.scrollIntoView}
