@@ -22,7 +22,6 @@ export const unschema = (data) => {
       output[x] = unschema(data[x])
     }
 
-    console.log('unwrapped array:', output)
     return output
   }
 
@@ -50,12 +49,10 @@ export const unschema = (data) => {
       output[property] = unschema(data[property])
     }
 
-    console.log('unwrapped object:', output)
     return output
   }
 
   // If not an object nor an array work with the raw value
-  console.log('unwrapped nothing:', data)
   return data
 }
 
