@@ -224,6 +224,11 @@ const en = {
           message: 'The month should be between 1(January) and 12(December).',
           note: ''
         },
+        min: {
+          title: 'There is a problem with the Month',
+          message: 'The month should be between 1(January) and 12(December).',
+          note: ''
+        },
         max: {
           title: 'There is a problem with the Month',
           message: 'The month should be between 1(January) and 12(December).',
@@ -236,9 +241,14 @@ const en = {
           message: 'There is not that many days in this month.',
           note: ''
         },
+        min: {
+          title: 'There is a problem with the Day',
+          message: 'There are not that many days in this month.',
+          note: ''
+        },
         max: {
           title: 'There is a problem with the Day',
-          message: 'There is not that many days in this month.',
+          message: 'There are not that many days in this month.',
           note: ''
         }
       },
@@ -275,6 +285,11 @@ const en = {
             message: 'For the **to** date, the month should be between 1(January) and 12(December).',
             note: ''
           },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
           max: {
             title: 'There is a problem with the Month',
             message: 'For the **to** date, the month should be between 1(January) and 12(December).',
@@ -283,6 +298,11 @@ const en = {
         },
         day: {
           length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
             title: 'There is a problem with the Day',
             message: 'For the **to** date, there are not that many days in this month.',
             note: ''
@@ -321,6 +341,11 @@ const en = {
             message: 'For the **from** date, the month should be between 1(January) and 12(December).',
             note: ''
           },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
           max: {
             title: 'There is a problem with the Month',
             message: 'For the **from** date, the month should be between 1(January) and 12(December).',
@@ -329,6 +354,11 @@ const en = {
         },
         day: {
           length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
             title: 'There is a problem with the Day',
             message: 'For the **from** date, there are not that many days in this month.',
             note: ''
