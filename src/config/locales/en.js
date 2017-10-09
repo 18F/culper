@@ -9412,7 +9412,7 @@ const en = {
       '**z.** To Federal, State, and local government agencies, if necessary, to obtain information from them which will assist OPM in its responsibilities as the authorized Investigation Service Provider in conducting studies and analyses in support of evaluating and improving the effectiveness and efficiency of the background investigation methodologies.',
       '**aa.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.',
       '---',
-      '# Public Burden Information',
+      '# Public burden information',
       'Public burden reporting for this collection of information is **estimated to average 150 minutes per response**, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.'
     ],
     acceptance: {
