@@ -68,7 +68,7 @@ export default class SubmissionStatus extends React.Component {
           </div>
           <div className="icon-container">
             <span className="icon">
-              <Show when={this.props.valid}>
+              <Show when={!this.state.transitioned || this.props.valid}>
                 <Svg src="/img/checkmark.svg" />
               </Show>
               <Show when={this.state.transitioned && !this.props.valid}>

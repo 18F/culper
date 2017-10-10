@@ -36,7 +36,7 @@ class Submission extends SectionElement {
   render () {
     const releases = (this.props.Submission || {}).Releases
     const s = statusForAllSections(this.props.Application)
-    const valid = true || hasIncompleteSections(s)
+    const valid = hasIncompleteSections(s)
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView name="">
