@@ -256,7 +256,7 @@ export default class ToggleableLocation extends ValidationElement {
         <Show when={this.props.country !== null && this.props.country.value === 'United States'}>
           {domesticFields}
         </Show>
-        <Show when={this.props.country !== null && this.props.country.value !== 'United States'}>
+        <Show when={this.props.country !== null && this.props.country.value !== null && this.props.country.value !== 'United States'}>
           {internationalFields}
         </Show>
       </div>
