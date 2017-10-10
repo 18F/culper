@@ -70,7 +70,7 @@ describe('Foreign business sponsorship component validation', function () {
         state: {
           Birthplace: {
             city: 'Munich',
-            country: 'Germnay',
+            country: { value: 'Germnay' },
             layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           }
         },
@@ -92,7 +92,7 @@ describe('Foreign business sponsorship component validation', function () {
       {
         state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -118,9 +118,7 @@ describe('Foreign business sponsorship component validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           }
         },
         expected: true
@@ -168,7 +166,7 @@ describe('Foreign business sponsorship component validation', function () {
       {
         state: {
           Residence: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -218,7 +216,7 @@ describe('Foreign business sponsorship component validation', function () {
       {
         state: {
           OrganizationAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -332,12 +330,12 @@ describe('Foreign business sponsorship component validation', function () {
                   applicable: true
                 },
                 Birthplace: {
-                  country: 'Germnay',
+                  country: { value: 'Germnay' },
                   city: 'Munich',
                   layout: Location.CITY_COUNTRY
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -345,7 +343,7 @@ describe('Foreign business sponsorship component validation', function () {
                   layout: Location.ADDRESS
                 },
                 Citizenship: {
-                  value: [{ name: 'Germany', value: 'Germany' }]
+                  value: ['Germany']
                 },
                 Dates: {
                   from: {
@@ -357,7 +355,7 @@ describe('Foreign business sponsorship component validation', function () {
                   present: false
                 },
                 Residence: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -371,7 +369,7 @@ describe('Foreign business sponsorship component validation', function () {
                   applicable: true
                 },
                 OrganizationAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

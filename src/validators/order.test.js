@@ -10,7 +10,7 @@ describe('Order validation', function () {
             value: 'Circuit Court'
           },
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -77,7 +77,7 @@ describe('Order validation', function () {
                 value: 'Appeals Court'
               },
               CourtAddress: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
@@ -118,7 +118,7 @@ describe('Order validation', function () {
             value: 'Circuit Court'
           },
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',

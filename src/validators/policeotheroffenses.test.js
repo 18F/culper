@@ -2,7 +2,6 @@ import PoliceOtherOffensesValidator from './policeotheroffenses'
 import Location from '../components/Form/Location'
 
 describe('Police record validation', function () {
-
   it('validates offenses', () => {
     const tests = [
       {
@@ -56,7 +55,7 @@ describe('Police record validation', function () {
                 InvolvedSubstances: 'No',
                 ChargeType: 'Felony',
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

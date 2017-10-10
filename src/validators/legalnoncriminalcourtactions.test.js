@@ -21,7 +21,7 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

@@ -46,7 +46,7 @@ describe('Marital validation', function () {
                 date: new Date('1/1/2016')
               },
               BirthPlace: {
-                country: 'United States',
+                country: { value: 'United States' },
                 city: 'Arlington',
                 county: 'Arlington',
                 state: 'VA',
@@ -67,7 +67,7 @@ describe('Marital validation', function () {
                 date: new Date('1/1/2016')
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
@@ -161,14 +161,14 @@ describe('Marital validation', function () {
               date: new Date('1/1/2016')
             },
             BirthPlace: {
-              country: 'United States',
+              country: { value: 'United States' },
               city: 'Arlington',
               county: 'Arlington',
               state: 'VA',
               layout: Location.BIRTHPLACE
             },
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
