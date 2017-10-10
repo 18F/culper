@@ -239,7 +239,8 @@ const navigation = [
       { name: 'Release of information/HIPPA', url: 'general' },
       { name: 'Credit reporting disclosure', url: 'credit' }
     ],
-    exclude: true
+    exclude: true,
+    hidden: true
   },
   {
     title: 'Design guideline',
@@ -255,13 +256,6 @@ const navigation = [
     title: 'Submit',
     name: 'Submit',
     url: 'submit',
-    exclude: true
-  },
-  {
-    title: 'SF-86 Submission',
-    name: 'Print',
-    url: 'print',
-    hidden: false,
     exclude: true
   }
 ]
