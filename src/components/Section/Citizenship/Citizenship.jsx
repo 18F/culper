@@ -58,15 +58,15 @@ class Citizenship extends SectionElement {
 
             <hr/>
             <Passports name="passports"
-                      {...this.props.Passports}
-                      defaultState={false}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.handleUpdate.bind(this, 'Passports')}
-                      onError={this.handleError}
-                      required={true}
-                      scrollIntoView={false}
-                      />
-
+                       {...this.props.Passports}
+                       defaultState={false}
+                       dispatch={this.props.dispatch}
+                       onUpdate={this.handleUpdate.bind(this, 'Passports')}
+                       onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
+                       />
+            <hr />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('citizenship.review.comments')}
@@ -110,12 +110,12 @@ class Citizenship extends SectionElement {
                        next="citizenship/review"
                        nextLabel={i18n.t('citizenship.destination.review')}>
             <Passports name="passports"
-                      {...this.props.Passports}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.handleUpdate.bind(this, 'Passports')}
-                      onError={this.handleError}
-                      scrollToBottom={this.props.scrollToBottom}
-                      />
+                       {...this.props.Passports}
+                       dispatch={this.props.dispatch}
+                       onUpdate={this.handleUpdate.bind(this, 'Passports')}
+                       onError={this.handleError}
+                       scrollToBottom={this.props.scrollToBottom}
+                       />
           </SectionView>
         </SectionViews>
       </div>
@@ -151,33 +151,34 @@ export class CitizenshipSections extends React.Component {
     return (
       <div>
         <Status name="status"
-          {...this.props.Status}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                {...this.props.Status}
+                defaultState={false}
+                dispatch={this.props.dispatch}
+                onError={this.props.onError}
+                required={true}
+                scrollIntoView={false}
+                />
 
         <hr/>
         <Multiple name="multiple"
-          {...this.props.Multiple}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.Multiple}
+                  defaultState={false}
+                  dispatch={this.props.dispatch}
+                  onError={this.props.onError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
 
         <hr/>
         <Passports name="passports"
-          {...this.props.Passports}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                   {...this.props.Passports}
+                   defaultState={false}
+                   dispatch={this.props.dispatch}
+                   onError={this.props.onError}
+                   required={true}
+                   scrollIntoView={false}
+                   />
+        <hr />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('citizenship.review.comments')}

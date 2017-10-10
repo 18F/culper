@@ -101,7 +101,7 @@ class Identification extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-
+            <hr />
             <SectionComments name="comments"
                              {...this.props.Comments}
                              title={i18n.t('identification.review.comments')}
@@ -252,62 +252,63 @@ export class IdentificationSections extends React.Component {
     return (
       <div>
         <ApplicantName name="name"
-          value={this.props.ApplicantName}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                       value={this.props.ApplicantName}
+                       dispatch={this.props.dispatch}
+                       onError={this.props.onError}
+                       required={true}
+                       scrollIntoView={false}
+                       />
         <hr />
         <ContactInformation name="contacts"
-          {...this.props.Contacts}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                            {...this.props.Contacts}
+                            defaultState={false}
+                            dispatch={this.props.dispatch}
+                            onError={this.props.onError}
+                            required={true}
+                            scrollIntoView={false}
+                            />
         <hr />
         <OtherNames name="othernames"
-          {...this.props.OtherNames}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                    {...this.props.OtherNames}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
+                    onError={this.props.onError}
+                    required={true}
+                    scrollIntoView={false}
+                    />
         <hr />
         <ApplicantBirthDate name="birthdate"
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          value={this.props.ApplicantBirthDate}
-          required={true}
-          scrollIntoView={false}
-        />
+                            dispatch={this.props.dispatch}
+                            onError={this.props.onError}
+                            value={this.props.ApplicantBirthDate}
+                            required={true}
+                            scrollIntoView={false}
+                            />
         <hr />
         <ApplicantBirthPlace name="birthplace"
-          value={this.props.ApplicantBirthPlace}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                             value={this.props.ApplicantBirthPlace}
+                             dispatch={this.props.dispatch}
+                             onError={this.props.onError}
+                             required={true}
+                             scrollIntoView={false}
+                             />
         <hr />
         <ApplicantSSN name="ssn"
-          {...this.props.ApplicantSSN}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                      {...this.props.ApplicantSSN}
+                      dispatch={this.props.dispatch}
+                      onError={this.props.onError}
+                      required={true}
+                      scrollIntoView={false}
+                      />
         <hr />
         <Physical name="physical"
-          {...this.props.Physical}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.Physical}
+                  dispatch={this.props.dispatch}
+                  onError={this.props.onError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
+        <hr />
         <SectionComments name="comments"
                          {...this.props.Comments}
                          title={i18n.t('identification.review.comments')}
