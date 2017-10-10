@@ -800,7 +800,7 @@ const en = {
     email: {
       pattern: {
         title: 'This email isn\'t valid',
-        message: 'Check for any spelling mistakes in your email address.',
+        message: 'Check for any spelling and/or format mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
       },
       required: {
