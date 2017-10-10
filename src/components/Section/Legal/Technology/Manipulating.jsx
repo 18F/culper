@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalTechnologyManipulatingValidator } from '../../../../validators'
+import { LegalTechnologyManipulatingValidator, ManipulatingValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import ManipulatingItem from './ManipulatingItem'
 
 export default class Manipulating extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class Manipulating extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
@@ -57,61 +58,37 @@ export default class Manipulating extends SubsectionElement {
       <div className="legal-technology-manipulating">
         <Branch name="has_manipulating"
                 label={i18n.t('legal.technology.manipulating.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-technology-manipulating-has-manipulating"
                 value={this.props.HasManipulating}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasManipulating === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ManipulatingValidator}
                      description={i18n.t('legal.technology.manipulating.collection.description')}
                      appendTitle={i18n.t('legal.technology.manipulating.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}>
-            <Field title={i18n.t('legal.technology.manipulating.heading.date')}
-                   help="legal.technology.manipulating.help.date"
-                   adjustFor="datecontrol">
-              <DateControl name="Date"
-                           className="legal-technology-manipulating-date"
-                           bind={true}
-                           />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.manipulating.heading.incident')}
-                   help="legal.technology.manipulating.help.incident"
-                   adjustFor="textarea">
-              <Textarea name="Incident"
-                        className="legal-technology-manipulating-incident"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.manipulating.heading.location')}
-                   help="legal.technology.manipulating.help.location"
-                   adjustFor="address">
-              <Location name="Location"
-                        className="legal-technology-manipulating-location"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.manipulating.heading.action')}
-                   help="legal.technology.manipulating.help.action"
-                   adjustFor="textarea">
-              <Textarea name="Action"
-                        className="legal-technology-manipulating-action"
-                        bind={true}
-                        />
-            </Field>
+                     appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <ManipulatingItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -129,8 +106,10 @@ Manipulating.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/manipulating',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalTechnologyManipulatingValidator(state, props).isValid()
-  }
+    return new LegalTechnologyManipulatingValidator(props).isValid()
+  },
+  scrollToBottom: ''
 }

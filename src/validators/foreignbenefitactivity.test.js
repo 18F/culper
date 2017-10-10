@@ -28,7 +28,7 @@ describe('Foreign RealEstate Activity validation', function () {
           HasBenefits: 'Yes',
           List: [
             {
-              Benefit: {
+              Item: {
                 InterestTypes: ['Yourself'],
                 BenefitType: 'Educational',
                 BenefitFrequency: 'OneTime',
@@ -61,7 +61,7 @@ describe('Foreign RealEstate Activity validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignBenefitActivityValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignBenefitActivityValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 })

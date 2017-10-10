@@ -1,10 +1,10 @@
-import OrderValidator from './order'
+import { ConsultationOrderValidator } from './order'
 
 export default class ConsultationValidator {
-  constructor (state = {}, props = {}) {
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
-    this.consulted = state.Consulted
+  constructor (data = {}) {
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
+    this.consulted = data.Consulted
   }
 
   validConsulted () {
@@ -21,7 +21,7 @@ export default class ConsultationValidator {
     }
 
     for (let order of this.list) {
-      if (!new OrderValidator(order.Consultation, null).isValid()) {
+      if (!new ConsultationOrderValidator(order.Item).isValid()) {
         return false
       }
     }

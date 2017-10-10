@@ -1,2 +1,3 @@
-import Citizenship from './Citizenship'
+import Citizenship, { CitizenshipSections } from './Citizenship'
 export default Citizenship
+export { CitizenshipSections }

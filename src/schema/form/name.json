@@ -1,0 +1,14 @@
+export default const name = {
+  type: 'name',
+  props: {
+    first: '',
+    firstInitialOnly: false,
+    last: '',
+    lastInitialOnly: false,
+    middle: '',
+    middleInitialOnly: false,
+    noMiddleName: false,
+    suffix: '',
+    suffixOther: ''
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ForeignBusinessEmploymentValidator } from '../../../../validators'
+import { ForeignBusinessEmploymentValidator, ForeignBusinessEmploymentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import JobOffer from './JobOffer'
@@ -58,24 +58,34 @@ export default class Employment extends SubsectionElement {
       <div className="foreign-business-employment">
         <Branch name="has_foreign_employment"
                 label={i18n.t('foreign.business.employment.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignEmployment}
                 warning={true}
                 onUpdate={this.updateHasForeignEmployment}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.HasForeignEmployment === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
+                     validator={ForeignBusinessEmploymentItemValidator}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('foreign.business.employment.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.employment.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.employment.collection.append')}>
-            <JobOffer name="Item" bind={true} />
+                     appendLabel={i18n.t('foreign.business.employment.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <JobOffer name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -95,5 +105,6 @@ Employment.defaultProps = {
   validator: (state, props) => {
     return new ForeignBusinessEmploymentValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

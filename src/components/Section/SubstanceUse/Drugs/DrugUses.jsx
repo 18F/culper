@@ -4,7 +4,7 @@ import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import DrugUse from './DrugUse'
-import { DrugUsesValidator } from '../../../../validators'
+import { DrugUsesValidator, DrugUseValidator } from '../../../../validators'
 
 export default class DrugUses extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class DrugUses extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DrugUse || {}
+    const o = (item || {}).Item || {}
     let drug = (o.DrugType || {}).DrugType
     if (drug === 'Other') {
       drug = ((o.DrugType || {}).DrugTypeOther || {}).value
@@ -61,27 +61,34 @@ export default class DrugUses extends SubsectionElement {
     return (
       <div className="drug-uses">
         {i18n.m('substance.drugs.para.drugUses')}
-        <h2>{i18n.m('substance.drugs.heading.drugUses')}</h2>
         <Branch name="UsedDrugs"
+                label={i18n.t('substance.drugs.heading.drugUses')}
+                labelSize="h2"
                 className="used-drugs"
                 value={this.props.UsedDrugs}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateUsedDrugs}>
+                required={this.props.required}
+                onUpdate={this.updateUsedDrugs}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('substance.drugs.use.para.drugUses')}
         </Branch>
 
         <Show when={this.props.UsedDrugs === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugUseValidator}
                      description={i18n.t('substance.drugs.use.collection.description')}
                      appendTitle={i18n.t('substance.drugs.use.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.use.collection.appendLabel')}>
-            <DrugUse name="DrugUse" bind={true} />
+                     appendLabel={i18n.t('substance.drugs.use.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <DrugUse name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -98,5 +105,6 @@ DrugUses.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugUsesValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

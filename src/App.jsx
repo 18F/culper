@@ -1,8 +1,11 @@
 import React from 'react'
 import { i18n } from './config'
 import { SectionTitle, ProgressBar, Sticky, ScoreCard, Navigation, NavigationToggle } from './components'
+import { Introduction } from './components/Form'
 import StickyHeader from './components/Sticky/StickyHeader'
 import { connect } from 'react-redux'
+import { env } from './config'
+import { api } from './services/api'
 import { logout } from './actions/AuthActions'
 
 /*
@@ -32,12 +35,25 @@ import { logout } from './actions/AuthActions'
 class App extends React.Component {
   constructor (props) {
     super(props)
+    this.state = {
+      instructions: false
+    }
     this.logout = this.logout.bind(this)
+    this.showInstructions = this.showInstructions.bind(this)
+    this.dismissInstructions = this.dismissInstructions.bind(this)
   }
 
   logout () {
     this.props.dispatch(logout())
     window.location = window.location.pathname
+  }
+
+  showInstructions (event) {
+    this.setState({ instructions: true })
+  }
+
+  dismissInstructions () {
+    this.setState({ instructions: false })
   }
 
   designClass () {
@@ -53,6 +69,16 @@ class App extends React.Component {
   }
 
   render () {
+    validWebToken()
+      .then(token => {
+        if (!token) {
+          this.props.dispatch(logout())
+        }
+      })
+      .catch(() => {
+        this.props.dispatch(logout())
+      })
+
     const logoutButton = this.props.authenticated && this.props.twofactor
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
@@ -110,6 +136,7 @@ class App extends React.Component {
                     </div>
                     <div className={klassTitle}>
                       <div className="eapp-logout mobile-hidden">
+                        <button onClick={this.showInstructions} className="instructions">{i18n.t('app.instructions')}</button>
                         {logoutButton}
                       </div>
                       <SectionTitle />
@@ -133,6 +160,9 @@ class App extends React.Component {
               &nbsp;
             </div>
             <div className={klassCore}>
+              <Introduction forceOpen={this.state.instructions}
+                            onDismiss={this.dismissInstructions}
+                            dispatch={this.props.dispatch} />
               {this.props.children}
               &nbsp;
             </div>
@@ -158,11 +188,35 @@ function mapStateToProps (state) {
   return {
     settings: settings,
     authenticated: auth.authenticated,
-    twofactor: auth.twofactor,
-    token: auth.token
+    twofactor: auth.twofactor
   }
 }
 
 // Wraps the the App component with connect() which adds the dispatch()
 // function to the props property for this component
 export default connect(mapStateToProps)(App)
+
+const validWebToken = () => {
+  return new Promise((resolve, reject) => {
+    if (env.IsTest()) {
+      console.log('Skip refreshing web tokens')
+      resolve(api.getToken())
+    }
+
+    const token = api.getToken()
+    if (!token) {
+      reject()
+      return
+    }
+
+    api.refresh()
+      .then(r => {
+        api.setToken(r.data)
+        resolve(r.data)
+      })
+      .catch(() => {
+        api.setToken('')
+        reject()
+      })
+  })
+}

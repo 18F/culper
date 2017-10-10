@@ -101,6 +101,10 @@ input[type='checkbox'], input[type='radio'] {
       width: 100%;
     }
   }
+
+  .block > label {
+    border: 2px solid #cd2026;
+  }
 }
 
 input[type='text'],
@@ -291,6 +295,7 @@ select {
         top: 8rem;
         left: 0;
         width: 100%;
+        height: auto;
         line-height: 1.1;
         font-size: 1.7rem;
         color: $eapp-grey-dark;

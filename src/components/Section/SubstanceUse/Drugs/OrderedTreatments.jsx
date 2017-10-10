@@ -4,7 +4,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import OrderedTreatment from './OrderedTreatment'
-import { DrugOrderedTreatmentsValidator } from '../../../../validators'
+import { DrugOrderedTreatmentsValidator, DrugOrderedTreatmentValidator } from '../../../../validators'
 
 export default class OrderedTreatments extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class OrderedTreatments extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).OrderedTreatment || {}
+    const o = (item || {}).Item || {}
     const range = DateSummary(o.TreatmentDates)
     const explanation = (o.Explanation || {}).value
 
@@ -58,26 +58,38 @@ export default class OrderedTreatments extends SubsectionElement {
   render () {
     return (
       <div className="ordered-treatments">
-        <h2>{i18n.m('substance.drugs.heading.orderedTreatments')}</h2>
         <Branch name="TreatmentOrdered"
+                label={i18n.m('substance.drugs.heading.orderedTreatments')}
+                labelSize="h2"
                 className="treatment-ordered"
                 value={this.props.TreatmentOrdered}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateTreatmentOrdered}>
+                required={this.props.required}
+                onUpdate={this.updateTreatmentOrdered}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.TreatmentOrdered === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugOrderedTreatmentValidator}
                      description={i18n.t('substance.drugs.ordered.collection.description')}
                      appendTitle={i18n.t('substance.drugs.ordered.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}>
-            <OrderedTreatment name="OrderedTreatment" bind={true} />
+                     appendLabel={i18n.t('substance.drugs.ordered.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <OrderedTreatment name="Item"
+                              bind={true}
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
+                              required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -91,8 +103,10 @@ OrderedTreatments.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/ordered',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new DrugOrderedTreatmentsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

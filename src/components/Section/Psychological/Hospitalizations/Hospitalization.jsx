@@ -60,8 +60,9 @@ export default class Hospitalization extends ValidationElement {
     return (
       <div className="hospitalization">
         <Field title={i18n.t(`psychological.hospitalization.heading.admission`)}
-               adjustFor="big-buttons">
-          <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission}>
+          adjustFor="big-buttons"
+          scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup className="admission" name="admission" selectedValue={this.props.Admission} required={this.props.required} onError={this.props.onError}>
             <Radio
               className="voluntary-option"
               value="Voluntary"
@@ -83,41 +84,48 @@ export default class Hospitalization extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}>
+        <Field title={i18n.t(`psychological.hospitalization.heading.explanation`)}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.treatment`)}
                help="psychological.hospitalization.help.treatment"
-               adjustFor="daterange">
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="TreatmentDate"
                      {...this.props.TreatmentDate}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateTreatmentDate}
                      onError={this.props.onError}
+                     required={this.props.required}
                      minDate={this.props.ApplicantBirthDate}
                      prefix="hospitalization"
                      />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.facility`)}
-               help="psychological.hospitalization.help.facility">
+          help="psychological.hospitalization.help.facility"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="Facility"
                 className="facility"
                 {...this.props.Facility}
                 onUpdate={this.updateFacility}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
                help="psychological.hospitalization.help.address"
-               adjustFor="address">
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="FacilityAddress"
                     {...this.props.FacilityAddress}
                     label={i18n.t(`psychological.hospitalization.label.address`)}
@@ -125,6 +133,7 @@ export default class Hospitalization extends ValidationElement {
                     geocode={true}
                     onUpdate={this.updateFacilityAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>
@@ -133,7 +142,7 @@ export default class Hospitalization extends ValidationElement {
 }
 
 Hospitalization.defaultProps = {
-  Admission: { value: null },
+  Admission: '',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

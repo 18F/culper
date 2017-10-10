@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ForeignBusinessVotingValidator } from '../../../../validators'
+import { ForeignBusinessVotingValidator, VotingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Text, Textarea, Country, DateControl } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import VotingItem from './VotingItem'
 
 export default class Voting extends SubsectionElement {
   constructor (props) {
@@ -39,7 +39,7 @@ export default class Voting extends SubsectionElement {
   }
 
   summary (item, index) {
-    const obj = item || {}
+    const obj = ((item && item.Item) || {})
     const date = DateSummary(obj.Date)
     const country = (obj.Country || {}).value || ''
 
@@ -57,55 +57,34 @@ export default class Voting extends SubsectionElement {
       <div className="foreign-business-voting">
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignVoting}
                 warning={true}
                 onUpdate={this.updateHasForeignVoting}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasForeignVoting === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={VotingValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.business.voting.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.voting.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.business.voting.collection.append')}>
-            <Field title={i18n.t('foreign.business.voting.heading.date')}
-                   help="foreign.business.voting.help.date"
-                   adjustFor="datecontrol">
-              <DateControl name="Date"
-                           className="foreign-business-voting-date"
-                           bind={true}
-                           />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.voting.heading.country')}
-                   adjustFor="country">
-              <Country name="Country"
-                       className="foreign-business-voting-country"
+                     appendLabel={i18n.t('foreign.business.voting.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <VotingItem name="Item"
                        bind={true}
-                       />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.voting.heading.reason')}
-                   adjustFor="textarea">
-              <Textarea name="Reason"
-                        className="foreign-business-voting-reason"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.voting.heading.eligibility')}
-                   adjustFor="text">
-              <Text name="Eligibility"
-                    className="foreign-business-voting-eligibility"
-                    bind={true}
-                    />
-            </Field>
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -124,7 +103,8 @@ Voting.defaultProps = {
   subsection: 'business/voting',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessVotingValidator(state, props).isValid()
+    return new ForeignBusinessVotingValidator(props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

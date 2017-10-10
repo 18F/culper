@@ -3,10 +3,10 @@ import LocationValidator from './location'
 import { validBranch, validGenericTextfield, validDateField } from './helpers'
 
 export default class ReceivedCounselingsValidator {
-  constructor (state, props) {
-    this.receivedTreatment = state.ReceivedTreatment
-    this.list = state.List
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.receivedTreatment = data.ReceivedTreatment
+    this.list = data.List
+    this.listBranch = data.ListBranch
   }
 
   validReceivedTreatment () {
@@ -27,7 +27,7 @@ export default class ReceivedCounselingsValidator {
     }
 
     for (const item of this.list) {
-      const result = new ReceivedCounselingValidator(item.ReceivedCounseling, null).isValid()
+      const result = new ReceivedCounselingValidator(item.Item).isValid()
       if (!result) {
         return false
       }
@@ -43,16 +43,16 @@ export default class ReceivedCounselingsValidator {
 }
 
 export class ReceivedCounselingValidator {
-  constructor (state, props) {
-    this.treatmentProviderName = state.TreatmentProviderName
-    this.treatmentProviderAddress = state.TreatmentProviderAddress
-    this.agencyName = state.AgencyName
-    this.agencyAddress = state.AgencyAddress
-    this.useSameAddress = state.UseSameAddress
-    this.treatmentBeganDate = state.TreatmentBeganDate
-    this.treatmentEndDate = state.TreatmentEndDate
-    this.completedTreatment = state.CompletedTreatment
-    this.noCompletedTreatmentExplanation = state.NoCompletedTreatmentExplanation
+  constructor (data = {}) {
+    this.treatmentProviderName = data.TreatmentProviderName
+    this.treatmentProviderAddress = data.TreatmentProviderAddress
+    this.agencyName = data.AgencyName
+    this.agencyAddress = data.AgencyAddress
+    this.useSameAddress = data.UseSameAddress
+    this.treatmentBeganDate = data.TreatmentBeganDate
+    this.treatmentEndDate = data.TreatmentEndDate
+    this.completedTreatment = data.CompletedTreatment
+    this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 
   validCompletedTreatment () {

@@ -4,11 +4,9 @@ import CheckboxGroup from './CheckboxGroup'
 import Checkbox from '../Checkbox'
 
 describe('The CheckboxGroup component', () => {
-
   it('renders checkbox button children', () => {
-
     const component = mount(
-      <CheckboxGroup name={"rgroup"}>
+      <CheckboxGroup name={'rgroup'}>
         <Checkbox value="Option1" />
         <Checkbox value="Option2" />
       </CheckboxGroup>
@@ -40,5 +38,15 @@ describe('The CheckboxGroup component', () => {
     )
 
     expect(component.find('input[type="checkbox"]').first().props().checked).toBe(true)
+  })
+
+  it('renders checkbox button children', () => {
+    const component = mount(
+      <CheckboxGroup required={true} name={'rgroup'} selectedValues={[]}>
+        <Checkbox value="Option1" />
+        <Checkbox value="Option2" />
+      </CheckboxGroup>
+    )
+    expect(component.find('.usa-input-error').length).toBe(1)
   })
 })

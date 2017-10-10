@@ -60,3 +60,33 @@ func TestDatabaseURI(t *testing.T) {
 		t.Errorf("Expected the database URI to be '%s' or '%s' but received '%s'", expected, expectedDocker, uri)
 	}
 }
+
+func TestTwofactorDisabled(t *testing.T) {
+	os.Setenv("DISABLE_2FA", "1")
+
+	// Test agains the environment variables
+	if !TwofactorDisabled() {
+		t.Errorf("Expected twofactor authentication to be disabled")
+	}
+
+	// Test against defaults
+	os.Setenv("DISABLE_2FA", "")
+	if TwofactorDisabled() {
+		t.Errorf("Expected twofactor authentication to be enabled")
+	}
+}
+
+func TestTwofactorResettable(t *testing.T) {
+	os.Setenv("ALLOW_2FA_RESET", "1")
+
+	// Test agains the environment variables
+	if !TwofactorResettable() {
+		t.Errorf("Expected twofactor authentication to allow reset")
+	}
+
+	// Test against defaults
+	os.Setenv("ALLOW_2FA_RESET", "")
+	if TwofactorDisabled() {
+		t.Errorf("Expected twofactor authentication to disallow reset")
+	}
+}

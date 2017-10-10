@@ -2,11 +2,11 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield } from './helpers'
 
 export default class ForeignTravelValidator {
-  constructor (state = {}, props = {}) {
-    this.hasForeignTravelOutside = props.HasForeignTravelOutside
-    this.hasForeignTravelOfficial = props.HasForeignTravelOfficial
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    this.hasForeignTravelOutside = data.HasForeignTravelOutside
+    this.hasForeignTravelOfficial = data.HasForeignTravelOfficial
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -23,7 +23,7 @@ export default class ForeignTravelValidator {
         return false
       }
 
-      return this.list.every(item => new TravelValidator(null, item.Item).isValid())
+      return this.list.every(item => new TravelValidator(item.Item).isValid())
     }
 
     return false
@@ -35,25 +35,25 @@ export default class ForeignTravelValidator {
 }
 
 export class TravelValidator {
-  constructor (state = {}, props = {}) {
-    this.dates = props.Dates
-    this.country = props.Country
-    this.days = props.Days || []
-    this.purpose = props.Purpose || []
-    this.questioned = props.Questioned
-    this.questionedExplanation = props.QuestionedExplanation
-    this.encounter = props.Encounter
-    this.encounterExplanation = props.EncounterExplanation
-    this.contacted = props.Contacted
-    this.contactedExplanation = props.ContactedExplanation
-    this.counter = props.Counter
-    this.counterExplanation = props.CounterExplanation
-    this.interest = props.Interest
-    this.interestExplanation = props.InterestExplanation
-    this.sensitive = props.Sensitive
-    this.sensitiveExplanation = props.SensitiveExplanation
-    this.threatened = props.Threatened
-    this.threatenedExplanation = props.ThreatenedExplanation
+  constructor (data = {}) {
+    this.dates = data.Dates
+    this.country = data.Country
+    this.days = data.Days || []
+    this.purpose = data.Purpose || []
+    this.questioned = data.Questioned
+    this.questionedExplanation = data.QuestionedExplanation
+    this.encounter = data.Encounter
+    this.encounterExplanation = data.EncounterExplanation
+    this.contacted = data.Contacted
+    this.contactedExplanation = data.ContactedExplanation
+    this.counter = data.Counter
+    this.counterExplanation = data.CounterExplanation
+    this.interest = data.Interest
+    this.interestExplanation = data.InterestExplanation
+    this.sensitive = data.Sensitive
+    this.sensitiveExplanation = data.SensitiveExplanation
+    this.threatened = data.Threatened
+    this.threatenedExplanation = data.ThreatenedExplanation
   }
 
   validCountry () {

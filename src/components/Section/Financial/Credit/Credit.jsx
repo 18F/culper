@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary } from '../../../Summary'
-import { CreditValidator } from '../../../../validators'
+import { CreditValidator, CreditItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Telephone, Text, Textarea, Location } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import CreditItem from './CreditItem'
 
 export default class Credit extends SubsectionElement {
   constructor (props) {
@@ -54,7 +54,7 @@ export default class Credit extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const obj = (item || {})
+    const obj = (item.Item || {})
     const name = (obj.Name || {}).value || ''
 
     return Summary({
@@ -70,68 +70,37 @@ export default class Credit extends SubsectionElement {
     return (
       <div className="credit-counseling">
         <Branch name="has_credit"
+                label={i18n.t('financial.credit.title')}
+                labelSize="h2"
                 className="credit-branch"
                 value={this.state.HasCreditCounseling}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCreditCounseling === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.credit.collection.summary.title')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
+                     validator={CreditItemValidator}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
-
-            <Field title={i18n.t('financial.credit.heading.explanation')}
-                   help="financial.credit.help.explanation">
-              <Textarea name="Explanation"
-                        className="credit-explanation"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.name')}>
-              <Text name="Name"
-                    className="credit-name"
-                    bind={true}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.telephone')}
-                   help="financial.credit.help.telephone"
-                   adjustFor="telephone">
-              <Telephone name="Telephone"
-                         className="credit-telephone"
-                         bind={true}
-                         />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.address')}
-                   help="financial.credit.help.address"
-                   adjustFor="label">
-              <Location name="Location"
-                          layout={Location.CITY_STATE}
-                          className="credit-location"
-                          bind={true}
-                          help=""
-                          statePlaceholder={i18n.t('financial.credit.placeholder.state')}
-                          cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
-                          />
-            </Field>
-
-            <Field title={i18n.t('financial.credit.heading.description')}
-                   help="financial.credit.help.description">
-              <Textarea name="Description"
-                        className="credit-description"
-                        bind={true}
-                        />
-            </Field>
-
+                     <CreditItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -143,12 +112,13 @@ Credit.defaultProps = {
   HasCreditCounseling: '',
   List: [],
   ListBranch: '',
+  addressBooks: {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'credit',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CreditValidator(state, props).isValid()
+    return new CreditValidator(state).isValid()
   },
   defaultState: true
 }

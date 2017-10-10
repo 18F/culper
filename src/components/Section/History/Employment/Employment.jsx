@@ -10,16 +10,18 @@ import { InjectGaps, EmploymentCustomSummary, EmploymentCaption } from '../summa
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
 
-const byline = (item, index, initial, translation, validator) => {
-  if (!item.open && !initial && item.Item && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.t(translation)}</div>
+const byline = (item, index, initial, translation, required, validator) => {
+  switch (true) {
+    // If item is required and not currently opened and is not valid, show message
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="incomplete">{i18n.m(translation)}</div>
       </div>
-    )
+      )
+    default:
+      return null
   }
-
-  return null
 }
 
 export default class Employment extends SubsectionElement {
@@ -30,11 +32,19 @@ export default class Employment extends SubsectionElement {
     this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
     this.fillGap = this.fillGap.bind(this)
     this.inject = this.inject.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   customEmploymentByline (item, index, initial) {
-    return byline(item, index, this.props.overrideInitial(initial), 'history.employment.default.collection.summary.incomplete', (item) => {
+    return byline(item, index, this.props.overrideInitial(initial), 'history.employment.default.collection.summary.incomplete', this.props.required, (item) => {
       return new EmploymentValidator(item, null).isValid()
+    })
+  }
+
+  updateList (values) {
+    this.props.onUpdate({
+      List: values.items,
+      ListBranch: values.branch
     })
   }
 
@@ -53,8 +63,8 @@ export default class Employment extends SubsectionElement {
     })
 
     this.props.onUpdate({
-      items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
-      branch: ''
+      List: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+      ListBranch: ''
     })
   }
 
@@ -82,21 +92,31 @@ export default class Employment extends SubsectionElement {
   render () {
     return (
       <div className="employment">
-        <Accordion scrollTo={this.props.scrollTo}
+        <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.value}
+                   items={this.props.List}
+                   branch={this.props.ListBranch}
                    sort={this.props.sort}
                    inject={this.inject}
                    realtime={this.props.realtime}
-                   onUpdate={this.props.onUpdate}
+                   onUpdate={this.updateList}
                    onError={this.handleError}
                    caption={EmploymentCaption}
                    byline={this.customEmploymentByline}
                    customSummary={EmploymentCustomSummary}
                    customDetails={this.customEmploymentDetails}
                    description={i18n.t('history.employment.default.collection.summary.title')}
-                   appendLabel={i18n.t('history.employment.default.collection.append')}>
-          <EmploymentItem name="Item" bind={true} />
+                   appendTitle={i18n.t('history.employment.default.collection.appendTitle')}
+                   appendMessage={i18n.m('history.employment.default.collection.appendMessage')}
+                   appendLabel={i18n.t('history.employment.default.collection.append')}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}>
+        <EmploymentItem name="Item"
+                        bind={true}
+                        addressBooks={this.props.addressBooks}
+                        dispatch={this.props.dispatch}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -105,7 +125,9 @@ export default class Employment extends SubsectionElement {
 
 Employment.defaultProps = {
   value: [],
-  scrollTo: '',
+  List: [],
+  ListBranch: '',
+  scrollToTop: '',
   defaultState: true,
   realtime: false,
   sort: null,
@@ -115,10 +137,11 @@ Employment.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'employment',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return props.value.every(x => {
-      return new EmploymentValidator(x.Item, null).isValid()
+    return props.List.every(x => {
+      return props.ListBranch === 'No' && new EmploymentValidator(x.Item).isValid()
     })
   }
 }

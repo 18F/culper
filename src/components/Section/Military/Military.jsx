@@ -6,7 +6,7 @@ import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
 import { hideSelectiveService } from '../../../validators/selectiveservice'
-import { Show } from '../../Form'
+import { Show, Field } from '../../Form'
 import Selective from './Selective'
 import History from './History'
 import Disciplinary from './Disciplinary'
@@ -49,8 +49,11 @@ class Military extends SectionElement {
                        backLabel={i18n.t('citizenship.destination.review')}
                        next={showSelectiveService ? 'military/selective' : 'military/history'}
                        nextLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.history')}>
-            <h2>{i18n.t('military.intro.title')}</h2>
-            {i18n.m('military.intro.body')}
+            <Field title={i18n.t('military.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('military.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="review"
@@ -59,50 +62,53 @@ class Military extends SectionElement {
                        showTop={true}
                        back="military/foreign"
                        backLabel={i18n.t('military.destination.foreign')}
-                       next="foreign/passport"
-                       nextLabel={i18n.t('foreign.destination.passport')}>
+                       next="foreign/intro"
+                       nextLabel={i18n.t('foreign.destination.intro')}>
             <Show when={showSelectiveService}>
-            <h2>{i18n.t('military.selective.heading.born')}</h2>
               <Selective name="selective"
                         {...this.props.Selective}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateSelective}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         />
               <hr/>
             </Show>
 
-            <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
 
             <Show when={showDisciplinary}>
               <hr/>
-              <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
-              {i18n.m('military.disciplinary.para.info')}
               <Disciplinary name="disciplinary"
                             {...this.props.Disciplinary}
                             defaultState={false}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDisciplinary}
                             onError={this.handleError}
+                            required={true}
+                            scrollIntoView={false}
                             />
             </Show>
 
             <hr/>
-            <h2>{i18n.t('military.foreign.heading.title')}</h2>
-            {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     addressBooks={this.props.AddressBooks}
                      defaultState={false}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
           </SectionView>
 
@@ -111,7 +117,6 @@ class Military extends SectionElement {
                        backLabel={i18n.t('military.destination.intro')}
                        next="military/history"
                        nextLabel={i18n.t('military.destination.history')}>
-            <h2>{i18n.t('military.selective.heading.born')}</h2>
             <Selective name="selective"
                        {...this.props.Selective}
                        dispatch={this.props.dispatch}
@@ -125,12 +130,12 @@ class Military extends SectionElement {
                        backLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.intro')}
                        next={showDisciplinary ? 'military/disciplinary' : 'military/foreign'}
                        nextLabel={showDisciplinary ? i18n.t('military.destination.disciplinary') : i18n.t('military.destination.foreign')}>
-            <h2>{i18n.t('military.history.heading.served')}</h2>
             <History name="history"
                      {...this.props.History}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateHistory}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -139,13 +144,12 @@ class Military extends SectionElement {
                        backLabel={i18n.t('military.destination.history')}
                        next="military/foreign"
                        nextLabel={i18n.t('military.destination.foreign')}>
-            <h2>{i18n.t('military.disciplinary.heading.title')}</h2>
-            {i18n.m('military.disciplinary.para.info')}
             <Disciplinary name="disciplinary"
                           {...this.props.Disciplinary}
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateDisciplinary}
                           onError={this.handleError}
+                          scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
 
@@ -154,13 +158,13 @@ class Military extends SectionElement {
                        backLabel={showDisciplinary ? i18n.t('military.destination.disciplinary') : i18n.t('military.destination.history')}
                        next="military/review"
                        nextLabel={i18n.t('military.destination.review')}>
-            <h2>{i18n.t('military.foreign.heading.title')}</h2>
-            {i18n.m('military.foreign.para.served')}
             <Foreign name="foreign"
                      {...this.props.Foreign}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateForeign}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
         </SectionViews>
@@ -170,10 +174,12 @@ class Military extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let military = app.Military || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const military = app.Military || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Application: app || {},
     Military: military,
@@ -182,13 +188,68 @@ function mapStateToProps (state) {
     Disciplinary: military.Disciplinary || {},
     Foreign: military.Foreign || {},
     Errors: errors.military || [],
-    Completed: completed.military || []
+    Completed: completed.military || [],
+    AddressBooks: addressBooks
   }
 }
 
 Military.defaultProps = {
   section: 'military',
-  store: 'Military'
+  store: 'Military',
+  scrollToBottom: SectionView.BottomButtonsSelector
+}
+
+export class MilitarySections extends React.Component {
+  render () {
+    const showDisciplinary = !hideDisciplinaryProcedures(this.props.Application)
+    const showSelectiveService = !hideSelectiveService(this.props.Application)
+    return (
+      <div>
+        <Show when={showSelectiveService}>
+          <Selective name="selective"
+            {...this.props.Selective}
+            dispatch={this.props.dispatch}
+            onError={this.props.onError}
+            required={true}
+            scrollIntoView={false}
+          />
+          <hr/>
+        </Show>
+
+        <History name="history"
+          {...this.props.History}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <Show when={showDisciplinary}>
+          <hr/>
+          <Disciplinary name="disciplinary"
+            {...this.props.Disciplinary}
+            defaultState={false}
+            dispatch={this.props.dispatch}
+            onError={this.props.onError}
+            required={true}
+            scrollIntoView={false}
+          />
+        </Show>
+
+        <hr/>
+        <Foreign name="foreign"
+          {...this.props.Foreign}
+          addressBooks={this.props.AddressBooks}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Military))

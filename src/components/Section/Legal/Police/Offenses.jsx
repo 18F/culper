@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PoliceOffensesValidator } from '../../../../validators'
+import { PoliceOffensesValidator, OffenseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -59,13 +59,16 @@ export default class Offenses extends SubsectionElement {
   render () {
     return (
       <div className="police-offenses">
-        <h2>{i18n.t('legal.police.heading.questions')}</h2>
         <Branch name="has_offenses"
+                label={i18n.t('legal.police.heading.questions')}
+                labelSize="h2"
                 className="has-offenses"
                 value={this.props.HasOffenses}
                 warning={true}
                 onUpdate={this.updateHasOffenses}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           <ul>
             <li>{i18n.m('legal.police.label.summons')}</li>
             <li>{i18n.m('legal.police.label.arrests')}</li>
@@ -78,16 +81,24 @@ export default class Offenses extends SubsectionElement {
           <div>
             <Accordion items={this.props.List}
                        defaultState={this.props.defaultState}
+                       scrollToBottom={this.props.scrollToBottom}
                        branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.handleError}
+                       validator={OffenseValidator}
                        summary={this.summary}
                        description={i18n.t('legal.police.collection.summary.title')}
                        appendTitle={i18n.t('legal.police.collection.appendTitle')}
                        appendMessage={i18n.m('legal.police.collection.appendMessage')}
-                       appendLabel={i18n.t('legal.police.collection.append')}>
+                       appendLabel={i18n.t('legal.police.collection.append')}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}>
               <Offense name="Item"
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
                        bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
                        />
             </Accordion>
           </div>
@@ -102,9 +113,11 @@ Offenses.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'police/offenses',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new PoliceOffensesValidator(props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

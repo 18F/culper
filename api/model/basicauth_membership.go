@@ -3,7 +3,7 @@ package model
 import (
 	"time"
 
-	pg "gopkg.in/pg.v5"
+	"github.com/go-pg/pg"
 
 	"golang.org/x/crypto/bcrypt"
 )

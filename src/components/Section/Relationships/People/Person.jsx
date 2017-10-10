@@ -120,25 +120,31 @@ export default class Person extends React.Component {
       <div className="person">
         <Field title={i18n.t('relationships.people.person.heading.knownDates')}
                help="relationships.people.person.help.knownDates"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="daterange">
           <DateRange name="Dates"
                      className="known-dates"
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
-        <h3>{i18n.t('relationships.people.person.heading.name')}</h3>
-        <Name name="Name"
-              className="name"
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              />
+        <Field title={i18n.t('relationships.people.person.heading.name')}
+          scrollIntoView={this.props.scrollIntoView}>
+            <Name name="Name"
+                  className="name"
+                  {...this.props.Name}
+                  onUpdate={this.updateName}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                  />
+        </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.rank')}
-               >
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="RankNotApplicable"
                          className="rank-notapplicable"
                          {...this.props.RankNotApplicable}
@@ -151,15 +157,19 @@ export default class Person extends React.Component {
                   {...this.props.Rank}
                   onUpdate={this.updateRank}
                   onError={this.props.onError}
+                  required={this.props.required}
                   />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t(`relationships.people.person.heading.relationship`)}
                className="relationships"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
+                         required={this.props.required}
+                         onError={this.props.onError}
                          selectedValues={this.props.Relationship}>
             <Checkbox name="relationship-neighbor"
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
@@ -209,39 +219,48 @@ export default class Person extends React.Component {
           </CheckboxGroup>
 
           <Show when={this.props.Relationship.includes('Other')}>
-            <Text name="RelationshipOther"
-                  label={i18n.t(`relationships.people.person.label.relationship.explanation`)}
-                  maxlength="100"
-                  className="relationship-other"
-                  {...this.props.RelationshipOther}
-                  onUpdate={this.updateRelationshipOther}
-                  onError={this.props.onError}
-                  />
+            <Field title={i18n.t(`relationships.people.person.label.relationship.explanation`)}
+                   titleSize="label"
+                   adjustFor="text"
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Text name="RelationshipOther"
+                    maxlength="100"
+                    className="relationship-other"
+                    {...this.props.RelationshipOther}
+                    onUpdate={this.updateRelationshipOther}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
+            </Field>
           </Show>
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
                className="mobile-telephone"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="MobileTelephone"
                      {...this.props.MobileTelephone}
                      onUpdate={this.updateMobileTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
                className="other-telephone"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="OtherTelephone"
                      {...this.props.OtherTelephone}
                      onUpdate={this.updateOtherTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.email')}
-               >
+          scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmailNotApplicable"
                          className="email-notapplicable"
                          {...this.props.EmailNotApplicable}
@@ -254,21 +273,27 @@ export default class Person extends React.Component {
                    {...this.props.Email}
                    onUpdate={this.updateEmail}
                    onError={this.props.onError}
+                   required={this.props.required}
                    />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.address')}
-               adjustFor="address"
-               >
+               help="relationships.people.person.help.address"
+               scrollIntoView={this.props.scrollIntoView}
+               adjustFor="address">
           <Location name="Address"
                     label={i18n.t('relationships.people.person.label.address')}
                     className="address"
                     {...this.props.Address}
+                    addressBooks={this.props.addressBooks}
+                    addressBook={this.props.addressBook}
+                    dispatch={this.props.dispatch}
                     layout={Location.ADDRESS}
                     geocode={true}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>
@@ -278,6 +303,9 @@ export default class Person extends React.Component {
 
 Person.defaultProps = {
   Relationship: [],
+  addressBooks: {},
+  addressBook: 'Reference',
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

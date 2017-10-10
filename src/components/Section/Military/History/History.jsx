@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { MilitaryHistoryValidator } from '../../../../validators'
+import { MilitaryHistoryValidator, MilitaryServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -83,26 +83,36 @@ export default class History extends SubsectionElement {
     return (
       <div className="history">
         <Branch name="has_served"
+                label={i18n.t('military.history.heading.served')}
+                labelSize="h2"
                 className="served"
                 value={this.props.HasServed}
                 help="military.history.help.served"
                 warning={true}
                 onUpdate={this.updateServed}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasServed === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('military.history.collection.summary.title')}
                      appendTitle={i18n.t('military.history.collection.appendTitle')}
-                     appendLabel={i18n.t('military.history.collection.append')}>
+                     appendLabel={i18n.t('military.history.collection.append')}
+                     validator={MilitaryServiceValidator}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
             <MilitaryService name="Item"
                              bind={true}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
                              />
           </Accordion>
         </Show>
@@ -116,9 +126,10 @@ History.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'history',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryHistoryValidator(props, props).isValid()
+    return new MilitaryHistoryValidator(props).isValid()
   },
   defaultState: true
 }

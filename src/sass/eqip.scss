@@ -7,7 +7,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 h2 {
-  font-size: 2.75rem;
+  font-size: 2.3rem;
+  line-height: 1.6;
   margin-top: 0;
   margin-bottom: 0.5rem;
 }
@@ -150,8 +151,20 @@ a:focus {
       font-family: $eapp-sans;
       font-size: 1.6rem;
 
+      button {
+        display: inline-block;
+        color: $eapp-grey;
+        background: none;
+        font-weight: initial;
+        font-size: 1.6rem;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
       a {
-        display: block;
+        display: inline-block;
         padding: 1rem 1.5rem;
         color: $eapp-grey;
         text-decoration: none;

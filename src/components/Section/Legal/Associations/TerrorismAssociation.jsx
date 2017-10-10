@@ -39,22 +39,26 @@ export default class TerrorismAssociation extends SubsectionElement {
       <div className="legal-associations-terrorism">
         <Branch name="has_terrorsim"
                 label={i18n.t('legal.associations.terrorism.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-associations-terrorism-has-terrorism"
                 value={this.props.HasTerrorism}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasTerrorism === 'Yes'}>
           <Field title={i18n.t('legal.associations.terrorism.heading.explanation')}
                   help="legal.associations.terrorism.help.explanation"
-                  adjustFor="textarea">
+                  adjustFor="textarea"
+                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Explanation"
                       {...this.props.Explanation}
                       className="legal-associations-terrorism-explanation"
                       onError={this.handleError}
+                      required={this.props.required}
                       onUpdate={this.updateExplanation}
                       />
           </Field>

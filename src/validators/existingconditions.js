@@ -1,16 +1,15 @@
-import DiagnosisValidator from './diagnosis'
+import { ExistingConditionsDiagnosisValidator } from './diagnosis'
 import { validGenericTextfield, validBranch } from './helpers'
 
 export default class ExistingConditionsValidator {
-  constructor (state = {}, props) {
-    this.hasCondition = state.HasCondition
-    this.receivedTreatment = state.ReceivedTreatment
-    this.explanation = state.Explanation
-    this.treatmentList = state.TreatmentList || []
-    this.treatmentListBranch = state.TreatmentListBranch
-    this.didNotFollow = state.DidNotFollow
-    this.didNotFollowExplanation = state.DidNotFollowExplanation
-    this.prefix = (props || {}).prefix
+  constructor (data = {}) {
+    this.hasCondition = data.HasCondition
+    this.receivedTreatment = data.ReceivedTreatment
+    this.explanation = data.Explanation
+    this.treatmentList = data.TreatmentList || []
+    this.treatmentListBranch = data.TreatmentListBranch
+    this.didNotFollow = data.DidNotFollow
+    this.didNotFollowExplanation = data.DidNotFollowExplanation
   }
 
   validDidNotFollow () {
@@ -39,7 +38,7 @@ export default class ExistingConditionsValidator {
           return false
         }
         for (let item of this.treatmentList) {
-          if (!new DiagnosisValidator(item.Diagnosis, { prefix: this.prefix }).isValid()) {
+          if (!new ExistingConditionsDiagnosisValidator(item.Item).isValid()) {
             return false
           }
         }

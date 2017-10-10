@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { LegalNonCriminalCourtActionsValidator } from '../../../validators'
+import { LegalNonCriminalCourtActionsValidator, NonCriminalCourtActionValidator } from '../../../validators'
 import SubsectionElement from '../SubsectionElement'
 import { Accordion, Branch, Show } from '../../Form'
 import NonCriminalCourtAction from './NonCriminalCourtAction'
@@ -39,7 +39,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).CourtAction || {}
+    const o = (item || {}).Item || {}
     const date = DateSummary(o.CivilActionDate)
     const courtName = (o.CourtName || {}).value || ''
 
@@ -55,26 +55,38 @@ export default class NonCriminalCourtActions extends SubsectionElement {
   render () {
     return (
       <div className="non-criminal-court-actions">
-        <h2>{i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}</h2>
         <Branch name="HasCourtActions"
+                label={i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}
+                labelSize="h2"
                 className="has-court-actions"
                 value={this.props.HasCourtActions}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasCourtActions}>
+                required={this.props.required}
+                onUpdate={this.updateHasCourtActions}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasCourtActions === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={NonCriminalCourtActionValidator}
                      description={i18n.t('legal.nonCriminalAction.collection.description')}
                      appendTitle={i18n.t('legal.nonCriminalAction.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}>
-            <NonCriminalCourtAction name="CourtAction" bind={true} />
+                     appendLabel={i18n.t('legal.nonCriminalAction.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+        <NonCriminalCourtAction name="Item"
+                                bind={true}
+                                addressBooks={this.props.addressBooks}
+                                dispatch={this.props.dispatch}
+                                required={this.props.required}
+                                scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -89,8 +101,10 @@ NonCriminalCourtActions.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'court',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new LegalNonCriminalCourtActionsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

@@ -70,15 +70,18 @@ export default class ApplicantBirthDate extends SubsectionElement {
 
     return (
       <div className={klass}>
-        <Field help="identification.birthdate.help"
+        <Field title={i18n.t('identification.birthdate.title')}
+               titleSize="h2"
+               help="identification.birthdate.help"
                adjustFor="labels"
-               shrink={true}>
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name={this.props.name}
                        value={this.state.value}
                        className={klassError}
                        estimated={this.state.estimated}
                        onUpdate={this.onUpdate}
                        onError={this.handleError}
+                       required={this.props.required}
                        />
         </Field>
       </div>

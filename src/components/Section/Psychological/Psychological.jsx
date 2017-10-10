@@ -4,13 +4,13 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Show } from '../../Form'
+import { Show, Field } from '../../Form'
 import Competence from './Competence/Competence'
 import Consultation from './Consultation/Consultation'
 import Hospitalizations from './Hospitalizations/Hospitalizations'
 import Diagnoses from './Diagnoses/Diagnoses'
 import ExistingConditions from './ExistingConditions/ExistingConditions'
-import PsychologicalValidator, { showQuestion21E } from '../../../validators/psychological'
+import { showQuestion21E } from '../../../validators/psychological'
 import { extractApplicantBirthDate } from '../extractors'
 
 class Psychological extends SectionElement {
@@ -37,11 +37,15 @@ class Psychological extends SectionElement {
                        backLabel={ i18n.t('legal.destination.review') }
                        next="psychological/competence"
                        nextLabel={ i18n.t('psychological.destination.competence') }>
-            <h2>{ i18n.t('psychological.heading.intro') }</h2>
-            { i18n.m('psychological.intro.para1') }
-            { i18n.m('psychological.intro.para2') }
-            { i18n.m('psychological.intro.para3') }
-            { i18n.m('psychological.intro.para4') }
+            <Field title={ i18n.t('psychological.heading.intro') }
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              { i18n.m('psychological.intro.para1') }
+              { i18n.m('psychological.intro.para2') }
+              { i18n.m('psychological.intro.para3') }
+              { i18n.m('psychological.intro.para4') }
+            </Field>
+
           </SectionView>
 
           <SectionView name="competence"
@@ -52,9 +56,12 @@ class Psychological extends SectionElement {
             <Competence name="Competence"
                         {...this.props.Competence}
                         ApplicantBirthDate={this.props.ApplicantBirthDate}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
-                        onUpdate={this.handleUpdate.bind(this, 'Competence')} />
+                        onUpdate={this.handleUpdate.bind(this, 'Competence')}
+                        scrollToBottom={this.props.scrollToBottom}
+                      />
           </SectionView>
 
           <SectionView name="consultations"
@@ -65,9 +72,12 @@ class Psychological extends SectionElement {
             <Consultation name="Consultations"
                           {...this.props.Consultations}
                           ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+                          onUpdate={this.handleUpdate.bind(this, 'Consultation')}
+                          scrollToBottom={this.props.scrollToBottom}
+                        />
           </SectionView>
           <SectionView name="hospitalizations"
                        back="psychological/consultations"
@@ -79,7 +89,9 @@ class Psychological extends SectionElement {
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')}
+                              scrollToBottom={this.props.scrollToBottom}
+                            />
           </SectionView>
           <SectionView name="diagnoses"
                        back="psychological/hospitalizations"
@@ -89,9 +101,11 @@ class Psychological extends SectionElement {
             <Diagnoses name="Diagnoses"
                        {...this.props.Diagnoses}
                        ApplicantBirthDate={this.props.ApplicantBirthDate}
+                       addressBooks={this.props.AddressBooks}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
+                       scrollToBottom={this.props.scrollToBottom}
                        />
           </SectionView>
           <SectionView name="conditions"
@@ -105,6 +119,7 @@ class Psychological extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
           <SectionView name="review"
@@ -120,6 +135,8 @@ class Psychological extends SectionElement {
                         defaultState={false}
                         dispatch={this.props.dispatch}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')} />
 
             <hr />
@@ -129,6 +146,8 @@ class Psychological extends SectionElement {
                           defaultState={false}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
 
             <hr />
@@ -138,6 +157,8 @@ class Psychological extends SectionElement {
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
+                              required={true}
+                              scrollIntoView={false}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
 
             <hr />
@@ -147,6 +168,8 @@ class Psychological extends SectionElement {
                        defaultState={false}
                        dispatch={this.props.dispatch}
                        onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
                        onUpdate={this.handleUpdate.bind(this, 'Diagnoses')}
                        />
 
@@ -160,6 +183,8 @@ class Psychological extends SectionElement {
                                     dispatch={this.props.dispatch}
                                     onError={this.handleError}
                                     onUpdate={this.handleUpdate.bind(this, 'ExistingConditions')}
+                                    required={this.props.ShowExistingConditions}
+                                    scrollIntoView={false}
                                     />
               </div>
             </Show>
@@ -171,10 +196,12 @@ class Psychological extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let psychological = app.Psychological || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const psychological = app.Psychological || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Psychological: psychological,
     Competence: psychological.Competence,
@@ -185,13 +212,82 @@ function mapStateToProps (state) {
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
     ShowExistingConditions: showQuestion21E(psychological),
-    ApplicantBirthDate: extractApplicantBirthDate(app)
+    ApplicantBirthDate: extractApplicantBirthDate(app),
+    AddressBooks: addressBooks
   }
 }
 
 Psychological.defaultProps = {
   section: 'psychological',
-  store: 'Psychological'
+  store: 'Psychological',
+  scrollToBottom: SectionView.BottomButtonsSelector
+}
+
+export class PsychologicalSections extends React.Component {
+  render () {
+    const showExisting = showQuestion21E(this.props)
+    return (
+      <div>
+        <Competence name="Competence"
+          {...this.props.Competence}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Consultation name="Consultations"
+          {...this.props.Consultations}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Hospitalizations name="Hospitalizations"
+          {...this.props.Hospitalizations}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Diagnoses name="Diagnoses"
+          {...this.props.Diagnoses}
+          ApplicantBirthDate={this.props.ApplicantBirthDate}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <Show when={showExisting}>
+          <div>
+            <hr />
+            <ExistingConditions name="ExistingConditions"
+              {...this.props.ExistingConditions}
+              ApplicantBirthDate={this.props.ApplicantBirthDate}
+              defaultState={false}
+              dispatch={this.props.dispatch}
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={false}
+            />
+          </div>
+        </Show>
+    </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Psychological))

@@ -29,7 +29,7 @@ describe('Foreign RealEstate Activity validation', function () {
           HasInterests: 'Yes',
           List: [
             {
-              RealEstateInterest: {
+              Item: {
                 InterestTypes: ['Yourself'],
                 RealEstateType: {
                   value: 'Bar'
@@ -71,7 +71,7 @@ describe('Foreign RealEstate Activity validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignRealEstateActivityValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignRealEstateActivityValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 })

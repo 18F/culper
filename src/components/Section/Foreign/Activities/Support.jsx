@@ -1,10 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ForeignActivitiesSupportValidator } from '../../../../validators'
+import { ForeignActivitiesSupportValidator, SupportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Text, Textarea, Currency, Name, Location, Country,
-         Checkbox } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import SupportItem from './SupportItem'
 
 export default class Support extends SubsectionElement {
   constructor (props) {
@@ -57,11 +56,13 @@ export default class Support extends SubsectionElement {
       <div className="foreign-activities-support">
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignSupport}
                 warning={true}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 />
 
         <Show when={this.props.HasForeignSupport === 'Yes'}>
@@ -70,69 +71,21 @@ export default class Support extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={SupportValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.activities.support.collection.summary.title')}
                      appendTitle={i18n.t('foreign.activities.support.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.activities.support.collection.append')}>
-            <h3>{i18n.t('foreign.activities.support.heading.name')}</h3>
-            <Name name="Name"
-                  className="foreign-activities-support-name"
-                  bind={true}
-                  />
-
-            <Field title={i18n.t('foreign.activities.support.heading.address')}
-                   adjustFor="address">
-              <Location name="Address"
-                        className="foreign-activities-support-address"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.relationship')}
-                   adjustFor="textarea">
-              <Textarea name="Relationship"
-                        className="foreign-activities-support-relationship"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.amount')}
-                   help="foreign.activities.support.help.amount"
-                   adjustFor="currency">
-              <Currency name="Amount"
-                        className="foreign-activities-support-amount"
-                        bind={true}
-                        min="0"
-                        />
-              <div className="flags">
-                <Checkbox name="AmountEstimated"
-                          ref="estimated"
-                          label={i18n.t('foreign.activities.support.label.estimated')}
-                          toggle="false"
-                          bind={true}
-                          />
-              </div>
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.frequency')}
-                   adjustFor="text">
-              <Text name="Frequency"
-                    className="foreign-activities-support-frequency"
-                    bind={true}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.activities.support.heading.citizenship')}
-                   help="foreign.activities.support.help.citizenship"
-                   adjustFor="country">
-              <Country name="Citizenship"
-                       className="foreign-activities-support-citizenship"
-                       multiple={true}
+                     appendLabel={i18n.t('foreign.activities.support.collection.append')}
+                     required={this.props.required}
+                     scrollToBottom={this.props.scrollToBottom}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <SupportItem name="Item"
                        bind={true}
-                       />
-            </Field>
+                       dispatch={this.props.dispatch}
+                       addressBooks={this.props.addressBooks}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -149,6 +102,7 @@ Support.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/support',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignActivitiesSupportValidator(props, props).isValid()

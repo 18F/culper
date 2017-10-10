@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { RadioGroup, Show, Radio, ValidationElement, Textarea } from '../../../Form'
+import { Field, RadioGroup, Show, Radio, ValidationElement, Textarea } from '../../../Form'
 
 export default class DrugType extends ValidationElement {
   constructor (props) {
@@ -32,7 +32,10 @@ export default class DrugType extends ValidationElement {
   render () {
     return (
       <div className="drug-type">
-        <RadioGroup name="born" selectedValue={this.props.DrugType}>
+        <RadioGroup name="born"
+          onError={this.props.onError}
+          required={this.props.required}
+          selectedValue={this.props.DrugType}>
           <Radio className="cocaine"
             label={i18n.m('substance.drugs.drugType.label.cocaine')}
             value="Cocaine"
@@ -115,13 +118,18 @@ export default class DrugType extends ValidationElement {
           />
         </RadioGroup>
         <Show when={this.props.DrugType === 'Other'}>
-          <Textarea name="DrugTypeOther"
-            className="drug-type-other"
-            {...this.props.DrugTypeOther}
-            label={i18n.t('substance.drugs.drugType.label.drugTypeOther')}
-            onUpdate={this.updateDrugTypeOther}
-            onError={this.props.onError}
-          />
+          <Field title={i18n.t('substance.drugs.drugType.label.drugTypeOther')}
+                 titleSize="label"
+                 adjustFor="textarea"
+                 scrollIntoView={this.props.scrollIntoView}>
+            <Textarea name="DrugTypeOther"
+                      className="drug-type-other"
+                      {...this.props.DrugTypeOther}
+                      onUpdate={this.updateDrugTypeOther}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      />
+          </Field>
         </Show>
       </div>
     )

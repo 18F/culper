@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { CohabitantsValidator } from '../../../../validators'
+import { CohabitantValidator } from '../../../../validators/cohabitant'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import Cohabitant from './Cohabitant'
@@ -40,7 +41,7 @@ export default class Cohabitants extends SubsectionElement {
 
   summary (item, index) {
     const itemType = i18n.t('relationships.cohabitant.collection.itemType')
-    const o = (item || {}).Cohabitant || {}
+    const o = (item || {}).Item || {}
     const date = (o.CohabitationBegan || {}).date ? `${o.CohabitationBegan.month}/${o.CohabitationBegan.year}` : ''
     const name = o.Name
           ? `${o.Name.first || ''} ${o.Name.middle || ''} ${o.Name.last || ''}`.trim()
@@ -64,20 +65,30 @@ export default class Cohabitants extends SubsectionElement {
                 warning={true}
                 help="relationships.cohabitant.help.hasCohabitant"
                 onUpdate={this.updateHasCohabitant}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
 
         <Show when={this.props.HasCohabitant === 'Yes'}>
           <Accordion items={this.props.CohabitantList}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.CohabitantListBranch}
                      summary={this.summary}
                      onUpdate={this.updateCohabitantList}
                      onError={this.handleError}
+                     validator={CohabitantValidator}
+                     required={this.props.required}
                      description={i18n.t('relationships.cohabitant.collection.description')}
                      appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
-                     appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}>
-            <Cohabitant name="Cohabitant" spouse={this.props.spouse} bind={true} />
+                     appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <Cohabitant name="Item"
+                       spouse={this.props.spouse}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -97,5 +108,6 @@ Cohabitants.defaultProps = {
   validator: (state, props) => {
     return new CohabitantsValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

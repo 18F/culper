@@ -10,16 +10,18 @@ import { InjectGaps, ResidenceCustomSummary, ResidenceCaption } from '../summari
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
-const byline = (item, index, initial, translation, validator) => {
-  if (!item.open && !initial && item.Item && !validator(item.Item)) {
-    return (
-      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+const byline = (item, index, initial, translation, required, validator) => {
+  switch (true) {
+    // If item is required and not currently opened and is not valid, show message
+    case required && !item.open && !validator(item.Item):
+    case !item.open && !initial && item.Item && !validator(item.Item):
+      return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
         <div className="incomplete">{i18n.m(translation)}</div>
       </div>
-    )
+      )
+    default:
+      return null
   }
-
-  return null
 }
 
 export default class Residence extends SubsectionElement {
@@ -33,7 +35,7 @@ export default class Residence extends SubsectionElement {
   }
 
   customResidenceByline (item, index, initial) {
-    return byline(item, index, this.props.overrideInitial(initial), 'history.residence.collection.summary.incomplete', (item) => {
+    return byline(item, index, this.props.overrideInitial(initial), 'history.residence.collection.summary.incomplete', this.props.required, (item) => {
       return new ResidenceValidator(item, null).isValid()
     })
   }
@@ -82,7 +84,7 @@ export default class Residence extends SubsectionElement {
   render () {
     return (
       <div className="residence">
-        <Accordion scrollTo={this.props.scrollTo}
+        <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
                    items={this.props.value}
                    sort={this.props.sort}
@@ -95,8 +97,15 @@ export default class Residence extends SubsectionElement {
                    customSummary={ResidenceCustomSummary}
                    customDetails={this.customResidenceDetails}
                    description={i18n.t('history.residence.collection.summary.title')}
-                   appendLabel={i18n.t('history.residence.collection.append')}>
-          <ResidenceItem name="Item" bind={true} />
+                   appendLabel={i18n.t('history.residence.collection.append')}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}>
+        <ResidenceItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -105,7 +114,7 @@ export default class Residence extends SubsectionElement {
 
 Residence.defaultProps = {
   value: [],
-  scrollTo: '',
+  scrollToTop: '',
   defaultState: true,
   realtime: false,
   sort: null,
@@ -115,6 +124,7 @@ Residence.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'residence',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return props.value.every(x => {

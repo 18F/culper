@@ -5,13 +5,13 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel country', () => {
     const tests = [
       {
-        props: {
+        state: {
           Country: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Country: {
             value: 'Germany'
           }
@@ -26,13 +26,13 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel dates', () => {
     const tests = [
       {
-        props: {
+        state: {
           Dates: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Dates: {
             from: {
               date: new Date('1/1/2010')
@@ -53,19 +53,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel days of visit', () => {
     const tests = [
       {
-        props: {
+        state: {
           Days: []
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Days: ['00000']
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Days: ['1-5', '21-30']
         },
         expected: true
@@ -78,19 +78,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel purpose of visit', () => {
     const tests = [
       {
-        props: {
+        state: {
           Purpose: []
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Purpose: ['Nothing']
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Purpose: ['Business', 'Family']
         },
         expected: true
@@ -103,19 +103,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel questioned', () => {
     const tests = [
       {
-        props: {
+        state: {
           Questioned: ''
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Questioned: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           Questioned: 'Yes',
           QuestionedExplanation: {
             value: ''
@@ -124,7 +124,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           Questioned: 'Yes',
           QuestionedExplanation: {
             value: 'some text'
@@ -140,19 +140,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel encounter', () => {
     const tests = [
       {
-        props: {
+        state: {
           Encounter: ''
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Encounter: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           Encounter: 'Yes',
           EncounterExplanation: {
             value: ''
@@ -161,7 +161,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           Encounter: 'Yes',
           EncounterExplanation: {
             value: 'some text'
@@ -177,19 +177,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel contacted', () => {
     const tests = [
       {
-        props: {
+        state: {
           Contacted: ''
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Contacted: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           Contacted: 'Yes',
           ContactedExplanation: {
             value: ''
@@ -198,7 +198,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           Contacted: 'Yes',
           ContactedExplanation: {
             value: 'some text'
@@ -214,19 +214,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel counter', () => {
     const tests = [
       {
-        props: {
+        state: {
           Counter: ''
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Counter: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           Counter: 'Yes',
           CounterExplanation: {
             value: ''
@@ -235,7 +235,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           Counter: 'Yes',
           CounterExplanation: {
             value: 'some text'
@@ -251,19 +251,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel interest', () => {
     const tests = [
       {
-        props: {
+        state: {
           Interest: ''
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Interest: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           Interest: 'Yes',
           InterestExplanation: {
             value: ''
@@ -272,7 +272,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           Interest: 'Yes',
           InterestExplanation: {
             value: 'some text'
@@ -288,19 +288,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel sensitive', () => {
     const tests = [
       {
-        props: {
+        state: {
           Sensitive: ''
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Sensitive: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           Sensitive: 'Yes',
           SensitiveExplanation: {
             value: ''
@@ -309,7 +309,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           Sensitive: 'Yes',
           SensitiveExplanation: {
             value: 'some text'
@@ -325,19 +325,19 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel threatened', () => {
     const tests = [
       {
-        props: {
+        state: {
           Threatened: ''
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Threatened: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           Threatened: 'Yes',
           ThreatenedExplanation: {
             value: ''
@@ -346,7 +346,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           Threatened: 'Yes',
           ThreatenedExplanation: {
             value: 'some text'
@@ -362,18 +362,18 @@ describe('Foreign travel component validation', function () {
   it('validate foreign travel', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignTravelOutside: 'No',
           HasForeignTravelOfficial: 'Yes'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasForeignTravelOutside: 'Yes',
           HasForeignTravelOfficial: 'No',
           List: [],
@@ -382,7 +382,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignTravelOutside: 'Yes',
           HasForeignTravelOfficial: 'No',
           List: [{}],
@@ -391,7 +391,7 @@ describe('Foreign travel component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignTravelOutside: 'Yes',
           HasForeignTravelOfficial: 'No',
           List: [

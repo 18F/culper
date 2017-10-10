@@ -45,7 +45,7 @@ export default class Checkbox extends ValidationElement {
 
       // HACK: Race condition was found where the majority of the time the `handleError` would
       // beat the storage routines causing things not to show as valid.
-      window.setTimeout(() => { this.handleError(this.state.value) }, 200)
+      window.setTimeout(() => { this.handleError(checked) }, 200)
     })
   }
 
@@ -113,7 +113,7 @@ export default class Checkbox extends ValidationElement {
    * Style classes applied to the label element.
    */
   labelClass () {
-    let klass = ''
+    let klass = 'checkbox'
 
     if (this.state.error) {
       klass += ' usa-input-error-label'

@@ -50,14 +50,19 @@ export default class Alias extends ValidationElement {
   render () {
     return (
       <div className="relative-alias">
-        <h3>{i18n.t('relationships.relatives.heading.alias.title')}</h3>
-        {i18n.m('relationships.relatives.para.alias')}
-        <Name name="Name"
-              className="alias-name"
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              />
+        <Field title={i18n.t('relationships.relatives.heading.alias.title')}
+               scrollIntoView={this.props.scrollIntoView}
+               titleSize="h3">
+          {i18n.m('relationships.relatives.para.alias')}
+          <Name name="Name"
+                className="alias-name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
+        </Field>
 
         <Show when={this.props.hideMaiden === false}>
           <Branch name="MaidenName"
@@ -66,28 +71,34 @@ export default class Alias extends ValidationElement {
                   className="alias-maiden"
                   value={this.props.MaidenName}
                   onUpdate={this.updateMaidenName}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
                   onError={this.props.onError}>
           </Branch>
         </Show>
 
         <Field help="relationships.relatives.help.aliasdates"
                adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <DateRange name="Dates"
                      className="alias-dates"
                      {...this.props.Dates}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.alias.reason')}
+               scrollIntoView={this.props.scrollIntoView}
                titleSize="h4">
           <Textarea name="Reason"
                     className="alias-reason"
                     {...this.props.Reason}
                     onUpdate={this.updateReason}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
       </div>

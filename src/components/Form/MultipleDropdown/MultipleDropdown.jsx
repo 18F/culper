@@ -83,3 +83,15 @@ MultipleDropdown.defaultProps = {
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
+
+MultipleDropdown.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!props.value && !!props.value.length
+      }
+      return true
+    }
+  }
+]

@@ -28,6 +28,8 @@ export default class TravelDays extends ValidationElement {
   render () {
     return (
       <CheckboxGroup className={`travel-days ${this.props.className || ''}`.trim()}
+                     onError={this.props.onError}
+                     required={this.props.required}
                      selectedValues={this.props.value}>
         <Checkbox name="days-1-5"
                   label={i18n.m('foreign.travel.label.one')}

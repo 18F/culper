@@ -60,36 +60,45 @@ export default class Selective extends SubsectionElement {
     return (
       <div className="selective">
         <Branch name="was_bornafter"
+                label={i18n.t('military.selective.heading.born')}
+                labelSize="h2"
                 className="born"
                 value={this.props.WasBornAfter}
                 help="military.selective.help.born"
                 warning={true}
                 onUpdate={this.updateBornAfter}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.WasBornAfter === 'Yes'}>
           <div>
-            <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
-                    className="registered no-margin-bottom"
+                    label={i18n.t('military.selective.heading.registered')}
+                    labelSize="h3"
+                    className={`registered no-margin-bottom ${this.props.HasRegistered === 'No' ? 'no-margin-bottom' : ''}`}
                     value={this.props.HasRegistered}
                     warning={true}
                     onUpdate={this.updateRegistered}
-                    onError={this.handleError}>
+                    required={this.props.required}
+                    onError={this.handleError}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
             <Show when={this.props.HasRegistered === 'Yes'}>
               <div>
                 <Field title={i18n.t('military.selective.heading.number')}
                        className="no-margin-bottom"
-                       adjustFor="labels">
+                       adjustFor="labels"
+                       scrollIntoView={this.props.scrollIntoView}>
                   <Text name="RegistrationNumber"
                         className="registration-number"
                         label={i18n.t('military.selective.label.number')}
                         {...this.props.RegistrationNumber}
                         onUpdate={this.updateRegistrationNumber}
                         onError={this.handleError}
+                        required={this.props.required}
                         />
                 </Field>
 
@@ -115,15 +124,17 @@ export default class Selective extends SubsectionElement {
             </Show>
 
             <Show when={this.props.HasRegistered === 'No'}>
-              <Field help="military.selective.help.explanation"
-                     className="no-margin-bottom"
-                     adjustFor="labels">
+              <Field title={i18n.t('military.selective.label.explanation')}
+                     titleSize="label"
+                     help="military.selective.help.explanation"
+                     adjustFor="textarea"
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Textarea name="Explanation"
                           className="explanation"
-                          label={i18n.t('military.selective.label.explanation')}
                           {...this.props.Explanation}
                           onUpdate={this.updateExplanation}
                           onError={this.handleError}
+                          required={this.props.required}
                           />
               </Field>
             </Show>
@@ -141,6 +152,6 @@ Selective.defaultProps = {
   subsection: 'selective',
   dispatch: () => {},
   validator: (state, props) => {
-    return new SelectiveServiceValidator(props, props).isValid()
+    return new SelectiveServiceValidator(props).isValid()
   }
 }

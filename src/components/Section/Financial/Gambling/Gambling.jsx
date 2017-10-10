@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { GamblingValidator } from '../../../../validators'
+import { GamblingValidator, GamblingItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, DateRange, Currency, Textarea, Field } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import GamblingItem from './GamblingItem'
 
 export default class Gambling extends SubsectionElement {
   constructor (props) {
@@ -58,7 +59,8 @@ export default class Gambling extends SubsectionElement {
   /**
    * Assists in rendering the summary section.
    */
-  summary (item, index) {
+  summary (row, index) {
+    const item = row.Item || {}
     const dates = DateSummary(item.Dates)
     const losses = item.Losses && item.Losses.value
         ? `$${this.fancyNumber(item.Losses.value)}`
@@ -77,53 +79,36 @@ export default class Gambling extends SubsectionElement {
     return (
       <div className="gambling">
         <Branch name="has_gamblingdebt"
+                label={i18n.t('financial.gambling.title')}
+                labelSize="h2"
+                className="has-gambling-debt"
                 value={this.state.HasGamblingDebt}
                 warning={true}
                 onUpdate={this.onUpdate.bind(this)}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasGamblingDebt === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.gambling.collection.summary.title')}
+                     required={this.props.required}
+                     validator={GamblingItemValidator}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
                      appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
-            <Field title={i18n.t('financial.gambling.heading.dates')}
-                   adjustFor="daterange">
-              <DateRange name="Dates"
-                         label={i18n.t('financial.gambling.label.dates')}
-                         bind={true}
-                         />
-            </Field>
-
-            <Field title={i18n.t('financial.gambling.heading.losses')}>
-              <Currency name="Losses"
-                        className="losses"
-                        placeholder={i18n.t('financial.gambling.placeholder.losses')}
-                        min="1"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.gambling.heading.description')}
-                   help="financial.gambling.help.description">
-              <Textarea name="Description"
-                        className="description"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.gambling.heading.actions')}
-                   help="financial.gambling.help.actions">
-              <Textarea name="Actions"
-                        className="actions"
-                        bind={true}
-                        />
-            </Field>
+                     <GamblingItem
+                       name="Item"
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       bind={true}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -140,7 +125,7 @@ Gambling.defaultProps = {
   subsection: 'gambling',
   dispatch: () => {},
   validator: (state, props) => {
-    return new GamblingValidator(state, props).isValid()
+    return new GamblingValidator(state).isValid()
   },
   defaultState: true
 }

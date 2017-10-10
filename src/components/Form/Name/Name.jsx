@@ -13,6 +13,10 @@ export default class Name extends ValidationElement {
   constructor (props) {
     super(props)
 
+    this.state = {
+      uid: `${this.props.name}-${super.guid()}`
+    }
+
     this.update = this.update.bind(this)
     this.updateFirst = this.updateFirst.bind(this)
     this.updateFirstInitial = this.updateFirstInitial.bind(this)
@@ -149,8 +153,21 @@ export default class Name extends ValidationElement {
       }
     })
 
+    const requiredErr = arr.concat(this.constructor.errors.map(err => {
+      return {
+        code: `name.${err.code}`,
+        valid: err.func(value, {...this.props, ...this.state}),
+        uid: this.state.uid
+      }
+    }))
+
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    this.props.onError(value, requiredErr.filter(err => err.code === 'name.required'))
+    return arr
+  }
+
+  filterErrors (errors) {
+    return errors.filter(err => err.code.indexOf('required') === -1)
   }
 
   render () {
@@ -163,12 +180,15 @@ export default class Name extends ValidationElement {
     return (
       <div className={klass}>
         {this.props.title && <h2>{this.props.title}</h2>}
-        <Field help="identification.name.first.help"
+        <Field title={i18n.t(`${prefix}.label.first`)}
+               titleSize="label"
+               help="identification.name.first.help"
                errorPrefix="name"
+               filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="first"
                 ref="first"
-                label={i18n.t(`${prefix}.label.first`)}
                 pattern="^[a-zA-Z\-\.' ]*$"
                 maxlength={maxFirst}
                 className="first"
@@ -177,6 +197,7 @@ export default class Name extends ValidationElement {
                 onError={this.handleErrorFirst}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="flags">
             <Checkbox name="firstInitialOnly"
@@ -191,12 +212,15 @@ export default class Name extends ValidationElement {
                       />
           </div>
         </Field>
-        <Field help="identification.name.middle.help"
+        <Field title={i18n.t(`${prefix}.label.middle`)}
+               titleSize="label"
+               help="identification.name.middle.help"
                errorPrefix="name"
+               filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="middle"
                 ref="middle"
-                label={i18n.t(`${prefix}.label.middle`)}
                 minlength="0"
                 maxlength={maxMiddle}
                 className="middle"
@@ -206,6 +230,7 @@ export default class Name extends ValidationElement {
                 onError={this.handleErrorMiddle}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="middle-options flags">
             <Checkbox name="noMiddleName"
@@ -230,12 +255,15 @@ export default class Name extends ValidationElement {
                       />
           </div>
         </Field>
-        <Field help="identification.name.last.help"
+        <Field title={i18n.t(`${prefix}.label.last`)}
+               titleSize="label"
+               help="identification.name.last.help"
                errorPrefix="name"
+               filterErrors={this.filterErrors.bind(this)}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Text name="last"
                 ref="last"
-                label={i18n.t(`${prefix}.label.last`)}
                 maxlength={maxLast}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
@@ -244,6 +272,7 @@ export default class Name extends ValidationElement {
                 onError={this.handleErrorLast}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
+                required={this.props.required}
                 />
           <div className="flags">
             <Checkbox name="lastInitialOnly"
@@ -258,11 +287,12 @@ export default class Name extends ValidationElement {
                       />
           </div>
         </Field>
-        <Field help="identification.name.suffix.help"
+        <Field title={<span>{i18n.t(`${prefix}.label.suffix`)} <span className="optional">({i18n.t(`${prefix}.label.optional`)})</span></span>}
+               titleSize="label"
+               help="identification.name.suffix.help"
                errorPrefix="name"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
-          <label>{i18n.t(`${prefix}.label.suffix`)} <span className="optional">({i18n.t(`${prefix}.label.optional`)})</span></label>
-
           <RadioGroup className="option-list suffix" selectedValue={this.props.suffix}>
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.jr`)}
@@ -392,6 +422,7 @@ export default class Name extends ValidationElement {
                   onError={this.handleErrorSuffix}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
+                  required={this.props.required}
                   />
           </Show>
         </Field>
@@ -414,9 +445,20 @@ Name.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  required: false,
   errorCodes: [],
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 
-Name.errors = []
+Name.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!props.first && !!props.last
+      }
+      return true
+    }
+  }
+]

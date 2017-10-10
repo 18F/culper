@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsEngagedValidator } from '../../../../validators'
+import { LegalAssociationsEngagedValidator, EngagedValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import EngagedInTerrorismItem from './EngagedInTerrorismItem'
 
 export default class EngagedInTerrorism extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Dates)
     const details = (o.Reasons || {}).value || ''
 
@@ -57,41 +58,35 @@ export default class EngagedInTerrorism extends SubsectionElement {
       <div className="legal-associations-engaged">
         <Branch name="has_engaged"
                 label={i18n.t('legal.associations.engaged.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-associations-engaged-has-engaged"
                 value={this.props.HasEngaged}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasEngaged === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={EngagedValidator}
                      description={i18n.t('legal.associations.engaged.collection.description')}
                      appendTitle={i18n.t('legal.associations.engaged.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}>
-            <Field title={i18n.t('legal.associations.engaged.heading.reasons')}
-                   help="legal.associations.engaged.help.reasons"
-                   adjustFor="textarea">
-              <Textarea name="Reasons"
-                        className="legal-associations-engaged-reasons"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.engaged.heading.dates')}
-                   help="legal.associations.engaged.help.dates"
-                   adjustFor="daterange">
-              <DateRange name="Dates"
-                         className="legal-associations-engaged-dates"
-                         bind={true}
-                         />
-            </Field>
+                     appendLabel={i18n.t('legal.associations.engaged.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <EngagedInTerrorismItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -111,6 +106,7 @@ EngagedInTerrorism.defaultProps = {
   subsection: 'associations/engaged-in-terrorism',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsEngagedValidator(state, props).isValid()
-  }
+    return new LegalAssociationsEngagedValidator(props).isValid()
+  },
+  scrollToBottom: ''
 }

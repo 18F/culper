@@ -6,7 +6,7 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/db"
 
-	pg "gopkg.in/pg.v5"
+	"github.com/go-pg/pg"
 )
 
 func LoadSchema(db *pg.DB) {

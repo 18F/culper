@@ -1,10 +1,10 @@
 import DateRangeValidator from './daterange'
 
 export default class GamblingValidator {
-  constructor (state, props) {
-    this.hasGamblingDebt = state.HasGamblingDebt
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data) {
+    this.hasGamblingDebt = data.HasGamblingDebt
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   validHasGamblingDebt () {
@@ -36,19 +36,7 @@ export default class GamblingValidator {
     }
 
     for (const item of this.list) {
-      if (!item.Losses || parseInt(item.Losses.value) < 1) {
-        return false
-      }
-
-      if (!item.Description || !item.Description.value) {
-        return false
-      }
-
-      if (!item.Actions || !item.Actions.value) {
-        return false
-      }
-
-      if (!new DateRangeValidator(item.Dates, null).isValid()) {
+      if (!new GamblingItemValidator(item.Item).isValid()) {
         return false
       }
     }
@@ -62,5 +50,33 @@ export default class GamblingValidator {
   isValid () {
     return this.validHasGamblingDebt() &&
       this.validGamblingDebt()
+  }
+}
+
+export class GamblingItemValidator {
+  constructor (data = {}) {
+    this.losses = data.Losses
+    this.description = data.Description
+    this.actions = data.Actions
+    this.dates = data.Dates
+  }
+
+  isValid () {
+    if (!this.losses || parseInt(this.losses.value) < 1) {
+      return false
+    }
+
+    if (!this.description || !this.description.value) {
+      return false
+    }
+
+    if (!this.actions || !this.actions.value) {
+      return false
+    }
+
+    if (!new DateRangeValidator(this.dates, null).isValid()) {
+      return false
+    }
+    return true
   }
 }

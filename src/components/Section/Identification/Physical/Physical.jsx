@@ -38,30 +38,40 @@ export default class Physical extends SubsectionElement {
 
     return (
       <div className={klass}>
+        <Field title={i18n.t('identification.traits.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
         <Field title={i18n.t('identification.traits.heading.height')}
                help="identification.traits.help.height"
                adjustFor='labels'
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <Height name="height"
                   {...this.props.Height}
                   onUpdate={this.handleUpdate.bind(this, 'Height')}
                   onError={this.handleError}
+                  required={this.props.required}
                   />
         </Field>
 
         <Field title={i18n.t('identification.traits.heading.weight')}
                help="identification.traits.help.weight"
                adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <Weight name="weight"
                   value={this.props.Weight}
                   onUpdate={this.handleUpdate.bind(this, 'Weight')}
                   onError={this.handleError}
+                  required={this.props.required}
                   />
         </Field>
 
         <Field title={i18n.t('identification.traits.heading.hair')}
                adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}
                help="identification.traits.help.hair">
           <HairColor name="hair"
                      help="identification.traits.help.hair"
@@ -69,17 +79,20 @@ export default class Physical extends SubsectionElement {
                      value={this.props.HairColor}
                      onUpdate={this.handleUpdate.bind(this, 'HairColor')}
                      onError={this.handleError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('identification.traits.heading.eye')}
                adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}
                help="identification.traits.help.eye">
           <EyeColor name="eye"
                     className=""
                     value={this.props.EyeColor}
                     onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
                     onError={this.handleError}
+                    required={this.props.required}
                     />
         </Field>
 
@@ -89,11 +102,13 @@ export default class Physical extends SubsectionElement {
                shrink={true}
                onUpdate={this.handleUpdate.bind(this, 'Comments')}
                commentsValue={this.state.Comments}
+               scrollIntoView={this.props.scrollIntoView}
                comments={true}>
           <Sex name="sex"
                value={this.props.Sex}
                onUpdate={this.handleUpdate.bind(this, 'Sex')}
                onError={this.handleError}
+               required={this.props.required}
                />
         </Field>
       </div>
@@ -104,9 +119,9 @@ export default class Physical extends SubsectionElement {
 Physical.defaultProps = {
   Height: {},
   Weight: {},
-  HairColor: [],
-  EyeColor: [],
-  Sex: {},
+  HairColor: '',
+  EyeColor: '',
+  Sex: '',
   Comments: {},
   onError: (value, arr) => { return arr },
   section: 'identification',
@@ -114,5 +129,6 @@ Physical.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new PhysicalValidator(state, props).isValid()
-  }
+  },
+  required: false
 }

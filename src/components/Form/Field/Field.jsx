@@ -1,8 +1,26 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import ValidationElement from '../ValidationElement'
+import ValidationElement, { newGuid } from '../ValidationElement'
 import Svg from '../Svg'
 import Textarea from '../Textarea'
+
+const message = (id) => {
+  const noteId = `${id}.note`
+  let note = i18n.m(noteId)
+  if (Object.prototype.toString.call(note) === '[object String]' && note.indexOf(noteId) > -1) {
+    note = ''
+  } else {
+    note = <em>{note}</em>
+  }
+
+  return (
+    <div key={newGuid()}>
+      <h5>{i18n.t(`${id}.title`)}</h5>
+      {i18n.m(`${id}.message`)}
+      {note}
+    </div>
+  )
+}
 
 export default class Field extends ValidationElement {
   constructor (props) {
@@ -19,6 +37,8 @@ export default class Field extends ValidationElement {
     this.toggleComments = this.toggleComments.bind(this)
     this.handleError = this.handleError.bind(this)
     this.children = this.children.bind(this)
+
+    this.errors = props.errors || []
   }
 
   /**
@@ -26,7 +46,7 @@ export default class Field extends ValidationElement {
    */
   toggleHelp (event) {
     this.setState({ helpActive: !this.state.helpActive }, () => {
-      this.scrollIntoView()
+      this.scrollIntoView(this.refs.helpMessage)
     })
   }
 
@@ -54,10 +74,10 @@ export default class Field extends ValidationElement {
   }
 
   handleError (value, arr = []) {
-    let errors = [...this.state.errors]
+    let errors = [...this.errors]
     if (arr.length === 0) {
       if (errors.length && errors.some(err => err.valid === false)) {
-        this.scrollIntoView()
+        this.scrollIntoView(this.refs.errorMessages)
       }
       return arr
     }
@@ -71,9 +91,13 @@ export default class Field extends ValidationElement {
       }
     }
 
+    // Store in instance variable to update immediately as opposed to storing in state
+    // which is an asynchronous operation. This prevents the issue where one call
+    // overrides the errors of another call if both are executed almost at the time same.
+    this.errors = [...errors]
     this.setState({ errors: errors }, () => {
       if (errors.length && errors.some(err => err.valid === false)) {
-        this.scrollIntoView()
+        this.scrollIntoView(this.refs.errorMessages)
       }
     })
 
@@ -143,7 +167,7 @@ export default class Field extends ValidationElement {
       return null
     }
 
-    const klass = `toggle ${this.state.helpActive ? 'active' : ''} ${this.props.adjustFor ? `adjust-for-${this.props.adjustFor}` : ''}`.trim()
+    const klass = `toggle ${this.props.titleSize} ${this.state.helpActive ? 'active' : ''} ${this.props.adjustFor ? `adjust-for-${this.props.adjustFor}` : ''}`.trim()
 
     return (
       <a href="javascript:;"
@@ -157,30 +181,41 @@ export default class Field extends ValidationElement {
   }
 
   /**
-   * Render the help and error messages allowing for Markdown syntax.
+   * Render the help messages allowing for Markdown syntax.
    */
-  messages () {
-    let el = []
-
-    const message = (id) => {
-      const noteId = `${id}.note`
-      let note = i18n.m(noteId)
-      if (Object.prototype.toString.call(note) === '[object String]' && note.indexOf(noteId) > -1) {
-        note = ''
-      } else {
-        note = <em>{note}</em>
-      }
-
+  helpMessage () {
+    if (this.state.helpActive && this.props.help) {
       return (
-        <div key={super.guid()}>
-          <h5>{i18n.t(`${id}.title`)}</h5>
-          {i18n.m(`${id}.message`)}
-          {note}
+        <div className="message help">
+          <i className="fa fa-question"></i>
+          {message(this.props.help)}
+          <a href="javascript:;;" className="close" onClick={this.toggleHelp}>
+            {i18n.t('help.close')}
+          </a>
         </div>
       )
     }
 
-    const errors = (this.state.errors || []).filter(err => err.valid === false)
+    return null
+  }
+
+  /**
+   * Render the error messages allowing for Markdown syntax.
+   */
+  errorMessages () {
+    let el = []
+    let stateErrors = this.props.filterErrors(this.errors || [])
+    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1)
+    const required = stateErrors
+      .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
+      .sort((e1, e2) => {
+        return e1.code.split('.').length - e2.code.split('.').length
+      })
+
+    if (required.length) {
+      errors = errors.concat(required[0])
+    }
+
     if (errors.length) {
       const markup = errors.map(err => {
         return message(`error.${err.code}`)
@@ -190,18 +225,6 @@ export default class Field extends ValidationElement {
         <div className="message error" key={super.guid()}>
           <i className="fa fa-exclamation"></i>
           {markup}
-        </div>
-      )
-    }
-
-    if (this.state.helpActive && this.props.help) {
-      el.push(
-        <div className="message help" key={super.guid()}>
-          <i className="fa fa-question"></i>
-          {message(this.props.help)}
-          <a href="javascript:;;" className="close" onClick={this.toggleHelp}>
-            {i18n.t('help.close')}
-          </a>
         </div>
       )
     }
@@ -247,9 +270,13 @@ export default class Field extends ValidationElement {
    * Checks if the children and help message are within the current viewport. If not, scrolls the
    * help message into view so that users can see the message without having to manually scroll.
    */
-  scrollIntoView () {
+  scrollIntoView (ref) {
+    if (!ref) {
+      return
+    }
+
     // Grab the bottom position for the help container
-    const helpBottom = this.refs.messages.getBoundingClientRect().bottom
+    const helpBottom = ref.getBoundingClientRect().bottom
 
     // Grab the current window height
     const winHeight = window.innerHeight
@@ -257,7 +284,7 @@ export default class Field extends ValidationElement {
     // Flag if help container bottom is within current viewport
     const notInView = (winHeight < helpBottom)
 
-    const active = this.state.helpActive || this.state.errors.some(x => x.valid === false)
+    const active = this.state.helpActive || this.errors.some(x => x.valid === false)
 
     if (active && this.props.scrollIntoView && notInView) {
       window.scrollBy({ top: (helpBottom - winHeight), left: 0, behavior: 'smooth' })
@@ -271,11 +298,16 @@ export default class Field extends ValidationElement {
     return (
       <div className={klass} ref="field">
         {this.title()}
+        <span className="icon">
+          {this.icon()}
+        </span>
+        <div className="table expand">
+          <span className="messages help-messages" ref="helpMessage">
+            {this.helpMessage()}
+          </span>
+        </div>
         <div className="table">
           <span className="content">
-            <span className="icon">
-              {this.icon()}
-            </span>
             <span className={klassComponent}>
               {this.children(this.props.children)}
               {this.comments()}
@@ -284,8 +316,8 @@ export default class Field extends ValidationElement {
           </span>
         </div>
         <div className="table expand">
-          <span className="messages" ref="messages">
-            {this.messages()}
+          <span className="messages error-messages" ref="errorMessages">
+            {this.errorMessages()}
           </span>
         </div>
       </div>
@@ -310,5 +342,6 @@ Field.defaultProps = {
   commentsRemove: 'comments.remove',
   validate: true,
   shrink: false,
-  scrollIntoView: true
+  scrollIntoView: true,
+  filterErrors: (errors) => { return errors }
 }

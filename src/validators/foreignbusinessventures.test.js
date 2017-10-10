@@ -293,57 +293,59 @@ describe('Foreign business ventures component validation', function () {
           HasForeignVentures: 'Yes',
           List: [
             {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              Address: {
-                street: '1234 Some Rd',
-                city: 'Munich',
-                country: 'Germany',
-                layout: Location.ADDRESS
-              },
-              Citizenship: {
-                value: [
-              { name: 'United States', value: 'United States' },
-              { name: 'Germany', value: 'Germany' }
-                ]
-              },
-              Description: {
-                value: 'this is the description'
-              },
-              Relationship: {
-                value: 'this is the relationship'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Address: {
+                  street: '1234 Some Rd',
+                  city: 'Munich',
+                  country: 'Germany',
+                  layout: Location.ADDRESS
                 },
-                present: false
-              },
-              Association: {
-                value: 'this is the association'
-              },
-              Position: {
-                value: 'this is the position'
-              },
-              Service: {
-                value: 'this is the service'
-              },
-              Support: {
-                value: 'this is the support'
-              },
-              Compensation: {
-                value: 'this is the compensation'
+                Citizenship: {
+                  value: [
+                    { name: 'United States', value: 'United States' },
+                    { name: 'Germany', value: 'Germany' }
+                  ]
+                },
+                Description: {
+                  value: 'this is the description'
+                },
+                Relationship: {
+                  value: 'this is the relationship'
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Association: {
+                  value: 'this is the association'
+                },
+                Position: {
+                  value: 'this is the position'
+                },
+                Service: {
+                  value: 'this is the service'
+                },
+                Support: {
+                  value: 'this is the support'
+                },
+                Compensation: {
+                  value: 'this is the compensation'
+                }
               }
             }
           ],

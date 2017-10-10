@@ -106,26 +106,31 @@ export default class Divorce extends React.Component {
     return (
       <div className="divorce">
         <Field title={i18n.t('relationships.civilUnion.heading.name')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Name name="Name"
                 {...this.props.Name}
                 onUpdate={this.updateName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.birthdate"
                title={i18n.t('relationships.civilUnion.divorce.heading.birthdate')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="datecontrol">
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
-        <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}>
+        <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
                     layout={Location.BIRTHPLACE}
                     label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
@@ -133,32 +138,36 @@ export default class Divorce extends React.Component {
                     {...this.props.BirthPlace}
                     onUpdate={this.updateBirthPlace}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
-               help="relationships.civilUnion.divorce.help.telephone"
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="Telephone"
                      {...this.props.Telephone}
                      onUpdate={this.updateTelephone}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.recognized"
                title={i18n.t('relationships.civilUnion.divorce.heading.recognized')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="datecontrol">
           <DateControl name="Recognized"
                        className="recognized"
                        {...this.props.Recognized}
                        onUpdate={this.updateRecognized}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
-        <Field help="relationships.civilUnion.divorce.help.address"
-               title={i18n.t('relationships.civilUnion.divorce.heading.address')}
+        <Field title={i18n.t('relationships.civilUnion.divorce.heading.address')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Location name="address"
                     className="location"
@@ -167,23 +176,27 @@ export default class Divorce extends React.Component {
                     geocode={true}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field help="relationships.civilUnion.divorce.help.dateDivorced"
                title={i18n.t('relationships.civilUnion.divorce.heading.dateDivorced')}
+               scrollIntoView={this.props.scrollIntoView}
                adjustFor="datecontrol">
           <DateControl name="DateDivorced"
                        className="date-divorced"
                        {...this.props.DateDivorced}
                        onUpdate={this.updateDateDivorced}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.status')}
+               scrollIntoView={this.props.scrollIntoView}
                className="status">
-          <RadioGroup name="status" selectedValue={this.props.Status}>
+          <RadioGroup name="status" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
@@ -210,8 +223,9 @@ export default class Divorce extends React.Component {
 
         <Show when={['Divorced', 'Annulled'].includes(this.props.Status)}>
           <div>
-            <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceased')} className="deceased">
-              <RadioGroup name="deceased" selectedValue={this.props.Deceased}>
+            <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceased')} className="deceased"
+              scrollIntoView={this.props.scrollIntoView}>
+              <RadioGroup name="deceased" selectedValue={this.props.Deceased} required={this.props.required} onError={this.props.onError}>
                 <Radio
                   className="yes"
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.yes')}
@@ -239,7 +253,8 @@ export default class Divorce extends React.Component {
             </Field>
 
             <Show when={this.props.Deceased === 'Yes'}>
-              <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}>
+              <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}
+                scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
                                className="deceased-notapplicable"
                                applicable={this.props.DeceasedAddressNotApplicable}
@@ -253,6 +268,7 @@ export default class Divorce extends React.Component {
                             geocode={true}
                             onUpdate={this.updateDeceasedAddress}
                             onError={this.props.onError}
+                            required={this.props.required}
                             />
                 </NotApplicable>
               </Field>

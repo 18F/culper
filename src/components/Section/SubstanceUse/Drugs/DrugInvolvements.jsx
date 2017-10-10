@@ -4,7 +4,7 @@ import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import DrugInvolvement from './DrugInvolvement'
-import { DrugInvolvementsValidator } from '../../../../validators'
+import { DrugInvolvementsValidator, DrugInvolvementValidator } from '../../../../validators'
 
 export default class DrugInvolvements extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class DrugInvolvements extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DrugInvolvement || {}
+    const o = (item || {}).Item || {}
     let drug = (o.DrugType || {}).DrugType
     if (drug === 'Other') {
       drug = ((o.DrugType || {}).DrugTypeOther || {}).value
@@ -60,26 +60,33 @@ export default class DrugInvolvements extends SubsectionElement {
   render () {
     return (
       <div className="drug-involvements">
-        <h2>{i18n.m('substance.drugs.heading.drugInvolvement')}</h2>
         <Branch name="Involved"
+                label={i18n.m('substance.drugs.heading.drugInvolvement')}
+                labelSize="h2"
                 className="involved"
                 value={this.props.Involved}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateInvolved}>
+                required={this.props.required}
+                onUpdate={this.updateInvolved}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.Involved === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugInvolvementValidator}
                      description={i18n.t('substance.drugs.involvement.collection.description')}
                      appendTitle={i18n.t('substance.drugs.involvement.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}>
-            <DrugInvolvement name="DrugInvolvement" bind={true} />
+                     appendLabel={i18n.t('substance.drugs.involvement.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <DrugInvolvement name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -96,5 +103,6 @@ DrugInvolvements.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugInvolvementsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

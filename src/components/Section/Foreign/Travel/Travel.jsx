@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ForeignTravelValidator } from '../../../../validators'
+import { ForeignTravelValidator, TravelValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import TravelQuestions from './TravelQuestions'
@@ -62,13 +62,15 @@ export default class Travel extends SubsectionElement {
     return (
       <div className="foreign-travel">
         <Branch label={i18n.t('foreign.travel.heading.outside')}
-                labelSize="h3"
+                labelSize="h2"
                 name="has_foreign_travel_outside"
                 className="foreign-travel-outside"
                 value={this.props.HasForeignTravelOutside}
                 warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Branch label={i18n.t('foreign.travel.heading.official')}
@@ -78,21 +80,27 @@ export default class Travel extends SubsectionElement {
                 help="foreign.travel.help.official"
                 value={this.props.HasForeignTravelOfficial}
                 onUpdate={this.updateHasForeignTravelOfficial}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.personal')}
         </Branch>
 
         <Show when={this.props.HasForeignTravelOutside === 'Yes' && this.props.HasForeignTravelOfficial === 'No'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={TravelValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.travel.collection.summary.title')}
                      appendTitle={i18n.t('foreign.travel.collection.appendTitle')}
-                     appendLabel={i18n.t('foreign.travel.collection.append')}>
-            <TravelQuestions name="Item" bind={true} />
+                     appendLabel={i18n.t('foreign.travel.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <TravelQuestions name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -112,7 +120,8 @@ Travel.defaultProps = {
   subsection: 'travel',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignTravelValidator(state, props).isValid()
+    return new ForeignTravelValidator(props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

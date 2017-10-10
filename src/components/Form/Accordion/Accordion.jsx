@@ -37,6 +37,14 @@ export const doScroll = (first, item, scrollTo) => {
   window.scroll({ top: pos - offset - offsetDeux, left: 0, behavior: 'smooth' })
 }
 
+export const scrollToBottom = (selector) => {
+  const el = document.querySelector(selector)
+  if (!el) {
+    return
+  }
+  window.scroll({ top: el.offsetTop, left: 0, behavior: 'smooth' })
+}
+
 export default class Accordion extends ValidationElement {
   constructor (props) {
     super(props)
@@ -54,6 +62,7 @@ export default class Accordion extends ValidationElement {
     this.summary = this.summary.bind(this)
     this.details = this.details.bind(this)
     this.content = this.content.bind(this)
+    this.isValid = this.isValid.bind(this)
 
     // Instance variable. Not stored in state to prevent re-renders and it's not going to
     // be used in the UI.
@@ -132,8 +141,8 @@ export default class Accordion extends ValidationElement {
       const timeout = this.props.timeout + (this.props.timeout * shift)
 
       // Get the element to which we should scroll to
-      const scrollTo = this.props.scrollTo
-            ? document.getElementById(this.props.scrollTo)
+      const scrollTo = this.props.scrollToTop
+            ? document.getElementById(this.props.scrollToTop)
             : this.refs.accordion
 
       // Get the identifier to the first item
@@ -266,6 +275,9 @@ export default class Accordion extends ValidationElement {
       return
     }
 
+    if (this.props.scrollToBottom) {
+      scrollToBottom(this.props.scrollToBottom)
+    }
     this.update(this.props.items, value)
   }
 
@@ -314,7 +326,7 @@ export default class Accordion extends ValidationElement {
       return null
     }
 
-    const closedAndIncomplete = !item.open && !this.props.validator(this.props.transformer(item))
+    const closedAndIncomplete = !item.open && !this.isValid(this.props.transformer(item))
     const svg = closedAndIncomplete
           ? <Svg src="/img/exclamation-point.svg" className="incomplete" alt={this.props.incomplete} />
           : null
@@ -338,7 +350,7 @@ export default class Accordion extends ValidationElement {
           </a>
         </div>
         <Show when={closedAndIncomplete && !initial}>
-          {this.props.byline(item, index, initial, this.props.incomplete)}
+          {this.props.byline(item, index, initial, this.props.incomplete, this.props.required)}
         </Show>
       </div>
     )
@@ -428,7 +440,9 @@ export default class Accordion extends ValidationElement {
               help={this.props.appendHelp}
               value={this.props.branch}
               onUpdate={this.updateAddendum}
-              onError={this.props.onError}>
+              onError={this.props.onError}
+              required={this.props.required}
+              scrollIntoView={this.props.scrollIntoView}>
         {this.props.appendMessage}
       </Branch>
     )
@@ -442,6 +456,17 @@ export default class Accordion extends ValidationElement {
     return this.props.caption
       ? <div className="caption">{this.props.caption()}</div>
       : null
+  }
+
+  /**
+   * Determines if current item is valid. By default, this
+   * utilizes the validator that is passed in.
+   * */
+  isValid (item) {
+    if (this.props.required) {
+      return new this.props.validator(item).isValid()
+    }
+    return true
   }
 
   render () {
@@ -469,7 +494,7 @@ export default class Accordion extends ValidationElement {
 }
 
 Accordion.defaultProps = {
-  initial: true,
+  initial: false,
   skipWarning: false,
   minimum: 1,
   defaultState: true,
@@ -487,7 +512,8 @@ Accordion.defaultProps = {
   description: i18n.t('collection.summary'),
   incomplete: i18n.t('collection.incomplete'),
   caption: null,
-  scrollTo: '',
+  scrollToTop: '',
+  scrollToBottom: '',
   timeout: 500,
   sort: null,
   realtime: true,
@@ -502,7 +528,11 @@ Accordion.defaultProps = {
     )
   },
   validator: (item) => {
-    return true
+    return class {
+      isValid () {
+        return true
+      }
+    }
   },
   transformer: (item) => {
     return item && item.Item ? item.Item : item

@@ -1,23 +1,6 @@
 @import 'eqip-colors';
 
 .history {
-  .accordion {
-    .svg {
-      height: 1.6rem;
-      width: auto;
-      margin-right: 1rem;
-      margin-left: -2.6rem;
-    }
-
-    .incomplete {
-      padding: 1rem 2rem;
-      background: $eapp-red-lightest;
-      border: 2px solid $eapp-red-light;
-      border-radius: 6px;
-      max-width: 64rem;
-    }
-  }
-
   .add-options {
     margin-top: 5rem;
     margin-bottom: 10rem;

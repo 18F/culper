@@ -1,9 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary } from '../../../Summary'
-import { ForeignContactsValidator } from '../../../../validators'
+import { ForeignContactsValidator, ForeignNationalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion } from '../../../Form'
+import { Field, Branch, Show, Accordion } from '../../../Form'
 import ForeignNational from './ForeignNational'
 
 export default class Contacts extends SubsectionElement {
@@ -54,28 +54,41 @@ export default class Contacts extends SubsectionElement {
   render () {
     return (
       <div className="foreign-contacts">
-        <h3>{i18n.t('foreign.contacts.heading.title')}</h3>
-        {i18n.t('foreign.contacts.para.includes')}
+        {i18n.m('foreign.contacts.para.definition')}
+
         <Branch name="has_foreign_contacts"
-                title={i18n.t('foreign.contacts.para.definition')}
-                help="foreign.contacts.help.branch"
+                label={i18n.t('foreign.contacts.heading.title')}
+                labelSize="h2"
                 value={this.props.HasForeignContacts}
                 warning={true}
                 onUpdate={this.updateHasForeignContacts}
                 onError={this.handleError}
-                />
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}>
+          {i18n.m('foreign.contacts.para.includes')}
+        </Branch>
         <Show when={this.props.HasForeignContacts === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ForeignNationalValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.contacts.collection.summary.title')}
                      appendTitle={i18n.t('foreign.contacts.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.contacts.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.contacts.collection.append')}>
-            <ForeignNational name="Item" bind={true} />
+                     appendLabel={i18n.t('foreign.contacts.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+        <ForeignNational name="Item"
+                         bind={true}
+                         addressBooks={this.props.addressBooks}
+                         dispatch={this.props.dispatch}
+                         bind={true}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -91,9 +104,11 @@ Contacts.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'contacts',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new ForeignContactsValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

@@ -2,7 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import { CitizenshipPassportsValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { BranchCollection } from '../../../Form'
+import { Field, BranchCollection } from '../../../Form'
 import PassportItem from './PassportItem'
 
 export default class Passports extends SubsectionElement {
@@ -29,13 +29,21 @@ export default class Passports extends SubsectionElement {
   render () {
     return (
       <div className="passports">
+        <Field title={i18n.t('citizenship.multiple.heading.passport.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
         <BranchCollection label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
                           appendLabel={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
                           className="has-foreignpassport"
                           items={this.props.Passports}
+                          scrollToBottom={this.props.scrollToBottom}
                           onUpdate={this.updatePassports}
+                          scrollIntoView={this.props.scrollIntoView}
+                          required={this.props.required}
                           onError={this.handleError}>
-          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} />
+          <PassportItem name="Item" bind={true} defaultState={this.props.defaultState} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
         </BranchCollection>
       </div>
     )
@@ -53,7 +61,7 @@ Passports.defaultProps = {
   subsection: 'passports',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipPassportsValidator(props, props).isValid()
+    return new CitizenshipPassportsValidator(props).isValid()
   },
   defaultState: true
 }

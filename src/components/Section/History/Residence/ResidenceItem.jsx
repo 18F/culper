@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateRange, Reference, Text, RadioGroup, Radio, Field, Location } from '../../../Form'
+import { ValidationElement, DateRange, Reference, Text, RadioGroup, Radio, Field, Location, Show } from '../../../Form'
 import { today, daysAgo } from '../dateranges'
 
 // We need to determine how far back 3 years ago was
@@ -59,13 +59,6 @@ export default class ResidenceItem extends ValidationElement {
   }
 
   /**
-   * Some fields are only visible if `Other` is selected
-   */
-  showOther (value) {
-    return !value || ['Owned', 'Rented', 'Military'].includes(value) ? 'hidden' : ''
-  }
-
-  /**
    * Certain elements are present if the date range of the residency was
    * within the last 3 years.
    */
@@ -78,12 +71,20 @@ export default class ResidenceItem extends ValidationElement {
     if (withinThreeYears(from, to)) {
       return (
         <div>
-          <h2>{i18n.t('history.residence.heading.reference')}</h2>
-          <p>{i18n.t('history.residence.para.reference')}</p>
+          <Field title={i18n.t('history.residence.heading.reference')}
+                 titleSize="h2"
+                 className="no-margin-bottom">
+            {i18n.m('history.residence.para.reference')}
+          </Field>
+
           <Reference name="Reference"
                      {...this.state.Reference}
+                     addressBooks={this.props.addressBooks}
+                     dispatch={this.props.dispatch}
                      onUpdate={this.onUpdate.bind(this, 'Reference')}
                      onError={this.props.onError}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
         </div>
       )
@@ -104,33 +105,42 @@ export default class ResidenceItem extends ValidationElement {
                onUpdate={this.onUpdate.bind(this, 'Comments')}
                onError={this.props.onError}
                adjustFor="address"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
                     {...this.state.Address}
                     label={i18n.t('history.residence.label.address')}
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBook="Residence"
+                    addressBooks={this.props.addressBooks}
+                    dispatch={this.props.dispatch}
                     onUpdate={this.onUpdate.bind(this, 'Address')}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('history.residence.heading.dates')}
-               help="history.residence.help.dates">
+          help="history.residence.help.dates"
+          scrollIntoView={this.props.scrollIntoView}>
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <DateRange name="Dates"
                      {...this.state.Dates}
                      label={i18n.t('history.residence.label.dates')}
                      onUpdate={this.onUpdate.bind(this, 'Dates')}
                      onError={this.props.onError}
+                     required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('history.residence.heading.role')}
-               help="history.residence.help.role"
                adjustFor="big-buttons"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="role option-list"
+                      required={this.props.required}
+                      onError={this.props.onError}
                       selectedValue={this.state.Role}>
             <Radio name="role-owned"
                    label={i18n.m('history.residence.label.role.owned')}
@@ -157,17 +167,23 @@ export default class ResidenceItem extends ValidationElement {
                    onError={this.props.onError}
                    />
           </RadioGroup>
-          <div className={`role ${this.showOther(this.state.Role)}`.trim()}>
-            <Text name="RoleOther"
-                  {...this.state.RoleOther}
-                  label={i18n.t('history.residence.label.role.explanation')}
-                  className="other"
-                  maxlength="100"
-                  onUpdate={this.onUpdate.bind(this, 'RoleOther')}
-                  onError={this.props.onError}
-                  />
-          </div>
         </Field>
+        <Show when={this.state.Role && !['Owned', 'Rented', 'Military'].includes(this.state.Role)}>
+          <Field title={i18n.t('history.residence.label.role.explanation')}
+            titleSize="label"
+            help="section.subsection.help.field-name"
+            adjustFor="text"
+            scrollIntoView={this.props.scrollIntoView}>
+            <Text name="RoleOther"
+              {...this.state.RoleOther}
+              className="other"
+              maxlength="100"
+              onUpdate={this.onUpdate.bind(this, 'RoleOther')}
+              onError={this.props.onError}
+              required={this.props.required}
+            />
+          </Field>
+        </Show>
 
         {this.reference()}
       </div>
@@ -176,5 +192,7 @@ export default class ResidenceItem extends ValidationElement {
 }
 
 ResidenceItem.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onError: (value, arr) => { return arr }
 }

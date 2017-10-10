@@ -5,6 +5,8 @@ import Telephone from './Telephone'
 describe('The Telephone component', () => {
   it('renders DSN fields', () => {
     const component = mount(<Telephone name="phone" type="DSN" />)
+    expect(component.find('.phonetype').length).toBe(1)
+    expect(component.find('.nonumber').length).toBeGreaterThan(0)
     expect(component.find('a.domestic-number').length).toEqual(1)
     expect(component.find('a.international-number').length).toEqual(1)
     expect(component.find('input[name="dsn_first"]').length).toEqual(1)
@@ -100,7 +102,7 @@ describe('The Telephone component', () => {
     component.find({ type: 'text', name: 'domestic_second' }).simulate('change', { target: { value: '222' } })
     component.find({ type: 'text', name: 'domestic_third' }).simulate('change', { target: { value: '3333' } })
     component.find({ type: 'text', name: 'domestic_extension' }).simulate('change', { target: { value: '4444' } })
-    component.find({ type: 'radio', name: 'nonumber' }).simulate('change')
+    component.find('.nonumber input').simulate('change')
     component.find('.time.day input').simulate('change')
     component.find('.phonetype-option.work input').simulate('change')
     expect(updated).toBeGreaterThan(8)
@@ -184,5 +186,98 @@ describe('The Telephone component', () => {
     tabbed = false
     component.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
+  })
+
+  it('can hide number type', () => {
+    const props = {
+      showNumberType: false
+    }
+    const component = mount(<Telephone {...props} />)
+    expect(component.find('.phonetype').length).toBe(0)
+  })
+
+  it('can disable not applicable on on telephone', () => {
+    const props = {
+      allowNotApplicable: false
+    }
+    const component = mount(<Telephone {...props} />)
+    expect(component.find('.nonumber').length).toBe(0)
+  })
+
+  it('can validate telephone required fields', () => {
+    const tests = [
+      {
+        telephone: {
+          numberType: 'Home',
+          type: 'Domestic',
+          domestic: {
+            first: '111',
+            second: '111',
+            third: '1111'
+          },
+          required: true
+        },
+        expected: true
+      },
+      {
+        telephone: {
+          numberType: 'Home',
+          type: 'DSN',
+          dsn: {
+            first: '111',
+            second: '111'
+          },
+          required: true
+        },
+        expected: true
+      },
+      {
+        telephone: {
+          numberType: 'Home',
+          type: 'International',
+          international: {
+            first: '111',
+            second: '1111',
+            third: '1111'
+          },
+          required: true
+        },
+        expected: true
+      },
+      {
+        telephone: {
+          numberType: '',
+          domestic: {
+            first: '111',
+            second: '111',
+            third: '1111'
+          },
+          required: true
+        },
+        expected: false
+      },
+      {
+        telephone: {
+          showNumberType: true,
+          numberType: '',
+          required: true
+        },
+        expected: false
+      },
+      {
+        telephone: {
+          numberType: 'Home',
+          noNumber: 'NA',
+          required: true,
+          showNumberType: true,
+          allowNotApplicable: true
+        },
+        expected: true
+      }
+    ]
+    const errorHandler = Telephone.errors.find(e => e.code === 'required').func
+    tests.forEach(test => {
+      expect(errorHandler(null, test.telephone)).toBe(test.expected)
+    })
   })
 })

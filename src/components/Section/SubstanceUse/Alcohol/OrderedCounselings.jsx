@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { AlcoholOrderedCounselingsValidator } from '../../../../validators'
+import { AlcoholOrderedCounselingsValidator, OrderedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import OrderedCounseling from './OrderedCounseling'
@@ -42,7 +42,7 @@ export default class OrderedCounselings extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).OrderedCounseling || {}
+    const o = (item || {}).Item || {}
     const counselingDates = DateSummary(o.CounselingDates)
 
     let seekers = []
@@ -81,26 +81,38 @@ export default class OrderedCounselings extends SubsectionElement {
   render () {
     return (
       <div className="ordered-counselings">
-        <h2>{i18n.t('substance.alcohol.heading.orderedCounseling')}</h2>
         <Branch name="HasBeenOrdered"
+                label={i18n.t('substance.alcohol.heading.orderedCounseling')}
+                labelSize="h2"
                 className="has-been-ordered"
                 value={this.props.HasBeenOrdered}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateHasBeenOrdered}>
+                required={this.props.required}
+                onUpdate={this.updateHasBeenOrdered}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasBeenOrdered === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={OrderedCounselingValidator}
                      description={i18n.t('substance.alcohol.orderedCounseling.collection.description')}
                      appendTitle={i18n.t('substance.alcohol.orderedCounseling.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}>
-            <OrderedCounseling name="OrderedCounseling" bind={true} />
+                     appendLabel={i18n.t('substance.alcohol.orderedCounseling.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+        <OrderedCounseling name="Item"
+                           bind={true}
+                           addressBooks={this.props.addressBooks}
+                           dispatch={this.props.dispatch}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -114,8 +126,10 @@ OrderedCounselings.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/ordered',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
     return new AlcoholOrderedCounselingsValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

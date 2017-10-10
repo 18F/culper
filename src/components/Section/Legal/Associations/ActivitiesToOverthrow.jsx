@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsActivitiesValidator } from '../../../../validators'
+import { LegalAssociationsActivitiesValidator, ActivitiesValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import ActivitiesToOverthrowItem from './ActivitiesToOverthrowItem'
 
 export default class ActivitiesToOverthrow extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Dates)
     const details = (o.Reasons || {}).value || ''
 
@@ -57,41 +58,36 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
       <div className="legal-associations-activities">
         <Branch name="has_activities"
                 label={i18n.t('legal.associations.activities.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-associations-activities-has-activities"
                 value={this.props.HasActivities}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasActivities === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ActivitiesValidator}
                      description={i18n.t('legal.associations.activities.collection.description')}
                      appendTitle={i18n.t('legal.associations.activities.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.activities.collection.appendLabel')}>
-            <Field title={i18n.t('legal.associations.activities.heading.reasons')}
-                   help="legal.associations.activities.help.reasons"
-                   adjustFor="textarea">
-              <Textarea name="Reasons"
-                        className="legal-associations-activities-reasons"
-                        bind={true}
-                        />
-            </Field>
+                     appendLabel={i18n.t('legal.associations.activities.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <ActivitiesToOverthrowItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
 
-            <Field title={i18n.t('legal.associations.activities.heading.dates')}
-                   help="legal.associations.activities.help.dates"
-                   adjustFor="daterange">
-              <DateRange name="Dates"
-                         className="legal-associations-activities-dates"
-                         bind={true}
-                         />
-            </Field>
           </Accordion>
         </Show>
       </div>
@@ -111,6 +107,7 @@ ActivitiesToOverthrow.defaultProps = {
   subsection: 'associations/activities-to-overthrow',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsActivitiesValidator(state, props).isValid()
-  }
+    return new LegalAssociationsActivitiesValidator(props).isValid()
+  },
+  scrollToBottom: ''
 }

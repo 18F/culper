@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Accordion, Svg } from '../../../Form'
+import { Field, Accordion, Svg } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import Person from './Person'
 import PeopleValidator, { PersonValidator } from '../../../../validators/people'
@@ -132,8 +132,11 @@ export default class People extends SubsectionElement {
   render () {
     return (
       <div className="people">
-        <h2>{i18n.t('relationships.people.heading.title')}</h2>
-        {i18n.m('relationships.people.para.intro')}
+        <Field title={i18n.t('relationships.people.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom">
+          {i18n.m('relationships.people.para.intro')}
+        </Field>
 
         <span id="scrollToPeople"></span>
         <div className="summaryprogress progress">
@@ -155,19 +158,27 @@ export default class People extends SubsectionElement {
         <Accordion scrollTo="scrollToPeople"
                    items={this.props.List}
                    defaultState={this.props.defaultState}
+                   scrollToBottom={this.props.scrollToBottom}
                    realtime={true}
                    sort={this.sort}
                    inject={this.inject}
                    branch={this.props.ListBranch}
                    summary={this.summary}
                    customDetails={this.customDetails}
-                   validator={(props) => new PersonValidator(props, null).isValid() }
+                   validator={PersonValidator}
                    onUpdate={this.updateList}
                    onError={this.handleError}
+                   required={this.props.required}
+                   scrollIntoView={this.props.scrollIntoView}
                    description={i18n.t('relationships.people.person.collection.description')}
                    appendTitle={i18n.t('relationships.people.person.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.people.person.collection.appendLabel')}>
-          <Person name="Item" bind={true} />
+          <Person name="Item"
+                  bind={true}
+                  addressBooks={this.props.addressBooks}
+                  dispatch={this.props.dispatch}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )
@@ -181,10 +192,12 @@ People.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'people',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new PeopleValidator(props, props).isValid()
   },
   defaultState: true,
-  totalYears: 7
+  totalYears: 7,
+  scrollToBottom: ''
 }

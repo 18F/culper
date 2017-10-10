@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { CardAbuseValidator } from '../../../../validators'
+import { CardAbuseValidator, CardAbuseItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, DateControl, Currency, Field,
-         Location, Checkbox, Text, Textarea } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import CardItem from './CardItem'
 
 export default class Card extends SubsectionElement {
   constructor (props) {
@@ -53,7 +53,7 @@ export default class Card extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const obj = (item || {})
+    const obj = (item.Item || {})
     const date = (obj.Date || {})
     const from = DateSummary({date: date})
     const agency = (obj.Agency || {}).value || ''
@@ -71,85 +71,38 @@ export default class Card extends SubsectionElement {
     return (
       <div className="card-abuse">
         <Branch name="has_cardabuse"
+                label={i18n.t('financial.card.title')}
+                labelSize="h2"
                 className="card-branch"
                 value={this.state.HasCardAbuse}
                 warning={true}
                 onUpdate={this.updateBranch}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
         <Show when={this.state.HasCardAbuse === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
                      description={i18n.t('financial.card.collection.summary.title')}
+                     required={this.props.required}
+                     validator={CardAbuseItemValidator}
+                     scrollIntoView={this.props.scrollIntoView}
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
-
-            <Field title={i18n.t('financial.card.heading.agency')}>
-              <Text name="Agency"
-                    className="card-agency"
-                    bind={true}
-                    />
-            </Field>
-
-            <Field title={i18n.t('financial.card.heading.address')}
-                   help="financial.card.help.address"
-                   adjustFor="address">
-              <Location name="Address"
-                        className="card-address"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.card.heading.date')}
-                   adjustFor="labels"
-                   shrink={true}>
-              <DateControl name="Date"
-                           className="card-date"
-                           hideDay={true}
-                           bind={true}
-                           />
-            </Field>
-
-            <Field title={i18n.t('financial.card.heading.reason')}>
-              <Textarea name="Reason"
-                        className="card-reason"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('financial.card.heading.amount')}>
-              <div>
-                <Currency name="Amount"
-                          className="card-amount"
-                          placeholder={i18n.t('financial.card.placeholder.amount')}
-                          min="1"
-                          bind={true}
-                          />
-                <div className="flags">
-                  <Checkbox name="AmountEstimated"
-                            ref="estimated"
-                            label={i18n.t('financial.card.label.estimated')}
-                            toggle="false"
-                            bind={true}
-                            />
-                </div>
-              </div>
-            </Field>
-
-            <Field title={i18n.t('financial.card.heading.description')}
-                   help="financial.card.help.description">
-              <Textarea name="Description"
-                        className="card-description"
-                        bind={true}
-                        />
-            </Field>
-
+                     <CardItem
+                       name="Item"
+                       bind={true}
+                       dispatch={this.props.dispatch}
+                       addressBooks={this.props.addressBooks}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -166,7 +119,7 @@ Card.defaultProps = {
   subsection: 'card',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CardAbuseValidator(state, props).isValid()
+    return new CardAbuseValidator(state).isValid()
   },
   defaultState: true
 }

@@ -1,9 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary } from '../../../Summary'
-import { RelativesValidator } from '../../../../validators'
+import { RelativesValidator, RelativeValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Accordion } from '../../../Form'
+import { Field, Accordion } from '../../../Form'
 import Relative from './Relative'
 
 export default class Relatives extends SubsectionElement {
@@ -51,20 +51,31 @@ export default class Relatives extends SubsectionElement {
   render () {
     return (
       <div className="relatives">
-        <h2>{i18n.t('relationships.relatives.heading.title')}</h2>
-        {i18n.m('relationships.relatives.para.opportunity')}
+        <Field title={i18n.t('relationships.relatives.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom">
+          {i18n.m('relationships.relatives.para.opportunity')}
+        </Field>
 
         <Accordion items={this.props.List}
                    defaultState={this.props.defaultState}
+                   scrollToBottom={this.props.scrollToBottom}
                    branch={this.props.ListBranch}
                    onUpdate={this.updateList}
                    onError={this.handleError}
                    summary={this.summary}
                    description={i18n.t('relationships.relatives.collection.summary.title')}
+                   required={this.props.required}
+                   validator={RelativeValidator}
+                   scrollIntoView={this.props.scrollIntoView}
                    appendTitle={i18n.t('relationships.relatives.collection.appendTitle')}
                    appendLabel={i18n.t('relationships.relatives.collection.append')}>
           <Relative name="Item"
+                    addressBooks={this.props.addressBooks}
+                    dispatch={this.props.dispatch}
                     bind={true}
+                    scrollIntoView={this.props.scrollIntoView}
+                    required={this.props.required}
                     />
         </Accordion>
       </div>
@@ -79,9 +90,11 @@ Relatives.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'relatives',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new RelativesValidator(props, props).isValid()
+    return new RelativesValidator(props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

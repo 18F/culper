@@ -4,6 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { Field } from '../../Form'
 import Gambling from './Gambling'
 import Bankruptcies from './Bankruptcy'
 import Taxes from './Taxes'
@@ -18,12 +19,15 @@ class Financial extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="identification/review"
-                       backLabel={i18n.t('identification.destination.review')}
+                       back="foreign/review"
+                       backLabel={i18n.t('foreign.destination.review')}
                        next="financial/bankruptcy"
                        nextLabel={i18n.t('financial.destination.bankruptcy')}>
-            <h2>{i18n.t('financial.intro.title')}</h2>
-            {i18n.m('financial.intro.body')}
+            <Field title={i18n.t('financial.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('financial.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="review"
@@ -32,92 +36,85 @@ class Financial extends SectionElement {
                        showTop={true}
                        back="financial/nonpayment"
                        backLabel={i18n.t('financial.destination.nonpayment')}
-                       next="history"
-                       nextLabel={i18n.t('history.destination.residence')}>
-            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
+                       next="substance/intro"
+                       nextLabel={i18n.t('substance.destination.intro')}>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
+                          addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
                           onError={this.handleError}
                           defaultState={false}
+                          required={true}
+                          scrollIntoView={false}
                           />
-
             <hr />
-            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Gambling')}
                       onError={this.handleError}
                       defaultState={false}
+                      required={true}
+                      scrollIntoView={false}
                     />
 
             <hr />
-            <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
                    {...this.props.Taxes}
                    dispatch={this.props.dispatch}
                    onUpdate={this.handleUpdate.bind(this, 'Taxes')}
                    onError={this.handleError}
                    defaultState={false}
+                   required={true}
+                   scrollIntoView={false}
                    />
 
             <hr />
-            <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
+                  addressBooks={this.props.AddressBooks}
                   dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
                   onError={this.handleError}
                   defaultState={false}
+                  required={true}
+                  scrollIntoView={false}
                   />
 
             <hr />
-            <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
                     onError={this.handleError}
                     defaultState={false}
+                    required={true}
+                    scrollIntoView={false}
                     />
 
             <hr />
-            <h2>{i18n.t('financial.delinquent.title')}</h2>
-            {i18n.m('financial.delinquent.para.details')}
-            <ul>
-              <li>{i18n.m('financial.delinquent.para.alimony')}</li>
-              <li>{i18n.m('financial.delinquent.para.judgement')}</li>
-              <li>{i18n.m('financial.delinquent.para.lien')}</li>
-              <li>{i18n.m('financial.delinquent.para.federal')}</li>
-            </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
                         onError={this.handleError}
                         defaultState={false}
+                        required={true}
+                        scrollIntoView={false}
                         />
 
             <hr />
-            <h2>{i18n.t('financial.nonpayment.title')}</h2>
-            <ul>
-              <li>{i18n.m('financial.nonpayment.para.repo')}</li>
-              <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.collections')}</li>
-              <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
-              <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
-              <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
-              <li>{i18n.m('financial.nonpayment.para.any')}</li>
-            </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
                         onError={this.handleError}
                         defaultState={false}
+                        required={true}
+                        scrollIntoView={false}
                         />
           </SectionView>
 
@@ -126,12 +123,13 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.intro')}
                        next="financial/gambling"
                        nextLabel={i18n.t('financial.destination.gambling')}>
-            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
+                          addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onUpdate={this.handleUpdate.bind(this, 'Bankruptcy')}
                           onError={this.handleError}
+                          scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
 
@@ -140,12 +138,12 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="financial/taxes"
                        nextLabel={i18n.t('financial.destination.taxes')}>
-            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       dispatch={this.props.dispatch}
                       onUpdate={this.handleUpdate.bind(this, 'Gambling')}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -154,12 +152,12 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.gambling')}
                        next="financial/card"
                        nextLabel={i18n.t('financial.destination.card')}>
-            <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
                    {...this.props.Taxes}
                    dispatch={this.props.dispatch}
                    onUpdate={this.handleUpdate.bind(this, 'Taxes')}
                    onError={this.handleError}
+                   scrollToBottom={this.props.scrollToBottom}
                    />
           </SectionView>
 
@@ -168,12 +166,13 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.taxes')}
                        next="financial/credit"
                        nextLabel={i18n.t('financial.destination.credit')}>
-            <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
+                  addressBooks={this.props.AddressBooks}
                   dispatch={this.props.dispatch}
                   onUpdate={this.handleUpdate.bind(this, 'Card')}
                   onError={this.handleError}
+                  scrollToBottom={this.props.scrollToBottom}
                   />
           </SectionView>
 
@@ -182,12 +181,13 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.card')}
                        next="financial/delinquent"
                        nextLabel={i18n.t('financial.destination.delinquent')}>
-            <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
+                    addressBooks={this.props.AddressBooks}
                     dispatch={this.props.dispatch}
                     onUpdate={this.handleUpdate.bind(this, 'Credit')}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -196,19 +196,13 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.credit')}
                        next="financial/nonpayment"
                        nextLabel={i18n.t('financial.destination.nonpayment')}>
-            <h2>{i18n.t('financial.delinquent.title')}</h2>
-            {i18n.m('financial.delinquent.para.details')}
-            <ul>
-              <li>{i18n.m('financial.delinquent.para.alimony')}</li>
-              <li>{i18n.m('financial.delinquent.para.judgement')}</li>
-              <li>{i18n.m('financial.delinquent.para.lien')}</li>
-              <li>{i18n.m('financial.delinquent.para.federal')}</li>
-            </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
+                        addressBooks={this.props.AddressBooks}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Delinquent')}
                         onError={this.handleError}
+                        scrollToBottom={this.props.scrollToBottom}
                         />
           </SectionView>
 
@@ -217,22 +211,12 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.delinquent')}
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
-            <h2>{i18n.t('financial.nonpayment.title')}</h2>
-            <ul>
-              <li>{i18n.m('financial.nonpayment.para.repo')}</li>
-              <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.collections')}</li>
-              <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
-              <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
-              <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
-              <li>{i18n.m('financial.nonpayment.para.any')}</li>
-            </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
                         dispatch={this.props.dispatch}
                         onUpdate={this.handleUpdate.bind(this, 'Nonpayment')}
                         onError={this.handleError}
+                        scrollToBottom={this.props.scrollToBottom}
                         />
           </SectionView>
         </SectionViews>
@@ -242,10 +226,12 @@ class Financial extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let financial = app.Financial || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const financial = app.Financial || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const addressBooks = app.AddressBooks || {}
+
   return {
     Financial: financial,
     Gambling: financial.Gambling || {},
@@ -256,13 +242,94 @@ function mapStateToProps (state) {
     Delinquent: financial.Delinquent || {},
     Nonpayment: financial.Nonpayment || {},
     Errors: errors.financial || [],
-    Completed: completed.financial || []
+    Completed: completed.financial || [],
+    AddressBooks: addressBooks
   }
 }
 
 Financial.defaultProps = {
   section: 'financial',
-  store: 'Financial'
+  store: 'Financial',
+  scrollToBottom: SectionView.BottomButtonsSelector
 }
 
+export class FinancialSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Bankruptcies name="bankruptcy"
+          {...this.props.Bankruptcy}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <Gambling name="gambling"
+          {...this.props.Gambling}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Taxes name="taxes"
+          {...this.props.Taxes}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Card name="card"
+          {...this.props.Card}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Credit name="credit"
+          {...this.props.Credit}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Delinquent name="delinquent"
+          {...this.props.Delinquent}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Nonpayment name="nonpayment"
+          {...this.props.Nonpayment}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
 export default connect(mapStateToProps)(AuthenticatedView(Financial))

@@ -1,2 +1,3 @@
-import Financial from './Financial'
+import Financial, { FinancialSections } from './Financial'
 export default Financial
+export { FinancialSections }

@@ -9,6 +9,7 @@ const en = {
   },
   app: {
     logout: 'Logout',
+    instructions: 'Instructions',
     skip: 'Skip to main content',
     banner: {
       title: 'An official website of the United States government',
@@ -22,9 +23,14 @@ const en = {
     title: 'Login',
     para: 'Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.',
     submit: 'Submit',
+    error: {
+      title: 'Sorry, but we couldn\'t log you in!',
+      generic: 'The username or password was incorrect.'
+    },
     twofactor: {
       title: 'Two-factor authentication',
-      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.'
+      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.',
+      disabled: 'Multiple factor authentication is currently disabled.'
     },
     placeholder: {
       username: 'Username',
@@ -64,7 +70,7 @@ const en = {
     warning: 'Are you sure you would like to remove this item?',
     open: 'Open',
     close: 'Close',
-    incomplete: 'This information is incomplete.'
+    incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
   },
   comments: {
     add: 'Add a comment',
@@ -162,6 +168,14 @@ const en = {
           message: 'Some of these characters aren\'t allowed.',
           note: 'Only use letters, hyphens (-), periods (.), apostrophes (\'), and spaces.'
         }
+      },
+      suffix: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     birthdate: {
@@ -197,6 +211,10 @@ const en = {
         title: 'Confirmation mismatch',
         message: 'The two U.S. Social Security Numbers you entered do not match.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     date: {
@@ -243,6 +261,10 @@ const en = {
       min: {
         title: 'There is a problem with the date',
         message: 'The date should be on or after your date of birth.'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     daterange: {
@@ -342,6 +364,10 @@ const en = {
         title: 'There is a problem with the date range',
         message: 'The **from** date should be before the **to** date.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     weight: {
@@ -354,6 +380,10 @@ const en = {
         title: 'Weight exceeds accepted limits',
         message: 'We only accept a value between 10 and 999 pounds',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     height: {
@@ -380,53 +410,154 @@ const en = {
           message: 'Inches must be between 0 and 11',
           note: ''
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
-    address: {
-      city: {
-        length: {
-          title: 'There is a problem with the City',
-          message: 'City name should be between 2 and 100 characters.',
-          note: ''
+    location: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
+      street: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       state: {
-        notfound: {
-          title: 'There is a problem with the State',
-          message: [
-            'State name must be one of the available options.',
-            '*and/or*',
-            'The state name is too long.'
-          ],
-          note: ''
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
-      county: {
-        length: {
-          title: 'There is a problem with the County',
-          message: 'County name must be between 2 and 100 characters',
-          note: ''
+      city: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
         }
       },
       zipcode: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
         pattern: {
           title: 'There is a problem with the ZIP Code',
           message: 'The ZIP Code should be either 5 or 9 digits.',
           note: ''
         }
       },
-      country: {
-        notfound: {
-          title: 'This country is not one of the options',
-          message: 'Please enter the country that your city of birth is in now.',
-          note: ''
+      toggleablelocation: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          required: {
+            title: 'There is a problem with this field',
+            message: 'This field is required'
+          },
+          notfound: {
+            title: 'This country is not one of the options',
+            message: 'Please enter the country that your city of birth is in now.',
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       },
-      apofpo: {
-        pattern: {
-          title: 'There is a problem with the State Code',
-          message: 'APO/FPO state code must be 2 letters',
-          note: 'Note: Typically the value is either AA, AE, or AP.'
+      address: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        city: {
+          length: {
+            title: 'There is a problem with the City',
+            message: 'City name should be between 2 and 100 characters.',
+            note: ''
+          }
+        },
+        state: {
+          notfound: {
+            title: 'There is a problem with the State',
+            message: [
+              'State name must be one of the available options.',
+              '*and/or*',
+              'The state name is too long.'
+            ],
+            note: ''
+          }
+        },
+        county: {
+          length: {
+            title: 'There is a problem with the County',
+            message: 'County name must be between 2 and 100 characters',
+            note: ''
+          }
+        },
+        zipcode: {
+          pattern: {
+            title: 'There is a problem with the ZIP Code',
+            message: 'The ZIP Code should be either 5 or 9 digits.',
+            note: ''
+          }
+        },
+        country: {
+          notfound: {
+            title: 'This Country is not on our current list',
+            message: [
+              'Indicate the country that currently governs the geographic location where you were born. As necessary provide a comment above to clarify.'
+            ],
+            note: ''
+          }
+        },
+        apofpo: {
+          pattern: {
+            title: 'There is a problem with the State Code',
+            message: 'APO/FPO state code must be 2 letters',
+            note: 'Note: Typically the value is either AA, AE, or AP.'
+          }
         }
       }
     },
@@ -463,6 +594,10 @@ const en = {
       }
     },
     country: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       notfound: {
         title: 'This Country is not on our current list',
         message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
@@ -470,6 +605,10 @@ const en = {
       }
     },
     passport: {
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
+      },
       pattern: {
         title: 'There is a problem with the passport number',
         message: [
@@ -484,6 +623,10 @@ const en = {
         title: 'There is a problem with the losses',
         message: 'The reported losses should have a dollar value.',
         note: ''
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     telephone: {
@@ -588,6 +731,10 @@ const en = {
             note: ''
           }
         }
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     geocode: {
@@ -625,6 +772,10 @@ const en = {
         title: 'This email isn\'t valid',
         message: 'Check for any spelling mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
+      },
+      required: {
+        title: 'There is a problem with this field',
+        message: 'This field is required'
       }
     },
     treatment: {
@@ -648,6 +799,10 @@ const en = {
           message: 'The date should be after the date treatment began.'
         }
       }
+    },
+    required: {
+      title: 'There is a problem with this field',
+      message: 'This field is required'
     }
     // order: {
     //   datecontrol: {
@@ -792,7 +947,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Identification intro',
       review: 'Review Identification',
       othernames: 'Other names used',
       name: 'Full name',
@@ -981,7 +1136,8 @@ const en = {
     ssn: {
       title: 'Provide your U.S. Social Security Number',
       heading: {
-        verify: 'Please confirm your social security number'
+        verify: 'Please confirm your social security number',
+        verified: 'Thank you for confirming your social security number!'
       },
       help: {
         title: 'Need help with your U.S. Social Security Number?',
@@ -1112,7 +1268,7 @@ const en = {
       para: 'View all the sections associated with identification at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Financial intro',
       gambling: 'Gambling',
       bankruptcy: 'Bankruptcy',
       taxes: 'Taxes',
@@ -1307,7 +1463,7 @@ const en = {
         help: {
           title: 'Not sure of the facility address?',
           message: 'Try looking up the facility name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       }
     },
@@ -1424,7 +1580,7 @@ const en = {
         address: {
           title: 'Not sure of the agency or company address?',
           message: 'Try looking up the agency or company name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         date: {
           title: 'Need help with the date?',
@@ -1494,7 +1650,7 @@ const en = {
         address: {
           title: 'Not sure of this organization\'s address?',
           message: 'Try looking up the organization\'s name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         description: {
           title: 'Need help providing a description?',
@@ -1603,7 +1759,7 @@ const en = {
         courtaddress: {
           title: 'Not sure of the court address?',
           message: 'Try looking up the court name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         description: {
           title: 'Need help providing a description?',
@@ -1734,15 +1890,15 @@ const en = {
       para: 'View all the sections associated with citizenship at once'
     },
     destination: {
-      intro: 'Intro',
-      review: 'Review Citizenship',
+      intro: 'Citizenship intro',
+      review: 'Review citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
       passports: 'Foreign passports'
     },
     status: {
       heading: {
-        title: 'Citizenship Status',
+        title: 'Citizenship status',
         citizenshipstatus: 'Provide your current citizenship status',
         abroad: 'Provide type of documentation of U.S. citizen born abroad',
         documentnumber: {
@@ -1915,7 +2071,7 @@ const en = {
         certificatecourtaddress: {
           title: 'Not sure of the court address?',
           message: 'Try looking up the court name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         basis: {
           naturalized: {
@@ -1953,7 +2109,7 @@ const en = {
     },
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship',
+        title: 'Dual/multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
@@ -2121,7 +2277,7 @@ const en = {
       para: 'View all the sections associated with relationships at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Relationships intro',
       review: 'Review Relationships',
       relatives: 'Relatives',
       marital: 'Marital status',
@@ -2458,14 +2614,14 @@ const en = {
     civilUnion: {
       heading: {
         name: 'Provide full name',
-        birthdate: 'Provide birthdate',
+        birthdate: 'Provide the date of birth',
         birthplace: 'Provide place of birth',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Has this person used another name?',
         appendOthernames: 'Has this person used any other names?',
         citizenship: 'Provide country(ies) of citizenship',
-        location: 'Provide location',
+        location: 'Provide the location',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2492,10 +2648,10 @@ const en = {
       divorce: {
         heading: {
           name: 'Provide the full name',
-          address: 'Provide location',
-          birthdate: 'Provide birthdate',
+          address: 'Provide the location',
+          birthdate: 'Provide the date of birth',
           telephone: 'Provide telephone number',
-          birthplace: 'Provide the place of birth.',
+          birthplace: 'Provide the place of birth',
           dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
           recognized: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
           deceased: 'Is this person deceased?',
@@ -2524,7 +2680,7 @@ const en = {
         help: {
           birthdate: {
             title: 'Need help with the birthdate?',
-            message: 'Provide the date of birth',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           birthplace: {
@@ -2579,7 +2735,7 @@ const en = {
       help: {
         address: {
           title: 'Need help with the marital address?',
-          message: 'Provide the last known address ',
+          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         addressSeparated: {
@@ -2599,7 +2755,7 @@ const en = {
         },
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2651,9 +2807,9 @@ const en = {
         address: 'Provide location',
         birthdate: 'Provide birthdate',
         telephone: 'Provide telephone number',
-        birthplace: 'Provide the place of birth.',
-        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
-        ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
+        birthplace: 'Provide the place of birth',
+        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+        ssn: 'Provide your cohabitant’s U.S. Social Security Number',
         othernames: 'Has your cohabitant used another name?',
         appendOthernames: 'Has your cohabitant used any other names?',
         citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
@@ -2688,7 +2844,7 @@ const en = {
       help: {
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2723,12 +2879,12 @@ const en = {
         },
         address: {
           title: 'Need help with providing address?',
-          message: 'Provide the address of the person',
+          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         dateDivorced: {
           title: 'Need help with providing date divorced/dissolved?',
-          message: 'Provide the date divorced/dissolved, annulled or widowed',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         foreignBornDocument: {
@@ -2747,8 +2903,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help with when deciding if you have had a cohabitant?',
-          message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
+          title: 'Need help deciding whether or not you have had a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
           note: ''
         },
         citizenship: {
@@ -2836,7 +2992,7 @@ const en = {
           },
           address: {
             title: 'Need help with the address?',
-            message: 'Provide the address for the person who knows you well',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -2960,6 +3116,9 @@ const en = {
           placeholder: 'Enter APO/FPO/DPO'
         }
       }
+    },
+    addressBook: {
+      reuse: 'Choose a previously used address'
     }
   },
   spinner: {
@@ -2981,6 +3140,13 @@ const en = {
       dismiss: 'Keep original address',
       alternate: 'Manually correct this address',
       more: 'Add more information'
+    },
+    addressBook: {
+      title: 'Select previous address',
+      para: 'Choose the desired address from the list below.',
+      label: 'Previous address',
+      use: 'Use this address',
+      dismiss: 'Close address book'
     }
   },
   intro: {
@@ -3014,7 +3180,7 @@ const en = {
       para: 'View all the sections associated with military history at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Military intro',
       selective: 'Selective service record',
       history: 'U.S. military',
       disciplinary: 'Disciplinary procedures',
@@ -3220,7 +3386,7 @@ const en = {
           item: 'Procedure',
           unknown: '*Provide the disciplinary procedure below*'
         },
-        appendTitle: 'Additional disciplinary procedures',
+        appendTitle: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         append: 'Add additional disciplinary procedures'
       }
@@ -3321,6 +3487,11 @@ const en = {
             message: 'Tell us the full time range you were in contact with this person.',
             note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
           },
+          address: {
+            title: 'Need help with this addresse?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            note: ''
+          },
           frequency: {
             title: 'Need help with this question?',
             message: 'Tell us how often you were in contact with this person.',
@@ -3380,7 +3551,7 @@ const en = {
       }
     },
     destination: {
-      intro: 'Intro',
+      intro: 'History intro',
       review: 'Review your history',
       timeline: 'Timeline',
       residence: 'Places you lived',
@@ -3446,12 +3617,12 @@ const en = {
       help: {
         dates: {
           title: 'Need help with the date range?',
-          message: 'Provide the date range of your residence',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         address: {
           title: 'Need help with the address?',
-          message: 'The address of the residence during this time period',
+          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
           note: ''
         },
         role: {
@@ -3492,6 +3663,14 @@ const en = {
         collection: {
           caption: 'Employment activities',
           append: 'Add another employer',
+          appendTitle: 'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
+          appendMessage: [
+            '- Fired from a job?',
+            '- Quit a job after being told you would be fired?',
+            '- Have you left a job by mutual agreement following charges or allegations of misconduct?',
+            '- Left a job by mutual agreement following notice of unsatisfactory performance?',
+            '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?'
+          ],
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
@@ -3504,7 +3683,7 @@ const en = {
           title: 'Government employment',
           help: {
             title: 'Need help with your employment activity?',
-            message: 'Select your employment activity',
+            message: 'State Government (Non-Federal employment). Non-government employment excludes self-employment, if you were self employed choose "Self-employment". ',
             note: ''
           },
           other: {
@@ -3558,7 +3737,7 @@ const en = {
             date: 'Provide the date you quit after being told you would be fired'
           },
           charges: {
-            option: 'Charges',
+            option: 'Misconduct',
             text: 'Provide the charges or allegations of misconduct',
             date: 'Provide the date you left following the charges or allegations of misconduct'
           },
@@ -3585,15 +3764,15 @@ const en = {
         datesEmployed: {
           help: {
             title: 'Need help with the dates you were employed?',
-            message: 'Select the dates you were employed',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         },
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Provide the address',
+            title: 'Need help with this address?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -3637,11 +3816,16 @@ const en = {
             note: ''
           },
           address: {
-            label: 'This address is'
+            label: 'This address is',
+            help: {
+              title: 'Need help with this address?',
+              message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+              note: ''
+            }
           },
           heading: {
             telephone: 'Provide telephone number',
-            address: 'Provide the address of physical location'
+            address: 'Provide the work address where you are/were physically located'
           }
         },
         additionalActivity: {
@@ -3678,7 +3862,7 @@ const en = {
           datesEmployed: {
             help: {
               title: 'Need help with the dates of employment?',
-              message: 'Provide dates of employment',
+              message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
               note: ''
             }
           }
@@ -3725,7 +3909,7 @@ const en = {
           },
           heading: {
             name: 'Provide the name of your supervisor',
-            title: 'Provide the position title of your supervisor',
+            title: 'Provide the rank/position title of your supervisor',
             email: 'Provide the email address of your supervisor',
             address: 'Provide the physical work location of your supervisor',
             telephone: 'Provide the telephone number for this supervisor'
@@ -3741,7 +3925,7 @@ const en = {
           title: 'Provide the most recent position title',
           reference: 'Provide a reference',
           status: 'Select the employment status for this position',
-          address: 'Provide the address of employment',
+          address: 'Provide the address of employer',
           supervisor: 'Your Supervisor',
           telephone: 'Provide your employment telephone number',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
@@ -3826,7 +4010,7 @@ const en = {
             label: 'This address is',
             help: {
               title: 'Need help with the address?',
-              message: 'Provide the address of this supervisors work location',
+              message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
               note: ''
             }
           },
@@ -3922,7 +4106,7 @@ const en = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -4059,7 +4243,7 @@ const en = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -4206,7 +4390,7 @@ const en = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -4420,7 +4604,7 @@ const en = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -4527,7 +4711,7 @@ const en = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -4631,7 +4815,7 @@ const en = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -4754,7 +4938,7 @@ const en = {
           label: 'This address is',
           help: {
             title: 'Need help with the address?',
-            message: 'Provide the address',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -4911,13 +5095,13 @@ const en = {
         },
         dates: {
           title: 'Need help with the dates of attendance?',
-          message: 'Provide the dates of attendance',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         address: {
           title: 'Need help with the school address?',
           message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
-          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx).'
+          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx). <br> Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         type: {
           title: 'Need help with the school code?',
@@ -4947,7 +5131,6 @@ const en = {
       }
     },
     federal: {
-      title: 'Provide all former federal service',
       heading: {
         branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
         dates: 'Provide dates of federal civilian employment',
@@ -4958,12 +5141,12 @@ const en = {
       help: {
         branch: {
           title: 'Need more information about former federal service?',
-          message: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+          message: 'Please list all federal service even if older than 10 years.',
           note: ''
         },
         dates: {
-          title: 'Need help with the dates employed?',
-          message: 'The dates you were employed',
+          title: 'Need help with the dates of employment?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         name: {
@@ -4978,8 +5161,8 @@ const en = {
         },
         address: {
           title: 'Need help with the address?',
-          message: 'The address of the agency',
-          note: ''
+          message: 'Try looking up the agency name, this could help you find the address.',
+          note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       },
       collection: {
@@ -4990,13 +5173,14 @@ const en = {
           nodates: 'NA',
           unknown: '*Provide federal service below*'
         },
+        appendTitle: 'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
         append: 'Add another former federal service'
       }
     }
   },
   foreign: {
     intro: {
-      title: 'Section 7: Foriegn activities',
+      title: 'Section 7: Foreign activities',
       body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
     },
     tour: {
@@ -5006,7 +5190,7 @@ const en = {
       para: 'View all the sections associated with foreign activities at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Foreign intro',
       review: 'Review Foreign Activities',
       history: 'Your History',
       tbd: 'TBD',
@@ -5102,6 +5286,13 @@ const en = {
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests?',
           appendLabel: 'Add another direct interest',
           itemType: 'Interest'
+        },
+        help: {
+          directControl: {
+            title: 'Need help with the term "Direct control"?',
+            message: 'Direct control means there are *no* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+            note: 'Example: You own a bakery in a foreign country and you directly control all aspects of the business such as pricing, baking, etc.'
+          }
         },
         interest: {
           para: {
@@ -5213,6 +5404,13 @@ const en = {
           appendTitle: 'Do you, your spouse or legally recognized civil union/domestic partner, cohabitant, or dependent children have any additional foreign financial interests controlled on your behalf?',
           appendLabel: 'Add another indirect interest',
           itemType: 'Interest'
+        },
+        help: {
+          indirectControl: {
+            title: 'Need help with the term "Indirect control"?',
+            message: 'Indirect control means there *are* intermediary or intervening factors between the foreign financial interest and the owner/controller.',
+            note: 'Example: You own a bakery in a foreign country and have an employee directly control aspects of the business such as pricing, baking, etc.'
+          }
         },
         interest: {
           para: {
@@ -6352,7 +6550,7 @@ const en = {
           organizationaddress: {
             title: 'Not sure of the organization\'s address?',
             message: 'Try looking up the organization\'s name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           dates: {
             title: 'Need help with the dates of stay?',
@@ -6617,6 +6815,10 @@ const en = {
     }
   },
   legal: {
+    intro: {
+      title: 'Section 9: Investigative and criminal history',
+      body: 'You will be asked questions about your investigative and criminal background and be asked to provide details if necessary.'
+    },
     tour: {
       para: 'Take a guided tour through the section'
     },
@@ -6624,7 +6826,7 @@ const en = {
       para: 'View all the sections associated with investigative & criminal history at once'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Investigative and criminal history intro',
       police: 'Police record',
       offenses: 'Offenses',
       additionalOffenses: 'Additional offenses',
@@ -6790,7 +6992,7 @@ const en = {
         agencyaddress: {
           title: 'Not sure of the agency address?',
           message: 'Try looking up the agency name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         charged: {
           title: 'Need help if you were charged, convicted, or awaiting trial?',
@@ -6805,7 +7007,7 @@ const en = {
         courtaddress: {
           title: 'Not sure of the court address?',
           message: 'Try looking up the court name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         chargeType: {
           title: 'Need help with the type of charge?',
@@ -7011,11 +7213,11 @@ const en = {
           downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
         },
         collection: {
-          description: 'Summary of revocations',
-          item: 'Revoked',
-          unknown: '*Provide revocation details below*',
-          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorizations to enter?',
-          appendLabel: 'Add another revocation'
+          description: 'Summary of denials',
+          item: 'Denial',
+          unknown: '*Provide denial details below*',
+          appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
+          appendLabel: 'Add another denial'
         },
         help: {
           date: {
@@ -7029,8 +7231,8 @@ const en = {
             note: ''
           },
           explanation: {
-            title: 'Need help providing an explanation of events?',
-            message: 'Provide any circumstances leading to this action.',
+            title: 'Need help with this explanation?',
+            message: 'Tell us the details of this denial, suspension or revocation action. Go into as much detail as necessary.',
             note: ''
           }
         }
@@ -7061,8 +7263,8 @@ const en = {
             note: ''
           },
           explanation: {
-            title: 'Need help providing an explanation of events?',
-            message: 'Provide any circumstances leading to this action.',
+            title: 'Need help with this explanation?',
+            message: 'Tell us the details of this denial, suspension or revocation action. Go into as much detail as necessary.',
             note: ''
           }
         }
@@ -7087,8 +7289,8 @@ const en = {
       },
       help: {
         civilActionDate: {
-          title: 'Need help with the civil action date?',
-          message: 'Provide the date of the civil action',
+          title: 'Can\'t remember the exact date?',
+          message: 'Give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         courtName: {
@@ -7097,9 +7299,9 @@ const en = {
           note: ''
         },
         courtAddress: {
-          title: 'Need help with the court address?',
-          message: 'Provide the address of the court',
-          note: ''
+          title: 'Not sure of the court address?',
+          message: 'Try looking up the court name, this could help you find the address.',
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         natureOfAction: {
           title: 'Need help with the nature of the action?',
@@ -7152,8 +7354,8 @@ const en = {
             note: ''
           },
           location: {
-            title: 'Need help where this incident took place?',
-            message: 'Provide the address where this incident occurred.',
+            title: 'Need help with this address?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           },
           action: {
@@ -7190,8 +7392,8 @@ const en = {
             note: ''
           },
           location: {
-            title: 'Need help where this incident took place?',
-            message: 'Provide the address where this incident occurred.',
+            title: 'Need help with this address?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           },
           action: {
@@ -7228,8 +7430,8 @@ const en = {
             note: ''
           },
           location: {
-            title: 'Need help where this incident took place?',
-            message: 'Provide the address where this incident occurred.',
+            title: 'Need help with this address?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           },
           action: {
@@ -7253,7 +7455,7 @@ const en = {
         },
         para: {
           intro: [
-            'The following pertain to your associations. You required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.',
+            'The following pertain to your associations. You are required to answer the questions fully and truthfully, and your failure to do so could be grounds for an adverse employment, security, or credentialing decision.',
             'For the purpose of this question, terrorism is defined as any criminal acts that involve violence or are dangerous to human life and appear to be intended to intimidate or coerce a civilian population to influence the policy of a government by intimidation or coercion or to affect the conduct of a government by mass destruction, assassination or kidnapping.'
           ],
           or: 'or'
@@ -7276,13 +7478,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7323,7 +7525,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -7349,7 +7551,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -7385,13 +7587,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7442,13 +7644,13 @@ const en = {
             note: ''
           },
           address: {
-            title: 'Need help with this address?',
-            message: 'Provide the address of the organization.',
+            title: 'Can\'t remember the organization\'s address?',
+            message: 'Try looking up the name of the organization, there may be an address associated with it.',
             note: ''
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           positions: {
@@ -7489,7 +7691,7 @@ const en = {
           },
           dates: {
             title: 'Need help with the dates?',
-            message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         }
@@ -7522,7 +7724,7 @@ const en = {
       para: 'View all the sections associated with substance abuse'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Substance use intro',
       police: {
         negative: 'Negative impact',
         ordered: 'Mandatory counseling or treatment',
@@ -7554,8 +7756,8 @@ const en = {
           used: 'Provide dates of involvement or use'
         },
         label: {
-          circumstances: 'Circumstances',
-          negativeImpact: 'Negative impact'
+          circumstances: 'Provide circumstances',
+          negativeImpact: 'Provide negative impact'
         },
         help: {
           occurred: {
@@ -7586,7 +7788,7 @@ const en = {
         heading: {
           seekers: 'Have any of the following ordered, advised, or asked you to seek counseling or treatment as a result of your use of alcohol?',
           actionTaken: 'Did you take action to seek counseling or treatment?',
-          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment',
+          noActionTakenExplanation: 'You responded ‘No’ to having taken action to seek counseling or treatment. Explain the reasons for not taking action to seek counseling or treatment.',
           counselingDates: 'Provide the dates of counseling or treatment',
           treatmentProviderName: 'Provide the name of the individual counselor or treatment provider',
           treatmentProviderAddress: 'Provide the full address of the counseling/treatment provider',
@@ -7638,8 +7840,8 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           treatmentProviderTelephone: {
             title: 'Not sure of the treatment provider\'s telephone?',
@@ -7682,8 +7884,8 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           treatmentProviderTelephone: {
             title: 'Not sure of the treatment provider\'s telephone?',
@@ -7729,8 +7931,8 @@ const en = {
           },
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
-            message: 'Try looking up the ctreatment provider\'s name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            message: 'Try looking up the treatment provider\'s name, this could help you find the address.',
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           agencyName: {
             title: 'Need help with the agency name?',
@@ -7740,16 +7942,16 @@ const en = {
           agencyAddress: {
             title: 'Not sure of the agency\'s address?',
             message: 'Try looking up the agency\'s name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           treatmentBeganDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment started',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           treatmentEndDate: {
-            title: 'Need help with this date?',
-            message: 'Tell us when the treatment ended',
+            title: 'Not sure of the exact date?',
+            message: 'Give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           completedTreatment: {
@@ -7767,7 +7969,7 @@ const en = {
     },
     drugs: {
       heading: {
-        drugUses: '**In the last seven (7) years**, have you illegally used any drugs or controlled substances?',
+        drugUses: 'In the last seven (7) years, have you illegally used any drugs or controlled substances?',
         drugInvolvement: 'In the last seven (7) years, have you been involved in the illegal purchase, manufacture, cultivation, trafficking, production, transfer, shipping, receiving, handling or sale of any drug or controlled substance?',
         drugClearanceUses: 'Have you EVER illegally used or otherwise been illegally involved with a drug or controlled substance while possessing a security clearance other than previously listed?',
         drugPublicSafetyUses: 'Have you EVER illegally used or otherwise been involved with a drug or controlled substance while employed as a law enforcement officer, prosecutor, or courtroom official; or while in a position directly and immediately affecting the public safety other than previously listed?',
@@ -8008,7 +8210,7 @@ const en = {
         },
         collection: {
           description: 'Summary of drug misuse',
-          summary: '*Provide your drug misuse details below**',
+          summary: '*Provide your drug misuse details below*',
           appendTitle: 'Do you have an additional instance(s) of intentionally engaging in the misuse of prescription drugs in the last seven (7) years to enter?',
           appendLabel: 'Add another drug misuse',
           itemType: 'Drug misuse'
@@ -8066,7 +8268,7 @@ const en = {
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
             message: 'Try looking up the provider\'s name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           treatmentProviderTelephone: {
             title: 'Need help with the treatment provider\'s telephone?',
@@ -8133,7 +8335,7 @@ const en = {
           treatmentProviderAddress: {
             title: 'Not sure of the treatment provider\'s address?',
             message: 'Try looking up the provider\'s name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           treatmentProviderTelephone: {
             title: 'Need help with the treatment provider\'s telephone?',
@@ -8305,28 +8507,28 @@ const en = {
     help: {
       contact: {
         title: 'Need help with the date of last contact?',
-        message: 'Please provide the date of last contact with this person',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       relationship: {
         title: 'Need help defining your relationship?',
-        message: 'Please define your relationship with the person during this period',
+        message: 'Please define your relationship with the person during this period.',
         note: ''
       },
       email: {
         title: 'Need help with the email address?',
-        message: 'A current e-mail address to contact this character reference',
+        message: 'Please use an active email address.',
         note: ''
       },
       phone: {
         title: 'Need help with a telephone number?',
-        message: 'One or more telephone numbers to contact this character reference',
+        message: 'Please use an active phone number.',
         note: ''
       },
       address: {
         title: 'Need help with the address?',
-        message: 'The current address of the character reference',
-        note: ''
+        message: 'Please use an active address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       }
     }
   },
@@ -8340,7 +8542,7 @@ const en = {
       diagnoses: 'The following question asks whether you have been diagnosed with a specified mental health condition that may, particularly if untreated, impact your judgment, reliability, or trustworthiness. If you answer in the affirmative, we will seek additional information about the seriousness and symptoms of the condition, as well as any applicable course of treatment.\n\nIt is important to note that any such diagnosis, in and of itself, **is not a reason** to revoke or deny eligibility/or access to classified information or for holding a sensitive position, suitability or fitness to obtain or retain Federal or contract employment, or eligibility for physical or logical access to federally controlled facilities or information systems.'
     },
     destination: {
-      intro: 'Intro',
+      intro: 'Psychological and emotional health intro',
       psychological: 'Psychological and emotional health',
       competence: 'Competence',
       consultation: 'Consultations',
@@ -8397,7 +8599,7 @@ const en = {
         courtAddress: {
           title: 'Not sure of the court or agency address?',
           message: 'Try looking up the court or agency name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         incompetent: {
           title: 'Need help with this question?',
@@ -8447,7 +8649,7 @@ const en = {
         courtAddress: {
           title: 'Not sure of the court or agency address?',
           message: 'Try looking up the court or agency name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         disposition: {
           title: 'Need help with the disposition?',
@@ -8511,7 +8713,7 @@ const en = {
         address: {
           title: 'Not sure of the facility address?',
           message: 'Try looking up the facility name, this could help you find the address.',
-          note: 'Note: If you can only find a phone number try calling and asking for the address.'
+          note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       }
     },
@@ -8564,7 +8766,7 @@ const en = {
           address: {
             title: 'Not sure of the health care professional\'s address?',
             message: 'Try looking up their name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           name: {
             title: 'Need help the name of the healthcare professional?',
@@ -8587,7 +8789,7 @@ const en = {
           address: {
             title: 'Not sure of the agency/organization/facility\'s address?',
             message: 'Try looking up the name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           },
           name: {
             title: 'Need help entering name of the facility where treatment was provided?',
@@ -8631,7 +8833,7 @@ const en = {
           address: {
             title: 'Not sure of the health care professional\'s address?',
             message: 'Try looking up their name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           }
         }
       },
@@ -8675,7 +8877,7 @@ const en = {
           address: {
             title: 'Not sure of the health care professional\'s address?',
             message: 'Try looking up their name, this could help you find the address.',
-            note: 'Note: If you can only find a phone number try calling and asking for the address.'
+            note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
           }
         }
       }
@@ -8760,7 +8962,7 @@ const en = {
             address: {
               title: 'Not sure of this health care professional\'s address?',
               message: 'Try looking up their name, a physical or mailing address should be associated with it.',
-              note: 'Note: If you can only find a phone number try calling and asking for the address.'
+              note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
             },
             name: {
               title: 'Need help the name and number of this healthcare professional?',
@@ -8783,7 +8985,7 @@ const en = {
             address: {
               title: 'Not sure of the treatment facility\'s address?',
               message: 'Try looking up their name, this could help you find the address.',
-              note: 'Note: If you can only find a phone number try calling and asking for the address.'
+              note: 'Note: If you can only find a phone number try calling and asking for the address. Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
             },
             name: {
               title: 'Need help the facility where treatment was provided?',
@@ -9100,11 +9302,47 @@ const en = {
     zambia: 'Zambia',
     zimbabwe: 'Zimbabwe'
   },
+  consent: {
+    contents: [
+      '# Free Wi-FI access points are not secure',
+      'The information collected through the application process is sensitive and should never be transmitted over free public Wi-Fi access points.',
+      '',
+      'Bad actors can easily intercept any data travelling across these unsecure connections.',
+      'Protect your data by only using secure, encrypted connections.',
+      '# Standard mandatory notice and consent provision for all DOD information system user agreements',
+      'By signing this document, you acknowledge and consent that when you access Department of Defense (DoD) information systems:',
+      '  * You are accessing a U.S. Government (USG) information system (IS) (which includes any device attached to this information system) that is provided for U.S. Governmentauthorized use only.',
+      '  * You consent to the following conditions:',
+      '    - The U.S. Government routinely intercepts and monitors communications on this information system for purposes including, but not limited to, penetration testing, communications security (COMSEC) monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.',
+      '    - At any time, the U.S. Government may inspect and seize data stored on this information system.',
+      '    - Communications using, or data stored on, this information system are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any U.S. Government-authorized purpose.',
+      '    - This information system includes security measures (e.g., authentication and access controls) to protect U.S. Government interests--not for your personal benefit or privacy.',
+      '    - Notwithstanding the above, using an information system does not constitute consent to personnel misconduct, law enforcement, or counterintelligence investigative searching or monitoring of the content of privileged communications or data (including work product) that are related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Under these circumstances, such communications and work product are private and confidential, as further explained below:',
+      '      * Nothing in this User Agreement shall be interpreted to limit the user\'s consent to, or in any other way restrict or affect, any U.S. Government actions for purposes of network administration, operation, protection, or defense, or for communications security. This includes all communications',
+      '      * The user consents to interception/capture and seizure of ALL communications and data for any authorized purpose (including personnel misconduct, law enforcement, or counterintelligence investigation). However, consent to interception/capture or seizure of communications and data is not consent to the use of privileged communications or data for personnel misconduct, law enforcement, or counterintelligence investigation against any party and does not negate any applicable privilege or confidentiality that otherwise applies.',
+      '      * Whether any particular communication or data qualifies for the protection of a privilege, or is covered by a duty of confidentiality, is determined in accordance with established legal standards and DoD policy. Users are strongly encouraged to seek personal legal counsel on such matters prior to using an information system if the user intends to rely on the protections of a privilege or confidentiality.',
+      '      * Users should take reasonable steps to identify such communications or data that the user asserts are protected by any such privilege or confidentiality. However, the user\'s identification or assertion of a privilege or confidentiality is not sufficient to create such protection where none exists under established legal standards and DoD policy.',
+      '      * A user\'s failure to take reasonable steps to identify such communications or data as privileged or confidential does not waive the privilege or confidentiality if such protections otherwise exist under established legal standards and DoD policy. However, in such cases the U.S. Government is authorized to take reasonable actions to identify such communication or data as being subject to a privilege or confidentiality, and such actions do not negate any applicable privilege or confidentiality.',
+      '      * These conditions preserve the confidentiality of the communication or data, and the legal protections regarding the use and disclosure of privileged information, and thus such communications and data are private and confidential. Further, the U.S. Government shall take all reasonable measures to protect the content of captured/seized privileged communications and data to ensure they are appropriately protected.',
+      '    - In cases when the user has consented to content searching or monitoring of communications or data for personnel misconduct, law enforcement, or counterintelligence investigative searching, (i.e., for all communications and data other than privileged communications or data that are related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants), the U.S. Government may, solely at its discretion and in accordance with DoD policy, elect to apply a privilege or other restriction on the U.S. Government\'s otherwise-authorized use or disclosure of such information.',
+      '    - All of the above conditions apply regardless of whether the access or use of an information system includes the display of a Notice and Consent Banner ("banner"). When a banner is used, the banner functions to remind the user of the conditions that are set forth in this User Agreement, regardless of whether the banner describes these conditions in full detail or provides a summary of such conditions, and regardless of whether the banner expressly references this User Agreement.'
+    ],
+    acceptance: {
+      title: 'I\'ve read & consent to terms in this user agreement',
+      para: []
+    }
+  },
   introduction: {
     contents: [
       '# Questionnaire for National Security Positions',
       '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
-      'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to Sections 23, 27, and 29, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
+      '## Instructions for Completing this Form ',
+      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
+      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
+      '3. Do not abbreviate the names of cities or foreign countries.',
+      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
+      '---',
+      'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
       '---',
       '# How to save your progress',
       '**This form will auto save your progress continuously throughout.** Each input will be validated and save as you enter your information.',
@@ -9129,15 +9367,6 @@ const en = {
       'Some investigations will include an interview with you as a routine part of the investigative process. The investigator may ask you to explain your answers to any question on this form. This provides you the opportunity to update, clarify, and explain information on your form more completely, which often assists in completing your investigation. It is imperative that the interview be conducted as soon as possible after you are contacted. Postponements will delay the processing of your investigation, and declining to be interviewed may result in your investigation being delayed or canceled.',
       'For the interview, you will be required to provide photo identification, such as a valid state driver\'s license. You may be required to provide other documents to verify your identity, as instructed by your investigator. These documents may include certification of any legal name change, Social Security card, passport, and/or your birth certificate. You may also be asked to provide documents regarding information that you provide on this form, or about other matters requiring specific attention. These matters include (a) alien registration or naturalization documentation; (b) delinquent loans or taxes, bankruptcies, judgments, liens, or other financial obligations; (c) agreements involving child custody or support, alimony, or property settlements; (d) arrests, convictions, probation, and/or parole; or (e) other matters described in court records.',
       '---',
-      '# Instructions for Completing this Form ',
-      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You must sign and date, in ink, the original and each copy you submit. You should retain a copy of the completed form for your records.',
-      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
-      '3. Do not abbreviate the names of cities or foreign countries. Whenever you are asked to supply a country name, you may select the country name by using the country dropdown feature.',
-      '4. When entering a U.S. address or location, select the state or territory from the "States" dropdown list that will be provided. For locations outside of the U.S. and its territories, select the country in the "Country" dropdown list and leave the "State" field blank.',
-      '5. The 5-digit postal ZIP Codes are required to process your investigation more rapidly. Refer to an automated system approved by the U.S. Postal Service to assist you with ZIP Codes.',
-      '6. For telephone numbers in the U.S., ensure that the area code is included.',
-      '7. All dates provided in this form must be in Month/Day/Year or Month/Year format. Use the dropdown lists to select the month and day. The year should be entered as a four character number (i.e. 1978 or 2001.), or selected from a dropdown list. If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Est." box.',
-      '---',
       '# Final Determination on Your Eligibility',
       'Final determination on your eligibility for a national security position is the responsibility of the Federal agency that requested your investigation and the agency that conducted your investigation. You will be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, or sexual orientation when granting access to classified information.',
       '---',
@@ -9155,7 +9384,7 @@ const en = {
       '**b.** To an element of the U.S. Intelligence Community as identified in E.O. 12333, as amended, for use in intelligence activities for the purpose of protecting United States national security interests.',
       '**c.** To any source from which information is requested in the course of an investigation, to the extent necessary to identify the individual, inform the source of the nature and purpose of the investigation, and to identify the type of information requested.',
       '**d.** To the appropriate Federal, state, local, tribal, foreign, or other public authority responsible for investigating, prosecuting, enforcing, or implementing a statute, rule, regulation, or order where OPM becomes aware of an indication of a violation or potential violation of civil or criminal law or regulation.',
-      '**e.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with its current employee’s, contractor employee’s, or military member’s retention; loyalty; qualifications, suitability, or fitness for employment; eligibility for logical or physical access to federallycontrolled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
+      '**e.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with its current employee’s, contractor employee’s, or military member’s retention; loyalty; qualifications, suitability, or fitness for employment; eligibility for logical or physical access to federally-controlled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
       '**f.** To provide information to a congressional office from the record of an individual in response to an inquiry from the congressional office made at the request of that individual. However, the investigative file, or parts thereof, will only be released to a congressional office if OPM receives a notarized authorization or signed statement under 28 U.S.C. 1746 from the subject of the investigation.',
       '**g.** To disclose information to contractors, grantees, or volunteers performing or working on a contract, service, grant, cooperative agreement, or job for the Federal Government.',
       '**h.** For agencies that use adjudicative support services of another agency, at the request of the original agency, the results will be furnished to the agency providing the adjudicative support.',

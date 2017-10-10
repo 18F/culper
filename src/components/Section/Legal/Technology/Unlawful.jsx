@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalTechnologyUnlawfulValidator } from '../../../../validators'
+import { LegalTechnologyUnlawfulValidator, UnlawfulValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateControl, Location, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import UnlawfulItem from './UnlawfulItem'
 
 export default class Unlawful extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class Unlawful extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Date)
     const incident = (o.Incident || {}).value ? o.Incident.value : ''
 
@@ -57,61 +58,37 @@ export default class Unlawful extends SubsectionElement {
       <div className="legal-technology-unlawful">
         <Branch name="has_unlawful"
                 label={i18n.t('legal.technology.unlawful.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-technology-unlawful-has-unlawful"
                 value={this.props.HasUnlawful}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasUnlawful === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={UnlawfulValidator}
                      description={i18n.t('legal.technology.unlawful.collection.description')}
                      appendTitle={i18n.t('legal.technology.unlawful.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.technology.unlawful.collection.appendLabel')}>
-            <Field title={i18n.t('legal.technology.unlawful.heading.date')}
-                   help="legal.technology.unlawful.help.date"
-                   adjustFor="datecontrol">
-              <DateControl name="Date"
-                           className="legal-technology-unlawful-date"
-                           bind={true}
-                           />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.unlawful.heading.incident')}
-                   help="legal.technology.unlawful.help.incident"
-                   adjustFor="textarea">
-              <Textarea name="Incident"
-                        className="legal-technology-unlawful-incident"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.unlawful.heading.location')}
-                   help="legal.technology.unlawful.help.location"
-                   adjustFor="address">
-              <Location name="Location"
-                        className="legal-technology-unlawful-location"
-                        layout={Location.ADDRESS}
-                        geocode={true}
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.technology.unlawful.heading.action')}
-                   help="legal.technology.unlawful.help.action"
-                   adjustFor="textarea">
-              <Textarea name="Action"
-                        className="legal-technology-unlawful-action"
-                        bind={true}
-                        />
-            </Field>
+                     appendLabel={i18n.t('legal.technology.unlawful.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <UnlawfulItem name="Item"
+                       bind={true}
+                       addressBooks={this.props.addressBooks}
+                       dispatch={this.props.dispatch}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -129,8 +106,10 @@ Unlawful.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/unlawful',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalTechnologyUnlawfulValidator(state, props).isValid()
-  }
+    return new LegalTechnologyUnlawfulValidator(props).isValid()
+  },
+  scrollToBottom: ''
 }

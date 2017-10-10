@@ -1,11 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { ForeignBusinessContactValidator } from '../../../../validators'
+import { ForeignBusinessContactValidator, ContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Textarea, Country, DateControl, Name, Location } from '../../../Form'
-import SubsequentContacts from './SubsequentContacts'
+import { Branch, Show, Accordion } from '../../../Form'
+import ContactItem from './ContactItem'
 
 export default class Contact extends SubsectionElement {
   constructor (props) {
@@ -41,7 +40,7 @@ export default class Contact extends SubsectionElement {
   }
 
   summary (item, index) {
-    const obj = item || {}
+    const obj = ((item && item.Item) || {})
     const date = DateSummary(obj.Date)
     const name = NameSummary(obj.Name)
     const govt = ((obj.Governments || {}).value || []).map(x => x.name).join(', ')
@@ -63,92 +62,37 @@ export default class Contact extends SubsectionElement {
 
         <Branch name="has_foreign_contact"
                 label={i18n.t('foreign.business.contact.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 help="foreign.business.contact.help.branch"
                 value={this.props.HasForeignContact}
                 warning={true}
                 onUpdate={this.updateHasForeignContact}
-                onError={this.handleError}>
+                required={this.props.required}
+                onError={this.handleError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
         <Show when={this.props.HasForeignContact === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={ContactValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.business.contact.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.contact.collection.appendTitle')}
                      appendMessage={i18n.m('foreign.business.contact.collection.appendMessage')}
-                     appendLabel={i18n.t('foreign.business.contact.collection.append')}>
-            <h3>{i18n.t('foreign.business.contact.heading.name')}</h3>
-            <Name name="Name"
-                  className="foreign-business-contact-name"
-                  bind={true}
-                  />
-
-            <Field title={i18n.t('foreign.business.contact.heading.location')}
-                   help="foreign.business.contact.help.location">
-              <Location name="Location"
-                          layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
-                          help=""
-                          label={i18n.t('foreign.business.contact.label.location')}
-                          cityPlaceholder={i18n.t('foreign.business.contact.placeholder.city')}
-                          countryPlaceholder={i18n.t('foreign.business.contact.placeholder.country')}
-                          className="birthplace foreign-business-contact-location"
-                          bind={true}
-                          />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.contact.heading.date')}
-                   help="foreign.business.contact.help.date"
-                   adjustFor="datecontrol">
-              <DateControl name="Date"
-                           className="foreign-business-contact-date"
-                           bind={true}
-                           />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.contact.heading.governments')}
-                   help="foreign.business.contact.help.governments"
-                   adjustFor="country">
-              <Country name="Governments"
-                       className="foreign-business-contact-governments"
-                       multiple={true}
+                     appendLabel={i18n.t('foreign.business.contact.collection.append')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <ContactItem name="Item"
                        bind={true}
-                       />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.contact.heading.establishment')}
-                   help="foreign.business.contact.help.establishment"
-                   adjustFor="textarea">
-              <Textarea name="Establishment"
-                        className="foreign-business-contact-establishment"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.contact.heading.representatives')}
-                   help="foreign.business.contact.help.representatives"
-                   adjustFor="textarea">
-              <Textarea name="Representatives"
-                        className="foreign-business-contact-representatives"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.contact.heading.purpose')}
-                   help="foreign.business.contact.help.purpose"
-                   adjustFor="textarea">
-              <Textarea name="Purpose"
-                        className="foreign-business-contact-purpose"
-                        bind={true}
-                        />
-            </Field>
-
-            <SubsequentContacts name="SubsequentContacts" bind={true} />
+                       scrollIntoView={this.props.scrollIntoView}
+                       required={this.props.required}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -165,9 +109,11 @@ Contact.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/contact',
-  dispatch: () => {},
+  addressBooks: {},
+  dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessContactValidator(state, props).isValid()
+    return new ForeignBusinessContactValidator(props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

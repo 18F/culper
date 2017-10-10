@@ -1,7 +1,6 @@
 import { hideDisciplinaryProcedures } from '../validators/militarydisciplinary'
 import { hideExistingConditions } from '../validators/psychological'
 import { hideSelectiveService } from '../validators/selectiveservice'
-//import { hideReleases } from '../validators/releases'
 
 const navigation = [
   {
@@ -15,38 +14,8 @@ const navigation = [
       { name: 'Other names used', url: 'othernames' },
       { name: 'Date of birth', url: 'birthdate' },
       { name: 'Place of birth', url: 'birthplace' },
-      { name: 'SSN', url: 'ssn' },
+      { name: 'Social security number', url: 'ssn' },
       { name: 'Your identifying information', url: 'physical' },
-      { exclude: true, name: 'Review', url: 'review' }
-    ]
-  },
-  {
-    name: 'Financial record',
-    title: 'Financial record',
-    url: 'financial',
-    subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Bankruptcy', url: 'bankruptcy' },
-      { name: 'Gambling', url: 'gambling' },
-      { name: 'Taxes', url: 'taxes' },
-      { name: 'Employer card abuse', url: 'card' },
-      { name: 'Credit counseling', url: 'credit' },
-      { name: 'Delinquent payments', url: 'delinquent' },
-      { name: 'Non-payment consequence', url: 'nonpayment' },
-      { exclude: true, name: 'Review', url: 'review' }
-    ]
-  },
-  {
-    name: 'Your history',
-    title: 'Your history',
-    url: 'history',
-    subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Where you have lived', url: 'residence' },
-      { name: 'Employment activities', url: 'employment' },
-      { name: 'Where you went to school', url: 'education' },
-      { name: 'Former federal service', url: 'federal' },
-      { hidden: true, name: 'Employment record', url: 'employment' },
       { exclude: true, name: 'Review', url: 'review' }
     ]
   },
@@ -70,14 +39,28 @@ const navigation = [
     ]
   },
   {
+    name: 'Your history',
+    title: 'Your history',
+    url: 'history',
+    subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
+      { name: 'Where you have lived', url: 'residence' },
+      { name: 'Employment activities', url: 'employment' },
+      { name: 'Where you went to school', url: 'education' },
+      { name: 'Former federal service', url: 'federal' },
+      { hidden: true, name: 'Employment record', url: 'employment' },
+      { exclude: true, name: 'Review', url: 'review' }
+    ]
+  },
+  {
     name: 'Citizenship',
     title: 'Citizenship',
     url: 'citizenship',
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Citizenship Status', url: 'status' },
-      { name: 'Dual/Multiple Citizenship', url: 'multiple' },
-      { name: 'Foreign Passports', url: 'passports' },
+      { name: 'Citizenship status', url: 'status' },
+      { name: 'Dual/multiple citizenship', url: 'multiple' },
+      { name: 'Foreign passports', url: 'passports' },
       { exclude: true, name: 'Review', url: 'review' }
     ]
   },
@@ -133,6 +116,22 @@ const navigation = [
     ]
   },
   {
+    name: 'Financial record',
+    title: 'Financial record',
+    url: 'financial',
+    subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
+      { name: 'Bankruptcy', url: 'bankruptcy' },
+      { name: 'Gambling', url: 'gambling' },
+      { name: 'Taxes', url: 'taxes' },
+      { name: 'Employer card abuse', url: 'card' },
+      { name: 'Credit counseling', url: 'credit' },
+      { name: 'Delinquent payments', url: 'delinquent' },
+      { name: 'Non-payment consequence', url: 'nonpayment' },
+      { exclude: true, name: 'Review', url: 'review' }
+    ]
+  },
+  {
     name: 'Substance use',
     title: 'Substance use',
     url: 'substance',
@@ -143,56 +142,23 @@ const navigation = [
         name: 'Illegal use of drugs and drug activity',
         url: 'drugs',
         subsections: [
-          {
-            name: 'Usage',
-            url: 'usage'
-          },
-          {
-            name: 'Purchase',
-            url: 'purchase'
-          },
-          {
-            name: 'Security clearance position',
-            url: 'clearance'
-          },
-          {
-            name: 'Public safety position',
-            url: 'publicsafety'
-          },
-          {
-            name: 'Misuse',
-            url: 'misuse'
-          },
-          {
-            name: 'Mandatory counseling or treatment',
-            url: 'ordered'
-          },
-          {
-            name: 'Voluntary counseling or treatment',
-            url: 'voluntary'
-          }
+          { name: 'Usage', url: 'usage' },
+          { name: 'Purchase', url: 'purchase' },
+          { name: 'Security clearance position', url: 'clearance' },
+          { name: 'Public safety position', url: 'publicsafety' },
+          { name: 'Misuse', url: 'misuse' },
+          { name: 'Mandatory counseling or treatment', url: 'ordered' },
+          { name: 'Voluntary counseling or treatment', url: 'voluntary' }
         ]
       },
       {
         name: 'Use of alcohol',
         url: 'alcohol',
         subsections: [
-          {
-            name: 'Negative impact',
-            url: 'negative'
-          },
-          {
-            name: 'Mandatory counseling or treatment',
-            url: 'ordered'
-          },
-          {
-            name: 'Voluntary counseling or treatment',
-            url: 'voluntary'
-          },
-          {
-            name: 'Additional instances',
-            url: 'additional'
-          }
+          { name: 'Negative impact', url: 'negative' },
+          { name: 'Mandatory counseling or treatment', url: 'ordered' },
+          { name: 'Voluntary counseling or treatment', url: 'voluntary' },
+          { name: 'Additional instances', url: 'additional' }
         ]
       },
       { exclude: true, name: 'Review', url: 'review' }
@@ -274,7 +240,6 @@ const navigation = [
       { name: 'Credit reporting disclosure', url: 'credit' }
     ],
     exclude: true
-    //hiddenFunc: hideReleases
   },
   {
     title: 'Design guideline',
@@ -285,6 +250,13 @@ const navigation = [
     subsections: [
       { name: 'Headings', url: 'headings' }
     ]
+  },
+  {
+    title: 'SF-86 Submission',
+    name: 'Print',
+    url: 'print',
+    hidden: false,
+    exclude: true
   }
 ]
 

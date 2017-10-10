@@ -1,12 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalInvestigationsHistoryValidator } from '../../../../validators'
+import { LegalInvestigationsHistoryValidator, HistoryValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, NotApplicable, DateControl,
-         Text } from '../../../Form'
-import InvestigatingAgency from './InvestigatingAgency'
-import ClearanceLevel from './ClearanceLevel'
+import { Accordion, Branch, Show } from '../../../Form'
+import HistoryItem from './HistoryItem'
 
 export default class History extends SubsectionElement {
   constructor (props) {
@@ -42,7 +40,7 @@ export default class History extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Granted)
     const agency = (o.Agency || {}).Agency || ''
 
@@ -60,88 +58,35 @@ export default class History extends SubsectionElement {
       <div className="investigations-history">
         <Branch name="has_history"
                 label={i18n.t('legal.investigations.history.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-investigations-history-has-history"
                 value={this.props.HasHistory}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasHistory === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={HistoryValidator}
                      description={i18n.t('legal.investigations.history.collection.description')}
                      appendTitle={i18n.t('legal.investigations.history.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}>
-            <Field title={i18n.t('legal.investigations.history.heading.agency')}
-                   help="legal.investigations.history.help.agency"
-                   adjustFor="big-buttons">
-              <NotApplicable name="AgencyNotApplicable"
-                             or={i18n.m('legal.investigations.history.para.or')}
-                             label={i18n.t('legal.investigations.history.label.idk')}
-                             bind={true}>
-                <InvestigatingAgency name="Agency"
-                                     className="legal-investigations-history-agency"
-                                     bind={true}
-                                     />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.history.heading.completed')}
-                   help="legal.investigations.history.help.completed"
-                   adjustFor="datecontrol">
-              <NotApplicable name="CompletedNotApplicable"
-                             or={i18n.m('legal.investigations.history.para.or')}
-                             label={i18n.t('legal.investigations.history.label.idk')}
-                             bind={true}>
-                <DateControl name="Completed"
-                             className="legal-investigations-history-completed"
-                             bind={true}
-                             />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.history.heading.issued')}
-                   help="legal.investigations.history.help.issued"
-                   adjustFor="text">
-              <Text name="Issued"
-                    className="legal-investigations-history-issued"
-                    bind={true}
-                    />
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.history.heading.granted')}
-                   help="legal.investigations.history.help.granted"
-                   adjustFor="datecontrol">
-              <NotApplicable name="GrantedNotApplicable"
-                             or={i18n.m('legal.investigations.history.para.or')}
-                             label={i18n.t('legal.investigations.history.label.idk')}
-                             bind={true}>
-                <DateControl name="Granted"
-                             className="legal-investigations-history-granted"
-                             bind={true}
-                             />
-              </NotApplicable>
-            </Field>
-
-            <Field title={i18n.t('legal.investigations.history.heading.clearance')}
-                   help="legal.investigations.history.help.clearance"
-                   adjustFor="big-button">
-              <NotApplicable name="clearanceNotApplicable"
-                             or={i18n.m('legal.investigations.history.para.or')}
-                             label={i18n.t('legal.investigations.history.label.idk')}
-                             bind={true}>
-                <ClearanceLevel name="Clearance"
-                                className="legal-investigations-history-clearance"
-                                bind={true}
-                                />
-              </NotApplicable>
-            </Field>
+                     appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <HistoryItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -161,6 +106,7 @@ History.defaultProps = {
   subsection: 'investigations/history',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalInvestigationsHistoryValidator(state, props).isValid()
-  }
+    return new LegalInvestigationsHistoryValidator(props).isValid()
+  },
+  scrollToBottom: ''
 }

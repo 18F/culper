@@ -143,31 +143,38 @@ export default class OtherOffense extends ValidationElement {
         <Field title={i18n.t('legal.police.heading.date')}
                help="legal.police.help.date"
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
                        className="offense-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('legal.police.heading.description')}
-               help="legal.police.help.description">
+          help="legal.police.help.description"
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
                     {...this.props.Description}
                     className="offense-description"
                     onUpdate={this.updateDescription}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.involvement')}</h3>
         <Branch name="involved_violence"
+                label={i18n.t('legal.police.heading.involvement')}
+                labelSize="h3"
                 className="offense-violence"
                 value={this.props.InvolvedViolence}
                 onUpdate={this.updateInvolvedViolence}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('legal.police.label.violence')}
         </Branch>
 
@@ -175,7 +182,9 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-firearms"
                 value={this.props.InvolvedFirearms}
                 onUpdate={this.updateInvolvedFirearms}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('legal.police.label.firearms')}
         </Branch>
 
@@ -183,43 +192,58 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-substances"
                 value={this.props.InvolvedSubstances}
                 onUpdate={this.updateInvolvedSubstances}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('legal.police.label.substances')}
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.courtname')}
-               adjustFor="labels">
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 {...this.props.CourtName}
                 label={i18n.t('legal.police.label.courtname')}
                 className="offense-courtname"
                 onUpdate={this.updateCourtName}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field title={i18n.t('legal.police.heading.courtaddress')}
                help="legal.police.help.courtaddress"
                adjustFor="address"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="CourtAddress"
                     {...this.props.CourtAddress}
                     label={i18n.t('legal.police.label.address')}
                     className="offense-courtaddress"
                     layout={Location.ADDRESS}
                     geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Court"
+                    dispatch={this.props.dispatch}
                     onUpdate={this.updateCourtAddress}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.chargedetails')}</h3>
-        {i18n.m('legal.police.para.chargedetails')}
+        <Field title={i18n.t('legal.police.heading.chargedetails')}
+               titleSize="h3"
+               className="no-margin-bottom">
+          {i18n.m('legal.police.para.chargedetails')}
+        </Field>
 
         <Field title={i18n.t('legal.police.heading.chargeType')}
                titleSize="h4"
-               adjustFor="buttons">
+               adjustFor="buttons"
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="offense-chargetype option-list"
+                      onError={this.props.onErro}
+                      required={this.props.required}
                       selectedValue={this.props.ChargeType}>
             <Radio name="charge-felony"
                    className="charge-felony"
@@ -250,6 +274,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-courtcharge"
                 onUpdate={this.updateCourtCharge}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
           <Text name="CourtOutcome"
                 {...this.props.CourtOutcome}
@@ -257,6 +282,7 @@ export default class OtherOffense extends ValidationElement {
                 className="offense-courtoutcome"
                 onUpdate={this.updateCourtOutcome}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
@@ -264,34 +290,42 @@ export default class OtherOffense extends ValidationElement {
                titleSize="h4"
                help="legal.police.help.courtdate"
                adjustFor="labels"
-               shrink={true}>
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="CourtDate"
                        {...this.props.CourtDate}
                        hideDay={true}
                        className="offense-courtdate"
                        onUpdate={this.updateCourtDate}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
-        <h3>{i18n.t('legal.police.heading.otherOffenseSentenced')}</h3>
         <Branch name="was_sentenced"
+                label={i18n.t('legal.police.heading.otherOffenseSentenced')}
+                labelSize="h3"
                 className="offense-sentenced"
                 value={this.props.WasSentenced}
                 onUpdate={this.updateWasSentenced}
-                onError={this.props.onError}>
+                required={this.props.required}
+                onError={this.props.onError}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.WasSentenced === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
-                   className="more title">
+              className="more title"
+              scrollIntoView={this.props.scrollIntoView}>
               <Svg src="/img/date-down-arrow.svg" className="more arrow" />
             </Field>
             <Sentence name="Sentence"
                       {...this.props.Sentence}
                       onError={this.props.onError}
+                      required={this.props.required}
                       onUpdate={this.updateSentence}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
           </div>
         </Show>
@@ -300,18 +334,21 @@ export default class OtherOffense extends ValidationElement {
             <Branch name="awaiting_trial"
                     label={i18n.t('legal.police.heading.awaitingTrial')}
                     labelSize="h4"
-                    className="awaiting-trial"
+                    className="awaiting-trial no-margin-bottom"
                     value={this.props.AwaitingTrial}
                     onError={this.props.onError}
-                    onUpdate={this.updateAwaitingTrial}>
+                    required={this.props.required}
+                    onUpdate={this.updateAwaitingTrial}
+                    scrollIntoView={this.props.scrollIntoView}>
             </Branch>
             <Field title={i18n.t('legal.police.heading.awaitingTrialExplanation')}
                    titleSize="label"
-                   adjustFor="labels">
+                   scrollIntoView={this.props.scrollIntoView}>
               <Textarea className="awaiting-trial-explanation"
                         {...this.props.AwaitingTrialExplanation}
                         name="awaiting_trial_explanation"
                         onError={this.props.onError}
+                        required={this.props.required}
                         onUpdate={this.updateAwaitingTrialExplanation} />
             </Field>
           </div>
@@ -322,6 +359,8 @@ export default class OtherOffense extends ValidationElement {
 }
 
 OtherOffense.defaultProps = {
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

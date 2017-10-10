@@ -3,18 +3,20 @@ package model
 import (
 	"errors"
 	"fmt"
+	"strconv"
 	"time"
 
 	jwt "github.com/dgrijalva/jwt-go"
 
-	pg "gopkg.in/pg.v5"
+	"github.com/go-pg/pg"
 )
 
 var (
 	JwtSecret         = []byte("more secrets!")
 	Issuer            = "eqip"
 	BasicAuthAudience = "Basic"
-	Expiration        = time.Minute * 20
+	TwoFactorAudience = "2FA"
+	Expiration        = time.Hour * 1
 
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
@@ -73,12 +75,12 @@ func (a *Account) BasicAuthentication(password string) error {
 }
 
 // NewJwtToken generates a new Jwt signed token using a users account information
-func (a *Account) NewJwtToken() (string, time.Time, error) {
+func (a *Account) NewJwtToken(audience string) (string, time.Time, error) {
 	expiresAt := time.Now().Add(Expiration)
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.StandardClaims{
-		Id:        string(a.ID),
+		Id:        strconv.FormatInt(a.ID, 10),
 		Issuer:    Issuer,
-		Audience:  BasicAuthAudience,
+		Audience:  audience,
 		ExpiresAt: expiresAt.Unix(),
 	})
 
@@ -91,21 +93,27 @@ func (a *Account) NewJwtToken() (string, time.Time, error) {
 }
 
 // ValidJwtToken parses a token and determines if the token is valid
-func (a *Account) ValidJwtToken(rawToken string) (bool, error) {
-	token, err := jwt.Parse(rawToken, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
-		}
-		return JwtSecret, nil
-	})
-
-	// Invalid token
+func (a *Account) ValidJwtToken(rawToken, audience string) (bool, error) {
+	token, err := jwt.ParseWithClaims(rawToken, &jwt.StandardClaims{}, keyFunc)
 	if err != nil {
+		// Invalid token
 		return false, err
 	}
 
+	if token.Valid {
+		claims := token.Claims.(*jwt.StandardClaims)
+		a.ID, err = strconv.ParseInt(claims.Id, 10, 64)
+		if err != nil {
+			return false, err
+		}
+
+		if claims.Audience != audience {
+			return false, errors.New("Invalid audience")
+		}
+	}
+
 	// Everything is good
-	return token.Valid, err
+	return token.Valid, nil
 }
 
 // Get account from the database
@@ -138,4 +146,11 @@ func (a *Account) Save() error {
 	}
 
 	return err
+}
+
+func keyFunc(token *jwt.Token) (interface{}, error) {
+	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+		return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+	}
+	return JwtSecret, nil
 }

@@ -7,14 +7,6 @@ class Api {
       baseURL: env.ApiBaseURL(),
       timeout: 5000
     })
-
-    this.proxySecured = axios.create({
-      baseURL: env.ApiBaseURL(),
-      timeout: 5000,
-      headers: {
-        'Authorization': ''
-      }
-    })
   }
 
   /**
@@ -79,17 +71,23 @@ class Api {
       token = this.getQueryValue('token')
     }
 
+    if (env.IsTest()) {
+      token = window.token
+    }
+
     return token
   }
 
   setToken (token) {
-    this.proxySecured.defaults.headers.common.Authorization = token
-
     if (this.supportForLocalStorage()) {
       window.localStorage.setItem('token', token)
     } else {
       document.cookie = 'token=' + token
     }
+  }
+
+  bearerToken () {
+    return { 'Authorization': `Bearer ${this.getToken()}` }
   }
 
   supportForLocalStorage () {
@@ -104,45 +102,42 @@ class Api {
     return this.proxy.get('/')
   }
 
+  get (endpoint, secure = true) {
+    const headers = secure ? { headers: this.bearerToken() } : {}
+    return this.proxy.get(endpoint, headers)
+  }
+
+  post (endpoint, params = {}, secure = true) {
+    const headers = secure ? { headers: this.bearerToken() } : {}
+    return this.proxy.post(endpoint, params, headers)
+  }
+
   twoFactor (account, token) {
-    // TODO: Fix secure proxy
     if (token) {
-      return this.proxy.post(env.EndpointTwoFactorVerify(account), { token: token })
+      return this.post(env.EndpointTwoFactorVerify(account), { token: token })
     }
 
-    return this.proxy.get(env.EndpointTwoFactor(account))
+    return this.get(env.EndpointTwoFactor(account))
   }
 
   twoFactorReset (account) {
-    return this.proxy.get(env.EndpointTwoFactorReset(account))
+    return this.get(env.EndpointTwoFactorReset(account))
   }
 
   login (username, password) {
-    return this.proxy.post(env.EndpointBasicAuthentication(), { username: username, password: password })
+    return this.post(env.EndpointBasicAuthentication(), { username: username, password: password }, false)
   }
 
-  validateSSN (ssn) {
-    return this.proxySecured.get(env.EndpointValidateSSN(ssn))
+  refresh () {
+    return this.post(env.EndpointRefresh())
   }
 
-  validatePassport (passport) {
-    return this.proxySecured.get(env.EndpointValidatePassport(passport))
+  save (payload) {
+    return this.post(env.EndpointSave(), payload)
   }
 
-  validateZipcode (zipcode) {
-    return this.proxySecured.get(env.EndpointValidateZipcode(zipcode))
-  }
-
-  validateAddress (address) {
-    return this.proxySecured.post(env.EndpointValidateAddress(), address)
-  }
-
-  validateApplicantName (name) {
-    return this.proxySecured.post(env.EndpointValidateApplicantName(), name)
-  }
-
-  validateApplicantBirthdate (birthdate) {
-    return this.proxySecured.post(env.EndpointValidateApplicantBirthdate(), birthdate)
+  validate (payload) {
+    return this.post(env.EndpointValidate(), payload)
   }
 }
 

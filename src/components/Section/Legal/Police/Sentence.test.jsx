@@ -25,8 +25,8 @@ describe('The Sentence  component', () => {
 
     let selectors = [
       '.description textarea',
-      { type: 'radio', name: 'exceeding_year', value: 'Yes' },
-      { type: 'radio', name: 'incarcerated', value: 'Yes' }
+      '.exceeds-year .yes input',
+      '.incarcerated .yes input'
     ]
 
     selectors.forEach(selector => {
@@ -43,8 +43,8 @@ describe('The Sentence  component', () => {
     })
 
     selectors = [
-      {type: 'checkbox', name: 'ProbationDatesNA'},
-      {type: 'checkbox', name: 'IncarcerationDatesNA'}
+      '.not-applicable .probation-dates-na .button input',
+      '.not-applicable .incarceration-dates-na .button input'
     ]
 
     selectors.forEach(selector => {

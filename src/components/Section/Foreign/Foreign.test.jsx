@@ -19,13 +19,16 @@ const applicationState2 = {
 
 describe('The foreign section', () => {
   // Setup
+  window.token = 'fake-token'
   const middlewares = [ thunk ]
   const mockStore = configureMockStore(middlewares)
 
   it('hidden when not authenticated', () => {
+    window.token = ''
     const store = mockStore({ authentication: [], application: applicationState })
     const component = mount(<Provider store={store}><Foreign /></Provider>)
     expect(component.find('div').length).toEqual(0)
+    window.token = 'fake-token'
   })
 
   it('visible when authenticated', () => {

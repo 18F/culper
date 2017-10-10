@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { MaritalValidator } from '../../../../validators'
+import { MaritalValidator, DivorceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Show, RadioGroup, Radio, Accordion } from '../../../Form'
 import CivilUnion from './CivilUnion'
@@ -47,7 +47,7 @@ export default class Marital extends SubsectionElement {
   }
 
   divorceSummary (item, index) {
-    const o = (item || {}).Divorce || {}
+    const o = (item || {}).Item || {}
     const date = DateSummary(o.DateDivorced)
     const name = NameSummary(o.Name)
     return Summary({
@@ -72,8 +72,9 @@ export default class Marital extends SubsectionElement {
   render () {
     return (
       <div className="marital">
-        <Field title={i18n.t('relationships.marital.heading.title')}>
-          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status}>
+        <Field title={i18n.t('relationships.marital.heading.title')}
+          scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
                    value="Never"
@@ -122,27 +123,37 @@ export default class Marital extends SubsectionElement {
         <Show when={['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)}>
           <CivilUnion name="civilUnion"
                       {...this.props.CivilUnion}
+                      addressBooks={this.props.addressBooks}
+                      dispatch={this.props.dispatch}
                       onUpdate={this.updateCivilUnion}
                       onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
                       currentAddress={this.props.currentAddress}
                       defaultState={this.props.defaultState}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
                       />
         </Show>
         <Show when={this.showDivorce()}>
           <span id="scrollToDivorce"></span>
           <Accordion scrollTo="scrollToDivorce"
                      defaultState={this.props.defaultState}
+                     scrollToBottom={this.props.scrollToBottom}
                      items={this.props.DivorcedList}
                      branch={this.props.DivorcedListBranch}
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
+                     required={this.props.required}
+                     validator={DivorceValidator}
+                     scrollIntoView={this.props.scrollIntoView}
                      summary={this.divorceSummary}
                      description={i18n.t('relationships.civilUnion.divorce.collection.description')}
                      appendTitle={i18n.t('relationships.civilUnion.divorce.collection.appendTitle')}
                      appendLabel={i18n.t('relationships.civilUnion.divorce.collection.appendLabel')}>
-            <Divorce name="Divorce"
+            <Divorce name="Item"
                      bind={true}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
         </Show>
@@ -160,9 +171,11 @@ Marital.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/marital',
+  addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
     return new MaritalValidator(props, props).isValid()
   },
-  defaultState: true
+  defaultState: true,
+  scrollToBottom: ''
 }

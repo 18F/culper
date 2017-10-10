@@ -125,10 +125,13 @@ export default class DirectInterest extends ValidationElement {
     return (
       <div className="interest">
         <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestTypes`)}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
 
           <p>{i18n.t('foreign.activities.direct.interest.para.checkAll')}</p>
           <CheckboxGroup className="interest-types option-list"
+                         onError={this.props.onError}
+                         required={this.props.required}
                          selectedValues={this.props.InterestTypes}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.direct.interest.label.interestTypes.yourself')}
@@ -161,46 +164,54 @@ export default class DirectInterest extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestType`)}>
+        <Field title={i18n.t(`foreign.activities.direct.interest.heading.interestType`)}
+          scrollIntoView={this.props.scrollIntoView}>
           <Text name="InterestType"
                 className="interest-type"
                 {...this.props.InterestType}
                 onUpdate={this.updateInterestType}
                 onError={this.props.onError}
+                required={this.props.required}
                 />
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.acquired')}
-               adjustFor="labels">
+          adjustFor="labels"
+          scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Acquired"
                        className="acquired"
                        {...this.props.Acquired}
                        label={i18n.t('foreign.activities.direct.interest.label.acquired')}
                        onUpdate={this.updateAcquired}
                        onError={this.props.onError}
+                       required={this.props.required}
                        />
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.howAcquired')}
-               adjustFor="p">
+          adjustFor="p"
+          scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.activities.direct.interest.para.howAcquired')}
           <Textarea name="HowAcquired"
                     className="how-acquired"
                     {...this.props.HowAcquired}
                     onUpdate={this.updateHowAcquired}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.cost')}
-               help={'foreign.activities.direct.interest.help.cost'}>
+          help={'foreign.activities.direct.interest.help.cost'}
+          scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Cost"
                     className="cost"
                     {...this.props.Cost}
                     onUpdate={this.updateCost}
                     min="0"
                     onError={this.props.onError}
-                    />
+                    required={this.props.required}
+                  />
           <div className="flags">
             <Checkbox name="CostEstimated"
                       label={i18n.t('foreign.activities.direct.interest.label.costEstimated')}
@@ -214,13 +225,15 @@ export default class DirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.value')}
-               help={'foreign.activities.direct.interest.help.value'}>
+          help={'foreign.activities.direct.interest.help.value'}
+          scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
                     onUpdate={this.updateValue}
                     min="0"
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
           <div className="flags">
             <Checkbox name="ValueEstimated"
@@ -236,12 +249,14 @@ export default class DirectInterest extends ValidationElement {
 
         <Field title={i18n.t('foreign.activities.direct.interest.heading.relinquished')}
                help={'foreign.activities.direct.interest.help.relinquished'}
-               adjustFor="labels">
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="RelinquishedNotApplicable"
                          {...this.props.RelinquishedNotApplicable}
                          label={i18n.t('foreign.activities.direct.interest.label.relinquishedNotApplicable')}
                          or={i18n.m('foreign.activities.direct.interest.label.or')}
                          onError={this.props.onError}
+                         required={this.props.required}
                          onUpdate={this.updateRelinquishedNotApplicable}>
             <DateControl name="Relinquished"
                          className="relinquished"
@@ -249,23 +264,30 @@ export default class DirectInterest extends ValidationElement {
                          label={i18n.t('foreign.activities.direct.interest.label.relinquished')}
                          onUpdate={this.updateRelinquished}
                          onError={this.props.onError}
+                         required={this.props.required}
                          />
           </NotApplicable>
         </Field>
 
-        <Field title={i18n.t('foreign.activities.direct.interest.heading.explanation')}>
+        <Field title={i18n.t('foreign.activities.direct.interest.heading.explanation')}
+          scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}
                     onUpdate={this.updateExplanation}
                     onError={this.props.onError}
+                    required={this.props.required}
                     />
         </Field>
 
         <CoOwners prefix={prefix}
                   {...this.props.CoOwners}
+                  addressBooks={this.props.addressBooks}
+                  dispatch={this.props.dispatch}
                   onUpdate={this.updateCoOwners}
                   onError={this.props.onError}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
                   />
 
       </div>
@@ -275,6 +297,8 @@ export default class DirectInterest extends ValidationElement {
 
 DirectInterest.defaultProps = {
   prefix: 'activities.direct.interest',
+  addressBooks: {},
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

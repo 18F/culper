@@ -58,7 +58,7 @@ export default class Textarea extends ValidationElement {
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
-        valid: value.length ? err.func(value, this.props) : null,
+        valid: err.func(value, this.props),
         uid: this.state.uid
       }
     })) || []
@@ -160,6 +160,15 @@ Textarea.defaultProps = {
 }
 
 Textarea.errors = [
+  {
+    code: 'required',
+    func: (value, props) => {
+      if (props.required) {
+        return !!value
+      }
+      return true
+    }
+  },
   {
     code: 'length',
     func: (value, props) => {

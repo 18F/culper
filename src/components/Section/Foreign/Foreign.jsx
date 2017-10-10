@@ -5,6 +5,7 @@ import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { Field } from '../../Form'
 import Passport from './Passport'
 import Contacts from './Contacts'
 import Travel from './Travel'
@@ -118,8 +119,11 @@ class Foreign extends SectionElement {
                        backLabel={i18n.t('military.destination.review')}
                        next="foreign/passport"
                        nextLabel={i18n.t('foreign.destination.passport')}>
-            <h2>{i18n.t('foreign.intro.title')}</h2>
-            {i18n.m('foreign.intro.body')}
+            <Field title={i18n.t('foreign.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('foreign.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="review"
@@ -128,44 +132,50 @@ class Foreign extends SectionElement {
                        showTop={true}
                        back="foreign/travel"
                        backLabel={i18n.t('foreign.destination.travel')}
-                       next="substance/drugs/usage"
-                       nextLabel={i18n.t('substance.destination.drugs.usage')}
+                       next="financial/intro"
+                       nextLabel={i18n.t('financial.destination.intro')}
                        >
-            <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       {...this.props.Passport}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
-
             <hr/>
             <Contacts name="contacts"
                       {...this.props.Contacts}
                       defaultState={false}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
-
             <hr/>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
                             defaultState={false}
+                            addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
+                            required={true}
+                            scrollIntoView={false}
                             />
-
             <hr/>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
                               defaultState={false}
+                              addressBooks={this.props.AddressBooks}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
+                              required={true}
+                              scrollIntoView={false}
                               />
-
             <hr/>
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
@@ -173,8 +183,9 @@ class Foreign extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
+                                required={true}
+                                scrollIntoView={false}
                                 />
-
             <hr/>
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
@@ -182,17 +193,20 @@ class Foreign extends SectionElement {
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
+                             required={true}
+                             scrollIntoView={false}
                              />
-
             <hr/>
             <Support name="support"
                      {...this.props.Support}
                      defaultState={false}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
-
             <hr/>
             <Advice name="advice"
                     {...this.props.Advice}
@@ -200,8 +214,9 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
-
             <hr/>
             <Family name="family"
                     {...this.props.Family}
@@ -209,8 +224,9 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
-
             <hr/>
             <Employment name="employment"
                         {...this.props.Employment}
@@ -218,17 +234,20 @@ class Foreign extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
                         />
-
             <hr/>
             <Ventures name="ventures"
                       {...this.props.Ventures}
                       defaultState={false}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
+                      required={true}
+                      scrollIntoView={false}
                       />
-
             <hr/>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
@@ -236,26 +255,31 @@ class Foreign extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
+                         required={true}
+                         scrollIntoView={false}
                          />
-
             <hr/>
             <Contact name="Contact"
                      {...this.props.Contact}
                      defaultState={false}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
                      />
-
             <hr/>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
                          defaultState={false}
+                         addressBooks={this.props.AddressBooks}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
+                         required={true}
+                         scrollIntoView={false}
                          />
-
             <hr/>
             <Political name="Political"
                        {...this.props.Political}
@@ -263,8 +287,9 @@ class Foreign extends SectionElement {
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
                        />
-
             <hr/>
             <Voting name="Voting"
                     {...this.props.Voting}
@@ -272,8 +297,9 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
-
             <hr/>
             <Travel name="Travel"
                     {...this.props.Travel}
@@ -281,6 +307,8 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
                     />
           </SectionView>
 
@@ -289,7 +317,6 @@ class Foreign extends SectionElement {
                        backLabel={i18n.t('foreign.destination.intro')}
                        next="foreign/contacts"
                        nextLabel={i18n.t('foreign.destination.contacts')}>
-            <h2>{i18n.t('foreign.passport.title')}</h2>
             <Passport name="passport"
                       dispatch={this.props.dispatch}
                       suggestedNames={this.props.suggestedNames}
@@ -306,9 +333,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.activity')}>
             <Contacts name="contacts"
                       {...this.props.Contacts}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -319,9 +348,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
+                            scrollToBottom={this.props.scrollToBottom}
                             />
           </SectionView>
           <SectionView name="activities/direct"
@@ -331,9 +362,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
                             onError={this.handleError}
+                            scrollToBottom={this.props.scrollToBottom}
                             />
           </SectionView>
 
@@ -344,9 +377,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.realestate')}>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
+                              addressBooks={this.props.AddressBooks}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
                               onError={this.handleError}
+                              scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
 
@@ -360,6 +395,7 @@ class Foreign extends SectionElement {
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
+                                scrollToBottom={this.props.scrollToBottom}
                                 />
           </SectionView>
 
@@ -373,6 +409,7 @@ class Foreign extends SectionElement {
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
+                             scrollToBottom={this.props.scrollToBottom}
                              />
           </SectionView>
           <SectionView name="activities/support"
@@ -382,9 +419,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.advice')}>
             <Support name="support"
                      {...this.props.Support}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -398,6 +437,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -411,6 +451,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -424,6 +465,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -437,6 +479,7 @@ class Foreign extends SectionElement {
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
+                        scrollToBottom={this.props.scrollToBottom}
                         />
           </SectionView>
 
@@ -447,9 +490,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.events')}>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
                       onError={this.handleError}
+                      scrollToBottom={this.props.scrollToBottom}
                       />
           </SectionView>
 
@@ -463,6 +508,7 @@ class Foreign extends SectionElement {
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
+                         scrollToBottom={this.props.scrollToBottom}
                          />
           </SectionView>
 
@@ -473,9 +519,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.sponsorship')}>
             <Contact name="Contact"
                      {...this.props.Contact}
+                     addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
                      onError={this.handleError}
+                     scrollToBottom={this.props.scrollToBottom}
                      />
           </SectionView>
 
@@ -486,9 +534,11 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.political')}>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         addressBooks={this.props.AddressBooks}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
                          onError={this.handleError}
+                         scrollToBottom={this.props.scrollToBottom}
                          />
           </SectionView>
 
@@ -502,6 +552,7 @@ class Foreign extends SectionElement {
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
+                       scrollToBottom={this.props.scrollToBottom}
                        />
           </SectionView>
 
@@ -515,6 +566,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
 
@@ -528,6 +580,7 @@ class Foreign extends SectionElement {
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
+                    scrollToBottom={this.props.scrollToBottom}
                     />
           </SectionView>
         </SectionViews>
@@ -537,12 +590,13 @@ class Foreign extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let foreign = app.Foreign || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const foreign = app.Foreign || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
+  const identification = app.Identification || {}
+  const addressBooks = app.AddressBooks || {}
 
-  let identification = app.Identification || {}
   let names = []
   if (identification.ApplicantName) {
     names.push(identification.ApplicantName)
@@ -575,13 +629,182 @@ function mapStateToProps (state) {
     Travel: foreign.Travel || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
-    suggestedNames: names
+    suggestedNames: names,
+    AddressBooks: addressBooks
   }
 }
 
 Foreign.defaultProps = {
   section: 'foreign',
-  store: 'Foreign'
+  store: 'Foreign',
+  scrollToBottom: SectionView.BottomButtonsSelector
+}
+
+export class ForeignSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Passport name="passport"
+          {...this.props.Passport}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Contacts name="contacts"
+          {...this.props.Contacts}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <DirectActivity name="directActivity"
+          {...this.props.DirectActivity}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <IndirectActivity name="indirectActivity"
+          {...this.props.IndirectActivity}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <RealEstateActivity name="realEstateActivity"
+          {...this.props.RealEstateActivity}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <BenefitActivity name="benefitActivity"
+          {...this.props.BenefitActivity}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Support name="support"
+          {...this.props.Support}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Advice name="advice"
+          {...this.props.Advice}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Family name="family"
+          {...this.props.Family}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Employment name="employment"
+          {...this.props.Employment}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Ventures name="ventures"
+          {...this.props.Ventures}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Conferences name="Conferences"
+          {...this.props.Conferences}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Contact name="Contact"
+          {...this.props.Contact}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Sponsorship name="Sponsorship"
+          {...this.props.Sponsorship}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Political name="Political"
+          {...this.props.Political}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Voting name="Voting"
+          {...this.props.Voting}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr/>
+        <Travel name="Travel"
+          {...this.props.Travel}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Foreign))

@@ -1,9 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsAdvocatingValidator } from '../../../../validators'
+import { LegalAssociationsAdvocatingValidator, AdvocatingValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { Accordion, Branch, Show, Field, DateRange, Textarea } from '../../../Form'
+import { Accordion, Branch, Show } from '../../../Form'
+import AdvocatingItem from './AdvocatingItem'
 
 export default class Advocating extends SubsectionElement {
   constructor (props) {
@@ -39,7 +40,7 @@ export default class Advocating extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = item || {}
+    const o = ((item && item.Item) || {})
     const dates = DateSummary(o.Dates)
     const details = (o.Reasons || {}).value || ''
 
@@ -57,41 +58,35 @@ export default class Advocating extends SubsectionElement {
       <div className="legal-associations-advocating">
         <Branch name="has_advocated"
                 label={i18n.t('legal.associations.advocating.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 className="legal-associations-advocating-has-advocated"
                 value={this.props.HasAdvocated}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateBranch}>
+                required={this.props.required}
+                onUpdate={this.updateBranch}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.HasAdvocated === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={AdvocatingValidator}
                      description={i18n.t('legal.associations.advocating.collection.description')}
                      appendTitle={i18n.t('legal.associations.advocating.collection.appendTitle')}
-                     appendLabel={i18n.t('legal.associations.advocating.collection.appendLabel')}>
-            <Field title={i18n.t('legal.associations.advocating.heading.reasons')}
-                   help="legal.associations.advocating.help.reasons"
-                   adjustFor="textarea">
-              <Textarea name="Reasons"
-                        className="legal-associations-advocating-reasons"
-                        bind={true}
-                        />
-            </Field>
-
-            <Field title={i18n.t('legal.associations.advocating.heading.dates')}
-                   help="legal.associations.advocating.help.dates"
-                   adjustFor="daterange">
-              <DateRange name="Dates"
-                         className="legal-associations-advocating-dates"
-                         bind={true}
-                         />
-            </Field>
+                     appendLabel={i18n.t('legal.associations.advocating.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+                     <AdvocatingItem name="Item"
+                       bind={true}
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -111,6 +106,7 @@ Advocating.defaultProps = {
   subsection: 'associations/advocating',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsAdvocatingValidator(state, props).isValid()
-  }
+    return new LegalAssociationsAdvocatingValidator(props).isValid()
+  },
+  scrollToBottom: ''
 }

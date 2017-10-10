@@ -20,18 +20,32 @@ class Env {
     return url
   }
 
-  AllowTwoFactorReset () { return process.env.ALLOW_2FA_RESET || false }
+  IsTest () {
+    return process.env.NODE_ENV === 'test'
+  }
+
+  MultipleFactorAuthentication () {
+    if (this.IsTest()) {
+      return {
+        resettable: false,
+        enabled: true
+      }
+    }
+
+    return {
+      resettable: (process.env.ALLOW_2FA_RESET || '') !== '',
+      enabled: (process.env.DISABLE_2FA || '') === ''
+    }
+  }
+
   EndpointBasicAuthentication () { return '/auth/basic' }
+  EndpointRefresh () { return '/refresh' }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointOAuth (service) { return `/auth/${service}` }
-  EndpointValidateSSN (ssn) { return `/validate/ssn/${ssn}` }
-  EndpointValidatePassport (passport) { return `/validate/passport/${passport}` }
-  EndpointValidateZipcode (zipcode) { return `/validate/zipcode/${zipcode}` }
-  EndpointValidateAddress () { return '/validate/address' }
-  EndpointValidateName () { return '/validate/name' }
-  EndpointValidateApplicantBirthdate () { return '/validate/applicant/birthdate' }
+  EndpointSave (payload) { return '/me/save' }
+  EndpointValidate (payload) { return '/me/validate' }
 }
 
 const env = new Env()

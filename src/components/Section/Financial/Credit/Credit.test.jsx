@@ -40,10 +40,13 @@ describe('The credit component', () => {
     }
     const component = mount(<Credit {...expected} />)
     component.find('.branch .yes input').simulate('change')
+    expect(updates).toBe(2) // This triggers two updates
+
+    updates = 0
     component.find('.credit-explanation textarea').simulate('change', { target: { value: 'IRS' } })
     component.find('.credit-name input').simulate('change', { target: { value: 'IRS' } })
     component.find('.credit-location .city input').simulate('change', { target: { value: 'Mesa' } })
     component.find('.credit-description textarea').simulate('change', { target: { value: 'Description for not filing' } })
-    expect(updates).toBeGreaterThan(5)
+    expect(updates).toBe(4)
   })
 })

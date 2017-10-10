@@ -4,7 +4,7 @@ import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import PrescriptionUse from './PrescriptionUse'
-import { DrugPrescriptionUsesValidator } from '../../../../validators'
+import { DrugPrescriptionUsesValidator, DrugPrescriptionUseValidator } from '../../../../validators'
 
 export default class PrescriptionUses extends SubsectionElement {
   constructor (props) {
@@ -42,7 +42,7 @@ export default class PrescriptionUses extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).DrugPrescriptionUse || {}
+    const o = (item || {}).Item || {}
     const range = DateSummary(o.InvolvementDates)
     const name = (o.PrescriptionName || {}).value
 
@@ -58,26 +58,33 @@ export default class PrescriptionUses extends SubsectionElement {
   render () {
     return (
       <div className="prescription-uses">
-        <h2>{i18n.m('substance.drugs.heading.prescriptionUses')}</h2>
         <Branch name="Misused"
+                label={i18n.m('substance.drugs.heading.prescriptionUses')}
+                labelSize="h2"
                 className="misused"
                 value={this.props.MisusedDrugs}
                 warning={true}
                 onError={this.handleError}
-                onUpdate={this.updateMisusedDrugs}>
+                required={this.props.required}
+                onUpdate={this.updateMisusedDrugs}
+                scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
         <Show when={this.props.MisusedDrugs === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
+                     scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={DrugPrescriptionUseValidator}
                      description={i18n.t('substance.drugs.prescription.collection.description')}
                      appendTitle={i18n.t('substance.drugs.prescription.collection.appendTitle')}
-                     appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}>
-            <PrescriptionUse name="DrugPrescriptionUse" bind={true} />
+                     appendLabel={i18n.t('substance.drugs.prescription.collection.appendLabel')}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}>
+            <PrescriptionUse name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -94,5 +101,6 @@ PrescriptionUses.defaultProps = {
   dispatch: () => {},
   validator: (state, props) => {
     return new DrugPrescriptionUsesValidator(props).isValid()
-  }
+  },
+  scrollToBottom: ''
 }

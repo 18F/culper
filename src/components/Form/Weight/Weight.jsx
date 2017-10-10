@@ -72,6 +72,7 @@ export default class Weight extends ValidationElement {
                   value={this.state.value}
                   onChange={this.handleChange}
                   onError={this.handleError}
+                  required={this.props.required}
                   />
         </div>
       </div>
@@ -82,7 +83,8 @@ export default class Weight extends ValidationElement {
 Weight.defaultProps = {
   name: 'weight',
   value: '',
-  onError: (value, arr) => { return arr }
+  onError: (value, arr) => { return arr },
+  required: false
 }
 
 Weight.errors = []

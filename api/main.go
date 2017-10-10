@@ -10,7 +10,6 @@ import (
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/handlers"
 	middleware "github.com/18F/e-QIP-prototype/api/middleware"
-	"github.com/18F/e-QIP-prototype/api/model/form"
 )
 
 var (
@@ -25,52 +24,34 @@ func main() {
 		}
 	}
 
+	// Declare a new router with any middleware injected
 	r := middleware.NewRouter().Inject(handlers.LoggerHandler)
 	r.HandleFunc("/", handlers.RootHandler)
 
+	// Two-factor authentication
 	s := r.PathPrefix("/2fa").Subrouter()
 	s.HandleFunc("/{account}", handlers.TwofactorHandler)
 	s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
 	s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
 	s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
 
+	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
 	o.HandleFunc("/{service}", handlers.AuthServiceHandler)
 	o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
 
-	// Validation
-	v := r.PathPrefix("/validate").Subrouter()
-	v.HandleFunc("/ssn/{ssn}", handlers.ValidateSSN)
-	v.HandleFunc("/email", handlers.ValidateEmail)
+	// Account specific actions
+	a := r.PathPrefix("/me").Subrouter().Inject(handlers.JwtTokenValidatorHandler)
+	a.HandleFunc("/validate", handlers.Validate).Methods("POST")
+	a.HandleFunc("/save", handlers.Save).Methods("POST", "PUT")
+	a.HandleFunc("/attachment", handlers.SaveAttachment).Methods("POST", "PUT")
+	a.HandleFunc("/attachment/{id}", handlers.GetAttachment)
+	a.HandleFunc("/attachment/{id}/delete", handlers.DeleteAttachment).Methods("POST", "DELETE")
 
-	// Passport validation
-	v.HandleFunc("/passport/number/{passport}", handlers.ValidatePassportNumber)
-	v.HandleFunc("/passport/dates/{issued}/to/{expiration}", handlers.ValidatePassportDates)
+	// Handle refreshing web tokens
+	r.HandleFunc("/refresh", handlers.JwtTokenRefresh).Methods("POST")
 
-	// Phonenumber validation
-	v.HandleFunc("/telephone/domestic/{number}", handlers.ValidatePhoneNumber(form.DomesticPhoneNumberKey))
-	v.HandleFunc("/telephone/dsn/{number}", handlers.ValidatePhoneNumber(form.DSNPhoneNumberKey))
-	v.HandleFunc("/telephone/international/{number}", handlers.ValidatePhoneNumber(form.InternationalPhoneNumberKey))
-
-	v.HandleFunc("/height", handlers.ValidateHeight)
-	v.HandleFunc("/weight/{weight}", handlers.ValidateWeight)
-	v.HandleFunc("/haircolor/{haircolor}", handlers.ValidateHairColor)
-	v.HandleFunc("/eyecolor/{eyecolor}", handlers.ValidateEyeColor)
-	v.HandleFunc("/sex/{sex}", handlers.ValidateSex)
-	v.HandleFunc("/daterange", handlers.ValidateDateRange)
-
-	// Address Validation
-	v.HandleFunc("/address/city/{city}", handlers.ValidateCity)
-	v.HandleFunc("/address/zipcode/{zipcode}", handlers.ValidateZipcode)
-	v.HandleFunc("/address/state/{state}", handlers.ValidateState)
-	v.HandleFunc("/address", handlers.ValidateAddress)
-
-	// Applicant Validation
-	v.HandleFunc("/applicant/name", handlers.ValidateApplicantName)
-	v.HandleFunc("/applicant/birthplace", handlers.ValidateApplicantBirthplace)
-	v.HandleFunc("/applicant/birthdate", handlers.ValidateApplicantBirthdate)
-
-	log.Println("Starting API mock server")
+	log.Println("Starting API server")
 	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))
 }
