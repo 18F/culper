@@ -1206,7 +1206,7 @@ const en = {
         },
         sex: {
           title: 'Need help with your sex?',
-          message: 'If additional information is appropriate please use "Add a comment" above to detail it.',
+          message: 'If additional information is appropriate please use "Add a comment" below to detail it.',
           note: ''
         }
       },
