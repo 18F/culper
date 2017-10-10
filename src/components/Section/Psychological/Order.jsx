@@ -138,7 +138,7 @@ export default class Order extends ValidationElement {
 
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
             scrollIntoView={this.props.scrollIntoView}>
-            <Text name="AppealCourtName"
+            <Text name="CourtName"
                   className="appealcourtname"
                   bind={true}
                   onError={this.props.onError}
@@ -149,7 +149,7 @@ export default class Order extends ValidationElement {
           <Field title={i18n.t(`psychological.${prefix}.heading.appealCourtName`)}
             adjustFor="address"
             scrollIntoView={this.props.scrollIntoView}>
-            <Location name="AppealCourtAddress"
+            <Location name="CourtAddress"
                       className="appealcourtaddress"
                       bind={true}
                       label={i18n.t(`psychological.${prefix}.label.courtAddress`)}
