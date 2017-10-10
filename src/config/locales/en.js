@@ -974,7 +974,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to information about you?'
     },
     destination: {
       intro: 'Identification intro',
@@ -1917,7 +1918,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with citizenship at once'
+      para: 'View all the sections associated with citizenship at once',
+      comments: 'Would you like to add a comment about any of your responses relating to citizenship?'
     },
     destination: {
       intro: 'Citizenship intro',

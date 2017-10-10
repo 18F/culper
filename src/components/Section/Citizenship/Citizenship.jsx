@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import { SectionViews, SectionView } from '../SectionView'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
@@ -65,6 +66,16 @@ class Citizenship extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
+
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('citizenship.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="status"
@@ -123,6 +134,7 @@ function mapStateToProps (state) {
     Status: citizenship.Status || {},
     Multiple: citizenship.Multiple || {},
     Passports: citizenship.Passports || {},
+    Comments: citizenship.Comments || {},
     Errors: errors.citizenship || [],
     Completed: completed.citizenship || []
   }
@@ -166,6 +178,14 @@ export class CitizenshipSections extends React.Component {
           required={true}
           scrollIntoView={false}
         />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('citizenship.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.props.onError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }

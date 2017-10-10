@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import ApplicantName from './ApplicantName'
@@ -100,11 +101,16 @@ class Identification extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
-            <hr />
-            <Field>
-              <Text name="IdentificationComments"
-                    />
-            </Field>
+
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('identification.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="name"
@@ -217,6 +223,7 @@ function mapStateToProps (state) {
     OtherNames: identification.OtherNames || {},
     Contacts: identification.Contacts || {},
     Physical: identification.Physical || {},
+    Comments: identification.Comments || {},
     Errors: errors.identification || [],
     Completed: completed.identification || []
   }
@@ -301,6 +308,14 @@ export class IdentificationSections extends React.Component {
           required={true}
           scrollIntoView={false}
         />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('identification.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.props.onError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }
