@@ -252,6 +252,12 @@ const navigation = [
     ]
   },
   {
+    title: 'Submit',
+    name: 'Submit',
+    url: 'submit',
+    exclude: true
+  },
+  {
     title: 'SF-86 Submission',
     name: 'Print',
     url: 'print',

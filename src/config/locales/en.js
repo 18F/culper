@@ -9498,6 +9498,38 @@ const en = {
         'Photocopies of this authorization with my signature are valid. This authorization is valid for one (1) year from the date signed or upon termination of my affiliation with the Federal Government, whichever is sooner.'
       ]
     }
+  },
+  submission: {
+    header: [
+      '## All required fields are complete',
+      'Not a guarantee of acceptance. We are checking that all required fields are complete'
+    ],
+    additional: [
+      '### Additional comments',
+      'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the following release(s). You will not be able to submit until each release below is signed'
+    ],
+    invalidForm: [
+      '## List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors'
+    ],
+    submissionStatus: {
+      validating: [
+        '## Verifying your information is complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      valid: [
+        '## All required fields are complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      invalid: [
+        '## Some required fields are incomplete'
+      ]
+    },
+    submissionComplete: [
+      '## You are done!',
+      '### Thanks for submitting your SF-86',
+      'Please print and save your submission below,they will be your only copies'
+    ]
   }
 }
 

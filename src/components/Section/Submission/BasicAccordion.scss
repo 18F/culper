@@ -1,0 +1,13 @@
+.basic-accordion {
+  .valid-icon {
+    background: url("../img/checkmark.svg") no-repeat right 0rem center/1.7rem auto;
+    width: 1.7rem;
+    height: 1.7rem;
+    position: absolute;
+    right: 1rem;
+  }
+  .usa-accordion-button {
+    position: relative;
+    background-position: right 4rem center;
+  }
+}
