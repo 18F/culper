@@ -15,8 +15,8 @@ describe('The contact item component', () => {
     component.find('.foreign-business-contact-establishment textarea').simulate('change')
     component.find('.foreign-business-contact-representatives textarea').simulate('change')
     component.find('.foreign-business-contact-purpose textarea').simulate('change')
-    component.find('.foreign-business-contact-governments .ic-tokeninput input').get(0).value = 'United States'
-    component.find('.foreign-business-contact-governments .ic-tokeninput input').simulate('keydown', { keyCode: 13, target: { value: 'United States' } })
+    component.find('.foreign-business-contact-governments input').simulate('change', { target: { value: 'United States' } })
+    component.find('.foreign-business-contact-governments input').simulate('keydown', { keyCode: 13, target: { value: 'United States' } })
     component.find('.foreign-business-contact-subsequentcontacts .branch .yes input').simulate('change')
     expect(updates).toBe(8)
   })

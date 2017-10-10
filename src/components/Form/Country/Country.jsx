@@ -118,6 +118,7 @@ export default class Country extends ValidationElement {
   render () {
     const klass = `country ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
+    const value = this.props.value || (this.props.multiple ? [] : '')
 
     return (
       <div>
@@ -132,7 +133,7 @@ export default class Country extends ValidationElement {
                             onError={this.handleError}
                             onFocus={this.handleFocus}
                             onBlur={this.handleBlur}
-                            value={this.props.value}
+                            value={value}
                             required={this.props.required}>
             { options }
           </MultipleDropdown>
@@ -148,9 +149,8 @@ export default class Country extends ValidationElement {
                     onError={this.handleError}
                     onFocus={this.handleFocus}
                     onBlur={this.handleBlur}
-                    value={this.props.value}
-                    required={this.props.required}
-                    >
+                    value={value}
+                    required={this.props.required}>
             { options }
           </Dropdown>
         </Show>

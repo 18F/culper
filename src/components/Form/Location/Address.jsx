@@ -74,19 +74,19 @@ export default class Address extends ValidationElement {
       }
     }))
 
-    let country = ''
+    let country = { value: '' }
     let city = this.props.city
 
     // POSTOFFICE is used for APO, FPO and DPO
     switch (cb.value) {
       case 'United States':
       case 'POSTOFFICE':
-        country = cb.value
+        country.value = cb.value
         break
     }
 
     // Clear the city when moving *from* APO/FPO and *to* something else.
-    if (cb.value !== 'POSTOFFICE' && this.props.country === 'POSTOFFICE') {
+    if (cb.value !== 'POSTOFFICE' && this.props.country.value === 'POSTOFFICE') {
       city = ''
     }
 
@@ -113,9 +113,9 @@ export default class Address extends ValidationElement {
 
   addressTypeFunc (props) {
     switch (true) {
-      case props.value === this.props.country:
+      case props.value === this.props.country.value:
         return true
-      case props.value === 'International' && !['United States', 'POSTOFFICE'].includes(this.props.country):
+      case props.value === 'International' && !['United States', 'POSTOFFICE'].includes(this.props.country.value):
         return true
       default:
         return false
@@ -248,7 +248,7 @@ export default class Address extends ValidationElement {
 
         <div className="fields">
           <div>
-            <Show when={this.props.country === 'United States'}>
+            <Show when={this.props.country.value === 'United States'}>
               <div>
                 <Street name="address"
                         className="mailing street"
@@ -308,7 +308,7 @@ export default class Address extends ValidationElement {
                 </div>
               </div>
             </Show>
-            <Show when={!['United States', 'POSTOFFICE'].includes(this.props.country)}>
+            <Show when={!['United States', 'POSTOFFICE'].includes(this.props.country.value)}>
               <div>
                 <Street name="address"
                         label={this.props.streetLabel}
@@ -353,7 +353,7 @@ export default class Address extends ValidationElement {
                          />
               </div>
             </Show>
-            <Show when={this.props.country === 'POSTOFFICE'}>
+            <Show when={this.props.country.value === 'POSTOFFICE'}>
               <div>
                 <Street name="address"
                         label={i18n.t('address.apoFpo.street.label')}
@@ -433,7 +433,7 @@ export default class Address extends ValidationElement {
 Address.defaultProps = {
   label: i18n.t('address.label'),
   tab: (input) => { input.focus() },
-  country: 'United States',
+  country: { value: 'United States' },
   onError: (value, arr) => { return arr },
   streetLabel: i18n.t('address.us.street.label'),
   postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
@@ -449,12 +449,12 @@ Address.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required) {
-        switch (props.country) {
+        switch (props.country.value) {
           case 'United States':
           case 'POSTOFFICE':
             return !!props.street && !!props.city && !!props.state && !!props.zipcode
           default:
-            return !!props.street && !!props.city && !!props.country
+            return !!props.street && !!props.city && !!props.country.value
         }
       }
       return true
