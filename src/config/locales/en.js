@@ -493,8 +493,8 @@ const en = {
             message: 'This field is required'
           },
           notfound: {
-            title: 'This country is not one of the options',
-            message: 'Please enter the country that your city of birth is in now.',
+            title: 'This country is not on our current list',
+            message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
             note: ''
           }
         },
@@ -547,7 +547,7 @@ const en = {
           notfound: {
             title: 'This Country is not on our current list',
             message: [
-              'Indicate the country that currently governs the geographic location where you were born. As necessary provide a comment above to clarify.'
+              'Indicate the country that currently governs the geographic location you are indicating. As necessary provide a comment below to clarify.'
             ],
             note: ''
           }
@@ -600,7 +600,7 @@ const en = {
       },
       notfound: {
         title: 'This Country is not on our current list',
-        message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
+        message: 'Indicate the country that currently governs the geographic location you are indicating. As necessary provide comments below to clarify.',
         note: ''
       }
     },
@@ -1206,7 +1206,7 @@ const en = {
         },
         sex: {
           title: 'Need help with your sex?',
-          message: 'If additional information is appropriate please use "Add a comment" above to detail it.',
+          message: 'If additional information is appropriate please use "Add a comment" below to detail it.',
           note: ''
         }
       },
