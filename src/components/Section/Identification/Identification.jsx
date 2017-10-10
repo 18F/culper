@@ -100,6 +100,11 @@ class Identification extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
+            <hr />
+            <Field>
+              <Text name="IdentificationComments"
+                    />
+            </Field>
           </SectionView>
 
           <SectionView name="name"
