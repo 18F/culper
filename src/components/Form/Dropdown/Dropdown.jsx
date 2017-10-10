@@ -233,7 +233,7 @@ export default class Dropdown extends ValidationElement {
     let future = {
       focus: false,
       suggestions: this.state.suggestions,
-      value: this.state.value
+      value: (options.suggestion || {}).value || this.state.value
     }
 
     if (this.props.clearOnSelection) {
