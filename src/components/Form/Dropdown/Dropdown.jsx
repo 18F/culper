@@ -45,6 +45,7 @@ export default class Dropdown extends ValidationElement {
       valid: props.valid
     }
 
+    this.update = this.update.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.onSuggestionChange = this.onSuggestionChange.bind(this)
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
@@ -88,6 +89,16 @@ export default class Dropdown extends ValidationElement {
         value: next.value
       })
     }
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      value: this.props.value,
+      showComments: this.props.showComments,
+      comments: this.props.comments,
+      ...queue
+    })
   }
 
   /**
@@ -210,10 +221,7 @@ export default class Dropdown extends ValidationElement {
 
     this.setState({value: value}, () => {
       super.handleChange(e)
-      this.props.onUpdate({
-        name: this.props.name,
-        value: value
-      })
+      this.update({value: value})
     })
   }
 
@@ -230,10 +238,11 @@ export default class Dropdown extends ValidationElement {
   }
 
   onSuggestionSelected (event, options) {
+    const value = (options.suggestion || {}).value || this.state.value
     let future = {
       focus: false,
       suggestions: this.state.suggestions,
-      value: (options.suggestion || {}).value || this.state.value
+      value: value
     }
 
     if (this.props.clearOnSelection) {
@@ -245,6 +254,7 @@ export default class Dropdown extends ValidationElement {
       this.props.onSuggestionSelected(event, options)
       this.handleValidation(event)
       this.props.tabNext()
+      this.update({value: value})
     })
   }
 

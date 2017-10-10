@@ -289,7 +289,7 @@ export default class Location extends ValidationElement {
 
   updateCountry (values) {
     this.update({
-      country: values.value,
+      country: values,
       validated: false
     })
   }
@@ -437,7 +437,7 @@ export default class Location extends ValidationElement {
                    key={field}
                    label={this.props.countryLabel}
                    placeholder={this.props.countryPlaceholder}
-                   value={this.props.country}
+                   {...this.props.country}
                    excludeUnitedStates="true"
                    onUpdate={this.updateCountry}
                    onError={this.handleError}

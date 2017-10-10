@@ -60,7 +60,7 @@ export default class ToggleableLocation extends ValidationElement {
   }
 
   updateCountry (values) {
-    this.update({country: values.value})
+    this.update({country: values})
   }
 
   updateCounty (event) {
@@ -210,7 +210,7 @@ export default class ToggleableLocation extends ValidationElement {
             <Country name="country"
               key={key}
               label={this.props.countryLabel}
-              value={this.props.country}
+              {...this.props.country}
               className="country"
               placeholder={this.props.countryPlaceholder}
               excludeUnitedStates="true"

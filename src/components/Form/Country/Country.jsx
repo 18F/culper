@@ -1,8 +1,10 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
+import Show from '../Show'
+import Textarea from '../Textarea'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
-import { i18n } from '../../../config'
 
 export default class Country extends ValidationElement {
   constructor (props) {
@@ -11,29 +13,35 @@ export default class Country extends ValidationElement {
     // For the typical Dropdown component a string value is expected.
     // However, for the MultiDropdown, the value must be an array of objects.
     this.state = {
-      value: props.value
+      value: props.value,
+      showComents: props.showComments
     }
 
     this.update = this.update.bind(this)
-    this.updateDropdown = this.updateDropdown.bind(this)
-    this.updateMultiple = this.updateMultiple.bind(this)
+    this.updateCountry = this.updateCountry.bind(this)
+    this.updateComments = this.updateComments.bind(this)
     this.handleError = this.handleError.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       name: this.props.name,
+      comments: this.props.comments,
+      showComments: this.props.showComments,
       value: this.state.value,
       ...queue
     })
   }
 
-  updateDropdown (values) {
+  updateCountry (values) {
     this.update({ value: values.value })
   }
 
-  updateMultiple (values) {
-    this.update({ value: values.value })
+  updateComments (values) {
+    this.update({
+      showComments: true,
+      comments: values.value
+    })
   }
 
   handleError (value, arr) {
@@ -46,7 +54,20 @@ export default class Country extends ValidationElement {
     })
 
     // Take the original and concatenate our new error values to it
-    return this.props.onError(value, arr)
+    arr = this.props.onError(value, arr)
+
+    const notfound = arr.some(x => x.valid === false && x.code.indexOf('notfound') !== -1)
+    const show = notfound || this.props.comments.length > 0
+    if (!this.state.showComments && show) {
+      if (this.props.multiple) {
+        this.refs.countries.refs.dropdown.refs.autosuggest.input.focus()
+      } else {
+        this.refs.country.refs.autosuggest.input.focus()
+      }
+    }
+    this.setState({showComments: show})
+
+    return arr
   }
 
   /**
@@ -98,46 +119,59 @@ export default class Country extends ValidationElement {
     const klass = `country ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
 
-    if (this.props.multiple) {
-      return (
-        <MultipleDropdown name={this.props.name}
-                          label={this.props.label}
-                          placeholder={this.props.placeholder}
-                          className={klass}
-                          disabled={this.props.disabled}
-                          onUpdate={this.updateMultiple}
-                          onError={this.handleError}
-                          onFocus={this.handleFocus}
-                          onBlur={this.handleBlur}
-                          value={this.props.value}
-                          required={this.props.required}
-                          >
-          { options }
-        </MultipleDropdown>
-      )
-    }
-
     return (
-      <Dropdown name={this.props.name}
-                label={this.props.label}
-                placeholder={this.props.placeholder}
-                className={klass}
-                disabled={this.props.disabled}
-                onUpdate={this.updateDropdown}
-                onError={this.handleError}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                value={this.props.value}
-                required={this.props.required}
-                >
-        { options }
-      </Dropdown>
+      <div>
+        <Show when={this.props.multiple}>
+          <MultipleDropdown name={this.props.name}
+                            ref="countries"
+                            label={this.props.label}
+                            placeholder={this.props.placeholder}
+                            className={klass}
+                            disabled={this.props.disabled}
+                            onUpdate={this.updateCountry}
+                            onError={this.handleError}
+                            onFocus={this.handleFocus}
+                            onBlur={this.handleBlur}
+                            value={this.props.value}
+                            required={this.props.required}>
+            { options }
+          </MultipleDropdown>
+        </Show>
+        <Show when={!this.props.multiple}>
+          <Dropdown name={this.props.name}
+                    ref="country"
+                    label={this.props.label}
+                    placeholder={this.props.placeholder}
+                    className={klass}
+                    disabled={this.props.disabled}
+                    onUpdate={this.updateCountry}
+                    onError={this.handleError}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                    value={this.props.value}
+                    required={this.props.required}
+                    >
+            { options }
+          </Dropdown>
+        </Show>
+        <Show when={this.state.showComments}>
+          <Textarea name={`${this.props.name}Comments`}
+                    ref="comments"
+                    label={i18n.t('country.comments')}
+                    value={this.props.comments}
+                    onUpdate={this.updateComments}
+                    disabled={this.props.disabled}
+                    required={this.props.required} />
+        </Show>
+      </div>
     )
   }
 }
 
 Country.defaultProps = {
   name: 'country',
+  comments: '',
+  showComments: false,
   excludeUnitedStates: false,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

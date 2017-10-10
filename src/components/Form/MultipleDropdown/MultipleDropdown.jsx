@@ -24,8 +24,9 @@ export default class MultipleDropdown extends ValidationElement {
       return
     }
 
+    const values = (this.props.value || []).concat([options.suggestion.value])
     this.update({
-      value: (this.props.value || []).concat([options.suggestion.value])
+      value: values
     })
   }
 
@@ -38,12 +39,11 @@ export default class MultipleDropdown extends ValidationElement {
     })
   }
 
-  // render () { return <span>Hello</span> }
   render () {
     const klass = `multiple-dropdown ${this.props.className || ''}`.trim()
     const tokens = (this.props.value || []).map((x, i) => {
       return (
-        <span className="token">
+        <span className="token" key={`${this.props.name}-${x}`}>
           {x}
           <span className="token-delete" onClick={this.remove.bind(this, i)}>X</span>
         </span>
@@ -53,7 +53,10 @@ export default class MultipleDropdown extends ValidationElement {
     return (
       <div className={klass}>
         <Dropdown name={this.props.name}
+                  ref="dropdown"
                   label={this.props.label}
+                  showComments={this.props.showComments}
+                  comments={this.props.comments}
                   placeholder={this.props.placeholder}
                   disabled={this.props.disabled}
                   required={this.props.required}
@@ -80,6 +83,8 @@ MultipleDropdown.defaultProps = {
   className: '',
   input: '',
   value: [],
+  showComments: false,
+  comments: '',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

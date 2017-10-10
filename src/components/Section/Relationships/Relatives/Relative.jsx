@@ -467,7 +467,7 @@ export default class Relative extends ValidationElement {
                help="relationships.relatives.help.citizenship">
           <Country name="Citizenship"
                    multiple={true}
-                   {...this.props.Citizenship.value}
+                   {...this.props.Citizenship}
                    className="relative-citizenship"
                    onError={this.props.onError}
                    onUpdate={this.updateCitizenship}
@@ -1032,7 +1032,7 @@ Relative.defaultProps = {
   Name: {},
   Birthdate: {},
   Birthplace: {},
-  Citizenship: [],
+  Citizenship: {},
   MaidenSameAsListed: '',
   MaidenName: {},
   Aliases: [],

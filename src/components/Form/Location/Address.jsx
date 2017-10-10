@@ -61,7 +61,7 @@ export default class Address extends ValidationElement {
   }
 
   updateCountry (values) {
-    this.update({country: values.value})
+    this.update({country: values})
   }
 
   updateAddressType (cb) {
@@ -343,7 +343,7 @@ export default class Address extends ValidationElement {
                       />
                 <Country name="country"
                          label={this.props.countryLabel}
-                         value={this.props.country}
+                         {...this.props.country}
                          excludeUnitedStates="true"
                          onUpdate={this.updateCountry}
                          onError={this.handleError}
