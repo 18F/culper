@@ -106,7 +106,7 @@ export default class Dropdown extends ValidationElement {
    */
   handleValidation (event) {
     const value = this.state.value
-    const errors = this.props.onError(value, this.constructor.errors.map(err => {
+    const localErrors = this.constructor.errors.map(err => {
       return {
         code: err.code,
         valid: err.func(value, {
@@ -115,9 +115,10 @@ export default class Dropdown extends ValidationElement {
         }),
         uid: this.state.uid
       }
-    })) || []
-
-    this.setState({ error: errors.some(x => x.valid === false), valid: errors.every(x => x.valid === true) })
+    })
+    const errors = this.props.onError(value, localErrors) || []
+    const valid = errors.every(x => x.valid === true) && localErrors.every(x => x.valid === true)
+    this.setState({ error: errors.some(x => x.valid === false), valid: valid })
   }
 
   /**

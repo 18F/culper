@@ -73,7 +73,7 @@ const en = {
     incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
   },
   country: {
-    comments: 'Provide relevant historical context'
+    comments: 'Provide comments'
   },
   comments: {
     add: 'Add a comment',

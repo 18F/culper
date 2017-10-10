@@ -28,7 +28,7 @@ export default class Country extends ValidationElement {
       name: this.props.name,
       comments: this.props.comments,
       showComments: this.props.showComments,
-      value: this.state.value,
+      value: this.props.value,
       ...queue
     })
   }
@@ -54,20 +54,17 @@ export default class Country extends ValidationElement {
     })
 
     // Take the original and concatenate our new error values to it
-    arr = this.props.onError(value, arr)
-
     const notfound = arr.some(x => x.valid === false && x.code.indexOf('notfound') !== -1)
-    const show = notfound || this.props.comments.length > 0
-    if (!this.state.showComments && show) {
+    if (!this.state.showComments && notfound) {
       if (this.props.multiple) {
         this.refs.countries.refs.dropdown.refs.autosuggest.input.focus()
       } else {
         this.refs.country.refs.autosuggest.input.focus()
       }
     }
-    this.setState({showComments: show})
+    this.setState({showComments: notfound})
 
-    return arr
+    return arr.filter(x => x.code.indexOf('notfound') === -1)
   }
 
   /**
@@ -155,6 +152,19 @@ export default class Country extends ValidationElement {
           </Dropdown>
         </Show>
         <Show when={this.state.showComments}>
+          <div className="field no-margin-bottom">
+            <div className="table">
+              <div className="messages">
+                <div className="message error">
+                  <i className="fa fa-exclamation"></i>
+                  <h5>{i18n.t('error.country.notfound.title')}</h5>
+                  <p>{i18n.m('error.country.notfound.message')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Show>
+        <Show when={this.state.showComments || this.props.comments.length > 0}>
           <Textarea name={`${this.props.name}Comments`}
                     ref="comments"
                     label={i18n.t('country.comments')}
