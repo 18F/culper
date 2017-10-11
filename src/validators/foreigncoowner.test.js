@@ -7,7 +7,7 @@ describe('CoOwner validation', function () {
       {
         props: {
           Countries: {
-            value: [{value: 'Germany'}]
+            value: ['Germany']
           }
         },
         expected: true
@@ -49,7 +49,7 @@ describe('CoOwner validation', function () {
             suffix: 'Jr'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -102,7 +102,7 @@ describe('CoOwner validation', function () {
                   suffix: 'Jr'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -110,7 +110,7 @@ describe('CoOwner validation', function () {
                   layout: Location.ADDRESS
                 },
                 Countries: {
-                  value: [{value: 'Germany'}]
+                  value: ['Germany']
                 },
                 RelationshipNature: {
                   value: 'Some stuff'

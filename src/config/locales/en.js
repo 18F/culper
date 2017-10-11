@@ -72,6 +72,9 @@ const en = {
     close: 'Close',
     incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
   },
+  country: {
+    comments: 'Provide comments'
+  },
   comments: {
     add: 'Add a comment',
     addpaired: 'Add a comment to this question',

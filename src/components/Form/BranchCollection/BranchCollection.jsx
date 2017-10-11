@@ -81,6 +81,7 @@ export default class BranchCollection extends React.Component {
             items[index][child.props.name] = value
             this.props.onUpdate(items)
           }
+          childProps.onError = this.props.onError
         }
       }
 

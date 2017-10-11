@@ -312,9 +312,7 @@ describe('Foreign contacts component validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           }
         },
         expected: true
@@ -322,10 +320,7 @@ describe('Foreign contacts component validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' },
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['United States', 'Germany']
           }
         },
         expected: true
@@ -407,7 +402,7 @@ describe('Foreign contacts component validation', function () {
           },
           Birthplace: {
             domestic: 'Yes',
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA'
@@ -449,7 +444,7 @@ describe('Foreign contacts component validation', function () {
             applicable: true
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -532,7 +527,7 @@ describe('Foreign contacts component validation', function () {
             applicable: true
           },
           EmployerAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -637,9 +632,7 @@ describe('Foreign contacts component validation', function () {
                   }
                 ],
                 Citizenship: {
-                  value: [
-                    { name: 'United States', value: 'United States' }
-                  ]
+                  value: ['United States']
                 },
                 BirthdateNotApplicable: {
                   applicable: false

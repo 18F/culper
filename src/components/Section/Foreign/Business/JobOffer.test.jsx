@@ -12,12 +12,13 @@ describe('The foreign business job offer component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<JobOffer {...expected} />)
+    updates = 0
     component.find('.employment-name .first input').simulate('change')
     component.find('.employment-description textarea').simulate('change')
     component.find('.employment-date .day input').simulate('change')
     component.find('.employment-address .yes input').simulate('change')
     component.find('.employment-accepted .yes input').simulate('change')
     component.find('.employment-explanation textarea').simulate('change')
-    expect(updates).toBe(5)
+    expect(updates).toBe(6)
   })
 })

@@ -61,7 +61,7 @@ describe('Bankruptcy component validation', function () {
               Item: {
                 PetitionType: 'Chapter7',
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -114,7 +114,7 @@ describe('Bankruptcy component validation', function () {
               Item: {
                 PetitionType: 'Chapter7',
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -211,7 +211,7 @@ describe('Bankruptcy component validation', function () {
       {
         props: {
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -381,7 +381,7 @@ describe('Bankruptcy component validation', function () {
         props: {
           PetitionType: 'Chapter7',
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -459,7 +459,7 @@ describe('Bankruptcy component validation', function () {
         props: {
           PetitionType: 'Chapter13',
           TrusteeAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',

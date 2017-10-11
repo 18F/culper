@@ -41,7 +41,7 @@ describe('citizenship multiple component validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Location: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   city: 'Arlington',
                   layout: Location.CITY_COUNTRY
                 },
@@ -103,7 +103,7 @@ describe('citizenship multiple component validation', function () {
                   date: new Date('1/1/2016')
                 },
                 Location: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   city: 'Arlington',
                   layout: Location.CITY_COUNTRY
                 },
@@ -261,7 +261,7 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           Location: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             layout: Location.CITY_COUNTRY
           }

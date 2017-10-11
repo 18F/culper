@@ -467,7 +467,7 @@ export default class Relative extends ValidationElement {
                help="relationships.relatives.help.citizenship">
           <Country name="Citizenship"
                    multiple={true}
-                   value={this.props.Citizenship.value}
+                   {...this.props.Citizenship}
                    className="relative-citizenship"
                    onError={this.props.onError}
                    onUpdate={this.updateCitizenship}
@@ -708,7 +708,7 @@ export default class Relative extends ValidationElement {
 
         <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased === 'No'}>
           <div>
-            <Show when={this.props.Address && this.props.Address.country === 'United States'}>
+            <Show when={this.props.Address && (this.props.Address.country || {}).value === 'United States'}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
                        comments={false}
@@ -810,7 +810,7 @@ export default class Relative extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.props.Address && !['United States', 'POSTOFFICE'].includes(this.props.Address.country)}>
+            <Show when={this.props.Address && !['United States', 'POSTOFFICE'].includes((this.props.Address.country || {}).value)}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.firstcontact')}
                        help="relationships.relatives.help.firstcontact"
@@ -1032,7 +1032,7 @@ Relative.defaultProps = {
   Name: {},
   Birthdate: {},
   Birthplace: {},
-  Citizenship: [],
+  Citizenship: {},
   MaidenSameAsListed: '',
   MaidenName: {},
   Aliases: [],
