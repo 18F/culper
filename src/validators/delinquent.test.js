@@ -318,7 +318,7 @@ describe('delinquent component validation', function () {
       {
         state: {
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -465,7 +465,7 @@ describe('delinquent component validation', function () {
                   value: 'The court'
                 },
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

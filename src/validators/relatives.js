@@ -66,23 +66,24 @@ export class RelativeValidator {
   }
 
   citizen () {
-    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.some(x => x.value === 'United States')
+    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.some(x => x === 'United States')
   }
 
   requiresCitizenshipDocumentation () {
     const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
     const citizen = this.citizen()
-    const international = ((this.birthplace || {}).country !== 'United States')
+    const international = (((this.birthplace || {}).country || {}).value !== 'United States')
+    const mailingCountry = ((this.address || {}).country || {}).value
 
     if (this.relation && relations.includes(this.relation) && citizen && international && this.isDeceased === 'Yes') {
       return true
     }
 
-    if (this.address && this.address.country === 'United States' && international && citizen) {
+    if (this.address && mailingCountry === 'United States' && international && citizen) {
       return true
     }
 
-    if (this.address && this.address.country === 'POSTOFFICE' && international && citizen) {
+    if (this.address && mailingCountry === 'POSTOFFICE' && international && citizen) {
       return true
     }
 

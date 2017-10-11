@@ -35,7 +35,7 @@ describe('The Address component', () => {
       city: 'Arlington',
       state: 'VA',
       zipcode: '22202',
-      country: 'United States',
+      country: { value: 'United States' },
       suggestions: true,
       layout: Location.ADDRESS,
       geocodeResult: {
@@ -55,7 +55,7 @@ describe('The Address component', () => {
       city: 'Arlington',
       state: 'VA',
       zipcode: '22202',
-      country: 'United States',
+      country: { value: 'United States' },
       suggestions: true,
       layout: Location.ADDRESS,
       geocodeResult: {
@@ -103,23 +103,23 @@ describe('The Address component', () => {
   it('renders all the things', () => {
     const tests = [
       {
-        props: { layout: Location.BIRTHPLACE, country: 'United States' },
+        props: { layout: Location.BIRTHPLACE, country: { value: 'United States' } },
         selectors: ['.state', '.city', '.county']
       },
       {
-        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY_COUNTRY, country: 'United States' },
+        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY_COUNTRY, country: { value: 'United States' } },
         selectors: ['.state', '.city']
       },
       {
-        props: { layout: Location.BIRTHPLACE_WITHOUT_COUNTY, country: 'United States' },
+        props: { layout: Location.BIRTHPLACE_WITHOUT_COUNTY, country: { value: 'United States' } },
         selectors: ['.state', '.city']
       },
       {
-        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY, country: 'United States' },
+        props: { layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY, country: { value: 'United States' } },
         selectors: ['.city', '.state', '.zipcode']
       },
       {
-        props: { layout: Location.ADDRESS, country: 'United States' },
+        props: { layout: Location.ADDRESS, country: { value: 'United States' } },
         selectors: ['.street', '.street2', '.city', '.state', '.zipcode']
       },
       {

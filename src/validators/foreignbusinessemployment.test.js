@@ -88,7 +88,7 @@ describe('Foreign business employment component validation', function () {
         state: {
           Address: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           }
         },
@@ -189,7 +189,7 @@ describe('Foreign business employment component validation', function () {
                 },
                 Address: {
                   city: 'Munich',
-                  country: 'Germany',
+                  country: { value: 'Germany' },
                   layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
                 },
                 Accepted: 'Yes',

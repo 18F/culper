@@ -52,6 +52,7 @@ describe('The foreign business employment component', () => {
     }
     const component = mount(<Employment {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
+    updates = 0
     component.find('.employment-name .first input').simulate('change')
     component.find('.employment-description textarea').simulate('change')
     component.find('.employment-date .day input').simulate('change')

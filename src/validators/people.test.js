@@ -97,7 +97,7 @@ describe('Person validator', function () {
             value: 'test@local.dev'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -178,7 +178,7 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -232,7 +232,7 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -286,7 +286,7 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -363,7 +363,7 @@ describe('Person validator', function () {
                 value: 'test@local.dev'
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',

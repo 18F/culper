@@ -1,6 +1,12 @@
 @import 'eqip-colors';
 
 .dropdown {
+  // .highlight {
+  //   background-color: #dce2ee;
+  //   margin-left: -1.83rem;
+  //   padding: 0.25rem 1.83rem;
+  // }
+
   .react-autosuggest__container.react-autosuggest__container--open {
     box-shadow: 0 0 3px #3e94cf, 0 0 7px #3e94cf;
 
@@ -48,7 +54,8 @@
         }
 
         li:hover,
-        .react-autosuggest__suggestion--focused {
+        .react-autosuggest__suggestion--focused,
+        .react-autosuggest__suggestion--highlighted {
           background-color: #dce2ee;
         }
       }
