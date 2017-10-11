@@ -64,7 +64,7 @@ export default class Country extends ValidationElement {
     }
     this.setState({showComments: notfound})
 
-    return arr.filter(x => x.code.indexOf('notfound') === -1)
+    return this.props.onError(value, arr)
   }
 
   /**
