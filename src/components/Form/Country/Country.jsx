@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Show from '../Show'
+import Comments from '../Comments'
 import Textarea from '../Textarea'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
@@ -118,7 +119,9 @@ export default class Country extends ValidationElement {
     const value = this.props.value || (this.props.multiple ? [] : '')
 
     return (
-      <div>
+      <Comments title={i18n.t('country.comments')}
+                    value={this.props.comments}
+                    onUpdate={this.updateComments}>
         <Show when={this.props.multiple}>
           <MultipleDropdown name={this.props.name}
                             ref="countries"
@@ -164,19 +167,19 @@ export default class Country extends ValidationElement {
             </div>
           </div>
         </Show>
-        <Show when={this.state.showComments || this.props.comments.length > 0}>
-          <Textarea name={`${this.props.name}Comments`}
-                    ref="comments"
-                    label={i18n.t('country.comments')}
-                    value={this.props.comments}
-                    onUpdate={this.updateComments}
-                    disabled={this.props.disabled}
-                    required={this.props.required} />
-        </Show>
-      </div>
+      </Comments>
     )
   }
 }
+        // <Show when={this.state.showComments || this.props.comments.length > 0}>
+        //   <Textarea name={`${this.props.name}Comments`}
+        //             ref="comments"
+        //             label={i18n.t('country.comments')}
+        //             value={this.props.comments}
+        //             onUpdate={this.updateComments}
+        //             disabled={this.props.disabled}
+        //             required={this.props.required} />
+        // </Show>
 
 Country.defaultProps = {
   name: 'country',
