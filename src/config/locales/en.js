@@ -470,6 +470,11 @@ const en = {
         required: {
           title: 'There is a problem with this field',
           message: 'This field is required'
+        },
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
         }
       },
       zipcode: {
