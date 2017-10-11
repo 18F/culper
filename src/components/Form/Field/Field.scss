@@ -8,6 +8,8 @@
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
+    padding-left: 2rem;
+    margin-left: -2.7rem;
   }
 
   > .title {
@@ -165,7 +167,8 @@
         }
 
         > .comments-button {
-          display: inline-block;
+          // This cannot be inline-block because it will wrap on larger screens.
+          display: block;
 
           i {
             margin-left: 1rem;
