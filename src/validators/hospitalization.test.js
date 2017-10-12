@@ -37,7 +37,7 @@ describe('Hospitalization validation', function () {
             value: 'Place 1'
           },
           FacilityAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -99,7 +99,7 @@ describe('Hospitalization validation', function () {
                   value: 'Place 1'
                 },
                 FacilityAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -136,7 +136,7 @@ describe('Hospitalization validation', function () {
                   value: 'Place 1'
                 },
                 FacilityAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -172,7 +172,7 @@ describe('Hospitalization validation', function () {
                 value: null
               },
               FacilityAddress: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
@@ -208,7 +208,7 @@ describe('Hospitalization validation', function () {
                 value: null
               },
               FacilityAddress: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
@@ -220,7 +220,7 @@ describe('Hospitalization validation', function () {
                 value: 'Because I can'
               }
             }
-          ],
+          ]
         },
         expected: false
       },

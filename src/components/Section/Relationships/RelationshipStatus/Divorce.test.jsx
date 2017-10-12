@@ -36,6 +36,6 @@ describe('The Divorce component', () => {
     component.find('.deceased .yes input').simulate('change')
     component.find('.address-deceased .city input').simulate('change')
     component.find('.deceased-notapplicable .button input').simulate('change')
-    expect(updates).toBe(10)
+    expect(updates).toBe(11)
   })
 })

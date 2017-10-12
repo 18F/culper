@@ -128,7 +128,7 @@ describe('The verify component', () => {
                 present: false
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'VA',
@@ -163,7 +163,7 @@ describe('The verify component', () => {
                 present: false
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'New Orleans',
                 state: 'LA',

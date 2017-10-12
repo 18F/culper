@@ -42,7 +42,7 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           Location: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             zipcode: '22202',
             state: 'VA',
@@ -291,7 +291,7 @@ describe('Foreign business contact component validation', function () {
                   suffix: 'Jr'
                 },
                 Location: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   city: 'Arlington',
                   zipcode: '22202',
                   state: 'VA',

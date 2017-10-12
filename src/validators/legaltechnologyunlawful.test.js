@@ -59,7 +59,7 @@ describe('Legal technology unlawful component validation', function () {
       {
         state: {
           Location: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -139,7 +139,7 @@ describe('Legal technology unlawful component validation', function () {
                   value: 'this is an incident'
                 },
                 Location: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

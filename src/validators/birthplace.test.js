@@ -5,7 +5,7 @@ describe('Birthplace component validation', function () {
     const tests = [
       {
         state: {
-          country: 'United States',
+          country: { value: 'United States' },
           city: 'Arlington',
           county: 'Arlington',
           state: 'VA'
@@ -14,7 +14,7 @@ describe('Birthplace component validation', function () {
       },
       {
         state: {
-          country: 'United States',
+          country: { value: 'United States' },
           city: '',
           county: 'Arlington',
           state: 'VA'
@@ -23,7 +23,7 @@ describe('Birthplace component validation', function () {
       },
       {
         state: {
-          country: 'United States',
+          country: { value: 'United States' },
           city: 'Arlington',
           county: '',
           state: 'VA'
@@ -32,7 +32,7 @@ describe('Birthplace component validation', function () {
       },
       {
         state: {
-          country: 'United States',
+          country: { value: 'United States' },
           city: 'Arlington',
           county: 'Arlington',
           state: ''
@@ -41,7 +41,7 @@ describe('Birthplace component validation', function () {
       },
       {
         state: {
-          country: 'Germany',
+          country: { value: 'Germany' },
           city: 'Arlington',
           county: 'Arlington',
           state: ''
@@ -59,20 +59,20 @@ describe('Birthplace component validation', function () {
     const tests = [
       {
         state: {
-          country: 'Germany',
+          country: { value: 'Germany' },
           city: 'Munich'
         },
         expected: true
       },
       {
         state: {
-          country: 'United States'
+          country: { value: 'United States' }
         },
         expected: false
       },
       {
         state: {
-          country: 'Germany',
+          country: { value: 'Germany' },
           city: ''
         },
         expected: false
@@ -89,7 +89,7 @@ describe('Birthplace component validation', function () {
       {
         state: {
           domestic: false,
-          country: 'Germany',
+          country: { value: 'Germany' },
           city: 'Munich'
         },
         expected: true
@@ -97,7 +97,7 @@ describe('Birthplace component validation', function () {
       {
         state: {
           domestic: 'Yes',
-          country: 'United States',
+          country: { value: 'United States' },
           city: 'Arlington',
           county: 'Arlington',
           state: 'VA'

@@ -6,15 +6,17 @@ describe('The MultipleDropdown component', () => {
   it('display selected values', () => {
     const expected = {
       name: 'multiple-dropdown',
-      value: [{ name: 'United States', value: 'United States' }],
-      options: [
-        { name: 'United States', value: 'United States' },
-        { name: 'Germany', value: 'Germany' }
-      ],
+      value: ['United States'],
       input: 'Uni'
     }
-    const component = mount(<MultipleDropdown {...expected} />)
-    expect(component.find('.ic-token').length).toBe(1)
+    const options = [
+      { name: 'United States', value: 'United States' },
+      { name: 'Germany', value: 'Germany' }
+    ].map(x => {
+      return <option key={x.value} value={x.value}>{x.name}</option>
+    })
+    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    expect(component.find('.token').length).toBe(1)
   })
 
   it('can be disabled', () => {
@@ -30,28 +32,53 @@ describe('The MultipleDropdown component', () => {
     let updates = 0
     const expected = {
       name: 'multiple-dropdown',
-      value: [{ name: 'United States', value: 'United States' }],
-      options: [
-        { name: 'United States', value: 'United States' },
-        { name: 'Germany', value: 'Germany' }
-      ],
+      value: ['United States'],
       onUpdate: () => { updates++ }
     }
-    const component = mount(<MultipleDropdown {...expected} />)
-    component.find('.ic-token-delete-button').simulate('click')
+    const options = [
+      { name: 'United States', value: 'United States' },
+      { name: 'Germany', value: 'Germany' }
+    ].map(x => {
+      return <option key={x.value} value={x.value}>{x.name}</option>
+    })
+    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    component.find('.token-delete').simulate('click')
     expect(updates).toBe(1)
   })
 
   it('avoids infinite loop if value is a string', () => {
     const expected = {
       name: 'multiple-dropdown',
-      value: '',
-      options: [
-        { name: 'United States', value: 'United States' },
-        { name: 'Germany', value: 'Germany' }
-      ]
+      value: ''
     }
-    const component = mount(<MultipleDropdown {...expected} />)
+    const options = [
+      { name: 'United States', value: 'United States' },
+      { name: 'Germany', value: 'Germany' }
+    ].map(x => {
+      return <option key={x.value} value={x.value}>{x.name}</option>
+    })
+    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
     expect(component.find('input').length).toBe(1)
+  })
+
+  it('handles when no match found', () => {
+    let updated = false
+    const expected = {
+      value: [],
+      onUpdate: () => { updated = true }
+    }
+    const options = [
+      { name: 'Germany', value: 'Germany' }
+    ].map(x => {
+      return <option key={x.value} value={x.value}>{x.name}</option>
+    })
+    const component = mount(<MultipleDropdown {...expected}>{options}</MultipleDropdown>)
+    component.find('.dropdown input').simulate('change', {
+      target: {
+        value: 'Belg'
+      }
+    })
+    component.find('.dropdown input').simulate('keydown', { keyCode: 13 })
+    expect(updated).toBe(false)
   })
 })

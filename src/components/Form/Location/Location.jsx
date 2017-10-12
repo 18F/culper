@@ -287,9 +287,9 @@ export default class Location extends ValidationElement {
     })
   }
 
-  updateCountry (event) {
+  updateCountry (values) {
     this.update({
-      country: event.target.value,
+      country: values,
       validated: false
     })
   }
@@ -431,19 +431,19 @@ export default class Location extends ValidationElement {
           )
         case 'country':
           return (
-            <Country name="country"
-                     className="country"
-                     key={field}
-                     label={this.props.countryLabel}
-                     placeholder={this.props.countryPlaceholder}
-                     value={this.props.country}
-                     excludeUnitedStates="true"
-                     onChange={this.updateCountry}
-                     onError={this.handleError}
-                     onFocus={this.props.onFocus}
-                     onBlur={this.handleBlur}
-                     required={this.props.required}
-                     />
+          <Country name="country"
+                   className="country"
+                   key={field}
+                   label={this.props.countryLabel}
+                   placeholder={this.props.countryPlaceholder}
+                   {...this.props.country}
+                   excludeUnitedStates="true"
+                   onUpdate={this.updateCountry}
+                   onError={this.handleError}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.handleBlur}
+                   required={this.props.required}
+                   />
           )
       }
     })

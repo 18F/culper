@@ -49,7 +49,7 @@ describe('Divorce validation', function () {
           Status: 'Divorced',
           Deceased: 'Yes',
           DeceasedAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -93,7 +93,7 @@ describe('Divorce validation', function () {
             date: new Date('1/1/2016')
           },
           BirthPlace: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
@@ -114,7 +114,7 @@ describe('Divorce validation', function () {
             date: new Date('1/1/2016')
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',

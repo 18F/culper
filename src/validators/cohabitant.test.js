@@ -124,7 +124,7 @@ describe('Cohabitant validation', function () {
             date: new Date('1/1/2016')
           },
           BirthPlace: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
@@ -240,7 +240,7 @@ describe('Cohabitant validation', function () {
                   date: new Date('1/1/2016')
                 },
                 BirthPlace: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   city: 'Arlington',
                   county: 'Arlington',
                   state: 'VA',
@@ -312,7 +312,7 @@ describe('Cohabitant validation', function () {
       {
         state: {
           BirthPlace: {
-            country: 'Germany',
+            country: { value: 'Germany' },
             city: 'Munich',
             layout: Location.BIRTHPLACE
           },

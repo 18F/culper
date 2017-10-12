@@ -10,9 +10,12 @@ describe('The ToggleableLocation component', () => {
 
   it('Performs US updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const fields = ['street', 'city', 'county', 'stateZipcode']
-    const component = mount(<ToggleableLocation onUpdate={onUpdate} country="United States" domesticFields={fields} />)
+    const props = {
+      onUpdate: () => { updates++ },
+      country: { value: 'United States' },
+      domesticFields: ['street', 'city', 'county', 'stateZipcode']
+    }
+    const component = mount(<ToggleableLocation {...props} />)
     component.find('.mailing input').simulate('change')
     component.find('.city input').simulate('change')
     component.find('.county input').simulate('change')
@@ -23,23 +26,34 @@ describe('The ToggleableLocation component', () => {
 
   it('Performs International updates', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const fields = ['country', 'city']
-    const component = mount(<ToggleableLocation onUpdate={onUpdate} country="" internationalFields={fields} />)
+    const props = {
+      onUpdate: () => { updates++ },
+      country: { value: '' },
+      internationalFields: ['country', 'city']
+    }
+    const component = mount(<ToggleableLocation {...props} />)
     component.find('.city input').simulate('change')
     component.find('.country input').simulate('change', { target: { value: 'Germany' } })
     expect(updates).toBe(2)
   })
 
   it('Render if US are required', () => {
-    const fields = ['country', 'city', 'county', 'stateZipcode', 'state', 'what']
-    const component = mount(<ToggleableLocation country="United States" domesticFields={fields} required={true} />)
+    const props = {
+      required: true,
+      country: { value: 'United States' },
+      domesticFields: ['country', 'city', 'county', 'stateZipcode', 'state', 'what']
+    }
+    const component = mount(<ToggleableLocation {...props} />)
     expect(component.find('.usa-input-error').length).toBe(5)
   })
 
   it('Render if International fields are required', () => {
-    const fields = ['city', 'country', 'what']
-    const component = mount(<ToggleableLocation country="" internationalFields={fields} required={true} />)
+    const props = {
+      required: true,
+      country: { value: '' },
+      internationalFields: ['city', 'country', 'what']
+    }
+    const component = mount(<ToggleableLocation {...props} />)
     expect(component.find('.usa-input-error').length).toBe(2)
   })
 })

@@ -33,7 +33,7 @@ describe('RealEstate Interest validation', function () {
           Address: {
             street: '123 Some rd',
             city: 'Arlington',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.STREET_CITY_COUNTRY
           },
           Acquired: {
