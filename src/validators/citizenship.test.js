@@ -288,7 +288,7 @@ describe('citizenship component validation', function () {
           },
           PlaceIssued: {
             layout: Location.CITY_STATE_COUNTRY,
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             state: 'Virginia'
           },
@@ -338,7 +338,7 @@ describe('citizenship component validation', function () {
             date: new Date('1/1/2016')
           },
           EntryLocation: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             state: 'Virginia',
             layout: Location.CITY_STATE
@@ -437,7 +437,7 @@ describe('citizenship component validation', function () {
           EntryLocation: {
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.CITY_STATE
           },
           PriorCitizenship: {

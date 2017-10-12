@@ -205,7 +205,7 @@ export default class Field extends ValidationElement {
   errorMessages () {
     let el = []
     let stateErrors = this.props.filterErrors(this.errors || [])
-    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1)
+    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1 && err.code.indexOf('country.notfound') === -1)
     const required = stateErrors
       .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
       .sort((e1, e2) => {

@@ -6,8 +6,9 @@ import React from 'react'
 export function AddressSuggestion (props) {
   const suggestion = props.suggestion
   const current = props.current
+  const country = (current.country || {}).value
 
-  switch (current.country) {
+  switch (country) {
     case 'United States':
     case 'POSTOFFICE':
       return (
@@ -33,7 +34,7 @@ export function AddressSuggestion (props) {
             <HighlightedField new={ suggestion.Street2 || suggestion.street2 } current={ current.street2 } />
           </div>
           <div>
-            <HighlightedField new={ suggestion.City || suggestion.city } current={ current.city } />, <HighlightedField new={ suggestion.Country || suggestion.country } current={ current.country } />
+            <HighlightedField new={ suggestion.City || suggestion.city } current={ current.city } />, <HighlightedField new={ suggestion.Country || suggestion.country } current={ country } />
           </div>
         </div>
       )

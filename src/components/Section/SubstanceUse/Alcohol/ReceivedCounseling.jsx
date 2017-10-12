@@ -119,7 +119,7 @@ export default class ReceivedCounseling extends ValidationElement {
     return (
       <div className="received-counseling">
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderName')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="TreatmentProviderName"
                 className="treatment-provider-name"
                 {...this.props.TreatmentProviderName}
@@ -144,7 +144,7 @@ export default class ReceivedCounseling extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.agencyName')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="AgencyName"
                 className="agency-name"
                 {...this.props.AgencyName}
@@ -157,7 +157,8 @@ export default class ReceivedCounseling extends ValidationElement {
         <Branch name="UseSameAddress"
                 label={i18n.t('substance.alcohol.receivedCounseling.heading.agencyAddress')}
                 labelSize="h3"
-                className="use-same-address"
+                help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
+                className={`use-same-address ${this.props.UseSameAddress === 'No' ? 'no-margin-bottom' : ''}`.trim()}
                 yesLabel="Same as above"
                 noLabel="Different address"
                 value={this.props.UseSameAddress}
@@ -168,9 +169,7 @@ export default class ReceivedCounseling extends ValidationElement {
         </Branch>
 
         <Show when={this.props.UseSameAddress === 'No'}>
-          <Field help={'substance.alcohol.receivedCounseling.help.agencyAddress'}
-            adjustFor="address"
-            scrollIntoView={this.props.scrollIntoView}>
+          <Field scrollIntoView={this.props.scrollIntoView}>
             <Location name="AgencyAddress"
                       className="agency-address"
                       {...this.props.AgencyAddress}

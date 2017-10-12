@@ -47,6 +47,8 @@ class Identification extends SectionElement {
             <hr />
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                minimumPhoneNumbers={1}
+                                filterEmpty={true}
                                 defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}

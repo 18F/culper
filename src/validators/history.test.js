@@ -32,7 +32,7 @@ describe('Employment component validation', function () {
                   value: 'Dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -42,7 +42,7 @@ describe('Employment component validation', function () {
                 PhysicalAddress: {
                   HasDifferentAddress: 'Yes',
                   Address: {
-                    country: 'United States',
+                    country: { value: 'United States' },
                     street: '1234 Some Rd',
                     city: 'Arlington',
                     state: 'Virginia',
@@ -62,7 +62,7 @@ describe('Employment component validation', function () {
                 },
                 Supervisor: {
                   Address: {
-                    country: 'United States',
+                    country: { value: 'United States' },
                     street: '1234 Some Rd',
                     city: 'Arlington',
                     state: 'Virginia',

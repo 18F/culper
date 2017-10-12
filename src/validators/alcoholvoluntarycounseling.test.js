@@ -19,7 +19,7 @@ describe('ordered counseling component validation', function () {
             value: 'The name'
           },
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -95,7 +95,7 @@ describe('ordered counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
