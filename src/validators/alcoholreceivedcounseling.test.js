@@ -8,7 +8,7 @@ describe('received counseling component validation', function () {
         state: {
           UseSameAddress: 'Yes',
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -22,7 +22,7 @@ describe('received counseling component validation', function () {
         state: {
           UseSameAddress: 'No',
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -59,7 +59,7 @@ describe('received counseling component validation', function () {
           },
           UseSameAddress: 'Yes',
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -137,7 +137,7 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -181,7 +181,7 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -225,7 +225,7 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -277,7 +277,7 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

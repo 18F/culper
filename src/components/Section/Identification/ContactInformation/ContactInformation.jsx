@@ -69,6 +69,16 @@ export default class ContactInformation extends SubsectionElement {
 
   render () {
     const klass = `${this.props.className || ''}`.trim()
+    let phoneNumbers = this.props.filterEmpty
+          ? this.props.PhoneNumbers.filter(x => {
+            const item = x.Item || {}
+            return item.number || item.noNumber
+          })
+          : this.props.PhoneNumbers
+
+    if (phoneNumbers.length < this.props.minimumPhoneNumbers) {
+      phoneNumbers = this.props.PhoneNumbers.slice(0, this.props.minimumPhoneNumbers)
+    }
 
     return (
       <div className="contact">
@@ -116,8 +126,8 @@ export default class ContactInformation extends SubsectionElement {
         </Field>
 
         <div className={klass + ' telephone-collection'}>
-          <Accordion minimum={2}
-                     items={this.props.PhoneNumbers}
+          <Accordion minimum={this.props.minimumPhoneNumbers}
+                     items={phoneNumbers}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updatePhoneNumbers}
                      onError={this.handleError}
@@ -145,6 +155,8 @@ export default class ContactInformation extends SubsectionElement {
 ContactInformation.defaultProps = {
   Emails: [],
   PhoneNumbers: [],
+  minimumPhoneNumbers: 2,
+  filterEmpty: false,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',

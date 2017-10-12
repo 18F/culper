@@ -504,7 +504,7 @@ export default class ForeignNational extends ValidationElement {
           <Country name="Citizenship"
                    multiple={true}
                    className="citizenship"
-                   value={this.props.Citizenship}
+                   {...this.props.Citizenship}
                    onUpdate={this.updateCitizenship}
                    onError={this.props.onError}
                    required={this.props.required}

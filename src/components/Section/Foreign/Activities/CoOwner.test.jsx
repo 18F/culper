@@ -14,7 +14,7 @@ describe('The CoOwner component', () => {
 
     // Start with countries so we don't have to worry about simulating multi-select
     const countries = {
-      value: [{ name: 'Germany', value: 'Germany' }]
+      value: ['Germany']
     }
     const component = mount(<CoOwner onUpdate={onUpdate} Countries={countries} />)
     expect(component.find('.co-owner').length).toBe(1)
@@ -22,7 +22,7 @@ describe('The CoOwner component', () => {
     component.find('input[name="address"]').simulate('change')
 
     // Delete country to trigger update
-    component.find('.ic-token-delete-button').simulate('click')
+    component.find('.token-delete').simulate('click')
     component.find('textarea[name="RelationshipNature"]').simulate('change')
     expect(updates).toBe(4)
   })

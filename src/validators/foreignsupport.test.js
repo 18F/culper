@@ -44,7 +44,7 @@ describe('Foreign activities support component validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           }
         },
@@ -133,9 +133,7 @@ describe('Foreign activities support component validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           }
         },
         expected: true
@@ -143,10 +141,7 @@ describe('Foreign activities support component validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' },
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['United States', 'Germany']
           }
         },
         expected: true
@@ -195,7 +190,7 @@ describe('Foreign activities support component validation', function () {
                 Address: {
                   street: '1234 Some Rd',
                   city: 'Munich',
-                  country: 'Germany',
+                  country: { value: 'Germany' },
                   layout: Location.ADDRESS
                 },
                 Relationship: {
@@ -208,10 +203,7 @@ describe('Foreign activities support component validation', function () {
                   value: 'Daily'
                 },
                 Citizenship: {
-                  value: [
-                    { name: 'United States', value: 'United States' },
-                    { name: 'Germany', value: 'Germany' }
-                  ]
+                  value: ['United States', 'Germany']
                 }
               }
             }

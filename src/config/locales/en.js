@@ -72,6 +72,9 @@ const en = {
     close: 'Close',
     incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
   },
+  country: {
+    comments: 'Provide comments'
+  },
   comments: {
     add: 'Add a comment',
     addpaired: 'Add a comment to this question',
@@ -467,6 +470,11 @@ const en = {
         required: {
           title: 'There is a problem with this field',
           message: 'This field is required'
+        },
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
         }
       },
       zipcode: {

@@ -10,7 +10,7 @@ describe('Domestic Violence validation', function () {
             value: '4th Circuit Court'
           },
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -46,7 +46,7 @@ describe('Domestic Violence validation', function () {
                   value: '4th Circuit Court'
                 },
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
