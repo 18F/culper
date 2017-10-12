@@ -3,16 +3,17 @@ import ForeignCoOwnersValidator from './foreigncoowner'
 import LocationValidator from './location'
 
 export default class ForeignRealEstateInterestValidator {
-  constructor (state, props = {}) {
-    this.interestTypes = props.InterestTypes
-    this.realEstateType = props.RealEstateType
-    this.address = props.Address
-    this.acquired = props.Acquired
-    this.howAcquired = props.HowAcquired
-    this.cost = props.Cost
-    this.sold = props.Sold
-    this.soldNotApplicable = props.SoldNotApplicable
-    this.coOwners = props.CoOwners
+  constructor (data = {}) {
+    data = data || {}
+    this.interestTypes = data.InterestTypes || []
+    this.realEstateType = data.RealEstateType || {}
+    this.address = data.Address
+    this.acquired = data.Acquired
+    this.howAcquired = data.HowAcquired
+    this.cost = data.Cost
+    this.sold = data.Sold
+    this.soldNotApplicable = data.SoldNotApplicable
+    this.coOwners = data.CoOwners
   }
 
   validInterestTypes () {

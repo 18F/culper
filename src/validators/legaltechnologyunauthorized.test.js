@@ -6,13 +6,13 @@ describe('Legal technology unauthorized component validation', function () {
   it('validate date', () => {
     const tests = [
       {
-        props: {
+        state: {
           Date: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Date: {
             date: new Date('1/1/2010'),
             day: '1',
@@ -30,13 +30,13 @@ describe('Legal technology unauthorized component validation', function () {
   it('validate incident', () => {
     const tests = [
       {
-        props: {
+        state: {
           Incident: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Incident: {
             value: 'this is an incident'
           }
@@ -51,15 +51,15 @@ describe('Legal technology unauthorized component validation', function () {
   it('validate location', () => {
     const tests = [
       {
-        props: {
+        state: {
           Location: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Location: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -77,13 +77,13 @@ describe('Legal technology unauthorized component validation', function () {
   it('validate action', () => {
     const tests = [
       {
-        props: {
+        state: {
           Action: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Action: {
             value: 'this is an action'
           }
@@ -98,17 +98,17 @@ describe('Legal technology unauthorized component validation', function () {
   it('validate technology unauthorized', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasUnauthorized: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasUnauthorized: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -116,7 +116,7 @@ describe('Legal technology unauthorized component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasUnauthorized: 'Yes',
           List: [{}],
           ListBranch: ''
@@ -124,29 +124,31 @@ describe('Legal technology unauthorized component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasUnauthorized: 'Yes',
           List: [
             {
-              Date: {
-                date: new Date('1/1/2010'),
-                day: '1',
-                month: '1',
-                year: '2010'
-              },
-              Incident: {
-                value: 'this is an incident'
-              },
-              Location: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Action: {
-                value: 'this is an action'
+              Item: {
+                Date: {
+                  date: new Date('1/1/2010'),
+                  day: '1',
+                  month: '1',
+                  year: '2010'
+                },
+                Incident: {
+                  value: 'this is an incident'
+                },
+                Location: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Action: {
+                  value: 'this is an action'
+                }
               }
             }
           ],

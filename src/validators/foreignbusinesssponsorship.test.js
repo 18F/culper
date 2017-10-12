@@ -6,13 +6,13 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship name', () => {
     const tests = [
       {
-        props: {
+        state: {
           Name: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -34,13 +34,13 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship birthdate', () => {
     const tests = [
       {
-        props: {
+        state: {
           Birthdate: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Birthdate: {
             day: '1',
             month: '1',
@@ -61,16 +61,16 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship birthplace', () => {
     const tests = [
       {
-        props: {
+        state: {
           Birthplace: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Birthplace: {
             city: 'Munich',
-            country: 'Germnay',
+            country: { value: 'Germnay' },
             layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
           }
         },
@@ -84,15 +84,15 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship address', () => {
     const tests = [
       {
-        props: {
+        state: {
           Address: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -110,17 +110,15 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship citizenship', () => {
     const tests = [
       {
-        props: {
+        state: {
           Citizenship: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           }
         },
         expected: true
@@ -133,13 +131,13 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship dates', () => {
     const tests = [
       {
-        props: {
+        state: {
           Dates: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Dates: {
             from: {
               date: new Date('1/1/2010')
@@ -160,15 +158,15 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship residence', () => {
     const tests = [
       {
-        props: {
+        state: {
           Residence: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Residence: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -186,13 +184,13 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship organization', () => {
     const tests = [
       {
-        props: {
+        state: {
           Organization: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Organization: {
             value: 'this is the organization'
           },
@@ -210,15 +208,15 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship organization address', () => {
     const tests = [
       {
-        props: {
+        state: {
           OrganizationAddress: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           OrganizationAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -239,13 +237,13 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship purpose of stay', () => {
     const tests = [
       {
-        props: {
+        state: {
           Stay: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Stay: {
             value: 'this is the stay'
           }
@@ -260,13 +258,13 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship purpose', () => {
     const tests = [
       {
-        props: {
+        state: {
           Sponsorship: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Sponsorship: {
             value: 'this is the sponsorship'
           }
@@ -281,17 +279,17 @@ describe('Foreign business sponsorship component validation', function () {
   it('validate foreign business sponsorship', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignSponsorship: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasForeignSponsorship: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -299,7 +297,7 @@ describe('Foreign business sponsorship component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignSponsorship: 'Yes',
           List: [{}],
           ListBranch: 'No'
@@ -307,84 +305,86 @@ describe('Foreign business sponsorship component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignSponsorship: 'Yes',
           List: [
             {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              Birthdate: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              BirthdateNotApplicable: {
-                applicable: true
-              },
-              Birthplace: {
-                country: 'Germnay',
-                city: 'Munich',
-                layout: Location.CITY_COUNTRY
-              },
-              Address: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Citizenship: {
-                value: [{ name: 'Germany', value: 'Germany' }]
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Birthdate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
                 },
-                present: false
-              },
-              Residence: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Organization: {
-                value: 'this is the organization'
-              },
-              OrganizationNotApplicable: {
-                applicable: true
-              },
-              OrganizationAddress: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              OrganizationAddressNotApplicable: {
-                applicable: true
-              },
-              Stay: {
-                value: 'this is the stay'
-              },
-              Sponsorship: {
-                value: 'this is the sponsorship'
+                BirthdateNotApplicable: {
+                  applicable: true
+                },
+                Birthplace: {
+                  country: { value: 'Germnay' },
+                  city: 'Munich',
+                  layout: Location.CITY_COUNTRY
+                },
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Citizenship: {
+                  value: ['Germany']
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Residence: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Organization: {
+                  value: 'this is the organization'
+                },
+                OrganizationNotApplicable: {
+                  applicable: true
+                },
+                OrganizationAddress: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                OrganizationAddressNotApplicable: {
+                  applicable: true
+                },
+                Stay: {
+                  value: 'this is the stay'
+                },
+                Sponsorship: {
+                  value: 'this is the sponsorship'
+                }
               }
             }
           ],

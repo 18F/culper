@@ -4,6 +4,7 @@ import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { Field } from '../../Form'
 import Gambling from './Gambling'
 import Bankruptcies from './Bankruptcy'
 import Taxes from './Taxes'
@@ -18,12 +19,15 @@ class Financial extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="identification/review"
-                       backLabel={i18n.t('identification.destination.review')}
+                       back="foreign/review"
+                       backLabel={i18n.t('foreign.destination.review')}
                        next="financial/bankruptcy"
                        nextLabel={i18n.t('financial.destination.bankruptcy')}>
-            <h2>{i18n.t('financial.intro.title')}</h2>
-            {i18n.m('financial.intro.body')}
+            <Field title={i18n.t('financial.intro.title')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('financial.intro.body')}
+            </Field>
           </SectionView>
 
           <SectionView name="review"
@@ -32,9 +36,8 @@ class Financial extends SectionElement {
                        showTop={true}
                        back="financial/nonpayment"
                        backLabel={i18n.t('financial.destination.nonpayment')}
-                       next="history/intro"
-                       nextLabel={i18n.t('history.destination.intro')}>
-            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
+                       next="substance/intro"
+                       nextLabel={i18n.t('substance.destination.intro')}>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
                           addressBooks={this.props.AddressBooks}
@@ -45,9 +48,7 @@ class Financial extends SectionElement {
                           required={true}
                           scrollIntoView={false}
                           />
-
             <hr />
-            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       dispatch={this.props.dispatch}
@@ -59,7 +60,6 @@ class Financial extends SectionElement {
                     />
 
             <hr />
-            <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
                    {...this.props.Taxes}
                    dispatch={this.props.dispatch}
@@ -71,7 +71,6 @@ class Financial extends SectionElement {
                    />
 
             <hr />
-            <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
                   addressBooks={this.props.AddressBooks}
@@ -84,7 +83,6 @@ class Financial extends SectionElement {
                   />
 
             <hr />
-            <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
                     addressBooks={this.props.AddressBooks}
@@ -97,14 +95,6 @@ class Financial extends SectionElement {
                     />
 
             <hr />
-            <h2>{i18n.t('financial.delinquent.title')}</h2>
-            {i18n.m('financial.delinquent.para.details')}
-            <ul>
-              <li>{i18n.m('financial.delinquent.para.alimony')}</li>
-              <li>{i18n.m('financial.delinquent.para.judgement')}</li>
-              <li>{i18n.m('financial.delinquent.para.lien')}</li>
-              <li>{i18n.m('financial.delinquent.para.federal')}</li>
-            </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
                         addressBooks={this.props.AddressBooks}
@@ -117,17 +107,6 @@ class Financial extends SectionElement {
                         />
 
             <hr />
-            <h2>{i18n.t('financial.nonpayment.title')}</h2>
-            <ul>
-              <li>{i18n.m('financial.nonpayment.para.repo')}</li>
-              <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.collections')}</li>
-              <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
-              <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
-              <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
-              <li>{i18n.m('financial.nonpayment.para.any')}</li>
-            </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
                         dispatch={this.props.dispatch}
@@ -144,7 +123,6 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.intro')}
                        next="financial/gambling"
                        nextLabel={i18n.t('financial.destination.gambling')}>
-            <h2>{i18n.t('financial.bankruptcy.title')}</h2>
             <Bankruptcies name="bankruptcy"
                           {...this.props.Bankruptcy}
                           addressBooks={this.props.AddressBooks}
@@ -160,7 +138,6 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.bankruptcy')}
                        next="financial/taxes"
                        nextLabel={i18n.t('financial.destination.taxes')}>
-            <h2>{i18n.t('financial.gambling.title')}</h2>
             <Gambling name="gambling"
                       {...this.props.Gambling}
                       dispatch={this.props.dispatch}
@@ -175,7 +152,6 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.gambling')}
                        next="financial/card"
                        nextLabel={i18n.t('financial.destination.card')}>
-            <h2>{i18n.t('financial.taxes.title')}</h2>
             <Taxes name="taxes"
                    {...this.props.Taxes}
                    dispatch={this.props.dispatch}
@@ -190,7 +166,6 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.taxes')}
                        next="financial/credit"
                        nextLabel={i18n.t('financial.destination.credit')}>
-            <h2>{i18n.t('financial.card.title')}</h2>
             <Card name="card"
                   {...this.props.Card}
                   addressBooks={this.props.AddressBooks}
@@ -206,7 +181,6 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.card')}
                        next="financial/delinquent"
                        nextLabel={i18n.t('financial.destination.delinquent')}>
-            <h2>{i18n.t('financial.credit.title')}</h2>
             <Credit name="credit"
                     {...this.props.Credit}
                     addressBooks={this.props.AddressBooks}
@@ -222,14 +196,6 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.credit')}
                        next="financial/nonpayment"
                        nextLabel={i18n.t('financial.destination.nonpayment')}>
-            <h2>{i18n.t('financial.delinquent.title')}</h2>
-            {i18n.m('financial.delinquent.para.details')}
-            <ul>
-              <li>{i18n.m('financial.delinquent.para.alimony')}</li>
-              <li>{i18n.m('financial.delinquent.para.judgement')}</li>
-              <li>{i18n.m('financial.delinquent.para.lien')}</li>
-              <li>{i18n.m('financial.delinquent.para.federal')}</li>
-            </ul>
             <Delinquent name="delinquent"
                         {...this.props.Delinquent}
                         addressBooks={this.props.AddressBooks}
@@ -245,17 +211,6 @@ class Financial extends SectionElement {
                        backLabel={i18n.t('financial.destination.delinquent')}
                        next="financial/review"
                        nextLabel={i18n.t('financial.destination.review')}>
-            <h2>{i18n.t('financial.nonpayment.title')}</h2>
-            <ul>
-              <li>{i18n.m('financial.nonpayment.para.repo')}</li>
-              <li>{i18n.m('financial.nonpayment.para.defaulted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.collections')}</li>
-              <li>{i18n.m('financial.nonpayment.para.cancelled')}</li>
-              <li>{i18n.m('financial.nonpayment.para.evicted')}</li>
-              <li>{i18n.m('financial.nonpayment.para.garnished')}</li>
-              <li>{i18n.m('financial.nonpayment.para.delinquent')}</li>
-              <li>{i18n.m('financial.nonpayment.para.any')}</li>
-            </ul>
             <Nonpayment name="nonpayment"
                         {...this.props.Nonpayment}
                         dispatch={this.props.dispatch}
@@ -298,4 +253,83 @@ Financial.defaultProps = {
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
+export class FinancialSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Bankruptcies name="bankruptcy"
+          {...this.props.Bankruptcy}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <Gambling name="gambling"
+          {...this.props.Gambling}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Taxes name="taxes"
+          {...this.props.Taxes}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Card name="card"
+          {...this.props.Card}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Credit name="credit"
+          {...this.props.Credit}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Delinquent name="delinquent"
+          {...this.props.Delinquent}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr />
+        <Nonpayment name="nonpayment"
+          {...this.props.Nonpayment}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          defaultState={false}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
 export default connect(mapStateToProps)(AuthenticatedView(Financial))

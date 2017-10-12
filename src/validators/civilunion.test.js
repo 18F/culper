@@ -34,7 +34,7 @@ describe('CivilUnion validation', function () {
           Separated: 'Yes',
           AddressSeparatedNotApplicable: false,
           AddressSeparated: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             state: 'Virginia',
             zipcode: '22202',
@@ -159,7 +159,7 @@ describe('CivilUnion validation', function () {
       {
         state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -172,7 +172,7 @@ describe('CivilUnion validation', function () {
       {
         state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '',
             city: '',
             state: 'Virginia',
@@ -215,14 +215,14 @@ describe('CivilUnion validation', function () {
             date: new Date('1/1/2016')
           },
           BirthPlace: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             county: 'Arlington',
             state: 'VA',
             layout: Location.BIRTHPLACE
           },
           Location: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             state: 'Virginia',
             county: 'Arlington',
@@ -230,7 +230,7 @@ describe('CivilUnion validation', function () {
             layout: Location.BIRTHPLACE
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -241,6 +241,7 @@ describe('CivilUnion validation', function () {
             noNumber: '',
             number: '7031112222',
             numberType: 'Home',
+            type: 'Domestic',
             timeOfDay: 'Both',
             extension: ''
           },
@@ -297,7 +298,7 @@ describe('CivilUnion validation', function () {
         state: {
           BirthPlace: {
             domestic: 'No',
-            country: 'Germany',
+            country: { value: 'Germany' },
             city: 'Munich',
             layout: Location.BIRTHPLACE
           },

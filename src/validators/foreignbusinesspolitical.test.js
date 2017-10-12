@@ -5,13 +5,13 @@ describe('Foreign business political component validation', function () {
   it('validate foreign business political position', () => {
     const tests = [
       {
-        props: {
+        state: {
           Position: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Position: {
             value: 'this is the position'
           }
@@ -26,13 +26,13 @@ describe('Foreign business political component validation', function () {
   it('validate foreign business political dates', () => {
     const tests = [
       {
-        props: {
+        state: {
           Dates: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Dates: {
             from: {
               date: new Date('1/1/2010')
@@ -53,13 +53,13 @@ describe('Foreign business political component validation', function () {
   it('validate foreign business political country', () => {
     const tests = [
       {
-        props: {
+        state: {
           Country: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Country: {
             value: 'Germany'
           }
@@ -74,13 +74,13 @@ describe('Foreign business political component validation', function () {
   it('validate foreign business political reason', () => {
     const tests = [
       {
-        props: {
+        state: {
           Reason: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Reason: {
             value: 'this is the reason'
           }
@@ -95,13 +95,13 @@ describe('Foreign business political component validation', function () {
   it('validate foreign business political eligibility', () => {
     const tests = [
       {
-        props: {
+        state: {
           Eligibility: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Eligibility: {
             value: 'this is the eligibility'
           }
@@ -116,17 +116,17 @@ describe('Foreign business political component validation', function () {
   it('validate foreign business political', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignPolitical: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasForeignPolitical: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -134,7 +134,7 @@ describe('Foreign business political component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignPolitical: 'Yes',
           List: [{}],
           ListBranch: 'No'
@@ -142,30 +142,32 @@ describe('Foreign business political component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasForeignPolitical: 'Yes',
           List: [
             {
-              Position: {
-                value: 'this is the position'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Position: {
+                  value: 'this is the position'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
                 },
-                present: false
-              },
-              Country: {
-                value: 'Germany'
-              },
-              Reason: {
-                value: 'this is the reason'
-              },
-              Eligibility: {
-                value: 'this is the eligibility'
+                Country: {
+                  value: 'Germany'
+                },
+                Reason: {
+                  value: 'this is the reason'
+                },
+                Eligibility: {
+                  value: 'this is the eligibility'
+                }
               }
             }
           ],

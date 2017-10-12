@@ -8,35 +8,40 @@ export default class Comments extends ValidationElement {
     super(props)
 
     this.state = {
-      value: this.props.value,
       visible: this.props.visible
     }
 
     this.toggle = this.toggle.bind(this)
     this.visible = this.visible.bind(this)
+    this.update = this.update.bind(this)
+    this.updateComments = this.updateComments.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      value: this.props.value,
+      ...queue
+    })
+  }
+
+  updateComments (values) {
+    this.update({
+      value: values.value
+    })
   }
 
   toggle () {
     let future = !this.visible()
-    let value = future ? this.state.value : ''
-    this.setState({ visible: future, value: value }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
-      }
+    let value = future ? this.props.value : ''
+    this.setState({ visible: future }, () => {
+      this.update({ value: value })
     })
   }
 
   visible () {
-    return this.state.value || this.state.visible || this.props.visible
-  }
-
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
-      }
-    })
+    // return this.state.value || this.state.visible || this.props.visible
+    return this.props.value || this.state.visible
   }
 
   getTitle () {
@@ -45,7 +50,7 @@ export default class Comments extends ValidationElement {
     }
 
     return (
-      <h4>{this.props.title}</h4>
+      <span className="title">{this.props.title}</span>
     )
   }
 
@@ -72,9 +77,8 @@ export default class Comments extends ValidationElement {
         {this.getTitle()}
         <Textarea name="comments"
                   {...this.props}
-                  onChange={this.handleChange}
+                  onUpdate={this.updateComments}
                   onError={this.props.onError}
-                  value={this.state.value}
                   />
         <div className={klass}>
           <a href="javascript:;;" onClick={this.toggle} className="remove-comment">
@@ -92,7 +96,9 @@ Comments.defaultProps = {
   visible: false,
   title: '',
   addLabel: 'comments.add',
-  removeLabel: 'comments.remove'
+  removeLabel: 'comments.remove',
+  onUpdate: (queue) => {},
+  onError: (value, arr) => { return arr }
 }
 
 Comments.errors = []

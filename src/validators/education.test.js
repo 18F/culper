@@ -84,7 +84,7 @@ describe('Education component validation', function () {
         state: {
           HasAttended: 'Yes',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -171,6 +171,7 @@ describe('Education component validation', function () {
               noNumber: '',
               number: '7031112222',
               numberType: 'Home',
+              type: 'Domestic',
               timeOfDay: 'Both',
               extension: ''
             },
@@ -178,7 +179,7 @@ describe('Education component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -385,10 +386,14 @@ describe('Education component validation', function () {
                 Name: {
                   value: 'School name'
                 },
-                Reference: null,
+                Reference: {
+                  FullNameNotApplicable: {
+                    applicable: false
+                  }
+                },
                 Type: 'High School',
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -429,7 +434,7 @@ describe('Education component validation', function () {
                 Reference: null,
                 Type: 'High School',
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

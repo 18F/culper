@@ -18,11 +18,11 @@ describe('RealEstate Interest validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignRealEstateInterestValidator(null, test.props).validInterestTypes()).toBe(test.expected)
+      expect(new ForeignRealEstateInterestValidator(test.props).validInterestTypes()).toBe(test.expected)
     })
   })
 
-  it('should validate direct interest', function () {
+  it('should validate realestate interest', function () {
     const tests = [
       {
         props: {
@@ -33,7 +33,7 @@ describe('RealEstate Interest validation', function () {
           Address: {
             street: '123 Some rd',
             city: 'Arlington',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.STREET_CITY_COUNTRY
           },
           Acquired: {
@@ -63,7 +63,7 @@ describe('RealEstate Interest validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignRealEstateInterestValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignRealEstateInterestValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 })

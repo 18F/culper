@@ -6,7 +6,7 @@ import { autotab } from '../Generic'
 
 const getSuggestionValue = suggestion => suggestion.text
 
-const renderSuggestion = (suggestion, search) => {
+export const renderSuggestion = (suggestion, search) => {
   let text = `${suggestion.value}`
 
   // If the value is different than the name then display that
@@ -27,9 +27,7 @@ const renderSuggestion = (suggestion, search) => {
   }
 
   return (
-    <div>
-      <ReactMarkdown source={text} />
-    </div>
+    <ReactMarkdown source={text} />
   )
 }
 
@@ -47,6 +45,7 @@ export default class Dropdown extends ValidationElement {
       valid: props.valid
     }
 
+    this.update = this.update.bind(this)
     this.handleKeyDown = this.handleKeyDown.bind(this)
     this.onSuggestionChange = this.onSuggestionChange.bind(this)
     this.onSuggestionsFetchRequested = this.onSuggestionsFetchRequested.bind(this)
@@ -92,12 +91,22 @@ export default class Dropdown extends ValidationElement {
     }
   }
 
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      value: this.props.value,
+      showComments: this.props.showComments,
+      comments: this.props.comments,
+      ...queue
+    })
+  }
+
   /**
    * Execute validation checks on the value.
    */
   handleValidation (event) {
     const value = this.state.value
-    const errors = this.props.onError(value, this.constructor.errors.map(err => {
+    const localErrors = this.constructor.errors.map(err => {
       return {
         code: err.code,
         valid: err.func(value, {
@@ -106,9 +115,10 @@ export default class Dropdown extends ValidationElement {
         }),
         uid: this.state.uid
       }
-    })) || []
-
-    this.setState({ error: errors.some(x => x.valid === false), valid: errors.every(x => x.valid === true) })
+    })
+    const errors = this.props.onError(value, localErrors) || []
+    const valid = errors.every(x => x.valid === true) && localErrors.every(x => x.valid === true)
+    this.setState({ error: errors.some(x => x.valid === false), valid: valid })
   }
 
   /**
@@ -209,8 +219,10 @@ export default class Dropdown extends ValidationElement {
         value: value
       }
     }
+
     this.setState({value: value}, () => {
       super.handleChange(e)
+      this.update({value: value})
     })
   }
 
@@ -226,10 +238,24 @@ export default class Dropdown extends ValidationElement {
     })
   }
 
-  onSuggestionSelected (event) {
-    this.setState({ focus: false }, () => {
+  onSuggestionSelected (event, options) {
+    const value = (options.suggestion || {}).value || this.state.value
+    let future = {
+      focus: false,
+      suggestions: this.state.suggestions,
+      value: value
+    }
+
+    if (this.props.clearOnSelection) {
+      future.suggestions = []
+      future.value = ''
+    }
+
+    this.setState(future, () => {
+      this.props.onSuggestionSelected(event, options)
       this.handleValidation(event)
       this.props.tabNext()
+      this.update({value: value})
     })
   }
 
@@ -275,8 +301,8 @@ export default class Dropdown extends ValidationElement {
     }).shift()
 
     const value = (option && !this.state.focus)
-        ? this.props.displayText(option.value, option.text)
-        : this.state.value
+          ? this.props.displayText(option.value, option.text)
+          : this.state.value
 
     const inputProps = {
       id: this.state.uid,
@@ -312,6 +338,7 @@ export default class Dropdown extends ValidationElement {
                      getSuggestionValue={getSuggestionValue}
                      renderSuggestion={renderSuggestion}
                      inputProps={inputProps}
+                     highlightFirstSuggestion={true}
                      ref="autosuggest"
                      />
       </div>
@@ -332,6 +359,7 @@ Dropdown.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  clearOnSelection: false,
   clipboard: true,
   tabNext: () => {},
   tabBack: () => {},
@@ -339,6 +367,8 @@ Dropdown.defaultProps = {
   displayText: (value, text) => {
     return value
   },
+  onSuggestionSelected: (event, options) => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 
@@ -358,6 +388,7 @@ Dropdown.errors = [
       if (!value) {
         return null
       }
+
       return props.options.some(x => {
         return x.text.toLowerCase() === value.toLowerCase() || x.value.toLowerCase() === value.toLowerCase()
       })

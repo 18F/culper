@@ -1,13 +1,11 @@
 import DateRangeValidator from './daterange'
-import LocationValidator from './location'
-import NameValidator from './name'
-import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
+import { validGenericTextfield } from './helpers'
 
 export default class CitizenshipMultipleValidator {
-  constructor (state = {}, props = {}) {
-    this.hasMultiple = state.HasMultiple
-    this.citizenships = state.Citizenships || []
-    this.citizenshipsBranch = state.CitizenshipsBranch
+  constructor (data = {}) {
+    this.hasMultiple = data.HasMultiple
+    this.citizenships = data.Citizenships || []
+    this.citizenshipsBranch = data.CitizenshipsBranch
   }
 
   validHasMultiple () {
@@ -28,7 +26,7 @@ export default class CitizenshipMultipleValidator {
     }
 
     for (const citizenship of this.citizenships) {
-      if (new CitizenshipItemValidator(citizenship.Item, null).isValid() !== true) {
+      if (new CitizenshipItemValidator(citizenship.Item).isValid() !== true) {
         return false
       }
     }
@@ -43,14 +41,14 @@ export default class CitizenshipMultipleValidator {
 }
 
 export class CitizenshipItemValidator {
-  constructor (state = {}, props = {}) {
-    this.country = state.Country
-    this.dates = state.Dates
-    this.how = state.How
-    this.renounced = state.Renounced
-    this.renouncedExplanation = state.RenouncedExplanation
-    this.current = state.Current
-    this.currentExplanation = state.CurrentExplanation
+  constructor (data = {}) {
+    this.country = data.Country
+    this.dates = data.Dates
+    this.how = data.How
+    this.renounced = data.Renounced
+    this.renouncedExplanation = data.RenouncedExplanation
+    this.current = data.Current
+    this.currentExplanation = data.CurrentExplanation
   }
 
   validCountry () {
@@ -72,7 +70,7 @@ export class CitizenshipItemValidator {
   }
 
   validCurrent () {
-    if (!this.dates || !this.dates.present) {
+    if (!this.dates || this.dates.present) {
       return true
     }
 

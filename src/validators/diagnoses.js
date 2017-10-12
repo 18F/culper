@@ -3,14 +3,14 @@ import DiagnosisValidator from './diagnosis'
 import { validBranch } from './helpers'
 
 export default class DiagnosesValidator {
-  constructor (state = {}, props = {}) {
-    this.diagnosed = state.Diagnosed
-    this.didNotConsult = state.DidNotConsult
-    this.inTreatment = state.InTreatment
-    this.diagnosisList = state.DiagnosisList
-    this.diagnosisListBranch = state.DiagnosisListBranch
-    this.treatmentList = state.TreatmentList
-    this.treatmentListBranch = state.TreatmentListBranch
+  constructor (data = {}) {
+    this.diagnosed = data.Diagnosed
+    this.didNotConsult = data.DidNotConsult
+    this.inTreatment = data.InTreatment
+    this.diagnosisList = data.DiagnosisList
+    this.diagnosisListBranch = data.DiagnosisListBranch
+    this.treatmentList = data.TreatmentList
+    this.treatmentListBranch = data.TreatmentListBranch
   }
 
   validDiagnosisList () {
@@ -27,7 +27,7 @@ export default class DiagnosesValidator {
     }
 
     for (let item of this.diagnosisList) {
-      if (!new DiagnosisValidator(item.Diagnosis).isValid()) {
+      if (!new DiagnosisValidator(item.Item).isValid()) {
         return false
       }
     }
@@ -49,7 +49,7 @@ export default class DiagnosesValidator {
     }
 
     for (let item of this.treatmentList) {
-      if (!new TreatmentValidator(item.Treatment).isValid()) {
+      if (!new TreatmentValidator(item.Item).isValid()) {
         return false
       }
     }

@@ -60,6 +60,8 @@ export default class Selective extends SubsectionElement {
     return (
       <div className="selective">
         <Branch name="was_bornafter"
+                label={i18n.t('military.selective.heading.born')}
+                labelSize="h2"
                 className="born"
                 value={this.props.WasBornAfter}
                 help="military.selective.help.born"
@@ -72,8 +74,9 @@ export default class Selective extends SubsectionElement {
 
         <Show when={this.props.WasBornAfter === 'Yes'}>
           <div>
-            <h3>{i18n.t('military.selective.heading.registered')}</h3>
             <Branch name="has_registered"
+                    label={i18n.t('military.selective.heading.registered')}
+                    labelSize="h3"
                     className={`registered no-margin-bottom ${this.props.HasRegistered === 'No' ? 'no-margin-bottom' : ''}`}
                     value={this.props.HasRegistered}
                     warning={true}
@@ -149,6 +152,6 @@ Selective.defaultProps = {
   subsection: 'selective',
   dispatch: () => {},
   validator: (state, props) => {
-    return new SelectiveServiceValidator(props, props).isValid()
+    return new SelectiveServiceValidator(props).isValid()
   }
 }

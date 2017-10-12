@@ -45,7 +45,7 @@ describe('Drug Use Validation', function () {
           ListBranch: 'No',
           List: [
             {
-              DrugUse: {
+              Item: {
                 DrugType: {
                   DrugType: 'Cocaine',
                   DrugTypeOther: null

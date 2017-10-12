@@ -12,6 +12,10 @@ input, textarea, select {
   border-radius: 3px;
 }
 
+textarea {
+  resize: vertical;
+}
+
 /* bring in USWD validation classes and alter for our design */
 input[type='text'], textarea, select {
   padding-right: 3rem;
@@ -295,6 +299,7 @@ select {
         top: 8rem;
         left: 0;
         width: 100%;
+        height: auto;
         line-height: 1.1;
         font-size: 1.7rem;
         color: $eapp-grey-dark;

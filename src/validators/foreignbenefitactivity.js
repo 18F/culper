@@ -2,10 +2,11 @@ import ForeignBenefitValidator from './foreignbenefit'
 import { validBranch } from './helpers'
 
 export default class ForeignBenefitActivityValidator {
-  constructor (state, props = {}) {
-    this.hasBenefits = props.HasBenefits || ''
-    this.list = props.List || []
-    this.listBranch = props.ListBranch
+  constructor (data = {}) {
+    data = data || {}
+    this.hasBenefits = data.HasBenefits || ''
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   isValid () {
@@ -25,7 +26,7 @@ export default class ForeignBenefitActivityValidator {
     }
 
     return this.list.every((item) => {
-      return new ForeignBenefitValidator(null, item.Benefit).isValid()
+      return new ForeignBenefitValidator(item.Item).isValid()
     })
   }
 }

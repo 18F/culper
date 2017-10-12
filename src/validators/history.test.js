@@ -32,12 +32,23 @@ describe('Employment component validation', function () {
                   value: 'Dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
                   zipcode: '22202',
                   layout: Location.ADDRESS
+                },
+                PhysicalAddress: {
+                  HasDifferentAddress: 'Yes',
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
                 },
                 Additional: {
                   List: [{ Has: 'No' }]
@@ -46,11 +57,12 @@ describe('Employment component validation', function () {
                   noNumber: '',
                   number: '2028675309',
                   numberType: 'Cell',
-                  timeOfDay: 'Day'
+                  timeOfDay: 'Day',
+                  type: 'Domestic'
                 },
                 Supervisor: {
                   Address: {
-                    country: 'United States',
+                    country: { value: 'United States' },
                     street: '1234 Some Rd',
                     city: 'Arlington',
                     state: 'Virginia',
@@ -67,6 +79,7 @@ describe('Employment component validation', function () {
                     noNumber: '',
                     number: '2021112222',
                     numberType: 'Cell',
+                    type: 'Domestic',
                     timeOfDay: 'Day'
                   },
                   Title: {
@@ -77,15 +90,17 @@ describe('Employment component validation', function () {
                   Reasons: [
                     {
                       Has: 'Yes',
-                      Reason: 'Fired',
-                      Date: {
-                        date: new Date('1/1/2016'),
-                        day: '1',
-                        month: '1',
-                        year: '2016'
-                      },
-                      Text: {
-                        value: 'Some excuse'
+                      Item: {
+                        Reason: 'Fired',
+                        Date: {
+                          date: new Date('1/1/2016'),
+                          day: '1',
+                          month: '1',
+                          year: '2016'
+                        },
+                        Text: {
+                          value: 'Some excuse'
+                        }
                       }
                     }
                   ]
@@ -93,14 +108,16 @@ describe('Employment component validation', function () {
                 Reprimand: {
                   Reasons: [
                     {
-                      Date: {
-                        date: new Date('1/1/2015'),
-                        month: '1',
-                        year: '2015'
-                      },
                       Has: 'Yes',
-                      Text: {
-                        value: 'Foo'
+                      Item: {
+                        Date: {
+                          date: new Date('1/1/2015'),
+                          month: '1',
+                          year: '2015'
+                        },
+                        Text: {
+                          value: 'Foo'
+                        }
                       }
                     }
                   ]

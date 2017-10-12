@@ -19,7 +19,7 @@ describe('ordered counseling component validation', function () {
             value: 'The name'
           },
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -31,6 +31,7 @@ describe('ordered counseling component validation', function () {
             number: '7031112222',
             numberType: 'Home',
             timeOfDay: 'Both',
+            type: 'Domestic',
             extension: ''
           },
           CompletedTreatment: 'Yes'
@@ -39,7 +40,7 @@ describe('ordered counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new VoluntaryCounselingValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new VoluntaryCounselingValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 
@@ -68,7 +69,7 @@ describe('ordered counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new VoluntaryCounselingValidator(test.state, null).validCompletedTreatment()).toBe(test.expected)
+      expect(new VoluntaryCounselingValidator(test.state).validCompletedTreatment()).toBe(test.expected)
     })
   })
 
@@ -80,7 +81,7 @@ describe('ordered counseling component validation', function () {
           SoughtTreatment: 'Yes',
           List: [
             {
-              VoluntaryCounseling: {
+              Item: {
                 CounselingDates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -94,7 +95,7 @@ describe('ordered counseling component validation', function () {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -105,6 +106,7 @@ describe('ordered counseling component validation', function () {
                   noNumber: '',
                   number: '7031112222',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
@@ -139,13 +141,13 @@ describe('ordered counseling component validation', function () {
         state: {
           SoughtTreatment: 'Yes',
           ListBranch: 'No',
-          List: [{VoluntaryCounseling: {}}]
+          List: [{Item: {}}]
         },
         expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new VoluntaryCounselingsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new VoluntaryCounselingsValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 })

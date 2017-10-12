@@ -1,6 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Accordion from './Accordion'
+import Accordion, { validValidator } from './Accordion'
 import Text from '../Text'
 
 describe('The accordion component', () => {
@@ -210,13 +210,19 @@ describe('The accordion component', () => {
     let items = [
       { uuid: '1', open: false }
     ]
+    const Validator = class {
+      isValid () {
+        return false
+      }
+    }
 
     const expected = {
       minimum: 1,
       items: items,
       defaultState: false,
       initial: false,
-      validator: (props) => { return false },
+      required: true,
+      validator: Validator,
       summary: (item, index, initial) => { return <span>Summary</span> },
       byline: (item, index, initial) => { return <span className="byline">My custom byline</span> }
     }
@@ -229,12 +235,19 @@ describe('The accordion component', () => {
       { uuid: '1', open: false }
     ]
 
+    const Validator = class {
+      isValid () {
+        return false
+      }
+    }
+
     const expected = {
       minimum: 1,
       items: items,
       defaultState: false,
       initial: false,
-      validator: (props) => { return false },
+      validator: Validator,
+      required: true,
       summary: (item, index, initial) => { return <span>Summary</span> }
     }
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)

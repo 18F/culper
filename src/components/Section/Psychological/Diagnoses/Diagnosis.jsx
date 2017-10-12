@@ -153,7 +153,10 @@ export default class Diagnosis extends ValidationElement {
                      />
         </Field>
 
-        <h2>{i18n.t(`psychological.${prefix}.heading.healthcareProfessional`)}</h2>
+        <Field title={i18n.t(`psychological.${prefix}.heading.healthcareProfessional`)}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
         <div className="person">
           <Treatment name="Treatment"
                      {...this.props.Treatment}
@@ -167,7 +170,10 @@ export default class Diagnosis extends ValidationElement {
                      />
         </div>
 
-        <h2>{i18n.t(`psychological.${prefix}.heading.facility`)}</h2>
+        <Field title={i18n.t(`psychological.${prefix}.heading.facility`)}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
         <div className="facility">
           <Treatment name="TreatmentFacility"
                      {...this.props.TreatmentFacility}

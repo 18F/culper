@@ -31,7 +31,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyValidator(null, test.props).validHasBankruptcy()).toBe(test.expected)
+      expect(new BankruptcyValidator(test.props).validHasBankruptcy()).toBe(test.expected)
     })
   })
 
@@ -58,10 +58,10 @@ describe('Bankruptcy component validation', function () {
           HasBankruptcy: 'Yes',
           List: [
             {
-              Bankruptcy: {
+              Item: {
                 PetitionType: 'Chapter7',
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -111,10 +111,10 @@ describe('Bankruptcy component validation', function () {
           HasBankruptcy: 'Yes',
           List: [
             {
-              Bankruptcy: {
+              Item: {
                 PetitionType: 'Chapter7',
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -163,7 +163,7 @@ describe('Bankruptcy component validation', function () {
           HasBankruptcy: 'Yes',
           List: [
             {
-              Bankruptcy: {
+              Item: {
                 PetitionType: 'Hello'
               }
             }
@@ -175,7 +175,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new BankruptcyValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -202,7 +202,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validPetitionType()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(test.expected)
     })
   })
 
@@ -211,7 +211,7 @@ describe('Bankruptcy component validation', function () {
       {
         props: {
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -230,7 +230,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validCourtAddress()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validCourtAddress()).toBe(test.expected)
     })
   })
 
@@ -261,7 +261,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validCourtInvolved()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validCourtInvolved()).toBe(test.expected)
     })
   })
 
@@ -292,7 +292,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validCourtNumber()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validCourtNumber()).toBe(test.expected)
     })
   })
 
@@ -323,7 +323,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validTotalAmount()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validTotalAmount()).toBe(test.expected)
     })
   })
 
@@ -347,7 +347,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validDateFiled()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validDateFiled()).toBe(test.expected)
     })
   })
 
@@ -371,7 +371,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validDateDischarged()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validDateDischarged()).toBe(test.expected)
     })
   })
 
@@ -381,7 +381,7 @@ describe('Bankruptcy component validation', function () {
         props: {
           PetitionType: 'Chapter7',
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -425,7 +425,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 
@@ -459,7 +459,7 @@ describe('Bankruptcy component validation', function () {
         props: {
           PetitionType: 'Chapter13',
           TrusteeAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -475,7 +475,7 @@ describe('Bankruptcy component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new BankruptcyItemValidator(null, test.props).validPetitionType()).toBe(test.expected)
+      expect(new BankruptcyItemValidator(test.props).validPetitionType()).toBe(test.expected)
     })
   })
 })

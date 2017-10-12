@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { HospitalizationsValidator } from '../../../../validators'
+import { HospitalizationsValidator, HospitalizationValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import Hospitalization from './Hospitalization'
@@ -40,7 +40,7 @@ export default class Hospitalizations extends SubsectionElement {
   }
 
   summary (item, index) {
-    const o = (item || {}).Hospitalization || {}
+    const o = (item || {}).Item || {}
     const treatmentDate = (o.TreatmentDate || {})
     const date = DateSummary(treatmentDate)
     const facility = (o.Facility || {}).value || ''
@@ -57,8 +57,9 @@ export default class Hospitalizations extends SubsectionElement {
   render () {
     return (
       <div className="hospitalizations">
-        <h2>{i18n.t('psychological.heading.hospitalization')}</h2>
         <Branch name="hospitalized"
+                label={i18n.t('psychological.heading.hospitalization')}
+                labelSize="h2"
                 value={this.props.Hospitalized}
                 warning={true}
                 onError={this.handleError}
@@ -75,12 +76,13 @@ export default class Hospitalizations extends SubsectionElement {
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={HospitalizationValidator}
                      description={i18n.t('psychological.hospitalization.collection.description')}
                      appendTitle={i18n.t('psychological.hospitalization.collection.appendTitle')}
                      appendLabel={i18n.t('psychological.hospitalization.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Hospitalization name="Hospitalization"
+            <Hospitalization name="Item"
                              ApplicantBirthDate={this.props.ApplicantBirthDate}
                              bind={true}
                              required={this.props.required}
@@ -104,7 +106,7 @@ Hospitalizations.defaultProps = {
   subsection: 'hospitalizations',
   dispatch: () => {},
   validator: (state, props) => {
-    return new HospitalizationsValidator(props, props).isValid()
+    return new HospitalizationsValidator(props).isValid()
   },
   scrollToBottom: ''
 }

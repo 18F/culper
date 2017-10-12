@@ -1,6 +1,7 @@
 import React from 'react'
 import { mount } from 'enzyme'
-import Dropdown from './Dropdown'
+import ReactMarkdown from 'react-markdown'
+import Dropdown, { renderSuggestion } from './Dropdown'
 
 describe('The Dropdown component', () => {
   it('renders appropriately with an error', () => {
@@ -97,5 +98,11 @@ describe('The Dropdown component', () => {
     expect(component.find('input').nodes[0].value).toEqual('foo---Bar')
     component.find('input').simulate('focus')
     expect(component.state().value).toBe('foo')
+  })
+
+  it('enboldens matching text', () => {
+    const expected = <ReactMarkdown containerTagName="div" parserOptions={{}} source="**Germ**any (DE)" />
+    const actual = renderSuggestion({ text: 'DE', value: 'Germany' }, { query: 'Germ' })
+    expect(actual).toEqual(expected)
   })
 })

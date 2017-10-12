@@ -29,12 +29,14 @@ describe('The legal associations overthrow component', () => {
       HasOverthrow: 'Yes',
       List: [
         {
-          Dates: {
-            from: { date: new Date('1/1/2010') },
-            to: { date: new Date('1/1/2011') }
-          },
-          Organization: {
-            value: 'Donut Brigade'
+          Item: {
+            Dates: {
+              from: { date: new Date('1/1/2010') },
+              to: { date: new Date('1/1/2011') }
+            },
+            Organization: {
+              value: 'Donut Brigade'
+            }
           }
         }
       ],

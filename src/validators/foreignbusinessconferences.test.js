@@ -235,36 +235,38 @@ describe('Foreign business conferences component validation', function () {
           HasForeignConferences: 'Yes',
           List: [
             {
-              Description: {
-                value: 'this is the description'
-              },
-              Sponsor: {
-                value: 'this is the sponsor'
-              },
-              City: {
-                value: 'this is the city'
-              },
-              Country: {
-                value: 'Germany'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Description: {
+                  value: 'this is the description'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Sponsor: {
+                  value: 'this is the sponsor'
                 },
-                present: false
-              },
-              Purpose: {
-                value: 'this is the purpose'
-              },
-              Contacts: {
-                List: [
-                  {
-                    Has: 'No'
-                  }
-                ]
+                City: {
+                  value: 'this is the city'
+                },
+                Country: {
+                  value: 'Germany'
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Purpose: {
+                  value: 'this is the purpose'
+                },
+                Contacts: {
+                  List: [
+                    {
+                      Has: 'No'
+                    }
+                  ]
+                }
               }
             }
           ],

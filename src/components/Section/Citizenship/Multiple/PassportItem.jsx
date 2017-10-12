@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Field, Branch, Show, Country, DateControl, Location, Name, Text, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import TravelItem from './TravelItem'
+import { TravelItemValidator } from '../../../../validators'
 
 export default class PassportItem extends ValidationElement {
   constructor (props) {
@@ -187,12 +188,14 @@ export default class PassportItem extends ValidationElement {
 
         <Show when={this.props.Used === 'Yes'}>
           <Accordion items={this.props.Countries}
+                     className="foreign-countries"
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateCountries}
                      onError={this.props.onError}
                      summary={this.summary}
                      description={i18n.t('citizenship.multiple.collection.travel.summary.title')}
                      required={this.props.required}
+                     validator={TravelItemValidator}
                      scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('citizenship.multiple.collection.travel.append')}>
             <TravelItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />

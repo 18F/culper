@@ -25,7 +25,8 @@ describe('The civil union component', () => {
 
     const component = mount(<CivilUnion {...expected} />)
     expect(component.find('.civil-union').length).toEqual(1)
-    component.find('.civil .first input').simulate('change')
+    updates = 0
+    component.find('.civil .name .first input').simulate('change')
     component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
     component.find('.birthplace .no input').simulate('change')
     component.find('.foreign-born-documents input').first().simulate('change')
@@ -43,7 +44,7 @@ describe('The civil union component', () => {
     component.find('.separated .yes input').simulate('change')
     component.find('.divorced .yes input').simulate('change')
     component.find('.dateseparated .month input').simulate('change', { target: { value: '12' } })
-    component.find('.address-separated .no input').simulate('change')
+    component.find('.address-separated .country input').simulate('change', { target: { value: 'Germany' } })
     component.find('.address-separated input[name="OtherNameNotApplicable"]').simulate('change')
     expect(updates).toBe(20)
   })

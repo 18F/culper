@@ -9,12 +9,12 @@ describe('Competence validation', function () {
           IsIncompetent: 'Yes',
           List: [
             {
-              Competence: {
+              Item: {
                 CourtName: {
                   value: 'Circuit Court'
                 },
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -67,10 +67,10 @@ describe('Competence validation', function () {
           IsIncompetent: 'Yes',
           List: [
             {
-              Competence: {
+              Item: {
                 CourtName: null,
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

@@ -81,6 +81,7 @@ describe('Person validator', function () {
             noNumber: '',
             number: '7031112222',
             numberType: 'Home',
+            type: 'Domestic',
             timeOfDay: 'Both',
             extension: ''
           },
@@ -88,6 +89,7 @@ describe('Person validator', function () {
             noNumber: '',
             number: '7031112223',
             numberType: 'Home',
+            type: 'Domestic',
             timeOfDay: 'Both',
             extension: ''
           },
@@ -95,7 +97,7 @@ describe('Person validator', function () {
             value: 'test@local.dev'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -160,6 +162,7 @@ describe('Person validator', function () {
                   noNumber: '',
                   number: '7031112222',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
@@ -167,6 +170,7 @@ describe('Person validator', function () {
                   noNumber: '',
                   number: '7031112223',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
@@ -174,7 +178,7 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -212,6 +216,7 @@ describe('Person validator', function () {
                   noNumber: '',
                   number: '7031112222',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
@@ -219,6 +224,7 @@ describe('Person validator', function () {
                   noNumber: '',
                   number: '7031112223',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
@@ -226,7 +232,7 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -264,6 +270,7 @@ describe('Person validator', function () {
                   noNumber: '',
                   number: '7031112222',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
@@ -271,6 +278,7 @@ describe('Person validator', function () {
                   noNumber: '',
                   number: '7031112223',
                   numberType: 'Home',
+                  type: 'Domestic',
                   timeOfDay: 'Both',
                   extension: ''
                 },
@@ -278,7 +286,7 @@ describe('Person validator', function () {
                   value: 'test@local.dev'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -339,6 +347,7 @@ describe('Person validator', function () {
                 noNumber: '',
                 number: '7031112222',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               },
@@ -346,6 +355,7 @@ describe('Person validator', function () {
                 noNumber: '',
                 number: '7031112223',
                 numberType: 'Home',
+                type: 'Domestic',
                 timeOfDay: 'Both',
                 extension: ''
               },
@@ -353,7 +363,7 @@ describe('Person validator', function () {
                 value: 'test@local.dev'
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',

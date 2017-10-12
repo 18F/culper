@@ -1,10 +1,10 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, DateSummary } from '../../../Summary'
-import { ForeignBusinessPoliticalValidator } from '../../../../validators'
+import { ForeignBusinessPoliticalValidator, PoliticalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Branch, Show, Accordion, Field,
-         Text, Textarea, Country, DateRange } from '../../../Form'
+import { Branch, Show, Accordion } from '../../../Form'
+import PoliticalItem from './PoliticalItem'
 
 export default class Political extends SubsectionElement {
   constructor (props) {
@@ -39,7 +39,7 @@ export default class Political extends SubsectionElement {
   }
 
   summary (item, index) {
-    const obj = item || {}
+    const obj = ((item && item.Item) || {})
     const dates = DateSummary(obj.Dates)
     const pos = (obj.Position || {}).value || ''
     const country = (obj.Country || {}).value || ''
@@ -59,7 +59,7 @@ export default class Political extends SubsectionElement {
       <div className="foreign-business-political">
         <Branch name="has_foreign_political"
                 label={i18n.t('foreign.business.political.heading.title')}
-                labelSize="h3"
+                labelSize="h2"
                 value={this.props.HasForeignPolitical}
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
@@ -75,62 +75,18 @@ export default class Political extends SubsectionElement {
                      branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
+                     validator={PoliticalValidator}
                      summary={this.summary}
                      description={i18n.t('foreign.business.political.collection.summary.title')}
                      appendTitle={i18n.t('foreign.business.political.collection.appendTitle')}
                      appendLabel={i18n.t('foreign.business.political.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <Field title={i18n.t('foreign.business.political.heading.position')}
-              adjustFor="text"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Position"
-                    className="foreign-business-political-position"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.political.heading.dates')}
-                   help="foreign.business.political.help.dates"
-                   adjustFor="daterange"
-                   scrollIntoView={this.props.scrollIntoView}>
-              <DateRange name="Dates"
-                         className="foreign-business-political-dates"
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.political.heading.country')}
-              adjustFor="country"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Country name="Country"
-                       className="foreign-business-political-country"
+                     <PoliticalItem name="Item"
                        bind={true}
                        required={this.props.required}
-                       />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.political.heading.reason')}
-              adjustFor="textarea"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Textarea name="Reason"
-                        className="foreign-business-political-reason"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
-
-            <Field title={i18n.t('foreign.business.political.heading.eligibility')}
-              adjustFor="text"
-              scrollIntoView={this.props.scrollIntoView}>
-              <Text name="Eligibility"
-                    className="foreign-business-political-eligibility"
-                    bind={true}
-                    required={this.props.required}
-                    />
-            </Field>
+                       scrollIntoView={this.props.scrollIntoView}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -149,7 +105,7 @@ Political.defaultProps = {
   subsection: 'business/political',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessPoliticalValidator(state, props).isValid()
+    return new ForeignBusinessPoliticalValidator(props).isValid()
   },
   defaultState: true,
   scrollToBottom: ''

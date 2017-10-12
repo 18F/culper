@@ -20,36 +20,6 @@ const navigation = [
     ]
   },
   {
-    name: 'Financial record',
-    title: 'Financial record',
-    url: 'financial',
-    subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Bankruptcy', url: 'bankruptcy' },
-      { name: 'Gambling', url: 'gambling' },
-      { name: 'Taxes', url: 'taxes' },
-      { name: 'Employer card abuse', url: 'card' },
-      { name: 'Credit counseling', url: 'credit' },
-      { name: 'Delinquent payments', url: 'delinquent' },
-      { name: 'Non-payment consequence', url: 'nonpayment' },
-      { exclude: true, name: 'Review', url: 'review' }
-    ]
-  },
-  {
-    name: 'Your history',
-    title: 'Your history',
-    url: 'history',
-    subsections: [
-      { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Where you have lived', url: 'residence' },
-      { name: 'Employment activities', url: 'employment' },
-      { name: 'Where you went to school', url: 'education' },
-      { name: 'Former federal service', url: 'federal' },
-      { hidden: true, name: 'Employment record', url: 'employment' },
-      { exclude: true, name: 'Review', url: 'review' }
-    ]
-  },
-  {
     name: 'Relationships',
     title: 'Relationships',
     url: 'relationships',
@@ -69,14 +39,28 @@ const navigation = [
     ]
   },
   {
+    name: 'Your history',
+    title: 'Your history',
+    url: 'history',
+    subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
+      { name: 'Where you have lived', url: 'residence' },
+      { name: 'Employment activities', url: 'employment' },
+      { name: 'Where you went to school', url: 'education' },
+      { name: 'Former federal service', url: 'federal' },
+      { hidden: true, name: 'Employment record', url: 'employment' },
+      { exclude: true, name: 'Review', url: 'review' }
+    ]
+  },
+  {
     name: 'Citizenship',
     title: 'Citizenship',
     url: 'citizenship',
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Citizenship Status', url: 'status' },
-      { name: 'Dual/Multiple Citizenship', url: 'multiple' },
-      { name: 'Foreign Passports', url: 'passports' },
+      { name: 'Citizenship status', url: 'status' },
+      { name: 'Dual/multiple citizenship', url: 'multiple' },
+      { name: 'Foreign passports', url: 'passports' },
       { exclude: true, name: 'Review', url: 'review' }
     ]
   },
@@ -128,6 +112,22 @@ const navigation = [
         ]
       },
       { name: 'Foreign countries you have visited', url: 'travel' },
+      { exclude: true, name: 'Review', url: 'review' }
+    ]
+  },
+  {
+    name: 'Financial record',
+    title: 'Financial record',
+    url: 'financial',
+    subsections: [
+      { exclude: true, name: 'Intro', url: 'intro' },
+      { name: 'Bankruptcy', url: 'bankruptcy' },
+      { name: 'Gambling', url: 'gambling' },
+      { name: 'Taxes', url: 'taxes' },
+      { name: 'Employer card abuse', url: 'card' },
+      { name: 'Credit counseling', url: 'credit' },
+      { name: 'Delinquent payments', url: 'delinquent' },
+      { name: 'Non-payment consequence', url: 'nonpayment' },
       { exclude: true, name: 'Review', url: 'review' }
     ]
   },
@@ -250,6 +250,13 @@ const navigation = [
     subsections: [
       { name: 'Headings', url: 'headings' }
     ]
+  },
+  {
+    title: 'SF-86 Submission',
+    name: 'Print',
+    url: 'print',
+    hidden: false,
+    exclude: true
   }
 ]
 

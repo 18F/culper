@@ -20,7 +20,16 @@ describe('Federal service component validation', function () {
       {
         state: {
           HasFederalService: 'Yes',
-          List: []
+          List: [],
+          ListBranch: 'No'
+        },
+        expected: false
+      },
+      {
+        state: {
+          HasFederalService: 'Yes',
+          List: [{}],
+          ListBranch: ''
         },
         expected: false
       },
@@ -29,38 +38,41 @@ describe('Federal service component validation', function () {
           HasFederalService: 'Yes',
           List: [
             {
-              Name: {
-                value: 'FDA'
-              },
-              Position: {
-                value: 'CTR'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Name: {
+                  value: 'FDA'
                 },
-                to: {
-                  date: new Date('1/1/2016')
+                Position: {
+                  value: 'CTR'
                 },
-                present: false
-              },
-              Address: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2016')
+                  },
+                  present: false
+                },
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                }
               }
             }
-          ]
+          ],
+          ListBranch: 'No'
         },
         expected: true
       }
     ]
 
     tests.forEach(test => {
-      expect(new FederalServiceValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new FederalServiceValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 })

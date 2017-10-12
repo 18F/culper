@@ -221,6 +221,11 @@ export default class Status extends SubsectionElement {
   render () {
     return (
       <div className="status">
+        <Field title={i18n.t('citizenship.status.heading.title')}
+               titleSize="h2"
+               className="no-margin-bottom"
+               />
+
         <Field title={i18n.t('citizenship.status.heading.citizenshipstatus')}
           adjustFor="buttons"
           scrollIntoView={this.props.scrollIntoView}>
@@ -461,7 +466,7 @@ export default class Status extends SubsectionElement {
               scrollIntoView={this.props.scrollIntoView}>
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
-                       value={this.props.PriorCitizenship.first}
+                       {...this.props.PriorCitizenship}
                        multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}
@@ -727,7 +732,7 @@ export default class Status extends SubsectionElement {
               scrollIntoView={this.props.scrollIntoView}>
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
-                       value={this.props.PriorCitizenship.first}
+                       {...this.props.PriorCitizenship}
                        multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}

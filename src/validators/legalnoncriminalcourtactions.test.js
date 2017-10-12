@@ -10,7 +10,7 @@ describe('received counseling component validation', function () {
           HasCourtActions: 'Yes',
           List: [
             {
-              CourtAction: {
+              Item: {
                 CivilActionDate: {
                   day: '1',
                   month: '1',
@@ -21,7 +21,7 @@ describe('received counseling component validation', function () {
                   value: 'The name'
                 },
                 CourtAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -68,7 +68,7 @@ describe('received counseling component validation', function () {
         state: {
           HasCourtActions: 'Yes',
           ListBranch: 'No',
-          List: [{CourtAction: {}}]
+          List: [{Item: {}}]
         },
         expected: false
       }

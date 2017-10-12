@@ -80,22 +80,18 @@ describe('The relative component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       name: 'relative',
-      Citizenship: {
-        value: [
-          { name: 'United States', value: 'United States' }
-        ]
-      },
+      Citizenship: { value: ['United States'] },
       CitizenshipDocumentation: 'Other',
       Birthplace: {
         domestic: 'No',
         city: 'Munich',
-        country: 'Germany'
+        country: { value: 'Germany' }
       },
       IsDeceased: 'No',
       Address: {
         street: '1234 Some Rd',
         city: 'Munich',
-        country: 'Germany',
+        country: { value: 'Germany' },
         layout: Location.ADDRESS
       }
     }
@@ -111,18 +107,16 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Citizenship: {
-        value: [
-          { name: 'Germany', value: 'Germany' }
-        ]
+        value: ['Germany']
       },
       Birthplace: {
         city: 'Munich',
-        country: 'Germany',
+        country: { value: 'Germany' },
         layout: Location.BIRTHPLACE_WITHOUT_COUNTY
       },
       IsDeceased: 'No',
       Address: {
-        country: 'United States'
+        country: { value: 'United States' }
       }
     }
 
@@ -134,18 +128,16 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Citizenship: {
-        value: [
-          { name: 'Germany', value: 'Germany' }
-        ]
+        value: ['Germany']
       },
       Birthplace: {
         city: 'Munich',
-        country: 'Germany',
+        country: { value: 'Germany' },
         layout: Location.BIRTHPLACE_WITHOUT_COUNTY
       },
       IsDeceased: 'No',
       Address: {
-        country: 'Germany',
+        country: { value: 'Germany' },
         layout: Location.ADDRESS
       }
     }
@@ -158,18 +150,16 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Citizenship: {
-        value: [
-          { name: 'Germany', value: 'Germany' }
-        ]
+        value: ['Germany']
       },
       Birthplace: {
         city: 'Munich',
-        country: 'Germany',
+        country: { value: 'Germany' },
         layout: Location.BIRTHPLACE_WITHOUT_COUNTY
       },
       IsDeceased: 'No',
       Address: {
-        country: 'Germany',
+        country: { value: 'Germany' },
         layout: Location.ADDRESS
       },
       HasAffiliation: 'Yes'
@@ -185,7 +175,7 @@ describe('The relative component', () => {
     const expected = {
       name: 'relative',
       Relation: 'Mother',
-      Birthplace: { country: 'Germany' },
+      Birthplace: { country: { value: 'Germany' } },
       IsDeceased: 'No',
       onUpdate: (obj) => {
         updates++
@@ -212,7 +202,7 @@ describe('The relative component', () => {
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
       Birthplace: { domestic: 'Yes', city: 'Arlington', state: 'Virginia' },
-      Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
+      Citizenship: { value: ['United States'] },
       IsDeceased: 'No',
       MaidenSameAsListed: 'No',
       onUpdate: (obj) => {
@@ -235,8 +225,8 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { country: 'United States', city: 'Arlington', state: 'Virginia' },
-      Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
+      Birthplace: { country: { value: 'United States' }, city: 'Arlington', state: 'Virginia' },
+      Citizenship: { value: ['United States'] },
       IsDeceased: 'No',
       Aliases: [{ Has: 'Yes', Item: { MaidenName: 'No' } }],
       onUpdate: (obj) => {
@@ -262,10 +252,10 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { city: 'Munich', country: 'Germany', layout: Location.BIRTHPLACE_WITHOUT_COUNTY },
-      Citizenship: { value: [{ name: 'United States', value: 'United States' }] },
+      Birthplace: { city: 'Munich', country: { value: 'Germany' }, layout: Location.BIRTHPLACE_WITHOUT_COUNTY },
+      Citizenship: { value: ['United States'] },
       IsDeceased: 'No',
-      Address: { street: '1234 Some Rd', city: 'Munich', country: 'Germany', layout: Location.ADDRESS },
+      Address: { street: '1234 Some Rd', city: 'Munich', country: { value: 'Germany' }, layout: Location.ADDRESS },
       onUpdate: (obj) => {
         updates++
       }
@@ -287,10 +277,10 @@ describe('The relative component', () => {
       Relation: 'Mother',
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
-      Birthplace: { layout: Location.BIRTHPLACE_WITHOUT_COUNTY, city: 'Arlington', state: 'Virginia', country: 'United States' },
-      Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
+      Birthplace: { layout: Location.BIRTHPLACE_WITHOUT_COUNTY, city: 'Arlington', state: 'Virginia', country: { value: 'United States' } },
+      Citizenship: { value: ['Germany'] },
       IsDeceased: 'No',
-      Address: { country: 'United States', address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
+      Address: { country: { value: 'United States' }, address: '1234 Some Rd', city: 'Arlington', state: 'Virginia', zipcode: '22202' },
       Document: 'Other',
       onUpdate: (obj) => {
         updates++
@@ -318,9 +308,9 @@ describe('The relative component', () => {
       Name: { first: 'Foo', firstInitialOnly: false, middle: 'J', middleInitialOnly: true, noMiddleName: false, last: 'Bar', lastInitialOnly: false, suffix: 'Jr' },
       Birthdate: { day: '1', month: '1', year: '2016', date: new Date('1/1/2016') },
       Birthplace: { domestic: 'Yes', city: 'Arlington', state: 'Virginia' },
-      Citizenship: { value: [{ name: 'Germany', value: 'Germany' }] },
+      Citizenship: { value: ['Germany'] },
       IsDeceased: 'No',
-      Address: { address: '1234 Some Rd', city: 'Munich', country: 'Germany' },
+      Address: { address: '1234 Some Rd', city: 'Munich', country: { value: 'Germany' } },
       Methods: ['Telephone'],
       Frequency: 'Daily',
       HasAffiliation: 'Yes',
@@ -330,7 +320,8 @@ describe('The relative component', () => {
     }
     const component = mount(<Relative {...expected} />)
     component.find('.relative-address .international input').simulate('change')
-    component.find('.relative-address .country input').simulate('change', { target: { name: 'country', value: 'Germany' } })
+    component.find('.relative-address .country input').simulate('change', { target: { value: 'Germany' } })
+    component.find('.relative-address .country input').simulate('keydown', { keyCode: 13, target: { value: 'Germany' } })
     expect(component.find('.relative-first-contact').length).toBeGreaterThan(0)
     component.find('.relative-first-contact .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.relative-first-contact .month input').simulate('change', { target: { name: 'month', value: '1' } })
@@ -347,6 +338,6 @@ describe('The relative component', () => {
     component.find({ type: 'checkbox', name: 'EmployerNotApplicable' }).simulate('change')
     component.find({ type: 'checkbox', name: 'EmployerAddressNotApplicable' }).simulate('change')
     component.find({ type: 'checkbox', name: 'EmployerRelationshipNotApplicable' }).simulate('change')
-    expect(updates).toBe(16)
+    expect(updates).toBe(17)
   })
 })

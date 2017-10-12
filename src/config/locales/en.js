@@ -9,6 +9,7 @@ const en = {
   },
   app: {
     logout: 'Logout',
+    instructions: 'Instructions',
     skip: 'Skip to main content',
     banner: {
       title: 'An official website of the United States government',
@@ -22,9 +23,14 @@ const en = {
     title: 'Login',
     para: 'Enter your username and password, then click the "Submit" button to continue. If you do not remember your password click "Forgot Password". If you do not remember your username contact your sponsoring agency.',
     submit: 'Submit',
+    error: {
+      title: 'Sorry, but we couldn\'t log you in!',
+      generic: 'The username or password was incorrect.'
+    },
     twofactor: {
       title: 'Two-factor authentication',
-      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.'
+      para: 'Two-factor authentication (also known as 2FA) is a method of confirming a user\'s claimed identity by utilizing a combination of two different components.',
+      disabled: 'Multiple factor authentication is currently disabled.'
     },
     placeholder: {
       username: 'Username',
@@ -64,7 +70,10 @@ const en = {
     warning: 'Are you sure you would like to remove this item?',
     open: 'Open',
     close: 'Close',
-    incomplete: 'This information is incomplete.'
+    incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
+  },
+  country: {
+    comments: 'Provide comments'
   },
   comments: {
     add: 'Add a comment',
@@ -218,6 +227,11 @@ const en = {
           message: 'The month should be between 1(January) and 12(December).',
           note: ''
         },
+        min: {
+          title: 'There is a problem with the Month',
+          message: 'The month should be between 1(January) and 12(December).',
+          note: ''
+        },
         max: {
           title: 'There is a problem with the Month',
           message: 'The month should be between 1(January) and 12(December).',
@@ -230,9 +244,14 @@ const en = {
           message: 'There is not that many days in this month.',
           note: ''
         },
+        min: {
+          title: 'There is a problem with the Day',
+          message: 'There are not that many days in this month.',
+          note: ''
+        },
         max: {
           title: 'There is a problem with the Day',
-          message: 'There is not that many days in this month.',
+          message: 'There are not that many days in this month.',
           note: ''
         }
       },
@@ -269,6 +288,11 @@ const en = {
             message: 'For the **to** date, the month should be between 1(January) and 12(December).',
             note: ''
           },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
           max: {
             title: 'There is a problem with the Month',
             message: 'For the **to** date, the month should be between 1(January) and 12(December).',
@@ -277,6 +301,11 @@ const en = {
         },
         day: {
           length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
             title: 'There is a problem with the Day',
             message: 'For the **to** date, there are not that many days in this month.',
             note: ''
@@ -315,6 +344,11 @@ const en = {
             message: 'For the **from** date, the month should be between 1(January) and 12(December).',
             note: ''
           },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
           max: {
             title: 'There is a problem with the Month',
             message: 'For the **from** date, the month should be between 1(January) and 12(December).',
@@ -323,6 +357,11 @@ const en = {
         },
         day: {
           length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
             title: 'There is a problem with the Day',
             message: 'For the **from** date, there are not that many days in this month.',
             note: ''
@@ -415,10 +454,38 @@ const en = {
         title: 'There is a problem with this field',
         message: 'This field is required'
       },
+      street: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        }
+      },
+      state: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        }
+      },
       city: {
         required: {
           title: 'There is a problem with this field',
           message: 'This field is required'
+        },
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
+        }
+      },
+      zipcode: {
+        required: {
+          title: 'There is a problem with this field',
+          message: 'This field is required'
+        },
+        pattern: {
+          title: 'There is a problem with the ZIP Code',
+          message: 'The ZIP Code should be either 5 or 9 digits.',
+          note: ''
         }
       },
       toggleablelocation: {
@@ -464,8 +531,8 @@ const en = {
             message: 'This field is required'
           },
           notfound: {
-            title: 'This country is not one of the options',
-            message: 'Please enter the country that your city of birth is in now.',
+            title: 'This country is not on our current list',
+            message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
             note: ''
           }
         },
@@ -518,7 +585,7 @@ const en = {
           notfound: {
             title: 'This Country is not on our current list',
             message: [
-              'Indicate the country that currently governs the geographic location where you were born. As necessary provide a comment above to clarify.'
+              'Indicate the country that currently governs the geographic location you are indicating. As necessary provide a comment below to clarify.'
             ],
             note: ''
           }
@@ -571,7 +638,7 @@ const en = {
       },
       notfound: {
         title: 'This Country is not on our current list',
-        message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
+        message: 'Indicate the country that currently governs the geographic location you are indicating. As necessary provide comments below to clarify.',
         note: ''
       }
     },
@@ -741,7 +808,7 @@ const en = {
     email: {
       pattern: {
         title: 'This email isn\'t valid',
-        message: 'Check for any spelling mistakes in your email address.',
+        message: 'Check for any spelling and/or format mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
       },
       required: {
@@ -1177,7 +1244,7 @@ const en = {
         },
         sex: {
           title: 'Need help with your sex?',
-          message: 'If additional information is appropriate please use "Add a comment" above to detail it.',
+          message: 'If additional information is appropriate please use "Add a comment" below to detail it.',
           note: ''
         }
       },
@@ -1862,14 +1929,14 @@ const en = {
     },
     destination: {
       intro: 'Citizenship intro',
-      review: 'Review Citizenship',
+      review: 'Review citizenship',
       status: 'Citizenship status',
       multiple: 'Dual/multiple citizenship',
       passports: 'Foreign passports'
     },
     status: {
       heading: {
-        title: 'Citizenship Status',
+        title: 'Citizenship status',
         citizenshipstatus: 'Provide your current citizenship status',
         abroad: 'Provide type of documentation of U.S. citizen born abroad',
         documentnumber: {
@@ -2080,7 +2147,7 @@ const en = {
     },
     multiple: {
       heading: {
-        title: 'Dual/Multiple citizenship',
+        title: 'Dual/multiple citizenship',
         hasmultiple: 'Do you now or have you EVER held dual/multiple citizenships?',
         citizenship: {
           country: 'Provide country of citizenship',
@@ -2585,14 +2652,14 @@ const en = {
     civilUnion: {
       heading: {
         name: 'Provide full name',
-        birthdate: 'Provide birthdate',
+        birthdate: 'Provide the date of birth',
         birthplace: 'Provide place of birth',
         foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
         ssn: 'Provide U.S. Social Security Number',
         othernames: 'Has this person used another name?',
         appendOthernames: 'Has this person used any other names?',
         citizenship: 'Provide country(ies) of citizenship',
-        location: 'Provide location',
+        location: 'Provide the location',
         address: 'Provide current address, if different than your current address',
         telephone: 'Provide telephone number',
         email: 'Provide email address',
@@ -2619,10 +2686,10 @@ const en = {
       divorce: {
         heading: {
           name: 'Provide the full name',
-          address: 'Provide location',
-          birthdate: 'Provide birthdate',
+          address: 'Provide the location',
+          birthdate: 'Provide the date of birth',
           telephone: 'Provide telephone number',
-          birthplace: 'Provide the place of birth.',
+          birthplace: 'Provide the place of birth',
           dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',
           recognized: 'Provide the date your civil marriage, civil union, or domestic partnership was legally recognized',
           deceased: 'Is this person deceased?',
@@ -2651,7 +2718,7 @@ const en = {
         help: {
           birthdate: {
             title: 'Need help with the birthdate?',
-            message: 'Provide the date of birth',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           },
           birthplace: {
@@ -2726,7 +2793,7 @@ const en = {
         },
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2778,9 +2845,9 @@ const en = {
         address: 'Provide location',
         birthdate: 'Provide birthdate',
         telephone: 'Provide telephone number',
-        birthplace: 'Provide the place of birth.',
-        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number.',
-        ssn: 'Provide your cohabitant’s U.S. Social Security Number.',
+        birthplace: 'Provide the place of birth',
+        foreignBornDocument: 'If the person is foreign born, provide one type of documentation that he or she possesses and the document number',
+        ssn: 'Provide your cohabitant’s U.S. Social Security Number',
         othernames: 'Has your cohabitant used another name?',
         appendOthernames: 'Has your cohabitant used any other names?',
         citizenship: 'Provide your cohabitant\'s country(ies) of citizenship',
@@ -2815,7 +2882,7 @@ const en = {
       help: {
         birthdate: {
           title: 'Need help with the birthdate?',
-          message: 'Provide the date of birth',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         birthplace: {
@@ -2855,7 +2922,7 @@ const en = {
         },
         dateDivorced: {
           title: 'Need help with providing date divorced/dissolved?',
-          message: 'Provide the date divorced/dissolved, annulled or widowed',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         foreignBornDocument: {
@@ -2874,8 +2941,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help with when deciding if you have had a cohabitant?',
-          message: 'Mark yes if you presently reside with a person, other than a spouse or legally recognized civil union/domestic partner, with whom you share bonds of affection, obligation, or other commitment, as opposed to a person with whom you live for reasons of convenience',
+          title: 'Need help deciding whether or not you have had a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
           note: ''
         },
         citizenship: {
@@ -3357,7 +3424,7 @@ const en = {
           item: 'Procedure',
           unknown: '*Provide the disciplinary procedure below*'
         },
-        appendTitle: 'Additional disciplinary procedures',
+        appendTitle: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         appendMessage: 'In the last 7 years do you have additional military disciplinary procedures to report?',
         append: 'Add additional disciplinary procedures'
       }
@@ -3457,6 +3524,11 @@ const en = {
             title: 'Need help with this date range?',
             message: 'Tell us the full time range you were in contact with this person.',
             note: 'Note: If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.'
+          },
+          address: {
+            title: 'Need help with this addresse?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+            note: ''
           },
           frequency: {
             title: 'Need help with this question?',
@@ -3583,7 +3655,7 @@ const en = {
       help: {
         dates: {
           title: 'Need help with the date range?',
-          message: 'Provide the date range of your residence',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         address: {
@@ -3629,6 +3701,14 @@ const en = {
         collection: {
           caption: 'Employment activities',
           append: 'Add another employer',
+          appendTitle: 'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
+          appendMessage: [
+            '- Fired from a job?',
+            '- Quit a job after being told you would be fired?',
+            '- Have you left a job by mutual agreement following charges or allegations of misconduct?',
+            '- Left a job by mutual agreement following notice of unsatisfactory performance?',
+            '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?'
+          ],
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
@@ -3641,7 +3721,7 @@ const en = {
           title: 'Government employment',
           help: {
             title: 'Need help with your employment activity?',
-            message: 'Select your employment activity',
+            message: 'State Government (Non-Federal employment). Non-government employment excludes self-employment, if you were self employed choose "Self-employment". ',
             note: ''
           },
           other: {
@@ -3695,7 +3775,7 @@ const en = {
             date: 'Provide the date you quit after being told you would be fired'
           },
           charges: {
-            option: 'Charges',
+            option: 'Misconduct',
             text: 'Provide the charges or allegations of misconduct',
             date: 'Provide the date you left following the charges or allegations of misconduct'
           },
@@ -3722,15 +3802,15 @@ const en = {
         datesEmployed: {
           help: {
             title: 'Need help with the dates you were employed?',
-            message: 'Select the dates you were employed',
+            message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
             note: ''
           }
         },
         address: {
           label: 'This address is',
           help: {
-            title: 'Need help with the address?',
-            message: 'Provide the address',
+            title: 'Need help with this address?',
+            message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
             note: ''
           }
         },
@@ -3774,11 +3854,16 @@ const en = {
             note: ''
           },
           address: {
-            label: 'This address is'
+            label: 'This address is',
+            help: {
+              title: 'Need help with this address?',
+              message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
+              note: ''
+            }
           },
           heading: {
             telephone: 'Provide telephone number',
-            address: 'Provide the address of physical location'
+            address: 'Provide the work address where you are/were physically located'
           }
         },
         additionalActivity: {
@@ -3815,7 +3900,7 @@ const en = {
           datesEmployed: {
             help: {
               title: 'Need help with the dates of employment?',
-              message: 'Provide dates of employment',
+              message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
               note: ''
             }
           }
@@ -3862,7 +3947,7 @@ const en = {
           },
           heading: {
             name: 'Provide the name of your supervisor',
-            title: 'Provide the position title of your supervisor',
+            title: 'Provide the rank/position title of your supervisor',
             email: 'Provide the email address of your supervisor',
             address: 'Provide the physical work location of your supervisor',
             telephone: 'Provide the telephone number for this supervisor'
@@ -3878,7 +3963,7 @@ const en = {
           title: 'Provide the most recent position title',
           reference: 'Provide a reference',
           status: 'Select the employment status for this position',
-          address: 'Provide the address of employment',
+          address: 'Provide the address of employer',
           supervisor: 'Your Supervisor',
           telephone: 'Provide your employment telephone number',
           physicalAddress: 'Is/was your physical work address different than your employer\'s address?',
@@ -5048,13 +5133,13 @@ const en = {
         },
         dates: {
           title: 'Need help with the dates of attendance?',
-          message: 'Provide the dates of attendance',
+          message: 'If you are not sure of the exact dates give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         address: {
           title: 'Need help with the school address?',
           message: 'For correspondence/distance/extension/online schools, provide the address where the records are maintained.',
-          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx). Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
+          note: 'For assistance determining the school address, refer to [https://ope.ed.gov/accreditation/search.aspx](https://ope.ed.gov/accreditation/search.aspx). <br> Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         },
         type: {
           title: 'Need help with the school code?',
@@ -5084,7 +5169,6 @@ const en = {
       }
     },
     federal: {
-      title: 'Provide all former federal service',
       heading: {
         branch: 'Do you have former federal civilian employment, excluding military service, NOT indicated previously, to report?',
         dates: 'Provide dates of federal civilian employment',
@@ -5095,12 +5179,12 @@ const en = {
       help: {
         branch: {
           title: 'Need more information about former federal service?',
-          message: 'To assist in quick processing all federal service must be declared even if outside the maximum requirement of the 10 years of employment',
+          message: 'Please list all federal service even if older than 10 years.',
           note: ''
         },
         dates: {
-          title: 'Need help with the dates employed?',
-          message: 'The dates you were employed',
+          title: 'Need help with the dates of employment?',
+          message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
           note: ''
         },
         name: {
@@ -5115,8 +5199,8 @@ const en = {
         },
         address: {
           title: 'Need help with the address?',
-          message: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.',
-          note: ''
+          message: 'Try looking up the agency name, this could help you find the address.',
+          note: 'Note: Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
         }
       },
       collection: {
@@ -5127,6 +5211,7 @@ const en = {
           nodates: 'NA',
           unknown: '*Provide federal service below*'
         },
+        appendTitle: 'Do you have additional former federal civilian employment, excluding military service, NOT indicated previously, to report?',
         append: 'Add another former federal service'
       }
     }
@@ -7166,11 +7251,11 @@ const en = {
           downgrade: 'Note: An administrative downgrade or administrative termination of a security clearance is not a revocation.'
         },
         collection: {
-          description: 'Summary of revocations',
-          item: 'Revoked',
-          unknown: '*Provide revocation details below*',
+          description: 'Summary of denials',
+          item: 'Denial',
+          unknown: '*Provide denial details below*',
           appendTitle: 'Do you have another denied, revoked, or suspended security clearance eligibility/access authorization to enter?',
-          appendLabel: 'Add another revocation'
+          appendLabel: 'Add another denial'
         },
         help: {
           date: {
@@ -8460,28 +8545,28 @@ const en = {
     help: {
       contact: {
         title: 'Need help with the date of last contact?',
-        message: 'Please provide the date of last contact with this person',
+        message: 'If you are not sure of the exact date give us your best guess and check the "Estimated" checkbox.',
         note: ''
       },
       relationship: {
         title: 'Need help defining your relationship?',
-        message: 'Please define your relationship with the person during this period',
+        message: 'Please define your relationship with the person during this period.',
         note: ''
       },
       email: {
         title: 'Need help with the email address?',
-        message: 'A current e-mail address to contact this character reference',
+        message: 'Please use an active email address.',
         note: ''
       },
       phone: {
         title: 'Need help with a telephone number?',
-        message: 'One or more telephone numbers to contact this character reference',
+        message: 'Please use an active phone number.',
         note: ''
       },
       address: {
         title: 'Need help with the address?',
-        message: 'The current address of the character reference',
-        note: ''
+        message: 'Please use an active address.',
+        note: 'Acronyms: APO - Army Post Office, FPO - Fleet Post Office, DPO - Diplomatic Post Office.'
       }
     }
   },
@@ -9255,56 +9340,83 @@ const en = {
     zambia: 'Zambia',
     zimbabwe: 'Zimbabwe'
   },
+  consent: {
+    contents: [
+      '# Free Wi-FI access points are not secure',
+      'The information collected through the application process is sensitive and should never be transmitted over free public Wi-Fi access points.',
+      '',
+      'Bad actors can easily intercept any data travelling across these unsecure connections.',
+      'Protect your data by only using secure, encrypted connections.',
+      '# Standard mandatory notice and consent provision for all DOD information system user agreements',
+      'By signing this document, you acknowledge and consent that when you access Department of Defense (DoD) information systems:',
+      '  * You are accessing a U.S. Government (USG) information system (IS) (which includes any device attached to this information system) that is provided for U.S. Governmentauthorized use only.',
+      '  * You consent to the following conditions:',
+      '    - The U.S. Government routinely intercepts and monitors communications on this information system for purposes including, but not limited to, penetration testing, communications security (COMSEC) monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.',
+      '    - At any time, the U.S. Government may inspect and seize data stored on this information system.',
+      '    - Communications using, or data stored on, this information system are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any U.S. Government-authorized purpose.',
+      '    - This information system includes security measures (e.g., authentication and access controls) to protect U.S. Government interests--not for your personal benefit or privacy.',
+      '    - Notwithstanding the above, using an information system does not constitute consent to personnel misconduct, law enforcement, or counterintelligence investigative searching or monitoring of the content of privileged communications or data (including work product) that are related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Under these circumstances, such communications and work product are private and confidential, as further explained below:',
+      '      * Nothing in this User Agreement shall be interpreted to limit the user\'s consent to, or in any other way restrict or affect, any U.S. Government actions for purposes of network administration, operation, protection, or defense, or for communications security. This includes all communications',
+      '      * The user consents to interception/capture and seizure of ALL communications and data for any authorized purpose (including personnel misconduct, law enforcement, or counterintelligence investigation). However, consent to interception/capture or seizure of communications and data is not consent to the use of privileged communications or data for personnel misconduct, law enforcement, or counterintelligence investigation against any party and does not negate any applicable privilege or confidentiality that otherwise applies.',
+      '      * Whether any particular communication or data qualifies for the protection of a privilege, or is covered by a duty of confidentiality, is determined in accordance with established legal standards and DoD policy. Users are strongly encouraged to seek personal legal counsel on such matters prior to using an information system if the user intends to rely on the protections of a privilege or confidentiality.',
+      '      * Users should take reasonable steps to identify such communications or data that the user asserts are protected by any such privilege or confidentiality. However, the user\'s identification or assertion of a privilege or confidentiality is not sufficient to create such protection where none exists under established legal standards and DoD policy.',
+      '      * A user\'s failure to take reasonable steps to identify such communications or data as privileged or confidential does not waive the privilege or confidentiality if such protections otherwise exist under established legal standards and DoD policy. However, in such cases the U.S. Government is authorized to take reasonable actions to identify such communication or data as being subject to a privilege or confidentiality, and such actions do not negate any applicable privilege or confidentiality.',
+      '      * These conditions preserve the confidentiality of the communication or data, and the legal protections regarding the use and disclosure of privileged information, and thus such communications and data are private and confidential. Further, the U.S. Government shall take all reasonable measures to protect the content of captured/seized privileged communications and data to ensure they are appropriately protected.',
+      '    - In cases when the user has consented to content searching or monitoring of communications or data for personnel misconduct, law enforcement, or counterintelligence investigative searching, (i.e., for all communications and data other than privileged communications or data that are related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants), the U.S. Government may, solely at its discretion and in accordance with DoD policy, elect to apply a privilege or other restriction on the U.S. Government\'s otherwise-authorized use or disclosure of such information.',
+      '    - All of the above conditions apply regardless of whether the access or use of an information system includes the display of a Notice and Consent Banner ("banner"). When a banner is used, the banner functions to remind the user of the conditions that are set forth in this User Agreement, regardless of whether the banner describes these conditions in full detail or provides a summary of such conditions, and regardless of whether the banner expressly references this User Agreement.'
+    ],
+    acceptance: {
+      title: 'I\'ve read & consent to terms in this user agreement',
+      para: []
+    }
+  },
   introduction: {
     contents: [
       '# Questionnaire for National Security Positions',
       '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
-      'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to Sections 23, 27, and 29, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
+      '## Instructions for completing this form ',
+      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
+      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
+      '3. Do not abbreviate the names of cities or foreign countries.',
+      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
+      '---',
+      'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
       '---',
       '# How to save your progress',
       '**This form will auto save your progress continuously throughout.** Each input will be validated and save as you enter your information.',
       'To confirm your auto saving and find out when the last save was look for the icon below at the bottom of each screen.',
       '---',
-      '# Purpose of this Form',
+      '# Purpose of this form',
       'This form will be used by the United States (U.S.) Government in conducting background investigations, reinvestigations, and continuous evaluations of persons under consideration for, or retention of, national security positions as defined in 5 CFR 732, and for individuals requiring eligibility for access to classified information under Executive Order 12968. This form may also be used by agencies in determining whether a subject performing work for, or on behalf of, the Government under a contract should be deemed eligible for logical or physical access when the nature of the work to be performed is sensitive and could bring about an adverse effect on the national security.',
       'Providing this information is voluntary. If you do not provide each item of requested information, however, we will not be able to complete your investigation, which will adversely affect your eligibility for a national security position, eligibility for access to classified information, or logical or physical access. It is imperative that the information provided be true and accurate, to the best of your knowledge. Any information that you provide is evaluated on the basis of its currency, seriousness, relevance to the position and duties, and consistency with all other information about you. Withholding, misrepresenting, or falsifying information may affect your eligibility for access to classified information, eligibility for a sensitive position, or your ability to obtain or retain Federal or contract employment. In addition, withholding, misrepresenting, or falsifying information may affect your eligibility for physical and logical access to federally controlled facilities or information systems. Withholding, misrepresenting, or falsifying information may also negatively affect your employment prospects and job status, and the potential consequences include, but are not limited to, removal, debarment from Federal service, loss of eligibility for access to classified information, or prosecution.',
       'This form may become a permanent document that may be used as the basis for future investigations, eligibility determinations for access to classified information, or to hold a sensitive position, suitability or fitness for Federal employment, fitness for contract employment, or eligibility for physical and logical access to federally controlled facilities or information systems. Your responses to this form may be compared with your responses to previous SF-86 questionnaires.',
       'The investigation conducted on the basis of information provided on this form may be selected for studies and analyses in support of evaluating and improving the effectiveness and efficiency of the investigative and adjudicative methodologies. All study results released to the general public will delete personal identifiers such as name, Social Security Number, and date and place of birth.',
       '---',
-      '# Authority to Request this Information',
+      '# Authority to request this information',
       'Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Orders 10450, 10865, 12333, and 12968; sections 3301, 3302, and 9101 of title 5, United States Code (U.S.C.); sections 2165 and 2201 of title 42, U.S.C.; chapter 23 of title 50, U.S.C.; and parts 2, 5, 731, 732, and 736 of title 5, Code of Federal Regulations (CFR).',
       'Your Social Security Number (SSN) is needed to identify records unique to you. Although disclosure of your SSN is not mandatory, failure to disclose your SSN may prevent or delay the processing of your background investigation. The authority for soliciting and verifying your SSN is Executive Order 9397, as amended by EO 13478.',
       '---',
-      '# The Investigative Process',
+      '# The investigative process',
       'Background investigations for national security positions are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and loyal to the U.S. The information that you provide on this form may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated on applications or other forms that you do not want your current employer to be contacted. If you have a security freeze on your consumer or credit report file, then we may not be able to complete your investigation, which can adversely affect your eligibility for a national security position. To avoid such delays, you should request that the consumer reporting agencies lift the freeze in these instances.',
       'In addition to the questions on this form, inquiry also is made about your adherence to security requirements, your honesty and integrity, vulnerability to exploitation or coercion, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or loyal. Federal agency records checks may be conducted on your spouse or legally recognized civil union/domestic partner, cohabitant(s), and immediate family members. After an eligibility determination has been completed, you also may be subject to continuous evaluation, which may include periodic reinvestigations, to determine whether retention in your position is clearly consistent with the interests of national security.',
       'The information you provide on this form may be confirmed during the investigation, and may be used for identification purposes throughout the investigation process.',
       '---',
-      '# Your Personal Interview',
+      '# Your personal interview',
       'Some investigations will include an interview with you as a routine part of the investigative process. The investigator may ask you to explain your answers to any question on this form. This provides you the opportunity to update, clarify, and explain information on your form more completely, which often assists in completing your investigation. It is imperative that the interview be conducted as soon as possible after you are contacted. Postponements will delay the processing of your investigation, and declining to be interviewed may result in your investigation being delayed or canceled.',
       'For the interview, you will be required to provide photo identification, such as a valid state driver\'s license. You may be required to provide other documents to verify your identity, as instructed by your investigator. These documents may include certification of any legal name change, Social Security card, passport, and/or your birth certificate. You may also be asked to provide documents regarding information that you provide on this form, or about other matters requiring specific attention. These matters include (a) alien registration or naturalization documentation; (b) delinquent loans or taxes, bankruptcies, judgments, liens, or other financial obligations; (c) agreements involving child custody or support, alimony, or property settlements; (d) arrests, convictions, probation, and/or parole; or (e) other matters described in court records.',
       '---',
-      '# Instructions for Completing this Form ',
-      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You must sign and date, in ink, the original and each copy you submit. You should retain a copy of the completed form for your records.',
-      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
-      '3. Do not abbreviate the names of cities or foreign countries. Whenever you are asked to supply a country name, you may select the country name by using the country dropdown feature.',
-      '4. When entering a U.S. address or location, select the state or territory from the "States" dropdown list that will be provided. For locations outside of the U.S. and its territories, select the country in the "Country" dropdown list and leave the "State" field blank.',
-      '5. The 5-digit postal ZIP Codes are required to process your investigation more rapidly. Refer to an automated system approved by the U.S. Postal Service to assist you with ZIP Codes.',
-      '6. For telephone numbers in the U.S., ensure that the area code is included.',
-      '7. All dates provided in this form must be in Month/Day/Year or Month/Year format. Use the dropdown lists to select the month and day. The year should be entered as a four character number (i.e. 1978 or 2001.), or selected from a dropdown list. If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Est." box.',
-      '---',
-      '# Final Determination on Your Eligibility',
+      '# Final determination on your eligibility',
       'Final determination on your eligibility for a national security position is the responsibility of the Federal agency that requested your investigation and the agency that conducted your investigation. You will be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, or sexual orientation when granting access to classified information.',
       '---',
-      '# Penalties for Inaccurate or False Statements',
+      '# Penalties for inaccurate or false statements',
       'The U.S. Criminal Code (title 18, section 1001) provides that knowingly falsifying or concealing a material fact is a felony which may result in fines and/or up to five (5) years imprisonment. In addition, Federal agencies generally fire, do not grant a security clearance, or disqualify individuals who have materially and deliberately falsified these forms, and this remains a part of the permanent record for future placements. Your prospects of placement or security clearance are better if you answer all questions truthfully and completely. You will have adequate opportunity to explain any information you provide on this form and to make your comments part of the record.',
       '---',
-      '# Disclosure Information',
+      '# Disclosure information',
       'The information you provide is for the purpose of investigating you for a national security position, and the information will be protected from unauthorized disclosure. The collection, maintenance, and disclosure of background investigative information are governed by the Privacy Act. The agency that requested the investigation and the agency that conducted the investigation have published notices in the Federal Register describing the systems of records in which your records will be maintained. The information you provide on this form, and information collected during an investigation, may be disclosed without your consent by an agency maintaining the information in a system of records as permitted by the Privacy Act [5 U.S.C. 552a(b)], and by routine uses, a list of which are published by the agency in the Federal Register. The office that gave you this form will provide you a copy of its routine uses.',
       'You will not receive prior notice of such disclosures under a routine use.',
       'In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.',
       '---',
-      '# Office of Personnel Management (OPM) Routine Uses',
+      '# Office of Personnel Management (OPM) routine uses',
       'OPM has published the following Privacy Act routine uses for its system of records for background investigations:',
       '**a.** To designated officers and employees of agencies, offices, and other establishments in the executive, legislative, and judicial branches of the Federal Government or the Government of the District of Columbia having a need to investigate, evaluate, or make a determination regarding loyalty to the United States; qualifications, suitability, or fitness for Government employment or military service; eligibility for logical or physical access to federally-controlled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
       '**b.** To an element of the U.S. Intelligence Community as identified in E.O. 12333, as amended, for use in intelligence activities for the purpose of protecting United States national security interests.',
@@ -9338,7 +9450,7 @@ const en = {
       '**z.** To Federal, State, and local government agencies, if necessary, to obtain information from them which will assist OPM in its responsibilities as the authorized Investigation Service Provider in conducting studies and analyses in support of evaluating and improving the effectiveness and efficiency of the background investigation methodologies.',
       '**aa.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.',
       '---',
-      '# Public Burden Information',
+      '# Public burden information',
       'Public burden reporting for this collection of information is **estimated to average 150 minutes per response**, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.'
     ],
     acceptance: {

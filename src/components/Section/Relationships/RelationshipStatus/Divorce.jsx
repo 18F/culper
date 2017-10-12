@@ -143,7 +143,6 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
-               help="relationships.civilUnion.divorce.help.telephone"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="Telephone"
@@ -167,8 +166,7 @@ export default class Divorce extends React.Component {
                        />
         </Field>
 
-        <Field help="relationships.civilUnion.divorce.help.address"
-               title={i18n.t('relationships.civilUnion.divorce.heading.address')}
+        <Field title={i18n.t('relationships.civilUnion.divorce.heading.address')}
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Location name="address"

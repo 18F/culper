@@ -1,2 +1,3 @@
-import Identification from './Identification.jsx'
+import Identification, { IdentificationSections } from './Identification.jsx'
 export default Identification
+export { IdentificationSections }

@@ -3,6 +3,7 @@ import { i18n } from '../../../../config'
 import { ValidationElement, Branch, Show, Accordion, RadioGroup, Radio, DateRange, Text, Textarea, Field, Country } from '../../../Form'
 import ForeignContact from './ForeignContact'
 import { Summary, DateSummary, NameSummary } from '../../../Summary'
+import { ForeignContactValidator } from '../../../../validators'
 
 export default class ForeignService extends ValidationElement {
   constructor (props) {
@@ -283,14 +284,19 @@ export default class ForeignService extends ValidationElement {
 
         <Show when={this.props.MaintainsContact === 'Yes'}>
           <div>
-            <h2>{i18n.t('military.foreign.heading.contact.details')}</h2>
-            {i18n.m('military.foreign.para.contact')}
+            <Field title={i18n.t('military.foreign.heading.contact.details')}
+                   titleSize="h2"
+                   className="no-margin-bottom">
+              {i18n.m('military.foreign.para.contact')}
+            </Field>
+
             <Accordion className="foreign-contacts-collection"
                        items={this.props.List}
                        defaultState={this.props.defaultState}
                        branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.props.onError}
+                       validator={ForeignContactValidator}
                        summary={this.summary}
                        description={i18n.t('military.foreign.collection.contacts.summary.title')}
                        appendTitle={i18n.t('military.foreign.collection.contacts.appendTitle')}

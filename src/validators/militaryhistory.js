@@ -2,10 +2,10 @@ import DateRangeValidator from './daterange'
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class MilitaryHistoryValidator {
-  constructor (state = {}, props = {}) {
-    this.hasServed = state.HasServed
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+  constructor (data = {}) {
+    this.hasServed = data.HasServed
+    this.list = data.List || []
+    this.listBranch = data.ListBranch
   }
 
   hasHistory () {
@@ -45,17 +45,17 @@ export default class MilitaryHistoryValidator {
 }
 
 export class MilitaryServiceValidator {
-  constructor (state = {}, props = {}) {
-    this.service = state.Service
-    this.status = state.Status
-    this.officer = state.Officer
-    this.serviceNumber = state.ServiceNumber
-    this.dates = state.Dates
-    this.hasBeenDischarged = state.HasBeenDischarged
-    this.dischargeType = state.DischargeType
-    this.dischargeTypeOther = state.DischargeTypeOther
-    this.dischargeReason = state.DischargeReason
-    this.dischargeDate = state.DischargeDate
+  constructor (data = {}) {
+    this.service = data.Service
+    this.status = data.Status
+    this.officer = data.Officer
+    this.serviceNumber = data.ServiceNumber
+    this.dates = data.Dates
+    this.hasBeenDischarged = data.HasBeenDischarged
+    this.dischargeType = data.DischargeType
+    this.dischargeTypeOther = data.DischargeTypeOther
+    this.dischargeReason = data.DischargeReason
+    this.dischargeDate = data.DischargeDate
   }
 
   validService () {

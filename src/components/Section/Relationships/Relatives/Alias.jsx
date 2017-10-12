@@ -50,16 +50,19 @@ export default class Alias extends ValidationElement {
   render () {
     return (
       <div className="relative-alias">
-        <h3>{i18n.t('relationships.relatives.heading.alias.title')}</h3>
-        {i18n.m('relationships.relatives.para.alias')}
-        <Name name="Name"
-              className="alias-name"
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-              />
+        <Field title={i18n.t('relationships.relatives.heading.alias.title')}
+               scrollIntoView={this.props.scrollIntoView}
+               titleSize="h3">
+          {i18n.m('relationships.relatives.para.alias')}
+          <Name name="Name"
+                className="alias-name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
+        </Field>
 
         <Show when={this.props.hideMaiden === false}>
           <Branch name="MaidenName"

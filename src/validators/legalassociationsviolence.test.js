@@ -6,13 +6,13 @@ describe('Legal associations violence component validation', function () {
   it('validate organization', () => {
     const tests = [
       {
-        props: {
+        state: {
           Organization: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Organization: {
             value: 'this is an organization'
           }
@@ -27,15 +27,15 @@ describe('Legal associations violence component validation', function () {
   it('validate address', () => {
     const tests = [
       {
-        props: {
+        state: {
           Address: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -53,13 +53,13 @@ describe('Legal associations violence component validation', function () {
   it('validate dates', () => {
     const tests = [
       {
-        props: {
+        state: {
           Dates: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Dates: {
             from: {
               date: new Date('1/1/2010')
@@ -80,13 +80,13 @@ describe('Legal associations violence component validation', function () {
   it('validate positions', () => {
     const tests = [
       {
-        props: {
+        state: {
           Positions: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           PositionsNotApplicable: {
             applicable: false
           },
@@ -95,7 +95,7 @@ describe('Legal associations violence component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Positions: {
             value: 'this is positions'
           }
@@ -110,13 +110,13 @@ describe('Legal associations violence component validation', function () {
   it('validate contributions', () => {
     const tests = [
       {
-        props: {
+        state: {
           Contributions: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           ContributionsNotApplicable: {
             applicable: false
           },
@@ -125,7 +125,7 @@ describe('Legal associations violence component validation', function () {
         expected: true
       },
       {
-        props: {
+        state: {
           Contributions: {
             value: 'this is contributions'
           }
@@ -140,13 +140,13 @@ describe('Legal associations violence component validation', function () {
   it('validate reasons', () => {
     const tests = [
       {
-        props: {
+        state: {
           Reasons: {}
         },
         expected: false
       },
       {
-        props: {
+        state: {
           Reasons: {
             value: 'this is the reasons'
           }
@@ -161,17 +161,17 @@ describe('Legal associations violence component validation', function () {
   it('validate associations violence in terrorism', () => {
     const tests = [
       {
-        props: {},
+        state: {},
         expected: false
       },
       {
-        props: {
+        state: {
           HasViolence: 'No'
         },
         expected: true
       },
       {
-        props: {
+        state: {
           HasViolence: 'Yes',
           List: [],
           ListBranch: 'No'
@@ -179,7 +179,7 @@ describe('Legal associations violence component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasViolence: 'Yes',
           List: [{}],
           ListBranch: ''
@@ -187,40 +187,42 @@ describe('Legal associations violence component validation', function () {
         expected: false
       },
       {
-        props: {
+        state: {
           HasViolence: 'Yes',
           List: [
             {
-              Organization: {
-                value: 'this is an organization'
-              },
-              Address: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+              Item: {
+                Organization: {
+                  value: 'this is an organization'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
                 },
-                present: false
-              },
-              PositionsNotApplicable: {
-                applicable: false
-              },
-              Positions: {},
-              ContributionsNotApplicable: {
-                applicable: false
-              },
-              Contributions: {},
-              Reasons: {
-                value: 'this is the reasons'
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                PositionsNotApplicable: {
+                  applicable: false
+                },
+                Positions: {},
+                ContributionsNotApplicable: {
+                  applicable: false
+                },
+                Contributions: {},
+                Reasons: {
+                  value: 'this is the reasons'
+                }
               }
             }
           ],

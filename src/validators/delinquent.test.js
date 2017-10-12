@@ -318,7 +318,7 @@ describe('delinquent component validation', function () {
       {
         state: {
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -424,55 +424,57 @@ describe('delinquent component validation', function () {
           HasDelinquent: 'Yes',
           List: [
             {
-              Name: {
-                value: 'The name'
-              },
-              Infractions: [],
-              AccountNumber: {
-                value: 'ABC1234567890'
-              },
-              PropertyType: {
-                value: 'ABC1234567890'
-              },
-              Amount: {
-                value: '20000'
-              },
-              Reason: {
-                value: 'Completely forgot'
-              },
-              Status: {
-                value: 'Paid'
-              },
-              Date: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016'),
-                present: false
-              },
-              ResolvedNotApplicable: {
-                applicable: true
-              },
-              Resolved: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016'),
-                present: false
-              },
-              CourtName: {
-                value: 'The court'
-              },
-              CourtAddress: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Description: {
-                value: 'The description'
+              Item: {
+                Name: {
+                  value: 'The name'
+                },
+                Infractions: [],
+                AccountNumber: {
+                  value: 'ABC1234567890'
+                },
+                PropertyType: {
+                  value: 'ABC1234567890'
+                },
+                Amount: {
+                  value: '20000'
+                },
+                Reason: {
+                  value: 'Completely forgot'
+                },
+                Status: {
+                  value: 'Paid'
+                },
+                Date: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016'),
+                  present: false
+                },
+                ResolvedNotApplicable: {
+                  applicable: true
+                },
+                Resolved: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016'),
+                  present: false
+                },
+                CourtName: {
+                  value: 'The court'
+                },
+                CourtAddress: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Description: {
+                  value: 'The description'
+                }
               }
             }
           ],

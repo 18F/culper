@@ -8,7 +8,7 @@ describe('received counseling component validation', function () {
         state: {
           UseSameAddress: 'Yes',
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -22,7 +22,7 @@ describe('received counseling component validation', function () {
         state: {
           UseSameAddress: 'No',
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -34,7 +34,7 @@ describe('received counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingValidator(test.state, null).validAddress()).toBe(test.expected)
+      expect(new ReceivedCounselingValidator(test.state).validAddress()).toBe(test.expected)
     })
   })
 
@@ -59,7 +59,7 @@ describe('received counseling component validation', function () {
           },
           UseSameAddress: 'Yes',
           TreatmentProviderAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -87,7 +87,7 @@ describe('received counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new ReceivedCounselingValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 
@@ -119,7 +119,7 @@ describe('received counseling component validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingValidator(test.state, null).validCompletedTreatment()).toBe(test.expected)
+      expect(new ReceivedCounselingValidator(test.state).validCompletedTreatment()).toBe(test.expected)
     })
   })
 
@@ -131,13 +131,13 @@ describe('received counseling component validation', function () {
           ReceivedTreatment: 'Yes',
           List: [
             {
-              ReceivedCounseling: {
+              Item: {
                 UseSameAddress: 'Yes',
                 TreatmentProviderName: {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -175,13 +175,13 @@ describe('received counseling component validation', function () {
           ReceivedTreatment: 'Yes',
           List: [
             {
-              ReceivedCounseling: {
+              Item: {
                 UseSameAddress: 'Yes',
                 TreatmentProviderName: {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -219,13 +219,13 @@ describe('received counseling component validation', function () {
           ReceivedTreatment: 'Yes',
           List: [
             {
-              ReceivedCounseling: {
+              Item: {
                 UseSameAddress: 'Yes',
                 TreatmentProviderName: {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -271,13 +271,13 @@ describe('received counseling component validation', function () {
           ReceivedTreatment: 'Yes',
           List: [
             {
-              ReceivedCounseling: {
+              Item: {
                 UseSameAddress: 'Yes',
                 TreatmentProviderName: {
                   value: 'The name'
                 },
                 TreatmentProviderAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -333,13 +333,13 @@ describe('received counseling component validation', function () {
         state: {
           ReceivedTreatment: 'Yes',
           ListBranch: 'No',
-          List: [{ReceivedCounseling: {}}]
+          List: [{Item: {}}]
         },
         expected: false
       }
     ]
     tests.forEach(test => {
-      expect(new ReceivedCounselingsValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new ReceivedCounselingsValidator(test.state).isValid()).toBe(test.expected)
     })
   })
 })

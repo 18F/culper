@@ -38,7 +38,7 @@ describe('taxes component validation', function () {
       {
         state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -237,32 +237,34 @@ describe('taxes component validation', function () {
           HasCardAbuse: 'Yes',
           List: [
             {
-              Agency: {
-                value: 'IRS'
-              },
-              Address: {
-                country: 'United States',
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Date: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016'),
-                present: false
-              },
-              Reason: {
-                value: 'Completely forgot'
-              },
-              Amount: {
-                value: '20000'
-              },
-              Description: {
-                value: 'The description'
+              Item: {
+                Agency: {
+                  value: 'IRS'
+                },
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Date: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016'),
+                  present: false
+                },
+                Reason: {
+                  value: 'Completely forgot'
+                },
+                Amount: {
+                  value: '20000'
+                },
+                Description: {
+                  value: 'The description'
+                }
               }
             }
           ],

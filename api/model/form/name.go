@@ -5,10 +5,14 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/model"
+
+	"github.com/go-pg/pg"
+	"github.com/go-pg/pg/orm"
 )
 
 // Name is a basic input.
 type Name struct {
+	ID                int
 	First             string `json:"first"`
 	FirstInitialOnly  bool   `json:"firstInitialOnly"`
 	Middle            string `json:"middle"`
@@ -60,4 +64,60 @@ func (entity *Name) Valid() (bool, error) {
 	}
 
 	return !stack.HasErrors(), stack
+}
+
+func (entity *Name) Save(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	if err := context.CreateTable(&Name{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	var err error
+	if entity.ID == 0 {
+		err = context.Insert(entity)
+	} else {
+		err = context.Update(entity)
+	}
+
+	return entity.ID, err
+}
+
+func (entity *Name) Delete(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Name{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Delete(entity)
+	}
+
+	return entity.ID, err
+}
+
+func (entity *Name) Get(context *pg.DB, account int64) (int, error) {
+	options := &orm.CreateTableOptions{
+		Temp:        false,
+		IfNotExists: true,
+	}
+
+	var err error
+	if err = context.CreateTable(&Name{}, options); err != nil {
+		return entity.ID, err
+	}
+
+	if entity.ID != 0 {
+		err = context.Select(entity)
+	}
+
+	return entity.ID, err
 }

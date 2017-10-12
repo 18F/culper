@@ -168,6 +168,8 @@ export default class Person extends React.Component {
                adjustFor="labels">
           <label>{i18n.t(`relationships.people.person.label.relationship.title`)}</label>
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
+                         required={this.props.required}
+                         onError={this.props.onError}
                          selectedValues={this.props.Relationship}>
             <Checkbox name="relationship-neighbor"
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
@@ -277,12 +279,16 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.address')}
+               help="relationships.people.person.help.address"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="address">
           <Location name="Address"
                     label={i18n.t('relationships.people.person.label.address')}
                     className="address"
                     {...this.props.Address}
+                    addressBooks={this.props.addressBooks}
+                    addressBook={this.props.addressBook}
+                    dispatch={this.props.dispatch}
                     layout={Location.ADDRESS}
                     geocode={true}
                     onUpdate={this.updateAddress}
@@ -297,6 +303,9 @@ export default class Person extends React.Component {
 
 Person.defaultProps = {
   Relationship: [],
+  addressBooks: {},
+  addressBook: 'Reference',
+  dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

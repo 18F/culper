@@ -87,14 +87,14 @@ describe('The verify component', () => {
         Contacts: {
           PhoneNumbers: [
             {
-              Telephone: {
+              Item: {
                 type: 'Domestic',
                 number: '2028675309',
                 extension: '1234'
               }
             },
             {
-              Telephone: {
+              Item: {
                 type: 'Domestic',
                 number: '1231231234',
                 extension: ''
@@ -127,7 +127,7 @@ describe('The verify component', () => {
                 present: false
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'VA',
@@ -162,7 +162,7 @@ describe('The verify component', () => {
                 present: false
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'New Orleans',
                 state: 'LA',
