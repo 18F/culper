@@ -2,7 +2,7 @@ version: '2'
 
 services:
   db:
-    image: postgres
+    image: postgres:9.6.5
     expose:
       - '5432'
     networks:
@@ -59,6 +59,20 @@ services:
       DATABASE_USER: postgres
       DATABASE_NAME: postgres
       DATABASE_HOST: db:5432
+    networks:
+      - private
+    depends_on:
+      - db
+
+  docs:
+    build:
+      context: .
+      dockerfile: Dockerfile.docs
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    working_dir: /usr/src/app
+    command: ./bin/docs.sh
     networks:
       - private
     depends_on:

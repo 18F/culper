@@ -1,0 +1,6 @@
+FROM voidlinux/voidlinux
+
+RUN xbps-install -Syu make pkg-config gd-devel gcc git wget cpanminus postgresql postgresql-client go nodejs; \
+    cpanm SQL::Translator; \
+    cpanm ExtUtils::PkgConfig; \
+    cpanm GD;
