@@ -67,6 +67,7 @@
     "react-addons-test-utils": "^15.6.0",
     "react-autosuggest": "^9.3.2",
     "react-markdown": "^2.4.4",
+    "react-styleguidist": "^6.0.30",
     "react-test-renderer": "^15.6.1",
     "smoothscroll-polyfill": "^0.3.6",
     "uswds": "^0.13.1",
@@ -82,6 +83,7 @@
     "lint": "./node_modules/.bin/gulp lint",
     "coverage": "NODE_ENV=test npm install -g codecov && codecov",
     "build": "./node_modules/.bin/gulp build",
-    "watch": "./node_modules/.bin/gulp watchdog"
+    "watch": "./node_modules/.bin/gulp watchdog",
+    "docs": "./node_modules/.bin/styleguidist build"
   }
 }
