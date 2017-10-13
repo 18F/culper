@@ -9,8 +9,9 @@ import (
 
 // Country is a basic input.
 type Country struct {
-	ID    int      `json:"-"`
-	Value []string `json:"value"`
+	ID       int      `json:"-"`
+	Value    []string `json:"value"`
+	Comments string   `json:"comments,omitempty"`
 }
 
 // Unmarshal bytes in to the entity properties.

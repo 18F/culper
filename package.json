@@ -64,11 +64,11 @@
     "gulp-sourcemaps": "^2.6.1",
     "http-server": "^0.10.0",
     "jest": "^21.1.0",
+    "jsdoc": "^3.5.5",
     "json-loader": "^0.5.7",
     "react-addons-test-utils": "^15.6.0",
     "react-autosuggest": "^9.3.2",
     "react-markdown": "^2.4.4",
-    "react-styleguidist": "^6.0.30",
     "react-test-renderer": "^15.6.1",
     "smoothscroll-polyfill": "^0.3.6",
     "uswds": "^0.13.1",
@@ -85,6 +85,6 @@
     "coverage": "NODE_ENV=test npm install -g codecov && codecov",
     "build": "./node_modules/.bin/gulp build",
     "watch": "./node_modules/.bin/gulp watchdog",
-    "docs": "./node_modules/.bin/styleguidist build"
+    "docs": "./node_modules/.bin/jsdoc ./src -r -d ./doc/frontend"
   }
 }
