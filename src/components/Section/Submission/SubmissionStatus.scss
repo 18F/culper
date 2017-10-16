@@ -22,13 +22,13 @@
       vertical-align: middle;
 
       .progress-default {
-        background-color: #dce3ee;
+        background-color: #ffffff;
       }
 
       .progress {
         height: 2rem;
         width: 0;
-        background-color: #47a362;
+        background-color: #dce3ee;
         transition: width 1.0s;
         border-radius: 4px;
       }

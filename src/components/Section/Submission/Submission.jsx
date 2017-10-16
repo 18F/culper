@@ -5,7 +5,7 @@ import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import ValidatedForm from './ValidatedForm'
+import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import SubmissionComplete from './SubmissionComplete'
@@ -36,14 +36,14 @@ class Submission extends SectionElement {
   render () {
     const releases = (this.props.Submission || {}).Releases
     const s = statusForAllSections(this.props.Application)
-    const valid = hasIncompleteSections(s)
+    const valid = true || hasIncompleteSections(s)
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView name="">
           <Show when={!this.state.submitted}>
             <SubmissionStatus valid={valid}>
               <Show when={valid}>
-                <ValidatedForm
+                <ValidForm
                   onUpdate={this.updateSubmission}
                   hideHippa={hideHippa(this.props.Application)}
                   {...releases}

@@ -42,7 +42,6 @@ export class InvalidSection extends React.Component {
       .map(subsection => {
         return (<div>{ subsection.name }</div>)
       })
-    const firstError = incompleteSubsections[0]
 
     return (
       <div className="field">
@@ -52,7 +51,7 @@ export class InvalidSection extends React.Component {
               <i className="fa fa-exclamation"></i>
               <h3>{ this.props.section.title }</h3>
               { incompleteSubsectionsElements }
-              <Link to={`/form/${firstError.url}`}>
+              <Link to={`/form/${this.props.section.url}/review`}>
                 <button className="back usa-button-outline">Back to section</button>
               </Link>
             </div>

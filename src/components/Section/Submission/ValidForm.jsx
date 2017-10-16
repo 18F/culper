@@ -149,7 +149,7 @@ export default class ValidatedForm extends ValidationElement {
   render () {
     const accordionItems = this.state.accordionItems
     return (
-      <div className="validated-form">
+      <div className="valid-form">
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
           <button onClick={this.submit} className="submit usa-button" disabled={!enableSubmit(this.props)}>
