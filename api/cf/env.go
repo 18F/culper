@@ -151,3 +151,11 @@ func IsTest() bool {
 	}
 	return false
 }
+
+// FlushStorage returns whether the data should be flushed per use.
+func FlushStorage() bool {
+	if UserService("FLUSH", "STORAGE") == "" {
+		return false
+	}
+	return true
+}

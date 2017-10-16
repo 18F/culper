@@ -85,14 +85,14 @@ func (entity *HistoryResidence) Delete(context *db.DatabaseContext, account int)
 		entity.List.ID = previous.ListID
 	})
 
-	if _, err := entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -211,14 +211,14 @@ func (entity *HistoryEmployment) Delete(context *db.DatabaseContext, account int
 		entity.List.ID = previous.ListID
 	})
 
-	if _, err := entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -381,6 +381,12 @@ func (entity *HistoryEducation) Delete(context *db.DatabaseContext, account int)
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasAttended.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -391,12 +397,6 @@ func (entity *HistoryEducation) Delete(context *db.DatabaseContext, account int)
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -553,18 +553,18 @@ func (entity *HistoryFederal) Delete(context *db.DatabaseContext, account int) (
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasFederalService.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

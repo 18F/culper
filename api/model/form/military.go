@@ -168,6 +168,12 @@ func (entity *MilitarySelective) Delete(context *db.DatabaseContext, account int
 		entity.Explanation.ID = previous.ExplanationID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.WasBornAfter.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -182,12 +188,6 @@ func (entity *MilitarySelective) Delete(context *db.DatabaseContext, account int
 
 	if _, err := entity.Explanation.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -359,18 +359,18 @@ func (entity *MilitaryHistory) Delete(context *db.DatabaseContext, account int) 
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasServed.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -528,18 +528,18 @@ func (entity *MilitaryDisciplinary) Delete(context *db.DatabaseContext, account 
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasDisciplinary.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -671,14 +671,14 @@ func (entity *MilitaryForeign) Delete(context *db.DatabaseContext, account int) 
 		entity.List.ID = previous.ListID
 	})
 
-	if _, err := entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil

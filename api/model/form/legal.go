@@ -110,18 +110,18 @@ func (entity *LegalCourt) Delete(context *db.DatabaseContext, account int) (int,
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasCourtActions.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -272,18 +272,18 @@ func (entity *LegalPoliceOffenses) Delete(context *db.DatabaseContext, account i
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasOffenses.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -434,18 +434,18 @@ func (entity *LegalPoliceAdditionalOffenses) Delete(context *db.DatabaseContext,
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasOtherOffenses.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -572,14 +572,14 @@ func (entity *LegalPoliceDomesticViolence) Delete(context *db.DatabaseContext, a
 		entity.List.ID = previous.ListID
 	})
 
-	if _, err := entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -723,18 +723,18 @@ func (entity *LegalInvestigationsDebarred) Delete(context *db.DatabaseContext, a
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasDebarment.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -885,18 +885,18 @@ func (entity *LegalInvestigationsHistory) Delete(context *db.DatabaseContext, ac
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasHistory.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1047,18 +1047,18 @@ func (entity *LegalInvestigationsRevoked) Delete(context *db.DatabaseContext, ac
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasRevocations.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1209,18 +1209,18 @@ func (entity *LegalTechnologyManipulating) Delete(context *db.DatabaseContext, a
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasManipulating.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1371,18 +1371,18 @@ func (entity *LegalTechnologyUnauthorized) Delete(context *db.DatabaseContext, a
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasUnauthorized.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1533,18 +1533,18 @@ func (entity *LegalTechnologyUnlawful) Delete(context *db.DatabaseContext, accou
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasUnlawful.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1695,18 +1695,18 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Delete(context *db.Databas
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasActivities.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1857,18 +1857,18 @@ func (entity *LegalAssociationsAdvocating) Delete(context *db.DatabaseContext, a
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasAdvocated.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2019,18 +2019,18 @@ func (entity *LegalAssociationsEngagedInTerrorism) Delete(context *db.DatabaseCo
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasEngaged.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2181,18 +2181,18 @@ func (entity *LegalAssociationsMembershipOverthrow) Delete(context *db.DatabaseC
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasOverthrow.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2343,18 +2343,18 @@ func (entity *LegalAssociationsMembershipViolence) Delete(context *db.DatabaseCo
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasViolence.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2505,18 +2505,18 @@ func (entity *LegalAssociationsTerrorismAssociation) Delete(context *db.Database
 		entity.Explanation.ID = previous.ExplanationID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasTerrorism.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.Explanation.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2667,18 +2667,18 @@ func (entity *LegalAssociationsTerroristOrganization) Delete(context *db.Databas
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasTerrorist.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

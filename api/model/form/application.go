@@ -439,6 +439,24 @@ func Application(context *db.DatabaseContext, account int) []byte {
 	return js
 }
 
+// PurgeAccountStorage removes all data associated with an account
+func PurgeAccountStorage(context *db.DatabaseContext, account int) {
+	for _, section := range catalogue {
+		payload := &Payload{
+			Type: section.payload,
+		}
+
+		entity, err := payload.Entity()
+		if err != nil {
+			continue
+		}
+
+		if _, err = entity.Delete(context, account); err != nil {
+			continue
+		}
+	}
+}
+
 // Signature returns the computed hash checksum of the application state
 func Signature(context *db.DatabaseContext, account int) [sha512.Size]byte {
 	return sha512.Sum512(Application(context, account))

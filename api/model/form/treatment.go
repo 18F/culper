@@ -131,6 +131,12 @@ func (entity *Treatment) Delete(context *db.DatabaseContext, account int) (int, 
 		entity.Address.ID = previous.AddressID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Name.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -141,12 +147,6 @@ func (entity *Treatment) Delete(context *db.DatabaseContext, account int) (int, 
 
 	if _, err := entity.Address.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

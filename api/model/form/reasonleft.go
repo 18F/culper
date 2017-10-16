@@ -153,6 +153,12 @@ func (entity *ReasonLeft) Delete(context *db.DatabaseContext, account int) (int,
 		entity.ReasonDescriptionID = previous.ReasonDescriptionID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Comments.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -163,12 +169,6 @@ func (entity *ReasonLeft) Delete(context *db.DatabaseContext, account int) (int,
 
 	if _, err := entity.ReasonDescription.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

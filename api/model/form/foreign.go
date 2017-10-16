@@ -238,6 +238,12 @@ func (entity *ForeignPassport) Delete(context *db.DatabaseContext, account int) 
 		entity.Comments.ID = previous.CommentsID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasPassports.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -264,12 +270,6 @@ func (entity *ForeignPassport) Delete(context *db.DatabaseContext, account int) 
 
 	if _, err := entity.Comments.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -454,18 +454,18 @@ func (entity *ForeignContacts) Delete(context *db.DatabaseContext, account int) 
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignContacts.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -639,6 +639,12 @@ func (entity *ForeignTravel) Delete(context *db.DatabaseContext, account int) (i
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignTravelOutside.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -649,12 +655,6 @@ func (entity *ForeignTravel) Delete(context *db.DatabaseContext, account int) (i
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -746,8 +746,12 @@ func (entity *ForeignActivitiesBenefits) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignActivitiesBenefits) Marshal() Payload {
-	entity.PayloadHasBenefits = entity.HasBenefits.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasBenefits != nil {
+		entity.PayloadHasBenefits = entity.HasBenefits.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.activities.benefits", entity)
 }
 
@@ -818,6 +822,12 @@ func (entity *ForeignActivitiesBenefits) Delete(context *db.DatabaseContext, acc
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
 
 	if _, err := entity.HasBenefits.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -974,18 +984,18 @@ func (entity *ForeignActivitiesDirect) Delete(context *db.DatabaseContext, accou
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasInterests.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1135,18 +1145,18 @@ func (entity *ForeignActivitiesIndirect) Delete(context *db.DatabaseContext, acc
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasInterests.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1296,18 +1306,18 @@ func (entity *ForeignActivitiesRealEstate) Delete(context *db.DatabaseContext, a
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasInterests.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1457,18 +1467,18 @@ func (entity *ForeignActivitiesSupport) Delete(context *db.DatabaseContext, acco
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignSupport.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1618,18 +1628,18 @@ func (entity *ForeignBusinessAdvice) Delete(context *db.DatabaseContext, account
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignAdvice.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1779,18 +1789,18 @@ func (entity *ForeignBusinessConferences) Delete(context *db.DatabaseContext, ac
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignConferences.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1940,18 +1950,18 @@ func (entity *ForeignBusinessContact) Delete(context *db.DatabaseContext, accoun
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignContact.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2101,18 +2111,18 @@ func (entity *ForeignBusinessEmployment) Delete(context *db.DatabaseContext, acc
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignEmployment.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2262,18 +2272,18 @@ func (entity *ForeignBusinessFamily) Delete(context *db.DatabaseContext, account
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignFamily.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2423,18 +2433,18 @@ func (entity *ForeignBusinessPolitical) Delete(context *db.DatabaseContext, acco
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignPolitical.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2584,18 +2594,18 @@ func (entity *ForeignBusinessSponsorship) Delete(context *db.DatabaseContext, ac
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignSponsorship.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2745,18 +2755,18 @@ func (entity *ForeignBusinessVentures) Delete(context *db.DatabaseContext, accou
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignVentures.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -2906,18 +2916,18 @@ func (entity *ForeignBusinessVoting) Delete(context *db.DatabaseContext, account
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasForeignVoting.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

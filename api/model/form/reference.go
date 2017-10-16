@@ -308,6 +308,12 @@ func (entity *Reference) Delete(context *db.DatabaseContext, account int) (int, 
 		entity.AddressID = previous.AddressID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.FullName.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -338,12 +344,6 @@ func (entity *Reference) Delete(context *db.DatabaseContext, account int) (int, 
 
 	if _, err := entity.Address.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

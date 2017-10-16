@@ -118,18 +118,18 @@ func (entity *FinancialBankruptcy) Delete(context *db.DatabaseContext, account i
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasBankruptcy.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -287,18 +287,18 @@ func (entity *FinancialGambling) Delete(context *db.DatabaseContext, account int
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasGamblingDebt.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -460,18 +460,18 @@ func (entity *FinancialTaxes) Delete(context *db.DatabaseContext, account int) (
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasTaxes.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -633,18 +633,18 @@ func (entity *FinancialCard) Delete(context *db.DatabaseContext, account int) (i
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasCardAbuse.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -806,18 +806,18 @@ func (entity *FinancialCredit) Delete(context *db.DatabaseContext, account int) 
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasCreditCounseling.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -975,18 +975,18 @@ func (entity *FinancialDelinquent) Delete(context *db.DatabaseContext, account i
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasDelinquent.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1144,18 +1144,18 @@ func (entity *FinancialNonpayment) Delete(context *db.DatabaseContext, account i
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasNonpayment.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

@@ -62,8 +62,7 @@ func TestCollections(t *testing.T) {
 
 		account := 1
 		context := db.NewDB()
-		id := 0
-		id, err = entity.Save(context, account)
+		id, err := entity.Save(context, account)
 		if err != nil {
 			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)
 		}

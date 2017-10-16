@@ -52,11 +52,15 @@ func NewDB() *DatabaseContext {
 
 // CheckTable ensures a the table exists for the persistor.
 func (context *DatabaseContext) CheckTable(entity interface{}) error {
-	options := &orm.CreateTableOptions{
-		Temp:        cf.IsTest(),
-		IfNotExists: true,
+	test := cf.IsTest()
+	if test {
+		options := &orm.CreateTableOptions{
+			Temp:        test,
+			IfNotExists: true,
+		}
+		return context.Database.CreateTable(entity, options)
 	}
-	return context.Database.CreateTable(entity, options)
+	return nil
 }
 
 // Raw executes a string of SQL.

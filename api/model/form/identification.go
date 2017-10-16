@@ -56,6 +56,9 @@ func (entity *IdentificationName) Save(context *db.DatabaseContext, account int)
 
 	context.Find(&IdentificationName{ID: account}, func(result interface{}) {
 		previous := result.(*IdentificationName)
+		if entity.Name == nil {
+			entity.Name = &Name{}
+		}
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID
 	})
@@ -81,14 +84,23 @@ func (entity *IdentificationName) Delete(context *db.DatabaseContext, account in
 		return entity.ID, err
 	}
 
-	if _, err := entity.Name.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&IdentificationName{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationName)
+		if entity.Name == nil {
+			entity.Name = &Name{}
+		}
+		entity.NameID = previous.NameID
+		entity.Name.ID = previous.NameID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.Name.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -177,6 +189,9 @@ func (entity *IdentificationBirthPlace) Save(context *db.DatabaseContext, accoun
 
 	context.Find(&IdentificationBirthPlace{ID: account}, func(result interface{}) {
 		previous := result.(*IdentificationBirthPlace)
+		if entity.Location == nil {
+			entity.Location = &Location{}
+		}
 		entity.LocationID = previous.LocationID
 		entity.Location.ID = previous.LocationID
 	})
@@ -202,14 +217,23 @@ func (entity *IdentificationBirthPlace) Delete(context *db.DatabaseContext, acco
 		return entity.ID, err
 	}
 
-	if _, err := entity.Location.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&IdentificationBirthPlace{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationBirthPlace)
+		if entity.Location == nil {
+			entity.Location = &Location{}
+		}
+		entity.LocationID = previous.LocationID
+		entity.Location.ID = previous.LocationID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.Location.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -298,6 +322,9 @@ func (entity *IdentificationBirthDate) Save(context *db.DatabaseContext, account
 
 	context.Find(&IdentificationBirthDate{ID: account}, func(result interface{}) {
 		previous := result.(*IdentificationBirthDate)
+		if entity.Date == nil {
+			entity.Date = &DateControl{}
+		}
 		entity.DateID = previous.DateID
 		entity.Date.ID = previous.DateID
 	})
@@ -323,14 +350,23 @@ func (entity *IdentificationBirthDate) Delete(context *db.DatabaseContext, accou
 		return entity.ID, err
 	}
 
-	if _, err := entity.Date.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&IdentificationBirthDate{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationBirthDate)
+		if entity.Date == nil {
+			entity.Date = &DateControl{}
+		}
+		entity.DateID = previous.DateID
+		entity.Date.ID = previous.DateID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.Date.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -429,6 +465,9 @@ func (entity *IdentificationSSN) Save(context *db.DatabaseContext, account int) 
 
 	context.Find(&IdentificationSSN{ID: account}, func(result interface{}) {
 		previous := result.(*IdentificationSSN)
+		if entity.SSN == nil {
+			entity.SSN = &SSN{}
+		}
 		entity.SSNID = previous.SSNID
 		entity.SSN.ID = previous.SSNID
 	})
@@ -454,14 +493,23 @@ func (entity *IdentificationSSN) Delete(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
-	if _, err := entity.SSN.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&IdentificationSSN{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationSSN)
+		if entity.SSN == nil {
+			entity.SSN = &SSN{}
+		}
+		entity.SSNID = previous.SSNID
+		entity.SSN.ID = previous.SSNID
+	})
 
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
 			return entity.ID, err
 		}
+	}
+
+	if _, err := entity.SSN.Delete(context, account); err != nil {
+		return entity.ID, err
 	}
 
 	return entity.ID, nil
@@ -570,8 +618,14 @@ func (entity *IdentificationContacts) Save(context *db.DatabaseContext, account 
 
 	context.Find(&IdentificationContacts{ID: account}, func(result interface{}) {
 		previous := result.(*IdentificationContacts)
+		if entity.Emails == nil {
+			entity.Emails = &Collection{}
+		}
 		entity.EmailsID = previous.EmailsID
 		entity.Emails.ID = previous.EmailsID
+		if entity.PhoneNumbers == nil {
+			entity.PhoneNumbers = &Collection{}
+		}
 		entity.PhoneNumbersID = previous.PhoneNumbersID
 		entity.PhoneNumbers.ID = previous.PhoneNumbersID
 	})
@@ -603,18 +657,32 @@ func (entity *IdentificationContacts) Delete(context *db.DatabaseContext, accoun
 		return entity.ID, err
 	}
 
+	context.Find(&IdentificationContacts{ID: account}, func(result interface{}) {
+		previous := result.(*IdentificationContacts)
+		if entity.Emails == nil {
+			entity.Emails = &Collection{}
+		}
+		entity.EmailsID = previous.EmailsID
+		entity.Emails.ID = previous.EmailsID
+		if entity.PhoneNumbers == nil {
+			entity.PhoneNumbers = &Collection{}
+		}
+		entity.PhoneNumbersID = previous.PhoneNumbersID
+		entity.PhoneNumbers.ID = previous.PhoneNumbersID
+	})
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Emails.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.PhoneNumbers.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -785,18 +853,18 @@ func (entity *IdentificationOtherNames) Delete(context *db.DatabaseContext, acco
 		entity.ListID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasOtherNames.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1095,6 +1163,12 @@ func (entity *IdentificationPhysical) Delete(context *db.DatabaseContext, accoun
 		entity.WeightID = previous.WeightID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Comments.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -1117,12 +1191,6 @@ func (entity *IdentificationPhysical) Delete(context *db.DatabaseContext, accoun
 
 	if _, err := entity.Weight.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

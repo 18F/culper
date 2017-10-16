@@ -277,6 +277,12 @@ func (entity *Sentence) Delete(context *db.DatabaseContext, account int) (int, e
 		entity.ProbationDatesNAID = previous.ProbationDatesNAID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Description.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -303,12 +309,6 @@ func (entity *Sentence) Delete(context *db.DatabaseContext, account int) (int, e
 
 	if _, err := entity.ProbationDatesNA.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

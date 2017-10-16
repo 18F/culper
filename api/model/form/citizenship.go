@@ -374,54 +374,129 @@ func (entity *CitizenshipStatus) Save(context *db.DatabaseContext, account int) 
 
 	context.Find(&CitizenshipStatus{ID: account}, func(result interface{}) {
 		previous := result.(*CitizenshipStatus)
+		if entity.CitizenshipStatus == nil {
+			entity.CitizenshipStatus = &Radio{}
+		}
 		entity.CitizenshipStatusID = previous.CitizenshipStatusID
 		entity.CitizenshipStatus.ID = previous.CitizenshipStatusID
+		if entity.AbroadDocumentation == nil {
+			entity.AbroadDocumentation = &Radio{}
+		}
 		entity.AbroadDocumentationID = previous.AbroadDocumentationID
 		entity.AbroadDocumentation.ID = previous.AbroadDocumentationID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
+		if entity.DocumentNumber == nil {
+			entity.DocumentNumber = &Text{}
+		}
 		entity.DocumentNumberID = previous.DocumentNumberID
 		entity.DocumentNumber.ID = previous.DocumentNumberID
+		if entity.DocumentIssued == nil {
+			entity.DocumentIssued = &DateControl{}
+		}
 		entity.DocumentIssuedID = previous.DocumentIssuedID
 		entity.DocumentIssued.ID = previous.DocumentIssuedID
+		if entity.DocumentName == nil {
+			entity.DocumentName = &Name{}
+		}
 		entity.DocumentNameID = previous.DocumentNameID
 		entity.DocumentName.ID = previous.DocumentNameID
+		if entity.DocumentExpiration == nil {
+			entity.DocumentExpiration = &DateControl{}
+		}
 		entity.DocumentExpirationID = previous.DocumentExpirationID
 		entity.DocumentExpiration.ID = previous.DocumentExpirationID
+		if entity.DocumentType == nil {
+			entity.DocumentType = &Radio{}
+		}
 		entity.DocumentTypeID = previous.DocumentTypeID
 		entity.DocumentType.ID = previous.DocumentTypeID
+		if entity.PlaceIssued == nil {
+			entity.PlaceIssued = &Location{}
+		}
 		entity.PlaceIssuedID = previous.PlaceIssuedID
 		entity.PlaceIssued.ID = previous.PlaceIssuedID
+		if entity.CertificateNumber == nil {
+			entity.CertificateNumber = &Text{}
+		}
 		entity.CertificateNumberID = previous.CertificateNumberID
 		entity.CertificateNumber.ID = previous.CertificateNumberID
+		if entity.CertificateIssued == nil {
+			entity.CertificateIssued = &DateControl{}
+		}
 		entity.CertificateIssuedID = previous.CertificateIssuedID
 		entity.CertificateIssued.ID = previous.CertificateIssuedID
+		if entity.CertificateName == nil {
+			entity.CertificateName = &Name{}
+		}
 		entity.CertificateNameID = previous.CertificateNameID
 		entity.CertificateName.ID = previous.CertificateNameID
+		if entity.CertificateCourtName == nil {
+			entity.CertificateCourtName = &Text{}
+		}
 		entity.CertificateCourtNameID = previous.CertificateCourtNameID
 		entity.CertificateCourtName.ID = previous.CertificateCourtNameID
+		if entity.CertificateCourtAddress == nil {
+			entity.CertificateCourtAddress = &Location{}
+		}
 		entity.CertificateCourtAddressID = previous.CertificateCourtAddressID
 		entity.CertificateCourtAddress.ID = previous.CertificateCourtAddressID
+		if entity.BornOnMilitaryInstallation == nil {
+			entity.BornOnMilitaryInstallation = &Branch{}
+		}
 		entity.BornOnMilitaryInstallationID = previous.BornOnMilitaryInstallationID
 		entity.BornOnMilitaryInstallation.ID = previous.BornOnMilitaryInstallationID
+		if entity.MilitaryBase == nil {
+			entity.MilitaryBase = &Text{}
+		}
 		entity.MilitaryBaseID = previous.MilitaryBaseID
 		entity.MilitaryBase.ID = previous.MilitaryBaseID
+		if entity.EntryDate == nil {
+			entity.EntryDate = &DateControl{}
+		}
 		entity.EntryDateID = previous.EntryDateID
 		entity.EntryDate.ID = previous.EntryDateID
+		if entity.EntryLocation == nil {
+			entity.EntryLocation = &Location{}
+		}
 		entity.EntryLocationID = previous.EntryLocationID
 		entity.EntryLocation.ID = previous.EntryLocationID
+		if entity.PriorCitizenship == nil {
+			entity.PriorCitizenship = &Country{}
+		}
 		entity.PriorCitizenshipID = previous.PriorCitizenshipID
 		entity.PriorCitizenship.ID = previous.PriorCitizenshipID
+		if entity.HasAlienRegistration == nil {
+			entity.HasAlienRegistration = &Branch{}
+		}
 		entity.HasAlienRegistrationID = previous.HasAlienRegistrationID
 		entity.HasAlienRegistration.ID = previous.HasAlienRegistrationID
+		if entity.AlienRegistrationNumber == nil {
+			entity.AlienRegistrationNumber = &Text{}
+		}
 		entity.AlienRegistrationNumberID = previous.AlienRegistrationNumberID
 		entity.AlienRegistrationNumber.ID = previous.AlienRegistrationNumberID
+		if entity.AlienRegistrationExpiration == nil {
+			entity.AlienRegistrationExpiration = &DateControl{}
+		}
 		entity.AlienRegistrationExpirationID = previous.AlienRegistrationExpirationID
 		entity.AlienRegistrationExpiration.ID = previous.AlienRegistrationExpirationID
+		if entity.Basis == nil {
+			entity.Basis = &Radio{}
+		}
 		entity.BasisID = previous.BasisID
 		entity.Basis.ID = previous.BasisID
+		if entity.PermanentResidentCardNumber == nil {
+			entity.PermanentResidentCardNumber = &Text{}
+		}
 		entity.PermanentResidentCardNumberID = previous.PermanentResidentCardNumberID
 		entity.PermanentResidentCardNumber.ID = previous.PermanentResidentCardNumberID
+		if entity.ResidenceStatus == nil {
+			entity.ResidenceStatus = &Text{}
+		}
 		entity.ResidenceStatusID = previous.ResidenceStatusID
 		entity.ResidenceStatus.ID = previous.ResidenceStatusID
 	})
@@ -593,57 +668,138 @@ func (entity *CitizenshipStatus) Delete(context *db.DatabaseContext, account int
 
 	context.Find(&CitizenshipStatus{ID: account}, func(result interface{}) {
 		previous := result.(*CitizenshipStatus)
+		if entity.CitizenshipStatus == nil {
+			entity.CitizenshipStatus = &Radio{}
+		}
 		entity.CitizenshipStatusID = previous.CitizenshipStatusID
 		entity.CitizenshipStatus.ID = previous.CitizenshipStatusID
+		if entity.AbroadDocumentation == nil {
+			entity.AbroadDocumentation = &Radio{}
+		}
 		entity.AbroadDocumentationID = previous.AbroadDocumentationID
 		entity.AbroadDocumentation.ID = previous.AbroadDocumentationID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
+		if entity.DocumentNumber == nil {
+			entity.DocumentNumber = &Text{}
+		}
 		entity.DocumentNumberID = previous.DocumentNumberID
 		entity.DocumentNumber.ID = previous.DocumentNumberID
+		if entity.DocumentIssued == nil {
+			entity.DocumentIssued = &DateControl{}
+		}
 		entity.DocumentIssuedID = previous.DocumentIssuedID
 		entity.DocumentIssued.ID = previous.DocumentIssuedID
+		if entity.DocumentName == nil {
+			entity.DocumentName = &Name{}
+		}
 		entity.DocumentNameID = previous.DocumentNameID
 		entity.DocumentName.ID = previous.DocumentNameID
+		if entity.DocumentExpiration == nil {
+			entity.DocumentExpiration = &DateControl{}
+		}
 		entity.DocumentExpirationID = previous.DocumentExpirationID
 		entity.DocumentExpiration.ID = previous.DocumentExpirationID
+		if entity.DocumentType == nil {
+			entity.DocumentType = &Radio{}
+		}
 		entity.DocumentTypeID = previous.DocumentTypeID
 		entity.DocumentType.ID = previous.DocumentTypeID
+		if entity.PlaceIssued == nil {
+			entity.PlaceIssued = &Location{}
+		}
 		entity.PlaceIssuedID = previous.PlaceIssuedID
 		entity.PlaceIssued.ID = previous.PlaceIssuedID
+		if entity.CertificateNumber == nil {
+			entity.CertificateNumber = &Text{}
+		}
 		entity.CertificateNumberID = previous.CertificateNumberID
 		entity.CertificateNumber.ID = previous.CertificateNumberID
+		if entity.CertificateIssued == nil {
+			entity.CertificateIssued = &DateControl{}
+		}
 		entity.CertificateIssuedID = previous.CertificateIssuedID
 		entity.CertificateIssued.ID = previous.CertificateIssuedID
+		if entity.CertificateName == nil {
+			entity.CertificateName = &Name{}
+		}
 		entity.CertificateNameID = previous.CertificateNameID
 		entity.CertificateName.ID = previous.CertificateNameID
+		if entity.CertificateCourtName == nil {
+			entity.CertificateCourtName = &Text{}
+		}
 		entity.CertificateCourtNameID = previous.CertificateCourtNameID
 		entity.CertificateCourtName.ID = previous.CertificateCourtNameID
+		if entity.CertificateCourtAddress == nil {
+			entity.CertificateCourtAddress = &Location{}
+		}
 		entity.CertificateCourtAddressID = previous.CertificateCourtAddressID
 		entity.CertificateCourtAddress.ID = previous.CertificateCourtAddressID
+		if entity.BornOnMilitaryInstallation == nil {
+			entity.BornOnMilitaryInstallation = &Branch{}
+		}
 		entity.BornOnMilitaryInstallationID = previous.BornOnMilitaryInstallationID
 		entity.BornOnMilitaryInstallation.ID = previous.BornOnMilitaryInstallationID
+		if entity.MilitaryBase == nil {
+			entity.MilitaryBase = &Text{}
+		}
 		entity.MilitaryBaseID = previous.MilitaryBaseID
 		entity.MilitaryBase.ID = previous.MilitaryBaseID
+		if entity.EntryDate == nil {
+			entity.EntryDate = &DateControl{}
+		}
 		entity.EntryDateID = previous.EntryDateID
 		entity.EntryDate.ID = previous.EntryDateID
+		if entity.EntryLocation == nil {
+			entity.EntryLocation = &Location{}
+		}
 		entity.EntryLocationID = previous.EntryLocationID
 		entity.EntryLocation.ID = previous.EntryLocationID
+		if entity.PriorCitizenship == nil {
+			entity.PriorCitizenship = &Country{}
+		}
 		entity.PriorCitizenshipID = previous.PriorCitizenshipID
 		entity.PriorCitizenship.ID = previous.PriorCitizenshipID
+		if entity.HasAlienRegistration == nil {
+			entity.HasAlienRegistration = &Branch{}
+		}
 		entity.HasAlienRegistrationID = previous.HasAlienRegistrationID
 		entity.HasAlienRegistration.ID = previous.HasAlienRegistrationID
+		if entity.AlienRegistrationNumber == nil {
+			entity.AlienRegistrationNumber = &Text{}
+		}
 		entity.AlienRegistrationNumberID = previous.AlienRegistrationNumberID
 		entity.AlienRegistrationNumber.ID = previous.AlienRegistrationNumberID
+		if entity.AlienRegistrationExpiration == nil {
+			entity.AlienRegistrationExpiration = &DateControl{}
+		}
 		entity.AlienRegistrationExpirationID = previous.AlienRegistrationExpirationID
 		entity.AlienRegistrationExpiration.ID = previous.AlienRegistrationExpirationID
+		if entity.Basis == nil {
+			entity.Basis = &Radio{}
+		}
 		entity.BasisID = previous.BasisID
 		entity.Basis.ID = previous.BasisID
+		if entity.PermanentResidentCardNumber == nil {
+			entity.PermanentResidentCardNumber = &Text{}
+		}
 		entity.PermanentResidentCardNumberID = previous.PermanentResidentCardNumberID
 		entity.PermanentResidentCardNumber.ID = previous.PermanentResidentCardNumberID
+		if entity.ResidenceStatus == nil {
+			entity.ResidenceStatus = &Text{}
+		}
 		entity.ResidenceStatusID = previous.ResidenceStatusID
 		entity.ResidenceStatus.ID = previous.ResidenceStatusID
 	})
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
 
 	if _, err := entity.CitizenshipStatus.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -743,12 +899,6 @@ func (entity *CitizenshipStatus) Delete(context *db.DatabaseContext, account int
 
 	if _, err := entity.ResidenceStatus.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1024,8 +1174,14 @@ func (entity *CitizenshipMultiple) Save(context *db.DatabaseContext, account int
 
 	context.Find(&CitizenshipMultiple{ID: account}, func(result interface{}) {
 		previous := result.(*CitizenshipMultiple)
+		if entity.HasMultiple == nil {
+			entity.HasMultiple = &Branch{}
+		}
 		entity.HasMultipleID = previous.HasMultipleID
 		entity.HasMultiple.ID = previous.HasMultipleID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1059,11 +1215,23 @@ func (entity *CitizenshipMultiple) Delete(context *db.DatabaseContext, account i
 
 	context.Find(&CitizenshipMultiple{ID: account}, func(result interface{}) {
 		previous := result.(*CitizenshipMultiple)
+		if entity.HasMultiple == nil {
+			entity.HasMultiple = &Branch{}
+		}
 		entity.HasMultipleID = previous.HasMultipleID
 		entity.HasMultiple.ID = previous.HasMultipleID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
 
 	if _, err := entity.HasMultiple.Delete(context, account); err != nil {
 		return entity.ID, err
@@ -1071,12 +1239,6 @@ func (entity *CitizenshipMultiple) Delete(context *db.DatabaseContext, account i
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1169,6 +1331,9 @@ func (entity *CitizenshipPassports) Save(context *db.DatabaseContext, account in
 
 	context.Find(&CitizenshipPassports{ID: account}, func(result interface{}) {
 		previous := result.(*CitizenshipPassports)
+		if entity.Passports == nil {
+			entity.Passports = &Collection{}
+		}
 		entity.PassportsID = previous.PassportsID
 		entity.Passports.ID = previous.PassportsID
 	})
@@ -1196,6 +1361,9 @@ func (entity *CitizenshipPassports) Delete(context *db.DatabaseContext, account 
 
 	context.Find(&CitizenshipPassports{ID: account}, func(result interface{}) {
 		previous := result.(*CitizenshipPassports)
+		if entity.Passports == nil {
+			entity.Passports = &Collection{}
+		}
 		entity.PassportsID = previous.PassportsID
 		entity.Passports.ID = previous.PassportsID
 	})

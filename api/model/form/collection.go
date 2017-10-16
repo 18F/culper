@@ -38,6 +38,8 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 		entity.Branch = branch.(*Branch)
 	}
 
+	log.Println("collection items:", len(entity.Items))
+
 	return err
 }
 
@@ -82,13 +84,13 @@ func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, e
 		entity.Branch = &Branch{}
 	}
 
-	log.Println("1.0")
 	if err := context.CheckTable(entity); err != nil {
+		log.Println("0.1")
 		return entity.ID, err
 	}
 
-	log.Println("1.1")
 	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		log.Println("0.2")
 		previous := result.(*Collection)
 		// Handle if there is a branch
 		if previous.BranchID != 0 {
@@ -100,30 +102,35 @@ func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, e
 		}
 	})
 
-	log.Println("1.2")
 	// Custom errors
 	if entity.PayloadBranch.Type != "" {
+		log.Println("0.3")
 		branchID, err := entity.Branch.Save(context, account)
 		if err != nil {
+			log.Println("0.4")
 			return 0, err
 		}
 		entity.BranchID = branchID
+		log.Println("branchID:", branchID)
 	}
 
-	log.Println("1.3")
+	log.Println("collection items:", len(entity.Items))
 	if err := context.Save(entity); err != nil {
+		log.Println("0.5")
 		return entity.ID, err
 	}
+	log.Println("collection items:", len(entity.Items))
 
-	log.Println("1.4")
 	// Iterate through each property in `Items` saving them as we go.
 	for i, item := range entity.Items {
+		log.Println("0.6")
 		if _, err := item.Save(context, account, entity.ID, i+1); err != nil {
+			log.Println("0.7")
 			return entity.ID, err
 		}
 	}
 
-	log.Println("1.5")
+	log.Println("0.8")
 	return entity.ID, nil
 }
 
@@ -147,12 +154,6 @@ func (entity *Collection) Delete(context *db.DatabaseContext, account int) (int,
 		}
 	})
 
-	if entity.PayloadBranch.Type != "" {
-		if _, err := entity.Branch.Delete(context, account); err != nil {
-			return entity.ID, err
-		}
-	}
-
 	entity.collectionItemIDs(context)
 	for i, item := range entity.Items {
 		if _, err := item.Delete(context, account, entity.ID, i+1); err != nil {
@@ -162,6 +163,12 @@ func (entity *Collection) Delete(context *db.DatabaseContext, account int) (int,
 
 	if entity.ID != 0 {
 		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.PayloadBranch.Type != "" {
+		if _, err := entity.Branch.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}

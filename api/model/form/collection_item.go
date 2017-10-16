@@ -3,7 +3,6 @@ package form
 import (
 	"encoding/json"
 	"fmt"
-	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/go-pg/pg"
@@ -39,18 +38,11 @@ func (ci *CollectionItem) Valid() (bool, error) {
 func (ci *CollectionItem) Save(context *db.DatabaseContext, account, collectionID, index int) (int, error) {
 	ci.ID = collectionID
 
-	log.Println("1.4.1")
 	if err := context.CheckTable(&CollectionItem{}); err != nil {
 		return ci.ID, err
 	}
 
-	log.Println("1.4.2")
 	err := ci.Each(func(name, entityType string, entity Entity, err error) error {
-		log.Println("1.4.2.1")
-		log.Println("name: ", name)
-		log.Println("entity type: ", entityType)
-		log.Println("err: ", err)
-
 		// If a named payload was not ablet to be decoded then skip the saving
 		// bit.
 		if entityType == "" {
@@ -64,18 +56,15 @@ func (ci *CollectionItem) Save(context *db.DatabaseContext, account, collectionI
 			Type:  entityType,
 		}
 
-		log.Println("1.4.2.2")
 		id, err := entity.Save(context, account)
 		if err != nil {
 			return err
 		}
 		item.ItemID = id
 
-		log.Println("1.4.2.3")
 		return context.Save(item)
 	})
 
-	log.Println("1.4.3")
 	return ci.ID, err
 }
 

@@ -245,6 +245,12 @@ func (entity *Supervisor) Delete(context *db.DatabaseContext, account int) (int,
 		entity.TelephoneID = previous.TelephoneID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.SupervisorName.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -267,12 +273,6 @@ func (entity *Supervisor) Delete(context *db.DatabaseContext, account int) (int,
 
 	if _, err := entity.Telephone.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

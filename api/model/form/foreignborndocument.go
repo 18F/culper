@@ -209,6 +209,12 @@ func (entity *ForeignBornDocument) Delete(context *db.DatabaseContext, account i
 		entity.DocumentExpirationNotApplicableID = previous.DocumentExpirationNotApplicableID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.DocumentType.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -227,12 +233,6 @@ func (entity *ForeignBornDocument) Delete(context *db.DatabaseContext, account i
 
 	if _, err := entity.DocumentExpirationNotApplicable.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil

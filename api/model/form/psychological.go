@@ -118,18 +118,18 @@ func (entity *PsychologicalCompetence) Delete(context *db.DatabaseContext, accou
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.IsIncompetent.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -287,18 +287,18 @@ func (entity *PsychologicalConsultations) Delete(context *db.DatabaseContext, ac
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Consulted.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -530,6 +530,12 @@ func (entity *PsychologicalDiagnoses) Delete(context *db.DatabaseContext, accoun
 		entity.TreatmentList.ID = previous.TreatmentListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Diagnosed.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -548,12 +554,6 @@ func (entity *PsychologicalDiagnoses) Delete(context *db.DatabaseContext, accoun
 
 	if _, err := entity.TreatmentList.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -732,18 +732,18 @@ func (entity *PsychologicalHospitalizations) Delete(context *db.DatabaseContext,
 		entity.List.ID = previous.ListID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.Hospitalized.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if _, err := entity.List.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
@@ -1003,6 +1003,12 @@ func (entity *PsychologicalExisting) Delete(context *db.DatabaseContext, account
 		entity.DidNotFollowExplanation.ID = previous.DidNotFollowExplanationID
 	})
 
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
+	}
+
 	if _, err := entity.HasCondition.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
@@ -1025,12 +1031,6 @@ func (entity *PsychologicalExisting) Delete(context *db.DatabaseContext, account
 
 	if _, err := entity.DidNotFollowExplanation.Delete(context, account); err != nil {
 		return entity.ID, err
-	}
-
-	if entity.ID != 0 {
-		if err := context.Delete(entity); err != nil {
-			return entity.ID, err
-		}
 	}
 
 	return entity.ID, nil
