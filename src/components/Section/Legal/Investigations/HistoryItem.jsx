@@ -118,6 +118,9 @@ export default class HistoryItem extends ValidationElement {
         <Field title={i18n.t('legal.investigations.history.heading.completed')}
                help="legal.investigations.history.help.completed"
                adjustFor="datecontrol"
+               comments={true}
+               commentsName="CompletedComments"
+               commentsValue={this.props.CompletedComments}
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="CompletedNotApplicable"
                          className="legal-investigations-history-completed-notapplicable"
@@ -151,6 +154,9 @@ export default class HistoryItem extends ValidationElement {
 
         <Field title={i18n.t('legal.investigations.history.heading.granted')}
                help="legal.investigations.history.help.granted"
+               comments={true}
+               commentsName="CompletedComments"
+               commentsValue={this.props.CompletedComments}
                adjustFor="datecontrol"
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="GrantedNotApplicable"
