@@ -155,8 +155,8 @@ export default class HistoryItem extends ValidationElement {
         <Field title={i18n.t('legal.investigations.history.heading.granted')}
                help="legal.investigations.history.help.granted"
                comments={true}
-               commentsName="CompletedComments"
-               commentsValue={this.props.CompletedComments}
+               commentsName="GrantedComments"
+               commentsValue={this.props.GrantedComments}
                adjustFor="datecontrol"
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="GrantedNotApplicable"
