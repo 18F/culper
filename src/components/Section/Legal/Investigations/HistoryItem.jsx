@@ -12,9 +12,11 @@ export default class HistoryItem extends ValidationElement {
     this.updateAgency = this.updateAgency.bind(this)
     this.updateCompletedNotApplicable = this.updateCompletedNotApplicable.bind(this)
     this.updateCompleted = this.updateCompleted.bind(this)
+    this.updateCompletedComments = this.updateCompletedComments.bind(this)
     this.updateIssued = this.updateIssued.bind(this)
     this.updateGrantedNotApplicable = this.updateGrantedNotApplicable.bind(this)
     this.updateGranted = this.updateGranted.bind(this)
+    this.updateGrantedComments = this.updateGrantedComments.bind(this)
     this.updateClearanceNotApplicable = this.updateClearanceNotApplicable.bind(this)
     this.updateClearance = this.updateClearance.bind(this)
   }
@@ -25,9 +27,11 @@ export default class HistoryItem extends ValidationElement {
       Agency: this.props.Agency,
       CompletedNotApplicable: this.props.CompletedNotApplicable,
       Completed: this.props.Completed,
+      CompletedComments: this.props.CompletedComments,
       Issued: this.props.Issued,
       GrantedNotApplicable: this.props.GrantedNotApplicable,
       Granted: this.props.Granted,
+      GrantedComments: this.props.GrantedComments,
       ClearanceNotApplicable: this.props.ClearanceNotApplicable,
       Clearance: this.props.Clearance,
       ...queue
@@ -59,6 +63,12 @@ export default class HistoryItem extends ValidationElement {
     })
   }
 
+  updateCompletedComments (values) {
+    this.update({
+      CompletedComments: values
+    })
+  }
+
   updateIssued (values) {
     this.update({
       Issued: values
@@ -74,6 +84,12 @@ export default class HistoryItem extends ValidationElement {
   updateGranted (values) {
     this.update({
       Granted: values
+    })
+  }
+
+  updateGrantedComments (values) {
+    this.update({
+      GrantedComments: values
     })
   }
 
@@ -121,6 +137,7 @@ export default class HistoryItem extends ValidationElement {
                comments={true}
                commentsName="CompletedComments"
                commentsValue={this.props.CompletedComments}
+               onUpdate={this.updateCompletedComments}
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="CompletedNotApplicable"
                          className="legal-investigations-history-completed-notapplicable"
@@ -157,6 +174,7 @@ export default class HistoryItem extends ValidationElement {
                comments={true}
                commentsName="GrantedComments"
                commentsValue={this.props.GrantedComments}
+               onUpdate={this.updateGrantedComments}
                adjustFor="datecontrol"
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="GrantedNotApplicable"
