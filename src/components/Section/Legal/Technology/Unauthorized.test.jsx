@@ -18,7 +18,7 @@ describe('The legal technology unauthorized access component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasUnauthorized: 'Yes'
+      HasUnauthorized: { value: 'Yes' }
     }
     const component = mount(<Unauthorized {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal technology unauthorized access component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasUnauthorized: 'Yes',
+      HasUnauthorized: { value: 'Yes' },
       List: [
         {
           Item: {

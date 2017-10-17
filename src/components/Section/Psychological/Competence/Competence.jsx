@@ -36,8 +36,8 @@ export default class Competence extends SubsectionElement {
   updateIsIncompentent (values) {
     this.update({
       IsIncompetent: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -61,7 +61,7 @@ export default class Competence extends SubsectionElement {
         <Branch name="is_incompetent"
                 label={i18n.t('psychological.heading.competence')}
                 labelSize="h2"
-                value={this.props.IsIncompetent}
+                {...this.props.IsIncompetent}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -69,7 +69,7 @@ export default class Competence extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.IsIncompetent === 'Yes'}>
+        <Show when={this.props.IsIncompetent.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -99,7 +99,7 @@ export default class Competence extends SubsectionElement {
 }
 
 Competence.defaultProps = {
-  IsIncompetent: '',
+  IsIncompetent: {},
   List: [],
   ListBranch: '',
   defaultState: true,

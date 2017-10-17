@@ -6,7 +6,7 @@ describe('The foreign travel component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-travel',
-      HasForeignTravelOutside: 'No'
+      HasForeignTravelOutside: { value: 'No' }
     }
     const component = mount(<Travel {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,8 +15,8 @@ describe('The foreign travel component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-travel',
-      HasForeignTravelOutside: 'Yes',
-      HasForeignTravelOfficial: 'No'
+      HasForeignTravelOutside: { value: 'Yes' },
+      HasForeignTravelOfficial: { value: 'No' }
     }
     const component = mount(<Travel {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The foreign travel component', () => {
     let validated = false
     const expected = {
       name: 'foreign-travel',
-      HasForeignTravelOutside: 'Yes',
+      HasForeignTravelOutside: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -42,8 +42,8 @@ describe('The foreign travel component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-travel',
-      HasForeignTravelOutside: 'Yes',
-      HasForeignTravelOfficial: 'No',
+      HasForeignTravelOutside: { value: 'Yes' },
+      HasForeignTravelOfficial: { value: 'No' },
       List: [
         {
           Item: {
@@ -51,19 +51,19 @@ describe('The foreign travel component', () => {
             Country: {},
             Days: [],
             Purpose: [],
-            Questioned: 'Yes',
+            Questioned: { value: 'Yes' },
             QuestionedExplanation: {},
-            Encounter: 'Yes',
+            Encounter: { value: 'Yes' },
             EncounterExplanation: {},
-            Contacted: 'Yes',
+            Contacted: { value: 'Yes' },
             ContactedExplanation: {},
-            Counter: 'Yes',
+            Counter: { value: 'Yes' },
             CounterExplanation: {},
-            Interest: 'Yes',
+            Interest: { value: 'Yes' },
             InterestExplanation: {},
-            Sensitive: 'Yes',
+            Sensitive: { value: 'Yes' },
             SensitiveExplanation: {},
-            Threatened: 'Yes',
+            Threatened: { value: 'Yes' },
             ThreatenedExplanation: {}
           }
         }

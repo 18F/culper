@@ -15,7 +15,7 @@ export class Introduction extends React.Component {
   }
 
   updateBranch (values) {
-    if (values === 'No') {
+    if (values.value === 'No') {
       this.props.dispatch(updateApplication('Settings', 'acceptedTerms', ''))
       this.props.dispatch(logout())
       if (window && window.location) {
@@ -44,7 +44,7 @@ export class Introduction extends React.Component {
                       label={i18n.t('introduction.acceptance.title')}
                       labelSize="h3"
                       className="introduction-acceptance"
-                      value={this.props.settings.acceptedTerms}
+                      {...this.props.settings.acceptedTerms}
                       onUpdate={this.updateBranch}>
                 {i18n.m('introduction.acceptance.para')}
               </Branch>
@@ -57,7 +57,7 @@ export class Introduction extends React.Component {
 }
 
 Introduction.defaultProps = {
-  settings: { acceptedTerms: '' },
+  settings: { acceptedTerms: { value: '' } },
   forceOpen: false,
   onDismiss: () => {},
   dispatch: (action) => {}
@@ -65,7 +65,7 @@ Introduction.defaultProps = {
 
 function mapStateToProps (state) {
   const app = state.application || {}
-  const settings = app.Settings || { acceptedTerms: '' }
+  const settings = app.Settings || { acceptedTerms: { value: '' } }
 
   return {
     settings: settings

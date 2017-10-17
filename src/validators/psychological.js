@@ -45,10 +45,10 @@ export const showQuestion21E = (psychological = defaultPsychologicalState) => {
   }
 
   // We show question 21 if all other subsections have been marked with No
-  return (Competence.IsIncompetent === 'No' &&
-    Consultation.Consulted === 'No' &&
-    Diagnoses.Diagnosed === 'No' &&
-    Hospitalization.Hospitalized === 'No')
+  return (Competence.IsIncompetent.value === 'No' &&
+    Consultation.Consulted.value === 'No' &&
+    Diagnoses.Diagnosed.value === 'No' &&
+    Hospitalization.Hospitalized.value === 'No')
 }
 
 export const hideExistingConditions = (application = {}) => {

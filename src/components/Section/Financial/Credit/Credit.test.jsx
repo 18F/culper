@@ -15,7 +15,7 @@ describe('The credit component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'credit-counseling',
-      HasCreditCounseling: 'Yes'
+      HasCreditCounseling: { value: 'Yes' }
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The credit component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'credit-counseling',
-      HasCreditCounseling: 'No'
+      HasCreditCounseling: { value: 'No' }
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.accordion').length).toBe(0)

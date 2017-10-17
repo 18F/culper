@@ -26,11 +26,11 @@ export default class Employment extends SubsectionElement {
     })
   }
 
-  updateHasForeignEmployment (value) {
+  updateHasForeignEmployment (values) {
     this.update({
-      HasForeignEmployment: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignEmployment: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -61,7 +61,7 @@ export default class Employment extends SubsectionElement {
         <Branch name="has_foreign_employment"
                 label={i18n.t('foreign.business.employment.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignEmployment}
+                {...this.props.HasForeignEmployment}
                 warning={true}
                 onUpdate={this.updateHasForeignEmployment}
                 onError={this.handleError}
@@ -69,7 +69,7 @@ export default class Employment extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasForeignEmployment === 'Yes'}>
+        <Show when={this.props.HasForeignEmployment.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -97,7 +97,7 @@ export default class Employment extends SubsectionElement {
 
 Employment.defaultProps = {
   name: 'Employment',
-  HasForeignEmployment: '',
+  HasForeignEmployment: {},
   List: [],
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

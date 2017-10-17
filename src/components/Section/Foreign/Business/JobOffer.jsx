@@ -120,14 +120,14 @@ export default class JobOffer extends ValidationElement {
                 label={i18n.t('foreign.business.employment.heading.accepted')}
                 labelSize="h3"
                 className="employment-accepted"
-                value={this.props.Accepted}
+                {...this.props.Accepted}
                 onUpdate={this.updateAccepted}
                 onError={this.props.onError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.Accepted === 'Yes' || this.props.Accepted === 'No'}>
+        <Show when={this.props.Accepted.value === 'Yes' || this.props.Accepted.value === 'No'}>
           <Field title={i18n.t('foreign.business.employment.label.explanation')}
             titleSize="label"
             scrollIntoView={this.props.scrollIntoView}>
@@ -151,7 +151,7 @@ JobOffer.defaultProps = {
   Description: {},
   Date: {},
   Address: {},
-  Accepted: '',
+  Accepted: {},
   Explanation: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

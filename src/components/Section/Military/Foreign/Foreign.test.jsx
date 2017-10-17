@@ -17,7 +17,7 @@ describe('The military foreign component', () => {
       name: 'military-foreign',
       List: [
         {
-          Has: 'No'
+          Has: { value: 'No' }
         }
       ]
     }
@@ -30,7 +30,7 @@ describe('The military foreign component', () => {
       name: 'military-foreign',
       List: [
         {
-          Has: 'Yes'
+          Has: { value: 'Yes' }
         }
       ]
     }

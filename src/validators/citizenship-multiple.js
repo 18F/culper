@@ -3,7 +3,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class CitizenshipMultipleValidator {
   constructor (data = {}) {
-    this.hasMultiple = data.HasMultiple
+    this.hasMultiple = (data.HasMultiple || {}).value
     this.citizenships = data.Citizenships || []
     this.citizenshipsBranch = data.CitizenshipsBranch
   }
@@ -45,9 +45,9 @@ export class CitizenshipItemValidator {
     this.country = data.Country
     this.dates = data.Dates
     this.how = data.How
-    this.renounced = data.Renounced
+    this.renounced = (data.Renounced || {}).value
     this.renouncedExplanation = data.RenouncedExplanation
-    this.current = data.Current
+    this.current = (data.Current || {}).value
     this.currentExplanation = data.CurrentExplanation
   }
 

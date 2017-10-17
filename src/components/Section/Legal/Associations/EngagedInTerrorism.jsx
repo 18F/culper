@@ -36,8 +36,8 @@ export default class EngagedInTerrorism extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasEngaged: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -62,7 +62,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
                 label={i18n.t('legal.associations.engaged.heading.title')}
                 labelSize="h2"
                 className="legal-associations-engaged-has-engaged"
-                value={this.props.HasEngaged}
+                {...this.props.HasEngaged}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,7 +70,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasEngaged === 'Yes'}>
+        <Show when={this.props.HasEngaged.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -98,7 +98,7 @@ export default class EngagedInTerrorism extends SubsectionElement {
 
 EngagedInTerrorism.defaultProps = {
   name: 'engaged',
-  HasEngaged: '',
+  HasEngaged: {},
   List: [],
   ListBranch: '',
   defaultState: true,

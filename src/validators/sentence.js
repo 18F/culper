@@ -4,8 +4,8 @@ import { validGenericTextfield, validNotApplicable } from './helpers'
 export default class SentenceValidator {
   constructor (state = {}, props = {}) {
     this.description = state.Description
-    this.exceedsYear = state.ExceedsYear
-    this.incarcerated = state.Incarcerated
+    this.exceedsYear = (state.ExceedsYear || {}).value
+    this.incarcerated = (state.Incarcerated || {}).value
     this.incarcerationDates = state.IncarcerationDates
     this.incarcerationDatesNA = state.IncarcerationDatesNA
     this.probationDates = state.ProbationDates

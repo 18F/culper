@@ -8,7 +8,7 @@ export const hideDisciplinaryProcedures = (store = {}) => {
 
 export default class MilitaryDisciplinaryValidator {
   constructor (data = {}) {
-    this.hasDisciplinary = data.HasDisciplinary
+    this.hasDisciplinary = (data.HasDisciplinary || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

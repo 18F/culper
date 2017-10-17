@@ -25,11 +25,11 @@ export default class Support extends SubsectionElement {
     })
   }
 
-  updateHasForeignSupport (value) {
+  updateHasForeignSupport (values) {
     this.update({
-      HasForeignSupport: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignSupport: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -59,7 +59,7 @@ export default class Support extends SubsectionElement {
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignSupport}
+                {...this.props.HasForeignSupport}
                 warning={true}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
@@ -67,7 +67,7 @@ export default class Support extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasForeignSupport === 'Yes'}>
+        <Show when={this.props.HasForeignSupport.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      branch={this.props.ListBranch}
@@ -97,7 +97,7 @@ export default class Support extends SubsectionElement {
 
 Support.defaultProps = {
   name: 'Support',
-  HasForeignSupport: '',
+  HasForeignSupport: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

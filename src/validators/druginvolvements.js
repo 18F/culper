@@ -3,7 +3,7 @@ import { validBranch, validGenericTextfield, validGenericMonthYear } from './hel
 
 export default class DrugInvolvementsValidator {
   constructor (data = {}) {
-    this.involved = data.Involved
+    this.involved = (data.Involved || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }
@@ -47,9 +47,9 @@ export class DrugInvolvementValidator {
     this.firstInvolvement = data.FirstInvolvement
     this.recentInvolvement = data.RecentInvolvement
     this.natureOfInvolvement = data.NatureOfInvolvement
-    this.involvementWhileEmployed = data.InvolvementWhileEmployed
-    this.involvementWithClearance = data.InvolvementWithClearance
-    this.involvementInFuture = data.InvolvementInFuture
+    this.involvementWhileEmployed = (data.InvolvementWhileEmployed || {}).value
+    this.involvementWithClearance = (data.InvolvementWithClearance || {}).value
+    this.involvementInFuture = (data.InvolvementInFuture || {}).value
     this.reasons = data.Reasons
     this.explanation = data.Explanation
   }

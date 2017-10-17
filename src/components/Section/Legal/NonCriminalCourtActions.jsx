@@ -35,8 +35,8 @@ export default class NonCriminalCourtActions extends SubsectionElement {
   updateHasCourtActions (values) {
     this.update({
       HasCourtActions: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -61,7 +61,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                 label={i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}
                 labelSize="h2"
                 className="has-court-actions"
-                value={this.props.HasCourtActions}
+                {...this.props.HasCourtActions}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -69,7 +69,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasCourtActions === 'Yes'}>
+        <Show when={this.props.HasCourtActions.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -97,6 +97,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 }
 
 NonCriminalCourtActions.defaultProps = {
+  HasCourtActions: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

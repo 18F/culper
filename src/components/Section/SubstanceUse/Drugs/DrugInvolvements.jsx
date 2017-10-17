@@ -38,8 +38,8 @@ export default class DrugInvolvements extends SubsectionElement {
   updateInvolved (values) {
     this.update({
       Involved: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -66,7 +66,7 @@ export default class DrugInvolvements extends SubsectionElement {
                 label={i18n.m('substance.drugs.heading.drugInvolvement')}
                 labelSize="h2"
                 className="involved"
-                value={this.props.Involved}
+                {...this.props.Involved}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -74,7 +74,7 @@ export default class DrugInvolvements extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.Involved === 'Yes'}>
+        <Show when={this.props.Involved.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -97,6 +97,7 @@ export default class DrugInvolvements extends SubsectionElement {
 }
 
 DrugInvolvements.defaultProps = {
+  Involved: {},
   List: [],
   ListBranch: '',
   onError: (value, arr) => { return arr },

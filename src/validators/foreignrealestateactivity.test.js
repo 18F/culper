@@ -6,19 +6,19 @@ describe('Foreign RealEstate Activity validation', function () {
     const tests = [
       {
         props: {
-          HasInterests: 'Nope'
+          HasInterests: { value: 'Nope' }
         },
         expected: false
       },
       {
         props: {
-          HasInterests: 'No'
+          HasInterests: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          HasInterests: 'Yes',
+          HasInterests: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -26,7 +26,7 @@ describe('Foreign RealEstate Activity validation', function () {
       },
       {
         props: {
-          HasInterests: 'Yes',
+          HasInterests: { value: 'Yes' },
           List: [
             {
               Item: {

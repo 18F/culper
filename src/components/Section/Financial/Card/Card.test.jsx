@@ -15,7 +15,7 @@ describe('The card component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'card-abuse',
-      HasCardAbuse: 'Yes'
+      HasCardAbuse: { value: 'Yes' }
     }
     const component = mount(<Card {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The card component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'card-abuse',
-      HasCardAbuse: 'No'
+      HasCardAbuse: { value: 'No' }
     }
     const component = mount(<Card {...expected} />)
     expect(component.find('.accordion').length).toBe(0)

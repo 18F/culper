@@ -17,11 +17,11 @@ export default class CivilUnionValidator {
     this.location = state.Location
     this.address = state.Address
     this.telephone = state.Telephone
-    this.separated = state.Separated
+    this.separated = (state.Separated || {}).value
     this.dateSeparated = state.DateSeparated
     this.addressSeparated = state.AddressSeparated
     this.addressSeparatedNotApplicable = state.AddressSeparatedNotApplicable
-    this.divorced = state.Divorced
+    this.divorced = (state.Divorced || {}).value
   }
 
   validCitizenship () {

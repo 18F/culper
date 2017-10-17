@@ -4,7 +4,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class FederalServiceValidator {
   constructor (data = {}) {
-    this.hasFederalService = data.HasFederalService
+    this.hasFederalService = (data.HasFederalService || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }

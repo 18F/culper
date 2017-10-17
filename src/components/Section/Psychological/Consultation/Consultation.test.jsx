@@ -11,7 +11,7 @@ describe('The Consultation component', () => {
   it('Performs updates', () => {
     let updates = 0
     const props = {
-      Consulted: 'Yes',
+      Consulted: { value: 'Yes' },
       List: [{}],
       onUpdate: () => { updates++ }
     }

@@ -6,7 +6,7 @@ describe('Competence validation', function () {
     const tests = [
       {
         state: {
-          IsIncompetent: 'Yes',
+          IsIncompetent: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -42,7 +42,7 @@ describe('Competence validation', function () {
         state: {
           List: [],
           ListBranch: 'No',
-          IsIncompetent: 'Yes'
+          IsIncompetent: { value: 'Yes' }
         },
         expected: false
       },
@@ -50,7 +50,7 @@ describe('Competence validation', function () {
         state: {
           List: [],
           ListBranch: 'No',
-          IsIncompetent: 'No'
+          IsIncompetent: { value: 'No' }
         },
         expected: true
       },
@@ -58,13 +58,13 @@ describe('Competence validation', function () {
         state: {
           List: [],
           ListBranch: 'No',
-          IsIncompetent: 'Nope'
+          IsIncompetent: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          IsIncompetent: 'Yes',
+          IsIncompetent: { value: 'Yes' },
           List: [
             {
               Item: {

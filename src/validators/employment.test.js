@@ -251,7 +251,7 @@ describe('Employment component validation', function () {
             layout: Location.ADDRESS
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -368,7 +368,7 @@ describe('Employment component validation', function () {
             layout: Location.ADDRESS
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -513,7 +513,7 @@ describe('Employment component validation', function () {
             layout: Location.ADDRESS
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -813,7 +813,7 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -832,7 +832,7 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'No'
+            HasDifferentAddress: { value: 'No' }
           }
         },
         expected: true
@@ -843,7 +843,7 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Nope'
+            HasDifferentAddress: { value: 'Nope' }
           }
         },
         expected: false

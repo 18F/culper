@@ -38,8 +38,8 @@ export default class OrderedCounselings extends SubsectionElement {
   updateHasBeenOrdered (values) {
     this.update({
       HasBeenOrdered: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -87,7 +87,7 @@ export default class OrderedCounselings extends SubsectionElement {
                 label={i18n.t('substance.alcohol.heading.orderedCounseling')}
                 labelSize="h2"
                 className="has-been-ordered"
-                value={this.props.HasBeenOrdered}
+                {...this.props.HasBeenOrdered}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -95,7 +95,7 @@ export default class OrderedCounselings extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasBeenOrdered === 'Yes'}>
+        <Show when={this.props.HasBeenOrdered.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -123,6 +123,7 @@ export default class OrderedCounselings extends SubsectionElement {
 }
 
 OrderedCounselings.defaultProps = {
+  HasBeenOrdered: {},
   List: [],
   ListBranch: '',
   onError: (value, arr) => { return arr },

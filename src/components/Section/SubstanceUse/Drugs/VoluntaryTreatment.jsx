@@ -136,14 +136,14 @@ export default class VoluntaryTreatment extends ValidationElement {
                 label={i18n.t('substance.drugs.voluntary.heading.treatmentCompleted')}
                 labelSize="h3"
                 className="treatment-completed no-margin-bottom"
-                value={this.props.TreatmentCompleted}
+                {...this.props.TreatmentCompleted}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateTreatmentCompleted}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.TreatmentCompleted === 'No'}>
+        <Show when={this.props.TreatmentCompleted.value === 'No'}>
           <Field title={i18n.t('substance.drugs.voluntary.heading.noTreatmentExplanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -162,6 +162,7 @@ export default class VoluntaryTreatment extends ValidationElement {
 }
 
 VoluntaryTreatment.defaultProps = {
+  TreatmentCompleted: {},
   addressBooks: {},
   dispatch: (action) => {},
   onError: (value, arr) => { return arr }

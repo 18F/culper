@@ -7,7 +7,7 @@ describe('received counseling component validation', function () {
       {
         state: {
           ListBranch: 'No',
-          HasCourtActions: 'Yes',
+          HasCourtActions: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -45,20 +45,20 @@ describe('received counseling component validation', function () {
       },
       {
         state: {
-          HasCourtActions: 'No'
+          HasCourtActions: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasCourtActions: 'Yes',
+          HasCourtActions: { value: 'Yes' },
           List: []
         },
         expected: false
       },
       {
         state: {
-          HasCourtActions: 'Yes',
+          HasCourtActions: { value: 'Yes' },
           ListBranch: 'Nope',
           List: [{}]
         },
@@ -66,7 +66,7 @@ describe('received counseling component validation', function () {
       },
       {
         state: {
-          HasCourtActions: 'Yes',
+          HasCourtActions: { value: 'Yes' },
           ListBranch: 'No',
           List: [{Item: {}}]
         },

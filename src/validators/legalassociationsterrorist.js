@@ -4,7 +4,7 @@ import { validGenericTextfield, validNotApplicable } from './helpers'
 
 export default class LegalTerroristValidator {
   constructor (data = {}) {
-    this.hasTerrorist = data.HasTerrorist
+    this.hasTerrorist = (data.HasTerrorist || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

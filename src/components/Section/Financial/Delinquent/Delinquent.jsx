@@ -26,10 +26,10 @@ export default class Delinquent extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (val, event) {
-    this.setState({ HasDelinquent: val }, () => {
+  updateBranch (values) {
+    this.setState({ HasDelinquent: values }, () => {
       this.updateList({
-        items: val === 'Yes' ? this.state.List : [],
+        items: values.value === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -41,13 +41,11 @@ export default class Delinquent extends SubsectionElement {
    */
   updateList (values) {
     this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasDelinquent: this.state.HasDelinquent
-        })
-      }
+      this.props.onUpdate({
+        List: this.state.List,
+        ListBranch: this.state.ListBranch,
+        HasDelinquent: this.state.HasDelinquent
+      })
     })
   }
 
@@ -91,7 +89,7 @@ export default class Delinquent extends SubsectionElement {
                 label={i18n.t('financial.delinquent.title')}
                 labelSize="h2"
                 className="delinquent-branch eapp-field-wrap"
-                value={this.state.HasDelinquent}
+                {...this.state.HasDelinquent}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
@@ -105,7 +103,7 @@ export default class Delinquent extends SubsectionElement {
             <li>{i18n.m('financial.delinquent.para.federal')}</li>
           </ul>
         </Branch>
-        <Show when={this.state.HasDelinquent === 'Yes'}>
+        <Show when={this.state.HasDelinquent.value === 'Yes'}>
           <Accordion items={this.state.List}
                      branch={this.state.ListBranch}
                      defaultState={this.props.defaultState}
@@ -136,9 +134,10 @@ export default class Delinquent extends SubsectionElement {
 }
 
 Delinquent.defaultProps = {
-  HasDelinquent: '',
+  HasDelinquent: {},
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'delinquent',

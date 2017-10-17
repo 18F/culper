@@ -57,17 +57,12 @@ describe('The gambling component', () => {
 
   it('load data and add another gambling debt', () => {
     const expected = {
-      name: 'gambling'
+      name: 'gambling',
+      List: gamblingData,
+      HasGamblingDebt: { value: '' },
+      onUpdate: () => {}
     }
-    let onUpdate = () => {}
-    const component = mount(
-      <Gambling
-        name={expected.name}
-        List={gamblingData}
-        HasGamblingDebt={true}
-        onUpdate={onUpdate}
-      />
-    )
+    const component = mount(<Gambling {...expected} />)
     component.find('.has-gambling-debt .yes input').simulate('change')
     expect(component.find('.details').length).toBeGreaterThan(0)
 
@@ -77,7 +72,7 @@ describe('The gambling component', () => {
 
   it('displays fields when "yes" is selected', () => {
     const expected = {
-      HasGamblingDebt: 'Yes'
+      HasGamblingDebt: { value: 'Yes' }
     }
     const component = mount(<Gambling {...expected} />)
     expect(component.find('.losses').length).toEqual(1)
@@ -85,7 +80,7 @@ describe('The gambling component', () => {
 
   it('does not display any fields when "no" is selected', () => {
     const expected = {
-      HasGamblingDebt: 'No'
+      HasGamblingDebt: { value: 'No' }
     }
     const component = mount(<Gambling {...expected} />)
     expect(component.find('.losses').length).toEqual(0)

@@ -202,13 +202,13 @@ describe('Legal investigations history component validation', function () {
       },
       {
         state: {
-          HasHistory: 'No'
+          HasHistory: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasHistory: 'Yes',
+          HasHistory: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -216,7 +216,7 @@ describe('Legal investigations history component validation', function () {
       },
       {
         state: {
-          HasHistory: 'Yes',
+          HasHistory: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -224,7 +224,7 @@ describe('Legal investigations history component validation', function () {
       },
       {
         state: {
-          HasHistory: 'Yes',
+          HasHistory: { value: 'Yes' },
           List: [
             {
               Item: {

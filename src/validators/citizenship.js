@@ -19,12 +19,12 @@ export default class CitizenshipValidator {
     this.certificateName = state.CertificateName
     this.certificateCourtName = state.CertificateCourtName
     this.certificateCourtAddress = state.CertificateCourtAddress
-    this.bornOnMilitaryInstallation = state.BornOnMilitaryInstallation
+    this.bornOnMilitaryInstallation = (state.BornOnMilitaryInstallation || {}).value
     this.militaryBase = state.MilitaryBase
     this.entryDate = state.EntryDate
     this.entryLocation = state.EntryLocation
     this.priorCitizenship = state.PriorCitizenship
-    this.hasAlienRegistration = state.HasAlienRegistration
+    this.hasAlienRegistration = (state.HasAlienRegistration || {}).value
     this.alienRegistrationNumber = state.AlienRegistrationNumber
     this.alienRegistrationExpiration = state.AlienRegistrationExpiration
     this.basis = state.Basis

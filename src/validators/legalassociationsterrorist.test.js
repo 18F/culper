@@ -166,13 +166,13 @@ describe('Legal associations terrorist component validation', function () {
       },
       {
         state: {
-          HasTerrorist: 'No'
+          HasTerrorist: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasTerrorist: 'Yes',
+          HasTerrorist: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -180,7 +180,7 @@ describe('Legal associations terrorist component validation', function () {
       },
       {
         state: {
-          HasTerrorist: 'Yes',
+          HasTerrorist: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -188,7 +188,7 @@ describe('Legal associations terrorist component validation', function () {
       },
       {
         state: {
-          HasTerrorist: 'Yes',
+          HasTerrorist: { value: 'Yes' },
           List: [
             {
               Item: {

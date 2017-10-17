@@ -6,25 +6,25 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         props: {
-          HasBankruptcy: 'Yes'
+          HasBankruptcy: { value: 'Yes' }
         },
         expected: true
       },
       {
         props: {
-          HasBankruptcy: 'No'
+          HasBankruptcy: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          HasBankruptcy: ''
+          HasBankruptcy: { value: '' }
         },
         expected: false
       },
       {
         props: {
-          HasBankruptcy: 'Nope'
+          HasBankruptcy: { value: 'Nope' }
         },
         expected: false
       }
@@ -39,7 +39,7 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         props: {
-          HasBankruptcy: 'Yes',
+          HasBankruptcy: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -47,7 +47,7 @@ describe('Bankruptcy component validation', function () {
       },
       {
         props: {
-          HasBankruptcy: 'No',
+          HasBankruptcy: { value: 'No' },
           List: [],
           ListBranch: 'No'
         },
@@ -55,7 +55,7 @@ describe('Bankruptcy component validation', function () {
       },
       {
         props: {
-          HasBankruptcy: 'Yes',
+          HasBankruptcy: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -95,7 +95,7 @@ describe('Bankruptcy component validation', function () {
                 TotalAmount: {
                   value: 200
                 },
-                HasDischargeExplanation: 'Yes',
+                HasDischargeExplanation: { value: 'Yes' },
                 DischargeExplanation: {
                   value: 'Something'
                 }
@@ -108,7 +108,7 @@ describe('Bankruptcy component validation', function () {
       },
       {
         props: {
-          HasBankruptcy: 'Yes',
+          HasBankruptcy: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -147,7 +147,7 @@ describe('Bankruptcy component validation', function () {
                 TotalAmount: {
                   value: 200
                 },
-                HasDischargeExplanation: 'Yes',
+                HasDischargeExplanation: { value: 'Yes' },
                 DischargeExplanation: {
                   value: 'Something'
                 }
@@ -160,7 +160,7 @@ describe('Bankruptcy component validation', function () {
       },
       {
         props: {
-          HasBankruptcy: 'Yes',
+          HasBankruptcy: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -415,7 +415,7 @@ describe('Bankruptcy component validation', function () {
             month: 1,
             year: 2010
           },
-          HasDischargeExplanation: 'Yes',
+          HasDischargeExplanation: { value: 'Yes' },
           DischargeExplanation: {
             value: 'Something'
           }

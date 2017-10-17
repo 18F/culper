@@ -25,11 +25,11 @@ export default class Family extends SubsectionElement {
     })
   }
 
-  updateHasForeignFamily (value) {
+  updateHasForeignFamily (values) {
     this.update({
-      HasForeignFamily: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignFamily: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -60,7 +60,7 @@ export default class Family extends SubsectionElement {
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h2"
                 adjustFor="p"
-                value={this.props.HasForeignFamily}
+                {...this.props.HasForeignFamily}
                 warning={true}
                 onUpdate={this.updateHasForeignFamily}
                 required={this.props.required}
@@ -69,7 +69,7 @@ export default class Family extends SubsectionElement {
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignFamily === 'Yes'}>
+        <Show when={this.props.HasForeignFamily.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -100,7 +100,7 @@ export default class Family extends SubsectionElement {
 
 Family.defaultProps = {
   name: 'Family',
-  HasForeignFamily: '',
+  HasForeignFamily: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

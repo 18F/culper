@@ -6,8 +6,8 @@ import NameValidator from './name'
 
 export default class EducationValidator {
   constructor (state = {}, props = {}) {
-    this.hasAttended = state.HasAttended
-    this.hasDegree10 = state.HasDegree10
+    this.hasAttended = (state.HasAttended || {}).value
+    this.hasDegree10 = (state.HasDegree10 || {}).value
     this.list = state.List || []
   }
 

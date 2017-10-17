@@ -76,13 +76,13 @@ describe('Legal investigations revoked component validation', function () {
       },
       {
         state: {
-          HasRevocations: 'No'
+          HasRevocations: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasRevocations: 'Yes',
+          HasRevocations: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -90,7 +90,7 @@ describe('Legal investigations revoked component validation', function () {
       },
       {
         state: {
-          HasRevocations: 'Yes',
+          HasRevocations: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -98,7 +98,7 @@ describe('Legal investigations revoked component validation', function () {
       },
       {
         state: {
-          HasRevocations: 'Yes',
+          HasRevocations: { value: 'Yes' },
           List: [
             {
               Item: {

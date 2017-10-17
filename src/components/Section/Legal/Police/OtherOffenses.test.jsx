@@ -7,7 +7,7 @@ describe('The offense component', () => {
   it('no error on empty', () => {
     const expected = {
       name: 'offense',
-      HasOtherOffenses: 'No'
+      HasOtherOffenses: { value: 'No' }
     }
     const component = mount(<OtherOffenses {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -43,7 +43,7 @@ describe('The offense component', () => {
   it('populates all fields', () => {
     const expected = {
       name: 'offense',
-      HasOtherOffenses: 'Yes',
+      HasOtherOffenses: { value: 'Yes' },
       ListBranch: 'No',
       List: [
         {
@@ -57,9 +57,9 @@ describe('The offense component', () => {
             Description: {
               value: 'Some description'
             },
-            InvolvedViolence: 'No',
-            InvolvedFirearms: 'Yes',
-            InvolvedSubstances: 'No',
+            InvolvedViolence: { value: 'No' },
+            InvolvedFirearms: { value: 'Yes' },
+            InvolvedSubstances: { value: 'No' },
             CourtType: 'Felony',
             CourtAddress: {
               country: 'United States',
@@ -84,12 +84,12 @@ describe('The offense component', () => {
             CourtOutcome: {
               value: 'Some outcome'
             },
-            WasSentenced: 'Yes',
+            WasSentenced: { value: 'Yes' },
             Sentence: {
-              AwaitingTrial: 'Yes',
-              AwaitingTrialExplanation: 'Yes',
-              ExceedsYear: 'Yes',
-              Incarcerated: 'Yes',
+              AwaitingTrial: { value: 'Yes' },
+              AwaitingTrialExplanation: { value: 'Yes' },
+              ExceedsYear: { value: 'Yes' },
+              Incarcerated: { value: 'Yes' },
               IncarcerationDates: {
                 from: {
                   date: new Date('1/1/2000')

@@ -26,10 +26,10 @@ export default class Card extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (val, event) {
-    this.setState({ HasCardAbuse: val }, () => {
+  updateBranch (values) {
+    this.setState({ HasCardAbuse: values }, () => {
       this.updateList({
-        items: val === 'Yes' ? this.state.List : [],
+        items: values.value === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -41,13 +41,11 @@ export default class Card extends SubsectionElement {
    */
   updateList (values) {
     this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasCardAbuse: this.state.HasCardAbuse
-        })
-      }
+      this.props.onUpdate({
+        List: this.state.List,
+        ListBranch: this.state.ListBranch,
+        HasCardAbuse: this.state.HasCardAbuse
+      })
     })
   }
 
@@ -76,14 +74,14 @@ export default class Card extends SubsectionElement {
                 label={i18n.t('financial.card.title')}
                 labelSize="h2"
                 className="card-branch"
-                value={this.state.HasCardAbuse}
+                {...this.state.HasCardAbuse}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasCardAbuse === 'Yes'}>
+        <Show when={this.state.HasCardAbuse.value === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -113,9 +111,10 @@ export default class Card extends SubsectionElement {
 }
 
 Card.defaultProps = {
-  HasCardAbuse: '',
+  HasCardAbuse: {},
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'card',

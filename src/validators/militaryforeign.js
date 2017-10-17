@@ -45,7 +45,7 @@ export class ForeignServiceValidator {
     this.division = data.Division
     this.circumstances = data.Circumstances
     this.reasonLeft = data.ReasonLeft
-    this.maintainsContact = data.MaintainsContact
+    this.maintainsContact = (data.MaintainsContact || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

@@ -36,8 +36,8 @@ export default class Consultation extends SubsectionElement {
   updateConsulted (values) {
     this.update({
       Consulted: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -61,7 +61,7 @@ export default class Consultation extends SubsectionElement {
         <Branch name="is_incompetent"
                 label={i18n.t('psychological.heading.consultation')}
                 labelSize="h2"
-                value={this.props.Consulted}
+                {...this.props.Consulted}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,7 +70,7 @@ export default class Consultation extends SubsectionElement {
         { i18n.m('psychological.heading.consultation2') }
         </Branch>
 
-        <Show when={this.props.Consulted === 'Yes'}>
+        <Show when={this.props.Consulted.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -100,7 +100,7 @@ export default class Consultation extends SubsectionElement {
 }
 
 Consultation.defaultProps = {
-  Consulted: '',
+  Consulted: {},
   List: [],
   ListBranch: '',
   defaultState: true,

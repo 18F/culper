@@ -3,7 +3,7 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class ForeignBusinessFamilyValidator {
   constructor (data = {}) {
-    this.hasForeignFamily = data.HasForeignFamily
+    this.hasForeignFamily = (data.HasForeignFamily || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

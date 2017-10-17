@@ -4,7 +4,7 @@ import { validGenericTextfield, validDateField, BranchCollection } from './helpe
 
 export default class ForeignBusinessContactValidator {
   constructor (data = {}) {
-    this.hasForeignContact = data.HasForeignContact
+    this.hasForeignContact = (data.HasForeignContact || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

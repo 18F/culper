@@ -64,7 +64,7 @@ describe('citizenship multiple component validation', function () {
                   year: '2016',
                   date: new Date('1/1/2016')
                 },
-                Used: 'Yes',
+                Used: { value: 'Yes' },
                 Countries: [
                   {
                     Item: {
@@ -126,7 +126,7 @@ describe('citizenship multiple component validation', function () {
                   year: '2016',
                   date: new Date('1/1/2016')
                 },
-                Used: 'Yes',
+                Used: { value: 'Yes' },
                 Countries: [
                   {
                     Item: {
@@ -356,19 +356,19 @@ describe('citizenship multiple component validation', function () {
       },
       {
         state: {
-          Used: 'Yuppers'
+          Used: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
-          Used: 'No'
+          Used: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Used: 'Yes'
+          Used: { value: 'Yes' }
         },
         expected: true
       }
@@ -381,20 +381,20 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
-          Used: 'No'
+          Used: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Used: 'Yes',
+          Used: { value: 'Yes' },
           Countries: []
         },
         expected: false
       },
       {
         state: {
-          Used: 'Yes',
+          Used: { value: 'Yes' },
           Countries: [
             {
               Item: {

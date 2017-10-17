@@ -6,7 +6,7 @@ export default class HospitalizationsValidator {
   constructor (data = {}) {
     this.list = data.List || []
     this.listBranch = data.ListBranch
-    this.hospitalized = data.Hospitalized
+    this.hospitalized = (data.Hospitalized || {}).value
   }
 
   validList () {

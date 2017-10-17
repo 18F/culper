@@ -5,19 +5,19 @@ describe('Drug Involvement Validation', function () {
     const tests = [
       {
         state: {
-          Involved: 'Nope'
+          Involved: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          Involved: 'No'
+          Involved: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Involved: 'Yes',
+          Involved: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -25,7 +25,7 @@ describe('Drug Involvement Validation', function () {
       },
       {
         state: {
-          Involved: 'Yes',
+          Involved: { value: 'Yes' },
           List: [{DrugInvolvement: {}}],
           ListBranch: 'Nope'
         },
@@ -33,7 +33,7 @@ describe('Drug Involvement Validation', function () {
       },
       {
         state: {
-          Involved: 'Yes',
+          Involved: { value: 'Yes' },
           List: [{DrugInvolvement: {}}],
           ListBranch: 'No'
         },
@@ -41,7 +41,7 @@ describe('Drug Involvement Validation', function () {
       },
       {
         state: {
-          Involved: 'Yes',
+          Involved: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -66,9 +66,9 @@ describe('Drug Involvement Validation', function () {
                 Reasons: {
                   value: 'Some reason'
                 },
-                InvolvementWhileEmployed: 'Yes',
-                InvolvementWithClearance: 'Yes',
-                InvolvementInFuture: 'No'
+                InvolvementWhileEmployed: { value: 'Yes' },
+                InvolvementWithClearance: { value: 'Yes' },
+                InvolvementInFuture: { value: 'No' }
               }
             }
           ]
@@ -85,7 +85,7 @@ describe('Drug Involvement Validation', function () {
     const tests = [
       {
         state: {
-          InvolvementInFuture: 'Yes',
+          InvolvementInFuture: { value: 'Yes' },
           Explanation: {
             value: 'Because'
           }
@@ -94,13 +94,13 @@ describe('Drug Involvement Validation', function () {
       },
       {
         state: {
-          InvolvementInFuture: 'No'
+          InvolvementInFuture: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvementInFuture: 'Nope'
+          InvolvementInFuture: { value: 'Nope' }
         },
         expected: false
       }

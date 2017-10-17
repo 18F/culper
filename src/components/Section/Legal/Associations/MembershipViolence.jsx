@@ -36,8 +36,8 @@ export default class MembershipViolence extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasViolence: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -62,7 +62,7 @@ export default class MembershipViolence extends SubsectionElement {
                 label={i18n.t('legal.associations.violence.heading.title')}
                 labelSize="h2"
                 className="legal-associations-violence-has-violence"
-                value={this.props.HasViolence}
+                {...this.props.HasViolence}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,7 +70,7 @@ export default class MembershipViolence extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasViolence === 'Yes'}>
+        <Show when={this.props.HasViolence.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -100,7 +100,7 @@ export default class MembershipViolence extends SubsectionElement {
 
 MembershipViolence.defaultProps = {
   name: 'violence',
-  HasViolence: '',
+  HasViolence: {},
   List: [],
   ListBranch: '',
   defaultState: true,

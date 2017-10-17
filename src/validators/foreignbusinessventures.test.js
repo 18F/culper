@@ -271,13 +271,13 @@ describe('Foreign business ventures component validation', function () {
       },
       {
         state: {
-          HasForeignVentures: 'No'
+          HasForeignVentures: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignVentures: 'Yes',
+          HasForeignVentures: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -285,7 +285,7 @@ describe('Foreign business ventures component validation', function () {
       },
       {
         state: {
-          HasForeignVentures: 'Yes',
+          HasForeignVentures: { value: 'Yes' },
           List: [
             {
               Item: {

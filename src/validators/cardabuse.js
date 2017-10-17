@@ -3,7 +3,7 @@ import { validDateField, validGenericTextfield } from './helpers'
 
 export default class CardAbuseValidator {
   constructor (data = {}) {
-    this.hasCardAbuse = data.HasCardAbuse
+    this.hasCardAbuse = (data.HasCardAbuse || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

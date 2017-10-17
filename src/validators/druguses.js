@@ -3,7 +3,7 @@ import { validBranch, validGenericTextfield, validGenericMonthYear } from './hel
 
 export default class DrugUsesValidator {
   constructor (data = {}) {
-    this.usedDrugs = data.UsedDrugs
+    this.usedDrugs = (data.UsedDrugs || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }
@@ -47,15 +47,15 @@ export class DrugUseValidator {
     this.firstUse = data.FirstUse
     this.recentUse = data.RecentUse
     this.natureOfUse = data.NatureOfUse
-    this.useWhileEmployed = data.UseWhileEmployed
-    this.useWithClearance = data.UseWithClearance
-    this.useInFuture = data.UseInFuture
+    this.useWhileEmployed = (data.UseWhileEmployed || {}).value
+    this.useWithClearance = (data.UseWithClearance || {}).value
+    this.useInFuture = (data.UseInFuture || {}).value
     this.explanation = data.Explanation
   }
 
   isValid () {
     return validGenericMonthYear(this.firstUse) &&
-    validGenericMonthYear(this.recentUse) &&
+      validGenericMonthYear(this.recentUse) &&
       validGenericTextfield(this.natureOfUse) &&
       validBranch(this.useWhileEmployed) &&
       validBranch(this.useWithClearance) &&

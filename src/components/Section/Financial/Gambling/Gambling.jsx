@@ -25,10 +25,10 @@ export default class Gambling extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  onUpdate (val, event) {
-    this.setState({ HasGamblingDebt: val }, () => {
+  onUpdate (values) {
+    this.setState({ HasGamblingDebt: values }, () => {
       this.myDispatch({
-        items: val === 'Yes' ? this.state.List : [],
+        items: values.value === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -40,13 +40,11 @@ export default class Gambling extends SubsectionElement {
    */
   myDispatch (values) {
     this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasGamblingDebt: this.state.HasGamblingDebt
-        })
-      }
+      this.props.onUpdate({
+        List: this.state.List,
+        ListBranch: this.state.ListBranch,
+        HasGamblingDebt: this.state.HasGamblingDebt
+      })
     })
   }
 
@@ -84,14 +82,14 @@ export default class Gambling extends SubsectionElement {
                 label={i18n.t('financial.gambling.title')}
                 labelSize="h2"
                 className="has-gambling-debt"
-                value={this.state.HasGamblingDebt}
+                {...this.state.HasGamblingDebt}
                 warning={true}
                 onUpdate={this.onUpdate.bind(this)}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasGamblingDebt === 'Yes'}>
+        <Show when={this.state.HasGamblingDebt.value === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -122,6 +120,7 @@ Gambling.defaultProps = {
   List: [],
   ListBranch: '',
   HasGamblingDebt: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'gambling',

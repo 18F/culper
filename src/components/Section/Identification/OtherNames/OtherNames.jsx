@@ -24,10 +24,10 @@ export default class OtherNames extends SubsectionElement {
     })
   }
 
-  updateBranch (value) {
+  updateBranch (values) {
     this.update({
-      HasOtherNames: value,
-      List: value === 'Yes' ? this.props.List : []
+      HasOtherNames: values,
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -66,14 +66,14 @@ export default class OtherNames extends SubsectionElement {
         <Branch name="has_othernames"
                 label={i18n.t('identification.othernames.branch.question')}
                 labelSize="h3"
-                value={this.props.HasOtherNames}
+                {...this.props.HasOtherNames}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.props.HasOtherNames === 'Yes'}>
+        <Show when={this.props.HasOtherNames.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
@@ -134,7 +134,7 @@ export default class OtherNames extends SubsectionElement {
 
 OtherNames.defaultProps = {
   List: [],
-  HasOtherNames: '',
+  HasOtherNames: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',

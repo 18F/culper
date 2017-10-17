@@ -5,19 +5,19 @@ describe('Drug Prescription Validation', function () {
     const tests = [
       {
         state: {
-          MisusedDrugs: 'Nope'
+          MisusedDrugs: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          MisusedDrugs: 'No'
+          MisusedDrugs: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
+          MisusedDrugs: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -25,7 +25,7 @@ describe('Drug Prescription Validation', function () {
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
+          MisusedDrugs: { value: 'Yes' },
           List: [{DrugUse: {}}],
           ListBranch: 'Nope'
         },
@@ -33,7 +33,7 @@ describe('Drug Prescription Validation', function () {
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
+          MisusedDrugs: { value: 'Yes' },
           List: [{DrugUse: {}}],
           ListBranch: 'No'
         },
@@ -41,7 +41,7 @@ describe('Drug Prescription Validation', function () {
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
+          MisusedDrugs: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -60,8 +60,8 @@ describe('Drug Prescription Validation', function () {
                 Reason: {
                   value: 'The reason'
                 },
-                UseWhileEmployed: 'Yes',
-                UseWithClearance: 'Yes'
+                UseWhileEmployed: { value: 'Yes' },
+                UseWithClearance: { value: 'Yes' }
               }
             }
           ]

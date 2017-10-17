@@ -2,7 +2,7 @@ import { validNotApplicable, validDateField, validGenericTextfield } from './hel
 
 export default class NonpaymentValidator {
   constructor (data = {}) {
-    this.hasNonpayment = data.HasNonpayment
+    this.hasNonpayment = (data.HasNonpayment || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

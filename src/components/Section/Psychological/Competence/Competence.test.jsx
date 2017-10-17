@@ -11,7 +11,7 @@ describe('The Competence component', () => {
   it('Performs updates', () => {
     let updates = 0
     const props = {
-      IsIncompetent: 'Yes',
+      IsIncompetent: { value: 'Yes' },
       List: [{}],
       onUpdate: () => { updates++ }
     }

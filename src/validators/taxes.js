@@ -3,7 +3,7 @@ import { validNotApplicable, validDateField, validGenericTextfield } from './hel
 
 export default class TaxesValidator {
   constructor (data = {}) {
-    this.hasTaxes = data.HasTaxes
+    this.hasTaxes = (data.HasTaxes || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

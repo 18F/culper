@@ -76,13 +76,13 @@ describe('Legal investigations debarred component validation', function () {
       },
       {
         state: {
-          HasDebarment: 'No'
+          HasDebarment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasDebarment: 'Yes',
+          HasDebarment: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -90,7 +90,7 @@ describe('Legal investigations debarred component validation', function () {
       },
       {
         state: {
-          HasDebarment: 'Yes',
+          HasDebarment: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -98,7 +98,7 @@ describe('Legal investigations debarred component validation', function () {
       },
       {
         state: {
-          HasDebarment: 'Yes',
+          HasDebarment: { value: 'Yes' },
           List: [
             {
               Item: {

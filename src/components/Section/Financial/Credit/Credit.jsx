@@ -27,10 +27,10 @@ export default class Credit extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (val, event) {
-    this.setState({ HasCreditCounseling: val }, () => {
+  updateBranch (values) {
+    this.setState({ HasCreditCounseling: values }, () => {
       this.updateList({
-        items: val === 'Yes' ? this.state.List : [],
+        items: values.value === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -42,13 +42,11 @@ export default class Credit extends SubsectionElement {
    */
   updateList (values) {
     this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasCreditCounseling: this.state.HasCreditCounseling
-        })
-      }
+      this.props.onUpdate({
+        List: this.state.List,
+        ListBranch: this.state.ListBranch,
+        HasCreditCounseling: this.state.HasCreditCounseling
+      })
     })
   }
 
@@ -75,14 +73,14 @@ export default class Credit extends SubsectionElement {
                 label={i18n.t('financial.credit.title')}
                 labelSize="h2"
                 className="credit-branch"
-                value={this.state.HasCreditCounseling}
+                {...this.state.HasCreditCounseling}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasCreditCounseling === 'Yes'}>
+        <Show when={this.state.HasCreditCounseling.value === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -111,10 +109,11 @@ export default class Credit extends SubsectionElement {
 }
 
 Credit.defaultProps = {
-  HasCreditCounseling: '',
+  HasCreditCounseling: {},
   List: [],
   ListBranch: '',
   addressBooks: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'credit',

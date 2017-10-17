@@ -87,12 +87,12 @@ export default class ForeignService extends ValidationElement {
     })
   }
 
-  updateMaintainsContact (value, event) {
+  updateMaintainsContact (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      MaintainsContact: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      MaintainsContact: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -274,7 +274,7 @@ export default class ForeignService extends ValidationElement {
                 label={i18n.t('military.foreign.heading.maintainscontact')}
                 labelSize="h3"
                 className="maintainscontact"
-                value={this.props.MaintainsContact}
+                {...this.props.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}
                 required={this.props.required}
@@ -282,7 +282,7 @@ export default class ForeignService extends ValidationElement {
                 onError={this.props.onError}>
         </Branch>
 
-        <Show when={this.props.MaintainsContact === 'Yes'}>
+        <Show when={this.props.MaintainsContact.value === 'Yes'}>
           <div>
             <Field title={i18n.t('military.foreign.heading.contact.details')}
                    titleSize="h2"
@@ -319,6 +319,7 @@ export default class ForeignService extends ValidationElement {
 }
 
 ForeignService.defaultProps = {
+  MaintainsContact: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

@@ -6,7 +6,7 @@ describe('Police record validation', function () {
     const tests = [
       {
         state: {
-          HasOffenses: 'No',
+          HasOffenses: { value: 'No' },
           List: [],
           ListBranch: 'No'
         },
@@ -14,7 +14,7 @@ describe('Police record validation', function () {
       },
       {
         state: {
-          HasOffenses: 'Yes',
+          HasOffenses: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -28,9 +28,9 @@ describe('Police record validation', function () {
                 Description: {
                   value: 'Some description'
                 },
-                InvolvedViolence: 'No',
-                InvolvedFirearms: 'No',
-                InvolvedSubstances: 'No',
+                InvolvedViolence: { value: 'No' },
+                InvolvedFirearms: { value: 'No' },
+                InvolvedSubstances: { value: 'No' },
                 Address: {
                   country: { value: 'United States' },
                   street: '1234 Some Rd',
@@ -39,11 +39,11 @@ describe('Police record validation', function () {
                   zipcode: '22202',
                   layout: Location.ADDRESS
                 },
-                WasCited: 'Yes',
+                WasCited: { value: 'Yes' },
                 CitedBy: {
                   value: 'Somebody'
                 },
-                WasCharged: 'No',
+                WasCharged: { value: 'No' },
                 Explanation: {
                   value: 'Some explanation'
                 },
@@ -55,9 +55,8 @@ describe('Police record validation', function () {
                   zipcode: '22202',
                   layout: Location.ADDRESS
                 },
-
-                WasSentenced: 'No',
-                AwaitingTrial: 'Yes',
+                WasSentenced: { value: 'No' },
+                AwaitingTrial: { value: 'Yes' },
                 AwaitingTrialExplanation: {
                   value: 'Yessss'
                 }
@@ -69,21 +68,21 @@ describe('Police record validation', function () {
       },
       {
         state: {
-          HasOffenses: 'Yes',
+          HasOffenses: { value: 'Yes' },
           List: [{Item: {}}]
         },
         expected: false
       },
       {
         state: {
-          HasOffenses: 'Yes',
+          HasOffenses: { value: 'Yes' },
           List: []
         },
         expected: false
       },
       {
         state: {
-          HasOffenses: 'Yes',
+          HasOffenses: { value: 'Yes' },
           ListBranch: 'No',
           List: [{Item: {}}]
         },
@@ -91,7 +90,7 @@ describe('Police record validation', function () {
       },
       {
         state: {
-          HasOffenses: 'No'
+          HasOffenses: { value: 'No' }
         },
         expected: true
       }

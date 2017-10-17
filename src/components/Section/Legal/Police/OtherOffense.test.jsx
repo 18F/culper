@@ -23,7 +23,7 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      WasSentenced: 'Yes',
+      WasSentenced: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<OtherOffense {...expected} />)
@@ -50,8 +50,8 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      WasSentenced: 'No',
-      AwaitingTrial: 'Yes',
+      WasSentenced: { value: 'No' },
+      AwaitingTrial: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<OtherOffense {...expected} />)

@@ -177,25 +177,25 @@ describe('taxes component validation', function () {
     const tests = [
       {
         state: {
-          HasCardAbuse: ''
+          HasCardAbuse: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasCardAbuse: 'Unicorn'
+          HasCardAbuse: { value: 'Unicorn' }
         },
         expected: false
       },
       {
         state: {
-          HasCardAbuse: 'No'
+          HasCardAbuse: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasCardAbuse: 'Yes'
+          HasCardAbuse: { value: 'Yes' }
         },
         expected: true
       }
@@ -210,7 +210,7 @@ describe('taxes component validation', function () {
     const tests = [
       {
         state: {
-          HasCardAbuse: 'No',
+          HasCardAbuse: { value: 'No' },
           List: [],
           ListBranch: ''
         },
@@ -218,7 +218,7 @@ describe('taxes component validation', function () {
       },
       {
         state: {
-          HasCardAbuse: 'Yes',
+          HasCardAbuse: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -226,7 +226,7 @@ describe('taxes component validation', function () {
       },
       {
         state: {
-          HasCardAbuse: 'Yes',
+          HasCardAbuse: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -234,7 +234,7 @@ describe('taxes component validation', function () {
       },
       {
         state: {
-          HasCardAbuse: 'Yes',
+          HasCardAbuse: { value: 'Yes' },
           List: [
             {
               Item: {

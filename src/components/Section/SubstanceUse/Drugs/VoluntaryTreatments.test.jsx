@@ -53,7 +53,7 @@ describe('The VoluntaryTreatments component', () => {
         }
       }
     ]
-    const component = mount(<VoluntaryTreatments onUpdate={onUpdate} TreatmentVoluntary="Yes" List={list} />)
+    const component = mount(<VoluntaryTreatments onUpdate={onUpdate} TreatmentVoluntary={{ value: 'Yes' }} List={list} />)
     expect(component.find('.voluntary-treatments').length).toBe(1)
     component.find('.treatment-provider input').simulate('change')
     expect(updates).toBe(2)

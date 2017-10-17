@@ -15,7 +15,7 @@ describe('The nonpayment component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'nonpayment',
-      HasNonpayment: 'Yes'
+      HasNonpayment: { value: 'Yes' }
     }
     const component = mount(<Nonpayment {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The nonpayment component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'nonpayment',
-      HasNonpayment: 'No'
+      HasNonpayment: { value: 'No' }
     }
     const component = mount(<Nonpayment {...expected} />)
     expect(component.find('.accordion').length).toBe(0)

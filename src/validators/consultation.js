@@ -4,7 +4,7 @@ export default class ConsultationValidator {
   constructor (data = {}) {
     this.list = data.List || []
     this.listBranch = data.ListBranch
-    this.consulted = data.Consulted
+    this.consulted = (data.Consulted || {}).value
   }
 
   validConsulted () {

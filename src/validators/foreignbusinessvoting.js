@@ -2,7 +2,7 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class ForeignBusinessVotingValidator {
   constructor (data = {}) {
-    this.hasForeignVoting = data.HasForeignVoting
+    this.hasForeignVoting = (data.HasForeignVoting || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

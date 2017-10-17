@@ -5,25 +5,25 @@ describe('Passport component validation', function () {
     const tests = [
       {
         state: {
-          HasPassport: 'Yes'
+          HasPassport: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasPassport: 'No'
+          HasPassport: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasPassport: ''
+          HasPassport: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasPassport: 'Nope'
+          HasPassport: { value: 'Nope' }
         },
         expected: false
       }
@@ -211,7 +211,7 @@ describe('Passport component validation', function () {
             lastInitialOnly: false,
             suffix: 'Jr'
           },
-          HasPassport: 'Yes',
+          HasPassport: { value: 'Yes' },
           Number: {
             value: 'C1234567'
           },

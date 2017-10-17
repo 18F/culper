@@ -32,7 +32,7 @@ export default class TerrorismAssociation extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasTerrorism: values,
-      Explanation: values === 'Yes' ? this.props.Explanation : {}
+      Explanation: values.value === 'Yes' ? this.props.Explanation : {}
     })
   }
 
@@ -43,7 +43,7 @@ export default class TerrorismAssociation extends SubsectionElement {
                 label={i18n.t('legal.associations.terrorism.heading.title')}
                 labelSize="h2"
                 className="legal-associations-terrorism-has-terrorism"
-                value={this.props.HasTerrorism}
+                {...this.props.HasTerrorism}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -51,7 +51,7 @@ export default class TerrorismAssociation extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasTerrorism === 'Yes'}>
+        <Show when={this.props.HasTerrorism.value === 'Yes'}>
           <Field title={i18n.t('legal.associations.terrorism.heading.explanation')}
                   help="legal.associations.terrorism.help.explanation"
                   adjustFor="textarea"
@@ -72,7 +72,7 @@ export default class TerrorismAssociation extends SubsectionElement {
 
 TerrorismAssociation.defaultProps = {
   name: 'terrorism',
-  HasTerrorism: '',
+  HasTerrorism: {},
   List: [],
   ListBranch: '',
   defaultState: true,

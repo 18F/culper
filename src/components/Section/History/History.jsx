@@ -97,8 +97,8 @@ class History extends SectionElement {
   updateBranchAttendance (values) {
     let education = this.props.Education || {}
     education.HasAttended = values
-    education.HasDegree10 = values === 'No' ? education.HasDegree10 : ''
-    education.List = values === 'Yes' ? education.List : []
+    education.HasDegree10 = values.value === 'No' ? education.HasDegree10 : ''
+    education.List = values.value === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
     this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
   }
@@ -106,7 +106,7 @@ class History extends SectionElement {
   updateBranchDegree10 (values) {
     let education = this.props.Education || {}
     education.HasDegree10 = values
-    education.List = values === 'Yes' ? education.List : []
+    education.List = values.value === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
     this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
   }
@@ -519,7 +519,7 @@ class History extends SectionElement {
             </Field>
 
             <Branch name="branch_school"
-                    value={this.props.Education.HasAttended}
+                    {...this.props.Education.HasAttended}
                     help="history.education.help.attendance"
                     label={i18n.t('history.education.label.attendance')}
                     labelSize="h3"
@@ -529,7 +529,7 @@ class History extends SectionElement {
             </Branch>
             <Show when={this.props.Education.HasAttended === 'No'}>
               <Branch name="branch_degree10"
-                      value={this.props.Education.HasDegree10}
+                      {...this.props.Education.HasDegree10}
                       help="history.education.help.degree10"
                       label={i18n.t('history.education.label.degree10')}
                       labelSize="h3"
@@ -538,7 +538,7 @@ class History extends SectionElement {
                       >
               </Branch>
             </Show>
-            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+            <Show when={this.props.Education.HasAttended.value === 'Yes' || this.props.Education.HasDegree10.value === 'Yes'}>
               <div>
                 <span id="scrollToHistory"></span>
                 { this.educationSummaryProgress() }
@@ -647,7 +647,7 @@ export class HistorySections extends React.Component {
           required={true}
         />
 
-        <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+        <Show when={this.props.Education.HasAttended.value === 'Yes' || this.props.Education.HasDegree10.value === 'Yes'}>
           <Education value={this.props.Education}
             defaultState={false}
             realtime={true}

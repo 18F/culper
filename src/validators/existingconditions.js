@@ -3,12 +3,12 @@ import { validGenericTextfield, validBranch } from './helpers'
 
 export default class ExistingConditionsValidator {
   constructor (data = {}) {
-    this.hasCondition = data.HasCondition
-    this.receivedTreatment = data.ReceivedTreatment
+    this.hasCondition = (data.HasCondition || {}).value
+    this.receivedTreatment = (data.ReceivedTreatment || {}).value
     this.explanation = data.Explanation
     this.treatmentList = data.TreatmentList || []
     this.treatmentListBranch = data.TreatmentListBranch
-    this.didNotFollow = data.DidNotFollow
+    this.didNotFollow = (data.DidNotFollow || {}).value
     this.didNotFollowExplanation = data.DidNotFollowExplanation
   }
 

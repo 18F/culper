@@ -135,14 +135,14 @@ export default class OneTimeBenefit extends ValidationElement {
                 className="obligated no-margin-bottom"
                 label={i18n.t('foreign.activities.benefit.oneTime.heading.obligated')}
                 labelSize="h3"
-                value={this.props.Obligated}
+                {...this.props.Obligated}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateObligated}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.Obligated === 'Yes'}>
+        <Show when={this.props.Obligated.value === 'Yes'}>
           <Field title={i18n.t('foreign.activities.benefit.oneTime.label.obligatedExplanation')}
                  titleSize="label"
                  adjustFor="textarea"
@@ -162,6 +162,7 @@ export default class OneTimeBenefit extends ValidationElement {
 }
 
 OneTimeBenefit.defaultProps = {
+  Obligated: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

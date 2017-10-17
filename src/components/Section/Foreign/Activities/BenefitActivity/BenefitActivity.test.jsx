@@ -20,7 +20,7 @@ describe('The BenefitActivity component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      HasBenefits: 'Yes',
+      HasBenefits: { value: 'Yes' },
       List: [
         {
           Item: {
@@ -42,7 +42,7 @@ describe('The BenefitActivity component', () => {
               Reason: {
                 value: 'Foo'
               },
-              Obligated: 'Yes',
+              Obligated: { value: 'Yes' },
               ObligatedExplanation: {
                 value: 'Because'
               }
@@ -62,7 +62,7 @@ describe('The BenefitActivity component', () => {
     const tests = [
       {
         expected: 'Yourself - Germany',
-        HasBenefits: 'Yes',
+        HasBenefits: { value: 'Yes' },
         List: [
           {
             Item: {
@@ -84,7 +84,7 @@ describe('The BenefitActivity component', () => {
       },
       {
         expected: 'Yourself - Germany',
-        HasBenefits: 'Yes',
+        HasBenefits: { value: 'Yes' },
         List: [
           {
             Item: {
@@ -106,7 +106,7 @@ describe('The BenefitActivity component', () => {
       },
       {
         expected: 'Yourself',
-        HasBenefits: 'Yes',
+        HasBenefits: { value: 'Yes' },
         List: [
           {
             Item: {

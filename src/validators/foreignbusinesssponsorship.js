@@ -5,7 +5,7 @@ import { validGenericTextfield, validDateField, validNotApplicable } from './hel
 
 export default class ForeignBusinessSponsorshipValidator {
   constructor (data = {}) {
-    this.hasForeignSponsorship = data.HasForeignSponsorship
+    this.hasForeignSponsorship = (data.HasForeignSponsorship || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

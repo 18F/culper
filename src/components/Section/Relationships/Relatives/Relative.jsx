@@ -481,7 +481,7 @@ export default class Relative extends ValidationElement {
                     label={i18n.t('relationships.relatives.heading.maiden')}
                     labelSize="h3"
                     className="eapp-field-wrap relative-maiden-diff"
-                    value={this.props.MaidenSameAsListed}
+                    {...this.props.MaidenSameAsListed}
                     yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
                     noLabel={i18n.t('relationships.relatives.label.maiden.diff')}
                     onUpdate={this.updateMaidenSameAsListed}
@@ -489,7 +489,7 @@ export default class Relative extends ValidationElement {
                     scrollIntoView={this.props.scrollIntoView}
                     onError={this.props.onError}>
             </Branch>
-            <Show when={this.props.MaidenSameAsListed === 'No'}>
+            <Show when={this.props.MaidenSameAsListed.value === 'No'}>
               <Field scrollIntoView={this.props.scrollIntoView}>
                 <Name name="MaidenName"
                       className="relative-maidenname eapp-field-wrap"
@@ -534,13 +534,13 @@ export default class Relative extends ValidationElement {
                 label={i18n.t('relationships.relatives.heading.deceased.branch')}
                 labelSize="h3"
                 className="relative-deceased"
-                value={this.props.IsDeceased}
+                {...this.props.IsDeceased}
                 onUpdate={this.updateIsDeceased}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}>
         </Branch>
-        <Show when={this.props.IsDeceased === 'No'}>
+        <Show when={this.props.IsDeceased.value === 'No'}>
           <Field title={i18n.t('relationships.relatives.heading.deceased.address')}
                  help="relationships.relatives.help.address"
                  scrollIntoView={this.props.scrollIntoView}
@@ -706,7 +706,7 @@ export default class Relative extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased === 'No'}>
+        <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased.value === 'No'}>
           <div>
             <Show when={this.props.Address && (this.props.Address.country || {}).value === 'United States'}>
               <div>
@@ -1001,13 +1001,13 @@ export default class Relative extends ValidationElement {
                       label={i18n.t('relationships.relatives.heading.employer.affiliated')}
                       labelSize="h3"
                       className="relative-affiliation"
-                      value={this.props.HasAffiliation}
+                      {...this.props.HasAffiliation}
                       onUpdate={this.updateHasAffiliation}
                       required={this.props.required}
                       scrollIntoView={this.props.scrollIntoView}
                       onError={this.props.onError}>
               </Branch>
-              <Show when={this.props.HasAffiliation === 'Yes'}>
+              <Show when={this.props.HasAffiliation.value === 'Yes'}>
                 <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}
                   scrollIntoView={this.props.scrollIntoView}>
                   <Textarea name="EmployerRelationship"

@@ -18,7 +18,7 @@ describe('The legal associations activities component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasActivities: 'Yes'
+      HasActivities: { value: 'Yes' }
     }
     const component = mount(<ActivitiesToOverthrow {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal associations activities component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasActivities: 'Yes',
+      HasActivities: { value: 'Yes' },
       List: [
         {
           Item: {

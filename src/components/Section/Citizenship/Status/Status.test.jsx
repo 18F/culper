@@ -18,7 +18,7 @@ describe('The status component', () => {
       name: 'status',
       CitizenshipStatus: 'Citizen',
       AbroadDocumentation: 'Other',
-      BornOnMilitaryInstallation: 'Yes',
+      BornOnMilitaryInstallation: { value: 'Yes' },
       onUpdate: (obj) => {
         updates++
       }
@@ -34,7 +34,7 @@ describe('The status component', () => {
       name: 'status',
       CitizenshipStatus: 'ForeignBorn',
       AbroadDocumentation: 'Other',
-      BornOnMilitaryInstallation: 'Yes',
+      BornOnMilitaryInstallation: { value: 'Yes' },
       onUpdate: (obj) => {
         updates++
       }
@@ -60,7 +60,7 @@ describe('The status component', () => {
     const expected = {
       name: 'status',
       CitizenshipStatus: 'Naturalized',
-      HasAlienRegistration: 'Yes',
+      HasAlienRegistration: { value: 'Yes' },
       Basis: 'Other',
       onUpdate: (obj) => {
         updates++

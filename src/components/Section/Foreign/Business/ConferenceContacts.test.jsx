@@ -6,7 +6,7 @@ describe('The foreign business conference contacts component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-conferences-contacts',
-      List: [{ Has: 'No' }]
+      List: [{ Has: { value: 'No' } }]
     }
     const component = mount(<ConferenceContacts {...expected} />)
     expect(component.find('.conferences-explanation').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign business conference contacts component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-conferences-contacts',
-      List: [{ Has: 'Yes' }]
+      List: [{ Has: { value: 'Yes' } }]
     }
     const component = mount(<ConferenceContacts {...expected} />)
     expect(component.find('.conferences-explanation').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign business conference contacts component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-conferences-contacts',
-      List: [{ Has: 'Yes' }],
+      List: [{ Has: { value: 'Yes' } }],
       onUpdate: () => { updates++ }
     }
     const component = mount(<ConferenceContacts {...expected} />)

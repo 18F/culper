@@ -36,8 +36,8 @@ export default class DirectActivity extends SubsectionElement {
   updateHasInterests (values) {
     this.update({
       HasInterests: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -68,7 +68,7 @@ export default class DirectActivity extends SubsectionElement {
         <Branch name="has_interests"
                 label={i18n.t('foreign.activities.direct.heading.title')}
                 labelSize="h2"
-                value={this.props.HasInterests}
+                {...this.props.HasInterests}
                 help="foreign.activities.direct.help.directControl"
                 warning={true}
                 onError={this.handleError}
@@ -78,7 +78,7 @@ export default class DirectActivity extends SubsectionElement {
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
-        <Show when={this.props.HasInterests === 'Yes'}>
+        <Show when={this.props.HasInterests.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -108,7 +108,7 @@ export default class DirectActivity extends SubsectionElement {
 
 DirectActivity.defaultProps = {
   name: 'direct',
-  HasInterests: '',
+  HasInterests: {},
   List: [],
   ListBranch: '',
   defaultState: true,

@@ -22,11 +22,11 @@ describe('The OrderedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      HasBeenOrdered: 'Yes',
+      HasBeenOrdered: { value: 'Yes' },
       ListBranch: 'No',
       List: [{
         Item: {
-          ActionTaken: 'Yes',
+          ActionTaken: { value: 'Yes' },
           CounselingDates: {
             from: {
               date: new Date('1/1/2010')
@@ -54,7 +54,7 @@ describe('The OrderedCounselings component', () => {
             timeOfDay: 'Both',
             extension: ''
           },
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         }
       }]
     }
@@ -65,7 +65,7 @@ describe('The OrderedCounselings component', () => {
 
   it('Summary accordion text for seeker options', () => {
     const expected = {
-      HasBeenOrdered: 'Yes',
+      HasBeenOrdered: { value: 'Yes' },
       ListBranch: 'No',
       List: [{
         Item: {

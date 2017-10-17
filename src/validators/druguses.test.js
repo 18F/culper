@@ -5,19 +5,19 @@ describe('Drug Use Validation', function () {
     const tests = [
       {
         state: {
-          UsedDrugs: 'Nope'
+          UsedDrugs: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'No'
+          UsedDrugs: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          UsedDrugs: 'Yes',
+          UsedDrugs: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -25,7 +25,7 @@ describe('Drug Use Validation', function () {
       },
       {
         state: {
-          UsedDrugs: 'Yes',
+          UsedDrugs: { value: 'Yes' },
           List: [{DrugUse: {}}],
           ListBranch: 'Nope'
         },
@@ -33,7 +33,7 @@ describe('Drug Use Validation', function () {
       },
       {
         state: {
-          UsedDrugs: 'Yes',
+          UsedDrugs: { value: 'Yes' },
           List: [{DrugUse: {}}],
           ListBranch: 'No'
         },
@@ -41,7 +41,7 @@ describe('Drug Use Validation', function () {
       },
       {
         state: {
-          UsedDrugs: 'Yes',
+          UsedDrugs: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -63,9 +63,9 @@ describe('Drug Use Validation', function () {
                 NatureOfUse: {
                   value: 'Some use'
                 },
-                UseWhileEmployed: 'Yes',
-                UseWithClearance: 'Yes',
-                UseInFuture: 'No',
+                UseWhileEmployed: { value: 'Yes' },
+                UseWithClearance: { value: 'Yes' },
+                UseInFuture: { value: 'No' },
                 Explanation: {
                   value: 'Foo'
                 }

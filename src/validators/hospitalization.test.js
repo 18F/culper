@@ -71,13 +71,13 @@ describe('Hospitalization validation', function () {
     const tests = [
       {
         state: {
-          Hospitalized: 'Yes'
+          Hospitalized: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Hospitalized: 'Nope'
+          Hospitalized: { value: 'Nope' }
         },
         expected: false
       }
@@ -91,7 +91,7 @@ describe('Hospitalization validation', function () {
     const tests = [
       {
         state: {
-          Hospitalized: 'Yes',
+          Hospitalized: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -128,7 +128,7 @@ describe('Hospitalization validation', function () {
       },
       {
         state: {
-          Hospitalized: 'Nope',
+          Hospitalized: { value: 'Nope' },
           List: [
             {
               Item: {
@@ -165,7 +165,7 @@ describe('Hospitalization validation', function () {
       },
       {
         state: {
-          Hospitalized: 'Yes',
+          Hospitalized: { value: 'Yes' },
           List: [
             {
               Facility: {
@@ -200,7 +200,7 @@ describe('Hospitalization validation', function () {
       },
       {
         state: {
-          Hospitalized: 'Yes',
+          Hospitalized: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -226,7 +226,7 @@ describe('Hospitalization validation', function () {
       },
       {
         state: {
-          Hospitalized: 'Yes',
+          Hospitalized: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -234,7 +234,7 @@ describe('Hospitalization validation', function () {
       },
       {
         state: {
-          Hospitalized: 'No',
+          Hospitalized: { value: 'No' },
           List: [],
           ListBranch: ''
         },

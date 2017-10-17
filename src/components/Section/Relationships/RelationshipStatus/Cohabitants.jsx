@@ -29,8 +29,8 @@ export default class Cohabitants extends SubsectionElement {
   updateHasCohabitant (values) {
     this.update({
       HasCohabitant: values,
-      CohabitantList: values === 'Yes' ? values.items : [],
-      CohabitantListBranch: values === 'Yes' ? values.branch : ''
+      CohabitantList: values.value === 'Yes' ? values.items : [],
+      CohabitantListBranch: values.value === 'Yes' ? values.branch : ''
     })
   }
 
@@ -63,7 +63,7 @@ export default class Cohabitants extends SubsectionElement {
                 label={i18n.t('relationships.cohabitant.heading.hasCohabitant')}
                 labelSize="h3"
                 className="has-cohabitant"
-                value={this.props.HasCohabitant}
+                {...this.props.HasCohabitant}
                 warning={true}
                 help="relationships.cohabitant.help.hasCohabitant"
                 onUpdate={this.updateHasCohabitant}
@@ -72,7 +72,7 @@ export default class Cohabitants extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
 
-        <Show when={this.props.HasCohabitant === 'Yes'}>
+        <Show when={this.props.HasCohabitant.value === 'Yes'}>
           <Accordion items={this.props.CohabitantList}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -99,7 +99,7 @@ export default class Cohabitants extends SubsectionElement {
 }
 
 Cohabitants.defaultProps = {
-  HasCohabitant: '',
+  HasCohabitant: {},
   CohabitantList: [],
   CohabitantListBranch: '',
   onUpdate: (queue) => {},

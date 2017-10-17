@@ -3,8 +3,8 @@ import { validGenericTextfield } from './helpers'
 
 export default class ForeignTravelValidator {
   constructor (data = {}) {
-    this.hasForeignTravelOutside = data.HasForeignTravelOutside
-    this.hasForeignTravelOfficial = data.HasForeignTravelOfficial
+    this.hasForeignTravelOutside = (data.HasForeignTravelOutside || {}).value
+    this.hasForeignTravelOfficial = (data.HasForeignTravelOfficial || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }
@@ -40,19 +40,19 @@ export class TravelValidator {
     this.country = data.Country
     this.days = data.Days || []
     this.purpose = data.Purpose || []
-    this.questioned = data.Questioned
+    this.questioned = (data.Questioned || {}).value
     this.questionedExplanation = data.QuestionedExplanation
-    this.encounter = data.Encounter
+    this.encounter = (data.Encounter || {}).value
     this.encounterExplanation = data.EncounterExplanation
-    this.contacted = data.Contacted
+    this.contacted = (data.Contacted || {}).value
     this.contactedExplanation = data.ContactedExplanation
-    this.counter = data.Counter
+    this.counter = (data.Counter || {}).value
     this.counterExplanation = data.CounterExplanation
-    this.interest = data.Interest
+    this.interest = (data.Interest || {}).value
     this.interestExplanation = data.InterestExplanation
-    this.sensitive = data.Sensitive
+    this.sensitive = (data.Sensitive || {}).value
     this.sensitiveExplanation = data.SensitiveExplanation
-    this.threatened = data.Threatened
+    this.threatened = (data.Threatened || {}).value
     this.threatenedExplanation = data.ThreatenedExplanation
   }
 

@@ -215,20 +215,20 @@ export default class ToggleableLocation extends ValidationElement {
           )
         case 'country':
           return (
-            <Country name="country"
-              key={key}
-              label={this.props.countryLabel}
-              {...this.props.country}
-              className="country"
-              placeholder={this.props.countryPlaceholder}
-              excludeUnitedStates="true"
-              disabled={this.props.disabledCountry}
-              onUpdate={this.updateCountry}
-              onError={this.onError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-            />
+          <Country name="country"
+                   key={key}
+                   label={this.props.countryLabel}
+                   {...this.props.country}
+                   className="country"
+                   placeholder={this.props.countryPlaceholder}
+                   excludeUnitedStates="true"
+                   disabled={this.props.disabledCountry}
+                   onUpdate={this.updateCountry}
+                   onError={this.onError}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   required={this.props.required}
+                   />
           )
       }
     })

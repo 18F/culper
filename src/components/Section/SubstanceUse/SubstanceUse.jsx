@@ -347,7 +347,7 @@ class SubstanceUse extends SectionElement {
                                  onUpdate={this.updateVoluntaryTreatments}
                                  required={true}
                                  scrollIntoView={false}
-                               />
+                                 />
 
             <hr />
             <NegativeImpacts name="negative"
@@ -436,115 +436,115 @@ export class SubstanceUseSections extends React.Component {
     return (
       <div>
         <DrugUses name="druguses"
-          {...this.props.DrugUses}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.DrugUses}
+                  defaultState={false}
+                  dispatch={this.props.dispatch}
+                  onError={this.props.onError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
 
         <hr />
         <DrugInvolvements name="druginvolvements"
-          {...this.props.DrugInvolvements}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                          {...this.props.DrugInvolvements}
+                          defaultState={false}
+                          dispatch={this.props.dispatch}
+                          onError={this.props.onError}
+                          required={true}
+                          scrollIntoView={false}
+                          />
 
         <hr />
         <DrugClearanceUses name="drugclearanceuses"
-          {...this.props.DrugClearanceUses}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          onUpdate={this.updateDrugClearanceUses}
-          required={true}
-          scrollIntoView={false}
-        />
+                           {...this.props.DrugClearanceUses}
+                           defaultState={false}
+                           dispatch={this.props.dispatch}
+                           onError={this.props.onError}
+                           onUpdate={this.updateDrugClearanceUses}
+                           required={true}
+                           scrollIntoView={false}
+                           />
 
         <hr />
         <DrugPublicSafetyUses name="drugpublicsafety"
-          {...this.props.DrugPublicSafetyUses}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                              {...this.props.DrugPublicSafetyUses}
+                              defaultState={false}
+                              dispatch={this.props.dispatch}
+                              onError={this.props.onError}
+                              required={true}
+                              scrollIntoView={false}
+                              />
 
         <hr />
         <PrescriptionUses name="prescriptionuses"
-          {...this.props.PrescriptionUses}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                          {...this.props.PrescriptionUses}
+                          defaultState={false}
+                          dispatch={this.props.dispatch}
+                          onError={this.props.onError}
+                          required={true}
+                          scrollIntoView={false}
+                          />
 
         <hr />
         <OrderedTreatments name="ordered"
-          {...this.props.OrderedTreatments}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                           {...this.props.OrderedTreatments}
+                           defaultState={false}
+                           dispatch={this.props.dispatch}
+                           onError={this.props.onError}
+                           required={true}
+                           scrollIntoView={false}
+                           />
 
         <hr />
         <VoluntaryTreatments name="voluntary"
-          {...this.props.VoluntaryTreatments}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                             {...this.props.VoluntaryTreatments}
+                             defaultState={false}
+                             dispatch={this.props.dispatch}
+                             onError={this.props.onError}
+                             required={true}
+                             scrollIntoView={false}
+                             />
 
         <hr />
         <NegativeImpacts name="negative"
-          defaultState={false}
-          {...this.props.NegativeImpacts}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                         defaultState={false}
+                         {...this.props.NegativeImpacts}
+                         dispatch={this.props.dispatch}
+                         onError={this.props.onError}
+                         required={true}
+                         scrollIntoView={false}
+                         />
 
         <hr />
         <OrderedCounselings name="ordered"
-          defaultState={false}
-          {...this.props.OrderedCounselings}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                            defaultState={false}
+                            {...this.props.OrderedCounselings}
+                            dispatch={this.props.dispatch}
+                            onError={this.props.onError}
+                            required={true}
+                            scrollIntoView={false}
+                            />
 
         <hr />
         <VoluntaryCounselings name="voluntary"
-          defaultState={false}
-          {...this.props.VoluntaryCounselings}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                              defaultState={false}
+                              {...this.props.VoluntaryCounselings}
+                              dispatch={this.props.dispatch}
+                              onError={this.props.onError}
+                              required={true}
+                              scrollIntoView={false}
+                              />
 
         <hr />
         <ReceivedCounselings name="additional"
-          defaultState={false}
-          {...this.props.ReceivedCounselings}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
-</div>
+                             defaultState={false}
+                             {...this.props.ReceivedCounselings}
+                             dispatch={this.props.dispatch}
+                             onError={this.props.onError}
+                             required={true}
+                             scrollIntoView={false}
+                             />
+      </div>
     )
   }
 }

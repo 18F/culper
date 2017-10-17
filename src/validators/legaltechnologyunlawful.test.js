@@ -103,13 +103,13 @@ describe('Legal technology unlawful component validation', function () {
       },
       {
         state: {
-          HasUnlawful: 'No'
+          HasUnlawful: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasUnlawful: 'Yes',
+          HasUnlawful: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -117,7 +117,7 @@ describe('Legal technology unlawful component validation', function () {
       },
       {
         state: {
-          HasUnlawful: 'Yes',
+          HasUnlawful: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -125,7 +125,7 @@ describe('Legal technology unlawful component validation', function () {
       },
       {
         state: {
-          HasUnlawful: 'Yes',
+          HasUnlawful: { value: 'Yes' },
           List: [
             {
               Item: {

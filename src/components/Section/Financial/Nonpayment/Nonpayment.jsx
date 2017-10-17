@@ -26,10 +26,10 @@ export default class Nonpayment extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (val, event) {
-    this.setState({ HasNonpayment: val }, () => {
+  updateBranch (values) {
+    this.setState({ HasNonpayment: values }, () => {
       this.updateList({
-        items: val === 'Yes' ? this.state.List : [],
+        items: values.value === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -41,13 +41,11 @@ export default class Nonpayment extends SubsectionElement {
    */
   updateList (values) {
     this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasNonpayment: this.state.HasNonpayment
-        })
-      }
+      this.props.onUpdate({
+        List: this.state.List,
+        ListBranch: this.state.ListBranch,
+        HasNonpayment: this.state.HasNonpayment
+      })
     })
   }
 
@@ -94,7 +92,7 @@ export default class Nonpayment extends SubsectionElement {
                 label={i18n.t('financial.nonpayment.title')}
                 labelSize="h2"
                 className="nonpayment-branch"
-                value={this.state.HasNonpayment}
+                {...this.state.HasNonpayment}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
@@ -111,7 +109,7 @@ export default class Nonpayment extends SubsectionElement {
             <li>{i18n.m('financial.nonpayment.para.any')}</li>
           </ul>
         </Branch>
-        <Show when={this.state.HasNonpayment === 'Yes'}>
+        <Show when={this.state.HasNonpayment.value === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -139,9 +137,10 @@ export default class Nonpayment extends SubsectionElement {
 }
 
 Nonpayment.defaultProps = {
-  HasNonpayment: '',
+  HasNonpayment: {},
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'nonpayment',

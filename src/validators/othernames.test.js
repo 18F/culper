@@ -6,25 +6,25 @@ describe('OtherNames validation', function () {
     const tests = [
       {
         state: {
-          HasOtherNames: 'Yes'
+          HasOtherNames: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasOtherNames: 'No'
+          HasOtherNames: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasOtherNames: 'Blah'
+          HasOtherNames: { value: 'Blah' }
         },
         expected: false
       },
       {
         state: {
-          HasOtherNames: 'foo'
+          HasOtherNames: { value: 'foo' }
         },
         expected: false
       }
@@ -39,7 +39,7 @@ describe('OtherNames validation', function () {
     const tests = [
       {
         state: {
-          HasOtherNames: 'Yes',
+          HasOtherNames: { value: 'Yes' },
           List: [
             {
               Name: {
@@ -73,7 +73,7 @@ describe('OtherNames validation', function () {
       },
       {
         state: {
-          HasOtherNames: 'Yes',
+          HasOtherNames: { value: 'Yes' },
           List: [
             {
               Name: {
@@ -108,7 +108,7 @@ describe('OtherNames validation', function () {
       },
       {
         state: {
-          HasOtherNames: 'Foo',
+          HasOtherNames: { value: 'Foo' },
           List: []
         },
         expected: false
@@ -205,7 +205,7 @@ describe('OtherNames validation', function () {
             },
             to: {
               date: new Date('1/1/2012')
-            },
+            }
           }
         },
         expected: false
@@ -218,7 +218,7 @@ describe('OtherNames validation', function () {
             },
             to: {
               date: null
-            },
+            }
           }
         },
         expected: false

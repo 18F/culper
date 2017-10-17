@@ -121,13 +121,13 @@ describe('Foreign business political component validation', function () {
       },
       {
         state: {
-          HasForeignPolitical: 'No'
+          HasForeignPolitical: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignPolitical: 'Yes',
+          HasForeignPolitical: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -135,7 +135,7 @@ describe('Foreign business political component validation', function () {
       },
       {
         state: {
-          HasForeignPolitical: 'Yes',
+          HasForeignPolitical: { value: 'Yes' },
           List: [{}],
           ListBranch: 'No'
         },
@@ -143,7 +143,7 @@ describe('Foreign business political component validation', function () {
       },
       {
         state: {
-          HasForeignPolitical: 'Yes',
+          HasForeignPolitical: { value: 'Yes' },
           List: [
             {
               Item: {

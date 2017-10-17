@@ -36,8 +36,8 @@ export default class Debarred extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasDebarment: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -62,7 +62,7 @@ export default class Debarred extends SubsectionElement {
                 label={i18n.t('legal.investigations.debarred.heading.title')}
                 labelSize="h2"
                 className="legal-investigations-debarred-has-debarment"
-                value={this.props.HasDebarment}
+                {...this.props.HasDebarment}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,7 +70,7 @@ export default class Debarred extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasDebarment === 'Yes'}>
+        <Show when={this.props.HasDebarment.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -98,7 +98,7 @@ export default class Debarred extends SubsectionElement {
 
 Debarred.defaultProps = {
   name: 'debarred',
-  HasDebarment: '',
+  HasDebarment: {},
   List: [],
   ListBranch: '',
   defaultState: true,

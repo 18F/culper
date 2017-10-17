@@ -7,7 +7,7 @@ import { validGenericMonthYear, validGenericTextfield, validBranch } from './hel
  */
 export default class BankruptcyValidator {
   constructor (data) {
-    this.hasBankruptcy = data.HasBankruptcy
+    this.hasBankruptcy = (data.HasBankruptcy || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }
@@ -73,7 +73,7 @@ export class BankruptcyItemValidator {
     this.dateFiled = data.DateFiled
     this.dateDischarged = data.DateDischarged
     this.dateDischargedNotApplicable = data.DateDischargedNotApplicable
-    this.hasDischargeExplanation = data.HasDischargeExplanation
+    this.hasDischargeExplanation = (data.HasDischargeExplanation || {}).value
     this.dischargeExplanation = data.DischargeExplanation
     this.trustee = data.Trustee
     this.trusteeAddress = data.TrusteeAddress

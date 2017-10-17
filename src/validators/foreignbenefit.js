@@ -63,7 +63,7 @@ export class OneTimeBenefitValidator {
     this.country = data.Country
     this.value = data.Value
     this.reason = data.Reason
-    this.obligated = data.Obligated
+    this.obligated = (data.Obligated || {}).value
     this.obligatedExplanation = data.ObligatedExplanation
   }
 
@@ -115,7 +115,7 @@ export class FutureBenefitValidator {
     this.country = data.Country
     this.value = data.Value
     this.reason = data.Reason
-    this.obligated = data.Obligated
+    this.obligated = (data.Obligated || {}).value
     this.obligatedExplanation = data.ObligatedExplanation
   }
 
@@ -183,7 +183,7 @@ export class ContinuingBenefitValidator {
     this.country = data.Country
     this.value = data.Value
     this.reason = data.Reason
-    this.obligated = data.Obligated
+    this.obligated = (data.Obligated || {}).value
     this.obligatedExplanation = data.ObligatedExplanation
   }
 

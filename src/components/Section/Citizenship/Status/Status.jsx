@@ -413,14 +413,14 @@ export default class Status extends SubsectionElement {
                     label={i18n.t('citizenship.status.heading.bornonmilitaryinstallation')}
                     labelSize="h3"
                     className="born-on-military-installation"
-                    value={this.props.BornOnMilitaryInstallation}
+                    {...this.props.BornOnMilitaryInstallation}
                     onUpdate={this.updateBornOnMilitaryInstallation}
                     onError={this.handleError}
                     required={this.props.required}
                     scrollIntoView={this.props.scrollIntoView}
                     />
 
-            <Show when={this.props.BornOnMilitaryInstallation === 'Yes'}>
+            <Show when={this.props.BornOnMilitaryInstallation.value === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.militarybase')}
                 scrollIntoView={this.props.scrollIntoView}>
                 <Text name="MilitaryBase"
@@ -480,14 +480,14 @@ export default class Status extends SubsectionElement {
                     label={i18n.t('citizenship.status.heading.hasalienregistration')}
                     labelSize="h3"
                     className="has-alien-registration"
-                    value={this.props.HasAlienRegistration}
+                    {...this.props.HasAlienRegistration}
                     onUpdate={this.updateHasAlienRegistration}
                     onError={this.handleError}
                     required={this.props.required}
                     scrollIntoView={this.props.scrollIntoView}
                     />
 
-            <Show when={this.props.HasAlienRegistration === 'Yes'}>
+            <Show when={this.props.HasAlienRegistration.value === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}
                 scrollIntoView={this.props.scrollIntoView}>
                 <Text name="AlienRegistrationNumber"
@@ -901,12 +901,12 @@ Status.defaultProps = {
   CertificateNumber: {},
   CertificateIssued: {},
   CertificateName: {},
-  BornOnMilitaryInstallation: '',
+  BornOnMilitaryInstallation: {},
   MilitaryBase: {},
   EntryDate: {},
   EntryLocation: {},
   PriorCitizenship: {},
-  HasAlienRegistration: '',
+  HasAlienRegistration: {},
   AlienRegistrationNumber: {},
   AlienRegistrationExpiration: {},
   CertificateCourtName: {},

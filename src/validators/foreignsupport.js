@@ -4,7 +4,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class ForeignActivitiesSupportValidator {
   constructor (state = {}, props = {}) {
-    this.hasForeignSupport = state.HasForeignSupport
+    this.hasForeignSupport = (state.HasForeignSupport || {}).value
     this.list = state.List || []
     this.listBranch = state.ListBranch
   }

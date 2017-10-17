@@ -68,11 +68,12 @@ export default class EmploymentValidator {
   }
 
   validPhysicalAddress () {
-    if (!this.physicalAddress || !(this.physicalAddress.HasDifferentAddress === 'No' || this.physicalAddress.HasDifferentAddress === 'Yes')) {
+    const differentAddress = (this.physicalAddress.HasDifferentAddress || {}).value
+    if (!this.physicalAddress || !(differentAddress === 'No' || differentAddress === 'Yes')) {
       return false
     }
 
-    if (this.physicalAddress.HasDifferentAddress === 'Yes') {
+    if (differentAddress === 'Yes') {
       return this.physicalAddress.Address &&
         new LocationValidator(this.physicalAddress.Address).isValid()
     }

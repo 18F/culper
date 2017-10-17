@@ -12,7 +12,7 @@ describe('The Hospitalizations component', () => {
   it('Performs updates', () => {
     let updates = 0
     const props = {
-      Hospitalized: 'Yes',
+      Hospitalized: { value: 'Yes' },
       List: [{
         Admission: 'Voluntary'
       }],
@@ -30,7 +30,7 @@ describe('The Hospitalizations component', () => {
   it('Loads data', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const component = mount(<Hospitalizations onUpdate={onUpdate} List={List} Hospitalized={'Yes'} />)
+    const component = mount(<Hospitalizations onUpdate={onUpdate} List={List} Hospitalized={ { value: 'Yes' } } />)
     updates = 0
     component.find('.facility input').simulate('change', { target: { value: 'Testing' } })
     expect(updates).toBe(1)

@@ -225,7 +225,7 @@ export default class ForeignNational extends ValidationElement {
 
   updateHasAffiliations (response) {
     this.update({
-      HasAffiliations: response.value
+      HasAffiliations: response
     })
   }
 
@@ -634,7 +634,7 @@ export default class ForeignNational extends ValidationElement {
           <RadioGroup className="has-affiliations"
                       required={this.props.required}
                       onError={this.props.onError}
-                      selectedValue={this.props.HasAffiliations}>
+                      selectedValue={this.props.HasAffiliations.value}>
             <Radio name="affiliation_yes"
                    label={i18n.t('foreign.contacts.label.yes')}
                    value="Yes"
@@ -659,7 +659,7 @@ export default class ForeignNational extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Show when={this.props.HasAffiliations === 'Yes'}>
+        <Show when={this.props.HasAffiliations.value === 'Yes'}>
           <Field title={i18n.t('foreign.contacts.heading.affiliations')}
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Affiliations"
@@ -702,7 +702,7 @@ ForeignNational.defaultProps = {
   Employer: {},
   EmployerNotApplicable: {},
   EmployerAddress: {},
-  HasAffiliations: '',
+  HasAffiliations: {},
   Affiliations: {},
   addressBooks: {},
   dispatch: (action) => {},

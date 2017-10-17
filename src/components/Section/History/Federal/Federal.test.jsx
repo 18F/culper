@@ -6,7 +6,7 @@ describe('The federal component', () => {
   it('selects yes and loads form', () => {
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'Yes',
+      HasFederalService: { value: 'Yes' },
       List: [{}]
     }
     const component = mount(<Federal {...expected} />)
@@ -19,7 +19,7 @@ describe('The federal component', () => {
   it('selects no', () => {
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'No'
+      HasFederalService: { value: 'No' }
     }
     const component = mount(<Federal {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -29,7 +29,7 @@ describe('The federal component', () => {
     let updates = 0
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'Yes',
+      HasFederalService: { value: 'Yes' },
       List: [{}],
       onUpdate: () => { updates++ }
     }
@@ -45,7 +45,7 @@ describe('The federal component', () => {
   it('can display a summary', () => {
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'Yes',
+      HasFederalService: { value: 'Yes' },
       List: [
         {
           Item: {

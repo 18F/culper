@@ -22,7 +22,7 @@ describe('The ReceivedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      ReceivedTreatment: 'Yes',
+      ReceivedTreatment: { value: 'Yes' },
       ListBranch: 'No',
       List: [{
         Item: {

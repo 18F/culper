@@ -18,7 +18,7 @@ describe('The legal associations advocating component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasAdvocated: 'Yes'
+      HasAdvocated: { value: 'Yes' }
     }
     const component = mount(<Advocating {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal associations advocating component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasAdvocated: 'Yes',
+      HasAdvocated: { value: 'Yes' },
       List: [
         {
           Item: {

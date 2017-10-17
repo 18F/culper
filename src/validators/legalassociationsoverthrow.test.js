@@ -166,13 +166,13 @@ describe('Legal associations overthrow component validation', function () {
       },
       {
         state: {
-          HasOverthrow: 'No'
+          HasOverthrow: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasOverthrow: 'Yes',
+          HasOverthrow: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -180,7 +180,7 @@ describe('Legal associations overthrow component validation', function () {
       },
       {
         state: {
-          HasOverthrow: 'Yes',
+          HasOverthrow: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -188,7 +188,7 @@ describe('Legal associations overthrow component validation', function () {
       },
       {
         state: {
-          HasOverthrow: 'Yes',
+          HasOverthrow: { value: 'Yes' },
           List: [
             {
               Item: {

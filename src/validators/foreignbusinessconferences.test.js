@@ -218,13 +218,13 @@ describe('Foreign business conferences component validation', function () {
       },
       {
         state: {
-          HasForeignConferences: 'No'
+          HasForeignConferences: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignConferences: 'Yes',
+          HasForeignConferences: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -232,7 +232,7 @@ describe('Foreign business conferences component validation', function () {
       },
       {
         state: {
-          HasForeignConferences: 'Yes',
+          HasForeignConferences: { value: 'Yes' },
           List: [
             {
               Item: {

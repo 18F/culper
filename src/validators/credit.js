@@ -3,7 +3,7 @@ import { validPhoneNumber, validGenericTextfield } from './helpers'
 
 export default class CreditValidator {
   constructor (data = {}) {
-    this.hasCreditCounseling = data.HasCreditCounseling
+    this.hasCreditCounseling = (data.HasCreditCounseling || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

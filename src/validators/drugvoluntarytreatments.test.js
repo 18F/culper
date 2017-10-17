@@ -6,19 +6,19 @@ describe('Drug Voluntary Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentVoluntary: 'Nope'
+          TreatmentVoluntary: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentVoluntary: 'No'
+          TreatmentVoluntary: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
+          TreatmentVoluntary: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -26,7 +26,7 @@ describe('Drug Voluntary Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
+          TreatmentVoluntary: { value: 'Yes' },
           List: [{VoluntaryTreatment: {}}],
           ListBranch: 'Nope'
         },
@@ -34,7 +34,7 @@ describe('Drug Voluntary Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
+          TreatmentVoluntary: { value: 'Yes' },
           List: [{VoluntaryTreatment: {}}],
           ListBranch: 'No'
         },
@@ -42,7 +42,7 @@ describe('Drug Voluntary Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
+          TreatmentVoluntary: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -75,7 +75,7 @@ describe('Drug Voluntary Treatment Validation', function () {
                     date: new Date('1/1/2012')
                   }
                 },
-                TreatmentCompleted: 'Yes'
+                TreatmentCompleted: { value: 'Yes' }
               }
             }
           ]
@@ -92,13 +92,13 @@ describe('Drug Voluntary Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentCompleted: 'Nope'
+          TreatmentCompleted: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentCompleted: 'No',
+          TreatmentCompleted: { value: 'No' },
           NoTreatmentExplanation: {
             value: 'Nothing'
           }
@@ -107,7 +107,7 @@ describe('Drug Voluntary Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentCompleted: 'Yes'
+          TreatmentCompleted: { value: 'Yes' }
         },
         expected: true
       }

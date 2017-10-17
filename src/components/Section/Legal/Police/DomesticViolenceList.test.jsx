@@ -29,7 +29,7 @@ describe('The DomesticViolenceList  component', () => {
       onUpdate: () => {},
       List: [
         {
-          Has: 'Yes',
+          Has: { value: 'Yes' },
           domestic: {
             CourtName: {
               value: '4th Circuit Court'
@@ -57,4 +57,3 @@ describe('The DomesticViolenceList  component', () => {
     expect(component.find('.domestic-violence').length).toBe(1)
   })
 })
-

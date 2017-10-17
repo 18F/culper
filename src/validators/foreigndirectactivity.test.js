@@ -5,19 +5,19 @@ describe('Foreign Direct Activity validation', function () {
     const tests = [
       {
         props: {
-          HasInterests: 'Nope'
+          HasInterests: { value: 'Nope' }
         },
         expected: false
       },
       {
         props: {
-          HasInterests: 'No'
+          HasInterests: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          HasInterests: 'Yes',
+          HasInterests: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -25,7 +25,7 @@ describe('Foreign Direct Activity validation', function () {
       },
       {
         props: {
-          HasInterests: 'Yes',
+          HasInterests: { value: 'Yes' },
           List: [
             {
               Item: {

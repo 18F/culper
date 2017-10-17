@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 
 export default class GamblingValidator {
   constructor (data) {
-    this.hasGamblingDebt = data.HasGamblingDebt
+    this.hasGamblingDebt = (data.HasGamblingDebt || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

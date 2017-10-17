@@ -29,14 +29,13 @@ describe('The employment additional activity component', () => {
       },
       items: [
         {
-          Has: 'Yes',
+          Has: { value: 'Yes' },
           Position: {
             name: 'Position',
             value: 'Dev'
           }
         }
-      ],
-      HasAdditionalActivity: 'Yes'
+      ]
     }
 
     const component = mount(<AdditionalActivity {...expected} />)

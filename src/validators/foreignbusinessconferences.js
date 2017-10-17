@@ -3,7 +3,7 @@ import { validGenericTextfield, BranchCollection } from './helpers'
 
 export default class ForeignBusinessConferencesValidator {
   constructor (data = {}) {
-    this.hasForeignConferences = data.HasForeignConferences
+    this.hasForeignConferences = (data.HasForeignConferences || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

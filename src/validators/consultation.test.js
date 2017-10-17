@@ -6,7 +6,7 @@ describe('Consultation validation', function () {
     const tests = [
       {
         state: {
-          Consulted: 'Yes',
+          Consulted: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -41,7 +41,7 @@ describe('Consultation validation', function () {
       {
         state: {
           List: [],
-          Consulted: 'Yes',
+          Consulted: { value: 'Yes' },
           ListBranch: 'No'
         },
         expected: false
@@ -49,7 +49,7 @@ describe('Consultation validation', function () {
       {
         state: {
           List: [],
-          Consulted: 'No',
+          Consulted: { value: 'No' },
           ListBranch: 'No'
         },
         expected: true
@@ -57,14 +57,14 @@ describe('Consultation validation', function () {
       {
         state: {
           List: [],
-          Consulted: 'Nope',
+          Consulted: { value: 'Nope' },
           ListBranch: 'No'
         },
         expected: false
       },
       {
         state: {
-          Consulted: 'Yes',
+          Consulted: { value: 'Yes' },
           List: [
             {
               Item: {

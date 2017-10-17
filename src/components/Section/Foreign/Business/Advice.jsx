@@ -25,11 +25,11 @@ export default class Advice extends SubsectionElement {
     })
   }
 
-  updateHasForeignAdvice (value) {
+  updateHasForeignAdvice (values) {
     this.update({
-      HasForeignAdvice: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignAdvice: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -60,7 +60,7 @@ export default class Advice extends SubsectionElement {
                 label={i18n.t('foreign.business.advice.heading.title')}
                 labelSize="h2"
                 adjustFor="p"
-                value={this.props.HasForeignAdvice}
+                {...this.props.HasForeignAdvice}
                 warning={true}
                 onUpdate={this.updateHasForeignAdvice}
                 required={this.props.required}
@@ -69,7 +69,7 @@ export default class Advice extends SubsectionElement {
           {i18n.m('foreign.business.advice.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignAdvice === 'Yes'}>
+        <Show when={this.props.HasForeignAdvice.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -100,7 +100,7 @@ export default class Advice extends SubsectionElement {
 
 Advice.defaultProps = {
   name: 'Advice',
-  HasForeignAdvice: '',
+  HasForeignAdvice: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

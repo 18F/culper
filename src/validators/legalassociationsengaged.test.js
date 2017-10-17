@@ -58,13 +58,13 @@ describe('Legal associations engaged component validation', function () {
       },
       {
         state: {
-          HasEngaged: 'No'
+          HasEngaged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasEngaged: 'Yes',
+          HasEngaged: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -72,7 +72,7 @@ describe('Legal associations engaged component validation', function () {
       },
       {
         state: {
-          HasEngaged: 'Yes',
+          HasEngaged: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -80,7 +80,7 @@ describe('Legal associations engaged component validation', function () {
       },
       {
         state: {
-          HasEngaged: 'Yes',
+          HasEngaged: { value: 'Yes' },
           List: [
             {
               Item: {

@@ -38,8 +38,8 @@ export default class NegativeImpacts extends SubsectionElement {
   updateHasImpacts (values) {
     this.update({
       HasImpacts: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -63,7 +63,7 @@ export default class NegativeImpacts extends SubsectionElement {
                 label={i18n.t('substance.alcohol.heading.negativeImpact')}
                 labelSize="h2"
                 className="has-impacts"
-                value={this.props.HasImpacts}
+                {...this.props.HasImpacts}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -71,7 +71,7 @@ export default class NegativeImpacts extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasImpacts === 'Yes'}>
+        <Show when={this.props.HasImpacts.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -94,6 +94,7 @@ export default class NegativeImpacts extends SubsectionElement {
 }
 
 NegativeImpacts.defaultProps = {
+  HasImpacts: {},
   List: [],
   ListBranch: '',
   onError: (value, arr) => { return arr },

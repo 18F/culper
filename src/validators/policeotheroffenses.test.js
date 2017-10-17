@@ -6,14 +6,14 @@ describe('Police record validation', function () {
     const tests = [
       {
         state: {
-          HasOtherOffenses: 'Yes',
+          HasOtherOffenses: { value: 'Yes' },
           List: []
         },
         expected: false
       },
       {
         state: {
-          HasOtherOffenses: 'Yes',
+          HasOtherOffenses: { value: 'Yes' },
           List: [{Item: {}}],
           ListBranch: 'No'
         },
@@ -21,14 +21,14 @@ describe('Police record validation', function () {
       },
       {
         state: {
-          HasOtherOffenses: 'No',
+          HasOtherOffenses: { value: 'No' },
           List: []
         },
         expected: true
       },
       {
         state: {
-          HasOtherOffenses: 'Yes',
+          HasOtherOffenses: { value: 'Yes' },
           ListBranch: 'No',
           List: []
         },
@@ -36,7 +36,7 @@ describe('Police record validation', function () {
       },
       {
         state: {
-          HasOtherOffenses: 'Yes',
+          HasOtherOffenses: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -50,9 +50,9 @@ describe('Police record validation', function () {
                 Description: {
                   value: 'Some description'
                 },
-                InvolvedViolence: 'No',
-                InvolvedFirearms: 'Yes',
-                InvolvedSubstances: 'No',
+                InvolvedViolence: { value: 'No' },
+                InvolvedFirearms: { value: 'Yes' },
+                InvolvedSubstances: { value: 'No' },
                 ChargeType: 'Felony',
                 CourtAddress: {
                   country: { value: 'United States' },
@@ -77,12 +77,12 @@ describe('Police record validation', function () {
                 CourtOutcome: {
                   value: 'Some outcome'
                 },
-                WasSentenced: 'Yes',
+                WasSentenced: { value: 'Yes' },
                 Sentence: {
-                  AwaitingTrial: 'Yes',
+                  AwaitingTrial: { value: 'Yes' },
                   AwaitingTrialExplanation: 'Yes',
-                  ExceedsYear: 'Yes',
-                  Incarcerated: 'Yes',
+                  ExceedsYear: { value: 'Yes' },
+                  Incarcerated: { value: 'Yes' },
                   IncarcerationDates: {
                     from: {
                       date: new Date('1/1/2000')

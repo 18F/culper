@@ -3,7 +3,7 @@ import { validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugClearanceUsesValidator {
   constructor (data = {}) {
-    this.usedDrugs = data.UsedDrugs
+    this.usedDrugs = (data.UsedDrugs || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }

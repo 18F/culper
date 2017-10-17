@@ -4,7 +4,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessAdviceValidator {
   constructor (data = {}) {
-    this.hasForeignAdvice = data.HasForeignAdvice
+    this.hasForeignAdvice = (data.HasForeignAdvice || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

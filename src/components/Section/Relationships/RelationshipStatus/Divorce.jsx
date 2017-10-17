@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Location, Field, DateControl, Show, RadioGroup, Radio,
-         Telephone, Name, BirthPlace, NotApplicable } from '../../../Form'
+         Telephone, Name, NotApplicable } from '../../../Form'
 
 export default class Divorce extends React.Component {
   constructor (props) {

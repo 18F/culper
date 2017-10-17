@@ -3,7 +3,7 @@ import { validBranch } from './helpers'
 
 export default class ForeignDirectActivityValidator {
   constructor (state, props = {}) {
-    this.hasInterests = props.HasInterests || ''
+    this.hasInterests = (props.HasInterests || {}).value
     this.list = props.List || []
     this.listBranch = props.ListBranch
   }

@@ -3,7 +3,7 @@ import { validBranch, validGenericTextfield, validGenericMonthYear } from './hel
 
 export default class NegativeImpactsValidator {
   constructor (data = {}) {
-    this.hasImpacts = data.HasImpacts
+    this.hasImpacts = (data.HasImpacts || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }

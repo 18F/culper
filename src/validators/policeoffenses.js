@@ -3,7 +3,7 @@ import { validBranch } from './helpers'
 
 export default class PoliceOffensesValidator {
   constructor (data = {}) {
-    this.hasOffenses = data.HasOffenses
+    this.hasOffenses = (data.HasOffenses || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

@@ -18,7 +18,7 @@ describe('The legal associations engaged in terrorism component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasEngaged: 'Yes'
+      HasEngaged: { value: 'Yes' }
     }
     const component = mount(<EngagedInTerrorism {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal associations engaged in terrorism component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasEngaged: 'Yes',
+      HasEngaged: { value: 'Yes' },
       List: [
         {
           Item: {

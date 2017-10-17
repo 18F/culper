@@ -58,13 +58,13 @@ describe('Legal associations activities component validation', function () {
       },
       {
         state: {
-          HasActivities: 'No'
+          HasActivities: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasActivities: 'Yes',
+          HasActivities: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -72,7 +72,7 @@ describe('Legal associations activities component validation', function () {
       },
       {
         state: {
-          HasActivities: 'Yes',
+          HasActivities: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -80,7 +80,7 @@ describe('Legal associations activities component validation', function () {
       },
       {
         state: {
-          HasActivities: 'Yes',
+          HasActivities: { value: 'Yes' },
           List: [
             {
               Item: {

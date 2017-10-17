@@ -103,13 +103,13 @@ describe('Legal technology manipulating component validation', function () {
       },
       {
         state: {
-          HasManipulating: 'No'
+          HasManipulating: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasManipulating: 'Yes',
+          HasManipulating: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -117,7 +117,7 @@ describe('Legal technology manipulating component validation', function () {
       },
       {
         state: {
-          HasManipulating: 'Yes',
+          HasManipulating: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -125,7 +125,7 @@ describe('Legal technology manipulating component validation', function () {
       },
       {
         state: {
-          HasManipulating: 'Yes',
+          HasManipulating: { value: 'Yes' },
           List: [
             {
               Item: {

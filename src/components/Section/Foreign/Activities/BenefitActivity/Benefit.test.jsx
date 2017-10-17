@@ -43,7 +43,7 @@ describe('The Benefit component', () => {
         Reason: {
           value: 'Foo'
         },
-        Obligated: 'Yes',
+        Obligated: { value: 'Yes' },
         ObligatedExplanation: {
           value: 'Because'
         }
@@ -62,7 +62,7 @@ describe('The Benefit component', () => {
       onUpdate: () => { updates++ },
       BenefitFrequency: 'Future',
       FutureBenefit: {
-        Obligated: 'Yes',
+        Obligated: { value: 'Yes' },
         ObligatedExplanation: {
           value: 'Because'
         }
@@ -93,7 +93,7 @@ describe('The Benefit component', () => {
       onUpdate: () => { updates++ },
       BenefitFrequency: 'Continuing',
       ContinuingBenefit: {
-        Obligated: 'Yes',
+        Obligated: { value: 'Yes' },
         ObligatedExplanation: {
           value: 'Because'
         }

@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BranchCollection, ForeignBornDocuments, SSN,
-         MaidenName, DateRange, ValidationElement,
-         Suggestions, Show, Country, Location } from '../../../Form'
+import { Field, DateControl, Name, BranchCollection, ForeignBornDocuments,
+         SSN, ValidationElement, Suggestions, Show, Country, Location } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 import OtherName from './OtherName'
 

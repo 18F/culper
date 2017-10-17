@@ -34,7 +34,7 @@ describe('ordered counseling component validation', function () {
             type: 'Domestic',
             extension: ''
           },
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         },
         expected: true
       }
@@ -48,13 +48,13 @@ describe('ordered counseling component validation', function () {
     const tests = [
       {
         state: {
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          CompletedTreatment: 'No',
+          CompletedTreatment: { value: 'No' },
           NoCompletedTreatmentExplanation: {
             value: 'Foo'
           }
@@ -63,7 +63,7 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          CompletedTreatment: 'Nope'
+          CompletedTreatment: { value: 'Nope' }
         },
         expected: false
       }
@@ -78,7 +78,7 @@ describe('ordered counseling component validation', function () {
       {
         state: {
           ListBranch: 'No',
-          SoughtTreatment: 'Yes',
+          SoughtTreatment: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -110,7 +110,7 @@ describe('ordered counseling component validation', function () {
                   timeOfDay: 'Both',
                   extension: ''
                 },
-                CompletedTreatment: 'Yes'
+                CompletedTreatment: { value: 'Yes' }
               }
             }
           ]
@@ -119,27 +119,27 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          SoughtTreatment: 'No'
+          SoughtTreatment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          SoughtTreatment: 'Yes',
+          SoughtTreatment: { value: 'Yes' },
           List: []
         },
         expected: false
       },
       {
         state: {
-          SoughtTreatment: 'Yes',
+          SoughtTreatment: { value: 'Yes' },
           List: [{}]
         },
         expected: false
       },
       {
         state: {
-          SoughtTreatment: 'Yes',
+          SoughtTreatment: { value: 'Yes' },
           ListBranch: 'No',
           List: [{Item: {}}]
         },

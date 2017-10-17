@@ -24,9 +24,10 @@ export default class Branch extends React.Component {
       }
     }
 
-    if (this.props.onUpdate) {
-      this.props.onUpdate(values.value)
-    }
+    this.props.onUpdate({
+      name: this.props.name,
+      value: values.value
+    })
   }
 
   render () {
@@ -79,5 +80,6 @@ Branch.defaultProps = {
   warning: false,
   confirmation: i18n.t('branch.confirmation'),
   value: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

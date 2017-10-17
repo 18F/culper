@@ -36,8 +36,8 @@ export default class RealEstateActivity extends SubsectionElement {
   updateHasInterests (values) {
     this.update({
       HasInterests: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -68,7 +68,7 @@ export default class RealEstateActivity extends SubsectionElement {
         <Branch name="has_interests"
                 label={i18n.t('foreign.activities.realestate.heading.title')}
                 labelSize="h2"
-                value={this.props.HasInterests}
+                {...this.props.HasInterests}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -76,7 +76,7 @@ export default class RealEstateActivity extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasInterests === 'Yes'}>
+        <Show when={this.props.HasInterests.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -104,7 +104,7 @@ export default class RealEstateActivity extends SubsectionElement {
 
 RealEstateActivity.defaultProps = {
   name: 'realestate',
-  HasInterests: '',
+  HasInterests: {},
   List: [],
   ListBranch: '',
   defaultState: true,

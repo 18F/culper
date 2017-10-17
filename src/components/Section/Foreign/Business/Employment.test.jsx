@@ -6,7 +6,7 @@ describe('The foreign business employment component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'No'
+      HasForeignEmployment: { value: 'No' }
     }
     const component = mount(<Employment {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign business employment component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'Yes'
+      HasForeignEmployment: { value: 'Yes' }
     }
     const component = mount(<Employment {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign business employment component', () => {
     let validated = false
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'Yes',
+      HasForeignEmployment: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -41,11 +41,11 @@ describe('The foreign business employment component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'Yes',
+      HasForeignEmployment: { value: 'Yes' },
       List: [{
         Item: {
           Address: { country: 'United States' },
-          Accepted: 'Yes'
+          Accepted: { value: 'Yes' }
         }
       }],
       onUpdate: () => { updates++ }

@@ -45,18 +45,16 @@ export default class EducationItem extends ValidationElement {
    */
   onUpdate (name, values) {
     this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          Dates: this.state.Dates,
-          Type: this.state.Type,
-          Name: this.state.Name,
-          Address: this.state.Address,
-          Comments: this.state.Comments,
-          Reference: this.state.Reference,
-          Diplomas: this.state.Diplomas
-        })
-      }
+      this.props.onUpdate({
+        name: this.props.name,
+        Dates: this.state.Dates,
+        Type: this.state.Type,
+        Name: this.state.Name,
+        Address: this.state.Address,
+        Comments: this.state.Comments,
+        Reference: this.state.Reference,
+        Diplomas: this.state.Diplomas
+      })
     })
   }
 
@@ -268,5 +266,6 @@ export default class EducationItem extends ValidationElement {
 }
 
 EducationItem.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

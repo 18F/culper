@@ -109,19 +109,19 @@ describe('Foreign business employment component validation', function () {
       },
       {
         state: {
-          Accepted: 'No'
+          Accepted: { value: 'No' }
         },
         expected: false
       },
       {
         state: {
-          Accepted: 'Yes'
+          Accepted: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          Accepted: 'Yes',
+          Accepted: { value: 'Yes' },
           Explanation: {
             value: 'this is the explanation'
           }
@@ -130,7 +130,7 @@ describe('Foreign business employment component validation', function () {
       },
       {
         state: {
-          Accepted: 'No',
+          Accepted: { value: 'No' },
           Explanation: {
             value: 'this is the explanation'
           }
@@ -150,13 +150,13 @@ describe('Foreign business employment component validation', function () {
       },
       {
         state: {
-          HasForeignEmployment: 'No'
+          HasForeignEmployment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignEmployment: 'Yes',
+          HasForeignEmployment: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -164,7 +164,7 @@ describe('Foreign business employment component validation', function () {
       },
       {
         state: {
-          HasForeignEmployment: 'Yes',
+          HasForeignEmployment: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -192,7 +192,7 @@ describe('Foreign business employment component validation', function () {
                   country: { value: 'Germany' },
                   layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
                 },
-                Accepted: 'Yes',
+                Accepted: { value: 'Yes' },
                 Explanation: {
                   value: 'This is an explanation'
                 }

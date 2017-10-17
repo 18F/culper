@@ -36,8 +36,8 @@ export default class History extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasHistory: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -62,7 +62,7 @@ export default class History extends SubsectionElement {
                 label={i18n.t('legal.investigations.history.heading.title')}
                 labelSize="h2"
                 className="legal-investigations-history-has-history"
-                value={this.props.HasHistory}
+                {...this.props.HasHistory}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,7 +70,7 @@ export default class History extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasHistory === 'Yes'}>
+        <Show when={this.props.HasHistory.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -98,7 +98,7 @@ export default class History extends SubsectionElement {
 
 History.defaultProps = {
   name: 'history',
-  HasHistory: '',
+  HasHistory: {},
   List: [],
   ListBranch: '',
   defaultState: true,

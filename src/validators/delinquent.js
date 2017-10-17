@@ -3,7 +3,7 @@ import { validNotApplicable, validDateField, validGenericTextfield } from './hel
 
 export default class DelinquentValidator {
   constructor (data = {}) {
-    this.hasDelinquent = data.HasDelinquent
+    this.hasDelinquent = (data.HasDelinquent || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

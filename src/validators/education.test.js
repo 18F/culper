@@ -6,22 +6,22 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'No',
-          HasDegree10: 'No'
+          HasAttended: { value: 'No' },
+          HasDegree10: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasAttended: 'Yes',
-          HasDegree10: 'No'
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'No' }
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'No',
-          HasDegree10: 'Yes'
+          HasAttended: { value: 'No' },
+          HasDegree10: { value: 'Yes' }
         },
         expected: false
       },
@@ -43,7 +43,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2000')
@@ -58,7 +58,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2004')
@@ -82,7 +82,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Address: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -105,7 +105,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Name: {
             value: 'Hubert Humphrey High'
           }
@@ -123,7 +123,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Type: 'High School'
         },
         expected: true
@@ -139,7 +139,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2000')
@@ -192,7 +192,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2000')
@@ -217,28 +217,28 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [ { Has: 'No' } ]
         },
         expected: true
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: []
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: null
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -258,7 +258,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -276,7 +276,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -288,7 +288,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -318,7 +318,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -348,22 +348,22 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
-          hasDegree10: 'Yes'
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasAttended: 'Nope',
-          hasDegree10: 'Yes'
+          HasAttended: { value: 'Nope' },
+          HasDegree10: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'No',
-          hasDegree10: 'Nope'
+          HasAttended: { value: 'No' },
+          HasDegree10: { value: 'Nope' }
         },
         expected: false
       }
@@ -378,8 +378,8 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
-          hasDegree10: 'Yes',
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -423,8 +423,8 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
-          hasDegree10: 'Yes',
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'Yes' },
           List: [
             {
               Item: {

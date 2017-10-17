@@ -6,7 +6,7 @@ describe('ordered counseling component validation', function () {
     const tests = [
       {
         state: {
-          ActionTaken: 'No',
+          ActionTaken: { value: 'No' },
           NoActionTakenExplanation: {
             value: 'Foo'
           }
@@ -15,7 +15,7 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          ActionTaken: 'Nope'
+          ActionTaken: { value: 'Nope' }
         },
         expected: false
       },
@@ -25,7 +25,7 @@ describe('ordered counseling component validation', function () {
           OtherSeeker: {
             value: 'Other'
           },
-          ActionTaken: 'Yes',
+          ActionTaken: { value: 'Yes' },
           CounselingDates: {
             from: {
               date: new Date('1/1/2010')
@@ -54,7 +54,7 @@ describe('ordered counseling component validation', function () {
             type: 'Domestic',
             extension: ''
           },
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         },
         expected: true
       }
@@ -68,13 +68,13 @@ describe('ordered counseling component validation', function () {
     const tests = [
       {
         state: {
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          CompletedTreatment: 'No',
+          CompletedTreatment: { value: 'No' },
           NoCompletedTreatmentExplanation: {
             value: 'Foo'
           }
@@ -83,7 +83,7 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          CompletedTreatment: 'Nope'
+          CompletedTreatment: { value: 'Nope' }
         },
         expected: false
       }
@@ -98,11 +98,11 @@ describe('ordered counseling component validation', function () {
       {
         state: {
           ListBranch: 'No',
-          HasBeenOrdered: 'Yes',
+          HasBeenOrdered: { value: 'Yes' },
           List: [
             {
               Item: {
-                ActionTaken: 'Yes',
+                ActionTaken: { value: 'Yes' },
                 CounselingDates: {
                   from: {
                     date: new Date('1/1/2010')
@@ -131,7 +131,7 @@ describe('ordered counseling component validation', function () {
                   type: 'Domestic',
                   extension: ''
                 },
-                CompletedTreatment: 'Yes'
+                CompletedTreatment: { value: 'Yes' }
               }
             }
           ]
@@ -140,27 +140,27 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          HasBeenOrdered: 'No'
+          HasBeenOrdered: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasBeenOrdered: 'Yes',
+          HasBeenOrdered: { value: 'Yes' },
           List: []
         },
         expected: false
       },
       {
         state: {
-          HasBeenOrdered: 'Yes',
+          HasBeenOrdered: { value: 'Yes' },
           List: [{}]
         },
         expected: false
       },
       {
         state: {
-          HasBeenOrdered: 'Yes',
+          HasBeenOrdered: { value: 'Yes' },
           ListBranch: 'No',
           List: [{Item: {}}]
         },

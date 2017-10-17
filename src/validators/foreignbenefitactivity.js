@@ -4,7 +4,7 @@ import { validBranch } from './helpers'
 export default class ForeignBenefitActivityValidator {
   constructor (data = {}) {
     data = data || {}
-    this.hasBenefits = data.HasBenefits || ''
+    this.hasBenefits = (data.HasBenefits || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

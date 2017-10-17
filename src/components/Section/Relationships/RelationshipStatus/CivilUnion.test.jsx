@@ -16,8 +16,8 @@ describe('The civil union component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitant',
-      Separated: 'Yes',
-      Divorced: 'Yes',
+      Separated: { value: 'Yes' },
+      Divorced: { value: 'Yes' },
       AddressSeparated: { country: 'United States' },
       ForeignBornDocument: { DocumentType: 'Other' },
       onUpdate: () => { updates++ }

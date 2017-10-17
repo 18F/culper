@@ -4,7 +4,7 @@ import { validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class VoluntaryCounselingsValidator {
   constructor (data = {}) {
-    this.soughtTreatment = data.SoughtTreatment
+    this.soughtTreatment = (data.SoughtTreatment || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }
@@ -48,7 +48,7 @@ export class VoluntaryCounselingValidator {
     this.treatmentProviderName = data.TreatmentProviderName
     this.treatmentProviderAddress = data.TreatmentProviderAddress
     this.treatmentProviderTelephone = data.TreatmentProviderTelephone
-    this.completedTreatment = data.CompletedTreatment
+    this.completedTreatment = (data.CompletedTreatment || {}).value
     this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 

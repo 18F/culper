@@ -254,13 +254,13 @@ describe('Foreign business contact component validation', function () {
       },
       {
         state: {
-          HasForeignContact: 'No'
+          HasForeignContact: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignContact: 'Yes',
+          HasForeignContact: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -268,7 +268,7 @@ describe('Foreign business contact component validation', function () {
       },
       {
         state: {
-          HasForeignContact: 'Yes',
+          HasForeignContact: { value: 'Yes' },
           List: [{}],
           ListBranch: 'No'
         },
@@ -276,7 +276,7 @@ describe('Foreign business contact component validation', function () {
       },
       {
         state: {
-          HasForeignContact: 'Yes',
+          HasForeignContact: { value: 'Yes' },
           List: [
             {
               Item: {

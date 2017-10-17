@@ -18,7 +18,7 @@ describe('The legal technology manipulating access component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasManipulating: 'Yes'
+      HasManipulating: { value: 'Yes' }
     }
     const component = mount(<Manipulating {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal technology manipulating access component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasManipulating: 'Yes',
+      HasManipulating: { value: 'Yes' },
       List: [
         {
           Item: {

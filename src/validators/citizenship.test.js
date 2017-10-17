@@ -106,26 +106,26 @@ describe('citizenship component validation', function () {
       },
       {
         state: {
-          BornOnMilitaryInstallation: 'Yuppers'
+          BornOnMilitaryInstallation: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
-          BornOnMilitaryInstallation: 'No'
+          BornOnMilitaryInstallation: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          BornOnMilitaryInstallation: 'Yes',
+          BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: null
         },
         expected: false
       },
       {
         state: {
-          BornOnMilitaryInstallation: 'Yes',
+          BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: {
             value: 'Camp Pendleton'
           }
@@ -143,32 +143,32 @@ describe('citizenship component validation', function () {
     const tests = [
       {
         state: {
-          HasAlienRegistration: ''
+          HasAlienRegistration: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasAlienRegistration: 'Yuppers'
+          HasAlienRegistration: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
-          HasAlienRegistration: 'No'
+          HasAlienRegistration: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasAlienRegistration: 'Yes',
+          HasAlienRegistration: { value: 'Yes' },
           AlienRegistrationNumber: null
         },
         expected: false
       },
       {
         state: {
-          HasAlienRegistration: 'Yes',
+          HasAlienRegistration: { value: 'Yes' },
           AlienRegistrationNumber: {
             value: 'number'
           }
@@ -321,7 +321,7 @@ describe('citizenship component validation', function () {
             lastInitialOnly: false,
             suffix: 'Jr'
           },
-          BornOnMilitaryInstallation: 'Yes',
+          BornOnMilitaryInstallation: { value: 'Yes' },
           MilitaryBase: {
             value: 'Camp Pendleton'
           }
@@ -346,7 +346,7 @@ describe('citizenship component validation', function () {
           PriorCitizenship: {
             value: ['Germany']
           },
-          HasAlienRegistration: 'Yes',
+          HasAlienRegistration: { value: 'Yes' },
           AlienRegistrationNumber: {
             value: 'number'
           },

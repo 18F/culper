@@ -5,19 +5,19 @@ describe('Foreign RealEstate Activity validation', function () {
     const tests = [
       {
         props: {
-          HasBenefits: 'Nope'
+          HasBenefits: { value: 'Nope' }
         },
         expected: false
       },
       {
         props: {
-          HasBenefits: 'No'
+          HasBenefits: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          HasBenefits: 'Yes',
+          HasBenefits: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -25,7 +25,7 @@ describe('Foreign RealEstate Activity validation', function () {
       },
       {
         props: {
-          HasBenefits: 'Yes',
+          HasBenefits: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -47,7 +47,7 @@ describe('Foreign RealEstate Activity validation', function () {
                   Reason: {
                     value: 'Foo'
                   },
-                  Obligated: 'Yes',
+                  Obligated: { value: 'Yes' },
                   ObligatedExplanation: {
                     value: 'Because'
                   }

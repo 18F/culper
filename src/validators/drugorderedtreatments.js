@@ -4,7 +4,7 @@ import { validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugOrderedTreatmentsValidator {
   constructor (data = {}) {
-    this.involved = data.TreatmentOrdered
+    this.involved = (data.TreatmentOrdered || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }
@@ -46,14 +46,14 @@ export class DrugOrderedTreatmentValidator {
   constructor (data = {}) {
     this.orderedBy = data.OrderedBy
     this.explanation = data.Explanation
-    this.actionTaken = data.ActionTaken
+    this.actionTaken = (data.ActionTaken || {}).value
     this.noActionTakenExplanation = data.NoActionTakenExplanation
     this.drugType = data.DrugType
     this.treatmentProvider = data.TreatmentProvider
     this.treatmentProviderAddress = data.TreatmentProviderAddress
     this.treatmentProviderTelephone = data.TreatmentProviderTelephone
     this.treatmentDates = data.TreatmentDates
-    this.treatmentCompleted = data.TreatmentCompleted
+    this.treatmentCompleted = (data.TreatmentCompleted || {}).value
     this.noTreatmentExplanation = data.NoTreatmentExplanation
   }
 

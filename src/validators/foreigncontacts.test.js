@@ -550,26 +550,26 @@ describe('Foreign contacts component validation', function () {
       },
       {
         state: {
-          HasAffiliations: 'No'
+          HasAffiliations: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasAffiliations: 'I don\'t know'
+          HasAffiliations: { value: 'I don\'t know' }
         },
         expected: true
       },
       {
         state: {
-          HasAffiliations: 'Yes',
+          HasAffiliations: { value: 'Yes' },
           Affiliations: {}
         },
         expected: false
       },
       {
         state: {
-          HasAffiliations: 'Yes',
+          HasAffiliations: { value: 'Yes' },
           Affiliations: {
             value: 'list of my affiliations'
           }
@@ -589,19 +589,19 @@ describe('Foreign contacts component validation', function () {
       },
       {
         state: {
-          HasForeignContacts: 'No'
+          HasForeignContacts: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignContacts: 'Yes'
+          HasForeignContacts: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasForeignContacts: 'Yes',
+          HasForeignContacts: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -649,7 +649,7 @@ describe('Foreign contacts component validation', function () {
                 EmployerAddressNotApplicable: {
                   applicable: false
                 },
-                HasAffiliations: 'No'
+                HasAffiliations: { value: 'No' }
               }
             }
           ],

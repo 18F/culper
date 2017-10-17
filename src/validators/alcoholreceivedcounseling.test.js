@@ -6,7 +6,7 @@ describe('received counseling component validation', function () {
     const tests = [
       {
         state: {
-          UseSameAddress: 'Yes',
+          UseSameAddress: { value: 'Yes' },
           TreatmentProviderAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -20,7 +20,7 @@ describe('received counseling component validation', function () {
       },
       {
         state: {
-          UseSameAddress: 'No',
+          UseSameAddress: { value: 'No' },
           TreatmentProviderAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -57,7 +57,7 @@ describe('received counseling component validation', function () {
           AgencyName: {
             value: 'The agency name'
           },
-          UseSameAddress: 'Yes',
+          UseSameAddress: { value: 'Yes' },
           TreatmentProviderAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -78,7 +78,7 @@ describe('received counseling component validation', function () {
             year: '2016',
             date: new Date('1/2/2016')
           },
-          CompletedTreatment: 'Yes',
+          CompletedTreatment: { value: 'Yes' },
           NoCompletedTreatmentExplanation: {
             value: 'Foo'
           }
@@ -95,7 +95,7 @@ describe('received counseling component validation', function () {
     const tests = [
       {
         state: {
-          CompletedTreatment: 'Yes',
+          CompletedTreatment: { value: 'Yes' },
           NoCompletedTreatmentExplanation: {
             value: 'Foo'
           }
@@ -104,7 +104,7 @@ describe('received counseling component validation', function () {
       },
       {
         state: {
-          CompletedTreatment: 'No',
+          CompletedTreatment: { value: 'No' },
           NoCompletedTreatmentExplanation: {
             value: 'Foo'
           }
@@ -113,7 +113,7 @@ describe('received counseling component validation', function () {
       },
       {
         state: {
-          CompletedTreatment: 'Nope'
+          CompletedTreatment: { value: 'Nope' }
         },
         expected: false
       }
@@ -128,11 +128,11 @@ describe('received counseling component validation', function () {
       {
         state: {
           ListBranch: 'No',
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           List: [
             {
               Item: {
-                UseSameAddress: 'Yes',
+                UseSameAddress: { value: 'Yes' },
                 TreatmentProviderName: {
                   value: 'The name'
                 },
@@ -159,7 +159,7 @@ describe('received counseling component validation', function () {
                   year: '2016',
                   date: new Date('1/2/2016')
                 },
-                CompletedTreatment: 'Yes',
+                CompletedTreatment: { value: 'Yes' },
                 NoCompletedTreatmentExplanation: {
                   value: 'Foo'
                 }
@@ -172,11 +172,11 @@ describe('received counseling component validation', function () {
       {
         state: {
           ListBranch: 'No',
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           List: [
             {
               Item: {
-                UseSameAddress: 'Yes',
+                UseSameAddress: { value: 'Yes' },
                 TreatmentProviderName: {
                   value: 'The name'
                 },
@@ -203,7 +203,7 @@ describe('received counseling component validation', function () {
                   year: '2016',
                   date: new Date('1/1/2016')
                 },
-                CompletedTreatment: 'Yes',
+                CompletedTreatment: { value: 'Yes' },
                 NoCompletedTreatmentExplanation: {
                   value: 'Foo'
                 }
@@ -216,11 +216,11 @@ describe('received counseling component validation', function () {
       {
         state: {
           ListBranch: 'No',
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           List: [
             {
               Item: {
-                UseSameAddress: 'Yes',
+                UseSameAddress: { value: 'Yes' },
                 TreatmentProviderName: {
                   value: 'The name'
                 },
@@ -247,7 +247,7 @@ describe('received counseling component validation', function () {
                   year: '1982',
                   date: new Date('1/1/1982')
                 },
-                CompletedTreatment: 'Yes',
+                CompletedTreatment: { value: 'Yes' },
                 NoCompletedTreatmentExplanation: {
                   value: 'Foo'
                 }
@@ -268,11 +268,11 @@ describe('received counseling component validation', function () {
       {
         state: {
           ListBranch: 'No',
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           List: [
             {
               Item: {
-                UseSameAddress: 'Yes',
+                UseSameAddress: { value: 'Yes' },
                 TreatmentProviderName: {
                   value: 'The name'
                 },
@@ -299,7 +299,7 @@ describe('received counseling component validation', function () {
                   year: '2016',
                   date: new Date('1/2/2016')
                 },
-                CompletedTreatment: 'Yes',
+                CompletedTreatment: { value: 'Yes' },
                 NoCompletedTreatmentExplanation: {
                   value: 'Foo'
                 }
@@ -311,27 +311,27 @@ describe('received counseling component validation', function () {
       },
       {
         state: {
-          ReceivedTreatment: 'No'
+          ReceivedTreatment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           List: []
         },
         expected: false
       },
       {
         state: {
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           List: [{}]
         },
         expected: false
       },
       {
         state: {
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           ListBranch: 'No',
           List: [{Item: {}}]
         },

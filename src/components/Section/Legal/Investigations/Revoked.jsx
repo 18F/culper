@@ -36,8 +36,8 @@ export default class Revoked extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasRevocations: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -62,7 +62,7 @@ export default class Revoked extends SubsectionElement {
                 label={i18n.t('legal.investigations.revoked.heading.title')}
                 labelSize="h2"
                 className="legal-investigations-revoked-has-revocations"
-                value={this.props.HasRevocations}
+                {...this.props.HasRevocations}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -71,7 +71,7 @@ export default class Revoked extends SubsectionElement {
           {i18n.m('legal.investigations.revoked.para.downgrade')}
         </Branch>
 
-        <Show when={this.props.HasRevocations === 'Yes'}>
+        <Show when={this.props.HasRevocations.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -99,7 +99,7 @@ export default class Revoked extends SubsectionElement {
 
 Revoked.defaultProps = {
   name: 'revoked',
-  HasRevocations: '',
+  HasRevocations: {},
   List: [],
   ListBranch: '',
   defaultState: true,

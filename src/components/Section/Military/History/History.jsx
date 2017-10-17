@@ -48,12 +48,12 @@ export default class History extends SubsectionElement {
     })
   }
 
-  updateServed (value, event) {
+  updateServed (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      HasServed: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasServed: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -88,7 +88,7 @@ export default class History extends SubsectionElement {
                 label={i18n.t('military.history.heading.served')}
                 labelSize="h2"
                 className="served"
-                value={this.props.HasServed}
+                {...this.props.HasServed}
                 help="military.history.help.served"
                 warning={true}
                 onUpdate={this.updateServed}
@@ -97,7 +97,7 @@ export default class History extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasServed === 'Yes'}>
+        <Show when={this.props.HasServed.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -124,6 +124,7 @@ export default class History extends SubsectionElement {
 }
 
 History.defaultProps = {
+  HasServed: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',

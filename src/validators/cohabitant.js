@@ -6,7 +6,7 @@ import { validSSN, validDateField, validBranch, BranchCollection } from './helpe
 
 export default class CohabitantsValidator {
   constructor (state = {}) {
-    this.hasCohabitant = state.HasCohabitant
+    this.hasCohabitant = (state.HasCohabitant || {}).value
     this.cohabitantList = state.CohabitantList || []
     this.cohabitantListBranch = state.CohabitantListBranch
   }

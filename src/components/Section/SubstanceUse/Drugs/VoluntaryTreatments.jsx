@@ -38,8 +38,8 @@ export default class VoluntaryTreatments extends SubsectionElement {
   updateTreatmentVoluntary (values) {
     this.update({
       TreatmentVoluntary: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -64,7 +64,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
                 label={i18n.m('substance.drugs.heading.voluntaryTreatments')}
                 labelSize="h2"
                 className="treatment-voluntary"
-                value={this.props.TreatmentVoluntary}
+                {...this.props.TreatmentVoluntary}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -72,7 +72,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.TreatmentVoluntary === 'Yes'}>
+        <Show when={this.props.TreatmentVoluntary.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -100,6 +100,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
 }
 
 VoluntaryTreatments.defaultProps = {
+  TreatmentVoluntary: {},
   List: [],
   ListBranch: '',
   onError: (value, arr) => { return arr },

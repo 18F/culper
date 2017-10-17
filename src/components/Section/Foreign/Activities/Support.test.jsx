@@ -6,7 +6,7 @@ describe('The foreign activities support component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-activities-support',
-      HasForeignSupport: 'No'
+      HasForeignSupport: { value: 'No' }
     }
     const component = mount(<Support {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign activities support component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-activities-support',
-      HasForeignSupport: 'Yes'
+      HasForeignSupport: { value: 'Yes' }
     }
     const component = mount(<Support {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign activities support component', () => {
     let validated = false
     const expected = {
       name: 'foreign-activities-support',
-      HasForeignSupport: 'Yes',
+      HasForeignSupport: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -41,7 +41,7 @@ describe('The foreign activities support component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-activities-support',
-      HasForeignSupport: 'Yes',
+      HasForeignSupport: { value: 'Yes' },
       List: [{}],
       onUpdate: () => { updates++ }
     }

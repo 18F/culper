@@ -54,7 +54,7 @@ describe('The foreign national component', () => {
   it('display affiliations if said to have some', () => {
     const expected = {
       name: 'foreign-national',
-      HasAffiliations: 'Yes'
+      HasAffiliations: { value: 'Yes' }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.affiliations').length).toBe(1)
@@ -68,8 +68,8 @@ describe('The foreign national component', () => {
       Methods: ['Other'],
       Frequency: 'Other',
       Relationship: ['Other'],
-      Aliases: [{ Has: 'No' }],
-      HasAffiliations: 'Yes',
+      Aliases: [{ Has: { value: 'No' } }],
+      HasAffiliations: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<ForeignNational {...expected} />)

@@ -3,7 +3,7 @@ import { validBranch, validDateField, validGenericTextfield } from './helpers'
 
 export default class NonCriminalCourtActionsValidator {
   constructor (data) {
-    this.hasCourtActions = data.HasCourtActions
+    this.hasCourtActions = (data.HasCourtActions || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }

@@ -4,7 +4,7 @@ import { validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class OrderedCounselingsValidator {
   constructor (data = {}) {
-    this.hasBeenOrdered = data.HasBeenOrdered
+    this.hasBeenOrdered = (data.HasBeenOrdered || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }
@@ -46,13 +46,13 @@ export class OrderedCounselingValidator {
   constructor (data = {}) {
     this.seekers = data.Seekers
     this.otherSeeker = data.OtherSeeker
-    this.actionTaken = data.ActionTaken
+    this.actionTaken = (data.ActionTaken || {}).value
     this.noActionTakenExplanation = data.NoActionTakenExplanation
     this.counselingDates = data.CounselingDates
     this.treatmentProviderName = data.TreatmentProviderName
     this.treatmentProviderAddress = data.TreatmentProviderAddress
     this.treatmentProviderTelephone = data.TreatmentProviderTelephone
-    this.completedTreatment = data.CompletedTreatment
+    this.completedTreatment = (data.CompletedTreatment || {}).value
     this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 

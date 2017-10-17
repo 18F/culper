@@ -4,7 +4,7 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class ForeignBusinessEmploymentValidator {
   constructor (state = {}, props = {}) {
-    this.hasForeignEmployment = state.HasForeignEmployment
+    this.hasForeignEmployment = (state.HasForeignEmployment || {}).value
     this.list = state.List || []
     this.listBranch = state.ListBranch
   }
@@ -40,7 +40,7 @@ export class ForeignBusinessEmploymentItemValidator {
     this.description = state.Description
     this.date = state.Date
     this.address = state.Address
-    this.accepted = state.Accepted
+    this.accepted = (state.Accepted || {}).value
     this.explanation = state.Explanation
   }
 

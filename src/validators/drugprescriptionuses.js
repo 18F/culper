@@ -3,7 +3,7 @@ import { validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugPrescriptionUsesValidator {
   constructor (data = {}) {
-    this.usedDrugs = data.MisusedDrugs
+    this.usedDrugs = (data.MisusedDrugs || {}).value
     this.list = data.List
     this.listBranch = data.ListBranch
   }
@@ -46,8 +46,8 @@ export class DrugPrescriptionUseValidator {
     this.prescriptionName = data.PrescriptionName
     this.involvementDates = data.InvolvementDates
     this.reason = data.Reason
-    this.useWhileEmployed = data.UseWhileEmployed
-    this.useWithClearance = data.UseWithClearance
+    this.useWhileEmployed = (data.UseWhileEmployed || {}).value
+    this.useWithClearance = (data.UseWithClearance || {}).value
   }
 
   isValid () {

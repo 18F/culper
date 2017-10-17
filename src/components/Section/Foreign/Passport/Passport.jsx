@@ -58,13 +58,13 @@ export default class Passport extends SubsectionElement {
   /**
    * Handle when the yes/no option has been changed
    */
-  updateBranch (val, event) {
+  updateBranch (values) {
     this.update({
-      HasPassport: val,
-      Name: val === 'Yes' ? this.props.Name : {},
-      Number: val === 'Yes' ? this.props.Number : '',
-      Issued: val === 'Yes' ? this.props.Issued : {},
-      Expired: val === 'Yes' ? this.props.Expired : {}
+      HasPassport: values,
+      Name: values.value === 'Yes' ? this.props.Name : {},
+      Number: values.value === 'Yes' ? this.props.Number : '',
+      Issued: values.value === 'Yes' ? this.props.Issued : {},
+      Expired: values.value === 'Yes' ? this.props.Expired : {}
     })
   }
 
@@ -146,7 +146,7 @@ export default class Passport extends SubsectionElement {
         <Branch name="has_passport"
                 label={i18n.t('foreign.passport.question.title')}
                 labelSize="h3"
-                value={this.props.HasPassport}
+                {...this.props.HasPassport}
                 warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}
@@ -154,7 +154,7 @@ export default class Passport extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 >
         </Branch>
-        <Show when={this.props.HasPassport === 'Yes'}>
+        <Show when={this.props.HasPassport.value === 'Yes'}>
           <div>
             <Field title={i18n.t('foreign.passport.name')}
                    titleSize="h3"
@@ -270,7 +270,7 @@ Passport.defaultProps = {
   Issued: {},
   Expiration: {},
   Comments: '',
-  HasPassport: '',
+  HasPassport: {},
   suggestedNames: [],
   reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
   reCard: '^[cC]{1}[0-9]{8}$',

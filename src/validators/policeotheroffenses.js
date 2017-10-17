@@ -5,7 +5,7 @@ export default class PoliceOtherOffensesValidator {
   constructor (data = {}) {
     this.list = data.List || []
     this.listBranch = data.ListBranch
-    this.hasOtherOffenses = data.HasOtherOffenses
+    this.hasOtherOffenses = (data.HasOtherOffenses || {}).value
   }
 
   validItems () {

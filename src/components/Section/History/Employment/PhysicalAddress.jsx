@@ -12,6 +12,7 @@ export default class PhysicalAddress extends ValidationElement {
       Telephone: props.Telephone
     }
 
+    this.doUpdate = this.doUpdate.bind(this)
     this.onBranchUpdate = this.onBranchUpdate.bind(this)
     this.handleAddressChange = this.handleAddressChange.bind(this)
     this.updateTelephone = this.updateTelephone.bind(this)
@@ -20,22 +21,19 @@ export default class PhysicalAddress extends ValidationElement {
   /**
    * Handle the change event.
    */
-  onBranchUpdate (value) {
-    this.setState({ HasDifferentAddress: value }, () => {
+  onBranchUpdate (values) {
+    this.setState({ HasDifferentAddress: values }, () => {
       this.doUpdate()
     })
   }
 
   doUpdate () {
-    if (this.props.onUpdate) {
-      let update = {
-        name: this.props.name,
-        HasDifferentAddress: this.state.HasDifferentAddress,
-        Address: this.state.Address,
-        Telephone: this.state.Telephone
-      }
-      this.props.onUpdate(update)
-    }
+    this.props.onUpdate({
+      name: this.props.name,
+      HasDifferentAddress: this.state.HasDifferentAddress,
+      Address: this.state.Address,
+      Telephone: this.state.Telephone
+    })
   }
 
   handleAddressChange (value) {
@@ -55,7 +53,7 @@ export default class PhysicalAddress extends ValidationElement {
       <Branch label={this.props.title}
               labelSize="h3"
               name="physicalAddress"
-              value={this.state.HasDifferentAddress}
+              {...this.state.HasDifferentAddress}
               className="has-different-address"
               help="history.employment.default.physicalAddress.help"
               onUpdate={this.onBranchUpdate}
@@ -70,7 +68,7 @@ export default class PhysicalAddress extends ValidationElement {
     const klass = `physical ${this.props.className || ''}`.trim()
     let options = this.options()
 
-    if (this.state.HasDifferentAddress === 'Yes') {
+    if (this.state.HasDifferentAddress.value === 'Yes') {
       return (
         <div className="has-different">
           <div className={klass + ' physical-address'}>
@@ -126,8 +124,10 @@ export default class PhysicalAddress extends ValidationElement {
 
 PhysicalAddress.defaultProps = {
   title: '',
+  HasDifferentAddress: {},
   addressBooks: {},
   addressBook: 'Company',
   dispatch: (action) => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

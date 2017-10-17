@@ -364,25 +364,25 @@ describe('delinquent component validation', function () {
     const tests = [
       {
         state: {
-          HasDelinquent: ''
+          HasDelinquent: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasDelinquent: 'Unicorn'
+          HasDelinquent: { value: 'Unicorn' }
         },
         expected: false
       },
       {
         state: {
-          HasDelinquent: 'No'
+          HasDelinquent: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasDelinquent: 'Yes'
+          HasDelinquent: { value: 'Yes' }
         },
         expected: true
       }
@@ -397,7 +397,7 @@ describe('delinquent component validation', function () {
     const tests = [
       {
         state: {
-          HasDelinquent: 'No',
+          HasDelinquent: { value: 'No' },
           List: [],
           ListBranch: 'No'
         },
@@ -405,7 +405,7 @@ describe('delinquent component validation', function () {
       },
       {
         state: {
-          HasDelinquent: 'Yes',
+          HasDelinquent: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -413,7 +413,7 @@ describe('delinquent component validation', function () {
       },
       {
         state: {
-          HasDelinquent: 'Yes',
+          HasDelinquent: { value: 'Yes' },
           List: [{}],
           ListBranch: 'No'
         },
@@ -421,7 +421,7 @@ describe('delinquent component validation', function () {
       },
       {
         state: {
-          HasDelinquent: 'Yes',
+          HasDelinquent: { value: 'Yes' },
           List: [
             {
               Item: {

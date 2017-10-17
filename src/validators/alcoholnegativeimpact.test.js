@@ -38,20 +38,20 @@ describe('negative impact component validation', function () {
     const tests = [
       {
         state: {
-          HasImpacts: 'No'
+          HasImpacts: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasImpacts: 'Yes',
+          HasImpacts: { value: 'Yes' },
           List: []
         },
         expected: false
       },
       {
         state: {
-          HasImpacts: 'Yes',
+          HasImpacts: { value: 'Yes' },
           ListBranch: 'Nope',
           List: [{}]
         },
@@ -59,7 +59,7 @@ describe('negative impact component validation', function () {
       },
       {
         state: {
-          HasImpacts: 'Yes',
+          HasImpacts: { value: 'Yes' },
           ListBranch: 'No',
           List: [{
             Item: {
@@ -89,7 +89,7 @@ describe('negative impact component validation', function () {
       },
       {
         state: {
-          HasImpacts: 'Yes',
+          HasImpacts: { value: 'Yes' },
           ListBranch: 'No',
           List: [{
             Item: {

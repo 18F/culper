@@ -40,7 +40,7 @@ describe('The DrugClearanceUses component', () => {
         }
       }
     ]
-    const component = mount(<DrugClearanceUses onUpdate={onUpdate} UsedDrugs={'Yes'} List={list} />)
+    const component = mount(<DrugClearanceUses onUpdate={onUpdate} UsedDrugs={{ value: 'Yes' }} List={list} />)
     expect(component.find('.drug-clearance-uses').length).toBe(1)
     component.find('.description textarea').first().simulate('change')
     expect(updates).toBe(2)

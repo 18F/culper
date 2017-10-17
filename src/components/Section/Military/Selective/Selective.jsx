@@ -27,22 +27,22 @@ export default class Selective extends SubsectionElement {
     })
   }
 
-  updateBornAfter (value, event) {
+  updateBornAfter (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      WasBornAfter: value,
-      HasRegistered: value === 'Yes' ? this.props.HasRegistered : null,
-      RegistrationNumber: value === 'Yes' ? this.props.RegistrationNumber : null,
-      Explanation: value === 'Yes' ? this.props.Explanation : null
+      WasBornAfter: values,
+      HasRegistered: values.value === 'Yes' ? this.props.HasRegistered : null,
+      RegistrationNumber: values.value === 'Yes' ? this.props.RegistrationNumber : null,
+      Explanation: values.value === 'Yes' ? this.props.Explanation : null
     })
   }
 
-  updateRegistered (value, event) {
+  updateRegistered (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      HasRegistered: value,
-      RegistrationNumber: value === 'Yes' ? this.props.RegistrationNumber : null,
-      Explanation: value === 'Yes' ? null : this.props.Explanation
+      HasRegistered: values,
+      RegistrationNumber: values.value === 'Yes' ? this.props.RegistrationNumber : null,
+      Explanation: values.value === 'Yes' ? null : this.props.Explanation
     })
   }
 
@@ -65,7 +65,7 @@ export default class Selective extends SubsectionElement {
                 label={i18n.t('military.selective.heading.born')}
                 labelSize="h2"
                 className="born"
-                value={this.props.WasBornAfter}
+                {...this.props.WasBornAfter}
                 help="military.selective.help.born"
                 warning={true}
                 onUpdate={this.updateBornAfter}
@@ -74,13 +74,13 @@ export default class Selective extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.WasBornAfter === 'Yes'}>
+        <Show when={this.props.WasBornAfter.value === 'Yes'}>
           <div>
             <Branch name="has_registered"
                     label={i18n.t('military.selective.heading.registered')}
                     labelSize="h3"
                     className={`registered no-margin-bottom ${this.props.HasRegistered === 'No' ? 'no-margin-bottom' : ''}`}
-                    value={this.props.HasRegistered}
+                    {...this.props.HasRegistered}
                     warning={true}
                     onUpdate={this.updateRegistered}
                     required={this.props.required}
@@ -88,7 +88,7 @@ export default class Selective extends SubsectionElement {
                     scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.props.HasRegistered === 'Yes'}>
+            <Show when={this.props.HasRegistered.value === 'Yes'}>
               <div>
                 <Field title={i18n.t('military.selective.heading.number')}
                        className="no-margin-bottom"
@@ -125,7 +125,7 @@ export default class Selective extends SubsectionElement {
               </div>
             </Show>
 
-            <Show when={this.props.HasRegistered === 'No'}>
+            <Show when={this.props.HasRegistered.value === 'No'}>
               <Field title={i18n.t('military.selective.label.explanation')}
                      titleSize="label"
                      help="military.selective.help.explanation"
@@ -148,6 +148,8 @@ export default class Selective extends SubsectionElement {
 }
 
 Selective.defaultProps = {
+  WasBornAfter: {},
+  HasRegistered: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',

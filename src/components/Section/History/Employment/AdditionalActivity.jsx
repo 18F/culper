@@ -15,13 +15,10 @@ export default class AdditionalActivity extends ValidationElement {
 
   myDispatch (collection) {
     this.setState({ List: collection }, () => {
-      if (this.props.onUpdate) {
-        let update = {
-          name: this.props.name,
-          List: this.state.List
-        }
-        this.props.onUpdate(update)
-      }
+      this.props.onUpdate({
+        name: this.props.name,
+        List: this.state.List
+      })
     })
   }
 
@@ -81,5 +78,6 @@ export default class AdditionalActivity extends ValidationElement {
 
 AdditionalActivity.defaultProps = {
   List: [],
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

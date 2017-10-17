@@ -284,13 +284,13 @@ describe('Foreign business sponsorship component validation', function () {
       },
       {
         state: {
-          HasForeignSponsorship: 'No'
+          HasForeignSponsorship: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignSponsorship: 'Yes',
+          HasForeignSponsorship: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -298,7 +298,7 @@ describe('Foreign business sponsorship component validation', function () {
       },
       {
         state: {
-          HasForeignSponsorship: 'Yes',
+          HasForeignSponsorship: { value: 'Yes' },
           List: [{}],
           ListBranch: 'No'
         },
@@ -306,7 +306,7 @@ describe('Foreign business sponsorship component validation', function () {
       },
       {
         state: {
-          HasForeignSponsorship: 'Yes',
+          HasForeignSponsorship: { value: 'Yes' },
           List: [
             {
               Item: {

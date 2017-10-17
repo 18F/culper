@@ -58,13 +58,13 @@ describe('Legal associations advocated component validation', function () {
       },
       {
         state: {
-          HasAdvocated: 'No'
+          HasAdvocated: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasAdvocated: 'Yes',
+          HasAdvocated: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -72,7 +72,7 @@ describe('Legal associations advocated component validation', function () {
       },
       {
         state: {
-          HasAdvocated: 'Yes',
+          HasAdvocated: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -80,7 +80,7 @@ describe('Legal associations advocated component validation', function () {
       },
       {
         state: {
-          HasAdvocated: 'Yes',
+          HasAdvocated: { value: 'Yes' },
           List: [
             {
               Item: {

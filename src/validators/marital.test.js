@@ -189,8 +189,8 @@ describe('Marital validation', function () {
               last: '1111',
               applicable: true
             },
-            Divorced: 'Yes',
-            Separated: 'No',
+            Divorced: { value: 'Yes' },
+            Separated: { value: 'No' },
             OtherNameNotApplicable: false,
             OtherName: {
               first: 'Foo',

@@ -135,25 +135,25 @@ describe('credit component validation', function () {
     const tests = [
       {
         state: {
-          HasCreditCounseling: ''
+          HasCreditCounseling: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasCreditCounseling: 'Unicorn'
+          HasCreditCounseling: { value: 'Unicorn' }
         },
         expected: false
       },
       {
         state: {
-          HasCreditCounseling: 'No'
+          HasCreditCounseling: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasCreditCounseling: 'Yes'
+          HasCreditCounseling: { value: 'Yes' }
         },
         expected: true
       }
@@ -168,7 +168,7 @@ describe('credit component validation', function () {
     const tests = [
       {
         state: {
-          HasCreditCounseling: 'No',
+          HasCreditCounseling: { value: 'No' },
           List: [],
           ListBranch: 'No'
         },
@@ -176,7 +176,7 @@ describe('credit component validation', function () {
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
+          HasCreditCounseling: { value: 'Yes' },
           List: [{
             Explanation: {
               value: 'Completely forgot'
@@ -188,7 +188,7 @@ describe('credit component validation', function () {
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
+          HasCreditCounseling: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -196,7 +196,7 @@ describe('credit component validation', function () {
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
+          HasCreditCounseling: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -204,7 +204,7 @@ describe('credit component validation', function () {
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
+          HasCreditCounseling: { value: 'Yes' },
           List: [
             {
               Item: {

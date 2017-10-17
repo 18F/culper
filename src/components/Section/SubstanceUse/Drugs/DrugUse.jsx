@@ -125,7 +125,7 @@ export default class DrugUse extends ValidationElement {
                 label={i18n.t('substance.drugs.use.heading.useWhileEmployed')}
                 labelSize="h3"
                 className="use-while-employed"
-                value={this.props.UseWhileEmployed}
+                {...this.props.UseWhileEmployed}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateUseWhileEmployed}
@@ -136,7 +136,7 @@ export default class DrugUse extends ValidationElement {
                 label={i18n.t('substance.drugs.use.heading.useWithClearance')}
                 labelSize="h3"
                 className="use-with-clearance"
-                value={this.props.UseWithClearance}
+                {...this.props.UseWithClearance}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateUseWithClearance}
@@ -147,7 +147,7 @@ export default class DrugUse extends ValidationElement {
                 label={i18n.t('substance.drugs.use.heading.useInFuture')}
                 labelSize="h3"
                 className="use-in-future"
-                value={this.props.UseInFuture}
+                {...this.props.UseInFuture}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateUseInFuture}
@@ -170,5 +170,8 @@ export default class DrugUse extends ValidationElement {
 }
 
 DrugUse.defaultProps = {
+  UseWhileEmployed: {},
+  UseWhileClearance: {},
+  UseWhileFuture: {},
   onError: (value, arr) => { return arr }
 }

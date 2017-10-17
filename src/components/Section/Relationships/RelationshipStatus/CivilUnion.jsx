@@ -378,14 +378,14 @@ export default class CivilUnion extends ValidationElement {
                   className="separated"
                   label={i18n.t('relationships.civilUnion.heading.separated')}
                   labelSize="h3"
-                  value={this.props.Separated}
+                  {...this.props.Separated}
                   onUpdate={this.updateSeparated}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
                   onError={this.props.onError}>
           </Branch>
 
-          <Show when={this.props.Separated === 'Yes'}>
+          <Show when={this.props.Separated.value === 'Yes'}>
             <div>
               <Field title={i18n.t('relationships.civilUnion.heading.dateSeparated')}
                      help="relationships.civilUnion.help.dateSeparated"
@@ -426,7 +426,7 @@ export default class CivilUnion extends ValidationElement {
                   label={i18n.t('relationships.civilUnion.heading.divorced')}
                   labelSize="h3"
                   className="divorced"
-                  value={this.props.Divorced}
+                  {...this.props.Divorced}
                   onUpdate={this.updateDivorced}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
@@ -450,11 +450,11 @@ CivilUnion.defaultProps = {
   Address: {},
   Telephone: {},
   Email: {},
-  Separated: '',
+  Separated: {},
   DateSeparated: {},
   AddressSeparated: {},
   AddressSeparatedNotApplicable: {},
-  Divorced: '',
+  Divorced: {},
   UseCurrentAddress: false,
   addressBooks: {},
   dispatch: (action) => {},

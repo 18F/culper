@@ -37,18 +37,18 @@ export default class ExistingConditions extends SubsectionElement {
   updateHasCondition (values) {
     this.update({
       HasCondition: values,
-      ReceivedTreatment: values === 'Yes' ? this.props.ReceivedTreatment : '',
-      Explanation: values === 'Yes' ? this.props.Explanation : {},
-      TreatmentList: values === 'Yes' ? this.props.TreatmentList : [],
-      TreatmentListBranch: values === 'Yes' ? this.props.TreatmentListBranch : '',
-      DidNotFollow: values === 'Yes' ? this.props.DidNotFollow : '',
-      DidNotFollowExplanation: values === 'Yes' ? this.props.DidNotFollowExplanation : {}
+      ReceivedTreatment: values.value === 'Yes' ? this.props.ReceivedTreatment : '',
+      Explanation: values.value === 'Yes' ? this.props.Explanation : {},
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
+      TreatmentListBranch: values.value === 'Yes' ? this.props.TreatmentListBranch : '',
+      DidNotFollow: values.value === 'Yes' ? this.props.DidNotFollow : '',
+      DidNotFollowExplanation: values.value === 'Yes' ? this.props.DidNotFollowExplanation : {}
     })
   }
 
   updateReceivedTreatment (checkbox) {
     this.update({
-      ReceivedTreatment: checkbox.value,
+      ReceivedTreatment: checkbox,
       Explanation: checkbox.value === 'No' ? this.props.Explanation : {}
     })
   }
@@ -63,7 +63,7 @@ export default class ExistingConditions extends SubsectionElement {
   updateDidNotFollow (values) {
     this.update({
       DidNotFollow: values,
-      DidNotFollowExplanation: values === 'Yes' ? this.props.DidNotFollowExplanation : {}
+      DidNotFollowExplanation: values.value === 'Yes' ? this.props.DidNotFollowExplanation : {}
     })
   }
 
@@ -101,7 +101,7 @@ export default class ExistingConditions extends SubsectionElement {
                 label={i18n.t('psychological.existingConditions.heading.hasCondition')}
                 labelSize="h2"
                 className="eapp-field-wrap hascondition"
-                value={this.props.HasCondition}
+                {...this.props.HasCondition}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -110,7 +110,7 @@ export default class ExistingConditions extends SubsectionElement {
           {i18n.m('psychological.existingConditions.para.hasCondition')}
         </Branch>
 
-        <Show when={this.props.HasCondition === 'Yes'}>
+        <Show when={this.props.HasCondition.value === 'Yes'}>
           <div>
             <Field title={i18n.t('psychological.existingConditions.heading.receivedTreatment')}
                    titleSize="h3"
@@ -143,7 +143,7 @@ export default class ExistingConditions extends SubsectionElement {
               </RadioGroup>
             </Field>
 
-            <Show when={this.props.ReceivedTreatment === 'No'}>
+            <Show when={this.props.ReceivedTreatment.value === 'No'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.explanation`)}
                      titleSize="label"
                      scrollIntoView={this.props.scrollIntoView}>
@@ -157,7 +157,7 @@ export default class ExistingConditions extends SubsectionElement {
               </Field>
             </Show>
 
-            <Show when={this.props.ReceivedTreatment === 'Yes'}>
+            <Show when={this.props.ReceivedTreatment.value === 'Yes'}>
               <Accordion defaultState={this.props.defaultState}
                          items={this.props.TreatmentList}
                          branch={this.props.TreatmentListBranch}
@@ -183,14 +183,14 @@ export default class ExistingConditions extends SubsectionElement {
                     label={i18n.t('psychological.existingConditions.heading.didNotFollow')}
                     labelSize="h3"
                     className="eapp-field-wrap didnotfollow no-margin-bottom"
-                    value={this.props.DidNotFollow}
+                    {...this.props.DidNotFollow}
                     onError={this.handleError}
                     required={this.props.required}
                     onUpdate={this.updateDidNotFollow}
                     scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.props.DidNotFollow === 'Yes'}>
+            <Show when={this.props.DidNotFollow.value === 'Yes'}>
               <Field title={i18n.t(`psychological.existingConditions.heading.didNotFollowExplanation`)}
                      titleSize="label"
                      scrollIntoView={this.props.scrollIntoView}>
@@ -211,6 +211,9 @@ export default class ExistingConditions extends SubsectionElement {
 }
 
 ExistingConditions.defaultProps = {
+  HasCondition: {},
+  DidNotFollow: {},
+  ReceivedTreatment: {},
   TreatmentList: [],
   TreatmentListBranch: '',
   defaultState: true,

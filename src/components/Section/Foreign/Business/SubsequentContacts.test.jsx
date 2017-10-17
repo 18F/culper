@@ -7,7 +7,7 @@ describe('The foreign business contact subsequent contacts component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-contact-subsequentcontacts',
-      List: [{ Has: 'Yes' }],
+      List: [{ Has: { value: 'Yes' } }],
       onUpdate: () => { updates++ }
     }
     const component = mount(<SubsequentContacts {...expected} />)

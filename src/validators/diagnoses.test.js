@@ -6,7 +6,7 @@ describe('Diagnoses validation', function () {
     const tests = [
       {
         state: {
-          InTreatment: 'Yes',
+          InTreatment: { value: 'Yes' },
           TreatmentList: [{
             Item: {
               Name: {
@@ -36,7 +36,7 @@ describe('Diagnoses validation', function () {
       },
       {
         state: {
-          InTreatment: 'No',
+          InTreatment: { value: 'No' },
           TreatmentList: [],
           TreatmentListBranch: 'No'
         },
@@ -44,7 +44,7 @@ describe('Diagnoses validation', function () {
       },
       {
         state: {
-          InTreatment: 'Yes',
+          InTreatment: { value: 'Yes' },
           TreatmentList: [],
           TreatmentListBranch: 'No'
         },
@@ -52,7 +52,7 @@ describe('Diagnoses validation', function () {
       },
       {
         state: {
-          InTreatment: 'Yes',
+          InTreatment: { value: 'Yes' },
           TreatmentList: [{}],
           TreatmentListBranch: 'No'
         },
@@ -68,13 +68,13 @@ describe('Diagnoses validation', function () {
     const tests = [
       {
         state: {
-          Diagnosed: 'Yes',
+          Diagnosed: { value: 'Yes' },
           DiagnosisList: [{
             Item: {
               Condition: {
                 value: 'Test'
               },
-              Effective: 'Yes',
+              Effective: { value: 'Yes' },
               Explanation: {
                 value: null
               },
@@ -137,7 +137,7 @@ describe('Diagnoses validation', function () {
       },
       {
         state: {
-          Diagnosed: 'No',
+          Diagnosed: { value: 'No' },
           DiagnosisList: [],
           DiagnosisListBranch: 'No'
         },
@@ -145,7 +145,7 @@ describe('Diagnoses validation', function () {
       },
       {
         state: {
-          Diagnosed: 'Yes',
+          Diagnosed: { value: 'Yes' },
           DiagnosisList: [],
           DiagnosisListBranch: 'No'
         },
@@ -153,7 +153,7 @@ describe('Diagnoses validation', function () {
       },
       {
         state: {
-          Diagnosed: 'Yes',
+          Diagnosed: { value: 'Yes' },
           DiagnosisList: [{}],
           DiagnosisListBranch: 'No'
         },
@@ -169,9 +169,9 @@ describe('Diagnoses validation', function () {
     const tests = [
       {
         state: {
-          Diagnosed: 'No',
-          InTreatment: 'No',
-          DidNotConsult: 'Yes',
+          Diagnosed: { value: 'No' },
+          InTreatment: { value: 'No' },
+          DidNotConsult: { value: 'Yes' },
           DiagnosisList: [],
           DiagnosisListBranch: 'No',
           TreatmentList: [],

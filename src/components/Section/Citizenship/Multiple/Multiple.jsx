@@ -29,8 +29,8 @@ export default class Multiple extends SubsectionElement {
   updateHasMultiple (values) {
     this.update({
       HasMultiple: values,
-      Citizenships: values === 'Yes' ? this.props.Citizenships : [],
-      CitizenshipsBranch: values === 'Yes' ? this.props.CitizenshipsBranch : ''
+      Citizenships: values.value === 'Yes' ? this.props.Citizenships : [],
+      CitizenshipsBranch: values.value === 'Yes' ? this.props.CitizenshipsBranch : ''
     })
   }
 
@@ -69,7 +69,7 @@ export default class Multiple extends SubsectionElement {
                 label={i18n.t('citizenship.multiple.heading.hasmultiple')}
                 labelSize="h3"
                 className="has-multiple"
-                value={this.props.HasMultiple}
+                {...this.props.HasMultiple}
                 warning={true}
                 onUpdate={this.updateHasMultiple}
                 onError={this.handleError}
@@ -77,7 +77,7 @@ export default class Multiple extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasMultiple === 'Yes'}>
+        <Show when={this.props.HasMultiple.value === 'Yes'}>
           <Accordion items={this.props.Citizenships}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -100,7 +100,7 @@ export default class Multiple extends SubsectionElement {
 }
 
 Multiple.defaultProps = {
-  HasMultiple: '',
+  HasMultiple: {},
   Citizenships: [],
   CitizenshipsBranch: '',
   Passports: [],

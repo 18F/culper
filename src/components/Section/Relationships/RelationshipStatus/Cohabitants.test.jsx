@@ -16,7 +16,7 @@ describe('The cohabitants component', () => {
     let updates = 0
     const expected = {
       name: 'cohabitants',
-      HasCohabitant: 'Yes',
+      HasCohabitant: { value: 'Yes' },
       CohabitantList: [{
         Cohabitant: {
           SameSpouse: true,

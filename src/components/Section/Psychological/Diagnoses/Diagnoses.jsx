@@ -51,12 +51,12 @@ export default class Diagnoses extends SubsectionElement {
   updateDiagnosed (values) {
     this.update({
       Diagnosed: values,
-      DiagnosisList: values === 'Yes' ? this.props.DiagnosisList : [],
-      DiagnosisListBranch: values === 'Yes' ? this.props.DiagnosisListBranch : '',
-      DidNotConsult: values === 'Yes' ? this.props.DidNotConsult : '',
-      InTreatment: values === 'Yes' ? this.props.InTreatment : '',
-      TreatmentList: values === 'Yes' ? this.props.TreatmentList : [],
-      TreatmentListBranch: values === 'Yes' ? this.props.TreatmentListBranch : ''
+      DiagnosisList: values.value === 'Yes' ? this.props.DiagnosisList : [],
+      DiagnosisListBranch: values.value === 'Yes' ? this.props.DiagnosisListBranch : '',
+      DidNotConsult: values.value === 'Yes' ? this.props.DidNotConsult : '',
+      InTreatment: values.value === 'Yes' ? this.props.InTreatment : '',
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
+      TreatmentListBranch: values.value === 'Yes' ? this.props.TreatmentListBranch : ''
     })
   }
 
@@ -69,8 +69,8 @@ export default class Diagnoses extends SubsectionElement {
   updateInTreatment (values) {
     this.update({
       InTreatment: values,
-      TreatmentList: values === 'Yes' ? this.props.TreatmentList : [],
-      TreatmentListBranch: values === 'Yes' ? this.props.TreatmentListBranch : ''
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
+      TreatmentListBranch: values.value === 'Yes' ? this.props.TreatmentListBranch : ''
     })
   }
 
@@ -112,7 +112,7 @@ export default class Diagnoses extends SubsectionElement {
                 label={i18n.t('psychological.diagnoses.heading.diagnoses')}
                 labelSize="h2"
                 className="diagnosed"
-                value={this.props.Diagnosed}
+                {...this.props.Diagnosed}
                 warning={true}
                 onError={this.handleError}
                 onUpdate={this.updateDiagnosed}
@@ -120,7 +120,7 @@ export default class Diagnoses extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('psychological.diagnoses.heading.examples')}
         </Branch>
-        <Show when={this.props.Diagnosed === 'Yes'}>
+        <Show when={this.props.Diagnosed.value === 'Yes'}>
           <div>
             <Accordion className="diagnosis-collection"
                        defaultState={this.props.defaultState}
@@ -149,7 +149,7 @@ export default class Diagnoses extends SubsectionElement {
                     label={i18n.t('psychological.diagnoses.heading.didNotConsult')}
                     labelSize="h3"
                     className="didnotconsult"
-                    value={this.props.DidNotConsult}
+                    {...this.props.DidNotConsult}
                     help="psychological.diagnoses.help.didNotConsult"
                     onError={this.handleError}
                     required={this.props.required}
@@ -161,7 +161,7 @@ export default class Diagnoses extends SubsectionElement {
                     label={i18n.t('psychological.diagnoses.heading.inTreatment')}
                     labelSize="h3"
                     className="intreatment"
-                    value={this.props.InTreatment}
+                    {...this.props.InTreatment}
                     help="psychological.diagnoses.help.inTreatment"
                     warning={true}
                     onError={this.handleError}
@@ -170,7 +170,7 @@ export default class Diagnoses extends SubsectionElement {
                     scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.props.InTreatment === 'Yes'}>
+            <Show when={this.props.InTreatment.value === 'Yes'}>
               <Accordion defaultState={this.props.defaultState}
                          items={this.props.TreatmentList}
                          scrollToBottom={this.props.scrollToBottom}
@@ -201,10 +201,13 @@ export default class Diagnoses extends SubsectionElement {
 
 Diagnoses.defaultProps = {
   List: [],
+  Diagnosed: {},
+  DidNotConsult: {},
+  InTreatment: {},
   DiagnosisList: [],
-  DiagnosisListBranch: '',
+  DiagnosisListBranch: {},
   TreatmentList: [],
-  TreatmentListBranch: '',
+  TreatmentListBranch: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

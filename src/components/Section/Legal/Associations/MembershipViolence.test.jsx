@@ -18,7 +18,7 @@ describe('The legal associations violence component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasViolence: 'Yes'
+      HasViolence: { value: 'Yes' }
     }
     const component = mount(<MembershipViolence {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal associations violence component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasViolence: 'Yes',
+      HasViolence: { value: 'Yes' },
       List: [
         {
           Item: {

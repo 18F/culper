@@ -6,7 +6,7 @@ import { validNotApplicable, validGenericTextfield, validDateField,
 
 export default class ForeignContactsValidator {
   constructor (state = {}, props = {}) {
-    this.hasForeignContacts = state.HasForeignContacts
+    this.hasForeignContacts = (state.HasForeignContacts || {}).value
     this.list = state.List || []
     this.listBranch = state.ListBranch
   }
@@ -61,7 +61,7 @@ export class ForeignNationalValidator {
     this.employerNotApplicable = state.EmployerNotApplicable
     this.employerAddress = state.EmployerAddress
     this.employerAddressNotApplicable = state.EmployerAddressNotApplicable
-    this.hasAffiliations = state.HasAffiliations
+    this.hasAffiliations = (state.HasAffiliations || {}).value
     this.affiliations = state.Affiliations
   }
 

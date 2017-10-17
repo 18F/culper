@@ -15,7 +15,7 @@ describe('The delinquent component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'delinquent',
-      HasDelinquent: 'Yes'
+      HasDelinquent: { value: 'Yes' }
     }
     const component = mount(<Delinquent {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The delinquent component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'delinquent',
-      HasDelinquent: 'No'
+      HasDelinquent: { value: 'No' }
     }
     const component = mount(<Delinquent {...expected} />)
     expect(component.find('.accordion').length).toBe(0)

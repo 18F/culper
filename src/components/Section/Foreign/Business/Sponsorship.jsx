@@ -28,8 +28,8 @@ export default class Sponsorship extends SubsectionElement {
   updateHasForeignSponsorship (values) {
     this.update({
       HasForeignSponsorship: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -61,7 +61,7 @@ export default class Sponsorship extends SubsectionElement {
                 label={i18n.t('foreign.business.sponsorship.heading.title')}
                 labelSize="h2"
                 help="foreign.business.sponsorship.help.branch"
-                value={this.props.HasForeignSponsorship}
+                {...this.props.HasForeignSponsorship}
                 warning={true}
                 onUpdate={this.updateHasForeignSponsorship}
                 required={this.props.required}
@@ -69,7 +69,7 @@ export default class Sponsorship extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasForeignSponsorship === 'Yes'}>
+        <Show when={this.props.HasForeignSponsorship.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -97,7 +97,7 @@ export default class Sponsorship extends SubsectionElement {
 
 Sponsorship.defaultProps = {
   name: 'Sponsorship',
-  HasForeignSponsorship: '',
+  HasForeignSponsorship: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

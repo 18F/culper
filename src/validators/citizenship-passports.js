@@ -36,7 +36,7 @@ export class PassportItemValidator {
     this.name = data.Name
     this.number = data.Number
     this.expiration = data.Expiration
-    this.used = data.Used
+    this.used = (data.Used || {}).value
     this.countries = data.Countries
   }
 

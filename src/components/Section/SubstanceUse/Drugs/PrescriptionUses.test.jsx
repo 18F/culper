@@ -42,7 +42,7 @@ describe('The PrescriptionUses component', () => {
         }
       }
     ]
-    const component = mount(<PrescriptionUses onUpdate={onUpdate} MisusedDrugs={'Yes'} List={list} />)
+    const component = mount(<PrescriptionUses onUpdate={onUpdate} MisusedDrugs={{ value: 'Yes' }} List={list} />)
     expect(component.find('.prescription-uses').length).toBe(1)
     component.find('.reason textarea').first().simulate('change')
     expect(updates).toBe(2)

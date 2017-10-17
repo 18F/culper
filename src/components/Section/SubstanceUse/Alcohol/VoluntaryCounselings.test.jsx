@@ -22,7 +22,7 @@ describe('The VoluntaryCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      SoughtTreatment: 'Yes',
+      SoughtTreatment: { value: 'Yes' },
       ListBranch: 'No',
       List: [{
         Item: {
@@ -53,7 +53,7 @@ describe('The VoluntaryCounselings component', () => {
             timeOfDay: 'Both',
             extension: ''
           },
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         }
       }]
     }

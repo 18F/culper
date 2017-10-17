@@ -2,9 +2,8 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import { MilitaryForeignValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, BranchCollection } from '../../../Form'
+import { BranchCollection } from '../../../Form'
 import ForeignService from './ForeignService'
 
 export default class Foreign extends SubsectionElement {

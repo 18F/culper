@@ -4,7 +4,7 @@ export default class CompetenceValidator {
   constructor (state = {}, props) {
     this.list = state.List || []
     this.listBranch = state.ListBranch
-    this.isIncompetent = state.IsIncompetent
+    this.isIncompetent = (state.IsIncompetent || {}).value
   }
 
   validIsIncompetent () {

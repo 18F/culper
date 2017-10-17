@@ -6,7 +6,7 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          DidNotFollow: 'Yes',
+          DidNotFollow: { value: 'Yes' },
           DidNotFollowExplanation: {
             value: 'Stuff'
           }
@@ -15,19 +15,19 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          DidNotFollow: 'No'
+          DidNotFollow: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          DidNotFollow: 'Nope'
+          DidNotFollow: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          DidNotFollow: 'Yes',
+          DidNotFollow: { value: 'Yes' },
           DidNotFollowExplanation: {
             value: null
           }
@@ -44,12 +44,12 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           TreatmentList: [
             {
               Item: {
                 Condition: 'Test',
-                Effective: 'Yes',
+                Effective: { value: 'Yes' },
                 Explanation: {
                   value: null
                 },
@@ -113,7 +113,7 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          ReceivedTreatment: 'No',
+          ReceivedTreatment: { value: 'No' },
           Explanation: {
             value: 'Testing'
           }
@@ -122,13 +122,13 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          ReceivedTreatment: 'Yes'
+          ReceivedTreatment: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           TreatmentList: [{Treatment: {}}],
           TreatmentListBranch: 'No'
         },
@@ -136,7 +136,7 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          ReceivedTreatment: 'Yes',
+          ReceivedTreatment: { value: 'Yes' },
           TreatmentList: [],
           TreatmentListBranch: 'No'
         },
@@ -144,13 +144,13 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          ReceivedTreatment: 'Decline'
+          ReceivedTreatment: { value: 'Decline' }
         },
         expected: true
       },
       {
         state: {
-          ReceivedTreatment: 'Nope'
+          ReceivedTreatment: { value: 'Nope' }
         },
         expected: false
       }
@@ -164,9 +164,9 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          HasCondition: 'Yes',
-          ReceivedTreatment: 'Yes',
-          DidNotFollow: 'No',
+          HasCondition: { value: 'Yes' },
+          ReceivedTreatment: { value: 'Yes' },
+          DidNotFollow: { value: 'No' },
           DidNotFollowExplanation: {
             value: 'Stuff'
           },
@@ -177,7 +177,7 @@ describe('Diagnosis validation', function () {
                 Condition: {
                   value: 'Test'
                 },
-                Effective: 'Yes',
+                Effective: { value: 'Yes' },
                 Explanation: {
                   value: null
                 },
@@ -241,7 +241,7 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          HasCondition: 'No'
+          HasCondition: { value: 'No' }
         },
         expected: true
       }

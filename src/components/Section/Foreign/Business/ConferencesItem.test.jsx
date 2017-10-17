@@ -23,7 +23,7 @@ describe('The conferences item component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       Contacts: {
-        List: [ { Has: 'Yes' } ]
+        List: [ { Has: { value: 'Yes' } } ]
       }
 
     }

@@ -104,19 +104,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Questioned: ''
+          Questioned: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Questioned: 'No'
+          Questioned: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Questioned: 'Yes',
+          Questioned: { value: 'Yes' },
           QuestionedExplanation: {
             value: ''
           }
@@ -125,7 +125,7 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          Questioned: 'Yes',
+          Questioned: { value: 'Yes' },
           QuestionedExplanation: {
             value: 'some text'
           }
@@ -141,19 +141,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Encounter: ''
+          Encounter: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Encounter: 'No'
+          Encounter: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Encounter: 'Yes',
+          Encounter: { value: 'Yes' },
           EncounterExplanation: {
             value: ''
           }
@@ -162,7 +162,7 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          Encounter: 'Yes',
+          Encounter: { value: 'Yes' },
           EncounterExplanation: {
             value: 'some text'
           }
@@ -178,19 +178,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Contacted: ''
+          Contacted: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Contacted: 'No'
+          Contacted: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Contacted: 'Yes',
+          Contacted: { value: 'Yes' },
           ContactedExplanation: {
             value: ''
           }
@@ -199,7 +199,7 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          Contacted: 'Yes',
+          Contacted: { value: 'Yes' },
           ContactedExplanation: {
             value: 'some text'
           }
@@ -215,19 +215,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Counter: ''
+          Counter: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Counter: 'No'
+          Counter: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Counter: 'Yes',
+          Counter: { value: 'Yes' },
           CounterExplanation: {
             value: ''
           }
@@ -236,7 +236,7 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          Counter: 'Yes',
+          Counter: { value: 'Yes' },
           CounterExplanation: {
             value: 'some text'
           }
@@ -252,19 +252,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Interest: ''
+          Interest: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Interest: 'No'
+          Interest: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Interest: 'Yes',
+          Interest: { value: 'Yes' },
           InterestExplanation: {
             value: ''
           }
@@ -273,7 +273,7 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          Interest: 'Yes',
+          Interest: { value: 'Yes' },
           InterestExplanation: {
             value: 'some text'
           }
@@ -289,19 +289,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Sensitive: ''
+          Sensitive: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Sensitive: 'No'
+          Sensitive: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Sensitive: 'Yes',
+          Sensitive: { value: 'Yes' },
           SensitiveExplanation: {
             value: ''
           }
@@ -310,7 +310,7 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          Sensitive: 'Yes',
+          Sensitive: { value: 'Yes' },
           SensitiveExplanation: {
             value: 'some text'
           }
@@ -326,19 +326,19 @@ describe('Foreign travel component validation', function () {
     const tests = [
       {
         state: {
-          Threatened: ''
+          Threatened: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Threatened: 'No'
+          Threatened: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Threatened: 'Yes',
+          Threatened: { value: 'Yes' },
           ThreatenedExplanation: {
             value: ''
           }
@@ -347,7 +347,7 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          Threatened: 'Yes',
+          Threatened: { value: 'Yes' },
           ThreatenedExplanation: {
             value: 'some text'
           }
@@ -367,15 +367,15 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          HasForeignTravelOutside: 'No',
-          HasForeignTravelOfficial: 'Yes'
+          HasForeignTravelOutside: { value: 'No' },
+          HasForeignTravelOfficial: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignTravelOutside: 'Yes',
-          HasForeignTravelOfficial: 'No',
+          HasForeignTravelOutside: { value: 'Yes' },
+          HasForeignTravelOfficial: { value: 'No' },
           List: [],
           ListBranch: 'No'
         },
@@ -383,8 +383,8 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          HasForeignTravelOutside: 'Yes',
-          HasForeignTravelOfficial: 'No',
+          HasForeignTravelOutside: { value: 'Yes' },
+          HasForeignTravelOfficial: { value: 'No' },
           List: [{}],
           ListBranch: ''
         },
@@ -392,8 +392,8 @@ describe('Foreign travel component validation', function () {
       },
       {
         state: {
-          HasForeignTravelOutside: 'Yes',
-          HasForeignTravelOfficial: 'No',
+          HasForeignTravelOutside: { value: 'Yes' },
+          HasForeignTravelOfficial: { value: 'No' },
           List: [
             {
               Item: {
@@ -411,13 +411,13 @@ describe('Foreign travel component validation', function () {
                 },
                 Days: ['1-5', '21-30'],
                 Purpose: ['Business', 'Family'],
-                Questioned: 'No',
-                Encounter: 'No',
-                Contacted: 'No',
-                Counter: 'No',
-                Interest: 'No',
-                Sensitive: 'No',
-                Threatened: 'No'
+                Questioned: { value: 'No' },
+                Encounter: { value: 'No' },
+                Contacted: { value: 'No' },
+                Counter: { value: 'No' },
+                Interest: { value: 'No' },
+                Sensitive: { value: 'No' },
+                Threatened: { value: 'No' }
               }
             }
           ],

@@ -23,14 +23,12 @@ export default class ReasonLeft extends ValidationElement {
    */
   onUpdate (name, values) {
     this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          Comments: this.state.Comments,
-          Reasons: this.state.Reasons,
-          ReasonDescription: this.state.ReasonDescription
-        })
-      }
+      this.props.onUpdate({
+        name: this.props.name,
+        Comments: this.state.Comments,
+        Reasons: this.state.Reasons,
+        ReasonDescription: this.state.ReasonDescription
+      })
     })
   }
 
@@ -81,5 +79,6 @@ export default class ReasonLeft extends ValidationElement {
 }
 
 ReasonLeft.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

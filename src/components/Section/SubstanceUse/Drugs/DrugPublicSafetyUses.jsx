@@ -38,8 +38,8 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
   updateUsedDrugs (values) {
     this.update({
       UsedDrugs: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -64,7 +64,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
                 label={i18n.m('substance.drugs.heading.drugPublicSafetyUses')}
                 labelSize="h2"
                 className="used-drugs"
-                value={this.props.UsedDrugs}
+                {...this.props.UsedDrugs}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -72,7 +72,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.UsedDrugs === 'Yes'}>
+        <Show when={this.props.UsedDrugs.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -95,6 +95,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
 }
 
 DrugPublicSafetyUses.defaultProps = {
+  UsedDrugs: {},
   List: [],
   ListBranch: '',
   onError: (value, arr) => { return arr },

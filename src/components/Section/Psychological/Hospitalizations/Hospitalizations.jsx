@@ -36,8 +36,8 @@ export default class Hospitalizations extends SubsectionElement {
   updateHospitalized (values) {
     this.update({
       Hospitalized: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -62,7 +62,7 @@ export default class Hospitalizations extends SubsectionElement {
         <Branch name="hospitalized"
                 label={i18n.t('psychological.heading.hospitalization')}
                 labelSize="h2"
-                value={this.props.Hospitalized}
+                {...this.props.Hospitalized}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,7 +70,7 @@ export default class Hospitalizations extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.Hospitalized === 'Yes'}>
+        <Show when={this.props.Hospitalized.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -99,6 +99,7 @@ export default class Hospitalizations extends SubsectionElement {
 }
 
 Hospitalizations.defaultProps = {
+  Hospitalized: {},
   List: [],
   ListBranch: '',
   defaultState: true,

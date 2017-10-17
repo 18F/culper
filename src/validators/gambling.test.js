@@ -5,25 +5,25 @@ describe('gambling debt component validation', function () {
     const tests = [
       {
         state: {
-          HasGamblingDebt: 'Yes'
+          HasGamblingDebt: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasGamblingDebt: 'No'
+          HasGamblingDebt: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasGamblingDebt: 'Blah'
+          HasGamblingDebt: { value: 'Blah' }
         },
         expected: false
       },
       {
         state: {
-          HasGamblingDebt: 'foo'
+          HasGamblingDebt: { value: 'foo' }
         },
         expected: false
       },
@@ -44,7 +44,7 @@ describe('gambling debt component validation', function () {
     const tests = [
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -75,7 +75,7 @@ describe('gambling debt component validation', function () {
       },
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -102,7 +102,7 @@ describe('gambling debt component validation', function () {
       },
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -133,7 +133,7 @@ describe('gambling debt component validation', function () {
       },
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -164,7 +164,7 @@ describe('gambling debt component validation', function () {
       },
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -195,7 +195,7 @@ describe('gambling debt component validation', function () {
       },
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -203,7 +203,7 @@ describe('gambling debt component validation', function () {
       },
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: null,
           ListBranch: 'No'
         },
@@ -220,7 +220,7 @@ describe('gambling debt component validation', function () {
     const tests = [
       {
         state: {
-          HasGamblingDebt: 'Foo',
+          HasGamblingDebt: { value: 'Foo' },
           List: [],
           ListBranch: 'No'
         },
@@ -228,7 +228,7 @@ describe('gambling debt component validation', function () {
       },
       {
         state: {
-          HasGamblingDebt: 'Yes',
+          HasGamblingDebt: { value: 'Yes' },
           List: [
             {
               Item: {

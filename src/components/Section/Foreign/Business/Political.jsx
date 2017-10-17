@@ -28,8 +28,8 @@ export default class Political extends SubsectionElement {
   updateHasForeignPolitical (values) {
     this.update({
       HasForeignPolitical: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -62,7 +62,7 @@ export default class Political extends SubsectionElement {
         <Branch name="has_foreign_political"
                 label={i18n.t('foreign.business.political.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignPolitical}
+                {...this.props.HasForeignPolitical}
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
                 required={this.props.required}
@@ -70,7 +70,7 @@ export default class Political extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasForeignPolitical === 'Yes'}>
+        <Show when={this.props.HasForeignPolitical.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -98,7 +98,7 @@ export default class Political extends SubsectionElement {
 
 Political.defaultProps = {
   name: 'Political',
-  HasForeignPolitical: '',
+  HasForeignPolitical: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

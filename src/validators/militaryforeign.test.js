@@ -91,7 +91,7 @@ describe('Military foreign validation', function () {
                 ReasonLeft: {
                   value: 'Moved'
                 },
-                MaintainsContact: 'Yes',
+                MaintainsContact: { value: 'Yes' },
                 List: [
                   {
                     Item: {
@@ -188,13 +188,13 @@ describe('Military foreign validation', function () {
       },
       {
         state: {
-          MaintainsContact: 'No'
+          MaintainsContact: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          MaintainsContact: 'Yes',
+          MaintainsContact: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -202,7 +202,7 @@ describe('Military foreign validation', function () {
       },
       {
         state: {
-          MaintainsContact: 'Yes',
+          MaintainsContact: { value: 'Yes' },
           List: [{
             Item: {
               Name: {

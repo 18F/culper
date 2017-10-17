@@ -103,13 +103,13 @@ describe('Legal technology unauthorized component validation', function () {
       },
       {
         state: {
-          HasUnauthorized: 'No'
+          HasUnauthorized: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasUnauthorized: 'Yes',
+          HasUnauthorized: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -117,7 +117,7 @@ describe('Legal technology unauthorized component validation', function () {
       },
       {
         state: {
-          HasUnauthorized: 'Yes',
+          HasUnauthorized: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -125,7 +125,7 @@ describe('Legal technology unauthorized component validation', function () {
       },
       {
         state: {
-          HasUnauthorized: 'Yes',
+          HasUnauthorized: { value: 'Yes' },
           List: [
             {
               Item: {

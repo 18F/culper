@@ -97,13 +97,13 @@ describe('Foreign business voting component validation', function () {
       },
       {
         state: {
-          HasForeignVoting: 'No'
+          HasForeignVoting: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignVoting: 'Yes',
+          HasForeignVoting: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -111,7 +111,7 @@ describe('Foreign business voting component validation', function () {
       },
       {
         state: {
-          HasForeignVoting: 'Yes',
+          HasForeignVoting: { value: 'Yes' },
           List: [{}],
           ListBranch: 'No'
         },
@@ -119,7 +119,7 @@ describe('Foreign business voting component validation', function () {
       },
       {
         state: {
-          HasForeignVoting: 'Yes',
+          HasForeignVoting: { value: 'Yes' },
           List: [
             {
               Item: {

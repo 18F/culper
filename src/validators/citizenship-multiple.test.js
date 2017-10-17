@@ -76,31 +76,31 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
-          Renounced: null
+          Renounced: { value: null }
         },
         expected: false
       },
       {
         state: {
-          Renounced: 'Yuppers'
+          Renounced: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
-          Renounced: 'No'
+          Renounced: { value: 'No' }
         },
         expected: false
       },
       {
         state: {
-          Renounced: 'Yes'
+          Renounced: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          Renounced: 'Yes',
+          Renounced: { value: 'Yes' },
           RenouncedExplanation: {
             value: 'explanation'
           }
@@ -125,7 +125,7 @@ describe('citizenship multiple component validation', function () {
             },
             present: true
           },
-          Current: null
+          Current: { value: null }
         },
         expected: true
       },
@@ -140,7 +140,7 @@ describe('citizenship multiple component validation', function () {
             },
             present: true
           },
-          Current: 'Yuppers'
+          Current: { value: 'Yuppers' }
         },
         expected: true
       },
@@ -155,7 +155,7 @@ describe('citizenship multiple component validation', function () {
             },
             present: true
           },
-          Current: 'No'
+          Current: { value: 'No' }
         },
         expected: true
       },
@@ -170,7 +170,7 @@ describe('citizenship multiple component validation', function () {
             },
             present: true
           },
-          Current: 'Yes'
+          Current: { value: 'Yes' }
         },
         expected: true
       },
@@ -185,7 +185,7 @@ describe('citizenship multiple component validation', function () {
             },
             present: true
           },
-          Current: 'Yes',
+          Current: { value: 'Yes' },
           CurrentExplanation: {
             value: 'explanation'
           }
@@ -201,19 +201,19 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
-          HasMultiple: 'No'
+          HasMultiple: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasMultiple: 'Yes'
+          HasMultiple: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasMultiple: 'Yes',
+          HasMultiple: { value: 'Yes' },
           Citizenships: [
             {
               Item: {
@@ -226,7 +226,7 @@ describe('citizenship multiple component validation', function () {
       },
       {
         state: {
-          HasMultiple: 'Yes',
+          HasMultiple: { value: 'Yes' },
           Citizenships: [
             {
               Item: {
@@ -245,11 +245,11 @@ describe('citizenship multiple component validation', function () {
                 How: {
                   value: 'Birth'
                 },
-                Renounced: 'Yes',
+                Renounced: { value: 'Yes' },
                 RenouncedExplanation: {
                   value: 'explanation'
                 },
-                Current: 'Yes',
+                Current: { value: 'Yes' },
                 CurrentExplanation: {
                   value: 'explanation'
                 }
@@ -269,7 +269,7 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
-          HasMultiple: 'Yes',
+          HasMultiple: { value: 'Yes' },
           Citizenships: [{}],
           CitizenshipsBranch: ''
         },
@@ -277,7 +277,7 @@ describe('citizenship multiple component validation', function () {
       },
       {
         state: {
-          HasMultiple: 'Yes',
+          HasMultiple: { value: 'Yes' },
           Citizenships: [
             {
               Item: {
@@ -296,11 +296,11 @@ describe('citizenship multiple component validation', function () {
                 How: {
                   value: 'Birth'
                 },
-                Renounced: 'Yes',
+                Renounced: { value: 'Yes' },
                 RenouncedExplanation: {
                   value: 'explanation'
                 },
-                Current: 'Yes',
+                Current: { value: 'Yes' },
                 CurrentExplanation: {
                   value: 'explanation'
                 }

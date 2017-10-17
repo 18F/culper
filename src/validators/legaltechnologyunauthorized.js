@@ -3,7 +3,7 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalTechnologyUnauthorizedValidator {
   constructor (data = {}) {
-    this.hasUnauthorized = data.HasUnauthorized
+    this.hasUnauthorized = (data.HasUnauthorized || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

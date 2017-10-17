@@ -6,19 +6,19 @@ describe('Drug Ordered Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentOrdered: 'Nope'
+          TreatmentOrdered: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentOrdered: 'No'
+          TreatmentOrdered: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
+          TreatmentOrdered: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -26,7 +26,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
+          TreatmentOrdered: { value: 'Yes' },
           List: [{OrderedTreatment: {}}],
           ListBranch: 'Nope'
         },
@@ -34,7 +34,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
+          TreatmentOrdered: { value: 'Yes' },
           List: [{OrderedTreatment: {}}],
           ListBranch: 'No'
         },
@@ -42,7 +42,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
+          TreatmentOrdered: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -51,7 +51,7 @@ describe('Drug Ordered Treatment Validation', function () {
                 Explanation: {
                   value: 'The explanation'
                 },
-                ActionTaken: 'Yes',
+                ActionTaken: { value: 'Yes' },
                 DrugType: 'Cocaine',
                 TreatmentProvider: {
                   value: 'Provider'
@@ -80,7 +80,7 @@ describe('Drug Ordered Treatment Validation', function () {
                     date: new Date('1/1/2012')
                   }
                 },
-                TreatmentCompleted: 'Yes'
+                TreatmentCompleted: { value: 'Yes' }
               }
             }
           ]
@@ -89,7 +89,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
+          TreatmentOrdered: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -98,7 +98,7 @@ describe('Drug Ordered Treatment Validation', function () {
                 Explanation: {
                   value: 'The explanation'
                 },
-                ActionTaken: 'Yes',
+                ActionTaken: { value: 'Yes' },
                 DrugType: 'Cocaine',
                 TreatmentProvider: {
                   value: 'Provider'
@@ -127,7 +127,7 @@ describe('Drug Ordered Treatment Validation', function () {
                     date: new Date('1/1/2012')
                   }
                 },
-                TreatmentCompleted: 'No',
+                TreatmentCompleted: { value: 'No' },
                 NoTreatmentExplanation: {
                   value: 'No treatment'
                 }
@@ -139,7 +139,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
+          TreatmentOrdered: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -148,7 +148,7 @@ describe('Drug Ordered Treatment Validation', function () {
                 Explanation: {
                   value: 'The explanation'
                 },
-                ActionTaken: 'No',
+                ActionTaken: { value: 'No' },
                 NoActionTakenExplanation: {
                   value: 'No action taken'
                 }
@@ -160,7 +160,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
+          TreatmentOrdered: { value: 'Yes' },
           ListBranch: 'No',
           List: [
             {
@@ -169,7 +169,7 @@ describe('Drug Ordered Treatment Validation', function () {
                 Explanation: {
                   value: 'The explanation'
                 },
-                ActionTaken: 'Nope'
+                ActionTaken: { value: 'Nope' }
               }
             }
           ]
@@ -186,13 +186,13 @@ describe('Drug Ordered Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentCompleted: 'Nope'
+          TreatmentCompleted: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentCompleted: 'No',
+          TreatmentCompleted: { value: 'No' },
           NoTreatmentExplanation: {
             value: 'Nothing'
           }
@@ -201,7 +201,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentCompleted: 'Yes'
+          TreatmentCompleted: { value: 'Yes' }
         },
         expected: true
       }

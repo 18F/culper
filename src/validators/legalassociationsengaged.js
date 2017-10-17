@@ -3,7 +3,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class LegalAssociationEngagedValidator {
   constructor (data = {}) {
-    this.hasEngaged = data.HasEngaged
+    this.hasEngaged = (data.HasEngaged || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

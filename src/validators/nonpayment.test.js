@@ -310,25 +310,25 @@ describe('nonpayment component validation', function () {
     const tests = [
       {
         state: {
-          HasNonpayment: ''
+          HasNonpayment: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'Unicorn'
+          HasNonpayment: { value: 'Unicorn' }
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'No'
+          HasNonpayment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasNonpayment: 'Yes'
+          HasNonpayment: { value: 'Yes' }
         },
         expected: true
       }
@@ -343,7 +343,7 @@ describe('nonpayment component validation', function () {
     const tests = [
       {
         state: {
-          HasNonpayment: 'No',
+          HasNonpayment: { value: 'No' },
           List: [],
           ListBranch: ''
         },
@@ -351,7 +351,7 @@ describe('nonpayment component validation', function () {
       },
       {
         state: {
-          HasNonpayment: 'Yes',
+          HasNonpayment: { value: 'Yes' },
           List: [],
           ListBranch: ''
         },
@@ -359,7 +359,7 @@ describe('nonpayment component validation', function () {
       },
       {
         state: {
-          HasNonpayment: 'Yes',
+          HasNonpayment: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -367,7 +367,7 @@ describe('nonpayment component validation', function () {
       },
       {
         state: {
-          HasNonpayment: 'Yes',
+          HasNonpayment: { value: 'Yes' },
           List: [
             {
               Item: {

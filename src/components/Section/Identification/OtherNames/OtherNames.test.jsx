@@ -13,7 +13,7 @@ describe('The other names section', () => {
 
   it('Renders form when yes is selected', () => {
     const props = {
-      HasOtherNames: 'Yes',
+      HasOtherNames: { value: 'Yes' },
       List: [{}]
     }
     const component = mount(<OtherNames {...props} />)
@@ -21,7 +21,7 @@ describe('The other names section', () => {
   })
   it('Does not render form when no is selected', () => {
     const props = {
-      HasOtherNames: 'No'
+      HasOtherNames: { value: 'No' }
     }
     const component = mount(<OtherNames {...props} />)
     expect(component.find('.details').length).toBe(0)
@@ -29,7 +29,7 @@ describe('The other names section', () => {
 
   it('Adds a name when button is clicked then collapses', () => {
     const props = {
-      HasOtherNames: 'Yes',
+      HasOtherNames: { value: 'Yes' },
       List: [{}]
     }
     const component = mount(<OtherNames {...props} />)
@@ -38,7 +38,7 @@ describe('The other names section', () => {
 
   it('displays fields when "yes" is selected', () => {
     const props = {
-      HasOtherNames: 'Yes',
+      HasOtherNames: { value: 'Yes' },
       List: [{}]
     }
     const component = mount(<OtherNames {...props} />)
@@ -47,7 +47,7 @@ describe('The other names section', () => {
 
   it('does not display any fields when "no" is selected', () => {
     const props = {
-      HasOtherNames: 'No'
+      HasOtherNames: { value: 'No' }
     }
     const component = mount(<OtherNames {...props} />)
     expect(component.find('.first input').length).toEqual(0)

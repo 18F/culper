@@ -36,8 +36,8 @@ export default class TerroristOrganization extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasTerrorist: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -64,7 +64,7 @@ export default class TerroristOrganization extends SubsectionElement {
                 label={i18n.t('legal.associations.terrorist.heading.title')}
                 labelSize="h2"
                 className="legal-associations-terrorist-has-terrorist"
-                value={this.props.HasTerrorist}
+                {...this.props.HasTerrorist}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -72,7 +72,7 @@ export default class TerroristOrganization extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasTerrorist === 'Yes'}>
+        <Show when={this.props.HasTerrorist.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
                      items={this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
@@ -102,7 +102,7 @@ export default class TerroristOrganization extends SubsectionElement {
 
 TerroristOrganization.defaultProps = {
   name: 'terrorist-organization',
-  HasTerroristOrganization: '',
+  HasTerrorist: {},
   List: [],
   ListBranch: '',
   defaultState: true,

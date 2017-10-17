@@ -26,11 +26,11 @@ export default class Offenses extends SubsectionElement {
     })
   }
 
-  updateHasOffenses (value, event) {
+  updateHasOffenses (values) {
     this.update({
-      HasOffenses: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasOffenses: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -65,7 +65,7 @@ export default class Offenses extends SubsectionElement {
                 label={i18n.t('legal.police.heading.questions')}
                 labelSize="h2"
                 className="has-offenses"
-                value={this.props.HasOffenses}
+                {...this.props.HasOffenses}
                 warning={true}
                 onUpdate={this.updateHasOffenses}
                 required={this.props.required}
@@ -79,7 +79,7 @@ export default class Offenses extends SubsectionElement {
             <li>{i18n.m('legal.police.label.trial')}</li>
           </ul>
         </Branch>
-        <Show when={this.props.HasOffenses === 'Yes'}>
+        <Show when={this.props.HasOffenses.value === 'Yes'}>
           <div>
             <Accordion items={this.props.List}
                        defaultState={this.props.defaultState}
@@ -111,6 +111,7 @@ export default class Offenses extends SubsectionElement {
 }
 
 Offenses.defaultProps = {
+  HasOffenses: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',

@@ -45,9 +45,9 @@ describe('The DrugInvolvements component', () => {
           Reasons: {
             value: 'Some reason'
           },
-          InvolvementWhileEmployed: 'Yes',
-          InvolvementWithClearance: 'Yes',
-          InvolvementInFuture: 'No'
+          InvolvementWhileEmployed: { value: 'Yes' },
+          InvolvementWithClearance: { value: 'Yes' },
+          InvolvementInFuture: { value: 'No' }
         }
       },
       {
@@ -67,13 +67,13 @@ describe('The DrugInvolvements component', () => {
           Reasons: {
             value: 'Some reason'
           },
-          InvolvementWhileEmployed: 'Yes',
-          InvolvementWithClearance: 'Yes',
-          InvolvementInFuture: 'No'
+          InvolvementWhileEmployed: { value: 'Yes' },
+          InvolvementWithClearance: { value: 'Yes' },
+          InvolvementInFuture: { value: 'No' }
         }
       }
     ]
-    const component = mount(<DrugInvolvements onUpdate={onUpdate} Involved={'Yes'} List={list} />)
+    const component = mount(<DrugInvolvements onUpdate={onUpdate} Involved={{ value: 'Yes' }} List={list} />)
     expect(component.find('.drug-involvements').length).toBe(1)
     component.find('.reasons textarea').first().simulate('change')
     expect(updates).toBe(2)

@@ -20,7 +20,7 @@ describe('The RealEstateActivity component', () => {
 
   it('Renders summary information', () => {
     const expected = {
-      HasInterests: 'Yes',
+      HasInterests: { value: 'Yes' },
       List: [{
         Item: {
           InterestTypes: ['Yourself']
@@ -37,7 +37,7 @@ describe('The RealEstateActivity component', () => {
     const tests = [
       {
         props: {
-          HasInterests: 'Yes',
+          HasInterests: { value: 'Yes' },
           List: [{
             Item: {
               InterestTypes: ['Yourself'],
@@ -57,7 +57,7 @@ describe('The RealEstateActivity component', () => {
       },
       {
         props: {
-          HasInterests: 'Yes',
+          HasInterests: { value: 'Yes' },
           List: [{
             Item: {
               InterestTypes: ['Yourself'],
@@ -75,7 +75,7 @@ describe('The RealEstateActivity component', () => {
       },
       {
         props: {
-          HasInterests: 'Yes',
+          HasInterests: { value: 'Yes' },
           List: [{
             Item: {
               InterestTypes: ['Yourself'],
@@ -104,7 +104,7 @@ describe('The RealEstateActivity component', () => {
 
   it('Renders with no', () => {
     const expected = {
-      HasInterests: 'No'
+      HasInterests: { value: 'No' }
     }
     const component = mount(<RealEstateActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -117,7 +117,7 @@ describe('The RealEstateActivity component', () => {
         status = true
         return arr
       },
-      HasInterests: 'Yes',
+      HasInterests: { value: 'Yes' },
       List: [
         {
           Item: {

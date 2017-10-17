@@ -12,14 +12,14 @@ describe('Federal service component validation', function () {
       },
       {
         state: {
-          HasFederalService: 'No',
+          HasFederalService: { value: 'No' },
           List: []
         },
         expected: true
       },
       {
         state: {
-          HasFederalService: 'Yes',
+          HasFederalService: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -27,7 +27,7 @@ describe('Federal service component validation', function () {
       },
       {
         state: {
-          HasFederalService: 'Yes',
+          HasFederalService: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -35,7 +35,7 @@ describe('Federal service component validation', function () {
       },
       {
         state: {
-          HasFederalService: 'Yes',
+          HasFederalService: { value: 'Yes' },
           List: [
             {
               Item: {

@@ -4,9 +4,9 @@ import { validBranch } from './helpers'
 
 export default class DiagnosesValidator {
   constructor (data = {}) {
-    this.diagnosed = data.Diagnosed
-    this.didNotConsult = data.DidNotConsult
-    this.inTreatment = data.InTreatment
+    this.diagnosed = (data.Diagnosed || {}).value
+    this.didNotConsult = (data.DidNotConsult || {}).value
+    this.inTreatment = (data.InTreatment || {}).value
     this.diagnosisList = data.DiagnosisList
     this.diagnosisListBranch = data.DiagnosisListBranch
     this.treatmentList = data.TreatmentList

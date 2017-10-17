@@ -166,13 +166,13 @@ describe('Legal associations violence component validation', function () {
       },
       {
         state: {
-          HasViolence: 'No'
+          HasViolence: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasViolence: 'Yes',
+          HasViolence: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -180,7 +180,7 @@ describe('Legal associations violence component validation', function () {
       },
       {
         state: {
-          HasViolence: 'Yes',
+          HasViolence: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -188,7 +188,7 @@ describe('Legal associations violence component validation', function () {
       },
       {
         state: {
-          HasViolence: 'Yes',
+          HasViolence: { value: 'Yes' },
           List: [
             {
               Item: {

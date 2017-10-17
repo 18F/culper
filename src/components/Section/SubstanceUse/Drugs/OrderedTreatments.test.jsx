@@ -59,7 +59,7 @@ describe('The OrderedTreatments component', () => {
         }
       }
     ]
-    const component = mount(<OrderedTreatments onUpdate={onUpdate} TreatmentOrdered="Yes" List={list} />)
+    const component = mount(<OrderedTreatments onUpdate={onUpdate} TreatmentOrdered={{ value: 'Yes' }} List={list} />)
     expect(component.find('.ordered-treatments').length).toBe(1)
     component.find('.explanation textarea').simulate('change')
     expect(updates).toBe(2)

@@ -191,19 +191,19 @@ describe('Cohabitant validation', function () {
     const tests = [
       {
         state: {
-          HasCohabitant: 'Nope'
+          HasCohabitant: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          HasCohabitant: 'No'
+          HasCohabitant: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasCohabitant: 'Yes',
+          HasCohabitant: { value: 'Yes' },
           CohabitantList: [],
           CohabitantListBranch: 'No'
         },
@@ -211,7 +211,7 @@ describe('Cohabitant validation', function () {
       },
       {
         state: {
-          HasCohabitant: 'Yes',
+          HasCohabitant: { value: 'Yes' },
           CohabitantList: [{Cohabitant: {}}],
           CohabitantListBranch: 'No'
         },
@@ -219,7 +219,7 @@ describe('Cohabitant validation', function () {
       },
       {
         state: {
-          HasCohabitant: 'Yes',
+          HasCohabitant: { value: 'Yes' },
           CohabitantList: [
             {
               Item: {

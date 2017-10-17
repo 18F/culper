@@ -5,19 +5,19 @@ describe('Military history validation', function () {
     const tests = [
       {
         state: {
-          HasServed: ''
+          HasServed: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasServed: 'No'
+          HasServed: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasServed: 'Yes'
+          HasServed: { value: 'Yes' }
         },
         expected: true
       }
@@ -32,13 +32,13 @@ describe('Military history validation', function () {
     const tests = [
       {
         state: {
-          HasServed: 'Yes'
+          HasServed: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasServed: 'Yes',
+          HasServed: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -57,7 +57,7 @@ describe('Military history validation', function () {
                   },
                   present: false
                 },
-                HasBeenDischarged: 'Yes'
+                HasBeenDischarged: { value: 'Yes' }
               }
             }
           ],
@@ -67,7 +67,7 @@ describe('Military history validation', function () {
       },
       {
         state: {
-          HasServed: 'Yes',
+          HasServed: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -86,7 +86,7 @@ describe('Military history validation', function () {
                   },
                   present: false
                 },
-                HasBeenDischarged: 'Yes',
+                HasBeenDischarged: { value: 'Yes' },
                 DischargeType: 'Other',
                 DischargeTypeOther: {
                   value: 'Something'
@@ -109,7 +109,7 @@ describe('Military history validation', function () {
       },
       {
         state: {
-          HasServed: 'Yes',
+          HasServed: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -128,7 +128,7 @@ describe('Military history validation', function () {
                   },
                   present: false
                 },
-                HasBeenDischarged: 'Yes',
+                HasBeenDischarged: { value: 'Yes' },
                 DischargeType: 'Honorable',
                 DischargeDate: {
                   day: '1',
@@ -145,7 +145,7 @@ describe('Military history validation', function () {
       },
       {
         state: {
-          HasServed: 'Yes',
+          HasServed: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -164,7 +164,7 @@ describe('Military history validation', function () {
                   },
                   present: false
                 },
-                HasBeenDischarged: 'Yes',
+                HasBeenDischarged: { value: 'Yes' },
                 DischargeType: 'General',
                 DischargeReason: {
                   value: 'My reason'
@@ -184,7 +184,7 @@ describe('Military history validation', function () {
       },
       {
         state: {
-          HasServed: 'Yes',
+          HasServed: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -203,7 +203,7 @@ describe('Military history validation', function () {
                   },
                   present: false
                 },
-                HasBeenDischarged: 'No'
+                HasBeenDischarged: { value: 'No' }
               }
             }
           ],
@@ -213,7 +213,7 @@ describe('Military history validation', function () {
       },
       {
         state: {
-          HasServed: 'Yes',
+          HasServed: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -231,7 +231,7 @@ describe('Military history validation', function () {
                   },
                   present: false
                 },
-                HasBeenDischarged: 'No'
+                HasBeenDischarged: { value: 'No' }
               }
             }
           ],

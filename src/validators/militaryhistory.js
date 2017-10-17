@@ -3,7 +3,7 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class MilitaryHistoryValidator {
   constructor (data = {}) {
-    this.hasServed = data.HasServed
+    this.hasServed = (data.HasServed || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }
@@ -51,7 +51,7 @@ export class MilitaryServiceValidator {
     this.officer = data.Officer
     this.serviceNumber = data.ServiceNumber
     this.dates = data.Dates
-    this.hasBeenDischarged = data.HasBeenDischarged
+    this.hasBeenDischarged = (data.HasBeenDischarged || {}).value
     this.dischargeType = data.DischargeType
     this.dischargeTypeOther = data.DischargeTypeOther
     this.dischargeReason = data.DischargeReason

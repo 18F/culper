@@ -2,7 +2,7 @@ import { validGenericTextfield, validDateField, validNotApplicable } from './hel
 
 export default class LegalInvestigationsHistoryValidator {
   constructor (data = {}) {
-    this.hasHistory = data.HasHistory
+    this.hasHistory = (data.HasHistory || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

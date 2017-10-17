@@ -2,7 +2,7 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalInvestigationsRevokedValidator {
   constructor (data = {}) {
-    this.hasRevocations = data.HasRevocations
+    this.hasRevocations = (data.HasRevocations || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

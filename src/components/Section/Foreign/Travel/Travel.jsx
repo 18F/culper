@@ -67,7 +67,7 @@ export default class Travel extends SubsectionElement {
                 labelSize="h2"
                 name="has_foreign_travel_outside"
                 className="foreign-travel-outside"
-                value={this.props.HasForeignTravelOutside}
+                {...this.props.HasForeignTravelOutside}
                 warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}
                 required={this.props.required}
@@ -80,7 +80,7 @@ export default class Travel extends SubsectionElement {
                 name="has_foreign_travel_official"
                 className="foreign-travel-official"
                 help="foreign.travel.help.official"
-                value={this.props.HasForeignTravelOfficial}
+                {...this.props.HasForeignTravelOfficial}
                 onUpdate={this.updateHasForeignTravelOfficial}
                 required={this.props.required}
                 onError={this.handleError}
@@ -88,7 +88,7 @@ export default class Travel extends SubsectionElement {
           {i18n.m('foreign.travel.para.personal')}
         </Branch>
 
-        <Show when={this.props.HasForeignTravelOutside === 'Yes' && this.props.HasForeignTravelOfficial === 'No'}>
+        <Show when={this.props.HasForeignTravelOutside.value === 'Yes' && this.props.HasForeignTravelOfficial.value === 'No'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -112,8 +112,8 @@ export default class Travel extends SubsectionElement {
 
 Travel.defaultProps = {
   name: 'Travel',
-  HasForeignTravelOutside: '',
-  HasForeignTravelOfficial: '',
+  HasForeignTravelOutside: {},
+  HasForeignTravelOfficial: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

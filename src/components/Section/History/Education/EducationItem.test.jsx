@@ -42,7 +42,7 @@ describe('The education component', () => {
       name: 'education',
       Diplomas: [
         {
-          Has: 'Yes',
+          Has: { value: 'Yes' },
           Diploma: {
             Diploma: 'Other',
             DiplomaOther: 'PhD in awesomeness',
@@ -52,7 +52,7 @@ describe('The education component', () => {
           }
         },
         {
-          Has: 'Yes',
+          Has: { value: 'Yes' },
           Diploma: {
             Diploma: 'High School Diploma',
             DiplomaOther: '',
@@ -68,8 +68,8 @@ describe('The education component', () => {
   it('should not ask for diplomas/degrees if we say "no"', () => {
     const expected = {
       name: 'education',
-      HasAttended: 'Yes',
-      HasDegree: 'No'
+      HasAttended: { value: 'Yes' },
+      HasDegree: { value: 'No' }
     }
     const component = mount(<EducationItem {...expected} />)
     expect(component.find('.diploma').length).toEqual(0)

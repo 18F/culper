@@ -4,7 +4,7 @@ import { validGenericTextfield, validNotApplicable } from './helpers'
 
 export default class LegalAssociationOverthrowValidator {
   constructor (data = {}) {
-    this.hasOverthrow = data.HasOverthrow
+    this.hasOverthrow = (data.HasOverthrow || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }

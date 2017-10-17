@@ -37,16 +37,16 @@ describe('Psychologicalvalidation', function () {
         props: {
           Relationships: {
             relatives: {
-              IsIncompetent: 'No'
+              IsIncompetent: { value: 'No' }
             },
             marital: {
-              Consulted: 'No'
+              Consulted: { value: 'No' }
             },
             cohabitants: {
-              Diagnosed: 'No'
+              Diagnosed: { value: 'No' }
             },
             friends: {
-              Hospitalized: 'No'
+              Hospitalized: { value: 'No' }
             }
           },
           Completed: {

@@ -128,13 +128,13 @@ describe('Foreign business advice component validation', function () {
       },
       {
         state: {
-          HasForeignAdvice: 'No'
+          HasForeignAdvice: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignAdvice: 'Yes',
+          HasForeignAdvice: { value: 'Yes' },
           List: [],
           ListBranch: 'No'
         },
@@ -142,7 +142,7 @@ describe('Foreign business advice component validation', function () {
       },
       {
         state: {
-          HasForeignAdvice: 'Yes',
+          HasForeignAdvice: { value: 'Yes' },
           List: [
             {
               Item: {

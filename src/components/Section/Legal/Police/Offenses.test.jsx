@@ -29,7 +29,7 @@ describe('The Offenses record component', () => {
     let updates = 0
     const expected = {
       name: 'police-record',
-      HasOffenses: 'Yes',
+      HasOffenses: { value: 'Yes' },
       onUpdate: () => { updates++ },
       List: [
         {
@@ -43,9 +43,9 @@ describe('The Offenses record component', () => {
             Description: {
               value: 'Description of the offense'
             },
-            InvolvedViolence: 'No',
-            InvolvedFirearms: 'No',
-            InvolvedSubstances: 'No',
+            InvolvedViolence: { value: 'No' },
+            InvolvedFirearms: { value: 'No' },
+            InvolvedSubstances: { value: 'No' },
             Address: {
               country: 'United States',
               street: '1234 Some Rd',
@@ -54,7 +54,7 @@ describe('The Offenses record component', () => {
               zipcode: '22202',
               layout: Location.ADDRESS
             },
-            WasCited: 'No'
+            WasCited: { value: 'No' }
           }
         }
       ]
@@ -67,7 +67,7 @@ describe('The Offenses record component', () => {
   it('selecting all "no" nothing happens', () => {
     const expected = {
       name: 'police-record',
-      HasOffenses: 'Yes',
+      HasOffenses: { value: 'Yes' },
       List: [
         {
           Item: {
@@ -80,9 +80,9 @@ describe('The Offenses record component', () => {
             Description: {
               value: 'Description of the offense'
             },
-            InvolvedViolence: 'No',
-            InvolvedFirearms: 'No',
-            InvolvedSubstances: 'No',
+            InvolvedViolence: { value: 'No' },
+            InvolvedFirearms: { value: 'No' },
+            InvolvedSubstances: { value: 'No' },
             Address: {
               country: 'United States',
               street: '1234 Some Rd',
@@ -91,7 +91,7 @@ describe('The Offenses record component', () => {
               zipcode: '22202',
               layout: Location.ADDRESS
             },
-            WasCited: 'No'
+            WasCited: { value: 'No' }
           }
         }
       ]
@@ -103,7 +103,7 @@ describe('The Offenses record component', () => {
   it('renders with valid offense', () => {
     const expected = {
       name: 'police-record',
-      HasOffenses: 'No'
+      HasOffenses: { value: 'No' }
     }
     const component = mount(<Offenses {...expected} />)
     expect(component.find('.accordion').length).toBe(0)

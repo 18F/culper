@@ -18,7 +18,7 @@ describe('The legal investigations revoked component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasRevocations: 'Yes'
+      HasRevocations: { value: 'Yes' }
     }
     const component = mount(<Revoked {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal investigations revoked component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasRevocations: 'Yes',
+      HasRevocations: { value: 'Yes' },
       List: [
         {
           Item: {

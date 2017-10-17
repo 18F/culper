@@ -19,7 +19,7 @@ describe('The DirectActivity component', () => {
 
   it('Renders summary information', () => {
     const expected = {
-      HasInterests: 'Yes',
+      HasInterests: { value: 'Yes' },
       List: [{
         Item: {
           InterestType: {
@@ -37,7 +37,7 @@ describe('The DirectActivity component', () => {
 
   it('Renders interest types summary information', () => {
     const expected = {
-      HasInterests: 'Yes',
+      HasInterests: { value: 'Yes' },
       List: [{
         Item: {
           InterestTypes: ['Yourself']
@@ -52,7 +52,7 @@ describe('The DirectActivity component', () => {
 
   it('Renders with no', () => {
     const expected = {
-      HasInterests: 'No'
+      HasInterests: { value: 'No' }
     }
     const component = mount(<DirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -65,7 +65,7 @@ describe('The DirectActivity component', () => {
         status = true
         return arr
       },
-      HasInterests: 'Yes',
+      HasInterests: { value: 'Yes' },
       List: [
         {
           Item: {

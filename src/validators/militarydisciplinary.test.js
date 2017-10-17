@@ -19,7 +19,7 @@ describe('Military disciplinary validation', function () {
         store: {
           Military: {
             History: {
-              HasServed: 'No'
+              HasServed: { value: 'No' }
             }
           }
         },
@@ -29,7 +29,7 @@ describe('Military disciplinary validation', function () {
         store: {
           Military: {
             History: {
-              HasServed: 'Yes'
+              HasServed: { value: 'Yes' }
             }
           }
         },
@@ -46,19 +46,19 @@ describe('Military disciplinary validation', function () {
     const tests = [
       {
         state: {
-          HasDisciplinary: ''
+          HasDisciplinary: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasDisciplinary: 'No'
+          HasDisciplinary: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasDisciplinary: 'Yes'
+          HasDisciplinary: { value: 'Yes' }
         },
         expected: true
       }
@@ -73,13 +73,13 @@ describe('Military disciplinary validation', function () {
     const tests = [
       {
         state: {
-          HasDisciplinary: 'Yes'
+          HasDisciplinary: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasDisciplinary: 'Yes',
+          HasDisciplinary: { value: 'Yes' },
           List: [{}],
           ListBranch: ''
         },
@@ -87,7 +87,7 @@ describe('Military disciplinary validation', function () {
       },
       {
         state: {
-          HasDisciplinary: 'Yes',
+          HasDisciplinary: { value: 'Yes' },
           List: [{}],
           ListBranch: 'No'
         },
@@ -95,7 +95,7 @@ describe('Military disciplinary validation', function () {
       },
       {
         state: {
-          HasDisciplinary: 'Yes',
+          HasDisciplinary: { value: 'Yes' },
           List: [
             {
               Item: {
@@ -126,7 +126,7 @@ describe('Military disciplinary validation', function () {
       },
       {
         state: {
-          HasDisciplinary: 'No'
+          HasDisciplinary: { value: 'No' }
         },
         expected: true
       }

@@ -18,7 +18,7 @@ describe('The legal associations overthrow component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasOverthrow: 'Yes'
+      HasOverthrow: { value: 'Yes' }
     }
     const component = mount(<MembershipOverthrow {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,7 +26,7 @@ describe('The legal associations overthrow component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasOverthrow: 'Yes',
+      HasOverthrow: { value: 'Yes' },
       List: [
         {
           Item: {

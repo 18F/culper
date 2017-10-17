@@ -26,11 +26,11 @@ export default class Federal extends SubsectionElement {
     })
   }
 
-  updateBranch (value, event) {
+  updateBranch (values) {
     this.update({
-      HasFederalService: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasFederalService: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -65,14 +65,14 @@ export default class Federal extends SubsectionElement {
                 label={i18n.t('history.federal.heading.branch')}
                 labelSize="h2"
                 help="history.federal.help.branch"
-                value={this.props.HasFederalService}
+                {...this.props.HasFederalService}
                 warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
-        <Show when={this.props.HasFederalService === 'Yes'}>
+        <Show when={this.props.HasFederalService.value === 'Yes'}>
           <Accordion items={this.props.List}
                      branch={this.props.ListBranch}
                      defaultState={this.props.defaultState}
@@ -99,7 +99,7 @@ export default class Federal extends SubsectionElement {
 }
 
 Federal.defaultProps = {
-  HasFederalService: '',
+  HasFederalService: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},

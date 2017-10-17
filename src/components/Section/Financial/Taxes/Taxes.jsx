@@ -26,10 +26,10 @@ export default class Taxes extends SubsectionElement {
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (val, event) {
-    this.setState({ HasTaxes: val }, () => {
+  updateBranch (values) {
+    this.setState({ HasTaxes: values }, () => {
       this.updateList({
-        items: val === 'Yes' ? this.state.List : [],
+        items: values.value === 'Yes' ? this.state.List : [],
         branch: ''
       })
     })
@@ -41,13 +41,11 @@ export default class Taxes extends SubsectionElement {
    */
   updateList (values) {
     this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasTaxes: this.state.HasTaxes
-        })
-      }
+      this.props.onUpdate({
+        List: this.state.List,
+        ListBranch: this.state.ListBranch,
+        HasTaxes: this.state.HasTaxes
+      })
     })
   }
 
@@ -75,14 +73,14 @@ export default class Taxes extends SubsectionElement {
                 label={i18n.t('financial.taxes.title')}
                 labelSize="h2"
                 className="taxes-branch"
-                value={this.state.HasTaxes}
+                {...this.state.HasTaxes}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasTaxes === 'Yes'}>
+        <Show when={this.state.HasTaxes.value === 'Yes'}>
           <Accordion items={this.state.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -110,9 +108,10 @@ export default class Taxes extends SubsectionElement {
 }
 
 Taxes.defaultProps = {
-  HasTaxes: '',
+  HasTaxes: {},
   List: [],
   ListBranch: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'taxes',
