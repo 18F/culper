@@ -15,8 +15,8 @@ class Citizenship extends SectionElement {
       <div>
         <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
           <SectionView name="intro"
-                       back="relationships/review"
-                       backLabel={i18n.t('relationships.destination.review')}
+                       back="history/review"
+                       backLabel={i18n.t('history.destination.review')}
                        next="citizenship/status"
                        nextLabel={i18n.t('citizenship.destination.status')}>
             <Field title={i18n.t('citizenship.intro.title')}
