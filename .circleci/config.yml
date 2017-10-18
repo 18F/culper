@@ -9,7 +9,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build web db api frontend
+            docker-compose build api frontend
       - run:
           name: Run unit tests for API
           command: |
@@ -36,7 +36,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build web db api frontend
+            docker-compose build api frontend
       - run:
           name: Run unit tests for API
           command: |
@@ -98,7 +98,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build web db api frontend
+            docker-compose build api frontend
       - run:
           name: Run unit tests for API
           command: |
