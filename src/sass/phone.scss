@@ -24,6 +24,7 @@
     display: none;
     z-index: -1;
   }
+
   .modal-open .consent-modal {
     // TODO: Remove this (and FIXIT) after Jay has some time to find other issues in different
     // form factors.
@@ -53,11 +54,13 @@
       }
     }
   }
+
   // Form introduction
   .introduction-modal {
     display: none;
     z-index: -1;
   }
+
   .modal-open .introduction-modal {
     display: block;
     z-index: 9999;
@@ -217,7 +220,7 @@
     .block > label {
       max-width: 100%;
     }
-    
+
     .field {
       > .title,
       > .table > .content > .component,
@@ -249,7 +252,6 @@
     }
   }
 }
-
 
 @media only screen and (max-width: 452px) {
   .daterange {
