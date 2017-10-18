@@ -21,24 +21,77 @@
 
   // Consent form
   .consent-modal {
+    display: none;
+    z-index: -1;
+  }
+  .modal-open .consent-modal {
+    // TODO: Remove this (and FIXIT) after Jay has some time to find other issues in different
+    // form factors.
+    // display: block;
+    // z-index: 9999;
     .modal {
       position: fixed;
       top: 0;
       bottom: 0;
       left: 0;
       right: 0;
+
+      .modal-content {
+        width: 100% !important;
+        min-width: unset !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+
+        .consent-legal {
+          padding: 0;
+          height: 70vh;
+        }
+
+        .consent-acceptance {
+          width: 90%;
+        }
+      }
+    }
+  }
+  // Form introduction
+  .introduction-modal {
+    display: none;
+    z-index: -1;
+  }
+  .modal-open .introduction-modal {
+    display: block;
+    z-index: 9999;
+    position: fixed !important;
+    overflow-y: auto;
+    background-color: rgba(255, 255, 255, 1) !important;
+
+    .modal {
+      overflow-y: auto;
     }
 
-    .modal-content {
-      width: 100% !important;
-      min-width: unset !important;
+    .introduction-content {
+      width: 100%;
+      min-width: 100%;
+      height: initial;
+      margin: 0 !important;
+      border: none;
+      box-shadow: none;
 
-      .consent-legal {
-        padding: 0;
+      .modal-close {
+        position: fixed;
+        top: 1rem;
+        right: 2rem;
       }
 
-      .consent-acceptance {
-        width: 90%;
+      .introduction-legal {
+        overflow-y: auto;
+        max-height: initial;
+        border: none;
+      }
+
+      .introduction-acceptance {
+        // margin-right: 0;
+        // margin-left: 0;
       }
     }
   }
@@ -138,8 +191,13 @@
     }
 
     .accordion {
-      padding: 0 0 5rem 0;
+      padding: 0 1.5rem 5rem 1.5rem;
       margin: 0 -1rem;
+
+      .summary .left,
+      .details {
+        padding-left: 4%;
+      }
     }
 
     .daterange {
@@ -188,43 +246,6 @@
       position: static;
       width: 100%;
       z-index: -1;
-    }
-
-    // Form introduction
-    .introduction-modal {
-      position: fixed !important;
-      overflow-y: auto;
-      background-color: rgba(255, 255, 255, 1) !important;
-
-      .modal {
-        overflow-y: auto;
-      }
-
-      .introduction-content {
-        width: 100%;
-        min-width: 100%;
-        height: initial;
-        margin: 0 !important;
-        border: none;
-        box-shadow: none;
-
-        .modal-close {
-          position: fixed;
-          top: 1rem;
-          right: 2rem;
-        }
-
-        .introduction-legal {
-          overflow-y: auto;
-          max-height: initial;
-          border: none;
-        }
-
-        .introduction-acceptance {
-          // margin-right: 0;
-          // margin-left: 0;
-        }
-      }
     }
   }
 }
