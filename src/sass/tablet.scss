@@ -1,0 +1,19 @@
+@media only screen and (max-width: 1412px) {
+  .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
+    padding: 0;
+
+    > .title {
+      width: 64rem;
+    }
+
+    > .eapp-form {
+      width: 21%;
+    }
+  }
+}
+
+@media only screen and (max-width: 1250px) {
+  .accordion {
+    margin: 0;
+  }
+}
