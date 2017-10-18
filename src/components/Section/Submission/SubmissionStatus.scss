@@ -28,9 +28,12 @@
       .progress {
         height: 2rem;
         width: 0;
-        background-color: #dce3ee;
-        transition: width 1.0s;
+        background-color: #5b606b;
         border-radius: 4px;
+      }
+
+      .progress.transition {
+        transition: width 1.0s;
       }
     }
     .icon-container {
@@ -44,7 +47,7 @@
         left: -0.6rem;
       }
       .icon svg {
-        fill: #dce3ee;
+        fill: #5b606b;
       }
     }
   }

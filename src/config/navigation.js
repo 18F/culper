@@ -256,6 +256,7 @@ const navigation = [
     title: 'Submit',
     name: 'Submit',
     url: 'submit',
+    showNumber: false,
     exclude: true
   }
 ]

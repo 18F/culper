@@ -10,6 +10,7 @@ import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import SubmissionComplete from './SubmissionComplete'
 import { Show } from '../../Form'
+import Print from '../Print/Print'
 
 class Submission extends SectionElement {
   constructor (props) {
@@ -33,31 +34,40 @@ class Submission extends SectionElement {
     })
   }
 
+  onTransitionEnd () {
+    this.props.dispatch(push('/form/submit/errors'))
+  }
+
   render () {
     const releases = (this.props.Submission || {}).Releases
     const s = statusForAllSections(this.props.Application)
-    const valid = true || hasIncompleteSections(s)
+    const valid = hasIncompleteSections(s)
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView name="">
-          <Show when={!this.state.submitted}>
-            <SubmissionStatus valid={valid}>
-              <Show when={valid}>
-                <ValidForm
-                  onUpdate={this.updateSubmission}
-                  hideHippa={hideHippa(this.props.Application)}
-                  {...releases}
-                  onSubmit={this.onSubmit}
-                />
-              </Show>
-              <Show when={!valid}>
-                <InvalidForm sections={s} />
-              </Show>
-            </SubmissionStatus>
-          </Show>
-          <Show when={this.state.submitted}>
-            <SubmissionComplete />
-          </Show>
+          <SubmissionStatus valid={valid} transition={true} onTransitionEnd={this.onTransitionEnd}/>
+        </SectionView>
+
+        <SectionView name="releases">
+          <SubmissionStatus valid={true} transition={false}>
+            <ValidForm
+              onUpdate={this.updateSubmission}
+              hideHippa={hideHippa(this.props.Application)}
+              {...releases}
+              onSubmit={this.onSubmit}
+            />
+          </SubmissionStatus>
+        </SectionView>
+        <SectionView name="print">
+          <Print />
+        </SectionView>
+
+        <SectionView name="errors">
+          <SubmissionStatus valid={false} transition={false}>
+            <Show when={!valid}>
+              <InvalidForm sections={s} />
+            </Show>
+          </SubmissionStatus>
         </SectionView>
       </SectionViews>
     )

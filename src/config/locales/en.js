@@ -9567,7 +9567,18 @@ const en = {
       '## You are done!',
       '### Thanks for submitting your SF-86',
       'Please print and save your submission below,they will be your only copies'
-    ]
+    ],
+    print: {
+      title: [
+        '## Please print and save your responses',
+        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen.'
+      ],
+      button: 'Save/Print',
+      done: [
+        '## You are done!',
+        '### Thanks for submitting for your SF-86'
+      ]
+    }
   }
 }
 

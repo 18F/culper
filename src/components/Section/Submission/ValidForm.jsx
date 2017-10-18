@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Location, ValidationElement, Field, Text, DateControl, BranchCollection, Svg, Show } from '../../Form'
-import { SignatureValidator } from '../../../validators'
+import { ValidationElement, Show } from '../../Form'
 import BasicAccordion from './BasicAccordion'
 import AdditionalComments from '../Releases/AdditionalComments'
 import General from '../Releases/General'
@@ -21,6 +20,22 @@ export default class ValidatedForm extends ValidationElement {
 
     this.state = {
       accordionItems: this.accordionItems()
+    }
+  }
+
+  componentWillUnmount () {
+    let nav = document.getElementsByClassName('form-navigation')[0]
+    nav.removeEventListener('click', this.captureClick)
+  }
+
+  componentDidMount () {
+    let nav = document.getElementsByClassName('form-navigation')[0]
+    nav.addEventListener('click', this.captureClick)
+  }
+
+  captureClick (e) {
+    if (!window.confirm('Are you sure you want to leave?')) {
+      e.stopPropagation()
     }
   }
 
@@ -134,7 +149,6 @@ export default class ValidatedForm extends ValidationElement {
                 onUpdate={this.updateCredit}
                 {...this.props.Credit}
               />
-              <button onClick={this.togglePanel(2, false)}>Next</button>
             </div>
           )
         },
