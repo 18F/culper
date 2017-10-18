@@ -61,7 +61,7 @@ describe('Residence component validation', function () {
           },
           Role: 'Military',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -98,7 +98,7 @@ describe('Residence component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',

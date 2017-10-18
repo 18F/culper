@@ -38,7 +38,7 @@ describe('Reference component validation', function () {
             applicable: true
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -85,7 +85,7 @@ describe('Reference component validation', function () {
             applicable: true
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',

@@ -12,7 +12,7 @@ export default class BirthPlaceValidator {
    * Validates that the information is a valid domestic location
    */
   validDomestic () {
-    if (this.country !== 'United States') {
+    if ((this.country || {}).value !== 'United States') {
       return false
     }
 
@@ -37,11 +37,11 @@ export default class BirthPlaceValidator {
    * Validates that the information is a valid international location
    */
   validInternational () {
-    if (this.country === 'United States') {
+    if ((this.country || {}).value === 'United States') {
       return false
     }
 
-    return !!this.city && !!this.country
+    return !!this.city && !!this.country && !!(this.country || {}).value
   }
 
   /**

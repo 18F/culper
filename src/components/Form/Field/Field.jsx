@@ -205,7 +205,7 @@ export default class Field extends ValidationElement {
   errorMessages () {
     let el = []
     let stateErrors = this.props.filterErrors(this.errors || [])
-    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1)
+    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1 && err.code.indexOf('country.notfound') === -1)
     const required = stateErrors
       .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
       .sort((e1, e2) => {
@@ -302,7 +302,7 @@ export default class Field extends ValidationElement {
           {this.icon()}
         </span>
         <div className="table expand">
-          <span className="messages" ref="helpMessage">
+          <span className="messages help-messages" ref="helpMessage">
             {this.helpMessage()}
           </span>
         </div>
@@ -316,7 +316,7 @@ export default class Field extends ValidationElement {
           </span>
         </div>
         <div className="table expand">
-          <span className="messages" ref="errorMessages">
+          <span className="messages error-messages" ref="errorMessages">
             {this.errorMessages()}
           </span>
         </div>

@@ -38,6 +38,28 @@ export const sort = (a, b) => {
   return 0
 }
 
+export const totalYears = (birthdate) => {
+  let total = 10
+  if (!birthdate) {
+    return total
+  }
+
+  const eighteen = daysAgo(birthdate, 365 * -18)
+  total = Math.ceil(daysBetween(eighteen, today) / 365)
+
+  // A maximum of 10 years is required
+  if (total > 10) {
+    total = 10
+  }
+
+  // A minimum of two years is required
+  if (total < 2) {
+    total = 2
+  }
+
+  return total
+}
+
 class History extends SectionElement {
   constructor (props) {
     super(props)
@@ -591,6 +613,68 @@ function mapStateToProps (state) {
 History.defaultProps = {
   section: 'history',
   store: 'History'
+}
+
+export class HistorySections extends React.Component {
+  render () {
+    const noOverride = () => { return false }
+    return (
+      <div>
+        <Residence value={this.props.Residence}
+          defaultState={false}
+          realtime={true}
+          sort={sort}
+          totalYears={totalYears(this.props.Birthdate)}
+          overrideInitial={noOverride}
+          onError={this.props.onError}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          scrollIntoView={false}
+          required={true}
+        />
+
+        <Employment value={this.props.Employment}
+          {...this.props.Employment}
+          defaultState={false}
+          realtime={true}
+          sort={sort}
+          totalYears={totalYears(this.props.Birthdate)}
+          overrideInitial={noOverride}
+          onError={this.props.onError}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          scrollIntoView={false}
+          required={true}
+        />
+
+        <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+          <Education value={this.props.Education}
+            defaultState={false}
+            realtime={true}
+            sort={sort}
+            totalYears={totalYears(this.props.Birthdate)}
+            overrideInitial={noOverride}
+            onError={this.props.onError}
+            dispatch={this.props.dispatch}
+            addressBooks={this.props.AddressBooks}
+            scrollIntoView={false}
+            required={true}
+          />
+        </Show>
+
+        <hr />
+        <Federal name="federal"
+          {...this.props.Federal}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          scrollIntoView={false}
+          required={true}
+        />
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(History))

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import ApplicantName from './ApplicantName'
@@ -47,6 +48,8 @@ class Identification extends SectionElement {
             <hr />
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
+                                minimumPhoneNumbers={1}
+                                filterEmpty={true}
                                 defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
@@ -100,6 +103,16 @@ class Identification extends SectionElement {
                       required={true}
                       scrollIntoView={false}
                       />
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('identification.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="name"
@@ -212,6 +225,7 @@ function mapStateToProps (state) {
     OtherNames: identification.OtherNames || {},
     Contacts: identification.Contacts || {},
     Physical: identification.Physical || {},
+    Comments: identification.Comments || {},
     Errors: errors.identification || [],
     Completed: completed.identification || []
   }
@@ -233,6 +247,81 @@ export function processApplicantBirthDate (birthDate) {
 Identification.defaultProps = {
   section: 'identification',
   store: 'Identification'
+}
+
+export class IdentificationSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <ApplicantName name="name"
+                       value={this.props.ApplicantName}
+                       dispatch={this.props.dispatch}
+                       onError={this.props.onError}
+                       required={true}
+                       scrollIntoView={false}
+                       />
+        <hr />
+        <ContactInformation name="contacts"
+                            {...this.props.Contacts}
+                            defaultState={false}
+                            dispatch={this.props.dispatch}
+                            onError={this.props.onError}
+                            required={true}
+                            scrollIntoView={false}
+                            />
+        <hr />
+        <OtherNames name="othernames"
+                    {...this.props.OtherNames}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
+                    onError={this.props.onError}
+                    required={true}
+                    scrollIntoView={false}
+                    />
+        <hr />
+        <ApplicantBirthDate name="birthdate"
+                            dispatch={this.props.dispatch}
+                            onError={this.props.onError}
+                            value={this.props.ApplicantBirthDate}
+                            required={true}
+                            scrollIntoView={false}
+                            />
+        <hr />
+        <ApplicantBirthPlace name="birthplace"
+                             value={this.props.ApplicantBirthPlace}
+                             dispatch={this.props.dispatch}
+                             onError={this.props.onError}
+                             required={true}
+                             scrollIntoView={false}
+                             />
+        <hr />
+        <ApplicantSSN name="ssn"
+                      {...this.props.ApplicantSSN}
+                      dispatch={this.props.dispatch}
+                      onError={this.props.onError}
+                      required={true}
+                      scrollIntoView={false}
+                      />
+        <hr />
+        <Physical name="physical"
+                  {...this.props.Physical}
+                  dispatch={this.props.dispatch}
+                  onError={this.props.onError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('identification.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.props.onError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
+      </div>
+    )
+  }
 }
 
 export default connect(mapStateToProps)(AuthenticatedView(Identification))

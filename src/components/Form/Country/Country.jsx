@@ -1,8 +1,11 @@
 import React from 'react'
+import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
+import Show from '../Show'
+import Comments from '../Comments'
+import Textarea from '../Textarea'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
-import { i18n } from '../../../config'
 
 export default class Country extends ValidationElement {
   constructor (props) {
@@ -11,29 +14,34 @@ export default class Country extends ValidationElement {
     // For the typical Dropdown component a string value is expected.
     // However, for the MultiDropdown, the value must be an array of objects.
     this.state = {
-      value: props.value
+      value: props.value,
+      showComents: props.showComments
     }
 
-    this.onUpdate = this.onUpdate.bind(this)
+    this.update = this.update.bind(this)
+    this.updateCountry = this.updateCountry.bind(this)
+    this.updateComments = this.updateComments.bind(this)
     this.handleError = this.handleError.bind(this)
   }
 
-  onUpdate (value) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        name: this.props.name,
-        value: value
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      comments: this.props.comments,
+      showComments: this.props.showComments,
+      value: this.props.value,
+      ...queue
+    })
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      this.onUpdate(event.target.value)
-      super.handleChange(event)
+  updateCountry (values) {
+    this.update({ value: values.value })
+  }
+
+  updateComments (values) {
+    this.update({
+      showComments: true,
+      comments: values.value
     })
   }
 
@@ -47,6 +55,16 @@ export default class Country extends ValidationElement {
     })
 
     // Take the original and concatenate our new error values to it
+    const notfound = arr.some(x => x.valid === false && x.code.indexOf('notfound') !== -1)
+    if (!this.state.showComments && notfound) {
+      if (this.props.multiple) {
+        this.refs.countries.refs.dropdown.refs.autosuggest.input.focus()
+      } else {
+        this.refs.country.refs.autosuggest.input.focus()
+      }
+    }
+    this.setState({showComments: notfound})
+
     return this.props.onError(value, arr)
   }
 
@@ -66,14 +84,6 @@ export default class Country extends ValidationElement {
     this.setState({ focus: false }, () => {
       super.handleBlur(event)
     })
-  }
-
-  unitedStates () {
-    if (this.props.excludeUnitedStates) {
-      return null
-    }
-
-    return <option value="United States">United States</option>
   }
 
   renderOptions () {
@@ -106,50 +116,77 @@ export default class Country extends ValidationElement {
   render () {
     const klass = `country ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
-
-    if (this.props.multiple) {
-      return (
-        <MultipleDropdown name={this.props.name}
-                          label={this.props.label}
-                          help="Country is required"
-                          placeholder={this.props.placeholder}
-                          className={klass}
-                          disabled={this.props.disabled}
-                          onUpdate={this.onUpdate}
-                          onError={this.handleError}
-                          onFocus={this.handleFocus}
-                          onBlur={this.handleBlur}
-                          value={this.props.value}
-                          required={this.props.required}
-                          >
-          { options }
-        </MultipleDropdown>
-      )
-    }
+    const value = this.props.value || (this.props.multiple ? [] : '')
 
     return (
-      <Dropdown name={this.props.name}
-                label={this.props.label}
-                help="Country is required"
-                placeholder={this.props.placeholder}
-                className={klass}
-                disabled={this.props.disabled}
-                onChange={this.handleChange}
-                onError={this.handleError}
-                onFocus={this.handleFocus}
-                onBlur={this.handleBlur}
-                value={this.props.value}
-                required={this.props.required}
-                >
-        { options }
-      </Dropdown>
+      <Comments title={i18n.t('country.comments')}
+                    value={this.props.comments}
+                    onUpdate={this.updateComments}>
+        <Show when={this.props.multiple}>
+          <MultipleDropdown name={this.props.name}
+                            ref="countries"
+                            label={this.props.label}
+                            placeholder={this.props.placeholder}
+                            className={klass}
+                            disabled={this.props.disabled}
+                            onUpdate={this.updateCountry}
+                            onError={this.handleError}
+                            onFocus={this.handleFocus}
+                            onBlur={this.handleBlur}
+                            value={value}
+                            required={this.props.required}>
+            { options }
+          </MultipleDropdown>
+        </Show>
+        <Show when={!this.props.multiple}>
+          <Dropdown name={this.props.name}
+                    ref="country"
+                    label={this.props.label}
+                    placeholder={this.props.placeholder}
+                    className={klass}
+                    disabled={this.props.disabled}
+                    onUpdate={this.updateCountry}
+                    onError={this.handleError}
+                    onFocus={this.handleFocus}
+                    onBlur={this.handleBlur}
+                    value={value}
+                    required={this.props.required}>
+            { options }
+          </Dropdown>
+        </Show>
+        <Show when={this.state.showComments}>
+          <div className="field no-margin-bottom">
+            <div className="table">
+              <div className="messages">
+                <div className="message error">
+                  <i className="fa fa-exclamation"></i>
+                  <h5>{i18n.t('error.country.notfound.title')}</h5>
+                  <p>{i18n.m('error.country.notfound.message')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Show>
+      </Comments>
     )
   }
 }
+        // <Show when={this.state.showComments || this.props.comments.length > 0}>
+        //   <Textarea name={`${this.props.name}Comments`}
+        //             ref="comments"
+        //             label={i18n.t('country.comments')}
+        //             value={this.props.comments}
+        //             onUpdate={this.updateComments}
+        //             disabled={this.props.disabled}
+        //             required={this.props.required} />
+        // </Show>
 
 Country.defaultProps = {
   name: 'country',
+  comments: '',
+  showComments: false,
   excludeUnitedStates: false,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

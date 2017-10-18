@@ -1,46 +1,68 @@
 @import 'eqip-colors';
 
-.introduction-modal .modal {
-  background-color: rgba(255, 255, 255, 0.95) !important;
+.introduction-modal {
+  z-index: 9999;
 
-  .introduction-content {
-    width: 50%;
-    min-width: 100rem;
-    height: 90vh;
-    margin-top: 5vh !important;
-    margin-bottom: 5vh !important;
-
-    @media only screen and (max-height: 850px) {
-      height: 100vh;
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
+  &.closeable {
+    .modal-content {
+      position: relative;
     }
 
-    .introduction-legal {
-      overflow-y: scroll;
-      max-height: 55vh;
-      padding: 0 5rem;
-      border: 1px solid $eapp-grey;
-
-      hr {
-        margin-top: 4rem;
-      }
+    .modal-close {
+      position: absolute;
+      top: -1.5rem;
+      right: -1rem;
     }
 
-    .introduction-acceptance {
-      max-height: 40vh;
+    .modal .introduction-content .introduction-legal {
+      max-height: 90vh;
+    }
+  }
+
+  .modal {
+    .introduction-content {
+      width: 50%;
+      min-width: 100rem;
+      height: 90vh;
+      margin-top: 5vh !important;
+      margin-bottom: 5vh !important;
       padding: 0;
-      margin: 4rem 5rem 0 5rem;
-      border-top: 1px solid $eapp-grey;
-    }
+      border: none;
+      box-shadow: none;
 
-    .field {
-      .title {
-        max-width: initial;
+      .introduction-legal {
+        overflow-y: scroll;
+        max-height: 55vh;
+        padding: 0 5rem;
+        border: 2px solid $eapp-grey;
+
+        hr {
+          margin-top: 4rem;
+        }
+
+        div:nth-child(3) {
+          padding-top: 1rem;
+        }
+        div:nth-child(9) {
+          padding-top: 4rem;
+        }
       }
 
-      .table > .content > .component > div {
-        max-width: initial;
+      .introduction-acceptance {
+        max-height: 40vh;
+        padding-top: 2rem;
+        margin: 4rem 5rem 0 5rem;
+        border-top: 1px solid $eapp-grey;
+      }
+
+      .field {
+        .title {
+          max-width: initial;
+        }
+
+        .table > .content > .component > div {
+          max-width: initial;
+        }
       }
     }
   }

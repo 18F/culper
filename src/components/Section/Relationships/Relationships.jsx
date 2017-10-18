@@ -222,4 +222,55 @@ const extractSpouse = (marital) => {
   return marital.CivilUnion.Name
 }
 
+export class RelationshipSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Marital name="marital"
+          {...this.props.Marital}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          currentAddress={this.props.CurrentAddress}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr/>
+        <Cohabitants name="cohabitants"
+          {...this.props.Cohabitants}
+          defaultState={false}
+          spouse={this.props.Spouse}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <People name="people"
+          {...this.props.People}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr/>
+        <Relatives name="relatives"
+          {...this.props.Relatives}
+          defaultState={false}
+          addressBooks={this.props.AddressBooks}
+          dispatch={this.props.dispatch}
+          onError={this.handleError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
+
 export default connect(mapStateToProps)(AuthenticatedView(Relationships))

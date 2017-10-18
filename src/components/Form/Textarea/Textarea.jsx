@@ -140,6 +140,7 @@ export default class Textarea extends ValidationElement {
                   onChange={this.handleChange}
                   onFocus={this.handleFocus}
                   onBlur={this.handleBlur}
+                  ref="textarea"
                   />
       </div>
     )

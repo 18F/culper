@@ -98,7 +98,7 @@ export default class ResidenceItem extends ValidationElement {
       <div className="residence">
         <Field title={i18n.t('history.residence.heading.address')}
                help="history.residence.help.address"
-               comments={true}
+               comments={false}
                commentsName="Comments"
                commentsValue={this.state.Comments}
                commentsAdd="history.residence.label.comments"

@@ -20,6 +20,7 @@ export default class SSN extends ValidationElement {
     this.handleErrorFirst = this.handleErrorFirst.bind(this)
     this.handleErrorMiddle = this.handleErrorMiddle.bind(this)
     this.handleErrorLast = this.handleErrorLast.bind(this)
+    this.handleErrorNotApplicable = this.handleErrorNotApplicable.bind(this)
   }
 
   update (queue) {
@@ -68,6 +69,21 @@ export default class SSN extends ValidationElement {
     return this.handleError('last', value, arr)
   }
 
+  handleErrorNotApplicable (value, arr) {
+    if (this.props.notApplicable) {
+      // When not applicable, set other fields to valid to clear errors
+      ['first', 'middle', 'last']
+        .forEach(code => {
+          this.handleError(code, '', [{
+            code: 'required',
+            valid: true
+          }])
+        })
+      return
+    }
+    return this.handleError('notApplicable', value, arr)
+  }
+
   handleError (code, value, arr) {
     arr = (arr || []).map(err => {
       return {
@@ -90,6 +106,7 @@ export default class SSN extends ValidationElement {
 
   render () {
     const klass = `ssn ${this.props.className || ''}`.trim()
+    const required = this.props.required && !this.props.notApplicable
 
     return (
       <div className={klass}>
@@ -107,7 +124,7 @@ export default class SSN extends ValidationElement {
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
               tabNext={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
-              required={this.props.required}
+              required={required}
           />
           <Text name="middle"
                 ref="middle"
@@ -124,7 +141,7 @@ export default class SSN extends ValidationElement {
                 onBlur={this.props.onBlur}
                 tabBack={() => { this.props.tab(this.refs.first.refs.text.refs.input) }}
                 tabNext={() => { this.props.tab(this.refs.last.refs.text.refs.input) }}
-                required={this.props.required}
+                required={required}
             />
             <Text name="last"
                   ref="last"
@@ -140,7 +157,7 @@ export default class SSN extends ValidationElement {
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
                   tabBack={() => { this.props.tab(this.refs.middle.refs.text.refs.input) }}
-                  required={this.props.required}
+                  required={required}
               />
               <Show when={!this.props.hideNotApplicable}>
                 <div className="flags">
@@ -152,7 +169,7 @@ export default class SSN extends ValidationElement {
                             value={this.props.notApplicable}
                             checked={this.props.notApplicable}
                             onUpdate={this.updateNotApplicable}
-                            onError={this.handleError}
+                            onError={this.handleErrorNotApplicable}
                             onFocus={this.props.onFocus}
                             onBlur={this.props.onBlur}
                             />

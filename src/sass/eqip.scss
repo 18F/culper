@@ -1,6 +1,10 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
+html {
+  -webkit-overflow-scrolling: touch;
+}
+
 h1, h2, h3, h4, h5, h6 {
   line-height: 1.3;
   margin-top: 5rem;
@@ -61,22 +65,22 @@ a:focus {
       height: 100vh;
       min-width: 32rem;
 
-      @media screen and (max-width: 768px) {
-        width: 29.8%;
-      }
+      // @media screen and (max-width: 768px) {
+      //   width: 29.8%;
+      // }
     }
 
     .eapp-structure-right {
       width: 79%;
       padding: 0 17.5%;
 
-      @media screen and (max-width: 1380px) {
-        padding: 0 12%;
-      }
+      // @media screen and (max-width: 1380px) {
+      //   padding: 0 12%;
+      // }
 
-      @media screen and (max-width: 1024px) {
-        padding: 0 5.5%;
-      }
+      // @media screen and (max-width: 1024px) {
+      //   padding: 0 5.5%;
+      // }
 
       &.eapp-title {
         vertical-align: bottom;
@@ -151,8 +155,20 @@ a:focus {
       font-family: $eapp-sans;
       font-size: 1.6rem;
 
+      button {
+        display: inline-block;
+        color: $eapp-grey;
+        background: none;
+        font-weight: initial;
+        font-size: 1.6rem;
+
+        &:hover {
+          color: #fff;
+        }
+      }
+
       a {
-        display: block;
+        display: inline-block;
         padding: 1rem 1.5rem;
         color: $eapp-grey;
         text-decoration: none;
