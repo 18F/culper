@@ -134,4 +134,41 @@ Citizenship.defaultProps = {
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
+export class CitizenshipSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <Status name="status"
+          {...this.props.Status}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr/>
+        <Multiple name="multiple"
+          {...this.props.Multiple}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <hr/>
+        <Passports name="passports"
+          {...this.props.Passports}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
+
 export default connect(mapStateToProps)(AuthenticatedView(Citizenship))

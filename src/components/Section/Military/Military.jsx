@@ -199,4 +199,57 @@ Military.defaultProps = {
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
+export class MilitarySections extends React.Component {
+  render () {
+    const showDisciplinary = !hideDisciplinaryProcedures(this.props.Application)
+    const showSelectiveService = !hideSelectiveService(this.props.Application)
+    return (
+      <div>
+        <Show when={showSelectiveService}>
+          <Selective name="selective"
+            {...this.props.Selective}
+            dispatch={this.props.dispatch}
+            onError={this.props.onError}
+            required={true}
+            scrollIntoView={false}
+          />
+          <hr/>
+        </Show>
+
+        <History name="history"
+          {...this.props.History}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+
+        <Show when={showDisciplinary}>
+          <hr/>
+          <Disciplinary name="disciplinary"
+            {...this.props.Disciplinary}
+            defaultState={false}
+            dispatch={this.props.dispatch}
+            onError={this.props.onError}
+            required={true}
+            scrollIntoView={false}
+          />
+        </Show>
+
+        <hr/>
+        <Foreign name="foreign"
+          {...this.props.Foreign}
+          addressBooks={this.props.AddressBooks}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
+
 export default connect(mapStateToProps)(AuthenticatedView(Military))

@@ -250,6 +250,13 @@ const navigation = [
     subsections: [
       { name: 'Headings', url: 'headings' }
     ]
+  },
+  {
+    title: 'SF-86 Submission',
+    name: 'Print',
+    url: 'print',
+    hidden: false,
+    exclude: true
   }
 ]
 

@@ -235,4 +235,70 @@ Identification.defaultProps = {
   store: 'Identification'
 }
 
+export class IdentificationSections extends React.Component {
+  render () {
+    return (
+      <div>
+        <ApplicantName name="name"
+          value={this.props.ApplicantName}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ContactInformation name="contacts"
+          {...this.props.Contacts}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <OtherNames name="othernames"
+          {...this.props.OtherNames}
+          defaultState={false}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ApplicantBirthDate name="birthdate"
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          value={this.props.ApplicantBirthDate}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ApplicantBirthPlace name="birthplace"
+          value={this.props.ApplicantBirthPlace}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <ApplicantSSN name="ssn"
+          {...this.props.ApplicantSSN}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+        <hr />
+        <Physical name="physical"
+          {...this.props.Physical}
+          dispatch={this.props.dispatch}
+          onError={this.props.onError}
+          required={true}
+          scrollIntoView={false}
+        />
+      </div>
+    )
+  }
+}
+
 export default connect(mapStateToProps)(AuthenticatedView(Identification))
