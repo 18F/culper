@@ -1,4 +1,5 @@
 import React from 'react'
+import { MemoryRouter } from 'react-router'
 import { mount } from 'enzyme'
 import InvalidForm from './InvalidForm'
 
@@ -30,7 +31,7 @@ describe('The Invalid form submission component', () => {
         }
       ]
     }
-    const component = mount(<InvalidForm {...expected} />)
+    const component = mount(<MemoryRouter><InvalidForm {...expected} /></MemoryRouter>)
     expect(component.find('.invalid-form').length).toBe(1)
     expect(component.find('.error-messages').length).toBe(2)
   })
