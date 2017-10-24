@@ -563,7 +563,6 @@ export class SubstanceUseSections extends React.Component {
                          {...this.props.Comments}
                          title={i18n.t('substance.review.comments')}
                          dispatch={this.props.dispatch}
-                         onUpdate={this.handleUpdate.bind(this, 'Comments')}
                          onError={this.handleError}
                          required={false}
                          scrollIntoView={false}

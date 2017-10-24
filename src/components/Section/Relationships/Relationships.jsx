@@ -287,7 +287,6 @@ export class RelationshipSections extends React.Component {
                          {...this.props.Comments}
                          title={i18n.t('relationships.review.comments')}
                          dispatch={this.props.dispatch}
-                         onUpdate={this.handleUpdate.bind(this, 'Comments')}
                          onError={this.handleError}
                          required={false}
                          scrollIntoView={false}

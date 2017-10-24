@@ -18,9 +18,9 @@ import Employment from './Employment'
 import Education from './Education'
 
 /**
-  * Default sorting of history objects. This assumes that all objects contain a `Dates` property
-  * with date range values.
-  */
+ * Default sorting of history objects. This assumes that all objects contain a `Dates` property
+ * with date range values.
+ */
 export const sort = (a, b) => {
   // Helper to find the date value or default it to 0
   const getOptionalDate = (obj) => {
@@ -634,68 +634,67 @@ export class HistorySections extends React.Component {
     return (
       <div>
         <Residence value={this.props.Residence}
-          defaultState={false}
-          realtime={true}
-          sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
-          overrideInitial={noOverride}
-          onError={this.props.onError}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          scrollIntoView={false}
-          required={true}
-        />
+                   defaultState={false}
+                   realtime={true}
+                   sort={sort}
+                   totalYears={totalYears(this.props.Birthdate)}
+                   overrideInitial={noOverride}
+                   onError={this.props.onError}
+                   addressBooks={this.props.AddressBooks}
+                   dispatch={this.props.dispatch}
+                   scrollIntoView={false}
+                   required={true}
+                   />
 
         <Employment value={this.props.Employment}
-          {...this.props.Employment}
-          defaultState={false}
-          realtime={true}
-          sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
-          overrideInitial={noOverride}
-          onError={this.props.onError}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          scrollIntoView={false}
-          required={true}
-        />
+                    {...this.props.Employment}
+                    defaultState={false}
+                    realtime={true}
+                    sort={sort}
+                    totalYears={totalYears(this.props.Birthdate)}
+                    overrideInitial={noOverride}
+                    onError={this.props.onError}
+                    addressBooks={this.props.AddressBooks}
+                    dispatch={this.props.dispatch}
+                    scrollIntoView={false}
+                    required={true}
+                    />
 
         <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
           <Education value={this.props.Education}
-            defaultState={false}
-            realtime={true}
-            sort={sort}
-            totalYears={totalYears(this.props.Birthdate)}
-            overrideInitial={noOverride}
-            onError={this.props.onError}
-            dispatch={this.props.dispatch}
-            addressBooks={this.props.AddressBooks}
-            scrollIntoView={false}
-            required={true}
-          />
+                     defaultState={false}
+                     realtime={true}
+                     sort={sort}
+                     totalYears={totalYears(this.props.Birthdate)}
+                     overrideInitial={noOverride}
+                     onError={this.props.onError}
+                     dispatch={this.props.dispatch}
+                     addressBooks={this.props.AddressBooks}
+                     scrollIntoView={false}
+                     required={true}
+                     />
         </Show>
 
         <hr />
         <Federal name="federal"
-          {...this.props.Federal}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          scrollIntoView={false}
-          required={true}
-        />
+                 {...this.props.Federal}
+                 defaultState={false}
+                 addressBooks={this.props.AddressBooks}
+                 dispatch={this.props.dispatch}
+                 onError={this.props.onError}
+                 scrollIntoView={false}
+                 required={true}
+                 />
 
-            <hr />
-            <SectionComments name="comments"
-                             {...this.props.Comments}
-                             title={i18n.t('history.review.comments')}
-                             dispatch={this.props.dispatch}
-                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
-                             onError={this.handleError}
-                             required={false}
-                             scrollIntoView={false}
-                             />
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('history.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.handleError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }

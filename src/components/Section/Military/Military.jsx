@@ -266,7 +266,6 @@ export class MilitarySections extends React.Component {
                          {...this.props.Comments}
                          title={i18n.t('military.review.comments')}
                          dispatch={this.props.dispatch}
-                         onUpdate={this.handleUpdate.bind(this, 'Comments')}
                          onError={this.handleError}
                          required={false}
                          scrollIntoView={false}
