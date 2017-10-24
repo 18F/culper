@@ -81,6 +81,11 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			Verbs:       []string{"GET"},
 		},
 		endpoint{
+			Path:        "/me/form/hash",
+			Description: "returns the form hash code",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
 			Path:        "/me/section?:id",
 			Description: "returns the form section",
 			Verbs:       []string{"GET"},

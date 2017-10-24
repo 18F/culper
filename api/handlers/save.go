@@ -34,6 +34,29 @@ func AllSections(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, string(form.Application(context, account.ID)))
 }
 
+func Hash(w http.ResponseWriter, r *http.Request) {
+	account := &model.Account{}
+	account.WithContext(db.NewDB())
+
+	// Valid token and audience while populating the audience ID
+	_, err := checkToken(r, account, targetAudience())
+	if err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	// Get the account information from the data store
+	context := db.NewDB()
+	account.WithContext(context)
+	if err := account.Get(); err != nil {
+		http.Error(w, err.Error(), http.StatusInternalServerError)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	fmt.Fprint(w, string(form.Signature(context, account.ID)))
+}
+
 func Section(w http.ResponseWriter, r *http.Request) {
 	account := &model.Account{}
 	account.WithContext(db.NewDB())

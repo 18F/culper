@@ -50,6 +50,7 @@ class Env {
   EndpointSave (payload) { return '/me/save' }
   EndpointSection (type) { return `/me/section?type=${type || ''}` }
   EndpointForm () { return '/me/form' }
+  EndpointFormHash () { return '/me/form/hash' }
   EndpointValidate (payload) { return '/me/validate' }
 }
 

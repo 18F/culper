@@ -144,6 +144,10 @@ class Api {
     return this.get(env.EndpointForm())
   }
 
+  hash () {
+    return this.get(env.EndpointFormHash())
+  }
+
   validate (payload) {
     return this.post(env.EndpointValidate(), payload)
   }

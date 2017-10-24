@@ -11,10 +11,15 @@ import SubmissionStatus from './SubmissionStatus'
 import Print from '../Print/Print'
 import { push } from '../../../middleware/history'
 import { Link } from 'react-router'
+import { api } from '../../../services'
 
 class Submission extends SectionElement {
   constructor (props) {
     super(props)
+    this.state = {
+      hashCode: ''
+    }
+
     this.updateSubmission = this.updateSubmission.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onTransitionEnd = this.onTransitionEnd.bind(this)
@@ -29,7 +34,14 @@ class Submission extends SectionElement {
   onSubmit () {
     // TODO: Generate has code here and send to print screen when
     // merged with persistence updates
-    this.props.dispatch(push('/form/submit/print'))
+    api.hash().then(r => {
+      this.setState({ hashCode: r.data || '' }, () => {
+        this.props.dispatch(push('/form/submit/print'))
+      })
+    })
+    .catch(() => {
+      this.props.dispatch(push('/form/submit/print'))
+    })
   }
 
   /**
@@ -76,6 +88,7 @@ class Submission extends SectionElement {
         </SectionView>
         <SectionView name="print">
           <Print />
+          <p><strong>Data hash code</strong>: {this.state.hashCode}</p>
         </SectionView>
 
         <SectionView name="errors">
