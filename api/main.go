@@ -38,6 +38,8 @@ func main() {
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
+	o.HandleFunc("/saml", handlers.SamlServiceHandler)
+	o.HandleFunc("/saml/callback", handlers.SamlCallbackHandler)
 	o.HandleFunc("/{service}", handlers.AuthServiceHandler)
 	o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
 
