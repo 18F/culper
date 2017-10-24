@@ -86,7 +86,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
 }
 
 ApplicantBirthDate.defaultProps = {
-  value: {},
+  date: {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'birthdate',

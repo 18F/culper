@@ -20,20 +20,24 @@ describe('The IndirectActivity component', () => {
   it('Renders summary information', () => {
     const expected = {
       HasInterests: { value: 'Yes' },
-      List: [{
-        Item: {
-          InterestType: {
-            value: 'Foo'
-          },
-          Firstname: {
-            value: 'John'
-          },
-          Lastname: {
-            value: 'Doe'
+      List: {
+        items: [
+          {
+            Item: {
+              InterestType: {
+                value: 'Foo'
+              },
+              Firstname: {
+                value: 'John'
+              },
+              Lastname: {
+                value: 'Doe'
+              }
+            },
+            open: true
           }
-        },
-        open: true
-      }]
+        ]
+      }
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -43,14 +47,16 @@ describe('The IndirectActivity component', () => {
   it('Renders interest types summary information', () => {
     const expected = {
       HasInterests: { value: 'Yes' },
-      List: [{
-        Item: {
-          InterestType: {
-            value: 'Foo'
-          },
-          open: true
-        }
-      }]
+      List: {
+        items: [{
+          Item: {
+            InterestType: {
+              value: 'Foo'
+            },
+            open: true
+          }
+        }]
+      }
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -73,54 +79,56 @@ describe('The IndirectActivity component', () => {
         return arr
       },
       HasInterests: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            InterestTypes: ['Yourself'],
-            InterestType: {
-              value: 'Some type'
-            },
-            Acquired: {
-              day: '1',
-              month: '1',
-              year: '2016'
-            },
-            Firstname: {
-              value: 'John'
-            },
-            Lastname: {
-              value: 'Doe'
-            },
-            Relationship: {
-              value: 'A person'
-            },
-            HowAcquired: {
-              value: 'foo'
-            },
-            Cost: {
-              value: '100'
-            },
-            Value: {
-              value: '100'
-            },
-            Sold: {
-              day: '1',
-              month: '1',
-              year: '2016'
-            },
-            SoldNotApplicable: {
-              applicable: true
-            },
-            Explanation: {
-              value: 'Bar'
-            },
-            CoOwners: {
-              List: [{ Has: 'No' }]
+      List: {
+        branch: { value: 'No' },
+        items: [
+          {
+            Item: {
+              InterestTypes: ['Yourself'],
+              InterestType: {
+                value: 'Some type'
+              },
+              Acquired: {
+                day: '1',
+                month: '1',
+                year: '2016'
+              },
+              Firstname: {
+                value: 'John'
+              },
+              Lastname: {
+                value: 'Doe'
+              },
+              Relationship: {
+                value: 'A person'
+              },
+              HowAcquired: {
+                value: 'foo'
+              },
+              Cost: {
+                value: '100'
+              },
+              Value: {
+                value: '100'
+              },
+              Sold: {
+                day: '1',
+                month: '1',
+                year: '2016'
+              },
+              SoldNotApplicable: {
+                applicable: true
+              },
+              Explanation: {
+                value: 'Bar'
+              },
+              CoOwners: {
+                List: [{ Has: 'No' }]
+              }
             }
           }
-        }
-      ],
-      ListBranch: 'No'
+        ]
+      }
     }
     const component = mount(<IndirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

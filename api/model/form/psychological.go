@@ -45,8 +45,12 @@ func (entity *PsychologicalCompetence) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *PsychologicalCompetence) Marshal() Payload {
-	entity.PayloadIsIncompetent = entity.IsIncompetent.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.IsIncompetent != nil {
+		entity.PayloadIsIncompetent = entity.IsIncompetent.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("psychological.competence", entity)
 }
 
@@ -214,8 +218,12 @@ func (entity *PsychologicalConsultations) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *PsychologicalConsultations) Marshal() Payload {
-	entity.PayloadConsulted = entity.Consulted.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.Consulted != nil {
+		entity.PayloadConsulted = entity.Consulted.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("psychological.consultations", entity)
 }
 
@@ -410,11 +418,21 @@ func (entity *PsychologicalDiagnoses) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *PsychologicalDiagnoses) Marshal() Payload {
-	entity.PayloadDiagnosed = entity.Diagnosed.Marshal()
-	entity.PayloadDidNotConsult = entity.DidNotConsult.Marshal()
-	entity.PayloadDiagnosisList = entity.DiagnosisList.Marshal()
-	entity.PayloadInTreatment = entity.InTreatment.Marshal()
-	entity.PayloadTreatmentList = entity.TreatmentList.Marshal()
+	if entity.Diagnosed != nil {
+		entity.PayloadDiagnosed = entity.Diagnosed.Marshal()
+	}
+	if entity.DidNotConsult != nil {
+		entity.PayloadDidNotConsult = entity.DidNotConsult.Marshal()
+	}
+	if entity.DiagnosisList != nil {
+		entity.PayloadDiagnosisList = entity.DiagnosisList.Marshal()
+	}
+	if entity.InTreatment != nil {
+		entity.PayloadInTreatment = entity.InTreatment.Marshal()
+	}
+	if entity.TreatmentList != nil {
+		entity.PayloadTreatmentList = entity.TreatmentList.Marshal()
+	}
 	return MarshalPayloadEntity("psychological.diagnoses", entity)
 }
 
@@ -659,8 +677,12 @@ func (entity *PsychologicalHospitalizations) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *PsychologicalHospitalizations) Marshal() Payload {
-	entity.PayloadHospitalized = entity.Hospitalized.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.Hospitalized != nil {
+		entity.PayloadHospitalized = entity.Hospitalized.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("psychological.hospitalizations", entity)
 }
 
@@ -864,12 +886,24 @@ func (entity *PsychologicalExisting) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *PsychologicalExisting) Marshal() Payload {
-	entity.PayloadHasCondition = entity.HasCondition.Marshal()
-	entity.PayloadReceivedTreatment = entity.ReceivedTreatment.Marshal()
-	entity.PayloadExplanation = entity.Explanation.Marshal()
-	entity.PayloadTreatmentList = entity.TreatmentList.Marshal()
-	entity.PayloadDidNotFollow = entity.DidNotFollow.Marshal()
-	entity.PayloadDidNotFollowExplanation = entity.DidNotFollowExplanation.Marshal()
+	if entity.HasCondition != nil {
+		entity.PayloadHasCondition = entity.HasCondition.Marshal()
+	}
+	if entity.ReceivedTreatment != nil {
+		entity.PayloadReceivedTreatment = entity.ReceivedTreatment.Marshal()
+	}
+	if entity.Explanation != nil {
+		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
+	if entity.TreatmentList != nil {
+		entity.PayloadTreatmentList = entity.TreatmentList.Marshal()
+	}
+	if entity.DidNotFollow != nil {
+		entity.PayloadDidNotFollow = entity.DidNotFollow.Marshal()
+	}
+	if entity.DidNotFollowExplanation != nil {
+		entity.PayloadDidNotFollowExplanation = entity.DidNotFollowExplanation.Marshal()
+	}
 	return MarshalPayloadEntity("psychological.conditions", entity)
 }
 

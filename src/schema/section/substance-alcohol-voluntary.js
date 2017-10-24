@@ -1,20 +1,21 @@
 import * as form from '../form'
 
 export const substanceAlcoholVoluntary = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        CounselingDates: form.daterange(x.Item.CounselingDates),
-        TreatmentProviderName: form.text(x.Item.TreatmentProviderName),
-        TreatmentProviderAddress: form.location(x.Item.TreatmentProviderAddress),
-        TreatmentProviderTelephone: form.telephone(x.Item.TreatmentProviderTelephone),
-        CompletedTreatment: form.branch(x.Item.CompletedTreatment),
-        NoCompletedTreatmentExplanation: form.textarea(x.Item.NoCompletedTreatmentExplanation)
+        CounselingDates: form.daterange(xitem.CounselingDates),
+        TreatmentProviderName: form.text(xitem.TreatmentProviderName),
+        TreatmentProviderAddress: form.location(xitem.TreatmentProviderAddress),
+        TreatmentProviderTelephone: form.telephone(xitem.TreatmentProviderTelephone),
+        CompletedTreatment: form.branch(xitem.CompletedTreatment),
+        NoCompletedTreatmentExplanation: form.textarea(xitem.NoCompletedTreatmentExplanation)
       }
     }
   })
   return {
     SoughtTreatment: form.branch(data.SoughtTreatment),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

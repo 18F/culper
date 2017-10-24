@@ -7,7 +7,7 @@ describe('The reason options component', () => {
     let updates = 0
     const expected = {
       name: 'peace_i_am_out',
-      Reason: 'Fired',
+      Reason: { value: 'Fired' },
       onUpdate: () => {
         updates++
       }

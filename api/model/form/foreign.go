@@ -96,13 +96,27 @@ func (entity *ForeignPassport) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignPassport) Marshal() Payload {
-	entity.PayloadHasPassports = entity.HasPassports.Marshal()
-	entity.PayloadName = entity.Name.Marshal()
-	entity.PayloadCard = entity.Card.Marshal()
-	entity.PayloadNumber = entity.Number.Marshal()
-	entity.PayloadIssued = entity.Issued.Marshal()
-	entity.PayloadExpiration = entity.Expiration.Marshal()
-	entity.PayloadComments = entity.Comments.Marshal()
+	if entity.HasPassports != nil {
+		entity.PayloadHasPassports = entity.HasPassports.Marshal()
+	}
+	if entity.Name != nil {
+		entity.PayloadName = entity.Name.Marshal()
+	}
+	if entity.Card != nil {
+		entity.PayloadCard = entity.Card.Marshal()
+	}
+	if entity.Number != nil {
+		entity.PayloadNumber = entity.Number.Marshal()
+	}
+	if entity.Issued != nil {
+		entity.PayloadIssued = entity.Issued.Marshal()
+	}
+	if entity.Expiration != nil {
+		entity.PayloadExpiration = entity.Expiration.Marshal()
+	}
+	if entity.Comments != nil {
+		entity.PayloadComments = entity.Comments.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.passport", entity)
 }
 
@@ -389,8 +403,12 @@ func (entity *ForeignContacts) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignContacts) Marshal() Payload {
-	entity.PayloadHasForeignContacts = entity.HasForeignContacts.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignContacts != nil {
+		entity.PayloadHasForeignContacts = entity.HasForeignContacts.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.contacts", entity)
 }
 
@@ -559,9 +577,15 @@ func (entity *ForeignTravel) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignTravel) Marshal() Payload {
-	entity.PayloadHasForeignTravelOutside = entity.HasForeignTravelOutside.Marshal()
-	entity.PayloadHasForeignTravelOfficial = entity.HasForeignTravelOfficial.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignTravelOutside != nil {
+		entity.PayloadHasForeignTravelOutside = entity.HasForeignTravelOutside.Marshal()
+	}
+	if entity.HasForeignTravelOfficial != nil {
+		entity.PayloadHasForeignTravelOfficial = entity.HasForeignTravelOfficial.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.travel", entity)
 }
 
@@ -919,8 +943,12 @@ func (entity *ForeignActivitiesDirect) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignActivitiesDirect) Marshal() Payload {
-	entity.PayloadHasInterests = entity.HasInterests.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasInterests != nil {
+		entity.PayloadHasInterests = entity.HasInterests.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.activities.direct", entity)
 }
 
@@ -1080,8 +1108,12 @@ func (entity *ForeignActivitiesIndirect) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignActivitiesIndirect) Marshal() Payload {
-	entity.PayloadHasInterests = entity.HasInterests.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasInterests != nil {
+		entity.PayloadHasInterests = entity.HasInterests.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.activities.indirect", entity)
 }
 
@@ -1241,8 +1273,12 @@ func (entity *ForeignActivitiesRealEstate) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignActivitiesRealEstate) Marshal() Payload {
-	entity.PayloadHasInterests = entity.HasInterests.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasInterests != nil {
+		entity.PayloadHasInterests = entity.HasInterests.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.activities.realestate", entity)
 }
 
@@ -1402,8 +1438,12 @@ func (entity *ForeignActivitiesSupport) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignActivitiesSupport) Marshal() Payload {
-	entity.PayloadHasForeignSupport = entity.HasForeignSupport.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignSupport != nil {
+		entity.PayloadHasForeignSupport = entity.HasForeignSupport.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.activities.support", entity)
 }
 
@@ -1563,8 +1603,12 @@ func (entity *ForeignBusinessAdvice) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessAdvice) Marshal() Payload {
-	entity.PayloadHasForeignAdvice = entity.HasForeignAdvice.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignAdvice != nil {
+		entity.PayloadHasForeignAdvice = entity.HasForeignAdvice.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.advice", entity)
 }
 
@@ -1724,8 +1768,12 @@ func (entity *ForeignBusinessConferences) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessConferences) Marshal() Payload {
-	entity.PayloadHasForeignConferences = entity.HasForeignConferences.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignConferences != nil {
+		entity.PayloadHasForeignConferences = entity.HasForeignConferences.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.conferences", entity)
 }
 
@@ -1885,8 +1933,12 @@ func (entity *ForeignBusinessContact) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessContact) Marshal() Payload {
-	entity.PayloadHasForeignContact = entity.HasForeignContact.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignContact != nil {
+		entity.PayloadHasForeignContact = entity.HasForeignContact.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.contact", entity)
 }
 
@@ -2046,8 +2098,12 @@ func (entity *ForeignBusinessEmployment) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessEmployment) Marshal() Payload {
-	entity.PayloadHasForeignEmployment = entity.HasForeignEmployment.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignEmployment != nil {
+		entity.PayloadHasForeignEmployment = entity.HasForeignEmployment.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.employment", entity)
 }
 
@@ -2207,8 +2263,12 @@ func (entity *ForeignBusinessFamily) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessFamily) Marshal() Payload {
-	entity.PayloadHasForeignFamily = entity.HasForeignFamily.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignFamily != nil {
+		entity.PayloadHasForeignFamily = entity.HasForeignFamily.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.family", entity)
 }
 
@@ -2368,8 +2428,12 @@ func (entity *ForeignBusinessPolitical) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessPolitical) Marshal() Payload {
-	entity.PayloadHasForeignPolitical = entity.HasForeignPolitical.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignPolitical != nil {
+		entity.PayloadHasForeignPolitical = entity.HasForeignPolitical.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.political", entity)
 }
 
@@ -2529,8 +2593,12 @@ func (entity *ForeignBusinessSponsorship) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessSponsorship) Marshal() Payload {
-	entity.PayloadHasForeignSponsorship = entity.HasForeignSponsorship.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignSponsorship != nil {
+		entity.PayloadHasForeignSponsorship = entity.HasForeignSponsorship.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.sponsorship", entity)
 }
 
@@ -2690,8 +2758,12 @@ func (entity *ForeignBusinessVentures) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessVentures) Marshal() Payload {
-	entity.PayloadHasForeignVentures = entity.HasForeignVentures.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignVentures != nil {
+		entity.PayloadHasForeignVentures = entity.HasForeignVentures.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.ventures", entity)
 }
 
@@ -2851,8 +2923,12 @@ func (entity *ForeignBusinessVoting) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBusinessVoting) Marshal() Payload {
-	entity.PayloadHasForeignVoting = entity.HasForeignVoting.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasForeignVoting != nil {
+		entity.PayloadHasForeignVoting = entity.HasForeignVoting.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("foreign.business.voting", entity)
 }
 

@@ -1,19 +1,21 @@
 import * as form from '../form'
 
 export const psychologicalConsultations = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        CourtAddress: form.location(x.Item.CourtAddress),
-        CourtName: form.text(x.Item.CourtName),
-        Disposition: form.text(x.Item.Disposition),
-        Occurred: form.datecontrol(x.Item.Occurred),
-        Appeals: form.collection((x.Item.Appeals || []).map(y => {
+        CourtAddress: form.location(xitem.CourtAddress),
+        CourtName: form.text(xitem.CourtName),
+        Disposition: form.text(xitem.Disposition),
+        Occurred: form.datecontrol(xitem.Occurred),
+        Appeals: form.collection(((xitem.Appeals || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              CourtName: form.text(y.Item.CourtName),
-              CourtAddress: form.location(y.Item.CourtAddress),
-              Disposition: form.text(y.Item.Disposition)
+              CourtName: form.text(yitem.CourtName),
+              CourtAddress: form.location(yitem.CourtAddress),
+              Disposition: form.text(yitem.Disposition)
             }
           }
         }))
@@ -22,6 +24,6 @@ export const psychologicalConsultations = (data = {}) => {
   })
   return {
     Consulted: form.branch(data.Consulted),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

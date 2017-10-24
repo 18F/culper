@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class FederalServiceValidator {
   constructor (data = {}) {
     this.hasFederalService = (data.HasFederalService || {}).value
     this.list = data.List
-    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class FederalServiceValidator {
       return true
     }
 
-    if (this.hasFederalService === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new FederalServiceItemValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new FederalServiceItemValidator(item).isValid()
+    })
   }
 
   isValid () {

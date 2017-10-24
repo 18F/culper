@@ -1,19 +1,20 @@
 import * as form from '../form'
 
 export const historyResidence = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Dates: form.daterange(x.Item.Dates),
-        Address: form.location(x.Item.Address),
-        Comments: form.textarea(x.Item.Comments),
-        Reference: form.reference(x.Item.Reference),
-        Role: form.radio(x.Item.Role),
-        RoleOther: form.text(x.Item.RoleOther)
+        Dates: form.daterange(xitem.Dates),
+        Address: form.location(xitem.Address),
+        Comments: form.textarea(xitem.Comments),
+        Reference: form.reference(xitem.Reference),
+        Role: form.radio(xitem.Role),
+        RoleOther: form.text(xitem.RoleOther)
       }
     }
   })
   return {
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

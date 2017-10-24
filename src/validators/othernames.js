@@ -1,11 +1,11 @@
 import NameValidator from './name'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 import DateRangeValidator from './daterange'
 
 export default class OtherNamesValidator {
   constructor (data = {}) {
     this.hasOtherNames = (data.HasOtherNames || {}).value
-    this.list = data.List
+    this.list = data.List || {}
   }
 
   /**
@@ -31,17 +31,9 @@ export default class OtherNamesValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    for (let otherName of this.list) {
-      const result = new OtherNameValidator(otherName, null).isValid()
-      if (!result) {
-        return false
-      }
-    }
-    return true
+    return validAccordion(this.list, (item) => {
+      return new OtherNameValidator(item).isValid()
+    }, true)
   }
 
   /**

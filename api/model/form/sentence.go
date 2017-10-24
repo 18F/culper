@@ -91,13 +91,27 @@ func (entity *Sentence) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Sentence) Marshal() Payload {
-	entity.PayloadDescription = entity.Description.Marshal()
-	entity.PayloadExceedsYear = entity.ExceedsYear.Marshal()
-	entity.PayloadIncarcerated = entity.Incarcerated.Marshal()
-	entity.PayloadIncarcerationDates = entity.IncarcerationDates.Marshal()
-	entity.PayloadIncarcerationDatesNA = entity.IncarcerationDatesNA.Marshal()
-	entity.PayloadProbationDates = entity.ProbationDates.Marshal()
-	entity.PayloadProbationDatesNA = entity.ProbationDatesNA.Marshal()
+	if entity.Description != nil {
+		entity.PayloadDescription = entity.Description.Marshal()
+	}
+	if entity.ExceedsYear != nil {
+		entity.PayloadExceedsYear = entity.ExceedsYear.Marshal()
+	}
+	if entity.Incarcerated != nil {
+		entity.PayloadIncarcerated = entity.Incarcerated.Marshal()
+	}
+	if entity.IncarcerationDates != nil {
+		entity.PayloadIncarcerationDates = entity.IncarcerationDates.Marshal()
+	}
+	if entity.IncarcerationDatesNA != nil {
+		entity.PayloadIncarcerationDatesNA = entity.IncarcerationDatesNA.Marshal()
+	}
+	if entity.ProbationDates != nil {
+		entity.PayloadProbationDates = entity.ProbationDates.Marshal()
+	}
+	if entity.ProbationDatesNA != nil {
+		entity.PayloadProbationDatesNA = entity.ProbationDatesNA.Marshal()
+	}
 	return MarshalPayloadEntity("sentence", entity)
 }
 

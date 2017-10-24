@@ -127,133 +127,139 @@ describe('received counseling component validation', function () {
     const tests = [
       {
         state: {
-          ListBranch: 'No',
           ReceivedTreatment: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                UseSameAddress: { value: 'Yes' },
-                TreatmentProviderName: {
-                  value: 'The name'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                AgencyName: {
-                  value: 'The agency name'
-                },
-                TreatmentBeganDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                TreatmentEndDate: {
-                  day: '1',
-                  month: '2',
-                  year: '2016',
-                  date: new Date('1/2/2016')
-                },
-                CompletedTreatment: { value: 'Yes' },
-                NoCompletedTreatmentExplanation: {
-                  value: 'Foo'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  UseSameAddress: { value: 'Yes' },
+                  TreatmentProviderName: {
+                    value: 'The name'
+                  },
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  AgencyName: {
+                    value: 'The agency name'
+                  },
+                  TreatmentBeganDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  TreatmentEndDate: {
+                    day: '1',
+                    month: '2',
+                    year: '2016',
+                    date: new Date('1/2/2016')
+                  },
+                  CompletedTreatment: { value: 'Yes' },
+                  NoCompletedTreatmentExplanation: {
+                    value: 'Foo'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          ListBranch: 'No',
           ReceivedTreatment: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                UseSameAddress: { value: 'Yes' },
-                TreatmentProviderName: {
-                  value: 'The name'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                AgencyName: {
-                  value: 'The agency name'
-                },
-                TreatmentBeganDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                TreatmentEndDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                CompletedTreatment: { value: 'Yes' },
-                NoCompletedTreatmentExplanation: {
-                  value: 'Foo'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  UseSameAddress: { value: 'Yes' },
+                  TreatmentProviderName: {
+                    value: 'The name'
+                  },
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  AgencyName: {
+                    value: 'The agency name'
+                  },
+                  TreatmentBeganDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  TreatmentEndDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  CompletedTreatment: { value: 'Yes' },
+                  NoCompletedTreatmentExplanation: {
+                    value: 'Foo'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
-          ListBranch: 'No',
           ReceivedTreatment: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                UseSameAddress: { value: 'Yes' },
-                TreatmentProviderName: {
-                  value: 'The name'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                AgencyName: {
-                  value: 'The agency name'
-                },
-                TreatmentBeganDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                TreatmentEndDate: {
-                  day: '1',
-                  month: '1',
-                  year: '1982',
-                  date: new Date('1/1/1982')
-                },
-                CompletedTreatment: { value: 'Yes' },
-                NoCompletedTreatmentExplanation: {
-                  value: 'Foo'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  UseSameAddress: { value: 'Yes' },
+                  TreatmentProviderName: {
+                    value: 'The name'
+                  },
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  AgencyName: {
+                    value: 'The agency name'
+                  },
+                  TreatmentBeganDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  TreatmentEndDate: {
+                    day: '1',
+                    month: '1',
+                    year: '1982',
+                    date: new Date('1/1/1982')
+                  },
+                  CompletedTreatment: { value: 'Yes' },
+                  NoCompletedTreatmentExplanation: {
+                    value: 'Foo'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       }
@@ -267,45 +273,47 @@ describe('received counseling component validation', function () {
     const tests = [
       {
         state: {
-          ListBranch: 'No',
           ReceivedTreatment: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                UseSameAddress: { value: 'Yes' },
-                TreatmentProviderName: {
-                  value: 'The name'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                AgencyName: {
-                  value: 'The agency name'
-                },
-                TreatmentBeganDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                TreatmentEndDate: {
-                  day: '1',
-                  month: '2',
-                  year: '2016',
-                  date: new Date('1/2/2016')
-                },
-                CompletedTreatment: { value: 'Yes' },
-                NoCompletedTreatmentExplanation: {
-                  value: 'Foo'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  UseSameAddress: { value: 'Yes' },
+                  TreatmentProviderName: {
+                    value: 'The name'
+                  },
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  AgencyName: {
+                    value: 'The agency name'
+                  },
+                  TreatmentBeganDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  TreatmentEndDate: {
+                    day: '1',
+                    month: '2',
+                    year: '2016',
+                    date: new Date('1/2/2016')
+                  },
+                  CompletedTreatment: { value: 'Yes' },
+                  NoCompletedTreatmentExplanation: {
+                    value: 'Foo'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
@@ -318,22 +326,30 @@ describe('received counseling component validation', function () {
       {
         state: {
           ReceivedTreatment: { value: 'Yes' },
-          List: []
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           ReceivedTreatment: { value: 'Yes' },
-          List: [{}]
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           ReceivedTreatment: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [{Item: {}}]
+          List: {
+            branch: { value: 'No' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       }

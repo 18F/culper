@@ -156,11 +156,15 @@ describe('Foreign business conferences component validation', function () {
       {
         state: {
           Contacts: {
-            List: [
-              {
-                Has: 'No'
-              }
-            ]
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' }
+                  }
+                }
+              ]
+            }
           }
         },
         expected: true
@@ -168,39 +172,49 @@ describe('Foreign business conferences component validation', function () {
       {
         state: {
           Contacts: {
-            List: [
-              {
-                Has: 'Yes'
-              }
-            ]
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          Contacts: {
-            List: [
-              {
-                Has: 'Yes',
-                Explanation: {}
-              }
-            ]
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          Contacts: {
-            List: [
-              {
-                Has: 'Yes',
-                Explanation: {
-                  value: 'This is the explanation'
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' }
+                  }
                 }
-              }
-            ]
+              ]
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Contacts: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes'},
+                    Explanation: {}
+                  }
+                }
+              ]
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          Contacts: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Explanation: {value: 'This is the explanation'}
+                  }
+                }
+              ]
+            }
           }
         },
         expected: true
@@ -225,52 +239,54 @@ describe('Foreign business conferences component validation', function () {
       {
         state: {
           HasForeignConferences: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: {},
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignConferences: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Description: {
-                  value: 'this is the description'
-                },
-                Sponsor: {
-                  value: 'this is the sponsor'
-                },
-                City: {
-                  value: 'this is the city'
-                },
-                Country: {
-                  value: 'Germany'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Description: {
+                    value: 'this is the description'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Sponsor: {
+                    value: 'this is the sponsor'
                   },
-                  present: false
-                },
-                Purpose: {
-                  value: 'this is the purpose'
-                },
-                Contacts: {
-                  List: [
-                    {
-                      Has: 'No'
+                  City: {
+                    value: 'this is the city'
+                  },
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Purpose: {
+                    value: 'this is the purpose'
+                  },
+                  Contacts: {
+                    List: {
+                      items: [{ Item: { Has: { value: 'No' } } }]
                     }
-                  ]
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

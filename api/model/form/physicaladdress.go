@@ -55,9 +55,15 @@ func (entity *PhysicalAddress) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *PhysicalAddress) Marshal() Payload {
-	entity.PayloadHasDifferentAddress = entity.HasDifferentAddress.Marshal()
-	entity.PayloadAddress = entity.Address.Marshal()
-	entity.PayloadTelephone = entity.Telephone.Marshal()
+	if entity.HasDifferentAddress != nil {
+		entity.PayloadHasDifferentAddress = entity.HasDifferentAddress.Marshal()
+	}
+	if entity.Address != nil {
+		entity.PayloadAddress = entity.Address.Marshal()
+	}
+	if entity.Telephone != nil {
+		entity.PayloadTelephone = entity.Telephone.Marshal()
+	}
 	return MarshalPayloadEntity("physicaladdress", entity)
 }
 

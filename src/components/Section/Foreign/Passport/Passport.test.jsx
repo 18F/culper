@@ -67,8 +67,8 @@ describe('The passport component', () => {
 
   it('loads data and adds comment', () => {
     const data = {
-      Card: 'Book',
-      Comments: 'Comment',
+      Card: { value: 'Book' },
+      Comments: { value: 'Comment' },
       Issued: {
         day: '1',
         estimated: false,
@@ -111,7 +111,7 @@ describe('The passport component', () => {
   it('can render with regular expression for passport card', () => {
     const props = {
       HasPassport: { value: 'Yes' },
-      Card: 'Card',
+      Card: { value: 'Card' },
       reCard: 'test'
     }
     const component = mount(<Passport {...props} />)

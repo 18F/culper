@@ -1,26 +1,28 @@
 import * as form from '../form'
 
 export const militaryForeign = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Organization: form.radio(x.Item.Organization),
-        Name: form.text(x.Item.Name),
-        Dates: form.daterange(x.Item.Dates),
-        Country: form.country(x.Item.Country),
-        Rank: form.text(x.Item.Rank),
-        Division: form.text(x.Item.Division),
-        Circumstances: form.textarea(x.Item.Circumstances),
-        ReasonLeft: form.textarea(x.Item.ReasonLeft),
-        MaintainsContact: form.branch(x.Item.MaintainsContact),
-        List: form.collection((x.Item.List || []).map(y => {
+        Organization: form.radio(xitem.Organization),
+        Name: form.text(xitem.Name),
+        Dates: form.daterange(xitem.Dates),
+        Country: form.country(xitem.Country),
+        Rank: form.text(xitem.Rank),
+        Division: form.text(xitem.Division),
+        Circumstances: form.textarea(xitem.Circumstances),
+        ReasonLeft: form.textarea(xitem.ReasonLeft),
+        MaintainsContact: form.branch(xitem.MaintainsContact),
+        List: form.collection(((xitem.List || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              Name: form.name(y.Item.Name),
-              Address: form.location(y.Item.Address),
-              Title: form.text(y.Item.Title),
-              Dates: form.daterange(y.Item.Dates),
-              Frequency: form.text(y.Item.Frequency)
+              Name: form.name(yitem.Name),
+              Address: form.location(yitem.Address),
+              Title: form.text(yitem.Title),
+              Dates: form.daterange(yitem.Dates),
+              Frequency: form.text(yitem.Frequency)
             }
           }
         }))

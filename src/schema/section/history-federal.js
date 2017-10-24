@@ -1,18 +1,19 @@
 import * as form from '../form'
 
 export const historyFederal = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Dates: form.daterange(x.Item.Dates),
-        Name: form.text(x.Item.Name),
-        Position: form.text(x.Item.Position),
-        Address: form.location(x.Item.Address)
+        Dates: form.daterange(xitem.Dates),
+        Name: form.text(xitem.Name),
+        Position: form.text(xitem.Position),
+        Address: form.location(xitem.Address)
       }
     }
   })
   return {
     HasFederalService: form.branch(data.HasFederalService),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

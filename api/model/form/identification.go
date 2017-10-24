@@ -37,7 +37,9 @@ func (entity *IdentificationName) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationName) Marshal() Payload {
-	entity.PayloadName = entity.Name.Marshal()
+	if entity.Name != nil {
+		entity.PayloadName = entity.Name.Marshal()
+	}
 	return MarshalPayloadEntity("identification.name", entity)
 }
 
@@ -170,7 +172,9 @@ func (entity *IdentificationBirthPlace) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationBirthPlace) Marshal() Payload {
-	entity.Payload = entity.Location.Marshal()
+	if entity.Location != nil {
+		entity.Payload = entity.Location.Marshal()
+	}
 	return MarshalPayloadEntity("identification.birthplace", entity)
 }
 
@@ -303,7 +307,9 @@ func (entity *IdentificationBirthDate) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationBirthDate) Marshal() Payload {
-	entity.Payload = entity.Date.Marshal()
+	if entity.Date != nil {
+		entity.Payload = entity.Date.Marshal()
+	}
 	return MarshalPayloadEntity("identification.birthdate", entity)
 }
 
@@ -437,7 +443,9 @@ func (entity *IdentificationSSN) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationSSN) Marshal() Payload {
-	entity.Payload = entity.SSN.Marshal()
+	if entity.SSN != nil {
+		entity.Payload = entity.SSN.Marshal()
+	}
 	return MarshalPayloadEntity("identification.ssn", entity)
 }
 
@@ -588,8 +596,12 @@ func (entity *IdentificationContacts) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationContacts) Marshal() Payload {
-	entity.PayloadEmails = entity.Emails.Marshal()
-	entity.PayloadPhoneNumbers = entity.PhoneNumbers.Marshal()
+	if entity.Emails != nil {
+		entity.PayloadEmails = entity.Emails.Marshal()
+	}
+	if entity.PhoneNumbers != nil {
+		entity.PayloadPhoneNumbers = entity.PhoneNumbers.Marshal()
+	}
 	return MarshalPayloadEntity("identification.contacts", entity)
 }
 
@@ -768,8 +780,12 @@ func (entity *IdentificationOtherNames) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationOtherNames) Marshal() Payload {
-	entity.PayloadHasOtherNames = entity.HasOtherNames.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasOtherNames != nil {
+		entity.PayloadHasOtherNames = entity.HasOtherNames.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("identification.othernames", entity)
 }
 
@@ -1000,12 +1016,24 @@ func (entity *IdentificationPhysical) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *IdentificationPhysical) Marshal() Payload {
-	entity.PayloadComments = entity.Comments.Marshal()
-	entity.PayloadEyeColor = entity.EyeColor.Marshal()
-	entity.PayloadHairColor = entity.HairColor.Marshal()
-	entity.PayloadHeight = entity.Height.Marshal()
-	entity.PayloadSex = entity.Sex.Marshal()
-	entity.PayloadWeight = entity.Weight.Marshal()
+	if entity.Comments != nil {
+		entity.PayloadComments = entity.Comments.Marshal()
+	}
+	if entity.EyeColor != nil {
+		entity.PayloadEyeColor = entity.EyeColor.Marshal()
+	}
+	if entity.HairColor != nil {
+		entity.PayloadHairColor = entity.HairColor.Marshal()
+	}
+	if entity.Height != nil {
+		entity.PayloadHeight = entity.Height.Marshal()
+	}
+	if entity.Sex != nil {
+		entity.PayloadSex = entity.Sex.Marshal()
+	}
+	if entity.Weight != nil {
+		entity.PayloadWeight = entity.Weight.Marshal()
+	}
 	return MarshalPayloadEntity("identification.physical", entity)
 }
 

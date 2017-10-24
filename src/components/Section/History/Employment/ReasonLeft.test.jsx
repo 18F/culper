@@ -17,8 +17,8 @@ describe('The reason left component', () => {
   it('display explanation and date when a value is selected', () => {
     const expected = {
       name: 'peace_i_am_out',
-      Comments: 'Hello',
-      Reasons: [{Has: { value: 'Yes' } }]
+      Comments: { value: 'Hello' },
+      Reasons: { items: [{ Item: { Has: { value: 'Yes' } } }] }
     }
     const component = mount(<ReasonLeft {...expected} />)
     expect(component.find('.employment-left').length).toEqual(1)
@@ -28,8 +28,8 @@ describe('The reason left component', () => {
     let updates = 0
     const expected = {
       name: 'peace_i_am_out',
-      Comments: '',
-      ReasonDescription: 'Foo',
+      Comments: { value: '' },
+      ReasonDescription: { value: 'Foo' },
       onUpdate: () => {
         updates++
       }
@@ -47,25 +47,25 @@ describe('The reason left component', () => {
     const expectations = [
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: { value: 'Yes' }, Item: {Reason: 'Fired'}}],
+        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Fired' } } }] },
         explanationText: i18n.t('history.employment.default.left.fired.text'),
         dateText: i18n.t('history.employment.default.left.fired.date')
       },
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: { value: 'Yes' }, Item: {Reason: 'Quit'}}],
+        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Quit' } } }] },
         explanationText: i18n.t('history.employment.default.left.quit.text'),
         dateText: i18n.t('history.employment.default.left.quit.date')
       },
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: { value: 'Yes' }, Item: {Reason: 'Charges'}}],
+        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Charges' } } }] },
         explanationText: i18n.t('history.employment.default.left.charges.text'),
         dateText: i18n.t('history.employment.default.left.charges.date')
       },
       {
         name: 'peace_i_am_out',
-        Reasons: [{Has: { value: 'Yes' }, Item: {Reason: 'Performance'}}],
+        Reasons: { items: [{ Item: { Has: { value: 'Yes' }, Reason: { value: 'Performance' } } }] },
         explanationText: i18n.t('history.employment.default.left.performance.text'),
         dateText: i18n.t('history.employment.default.left.performance.date')
       }

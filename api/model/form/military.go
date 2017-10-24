@@ -63,10 +63,18 @@ func (entity *MilitarySelective) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *MilitarySelective) Marshal() Payload {
-	entity.PayloadWasBornAfter = entity.WasBornAfter.Marshal()
-	entity.PayloadHasRegistered = entity.HasRegistered.Marshal()
-	entity.PayloadRegistrationNumber = entity.RegistrationNumber.Marshal()
-	entity.PayloadExplanation = entity.Explanation.Marshal()
+	if entity.WasBornAfter != nil {
+		entity.PayloadWasBornAfter = entity.WasBornAfter.Marshal()
+	}
+	if entity.HasRegistered != nil {
+		entity.PayloadHasRegistered = entity.HasRegistered.Marshal()
+	}
+	if entity.RegistrationNumber != nil {
+		entity.PayloadRegistrationNumber = entity.RegistrationNumber.Marshal()
+	}
+	if entity.Explanation != nil {
+		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
 	return MarshalPayloadEntity("military.selective", entity)
 }
 
@@ -286,8 +294,12 @@ func (entity *MilitaryHistory) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *MilitaryHistory) Marshal() Payload {
-	entity.PayloadHasServed = entity.HasServed.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasServed != nil {
+		entity.PayloadHasServed = entity.HasServed.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("military.history", entity)
 }
 
@@ -455,8 +467,12 @@ func (entity *MilitaryDisciplinary) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *MilitaryDisciplinary) Marshal() Payload {
-	entity.PayloadHasDisciplinary = entity.HasDisciplinary.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasDisciplinary != nil {
+		entity.PayloadHasDisciplinary = entity.HasDisciplinary.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("military.disciplinary", entity)
 }
 
@@ -615,7 +631,9 @@ func (entity *MilitaryForeign) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *MilitaryForeign) Marshal() Payload {
-	entity.PayloadList = entity.List.Marshal()
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("military.foreign", entity)
 }
 

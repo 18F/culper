@@ -55,9 +55,15 @@ func (entity *ReasonLeft) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ReasonLeft) Marshal() Payload {
-	entity.PayloadComments = entity.Comments.Marshal()
-	entity.PayloadReasons = entity.Reasons.Marshal()
-	entity.PayloadReasonDescription = entity.ReasonDescription.Marshal()
+	if entity.Comments != nil {
+		entity.PayloadComments = entity.Comments.Marshal()
+	}
+	if entity.Reasons != nil {
+		entity.PayloadReasons = entity.Reasons.Marshal()
+	}
+	if entity.ReasonDescription != nil {
+		entity.PayloadReasonDescription = entity.ReasonDescription.Marshal()
+	}
 	return MarshalPayloadEntity("reasonleft", entity)
 }
 

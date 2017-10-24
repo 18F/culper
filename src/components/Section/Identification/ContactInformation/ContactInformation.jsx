@@ -4,7 +4,7 @@ import schema from '../../../../schema'
 import validate from '../../../../validators'
 import { ContactEmailValidator, ContactPhoneNumberValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, Email, Accordion, Telephone } from '../../../Form'
+import { Field, Email, Accordion, AccordionItem, Telephone } from '../../../Form'
 import { Summary, TelephoneSummary } from '../../../Summary'
 
 export default class ContactInformation extends SubsectionElement {
@@ -31,13 +31,13 @@ export default class ContactInformation extends SubsectionElement {
 
   updateEmails (values) {
     this.update({
-      Emails: values.items
+      Emails: values
     })
   }
 
   updatePhoneNumbers (values) {
     this.update({
-      PhoneNumbers: values.items
+      PhoneNumbers: values
     })
   }
 
@@ -71,15 +71,16 @@ export default class ContactInformation extends SubsectionElement {
 
   render () {
     const klass = `${this.props.className || ''}`.trim()
+    const phoneNumberItems = (this.props.PhoneNumbers || {}).items || []
     let phoneNumbers = this.props.filterEmpty
-          ? this.props.PhoneNumbers.filter(x => {
-            const item = x.Item || {}
-            return item.number || item.noNumber
-          })
-          : this.props.PhoneNumbers
+        ? phoneNumberItems.filter(x => {
+          const item = x.Item || {}
+          return item.number || item.noNumber
+        })
+        : phoneNumberItems
 
     if (phoneNumbers.length < this.props.minimumPhoneNumbers) {
-      phoneNumbers = this.props.PhoneNumbers.slice(0, this.props.minimumPhoneNumbers)
+      phoneNumbers = phoneNumberItems.slice(0, this.props.minimumPhoneNumbers)
     }
 
     return (
@@ -98,7 +99,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <div className={klass + ' email-collection'}>
           <Accordion minimum={2}
-                     items={this.props.Emails}
+                     {...this.props.Emails}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateEmails}
                      onError={this.handleError}
@@ -107,16 +108,17 @@ export default class ContactInformation extends SubsectionElement {
                      validator={ContactEmailValidator}
                      description={i18n.t('identification.contacts.collection.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.append')}>
-            <Field title={i18n.t('identification.contacts.label.email')}
-                   titleSize="label"
-                   scrollIntoView={this.props.scrollIntoView}
-                   adjustFor="labels">
-              <Email name="Item"
-                     placeholder={i18n.t('identification.contacts.placeholder.email')}
-                     bind={true}
-                     required={this.props.required}
-                     />
-            </Field>
+            <AccordionItem scrollIntoView={this.props.scrollIntoView}
+                           required={this.props.required}>
+              <Field title={i18n.t('identification.contacts.label.email')}
+                     titleSize="label"
+                     adjustFor="labels">
+                <Email name="Email"
+                       placeholder={i18n.t('identification.contacts.placeholder.email')}
+                       bind={true}
+                       />
+              </Field>
+            </AccordionItem>
           </Accordion>
         </div>
 
@@ -129,7 +131,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <div className={klass + ' telephone-collection'}>
           <Accordion minimum={this.props.minimumPhoneNumbers}
-                     items={phoneNumbers}
+                     {...{ items: phoneNumbers, branch: null }}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updatePhoneNumbers}
                      onError={this.handleError}
@@ -138,15 +140,16 @@ export default class ContactInformation extends SubsectionElement {
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
-            <Field scrollIntoView={this.props.scrollIntoView}
-                   adjustFor="telephone">
-              <Telephone name="Item"
-                         placeholder={i18n.t('identification.contacts.placeholder.telephone')}
-                         allowNotApplicable={false}
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
+            <AccordionItem scrollIntoView={this.props.scrollIntoView}
+                           required={this.props.required}>
+              <Field adjustFor="telephone">
+                <Telephone name="PhoneNumber"
+                           placeholder={i18n.t('identification.contacts.placeholder.telephone')}
+                           allowNotApplicable={false}
+                           bind={true}
+                           />
+              </Field>
+            </AccordionItem>
           </Accordion>
         </div>
       </div>
@@ -155,8 +158,8 @@ export default class ContactInformation extends SubsectionElement {
 }
 
 ContactInformation.defaultProps = {
-  Emails: [],
-  PhoneNumbers: [],
+  Emails: {},
+  PhoneNumbers: {},
   minimumPhoneNumbers: 2,
   filterEmpty: false,
   onUpdate: (queue) => {},

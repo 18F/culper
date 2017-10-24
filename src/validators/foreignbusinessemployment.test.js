@@ -157,49 +157,53 @@ describe('Foreign business employment component validation', function () {
       {
         state: {
           HasForeignEmployment: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignEmployment: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Description: {
-                  value: 'this is the description'
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Address: {
-                  city: 'Munich',
-                  country: { value: 'Germany' },
-                  layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
-                },
-                Accepted: { value: 'Yes' },
-                Explanation: {
-                  value: 'This is an explanation'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Description: {
+                    value: 'this is the description'
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Address: {
+                    city: 'Munich',
+                    country: { value: 'Germany' },
+                    layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+                  },
+                  Accepted: { value: 'Yes' },
+                  Explanation: {
+                    value: 'This is an explanation'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

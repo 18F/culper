@@ -18,51 +18,59 @@ describe('Drug Use Validation', function () {
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          List: [{DrugUse: {}}],
-          ListBranch: 'Nope'
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          List: [{DrugUse: {}}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                InvolvementDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  InvolvementDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Description: {
+                    value: 'Foo'
+                  },
+                  EstimatedUse: {
+                    value: 'Foo'
                   }
-                },
-                Description: {
-                  value: 'Foo'
-                },
-                EstimatedUse: {
-                  value: 'Foo'
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

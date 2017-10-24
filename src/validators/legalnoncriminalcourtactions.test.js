@@ -6,40 +6,42 @@ describe('received counseling component validation', function () {
     const tests = [
       {
         state: {
-          ListBranch: 'No',
           HasCourtActions: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                CivilActionDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                CourtName: {
-                  value: 'The name'
-                },
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                NatureOfAction: {
-                  value: 'Nature of action'
-                },
-                ResultsOfAction: {
-                  value: 'Results of action'
-                },
-                PrincipalPartyNames: {
-                  value: 'John Doe'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CivilActionDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  CourtName: {
+                    value: 'The name'
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  NatureOfAction: {
+                    value: 'Nature of action'
+                  },
+                  ResultsOfAction: {
+                    value: 'Results of action'
+                  },
+                  PrincipalPartyNames: {
+                    value: 'John Doe'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
@@ -52,23 +54,30 @@ describe('received counseling component validation', function () {
       {
         state: {
           HasCourtActions: { value: 'Yes' },
-          List: []
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasCourtActions: { value: 'Yes' },
-          ListBranch: 'Nope',
-          List: [{}]
+          List: {
+            branch: { value: 'Nope' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasCourtActions: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [{Item: {}}]
+          List: {
+            branch: { value: 'No' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       }

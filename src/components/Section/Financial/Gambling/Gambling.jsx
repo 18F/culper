@@ -12,25 +12,25 @@ export default class Gambling extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      List: props.List,
-      ListBranch: props.ListBranch,
-      HasGamblingDebt: props.HasGamblingDebt
-    }
-
     this.myDispatch = this.myDispatch.bind(this)
     this.summary = this.summary.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      HasGamblingDebt: this.props.HasGamblingDebt,
+      List: this.props.List,
+      ...queue
+    })
   }
 
   /**
    * Updates triggered by the branching component.
    */
   onUpdate (values) {
-    this.setState({ HasGamblingDebt: values }, () => {
-      this.myDispatch({
-        items: values.value === 'Yes' ? this.state.List : [],
-        branch: ''
-      })
+    this.update({
+      HasGamblingDebt: values,
+      List: values.value === 'Yes' ? this.props.List : {}
     })
   }
 
@@ -39,12 +39,8 @@ export default class Gambling extends SubsectionElement {
    * updates to the items.
    */
   myDispatch (values) {
-    this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      this.props.onUpdate({
-        List: this.state.List,
-        ListBranch: this.state.ListBranch,
-        HasGamblingDebt: this.state.HasGamblingDebt
-      })
+    this.update({
+      List: values
     })
   }
 
@@ -63,8 +59,8 @@ export default class Gambling extends SubsectionElement {
     const item = row.Item || {}
     const dates = DateSummary(item.Dates)
     const losses = item.Losses && item.Losses.value
-        ? `$${this.fancyNumber(item.Losses.value)}`
-        : ''
+          ? `$${this.fancyNumber(item.Losses.value)}`
+          : ''
 
     return Summary({
       type: i18n.t('financial.gambling.collection.summary.debt'),
@@ -82,18 +78,17 @@ export default class Gambling extends SubsectionElement {
                 label={i18n.t('financial.gambling.title')}
                 labelSize="h2"
                 className="has-gambling-debt"
-                {...this.state.HasGamblingDebt}
+                {...this.props.HasGamblingDebt}
                 warning={true}
                 onUpdate={this.onUpdate.bind(this)}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasGamblingDebt.value === 'Yes'}>
-          <Accordion items={this.state.List}
+        <Show when={(this.props.HasGamblingDebt || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.state.ListBranch}
                      onUpdate={this.myDispatch}
                      onError={this.handleError}
                      summary={this.summary}
@@ -103,12 +98,11 @@ export default class Gambling extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}
                      appendLabel={i18n.t('financial.gambling.collection.append')}
                      appendTitle={i18n.t('financial.gambling.collection.appendTitle')}>
-                     <GamblingItem
-                       name="Item"
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       bind={true}
-                     />
+            <GamblingItem name="Item"
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
+                          bind={true}
+                          />
           </Accordion>
         </Show>
       </div>
@@ -117,9 +111,8 @@ export default class Gambling extends SubsectionElement {
 }
 
 Gambling.defaultProps = {
-  List: [],
-  ListBranch: '',
-  HasGamblingDebt: '',
+  List: {},
+  HasGamblingDebt: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',

@@ -45,8 +45,12 @@ func (entity *LegalCourt) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalCourt) Marshal() Payload {
-	entity.PayloadHasCourtActions = entity.HasCourtActions.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasCourtActions != nil {
+		entity.PayloadHasCourtActions = entity.HasCourtActions.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.court", entity)
 }
 
@@ -207,8 +211,12 @@ func (entity *LegalPoliceOffenses) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalPoliceOffenses) Marshal() Payload {
-	entity.PayloadHasOffenses = entity.HasOffenses.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasOffenses != nil {
+		entity.PayloadHasOffenses = entity.HasOffenses.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.police.offenses", entity)
 }
 
@@ -369,8 +377,12 @@ func (entity *LegalPoliceAdditionalOffenses) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalPoliceAdditionalOffenses) Marshal() Payload {
-	entity.PayloadHasOtherOffenses = entity.HasOtherOffenses.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasOtherOffenses != nil {
+		entity.PayloadHasOtherOffenses = entity.HasOtherOffenses.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.police.additionaloffenses", entity)
 }
 
@@ -522,7 +534,9 @@ func (entity *LegalPoliceDomesticViolence) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalPoliceDomesticViolence) Marshal() Payload {
-	entity.PayloadList = entity.List.Marshal()
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.police.domesticviolence", entity)
 }
 
@@ -658,8 +672,12 @@ func (entity *LegalInvestigationsDebarred) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalInvestigationsDebarred) Marshal() Payload {
-	entity.PayloadHasDebarment = entity.HasDebarment.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasDebarment != nil {
+		entity.PayloadHasDebarment = entity.HasDebarment.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.investigations.debarred", entity)
 }
 
@@ -820,8 +838,12 @@ func (entity *LegalInvestigationsHistory) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalInvestigationsHistory) Marshal() Payload {
-	entity.PayloadHasHistory = entity.HasHistory.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasHistory != nil {
+		entity.PayloadHasHistory = entity.HasHistory.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.investigations.history", entity)
 }
 
@@ -982,8 +1004,12 @@ func (entity *LegalInvestigationsRevoked) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalInvestigationsRevoked) Marshal() Payload {
-	entity.PayloadHasRevocations = entity.HasRevocations.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasRevocations != nil {
+		entity.PayloadHasRevocations = entity.HasRevocations.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.investigations.revoked", entity)
 }
 
@@ -1144,8 +1170,12 @@ func (entity *LegalTechnologyManipulating) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalTechnologyManipulating) Marshal() Payload {
-	entity.PayloadHasManipulating = entity.HasManipulating.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasManipulating != nil {
+		entity.PayloadHasManipulating = entity.HasManipulating.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.technology.manipulating", entity)
 }
 
@@ -1306,8 +1336,12 @@ func (entity *LegalTechnologyUnauthorized) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalTechnologyUnauthorized) Marshal() Payload {
-	entity.PayloadHasUnauthorized = entity.HasUnauthorized.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasUnauthorized != nil {
+		entity.PayloadHasUnauthorized = entity.HasUnauthorized.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.technology.unauthorized", entity)
 }
 
@@ -1468,8 +1502,12 @@ func (entity *LegalTechnologyUnlawful) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalTechnologyUnlawful) Marshal() Payload {
-	entity.PayloadHasUnlawful = entity.HasUnlawful.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasUnlawful != nil {
+		entity.PayloadHasUnlawful = entity.HasUnlawful.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.technology.unlawful", entity)
 }
 
@@ -1630,8 +1668,12 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Unmarshal(raw []byte) erro
 
 // Marshal to payload structure
 func (entity *LegalAssociationsActivitiesToOverthrow) Marshal() Payload {
-	entity.PayloadHasActivities = entity.HasActivities.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasActivities != nil {
+		entity.PayloadHasActivities = entity.HasActivities.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.associations.activities-to-overthrow", entity)
 }
 
@@ -1792,8 +1834,12 @@ func (entity *LegalAssociationsAdvocating) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalAssociationsAdvocating) Marshal() Payload {
-	entity.PayloadHasAdvocated = entity.HasAdvocated.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasAdvocated != nil {
+		entity.PayloadHasAdvocated = entity.HasAdvocated.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.associations.advocating", entity)
 }
 
@@ -1954,8 +2000,12 @@ func (entity *LegalAssociationsEngagedInTerrorism) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalAssociationsEngagedInTerrorism) Marshal() Payload {
-	entity.PayloadHasEngaged = entity.HasEngaged.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasEngaged != nil {
+		entity.PayloadHasEngaged = entity.HasEngaged.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.associations.engaged-in-terrorism", entity)
 }
 
@@ -2116,8 +2166,12 @@ func (entity *LegalAssociationsMembershipOverthrow) Unmarshal(raw []byte) error 
 
 // Marshal to payload structure
 func (entity *LegalAssociationsMembershipOverthrow) Marshal() Payload {
-	entity.PayloadHasOverthrow = entity.HasOverthrow.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasOverthrow != nil {
+		entity.PayloadHasOverthrow = entity.HasOverthrow.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.associations.membership-overthrow", entity)
 }
 
@@ -2278,8 +2332,12 @@ func (entity *LegalAssociationsMembershipViolence) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *LegalAssociationsMembershipViolence) Marshal() Payload {
-	entity.PayloadHasViolence = entity.HasViolence.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasViolence != nil {
+		entity.PayloadHasViolence = entity.HasViolence.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.associations.membership-violence-or-force", entity)
 }
 
@@ -2440,8 +2498,12 @@ func (entity *LegalAssociationsTerrorismAssociation) Unmarshal(raw []byte) error
 
 // Marshal to payload structure
 func (entity *LegalAssociationsTerrorismAssociation) Marshal() Payload {
-	entity.PayloadHasTerrorism = entity.HasTerrorism.Marshal()
-	entity.PayloadExplanation = entity.Explanation.Marshal()
+	if entity.HasTerrorism != nil {
+		entity.PayloadHasTerrorism = entity.HasTerrorism.Marshal()
+	}
+	if entity.Explanation != nil {
+		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
 	return MarshalPayloadEntity("legal.associations.terrorism-association", entity)
 }
 
@@ -2602,8 +2664,12 @@ func (entity *LegalAssociationsTerroristOrganization) Unmarshal(raw []byte) erro
 
 // Marshal to payload structure
 func (entity *LegalAssociationsTerroristOrganization) Marshal() Payload {
-	entity.PayloadHasTerrorist = entity.HasTerrorist.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasTerrorist != nil {
+		entity.PayloadHasTerrorist = entity.HasTerrorist.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("legal.associations.terrorism-organization", entity)
 }
 

@@ -20,7 +20,6 @@ export default class Support extends SubsectionElement {
     this.props.onUpdate({
       HasForeignSupport: this.props.HasForeignSupport,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -28,15 +27,13 @@ export default class Support extends SubsectionElement {
   updateHasForeignSupport (values) {
     this.update({
       HasForeignSupport: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -68,9 +65,8 @@ export default class Support extends SubsectionElement {
                 />
 
         <Show when={this.props.HasForeignSupport.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={SupportValidator}
@@ -81,13 +77,13 @@ export default class Support extends SubsectionElement {
                      required={this.props.required}
                      scrollToBottom={this.props.scrollToBottom}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <SupportItem name="Item"
-                       bind={true}
-                       dispatch={this.props.dispatch}
-                       addressBooks={this.props.addressBooks}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <SupportItem name="Item"
+                         bind={true}
+                         dispatch={this.props.dispatch}
+                         addressBooks={this.props.addressBooks}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
+                         />
           </Accordion>
         </Show>
       </div>
@@ -98,8 +94,7 @@ export default class Support extends SubsectionElement {
 Support.defaultProps = {
   name: 'Support',
   HasForeignSupport: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

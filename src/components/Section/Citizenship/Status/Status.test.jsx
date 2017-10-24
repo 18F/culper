@@ -16,8 +16,8 @@ describe('The status component', () => {
     let updates = 0
     const expected = {
       name: 'status',
-      CitizenshipStatus: 'Citizen',
-      AbroadDocumentation: 'Other',
+      CitizenshipStatus: { value: 'Citizen' },
+      AbroadDocumentation: { value: 'Other' },
       BornOnMilitaryInstallation: { value: 'Yes' },
       onUpdate: (obj) => {
         updates++
@@ -32,15 +32,14 @@ describe('The status component', () => {
     let updates = 0
     const expected = {
       name: 'status',
-      CitizenshipStatus: 'ForeignBorn',
-      AbroadDocumentation: 'Other',
+      CitizenshipStatus: { value: 'ForeignBorn' },
+      AbroadDocumentation: { value: 'Other' },
       BornOnMilitaryInstallation: { value: 'Yes' },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Status {...expected} />)
-    component.find('.citizenship-status-foreignborn input').simulate('change')
     component.find('.citizenship-abroad-other input').simulate('change')
     component.find({ name: 'Explanation' }).simulate('change', { target: { value: 'explanation' } })
     component.find({ name: 'DocumentNumber' }).simulate('change', { target: { value: 'number' } })
@@ -52,25 +51,25 @@ describe('The status component', () => {
     component.find('.certificate-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })
     component.find('.born-on-military-installation .yes input').simulate('change')
     component.find({ name: 'MilitaryBase' }).simulate('change', { target: { value: 'base' } })
-    expect(updates).toBeGreaterThan(4)
+    expect(updates).toBe(11)
   })
 
   it('triggers updates for naturalized when changing values', () => {
     let updates = 0
     const expected = {
       name: 'status',
-      CitizenshipStatus: 'Naturalized',
+      CitizenshipStatus: { value: 'Naturalized' },
       HasAlienRegistration: { value: 'Yes' },
-      Basis: 'Other',
+      Basis: { value: 'Other' },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Status {...expected} />)
-    component.find('.citizenship-status-naturalized input').simulate('change')
     component.find('.entry-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.entry-location .city input').simulate('change', { target: { name: 'city', value: 'City name' } })
-    component.find('.prior-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
+    component.find('.prior-citizenship input').simulate('change', { target: { value: 'United States' } })
+    component.find('.prior-citizenship input').simulate('keydown', { keyCode: 13, target: { value: 'United States' } })
     component.find('.has-alien-registration .yes input').simulate('change')
     component.find({ name: 'AlienRegistrationNumber' }).simulate('change', { target: { value: 'number' } })
     component.find({ name: 'CertificateNumber' }).simulate('change', { target: { value: 'number' } })
@@ -80,21 +79,20 @@ describe('The status component', () => {
     component.find('.certificate-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })
     component.find('.citizenship-basis-individual input').simulate('change')
     component.find({ name: 'Explanation' }).simulate('change', { target: { value: 'explanation' } })
-    expect(updates).toBeGreaterThan(4)
+    expect(updates).toBe(12)
   })
 
   it('triggers updates for derived when changing values', () => {
     let updates = 0
     const expected = {
       name: 'status',
-      CitizenshipStatus: 'Derived',
-      Basis: 'Other',
+      CitizenshipStatus: { value: 'Derived' },
+      Basis: { value: 'Other' },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Status {...expected} />)
-    component.find('.citizenship-status-derived input').simulate('change')
     component.find({ name: 'AlienRegistrationNumber' }).simulate('change', { target: { value: 'number' } })
     component.find({ name: 'PermanentResidentCardNumber' }).simulate('change', { target: { value: 'number' } })
     component.find({ name: 'CertificateNumber' }).simulate('change', { target: { value: 'number' } })
@@ -102,33 +100,33 @@ describe('The status component', () => {
     component.find('.certificate-issued .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.citizenship-basis-individual input').simulate('change')
     component.find({ name: 'Explanation' }).simulate('change', { target: { value: 'explanation' } })
-    expect(updates).toBeGreaterThan(4)
+    expect(updates).toBe(7)
   })
 
   it('triggers updates for non-citizen when changing values', () => {
     let updates = 0
     const expected = {
       name: 'status',
-      CitizenshipStatus: 'NotCitizen',
-      DocumentType: 'Other',
+      CitizenshipStatus: { value: 'NotCitizen' },
+      DocumentType: { value: 'Other' },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Status {...expected} />)
-    component.find('.citizenship-status-notcitizen input').simulate('change')
-    component.find({ name: 'ResidenceStatus' }).simulate('change', { target: { value: 'status' } })
+    component.find('.residence-status input').simulate('change', { target: { value: 'status' } })
     component.find('.entry-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.entry-location .city input').simulate('change', { target: { name: 'city', value: 'City name' } })
-    component.find('.prior-citizenship input').simulate('change', { target: { name: 'country', value: 'United States' } })
+    component.find('.prior-citizenship input').simulate('change', { target: { value: 'United States' } })
+    component.find('.prior-citizenship input').simulate('keydown', { keyCode: 13, target: { value: 'United States' } })
     component.find('.alien-registration-expiration .day input').simulate('change')
-    component.find({ name: 'AlienRegistrationNumber' }).simulate('change', { target: { value: 'number' } })
+    component.find('.alien-registration-number input').simulate('change', { target: { value: 'number' } })
     component.find('.document-expiration .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.document-type-other input').simulate('change')
-    component.find({ name: 'Explanation' }).simulate('change', { target: { value: 'explanation' } })
-    component.find({ name: 'DocumentNumber' }).simulate('change', { target: { value: 'number' } })
+    component.find('.citizenship-document-type-explanation textarea').simulate('change', { target: { value: 'explanation' } })
+    component.find('.document-number input').simulate('change', { target: { value: 'number' } })
     component.find('.document-name .first input').simulate('change', { target: { name: 'first', value: 'The name' } })
     component.find('.document-issued .day input').simulate('change', { target: { name: 'day', value: '1' } })
-    expect(updates).toBeGreaterThan(4)
+    expect(updates).toBe(12)
   })
 })

@@ -20,7 +20,6 @@ export default class Contacts extends SubsectionElement {
     this.props.onUpdate({
       HasForeignContacts: this.props.HasForeignContacts,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -28,15 +27,13 @@ export default class Contacts extends SubsectionElement {
   updateHasForeignContacts (values) {
     this.update({
       HasForeignContacts: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -70,10 +67,9 @@ export default class Contacts extends SubsectionElement {
           {i18n.m('foreign.contacts.para.includes')}
         </Branch>
         <Show when={this.props.HasForeignContacts.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={ForeignNationalValidator}
@@ -84,13 +80,13 @@ export default class Contacts extends SubsectionElement {
                      appendLabel={i18n.t('foreign.contacts.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-        <ForeignNational name="Item"
-                         bind={true}
-                         addressBooks={this.props.addressBooks}
-                         dispatch={this.props.dispatch}
-                         bind={true}
-                         required={this.props.required}
-                         scrollIntoView={this.props.scrollIntoView} />
+            <ForeignNational name="Item"
+                             bind={true}
+                             addressBooks={this.props.addressBooks}
+                             dispatch={this.props.dispatch}
+                             bind={true}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -100,8 +96,7 @@ export default class Contacts extends SubsectionElement {
 
 Contacts.defaultProps = {
   HasForeignContacts: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

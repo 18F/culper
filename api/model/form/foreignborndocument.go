@@ -73,11 +73,21 @@ func (entity *ForeignBornDocument) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ForeignBornDocument) Marshal() Payload {
-	entity.PayloadDocumentType = entity.DocumentType.Marshal()
-	entity.PayloadOtherExplanation = entity.OtherExplanation.Marshal()
-	entity.PayloadDocumentNumber = entity.DocumentNumber.Marshal()
-	entity.PayloadDocumentExpiration = entity.DocumentExpiration.Marshal()
-	entity.PayloadDocumentExpirationNotApplicable = entity.DocumentExpirationNotApplicable.Marshal()
+	if entity.DocumentType != nil {
+		entity.PayloadDocumentType = entity.DocumentType.Marshal()
+	}
+	if entity.OtherExplanation != nil {
+		entity.PayloadOtherExplanation = entity.OtherExplanation.Marshal()
+	}
+	if entity.DocumentNumber != nil {
+		entity.PayloadDocumentNumber = entity.DocumentNumber.Marshal()
+	}
+	if entity.DocumentExpiration != nil {
+		entity.PayloadDocumentExpiration = entity.DocumentExpiration.Marshal()
+	}
+	if entity.DocumentExpirationNotApplicable != nil {
+		entity.PayloadDocumentExpirationNotApplicable = entity.DocumentExpirationNotApplicable.Marshal()
+	}
 	return MarshalPayloadEntity("foreignborndocument", entity)
 }
 

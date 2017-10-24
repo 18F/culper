@@ -1,30 +1,32 @@
 import * as form from '../form'
 
 export const relationshipsCohabitants = (data = {}) => {
-  const items = (data.CohabitantList || []).map(x => {
+  const items = ((data.CohabitantList || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Name: form.name(x.Item.Name),
-        Birthdate: form.datecontrol(x.Item.Birthdate),
-        BirthPlace: form.location(x.Item.BirthPlace),
-        ForeignBornDocument: form.foreignborndocument(x.Item.ForeignBornDocument),
-        SSN: form.ssn(x.Item.SSN),
-        OtherNames: form.collection((x.Item.OtherNames || []).map(y => {
+        Name: form.name(xitem.Name),
+        Birthdate: form.datecontrol(xitem.Birthdate),
+        BirthPlace: form.location(xitem.BirthPlace),
+        ForeignBornDocument: form.foreignborndocument(xitem.ForeignBornDocument),
+        SSN: form.ssn(xitem.SSN),
+        OtherNames: form.collection(((xitem.OtherNames || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              Name: form.name(y.Item.Name),
-              MaidenName: form.branch(y.Item.MaidenName),
-              DatesUsed: form.daterange(y.Item.DatesUsed)
+              Name: form.name(yitem.Name),
+              MaidenName: form.branch(yitem.MaidenName),
+              DatesUsed: form.daterange(yitem.DatesUsed)
             }
           }
         })),
-        Citizenship: form.country(x.Item.Citizenship),
-        CohabitationBegan: form.datecontrol(x.Item.CohabitationBegan)
+        Citizenship: form.country(xitem.Citizenship),
+        CohabitationBegan: form.datecontrol(xitem.CohabitationBegan)
       }
     }
   })
   return {
     HasCohabitant: form.branch(data.HasCohabitant),
-    CohabitantList: form.collection(items, data.CohabitantListBranch)
+    CohabitantList: form.collection(items, (data.CohabitantList || {}).branch)
   }
 }

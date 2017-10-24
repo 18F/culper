@@ -42,7 +42,9 @@ describe('The foreign activities support component', () => {
     const expected = {
       name: 'foreign-activities-support',
       HasForeignSupport: { value: 'Yes' },
-      List: [{}],
+      List: {
+        items: [{}]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Support {...expected} />)

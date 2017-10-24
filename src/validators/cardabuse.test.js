@@ -211,64 +211,72 @@ describe('taxes component validation', function () {
       {
         state: {
           HasCardAbuse: { value: 'No' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
           HasCardAbuse: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasCardAbuse: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasCardAbuse: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Agency: {
-                  value: 'IRS'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016'),
-                  present: false
-                },
-                Reason: {
-                  value: 'Completely forgot'
-                },
-                Amount: {
-                  value: '20000'
-                },
-                Description: {
-                  value: 'The description'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Agency: {
+                    value: 'IRS'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016'),
+                    present: false
+                  },
+                  Reason: {
+                    value: 'Completely forgot'
+                  },
+                  Amount: {
+                    value: '20000'
+                  },
+                  Description: {
+                    value: 'The description'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

@@ -6,77 +6,83 @@ describe('Marital validation', function () {
     const tests = [
       {
         state: {
-          DivorcedList: [],
-          DivorcedListBranch: 'No'
+          DivorcedList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          DivorcedList: [{Divorce: {}}],
-          DivorcedListBranch: 'No'
+          DivorcedList: {
+            branch: { value: 'No' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          DivorcedList: [{
-            Divorce: {
-              Status: 'Widowed',
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              DateDivorced: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              Birthdate: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              BirthPlace: {
-                country: { value: 'United States' },
-                city: 'Arlington',
-                county: 'Arlington',
-                state: 'VA',
-                layout: Location.BIRTHPLACE
-              },
-              Telephone: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                type: 'Domestic',
-                timeOfDay: 'Both',
-                extension: ''
-              },
-              Recognized: {
-                day: '1',
-                month: '1',
-                year: '2016',
-                date: new Date('1/1/2016')
-              },
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
+          DivorcedList: {
+            branch: { value: 'No' },
+            items: [{
+              Item: {
+                Status: 'Widowed',
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
+                },
+                DateDivorced: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Birthdate: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                BirthPlace: {
+                  country: { value: 'United States' },
+                  city: 'Arlington',
+                  county: 'Arlington',
+                  state: 'VA',
+                  layout: Location.BIRTHPLACE
+                },
+                Telephone: {
+                  noNumber: '',
+                  number: '7031112222',
+                  numberType: 'Home',
+                  type: 'Domestic',
+                  timeOfDay: 'Both',
+                  extension: ''
+                },
+                Recognized: {
+                  day: '1',
+                  month: '1',
+                  year: '2016',
+                  date: new Date('1/1/2016')
+                },
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                }
               }
-            }
-          }],
-          DivorcedListBranch: 'No'
+            }]
+          }
         },
         expected: true
       }
@@ -133,16 +139,20 @@ describe('Marital validation', function () {
       {
         state: {
           Status: 'Annulled',
-          DivorcedList: [{Divorce: {}}],
-          DivorcedListBranch: ''
+          DivorcedList: {
+            branch: { value: '' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           Status: 'InCivilUnion',
-          DivorcedList: [{Divorce: {}}],
-          DivorcedListBranch: '',
+          DivorcedList: {
+            branch: { value: '' },
+            items: [{Item: {}}]
+          },
           CivilUnion: {
             Name: {
               first: 'Foo',

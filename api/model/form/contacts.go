@@ -36,7 +36,9 @@ func (entity *Contacts) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Contacts) Marshal() Payload {
-	entity.PayloadList = entity.List.Marshal()
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("contacts", entity)
 }
 

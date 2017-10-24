@@ -209,48 +209,54 @@ describe('Legal investigations history component validation', function () {
       {
         state: {
           HasHistory: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasHistory: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasHistory: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Agency: {},
-                AgencyNotApplicable: {
-                  applicable: false
-                },
-                Completed: {},
-                CompletedNotApplicable: {
-                  applicable: false
-                },
-                Issued: {
-                  value: 'Some other agency'
-                },
-                Granted: {},
-                GrantedNotApplicable: {
-                  applicable: false
-                },
-                Clearance: {},
-                ClearanceNotApplicable: {
-                  applicable: false
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Agency: {},
+                  AgencyNotApplicable: {
+                    applicable: false
+                  },
+                  Completed: {},
+                  CompletedNotApplicable: {
+                    applicable: false
+                  },
+                  Issued: {
+                    value: 'Some other agency'
+                  },
+                  Granted: {},
+                  GrantedNotApplicable: {
+                    applicable: false
+                  },
+                  Clearance: {},
+                  ClearanceNotApplicable: {
+                    applicable: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

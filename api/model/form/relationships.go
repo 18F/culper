@@ -50,9 +50,15 @@ func (entity *RelationshipsMarital) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *RelationshipsMarital) Marshal() Payload {
-	entity.PayloadStatus = entity.Status.Marshal()
-	entity.PayloadCivilUnion = entity.CivilUnion.Items
-	entity.PayloadDivorcedList = entity.DivorcedList.Marshal()
+	if entity.Status != nil {
+		entity.PayloadStatus = entity.Status.Marshal()
+	}
+	if entity.CivilUnion != nil {
+		entity.PayloadCivilUnion = entity.CivilUnion.Items
+	}
+	if entity.DivorcedList != nil {
+		entity.PayloadDivorcedList = entity.DivorcedList.Marshal()
+	}
 	return MarshalPayloadEntity("relationships.status.marital", entity)
 }
 
@@ -304,8 +310,12 @@ func (entity *RelationshipsCohabitants) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *RelationshipsCohabitants) Marshal() Payload {
-	entity.PayloadHasCohabitant = entity.HasCohabitant.Marshal()
-	entity.PayloadCohabitantList = entity.CohabitantList.Marshal()
+	if entity.HasCohabitant != nil {
+		entity.PayloadHasCohabitant = entity.HasCohabitant.Marshal()
+	}
+	if entity.CohabitantList != nil {
+		entity.PayloadCohabitantList = entity.CohabitantList.Marshal()
+	}
 	return MarshalPayloadEntity("relationships.status.cohabitant", entity)
 }
 
@@ -480,7 +490,9 @@ func (entity *RelationshipsPeople) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *RelationshipsPeople) Marshal() Payload {
-	entity.PayloadList = entity.List.Marshal()
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("relationships.people", entity)
 }
 
@@ -620,7 +632,9 @@ func (entity *RelationshipsRelatives) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *RelationshipsRelatives) Marshal() Payload {
-	entity.PayloadList = entity.List.Marshal()
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("relationships.relatives", entity)
 }
 

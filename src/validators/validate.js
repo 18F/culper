@@ -142,15 +142,15 @@ const validators = {
     return new logic.EducationValidator(data).isValid()
   },
   'history.employment': (data) => {
-    return data.List.every(x => {
-      return data.ListBranch === 'No' && new logic.EmploymentValidator(x.Item).isValid()
+    return ((data.List || {}).items || []).every(x => {
+      return (data.List || {}).branch === 'No' && new logic.EmploymentValidator(x.Item).isValid()
     })
   },
   'history.federal': (data) => {
     return new logic.FederalServiceValidator(data).isValid()
   },
   'history.residence': (data) => {
-    return data.List.every(x => {
+    return ((data.List || {}).items || []).every(x => {
       return new logic.ResidenceValidator(x.Item, null).isValid()
     })
   },

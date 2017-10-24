@@ -91,26 +91,21 @@ export default class EmploymentValidator {
         return false
       }
 
-      for (let r of this.reasonLeft.Reasons) {
-        if (r.Has === 'No') {
-          continue
-        }
-
-        if (!r.Item) {
-          return false
-        }
-        if (!r.Item.Reason) {
-          return false
-        }
-
-        if (!validDateField(r.Item.Date)) {
-          return false
-        }
-
-        if (!validGenericTextfield(r.Item.Text)) {
-          return false
-        }
+      const branchValidator = new BranchCollection(this.reasonLeft.Reasons)
+      if (!branchValidator.validKeyValues()) {
+        return false
       }
+
+      if (branchValidator.hasNo()) {
+        return true
+      }
+
+      return branchValidator.each(item => {
+        return !!item.Item &&
+          item.Item.Reason &&
+          validDateField(item.Item.Date) &&
+          validGenericTextfield(item.Item.Text)
+      })
     }
 
     return true
@@ -135,18 +130,20 @@ export default class EmploymentValidator {
         return false
       }
 
-      for (let r of this.reprimand.Reasons) {
-        if (r.Has === 'No') {
+      for (let r of (this.reprimand.Reasons.items || [])) {
+        const item = r.Item || {}
+        const has = item.Has || {}
+        if (has.value === 'No') {
           continue
         }
-        if (!r.Item) {
+        if (!item) {
           return false
         }
-        if (!validGenericTextfield(r.Item.Text)) {
+        if (!validGenericTextfield(item.Text)) {
           return false
         }
 
-        if (!validGenericMonthYear(r.Item.Date)) {
+        if (!validGenericMonthYear(item.Date)) {
           return false
         }
       }

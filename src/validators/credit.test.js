@@ -169,72 +169,82 @@ describe('credit component validation', function () {
       {
         state: {
           HasCreditCounseling: { value: 'No' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
           HasCreditCounseling: { value: 'Yes' },
-          List: [{
-            Explanation: {
-              value: 'Completely forgot'
-            }
-          }],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{
+              Explanation: {
+                value: 'Completely forgot'
+              }
+            }]
+          }
         },
         expected: false
       },
       {
         state: {
           HasCreditCounseling: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasCreditCounseling: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasCreditCounseling: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Explanation: {
-                  value: 'Completely forgot'
-                },
-                Name: {
-                  value: 'The name'
-                },
-                Telephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  extension: '',
-                  type: 'Domestic'
-                },
-                Location: {
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  country: { value: 'United States' },
-                  layout: Location.CITY_STATE
-                },
-                Description: {
-                  value: 'The description'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Explanation: {
+                    value: 'Completely forgot'
+                  },
+                  Name: {
+                    value: 'The name'
+                  },
+                  Telephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    extension: '',
+                    type: 'Domestic'
+                  },
+                  Location: {
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    country: { value: 'United States' },
+                    layout: Location.CITY_STATE
+                  },
+                  Description: {
+                    value: 'The description'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

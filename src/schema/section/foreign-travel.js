@@ -1,33 +1,34 @@
 import * as form from '../form'
 
 export const foreignTravel = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Dates: form.daterange(x.Item.Dates),
-        Country: form.country(x.Item.Country),
-        Days: form.checkboxgroup(x.Item.Days),
-        Purpose: form.checkboxgroup(x.Item.Purpose),
-        Questioned: form.branch(x.Item.Questioned),
-        QuestionedExplanation: form.textarea(x.Item.QuestionedExplanation),
-        Encounter: form.branch(x.Item.Encounter),
-        EncounterExplanation: form.textarea(x.Item.EncounterExplanation),
-        Contacted: form.branch(x.Item.Contacted),
-        ContactedExplanation: form.textarea(x.Item.ContactedExplanation),
-        Counter: form.branch(x.Item.Counter),
-        CounterExplanation: form.textarea(x.Item.CounterExplanation),
-        Interest: form.branch(x.Item.Interest),
-        InterestExplanation: form.textarea(x.Item.InterestExplanation),
-        Sensitive: form.branch(x.Item.Sensitive),
-        SensitiveExplanation: form.textarea(x.Item.SensitiveExplanation),
-        Threatened: form.branch(x.Item.Threatened),
-        ThreatenedExplanation: form.textarea(x.Item.ThreatenedExplanation)
+        Dates: form.daterange(xitem.Dates),
+        Country: form.country(xitem.Country),
+        Days: form.checkboxgroup(xitem.Days),
+        Purpose: form.checkboxgroup(xitem.Purpose),
+        Questioned: form.branch(xitem.Questioned),
+        QuestionedExplanation: form.textarea(xitem.QuestionedExplanation),
+        Encounter: form.branch(xitem.Encounter),
+        EncounterExplanation: form.textarea(xitem.EncounterExplanation),
+        Contacted: form.branch(xitem.Contacted),
+        ContactedExplanation: form.textarea(xitem.ContactedExplanation),
+        Counter: form.branch(xitem.Counter),
+        CounterExplanation: form.textarea(xitem.CounterExplanation),
+        Interest: form.branch(xitem.Interest),
+        InterestExplanation: form.textarea(xitem.InterestExplanation),
+        Sensitive: form.branch(xitem.Sensitive),
+        SensitiveExplanation: form.textarea(xitem.SensitiveExplanation),
+        Threatened: form.branch(xitem.Threatened),
+        ThreatenedExplanation: form.textarea(xitem.ThreatenedExplanation)
       }
     }
   })
   return {
     HasForeignTravelOutside: form.branch(data.HasForeignTravelOutside),
     HasForeignTravelOfficial: form.branch(data.HasForeignTravelOfficial),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

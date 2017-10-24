@@ -1,19 +1,20 @@
 import * as form from '../form'
 
 export const foreignBusinessFamily = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Name: form.name(x.Item.Name),
-        Agency: form.text(x.Item.Agency),
-        Country: form.country(x.Item.Country),
-        Date: form.datecontrol(x.Item.Date),
-        Circumstance: form.textarea(x.Item.Circumstance)
+        Name: form.name(xitem.Name),
+        Agency: form.text(xitem.Agency),
+        Country: form.country(xitem.Country),
+        Date: form.datecontrol(xitem.Date),
+        Circumstance: form.textarea(xitem.Circumstance)
       }
     }
   })
   return {
     HasForeignFamily: form.branch(data.HasForeignFamily),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

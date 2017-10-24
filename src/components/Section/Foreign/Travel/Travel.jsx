@@ -20,7 +20,6 @@ export default class Travel extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignTravelOutside: this.props.HasForeignTravelOutside,
       HasForeignTravelOfficial: this.props.HasForeignTravelOfficial,
       ...queue
@@ -41,8 +40,7 @@ export default class Travel extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -89,10 +87,9 @@ export default class Travel extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignTravelOutside.value === 'Yes' && this.props.HasForeignTravelOfficial.value === 'No'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={TravelValidator}
@@ -114,8 +111,7 @@ Travel.defaultProps = {
   name: 'Travel',
   HasForeignTravelOutside: {},
   HasForeignTravelOfficial: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

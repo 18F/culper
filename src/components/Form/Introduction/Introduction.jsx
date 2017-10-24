@@ -16,7 +16,7 @@ export class Introduction extends React.Component {
 
   updateBranch (values) {
     if (values.value === 'No') {
-      this.props.dispatch(updateApplication('Settings', 'acceptedTerms', ''))
+      this.props.dispatch(updateApplication('Settings', 'acceptedTerms', { value: '' }))
       this.props.dispatch(logout())
       if (window && window.location) {
         window.location = window.location.pathname
@@ -29,10 +29,11 @@ export class Introduction extends React.Component {
 
   render () {
     const klass = `introduction-modal ${this.props.forceOpen ? 'closeable' : ''}`.trim()
+    const accepted = (this.props.settings.acceptedTerms || {}).value === 'Yes'
     return (
       <div className={klass}>
         <Modal className="introduction-content"
-               show={this.props.settings.acceptedTerms !== 'Yes' || this.props.forceOpen}
+               show={!accepted || this.props.forceOpen}
                closeable={this.props.forceOpen}
                onDismiss={this.props.onDismiss}>
           <div>

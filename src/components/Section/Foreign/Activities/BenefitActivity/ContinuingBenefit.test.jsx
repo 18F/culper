@@ -28,7 +28,7 @@ describe('The ContinuingBenefit component', () => {
   it('Performs an other frequency update', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const frequency = 'Other'
+    const frequency = { value: 'Other' }
     const component = mount(<ContinuingBenefit onUpdate={onUpdate} Frequency={frequency} />)
     expect(component.find('.continuing-benefit').length).toBe(1)
     component.find('textarea[name="OtherFrequency"]').simulate('change')

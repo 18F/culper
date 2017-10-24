@@ -1,22 +1,23 @@
 import * as form from '../form'
 
 export const substanceDrugUsage = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        DrugType: form.checkbox(x.Item.DrugType),
-        FirstUse: form.datecontrol(x.Item.FirstUse),
-        RecentUse: form.datecontrol(x.Item.RecentUse),
-        NatureOfUse: form.textarea(x.Item.NatureOfUse),
-        UseWhileEmployed: form.branch(x.Item.UseWhileEmployed),
-        UseWithClearance: form.branch(x.Item.UseWithClearance),
-        UseInFuture: form.branch(x.Item.UseInFuture),
-        Explanation: form.textarea(x.Item.Explanation)
+        DrugType: form.checkbox(xitem.DrugType),
+        FirstUse: form.datecontrol(xitem.FirstUse),
+        RecentUse: form.datecontrol(xitem.RecentUse),
+        NatureOfUse: form.textarea(xitem.NatureOfUse),
+        UseWhileEmployed: form.branch(xitem.UseWhileEmployed),
+        UseWithClearance: form.branch(xitem.UseWithClearance),
+        UseInFuture: form.branch(xitem.UseInFuture),
+        Explanation: form.textarea(xitem.Explanation)
       }
     }
   })
   return {
     UsedDrugs: form.branch(data.UsedDrugs),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

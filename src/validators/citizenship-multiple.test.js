@@ -214,49 +214,53 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: [
-            {
-              Item: {
+          Citizenships: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                }
               }
-            }
-          ],
-          CitizenshipsBranch: 'No'
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: [
-            {
-              Item: {
-                Country: {
-                  value: 'United States'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          Citizenships: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Country: {
+                    value: 'United States'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                How: {
-                  value: 'Birth'
-                },
-                Renounced: { value: 'Yes' },
-                RenouncedExplanation: {
-                  value: 'explanation'
-                },
-                Current: { value: 'Yes' },
-                CurrentExplanation: {
-                  value: 'explanation'
+                  How: {
+                    value: 'Birth'
+                  },
+                  Renounced: { value: 'Yes' },
+                  RenouncedExplanation: {
+                    value: 'explanation'
+                  },
+                  Current: { value: 'Yes' },
+                  CurrentExplanation: {
+                    value: 'explanation'
+                  }
                 }
               }
-            }
-          ],
-          CitizenshipsBranch: 'No'
+            ]
+          }
         },
         expected: true
       }
@@ -270,44 +274,48 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: [{}],
-          CitizenshipsBranch: ''
+          Citizenships: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: [
-            {
-              Item: {
-                Country: {
-                  value: 'United States'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          Citizenships: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Country: {
+                    value: 'United States'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: true
                   },
-                  present: true
-                },
-                How: {
-                  value: 'Birth'
-                },
-                Renounced: { value: 'Yes' },
-                RenouncedExplanation: {
-                  value: 'explanation'
-                },
-                Current: { value: 'Yes' },
-                CurrentExplanation: {
-                  value: 'explanation'
+                  How: {
+                    value: 'Birth'
+                  },
+                  Renounced: { value: 'Yes' },
+                  RenouncedExplanation: {
+                    value: 'explanation'
+                  },
+                  Current: { value: 'Yes' },
+                  CurrentExplanation: {
+                    value: 'explanation'
+                  }
                 }
               }
-            }
-          ],
-          CitizenshipsBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

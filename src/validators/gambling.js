@@ -1,10 +1,10 @@
 import DateRangeValidator from './daterange'
+import { validAccordion } from './helpers'
 
 export default class GamblingValidator {
   constructor (data) {
     this.hasGamblingDebt = (data.HasGamblingDebt || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validHasGamblingDebt () {
@@ -27,21 +27,9 @@ export default class GamblingValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      if (!new GamblingItemValidator(item.Item).isValid()) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new GamblingItemValidator(item).isValid()
+    })
   }
 
   /**

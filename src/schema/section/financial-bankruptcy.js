@@ -1,27 +1,28 @@
 import * as form from '../form'
 
 export const financialBankruptcy = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        PetitionType: form.radio(x.Item.PetitionType),
-        CourtAddress: form.location(x.Item.CourtAddress),
-        CourtInvolved: form.text(x.Item.CourtInvolved),
-        CourtNumber: form.text(x.Item.CourtNumber),
-        NameDebt: form.name(x.Item.NameDebt),
-        TotalAmount: form.number(x.Item.TotalAmount),
-        DateFiled: form.datecontrol(x.Item.DateFiled),
-        DateDischarged: form.datecontrol(x.Item.DateDischarged),
-        DateDischargedNotApplicable: form.notapplicable(x.Item.DateDischargedNotApplicable),
-        HasDischargeExplanation: form.branch(x.Item.HasDischargeExplanation),
-        DischargeExplanation: form.textarea(x.Item.DischargeExplanation),
-        Trustee: form.text(x.Item.Trustee),
-        TrusteeAddress: form.location(x.Item.TrusteeAddress)
+        PetitionType: form.radio(xitem.PetitionType),
+        CourtAddress: form.location(xitem.CourtAddress),
+        CourtInvolved: form.text(xitem.CourtInvolved),
+        CourtNumber: form.text(xitem.CourtNumber),
+        NameDebt: form.name(xitem.NameDebt),
+        TotalAmount: form.number(xitem.TotalAmount),
+        DateFiled: form.datecontrol(xitem.DateFiled),
+        DateDischarged: form.datecontrol(xitem.DateDischarged),
+        DateDischargedNotApplicable: form.notapplicable(xitem.DateDischargedNotApplicable),
+        HasDischargeExplanation: form.branch(xitem.HasDischargeExplanation),
+        DischargeExplanation: form.textarea(xitem.DischargeExplanation),
+        Trustee: form.text(xitem.Trustee),
+        TrusteeAddress: form.location(xitem.TrusteeAddress)
       }
     }
   })
   return {
     HasBankruptcy: form.branch(data.HasBankruptcy),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

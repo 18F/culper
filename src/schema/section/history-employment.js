@@ -1,42 +1,45 @@
 import * as form from '../form'
 
 export const historyEmployment = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        EmploymentActivity: form.employmentactivity(x.Item.EmploymentActivity),
-        Dates: form.daterange(x.Item.Dates),
-        Employment: form.text(x.Item.Employment),
-        Status: form.radio(x.Item.Status),
-        Title: form.text(x.Item.Title),
-        DutyStation: form.text(x.Item.DutyStation),
-        Address: form.location(x.Item.Address),
-        Additional: form.collection((x.Item.Additional || []).map(y => {
+        EmploymentActivity: form.employmentactivity(xitem.EmploymentActivity),
+        Dates: form.daterange(xitem.Dates),
+        Employment: form.text(xitem.Employment),
+        Status: form.radio(xitem.Status),
+        Title: form.text(xitem.Title),
+        DutyStation: form.text(xitem.DutyStation),
+        Address: form.location(xitem.Address),
+        Additional: form.collection(((xitem.Additional || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              Position: form.text(y.Item.Position),
-              Supervisor: form.text(y.Item.Supervisor),
-              DatesEmployed: form.daterange(y.Item.DatesEmployed)
+              Position: form.text(yitem.Position),
+              Supervisor: form.text(yitem.Supervisor),
+              DatesEmployed: form.daterange(yitem.DatesEmployed)
             }
           }
         })),
-        Telephone: form.telephone(x.Item.Telephone),
-        PhysicalAddress: form.physicaladdress(x.Item.PhysicalAddress),
-        ReasonLeft: form.reasonleft(x.Item.ReasonLeft),
-        Reprimand: form.collection((x.Item.Reprimand || []).map(y => {
+        Telephone: form.telephone(xitem.Telephone),
+        PhysicalAddress: form.physicaladdress(xitem.PhysicalAddress),
+        ReasonLeft: form.reasonleft(xitem.ReasonLeft),
+        Reprimand: form.collection(((xitem.Reprimand || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              Text: form.textarea(y.Item.Text),
-              Date: form.datecontrol(y.Item.Date)
+              Text: form.textarea(yitem.Text),
+              Date: form.datecontrol(yitem.Date)
             }
           }
         })),
-        Supervisor: form.supervisor(x.Item.Supervisor),
-        Reference: form.reference(x.Item.Reference)
+        Supervisor: form.supervisor(xitem.Supervisor),
+        Reference: form.reference(xitem.Reference)
       }
     }
   })
   return {
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

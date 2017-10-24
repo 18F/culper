@@ -110,49 +110,55 @@ describe('Legal technology manipulating component validation', function () {
       {
         state: {
           HasManipulating: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasManipulating: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasManipulating: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Date: {
-                  date: new Date('1/1/2010'),
-                  day: '1',
-                  month: '1',
-                  year: '2010'
-                },
-                Incident: {
-                  value: 'this is an incident'
-                },
-                Location: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Action: {
-                  value: 'this is an action'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2010'),
+                    day: '1',
+                    month: '1',
+                    year: '2010'
+                  },
+                  Incident: {
+                    value: 'this is an incident'
+                  },
+                  Location: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Action: {
+                    value: 'this is an action'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

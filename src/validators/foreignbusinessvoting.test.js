@@ -104,44 +104,50 @@ describe('Foreign business voting component validation', function () {
       {
         state: {
           HasForeignVoting: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignVoting: { value: 'Yes' },
-          List: [{}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignVoting: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Country: {
-                  value: 'Germany'
-                },
-                Reason: {
-                  value: 'this is the reason'
-                },
-                Eligibility: {
-                  value: 'this is the eligibility'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Reason: {
+                    value: 'this is the reason'
+                  },
+                  Eligibility: {
+                    value: 'this is the eligibility'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

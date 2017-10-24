@@ -1,6 +1,6 @@
 import TreatmentValidator from './treatment'
 import DiagnosisValidator from './diagnosis'
-import { validBranch } from './helpers'
+import { validAccordion, validBranch } from './helpers'
 
 export default class DiagnosesValidator {
   constructor (data = {}) {
@@ -8,9 +8,7 @@ export default class DiagnosesValidator {
     this.didNotConsult = (data.DidNotConsult || {}).value
     this.inTreatment = (data.InTreatment || {}).value
     this.diagnosisList = data.DiagnosisList
-    this.diagnosisListBranch = data.DiagnosisListBranch
     this.treatmentList = data.TreatmentList
-    this.treatmentListBranch = data.TreatmentListBranch
   }
 
   validDiagnosisList () {
@@ -18,21 +16,9 @@ export default class DiagnosesValidator {
       return true
     }
 
-    if (this.diagnosed === 'Yes' && this.diagnosisList.length === 0) {
-      return false
-    }
-
-    if (this.diagnosisListBranch !== 'No') {
-      return false
-    }
-
-    for (let item of this.diagnosisList) {
-      if (!new DiagnosisValidator(item.Item).isValid()) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.diagnosisList, (item) => {
+      return new DiagnosisValidator(item).isValid()
+    })
   }
 
   validTreatmentList () {
@@ -40,21 +26,9 @@ export default class DiagnosesValidator {
       return true
     }
 
-    if (this.inTreatment === 'Yes' && this.treatmentList.length === 0) {
-      return false
-    }
-
-    if (this.treatmentListBranch !== 'No') {
-      return false
-    }
-
-    for (let item of this.treatmentList) {
-      if (!new TreatmentValidator(item.Item).isValid()) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.treatmentList, (item) => {
+      return new TreatmentValidator(item).isValid()
+    })
   }
 
   isValid () {

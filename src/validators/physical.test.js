@@ -47,19 +47,19 @@ describe('Physical attributes validation', function () {
     const tests = [
       {
         state: {
-          Weight: 0
+          Weight: { value: 0 }
         },
         expected: false
       },
       {
         state: {
-          Weight: 6
+          Weight: { value: 6 }
         },
         expected: false
       },
       {
         state: {
-          Weight: 10
+          Weight: { value: 10 }
         },
         expected: true
       }
@@ -74,13 +74,13 @@ describe('Physical attributes validation', function () {
     const tests = [
       {
         state: {
-          HairColor: ''
+          HairColor: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HairColor: 'Brown'
+          HairColor: { value: 'Brown' }
         },
         expected: true
       },
@@ -92,7 +92,7 @@ describe('Physical attributes validation', function () {
       },
       {
         state: {
-          HairColor: 'SomethingDifferent'
+          HairColor: { value: 'SomethingDifferent' }
         },
         expected: false
       }
@@ -107,13 +107,13 @@ describe('Physical attributes validation', function () {
     const tests = [
       {
         state: {
-          EyeColor: 'Black'
+          EyeColor: { value: 'Black' }
         },
         expected: true
       },
       {
         state: {
-          EyeColor: ''
+          EyeColor: { value: '' }
         },
         expected: false
       },
@@ -125,7 +125,7 @@ describe('Physical attributes validation', function () {
       },
       {
         state: {
-          EyeColor: 'SomethingDifferent'
+          EyeColor: { value: 'SomethingDifferent' }
         },
         expected: false
       }
@@ -140,13 +140,13 @@ describe('Physical attributes validation', function () {
     const tests = [
       {
         state: {
-          Sex: 'female'
+          Sex: { value: 'female' }
         },
         expected: true
       },
       {
         state: {
-          Sex: 'male'
+          Sex: { value: 'male' }
         },
         expected: true
       },
@@ -171,10 +171,10 @@ describe('Physical attributes validation', function () {
             feet: 5,
             inches: 0
           },
-          Weight: 100,
-          HairColor: 'Brown',
-          EyeColor: 'Black',
-          Sex: 'female'
+          Weight: { value: 100 },
+          HairColor: { value: 'Brown' },
+          EyeColor: { value: 'Black' },
+          Sex: { value: 'female' }
         },
         expected: true
       },
@@ -184,10 +184,10 @@ describe('Physical attributes validation', function () {
             feet: 5,
             inches: 0
           },
-          Weight: -1,
-          HairColor: 'Brown',
-          EyeColor: 'Black',
-          Sex: 'female'
+          Weight: { value: -1 },
+          HairColor: { value: 'Brown' },
+          EyeColor: { value: 'Black' },
+          Sex: { value: 'female' }
         },
         expected: false
       }

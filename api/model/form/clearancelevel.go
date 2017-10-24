@@ -46,8 +46,12 @@ func (entity *ClearanceLevel) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *ClearanceLevel) Marshal() Payload {
-	entity.PayloadLevel = entity.Level.Marshal()
-	entity.PayloadExplanation = entity.Explanation.Marshal()
+	if entity.Level != nil {
+		entity.PayloadLevel = entity.Level.Marshal()
+	}
+	if entity.Explanation != nil {
+		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
 	return MarshalPayloadEntity("clearancelevel", entity)
 }
 

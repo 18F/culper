@@ -1,11 +1,10 @@
 import LocationValidator from './location'
-import { validDateField, validGenericTextfield } from './helpers'
+import { validAccordion, validDateField, validGenericTextfield } from './helpers'
 
 export default class CardAbuseValidator {
   constructor (data = {}) {
     this.hasCardAbuse = (data.HasCardAbuse || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validHasCardAbuse () {
@@ -25,21 +24,9 @@ export default class CardAbuseValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const row of this.list) {
-      if (new CardAbuseItemValidator(row.Item, null).isValid() === false) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new CardAbuseItemValidator(item).isValid()
+    })
   }
 
   isValid () {

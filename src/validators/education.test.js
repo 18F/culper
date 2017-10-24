@@ -380,44 +380,46 @@ describe('Education component validation', function () {
         state: {
           HasAttended: { value: 'Yes' },
           HasDegree10: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: {
-                  value: 'School name'
-                },
-                Reference: {
-                  FullNameNotApplicable: {
-                    applicable: false
-                  }
-                },
-                Type: 'High School',
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: 'School name'
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Reference: {
+                    FullNameNotApplicable: {
+                      applicable: false
+                    }
                   },
-                  present: false
-                },
-                Diplomas: [
-                  {
-                    Has: 'No',
-                    Diploma: null
-                  }
-                ]
+                  Type: 'High School',
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  },
+                  Diplomas: [
+                    {
+                      Has: 'No',
+                      Diploma: null
+                    }
+                  ]
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
@@ -425,40 +427,42 @@ describe('Education component validation', function () {
         state: {
           HasAttended: { value: 'Yes' },
           HasDegree10: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: {
-                  value: ''
-                },
-                Reference: null,
-                Type: 'High School',
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: ''
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Reference: null,
+                  Type: 'High School',
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
                   },
-                  present: false
-                },
-                Diplomas: [
-                  {
-                    Has: 'No',
-                    Diploma: null
-                  }
-                ]
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  },
+                  Diplomas: [
+                    {
+                      Has: 'No',
+                      Diploma: null
+                    }
+                  ]
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       }

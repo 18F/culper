@@ -45,8 +45,12 @@ func (entity *SubstanceDrugUsage) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugUsage) Marshal() Payload {
-	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.UsedDrugs != nil {
+		entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.drug.usage", entity)
 }
 
@@ -214,8 +218,12 @@ func (entity *SubstanceDrugPurchase) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugPurchase) Marshal() Payload {
-	entity.PayloadInvolved = entity.Involved.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.Involved != nil {
+		entity.PayloadInvolved = entity.Involved.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.drug.purchase", entity)
 }
 
@@ -383,8 +391,12 @@ func (entity *SubstanceDrugClearance) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugClearance) Marshal() Payload {
-	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.UsedDrugs != nil {
+		entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.drug.clearance", entity)
 }
 
@@ -552,8 +564,12 @@ func (entity *SubstanceDrugPublicSafety) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugPublicSafety) Marshal() Payload {
-	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.UsedDrugs != nil {
+		entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.drug.publicsafety", entity)
 }
 
@@ -721,8 +737,12 @@ func (entity *SubstanceDrugMisuse) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugMisuse) Marshal() Payload {
-	entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.UsedDrugs != nil {
+		entity.PayloadUsedDrugs = entity.UsedDrugs.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.drug.misuse", entity)
 }
 
@@ -890,8 +910,12 @@ func (entity *SubstanceDrugOrdered) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugOrdered) Marshal() Payload {
-	entity.PayloadInvolved = entity.Involved.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.Involved != nil {
+		entity.PayloadInvolved = entity.Involved.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.drug.ordered", entity)
 }
 
@@ -1059,8 +1083,12 @@ func (entity *SubstanceDrugVoluntary) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceDrugVoluntary) Marshal() Payload {
-	entity.PayloadInvolved = entity.Involved.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.Involved != nil {
+		entity.PayloadInvolved = entity.Involved.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.drug.voluntary", entity)
 }
 
@@ -1228,8 +1256,12 @@ func (entity *SubstanceAlcoholNegative) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceAlcoholNegative) Marshal() Payload {
-	entity.PayloadHasImpacts = entity.HasImpacts.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasImpacts != nil {
+		entity.PayloadHasImpacts = entity.HasImpacts.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.alcohol.negative", entity)
 }
 
@@ -1397,8 +1429,12 @@ func (entity *SubstanceAlcoholOrdered) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceAlcoholOrdered) Marshal() Payload {
-	entity.PayloadHasBeenOrdered = entity.HasBeenOrdered.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasBeenOrdered != nil {
+		entity.PayloadHasBeenOrdered = entity.HasBeenOrdered.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.alcohol.ordered", entity)
 }
 
@@ -1566,8 +1602,12 @@ func (entity *SubstanceAlcoholVoluntary) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceAlcoholVoluntary) Marshal() Payload {
-	entity.PayloadSoughtTreatment = entity.SoughtTreatment.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.SoughtTreatment != nil {
+		entity.PayloadSoughtTreatment = entity.SoughtTreatment.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.alcohol.voluntary", entity)
 }
 
@@ -1735,8 +1775,12 @@ func (entity *SubstanceAlcoholAdditional) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *SubstanceAlcoholAdditional) Marshal() Payload {
-	entity.PayloadReceivedTreatment = entity.ReceivedTreatment.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.ReceivedTreatment != nil {
+		entity.PayloadReceivedTreatment = entity.ReceivedTreatment.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("substance.alcohol.additional", entity)
 }
 

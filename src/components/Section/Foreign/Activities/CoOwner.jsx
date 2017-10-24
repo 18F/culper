@@ -53,7 +53,7 @@ export default class CoOwner extends ValidationElement {
       <div className="co-owner">
 
         <Field title={i18n.t(`foreign.${prefix}.heading.name`)}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}
                 onUpdate={this.updateName}
@@ -82,8 +82,8 @@ export default class CoOwner extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.countries`)}
-          help={`foreign.${prefix}.help.countries`}
-          scrollIntoView={this.props.scrollIntoView}>
+               help={`foreign.${prefix}.help.countries`}
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Countries"
                    {...this.props.Countries}
                    multiple={true}
@@ -94,7 +94,7 @@ export default class CoOwner extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.relationshipNature`)}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="RelationshipNature"
                     className="relationship-nature"
                     {...this.props.RelationshipNature}

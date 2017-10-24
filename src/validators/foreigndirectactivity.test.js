@@ -18,53 +18,59 @@ describe('Foreign Direct Activity validation', function () {
       {
         props: {
           HasInterests: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         props: {
           HasInterests: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                InterestTypes: ['Yourself'],
-                InterestType: {
-                  value: 'Some type'
-                },
-                Acquired: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                HowAcquired: {
-                  value: 'foo'
-                },
-                Cost: {
-                  value: '100'
-                },
-                Value: {
-                  value: '100'
-                },
-                Relinquished: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                ReqlinquishedNotApplicable: {
-                  applicable: true
-                },
-                Explanation: {
-                  value: 'Bar'
-                },
-                CoOwners: {
-                  List: [{ Has: 'No' }]
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  InterestTypes: ['Yourself'],
+                  InterestType: {
+                    value: 'Some type'
+                  },
+                  Acquired: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  HowAcquired: {
+                    value: 'foo'
+                  },
+                  Cost: {
+                    value: '100'
+                  },
+                  Value: {
+                    value: '100'
+                  },
+                  Relinquished: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  ReqlinquishedNotApplicable: {
+                    applicable: true
+                  },
+                  Explanation: {
+                    value: 'Bar'
+                  },
+                  CoOwners: {
+                    List: {
+                      items: [{ Item: { Has: { value: 'No' } } }]
+                    }
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

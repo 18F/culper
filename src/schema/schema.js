@@ -16,13 +16,13 @@ export const unschema = (data) => {
 
   // An array is a type of object so we check for this first
   if (data instanceof Array) {
-    let output = []
+    let outputArr = []
 
     for (let x = 0; x < data.length; x++) {
-      output[x] = unschema(data[x])
+      outputArr[x] = unschema(data[x])
     }
 
-    return output
+    return outputArr
   }
 
   // A date is a type of object so we check for this first
@@ -37,7 +37,7 @@ export const unschema = (data) => {
       return unschema(data.props)
     }
 
-    let output = {}
+    let outputObj = {}
 
     for (const property in data) {
       // When the property is not specific to this instance
@@ -46,10 +46,10 @@ export const unschema = (data) => {
         continue
       }
 
-      output[property] = unschema(data[property])
+      outputObj[property] = unschema(data[property])
     }
 
-    return output
+    return outputObj
   }
 
   // If not an object nor an array work with the raw value

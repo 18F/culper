@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validNotApplicable, validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
+import { validAccordion, validNotApplicable, validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
 import LocationValidator from './location'
 import NameValidator from './name'
 
@@ -8,7 +8,7 @@ export default class EducationValidator {
   constructor (state = {}, props = {}) {
     this.hasAttended = (state.HasAttended || {}).value
     this.hasDegree10 = (state.HasDegree10 || {}).value
-    this.list = state.List || []
+    this.list = state.List || {}
   }
 
   validAttendance () {
@@ -28,17 +28,9 @@ export default class EducationValidator {
       return true
     }
 
-    if (this.list && this.list.length === 0) {
-      return false
-    }
-
-    for (const edu of this.list) {
-      if (!new EducationItemValidator(edu.Item, null).isValid()) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new EducationItemValidator(item).isValid()
+    }, true)
   }
 
   isValid () {

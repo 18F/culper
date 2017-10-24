@@ -34,12 +34,14 @@ describe('The taxes component', () => {
     let updates = 0
     const expected = {
       name: 'taxes',
+      HasTaxes: { value: 'Yes' },
+      List: { branch: { value: 'Yes' }, items: [{}] },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Taxes {...expected} />)
-    component.find('.branch .yes input').simulate('change')
+    component.find('.branch .yes input').first().simulate('change')
     component.find('.failure-file input').simulate('change')
     component.find('.taxes-year input[type="text"]').simulate('change', { target: { value: '2000' } })
     component.find('.taxes-reason textarea').simulate('change', { target: { value: 'Reason for not filing' } })

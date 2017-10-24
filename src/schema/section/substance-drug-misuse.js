@@ -1,19 +1,20 @@
 import * as form from '../form'
 
 export const substanceDrugMisuse = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        PrescriptionName: form.text(x.Item.PrescriptionName),
-        InvolvementDates: form.daterange(x.Item.InvolvementDates),
-        Reason: form.textarea(x.Item.Reason),
-        UseWhileEmployed: form.branch(x.Item.UseWhileEmployed),
-        UseWithClearance: form.branch(x.Item.UseWithClearance)
+        PrescriptionName: form.text(xitem.PrescriptionName),
+        InvolvementDates: form.daterange(xitem.InvolvementDates),
+        Reason: form.textarea(xitem.Reason),
+        UseWhileEmployed: form.branch(xitem.UseWhileEmployed),
+        UseWithClearance: form.branch(xitem.UseWithClearance)
       }
     }
   })
   return {
     UsedDrugs: form.branch(data.UsedDrugs),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

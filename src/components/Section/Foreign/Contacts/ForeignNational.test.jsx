@@ -16,7 +16,7 @@ describe('The foreign national component', () => {
   it('display explanation if we have methods of "other"', () => {
     const expected = {
       name: 'foreign-national',
-      Methods: ['Other']
+      Methods: { value: ['Other'] }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.methods-explanation').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign national component', () => {
   it('display explanation if we have frequency of "other"', () => {
     const expected = {
       name: 'foreign-national',
-      Frequency: 'Other'
+      Frequency: { value: 'Other' }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.frequency-explanation').length).toBe(1)
@@ -34,7 +34,7 @@ describe('The foreign national component', () => {
   it('display explanation if we have relation of "other"', () => {
     const expected = {
       name: 'foreign-national',
-      Relationship: ['Other']
+      Relationship: { value: ['Other'] }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.relationship-explanation').length).toBe(1)
@@ -45,7 +45,7 @@ describe('The foreign national component', () => {
   it('display explanation if we have relation of "obligation"', () => {
     const expected = {
       name: 'foreign-national',
-      Relationship: ['Obligation']
+      Relationship: { value: ['Obligation'] }
     }
     const component = mount(<ForeignNational {...expected} />)
     expect(component.find('.relationship-explanation').length).toBe(1)
@@ -65,10 +65,12 @@ describe('The foreign national component', () => {
     const expected = {
       name: 'foreign-national',
       NameNotApplicable: { applicable: false },
-      Methods: ['Other'],
-      Frequency: 'Other',
-      Relationship: ['Other'],
-      Aliases: [{ Has: { value: 'No' } }],
+      Methods: { value: ['Other'] },
+      Frequency: { value: 'Other' },
+      Relationship: { value: ['Other'] },
+      Aliases: {
+        items: [{ Item: { Has: { value: 'No' } } }]
+      },
       HasAffiliations: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }

@@ -40,135 +40,145 @@ describe('Bankruptcy component validation', function () {
       {
         props: {
           HasBankruptcy: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         props: {
           HasBankruptcy: { value: 'No' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         props: {
           HasBankruptcy: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                PetitionType: 'Chapter7',
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                CourtInvolved: {
-                  value: 'Some Court'
-                },
-                CourtNumber: {
-                  value: 'C1234'
-                },
-                DateFiled: {
-                  month: 1,
-                  year: 2010
-                },
-                DateDischarged: {
-                  month: 1,
-                  year: 2012
-                },
-                NameDebt: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                TotalAmount: {
-                  value: 200
-                },
-                HasDischargeExplanation: { value: 'Yes' },
-                DischargeExplanation: {
-                  value: 'Something'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  PetitionType: 'Chapter7',
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  CourtInvolved: {
+                    value: 'Some Court'
+                  },
+                  CourtNumber: {
+                    value: 'C1234'
+                  },
+                  DateFiled: {
+                    month: 1,
+                    year: 2010
+                  },
+                  DateDischarged: {
+                    month: 1,
+                    year: 2012
+                  },
+                  NameDebt: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  TotalAmount: {
+                    value: 200
+                  },
+                  HasDischargeExplanation: { value: 'Yes' },
+                  DischargeExplanation: {
+                    value: 'Something'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         props: {
           HasBankruptcy: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                PetitionType: 'Chapter7',
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                CourtInvolved: {
-                  value: 'Some Court'
-                },
-                CourtNumber: {
-                  value: 'C1234'
-                },
-                DateFiled: {
-                  month: 1,
-                  year: 2010
-                },
-                DateDischargedNotApplicable: {
-                  applicable: false
-                },
-                NameDebt: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                TotalAmount: {
-                  value: 200
-                },
-                HasDischargeExplanation: { value: 'Yes' },
-                DischargeExplanation: {
-                  value: 'Something'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  PetitionType: 'Chapter7',
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  CourtInvolved: {
+                    value: 'Some Court'
+                  },
+                  CourtNumber: {
+                    value: 'C1234'
+                  },
+                  DateFiled: {
+                    month: 1,
+                    year: 2010
+                  },
+                  DateDischargedNotApplicable: {
+                    applicable: false
+                  },
+                  NameDebt: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  TotalAmount: {
+                    value: 200
+                  },
+                  HasDischargeExplanation: { value: 'Yes' },
+                  DischargeExplanation: {
+                    value: 'Something'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         props: {
           HasBankruptcy: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                PetitionType: 'Hello'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  PetitionType: 'Hello'
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       }

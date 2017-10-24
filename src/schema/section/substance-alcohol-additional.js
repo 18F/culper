@@ -1,23 +1,24 @@
 import * as form from '../form'
 
 export const substanceAlcoholAdditional = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        TreatmentProviderName: form.text(x.Item.TreatmentProviderName),
-        TreatmentProviderAddress: form.location(x.Item.TreatmentProviderAddress),
-        AgencyName: form.text(x.Item.AgencyName),
-        AgencyAddress: form.location(x.Item.AgencyAddress),
-        UseSameAddress: form.branch(x.Item.UseSameAddress),
-        TreatmentBeganDate: form.datecontrol(x.Item.TreatmentBeganDate),
-        TreatmentEndDate: form.datecontrol(x.Item.TreatmentEndDate),
-        CompletedTreatment: form.branch(x.Item.CompletedTreatment),
-        NoCompletedTreatmentExplanation: form.textarea(x.Item.NoCompletedTreatmentExplanation)
+        TreatmentProviderName: form.text(xitem.TreatmentProviderName),
+        TreatmentProviderAddress: form.location(xitem.TreatmentProviderAddress),
+        AgencyName: form.text(xitem.AgencyName),
+        AgencyAddress: form.location(xitem.AgencyAddress),
+        UseSameAddress: form.branch(xitem.UseSameAddress),
+        TreatmentBeganDate: form.datecontrol(xitem.TreatmentBeganDate),
+        TreatmentEndDate: form.datecontrol(xitem.TreatmentEndDate),
+        CompletedTreatment: form.branch(xitem.CompletedTreatment),
+        NoCompletedTreatmentExplanation: form.textarea(xitem.NoCompletedTreatmentExplanation)
       }
     }
   })
   return {
     ReceivedTreatment: form.branch(data.ReceivedTreatment),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

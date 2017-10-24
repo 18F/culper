@@ -1,18 +1,19 @@
 import * as form from '../form'
 
 export const legalTechnologyUnlawful = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Date: form.datecontrol(x.Item.Date),
-        Incident: form.textarea(x.Item.Incident),
-        Location: form.location(x.Item.Location),
-        Action: form.textarea(x.Item.Action)
+        Date: form.datecontrol(xitem.Date),
+        Incident: form.textarea(xitem.Incident),
+        Location: form.location(xitem.Location),
+        Action: form.textarea(xitem.Action)
       }
     }
   })
   return {
     HasUnlawful: form.branch(data.HasUnlawful),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

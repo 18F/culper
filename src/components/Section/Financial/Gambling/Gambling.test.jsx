@@ -39,10 +39,11 @@ describe('The gambling component', () => {
 
   it('selects yes and loads form', () => {
     const expected = {
-      name: 'gambling'
+      name: 'gambling',
+      HasGamblingDebt: { value: 'Yes' },
+      List: { branch: {}, items: [{}] }
     }
-    const component = mount(<Gambling name={expected.name} />)
-    component.find('.has-gambling-debt .yes input').simulate('change')
+    const component = mount(<Gambling {...expected} />)
     expect(component.find('.details').length).toBeGreaterThan(0)
   })
 
@@ -50,29 +51,28 @@ describe('The gambling component', () => {
     const expected = {
       name: 'gambling'
     }
-    const component = mount(<Gambling name={expected.name} />)
+    const component = mount(<Gambling {...expected} />)
     component.find('.has-gambling-debt .no input').simulate('change')
     expect(component.find('.details').length).toBe(0)
   })
 
   it('load data and add another gambling debt', () => {
+    let update = 0
     const expected = {
       name: 'gambling',
       List: gamblingData,
-      HasGamblingDebt: { value: '' },
-      onUpdate: () => {}
+      HasGamblingDebt: { value: 'Yes' },
+      onUpdate: () => { update++ }
     }
     const component = mount(<Gambling {...expected} />)
-    component.find('.has-gambling-debt .yes input').simulate('change')
-    expect(component.find('.details').length).toBeGreaterThan(0)
-
     component.find('.addendum .yes input').simulate('click')
-    expect(component.find('.row.open').length).toBe(0)
+    expect(update).toBe(1)
   })
 
   it('displays fields when "yes" is selected', () => {
     const expected = {
-      HasGamblingDebt: { value: 'Yes' }
+      HasGamblingDebt: { value: 'Yes' },
+      List: { branch: {}, items: [{}] }
     }
     const component = mount(<Gambling {...expected} />)
     expect(component.find('.losses').length).toEqual(1)
@@ -80,7 +80,8 @@ describe('The gambling component', () => {
 
   it('does not display any fields when "no" is selected', () => {
     const expected = {
-      HasGamblingDebt: { value: 'No' }
+      HasGamblingDebt: { value: 'No' },
+      List: { branch: {}, items: [{}] }
     }
     const component = mount(<Gambling {...expected} />)
     expect(component.find('.losses').length).toEqual(0)

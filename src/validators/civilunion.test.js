@@ -59,62 +59,78 @@ describe('CivilUnion validation', function () {
     const tests = [
       {
         state: {
-          OtherNames: []
+          OtherNames: {
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Yes',
-              Othername: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Othername: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  MaidenName: {
+                    value: 'No'
+                  },
+                  DatesUsed: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  }
+                }
               },
-              MaidenName: {
-                value: 'No'
-              },
-              DatesUsed: {
-                from: {
-                  date: new Date('1/1/2010')
-                },
-                to: {
-                  date: new Date('1/1/2016')
-                },
-                present: false
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
               }
-            },
-            {
-              Has: 'No'
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Nope'
-            }
-          ]
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Nope' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Yes'
-            }
-          ]
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       }

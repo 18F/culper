@@ -6,61 +6,32 @@ describe('Employment component validation', function () {
     const tests = [
       {
         state: {
-          List: [
-            {
-              type: 'Employment',
-              Item: {
-                EmploymentActivity: {
-                  value: 'FederalContractor'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            items: [
+              {
+                type: 'Employment',
+                Item: {
+                  EmploymentActivity: {
+                    value: 'FederalContractor'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                Employment: {
-                  value: 'SW'
-                },
-                Status: {
-                  value: 'Some status'
-                },
-                Title: {
-                  value: 'Dev'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                PhysicalAddress: {
-                  HasDifferentAddress: { value: 'Yes' },
-                  Address: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'Virginia',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
-                  }
-                },
-                Additional: {
-                  List: [{ Has: 'No' }]
-                },
-                Telephone: {
-                  noNumber: '',
-                  number: '2028675309',
-                  numberType: 'Cell',
-                  timeOfDay: 'Day',
-                  type: 'Domestic'
-                },
-                Supervisor: {
+                  Employment: {
+                    value: 'SW'
+                  },
+                  Status: {
+                    value: 'Some status'
+                  },
+                  Title: {
+                    value: 'Dev'
+                  },
                   Address: {
                     country: { value: 'United States' },
                     street: '1234 Some Rd',
@@ -69,77 +40,116 @@ describe('Employment component validation', function () {
                     zipcode: '22202',
                     layout: Location.ADDRESS
                   },
-                  Email: {
-                    value: 'foo@local.dev'
+                  PhysicalAddress: {
+                    HasDifferentAddress: { value: 'Yes' },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    }
                   },
-                  SupervisorName: {
-                    value: 'John Doe'
+                  Additional: {
+                    List: {
+                      items: [{ Item: { Has: { value: 'No' } } }]
+                    }
                   },
                   Telephone: {
                     noNumber: '',
-                    number: '2021112222',
+                    number: '2028675309',
                     numberType: 'Cell',
-                    type: 'Domestic',
-                    timeOfDay: 'Day'
+                    timeOfDay: 'Day',
+                    type: 'Domestic'
                   },
-                  Title: {
-                    value: 'The Foo'
+                  Supervisor: {
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Email: {
+                      value: 'foo@local.dev'
+                    },
+                    SupervisorName: {
+                      value: 'John Doe'
+                    },
+                    Telephone: {
+                      noNumber: '',
+                      number: '2021112222',
+                      numberType: 'Cell',
+                      type: 'Domestic',
+                      timeOfDay: 'Day'
+                    },
+                    Title: {
+                      value: 'The Foo'
+                    }
+                  },
+                  ReasonLeft: {
+                    Reasons: {
+                      items: [
+                        {
+                          Item: {
+                            Has: { value: 'No' },
+                            Reason: 'Fired',
+                            Date: {
+                              date: new Date('1/1/2016'),
+                              day: '1',
+                              month: '1',
+                              year: '2016'
+                            },
+                            Text: {
+                              value: 'Some excuse'
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  },
+                  Reprimand: {
+                    Reasons: {
+                      items: [
+                        {
+                          Item: {
+                            Has: { value: 'Yes' },
+                            Date: {
+                              date: new Date('1/1/2015'),
+                              month: '1',
+                              year: '2015'
+                            },
+                            Text: {
+                              value: 'Foo'
+                            }
+                          }
+                        }
+                      ]
+                    }
                   }
-                },
-                ReasonLeft: {
-                  Reasons: [
-                    {
-                      Has: 'Yes',
-                      Item: {
-                        Reason: 'Fired',
-                        Date: {
-                          date: new Date('1/1/2016'),
-                          day: '1',
-                          month: '1',
-                          year: '2016'
-                        },
-                        Text: {
-                          value: 'Some excuse'
-                        }
-                      }
-                    }
-                  ]
-                },
-                Reprimand: {
-                  Reasons: [
-                    {
-                      Has: 'Yes',
-                      Item: {
-                        Date: {
-                          date: new Date('1/1/2015'),
-                          month: '1',
-                          year: '2015'
-                        },
-                        Text: {
-                          value: 'Foo'
-                        }
-                      }
-                    }
-                  ]
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          List: [
-            {
-              type: 'Employment',
-              Item: {
-                EmploymentActivity: {
-                  value: 'Contractor'
+          List: {
+            items: [
+              {
+                type: 'Employment',
+                Item: {
+                  EmploymentActivity: {
+                    value: 'Contractor'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       }

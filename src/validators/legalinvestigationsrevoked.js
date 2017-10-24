@@ -1,10 +1,9 @@
-import { validGenericTextfield, validDateField } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalInvestigationsRevokedValidator {
   constructor (data = {}) {
     this.hasRevocations = (data.HasRevocations || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validList () {
@@ -12,19 +11,9 @@ export default class LegalInvestigationsRevokedValidator {
       return true
     }
 
-    if (this.hasRevocations === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new RevokedValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new RevokedValidator(item).isValid()
+    })
   }
 
   isValid () {

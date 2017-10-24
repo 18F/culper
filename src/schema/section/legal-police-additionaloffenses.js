@@ -1,29 +1,30 @@
 import * as form from '../form'
 
 export const legalPoliceAdditionalOffenses = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Date: form.datecontrol(x.Item.Date),
-        Description: form.textarea(x.Item.Description),
-        InvolvedViolence: form.branch(x.Item.InvolvedViolence),
-        InvolvedFirearms: form.branch(x.Item.InvolvedFirearms),
-        InvolvedSubstances: form.branch(x.Item.InvolvedSubstances),
-        CourtName: form.text(x.Item.CourtName),
-        CourtAddress: form.location(x.Item.CourtAddress),
-        CourtCharge: form.text(x.Item.CourtCharge),
-        CourtOutcome: form.text(x.Item.CourtOutcome),
-        CourtDate: form.datecontrol(x.Item.CourtDate),
-        ChargeType: form.radio(x.Item.ChargeType),
-        WasSentenced: form.branch(x.Item.WasSentenced),
-        Sentence: form.sentence(x.Item.Sentence),
-        AwaitingTrial: form.branch(x.Item.AwaitingTrial),
-        AwaitingTrialExplanation: form.textarea(x.Item.AwaitingTrialExplanation)
+        Date: form.datecontrol(xitem.Date),
+        Description: form.textarea(xitem.Description),
+        InvolvedViolence: form.branch(xitem.InvolvedViolence),
+        InvolvedFirearms: form.branch(xitem.InvolvedFirearms),
+        InvolvedSubstances: form.branch(xitem.InvolvedSubstances),
+        CourtName: form.text(xitem.CourtName),
+        CourtAddress: form.location(xitem.CourtAddress),
+        CourtCharge: form.text(xitem.CourtCharge),
+        CourtOutcome: form.text(xitem.CourtOutcome),
+        CourtDate: form.datecontrol(xitem.CourtDate),
+        ChargeType: form.radio(xitem.ChargeType),
+        WasSentenced: form.branch(xitem.WasSentenced),
+        Sentence: form.sentence(xitem.Sentence),
+        AwaitingTrial: form.branch(xitem.AwaitingTrial),
+        AwaitingTrialExplanation: form.textarea(xitem.AwaitingTrialExplanation)
       }
     }
   })
   return {
     HasOtherOffenses: form.branch(data.HasOtherOffenses),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

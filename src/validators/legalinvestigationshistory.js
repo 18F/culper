@@ -1,10 +1,9 @@
-import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField, validNotApplicable } from './helpers'
 
 export default class LegalInvestigationsHistoryValidator {
   constructor (data = {}) {
     this.hasHistory = (data.HasHistory || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validList () {
@@ -12,19 +11,9 @@ export default class LegalInvestigationsHistoryValidator {
       return true
     }
 
-    if (this.hasHistory === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new HistoryValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new HistoryValidator(item).isValid()
+    })
   }
 
   isValid () {

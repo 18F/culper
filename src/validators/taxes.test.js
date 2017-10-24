@@ -320,68 +320,76 @@ describe('taxes component validation', function () {
       {
         state: {
           HasTaxes: { value: 'No' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
           HasTaxes: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasTaxes: { value: 'Yes' },
-          List: [{}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasTaxes: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Failure: {
-                  value: 'File'
-                },
-                Year: {
-                  value: '2000'
-                },
-                Reason: {
-                  value: 'Completely forgot'
-                },
-                Agency: {
-                  value: 'IRS'
-                },
-                TaxType: {
-                  value: 'Income'
-                },
-                Amount: {
-                  value: '20000'
-                },
-                DateNotApplicable: {
-                  applicable: true
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016'),
-                  present: false
-                },
-                Description: {
-                  value: 'The description'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Failure: {
+                    value: 'File'
+                  },
+                  Year: {
+                    value: '2000'
+                  },
+                  Reason: {
+                    value: 'Completely forgot'
+                  },
+                  Agency: {
+                    value: 'IRS'
+                  },
+                  TaxType: {
+                    value: 'Income'
+                  },
+                  Amount: {
+                    value: '20000'
+                  },
+                  DateNotApplicable: {
+                    applicable: true
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016'),
+                    present: false
+                  },
+                  Description: {
+                    value: 'The description'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

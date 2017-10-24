@@ -23,6 +23,20 @@ export const timeout = (fn, milliseconds = 400, w = window) => {
   w.setTimeout(fn, milliseconds)
 }
 
+export const country = (obj) => {
+  if (obj === null) {
+    return null
+  }
+
+  if (obj instanceof Object) {
+    if ('value' in obj) {
+      return obj.value
+    }
+  }
+
+  return obj
+}
+
 export default class Location extends ValidationElement {
   constructor (props) {
     super(props)

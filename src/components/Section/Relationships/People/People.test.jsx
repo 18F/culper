@@ -16,11 +16,9 @@ describe('The relative alias component', () => {
     let updates = 0
     const expected = {
       name: 'people',
-      List: [
-        {
-          Item: { Relationship: 'Other' }
-        }
-      ],
+      List: {
+        items: [{ Item: { Relationship: 'Other' } }]
+      },
       onUpdate: () => {
         updates++
       }

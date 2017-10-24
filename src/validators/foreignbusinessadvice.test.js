@@ -135,49 +135,53 @@ describe('Foreign business advice component validation', function () {
       {
         state: {
           HasForeignAdvice: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignAdvice: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Description: {
-                  value: 'this is the description'
-                },
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Organization: {
-                  value: 'this is the organization'
-                },
-                Country: {
-                  value: 'United States'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Description: {
+                    value: 'this is the description'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
                   },
-                  present: false
+                  Organization: {
+                    value: 'this is the organization'
+                  },
+                  Country: {
+                    value: 'United States'
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

@@ -136,17 +136,39 @@ func (entity *Benefit) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Benefit) Marshal() Payload {
-	entity.PayloadBegin = entity.Begin.Marshal()
-	entity.PayloadEnd = entity.End.Marshal()
-	entity.PayloadFrequency = entity.Frequency.Marshal()
-	entity.PayloadOtherFrequency = entity.OtherFrequency.Marshal()
-	entity.PayloadReceived = entity.Received.Marshal()
-	entity.PayloadCountry = entity.Country.Marshal()
-	entity.PayloadValue = entity.Value.Marshal()
-	entity.PayloadValueEstimated = entity.ValueEstimated.Marshal()
-	entity.PayloadReason = entity.Reason.Marshal()
-	entity.PayloadObligated = entity.Obligated.Marshal()
-	entity.PayloadObligatedExplanation = entity.ObligatedExplanation.Marshal()
+	if entity.Begin != nil {
+		entity.PayloadBegin = entity.Begin.Marshal()
+	}
+	if entity.End != nil {
+		entity.PayloadEnd = entity.End.Marshal()
+	}
+	if entity.Frequency != nil {
+		entity.PayloadFrequency = entity.Frequency.Marshal()
+	}
+	if entity.OtherFrequency != nil {
+		entity.PayloadOtherFrequency = entity.OtherFrequency.Marshal()
+	}
+	if entity.Received != nil {
+		entity.PayloadReceived = entity.Received.Marshal()
+	}
+	if entity.Country != nil {
+		entity.PayloadCountry = entity.Country.Marshal()
+	}
+	if entity.Value != nil {
+		entity.PayloadValue = entity.Value.Marshal()
+	}
+	if entity.ValueEstimated != nil {
+		entity.PayloadValueEstimated = entity.ValueEstimated.Marshal()
+	}
+	if entity.Reason != nil {
+		entity.PayloadReason = entity.Reason.Marshal()
+	}
+	if entity.Obligated != nil {
+		entity.PayloadObligated = entity.Obligated.Marshal()
+	}
+	if entity.ObligatedExplanation != nil {
+		entity.PayloadObligatedExplanation = entity.ObligatedExplanation.Marshal()
+	}
 	return MarshalPayloadEntity("benefit", entity)
 }
 

@@ -291,104 +291,110 @@ describe('Foreign business sponsorship component validation', function () {
       {
         state: {
           HasForeignSponsorship: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignSponsorship: { value: 'Yes' },
-          List: [{}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignSponsorship: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Birthdate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                BirthdateNotApplicable: {
-                  applicable: true
-                },
-                Birthplace: {
-                  country: { value: 'Germnay' },
-                  city: 'Munich',
-                  layout: Location.CITY_COUNTRY
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Citizenship: {
-                  value: ['Germany']
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Birthdate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
                   },
-                  present: false
-                },
-                Residence: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Organization: {
-                  value: 'this is the organization'
-                },
-                OrganizationNotApplicable: {
-                  applicable: true
-                },
-                OrganizationAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                OrganizationAddressNotApplicable: {
-                  applicable: true
-                },
-                Stay: {
-                  value: 'this is the stay'
-                },
-                Sponsorship: {
-                  value: 'this is the sponsorship'
+                  BirthdateNotApplicable: {
+                    applicable: true
+                  },
+                  Birthplace: {
+                    country: { value: 'Germnay' },
+                    city: 'Munich',
+                    layout: Location.CITY_COUNTRY
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Citizenship: {
+                    value: ['Germany']
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Residence: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Organization: {
+                    value: 'this is the organization'
+                  },
+                  OrganizationNotApplicable: {
+                    applicable: true
+                  },
+                  OrganizationAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  OrganizationAddressNotApplicable: {
+                    applicable: true
+                  },
+                  Stay: {
+                    value: 'this is the stay'
+                  },
+                  Sponsorship: {
+                    value: 'this is the sponsorship'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

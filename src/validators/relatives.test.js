@@ -1434,114 +1434,120 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          List: [
-            {
-              Item: {
-                Relation: 'Mother'
-              }
-            }
-          ],
-          ListBranch: 'No'
-        },
-        expected: false
-      },
-      {
-        state: {
-          List: [
-            {
-              Item: {
-                Relation: 'Mother'
-              }
-            }
-          ],
-          ListBranch: 'Nope'
-        },
-        expected: false
-      },
-      {
-        state: {
-          List: [
-            {
-              Item: {
-                Relation: 'Mother',
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Birthdate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Birthplace: {
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  country: { value: 'United States' },
-                  layout: Location.BIRTHPLACE_WITHOUT_COUNTY
-                },
-                Citizenship: {
-                  value: ['United States']
-                },
-                MaidenName: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Aliases: [
-                  {
-                    Has: 'Yes',
-                    Item: {
-                      Name: {
-                        first: 'Foo',
-                        firstInitialOnly: false,
-                        middle: 'J',
-                        middleInitialOnly: true,
-                        noMiddleName: false,
-                        last: 'Bar',
-                        lastInitialOnly: false,
-                        suffix: 'Jr'
-                      },
-                      MaidenName: { value: 'No' },
-                      Dates: {
-                        from: {
-                          date: new Date('1/1/2010')
-                        },
-                        to: {
-                          date: new Date('1/1/2012')
-                        },
-                        present: false
-                      },
-                      Reason: {
-                        value: 'The reason'
-                      }
-                    }
-                  }
-                ],
-                IsDeceased: { value: 'No' },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: 'Mother'
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          List: {
+            branch: { value: 'Nope' },
+            items: [
+              {
+                Item: {
+                  Relation: 'Mother'
+                }
+              }
+            ]
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Relation: 'Mother',
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Birthdate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Birthplace: {
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    country: { value: 'United States' },
+                    layout: Location.BIRTHPLACE_WITHOUT_COUNTY
+                  },
+                  Citizenship: {
+                    value: ['United States']
+                  },
+                  MaidenName: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Aliases: [
+                    {
+                      Has: 'Yes',
+                      Item: {
+                        Name: {
+                          first: 'Foo',
+                          firstInitialOnly: false,
+                          middle: 'J',
+                          middleInitialOnly: true,
+                          noMiddleName: false,
+                          last: 'Bar',
+                          lastInitialOnly: false,
+                          suffix: 'Jr'
+                        },
+                        MaidenName: { value: 'No' },
+                        Dates: {
+                          from: {
+                            date: new Date('1/1/2010')
+                          },
+                          to: {
+                            date: new Date('1/1/2012')
+                          },
+                          present: false
+                        },
+                        Reason: {
+                          value: 'The reason'
+                        }
+                      }
+                    }
+                  ],
+                  IsDeceased: { value: 'No' },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                }
+              }
+            ]
+          }
         },
         expected: true
       }

@@ -9,33 +9,25 @@ describe('The employment additional activity component', () => {
     expect(component.find('.branch .no').length).toBe(1)
   })
 
-  it('toggles yes/no for additional activity', () => {
-    let updates = 0
-    let onUpdate = () => { updates++ }
-    const component = mount(<AdditionalActivity name="activity" onUpdate={onUpdate} />)
-
-    component.find('.branch .yes input').at(0).simulate('change')
-    expect(component.find({ type: 'text', name: 'Position' }).length).toBe(1)
-    component.find('.branch .no input').at(0).simulate('change')
-    expect(component.find({ type: 'text', name: 'Position' }).length).toBe(0)
-    expect(updates).toBeGreaterThan(1)
-  })
-
   it('loads data', () => {
     let updates = 0
     const expected = {
       onUpdate: () => {
         updates++
       },
-      items: [
-        {
-          Has: { value: 'Yes' },
-          Position: {
-            name: 'Position',
-            value: 'Dev'
+      List: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Position: {
+                name: 'Position',
+                value: 'Dev'
+              }
+            }
           }
-        }
-      ]
+        ]
+      }
     }
 
     const component = mount(<AdditionalActivity {...expected} />)

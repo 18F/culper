@@ -1,11 +1,10 @@
 import DateRangeValidator from './daterange'
-import { validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
+import { validAccordion, validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class DrugUsesValidator {
   constructor (data = {}) {
     this.usedDrugs = (data.UsedDrugs || {}).value
     this.list = data.List
-    this.listBranch = data.ListBranch
   }
 
   validUsedDrugs () {
@@ -17,22 +16,9 @@ export default class DrugUsesValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new DrugUseValidator(item.Item, null).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new DrugUseValidator(item).isValid()
+    })
   }
 
   isValid () {

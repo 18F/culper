@@ -21,7 +21,6 @@ export default class Cohabitants extends SubsectionElement {
     this.props.onUpdate({
       HasCohabitant: this.props.HasCohabitant,
       CohabitantList: this.props.CohabitantList,
-      CohabitantListBranch: this.props.CohabitantListBranch,
       ...queue
     })
   }
@@ -29,15 +28,13 @@ export default class Cohabitants extends SubsectionElement {
   updateHasCohabitant (values) {
     this.update({
       HasCohabitant: values,
-      CohabitantList: values.value === 'Yes' ? values.items : [],
-      CohabitantListBranch: values.value === 'Yes' ? values.branch : ''
+      CohabitantList: values.value === 'Yes' ? this.props.CohabitantsList : {}
     })
   }
 
   updateCohabitantList (values) {
     this.update({
-      CohabitantList: values.items,
-      CohabitantListBranch: values.branch
+      CohabitantList: values
     })
   }
 
@@ -73,10 +70,9 @@ export default class Cohabitants extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasCohabitant.value === 'Yes'}>
-          <Accordion items={this.props.CohabitantList}
+          <Accordion {...this.props.CohabitantList}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.CohabitantListBranch}
                      summary={this.summary}
                      onUpdate={this.updateCohabitantList}
                      onError={this.handleError}
@@ -86,11 +82,11 @@ export default class Cohabitants extends SubsectionElement {
                      appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
                      appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <Cohabitant name="Item"
-                       spouse={this.props.spouse}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       bind={true} />
+            <Cohabitant name="Item"
+                        spouse={this.props.spouse}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -100,8 +96,7 @@ export default class Cohabitants extends SubsectionElement {
 
 Cohabitants.defaultProps = {
   HasCohabitant: {},
-  CohabitantList: [],
-  CohabitantListBranch: '',
+  CohabitantList: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',

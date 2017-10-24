@@ -166,49 +166,53 @@ describe('Foreign activities support component validation', function () {
       {
         state: {
           HasForeignSupport: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignSupport: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Address: {
-                  street: '1234 Some Rd',
-                  city: 'Munich',
-                  country: { value: 'Germany' },
-                  layout: Location.ADDRESS
-                },
-                Relationship: {
-                  value: 'this is the relationship'
-                },
-                Amount: {
-                  value: '1000'
-                },
-                Frequency: {
-                  value: 'Daily'
-                },
-                Citizenship: {
-                  value: ['United States', 'Germany']
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Address: {
+                    street: '1234 Some Rd',
+                    city: 'Munich',
+                    country: { value: 'Germany' },
+                    layout: Location.ADDRESS
+                  },
+                  Relationship: {
+                    value: 'this is the relationship'
+                  },
+                  Amount: {
+                    value: '1000'
+                  },
+                  Frequency: {
+                    value: 'Daily'
+                  },
+                  Citizenship: {
+                    value: ['United States', 'Germany']
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

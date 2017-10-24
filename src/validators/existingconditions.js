@@ -1,5 +1,5 @@
 import { ExistingConditionsDiagnosisValidator } from './diagnosis'
-import { validGenericTextfield, validBranch } from './helpers'
+import { validAccordion, validGenericTextfield, validBranch } from './helpers'
 
 export default class ExistingConditionsValidator {
   constructor (data = {}) {
@@ -7,7 +7,6 @@ export default class ExistingConditionsValidator {
     this.receivedTreatment = (data.ReceivedTreatment || {}).value
     this.explanation = data.Explanation
     this.treatmentList = data.TreatmentList || []
-    this.treatmentListBranch = data.TreatmentListBranch
     this.didNotFollow = (data.DidNotFollow || {}).value
     this.didNotFollowExplanation = data.DidNotFollowExplanation
   }
@@ -31,18 +30,13 @@ export default class ExistingConditionsValidator {
       case 'Decline':
         return true
       case 'Yes':
-        if (this.treatmentListBranch !== 'No') {
-          return false
+        if (this.treatmentListBranch === 'No') {
+          return true
         }
-        if (this.receivedTreatment === 'Yes' && this.treatmentList.length === 0) {
-          return false
-        }
-        for (let item of this.treatmentList) {
-          if (!new ExistingConditionsDiagnosisValidator(item.Item).isValid()) {
-            return false
-          }
-        }
-        return true
+
+        return validAccordion(this.treatmentList, (item) => {
+          return new ExistingConditionsDiagnosisValidator(item).isValid()
+        })
       default:
         return false
     }

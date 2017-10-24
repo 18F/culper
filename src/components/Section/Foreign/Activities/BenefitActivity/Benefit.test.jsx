@@ -11,7 +11,7 @@ describe('The Benefit component', () => {
   it('Performs updates for base fields', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const interestTypes = ['Yourself']
+    const interestTypes = { value: ['Yourself'] }
     const component = mount(<Benefit onUpdate={onUpdate} InterestTypes={interestTypes} />)
     expect(component.find('.benefit').length).toBe(1)
     // Toggle
@@ -27,7 +27,7 @@ describe('The Benefit component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      BenefitFrequency: 'OneTime',
+      BenefitFrequency: { value: 'OneTime' },
       OneTimeBenefit: {
         Received: {
           month: '1',
@@ -60,7 +60,7 @@ describe('The Benefit component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      BenefitFrequency: 'Future',
+      BenefitFrequency: { value: 'Future' },
       FutureBenefit: {
         Obligated: { value: 'Yes' },
         ObligatedExplanation: {
@@ -79,7 +79,7 @@ describe('The Benefit component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      BenefitType: 'Other'
+      BenefitType: { value: 'Other' }
     }
 
     const component = mount(<Benefit {...expected} />)
@@ -91,7 +91,7 @@ describe('The Benefit component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      BenefitFrequency: 'Continuing',
+      BenefitFrequency: { value: 'Continuing' },
       ContinuingBenefit: {
         Obligated: { value: 'Yes' },
         ObligatedExplanation: {
@@ -110,7 +110,7 @@ describe('The Benefit component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      BenefitFrequency: 'Other',
+      BenefitFrequency: { value: 'Other' },
       OtherBenefit: {
         value: 'Other'
       }

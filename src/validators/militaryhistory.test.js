@@ -39,203 +39,215 @@ describe('Military history validation', function () {
       {
         state: {
           HasServed: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Service: 'AirNationalGuard',
-                Status: 'ActiveDuty',
-                Officer: 'Enlisted',
-                ServiceNumber: {
-                  value: '0123456789'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Service: 'AirNationalGuard',
+                  Status: 'ActiveDuty',
+                  Officer: 'Enlisted',
+                  ServiceNumber: {
+                    value: '0123456789'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                HasBeenDischarged: { value: 'Yes' }
+                  HasBeenDischarged: { value: 'Yes' }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
           HasServed: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Service: 'AirNationalGuard',
-                Status: 'ActiveDuty',
-                Officer: 'Enlisted',
-                ServiceNumber: {
-                  value: '0123456789'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Service: 'AirNationalGuard',
+                  Status: 'ActiveDuty',
+                  Officer: 'Enlisted',
+                  ServiceNumber: {
+                    value: '0123456789'
                   },
-                  to: {
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  HasBeenDischarged: { value: 'Yes' },
+                  DischargeType: 'Other',
+                  DischargeTypeOther: {
+                    value: 'Something'
+                  },
+                  DischargeReason: {
+                    value: 'My reason'
+                  },
+                  DischargeDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
                     date: new Date('1/1/2012')
-                  },
-                  present: false
-                },
-                HasBeenDischarged: { value: 'Yes' },
-                DischargeType: 'Other',
-                DischargeTypeOther: {
-                  value: 'Something'
-                },
-                DischargeReason: {
-                  value: 'My reason'
-                },
-                DischargeDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2012')
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
           HasServed: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Service: 'AirNationalGuard',
-                Status: 'ActiveDuty',
-                Officer: 'Enlisted',
-                ServiceNumber: {
-                  value: '0123456789'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Service: 'AirNationalGuard',
+                  Status: 'ActiveDuty',
+                  Officer: 'Enlisted',
+                  ServiceNumber: {
+                    value: '0123456789'
                   },
-                  to: {
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  HasBeenDischarged: { value: 'Yes' },
+                  DischargeType: 'Honorable',
+                  DischargeDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
                     date: new Date('1/1/2012')
-                  },
-                  present: false
-                },
-                HasBeenDischarged: { value: 'Yes' },
-                DischargeType: 'Honorable',
-                DischargeDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2012')
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
           HasServed: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Service: 'AirNationalGuard',
-                Status: 'ActiveDuty',
-                Officer: 'Enlisted',
-                ServiceNumber: {
-                  value: '0123456789'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Service: 'AirNationalGuard',
+                  Status: 'ActiveDuty',
+                  Officer: 'Enlisted',
+                  ServiceNumber: {
+                    value: '0123456789'
                   },
-                  to: {
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  HasBeenDischarged: { value: 'Yes' },
+                  DischargeType: 'General',
+                  DischargeReason: {
+                    value: 'My reason'
+                  },
+                  DischargeDate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
                     date: new Date('1/1/2012')
-                  },
-                  present: false
-                },
-                HasBeenDischarged: { value: 'Yes' },
-                DischargeType: 'General',
-                DischargeReason: {
-                  value: 'My reason'
-                },
-                DischargeDate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2012')
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
           HasServed: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Service: 'AirNationalGuard',
-                Status: 'ActiveDuty',
-                Officer: 'Enlisted',
-                ServiceNumber: {
-                  value: '0123456789'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Service: 'AirNationalGuard',
+                  Status: 'ActiveDuty',
+                  Officer: 'Enlisted',
+                  ServiceNumber: {
+                    value: '0123456789'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                HasBeenDischarged: { value: 'No' }
+                  HasBeenDischarged: { value: 'No' }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
           HasServed: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Service: 'Army',
-                Officer: 'Enlisted',
-                ServiceNumber: {
-                  value: '0123456789'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Service: 'Army',
+                  Officer: 'Enlisted',
+                  ServiceNumber: {
+                    value: '0123456789'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                HasBeenDischarged: { value: 'No' }
+                  HasBeenDischarged: { value: 'No' }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

@@ -376,8 +376,10 @@ describe('Foreign travel component validation', function () {
         state: {
           HasForeignTravelOutside: { value: 'Yes' },
           HasForeignTravelOfficial: { value: 'No' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
@@ -385,8 +387,10 @@ describe('Foreign travel component validation', function () {
         state: {
           HasForeignTravelOutside: { value: 'Yes' },
           HasForeignTravelOfficial: { value: 'No' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
@@ -394,34 +398,36 @@ describe('Foreign travel component validation', function () {
         state: {
           HasForeignTravelOutside: { value: 'Yes' },
           HasForeignTravelOfficial: { value: 'No' },
-          List: [
-            {
-              Item: {
-                Country: {
-                  value: 'Germany'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Country: {
+                    value: 'Germany'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                Days: ['1-5', '21-30'],
-                Purpose: ['Business', 'Family'],
-                Questioned: { value: 'No' },
-                Encounter: { value: 'No' },
-                Contacted: { value: 'No' },
-                Counter: { value: 'No' },
-                Interest: { value: 'No' },
-                Sensitive: { value: 'No' },
-                Threatened: { value: 'No' }
+                  Days: ['1-5', '21-30'],
+                  Purpose: ['Business', 'Family'],
+                  Questioned: { value: 'No' },
+                  Encounter: { value: 'No' },
+                  Contacted: { value: 'No' },
+                  Counter: { value: 'No' },
+                  Interest: { value: 'No' },
+                  Sensitive: { value: 'No' },
+                  Threatened: { value: 'No' }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

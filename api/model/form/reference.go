@@ -100,14 +100,30 @@ func (entity *Reference) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Reference) Marshal() Payload {
-	entity.PayloadFullName = entity.FullName.Marshal()
-	entity.PayloadLastContact = entity.LastContact.Marshal()
-	entity.PayloadRelationship = entity.Relationship.Marshal()
-	entity.PayloadRelationshipOther = entity.RelationshipOther.Marshal()
-	entity.PayloadPhone = entity.Phone.Marshal()
-	entity.PayloadEmail = entity.Email.Marshal()
-	entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
-	entity.PayloadAddress = entity.Address.Marshal()
+	if entity.FullName != nil {
+		entity.PayloadFullName = entity.FullName.Marshal()
+	}
+	if entity.LastContact != nil {
+		entity.PayloadLastContact = entity.LastContact.Marshal()
+	}
+	if entity.Relationship != nil {
+		entity.PayloadRelationship = entity.Relationship.Marshal()
+	}
+	if entity.RelationshipOther != nil {
+		entity.PayloadRelationshipOther = entity.RelationshipOther.Marshal()
+	}
+	if entity.Phone != nil {
+		entity.PayloadPhone = entity.Phone.Marshal()
+	}
+	if entity.Email != nil {
+		entity.PayloadEmail = entity.Email.Marshal()
+	}
+	if entity.EmailNotApplicable != nil {
+		entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
+	}
+	if entity.Address != nil {
+		entity.PayloadAddress = entity.Address.Marshal()
+	}
 	return MarshalPayloadEntity("reference", entity)
 }
 

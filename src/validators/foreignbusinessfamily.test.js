@@ -132,46 +132,50 @@ describe('Foreign business family component validation', function () {
       {
         state: {
           HasForeignFamily: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasForeignFamily: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Agency: {
-                  value: 'this is the agency'
-                },
-                Country: {
-                  value: 'United States'
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Circumstances: {
-                  value: 'this is the circumstances'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Agency: {
+                    value: 'this is the agency'
+                  },
+                  Country: {
+                    value: 'United States'
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Circumstances: {
+                    value: 'this is the circumstances'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

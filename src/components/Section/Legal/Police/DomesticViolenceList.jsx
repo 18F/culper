@@ -35,7 +35,7 @@ export default class DomesticViolenceList extends SubsectionElement {
                           labelSize="h2"
                           className="has-order"
                           appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
-                          items={this.props.List}
+                          {...this.props.List}
                           scrollToBottom={this.props.scrollToBottom}
                           onError={this.handleError}
                           required={this.props.required}

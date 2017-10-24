@@ -1,12 +1,11 @@
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessAdviceValidator {
   constructor (data = {}) {
     this.hasForeignAdvice = (data.HasForeignAdvice || {}).value
     this.list = data.List || []
-    this.listBranch = data.ListBranch
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class ForeignBusinessAdviceValidator {
       return true
     }
 
-    if (this.hasForeignAdvice === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new AdviceValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new AdviceValidator(item).isValid()
+    })
   }
 
   isValid () {

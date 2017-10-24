@@ -12,26 +12,26 @@ export default class Card extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasCardAbuse: props.HasCardAbuse,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateBranch = this.updateBranch.bind(this)
     this.updateList = this.updateList.bind(this)
     this.summary = this.summary.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      HasCardAbuse: this.props.HasCardAbuse,
+      List: this.props.List,
+      ...queue
+    })
   }
 
   /**
    * Updates triggered by the branching component.
    */
   updateBranch (values) {
-    this.setState({ HasCardAbuse: values }, () => {
-      this.updateList({
-        items: values.value === 'Yes' ? this.state.List : [],
-        branch: ''
-      })
+    this.update({
+      HasCardAbuse: values,
+      List: values.value === 'Yes' ? this.props.List : {}
     })
   }
 
@@ -40,12 +40,8 @@ export default class Card extends SubsectionElement {
    * updates to the items.
    */
   updateList (values) {
-    this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      this.props.onUpdate({
-        List: this.state.List,
-        ListBranch: this.state.ListBranch,
-        HasCardAbuse: this.state.HasCardAbuse
-      })
+    this.update({
+      List: values
     })
   }
 
@@ -74,18 +70,17 @@ export default class Card extends SubsectionElement {
                 label={i18n.t('financial.card.title')}
                 labelSize="h2"
                 className="card-branch"
-                {...this.state.HasCardAbuse}
+                {...this.props.HasCardAbuse}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasCardAbuse.value === 'Yes'}>
-          <Accordion items={this.state.List}
+        <Show when={(this.props.HasCardAbuse || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -95,14 +90,13 @@ export default class Card extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}
                      appendTitle={i18n.t('financial.card.collection.appendTitle')}
                      appendLabel={i18n.t('financial.card.collection.append')}>
-                     <CardItem
-                       name="Item"
-                       bind={true}
-                       dispatch={this.props.dispatch}
-                       addressBooks={this.props.addressBooks}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <CardItem name="Item"
+                      bind={true}
+                      dispatch={this.props.dispatch}
+                      addressBooks={this.props.addressBooks}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </Accordion>
         </Show>
       </div>
@@ -112,8 +106,8 @@ export default class Card extends SubsectionElement {
 
 Card.defaultProps = {
   HasCardAbuse: {},
-  List: [],
-  ListBranch: '',
+  List: {},
+  ListBranch: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',

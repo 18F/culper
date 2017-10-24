@@ -39,7 +39,7 @@ export default class Passports extends SubsectionElement {
         <BranchCollection label={i18n.t('citizenship.multiple.heading.hasforeignpassport')}
                           appendLabel={i18n.t('citizenship.multiple.collection.passport.appendTitle')}
                           className="has-foreignpassport"
-                          items={this.props.Passports}
+                          {...this.props.Passports}
                           scrollToBottom={this.props.scrollToBottom}
                           onUpdate={this.updatePassports}
                           scrollIntoView={this.props.scrollIntoView}
@@ -53,7 +53,7 @@ export default class Passports extends SubsectionElement {
 }
 
 Passports.defaultProps = {
-  Passports: [],
+  Passports: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',

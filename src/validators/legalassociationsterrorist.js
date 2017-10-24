@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validGenericTextfield, validNotApplicable } from './helpers'
+import { validAccordion, validGenericTextfield, validNotApplicable } from './helpers'
 
 export default class LegalTerroristValidator {
   constructor (data = {}) {
     this.hasTerrorist = (data.HasTerrorist || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class LegalTerroristValidator {
       return true
     }
 
-    if (this.hasTerrorist === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new TerroristValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new TerroristValidator(item).isValid()
+    })
   }
 
   isValid () {

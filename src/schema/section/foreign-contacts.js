@@ -1,45 +1,47 @@
 import * as form from '../form'
 
 export const foreignContacts = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Name: form.name(x.Item.Name),
-        NameNotApplicable: form.notapplicable(x.Item.NameNotApplicable),
-        NameExplanation: form.textarea(x.Item.NameExplanation),
-        FirstContact: form.datecontrol(x.Item.FirstContact),
-        LastContact: form.datecontrol(x.Item.LastContact),
-        Methods: form.checkboxgroup(x.Item.Methods),
-        MethodsExplanation: form.textarea(x.Item.MethodsExplanation),
-        Frequency: form.radio(x.Item.Frequency),
-        FrequencyExplanation: form.textarea(x.Item.FrequencyExplanation),
-        Relationship: form.checkboxgroup(x.Item.Relationship),
-        RelationshipExplanation: form.textarea(x.Item.RelationshipExplanation),
-        Aliases: form.collection((x.Item.Aliases || []).map(y => {
+        Name: form.name(xitem.Name),
+        NameNotApplicable: form.notapplicable(xitem.NameNotApplicable),
+        NameExplanation: form.textarea(xitem.NameExplanation),
+        FirstContact: form.datecontrol(xitem.FirstContact),
+        LastContact: form.datecontrol(xitem.LastContact),
+        Methods: form.checkboxgroup(xitem.Methods),
+        MethodsExplanation: form.textarea(xitem.MethodsExplanation),
+        Frequency: form.radio(xitem.Frequency),
+        FrequencyExplanation: form.textarea(xitem.FrequencyExplanation),
+        Relationship: form.checkboxgroup(xitem.Relationship),
+        RelationshipExplanation: form.textarea(xitem.RelationshipExplanation),
+        Aliases: form.collection(((xitem.Aliases || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              Alias: form.name(y.Item.Alias)
+              Alias: form.name(yitem.Alias)
             }
           }
         })),
-        Citizenship: form.country(x.Item.Citizenship),
-        Birthdate: form.datecontrol(x.Item.Birthdate),
-        BirthdateNotApplicable: form.notapplicable(x.Item.BirthdateNotApplicable),
-        Birthplace: form.location(x.Item.Birthplace),
-        BirthplaceNotApplicable: form.notapplicable(x.Item.BirthplaceNotApplicable),
-        Address: form.location(x.Item.Address),
-        AddressNotApplicable: form.notapplicable(x.Item.AddressNotApplicable),
-        Employer: form.text(x.Item.Employer),
-        EmployerNotApplicable: form.notapplicable(x.Item.EmployerNotApplicable),
-        EmployerAddress: form.location(x.Item.EmployerAddress),
-        EmployerAddressNotApplicable: form.notapplicable(x.Item.EmployerAddressNotApplicable),
-        HasAffiliations: form.branch(x.Item.HasAffiliations),
-        Affiliations: form.textarea(x.Item.Affiliations)
+        Citizenship: form.country(xitem.Citizenship),
+        Birthdate: form.datecontrol(xitem.Birthdate),
+        BirthdateNotApplicable: form.notapplicable(xitem.BirthdateNotApplicable),
+        Birthplace: form.location(xitem.Birthplace),
+        BirthplaceNotApplicable: form.notapplicable(xitem.BirthplaceNotApplicable),
+        Address: form.location(xitem.Address),
+        AddressNotApplicable: form.notapplicable(xitem.AddressNotApplicable),
+        Employer: form.text(xitem.Employer),
+        EmployerNotApplicable: form.notapplicable(xitem.EmployerNotApplicable),
+        EmployerAddress: form.location(xitem.EmployerAddress),
+        EmployerAddressNotApplicable: form.notapplicable(xitem.EmployerAddressNotApplicable),
+        HasAffiliations: form.branch(xitem.HasAffiliations),
+        Affiliations: form.textarea(xitem.Affiliations)
       }
     }
   })
   return {
     HasForeignContacts: form.branch(data.HasForeignContacts),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

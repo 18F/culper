@@ -35,7 +35,7 @@ describe('Retrieving section data', () => {
         People: true,
         Relatives: true
       },
-      Citizenships: {
+      Citizenship: {
         Status: true,
         Multiple: true,
         Passports: true

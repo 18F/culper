@@ -1,51 +1,53 @@
 import * as form from '../form'
 
 export const relationshipsRelatives = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Relation: form.radio(x.Item.Relation),
-        Name: form.name(x.Item.Name),
-        Birthdate: form.datecontrol(x.Item.Birthdate),
-        Birthplace: form.location(x.Item.Birthplace),
-        Citizenship: form.country(x.Item.Citizenship),
-        MaidenSameAsListed: form.branch(x.Item.MaidenSameAsListed),
-        MaidenName: form.name(x.Item.MaidenName),
-        Aliases: form.collection((x.Item.Aliases || []).map(y => {
+        Relation: form.radio(xitem.Relation),
+        Name: form.name(xitem.Name),
+        Birthdate: form.datecontrol(xitem.Birthdate),
+        Birthplace: form.location(xitem.Birthplace),
+        Citizenship: form.country(xitem.Citizenship),
+        MaidenSameAsListed: form.branch(xitem.MaidenSameAsListed),
+        MaidenName: form.name(xitem.MaidenName),
+        Aliases: form.collection(((xitem.Aliases || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              Name: form.name(y.Item.Name),
-              MaidenName: form.branch(y.Item.MaidenName),
-              Dates: form.daterange(y.Item.Dates),
-              Reason: form.textarea(y.Item.Reason)
+              Name: form.name(yitem.Name),
+              MaidenName: form.branch(yitem.MaidenName),
+              Dates: form.daterange(yitem.Dates),
+              Reason: form.textarea(yitem.Reason)
             }
           }
         })),
-        IsDeceased: form.branch(x.Item.IsDeceased),
-        Address: form.location(x.Item.Address),
-        DocumentNumber: form.text(x.Item.DocumentNumber),
-        CourtName: form.text(x.Item.CourtName),
-        CourtAddress: form.location(x.Item.CourtAddress),
-        Document: form.radio(x.Item.Document),
-        DocumentComments: form.textarea(x.Item.DocumentComments),
-        ResidenceDocumentNumber: form.text(x.Item.ResidenceDocumentNumber),
-        Expiration: form.datecontrol(x.Item.Expiration),
-        FirstContact: form.datecontrol(x.Item.FirstContact),
-        LastContact: form.datecontrol(x.Item.LastContact),
-        Methods: form.checkbox(x.Item.Methods),
-        MethodsComments: form.textarea(x.Item.MethodsComments),
-        Frequency: form.radio(x.Item.Frequency),
-        EmployerNotApplicable: form.notapplicable(x.Item.EmployerNotApplicable),
-        EmployerAddressNotApplicable: form.notapplicable(x.Item.EmployerAddressNotApplicable),
-        EmployerRelationshipNotApplicable: form.notapplicable(x.Item.EmployerRelationshipNotApplicable),
-        Employer: form.text(x.Item.Employer),
-        EmployerAddress: form.location(x.Item.EmployerAddress),
-        HasAffiliation: form.branch(x.Item.HasAffiliation),
-        EmployerRelationship: form.textarea(x.Item.EmployerRelationship)
+        IsDeceased: form.branch(xitem.IsDeceased),
+        Address: form.location(xitem.Address),
+        DocumentNumber: form.text(xitem.DocumentNumber),
+        CourtName: form.text(xitem.CourtName),
+        CourtAddress: form.location(xitem.CourtAddress),
+        Document: form.radio(xitem.Document),
+        DocumentComments: form.textarea(xitem.DocumentComments),
+        ResidenceDocumentNumber: form.text(xitem.ResidenceDocumentNumber),
+        Expiration: form.datecontrol(xitem.Expiration),
+        FirstContact: form.datecontrol(xitem.FirstContact),
+        LastContact: form.datecontrol(xitem.LastContact),
+        Methods: form.checkbox(xitem.Methods),
+        MethodsComments: form.textarea(xitem.MethodsComments),
+        Frequency: form.radio(xitem.Frequency),
+        EmployerNotApplicable: form.notapplicable(xitem.EmployerNotApplicable),
+        EmployerAddressNotApplicable: form.notapplicable(xitem.EmployerAddressNotApplicable),
+        EmployerRelationshipNotApplicable: form.notapplicable(xitem.EmployerRelationshipNotApplicable),
+        Employer: form.text(xitem.Employer),
+        EmployerAddress: form.location(xitem.EmployerAddress),
+        HasAffiliation: form.branch(xitem.HasAffiliation),
+        EmployerRelationship: form.textarea(xitem.EmployerRelationship)
       }
     }
   })
   return {
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

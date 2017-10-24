@@ -173,60 +173,66 @@ describe('Legal associations overthrow component validation', function () {
       {
         state: {
           HasOverthrow: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasOverthrow: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasOverthrow: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Organization: {
-                  value: 'this is an organization'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Organization: {
+                    value: 'this is an organization'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
                   },
-                  present: false
-                },
-                PositionsNotApplicable: {
-                  applicable: false
-                },
-                Positions: {},
-                ContributionsNotApplicable: {
-                  applicable: false
-                },
-                Contributions: {},
-                Reasons: {
-                  value: 'this is the reasons'
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  PositionsNotApplicable: {
+                    applicable: false
+                  },
+                  Positions: {},
+                  ContributionsNotApplicable: {
+                    applicable: false
+                  },
+                  Contributions: {},
+                  Reasons: {
+                    value: 'this is the reasons'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

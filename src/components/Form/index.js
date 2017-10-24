@@ -16,7 +16,7 @@ import DateControl from './DateControl'
 import Svg from './Svg'
 import Suggestions from './Suggestions'
 import NotApplicable from './NotApplicable'
-import Accordion from './Accordion'
+import Accordion, { AccordionItem } from './Accordion'
 import Field from './Field'
 
 // Composite components
@@ -85,6 +85,7 @@ export {
   Suggestions,
   NotApplicable,
   Accordion,
+  AccordionItem,
   Field,
   SSN,
   ForeignBornDocuments,

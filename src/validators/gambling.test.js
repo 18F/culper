@@ -45,167 +45,181 @@ describe('gambling debt component validation', function () {
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Losses: {
-                  value: 10
-                },
-                Description: {
-                  value: 'Blah blah blah'
-                },
-                Actions: {
-                  value: 'Some action'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2015')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Losses: {
+                    value: 10
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Description: {
+                    value: 'Blah blah blah'
                   },
-                  present: false
+                  Actions: {
+                    value: 'Some action'
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Losses: {
-                  value: 10
-                },
-                Description: {
-                  value: 'Blah blah blah'
-                },
-                Actions: {
-                  value: 'Some action'
-                },
-                Dates: {
-                  from: null,
-                  to: new Date('1/1/2016'),
-                  present: false
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Losses: {
+                    value: 10
+                  },
+                  Description: {
+                    value: 'Blah blah blah'
+                  },
+                  Actions: {
+                    value: 'Some action'
+                  },
+                  Dates: {
+                    from: null,
+                    to: new Date('1/1/2016'),
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Losses: {
-                  value: 10
-                },
-                Description: {
-                  value: 'Blah blah blah'
-                },
-                Actions: {
-                  value: ''
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2015')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Losses: {
+                    value: 10
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Description: {
+                    value: 'Blah blah blah'
                   },
-                  present: false
+                  Actions: {
+                    value: ''
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Losses: {
-                  value: 10
-                },
-                Description: {
-                  value: ''
-                },
-                Actions: {
-                  value: 'Foo'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2015')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Losses: {
+                    value: 10
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Description: {
+                    value: ''
                   },
-                  present: false
+                  Actions: {
+                    value: 'Foo'
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Losses: {
-                  value: 0
-                },
-                Description: {
-                  value: ''
-                },
-                Actions: {
-                  value: 'Foo'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2015')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Losses: {
+                    value: 0
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Description: {
+                    value: ''
                   },
-                  present: false
+                  Actions: {
+                    value: 'Foo'
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: null,
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: null
+          }
         },
         expected: false
       }
@@ -221,39 +235,43 @@ describe('gambling debt component validation', function () {
       {
         state: {
           HasGamblingDebt: { value: 'Foo' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasGamblingDebt: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Losses: {
-                  value: 10
-                },
-                Description: {
-                  value: 'Blah blah blah'
-                },
-                Actions: {
-                  value: 'Some action'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2015')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Losses: {
+                    value: 10
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Description: {
+                    value: 'Blah blah blah'
                   },
-                  present: false
+                  Actions: {
+                    value: 'Some action'
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

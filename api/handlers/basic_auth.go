@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
@@ -59,6 +60,7 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 
 	// If we need to flush the storage first then do so now.
 	if cf.FlushStorage() {
+		log.Println("Purging account storage")
 		form.PurgeAccountStorage(context, account.ID)
 	}
 

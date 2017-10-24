@@ -1,24 +1,25 @@
 import * as form from '../form'
 
 export const substanceAlcoholOrdered = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Seekers: form.checkboxgroup(x.Item.Seekers),
-        OtherSeeker: form.text(x.Item.OtherSeeker),
-        ActionTaken: form.branch(x.Item.ActionTaken),
-        NoActionTakenExplanation: form.textarea(x.Item.NoActionTakenExplanation),
-        CounselingDates: form.daterange(x.Item.CounselingDates),
-        TreatmentProviderName: form.text(x.Item.TreatmentProviderName),
-        TreatmentProviderAddress: form.location(x.Item.TreatmentProviderAddress),
-        TreatmentProviderTelephone: form.telephone(x.Item.TreatmentProviderTelephone),
-        CompletedTreatment: form.branch(x.Item.CompletedTreatment),
-        NoCompletedTreatmentExplanation: form.textarea(x.Item.NoCompletedTreatmentExplanation)
+        Seekers: form.checkboxgroup(xitem.Seekers),
+        OtherSeeker: form.text(xitem.OtherSeeker),
+        ActionTaken: form.branch(xitem.ActionTaken),
+        NoActionTakenExplanation: form.textarea(xitem.NoActionTakenExplanation),
+        CounselingDates: form.daterange(xitem.CounselingDates),
+        TreatmentProviderName: form.text(xitem.TreatmentProviderName),
+        TreatmentProviderAddress: form.location(xitem.TreatmentProviderAddress),
+        TreatmentProviderTelephone: form.telephone(xitem.TreatmentProviderTelephone),
+        CompletedTreatment: form.branch(xitem.CompletedTreatment),
+        NoCompletedTreatmentExplanation: form.textarea(xitem.NoCompletedTreatmentExplanation)
       }
     }
   })
   return {
     HasBeenOrdered: form.branch(data.HasBeenOrdered),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

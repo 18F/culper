@@ -1,23 +1,24 @@
 import * as form from '../form'
 
 export const substanceDrugPurchase = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        DrugType: form.checkbox(x.Item.DrugType),
-        FirstInvolvement: form.datecontrol(x.Item.FirstInvolvement),
-        RecentInvolvement: form.datecontrol(x.Item.RecentInvolvement),
-        NatureOfInvolvement: form.textarea(x.Item.NatureOfInvolvement),
-        InvolvementWhileEmployed: form.branch(x.Item.InvolvementWhileEmployed),
-        InvolvementWithClearance: form.branch(x.Item.InvolvementWithClearance),
-        InvolvementInFuture: form.branch(x.Item.InvolvementInFuture),
-        Reasons: form.textarea(x.Item.Reasons),
-        Explanation: form.textarea(x.Item.Explanation)
+        DrugType: form.checkbox(xitem.DrugType),
+        FirstInvolvement: form.datecontrol(xitem.FirstInvolvement),
+        RecentInvolvement: form.datecontrol(xitem.RecentInvolvement),
+        NatureOfInvolvement: form.textarea(xitem.NatureOfInvolvement),
+        InvolvementWhileEmployed: form.branch(xitem.InvolvementWhileEmployed),
+        InvolvementWithClearance: form.branch(xitem.InvolvementWithClearance),
+        InvolvementInFuture: form.branch(xitem.InvolvementInFuture),
+        Reasons: form.textarea(xitem.Reasons),
+        Explanation: form.textarea(xitem.Explanation)
       }
     }
   })
   return {
     Involved: form.branch(data.Involved),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

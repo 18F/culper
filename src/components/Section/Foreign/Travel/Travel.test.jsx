@@ -44,31 +44,33 @@ describe('The foreign travel component', () => {
       name: 'foreign-travel',
       HasForeignTravelOutside: { value: 'Yes' },
       HasForeignTravelOfficial: { value: 'No' },
-      List: [
-        {
-          Item: {
-            Dates: {},
-            Country: {},
-            Days: [],
-            Purpose: [],
-            Questioned: { value: 'Yes' },
-            QuestionedExplanation: {},
-            Encounter: { value: 'Yes' },
-            EncounterExplanation: {},
-            Contacted: { value: 'Yes' },
-            ContactedExplanation: {},
-            Counter: { value: 'Yes' },
-            CounterExplanation: {},
-            Interest: { value: 'Yes' },
-            InterestExplanation: {},
-            Sensitive: { value: 'Yes' },
-            SensitiveExplanation: {},
-            Threatened: { value: 'Yes' },
-            ThreatenedExplanation: {}
+      List: {
+        branch: { value: 'No' },
+        items: [
+          {
+            Item: {
+              Dates: {},
+              Country: {},
+              Days: [],
+              Purpose: [],
+              Questioned: { value: 'Yes' },
+              QuestionedExplanation: {},
+              Encounter: { value: 'Yes' },
+              EncounterExplanation: {},
+              Contacted: { value: 'Yes' },
+              ContactedExplanation: {},
+              Counter: { value: 'Yes' },
+              CounterExplanation: {},
+              Interest: { value: 'Yes' },
+              InterestExplanation: {},
+              Sensitive: { value: 'Yes' },
+              SensitiveExplanation: {},
+              Threatened: { value: 'Yes' },
+              ThreatenedExplanation: {}
+            }
           }
-        }
-      ],
-      ListBranch: '',
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Travel {...expected} />)

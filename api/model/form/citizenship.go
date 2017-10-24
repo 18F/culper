@@ -252,6 +252,81 @@ func (entity *CitizenshipStatus) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *CitizenshipStatus) Marshal() Payload {
+	if entity.CitizenshipStatus != nil {
+		entity.PayloadCitizenshipStatus = entity.CitizenshipStatus.Marshal()
+	}
+	if entity.AbroadDocumentation != nil {
+		entity.PayloadAbroadDocumentation = entity.AbroadDocumentation.Marshal()
+	}
+	if entity.Explanation != nil {
+		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
+	if entity.DocumentNumber != nil {
+		entity.PayloadDocumentNumber = entity.DocumentNumber.Marshal()
+	}
+	if entity.DocumentIssued != nil {
+		entity.PayloadDocumentIssued = entity.DocumentIssued.Marshal()
+	}
+	if entity.DocumentName != nil {
+		entity.PayloadDocumentName = entity.DocumentName.Marshal()
+	}
+	if entity.DocumentExpiration != nil {
+		entity.PayloadDocumentExpiration = entity.DocumentExpiration.Marshal()
+	}
+	if entity.DocumentType != nil {
+		entity.PayloadDocumentType = entity.DocumentType.Marshal()
+	}
+	if entity.PlaceIssued != nil {
+		entity.PayloadPlaceIssued = entity.PlaceIssued.Marshal()
+	}
+	if entity.CertificateNumber != nil {
+		entity.PayloadCertificateNumber = entity.CertificateNumber.Marshal()
+	}
+	if entity.CertificateIssued != nil {
+		entity.PayloadCertificateIssued = entity.CertificateIssued.Marshal()
+	}
+	if entity.CertificateName != nil {
+		entity.PayloadCertificateName = entity.CertificateName.Marshal()
+	}
+	if entity.CertificateCourtName != nil {
+		entity.PayloadCertificateCourtName = entity.CertificateCourtName.Marshal()
+	}
+	if entity.CertificateCourtAddress != nil {
+		entity.PayloadCertificateCourtAddress = entity.CertificateCourtAddress.Marshal()
+	}
+	if entity.BornOnMilitaryInstallation != nil {
+		entity.PayloadBornOnMilitaryInstallation = entity.BornOnMilitaryInstallation.Marshal()
+	}
+	if entity.MilitaryBase != nil {
+		entity.PayloadMilitaryBase = entity.MilitaryBase.Marshal()
+	}
+	if entity.EntryDate != nil {
+		entity.PayloadEntryDate = entity.EntryDate.Marshal()
+	}
+	if entity.EntryLocation != nil {
+		entity.PayloadEntryLocation = entity.EntryLocation.Marshal()
+	}
+	if entity.PriorCitizenship != nil {
+		entity.PayloadPriorCitizenship = entity.PriorCitizenship.Marshal()
+	}
+	if entity.HasAlienRegistration != nil {
+		entity.PayloadHasAlienRegistration = entity.HasAlienRegistration.Marshal()
+	}
+	if entity.AlienRegistrationNumber != nil {
+		entity.PayloadAlienRegistrationNumber = entity.AlienRegistrationNumber.Marshal()
+	}
+	if entity.AlienRegistrationExpiration != nil {
+		entity.PayloadAlienRegistrationExpiration = entity.AlienRegistrationExpiration.Marshal()
+	}
+	if entity.Basis != nil {
+		entity.PayloadBasis = entity.Basis.Marshal()
+	}
+	if entity.PermanentResidentCardNumber != nil {
+		entity.PayloadPermanentResidentCardNumber = entity.PermanentResidentCardNumber.Marshal()
+	}
+	if entity.ResidenceStatus != nil {
+		entity.PayloadResidenceStatus = entity.ResidenceStatus.Marshal()
+	}
 	return MarshalPayloadEntity("citizenship.status", entity)
 }
 
@@ -1144,6 +1219,12 @@ func (entity *CitizenshipMultiple) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *CitizenshipMultiple) Marshal() Payload {
+	if entity.HasMultiple != nil {
+		entity.PayloadHasMultiple = entity.HasMultiple.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("citizenship.multiple", entity)
 }
 
@@ -1252,9 +1333,19 @@ func (entity *CitizenshipMultiple) Get(context *db.DatabaseContext, account int)
 		return entity.ID, err
 	}
 
-	if err := context.CheckTable(entity); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&CitizenshipMultiple{ID: account}, func(result interface{}) {
+		previous := result.(*CitizenshipMultiple)
+		if entity.HasMultiple == nil {
+			entity.HasMultiple = &Branch{}
+		}
+		entity.HasMultipleID = previous.HasMultipleID
+		entity.HasMultiple.ID = previous.HasMultipleID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.HasMultipleID != 0 {
 		entity.HasMultiple = &Branch{ID: entity.HasMultipleID}
@@ -1313,6 +1404,9 @@ func (entity *CitizenshipPassports) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *CitizenshipPassports) Marshal() Payload {
+	if entity.Passports != nil {
+		entity.PayloadPassports = entity.Passports.Marshal()
+	}
 	return MarshalPayloadEntity("citizenship.passports", entity)
 }
 
@@ -1385,11 +1479,14 @@ func (entity *CitizenshipPassports) Get(context *db.DatabaseContext, account int
 		return entity.ID, err
 	}
 
-	if entity.ID != 0 {
-		if err := context.Select(entity); err != nil {
-			return entity.ID, err
+	context.Find(&CitizenshipPassports{ID: account}, func(result interface{}) {
+		previous := result.(*CitizenshipPassports)
+		if entity.Passports == nil {
+			entity.Passports = &Collection{}
 		}
-	}
+		entity.PassportsID = previous.PassportsID
+		entity.Passports.ID = previous.PassportsID
+	})
 
 	if entity.PassportsID != 0 {
 		entity.Passports = &Collection{ID: entity.PassportsID}

@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignTravelValidator {
   constructor (data = {}) {
     this.hasForeignTravelOutside = (data.HasForeignTravelOutside || {}).value
     this.hasForeignTravelOfficial = (data.HasForeignTravelOfficial || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class ForeignTravelValidator {
       return true
     }
 
-    if (this.hasForeignTravelOutside === 'Yes' && this.hasForeignTravelOfficial === 'No') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new TravelValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new TravelValidator(item).isValid()
+    })
   }
 
   isValid () {

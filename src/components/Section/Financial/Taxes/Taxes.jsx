@@ -12,26 +12,26 @@ export default class Taxes extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasTaxes: props.HasTaxes,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateBranch = this.updateBranch.bind(this)
     this.updateList = this.updateList.bind(this)
     this.summary = this.summary.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      HasTaxes: this.props.HasTaxes,
+      List: this.props.List,
+      ...queue
+    })
   }
 
   /**
    * Updates triggered by the branching component.
    */
   updateBranch (values) {
-    this.setState({ HasTaxes: values }, () => {
-      this.updateList({
-        items: values.value === 'Yes' ? this.state.List : [],
-        branch: ''
-      })
+    this.update({
+      HasTaxes: values,
+      List: values.value === 'Yes' ? this.props.List : {}
     })
   }
 
@@ -40,12 +40,8 @@ export default class Taxes extends SubsectionElement {
    * updates to the items.
    */
   updateList (values) {
-    this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      this.props.onUpdate({
-        List: this.state.List,
-        ListBranch: this.state.ListBranch,
-        HasTaxes: this.state.HasTaxes
-      })
+    this.update({
+      List: values
     })
   }
 
@@ -73,18 +69,17 @@ export default class Taxes extends SubsectionElement {
                 label={i18n.t('financial.taxes.title')}
                 labelSize="h2"
                 className="taxes-branch"
-                {...this.state.HasTaxes}
+                {...this.props.HasTaxes}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasTaxes.value === 'Yes'}>
-          <Accordion items={this.state.List}
+        <Show when={(this.props.HasTaxes || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -94,12 +89,12 @@ export default class Taxes extends SubsectionElement {
                      description={i18n.t('financial.taxes.collection.summary.title')}
                      appendTitle={i18n.t('financial.taxes.collection.appendTitle')}
                      appendLabel={i18n.t('financial.taxes.collection.append')}>
-                     <TaxesItem name="Item"
+            <TaxesItem name="Item"
                        bind={true}
                        required={this.props.required}
                        scrollIntoView={this.props.scrollIntoView}
                        required={this.props.required}
-                     />
+                       />
           </Accordion>
         </Show>
       </div>
@@ -109,8 +104,7 @@ export default class Taxes extends SubsectionElement {
 
 Taxes.defaultProps = {
   HasTaxes: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',

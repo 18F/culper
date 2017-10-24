@@ -5,21 +5,18 @@ import { ValidationElement, Show, BranchCollection, DateRange, Text, Field } fro
 export default class AdditionalActivity extends ValidationElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      List: props.List
-    }
-
-    this.myDispatch = this.myDispatch.bind(this)
+    this.updateBranch = this.updateBranch.bind(this)
   }
 
-  myDispatch (collection) {
-    this.setState({ List: collection }, () => {
-      this.props.onUpdate({
-        name: this.props.name,
-        List: this.state.List
-      })
+  update (queue) {
+    this.props.onUpdate({
+      List: this.props.List,
+      ...queue
     })
+  }
+
+  updateBranch (values) {
+    this.props.onUpdate({ List: values })
   }
 
   render () {
@@ -31,8 +28,8 @@ export default class AdditionalActivity extends ValidationElement {
                           labelSize="h4"
                           appendLabel={i18n.t('history.employment.default.additionalActivity.collection.append')}
                           appendSize="h4"
-                          items={this.state.List}
-                          onUpdate={this.myDispatch}
+                          {...(this.props.List || {})}
+                          onUpdate={this.updateBranch}
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('history.employment.default.additionalActivity.heading.position')}
@@ -77,7 +74,7 @@ export default class AdditionalActivity extends ValidationElement {
 }
 
 AdditionalActivity.defaultProps = {
-  List: [],
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

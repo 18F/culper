@@ -36,64 +36,78 @@ describe('Cohabitant validation', function () {
     const tests = [
       {
         state: {
-          OtherNames: []
+          OtherNames: {
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Yes',
-              Item: {
-                OtherName: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                MaidenName: {
-                  value: 'No'
-                },
-                DatesUsed: {
-                  from: {
-                    date: new Date('1/1/2010')
-                  },
-                  to: {
-                    date: new Date('1/1/2016')
-                  },
-                  present: false
+          OtherNames: {
+            items: [
+              // {
+              //   Item: {
+              //     Has: { value: 'Yes' },
+              //     OtherName: {
+              //       first: 'Foo',
+              //       firstInitialOnly: false,
+              //       middle: 'J',
+              //       middleInitialOnly: true,
+              //       noMiddleName: false,
+              //       last: 'Bar',
+              //       lastInitialOnly: false,
+              //       suffix: 'Jr'
+              //     },
+              //     MaidenName: {
+              //       value: 'No'
+              //     },
+              //     DatesUsed: {
+              //       from: {
+              //         date: new Date('1/1/2010')
+              //       },
+              //       to: {
+              //         date: new Date('1/1/2016')
+              //       },
+              //       present: false
+              //     }
+              //   }
+              // },
+              {
+                Item: {
+                  Has: { value: 'No' }
                 }
               }
-            },
-            {
-              Has: 'No'
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Nope'
-            }
-          ]
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Nope' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Yes'
-            }
-          ]
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       }
@@ -136,38 +150,42 @@ describe('Cohabitant validation', function () {
             last: '1111',
             applicable: true
           },
-          OtherNames: [
-            {
-              Has: 'Yes',
-              Item: {
-                OtherName: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                MaidenName: {
-                  value: 'No'
-                },
-                DatesUsed: {
-                  from: {
-                    date: new Date('1/1/2010')
-                  },
-                  to: {
-                    date: new Date('1/1/2016')
-                  },
-                  present: false
+          OtherNames: {
+            items: [
+              // {
+              //   Item: {
+              //     Has: { value: 'Yes' },
+              //     OtherName: {
+              //       first: 'Foo',
+              //       firstInitialOnly: false,
+              //       middle: 'J',
+              //       middleInitialOnly: true,
+              //       noMiddleName: false,
+              //       last: 'Bar',
+              //       lastInitialOnly: false,
+              //       suffix: 'Jr'
+              //     },
+              //     MaidenName: {
+              //       value: 'No'
+              //     },
+              //     DatesUsed: {
+              //       from: {
+              //         date: new Date('1/1/2010')
+              //       },
+              //       to: {
+              //         date: new Date('1/1/2016')
+              //       },
+              //       present: false
+              //     }
+              //   }
+              // },
+              {
+                Item: {
+                  Has: { value: 'No' }
                 }
               }
-            },
-            {
-              Has: 'No'
-            }
-          ],
+            ]
+          },
           Citizenship: {
             value: ['Germany', 'United States']
           },
@@ -204,100 +222,111 @@ describe('Cohabitant validation', function () {
       {
         state: {
           HasCohabitant: { value: 'Yes' },
-          CohabitantList: [],
-          CohabitantListBranch: 'No'
+          CohabitantList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasCohabitant: { value: 'Yes' },
-          CohabitantList: [{Cohabitant: {}}],
-          CohabitantListBranch: 'No'
+          CohabitantList: {
+            branch: { value: 'No' },
+            items: [{Cohabitant: {}}]
+          }
         },
         expected: false
       },
+
       {
         state: {
           HasCohabitant: { value: 'Yes' },
-          CohabitantList: [
-            {
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Birthdate: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                BirthPlace: {
-                  country: { value: 'United States' },
-                  city: 'Arlington',
-                  county: 'Arlington',
-                  state: 'VA',
-                  layout: Location.BIRTHPLACE
-                },
-                SSN: {
-                  first: '111',
-                  middle: '11',
-                  last: '1111',
-                  applicable: true
-                },
-                OtherNames: [
-                  {
-                    Has: 'Yes',
-                    Item: {
-                      OtherName: {
-                        first: 'Foo',
-                        firstInitialOnly: false,
-                        middle: 'J',
-                        middleInitialOnly: true,
-                        noMiddleName: false,
-                        last: 'Bar',
-                        lastInitialOnly: false,
-                        suffix: 'Jr'
-                      },
-                      MaidenName: {
-                        value: 'No'
-                      },
-                      DatesUsed: {
-                        from: {
-                          date: new Date('1/1/2010')
-                        },
-                        to: {
-                          date: new Date('1/1/2016')
-                        },
-                        present: false
-                      }
-                    }
+          CohabitantList: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
                   },
-                  {
-                    Has: 'No'
-                  }
-                ],
-                Citizenship: {
-                  value: ['Germany', 'United States']
-                },
-                ForeignBornDocument: {
-                  DocumentType: 'FS240',
-                  DocumentExpirationNotApplicable: true,
-                  DocumentNumber: {
-                    value: 'A1234'
+                  Birthdate: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  BirthPlace: {
+                    country: { value: 'United States' },
+                    city: 'Arlington',
+                    county: 'Arlington',
+                    state: 'VA',
+                    layout: Location.BIRTHPLACE
+                  },
+                  SSN: {
+                    first: '111',
+                    middle: '11',
+                    last: '1111',
+                    applicable: true
+                  },
+                  OtherNames: {
+                    items: [
+                      // {
+                      //   Item: {
+                      //     Has: { value: 'Yes' },
+                      //     OtherName: {
+                      //       first: 'Foo',
+                      //       firstInitialOnly: false,
+                      //       middle: 'J',
+                      //       middleInitialOnly: true,
+                      //       noMiddleName: false,
+                      //       last: 'Bar',
+                      //       lastInitialOnly: false,
+                      //       suffix: 'Jr'
+                      //     },
+                      //     MaidenName: {
+                      //       value: 'No'
+                      //     },
+                      //     DatesUsed: {
+                      //       from: {
+                      //         date: new Date('1/1/2010')
+                      //       },
+                      //       to: {
+                      //         date: new Date('1/1/2016')
+                      //       },
+                      //       present: false
+                      //     }
+                      //   }
+                      // },
+                      {
+                        Item: {
+                          Has: { value: 'No' }
+                        }
+                      }
+                    ]
+                  },
+                  Citizenship: {
+                    value: ['Germany', 'United States']
+                  },
+                  ForeignBornDocument: {
+                    DocumentType: 'FS240',
+                    DocumentExpirationNotApplicable: true,
+                    DocumentNumber: {
+                      value: 'A1234'
+                    }
                   }
                 }
               }
-            }
-          ],
-          CohabitantListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

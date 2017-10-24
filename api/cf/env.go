@@ -27,10 +27,10 @@ func PublicURI() string {
 
 // DatabaseURI is the URI used to establish the database connection
 func DatabaseURI(label string) string {
-	current, err := cfenv.Current()
-	if err != nil {
-		log.Println("Cloud Foundry environment not found")
-	}
+	current, _ := cfenv.Current()
+	// if err != nil {
+	// 	log.Println("Cloud Foundry environment not found")
+	// }
 	return getDatabase(current, label)
 }
 
@@ -75,7 +75,7 @@ func getDatabase(current *cfenv.App, label string) string {
 		services, err := current.Services.WithLabel(label)
 		if err == nil {
 			for _, s := range services {
-				log.Println(s.Credentials["uri"].(string))
+				// log.Println(s.Credentials["uri"].(string))
 				return s.Credentials["uri"].(string)
 			}
 		}

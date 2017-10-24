@@ -69,11 +69,10 @@ export default class Employment extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasForeignEmployment.value === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={(this.props.HasForeignEmployment || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      validator={ForeignBusinessEmploymentItemValidator}
                      onError={this.handleError}
@@ -83,11 +82,11 @@ export default class Employment extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.employment.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <JobOffer name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <JobOffer name="Item"
+                      bind={true}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </Accordion>
         </Show>
       </div>
@@ -98,7 +97,7 @@ export default class Employment extends SubsectionElement {
 Employment.defaultProps = {
   name: 'Employment',
   HasForeignEmployment: {},
-  List: [],
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

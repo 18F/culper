@@ -18,60 +18,68 @@ describe('Drug Use Validation', function () {
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          List: [{DrugUse: {}}],
-          ListBranch: 'Nope'
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          List: [{DrugUse: {}}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           UsedDrugs: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null
-                },
-                FirstUse: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                RecentUse: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                NatureOfUse: {
-                  value: 'Some use'
-                },
-                UseWhileEmployed: { value: 'Yes' },
-                UseWithClearance: { value: 'Yes' },
-                UseInFuture: { value: 'No' },
-                Explanation: {
-                  value: 'Foo'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  DrugType: {
+                    DrugType: 'Cocaine',
+                    DrugTypeOther: null
+                  },
+                  FirstUse: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  RecentUse: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  NatureOfUse: {
+                    value: 'Some use'
+                  },
+                  UseWhileEmployed: { value: 'Yes' },
+                  UseWithClearance: { value: 'Yes' },
+                  UseInFuture: { value: 'No' },
+                  Explanation: {
+                    value: 'Foo'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

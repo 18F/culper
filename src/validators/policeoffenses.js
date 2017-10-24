@@ -1,11 +1,10 @@
 import OffenseValidator from './offense'
-import { validBranch } from './helpers'
+import { validAccordion, validBranch } from './helpers'
 
 export default class PoliceOffensesValidator {
   constructor (data = {}) {
     this.hasOffenses = (data.HasOffenses || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validItems () {
@@ -13,20 +12,9 @@ export default class PoliceOffensesValidator {
       return true
     }
 
-    if (this.list.length === 0) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const offense of this.list) {
-      if (new OffenseValidator(offense.Item).isValid() !== true) {
-        return false
-      }
-    }
-    return true
+    return validAccordion(this.list, (item) => {
+      return new OffenseValidator(item).isValid()
+    })
   }
 
   isValid () {

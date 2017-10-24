@@ -9,7 +9,7 @@ describe('Schema', function () {
   })
 
   it('wraps deep properties', function () {
-    const data = { HasOtherNames: 'Yes', List: [] }
+    const data = { HasOtherNames: { value: 'Yes' }, List: [] }
     const actual = schema('identification.othernames', data, false)
     expect(actual.type).toEqual('identification.othernames')
     expect(actual.props.HasOtherNames.type).toEqual('branch')

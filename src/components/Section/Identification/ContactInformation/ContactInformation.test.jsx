@@ -7,8 +7,8 @@ describe('The ContactInformation component', () => {
     let blurs = 0
     const expected = {
       name: 'input-focus',
-      Emails: [{}],
-      PhoneNumbers: [{}],
+      Emails: { items: [{}] },
+      PhoneNumbers: { items: [{}] },
       onBlur: function (event) {
         blurs++
       }
@@ -20,42 +20,44 @@ describe('The ContactInformation component', () => {
 
   it('formats phone numbers appropriately', () => {
     const expected = {
-      PhoneNumbers: [
-        {
-          Item: {
-            type: 'Domestic',
-            number: '2028675309',
-            extension: '1234'
+      PhoneNumbers: {
+        items: [
+          {
+            Item: {
+              type: 'Domestic',
+              number: '2028675309',
+              extension: '1234'
+            }
+          },
+          {
+            Item: {
+              type: 'Domestic',
+              number: '2028675309',
+              extension: ''
+            }
+          },
+          {
+            Item: {
+              type: 'DSN',
+              number: '8675309'
+            }
+          },
+          {
+            Item: {
+              type: 'International',
+              number: '0011234567890',
+              extension: '1234'
+            }
+          },
+          {
+            Item: {
+              type: 'International',
+              number: '0011234567890',
+              extension: ''
+            }
           }
-        },
-        {
-          Item: {
-            type: 'Domestic',
-            number: '2028675309',
-            extension: ''
-          }
-        },
-        {
-          Item: {
-            type: 'DSN',
-            number: '8675309'
-          }
-        },
-        {
-          Item: {
-            type: 'International',
-            number: '0011234567890',
-            extension: '1234'
-          }
-        },
-        {
-          Item: {
-            type: 'International',
-            number: '0011234567890',
-            extension: ''
-          }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<ContactInformation {...expected} />)
     expect(component.find('.index').length).toEqual(5)
@@ -68,16 +70,18 @@ describe('The ContactInformation component', () => {
 
   it('formats emails appropriately', () => {
     const expected = {
-      Emails: [
-        {
-          Item: {
-            value: 'test@abc.com'
+      Emails: {
+        items: [
+          {
+            Item: {
+              value: 'test@abc.com'
+            }
+          },
+          {
+            Item: {}
           }
-        },
-        {
-          Item: {}
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<ContactInformation {...expected} />)
     expect(component.find('.index').length).toEqual(2)

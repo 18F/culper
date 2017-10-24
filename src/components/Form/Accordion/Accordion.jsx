@@ -436,7 +436,7 @@ export default class Accordion extends ValidationElement {
               labelSize="h3"
               className={klassAppend}
               help={this.props.appendHelp}
-              value={this.props.branch.value}
+              value={(this.props.branch || {}).value}
               onUpdate={this.updateAddendum}
               onError={this.props.onError}
               required={this.props.required}

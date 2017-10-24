@@ -18,60 +18,68 @@ describe('Drug Involvement Validation', function () {
       {
         state: {
           Involved: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           Involved: { value: 'Yes' },
-          List: [{DrugInvolvement: {}}],
-          ListBranch: 'Nope'
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugInvolvement: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           Involved: { value: 'Yes' },
-          List: [{DrugInvolvement: {}}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugInvolvement: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           Involved: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null
-                },
-                FirstInvolvement: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                RecentInvolvement: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                NatureOfInvolvement: {
-                  value: 'Some involvement'
-                },
-                Reasons: {
-                  value: 'Some reason'
-                },
-                InvolvementWhileEmployed: { value: 'Yes' },
-                InvolvementWithClearance: { value: 'Yes' },
-                InvolvementInFuture: { value: 'No' }
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  DrugType: {
+                    DrugType: 'Cocaine',
+                    DrugTypeOther: null
+                  },
+                  FirstInvolvement: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  RecentInvolvement: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  NatureOfInvolvement: {
+                    value: 'Some involvement'
+                  },
+                  Reasons: {
+                    value: 'Some reason'
+                  },
+                  InvolvementWhileEmployed: { value: 'Yes' },
+                  InvolvementWithClearance: { value: 'Yes' },
+                  InvolvementInFuture: { value: 'No' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

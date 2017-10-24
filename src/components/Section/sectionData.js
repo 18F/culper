@@ -57,11 +57,11 @@ export const sectionData = (section, subsection, application = {}) => {
       return wrap(application.Relationships).Relatives
 
     case 'citizenship/multiple':
-      return wrap(application.Citizenships).Multiple
+      return wrap(application.Citizenship).Multiple
     case 'citizenship/passports':
-      return wrap(application.Citizenships).Passports
+      return wrap(application.Citizenship).Passports
     case 'citizenship/status':
-      return wrap(application.Citizenships).Status
+      return wrap(application.Citizenship).Status
 
     case 'military/selective':
       return wrap(application.Military).Selective

@@ -11,6 +11,7 @@ import ZipCode from '../ZipCode'
 import Show from '../Show'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
+import { country } from './Location'
 
 const mappingWarning = (property) => {
   if (!env.IsTest()) {
@@ -233,6 +234,7 @@ export default class ToggleableLocation extends ValidationElement {
       }
     })
 
+    const countryName = country(this.props.country)
     return (
       <div className="toggleable-location">
         <RadioGroup
@@ -261,10 +263,10 @@ export default class ToggleableLocation extends ValidationElement {
                  />
         </RadioGroup>
 
-        <Show when={this.props.country !== null && this.props.country.value === 'United States'}>
+        <Show when={countryName !== null && countryName === 'United States'}>
           {domesticFields}
         </Show>
-        <Show when={this.props.country !== null && this.props.country.value !== null && this.props.country.value !== 'United States'}>
+        <Show when={countryName !== null && countryName !== 'United States'}>
           {internationalFields}
         </Show>
       </div>
@@ -306,13 +308,14 @@ export default class ToggleableLocation extends ValidationElement {
   }
 }
 
-const branchValue = (country) => {
-  if (country === null || country.value === null) {
+const branchValue = (value) => {
+  const countryName = country(value)
+  if (countryName === null) {
     // Neutral state
     return ''
   }
 
-  switch (country.value) {
+  switch (countryName) {
     case 'United States':
       return 'Yes'
     default:

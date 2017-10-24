@@ -1,4 +1,5 @@
 import EmploymentValidator from './employment'
+import { validAccordion } from './helpers'
 
 export default class HistoryValidator {
   constructor (state, props) {
@@ -6,12 +7,9 @@ export default class HistoryValidator {
   }
 
   validEmployment () {
-    for (let employment of this.list.filter(item => { return item.type === 'Employment' })) {
-      if (!new EmploymentValidator(employment.Item).isValid()) {
-        return false
-      }
-    }
-    return true
+    return validAccordion(this.list, item => {
+      return new EmploymentValidator(item).isValid()
+    }, true)
   }
 
   isValid () {

@@ -42,12 +42,14 @@ describe('The foreign business employment component', () => {
     const expected = {
       name: 'foreign-business-employment',
       HasForeignEmployment: { value: 'Yes' },
-      List: [{
-        Item: {
-          Address: { country: 'United States' },
-          Accepted: { value: 'Yes' }
-        }
-      }],
+      List: {
+        items: [{
+          Item: {
+            Address: { country: { value: 'United States' } },
+            Accepted: { value: 'Yes' }
+          }
+        }]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Employment {...expected} />)
@@ -56,7 +58,7 @@ describe('The foreign business employment component', () => {
     component.find('.employment-name .first input').simulate('change')
     component.find('.employment-description textarea').simulate('change')
     component.find('.employment-date .day input').simulate('change')
-    component.find('.employment-address .yes input').simulate('change')
+    component.find('.employment-address .city input').simulate('change')
     component.find('.employment-accepted .yes input').simulate('change')
     component.find('.employment-explanation textarea').simulate('change')
     expect(updates).toBe(6)

@@ -156,7 +156,7 @@ export default class CivilUnion extends ValidationElement {
 
   updateAddressSeparatedNotApplicable (values) {
     this.update({
-      AddressSeparatedNotApplicable: !values.applicable
+      AddressSeparatedNotApplicable: values
     })
   }
 
@@ -166,26 +166,30 @@ export default class CivilUnion extends ValidationElement {
     })
   }
 
-  updateUseCurrentAddress (cb) {
-    if (cb.checked) {
+  updateUseCurrentAddress (values) {
+    if (values.checked) {
       this.updateAddress(this.props.currentAddress)
     } else {
       this.updateAddress({})
     }
 
     this.update({
-      UseCurrentAddress: cb.checked
+      UseCurrentAddress: values
     })
   }
 
   render () {
+    const birthCountry = ((this.props.BirthPlace || {}).country || {}).value
+    const showForeignBornDocumentation = birthCountry
+          ? birthCountry !== 'United States'
+          : false
     return (
       <div className="civil-union">
         <div>
           <p>{i18n.t('relationships.civilUnion.para.never')}</p>
 
           <Field title={i18n.t('relationships.civilUnion.heading.name')}
-            scrollIntoView={this.props.scrollIntoView}>
+                 scrollIntoView={this.props.scrollIntoView}>
             <Name name="Name"
                   className="civil"
                   {...this.props.Name}
@@ -210,7 +214,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.birthplace')}
-            scrollIntoView={this.props.scrollIntoView}>
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="birthplace"
                       layout={Location.BIRTHPLACE}
                       className="birthplace"
@@ -222,14 +226,14 @@ export default class CivilUnion extends ValidationElement {
                       />
           </Field>
 
-          <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
+          <Show when={showForeignBornDocumentation}>
             <ForeignBornDocuments name="foreignBornDocument"
-              {...this.props.ForeignBornDocument}
-              onUpdate={this.updateForeignBornDocument}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-            />
+                                  {...this.props.ForeignBornDocument}
+                                  onUpdate={this.updateForeignBornDocument}
+                                  onError={this.props.onError}
+                                  required={this.props.required}
+                                  scrollIntoView={this.props.scrollIntoView}
+                                  />
           </Show>
 
           <Field title={i18n.t('relationships.civilUnion.heading.ssn')}
@@ -246,14 +250,14 @@ export default class CivilUnion extends ValidationElement {
           <BranchCollection label={i18n.t('relationships.civilUnion.heading.othernames')}
                             className="othername"
                             appendLabel={i18n.m('relationships.civilUnion.heading.appendOthernames')}
-                            items={this.props.OtherNames}
+                            {...this.props.OtherNames}
                             onError={this.props.onError}
                             onUpdate={this.updateOtherNames}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Name name="Othername"
                     bind={true}
                     onError={this.props.onError}
@@ -315,7 +319,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.location')}
-            scrollIntoView={this.props.scrollIntoView}>
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="Location"
                       className="civilunion-location"
                       layout={Location.BIRTHPLACE}
@@ -335,7 +339,7 @@ export default class CivilUnion extends ValidationElement {
               <Checkbox name="current_address"
                         className="current-address"
                         label="Use current address"
-                        checked={this.props.UseCurrentAddress}
+                        {...this.props.UseCurrentAddress}
                         onUpdate={this.updateUseCurrentAddress}
                         onError={this.props.onError}
                         />
@@ -385,7 +389,7 @@ export default class CivilUnion extends ValidationElement {
                   onError={this.props.onError}>
           </Branch>
 
-          <Show when={this.props.Separated.value === 'Yes'}>
+          <Show when={(this.props.Separated || {}).value === 'Yes'}>
             <div>
               <Field title={i18n.t('relationships.civilUnion.heading.dateSeparated')}
                      help="relationships.civilUnion.help.dateSeparated"
@@ -404,7 +408,7 @@ export default class CivilUnion extends ValidationElement {
                      className="address-separated"
                      scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="OtherNameNotApplicable"
-                               applicable={this.props.AddressSeparatedNotApplicable}
+                               {...this.props.AddressSeparatedNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
                                or={i18n.m('relationships.civilUnion.notApplicable.or')}
                                onUpdate={this.updateAddressSeparatedNotApplicable}
@@ -444,7 +448,7 @@ CivilUnion.defaultProps = {
   BirthPlace: {},
   ForeignBornDocument: {},
   SSN: {},
-  OtherNames: [],
+  OtherNames: {},
   Citizenship: {},
   EnteredCivilUnion: {},
   Address: {},

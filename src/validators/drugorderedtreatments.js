@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
+import { validAccordion, validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugOrderedTreatmentsValidator {
   constructor (data = {}) {
     this.involved = (data.TreatmentOrdered || {}).value
     this.list = data.List
-    this.listBranch = data.ListBranch
   }
 
   validTreatmentOrdered () {
@@ -18,22 +17,9 @@ export default class DrugOrderedTreatmentsValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new DrugOrderedTreatmentValidator(item.Item, null).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new DrugOrderedTreatmentValidator(item).isValid()
+    })
   }
 
   isValid () {

@@ -1,6 +1,6 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validGenericMonthYear, validGenericTextfield, validBranch } from './helpers'
+import { validAccordion, validGenericMonthYear, validGenericTextfield, validBranch } from './helpers'
 
 /**
  * Validates an entire Bankruptcy section
@@ -8,8 +8,7 @@ import { validGenericMonthYear, validGenericTextfield, validBranch } from './hel
 export default class BankruptcyValidator {
   constructor (data) {
     this.hasBankruptcy = (data.HasBankruptcy || {}).value
-    this.list = data.List
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   /**
@@ -32,22 +31,9 @@ export default class BankruptcyValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new BankruptcyItemValidator(item.Item).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new BankruptcyItemValidator(item).isValid()
+    })
   }
 
   /**

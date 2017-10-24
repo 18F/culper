@@ -7,147 +7,163 @@ describe('citizenship multiple component validation', function () {
     const tests = [
       {
         state: {
-          Passports: [
-            {
-              Item: {}
-            }
-          ]
+          Passports: {
+            items: [
+              {
+                Item: {}
+              }
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
-          Passports: [
-            {
-              Has: 'No'
-            }
-          ]
+          Passports: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
+              }
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          Passports: [
-            {
-              Has: 'Yes',
-              Item: {
-                Country: {
-                  value: 'United States'
-                },
-                Issued: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Location: {
-                  country: { value: 'United States' },
-                  city: 'Arlington',
-                  layout: Location.CITY_COUNTRY
-                },
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Number: {
-                  value: 'number'
-                },
-                Expiration: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Used: { value: 'Yes' },
-                Countries: [
-                  {
-                    Item: {
-                      Country: '',
-                      Dates: {
-                        from: {
-                          date: new Date('1/1/2010')
-                        },
-                        to: {
-                          date: new Date('1/1/2012')
-                        },
-                        present: false
+          Passports: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Country: {
+                    value: 'United States'
+                  },
+                  Issued: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Location: {
+                    country: { value: 'United States' },
+                    city: 'Arlington',
+                    layout: Location.CITY_COUNTRY
+                  },
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Number: {
+                    value: 'number'
+                  },
+                  Expiration: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Used: { value: 'Yes' },
+                  Countries: {
+                    branch: {},
+                    items: [
+                      {
+                        Item: {
+                          Country: {},
+                          Dates: {
+                            from: {
+                              date: new Date('1/1/2010')
+                            },
+                            to: {
+                              date: new Date('1/1/2012')
+                            },
+                            present: false
+                          }
+                        }
                       }
-                    }
+                    ]
                   }
-                ]
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
-          Passports: [
-            {
-              Has: 'Yes',
-              Item: {
-                Country: {
-                  value: 'United States'
-                },
-                Issued: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Location: {
-                  country: { value: 'United States' },
-                  city: 'Arlington',
-                  layout: Location.CITY_COUNTRY
-                },
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Number: {
-                  value: 'number'
-                },
-                Expiration: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Used: { value: 'Yes' },
-                Countries: [
-                  {
-                    Item: {
-                      Country: {
-                        value: 'United States'
-                      },
-                      Dates: {
-                        from: {
-                          date: new Date('1/1/2010')
-                        },
-                        to: {
-                          date: new Date('1/1/2012')
-                        },
-                        present: false
+          Passports: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' },
+                  Country: {
+                    value: 'United States'
+                  },
+                  Issued: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Location: {
+                    country: { value: 'United States' },
+                    city: 'Arlington',
+                    layout: Location.CITY_COUNTRY
+                  },
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Number: {
+                    value: 'number'
+                  },
+                  Expiration: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Used: { value: 'Yes' },
+                  Countries: {
+                    branch: {},
+                    items: [
+                      {
+                        Item: {
+                          Country: {
+                            value: 'United States'
+                          },
+                          Dates: {
+                            from: {
+                              date: new Date('1/1/2010')
+                            },
+                            to: {
+                              date: new Date('1/1/2012')
+                            },
+                            present: false
+                          }
+                        }
                       }
-                    }
+                    ]
                   }
-                ]
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }
@@ -388,31 +404,37 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           Used: { value: 'Yes' },
-          Countries: []
+          Countries: {
+            branch: {},
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           Used: { value: 'Yes' },
-          Countries: [
-            {
-              Item: {
-                Country: {
-                  value: 'United States'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          Countries: {
+            branch: {},
+            items: [
+              {
+                Item: {
+                  Country: {
+                    value: 'United States'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  },
-                  present: false
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

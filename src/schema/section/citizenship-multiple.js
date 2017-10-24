@@ -1,21 +1,22 @@
 import * as form from '../form'
 
 export const citizenshipMultiple = (data = {}) => {
-  const items = (data.Citizenships || []).map(x => {
+  const items = ((data.Citizenships || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Country: form.country(x.Item.Country),
-        Dates: form.daterange(x.Item.Dates),
-        How: form.textarea(x.Item.How),
-        Renounced: form.branch(x.Item.Renounced),
-        RenouncedExplanation: form.textarea(x.Item.RenouncedExplanation),
-        Current: form.branch(x.Item.Current),
-        CurrentExplanation: form.textarea(x.Item.CurrentExplanation)
+        Country: form.country(xitem.Country),
+        Dates: form.daterange(xitem.Dates),
+        How: form.textarea(xitem.How),
+        Renounced: form.branch(xitem.Renounced),
+        RenouncedExplanation: form.textarea(xitem.RenouncedExplanation),
+        Current: form.branch(xitem.Current),
+        CurrentExplanation: form.textarea(xitem.CurrentExplanation)
       }
     }
   })
   return {
     HasMultiple: form.branch(data.HasMultiple),
-    List: form.collection(items, data.CitizenshipsBranch)
+    List: form.collection(items, (data.Citizenships || {}).branch)
   }
 }

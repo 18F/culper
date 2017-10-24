@@ -1,17 +1,18 @@
 import * as form from '../form'
 
 export const substanceDrugPublicSafety = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Description: form.textarea(x.Item.Description),
-        InvolvementDates: form.daterange(x.Item.InvolvementDates),
-        EstimatedUse: form.text(x.Item.EstimatedUse)
+        Description: form.textarea(xitem.Description),
+        InvolvementDates: form.daterange(xitem.InvolvementDates),
+        EstimatedUse: form.text(xitem.EstimatedUse)
       }
     }
   })
   return {
     UsedDrugs: form.branch(data.UsedDrugs),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

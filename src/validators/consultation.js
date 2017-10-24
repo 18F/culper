@@ -1,9 +1,9 @@
 import { ConsultationOrderValidator } from './order'
+import { validAccordion } from './helpers'
 
 export default class ConsultationValidator {
   constructor (data = {}) {
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
     this.consulted = (data.Consulted || {}).value
   }
 
@@ -12,21 +12,13 @@ export default class ConsultationValidator {
   }
 
   validList () {
-    if (this.consulted === 'Yes' && this.list.length === 0) {
-      return false
+    if (this.consulted === 'No') {
+      return true
     }
 
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (let order of this.list) {
-      if (!new ConsultationOrderValidator(order.Item).isValid()) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new ConsultationOrderValidator(item).isValid()
+    })
   }
 
   isValid () {

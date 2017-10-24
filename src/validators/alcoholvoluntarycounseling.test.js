@@ -77,43 +77,45 @@ describe('ordered counseling component validation', function () {
     const tests = [
       {
         state: {
-          ListBranch: 'No',
           SoughtTreatment: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                CounselingDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CounselingDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  TreatmentProviderName: {
+                    value: 'The name'
                   },
-                  present: false
-                },
-                TreatmentProviderName: {
-                  value: 'The name'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                TreatmentProviderTelephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
-                },
-                CompletedTreatment: { value: 'Yes' }
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  TreatmentProviderTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  },
+                  CompletedTreatment: { value: 'Yes' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
@@ -126,22 +128,30 @@ describe('ordered counseling component validation', function () {
       {
         state: {
           SoughtTreatment: { value: 'Yes' },
-          List: []
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           SoughtTreatment: { value: 'Yes' },
-          List: [{}]
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           SoughtTreatment: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [{Item: {}}]
+          List: {
+            branch: { value: 'No' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       }

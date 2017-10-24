@@ -15,7 +15,8 @@ describe('The delinquent component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'delinquent',
-      HasDelinquent: { value: 'Yes' }
+      HasDelinquent: { value: 'Yes' },
+      List: { branch: {}, items: [] }
     }
     const component = mount(<Delinquent {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +25,8 @@ describe('The delinquent component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'delinquent',
-      HasDelinquent: { value: 'No' }
+      HasDelinquent: { value: 'No' },
+      List: { branch: {}, items: [] }
     }
     const component = mount(<Delinquent {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -34,12 +36,14 @@ describe('The delinquent component', () => {
     let updates = 0
     const expected = {
       name: 'delinquent',
+      HasDelinquent: { value: 'Yes' },
+      List: { branch: {}, items: [{}] },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Delinquent {...expected} />)
-    component.find('.branch .yes input').simulate('change')
+    component.find('.branch .yes input').first().simulate('change')
     component.find('.delinquent-name input').simulate('change', { target: { value: 'IRS' } })
     component.find('.delinquent-infractions .delinquent-alimony input').simulate('change')
     component.find('.delinquent-accountnumber input').simulate('change', { target: { value: 'IRS' } })

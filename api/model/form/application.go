@@ -33,17 +33,17 @@ var (
 		},
 		sectionInformation{
 			name:       "Identification",
-			subsection: "ApplicationBirthDate",
+			subsection: "ApplicantBirthDate",
 			payload:    "identification.birthdate",
 		},
 		sectionInformation{
 			name:       "Identification",
-			subsection: "ApplicationBirthPlace",
+			subsection: "ApplicantBirthPlace",
 			payload:    "identification.birthplace",
 		},
 		sectionInformation{
 			name:       "Identification",
-			subsection: "ApplicationSSN",
+			subsection: "ApplicantSSN",
 			payload:    "identification.ssn",
 		},
 		sectionInformation{
@@ -127,17 +127,17 @@ var (
 			payload:    "relationships.relatives",
 		},
 		sectionInformation{
-			name:       "Citizenships",
+			name:       "Citizenship",
 			subsection: "Status",
 			payload:    "citizenship.status",
 		},
 		sectionInformation{
-			name:       "Citizenships",
+			name:       "Citizenship",
 			subsection: "Multiple",
 			payload:    "citizenship.multiple",
 		},
 		sectionInformation{
-			name:       "Citizenships",
+			name:       "Citizenship",
 			subsection: "Passports",
 			payload:    "citizenship.passports",
 		},
@@ -432,7 +432,11 @@ func Application(context *db.DatabaseContext, account int) []byte {
 			continue
 		}
 
-		application[section.name] = subsection(section.subsection, entity.Marshal())
+		// application[section.name] = subsection(section.subsection, entity.Marshal())
+		if _, ok := application[section.name]; !ok {
+			application[section.name] = make(map[string]Payload)
+		}
+		application[section.name][section.subsection] = entity.Marshal()
 	}
 
 	js, _ := json.MarshalIndent(application, "", "  ")

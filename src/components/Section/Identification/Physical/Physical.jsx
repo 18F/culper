@@ -63,7 +63,7 @@ export default class Physical extends SubsectionElement {
                scrollIntoView={this.props.scrollIntoView}
                shrink={true}>
           <Weight name="weight"
-                  value={this.props.Weight}
+                  {...this.props.Weight}
                   onUpdate={this.handleUpdate.bind(this, 'Weight')}
                   onError={this.handleError}
                   required={this.props.required}
@@ -77,7 +77,7 @@ export default class Physical extends SubsectionElement {
           <HairColor name="hair"
                      help="identification.traits.help.hair"
                      className=""
-                     value={this.props.HairColor}
+                     {...this.props.HairColor}
                      onUpdate={this.handleUpdate.bind(this, 'HairColor')}
                      onError={this.handleError}
                      required={this.props.required}
@@ -90,7 +90,7 @@ export default class Physical extends SubsectionElement {
                help="identification.traits.help.eye">
           <EyeColor name="eye"
                     className=""
-                    value={this.props.EyeColor}
+                    {...this.props.EyeColor}
                     onUpdate={this.handleUpdate.bind(this, 'EyeColor')}
                     onError={this.handleError}
                     required={this.props.required}
@@ -106,7 +106,7 @@ export default class Physical extends SubsectionElement {
                scrollIntoView={this.props.scrollIntoView}
                comments={true}>
           <Sex name="sex"
-               value={this.props.Sex}
+               {...this.props.Sex}
                onUpdate={this.handleUpdate.bind(this, 'Sex')}
                onError={this.handleError}
                required={this.props.required}

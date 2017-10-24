@@ -37,7 +37,7 @@ class Identification extends SectionElement {
                        back="identification/physical"
                        backLabel={i18n.t('identification.destination.physical')}>
             <ApplicantName name="name"
-                           value={this.props.ApplicantName}
+                           {...this.props.ApplicantName}
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
@@ -77,7 +77,7 @@ class Identification extends SectionElement {
                                 />
             <hr />
             <ApplicantBirthPlace name="birthplace"
-                                 value={this.props.ApplicantBirthPlace}
+                                 {...this.props.ApplicantBirthPlace}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
@@ -110,7 +110,7 @@ class Identification extends SectionElement {
                        next="identification/contacts"
                        nextLabel={i18n.t('identification.destination.contacts')}>
             <ApplicantName name="name"
-                           value={this.props.ApplicantName}
+                           {...this.props.ApplicantName}
                            dispatch={this.props.dispatch}
                            onUpdate={this.handleUpdate.bind(this, 'ApplicantName')}
                            onError={this.handleError}
@@ -149,7 +149,7 @@ class Identification extends SectionElement {
                        back="identification/birthdate"
                        backLabel={i18n.t('identification.destination.birthdate')}>
             <ApplicantBirthPlace name="birthplace"
-                                 value={this.props.ApplicantBirthPlace}
+                                 {...this.props.ApplicantBirthPlace}
                                  dispatch={this.props.dispatch}
                                  onUpdate={this.handleUpdate.bind(this, 'ApplicantBirthPlace')}
                                  onError={this.handleError}
@@ -201,10 +201,10 @@ class Identification extends SectionElement {
 }
 
 function mapStateToProps (state) {
-  let app = state.application || {}
-  let identification = app.Identification || {}
-  let errors = app.Errors || {}
-  let completed = app.Completed || {}
+  const app = state.application || {}
+  const identification = app.Identification || {}
+  const errors = app.Errors || {}
+  const completed = app.Completed || {}
   return {
     Identification: identification,
     ApplicantName: identification.ApplicantName || {},
@@ -229,7 +229,7 @@ export class IdentificationSections extends React.Component {
     return (
       <div>
         <ApplicantName name="name"
-          value={this.props.ApplicantName}
+          {...this.props.ApplicantName}
           dispatch={this.props.dispatch}
           onError={this.props.onError}
           required={true}
@@ -257,13 +257,13 @@ export class IdentificationSections extends React.Component {
         <ApplicantBirthDate name="birthdate"
           dispatch={this.props.dispatch}
           onError={this.props.onError}
-          value={this.props.ApplicantBirthDate}
+          {...this.props.ApplicantBirthDate}
           required={true}
           scrollIntoView={false}
         />
         <hr />
         <ApplicantBirthPlace name="birthplace"
-          value={this.props.ApplicantBirthPlace}
+          {...this.props.ApplicantBirthPlace}
           dispatch={this.props.dispatch}
           onError={this.props.onError}
           required={true}

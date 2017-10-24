@@ -1,17 +1,19 @@
 import * as form from '../form'
 
 export const identificationContacts = (data = {}) => {
-  const emails = (data.Emails || []).map(x => {
+  const emails = ((data.Emails || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Email: form.email(x.Item)
+        Email: form.email(xitem.Email)
       }
     }
   })
-  const phoneNumbers = (data.PhoneNumbers || []).map(x => {
+  const phoneNumbers = ((data.PhoneNumbers || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        PhoneNumber: form.telephone(x.Item)
+        PhoneNumber: form.telephone(xitem.PhoneNumber)
       }
     }
   })

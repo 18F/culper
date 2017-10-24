@@ -21,12 +21,14 @@ describe('The RealEstateActivity component', () => {
   it('Renders summary information', () => {
     const expected = {
       HasInterests: { value: 'Yes' },
-      List: [{
-        Item: {
-          InterestTypes: ['Yourself']
-        },
-        open: true
-      }]
+      List: {
+        items: [{
+          Item: {
+            InterestTypes: ['Yourself']
+          },
+          open: true
+        }]
+      }
     }
     const component = mount(<RealEstateActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -38,58 +40,64 @@ describe('The RealEstateActivity component', () => {
       {
         props: {
           HasInterests: { value: 'Yes' },
-          List: [{
-            Item: {
-              InterestTypes: ['Yourself'],
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'VA',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              open: true
-            }
-          }]
+          List: {
+            items: [{
+              Item: {
+                InterestTypes: ['Yourself'],
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'VA',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                open: true
+              }
+            }]
+          }
         },
         expected: 'Yourself - 1234 some rd, arlington, VA 22202'
       },
       {
         props: {
           HasInterests: { value: 'Yes' },
-          List: [{
-            Item: {
-              InterestTypes: ['Yourself'],
-              Address: {
-                street: '1 Rd',
-                city: 'Munich',
-                country: { value: 'Germany' },
-                layout: Location.ADDRESS
-              },
-              open: true
-            }
-          }]
+          List: {
+            items: [{
+              Item: {
+                InterestTypes: ['Yourself'],
+                Address: {
+                  street: '1 Rd',
+                  city: 'Munich',
+                  country: { value: 'Germany' },
+                  layout: Location.ADDRESS
+                },
+                open: true
+              }
+            }]
+          }
         },
         expected: 'Yourself - 1 rd, munich, germany'
       },
       {
         props: {
           HasInterests: { value: 'Yes' },
-          List: [{
-            Item: {
-              InterestTypes: ['Yourself'],
-              Address: {
-                country: { value: 'United States' },
-                street: '1 Rd',
-                city: 'APO',
-                state: 'AA',
-                zipcode: '22222',
-                layout: Location.ADDRESS
-              },
-              open: true
-            }
-          }]
+          List: {
+            items: [{
+              Item: {
+                InterestTypes: ['Yourself'],
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1 Rd',
+                  city: 'APO',
+                  state: 'AA',
+                  zipcode: '22222',
+                  layout: Location.ADDRESS
+                },
+                open: true
+              }
+            }]
+          }
         },
         expected: 'Yourself - 1 rd, apo, AA 22222'
       }
@@ -118,47 +126,49 @@ describe('The RealEstateActivity component', () => {
         return arr
       },
       HasInterests: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            InterestTypes: ['Yourself'],
-            RealEstateType: {
-              value: 'Bar'
-            },
-            Address: {
-              country: { value: 'United States' },
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'VA',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            },
-            Acquired: {
-              day: '1',
-              month: '1',
-              year: '2016'
-            },
-            HowAcquired: {
-              value: 'foo'
-            },
-            Cost: {
-              value: '100'
-            },
-            Sold: {
-              day: '1',
-              month: '1',
-              year: '2016'
-            },
-            SoldNotApplicable: {
-              applicable: true
-            },
-            CoOwners: {
-              List: [{ Has: 'No' }]
+      List: {
+        branch: { value: 'No' },
+        items: [
+          {
+            Item: {
+              InterestTypes: ['Yourself'],
+              RealEstateType: {
+                value: 'Bar'
+              },
+              Address: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'VA',
+                zipcode: '22202',
+                layout: Location.ADDRESS
+              },
+              Acquired: {
+                day: '1',
+                month: '1',
+                year: '2016'
+              },
+              HowAcquired: {
+                value: 'foo'
+              },
+              Cost: {
+                value: '100'
+              },
+              Sold: {
+                day: '1',
+                month: '1',
+                year: '2016'
+              },
+              SoldNotApplicable: {
+                applicable: true
+              },
+              CoOwners: {
+                List: [{ Has: 'No' }]
+              }
             }
           }
-        }
-      ],
-      ListBranch: 'No'
+        ]
+      }
     }
     const component = mount(<RealEstateActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

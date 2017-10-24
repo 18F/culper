@@ -1,11 +1,10 @@
 import LocationValidator from './location'
-import { validGenericTextfield, validDateField } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField } from './helpers'
 
 export default class LegalTechnologyManipulatingValidator {
   constructor (data = {}) {
     this.hasManipulating = (data.HasManipulating || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validList () {
@@ -13,19 +12,9 @@ export default class LegalTechnologyManipulatingValidator {
       return true
     }
 
-    if (this.hasManipulating === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new ManipulatingValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new ManipulatingValidator(item).isValid()
+    })
   }
 
   isValid () {

@@ -1,5 +1,5 @@
 import MilitaryHistoryValidator from './militaryhistory'
-import { validGenericTextfield, validDateField } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField } from './helpers'
 
 export const hideDisciplinaryProcedures = (store = {}) => {
   const history = (store.Military || {}).History
@@ -9,8 +9,7 @@ export const hideDisciplinaryProcedures = (store = {}) => {
 export default class MilitaryDisciplinaryValidator {
   constructor (data = {}) {
     this.hasDisciplinary = (data.HasDisciplinary || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validDisciplinary () {
@@ -22,21 +21,9 @@ export default class MilitaryDisciplinaryValidator {
       return true
     }
 
-    if (this.list.length === 0) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const procedure of this.list) {
-      if (new ProcedureValidator(procedure.Item, null).isValid() === false) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new ProcedureValidator(item).isValid()
+    })
   }
 
   isValid () {

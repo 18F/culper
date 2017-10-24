@@ -6,66 +6,78 @@ describe('Federal service component validation', function () {
     const tests = [
       {
         state: {
-          List: []
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasFederalService: { value: 'No' },
-          List: []
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
           HasFederalService: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasFederalService: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasFederalService: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: {
-                  value: 'FDA'
-                },
-                Position: {
-                  value: 'CTR'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: 'FDA'
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Position: {
+                    value: 'CTR'
                   },
-                  present: false
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

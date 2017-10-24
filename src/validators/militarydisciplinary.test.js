@@ -80,47 +80,53 @@ describe('Military disciplinary validation', function () {
       {
         state: {
           HasDisciplinary: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasDisciplinary: { value: 'Yes' },
-          List: [{}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasDisciplinary: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2012')
-                },
-                Offenses: {
-                  value: 'Littering'
-                },
-                Name: {
-                  value: 'Local law'
-                },
-                Court: {
-                  value: 'In the Congo'
-                },
-                Outcome: {
-                  value: 'Lost my right hand'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2012')
+                  },
+                  Offenses: {
+                    value: 'Littering'
+                  },
+                  Name: {
+                    value: 'Local law'
+                  },
+                  Court: {
+                    value: 'In the Congo'
+                  },
+                  Outcome: {
+                    value: 'Lost my right hand'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },

@@ -35,7 +35,9 @@ func (entity *HistoryResidence) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *HistoryResidence) Marshal() Payload {
-	entity.PayloadList = entity.List.Marshal()
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("history.residence", entity)
 }
 
@@ -161,7 +163,9 @@ func (entity *HistoryEmployment) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *HistoryEmployment) Marshal() Payload {
-	entity.PayloadList = entity.List.Marshal()
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("history.employment", entity)
 }
 
@@ -305,9 +309,15 @@ func (entity *HistoryEducation) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *HistoryEducation) Marshal() Payload {
-	entity.PayloadHasAttended = entity.HasAttended.Marshal()
-	entity.PayloadHasDegree10 = entity.HasDegree10.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasAttended != nil {
+		entity.PayloadHasAttended = entity.HasAttended.Marshal()
+	}
+	if entity.HasDegree10 != nil {
+		entity.PayloadHasDegree10 = entity.HasDegree10.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("history.education", entity)
 }
 
@@ -488,8 +498,12 @@ func (entity *HistoryFederal) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *HistoryFederal) Marshal() Payload {
-	entity.PayloadHasFederalService = entity.HasFederalService.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasFederalService != nil {
+		entity.PayloadHasFederalService = entity.HasFederalService.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("history.federal", entity)
 }
 

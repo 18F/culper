@@ -247,47 +247,49 @@ describe('Foreign contacts component validation', function () {
       },
       {
         state: {
-          Aliases: []
+          Aliases: {
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'No'
-            }
-          ]
+          Aliases: {
+            items: [{ Item: { Has: { value: 'No' } } }]
+          }
         },
         expected: true
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'Yes'
-            }
-          ]
+          Aliases: {
+            items: [{ Item: { Has: { value: 'Yes' } } }]
+          }
         },
         expected: false
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'Yes',
-              Alias: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
+          Aliases: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Alias: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }
@@ -602,58 +604,58 @@ describe('Foreign contacts component validation', function () {
       {
         state: {
           HasForeignContacts: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                NameNotApplicable: {
-                  applicable: false
-                },
-                NameExplanation: {
-                  value: 'explanation'
-                },
-                FirstContact: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                LastContact: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Methods: ['In person'],
-                Frequency: 'Weekly',
-                Relationship: ['Personal'],
-                Aliases: [
-                  {
-                    Has: 'No'
-                  }
-                ],
-                Citizenship: {
-                  value: ['United States']
-                },
-                BirthdateNotApplicable: {
-                  applicable: false
-                },
-                BirthplaceNotApplicable: {
-                  applicable: false
-                },
-                AddressNotApplicable: {
-                  applicable: false
-                },
-                EmployerNotApplicable: {
-                  applicable: false
-                },
-                EmployerAddressNotApplicable: {
-                  applicable: false
-                },
-                HasAffiliations: { value: 'No' }
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  NameNotApplicable: {
+                    applicable: false
+                  },
+                  NameExplanation: {
+                    value: 'explanation'
+                  },
+                  FirstContact: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  LastContact: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Methods: ['In person'],
+                  Frequency: 'Weekly',
+                  Relationship: ['Personal'],
+                  Aliases: {
+                    items: [{ Item: { Has: { value: 'No' } } }]
+                  },
+                  Citizenship: {
+                    value: ['United States']
+                  },
+                  BirthdateNotApplicable: {
+                    applicable: false
+                  },
+                  BirthplaceNotApplicable: {
+                    applicable: false
+                  },
+                  AddressNotApplicable: {
+                    applicable: false
+                  },
+                  EmployerNotApplicable: {
+                    applicable: false
+                  },
+                  EmployerAddressNotApplicable: {
+                    applicable: false
+                  },
+                  HasAffiliations: { value: 'No' }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

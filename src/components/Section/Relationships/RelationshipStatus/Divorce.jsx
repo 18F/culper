@@ -98,7 +98,7 @@ export default class Divorce extends React.Component {
 
   updateDeceasedAddressNotApplicable (values) {
     this.update({
-      DeceasedAddressNotApplicable: !values.applicable
+      DeceasedAddressNotApplicable: values
     })
   }
 
@@ -130,7 +130,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
                     layout={Location.BIRTHPLACE}
                     label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
@@ -196,7 +196,7 @@ export default class Divorce extends React.Component {
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.status')}
                scrollIntoView={this.props.scrollIntoView}
                className="status">
-          <RadioGroup name="status" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
+          <RadioGroup name="status" selectedValue={(this.props.Status || {}).value} required={this.props.required} onError={this.props.onError}>
             <Radio
               label={i18n.t('relationships.civilUnion.divorce.label.divorced')}
               value="Divorced"
@@ -221,11 +221,11 @@ export default class Divorce extends React.Component {
           </RadioGroup>
         </Field>
 
-        <Show when={['Divorced', 'Annulled'].includes(this.props.Status)}>
+        <Show when={['Divorced', 'Annulled'].includes((this.props.Status || {}).value)}>
           <div>
             <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceased')} className="deceased"
-              scrollIntoView={this.props.scrollIntoView}>
-              <RadioGroup name="deceased" selectedValue={this.props.Deceased} required={this.props.required} onError={this.props.onError}>
+                   scrollIntoView={this.props.scrollIntoView}>
+              <RadioGroup name="deceased" selectedValue={(this.props.Deceased || {}).value} required={this.props.required} onError={this.props.onError}>
                 <Radio
                   className="yes"
                   label={i18n.t('relationships.civilUnion.divorce.deceased.label.yes')}
@@ -252,12 +252,12 @@ export default class Divorce extends React.Component {
               </RadioGroup>
             </Field>
 
-            <Show when={this.props.Deceased === 'Yes'}>
+            <Show when={(this.props.Deceased || {}).value === 'Yes'}>
               <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}
-                scrollIntoView={this.props.scrollIntoView}>
+                     scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
                                className="deceased-notapplicable"
-                               applicable={this.props.DeceasedAddressNotApplicable}
+                               {...this.props.DeceasedAddressNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
                                or={i18n.m('relationships.civilUnion.notApplicable.or')}
                                onError={this.props.onError}

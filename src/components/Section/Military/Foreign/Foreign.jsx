@@ -20,7 +20,7 @@ export default class Foreign extends SubsectionElement {
   render () {
     return (
       <div className="foreign">
-        <BranchCollection items={this.props.List}
+        <BranchCollection {...this.props.List}
                           branchName="has_foreign"
                           label={i18n.t('military.foreign.heading.title')}
                           labelSize="h2"

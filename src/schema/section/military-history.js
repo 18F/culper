@@ -1,24 +1,25 @@
 import * as form from '../form'
 
 export const militaryHistory = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Service: form.radio(x.Item.Service),
-        Status: form.radio(x.Item.Status),
-        Officer: form.radio(x.Item.Officer),
-        ServiceNumber: form.text(x.Item.ServiceNumber),
-        Dates: form.daterange(x.Item.Dates),
-        HasBeenDischarged: form.branch(x.Item.HasBeenDischarged),
-        DischargeType: form.radio(x.Item.DischargeType),
-        DischargeTypeOther: form.text(x.Item.DischargeTypeOther),
-        DischargeReason: form.textarea(x.Item.DischargeReason),
-        DischargeDate: form.datecontrol(x.Item.DischargeDate)
+        Service: form.radio(xitem.Service),
+        Status: form.radio(xitem.Status),
+        Officer: form.radio(xitem.Officer),
+        ServiceNumber: form.text(xitem.ServiceNumber),
+        Dates: form.daterange(xitem.Dates),
+        HasBeenDischarged: form.branch(xitem.HasBeenDischarged),
+        DischargeType: form.radio(xitem.DischargeType),
+        DischargeTypeOther: form.text(xitem.DischargeTypeOther),
+        DischargeReason: form.textarea(xitem.DischargeReason),
+        DischargeDate: form.datecontrol(xitem.DischargeDate)
       }
     }
   })
   return {
     HasServed: form.branch(data.HasServed),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

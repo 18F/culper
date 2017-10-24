@@ -1,11 +1,10 @@
 import DateRangeValidator from './daterange'
-import { validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
+import { validAccordion, validBranch, validGenericTextfield, validGenericMonthYear } from './helpers'
 
 export default class NegativeImpactsValidator {
   constructor (data = {}) {
     this.hasImpacts = (data.HasImpacts || {}).value
-    this.list = data.List
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validHasImpacts () {
@@ -17,22 +16,9 @@ export default class NegativeImpactsValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new NegativeImpactValidator(item.Item).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new NegativeImpactValidator(item).isValid()
+    })
   }
 
   isValid () {

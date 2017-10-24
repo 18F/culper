@@ -1,12 +1,11 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignActivitiesSupportValidator {
   constructor (state = {}, props = {}) {
     this.hasForeignSupport = (state.HasForeignSupport || {}).value
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+    this.list = state.List || {}
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class ForeignActivitiesSupportValidator {
       return true
     }
 
-    if (this.hasForeignSupport === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new SupportValidator(item.Item, null).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new SupportValidator(item).isValid()
+    })
   }
 
   isValid () {

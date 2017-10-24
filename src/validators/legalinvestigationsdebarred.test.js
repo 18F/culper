@@ -83,41 +83,47 @@ describe('Legal investigations debarred component validation', function () {
       {
         state: {
           HasDebarment: { value: 'Yes' },
-          List: [],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           HasDebarment: { value: 'Yes' },
-          List: [{}],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
           HasDebarment: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Date: {
-                  date: new Date('1/1/2010'),
-                  day: '1',
-                  month: '1',
-                  year: '2010'
-                },
-                Agency: {
-                  value: 'U.S. Department of Defense'
-                },
-                Explanation: {
-                  value: 'this is an explanation'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2010'),
+                    day: '1',
+                    month: '1',
+                    year: '2010'
+                  },
+                  Agency: {
+                    value: 'U.S. Department of Defense'
+                  },
+                  Explanation: {
+                    value: 'this is an explanation'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

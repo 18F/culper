@@ -45,8 +45,12 @@ func (entity *FinancialBankruptcy) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *FinancialBankruptcy) Marshal() Payload {
-	entity.PayloadHasBankruptcy = entity.HasBankruptcy.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasBankruptcy != nil {
+		entity.PayloadHasBankruptcy = entity.HasBankruptcy.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("financial.bankruptcy", entity)
 }
 
@@ -214,8 +218,12 @@ func (entity *FinancialGambling) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *FinancialGambling) Marshal() Payload {
-	entity.PayloadHasGamblingDebt = entity.HasGamblingDebt.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasGamblingDebt != nil {
+		entity.PayloadHasGamblingDebt = entity.HasGamblingDebt.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("financial.gambling", entity)
 }
 
@@ -383,8 +391,12 @@ func (entity *FinancialTaxes) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *FinancialTaxes) Marshal() Payload {
-	entity.PayloadHasTaxes = entity.HasTaxes.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasTaxes != nil {
+		entity.PayloadHasTaxes = entity.HasTaxes.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("financial.taxes", entity)
 }
 
@@ -556,8 +568,12 @@ func (entity *FinancialCard) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *FinancialCard) Marshal() Payload {
-	entity.PayloadHasCardAbuse = entity.HasCardAbuse.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasCardAbuse != nil {
+		entity.PayloadHasCardAbuse = entity.HasCardAbuse.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("financial.card", entity)
 }
 
@@ -729,8 +745,12 @@ func (entity *FinancialCredit) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *FinancialCredit) Marshal() Payload {
-	entity.PayloadHasCreditCounseling = entity.HasCreditCounseling.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasCreditCounseling != nil {
+		entity.PayloadHasCreditCounseling = entity.HasCreditCounseling.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("financial.credit", entity)
 }
 
@@ -902,8 +922,12 @@ func (entity *FinancialDelinquent) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *FinancialDelinquent) Marshal() Payload {
-	entity.PayloadHasDelinquent = entity.HasDelinquent.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasDelinquent != nil {
+		entity.PayloadHasDelinquent = entity.HasDelinquent.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("financial.delinquent", entity)
 }
 
@@ -1071,8 +1095,12 @@ func (entity *FinancialNonpayment) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *FinancialNonpayment) Marshal() Payload {
-	entity.PayloadHasNonpayment = entity.HasNonpayment.Marshal()
-	entity.PayloadList = entity.List.Marshal()
+	if entity.HasNonpayment != nil {
+		entity.PayloadHasNonpayment = entity.HasNonpayment.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
 	return MarshalPayloadEntity("financial.nonpayment", entity)
 }
 

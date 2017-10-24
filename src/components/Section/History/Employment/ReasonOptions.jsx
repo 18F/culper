@@ -31,7 +31,7 @@ export default class ReasonOptions extends React.Component {
   }
 
   updateReason (values) {
-    this.onUpdate('Reason', values.value)
+    this.onUpdate('Reason', values)
   }
 
   updateText (values) {
@@ -43,7 +43,7 @@ export default class ReasonOptions extends React.Component {
   }
 
   labelText () {
-    switch (this.state.Reason) {
+    switch ((this.state.Reason || {}).value) {
       case 'Fired':
         return i18n.t('history.employment.default.left.fired.text')
       case 'Quit':
@@ -58,7 +58,7 @@ export default class ReasonOptions extends React.Component {
   }
 
   labelDate () {
-    switch (this.state.Reason) {
+    switch ((this.state.Reason || {}).value) {
       case 'Fired':
         return i18n.t('history.employment.default.left.fired.date')
       case 'Quit':
@@ -81,7 +81,7 @@ export default class ReasonOptions extends React.Component {
                adjustFor="big-buttons"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
-         <RadioGroup className="employment-left option-list" selectedValue={this.state.Reason} required={this.props.required} onError={this.props.onError}>
+          <RadioGroup className="employment-left option-list" selectedValue={(this.state.Reason || {}).value} required={this.props.required} onError={this.props.onError}>
             <Radio name="employment_left"
                    label={i18n.m('history.employment.default.left.fired.option')}
                    value="Fired"
@@ -107,7 +107,7 @@ export default class ReasonOptions extends React.Component {
                    onError={this.props.onError}
                    />
           </RadioGroup>
-          <Show when={this.state.Reason}>
+          <Show when={(this.state.Reason || {}).value}>
             <div>
               <div className="explanation-left">
                 <Textarea name="Text"

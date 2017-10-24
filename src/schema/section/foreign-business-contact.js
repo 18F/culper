@@ -1,22 +1,23 @@
 import * as form from '../form'
 
 export const foreignBusinessContact = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Name: form.name(x.Item.Name),
-        Location: form.location(x.Item.Location),
-        Date: form.datecontrol(x.Item.Date),
-        Governments: form.country(x.Item.Governments),
-        Establishment: form.textarea(x.Item.Establishment),
-        Representatives: form.textarea(x.Item.Representatives),
-        Purpose: form.textarea(x.Item.Purpose),
-        SubsequentContacts: form.contacts(x.Item.SubsequentContacts)
+        Name: form.name(xitem.Name),
+        Location: form.location(xitem.Location),
+        Date: form.datecontrol(xitem.Date),
+        Governments: form.country(xitem.Governments),
+        Establishment: form.textarea(xitem.Establishment),
+        Representatives: form.textarea(xitem.Representatives),
+        Purpose: form.textarea(xitem.Purpose),
+        SubsequentContacts: form.contacts(xitem.SubsequentContacts)
       }
     }
   })
   return {
     HasForeignContact: form.branch(data.HasForeignContact),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

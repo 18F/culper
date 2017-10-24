@@ -82,12 +82,24 @@ func (entity *Supervisor) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Supervisor) Marshal() Payload {
-	entity.PayloadSupervisorName = entity.SupervisorName.Marshal()
-	entity.PayloadTitle = entity.Title.Marshal()
-	entity.PayloadEmail = entity.Email.Marshal()
-	entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
-	entity.PayloadAddress = entity.Address.Marshal()
-	entity.PayloadTelephone = entity.Telephone.Marshal()
+	if entity.SupervisorName != nil {
+		entity.PayloadSupervisorName = entity.SupervisorName.Marshal()
+	}
+	if entity.Title != nil {
+		entity.PayloadTitle = entity.Title.Marshal()
+	}
+	if entity.Email != nil {
+		entity.PayloadEmail = entity.Email.Marshal()
+	}
+	if entity.EmailNotApplicable != nil {
+		entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
+	}
+	if entity.Address != nil {
+		entity.PayloadAddress = entity.Address.Marshal()
+	}
+	if entity.Telephone != nil {
+		entity.PayloadTelephone = entity.Telephone.Marshal()
+	}
 	return MarshalPayloadEntity("supervisor", entity)
 }
 

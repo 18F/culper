@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
+import { validAccordion, validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class OrderedCounselingsValidator {
   constructor (data = {}) {
     this.hasBeenOrdered = (data.HasBeenOrdered || {}).value
-    this.list = data.List
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validHasBeenOrdered () {
@@ -18,22 +17,9 @@ export default class OrderedCounselingsValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new OrderedCounselingValidator(item.Item).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new OrderedCounselingValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -72,6 +58,8 @@ export class OrderedCounselingValidator {
         return this.validActionTakenYes()
       case 'No':
         return validGenericTextfield(this.noActionTakenExplanation)
+      default:
+        return false
     }
   }
 

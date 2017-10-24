@@ -1,19 +1,20 @@
 import * as form from '../form'
 
 export const foreignBusinessPolitical = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Position: form.text(x.Item.Position),
-        Dates: form.daterange(x.Item.Dates),
-        Country: form.country(x.Item.Country),
-        Reason: form.textarea(x.Item.Reason),
-        Eligibility: form.textarea(x.Item.Eligibility)
+        Position: form.text(xitem.Position),
+        Dates: form.daterange(xitem.Dates),
+        Country: form.country(xitem.Country),
+        Reason: form.textarea(xitem.Reason),
+        Eligibility: form.textarea(xitem.Eligibility)
       }
     }
   })
   return {
     HasForeignPolitical: form.branch(data.HasForeignPolitical),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

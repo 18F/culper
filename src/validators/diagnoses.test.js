@@ -7,54 +7,62 @@ describe('Diagnoses validation', function () {
       {
         state: {
           InTreatment: { value: 'Yes' },
-          TreatmentList: [{
-            Item: {
-              Name: {
-                value: 'Circuit Court'
-              },
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Phone: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                timeOfDay: 'Both',
-                type: 'Domestic',
-                extension: ''
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: [{
+              Item: {
+                Name: {
+                  value: 'Circuit Court'
+                },
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Phone: {
+                  noNumber: '',
+                  number: '7031112222',
+                  numberType: 'Home',
+                  timeOfDay: 'Both',
+                  type: 'Domestic',
+                  extension: ''
+                }
               }
-            }
-          }],
-          TreatmentListBranch: 'No'
+            }]
+          }
         },
         expected: true
       },
       {
         state: {
           InTreatment: { value: 'No' },
-          TreatmentList: [],
-          TreatmentListBranch: 'No'
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
           InTreatment: { value: 'Yes' },
-          TreatmentList: [],
-          TreatmentListBranch: 'No'
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           InTreatment: { value: 'Yes' },
-          TreatmentList: [{}],
-          TreatmentListBranch: 'No'
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       }
@@ -69,93 +77,101 @@ describe('Diagnoses validation', function () {
       {
         state: {
           Diagnosed: { value: 'Yes' },
-          DiagnosisList: [{
-            Item: {
-              Condition: {
-                value: 'Test'
-              },
-              Effective: { value: 'Yes' },
-              Explanation: {
-                value: null
-              },
-              Diagnosed: {
-                from: {
-                  date: new Date('1/1/2010')
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: [{
+              Item: {
+                Condition: {
+                  value: 'Test'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Effective: { value: 'Yes' },
+                Explanation: {
+                  value: null
                 },
-                present: false
-              },
-              Treatment: {
-                Name: {
-                  value: 'Circuit Court'
+                Diagnosed: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
                 },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
+                Treatment: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  }
                 },
-                Phone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
-                }
-              },
-              TreatmentFacility: {
-                Name: {
-                  value: 'Circuit Court'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Phone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
+                TreatmentFacility: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  }
                 }
               }
-            }
-          }],
-          DiagnosisListBranch: 'No'
+            }]
+          }
         },
         expected: true
       },
       {
         state: {
           Diagnosed: { value: 'No' },
-          DiagnosisList: [],
-          DiagnosisListBranch: 'No'
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
           Diagnosed: { value: 'Yes' },
-          DiagnosisList: [],
-          DiagnosisListBranch: 'No'
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           Diagnosed: { value: 'Yes' },
-          DiagnosisList: [{}],
-          DiagnosisListBranch: 'No'
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       }
@@ -172,10 +188,14 @@ describe('Diagnoses validation', function () {
           Diagnosed: { value: 'No' },
           InTreatment: { value: 'No' },
           DidNotConsult: { value: 'Yes' },
-          DiagnosisList: [],
-          DiagnosisListBranch: 'No',
-          TreatmentList: [],
-          TreatmentListBranch: 'No'
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: []
+          },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       }]

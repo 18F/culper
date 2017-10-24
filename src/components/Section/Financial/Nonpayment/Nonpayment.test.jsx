@@ -15,7 +15,8 @@ describe('The nonpayment component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'nonpayment',
-      HasNonpayment: { value: 'Yes' }
+      HasNonpayment: { value: 'Yes' },
+      List: { branch: {}, items: [] }
     }
     const component = mount(<Nonpayment {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +25,8 @@ describe('The nonpayment component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'nonpayment',
-      HasNonpayment: { value: 'No' }
+      HasNonpayment: { value: 'No' },
+      List: { branch: {}, items: [] }
     }
     const component = mount(<Nonpayment {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -34,12 +36,14 @@ describe('The nonpayment component', () => {
     let updates = 0
     const expected = {
       name: 'nonpayment',
+      HasNonpayment: { value: 'Yes' },
+      List: { branch: {}, items: [{}] },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Nonpayment {...expected} />)
-    component.find('.branch .yes input').simulate('change')
+    component.find('.branch .yes input').first().simulate('change')
     component.find('.nonpayment-name input').simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-infractions input').first().simulate('change', { target: { value: 'IRS' } })
     component.find('.nonpayment-accountnumber input').simulate('change', { target: { value: 'IRS' } })

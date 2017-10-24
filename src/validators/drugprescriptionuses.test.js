@@ -18,53 +18,61 @@ describe('Drug Prescription Validation', function () {
       {
         state: {
           MisusedDrugs: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           MisusedDrugs: { value: 'Yes' },
-          List: [{DrugUse: {}}],
-          ListBranch: 'Nope'
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           MisusedDrugs: { value: 'Yes' },
-          List: [{DrugUse: {}}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           MisusedDrugs: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                InvolvementDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  InvolvementDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  }
-                },
-                PrescriptionName: {
-                  value: 'Foo'
-                },
-                Reason: {
-                  value: 'The reason'
-                },
-                UseWhileEmployed: { value: 'Yes' },
-                UseWithClearance: { value: 'Yes' }
+                  PrescriptionName: {
+                    value: 'Foo'
+                  },
+                  Reason: {
+                    value: 'The reason'
+                  },
+                  UseWhileEmployed: { value: 'Yes' },
+                  UseWithClearance: { value: 'Yes' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

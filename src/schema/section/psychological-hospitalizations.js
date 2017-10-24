@@ -1,19 +1,20 @@
 import * as form from '../form'
 
 export const psychologicalHospitalizations = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        TreatmentDate: form.daterange(x.Item.TreatmentDate),
-        Admission: form.radio(x.Item.Admission),
-        Facility: form.text(x.Item.Facility),
-        FacilityAddress: form.location(x.Item.FacilityAddress),
-        Explanation: form.textarea(x.Item.Explanation)
+        TreatmentDate: form.daterange(xitem.TreatmentDate),
+        Admission: form.radio(xitem.Admission),
+        Facility: form.text(xitem.Facility),
+        FacilityAddress: form.location(xitem.FacilityAddress),
+        Explanation: form.textarea(xitem.Explanation)
       }
     }
   })
   return {
     Hospitalized: form.branch(data.Hospitalized),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

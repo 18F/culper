@@ -18,44 +18,48 @@ describe('Foreign RealEstate Activity validation', function () {
       {
         props: {
           HasBenefits: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         props: {
           HasBenefits: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                InterestTypes: ['Yourself'],
-                BenefitType: 'Educational',
-                BenefitFrequency: 'OneTime',
-                OneTimeBenefit: {
-                  Received: {
-                    month: '1',
-                    day: '1',
-                    year: '2010'
-                  },
-                  Country: {
-                    value: 'Germany'
-                  },
-                  Value: {
-                    value: '2000'
-                  },
-                  Reason: {
-                    value: 'Foo'
-                  },
-                  Obligated: { value: 'Yes' },
-                  ObligatedExplanation: {
-                    value: 'Because'
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  InterestTypes: ['Yourself'],
+                  BenefitType: 'Educational',
+                  BenefitFrequency: 'OneTime',
+                  OneTimeBenefit: {
+                    Received: {
+                      month: '1',
+                      day: '1',
+                      year: '2010'
+                    },
+                    Country: {
+                      value: 'Germany'
+                    },
+                    Value: {
+                      value: '2000'
+                    },
+                    Reason: {
+                      value: 'Foo'
+                    },
+                    Obligated: { value: 'Yes' },
+                    ObligatedExplanation: {
+                      value: 'Because'
+                    }
                   }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

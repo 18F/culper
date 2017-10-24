@@ -1,9 +1,9 @@
-import { validGenericTextfield, validPhoneNumber } from './helpers'
+import { validAccordion, validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class ContactInformationValidator {
   constructor (state, props) {
-    this.emails = state.Emails
-    this.phoneNumbers = state.PhoneNumbers
+    this.emails = state.Emails || {}
+    this.phoneNumbers = state.PhoneNumbers || {}
   }
 
   /**
@@ -11,17 +11,14 @@ export default class ContactInformationValidator {
    */
   validEmails () {
     const required = 2
-    if (!this.emails || this.emails.length < required) {
-      return false
-    }
+    let successful = 0
 
-    for (const email of this.emails) {
-      if (!new ContactEmailValidator(email.Item).isValid()) {
-        return false
-      }
-    }
+    const valid = validAccordion(this.emails, (item) => {
+      successful++
+      return new ContactEmailValidator(item.Email).isValid()
+    }, true)
 
-    return true
+    return valid && successful >= required
   }
 
   /**
@@ -29,19 +26,14 @@ export default class ContactInformationValidator {
    */
   validPhoneNumbers () {
     const required = 1
-    if (!this.phoneNumbers || this.phoneNumbers.length < required) {
-      return false
-    }
-
     let successful = 0
-    for (const phoneNumber of this.phoneNumbers) {
-      if (!new ContactPhoneNumberValidator(phoneNumber.Item).isValid()) {
-        continue
-      }
-      successful++
-    }
 
-    return successful >= required
+    const valid = validAccordion(this.phoneNumbers, (item) => {
+      successful++
+      return new ContactPhoneNumberValidator(item.PhoneNumber).isValid()
+    }, true)
+
+    return valid && successful >= required
   }
 
   /**

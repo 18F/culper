@@ -18,8 +18,9 @@ describe('The civil union component', () => {
       name: 'cohabitant',
       Separated: { value: 'Yes' },
       Divorced: { value: 'Yes' },
-      AddressSeparated: { country: 'United States' },
-      ForeignBornDocument: { DocumentType: 'Other' },
+      BirthPlace: { country: { value: 'Germany' } },
+      AddressSeparated: { country: { value: 'United States' } },
+      ForeignBornDocument: { DocumentType: { value: 'Other' } },
       onUpdate: () => { updates++ }
     }
 
@@ -28,7 +29,7 @@ describe('The civil union component', () => {
     updates = 0
     component.find('.civil .name .first input').simulate('change')
     component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
-    component.find('.birthplace .no input').simulate('change')
+    component.find('.birthplace .city input').simulate('change')
     component.find('.foreign-born-documents input').first().simulate('change')
     component.find('.foreign-born-documents .other input').simulate('change')
     component.find('.foreign-born-documents textarea').simulate('change')
@@ -44,7 +45,7 @@ describe('The civil union component', () => {
     component.find('.separated .yes input').simulate('change')
     component.find('.divorced .yes input').simulate('change')
     component.find('.dateseparated .month input').simulate('change', { target: { value: '12' } })
-    component.find('.address-separated .country input').simulate('change', { target: { value: 'Germany' } })
+    component.find('.address-separated .city input').simulate('change')
     component.find('.address-separated input[name="OtherNameNotApplicable"]').simulate('change')
     expect(updates).toBe(20)
   })

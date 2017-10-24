@@ -1,11 +1,10 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield, validDateField } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField } from './helpers'
 
 export default class MilitaryHistoryValidator {
   constructor (data = {}) {
     this.hasServed = (data.HasServed || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   hasHistory () {
@@ -21,21 +20,9 @@ export default class MilitaryHistoryValidator {
       return true
     }
 
-    if (this.hasServed === 'Yes' && !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const service of this.list) {
-      if (new MilitaryServiceValidator(service.Item, null).isValid() !== true) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new MilitaryServiceValidator(item).isValid()
+    })
   }
 
   isValid () {

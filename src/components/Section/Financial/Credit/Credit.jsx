@@ -11,28 +11,26 @@ import CreditItem from './CreditItem'
 export default class Credit extends SubsectionElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      HasCreditCounseling: props.HasCreditCounseling,
-      List: props.List,
-      ListBranch: props.ListBranch,
-      errorCodes: []
-    }
-
     this.updateBranch = this.updateBranch.bind(this)
     this.updateList = this.updateList.bind(this)
     this.summary = this.summary.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      HasCreditCounseling: this.props.HasCreditCounseling,
+      List: this.props.List,
+      ...queue
+    })
   }
 
   /**
    * Updates triggered by the branching component.
    */
   updateBranch (values) {
-    this.setState({ HasCreditCounseling: values }, () => {
-      this.updateList({
-        items: values.value === 'Yes' ? this.state.List : [],
-        branch: ''
-      })
+    this.update({
+      HasCreditCounseling: values,
+      List: values.value === 'Yes' ? this.props.List : {}
     })
   }
 
@@ -41,12 +39,8 @@ export default class Credit extends SubsectionElement {
    * updates to the items.
    */
   updateList (values) {
-    this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      this.props.onUpdate({
-        List: this.state.List,
-        ListBranch: this.state.ListBranch,
-        HasCreditCounseling: this.state.HasCreditCounseling
-      })
+    this.update({
+      List: values
     })
   }
 
@@ -73,18 +67,17 @@ export default class Credit extends SubsectionElement {
                 label={i18n.t('financial.credit.title')}
                 labelSize="h2"
                 className="credit-branch"
-                {...this.state.HasCreditCounseling}
+                {...this.props.HasCreditCounseling}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.state.HasCreditCounseling.value === 'Yes'}>
-          <Accordion items={this.state.List}
+        <Show when={(this.props.HasCreditCounseling || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -94,13 +87,13 @@ export default class Credit extends SubsectionElement {
                      validator={CreditItemValidator}
                      appendTitle={i18n.t('financial.credit.collection.appendTitle')}
                      appendLabel={i18n.t('financial.credit.collection.append')}>
-                     <CreditItem name="Item"
-                       bind={true}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <CreditItem name="Item"
+                        bind={true}
+                        addressBooks={this.props.addressBooks}
+                        dispatch={this.props.dispatch}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
           </Accordion>
         </Show>
       </div>
@@ -110,8 +103,7 @@ export default class Credit extends SubsectionElement {
 
 Credit.defaultProps = {
   HasCreditCounseling: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   addressBooks: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

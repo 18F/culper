@@ -1,26 +1,27 @@
 import * as form from '../form'
 
 export const relationshipsMarital = (data = {}) => {
-  const items = (data.DivorcedList || []).map(x => {
+  const items = ((data.DivorcedList || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Name: form.name(x.Item.Name),
-        Birthdate: form.datecontrol(x.Item.Birthdate),
-        BirthPlace: form.location(x.Item.BirthPlace),
-        Telephone: form.telephone(x.Item.Telephone),
-        Recognized: form.datecontrol(x.Item.Recognized),
-        Address: form.location(x.Item.Address),
-        DateDivorced: form.datecontrol(x.Item.DateDivorced),
-        Status: form.radio(x.Item.Status),
-        Deceased: form.radio(x.Item.Deceased),
-        DeceasedAddress: form.location(x.Item.DeceasedAddress),
-        DeceasedAddressNotApplicable: form.notapplicable(x.Item.DeceasedAddressNotApplicable)
+        Name: form.name(xitem.Name),
+        Birthdate: form.datecontrol(xitem.Birthdate),
+        BirthPlace: form.location(xitem.BirthPlace),
+        Telephone: form.telephone(xitem.Telephone),
+        Recognized: form.datecontrol(xitem.Recognized),
+        Address: form.location(xitem.Address),
+        DateDivorced: form.datecontrol(xitem.DateDivorced),
+        Status: form.radio(xitem.Status),
+        Deceased: form.radio(xitem.Deceased),
+        DeceasedAddress: form.location(xitem.DeceasedAddress),
+        DeceasedAddressNotApplicable: form.notapplicable(xitem.DeceasedAddressNotApplicable)
       }
     }
   })
   return {
-    Status: form.radio({ value: data.Status }),
+    Status: form.radio(data.Status),
     CivilUnion: form.civilunion(data.CivilUnion),
-    DivorcedList: form.collection(items, data.DivorcedListBranch)
+    DivorcedList: form.collection(items, (data.DivorcedList || {}).branch)
   }
 }

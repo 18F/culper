@@ -48,8 +48,12 @@ func (entity *DateRange) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *DateRange) Marshal() Payload {
-	entity.PayloadFrom = entity.From.Marshal()
-	entity.PayloadTo = entity.To.Marshal()
+	if entity.From != nil {
+		entity.PayloadFrom = entity.From.Marshal()
+	}
+	if entity.To != nil {
+		entity.PayloadTo = entity.To.Marshal()
+	}
 	return MarshalPayloadEntity("daterange", entity)
 }
 

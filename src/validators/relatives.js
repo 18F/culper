@@ -1,30 +1,17 @@
 import NameValidator from './name'
 import LocationValidator, { isInternational } from './location'
 import DateRangeValidator from './daterange'
-import { validDateField, validGenericTextfield } from './helpers'
+import { validAccordion, validDateField, validGenericTextfield } from './helpers'
 
 export default class RelativesValidator {
   constructor (data = {}) {
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validItems () {
-    if (this.list.length === 0) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const relative of this.list) {
-      if (new RelativeValidator(relative.Item, null).isValid() !== true) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new RelativeValidator(item).isValid()
+    })
   }
 
   isValid () {

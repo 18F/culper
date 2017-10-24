@@ -1,21 +1,23 @@
 import * as form from '../form'
 
 export const historyEducation = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Dates: form.daterange(x.Item.Dates),
-        Type: form.radio(x.Item.Type),
-        Name: form.name(x.Item.Name),
-        Address: form.location(x.Item.Address),
-        Comments: form.textarea(x.Item.Comments),
-        Reference: form.reference(x.Item.Reference),
-        Diplomas: form.collection((x.Item.Diplomas || []).map(y => {
+        Dates: form.daterange(xitem.Dates),
+        Type: form.radio(xitem.Type),
+        Name: form.name(xitem.Name),
+        Address: form.location(xitem.Address),
+        Comments: form.textarea(xitem.Comments),
+        Reference: form.reference(xitem.Reference),
+        Diplomas: form.collection(((xitem.Diplomas || {}).items || []).map(y => {
+          const yitem = y.Item || {}
           return {
             Item: {
-              Diploma: form.radio(y.Item.Diploma),
-              DiplomaOther: form.text(y.Item.DiplomaOther),
-              Date: form.datecontrol(y.Item.Date)
+              Diploma: form.radio(yitem.Diploma),
+              DiplomaOther: form.text(yitem.DiplomaOther),
+              Date: form.datecontrol(yitem.Date)
             }
           }
         }))
@@ -25,6 +27,6 @@ export const historyEducation = (data = {}) => {
   return {
     HasAttended: form.branch(data.HasAttended),
     HasDegree10: form.branch(data.HasDegree10),
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

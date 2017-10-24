@@ -1,9 +1,9 @@
 import { CompetenceOrderValidator } from './order'
+import { validAccordion } from './helpers'
 
 export default class CompetenceValidator {
   constructor (state = {}, props) {
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+    this.list = state.List || {}
     this.isIncompetent = (state.IsIncompetent || {}).value
   }
 
@@ -12,21 +12,13 @@ export default class CompetenceValidator {
   }
 
   validList () {
-    if (this.isIncompetent === 'Yes' && this.list.length === 0) {
-      return false
+    if (this.isIncompetent === 'No') {
+      return true
     }
 
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (let order of this.list) {
-      if (!new CompetenceOrderValidator(order.Item).isValid()) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new CompetenceOrderValidator(item).isValid()
+    })
   }
 
   isValid () {

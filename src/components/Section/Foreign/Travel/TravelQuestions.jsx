@@ -166,8 +166,8 @@ export default class TravelQuestions extends ValidationElement {
     return (
       <div className="foreign-travel-questions">
         <Field title={i18n.t('foreign.travel.heading.country')}
-          adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="country"
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    excludeUnitedStates={true}
@@ -207,8 +207,8 @@ export default class TravelQuestions extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.travel.heading.purpose')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.travel.para.checkall')}
           <TravelPurpose name="Purpose"
                          className="foreign-travel-purpose"
@@ -255,7 +255,7 @@ export default class TravelQuestions extends ValidationElement {
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
-        <Show when={this.props.Encounter.value === 'Yes'}>
+        <Show when={(this.props.Encounter || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
                  adjustFor="textarea"
@@ -280,7 +280,7 @@ export default class TravelQuestions extends ValidationElement {
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
-        <Show when={this.props.Contacted.value === 'Yes'}>
+        <Show when={(this.props.Contacted || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
                  adjustFor="textarea"
@@ -304,7 +304,7 @@ export default class TravelQuestions extends ValidationElement {
                 required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
-        <Show when={this.props.Counter.value === 'Yes'}>
+        <Show when={(this.props.Counter || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
                  adjustFor="textarea">
@@ -327,7 +327,7 @@ export default class TravelQuestions extends ValidationElement {
                 required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
-        <Show when={this.props.Interest.value === 'Yes'}>
+        <Show when={(this.props.Interest || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
                  adjustFor="textarea">
@@ -350,7 +350,7 @@ export default class TravelQuestions extends ValidationElement {
                 required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
-        <Show when={this.props.Sensitive.value === 'Yes'}>
+        <Show when={(this.props.Sensitive || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
                  adjustFor="textarea">
@@ -373,7 +373,7 @@ export default class TravelQuestions extends ValidationElement {
                 required={this.props.required}
                 onError={this.props.onError}>
         </Branch>
-        <Show when={this.props.Threatened.value === 'Yes'}>
+        <Show when={(this.props.Threatened || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.travel.heading.explanation')}
                  titleSize="h4"
                  adjustFor="textarea">

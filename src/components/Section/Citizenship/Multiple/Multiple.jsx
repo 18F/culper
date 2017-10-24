@@ -20,7 +20,6 @@ export default class Multiple extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       Citizenships: this.props.Citizenships,
-      CitizenshipsBranch: this.props.CitizenshipsBranch,
       HasMultiple: this.props.HasMultiple,
       ...queue
     })
@@ -29,15 +28,13 @@ export default class Multiple extends SubsectionElement {
   updateHasMultiple (values) {
     this.update({
       HasMultiple: values,
-      Citizenships: values.value === 'Yes' ? this.props.Citizenships : [],
-      CitizenshipsBranch: values.value === 'Yes' ? this.props.CitizenshipsBranch : ''
+      Citizenships: values.value === 'Yes' ? this.props.Citizenships : []
     })
   }
 
   updateCitizenships (values) {
     this.update({
-      Citizenships: values.items,
-      CitizenshipsBranch: values.branch
+      Citizenships: values
     })
   }
 
@@ -78,10 +75,9 @@ export default class Multiple extends SubsectionElement {
                 />
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
-          <Accordion items={this.props.Citizenships}
+          <Accordion {...this.props.Citizenships}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.CitizenshipsBranch}
                      onUpdate={this.updateCitizenships}
                      onError={this.handleError}
                      validator={CitizenshipItemValidator}
@@ -101,9 +97,7 @@ export default class Multiple extends SubsectionElement {
 
 Multiple.defaultProps = {
   HasMultiple: {},
-  Citizenships: [],
-  CitizenshipsBranch: '',
-  Passports: [],
+  Citizenships: { items: [], branch: {} },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',

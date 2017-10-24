@@ -19,66 +19,74 @@ describe('Drug Voluntary Treatment Validation', function () {
       {
         state: {
           TreatmentVoluntary: { value: 'Yes' },
-          List: [],
-          ListBranch: ''
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
           TreatmentVoluntary: { value: 'Yes' },
-          List: [{VoluntaryTreatment: {}}],
-          ListBranch: 'Nope'
+          List: {
+            branch: { value: 'Nope' },
+            items: [{VoluntaryTreatment: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           TreatmentVoluntary: { value: 'Yes' },
-          List: [{VoluntaryTreatment: {}}],
-          ListBranch: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: [{VoluntaryTreatment: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
           TreatmentVoluntary: { value: 'Yes' },
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                DrugType: 'Cocaine',
-                TreatmentProvider: {
-                  value: 'Provider'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                TreatmentProviderTelephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
-                },
-                TreatmentDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  DrugType: 'Cocaine',
+                  TreatmentProvider: {
+                    value: 'Provider'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  }
-                },
-                TreatmentCompleted: { value: 'Yes' }
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  TreatmentProviderTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  },
+                  TreatmentDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
+                  },
+                  TreatmentCompleted: { value: 'Yes' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

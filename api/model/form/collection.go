@@ -45,7 +45,9 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 
 // Marshal to payload structure
 func (entity *Collection) Marshal() Payload {
-	entity.PayloadBranch = entity.Branch.Marshal()
+	if entity.Branch != nil {
+		entity.PayloadBranch = entity.Branch.Marshal()
+	}
 	return MarshalPayloadEntity("collection", entity)
 }
 

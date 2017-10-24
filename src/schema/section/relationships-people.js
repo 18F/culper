@@ -1,23 +1,24 @@
 import * as form from '../form'
 
 export const relationshipsPeople = (data = {}) => {
-  const items = (data.List || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
+    const xitem = x.Item || {}
     return {
       Item: {
-        Address: form.location(x.Item.Address),
-        Dates: form.daterange(x.Item.Dates),
-        Email: form.email(x.Item.Email),
-        EmailNotApplicable: form.notapplicable(x.Item.EmailNotApplicable),
-        MobileTelephone: form.telephone(x.Item.MobileTelephone),
-        OtherTelephone: form.telephone(x.Item.OtherTelephone),
-        Rank: form.text(x.Item.Rank),
-        RankNotApplicable: form.notapplicable(x.Item.RankNotApplicable),
-        Relationship: form.checkbox(x.Item.Relationship),
-        RelationshipOther: form.text(x.Item.RelationshipOther)
+        Address: form.location(xitem.Address),
+        Dates: form.daterange(xitem.Dates),
+        Email: form.email(xitem.Email),
+        EmailNotApplicable: form.notapplicable(xitem.EmailNotApplicable),
+        MobileTelephone: form.telephone(xitem.MobileTelephone),
+        OtherTelephone: form.telephone(xitem.OtherTelephone),
+        Rank: form.text(xitem.Rank),
+        RankNotApplicable: form.notapplicable(xitem.RankNotApplicable),
+        Relationship: form.checkbox(xitem.Relationship),
+        RelationshipOther: form.text(xitem.RelationshipOther)
       }
     }
   })
   return {
-    List: form.collection(items, data.ListBranch)
+    List: form.collection(items, (data.ListBranch || {}).branch)
   }
 }
