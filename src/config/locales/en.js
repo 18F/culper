@@ -72,6 +72,9 @@ const en = {
     close: 'Close',
     incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
   },
+  country: {
+    comments: 'Provide comments'
+  },
   comments: {
     add: 'Add a comment',
     addpaired: 'Add a comment to this question',
@@ -467,6 +470,11 @@ const en = {
         required: {
           title: 'There is a problem with this field',
           message: 'This field is required'
+        },
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
         }
       },
       zipcode: {
@@ -575,7 +583,7 @@ const en = {
         },
         country: {
           notfound: {
-            title: 'This Country is not on our current list',
+            title: 'This country is not on our current list',
             message: [
               'Indicate the country that currently governs the geographic location you are indicating. As necessary provide a comment below to clarify.'
             ],
@@ -9528,6 +9536,54 @@ const en = {
         'In accordance with HIPAA, I understand that I have the right to revoke this authorization at any time by writing to my health care provider/entity. Revocation of this authorization is not effective until received by my health care provider/entity. I understand that I may revoke this authorization, except to the extent that action has already been taken based on this authorization. Further, I understand that this authorization is voluntary. My treatment, payment, enrollment in a health plan, or eligibility for benefits will not be conditioned upon my authorization of this disclosure.',
         'I understand the information disclosed pursuant to this authorization for use by the Federal Government only for purposes provided in the Standard Form 86 will no longer be covered by the HIPAA Privacy Rule, and that the Federal Government may redisclose the information as authorized by law, subject to Privacy Act safeguards.',
         'Photocopies of this authorization with my signature are valid. This authorization is valid for one (1) year from the date signed or upon termination of my affiliation with the Federal Government, whichever is sooner.'
+      ]
+    }
+  },
+  submission: {
+    header: [
+      '## All required fields are complete',
+      'Not a guarantee of acceptance. We are checking that all required fields are complete'
+    ],
+    additional: [
+      '### Additional comments',
+      'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the following release(s). You will not be able to submit until each release below is signed'
+    ],
+    validForm: {
+      certificationItem: 'Certification',
+      generalItem: 'Release of Information & HIPAA',
+      creditItem: 'Credit reporting disclosure'
+    },
+    invalidForm: [
+      '## List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors'
+    ],
+    submissionStatus: {
+      validating: [
+        '## Verifying your information is complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      valid: [
+        '## All required fields are complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      invalid: [
+        '## Some required fields are incomplete'
+      ]
+    },
+    submissionComplete: [
+      '## You are done!',
+      '### Thanks for submitting your SF-86',
+      'Please print and save your submission below,they will be your only copies'
+    ],
+    print: {
+      title: [
+        '## Please print and save your responses',
+        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen.'
+      ],
+      button: 'Save/Print',
+      done: [
+        '## You are done!',
+        '### Thanks for submitting for your SF-86'
       ]
     }
   }

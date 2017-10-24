@@ -6,6 +6,7 @@ describe('The foreign business sponsorship component', () => {
   it('trigger updates', () => {
     let updates = 0
     const expected = {
+      Citizenship: { value: [] },
       onUpdate: () => { updates++ }
     }
     const component = mount(<SponsorshipItem {...expected} />)
@@ -14,8 +15,8 @@ describe('The foreign business sponsorship component', () => {
     component.find('.foreign-business-sponsorship-birthdate-na .block label input').simulate('change')
     component.find('.foreign-business-sponsorship-birthplace .yes input').simulate('change')
     component.find('.foreign-business-sponsorship-address .city input').simulate('change')
-    component.find('.foreign-business-sponsorship-citizenship .ic-tokeninput input').get(0).value = 'United States'
-    component.find('.foreign-business-sponsorship-citizenship .ic-tokeninput input').simulate('keydown', { keyCode: 13, target: { value: 'United States' } })
+    component.find('.foreign-business-sponsorship-citizenship input').simulate('change', { target: { value: 'United States' } })
+    component.find('.foreign-business-sponsorship-citizenship input').simulate('keydown', { keyCode: 13, target: { value: 'United States' } })
     component.find('.foreign-business-sponsorship-organization input').simulate('change')
     component.find('.foreign-business-sponsorship-dates .to .day input').simulate('change')
     component.find('.foreign-business-sponsorship-residence .city input').simulate('change')

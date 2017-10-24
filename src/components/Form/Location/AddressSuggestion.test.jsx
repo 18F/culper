@@ -17,7 +17,7 @@ describe('The AddressSuggestion component', () => {
           city: 'Arlington',
           state: 'VA',
           zipcode: '22202',
-          country: 'United States'
+          country: { value: 'United States' }
         },
         expected: 0
       },
@@ -33,7 +33,7 @@ describe('The AddressSuggestion component', () => {
           city: 'Arlington',
           state: 'VA',
           zipcode: '22202',
-          country: 'United States'
+          country: { value: 'United States' }
         },
         expected: 1
       },
@@ -49,7 +49,7 @@ describe('The AddressSuggestion component', () => {
           city: 'A-Town',
           state: 'MD',
           zipcode: '22201',
-          country: 'United States'
+          country: { value: 'United States' }
         },
         expected: 4
       }

@@ -59,8 +59,8 @@ export default class ToggleableLocation extends ValidationElement {
     this.update({state: event.target.value})
   }
 
-  updateCountry (event) {
-    this.update({country: event.target.value})
+  updateCountry (values) {
+    this.update({country: values})
   }
 
   updateCounty (event) {
@@ -83,10 +83,10 @@ export default class ToggleableLocation extends ValidationElement {
 
     switch (option.value) {
       case 'Yes':
-        this.update({country: 'United States'})
+        this.update({country: { value: 'United States' }})
         break
       case 'No':
-        this.update({country: ''})
+        this.update({country: { value: '' }})
         break
     }
   }
@@ -210,12 +210,12 @@ export default class ToggleableLocation extends ValidationElement {
             <Country name="country"
               key={key}
               label={this.props.countryLabel}
-              value={this.props.country}
+              {...this.props.country}
               className="country"
               placeholder={this.props.countryPlaceholder}
               excludeUnitedStates="true"
               disabled={this.props.disabledCountry}
-              onChange={this.updateCountry}
+              onUpdate={this.updateCountry}
               onError={this.onError}
               onFocus={this.props.onFocus}
               onBlur={this.props.onBlur}
@@ -253,10 +253,10 @@ export default class ToggleableLocation extends ValidationElement {
                  />
         </RadioGroup>
 
-        <Show when={this.props.country === 'United States'}>
+        <Show when={this.props.country !== null && this.props.country.value === 'United States'}>
           {domesticFields}
         </Show>
-        <Show when={this.props.country !== 'United States' && this.props.country !== null}>
+        <Show when={this.props.country !== null && this.props.country.value !== null && this.props.country.value !== 'United States'}>
           {internationalFields}
         </Show>
       </div>
@@ -299,10 +299,12 @@ export default class ToggleableLocation extends ValidationElement {
 }
 
 const branchValue = (country) => {
-  switch (country) {
-    case null:
-      // Neutral state
-      return ''
+  if (country === null || country.value === null) {
+    // Neutral state
+    return ''
+  }
+
+  switch (country.value) {
     case 'United States':
       return 'Yes'
     default:
@@ -313,7 +315,7 @@ const branchValue = (country) => {
 }
 
 ToggleableLocation.defaultProps = {
-  country: null,
+  country: { value: null },
   domesticFields: [],
   internationalFields: [],
   onError: (value, arr) => { return arr },
@@ -344,10 +346,10 @@ ToggleableLocation.errors = [
                   valid = valid && !!props.state && !!props.zipcode
                   break
                 case 'country':
-                  valid = valid && !!props.country
+                  valid = valid && !!props.country && !!props.country.value
                   break
                 default:
-                  console.warn(`Could not map location property '${f}' in ToggleableLocation `)
+                  // console.warn(`Could not map location property '${f}' in ToggleableLocation `)
                   valid = false
               }
             }
@@ -359,10 +361,10 @@ ToggleableLocation.errors = [
                   valid = valid && !!props.city
                   break
                 case 'country':
-                  valid = valid && !!props.country
+                  valid = valid && !!props.country && !!props.country.value
                   break
                 default:
-                  console.warn(`Could not map location property '${f}' in ToggleableLocation `)
+                  // console.warn(`Could not map location property '${f}' in ToggleableLocation `)
                   valid = false
               }
             }

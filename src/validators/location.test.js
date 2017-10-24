@@ -11,7 +11,7 @@ describe('the location component', function () {
           city: 'A-Town',
           state: 'VA',
           county: 'Arlington',
-          country: 'United States',
+          country: { value: 'United States' },
           layout: Location.BIRTHPLACE
         },
         expected: true
@@ -19,7 +19,7 @@ describe('the location component', function () {
       {
         data: {
           city: 'Munich',
-          country: 'Germany',
+          country: { value: 'Germany' },
           layout: Location.BIRTHPLACE
         },
         expected: true
@@ -28,7 +28,7 @@ describe('the location component', function () {
         data: {
           city: 'A-Town',
           state: 'VA',
-          country: 'United States',
+          country: { value: 'United States' },
           layout: Location.BIRTHPLACE_WITHOUT_COUNTY
         },
         expected: true
@@ -36,7 +36,7 @@ describe('the location component', function () {
       {
         data: {
           city: 'Munich',
-          country: 'Germany States',
+          country: { value: 'Germany States' },
           layout: Location.BIRTHPLACE_WITHOUT_COUNTY
         },
         expected: true
@@ -46,7 +46,7 @@ describe('the location component', function () {
           city: 'Arlington',
           state: 'VA',
           zipcode: '22202',
-          country: 'United States',
+          country: { value: 'United States' },
           layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
         },
         expected: true
@@ -63,7 +63,7 @@ describe('the location component', function () {
         data: {
           street: '123 Some rd',
           city: 'Arlington',
-          country: 'Germany',
+          country: { value: 'Germany' },
           layout: Location.STREET_CITY_COUNTRY
         },
         expected: true
@@ -71,7 +71,7 @@ describe('the location component', function () {
       {
         data: {
           city: 'Munich',
-          country: 'Germany',
+          country: { value: 'Germany' },
           layout: Location.CITY_COUNTRY
         },
         expected: true
@@ -80,7 +80,7 @@ describe('the location component', function () {
         data: {
           city: 'Arlington',
           state: 'VA',
-          country: 'United States',
+          country: { value: 'United States' },
           layout: Location.CITY_STATE_COUNTRY
         },
         expected: true
@@ -89,7 +89,7 @@ describe('the location component', function () {
         data: {
           city: 'Munich',
           state: '',
-          country: 'Germany',
+          country: { value: 'Germany' },
           layout: Location.CITY_STATE_COUNTRY
         },
         expected: true
@@ -97,7 +97,7 @@ describe('the location component', function () {
       {
         data: {
           city: 'Munich',
-          country: 'Germany',
+          country: { value: 'Germany' },
           layout: ''
         },
         expected: false
@@ -123,7 +123,7 @@ describe('the location component', function () {
           city: 'Arlington',
           state: 'VA',
           county: 'Thecountry',
-          country: 'United States'
+          country: { value: 'United States' }
         },
         fields: ['city', 'state', 'county', 'country'],
         expected: true
@@ -144,19 +144,19 @@ describe('the location component', function () {
     const tests = [
       {
         data: {
-          country: 'United States'
+          country: { value: 'United States' }
         },
         expected: false
       },
       {
         data: {
-          country: 'POSTOFFICE'
+          country: { value: 'POSTOFFICE' }
         },
         expected: false
       },
       {
         data: {
-          country: 'Germany'
+          country: { value: 'Germany' }
         },
         expected: true
       },
@@ -180,7 +180,7 @@ describe('the location component', function () {
           state: 'VA',
           zipcode: '22202',
           county: 'Thecountry',
-          country: 'United States',
+          country: { value: 'United States' },
           layout: Location.ADDRESS
         },
         expected: true
@@ -191,8 +191,8 @@ describe('the location component', function () {
           city: 'Arlington',
           state: 'VA',
           zipcode: '22202',
-          county: 'Thecountry',
-          country: 'United States',
+          county: 'Thecounty',
+          country: { value: 'United States' },
           layout: Location.US_ADDRESS
         },
         expected: true
@@ -201,7 +201,7 @@ describe('the location component', function () {
         data: {
           street: '123 Some Rd',
           city: 'Arlington',
-          country: 'United States'
+          country: { value: 'United States' }
         },
         expected: false
       },
@@ -209,7 +209,7 @@ describe('the location component', function () {
         data: {
           street: '123 Some Rd',
           city: 'Arlington',
-          country: 'United States',
+          country: { value: 'United States' },
           layout: Location.CITY_STATE_COUNTRY
         },
         expected: false
@@ -290,7 +290,7 @@ describe('the location component', function () {
   it('should handle geocode', async () => {
     const test = {
       state: {
-        country: 'United States',
+        country: { value: 'United States' },
         street: '1234 Some Rd',
         city: 'Arlington',
         state: 'Virginia',
@@ -321,7 +321,7 @@ describe('the location component', function () {
   it('should handle empty error', async () => {
     const test = {
       state: {
-        country: 'United States',
+        country: { value: 'United States' },
         street: '1234 Some Rd',
         city: 'Arlington',
         state: 'Virginia',
@@ -349,7 +349,7 @@ describe('the location component', function () {
     const tests = [
       {
         state: {
-          country: 'United States',
+          country: { value: 'United States' },
           street: '1234 Some Rd',
           city: 'Arlington',
           state: 'Virginia',
@@ -359,7 +359,7 @@ describe('the location component', function () {
       },
       {
         state: {
-          country: 'United States',
+          country: { value: 'United States' },
           street: '1234 Some Rd',
           city: 'Arlington',
           state: 'Virginia',

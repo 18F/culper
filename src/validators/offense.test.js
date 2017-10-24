@@ -139,7 +139,7 @@ describe('Offense validation', function () {
       {
         state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -241,7 +241,7 @@ describe('Offense validation', function () {
         state: {
           WasCited: 'Yes',
           AgencyAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -400,7 +400,7 @@ describe('Offense validation', function () {
           WasCited: 'Yes',
           WasCharged: 'Yes',
           CourtAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -704,7 +704,7 @@ describe('Offense validation', function () {
           InvolvedFirearms: 'Yes',
           InvolvedSubstances: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -772,7 +772,7 @@ describe('Offense validation', function () {
           InvolvedFirearms: 'No',
           InvolvedSubstances: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -788,7 +788,7 @@ describe('Offense validation', function () {
             value: 'Some explanation'
           },
           AgencyAddress: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',

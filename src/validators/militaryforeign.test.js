@@ -108,7 +108,7 @@ describe('Military foreign validation', function () {
                       Address: {
                         street: '1234 Some Rd',
                         city: 'Munich',
-                        country: 'Germany',
+                        country: { value: 'Germany' },
                         layout: Location.ADDRESS
                       },
                       Title: {
@@ -143,7 +143,7 @@ describe('Military foreign validation', function () {
                       Address: {
                         street: '1234 Some Rd',
                         city: 'Munich',
-                        country: 'Germany',
+                        country: { value: 'Germany' },
                         layout: Location.ADDRESS
                       },
                       Title: {
@@ -218,7 +218,7 @@ describe('Military foreign validation', function () {
               Address: {
                 street: '1234 Some Rd',
                 city: 'Munich',
-                country: 'Germany',
+                country: { value: 'Germany' },
                 layout: Location.ADDRESS
               },
               Title: {
