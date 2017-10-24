@@ -9546,6 +9546,11 @@ const en = {
       '### Additional comments',
       'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the following release(s). You will not be able to submit until each release below is signed'
     ],
+    validForm: {
+      certificationItem: 'Certification',
+      generalItem: 'Release of Information & HIPAA',
+      creditItem: 'Credit reporting disclosure'
+    },
     invalidForm: [
       '## List of incomplete sections',
       'Use the list below to complete all incomplete sections or sections with errors'

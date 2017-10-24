@@ -2,6 +2,14 @@ import React from 'react'
 import { i18n } from '../../../config'
 import { Show, Svg } from '../../Form'
 
+/**
+ * SubmissionStatus allows for three modes.
+ *
+ * 1. Pass in transition true to show animation of progress bar. Once the progress
+ * bar is filled, the onTransitionEnd callback is executed
+ * 2. Pass in valid = true and the bar is rendered green
+ * 3. Pass in valid = false and the bar is rendered red
+ */
 export default class SubmissionStatus extends React.Component {
   constructor (props) {
     super(props)
@@ -47,7 +55,8 @@ export default class SubmissionStatus extends React.Component {
     const style = {
       width: `${this.state.width}%`
     }
-    const progressClass = ['progress', this.props.transition ? 'transition' : '']
+    // When transition class is applied, css3 transition is triggered
+    const progressClass = [ 'progress', this.props.transition ? 'transition' : '' ]
 
     return (
       <div className={classes.join(' ')}>
@@ -68,10 +77,13 @@ export default class SubmissionStatus extends React.Component {
           </div>
           <div className="icon-container">
             <span className="icon">
-              <Show when={!this.props.transition || this.props.valid}>
+              <Show when={this.props.transition}>
+                <Svg className="checkmark" src="/img/checkmark.svg" />
+              </Show>
+              <Show when={!this.props.transition && this.props.valid}>
                 <Svg src="/img/checkmark.svg" />
               </Show>
-              <Show when={this.props.transition && !this.props.valid}>
+              <Show when={!this.props.transition && !this.props.valid}>
                 <Svg src="/img/exclamation.svg" />
               </Show>
             </span>

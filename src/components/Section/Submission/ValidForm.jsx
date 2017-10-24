@@ -1,13 +1,14 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { ValidationElement, Show } from '../../Form'
+import { validDateField } from '../../../validators/helpers'
 import BasicAccordion from './BasicAccordion'
 import AdditionalComments from '../Releases/AdditionalComments'
 import General from '../Releases/General'
 import Medical from '../Releases/Medical'
 import Credit from '../Releases/Credit'
 
-export default class ValidatedForm extends ValidationElement {
+export default class ValidForm extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -30,7 +31,9 @@ export default class ValidatedForm extends ValidationElement {
 
   componentDidMount () {
     let nav = document.getElementsByClassName('form-navigation')[0]
-    nav.addEventListener('click', this.captureClick)
+    if (nav && nav.addEventListener) {
+      nav.addEventListener('click', this.captureClick)
+    }
   }
 
   captureClick (e) {
@@ -75,7 +78,9 @@ export default class ValidatedForm extends ValidationElement {
 
   submit () {
     // TODO Implement
-    this.props.onSubmit(true)
+    if (window.confirm('Are you sure you want to submit this application?')) {
+      this.props.onSubmit(true)
+    }
   }
 
   togglePanel (nextIndex, open = true) {
@@ -100,7 +105,7 @@ export default class ValidatedForm extends ValidationElement {
   accordionItems () {
     let accordionItems = [
       {
-        title: 'Certification',
+        title: i18n.t('submission.validForm.certificationItem'),
         component: () => {
           return (
             <div>
@@ -116,7 +121,7 @@ export default class ValidatedForm extends ValidationElement {
         open: true
       },
       {
-        title: 'Release of Information & HIPAA',
+        title: i18n.t('submission.validForm.generalItem'),
         component: () => {
           return (
             <div>
@@ -141,7 +146,7 @@ export default class ValidatedForm extends ValidationElement {
         open: false
       },
       {
-        title: 'Credit reporting disclosure',
+        title: i18n.t('submission.validForm.creditItem'),
         component: () => {
           return (
             <div>
@@ -176,7 +181,7 @@ export default class ValidatedForm extends ValidationElement {
   }
 }
 
-ValidatedForm.defaultProps = {
+ValidForm.defaultProps = {
   hideHippa: true,
   AdditionalComments: {
     Signature: {}
@@ -202,6 +207,9 @@ export const validSignature = (el) => {
     return false
   }
   if (!signature.Name || !signature.Name.value) {
+    return false
+  }
+  if (!validDateField(signature.Date)) {
     return false
   }
   return true

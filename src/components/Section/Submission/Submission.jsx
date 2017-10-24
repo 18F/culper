@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { i18n, navigation } from '../../../config'
+import { navigation } from '../../../config'
 import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -8,18 +8,18 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
-import SubmissionComplete from './SubmissionComplete'
-import { Show } from '../../Form'
 import Print from '../Print/Print'
+import { push } from '../../../middleware/history'
+import { Link } from 'react-router'
 
 class Submission extends SectionElement {
   constructor (props) {
     super(props)
     this.updateSubmission = this.updateSubmission.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
-    this.state = {
-      submitted: false
-    }
+    this.onTransitionEnd = this.onTransitionEnd.bind(this)
+    // TODO: Remove after testing
+    this.goToReleases = this.goToReleases.bind(this)
   }
 
   updateSubmission (values) {
@@ -27,27 +27,43 @@ class Submission extends SectionElement {
   }
 
   onSubmit () {
-    this.setState({
-      submitted: true
-    }, () => {
-      window.scrollTo(0, 0)
-    })
+    // TODO: Generate has code here and send to print screen when
+    // merged with persistence updates
+    this.props.dispatch(push('/form/submit/print'))
   }
 
+  /**
+   * When the progress bar transition ends, redirect to page containing
+   * releases or errors based on whether the form is valid
+   */
   onTransitionEnd () {
-    this.props.dispatch(push('/form/submit/errors'))
+    const sectionsStatus = statusForAllSections(this.props.Application)
+    const valid = allSectionsValid(sectionsStatus)
+    if (valid) {
+      this.props.dispatch(push('/form/submit/releases'))
+    } else {
+      this.props.dispatch(push('/form/submit/errors'))
+    }
+  }
+
+  /**
+   * TODO: Remove after testing. Hook to get to releases form
+   */
+  goToReleases () {
+    this.props.dispatch(push('/form/submit/releases'))
   }
 
   render () {
     const releases = (this.props.Submission || {}).Releases
-    const s = statusForAllSections(this.props.Application)
-    const valid = hasIncompleteSections(s)
+    const sectionsStatus = statusForAllSections(this.props.Application)
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView name="">
-          <SubmissionStatus valid={valid} transition={true} onTransitionEnd={this.onTransitionEnd}/>
+          <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
         </SectionView>
-
+        <SectionView name="valid">
+          <SubmissionStatus transition={true} onTransitionEnd={this.goToReleases}/>
+        </SectionView>
         <SectionView name="releases">
           <SubmissionStatus valid={true} transition={false}>
             <ValidForm
@@ -64,26 +80,45 @@ class Submission extends SectionElement {
 
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
-            <Show when={!valid}>
-              <InvalidForm sections={s} />
-            </Show>
+            <InvalidForm sections={sectionsStatus} />
           </SubmissionStatus>
+          <Link to="/form/submit/valid">
+            Show valid scenario
+          </Link>
         </SectionView>
       </SectionViews>
     )
   }
 }
 
-export const hasIncompleteSections = (sections) => {
+/**
+ * Checks if all sections are complete
+ */
+export const allSectionsValid = (sections) => {
   for (let section of sections) {
     const topLevel = section.subsections
-    if (!topLevel.every(s => { s.complete === true })) {
+    if (!topLevel.every(s => { return s.complete === true })) {
       return false
     }
   }
   return true
 }
 
+/**
+ * Generates the status for all sections
+ * Has the structure:
+ * {
+ *  title: '',
+ *  url: '',
+ *  subsections: [
+ *    {
+ *        name: '',
+ *        url: '',
+ *        complete:
+ *    }
+ *  ]
+ * }
+ */
 export const statusForAllSections = (application) => {
   let possibleSections = possibleSectionsToComplete()
   const completedTopLevelSections = application.Completed
@@ -98,7 +133,6 @@ export const statusForAllSections = (application) => {
     for (let possibleSubsection of possibleSubsections) {
       for (let completedSection of completedSections) {
         if (possibleSubsection.url === completedSection.code) {
-          console.debug(`Completion Status for ${possibleSubsection.url} is ${completedSection.valid}`)
           possibleSubsection.complete = completedSection.valid
         }
       }
@@ -107,6 +141,10 @@ export const statusForAllSections = (application) => {
   return possibleSections
 }
 
+/**
+ * Returns sections that are eligible to be completed. This includes sections that
+ * are not hidden or excluded
+ */
 export const possibleSectionsToComplete = () => {
   let sections = [...navigation]
   let paths = []
@@ -123,6 +161,11 @@ export const possibleSectionsToComplete = () => {
   return paths
 }
 
+/**
+ * Flattens subsections that have more than 1 level. Examples include
+ * the Foreign activities section. The errors are comprised of
+ * top level sections and then their children (2nd and 3rd level subsections).
+ */
 export const flattenSectionsComplete = (section, base) => {
   if (!section.subsections || !section.subsections.length) {
     return [
