@@ -1,0 +1,18 @@
+.pre-print-view {
+  .print-btn {
+    padding: 3rem 6rem 3rem 6rem;
+  }
+  .done {
+    margin-top: 5rem;
+  }
+  .icon {
+    width: 8.7rem;
+    height: 8.7rem;
+    display: inline-block;
+    position: relative;
+    left: -0.6rem;
+    svg {
+      fill: #47a362;
+    }
+  }
+}
