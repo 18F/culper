@@ -1,23 +1,4 @@
 .physical {
-  .height,
-  .weight,
-  .hair-colors,
-  .eye-colors,
-  .sex {
-    display: inline-block;
-  }
-
-  .hair-colors,
-  .eye-colors {
-    width: 90%;
-    max-width: 64rem !important;
-
-    input {
-      width: 100% !important;
-      max-width: 64rem !important;
-    }
-  }
-
   &.hair-colors,
   &.eye-colors,
   &.sex {

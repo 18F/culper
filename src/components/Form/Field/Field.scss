@@ -210,10 +210,6 @@
         border: 2px solid $eapp-blue-lighter;
         border-radius: 6px;
 
-        @media screen and (max-width: 850px) {
-          margin: 1.3rem 0;
-        }
-
         h1,
         h2,
         h3,
@@ -273,31 +269,13 @@
       }
     }
   }
-
-  @media screen and (max-width: 850px) {
-    > .table {
-      margin-left: 6.6rem;
-
-      > .content {
-        > .icon {
-          display: block;
-          float: right;
-          margin-right: 4rem;
-        }
-
-        > .component {
-          display: block;
-        }
-      }
-    }
-  }
 }
 
 // Handle when multiplicity
 .field {
   .field {
     margin-bottom: 0;
-    margin-right: -5.75rem;
+    // margin-right: -5.75rem;
 
     > .table > .content > .component {
       width: 100%;
