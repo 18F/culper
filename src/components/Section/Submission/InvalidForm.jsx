@@ -1,6 +1,5 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Show } from '../../Form'
 import { Link } from 'react-router'
 
 export default class InvalidForm extends React.Component {
@@ -16,7 +15,7 @@ export default class InvalidForm extends React.Component {
     let errors = []
     for (let section of this.props.sections) {
       if (!section.complete) {
-        errors.push(<InvalidSection section={section} />)
+        errors.push(<InvalidSection key={section.url} section={section} />)
       }
     }
     return errors
@@ -40,7 +39,7 @@ export class InvalidSection extends React.Component {
       .filter(subsection => !subsection.complete)
     const incompleteSubsectionsElements = incompleteSubsections
       .map(subsection => {
-        return (<div>{ subsection.name }</div>)
+        return (<div key={subsection.url}>{ subsection.name }</div>)
       })
 
     return (
