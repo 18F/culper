@@ -193,7 +193,7 @@ class Psychological extends SectionElement {
             <hr />
             <SectionComments name="comments"
                              {...this.props.Comments}
-                             title={i18n.t('psycholigical.review.comments')}
+                             title={i18n.t('psychological.review.comments')}
                              dispatch={this.props.dispatch}
                              onUpdate={this.handleUpdate.bind(this, 'Comments')}
                              onError={this.handleError}
@@ -302,7 +302,7 @@ export class PsychologicalSections extends React.Component {
         <hr />
         <SectionComments name="comments"
                          {...this.props.Comments}
-                         title={i18n.t('psycholigical.review.comments')}
+                         title={i18n.t('psychological.review.comments')}
                          dispatch={this.props.dispatch}
                          onUpdate={this.handleUpdate.bind(this, 'Comments')}
                          onError={this.handleError}
