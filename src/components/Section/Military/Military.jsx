@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { hideDisciplinaryProcedures } from '../../../validators/militarydisciplinary'
 import { hideSelectiveService } from '../../../validators/selectiveservice'
@@ -66,13 +67,13 @@ class Military extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.intro')}>
             <Show when={showSelectiveService}>
               <Selective name="selective"
-                        {...this.props.Selective}
-                        dispatch={this.props.dispatch}
-                        onUpdate={this.updateSelective}
-                        onError={this.handleError}
-                        required={true}
-                        scrollIntoView={false}
-                        />
+                         {...this.props.Selective}
+                         dispatch={this.props.dispatch}
+                         onUpdate={this.updateSelective}
+                         onError={this.handleError}
+                         required={true}
+                         scrollIntoView={false}
+                         />
               <hr/>
             </Show>
 
@@ -110,6 +111,17 @@ class Military extends SectionElement {
                      required={true}
                      scrollIntoView={false}
                      />
+
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('military.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="selective"
@@ -187,6 +199,7 @@ function mapStateToProps (state) {
     History: military.History || {},
     Disciplinary: military.Disciplinary || {},
     Foreign: military.Foreign || {},
+    Comments: military.Comments || {},
     Errors: errors.military || [],
     Completed: completed.military || [],
     AddressBooks: addressBooks
@@ -207,46 +220,57 @@ export class MilitarySections extends React.Component {
       <div>
         <Show when={showSelectiveService}>
           <Selective name="selective"
-            {...this.props.Selective}
-            dispatch={this.props.dispatch}
-            onError={this.props.onError}
-            required={true}
-            scrollIntoView={false}
-          />
+                     {...this.props.Selective}
+                     dispatch={this.props.dispatch}
+                     onError={this.props.onError}
+                     required={true}
+                     scrollIntoView={false}
+                     />
           <hr/>
         </Show>
 
         <History name="history"
-          {...this.props.History}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                 {...this.props.History}
+                 defaultState={false}
+                 dispatch={this.props.dispatch}
+                 onError={this.props.onError}
+                 required={true}
+                 scrollIntoView={false}
+                 />
 
         <Show when={showDisciplinary}>
           <hr/>
           <Disciplinary name="disciplinary"
-            {...this.props.Disciplinary}
-            defaultState={false}
-            dispatch={this.props.dispatch}
-            onError={this.props.onError}
-            required={true}
-            scrollIntoView={false}
-          />
+                        {...this.props.Disciplinary}
+                        defaultState={false}
+                        dispatch={this.props.dispatch}
+                        onError={this.props.onError}
+                        required={true}
+                        scrollIntoView={false}
+                        />
         </Show>
 
         <hr/>
         <Foreign name="foreign"
-          {...this.props.Foreign}
-          addressBooks={this.props.AddressBooks}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                 {...this.props.Foreign}
+                 addressBooks={this.props.AddressBooks}
+                 defaultState={false}
+                 dispatch={this.props.dispatch}
+                 onError={this.props.onError}
+                 required={true}
+                 scrollIntoView={false}
+                 />
+
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('military.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                         onError={this.handleError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }

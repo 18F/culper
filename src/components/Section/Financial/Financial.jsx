@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Gambling from './Gambling'
@@ -57,7 +58,7 @@ class Financial extends SectionElement {
                       defaultState={false}
                       required={true}
                       scrollIntoView={false}
-                    />
+                      />
 
             <hr />
             <Taxes name="taxes"
@@ -116,6 +117,16 @@ class Financial extends SectionElement {
                         required={true}
                         scrollIntoView={false}
                         />
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('financial.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="bankruptcy"
@@ -241,6 +252,7 @@ function mapStateToProps (state) {
     Credit: financial.Credit || {},
     Delinquent: financial.Delinquent || {},
     Nonpayment: financial.Nonpayment || {},
+    Comments: financial.Comments || {},
     Errors: errors.financial || [],
     Completed: completed.financial || [],
     AddressBooks: addressBooks
@@ -258,76 +270,87 @@ export class FinancialSections extends React.Component {
     return (
       <div>
         <Bankruptcies name="bankruptcy"
-          {...this.props.Bankruptcy}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          defaultState={false}
-          required={true}
-          scrollIntoView={false}
-        />
+                      {...this.props.Bankruptcy}
+                      addressBooks={this.props.AddressBooks}
+                      dispatch={this.props.dispatch}
+                      onError={this.props.onError}
+                      defaultState={false}
+                      required={true}
+                      scrollIntoView={false}
+                      />
         <hr />
         <Gambling name="gambling"
-          {...this.props.Gambling}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          defaultState={false}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.Gambling}
+                  dispatch={this.props.dispatch}
+                  onError={this.props.onError}
+                  defaultState={false}
+                  required={true}
+                  scrollIntoView={false}
+                  />
 
         <hr />
         <Taxes name="taxes"
-          {...this.props.Taxes}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          defaultState={false}
-          required={true}
-          scrollIntoView={false}
-        />
+               {...this.props.Taxes}
+               dispatch={this.props.dispatch}
+               onError={this.props.onError}
+               defaultState={false}
+               required={true}
+               scrollIntoView={false}
+               />
 
         <hr />
         <Card name="card"
-          {...this.props.Card}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          defaultState={false}
-          required={true}
-          scrollIntoView={false}
-        />
+              {...this.props.Card}
+              addressBooks={this.props.AddressBooks}
+              dispatch={this.props.dispatch}
+              onError={this.props.onError}
+              defaultState={false}
+              required={true}
+              scrollIntoView={false}
+              />
 
         <hr />
         <Credit name="credit"
-          {...this.props.Credit}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          defaultState={false}
-          required={true}
-          scrollIntoView={false}
-        />
+                {...this.props.Credit}
+                addressBooks={this.props.AddressBooks}
+                dispatch={this.props.dispatch}
+                onError={this.props.onError}
+                defaultState={false}
+                required={true}
+                scrollIntoView={false}
+                />
 
         <hr />
         <Delinquent name="delinquent"
-          {...this.props.Delinquent}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          defaultState={false}
-          required={true}
-          scrollIntoView={false}
-        />
+                    {...this.props.Delinquent}
+                    addressBooks={this.props.AddressBooks}
+                    dispatch={this.props.dispatch}
+                    onError={this.props.onError}
+                    defaultState={false}
+                    required={true}
+                    scrollIntoView={false}
+                    />
 
         <hr />
         <Nonpayment name="nonpayment"
-          {...this.props.Nonpayment}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          defaultState={false}
-          required={true}
-          scrollIntoView={false}
-        />
+                    {...this.props.Nonpayment}
+                    dispatch={this.props.dispatch}
+                    onError={this.props.onError}
+                    defaultState={false}
+                    required={true}
+                    scrollIntoView={false}
+                    />
+
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('financial.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                         onError={this.handleError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }

@@ -1304,7 +1304,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your financial record?'
     },
     destination: {
       intro: 'Financial intro',
@@ -2314,7 +2315,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with relationships at once'
+      para: 'View all the sections associated with relationships at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your relationships?'
     },
     destination: {
       intro: 'Relationships intro',
@@ -3217,7 +3219,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with military history at once'
+      para: 'View all the sections associated with military history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your military history?'
     },
     destination: {
       intro: 'Military intro',
@@ -3567,7 +3570,8 @@ const en = {
     review: {
       title: 'Full section view',
       para: 'View all the sections associated with your history at once',
-      button: 'Show me the full section'
+      button: 'Show me the full section',
+      comments: 'Would you like to add a comment about any of your responses relating to your history?'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -5227,7 +5231,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with foreign activities at once'
+      para: 'View all the sections associated with foreign activities at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your foreign activities?'
     },
     destination: {
       intro: 'Foreign intro',
@@ -6863,7 +6868,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with investigative & criminal history at once'
+      para: 'View all the sections associated with investigative & criminal history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your investigative and criminal history?'
     },
     destination: {
       intro: 'Investigative and criminal history intro',
@@ -7761,7 +7767,8 @@ const en = {
     },
     review: {
       title: 'Let\'s make sure everything looks right',
-      para: 'View all the sections associated with substance abuse'
+      para: 'View all the sections associated with substance abuse',
+      comments: 'Would you like to add a comment about any of your responses relating to your substance use?'
     },
     destination: {
       intro: 'Substance use intro',
@@ -8607,7 +8614,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with psychological and emotional health at once'
+      para: 'View all the sections associated with psychological and emotional health at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your psychological and emotional health?'
     },
     competence: {
       heading: {
