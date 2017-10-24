@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"encoding/hex"
 	"fmt"
 	"io/ioutil"
 	"log"
@@ -54,7 +55,8 @@ func Hash(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, string(form.Signature(context, account.ID)))
+	hash := form.Signature(context, account.ID)
+	fmt.Fprint(w, hex.EncodeToString(hash[:]))
 }
 
 func Section(w http.ResponseWriter, r *http.Request) {
