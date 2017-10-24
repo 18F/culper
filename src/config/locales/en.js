@@ -982,7 +982,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to information about you?'
     },
     destination: {
       intro: 'Identification intro',
@@ -1303,7 +1304,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your financial record?'
     },
     destination: {
       intro: 'Financial intro',
@@ -1925,7 +1927,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with citizenship at once'
+      para: 'View all the sections associated with citizenship at once',
+      comments: 'Would you like to add a comment about any of your responses relating to citizenship?'
     },
     destination: {
       intro: 'Citizenship intro',
@@ -2312,7 +2315,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with relationships at once'
+      para: 'View all the sections associated with relationships at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your relationships?'
     },
     destination: {
       intro: 'Relationships intro',
@@ -3215,7 +3219,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with military history at once'
+      para: 'View all the sections associated with military history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your military history?'
     },
     destination: {
       intro: 'Military intro',
@@ -3565,7 +3570,8 @@ const en = {
     review: {
       title: 'Full section view',
       para: 'View all the sections associated with your history at once',
-      button: 'Show me the full section'
+      button: 'Show me the full section',
+      comments: 'Would you like to add a comment about any of your responses relating to your history?'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -5225,7 +5231,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with foreign activities at once'
+      para: 'View all the sections associated with foreign activities at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your foreign activities?'
     },
     destination: {
       intro: 'Foreign intro',
@@ -6861,7 +6868,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with investigative & criminal history at once'
+      para: 'View all the sections associated with investigative & criminal history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your investigative and criminal history?'
     },
     destination: {
       intro: 'Investigative and criminal history intro',
@@ -7759,7 +7767,8 @@ const en = {
     },
     review: {
       title: 'Let\'s make sure everything looks right',
-      para: 'View all the sections associated with substance abuse'
+      para: 'View all the sections associated with substance abuse',
+      comments: 'Would you like to add a comment about any of your responses relating to your substance use?'
     },
     destination: {
       intro: 'Substance use intro',
@@ -8605,7 +8614,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with psychological and emotional health at once'
+      para: 'View all the sections associated with psychological and emotional health at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your psychological and emotional health?'
     },
     competence: {
       heading: {
@@ -9534,6 +9544,54 @@ const en = {
         'In accordance with HIPAA, I understand that I have the right to revoke this authorization at any time by writing to my health care provider/entity. Revocation of this authorization is not effective until received by my health care provider/entity. I understand that I may revoke this authorization, except to the extent that action has already been taken based on this authorization. Further, I understand that this authorization is voluntary. My treatment, payment, enrollment in a health plan, or eligibility for benefits will not be conditioned upon my authorization of this disclosure.',
         'I understand the information disclosed pursuant to this authorization for use by the Federal Government only for purposes provided in the Standard Form 86 will no longer be covered by the HIPAA Privacy Rule, and that the Federal Government may redisclose the information as authorized by law, subject to Privacy Act safeguards.',
         'Photocopies of this authorization with my signature are valid. This authorization is valid for one (1) year from the date signed or upon termination of my affiliation with the Federal Government, whichever is sooner.'
+      ]
+    }
+  },
+  submission: {
+    header: [
+      '## All required fields are complete',
+      'Not a guarantee of acceptance. We are checking that all required fields are complete'
+    ],
+    additional: [
+      '### Additional comments',
+      'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the following release(s). You will not be able to submit until each release below is signed'
+    ],
+    validForm: {
+      certificationItem: 'Certification',
+      generalItem: 'Release of Information & HIPAA',
+      creditItem: 'Credit reporting disclosure'
+    },
+    invalidForm: [
+      '## List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors'
+    ],
+    submissionStatus: {
+      validating: [
+        '## Verifying your information is complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      valid: [
+        '## All required fields are complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      invalid: [
+        '## Some required fields are incomplete'
+      ]
+    },
+    submissionComplete: [
+      '## You are done!',
+      '### Thanks for submitting your SF-86',
+      'Please print and save your submission below,they will be your only copies'
+    ],
+    print: {
+      title: [
+        '## Please print and save your responses',
+        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen.'
+      ],
+      button: 'Save/Print',
+      done: [
+        '## You are done!',
+        '### Thanks for submitting for your SF-86'
       ]
     }
   }

@@ -116,7 +116,7 @@ class Navigation extends React.Component {
         <div key={section.name} className="section">
           <span className="section-title">
             <Link to={url} className={sectionClass}>
-              <span className="section-number">{sectionNum}</span>
+              <span className="section-number">{section.showNumber && sectionNum}</span>
               <span className="section-name">
                 {section.name}
               </span>
