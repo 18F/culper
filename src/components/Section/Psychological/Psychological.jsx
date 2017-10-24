@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Show, Field } from '../../Form'
 import Competence from './Competence/Competence'
@@ -61,7 +62,7 @@ class Psychological extends SectionElement {
                         onError={this.handleError}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')}
                         scrollToBottom={this.props.scrollToBottom}
-                      />
+                        />
           </SectionView>
 
           <SectionView name="consultations"
@@ -77,7 +78,7 @@ class Psychological extends SectionElement {
                           onError={this.handleError}
                           onUpdate={this.handleUpdate.bind(this, 'Consultation')}
                           scrollToBottom={this.props.scrollToBottom}
-                        />
+                          />
           </SectionView>
           <SectionView name="hospitalizations"
                        back="psychological/consultations"
@@ -91,7 +92,7 @@ class Psychological extends SectionElement {
                               onError={this.handleError}
                               onUpdate={this.handleUpdate.bind(this, 'Hospitalization')}
                               scrollToBottom={this.props.scrollToBottom}
-                            />
+                              />
           </SectionView>
           <SectionView name="diagnoses"
                        back="psychological/hospitalizations"
@@ -188,6 +189,17 @@ class Psychological extends SectionElement {
                                     />
               </div>
             </Show>
+
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('psychological.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
         </SectionViews>
       </div>
@@ -209,6 +221,7 @@ function mapStateToProps (state) {
     Hospitalizations: psychological.Hospitalization,
     Diagnoses: psychological.Diagnoses,
     ExistingConditions: psychological.ExistingConditions,
+    Comments: psychological.Comments || {},
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
     ShowExistingConditions: showQuestion21E(psychological),
@@ -229,63 +242,73 @@ export class PsychologicalSections extends React.Component {
     return (
       <div>
         <Competence name="Competence"
-          {...this.props.Competence}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                    {...this.props.Competence}
+                    ApplicantBirthDate={this.props.ApplicantBirthDate}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
+                    onError={this.props.onError}
+                    required={true}
+                    scrollIntoView={false}
+                    />
 
         <hr />
         <Consultation name="Consultations"
-          {...this.props.Consultations}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                      {...this.props.Consultations}
+                      ApplicantBirthDate={this.props.ApplicantBirthDate}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onError={this.props.onError}
+                      required={true}
+                      scrollIntoView={false}
+                      />
 
         <hr />
         <Hospitalizations name="Hospitalizations"
-          {...this.props.Hospitalizations}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                          {...this.props.Hospitalizations}
+                          ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          defaultState={false}
+                          dispatch={this.props.dispatch}
+                          onError={this.props.onError}
+                          required={true}
+                          scrollIntoView={false}
+                          />
 
         <hr />
         <Diagnoses name="Diagnoses"
-          {...this.props.Diagnoses}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                   {...this.props.Diagnoses}
+                   ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   defaultState={false}
+                   dispatch={this.props.dispatch}
+                   onError={this.props.onError}
+                   required={true}
+                   scrollIntoView={false}
+                   />
 
         <Show when={showExisting}>
           <div>
             <hr />
             <ExistingConditions name="ExistingConditions"
-              {...this.props.ExistingConditions}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              defaultState={false}
-              dispatch={this.props.dispatch}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={false}
-            />
+                                {...this.props.ExistingConditions}
+                                ApplicantBirthDate={this.props.ApplicantBirthDate}
+                                defaultState={false}
+                                dispatch={this.props.dispatch}
+                                onError={this.props.onError}
+                                required={this.props.required}
+                                scrollIntoView={false}
+                                />
           </div>
         </Show>
-    </div>
+
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('psychological.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.handleError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
+      </div>
     )
   }
 }
