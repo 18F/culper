@@ -84,7 +84,7 @@ const en = {
     label: {
       first: 'First name',
       last: 'Last name',
-      middle: 'Middle name or initial',
+      middle: 'Middle name',
       initialOnly: 'Initial only',
       noMiddle: 'No middle name',
       other: 'Other',
@@ -8526,7 +8526,7 @@ const en = {
       label: {
         first: 'First name',
         last: 'Last name',
-        middle: 'Middle name or initial',
+        middle: 'Middle name',
         initialOnly: 'Initial only',
         noMiddle: 'No middle name',
         other: 'Other',
