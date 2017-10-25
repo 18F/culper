@@ -5,12 +5,13 @@ import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
+import { Field } from '../../Form'
 import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import Print from '../Print/Print'
 import { push } from '../../../middleware/history'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { api } from '../../../services'
 
 class Submission extends SectionElement {
@@ -88,7 +89,10 @@ class Submission extends SectionElement {
         </SectionView>
         <SectionView name="print">
           <Print />
-          <p><strong>Data hash code</strong>: {this.state.hashCode}</p>
+          <Field title="Data hash code"
+                 titleSize="h4">
+            <p className="hash">{this.state.hashCode}</p>
+          </Field>
         </SectionView>
 
         <SectionView name="errors">
