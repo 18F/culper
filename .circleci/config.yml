@@ -9,7 +9,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build
+            docker-compose build db api frontend
       - run:
           name: Run unit tests for API
           command: |
@@ -36,7 +36,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build
+            docker-compose build db api frontend
       - run:
           name: Run unit tests for API
           command: |
@@ -58,37 +58,6 @@ jobs:
             set -x
             ./bin/deploy.sh dev
 
-  # deploy_staging:
-  #   machine: true
-  #   steps:
-  #     - checkout
-  #     - run:
-  #         name: Build docker images
-  #         command: |
-  #           set -x
-  #           cp .env.test .env
-  #           docker-compose build
-  #     - run:
-  #         name: Run unit tests for API
-  #         command: |
-  #           set -x
-  #           docker-compose run api ./test.sh
-  #     - run:
-  #         name: Run unit tests for the front end
-  #         command: |
-  #           set -x
-  #           docker-compose run frontend npm test
-  #     - run:
-  #         name: Code coverage
-  #         command: |
-  #           set -x
-  #           echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-  #           docker-compose run frontend npm run coverage
-  #     - deploy:
-  #         command: |
-  #           set -x
-  #           ./bin/deploy.sh staging
-
   deploy_production:
     machine: true
     steps:
@@ -98,7 +67,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build
+            docker-compose build db api frontend
       - run:
           name: Run unit tests for API
           command: |
@@ -129,13 +98,7 @@ workflows:
             branches:
               ignore:
                 - develop
-                #- staging
                 - master
-      # - deploy_staging:
-      #     filters:
-      #       branches:
-      #         only:
-      #           - staging
       - deploy_development:
           filters:
             branches:
@@ -146,3 +109,4 @@ workflows:
             branches:
               only:
                 - master
+                - fix-circleci-deployment
