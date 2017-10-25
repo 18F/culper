@@ -1,0 +1,30 @@
+{
+  "type": "signature",
+  "props": {
+    "Name": {
+      "type": "name",
+      "props": {
+        "first": "John",
+        "firstInitialOnly": false,
+        "last": "Smith",
+        "lastInitialOnly": false,
+        "middle": "H",
+        "middleInitialOnly": true,
+        "noMiddleName": false,
+        "suffix": "Other",
+        "suffixOther": "XX"
+      }
+    },
+    "Date": {
+      "type": "datecontrol",
+      "props": {
+        "month": "7",
+        "day": "25",
+        "year": "2017",
+        "estimated": false,
+        "date": "2017-07-25T00:00:00Z"
+      }
+    },
+    "present": false
+  }
+}

@@ -32,7 +32,7 @@ func AllSections(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	fmt.Fprint(w, string(form.Application(context, account.ID)))
+	fmt.Fprint(w, string(form.Application(context, account.ID, false)))
 }
 
 func Hash(w http.ResponseWriter, r *http.Request) {
@@ -55,7 +55,7 @@ func Hash(w http.ResponseWriter, r *http.Request) {
 	}
 
 	w.Header().Set("Content-Type", "application/json")
-	hash := form.Signature(context, account.ID)
+	hash := form.Hash(context, account.ID)
 	fmt.Fprint(w, hex.EncodeToString(hash[:]))
 }
 

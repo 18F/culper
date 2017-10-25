@@ -10,18 +10,18 @@ func TestApplication(t *testing.T) {
 	account := 1
 	context := db.NewDB()
 
-	js := Application(context, account)
+	js := Application(context, account, false)
 	if len(js) == 0 {
 		t.Fatal("Failed to get application state")
 	}
 }
 
-func TestSignature(t *testing.T) {
+func TestHash(t *testing.T) {
 	account := 1
 	context := db.NewDB()
 
-	sig := Signature(context, account)
+	sig := Hash(context, account)
 	if len(sig) == 0 {
-		t.Fatal("Failed to get application signature")
+		t.Fatal("Failed to get application data hash")
 	}
 }

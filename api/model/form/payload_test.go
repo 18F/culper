@@ -116,6 +116,7 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/reasonleft.json"},
 		{Data: "testdata/reference.json"},
 		{Data: "testdata/sentence.json"},
+		{Data: "testdata/signature.json"},
 		{Data: "testdata/ssn.json"},
 		{Data: "testdata/supervisor.json"},
 		{Data: "testdata/telephone.json"},
@@ -220,6 +221,9 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
 		{Data: "testdata/psychological-conditions.json"},
+
+		// Section: Submission
+		{Data: "testdata/submission.json"},
 	}
 
 	// HTTP test server to field any third party requests
@@ -359,6 +363,9 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
 		{Data: "testdata/psychological-conditions.json"},
+
+		// Section: Submission
+		{Data: "testdata/submission.json"},
 	}
 
 	for _, test := range tests {

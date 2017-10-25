@@ -28,6 +28,7 @@ var transform = map[string]func() Entity{
 	"reasonleft":                                      func() Entity { return &ReasonLeft{} },
 	"reference":                                       func() Entity { return &Reference{} },
 	"sentence":                                        func() Entity { return &Sentence{} },
+	"signature":                                       func() Entity { return &Signature{} },
 	"ssn":                                             func() Entity { return &SSN{} },
 	"supervisor":                                      func() Entity { return &Supervisor{} },
 	"telephone":                                       func() Entity { return &Telephone{} },
@@ -113,4 +114,9 @@ var transform = map[string]func() Entity{
 	"psychological.conditions":                        func() Entity { return &PsychologicalExisting{} },
 	"psychological.hospitalizations":                  func() Entity { return &PsychologicalHospitalizations{} },
 	"psychological.treatment":                         func() Entity { return &Treatment{} },
+	"submission":                                      func() Entity { return &Submission{} },
+	"submission.additionalcomments":                   func() Entity { return &SubmissionAdditionalComments{} },
+	"submission.general":                              func() Entity { return &SubmissionGeneral{} },
+	"submission.medical":                              func() Entity { return &SubmissionMedical{} },
+	"submission.credit":                               func() Entity { return &SubmissionCredit{} },
 }

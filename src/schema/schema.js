@@ -133,6 +133,9 @@ const transform = {
   'sentence': (data) => {
     return form.sentence(data)
   },
+  'signature': (data) => {
+    return form.signature(data)
+  },
   'ssn': (data) => {
     return form.ssn(data)
   },
@@ -387,5 +390,8 @@ const transform = {
   },
   'psychological.treatment': (data) => {
     return form.treatment(data)
+  },
+  'submission': (data) => {
+    return section.submission(data)
   }
 }
