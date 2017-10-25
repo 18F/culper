@@ -109,4 +109,3 @@ workflows:
             branches:
               only:
                 - master
-                - fix-circleci-deployment
