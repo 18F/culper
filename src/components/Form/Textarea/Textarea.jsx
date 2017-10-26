@@ -153,6 +153,8 @@ Textarea.defaultProps = {
   focus: false,
   error: false,
   valid: false,
+  minlength: 0,
+  maxlength: 4000,
   spellcheck: true,
   autocapitalize: true,
   autocorrect: true,
@@ -177,7 +179,7 @@ Textarea.errors = [
         return null
       }
       return value.length >= parseInt(props.minlength || 0) &&
-        value.length <= parseInt(props.maxlength || 256)
+        value.length <= parseInt(props.maxlength || 4000)
     }
   },
   {
