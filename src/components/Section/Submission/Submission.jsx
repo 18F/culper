@@ -71,6 +71,8 @@ class Submission extends SectionElement {
               hideHippa={hideHippa(this.props.Application)}
               {...releases}
               onSubmit={this.onSubmit}
+              Identification={this.props.Identification}
+              History={this.props.History}
             />
           </SubmissionStatus>
         </SectionView>
