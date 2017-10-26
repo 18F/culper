@@ -610,11 +610,11 @@ function mapStateToProps (state) {
 
   let names = []
   if (identification.ApplicantName) {
-    names.push(identification.ApplicantName)
+    names.push((identification.ApplicantName || {}).Name)
   }
 
   if (identification.OtherNames && identification.OtherNames.List) {
-    for (let item of identification.OtherNames.List) {
+    for (let item of ((identification.OtherNames.List || {}).items || [])) {
       names.push(item.Name)
     }
   }

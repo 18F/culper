@@ -9,7 +9,11 @@ export default class ForeignTravelValidator {
   }
 
   validList () {
-    if (this.hasForeignTravelOutside === 'No' && this.hasForeignTravelOfficial === 'Yes') {
+    if (this.hasForeignTravelOutside === 'No') {
+      return true
+    }
+
+    if (this.hasForeignTravelOfficial === 'Yes') {
       return true
     }
 

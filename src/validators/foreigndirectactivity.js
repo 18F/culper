@@ -2,9 +2,9 @@ import ForeignDirectInterestValidator from './foreigndirectinterest'
 import { validAccordion, validBranch } from './helpers'
 
 export default class ForeignDirectActivityValidator {
-  constructor (state, props = {}) {
-    this.hasInterests = (props.HasInterests || {}).value
-    this.list = props.List || {}
+  constructor (data = {}) {
+    this.hasInterests = (data.HasInterests || {}).value
+    this.list = data.List || {}
   }
 
   isValid () {

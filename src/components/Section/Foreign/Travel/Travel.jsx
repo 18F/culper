@@ -73,20 +73,22 @@ export default class Travel extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Branch label={i18n.t('foreign.travel.heading.official')}
-                labelSize="h3"
-                name="has_foreign_travel_official"
-                className="foreign-travel-official"
-                help="foreign.travel.help.official"
-                {...this.props.HasForeignTravelOfficial}
-                onUpdate={this.updateHasForeignTravelOfficial}
-                required={this.props.required}
-                onError={this.handleError}
-                scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.travel.para.personal')}
-        </Branch>
+        <Show when={(this.props.HasForeignTravelOutside || {}).value === 'Yes'}>
+          <Branch label={i18n.t('foreign.travel.heading.official')}
+                  labelSize="h3"
+                  name="has_foreign_travel_official"
+                  className="foreign-travel-official"
+                  help="foreign.travel.help.official"
+                  {...this.props.HasForeignTravelOfficial}
+                  onUpdate={this.updateHasForeignTravelOfficial}
+                  required={this.props.required}
+                  onError={this.handleError}
+                  scrollIntoView={this.props.scrollIntoView}>
+            {i18n.m('foreign.travel.para.personal')}
+          </Branch>
+        </Show>
 
-        <Show when={this.props.HasForeignTravelOutside.value === 'Yes' && this.props.HasForeignTravelOfficial.value === 'No'}>
+        <Show when={(this.props.HasForeignTravelOutside || {}).value === 'Yes' && (this.props.HasForeignTravelOfficial || {}).value === 'No'}>
           <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}

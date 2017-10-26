@@ -6,43 +6,43 @@ describe('citizenship component validation', function () {
     const tests = [
       {
         state: {
-          CitizenshipStatus: ''
+          CitizenshipStatus: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          CitizenshipStatus: 'Yuppers'
+          CitizenshipStatus: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
-          CitizenshipStatus: 'Citizen'
+          CitizenshipStatus: { value: 'Citizen' }
         },
         expected: true
       },
       {
         state: {
-          CitizenshipStatus: 'ForeignBorn'
+          CitizenshipStatus: { value: 'ForeignBorn' }
         },
         expected: true
       },
       {
         state: {
-          CitizenshipStatus: 'Naturalized'
+          CitizenshipStatus: { value: 'Naturalized' }
         },
         expected: true
       },
       {
         state: {
-          CitizenshipStatus: 'Derived'
+          CitizenshipStatus: { value: 'Derived' }
         },
         expected: true
       },
       {
         state: {
-          CitizenshipStatus: 'NotCitizen'
+          CitizenshipStatus: { value: 'NotCitizen' }
         },
         expected: true
       }
@@ -57,32 +57,32 @@ describe('citizenship component validation', function () {
     const tests = [
       {
         state: {
-          AbroadDocumentation: ''
+          AbroadDocumentation: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          AbroadDocumentation: 'Yuppers'
+          AbroadDocumentation: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
-          AbroadDocumentation: 'FS-240'
+          AbroadDocumentation: { value: 'FS-240' }
         },
         expected: true
       },
       {
         state: {
-          AbroadDocumentation: 'Other',
+          AbroadDocumentation: { value: 'Other' },
           Explanation: null
         },
         expected: false
       },
       {
         state: {
-          AbroadDocumentation: 'Other',
+          AbroadDocumentation: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
           }
@@ -100,7 +100,7 @@ describe('citizenship component validation', function () {
     const tests = [
       {
         state: {
-          BornOnMilitaryInstallation: ''
+          BornOnMilitaryInstallation: { value: '' }
         },
         expected: false
       },
@@ -186,26 +186,26 @@ describe('citizenship component validation', function () {
     const tests = [
       {
         state: {
-          Basis: ''
+          Basis: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          Basis: 'Some othe option'
+          Basis: { value: 'Some othe option' }
         },
         expected: true
       },
       {
         state: {
-          Basis: 'Other',
+          Basis: { value: 'Other' },
           Explanation: null
         },
         expected: false
       },
       {
         state: {
-          Basis: 'Other',
+          Basis: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
           }
@@ -223,32 +223,32 @@ describe('citizenship component validation', function () {
     const tests = [
       {
         state: {
-          DocumentType: ''
+          DocumentType: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          DocumentType: 'Yuppers'
+          DocumentType: { value: 'Yuppers' }
         },
         expected: false
       },
       {
         state: {
-          DocumentType: 'I-94'
+          DocumentType: { value: 'I-94' }
         },
         expected: true
       },
       {
         state: {
-          DocumentType: 'Other',
+          DocumentType: { value: 'Other' },
           Explanation: null
         },
         expected: false
       },
       {
         state: {
-          DocumentType: 'Other',
+          DocumentType: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
           }
@@ -266,14 +266,14 @@ describe('citizenship component validation', function () {
     const tests = [
       {
         state: {
-          CitizenshipStatus: 'Citizen'
+          CitizenshipStatus: { value: 'Citizen' }
         },
         expected: true
       },
       {
         state: {
-          CitizenshipStatus: 'ForeignBorn',
-          AbroadDocumentation: 'Other',
+          CitizenshipStatus: { value: 'ForeignBorn' },
+          AbroadDocumentation: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
           },
@@ -330,7 +330,7 @@ describe('citizenship component validation', function () {
       },
       {
         state: {
-          CitizenshipStatus: 'Naturalized',
+          CitizenshipStatus: { value: 'Naturalized' },
           EntryDate: {
             day: '1',
             month: '1',
@@ -380,7 +380,7 @@ describe('citizenship component validation', function () {
             lastInitialOnly: false,
             suffix: 'Jr'
           },
-          Basis: 'Other',
+          Basis: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
           }
@@ -389,7 +389,7 @@ describe('citizenship component validation', function () {
       },
       {
         state: {
-          CitizenshipStatus: 'Derived',
+          CitizenshipStatus: { value: 'Derived' },
           AlienRegistrationNumber: {
             value: 'number'
           },
@@ -415,7 +415,7 @@ describe('citizenship component validation', function () {
             year: '2016',
             date: new Date('1/1/2016')
           },
-          Basis: 'Other',
+          Basis: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
           }
@@ -424,7 +424,7 @@ describe('citizenship component validation', function () {
       },
       {
         state: {
-          CitizenshipStatus: 'NotCitizen',
+          CitizenshipStatus: { value: 'NotCitizen' },
           ResidenceStatus: {
             value: 'status'
           },
@@ -452,7 +452,7 @@ describe('citizenship component validation', function () {
             year: '2016',
             date: new Date('1/1/2016')
           },
-          DocumentType: 'Other',
+          DocumentType: { value: 'Other' },
           Explanation: {
             value: 'Explanation'
           },
