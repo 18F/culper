@@ -24,6 +24,7 @@ class Identification extends SectionElement {
                        nextLabel={i18n.t('identification.destination.name')}>
             <Field title={i18n.t('identification.intro.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('identification.intro.body')}
             </Field>
