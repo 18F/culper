@@ -26,10 +26,9 @@
   }
 
   .modal-open .consent-modal {
-    // TODO: Remove this (and FIXIT) after Jay has some time to find other issues in different
-    // form factors.
-    // display: block;
-    // z-index: 9999;
+    display: block;
+    z-index: 9999;
+
     .modal {
       position: fixed;
       top: 0;
@@ -64,12 +63,14 @@
   .modal-open .introduction-modal {
     display: block;
     z-index: 9999;
-    position: fixed !important;
-    overflow-y: auto;
-    background-color: rgba(255, 255, 255, 1) !important;
 
     .modal {
       overflow-y: auto;
+      background-color: rgba(255, 255, 255, 1) !important;
+
+      .modal-wrap {
+        display: block;
+      }
     }
 
     .introduction-content {
@@ -77,6 +78,7 @@
       min-width: 100%;
       height: initial;
       margin: 0 !important;
+      padding-bottom: 5rem; // padding for ipad and iphone
       border: none;
       box-shadow: none;
 
@@ -90,11 +92,18 @@
         overflow-y: auto;
         max-height: initial;
         border: none;
+        padding: 0 1rem;
       }
 
       .introduction-acceptance {
-        // margin-right: 0;
-        // margin-left: 0;
+        max-height: initial;
+        margin: 0;
+        padding: 4rem 1rem;
+
+        .block label {
+          width: 11rem;
+          min-width: 11rem;
+        }
       }
     }
   }
