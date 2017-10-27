@@ -35,6 +35,7 @@ export default class Branch extends React.Component {
     return (
       <Field title={this.props.label}
              titleSize={this.props.labelSize}
+             optional={this.props.optional}
              className={klass}
              help={this.props.help}
              adjustFor={this.props.adjustFor}
@@ -79,5 +80,6 @@ Branch.defaultProps = {
   warning: false,
   confirmation: i18n.t('branch.confirmation'),
   value: '',
+  optional: false,
   onError: (value, arr) => { return arr }
 }

@@ -59,7 +59,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
     return (
       <div className="voluntary-treatments">
         <Branch name="TreatmentVoluntary"
-                label={i18n.m('substance.drugs.heading.voluntaryTreatments')}
+                label={i18n.t('substance.drugs.heading.voluntaryTreatments')}
                 labelSize="h2"
                 className="treatment-voluntary"
                 value={this.props.TreatmentVoluntary}

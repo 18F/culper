@@ -23,19 +23,11 @@ export default class SectionComments extends SubsectionElement {
     })
   }
 
-  title () {
-    return (
-      <span>
-        {this.props.title}
-        <span className="optional">(Optional)</span>
-      </span>
-    )
-  }
-
   render () {
     return (
-      <Field title={this.title()}
+      <Field title={this.props.title}
              titleSize="h4"
+             optional={true}
              className="section-comment">
         <Text name="Comments"
               {...this.props.Comments}

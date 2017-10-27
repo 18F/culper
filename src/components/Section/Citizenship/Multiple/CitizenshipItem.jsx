@@ -80,7 +80,7 @@ export default class CitizenshipItem extends ValidationElement {
     return (
       <div className="citizenship-item">
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.country')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    className="citizenship-country"
@@ -92,6 +92,7 @@ export default class CitizenshipItem extends ValidationElement {
 
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.period')}
                titleSize="h2"
+               optional={true}
                className="period no-margin-bottom"
                />
 
@@ -109,7 +110,7 @@ export default class CitizenshipItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.how')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="How"
                     {...this.props.How}
                     className="citizenship-how"
@@ -131,8 +132,8 @@ export default class CitizenshipItem extends ValidationElement {
                 />
 
         <Field title={i18n.t('citizenship.multiple.heading.citizenship.renouncedexplanation')}
-            titleSize="label"
-            scrollIntoView={this.props.scrollIntoView}>
+               titleSize="label"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="RenouncedExplanation"
                     {...this.props.RenouncedExplanation}
                     className="citizenship-renounced-explanation"

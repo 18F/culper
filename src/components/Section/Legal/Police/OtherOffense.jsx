@@ -155,8 +155,8 @@ export default class OtherOffense extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.police.heading.description')}
-          help="legal.police.help.description"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.police.help.description"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
                     {...this.props.Description}
                     className="offense-description"
@@ -199,8 +199,8 @@ export default class OtherOffense extends ValidationElement {
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.courtname')}
-          adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 {...this.props.CourtName}
                 label={i18n.t('legal.police.label.courtname')}
@@ -212,6 +212,7 @@ export default class OtherOffense extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.police.heading.courtaddress')}
+               optional={true}
                help="legal.police.help.courtaddress"
                adjustFor="address"
                shrink={true}
@@ -316,8 +317,9 @@ export default class OtherOffense extends ValidationElement {
         <Show when={this.props.WasSentenced === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
-              className="more title"
-              scrollIntoView={this.props.scrollIntoView}>
+                   optional={true}
+                   className="more title"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Svg src="/img/date-down-arrow.svg" className="more arrow" />
             </Field>
             <Sentence name="Sentence"

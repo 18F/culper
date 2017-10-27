@@ -40,6 +40,7 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('psychological.destination.competence') }>
             <Field title={ i18n.t('psychological.heading.intro') }
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               { i18n.m('psychological.intro.para1') }
               { i18n.m('psychological.intro.para2') }
