@@ -1,0 +1,32 @@
+.menu {
+  position: relative;
+
+  .contents {
+    position: absolute;
+    width: 32rem;
+  }
+}
+
+.sidebar-top-fixed {
+    position: fixed !important;
+    top: 5.4rem;
+}
+
+.sidebar-bottom-fixed {
+    position: fixed !important;
+    bottom: 0;
+}
+
+.sidebar-log {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    min-height: 30rem;
+    min-width: 45rem;
+    background-color: #000;
+    color: #39e617;
+    opacity: 0.8;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: smaller;
+}
