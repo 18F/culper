@@ -10,7 +10,7 @@ class Navigation extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      selected: ''
+      selected: navigation[0].name
     }
 
     this.onToggle = this.onToggle.bind(this)
@@ -108,10 +108,7 @@ class Navigation extends React.Component {
 
       // Collapsed state properties
       if (section.subsections) {
-        const visible = this.state.selected === section.name || section.subsections.some(x => x.name === this.state.selected)
-        console.log('selected: ', this.state.selected)
-        console.log('section: ', section.name)
-        console.log('visible: ', visible)
+        const visible = this.state.selected === section.name
         return (
           <ToggleItem title={section.name}
                       section={true}

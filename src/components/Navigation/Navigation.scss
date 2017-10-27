@@ -1,6 +1,31 @@
 @import 'eqip-colors';
 @import 'eqip-fonts';
 
+@keyframes section-openbox {
+  0% {
+    max-height: 0;
+  }
+
+  99% {
+    max-height: 50vh;
+  }
+
+  100% {
+    max-height: none;
+  }
+}
+
+@keyframes section-closebox {
+  0% {
+    max-height: 50vh
+  }
+
+  100% {
+    max-height: 0;
+    padding-top: 0;
+  }
+}
+
 /* handle inner-application navigation */
 .eapp-navigation {
   padding: 1rem 0 2.5rem 0;
@@ -115,6 +140,29 @@
     font-weight: $eapp-bold;
     text-align: right;
     color: #6c7178;
+  }
+
+  // Animations
+  .section,
+  .subsection {
+    .section-content {
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+      overflow: hidden;
+    }
+
+    &.open .section-content {
+      animation-name: section-openbox;
+      opacity: 1;
+      transition: opacity 300ms ease-out;
+    }
+
+    &.closed .section-content {
+      animation-name: section-closebox;
+      opacity: 0;
+      transition: opacity 300ms ease-out;
+    }
   }
 
   .section {
