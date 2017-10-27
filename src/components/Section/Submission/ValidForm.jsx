@@ -7,6 +7,7 @@ import AdditionalComments from '../Releases/AdditionalComments'
 import General from '../Releases/General'
 import Medical from '../Releases/Medical'
 import Credit from '../Releases/Credit'
+import Verify from '../Releases/Verify'
 
 export default class ValidForm extends ValidationElement {
   constructor (props) {
@@ -125,6 +126,11 @@ export default class ValidForm extends ValidationElement {
         component: () => {
           return (
             <div>
+              <Verify
+                Identification={this.props.Identification}
+                History={this.props.History}
+              />
+              <hr />
               <General
                 {...this.props.General}
                 onUpdate={this.updateGeneral}
