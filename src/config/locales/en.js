@@ -2945,8 +2945,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help deciding whether or not you have had a cohabitant?',
-          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
+          title: 'Need help deciding whether or not you have a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "Yes".',
           note: ''
         },
         citizenship: {
