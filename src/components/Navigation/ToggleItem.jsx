@@ -19,7 +19,13 @@ export class ToggleItem extends React.Component {
   }
 
   toggle () {
-    this.setState({ visible: !this.state.visible })
+    const visible = !this.state.visible
+    this.setState({ visible: visible }, () => {
+      this.props.onToggle({
+        ...this.props,
+        visible: visible
+      })
+    })
   }
 
   render () {
@@ -58,5 +64,6 @@ ToggleItem.defaultProps = {
   title: '',
   section: false,
   number: 0,
-  className: ''
+  className: '',
+  onToggle: () => {}
 }
