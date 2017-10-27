@@ -185,7 +185,8 @@ export default class CivilUnion extends ValidationElement {
           <p>{i18n.t('relationships.civilUnion.para.never')}</p>
 
           <Field title={i18n.t('relationships.civilUnion.heading.name')}
-            scrollIntoView={this.props.scrollIntoView}>
+                 optional={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <Name name="Name"
                   className="civil"
                   {...this.props.Name}
@@ -210,7 +211,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.birthplace')}
-            scrollIntoView={this.props.scrollIntoView}>
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="birthplace"
                       layout={Location.BIRTHPLACE}
                       className="birthplace"
@@ -224,12 +225,12 @@ export default class CivilUnion extends ValidationElement {
 
           <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
             <ForeignBornDocuments name="foreignBornDocument"
-              {...this.props.ForeignBornDocument}
-              onUpdate={this.updateForeignBornDocument}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={this.props.scrollIntoView}
-            />
+                                  {...this.props.ForeignBornDocument}
+                                  onUpdate={this.updateForeignBornDocument}
+                                  onError={this.props.onError}
+                                  required={this.props.required}
+                                  scrollIntoView={this.props.scrollIntoView}
+                                  />
           </Show>
 
           <Field title={i18n.t('relationships.civilUnion.heading.ssn')}
@@ -253,7 +254,8 @@ export default class CivilUnion extends ValidationElement {
                             scrollIntoView={this.props.scrollIntoView}>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   optional={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Name name="Othername"
                     bind={true}
                     onError={this.props.onError}
@@ -315,7 +317,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.location')}
-            scrollIntoView={this.props.scrollIntoView}>
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="Location"
                       className="civilunion-location"
                       layout={Location.BIRTHPLACE}
@@ -328,6 +330,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.address')}
+                 optional={true}
                  help="relationships.civilUnion.help.address"
                  scrollIntoView={this.props.scrollIntoView}
                  adjustFor="address">

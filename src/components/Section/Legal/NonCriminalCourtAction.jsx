@@ -67,7 +67,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.courtName')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="CourtName"
                 className="court-name"
                 {...this.props.CourtName}
@@ -78,6 +78,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.courtAddress')}
+               optional={true}
                adjustFor="address"
                help={'legal.nonCriminalAction.help.courtAddress'}
                scrollIntoView={this.props.scrollIntoView}>
@@ -96,7 +97,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.natureOfAction')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="NatureOfAction"
                     className="nature-of-action"
                     {...this.props.NatureOfAction}
@@ -107,7 +108,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.resultsOfAction')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="ResultsOfAction"
                     className="results-of-action"
                     {...this.props.ResultsOfAction}
@@ -118,7 +119,7 @@ export default class NonCriminalCourtAction extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.nonCriminalAction.heading.principalPartyNames')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="PrincipalPartyNames"
                     className="principal-party-names"
                     {...this.props.PrincipalPartyNames}

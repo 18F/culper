@@ -132,19 +132,20 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
-            <Name name="Name"
-                  className="name"
-                  {...this.props.Name}
-                  onUpdate={this.updateName}
-                  onError={this.props.onError}
-                  required={this.props.required}
-                  scrollIntoView={this.props.scrollIntoView}
-                  />
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
+          <Name name="Name"
+                className="name"
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.rank')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="RankNotApplicable"
                          className="rank-notapplicable"
                          {...this.props.RankNotApplicable}
@@ -260,7 +261,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.email')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmailNotApplicable"
                          className="email-notapplicable"
                          {...this.props.EmailNotApplicable}
@@ -279,6 +280,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.address')}
+               optional={true}
                help="relationships.people.person.help.address"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="address">

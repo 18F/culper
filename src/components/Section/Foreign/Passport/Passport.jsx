@@ -129,6 +129,7 @@ export default class Passport extends SubsectionElement {
       <div className="passport">
         <Field title={i18n.t('foreign.passport.title')}
                titleSize="h2"
+               optional={true}
                help="foreign.passport.branch.help"
                className="no-margin-bottom"
                />
@@ -156,6 +157,7 @@ export default class Passport extends SubsectionElement {
           <div>
             <Field title={i18n.t('foreign.passport.name')}
                    titleSize="h3"
+                   optional={true}
                    className="no-margin-bottom"
                    />
             <Suggestions show={this.showSuggestions()}
@@ -170,7 +172,8 @@ export default class Passport extends SubsectionElement {
                          onSuggestion={this.onSuggestion}
                          onDismiss={this.onDismiss}
                          />
-           <Field scrollIntoView={this.props.scrollIntoView}>
+            <Field optional={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Name name="name"
                     {...this.props.Name}
                     onUpdate={this.updateName}

@@ -223,12 +223,13 @@ export default class Status extends SubsectionElement {
       <div className="status">
         <Field title={i18n.t('citizenship.status.heading.title')}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom"
                />
 
         <Field title={i18n.t('citizenship.status.heading.citizenshipstatus')}
-          adjustFor="buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="buttons"
+               scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="citizenship-status"
                       required={this.props.required}
                       onError={this.handleError}
@@ -274,8 +275,8 @@ export default class Status extends SubsectionElement {
         <Show when={this.props.CitizenshipStatus === 'ForeignBorn'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.abroad')}
-              adjustFor="buttons"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup className="citizenship-abroad"
                           required={this.props.required}
                           onError={this.handleError}
@@ -326,7 +327,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentnumber.foreignborn')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="DocumentNumber"
                     className="document-number"
                     {...this.props.DocumentNumber}
@@ -337,8 +338,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="DocumentIssued"
                            className="document-issued"
                            {...this.props.DocumentIssued}
@@ -349,8 +350,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.placeissued')}
-              adjustFor="label"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="label"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="PlaceIssued"
                         label={'Was this issued in the United States?'}
                         layout={Location.CITY_STATE_COUNTRY}
@@ -363,7 +364,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentname')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   optional={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Name name="DocumentName"
                     className="document-name"
                     {...this.props.DocumentName}
@@ -375,7 +377,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.foreignborn')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="CertificateNumber"
                     className="certificate-number"
                     {...this.props.CertificateNumber}
@@ -386,8 +388,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificateissued.foreignborn')}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="CertificateIssued"
                            className="certificate-issued"
                            {...this.props.CertificateIssued}
@@ -398,14 +400,15 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.foreignborn')}
-              scrollIntoView={this.props.scrollIntoView}>
-                <Name name="CertificateName"
-                      className="certificate-name"
-                      {...this.props.CertificateName}
-                      onUpdate={this.updateCertificateName}
-                      onError={this.handleError}
-                      required={this.props.required}
-                      />
+                   optional={true}
+                   scrollIntoView={this.props.scrollIntoView}>
+              <Name name="CertificateName"
+                    className="certificate-name"
+                    {...this.props.CertificateName}
+                    onUpdate={this.updateCertificateName}
+                    onError={this.handleError}
+                    required={this.props.required}
+                    />
             </Field>
             <Branch name="born_on_military_installation"
                     label={i18n.t('citizenship.status.heading.bornonmilitaryinstallation')}
@@ -420,7 +423,7 @@ export default class Status extends SubsectionElement {
 
             <Show when={this.props.BornOnMilitaryInstallation === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.militarybase')}
-                scrollIntoView={this.props.scrollIntoView}>
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Text name="MilitaryBase"
                       className="military-base"
                       {...this.props.MilitaryBase}
@@ -449,8 +452,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
-              adjustFor="label"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="label"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="EntryLocation"
                         layout={Location.CITY_STATE}
                         className="entry-location"
@@ -462,8 +465,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.priorcitizenship.naturalized')}
-              help="citizenship.status.help.priorcitizenship"
-              scrollIntoView={this.props.scrollIntoView}>
+                   help="citizenship.status.help.priorcitizenship"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
                        {...this.props.PriorCitizenship}
@@ -487,7 +490,7 @@ export default class Status extends SubsectionElement {
 
             <Show when={this.props.HasAlienRegistration === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}
-                scrollIntoView={this.props.scrollIntoView}>
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Text name="AlienRegistrationNumber"
                       className="alien-registration-number"
                       {...this.props.AlienRegistrationNumber}
@@ -499,7 +502,7 @@ export default class Status extends SubsectionElement {
             </Show>
 
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.naturalized')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="CertificateNumber"
                     className="certificate-number"
                     {...this.props.CertificateNumber}
@@ -510,7 +513,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatecourtname')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="CertificateCourtName"
                     className="certificate-court-name"
                     {...this.props.CertificateCourtName}
@@ -521,6 +524,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatecourtaddress')}
+                   optional={true}
                    help="citizenship.status.help.certificatecourtaddress"
                    scrollIntoView={this.props.scrollIntoView}
                    adjustFor="label">
@@ -549,7 +553,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.naturalized')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   optional={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
                     {...this.props.CertificateName}
@@ -561,8 +566,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.basis.naturalized')}
-              adjustFor="big-buttons"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="big-buttons"
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup className="citizenship-basis"
                           required={this.props.required}
                           onError={this.handleError}
@@ -604,7 +609,7 @@ export default class Status extends SubsectionElement {
         <Show when={this.props.CitizenshipStatus === 'Derived'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.derived')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="AlienRegistrationNumber"
                     className="alien-registration-number"
                     {...this.props.AlienRegistrationNumber}
@@ -615,7 +620,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.permanentresidentcardnumber')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="PermanentResidentCardNumber"
                     className="permanent-resident-card-number"
                     {...this.props.PermanentResidentCardNumber}
@@ -626,7 +631,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatenumber.derived')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="CertificateNumber"
                     className="certificate-number"
                     {...this.props.CertificateNumber}
@@ -637,7 +642,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.derived')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   optional={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
                     {...this.props.CertificateName}
@@ -704,7 +710,7 @@ export default class Status extends SubsectionElement {
         <Show when={this.props.CitizenshipStatus === 'NotCitizen'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.residencestatus')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="ResidenceStatus"
                     className="residence-status"
                     {...this.props.ResidenceStatus}
@@ -728,8 +734,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.priorcitizenship.notcitizen')}
-              help="citizenship.status.help.priorcitizenship"
-              scrollIntoView={this.props.scrollIntoView}>
+                   help="citizenship.status.help.priorcitizenship"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
                        {...this.props.PriorCitizenship}
@@ -741,8 +747,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.entrylocation')}
-              adjustFor="address"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="address"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Location name="EntryLocation"
                         className="entry-location"
                         {...this.props.EntryLocation}
@@ -754,7 +760,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.notcitizen')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="AlienRegistrationNumber"
                     className="alien-registration-number"
                     {...this.props.AlienRegistrationNumber}
@@ -765,8 +771,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.alienregistrationexpiration')}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="AlienRegistrationExpiration"
                            className="alien-registration-expiration"
                            {...this.props.AlienRegistrationExpiration}
@@ -777,8 +783,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documenttype')}
-              adjustFor="buttons"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="buttons"
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup className="citizenship-document-type"
                           required={this.props.required}
                           onError={this.handleError}
@@ -837,7 +843,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentnumber.notcitizen')}
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <Text name="DocumentNumber"
                     className="document-number"
                     {...this.props.DocumentNumber}
@@ -847,20 +853,21 @@ export default class Status extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentname')}>
-                <Name name="DocumentName"
-                      className="document-name"
-                      {...this.props.DocumentName}
-                      onUpdate={this.updateDocumentName}
-                      onError={this.handleError}
-                      required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
-                      />
+            <Field title={i18n.t('citizenship.status.heading.documentname')}
+                   optional={true}>
+              <Name name="DocumentName"
+                    className="document-name"
+                    {...this.props.DocumentName}
+                    onUpdate={this.updateDocumentName}
+                    onError={this.handleError}
+                    required={this.props.required}
+                    scrollIntoView={this.props.scrollIntoView}
+                    />
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentissued')}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="DocumentIssued"
                            className="document-issued"
                            {...this.props.DocumentIssued}
@@ -871,8 +878,8 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentexpiration')}
-              adjustFor="datecontrol"
-              scrollIntoView={this.props.scrollIntoView}>
+                   adjustFor="datecontrol"
+                   scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="DocumentExpiration"
                            className="document-expiration"
                            {...this.props.DocumentExpiration}

@@ -273,6 +273,7 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.address`)}
+                 optional={true}
                  help={`${prefix}.address.help`}
                  adjustFor="address"
                  shrink={true}
@@ -304,7 +305,7 @@ export default class EmploymentItem extends ValidationElement {
                        />
           </Field>
         </Show>
-        
+
         <Show when={this.showPhysicalAddress()}>
           <PhysicalAddress name="PhysicalAddress"
                            {...this.props.PhysicalAddress}
@@ -353,6 +354,7 @@ export default class EmploymentItem extends ValidationElement {
           <div>
             <Field title={i18n.t(`${prefix}.heading.additionalActivity`)}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m(`${prefix}.para.additionalActivity`)}
             </Field>

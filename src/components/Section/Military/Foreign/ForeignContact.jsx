@@ -59,7 +59,8 @@ export default class ForeignContact extends React.Component {
     return (
       <div className="foreign-contact">
         <Field title={i18n.t('military.foreign.heading.contact.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="foreign-contact-name"
                 {...this.props.Name}
@@ -71,6 +72,7 @@ export default class ForeignContact extends React.Component {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.contact.address')}
+               optional={true}
                help="military.foreign.help.contact.address"
                adjustFor="address"
                shrink={true}
@@ -90,7 +92,7 @@ export default class ForeignContact extends React.Component {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.contact.title')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Title"
                 {...this.props.Title}
                 className="foreign-contact-title"
@@ -116,8 +118,8 @@ export default class ForeignContact extends React.Component {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.contact.frequency')}
-                help="military.foreign.help.contact.frequency"
-                scrollIntoView={this.props.scrollIntoView}>
+               help="military.foreign.help.contact.frequency"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Frequency"
                 {...this.props.Frequency}
                 className="foreign-contact-frequency"

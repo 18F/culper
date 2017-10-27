@@ -103,6 +103,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.usage')}>
             <Field title={i18n.t('substance.intro.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('substance.intro.body')}
             </Field>
