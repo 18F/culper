@@ -163,7 +163,9 @@ class App extends React.Component {
               <Introduction forceOpen={this.state.instructions}
                             onDismiss={this.dismissInstructions}
                             dispatch={this.props.dispatch} />
-              {this.props.children}
+              <Sticky container=".eapp-navigation .sticky > .contents" content=".eapp-core .sticky > .contents">
+                {this.props.children}
+              </Sticky>
               &nbsp;
             </div>
           </div>

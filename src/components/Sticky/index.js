@@ -1,2 +1,2 @@
-import StickyNavigation from './StickyNavigation'
-export default StickyNavigation
+import Sticky from './Sticky'
+export default Sticky

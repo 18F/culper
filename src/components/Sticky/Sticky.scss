@@ -1,72 +1,57 @@
-$fixed-width: 18.75%;
-$fixed-top: 5.4rem;
+.sticky {
+  position: relative;
 
-.sticky-dipstick {
-  position: static;
-  display: block;
-  margin-top: $fixed-top * -1;
+  .contents {
+    position: absolute;
+  }
 }
 
-.sticky-container {
-  position: absolute;
-  top: 0;
-  margin-top: 18rem;
-  width: 21%;
-  min-width: 32rem;
-  padding-left: 2rem;
-  padding-right: 2rem;
+.sidebar-top-fixed {
+    position: fixed !important;
+}
 
-  .sticky-content {
-    position: relative;
+.sidebar-bottom-fixed {
+    position: fixed !important;
+    bottom: 0;
+}
+
+.sidebar-log {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    min-height: 30rem;
+    min-width: 45rem;
+    background-color: #000;
+    color: #39e617;
+    opacity: 0.8;
+    padding: 1rem;
+    border-radius: 4px;
+    font-size: smaller;
+    z-index: 3;
+}
+
+.eapp-navigation {
+  .sticky .contents {
+    width: 32rem;
   }
 
-  &:not(.page-short) {
-    &.bottom-visible.scrolled-down {
-      .sticky-content {
-        position: fixed;
-        bottom: 1rem;
-        width: $fixed-width;
-        min-width: 28rem;
-      }
+  .sidebar-top-fixed {
+    top: 5.4rem;
+  }
+}
+
+.eapp-core {
+  .sticky .contents {
+    margin: 0 auto 2rem auto;
+    width: 100%;
+
+    &.sidebar-top-fixed {
+      top: 10rem;
+      // padding: 0 11%;
     }
 
-    &.bottom-visible.scrolled-up {
-      .sticky-content {
-        position: relative;
-      }
-    }
-
-    &.both-visible {
-      .sticky-content {
-        position: fixed;
-        top: $fixed-top;
-        bottom: unset;
-        width: $fixed-width;
-        min-width: 28rem;
-      }
-    }
-
-    &.top-visible.scrolled-up {
-      .sticky-content {
-        position: fixed;
-        top: $fixed-top;
-        bottom: unset;
-        width: $fixed-width;
-        min-width: 28rem;
-      }
-    }
-
-    &.none-visible.scrolled-up {
-      .sticky-content {
-        position: relative;
-      }
-    }
-
-    &.anchor-visible {
-      .sticky-content {
-        top: unset;
-        bottom: unset;
-      }
+    &.sidebar-bottom-fixed {
+      // padding: 0 11%;
     }
   }
 }

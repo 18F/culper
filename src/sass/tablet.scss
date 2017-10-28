@@ -1,4 +1,19 @@
+.tablet-hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.tablet-visible {
+  display: none;
+  visibility: hidden;
+}
+
 @media only screen and (max-width: 1412px) {
+  .tablet-visible {
+    display: block !important;
+    visibility: visible;
+  }
+
   .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
     padding: 0;
 
@@ -6,7 +21,7 @@
       width: 64rem;
     }
 
-    > .eapp-form {
+    .eapp-form {
       width: 21%;
     }
   }

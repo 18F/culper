@@ -64,29 +64,17 @@ a:focus {
       width: 21%;
       height: 100vh;
       min-width: 32rem;
-
-      // @media screen and (max-width: 768px) {
-      //   width: 29.8%;
-      // }
     }
 
     .eapp-structure-right {
       width: 79%;
       padding: 0 17.5%;
 
-      // @media screen and (max-width: 1380px) {
-      //   padding: 0 12%;
-      // }
-
-      // @media screen and (max-width: 1024px) {
-      //   padding: 0 5.5%;
-      // }
-
       &.eapp-title {
         vertical-align: bottom;
       }
 
-      > .eapp-form,
+      .eapp-form,
       > .title {
         width: 100%;
         max-width: 106rem;
