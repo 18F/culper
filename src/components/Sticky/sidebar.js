@@ -71,6 +71,10 @@ export class sidebar {
       removeClass(this.content, 'sidebar-scrolling-up')
     }
 
+    if (this.options.callback) {
+      this.options.callback(this.content, this.world)
+    }
+
     debug(this.options.log,
           'world lastScrollTop: ' + this.world.lastScrollTop + '<br/>' +
           'world direction: ' + this.world.direction + '<br/>' +
@@ -100,7 +104,7 @@ const debug = (selector, str) => {
  * Basic test to see if the content qualifies for
  * sticky application.
  */
-const canBeSticky = (container, content, options) => {
+export const canBeSticky = (container, content, options) => {
   const outer = height(container)
   const inner = height(content)
   const win = window.innerHeight
@@ -113,7 +117,7 @@ const canBeSticky = (container, content, options) => {
 /**
  * Determine scroll direction and current top.
  */
-const scrollDirection = (workspace, previous) => {
+export const scrollDirection = (workspace, previous) => {
   const workspaceScrollTop = scrollTop(workspace)
   const direction = workspaceScrollTop > previous ? 'DOWN' : 'UP'
   return {
@@ -125,7 +129,7 @@ const scrollDirection = (workspace, previous) => {
 /**
  * Computes world boundaries.
  */
-const boundaries = (container, content) => {
+export const boundaries = (container, content) => {
   const containerTop = top(container)
   const containerHeight = container.offsetHeight
   const contentHeight = content.offsetHeight
@@ -143,7 +147,7 @@ const boundaries = (container, content) => {
  * Apply positioning to the content based on
  * the current world view.
  */
-const applyPositioning = (container, content, world, options) => {
+export const applyPositioning = (container, content, world, options) => {
   if (world.lastScrollTop > world.boundaries.containerTop &&
       world.lastScrollTop < world.boundaries.containerBottom) {
     if (world.direction === 'DOWN') {
@@ -160,7 +164,7 @@ const applyPositioning = (container, content, world, options) => {
 /**
  * Handles when scrolling down
  */
-const scrollDown = (container, content, world, options) => {
+export const scrollDown = (container, content, world, options) => {
   const windowScroll = world.lastScrollTop + world.boundaries.windowHeight
   let contentOffsetTop = 0
 
@@ -213,7 +217,7 @@ const scrollDown = (container, content, world, options) => {
 /**
  * Handles when scrolling up
  */
-const scrollUp = (container, content, world) => {
+export const scrollUp = (container, content, world) => {
   if (hasClass(content, 'sidebar-scrolling-down')) {
     removeClass(content, 'sidebar-scrolling-down')
     addClass(content, 'sidebar-scrolling-up')
@@ -248,7 +252,7 @@ const scrollUp = (container, content, world) => {
 /**
  * Return element offset.
  */
-const offset = (element) => {
+export const offset = (element) => {
   if (element) {
     const rect = element.getBoundingClientRect()
     return {
@@ -262,7 +266,7 @@ const offset = (element) => {
 /**
  * Return element computed height.
  */
-const height = (element) => {
+export const height = (element) => {
   let h = 0
   if (element) {
     const style = window.getComputedStyle(element, null)
@@ -277,14 +281,14 @@ const height = (element) => {
 /**
  * Return element top position.
  */
-const top = (element) => {
+export const top = (element) => {
   return offset(element).top
 }
 
 /**
  * Return the scroll top position.
  */
-const scrollTop = (element) => {
+export const scrollTop = (element) => {
   if (element.scrollTop) {
     return element.scrollTop
   }
@@ -299,7 +303,7 @@ const scrollTop = (element) => {
 /**
  * Add a class to the element.
  */
-const addClass = (element, className) => {
+export const addClass = (element, className) => {
   if (element.classList) {
     element.classList.add(className)
   } else {
@@ -310,7 +314,7 @@ const addClass = (element, className) => {
 /**
  * Remove a class from the element.
  */
-const removeClass = (element, className) => {
+export const removeClass = (element, className) => {
   if (element.classList) {
     element.classList.remove(className)
   } else {
@@ -321,7 +325,7 @@ const removeClass = (element, className) => {
 /**
  * Determine if element has a class name applied.
  */
-const hasClass = (element, className) => {
+export const hasClass = (element, className) => {
   if (element.classList) {
     return element.classList.contains(className)
   }

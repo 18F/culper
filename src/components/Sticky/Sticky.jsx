@@ -3,17 +3,17 @@ import { sidebar } from './sidebar'
 
 export default class Sticky extends React.Component {
   componentDidMount () {
+    this.sidebar = new sidebar(this.props.container, this.props.content, this.props.options)
+    this.sidebar.on()
   }
 
   componentWillUnmount () {
-  }
-
-  render () {
     if (this.sidebar) {
       this.sidebar.off()
     }
-    this.sidebar = new sidebar(this.props.container, this.props.content, this.props.options)
-    this.sidebar.on()
+  }
+
+  render () {
     const log = this.props.options.log
           ? <div className={`sidebar-log ${this.props.options.log.replace('.', '')}`}></div>
           : null

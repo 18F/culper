@@ -153,7 +153,7 @@ class App extends React.Component {
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <Sticky options={{tolerance: 400, ignoreWindowComparison: true, log: '.log-navigation'}}>
+              <Sticky options={{tolerance: 400, ignoreWindowComparison: true}}>
                 <ScoreCard />
                 <Navigation />
               </Sticky>
