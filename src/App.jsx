@@ -153,7 +153,7 @@ class App extends React.Component {
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <Sticky>
+              <Sticky options={{tolerance: 400, ignoreWindowComparison: true, log: '.log-navigation'}}>
                 <ScoreCard />
                 <Navigation />
               </Sticky>
@@ -163,7 +163,9 @@ class App extends React.Component {
               <Introduction forceOpen={this.state.instructions}
                             onDismiss={this.dismissInstructions}
                             dispatch={this.props.dispatch} />
-              <Sticky container=".eapp-navigation .sticky > .contents" content=".eapp-core .sticky > .contents">
+              <Sticky container=".eapp-navigation .sticky > .contents"
+                      content=".eapp-core .sticky > .contents"
+                      options={{ignoreWindowComparison: true}}>
                 {this.props.children}
               </Sticky>
               &nbsp;

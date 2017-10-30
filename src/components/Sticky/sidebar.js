@@ -44,7 +44,7 @@ export class sidebar {
 
   onScroll () {
     this.init()
-    if (canBeSticky(this.container, this.content)) {
+    if (canBeSticky(this.container, this.content, this.options)) {
       this.last = window.scrollY
       if (!this.ticking) {
         this.ticking = true
@@ -58,7 +58,7 @@ export class sidebar {
         this.world.boundaries = boundaries(this.container, this.content)
 
         // Positioning
-        applyPositioning(this.container, this.content, this.world)
+        applyPositioning(this.container, this.content, this.world, this.options)
         this.ticking = false
       }
     } else {
@@ -71,7 +71,8 @@ export class sidebar {
       removeClass(this.content, 'sidebar-scrolling-up')
     }
 
-    debug('world lastScrollTop: ' + this.world.lastScrollTop + '<br/>' +
+    debug(this.options.log,
+          'world lastScrollTop: ' + this.world.lastScrollTop + '<br/>' +
           'world direction: ' + this.world.direction + '<br/>' +
           'world boundaries containerTop: ' + this.world.boundaries.containerTop + '<br/>' +
           'world boundaries containerHeight: ' + this.world.boundaries.containerHeight + '<br/>' +
@@ -85,73 +86,11 @@ export class sidebar {
   }
 }
 
-// /**
-//  * Create a sidebar which is always in view no matter the positioning within
-//  * the viewport nor the height of the content.
-//  */
-// export const sidebar = (containerSelector, contentSelector, options = {}) => {
-//   let last = 0
-//   let ticking = false
-//   let world = {
-//     forced: options.forced || true,
-//     tearing: options.tearing || false,
-//     tolerance: options.tolerance || 110,
-//     lastScrollTop: 0,
-//     direction: 'DOWN',
-//     boundaries: {}
-//   }
-
-//   let workspace = options.workspace ? document.querySelector(options.workspace) : window
-//   let container = document.querySelector(containerSelector)
-//   let content = document.querySelector(contentSelector)
-
-//   workspace.addEventListener('scroll', function (ev) {
-//     if (canBeSticky(container, content)) {
-//       last = window.scrollY
-//       if (!ticking) {
-//         ticking = true
-
-//         // Direction
-//         let sd = scrollDirection(workspace, world.lastScrollTop)
-//         world.lastScrollTop = sd.scrollTop
-//         world.direction = sd.direction
-
-//         // Boundaries
-//         world.boundaries = boundaries(container, content)
-
-//         // Positioning
-//         applyPositioning(container, content, world)
-//         ticking = false
-
-//         debug('world lastScrollTop: ' + world.lastScrollTop + '<br/>' +
-//               'world direction: ' + world.direction + '<br/>' +
-//               'world boundaries containerTop: ' + world.boundaries.containerTop + '<br/>' +
-//               'world boundaries containerHeight: ' + world.boundaries.containerHeight + '<br/>' +
-//               'world boundaries containerBottom: ' + world.boundaries.containerBottom + '<br/>' +
-//               'world boundaries contentHeight: ' + world.boundaries.contentHeight + '<br/>' +
-//               'world boundaries windowHeight: ' + world.boundaries.windowHeight + '<br/>' +
-//               'positioning applied' + '<br/>' +
-//               'content position: ' + content.style.position + '<br/>' +
-//               'content top: ' + content.style.top + '<br/>' +
-//               'content class: ' + content.className)
-//       }
-//     } else {
-//       content.style.position = ''
-//       content.style.top = ''
-//       removeClass(content, 'sidebar-scrolling-down')
-//       removeClass(content, 'sidebar-bottom-fixed')
-//       removeClass(content, 'sidebar-scrolling-up')
-//       removeClass(content, 'sidebar-top-fixed')
-//       removeClass(content, 'sidebar-scrolling-up')
-//     }
-//   })
-// }
-
 /**
  * Simple debugging function.
  */
-const debug = (str) => {
-  let c = document.querySelector('.sidebar-log')
+const debug = (selector, str) => {
+  let c = document.querySelector(selector)
   if (c) {
     c.innerHTML = str
   }
@@ -161,10 +100,13 @@ const debug = (str) => {
  * Basic test to see if the content qualifies for
  * sticky application.
  */
-const canBeSticky = (container, content) => {
+const canBeSticky = (container, content, options) => {
   const outer = height(container)
   const inner = height(content)
   const win = window.innerHeight
+  if (options.ignoreWindowComparison) {
+    return inner < outer
+  }
   return inner < outer && inner >= win
 }
 
@@ -201,13 +143,13 @@ const boundaries = (container, content) => {
  * Apply positioning to the content based on
  * the current world view.
  */
-const applyPositioning = (container, content, world) => {
+const applyPositioning = (container, content, world, options) => {
   if (world.lastScrollTop > world.boundaries.containerTop &&
       world.lastScrollTop < world.boundaries.containerBottom) {
     if (world.direction === 'DOWN') {
-      scrollDown(container, content, world)
+      scrollDown(container, content, world, options)
     } else {
-      scrollUp(container, content, world)
+      scrollUp(container, content, world, options)
     }
   } else if (world.lastScrollTop < world.boundaries.containerTop) {
     content.style.top = ''
@@ -218,14 +160,15 @@ const applyPositioning = (container, content, world) => {
 /**
  * Handles when scrolling down
  */
-const scrollDown = (container, content, world) => {
+const scrollDown = (container, content, world, options) => {
   const windowScroll = world.lastScrollTop + world.boundaries.windowHeight
+  let contentOffsetTop = 0
 
   if (hasClass(content, 'sidebar-scrolling-up')) {
     removeClass(content, 'sidebar-scrolling-up')
     addClass(content, 'sidebar-scrolling-down')
   } else if (hasClass(content, 'sidebar-top-fixed')) {
-    var contentOffsetTop = top(content) + world.boundaries.containerTop
+    contentOffsetTop = top(content) + world.boundaries.containerTop
     removeClass(content, 'sidebar-top-fixed')
     content.style.position = 'absolute'
     content.style.top = '' + contentOffsetTop + 'px'
@@ -233,22 +176,36 @@ const scrollDown = (container, content, world) => {
   }
 
   if (hasClass(content, 'sidebar-scrolling-down')) {
-    if (windowScroll > top(content) + world.boundaries.contentHeight) {
+    if (windowScroll > world.tolerance + top(content) + world.boundaries.contentHeight) {
       content.style.position = ''
       content.style.top = ''
-      addClass(content, 'sidebar-bottom-fixed')
+
+      if (options.ignoreWindowComparison && world.boundaries.contentHeight < world.boundaries.windowHeight) {
+        addClass(content, 'sidebar-top-fixed')
+      } else {
+        addClass(content, 'sidebar-bottom-fixed')
+      }
+
       removeClass(content, 'sidebar-scrolling-down')
     }
   } else {
     if (world.tearing && windowScroll > world.boundaries.containerBottom) {
       removeClass(content, 'sidebar-bottom-fixed')
       content.style.position = 'absolute'
-      content.style.top = '' + (world.boundaries.containerHeight - world.boundaries.contentHeight) + 'px'
-    } else if (windowScroll + world.tolerance > world.boundaries.contentHeight + world.boundaries.containerTop) {
+      contentOffsetTop = world.boundaries.containerHeight - world.boundaries.contentHeight
+      content.style.top = '' + contentOffsetTop + 'px'
+    } else if (windowScroll > world.tolerance + world.boundaries.contentHeight + world.boundaries.containerTop) {
       content.style.position = ''
       content.style.top = ''
-      removeClass(content, 'sidebar-top-fixed')
-      addClass(content, 'sidebar-bottom-fixed')
+      if (options.ignoreWindowComparison && world.boundaries.contentHeight < world.boundaries.windowHeight) {
+        if (!hasClass(content, 'sidebar-top-fixed')) {
+          addClass(content, 'sidebar-top-fixed')
+          removeClass(content, 'sidebar-bottom-fixed')
+        }
+      } else {
+        removeClass(content, 'sidebar-top-fixed')
+        addClass(content, 'sidebar-bottom-fixed')
+      }
     }
   }
 }
@@ -269,7 +226,6 @@ const scrollUp = (container, content, world) => {
   }
 
   if (hasClass(content, 'sidebar-scrolling-up')) {
-    // if (world.lastScrollTop < top(container)) {
     if (top(content) > 0) {
       content.style.position = ''
       content.style.top = ''

@@ -7,51 +7,107 @@
 }
 
 .sidebar-top-fixed {
-    position: fixed !important;
+  position: fixed !important;
 }
 
 .sidebar-bottom-fixed {
-    position: fixed !important;
-    bottom: 0;
+  position: fixed !important;
+  bottom: 0;
 }
 
 .sidebar-log {
-    position: fixed;
-    bottom: 1rem;
-    right: 1rem;
-    min-height: 30rem;
-    min-width: 45rem;
-    background-color: #000;
-    color: #39e617;
-    opacity: 0.8;
-    padding: 1rem;
-    border-radius: 4px;
-    font-size: smaller;
-    z-index: 3;
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  min-height: 30rem;
+  min-width: 45rem;
+  background-color: #000;
+  color: #39e617;
+  opacity: 0.8;
+  padding: 1rem;
+  border-radius: 4px;
+  font-size: smaller;
+  z-index: 3;
+}
+
+@keyframes navigation-top-fix {
+  0% {
+    margin-top: -5.4rem;
+  }
+
+  100% {
+    margin-top: 0;
+  }
+}
+
+@keyframes navigation-bottom-fix {
+  0% {
+    margin-bottom: -2rem;
+  }
+
+  100% {
+    margin-bottom: 0;
+  }
 }
 
 .eapp-navigation {
   .sticky .contents {
     width: 32rem;
+
+    &.sidebar-top-fixed {
+      top: 5.4rem;
+      animation-name: navigation-top-fix;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+    }
+
+    &.sidebar-bottom-fixed {
+      animation-name: navigation-bottom-fix;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
+    }
+  }
+}
+
+@keyframes core-top-fix {
+  0% {
+    margin-top: -10rem;
   }
 
-  .sidebar-top-fixed {
-    top: 5.4rem;
+  100% {
+    margin-top: 0;
+  }
+}
+
+@keyframes core-bottom-fix {
+  0% {
+    margin-bottom: -2rem;
+  }
+
+  100% {
+    margin-bottom: 0;
   }
 }
 
 .eapp-core {
   .sticky .contents {
     margin: 0 auto 2rem auto;
-    width: 100%;
 
     &.sidebar-top-fixed {
       top: 10rem;
-      // padding: 0 11%;
+      animation-name: core-top-fix;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
     }
 
     &.sidebar-bottom-fixed {
-      // padding: 0 11%;
+      animation-name: core-bottom-fix;
+      animation-duration: 0.5s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: 1;
     }
   }
 }
