@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
 	saml "github.com/RobotsAndPencils/go-saml"
@@ -12,6 +13,11 @@ import (
 
 // SamlServiceHandler is the initial entry point for authentication.
 func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
+	if !cf.SamlEnabled() {
+		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	sp := configureSAML()
 
 	// Generate the AuthnRequest and then get a base64 encoded string of the XML
@@ -34,6 +40,11 @@ func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 // SamlCallbackHandler is the returning entry point for authentication.
 func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
+	if !cf.SamlEnabled() {
+		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	encodedXML := r.FormValue("SAMLResponse")
 
 	if encodedXML == "" {
