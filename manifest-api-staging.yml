@@ -15,5 +15,5 @@ applications:
     GOVERSION: go1.8.3
     ALLOW_2FA_RESET: 1
     SAML_ENABLED: 1
-    SAML_PUBLIC_CERT: wso2carbon.cer
+    SAML_IDP_PUBLIC_CERT: ./wso2carbon.cer
     SAML_IDP_SSO_URL: https://ids.kxsolutions.com:8443/samlsso

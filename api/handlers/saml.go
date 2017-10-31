@@ -22,7 +22,13 @@ func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 	// Generate the AuthnRequest and then get a base64 encoded string of the XML
 	authnRequest := sp.GetAuthnRequest()
-	b64XML, err := authnRequest.EncodedSignedString(sp.PrivateKeyPath)
+	var b64XML string
+	var err error
+	if sp.SPSignRequest {
+		b64XML, err = authnRequest.EncodedSignedString(sp.PrivateKeyPath)
+	} else {
+		b64XML, err = authnRequest.EncodedString()
+	}
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
