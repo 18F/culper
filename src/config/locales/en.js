@@ -585,7 +585,7 @@ const en = {
           notfound: {
             title: 'This country is not on our current list',
             message: [
-              'Indicate the country that currently governs the geographic location you are indicating. As necessary provide a comment below to clarify.'
+              'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
             ],
             note: ''
           }
