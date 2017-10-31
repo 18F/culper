@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { i18n, navigation } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import { Show, Svg } from '../../Form'
 
 import { IdentificationSections } from '../Identification'
 import { RelationshipSections } from '../Relationships'
@@ -21,6 +22,10 @@ class Print extends SectionElement {
   constructor (props) {
     super(props)
     this.sections = this.sections.bind(this)
+    this.handlePrint = this.handlePrint.bind(this)
+    this.state = {
+      printed: false
+    }
   }
 
   sections () {
@@ -132,15 +137,38 @@ class Print extends SectionElement {
   }
 
   handlePrint () {
+    let interval = setInterval(() => {
+      if (document.hasFocus()) {
+        clearInterval(interval)
+        this.setState({ printed: true })
+      }
+    }, 600)
     window.print()
+  }
+
+  done () {
+    return (
+      <div className="text-center done">
+        <span className="icon">
+          <Svg src="/img/checkmark.svg" />
+        </span>
+        { i18n.m('submission.print.done') }
+      </div>
+    )
   }
 
   render () {
     return (
-      <div>
-        <button className="print-btn" onClick={this.handlePrint}>
-          Print
-        </button>
+      <div className="pre-print-view">
+        <div className="text-center">
+          { i18n.m('submission.print.title') }
+          <button className="print-btn" onClick={this.handlePrint}>
+            { i18n.t('submission.print.button') }
+          </button>
+          <Show when={this.state.printed}>
+            { this.done() }
+          </Show>
+        </div>
         <div className="print-view">
           <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
             <SectionView name=""
@@ -155,7 +183,6 @@ class Print extends SectionElement {
       </div>
     )
   }
-
 }
 
 function mapStateToProps (state) {

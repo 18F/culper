@@ -92,6 +92,7 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.address')}
+               optional={true}
                help="history.employment.default.supervisor.address.help"
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>

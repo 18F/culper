@@ -129,6 +129,7 @@ export default class ReceivedCounseling extends ValidationElement {
                 />
         </Field>
         <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.treatmentProviderAddress')}
+               optional={true}
                help={'substance.alcohol.receivedCounseling.help.treatmentProviderAddress'}
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>
@@ -169,7 +170,8 @@ export default class ReceivedCounseling extends ValidationElement {
         </Branch>
 
         <Show when={this.props.UseSameAddress === 'No'}>
-          <Field scrollIntoView={this.props.scrollIntoView}>
+          <Field optional={true}
+                 scrollIntoView={this.props.scrollIntoView}>
             <Location name="AgencyAddress"
                       className="agency-address"
                       {...this.props.AgencyAddress}

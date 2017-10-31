@@ -292,7 +292,8 @@ export default class Field extends ValidationElement {
   }
 
   render () {
-    const klass = `field ${this.visibleComments() ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
+    const required = !this.props.optional || (!this.props.optional && (this.props.children || []).length === 0)
+    const klass = `field ${required ? 'required' : ''} ${this.visibleComments() ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
     const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 
     return (
@@ -340,6 +341,7 @@ Field.defaultProps = {
   commentsActive: false,
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',
+  optional: false,
   validate: true,
   shrink: false,
   scrollIntoView: true,

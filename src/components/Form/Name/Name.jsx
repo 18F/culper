@@ -287,12 +287,12 @@ export default class Name extends ValidationElement {
                       />
           </div>
         </Field>
-        <Field title={<span>{i18n.t(`${prefix}.label.suffix`)} <span className="optional">({i18n.t(`${prefix}.label.optional`)})</span></span>}
+        <Field title={i18n.t(`${prefix}.label.suffix`)}
                titleSize="label"
                help="identification.name.suffix.help"
                errorPrefix="name"
                scrollIntoView={this.props.scrollIntoView}
-               adjustFor="labels">
+               optional={true}>
           <RadioGroup className="option-list suffix" selectedValue={this.props.suffix}>
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.jr`)}

@@ -75,97 +75,99 @@ export default class SupportItem extends ValidationElement {
     return (
       <div className="support-item">
         <Field title={i18n.t('foreign.activities.support.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
-            {...this.props.Name}
-            className="foreign-activities-support-name"
-            onUpdate={this.updateName}
-            required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}
-            onError={this.props.onError}
-          />
+                {...this.props.Name}
+                className="foreign-activities-support-name"
+                onUpdate={this.updateName}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.activities.support.heading.address')}
-          adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
-            {...this.props.Address}
-            onUpdate={this.updateAddress}
-            className="foreign-activities-support-address"
-            layout={Location.ADDRESS}
-            geocode={true}
-            addressBook="ForeignNational"
-            addressBooks={this.props.addressBooks}
-            dispatch={this.props.dispatch}
-            required={this.props.required}
-            onError={this.props.onError}
-          />
+                    {...this.props.Address}
+                    onUpdate={this.updateAddress}
+                    className="foreign-activities-support-address"
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    addressBook="ForeignNational"
+                    addressBooks={this.props.addressBooks}
+                    dispatch={this.props.dispatch}
+                    required={this.props.required}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.activities.support.heading.relationship')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Relationship"
-            {...this.props.Relationship}
-            onUpdate={this.updateRelationship}
-            className="foreign-activities-support-relationship"
-            required={this.props.required}
-            onError={this.props.onError}
-          />
+                    {...this.props.Relationship}
+                    onUpdate={this.updateRelationship}
+                    className="foreign-activities-support-relationship"
+                    required={this.props.required}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.activities.support.heading.amount')}
-          help="foreign.activities.support.help.amount"
-          adjustFor="currency"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.activities.support.help.amount"
+               adjustFor="currency"
+               scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Amount"
-            {...this.props.Amount}
-            className="foreign-activities-support-amount"
-            onUpdate={this.updateAmount}
-            min="0"
-            required={this.props.required}
-            onError={this.props.onError}
-          />
+                    {...this.props.Amount}
+                    className="foreign-activities-support-amount"
+                    onUpdate={this.updateAmount}
+                    min="0"
+                    required={this.props.required}
+                    onError={this.props.onError}
+                    />
           <div className="flags">
             <Checkbox name="AmountEstimated"
-              ref="estimated"
-              className="foreign-activities-support-amount-estimated"
-              label={i18n.t('foreign.activities.support.label.estimated')}
-              toggle="false"
-              checked={this.props.AmountEstimated}
-              onUpdate={this.updateAmountEstimated}
-              onError={this.props.onError}
-            />
+                      ref="estimated"
+                      className="foreign-activities-support-amount-estimated"
+                      label={i18n.t('foreign.activities.support.label.estimated')}
+                      toggle="false"
+                      checked={this.props.AmountEstimated}
+                      onUpdate={this.updateAmountEstimated}
+                      onError={this.props.onError}
+                      />
           </div>
         </Field>
 
         <Field title={i18n.t('foreign.activities.support.heading.frequency')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Frequency"
-            {...this.props.Frequency}
-            className="foreign-activities-support-frequency"
-            required={this.props.required}
-            onUpdate={this.updateFrequency}
-            onError={this.props.onError}
-          />
+                {...this.props.Frequency}
+                className="foreign-activities-support-frequency"
+                required={this.props.required}
+                onUpdate={this.updateFrequency}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.activities.support.heading.citizenship')}
-          help="foreign.activities.support.help.citizenship"
-          adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.activities.support.help.citizenship"
+               adjustFor="country"
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Citizenship"
-            {...this.props.Citizenship}
-            className="foreign-activities-support-citizenship"
-            multiple={true}
-            required={this.props.required}
-            onUpdate={this.updateCitizenship}
-            onError={this.props.onError}
-          />
+                   {...this.props.Citizenship}
+                   className="foreign-activities-support-citizenship"
+                   multiple={true}
+                   required={this.props.required}
+                   onUpdate={this.updateCitizenship}
+                   onError={this.props.onError}
+                   />
         </Field>
-    </div>
+      </div>
     )
   }
 }

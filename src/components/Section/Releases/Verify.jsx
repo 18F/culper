@@ -24,7 +24,7 @@ const wrapSpans = (text) => {
 export default class Verify extends React.Component {
   render () {
     // Identification section
-    const identification = this.props.identification || {}
+    const identification = this.props.Identification || {}
     const name = NameSummary(identification.ApplicantName || {}, i18n.t('releases.verify.label.none'))
     const othernames = ((identification.OtherNames || {}).List || [{}]).map(n => { return NameSummary(n.Name, i18n.t('releases.verify.label.none')) })
     const dob = DateSummary(identification.ApplicantBirthDate || {}, i18n.t('releases.verify.label.none'), true) || <span>{i18n.t('releases.verify.label.none')}</span>
@@ -32,7 +32,7 @@ export default class Verify extends React.Component {
     const phoneNumbers = ((identification.Contacts || {}).PhoneNumbers || [{}]).map(n => { return TelephoneSummary(n, i18n.t('releases.verify.label.none')) })
 
     // History section
-    const residence = ((this.props.history || {}).Residence || [{ Item: {} }])
+    const residence = ((this.props.History || {}).Residence || [{ Item: {} }])
           .filter(n => !n.type || (n.type && n.type !== 'Gap'))
           .sort(sort)
           .map(n => {

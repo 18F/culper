@@ -42,24 +42,11 @@ export default class Street extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
-  label () {
-    if (this.props.label && this.props.optional) {
-      return (
-        <span>
-          {this.props.label}
-          <span className="optional">{i18n.t('address.us.street2.optional')}</span>
-        </span>
-      )
-    }
-
-    return this.props.label
-  }
-
   render () {
     return (
       <Text name={this.props.name}
             className={this.props.className}
-            label={this.label()}
+            label={this.props.label}
             placeholder={this.props.placeholder}
             value={this.state.value}
             onChange={this.handleChange}

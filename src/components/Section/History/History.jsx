@@ -5,6 +5,7 @@ import { EducationValidator } from '../../../validators'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field, Svg, Show, Branch } from '../../Form'
 import SummaryProgress from './SummaryProgress'
@@ -17,9 +18,9 @@ import Employment from './Employment'
 import Education from './Education'
 
 /**
-  * Default sorting of history objects. This assumes that all objects contain a `Dates` property
-  * with date range values.
-  */
+ * Default sorting of history objects. This assumes that all objects contain a `Dates` property
+ * with date range values.
+ */
 export const sort = (a, b) => {
   // Helper to find the date value or default it to 0
   const getOptionalDate = (obj) => {
@@ -347,6 +348,7 @@ class History extends SectionElement {
                        nextLabel={i18n.t('history.destination.residence')}>
             <Field title={i18n.t('history.intro.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('history.intro.body')}
             </Field>
@@ -422,6 +424,17 @@ class History extends SectionElement {
                      scrollIntoView={false}
                      required={true}
                      />
+
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('history.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="residence"
@@ -431,11 +444,13 @@ class History extends SectionElement {
                        nextLabel={i18n.t('history.destination.employment')}>
             <Field title={i18n.t('history.residence.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom"
                    />
 
             <Field title={i18n.t('history.residence.info')}
                    titleSize="h3"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('history.residence.info2')}
               {i18n.m('history.residence.info3a')}
@@ -462,6 +477,7 @@ class History extends SectionElement {
                 <hr className="section-divider" />
                 <Field title={i18n.t('history.residence.heading.exiting')}
                        titleSize="h2"
+                       optional={true}
                        className="no-margin-bottom">
                   {i18n.m('history.residence.para.exiting')}
                 </Field>
@@ -476,6 +492,7 @@ class History extends SectionElement {
                        nextLabel={i18n.t('history.destination.education')}>
             <Field title={i18n.t('history.employment.heading.employment')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('history.employment.para.employment')}
               {i18n.m('history.employment.para.employment2')}
@@ -500,6 +517,7 @@ class History extends SectionElement {
                 <hr className="section-divider" />
                 <Field title={i18n.t('history.employment.heading.exiting')}
                        titleSize="h2"
+                       optional={true}
                        className="no-margin-bottom">
                   {i18n.m('history.employment.para.exiting')}
                 </Field>
@@ -514,6 +532,7 @@ class History extends SectionElement {
                        nextLabel={i18n.t('history.destination.federal')}>
             <Field title={i18n.t('history.education.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('history.education.info')}
             </Field>
@@ -603,6 +622,7 @@ function mapStateToProps (state) {
     Employment: history.Employment || { List: [], ListBranch: '' },
     Education: history.Education || { HasAttended: '', HasDegree10: '', List: [] },
     Federal: history.Federal || {},
+    Comments: history.Comments || {},
     Errors: errors.history || [],
     Completed: completed.history || [],
     Birthdate: processDate(identification.ApplicantBirthDate),
@@ -621,57 +641,67 @@ export class HistorySections extends React.Component {
     return (
       <div>
         <Residence value={this.props.Residence}
-          defaultState={false}
-          realtime={true}
-          sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
-          overrideInitial={noOverride}
-          onError={this.props.onError}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          scrollIntoView={false}
-          required={true}
-        />
+                   defaultState={false}
+                   realtime={true}
+                   sort={sort}
+                   totalYears={totalYears(this.props.Birthdate)}
+                   overrideInitial={noOverride}
+                   onError={this.props.onError}
+                   addressBooks={this.props.AddressBooks}
+                   dispatch={this.props.dispatch}
+                   scrollIntoView={false}
+                   required={true}
+                   />
 
         <Employment value={this.props.Employment}
-          {...this.props.Employment}
-          defaultState={false}
-          realtime={true}
-          sort={sort}
-          totalYears={totalYears(this.props.Birthdate)}
-          overrideInitial={noOverride}
-          onError={this.props.onError}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          scrollIntoView={false}
-          required={true}
-        />
+                    {...this.props.Employment}
+                    defaultState={false}
+                    realtime={true}
+                    sort={sort}
+                    totalYears={totalYears(this.props.Birthdate)}
+                    overrideInitial={noOverride}
+                    onError={this.props.onError}
+                    addressBooks={this.props.AddressBooks}
+                    dispatch={this.props.dispatch}
+                    scrollIntoView={false}
+                    required={true}
+                    />
 
         <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
           <Education value={this.props.Education}
-            defaultState={false}
-            realtime={true}
-            sort={sort}
-            totalYears={totalYears(this.props.Birthdate)}
-            overrideInitial={noOverride}
-            onError={this.props.onError}
-            dispatch={this.props.dispatch}
-            addressBooks={this.props.AddressBooks}
-            scrollIntoView={false}
-            required={true}
-          />
+                     defaultState={false}
+                     realtime={true}
+                     sort={sort}
+                     totalYears={totalYears(this.props.Birthdate)}
+                     overrideInitial={noOverride}
+                     onError={this.props.onError}
+                     dispatch={this.props.dispatch}
+                     addressBooks={this.props.AddressBooks}
+                     scrollIntoView={false}
+                     required={true}
+                     />
         </Show>
 
         <hr />
         <Federal name="federal"
-          {...this.props.Federal}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          scrollIntoView={false}
-          required={true}
-        />
+                 {...this.props.Federal}
+                 defaultState={false}
+                 addressBooks={this.props.AddressBooks}
+                 dispatch={this.props.dispatch}
+                 onError={this.props.onError}
+                 scrollIntoView={false}
+                 required={true}
+                 />
+
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('history.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.handleError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }

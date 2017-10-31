@@ -374,5 +374,22 @@ select {
 .optional {
   color: $eapp-grey-darker;
   font-style: italic;
+  font-family: $eapp-sans;
+  font-weight: normal;
+  font-size: 1.7rem;
+  line-height: 1.6rem;
   padding-left: 0.5rem;
+}
+
+.required {
+  .title:after,
+  > label:after {
+    font-family: $eapp-serif;
+    font-size: 1.2rem;
+    font-weight: normal;
+    vertical-align: text-top;
+    margin-left: 0.4rem;
+    color: #981b1e;
+    content: '*';
+  }
 }

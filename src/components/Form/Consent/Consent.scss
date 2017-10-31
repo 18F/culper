@@ -20,12 +20,6 @@
     border: none;
     box-shadow: none;
 
-    @media only screen and (max-height: 850px) {
-      height: 100vh;
-      margin-top: 0 !important;
-      margin-bottom: 0 !important;
-    }
-
     .consent-legal {
       overflow-y: scroll;
       max-height: 84vh;

@@ -79,6 +79,7 @@ export default class PhysicalAddress extends ValidationElement {
 
           <Field title={i18n.t('history.employment.default.physicalAddress.heading.address')}
                  titleSize="h4"
+                 optional={true}
                  help="history.employment.default.physicalAddress.address.help"
                  adjustFor="labels"
                  shrink={true}

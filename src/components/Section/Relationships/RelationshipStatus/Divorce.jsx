@@ -106,6 +106,7 @@ export default class Divorce extends React.Component {
     return (
       <div className="divorce">
         <Field title={i18n.t('relationships.civilUnion.heading.name')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Name name="Name"
@@ -130,7 +131,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
                     layout={Location.BIRTHPLACE}
                     label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
@@ -167,6 +168,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.address')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Location name="address"
@@ -224,7 +226,7 @@ export default class Divorce extends React.Component {
         <Show when={['Divorced', 'Annulled'].includes(this.props.Status)}>
           <div>
             <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceased')} className="deceased"
-              scrollIntoView={this.props.scrollIntoView}>
+                   scrollIntoView={this.props.scrollIntoView}>
               <RadioGroup name="deceased" selectedValue={this.props.Deceased} required={this.props.required} onError={this.props.onError}>
                 <Radio
                   className="yes"
@@ -254,7 +256,8 @@ export default class Divorce extends React.Component {
 
             <Show when={this.props.Deceased === 'Yes'}>
               <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}
-                scrollIntoView={this.props.scrollIntoView}>
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
                                className="deceased-notapplicable"
                                applicable={this.props.DeceasedAddressNotApplicable}

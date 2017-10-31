@@ -1,0 +1,278 @@
+.mobile-visible {
+  display: none !important;
+  visibility: hidden;
+}
+
+@media only screen and (max-width: 1000px) {
+  .mobile-visible {
+    display: block !important;
+    visibility: visible;
+  }
+
+  .mobile-hidden {
+    display: none !important;
+    visibility: hidden;
+  }
+
+  .modal-open {
+    height: initial;
+    overflow-y: auto !important;
+  }
+
+  // Consent form
+  .consent-modal {
+    display: none;
+    z-index: -1;
+  }
+
+  .modal-open .consent-modal {
+    display: block;
+    z-index: 9999;
+
+    .modal {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+
+      .modal-content {
+        width: 100% !important;
+        min-width: unset !important;
+        margin-top: 0 !important;
+        margin-bottom: 0 !important;
+
+        .consent-legal {
+          padding: 0;
+          height: 70vh;
+        }
+
+        .consent-acceptance {
+          width: 90%;
+        }
+      }
+    }
+  }
+
+  // Form introduction
+  .introduction-modal {
+    display: none;
+    z-index: -1;
+  }
+
+  .modal-open .introduction-modal {
+    display: block;
+    z-index: 9999;
+
+    .modal {
+      overflow-y: auto;
+      background-color: rgba(255, 255, 255, 1) !important;
+
+      .modal-wrap {
+        display: block;
+      }
+    }
+
+    .introduction-content {
+      width: 100%;
+      min-width: 100%;
+      height: initial;
+      margin: 0 !important;
+      padding-bottom: 5rem; // padding for ipad and iphone
+      border: none;
+      box-shadow: none;
+
+      .modal-close {
+        position: fixed;
+        top: 1rem;
+        right: 2rem;
+      }
+
+      .introduction-legal {
+        overflow-y: auto;
+        max-height: initial;
+        border: none;
+        padding: 0 1rem;
+      }
+
+      .introduction-acceptance {
+        max-height: initial;
+        margin: 0;
+        padding: 4rem 1rem;
+
+        .block label {
+          width: 11rem;
+          min-width: 11rem;
+        }
+      }
+    }
+  }
+
+  // Log in form
+  .login {
+    .content {
+      width: 100% !important;
+      padding: 3rem 2rem 2rem 2rem;
+    }
+  }
+
+  // General header information
+  .usa-header {
+    min-height: 5rem;
+
+    > .eapp-header {
+      display: block;
+      min-height: 5rem;
+
+      > .eapp-structure-row {
+        display: block;
+
+        > .eapp-logo {
+          width: 100%;
+          height: 5.5rem;
+          display: inline-block;
+
+          > .eapp-logo-icon {
+            width: 3.5rem;
+            height: auto;
+            margin-left: 1rem;
+            vertical-align: text-bottom;
+          }
+
+          span {
+            margin-left: 1rem;
+          }
+
+          > .eapp-logo-text {
+            margin-top: 1rem;
+          }
+        }
+
+        > .eapp-title {
+          padding: 1rem;
+          display: block;
+          height: auto;
+
+          > .title {
+            margin: 0;
+          }
+        }
+      }
+    }
+  }
+
+  // Navigation
+  .eapp-structure-wrap > .eapp-structure-row > .eapp-navigation {
+    width: 100%;
+
+    .sticky-container {
+      position: relative;
+      top: unset;
+      width: unset;
+      min-width: unset;
+      margin-top: 6rem;
+      padding-left: 0;
+      padding-right: 0;
+    }
+
+    .form-navigation {
+      .section-name {
+        max-width: 88%;
+      }
+    }
+  }
+
+  // Main content
+  .eapp-structure-wrap > .eapp-structure-row > .eapp-core {
+    display: block;
+    padding: 1rem !important;
+    width: 100%;
+
+    > .eapp-form {
+      width: 100% !important;
+      max-width: initial;
+      min-width: initial;
+    }
+
+    .block > label {
+      min-width: 11rem;
+    }
+
+    .flags .block > label {
+      width: 100%;
+    }
+
+    .accordion {
+      padding: 0 1.5rem 5rem 1.5rem;
+      margin: 0 -1rem;
+
+      .summary .left,
+      .details {
+        padding-left: 4%;
+      }
+    }
+
+    .daterange {
+      .from-present {
+        display: block;
+
+        .or {
+          margin: 0;
+        }
+      }
+    }
+
+    label,
+    input,
+    textarea,
+    select,
+    .block > label {
+      max-width: 100%;
+    }
+
+    .field {
+      > .title,
+      > .table > .content > .component,
+      > .table > .content > .component > div,
+      > .table > .messages > .message {
+        max-width: 100%;
+      }
+    }
+
+    .btn-wrap {
+      .btn-cell {
+        width: 50%;
+
+        .icon {
+          padding-left: 0.5rem;
+        }
+      }
+
+      .btn-spacer {
+        width: 1%;
+      }
+    }
+
+    // Saved indicator
+    .saved-indicator {
+      position: static;
+      width: 100%;
+      z-index: -1;
+    }
+  }
+}
+
+@media only screen and (max-width: 452px) {
+  .daterange {
+    .from-label {
+      text-align: left;
+    }
+
+    .arrow {
+      img {
+        margin-top: -3rem;
+        margin-left: 10.25rem;
+      }
+    }
+  }
+}
