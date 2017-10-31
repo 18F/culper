@@ -32,7 +32,7 @@ describe('Police record validation', function () {
                 InvolvedFirearms: 'No',
                 InvolvedSubstances: 'No',
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -48,7 +48,7 @@ describe('Police record validation', function () {
                   value: 'Some explanation'
                 },
                 AgencyAddress: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

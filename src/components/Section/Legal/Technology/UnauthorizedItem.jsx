@@ -50,58 +50,59 @@ export default class UnauthorizedItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.technology.unauthorized.heading.date')}
-          help="legal.technology.unauthorized.help.date"
-          adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.technology.unauthorized.help.date"
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
-            {...this.props.Date}
-            onUpdate={this.updateDate}
-            onError={this.props.onError}
-            className="legal-technology-unauthorized-date"
-            required={this.props.required}
-          />
+                       {...this.props.Date}
+                       onUpdate={this.updateDate}
+                       onError={this.props.onError}
+                       className="legal-technology-unauthorized-date"
+                       required={this.props.required}
+                       />
         </Field>
 
         <Field title={i18n.t('legal.technology.unauthorized.heading.incident')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Incident"
-            {...this.props.Incident}
-            onUpdate={this.updateIncident}
-            onError={this.props.onError}
-            className="legal-technology-unauthorized-incident"
-            required={this.props.required}
-          />
+                    {...this.props.Incident}
+                    onUpdate={this.updateIncident}
+                    onError={this.props.onError}
+                    className="legal-technology-unauthorized-incident"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.technology.unauthorized.heading.location')}
-          help="legal.technology.unauthorized.help.location"
-          adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               help="legal.technology.unauthorized.help.location"
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
-            {...this.props.Location}
-            onUpdate={this.updateLocation}
-            onError={this.props.onError}
-            className="legal-technology-unauthorized-location"
-            layout={Location.ADDRESS}
-            geocode={true}
-            addressBooks={this.props.addressBooks}
-            addressBook="Incident"
-            dispatch={this.props.dispatch}
-            required={this.props.required}
-          />
+                    {...this.props.Location}
+                    onUpdate={this.updateLocation}
+                    onError={this.props.onError}
+                    className="legal-technology-unauthorized-location"
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Incident"
+                    dispatch={this.props.dispatch}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.technology.unauthorized.heading.action')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Action"
-            {...this.props.Action}
-            onUpdate={this.updateAction}
-            onError={this.props.onError}
-            className="legal-technology-unauthorized-action"
-            required={this.props.required}
-          />
+                    {...this.props.Action}
+                    onUpdate={this.updateAction}
+                    onError={this.props.onError}
+                    className="legal-technology-unauthorized-action"
+                    required={this.props.required}
+                    />
         </Field>
       </div>
     )

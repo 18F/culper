@@ -205,7 +205,7 @@ export default class Field extends ValidationElement {
   errorMessages () {
     let el = []
     let stateErrors = this.props.filterErrors(this.errors || [])
-    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1)
+    let errors = stateErrors.filter(err => err.valid === false && err.code.indexOf('required') === -1 && err.code.indexOf('country.notfound') === -1)
     const required = stateErrors
       .filter(err => err.code.indexOf('required') > -1 && err.valid === false)
       .sort((e1, e2) => {
@@ -292,7 +292,8 @@ export default class Field extends ValidationElement {
   }
 
   render () {
-    const klass = `field ${this.visibleComments() ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
+    const required = !this.props.optional || (!this.props.optional && (this.props.children || []).length === 0)
+    const klass = `field ${required ? 'required' : ''} ${this.visibleComments() ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
     const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 
     return (
@@ -340,6 +341,7 @@ Field.defaultProps = {
   commentsActive: false,
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',
+  optional: false,
   validate: true,
   shrink: false,
   scrollIntoView: true,

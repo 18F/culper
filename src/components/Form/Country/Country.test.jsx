@@ -1,5 +1,5 @@
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import Country from './Country'
 
 describe('The Country component', () => {
@@ -8,7 +8,7 @@ describe('The Country component', () => {
       name: 'country',
       value: ''
     }
-    const component = shallow(<Country {...expected} />).dive()
+    const component = mount(<Country {...expected} />)
     expect(component.find('div').length).toBeGreaterThan(0)
   })
 
@@ -19,7 +19,12 @@ describe('The Country component', () => {
       onBlur: () => {},
       onFocus: () => {}
     }
-    const component = mount(<Country {...expected} />)
+    const options = [
+      { name: 'Belgium', value: 'Belgium' }
+    ].map(x => {
+      return <option key={x.value} value={x.value}>{x.name}</option>
+    })
+    const component = mount(<Country {...expected}>{options}</Country>)
     component.find('.country input').simulate('change', {
       target: {
         value: 'Belg'

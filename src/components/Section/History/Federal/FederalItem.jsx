@@ -50,55 +50,56 @@ export default class FederalItem extends ValidationElement {
     return (
       <div className="federal-item">
         <Field title={i18n.t('history.federal.heading.dates')}
-          help="history.federal.help.dates"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="history.federal.help.dates"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('history.federal.heading.name')}
-          className="federal-agency"
-          scrollIntoView={this.props.scrollIntoView}>
+               className="federal-agency"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
-            {...this.props.Name}
-            onUpdate={this.updateName}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('history.federal.heading.position')}
-          className="federal-position"
-          scrollIntoView={this.props.scrollIntoView}>
+               className="federal-position"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Position"
-            {...this.props.Position}
-            onUpdate={this.updatePosition}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                {...this.props.Position}
+                onUpdate={this.updatePosition}
+                onError={this.props.onError}
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('history.federal.heading.address')}
-          help="history.federal.help.address"
-          className="federal-agency-address"
-          adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               help="history.federal.help.address"
+               className="federal-agency-address"
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
-            {...this.props.Address}
-            onUpdate={this.updateAddress}
-            onError={this.props.onError}
-            layout={Location.ADDRESS}
-            geocode={true}
-            addressBooks={this.props.addressBooks}
-            addressBook="Agency"
-            dispatch={this.props.dispatch}
-            required={this.props.required}
-          />
+                    {...this.props.Address}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Agency"
+                    dispatch={this.props.dispatch}
+                    required={this.props.required}
+                    />
         </Field>
       </div>
     )

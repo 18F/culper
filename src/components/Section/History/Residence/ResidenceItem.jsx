@@ -73,6 +73,7 @@ export default class ResidenceItem extends ValidationElement {
         <div>
           <Field title={i18n.t('history.residence.heading.reference')}
                  titleSize="h2"
+                 optional={true}
                  className="no-margin-bottom">
             {i18n.m('history.residence.para.reference')}
           </Field>
@@ -97,8 +98,9 @@ export default class ResidenceItem extends ValidationElement {
     return (
       <div className="residence">
         <Field title={i18n.t('history.residence.heading.address')}
+               optional={true}
                help="history.residence.help.address"
-               comments={true}
+               comments={false}
                commentsName="Comments"
                commentsValue={this.state.Comments}
                commentsAdd="history.residence.label.comments"
@@ -122,8 +124,8 @@ export default class ResidenceItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.residence.heading.dates')}
-          help="history.residence.help.dates"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="history.residence.help.dates"
+               scrollIntoView={this.props.scrollIntoView}>
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <DateRange name="Dates"
                      {...this.state.Dates}
@@ -170,18 +172,18 @@ export default class ResidenceItem extends ValidationElement {
         </Field>
         <Show when={this.state.Role && !['Owned', 'Rented', 'Military'].includes(this.state.Role)}>
           <Field title={i18n.t('history.residence.label.role.explanation')}
-            titleSize="label"
-            help="section.subsection.help.field-name"
-            adjustFor="text"
-            scrollIntoView={this.props.scrollIntoView}>
+                 titleSize="label"
+                 help="section.subsection.help.field-name"
+                 adjustFor="text"
+                 scrollIntoView={this.props.scrollIntoView}>
             <Text name="RoleOther"
-              {...this.state.RoleOther}
-              className="other"
-              maxlength="100"
-              onUpdate={this.onUpdate.bind(this, 'RoleOther')}
-              onError={this.props.onError}
-              required={this.props.required}
-            />
+                  {...this.state.RoleOther}
+                  className="other"
+                  maxlength="100"
+                  onUpdate={this.onUpdate.bind(this, 'RoleOther')}
+                  onError={this.props.onError}
+                  required={this.props.required}
+                  />
           </Field>
         </Show>
 

@@ -35,7 +35,7 @@ describe('Legal associations violence component validation', function () {
       {
         state: {
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -196,7 +196,7 @@ describe('Legal associations violence component validation', function () {
                   value: 'this is an organization'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

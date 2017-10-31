@@ -72,6 +72,9 @@ const en = {
     close: 'Close',
     incomplete: 'There is a problem with this item, please open it and fix the issue(s).'
   },
+  country: {
+    comments: 'Provide comments'
+  },
   comments: {
     add: 'Add a comment',
     addpaired: 'Add a comment to this question',
@@ -81,7 +84,7 @@ const en = {
     label: {
       first: 'First name',
       last: 'Last name',
-      middle: 'Middle name or initial',
+      middle: 'Middle name',
       initialOnly: 'Initial only',
       noMiddle: 'No middle name',
       other: 'Other',
@@ -224,6 +227,11 @@ const en = {
           message: 'The month should be between 1(January) and 12(December).',
           note: ''
         },
+        min: {
+          title: 'There is a problem with the Month',
+          message: 'The month should be between 1(January) and 12(December).',
+          note: ''
+        },
         max: {
           title: 'There is a problem with the Month',
           message: 'The month should be between 1(January) and 12(December).',
@@ -236,9 +244,14 @@ const en = {
           message: 'There is not that many days in this month.',
           note: ''
         },
+        min: {
+          title: 'There is a problem with the Day',
+          message: 'There are not that many days in this month.',
+          note: ''
+        },
         max: {
           title: 'There is a problem with the Day',
-          message: 'There is not that many days in this month.',
+          message: 'There are not that many days in this month.',
           note: ''
         }
       },
@@ -275,6 +288,11 @@ const en = {
             message: 'For the **to** date, the month should be between 1(January) and 12(December).',
             note: ''
           },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **to** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
           max: {
             title: 'There is a problem with the Month',
             message: 'For the **to** date, the month should be between 1(January) and 12(December).',
@@ -283,6 +301,11 @@ const en = {
         },
         day: {
           length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **to** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
             title: 'There is a problem with the Day',
             message: 'For the **to** date, there are not that many days in this month.',
             note: ''
@@ -321,6 +344,11 @@ const en = {
             message: 'For the **from** date, the month should be between 1(January) and 12(December).',
             note: ''
           },
+          min: {
+            title: 'There is a problem with the Month',
+            message: 'For the **from** date, the month should be between 1(January) and 12(December).',
+            note: ''
+          },
           max: {
             title: 'There is a problem with the Month',
             message: 'For the **from** date, the month should be between 1(January) and 12(December).',
@@ -329,6 +357,11 @@ const en = {
         },
         day: {
           length: {
+            title: 'There is a problem with the Day',
+            message: 'For the **from** date, there are not that many days in this month.',
+            note: ''
+          },
+          min: {
             title: 'There is a problem with the Day',
             message: 'For the **from** date, there are not that many days in this month.',
             note: ''
@@ -437,6 +470,11 @@ const en = {
         required: {
           title: 'There is a problem with this field',
           message: 'This field is required'
+        },
+        length: {
+          title: 'There is a problem with the City',
+          message: 'City name should be between 2 and 100 characters.',
+          note: ''
         }
       },
       zipcode: {
@@ -493,8 +531,8 @@ const en = {
             message: 'This field is required'
           },
           notfound: {
-            title: 'This country is not one of the options',
-            message: 'Please enter the country that your city of birth is in now.',
+            title: 'This country is not on our current list',
+            message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
             note: ''
           }
         },
@@ -545,9 +583,9 @@ const en = {
         },
         country: {
           notfound: {
-            title: 'This Country is not on our current list',
+            title: 'This country is not on our current list',
             message: [
-              'Indicate the country that currently governs the geographic location where you were born. As necessary provide a comment above to clarify.'
+              'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
             ],
             note: ''
           }
@@ -600,7 +638,7 @@ const en = {
       },
       notfound: {
         title: 'This Country is not on our current list',
-        message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
+        message: 'Indicate the country that currently governs the geographic location you are indicating. As necessary provide comments below to clarify.',
         note: ''
       }
     },
@@ -770,7 +808,7 @@ const en = {
     email: {
       pattern: {
         title: 'This email isn\'t valid',
-        message: 'Check for any spelling mistakes in your email address.',
+        message: 'Check for any spelling and/or format mistakes in your email address.',
         note: 'Example of valid email format: name@domain.com'
       },
       required: {
@@ -944,7 +982,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to information about you?'
     },
     destination: {
       intro: 'Identification intro',
@@ -1206,7 +1245,7 @@ const en = {
         },
         sex: {
           title: 'Need help with your sex?',
-          message: 'If additional information is appropriate please use "Add a comment" above to detail it.',
+          message: 'If additional information is appropriate please use "Add a comment" below to detail it.',
           note: ''
         }
       },
@@ -1265,7 +1304,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your financial record?'
     },
     destination: {
       intro: 'Financial intro',
@@ -1887,7 +1927,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with citizenship at once'
+      para: 'View all the sections associated with citizenship at once',
+      comments: 'Would you like to add a comment about any of your responses relating to citizenship?'
     },
     destination: {
       intro: 'Citizenship intro',
@@ -2274,7 +2315,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with relationships at once'
+      para: 'View all the sections associated with relationships at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your relationships?'
     },
     destination: {
       intro: 'Relationships intro',
@@ -2903,8 +2945,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help deciding whether or not you have had a cohabitant?',
-          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
+          title: 'Need help deciding whether or not you have a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "Yes".',
           note: ''
         },
         citizenship: {
@@ -3177,7 +3219,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with military history at once'
+      para: 'View all the sections associated with military history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your military history?'
     },
     destination: {
       intro: 'Military intro',
@@ -3341,7 +3384,7 @@ const en = {
         outcome: 'Provide the description of the final outcome of the disciplinary procedure'
       },
       para: {
-        info: '**In the last 7 years**, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+        info: 'In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
       },
       label: {
         name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
@@ -3413,7 +3456,7 @@ const en = {
         }
       },
       para: {
-        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
+        served: 'Have you ever served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
         contact: 'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.'
       },
       label: {
@@ -3527,7 +3570,8 @@ const en = {
     review: {
       title: 'Full section view',
       para: 'View all the sections associated with your history at once',
-      button: 'Show me the full section'
+      button: 'Show me the full section',
+      comments: 'Would you like to add a comment about any of your responses relating to your history?'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -5187,7 +5231,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with foreign activities at once'
+      para: 'View all the sections associated with foreign activities at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your foreign activities?'
     },
     destination: {
       intro: 'Foreign intro',
@@ -6823,7 +6868,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with investigative & criminal history at once'
+      para: 'View all the sections associated with investigative & criminal history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your investigative and criminal history?'
     },
     destination: {
       intro: 'Investigative and criminal history intro',
@@ -7721,7 +7767,8 @@ const en = {
     },
     review: {
       title: 'Let\'s make sure everything looks right',
-      para: 'View all the sections associated with substance abuse'
+      para: 'View all the sections associated with substance abuse',
+      comments: 'Would you like to add a comment about any of your responses relating to your substance use?'
     },
     destination: {
       intro: 'Substance use intro',
@@ -8479,7 +8526,7 @@ const en = {
       label: {
         first: 'First name',
         last: 'Last name',
-        middle: 'Middle name or initial',
+        middle: 'Middle name',
         initialOnly: 'Initial only',
         noMiddle: 'No middle name',
         other: 'Other',
@@ -8567,7 +8614,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with psychological and emotional health at once'
+      para: 'View all the sections associated with psychological and emotional health at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your psychological and emotional health?'
     },
     competence: {
       heading: {
@@ -9336,7 +9384,7 @@ const en = {
     contents: [
       '# Questionnaire for National Security Positions',
       '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
-      '## Instructions for Completing this Form ',
+      '## Instructions for completing this form ',
       '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
       '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
       '3. Do not abbreviate the names of cities or foreign countries.',
@@ -9348,37 +9396,37 @@ const en = {
       '**This form will auto save your progress continuously throughout.** Each input will be validated and save as you enter your information.',
       'To confirm your auto saving and find out when the last save was look for the icon below at the bottom of each screen.',
       '---',
-      '# Purpose of this Form',
+      '# Purpose of this form',
       'This form will be used by the United States (U.S.) Government in conducting background investigations, reinvestigations, and continuous evaluations of persons under consideration for, or retention of, national security positions as defined in 5 CFR 732, and for individuals requiring eligibility for access to classified information under Executive Order 12968. This form may also be used by agencies in determining whether a subject performing work for, or on behalf of, the Government under a contract should be deemed eligible for logical or physical access when the nature of the work to be performed is sensitive and could bring about an adverse effect on the national security.',
       'Providing this information is voluntary. If you do not provide each item of requested information, however, we will not be able to complete your investigation, which will adversely affect your eligibility for a national security position, eligibility for access to classified information, or logical or physical access. It is imperative that the information provided be true and accurate, to the best of your knowledge. Any information that you provide is evaluated on the basis of its currency, seriousness, relevance to the position and duties, and consistency with all other information about you. Withholding, misrepresenting, or falsifying information may affect your eligibility for access to classified information, eligibility for a sensitive position, or your ability to obtain or retain Federal or contract employment. In addition, withholding, misrepresenting, or falsifying information may affect your eligibility for physical and logical access to federally controlled facilities or information systems. Withholding, misrepresenting, or falsifying information may also negatively affect your employment prospects and job status, and the potential consequences include, but are not limited to, removal, debarment from Federal service, loss of eligibility for access to classified information, or prosecution.',
       'This form may become a permanent document that may be used as the basis for future investigations, eligibility determinations for access to classified information, or to hold a sensitive position, suitability or fitness for Federal employment, fitness for contract employment, or eligibility for physical and logical access to federally controlled facilities or information systems. Your responses to this form may be compared with your responses to previous SF-86 questionnaires.',
       'The investigation conducted on the basis of information provided on this form may be selected for studies and analyses in support of evaluating and improving the effectiveness and efficiency of the investigative and adjudicative methodologies. All study results released to the general public will delete personal identifiers such as name, Social Security Number, and date and place of birth.',
       '---',
-      '# Authority to Request this Information',
+      '# Authority to request this information',
       'Depending upon the purpose of your investigation, the U.S. Government is authorized to ask for this information under Executive Orders 10450, 10865, 12333, and 12968; sections 3301, 3302, and 9101 of title 5, United States Code (U.S.C.); sections 2165 and 2201 of title 42, U.S.C.; chapter 23 of title 50, U.S.C.; and parts 2, 5, 731, 732, and 736 of title 5, Code of Federal Regulations (CFR).',
       'Your Social Security Number (SSN) is needed to identify records unique to you. Although disclosure of your SSN is not mandatory, failure to disclose your SSN may prevent or delay the processing of your background investigation. The authority for soliciting and verifying your SSN is Executive Order 9397, as amended by EO 13478.',
       '---',
-      '# The Investigative Process',
+      '# The investigative process',
       'Background investigations for national security positions are conducted to gather information to determine whether you are reliable, trustworthy, of good conduct and character, and loyal to the U.S. The information that you provide on this form may be confirmed during the investigation. The investigation may extend beyond the time covered by this form, when necessary to resolve issues. Your current employer may be contacted as part of the investigation, although you may have previously indicated on applications or other forms that you do not want your current employer to be contacted. If you have a security freeze on your consumer or credit report file, then we may not be able to complete your investigation, which can adversely affect your eligibility for a national security position. To avoid such delays, you should request that the consumer reporting agencies lift the freeze in these instances.',
       'In addition to the questions on this form, inquiry also is made about your adherence to security requirements, your honesty and integrity, vulnerability to exploitation or coercion, falsification, misrepresentation, and any other behavior, activities, or associations that tend to demonstrate a person is not reliable, trustworthy, or loyal. Federal agency records checks may be conducted on your spouse or legally recognized civil union/domestic partner, cohabitant(s), and immediate family members. After an eligibility determination has been completed, you also may be subject to continuous evaluation, which may include periodic reinvestigations, to determine whether retention in your position is clearly consistent with the interests of national security.',
       'The information you provide on this form may be confirmed during the investigation, and may be used for identification purposes throughout the investigation process.',
       '---',
-      '# Your Personal Interview',
+      '# Your personal interview',
       'Some investigations will include an interview with you as a routine part of the investigative process. The investigator may ask you to explain your answers to any question on this form. This provides you the opportunity to update, clarify, and explain information on your form more completely, which often assists in completing your investigation. It is imperative that the interview be conducted as soon as possible after you are contacted. Postponements will delay the processing of your investigation, and declining to be interviewed may result in your investigation being delayed or canceled.',
       'For the interview, you will be required to provide photo identification, such as a valid state driver\'s license. You may be required to provide other documents to verify your identity, as instructed by your investigator. These documents may include certification of any legal name change, Social Security card, passport, and/or your birth certificate. You may also be asked to provide documents regarding information that you provide on this form, or about other matters requiring specific attention. These matters include (a) alien registration or naturalization documentation; (b) delinquent loans or taxes, bankruptcies, judgments, liens, or other financial obligations; (c) agreements involving child custody or support, alimony, or property settlements; (d) arrests, convictions, probation, and/or parole; or (e) other matters described in court records.',
       '---',
-      '# Final Determination on Your Eligibility',
+      '# Final determination on your eligibility',
       'Final determination on your eligibility for a national security position is the responsibility of the Federal agency that requested your investigation and the agency that conducted your investigation. You will be provided the opportunity to explain, refute, or clarify any information before a final decision is made, if an unfavorable decision is considered. The United States Government does not discriminate on the basis of prohibited categories, including but not limited to race, color, religion, sex (including pregnancy and gender identity), national origin, disability, or sexual orientation when granting access to classified information.',
       '---',
-      '# Penalties for Inaccurate or False Statements',
+      '# Penalties for inaccurate or false statements',
       'The U.S. Criminal Code (title 18, section 1001) provides that knowingly falsifying or concealing a material fact is a felony which may result in fines and/or up to five (5) years imprisonment. In addition, Federal agencies generally fire, do not grant a security clearance, or disqualify individuals who have materially and deliberately falsified these forms, and this remains a part of the permanent record for future placements. Your prospects of placement or security clearance are better if you answer all questions truthfully and completely. You will have adequate opportunity to explain any information you provide on this form and to make your comments part of the record.',
       '---',
-      '# Disclosure Information',
+      '# Disclosure information',
       'The information you provide is for the purpose of investigating you for a national security position, and the information will be protected from unauthorized disclosure. The collection, maintenance, and disclosure of background investigative information are governed by the Privacy Act. The agency that requested the investigation and the agency that conducted the investigation have published notices in the Federal Register describing the systems of records in which your records will be maintained. The information you provide on this form, and information collected during an investigation, may be disclosed without your consent by an agency maintaining the information in a system of records as permitted by the Privacy Act [5 U.S.C. 552a(b)], and by routine uses, a list of which are published by the agency in the Federal Register. The office that gave you this form will provide you a copy of its routine uses.',
       'You will not receive prior notice of such disclosures under a routine use.',
       'In addition to those disclosures generally permitted under the Privacy Act, all or a portion of the records or information you provide on this form or during your investigation may be disclosed outside of OPM as a routine use as outlined below.',
       '---',
-      '# Office of Personnel Management (OPM) Routine Uses',
+      '# Office of Personnel Management (OPM) routine uses',
       'OPM has published the following Privacy Act routine uses for its system of records for background investigations:',
       '**a.** To designated officers and employees of agencies, offices, and other establishments in the executive, legislative, and judicial branches of the Federal Government or the Government of the District of Columbia having a need to investigate, evaluate, or make a determination regarding loyalty to the United States; qualifications, suitability, or fitness for Government employment or military service; eligibility for logical or physical access to federally-controlled facilities or information systems; eligibility for access to classified information or to hold a sensitive position; qualifications or fitness to perform work for or on behalf of the Government under contract, grant, or other agreement; or access to restricted areas.',
       '**b.** To an element of the U.S. Intelligence Community as identified in E.O. 12333, as amended, for use in intelligence activities for the purpose of protecting United States national security interests.',
@@ -9412,7 +9460,7 @@ const en = {
       '**z.** To Federal, State, and local government agencies, if necessary, to obtain information from them which will assist OPM in its responsibilities as the authorized Investigation Service Provider in conducting studies and analyses in support of evaluating and improving the effectiveness and efficiency of the background investigation methodologies.',
       '**aa.** To an agency, office, or other establishment in the executive, legislative, or judicial branches of the Federal Government in response to its request, in connection with the classifying of jobs, the letting of a contract, or the issuance of a license, grant, or other benefit by the requesting agency, to the extent that the information is relevant and necessary to the requesting agency’s decision on the matter.',
       '---',
-      '# Public Burden Information',
+      '# Public burden information',
       'Public burden reporting for this collection of information is **estimated to average 150 minutes per response**, including time for reviewing instructions, searching existing data sources, gathering and maintaining the data needed, and completing and reviewing the collection of information. Send comments regarding the burden estimate or any other aspect of this collection of information, including suggestions for reducing this burden, to U.S. Office of Personnel Management, Federal Investigative Services, Attn: OMB Number 3206-0005, 1900 E Street, N.W., Washington, DC 20415. The OMB clearance number, 3206-0005, is currently valid. OPM may not collect this information, and you are not required to respond, unless this number is displayed.'
     ],
     acceptance: {
@@ -9496,6 +9544,54 @@ const en = {
         'In accordance with HIPAA, I understand that I have the right to revoke this authorization at any time by writing to my health care provider/entity. Revocation of this authorization is not effective until received by my health care provider/entity. I understand that I may revoke this authorization, except to the extent that action has already been taken based on this authorization. Further, I understand that this authorization is voluntary. My treatment, payment, enrollment in a health plan, or eligibility for benefits will not be conditioned upon my authorization of this disclosure.',
         'I understand the information disclosed pursuant to this authorization for use by the Federal Government only for purposes provided in the Standard Form 86 will no longer be covered by the HIPAA Privacy Rule, and that the Federal Government may redisclose the information as authorized by law, subject to Privacy Act safeguards.',
         'Photocopies of this authorization with my signature are valid. This authorization is valid for one (1) year from the date signed or upon termination of my affiliation with the Federal Government, whichever is sooner.'
+      ]
+    }
+  },
+  submission: {
+    header: [
+      '## All required fields are complete',
+      'Not a guarantee of acceptance. We are checking that all required fields are complete'
+    ],
+    additional: [
+      '### Additional comments',
+      'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the following release(s). You will not be able to submit until each release below is signed'
+    ],
+    validForm: {
+      certificationItem: 'Certification',
+      generalItem: 'Release of Information & HIPAA',
+      creditItem: 'Credit reporting disclosure'
+    },
+    invalidForm: [
+      '## List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors'
+    ],
+    submissionStatus: {
+      validating: [
+        '## Verifying your information is complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      valid: [
+        '## All required fields are complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      invalid: [
+        '## Some required fields are incomplete'
+      ]
+    },
+    submissionComplete: [
+      '## You are done!',
+      '### Thanks for submitting your SF-86',
+      'Please print and save your submission below,they will be your only copies'
+    ],
+    print: {
+      title: [
+        '## Please print and save your responses',
+        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen.'
+      ],
+      button: 'Save/Print',
+      done: [
+        '## You are done!',
+        '### Thanks for submitting for your SF-86'
       ]
     }
   }

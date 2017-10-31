@@ -8,6 +8,8 @@
 
   &.with-comments {
     border-left: 0.75rem solid $eapp-grey-light;
+    padding-left: 2rem;
+    margin-left: -2.7rem;
   }
 
   > .title {
@@ -165,7 +167,8 @@
         }
 
         > .comments-button {
-          display: inline-block;
+          // This cannot be inline-block because it will wrap on larger screens.
+          display: block;
 
           i {
             margin-left: 1rem;
@@ -206,10 +209,6 @@
         background: $eapp-blue-lightest;
         border: 2px solid $eapp-blue-lighter;
         border-radius: 6px;
-
-        @media screen and (max-width: 850px) {
-          margin: 1.3rem 0;
-        }
 
         h1,
         h2,
@@ -270,31 +269,13 @@
       }
     }
   }
-
-  @media screen and (max-width: 850px) {
-    > .table {
-      margin-left: 6.6rem;
-
-      > .content {
-        > .icon {
-          display: block;
-          float: right;
-          margin-right: 4rem;
-        }
-
-        > .component {
-          display: block;
-        }
-      }
-    }
-  }
 }
 
 // Handle when multiplicity
 .field {
   .field {
     margin-bottom: 0;
-    margin-right: -5.75rem;
+    // margin-right: -5.75rem;
 
     > .table > .content > .component {
       width: 100%;

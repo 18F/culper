@@ -107,143 +107,145 @@ export default class VenturesItem extends ValidationElement {
     return (
       <div className="ventures-item">
         <Field title={i18n.t('foreign.business.ventures.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
-            {...this.props.Name}
-            onUpdate={this.updateName}
-            onError={this.props.onError}
-            className="ventures-name"
-            required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}
-          />
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                className="ventures-name"
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.address')}
-          help="foreign.business.ventures.help.address"
-          adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               help="foreign.business.ventures.help.address"
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
-            {...this.props.Address}
-            onUpdate={this.updateAddress}
-            onError={this.props.onError}
-            className="ventures-address"
-            layout={Location.ADDRESS}
-            addressBooks={this.props.addressBooks}
-            addressBook="ForeignNational"
-            dispatch={this.props.dispatch}
-            geocode={true}
-            required={this.props.required}
-          />
+                    {...this.props.Address}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    className="ventures-address"
+                    layout={Location.ADDRESS}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="ForeignNational"
+                    dispatch={this.props.dispatch}
+                    geocode={true}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.citizenship')}
-          help="foreign.business.ventures.help.citizenship"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.citizenship"
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Citizenship"
-            {...this.props.Citizenship}
-            onUpdate={this.updateCitizenship}
-            onError={this.props.onError}
-            className="ventures-citizenship"
-            multiple={true}
-            required={this.props.required}
-          />
+                   {...this.props.Citizenship}
+                   onUpdate={this.updateCitizenship}
+                   onError={this.props.onError}
+                   className="ventures-citizenship"
+                   multiple={true}
+                   required={this.props.required}
+                   />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.description')}
-          help="foreign.business.ventures.help.description"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.description"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
-            {...this.props.Description}
-            onUpdate={this.updateDescription}
-            onError={this.props.onError}
-            className="ventures-description"
-            required={this.props.required}
-          />
+                    {...this.props.Description}
+                    onUpdate={this.updateDescription}
+                    onError={this.props.onError}
+                    className="ventures-description"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.relationship')}
-          help="foreign.business.ventures.help.relationship"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.relationship"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Relationship"
-            {...this.props.Relationship}
-            onUpdate={this.updateRelationship}
-            onError={this.props.onError}
-            className="ventures-relationship"
-            required={this.props.required}
-          />
+                    {...this.props.Relationship}
+                    onUpdate={this.updateRelationship}
+                    onError={this.props.onError}
+                    className="ventures-relationship"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.dates')}
-          help="foreign.business.ventures.help.dates"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.dates"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            className="ventures-dates"
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     className="ventures-dates"
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.association')}
-          help="foreign.business.ventures.help.association"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.association"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Association"
-            {...this.props.Association}
-            onUpdate={this.updateAssociation}
-            onError={this.props.onError}
-            className="ventures-association"
-            required={this.props.required}
-          />
+                    {...this.props.Association}
+                    onUpdate={this.updateAssociation}
+                    onError={this.props.onError}
+                    className="ventures-association"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.position')}
-          help="foreign.business.ventures.help.position"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.position"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Position"
-            {...this.props.Position}
-            onUpdate={this.updatePosition}
-            onError={this.props.onError}
-            className="ventures-position"
-            required={this.props.required}
-          />
+                {...this.props.Position}
+                onUpdate={this.updatePosition}
+                onError={this.props.onError}
+                className="ventures-position"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.service')}
-          help="foreign.business.ventures.help.service"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.service"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Service"
-            {...this.props.Service}
-            onUpdate={this.updateService}
-            onError={this.props.onError}
-            className="ventures-service"
-            required={this.props.required}
-          />
+                {...this.props.Service}
+                onUpdate={this.updateService}
+                onError={this.props.onError}
+                className="ventures-service"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.support')}
-          help="foreign.business.ventures.help.support"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.support"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Support"
-            {...this.props.Support}
-            onUpdate={this.updateSupport}
-            onError={this.props.onError}
-            className="ventures-support"
-            required={this.props.required}
-          />
+                {...this.props.Support}
+                onUpdate={this.updateSupport}
+                onError={this.props.onError}
+                className="ventures-support"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('foreign.business.ventures.heading.compensation')}
-          help="foreign.business.ventures.help.compensation"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.ventures.help.compensation"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Compensation"
-            {...this.props.Compensation}
-            onUpdate={this.updateCompensation}
-            onError={this.props.onError}
-            className="ventures-compensation"
-            required={this.props.required}
-          />
+                    {...this.props.Compensation}
+                    onUpdate={this.updateCompensation}
+                    onError={this.props.onError}
+                    className="ventures-compensation"
+                    required={this.props.required}
+                    />
         </Field>
       </div>
     )

@@ -2,7 +2,7 @@ import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
 
 export const isInternational = (location) => {
-  return !['United States', 'POSTOFFICE'].includes(location.country)
+  return !['United States', 'POSTOFFICE'].includes((location.country || {}).value)
 }
 
 export default class LocationValidator {
@@ -17,7 +17,7 @@ export default class LocationValidator {
     this.state = data.state
     this.zipcode = data.zipcode
     this.county = data.county
-    this.country = data.country
+    this.country = data.country || {}
   }
 
   canGeocode () {
@@ -41,7 +41,7 @@ export default class LocationValidator {
       state: this.state,
       zipcode: this.zipcode,
       county: this.county,
-      country: this.country,
+      country: (this.country || {}).value || '',
       validated: false
     })
   }
@@ -70,19 +70,19 @@ export default class LocationValidator {
   }
 
   validCountry () {
-    return !!this.country
+    return !!this.country && !!(this.country || {}).value
   }
 
   isDomestic () {
-    return this.country === 'United States'
+    return (this.country || {}).value === 'United States'
   }
 
   isPostOffice () {
-    return this.country === 'POSTOFFICE'
+    return (this.country || {}).value === 'POSTOFFICE'
   }
 
   isInternational () {
-    return !!this.country &&
+    return !!this.validCountry() &&
       !this.isDomestic() &&
       !this.isPostOffice()
   }

@@ -34,31 +34,31 @@ export default class Headings extends ValidationElement {
       <div className="headings">
         <h2>(h2) Section title</h2>
 
-        <Field title="(h3) Name component">
+        <Field optional={true} title="(h3) Name component">
           <Name name="TestName" />
         </Field>
 
-        <Field title="(h3) Date component with no day" adjustFor="labels">
+        <Field optional={true} title="(h3) Date component with no day" adjustFor="labels">
           <DateControl name="TestDateWithNoDay" hideDay={true} />
         </Field>
 
-        <Field title="(h4) Text component" titleSize="h4">
+        <Field optional={true} title="(h4) Text component" titleSize="h4">
           <Text name="TestH4" />
         </Field>
 
-        <Field title="(h5) Text component" titleSize="h5">
+        <Field optional={true} title="(h5) Text component" titleSize="h5">
           <Text name="TestH5" />
         </Field>
 
-        <Field title="(h6) Text component" titleSize="h6">
+        <Field optional={true} title="(h6) Text component" titleSize="h6">
           <Text name="TestH6" />
         </Field>
 
-        <Field title="(h3) Date range component" titleSize="h4" adjustFor="daterange">
+        <Field optional={true} title="(h3) Date range component" titleSize="h4" adjustFor="daterange">
           <DateRange name="TestDateRange" />
         </Field>
 
-        <Field title="(h3) RadioGroup component" adjustFor="buttons">
+        <Field optional={true} title="(h3) RadioGroup component" adjustFor="buttons">
           <RadioGroup>
             <Radio name="citizenship-status-citizen"
                    label={i18n.t('citizenship.status.label.citizenshipstatus.citizen')}
@@ -93,17 +93,17 @@ export default class Headings extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Field title="(h3) Address component" adjustFor="big-buttons">
+        <Field optional={true} title="(h3) Address component" adjustFor="big-buttons">
           <Location name="TestAddress" layout={Location.ADDRESS} />
         </Field>
 
         <Branch label="(h3) Branch component" labelSize="h3" />
 
-        <Field title="(h3) Country component with single value">
+        <Field optional={true} title="(h3) Country component with single value">
           <Country name="TestCountrySingle" />
         </Field>
 
-        <Field title="(h3) Country component with multiple value">
+        <Field optional={true} title="(h3) Country component with multiple value">
           <Country name="TestCountrySingle" multiple={true} />
         </Field>
 
@@ -116,6 +116,7 @@ export default class Headings extends ValidationElement {
                    appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
                    onUpdate={this.updateList}>
           <Field help="identification.contacts.help.phoneNumber"
+                 optional={true}
                  adjustFor="telephone">
             <Telephone name="Telephone" bind={true} />
           </Field>

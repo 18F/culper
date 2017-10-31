@@ -93,7 +93,7 @@ describe('credit component validation', function () {
           Location: {
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.CITY_STATE
           }
         },
@@ -225,7 +225,7 @@ describe('credit component validation', function () {
                 Location: {
                   city: 'Arlington',
                   state: 'Virginia',
-                  country: 'United States',
+                  country: { value: 'United States' },
                   layout: Location.CITY_STATE
                 },
                 Description: {

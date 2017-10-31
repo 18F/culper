@@ -44,7 +44,7 @@ describe('Foreign business ventures component validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           }
         },
@@ -71,9 +71,7 @@ describe('Foreign business ventures component validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           }
         },
         expected: true
@@ -81,10 +79,7 @@ describe('Foreign business ventures component validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' },
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['United States', 'Germany']
           }
         },
         expected: true
@@ -307,14 +302,11 @@ describe('Foreign business ventures component validation', function () {
                 Address: {
                   street: '1234 Some Rd',
                   city: 'Munich',
-                  country: 'Germany',
+                  country: { value: 'Germany' },
                   layout: Location.ADDRESS
                 },
                 Citizenship: {
-                  value: [
-                    { name: 'United States', value: 'United States' },
-                    { name: 'Germany', value: 'Germany' }
-                  ]
+                  value: ['United States', 'Germany']
                 },
                 Description: {
                   value: 'this is the description'

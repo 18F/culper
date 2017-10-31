@@ -13,12 +13,15 @@ fi
 
 ./bin/predeploy.sh $SPACE
 
-if [ $SPACE = 'production' ]; then
+# Use CircleCI's ENV variables
+# TODO: Remove CIRCLE vars and use "staging" space if/when we're in one repo; else when Circle implements `owner` as a job filter.
+if [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
   API_NAME="eqip-prototype-api"
   API_MANIFEST="manifest-api.yml"
   FRONTEND_NAME="eqip-prototype"
   FRONTEND_MANIFEST="manifest-frontend.yml"
-elif [ $SPACE = 'staging' ]; then
+elif [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
+  SPACE="staging"
   API_NAME="eqip-prototype-api-staging"
   API_MANIFEST="manifest-api-staging.yml"
   FRONTEND_NAME="eqip-prototype-staging"

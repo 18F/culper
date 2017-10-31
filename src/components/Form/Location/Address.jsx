@@ -60,8 +60,8 @@ export default class Address extends ValidationElement {
     this.update({zipcode: event.target.value})
   }
 
-  updateCountry (event) {
-    this.update({country: event.target.value})
+  updateCountry (values) {
+    this.update({country: values})
   }
 
   updateAddressType (cb) {
@@ -74,19 +74,19 @@ export default class Address extends ValidationElement {
       }
     }))
 
-    let country = ''
+    let country = { value: '' }
     let city = this.props.city
 
     // POSTOFFICE is used for APO, FPO and DPO
     switch (cb.value) {
       case 'United States':
       case 'POSTOFFICE':
-        country = cb.value
+        country.value = cb.value
         break
     }
 
     // Clear the city when moving *from* APO/FPO and *to* something else.
-    if (cb.value !== 'POSTOFFICE' && this.props.country === 'POSTOFFICE') {
+    if (cb.value !== 'POSTOFFICE' && this.props.country.value === 'POSTOFFICE') {
       city = ''
     }
 
@@ -113,9 +113,9 @@ export default class Address extends ValidationElement {
 
   addressTypeFunc (props) {
     switch (true) {
-      case props.value === this.props.country:
+      case props.value === this.props.country.value:
         return true
-      case props.value === 'International' && !['United States', 'POSTOFFICE'].includes(this.props.country):
+      case props.value === 'International' && !['United States', 'POSTOFFICE'].includes(this.props.country.value):
         return true
       default:
         return false
@@ -248,10 +248,10 @@ export default class Address extends ValidationElement {
 
         <div className="fields">
           <div>
-            <Show when={this.props.country === 'United States'}>
+            <Show when={this.props.country.value === 'United States'}>
               <div>
                 <Street name="address"
-                        className="mailing street"
+                        className="mailing street required"
                         label={this.props.streetLabel}
                         placeholder={this.props.streetPlaceholder}
                         value={this.props.street}
@@ -272,7 +272,7 @@ export default class Address extends ValidationElement {
                         onBlur={this.props.onBlur}
                         />
                 <City name="city"
-                      className="city"
+                      className="city required"
                       label={this.props.cityLabel}
                       value={this.props.city}
                       onChange={this.updateCity}
@@ -283,7 +283,7 @@ export default class Address extends ValidationElement {
                       />
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
-                                 className="state"
+                                 className="state required"
                                  label={this.props.stateLabel}
                                  value={this.props.state}
                                  includeStates="true"
@@ -296,7 +296,7 @@ export default class Address extends ValidationElement {
                   <ZipCode name="zipcode"
                            ref="us_zipcode"
                            key="us_zipcode"
-                           className="zipcode"
+                           className="zipcode required"
                            label={this.props.zipcodeLabel}
                            value={this.props.zipcode}
                            onChange={this.updateZipcode}
@@ -308,12 +308,12 @@ export default class Address extends ValidationElement {
                 </div>
               </div>
             </Show>
-            <Show when={!['United States', 'POSTOFFICE'].includes(this.props.country)}>
+            <Show when={!['United States', 'POSTOFFICE'].includes(this.props.country.value)}>
               <div>
                 <Street name="address"
                         label={this.props.streetLabel}
                         placeholder={this.props.streetPlaceholder}
-                        className="mailing street"
+                        className="mailing street required"
                         value={this.props.street}
                         onChange={this.updateStreet}
                         onError={this.handleError}
@@ -332,7 +332,7 @@ export default class Address extends ValidationElement {
                         onBlur={this.props.onBlur}
                         />
                 <City name="city"
-                      className="city"
+                      className="city required"
                       label={this.props.cityLabel}
                       value={this.props.city}
                       onChange={this.updateCity}
@@ -342,10 +342,11 @@ export default class Address extends ValidationElement {
                       required={this.props.required}
                       />
                 <Country name="country"
+                         className="required"
                          label={this.props.countryLabel}
-                         value={this.props.country}
+                         {...this.props.country}
                          excludeUnitedStates="true"
-                         onChange={this.updateCountry}
+                         onUpdate={this.updateCountry}
                          onError={this.handleError}
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}
@@ -353,12 +354,12 @@ export default class Address extends ValidationElement {
                          />
               </div>
             </Show>
-            <Show when={this.props.country === 'POSTOFFICE'}>
+            <Show when={this.props.country.value === 'POSTOFFICE'}>
               <div>
                 <Street name="address"
                         label={i18n.t('address.apoFpo.street.label')}
                         placeholder={this.props.postOfficeStreetPlaceholder}
-                        className="mailing street"
+                        className="mailing street required"
                         value={this.props.street}
                         onChange={this.updateStreet}
                         onError={this.handleError}
@@ -398,7 +399,7 @@ export default class Address extends ValidationElement {
                 </RadioGroup>
                 <div className="state-zip-wrap">
                   <ApoFpo name="apoFpo"
-                          className="state"
+                          className="state required"
                           label={this.props.postOfficeStateLabel}
                           value={this.props.state}
                           onChange={this.updateState}
@@ -411,7 +412,7 @@ export default class Address extends ValidationElement {
                     <ZipCode name="zipcode"
                              ref="apo_zipcode"
                              key="apo_zipcode"
-                             className="zipcode"
+                             className="zipcode required"
                              label={this.props.postOfficeZipcodeLabel}
                              value={this.props.zipcode}
                              onChange={this.updateZipcode}
@@ -433,7 +434,7 @@ export default class Address extends ValidationElement {
 Address.defaultProps = {
   label: i18n.t('address.label'),
   tab: (input) => { input.focus() },
-  country: 'United States',
+  country: { value: 'United States' },
   onError: (value, arr) => { return arr },
   streetLabel: i18n.t('address.us.street.label'),
   postOfficeStreetPlaceholder: i18n.t('address.apoFpo.street.placeholder'),
@@ -449,12 +450,12 @@ Address.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required) {
-        switch (props.country) {
+        switch (props.country.value) {
           case 'United States':
           case 'POSTOFFICE':
             return !!props.street && !!props.city && !!props.state && !!props.zipcode
           default:
-            return !!props.street && !!props.city && !!props.country
+            return !!props.street && !!props.city && !!props.country.value
         }
       }
       return true

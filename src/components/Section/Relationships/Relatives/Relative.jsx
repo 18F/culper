@@ -419,6 +419,7 @@ export default class Relative extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.name')}
+               optional={true}
           scrollIntoView={this.props.scrollIntoView}>
             <Name name="Name"
                   className="relative-name"
@@ -467,7 +468,7 @@ export default class Relative extends ValidationElement {
                help="relationships.relatives.help.citizenship">
           <Country name="Citizenship"
                    multiple={true}
-                   value={this.props.Citizenship.value}
+                   {...this.props.Citizenship}
                    className="relative-citizenship"
                    onError={this.props.onError}
                    onUpdate={this.updateCitizenship}
@@ -490,7 +491,8 @@ export default class Relative extends ValidationElement {
                     onError={this.props.onError}>
             </Branch>
             <Show when={this.props.MaidenSameAsListed === 'No'}>
-              <Field scrollIntoView={this.props.scrollIntoView}>
+              <Field optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Name name="MaidenName"
                       className="relative-maidenname eapp-field-wrap"
                       {...this.props.MaidenName}
@@ -516,6 +518,7 @@ export default class Relative extends ValidationElement {
                             scrollIntoView={this.props.scrollIntoView}>
             <div>
               <Field title={i18n.t('relationships.relatives.heading.needmore')}
+                     optional={true}
                      className="more title"
                      scrollIntoView={this.props.scrollIntoView}>
                 <Svg src="/img/date-down-arrow.svg" className="more arrow" />
@@ -542,6 +545,7 @@ export default class Relative extends ValidationElement {
         </Branch>
         <Show when={this.props.IsDeceased === 'No'}>
           <Field title={i18n.t('relationships.relatives.heading.deceased.address')}
+                 optional={true}
                  help="relationships.relatives.help.address"
                  scrollIntoView={this.props.scrollIntoView}
                  adjustFor="address">
@@ -690,6 +694,7 @@ export default class Relative extends ValidationElement {
 
             <Field title={i18n.t('relationships.relatives.heading.us.address')}
                    titleSize="h3"
+                   optional={true}
                    scrollIntoView={this.props.scrollIntoView}
                    help="relationships.relatives.help.courtaddress"
                    adjustFor="labels">
@@ -708,7 +713,7 @@ export default class Relative extends ValidationElement {
 
         <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased === 'No'}>
           <div>
-            <Show when={this.props.Address && this.props.Address.country === 'United States'}>
+            <Show when={this.props.Address && (this.props.Address.country || {}).value === 'United States'}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
                        comments={false}
@@ -810,7 +815,7 @@ export default class Relative extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.props.Address && !['United States', 'POSTOFFICE'].includes(this.props.Address.country)}>
+            <Show when={this.props.Address && !['United States', 'POSTOFFICE'].includes((this.props.Address.country || {}).value)}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.firstcontact')}
                        help="relationships.relatives.help.firstcontact"
@@ -1032,7 +1037,7 @@ Relative.defaultProps = {
   Name: {},
   Birthdate: {},
   Birthplace: {},
-  Citizenship: [],
+  Citizenship: {},
   MaidenSameAsListed: '',
   MaidenName: {},
   Aliases: [],

@@ -84,7 +84,7 @@ describe('Education component validation', function () {
         state: {
           HasAttended: 'Yes',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -179,7 +179,7 @@ describe('Education component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -393,7 +393,7 @@ describe('Education component validation', function () {
                 },
                 Type: 'High School',
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -434,7 +434,7 @@ describe('Education component validation', function () {
                 Reference: null,
                 Type: 'High School',
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

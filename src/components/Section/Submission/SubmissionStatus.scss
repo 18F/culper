@@ -1,0 +1,77 @@
+.submission-status {
+  margin-bottom: 4rem;
+
+  .progress-container {
+    display: table;
+    margin-bottom: 4.1rem;
+
+    .review-icon {
+      display: table-cell;
+      width: 12%;
+    }
+
+    .review-icon img {
+      width: 7rem;
+    }
+    .progress-outline {
+      display: table-cell;
+      position: relative;
+      width: 88%;
+      height: 2rem;
+      border-radius: 4px;
+      vertical-align: middle;
+
+      .progress-default {
+        background-color: #ffffff;
+      }
+
+      .progress {
+        height: 2rem;
+        width: 0;
+        background-color: #5b606b;
+        border-radius: 4px;
+      }
+
+      .progress.transition {
+        transition: width 1s;
+      }
+    }
+    .icon-container {
+      display: table-cell;
+      vertical-align: middle;
+      .icon {
+        width: 4.7rem;
+        height: 4.7rem;
+        display: inline-block;
+        position: relative;
+        left: -0.6rem;
+      }
+      .icon svg {
+        fill: #5b606b;
+      }
+    }
+  }
+}
+
+.submission-status.valid {
+  .progress-container {
+    .progress-outline .progress-default .progress {
+      background-color: #47a362;
+    }
+    .icon-container .icon svg {
+      fill: #47a362;
+    }
+  }
+}
+
+.submission-status.invalid {
+  .progress-container {
+    .progress-outline .progress-default .progress {
+      background-color: #e21c3c;
+    }
+    .icon-container .icon svg {
+      fill: #e21c3c;
+    }
+  }
+}
+

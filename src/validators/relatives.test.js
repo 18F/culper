@@ -131,7 +131,7 @@ describe('Relatives validation', function () {
       {
         state: {
           Birthplace: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             state: 'VA',
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
@@ -162,9 +162,7 @@ describe('Relatives validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           }
         },
         expected: true
@@ -172,10 +170,7 @@ describe('Relatives validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' },
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['United States', 'Germany']
           }
         },
         expected: true
@@ -378,7 +373,7 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -401,13 +396,11 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           IsDeceased: 'Yes',
           Birthplace: {
-            country: 'Germany',
+            country: { value: 'Germany' },
             city: 'Munich',
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           }
@@ -417,17 +410,15 @@ describe('Relatives validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
-            country: 'Germany',
+            country: { value: 'Germany' },
             city: 'Munich',
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -440,17 +431,15 @@ describe('Relatives validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
-            country: 'Germany',
+            country: { value: 'Germany' },
             city: 'Munich',
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           Address: {
-            country: 'POSTOFFICE',
+            country: { value: 'POSTOFFICE' },
             address: '1234 Some Rd',
             state: 'APO',
             city: 'APO',
@@ -463,12 +452,10 @@ describe('Relatives validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
-            country: 'Germany',
+            country: { value: 'Germany' },
             city: 'Munich',
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           }
@@ -478,9 +465,7 @@ describe('Relatives validation', function () {
       {
         state: {
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           }
         },
         expected: false
@@ -512,19 +497,17 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
-            country: 'United States',
+            country: { value: 'United States' },
             city: 'Arlington',
             state: 'VA',
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -539,20 +522,18 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Abroad: ''
@@ -567,20 +548,18 @@ describe('Relatives validation', function () {
           },
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Abroad: ''
@@ -595,20 +574,18 @@ describe('Relatives validation', function () {
           },
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Abroad: ''
@@ -642,19 +619,17 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -668,20 +643,18 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           DocumentNumber: {}
@@ -692,20 +665,18 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           DocumentNumber: {
@@ -742,18 +713,16 @@ describe('Relatives validation', function () {
           Relation: 'Father',
           IsDeceased: 'No',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -767,20 +736,18 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           CourtName: {}
@@ -791,20 +758,18 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           CourtName: {
@@ -840,19 +805,17 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Arlington',
             state: 'Virginia',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -866,20 +829,18 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           CourtAddress: {}
@@ -890,13 +851,11 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           Birthplace: {
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.BIRTHPLACE_WITHOUT_COUNTY
           },
           IsDeceased: 'No',
@@ -904,7 +863,7 @@ describe('Relatives validation', function () {
             street: '1234 Some Rd',
             city: 'Munich',
             zipcode: '22202',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           CourtAddress: {
@@ -912,7 +871,7 @@ describe('Relatives validation', function () {
             city: 'Arlington',
             zipcode: '22202',
             state: 'Virginia',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.US_ADDRESS
           }
         },
@@ -938,9 +897,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           IsDeceased: 'No'
         },
@@ -950,9 +907,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           },
           IsDeceased: 'No',
           Document: ''
@@ -963,9 +918,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           },
           IsDeceased: 'No',
           Document: 'Employment'
@@ -992,9 +945,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           IsDeceased: 'No'
         },
@@ -1004,9 +955,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           },
           IsDeceased: 'No',
           ResidenceDocumentNumber: {}
@@ -1017,9 +966,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           },
           IsDeceased: 'No',
           ResidenceDocumentNumber: {
@@ -1048,9 +995,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'United States', value: 'United States' }
-            ]
+            value: ['United States']
           },
           IsDeceased: 'No'
         },
@@ -1060,9 +1005,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           },
           IsDeceased: 'No',
           Expiration: {}
@@ -1073,9 +1016,7 @@ describe('Relatives validation', function () {
         state: {
           Relation: 'Father',
           Citizenship: {
-            value: [
-              { name: 'Germany', value: 'Germany' }
-            ]
+            value: ['Germany']
           },
           IsDeceased: 'No',
           Expiration: {
@@ -1100,7 +1041,7 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -1116,7 +1057,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           FirstContact: {}
@@ -1129,7 +1070,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           FirstContact: {
@@ -1154,7 +1095,7 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -1170,7 +1111,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           LastContact: {}
@@ -1183,7 +1124,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           LastContact: {
@@ -1208,7 +1149,7 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -1224,7 +1165,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Methods: []
@@ -1237,7 +1178,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Methods: ['In person', 'Electronic']
@@ -1257,7 +1198,7 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -1273,7 +1214,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Frequency: ''
@@ -1286,7 +1227,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Frequency: 'Daily'
@@ -1306,7 +1247,7 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -1322,7 +1263,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Employer: {}
@@ -1335,7 +1276,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           Employer: {
@@ -1357,7 +1298,7 @@ describe('Relatives validation', function () {
         state: {
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -1373,7 +1314,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           EmployerAddress: {}
@@ -1386,13 +1327,13 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           EmployerAddress: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'United States',
+            country: { value: 'United States' },
             layout: Location.STREET_CITY
           }
         },
@@ -1412,7 +1353,7 @@ describe('Relatives validation', function () {
           Citizenship: [ 'Germany' ],
           IsDeceased: 'No',
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -1429,7 +1370,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           HasAffiliation: ''
@@ -1443,7 +1384,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           HasAffiliation: 'No'
@@ -1457,7 +1398,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           HasAffiliation: 'Yes',
@@ -1472,7 +1413,7 @@ describe('Relatives validation', function () {
           Address: {
             street: '1234 Some Rd',
             city: 'Munich',
-            country: 'Germany',
+            country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
           HasAffiliation: 'Yes',
@@ -1542,13 +1483,11 @@ describe('Relatives validation', function () {
                 Birthplace: {
                   city: 'Arlington',
                   state: 'Virginia',
-                  country: 'United States',
+                  country: { value: 'United States' },
                   layout: Location.BIRTHPLACE_WITHOUT_COUNTY
                 },
                 Citizenship: {
-                  value: [
-                    { name: 'United States', value: 'United States' }
-                  ]
+                  value: ['United States']
                 },
                 MaidenName: {
                   first: 'Foo',
@@ -1592,7 +1531,7 @@ describe('Relatives validation', function () {
                 ],
                 IsDeceased: 'No',
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',

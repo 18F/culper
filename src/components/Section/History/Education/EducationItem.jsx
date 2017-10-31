@@ -179,6 +179,7 @@ export default class EducationItem extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('history.education.heading.address')}
+                 optional={true}
                  help="history.education.help.address"
                  comments={true}
                  commentsName="Comments"
