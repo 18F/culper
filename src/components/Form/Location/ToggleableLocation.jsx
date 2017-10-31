@@ -349,7 +349,6 @@ ToggleableLocation.errors = [
                   valid = valid && !!props.country && !!props.country.value
                   break
                 default:
-                  // console.warn(`Could not map location property '${f}' in ToggleableLocation `)
                   valid = false
               }
             }
@@ -364,7 +363,6 @@ ToggleableLocation.errors = [
                   valid = valid && !!props.country && !!props.country.value
                   break
                 default:
-                  // console.warn(`Could not map location property '${f}' in ToggleableLocation `)
                   valid = false
               }
             }
