@@ -218,8 +218,8 @@ function mapStateToProps (state) {
   return {
     Psychological: psychological,
     Competence: psychological.Competence,
-    Consultations: psychological.Consultation,
-    Hospitalizations: psychological.Hospitalization,
+    Consultations: psychological.Consultations,
+    Hospitalizations: psychological.Hospitalizations,
     Diagnoses: psychological.Diagnoses,
     ExistingConditions: psychological.ExistingConditions,
     Comments: psychological.Comments || {},
