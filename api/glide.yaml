@@ -30,3 +30,4 @@ import:
 - package: github.com/go-pg/pg
   version: ^6.4.9
 - package: github.com/RobotsAndPencils/go-saml
+- package: github.com/kardianos/osext

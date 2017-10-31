@@ -1,5 +1,5 @@
-hash: a61992ae8990565359f5832840915bb1547ef3ffcd3dbd3327e7015aea778f70
-updated: 2017-10-24T15:10:43.179171082Z
+hash: 75b8b80a0c8a0eb671e789332c322ff760165467a2127b9e6c75ef6740fca5cd
+updated: 2017-10-31T13:36:58.607115431Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -16,7 +16,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: 96977cbd42e27be71f9f731db6634123de7e861a
 - name: github.com/go-pg/pg
-  version: 583144043717b73fa07a49b6182a722a0452181f
+  version: 7d77324e5a031dbddae4716ecae22540ad8bf9dd
   subpackages:
   - internal
   - internal/parser
@@ -37,6 +37,8 @@ imports:
   version: 0eeaf8392f5b04950925b8a69fe70f110fa7cbfc
 - name: github.com/jinzhu/inflection
   version: 1c35d901db3da928c72a72d8458480cc9ade058f
+- name: github.com/kardianos/osext
+  version: ae77be60afb1dcacde03767a8c37337fad28ac14
 - name: github.com/keighl/mandrill
   version: 5d7133fb578a9504f8ab549737c993422f65a000
 - name: github.com/kylelemons/go-gypsy
@@ -53,10 +55,16 @@ imports:
   version: 68fecaef60268522d2ac3f0123cec9d3bcab7b6e
 - name: github.com/mitchellh/mapstructure
   version: 06020f85339e21b2478f756a78e295255ffa4d6a
+- name: github.com/nu7hatch/gouuid
+  version: 179d4d0c4d8d407a32af483c2354df1d2c91e6c3
 - name: github.com/RobotsAndPencils/go-saml
   version: fb13cb52a46b55a9f20e6d497658dd494c7c1ef1
+  subpackages:
+  - util
 - name: github.com/russross/blackfriday
   version: 0b647d0506a698cca42caca173e55559b12a69f2
+- name: github.com/shurcooL/sanitized_anchor_name
+  version: 86672fcb3f950f35f2e675df2240550f2a50762f
 - name: github.com/skip2/go-qrcode
   version: 695fc75a09738f9be56aaa3aecfd7dac28e66b63
   subpackages:
