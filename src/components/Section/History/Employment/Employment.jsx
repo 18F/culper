@@ -140,8 +140,6 @@ Employment.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return props.List.every(x => {
-      return props.ListBranch === 'No' && new EmploymentValidator(x.Item).isValid()
-    })
+    return HistoryEmploymentValidator(props)
   }
 }

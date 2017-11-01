@@ -4,7 +4,19 @@ import ReferenceValidator from './reference'
 import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear,
          validDateField, withinSevenYears, BranchCollection } from './helpers'
 
-export default class EmploymentValidator {
+export default class HistoryEmploymentValidator {
+  constructor (data = {}) {
+    this.List = data.List || {}
+  }
+
+  isValid () {
+    return (this.List.items || []).every(x => {
+      return new EmploymentValidator(x.Item).isValid()
+    })
+  }
+}
+
+export class EmploymentValidator {
   constructor (state = {}, props = {}) {
     this.employmentActivity = state.EmploymentActivity || { value: null }
     this.dates = state.Dates

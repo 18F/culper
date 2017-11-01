@@ -11,7 +11,19 @@ const withinThreeYears = (from, to) => {
   return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
 }
 
-export default class ResidenceValidator {
+export default class HistoryResidenceValidator {
+  constructor (data = {}) {
+    this.List = data.List || {}
+  }
+
+  isValid () {
+    return (this.List.items || []).every(x => {
+      return new ResidenceValidator(x.Item, null).isValid()
+    })
+  }
+}
+
+export class ResidenceValidator {
   constructor (state = {}, props = {}) {
     this.dates = state.Dates
     this.address = state.Address

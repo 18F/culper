@@ -3,8 +3,9 @@ import { env } from '../config'
 
 class Api {
   constructor () {
+    console.log('env: ', env)
     this.proxy = axios.create({
-      baseURL: env.ApiBaseURL(),
+      baseURL: env ? env.ApiBaseURL() : '/api',
       timeout: 5000
     })
   }
@@ -71,7 +72,7 @@ class Api {
       token = this.getQueryValue('token')
     }
 
-    if (env.IsTest()) {
+    if (env && env.IsTest()) {
       token = window.token
     }
 
