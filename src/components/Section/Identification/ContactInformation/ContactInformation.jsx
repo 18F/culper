@@ -69,7 +69,7 @@ export default class ContactInformation extends SubsectionElement {
 
   render () {
     const klass = `${this.props.className || ''}`.trim()
-    let phoneNumbers = this.props.filterEmpty
+    let phoneNumbers = this.props.shouldFilterEmptyNumbers
           ? this.props.PhoneNumbers.filter(x => {
             const item = x.Item || {}
             return item.number || item.noNumber
@@ -159,7 +159,7 @@ ContactInformation.defaultProps = {
   Emails: [],
   PhoneNumbers: [],
   minimumPhoneNumbers: 2,
-  filterEmpty: false,
+  shouldFilterEmptyNumbers: false,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
