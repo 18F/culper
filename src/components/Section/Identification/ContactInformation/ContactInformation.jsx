@@ -69,7 +69,7 @@ export default class ContactInformation extends SubsectionElement {
 
   render () {
     const klass = `${this.props.className || ''}`.trim()
-    let phoneNumbers = this.props.filterEmpty
+    let phoneNumbers = this.props.shouldFilterEmptyNumbers
           ? this.props.PhoneNumbers.filter(x => {
             const item = x.Item || {}
             return item.number || item.noNumber
@@ -85,11 +85,13 @@ export default class ContactInformation extends SubsectionElement {
         <Field title={i18n.t('identification.contacts.title')}
                titleSize="h2"
                className="no-margin-bottom"
+               optional={true}
                />
 
         <Field title={i18n.t('identification.contacts.heading.email')}
                titleSize="h3"
                help="identification.contacts.help.email"
+               optional={true}
                className="no-margin-bottom">
           {i18n.m('identification.contacts.para.email')}
         </Field>
@@ -120,6 +122,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <Field title={i18n.t('identification.contacts.heading.phoneNumber')}
                titleSize="h3"
+               optional={true}
                help="identification.contacts.help.phoneNumber"
                className="no-margin-bottom">
           {i18n.m('identification.contacts.para.phoneNumber')}
@@ -156,7 +159,7 @@ ContactInformation.defaultProps = {
   Emails: [],
   PhoneNumbers: [],
   minimumPhoneNumbers: 2,
-  filterEmpty: false,
+  shouldFilterEmptyNumbers: false,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
