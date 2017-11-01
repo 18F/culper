@@ -86,7 +86,7 @@ export default class Supervisor extends ValidationElement {
                    className="text supervisor-email"
                    onUpdate={this.onUpdate.bind(this, 'Email')}
                    onError={this.props.onError}
-                   required={this.props.required}
+                   required={(this.state.EmailNotApplicable || {}).applicable === false ? false : this.props.required}
                    />
           </NotApplicable>
         </Field>
