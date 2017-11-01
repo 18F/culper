@@ -3,7 +3,7 @@ import { validGenericTextfield } from './helpers'
 import DateRangeValidator from './daterange'
 
 export default class OtherNamesValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.hasOtherNames = data.HasOtherNames
     this.list = data.List
   }

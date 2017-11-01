@@ -6,11 +6,11 @@ import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGener
 
 export default class HistoryEmploymentValidator {
   constructor (data = {}) {
-    this.List = data.List || {}
+    this.List = data.List || []
   }
 
   isValid () {
-    const items = this.List.items || []
+    const items = this.List || []
     if (items.length === 0) {
       return false
     }
