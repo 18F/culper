@@ -3,7 +3,6 @@ import { env } from '../config'
 
 class Api {
   constructor () {
-    console.log('env: ', env)
     this.proxy = axios.create({
       baseURL: env ? env.ApiBaseURL() : '/api',
       timeout: 5000

@@ -6,21 +6,9 @@ import NameValidator from './name'
 
 export default class HistoryEducationValidator {
   constructor (data = {}) {
-    this.List = data.List || {}
-  }
-
-  isValid () {
-    return (this.List.items || []).every(x => {
-      return new EducationItemValidator(x.Item, x.Item).isValid()
-    })
-  }
-}
-
-export class EducationValidator {
-  constructor (state = {}, props = {}) {
-    this.hasAttended = state.HasAttended
-    this.hasDegree10 = state.HasDegree10
-    this.list = state.List || []
+    this.hasAttended = data.HasAttended
+    this.hasDegree10 = data.HasDegree10
+    this.list = data.List || []
   }
 
   validAttendance () {

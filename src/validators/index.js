@@ -9,7 +9,7 @@ import PhysicalValidator from './physical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
-import HistoryEducationValidator, { EducationValidator, EducationItemValidator } from './education'
+import HistoryEducationValidator, { EducationItemValidator } from './education'
 import FederalServiceValidator, { FederalServiceItemValidator } from './federalservice'
 import SelectiveServiceValidator, { hideSelectiveService } from './selectiveservice'
 import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
@@ -113,7 +113,6 @@ export {
   HistoryEmploymentValidator,
   EmploymentValidator,
   HistoryEducationValidator,
-  EducationValidator,
   EducationItemValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,

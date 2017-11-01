@@ -17,7 +17,12 @@ export default class HistoryResidenceValidator {
   }
 
   isValid () {
-    return (this.List.items || []).every(x => {
+    const items = this.List.items || []
+    if (items.length === 0) {
+      return false
+    }
+
+    return items.every(x => {
       return new ResidenceValidator(x.Item, null).isValid()
     })
   }

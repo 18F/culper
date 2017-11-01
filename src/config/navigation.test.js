@@ -9,10 +9,14 @@ describe('The navigation config', () => {
     let count = 0
     navigationWalker((path, child) => {
       if (child.validator) {
+        const valid = new child.validator({}).isValid()
+        if (valid) {
+          console.log(`Section ${child.name} validates with empty data set.`)
+        }
         count++
-        expect(new child.validator({}).isValid()).toBe(false)
+        expect(valid).toBe(false)
       }
     })
-    expect(count).toBe(73)
+    expect(count).toBe(72)
   })
 })

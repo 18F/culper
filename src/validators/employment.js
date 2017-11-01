@@ -10,7 +10,12 @@ export default class HistoryEmploymentValidator {
   }
 
   isValid () {
-    return (this.List.items || []).every(x => {
+    const items = this.List.items || []
+    if (items.length === 0) {
+      return false
+    }
+
+    return items.every(x => {
       return new EmploymentValidator(x.Item).isValid()
     })
   }
