@@ -1,15 +1,14 @@
-hash: f823ec75644d65a609021504eb79a075c03c6461569fa8c3ac2e5a01887dc436
-updated: 2017-07-26T17:34:13.339480974Z
+hash: 75b8b80a0c8a0eb671e789332c322ff760165467a2127b9e6c75ef6740fca5cd
+updated: 2017-10-31T13:36:58.607115431Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
   subpackages:
   - lib/goose
 - name: cloud.google.com/go
-  version: a2e776edd7c5463ed144b91a28640db71619ae3c
+  version: fa9c7cafa442499dc3026b8a0077f52e02f557d1
   subpackages:
   - compute/metadata
-  - internal
 - name: github.com/cloudfoundry-community/go-cfenv
   version: f920e9562d5f951cbf11785728f67258c38a10d0
 - name: github.com/dgrijalva/jwt-go
@@ -17,7 +16,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: 96977cbd42e27be71f9f731db6634123de7e861a
 - name: github.com/go-pg/pg
-  version: aa64be8c8bd776472952262525292f5f403bdfb9
+  version: 7d77324e5a031dbddae4716ecae22540ad8bf9dd
   subpackages:
   - internal
   - internal/parser
@@ -25,13 +24,11 @@ imports:
   - orm
   - types
 - name: github.com/go-sql-driver/mysql
-  version: 2e00b5cd70399450106cec6431c2e2ce3cae5034
+  version: fade21009797158e7b79e04c340118a9220c6f9e
 - name: github.com/golang/protobuf
-  version: 8ee79997227bf9b34611aee7946ae64735e6fd93
+  version: 1643683e1b54a9e88ad26d98f81400c8c9d9f4f9
   subpackages:
   - proto
-- name: github.com/googleapis/gax-go
-  version: da06d194a00e19ce00d9011a13931c3f6f6887c7
 - name: github.com/gorilla/context
   version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
 - name: github.com/gorilla/handlers
@@ -39,7 +36,9 @@ imports:
 - name: github.com/gorilla/mux
   version: 0eeaf8392f5b04950925b8a69fe70f110fa7cbfc
 - name: github.com/jinzhu/inflection
-  version: 74387dc39a75e970e7a3ae6a3386b5bd2e5c5cff
+  version: 1c35d901db3da928c72a72d8458480cc9ade058f
+- name: github.com/kardianos/osext
+  version: ae77be60afb1dcacde03767a8c37337fad28ac14
 - name: github.com/keighl/mandrill
   version: 5d7133fb578a9504f8ab549737c993422f65a000
 - name: github.com/kylelemons/go-gypsy
@@ -47,50 +46,50 @@ imports:
   subpackages:
   - yaml
 - name: github.com/lib/pq
-  version: 5bf161122cd640c2a5a2c1d7fa49ea9befff31dd
+  version: b609790bd85edf8e9ab7e0f8912750a786177bcf
   subpackages:
   - oid
 - name: github.com/mattn/go-sqlite3
-  version: 2d44decb4941c9cdf72c22297b7890faf7da9bcb
+  version: 615c193e01d8d462eef7ee390171506f531a1c9a
 - name: github.com/microcosm-cc/bluemonday
-  version: f77f16ffc87a6a58814e64ae72d55f9c41374e6d
+  version: 68fecaef60268522d2ac3f0123cec9d3bcab7b6e
 - name: github.com/mitchellh/mapstructure
-  version: 5a0325d7fafaac12dda6e7fb8bd222ec1b69875e
+  version: 06020f85339e21b2478f756a78e295255ffa4d6a
+- name: github.com/nu7hatch/gouuid
+  version: 179d4d0c4d8d407a32af483c2354df1d2c91e6c3
+- name: github.com/RobotsAndPencils/go-saml
+  version: fb13cb52a46b55a9f20e6d497658dd494c7c1ef1
+  subpackages:
+  - util
 - name: github.com/russross/blackfriday
   version: 0b647d0506a698cca42caca173e55559b12a69f2
 - name: github.com/shurcooL/sanitized_anchor_name
-  version: 1dba4b3954bc059efc3991ec364f9f9a35f597d2
+  version: 86672fcb3f950f35f2e675df2240550f2a50762f
 - name: github.com/skip2/go-qrcode
-  version: 5bfceac8c4950ff8f735525ddcde5a6b08d77ab6
+  version: 695fc75a09738f9be56aaa3aecfd7dac28e66b63
   subpackages:
   - bitset
   - reedsolomon
 - name: github.com/ziutek/mymysql
-  version: 501176fc99be4b4fb0fd01ae8d6af5d8bb408e44
+  version: 1d19cbf98d83564cc561192ae7d7183d795f7ac7
   subpackages:
   - godrv
   - mysql
   - native
 - name: golang.org/x/crypto
-  version: ede567c8e044a5913dad1d1af3696d9da953104c
+  version: 2509b142fb2b797aa7587dad548f113b2c0f20ce
   subpackages:
   - bcrypt
   - blowfish
 - name: golang.org/x/net
-  version: 4971afdc2f162e82d185353533d3cf16188a9f4e
+  version: 4b14673ba32bee7f5ac0f990a48f033919fd418b
   subpackages:
   - context
   - context/ctxhttp
   - html
   - html/atom
-  - http2
-  - http2/hpack
-  - idna
-  - internal/timeseries
-  - lex/httplex
-  - trace
 - name: golang.org/x/oauth2
-  version: d5040cddfc0da40b408c9a1da4728662435176a9
+  version: bb50c06baba3d0c76f9d125c0719093e315b5b44
   subpackages:
   - facebook
   - github
@@ -100,7 +99,7 @@ imports:
   - jwt
   - linkedin
 - name: google.golang.org/appengine
-  version: ca59ef35f409df61fa4a5f8290ff289b37eccfb8
+  version: a2e0dc829727a4f957a7428b1f322805cfc1f362
   subpackages:
   - internal
   - internal/app_identity
@@ -111,17 +110,4 @@ imports:
   - internal/remote_api
   - internal/urlfetch
   - urlfetch
-- name: google.golang.org/grpc
-  version: cc3363f26e0b0908b9bea322aa3a3489bd930913
-  subpackages:
-  - codes
-  - credentials
-  - grpclog
-  - internal
-  - metadata
-  - naming
-  - peer
-  - stats
-  - tap
-  - transport
 testImports: []
