@@ -614,7 +614,7 @@ function mapStateToProps (state) {
   }
 
   if (identification.OtherNames && identification.OtherNames.List) {
-    for (let item of ((identification.OtherNames.List || {}).items || [])) {
+    for (let item of identification.OtherNames.List) {
       names.push(item.Name)
     }
   }

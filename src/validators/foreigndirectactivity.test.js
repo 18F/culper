@@ -76,7 +76,7 @@ describe('Foreign Direct Activity validation', function () {
       }
     ]
     tests.forEach(test => {
-      expect(new ForeignDirectActivityValidator(null, test.props).isValid()).toBe(test.expected)
+      expect(new ForeignDirectActivityValidator(test.props).isValid()).toBe(test.expected)
     })
   })
 })

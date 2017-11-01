@@ -141,6 +141,9 @@ describe('The foreign section', () => {
             last: 'smith'
           },
           OtherNames: {
+            HasOtherNames: {
+              value: 'Yes'
+            },
             List: [
               {
                 first: 'johnathan',

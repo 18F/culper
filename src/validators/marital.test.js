@@ -95,15 +95,18 @@ describe('Marital validation', function () {
     const tests = [
       {
         state: {
-          Status: 'Never'
+          Status: {
+            value: 'Never'
+          }
 
         },
         expected: true
       },
       {
         state: {
-          Status: 'Nope'
-
+          Status: {
+            value: 'Nope'
+          }
         },
         expected: false
       }
@@ -117,28 +120,33 @@ describe('Marital validation', function () {
     const tests = [
       {
         state: {
-          Status: 'Nope'
-
+          Status: {
+            value: 'Nope'
+          }
         },
         expected: false
       },
       {
         state: {
-          Status: 'Never'
-
+          Status: {
+            value: 'Never'
+          }
         },
         expected: true
       },
       {
         state: {
-          Status: 'InCivilUnion'
-
+          Status: {
+            value: 'InCivilUnion'
+          }
         },
         expected: false
       },
       {
         state: {
-          Status: 'Annulled',
+          Status: {
+            value: 'Annulled'
+          },
           DivorcedList: {
             branch: { value: '' },
             items: [{Item: {}}]

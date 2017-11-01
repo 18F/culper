@@ -6,28 +6,28 @@ export default class CitizenshipValidator {
   constructor (state = {}, props = {}) {
     this.citizenshipStatus = (state.CitizenshipStatus || {}).value
     this.abroadDocumentation = (state.AbroadDocumentation || {}).value
-    this.explanation = (state.Explanation || {}).value
+    this.explanation = (state.Explanation || {})
     this.documentNumber = (state.DocumentNumber || {}).value
     this.documentIssued = state.DocumentIssued
     this.documentName = state.DocumentName
     this.documentExpiration = state.DocumentExpiration
     this.documentType = (state.DocumentType || {}).value
     this.placeIssued = state.PlaceIssued
-    this.certificateNumber = (state.CertificateNumber || {}).value
+    this.certificateNumber = (state.CertificateNumber || {})
     this.certificateIssued = state.CertificateIssued
     this.certificateName = state.CertificateName
-    this.certificateCourtName = (state.CertificateCourtName || {}).value
+    this.certificateCourtName = (state.CertificateCourtName || {})
     this.certificateCourtAddress = state.CertificateCourtAddress
     this.bornOnMilitaryInstallation = (state.BornOnMilitaryInstallation || {}).value
-    this.militaryBase = (state.MilitaryBase || {}).value
+    this.militaryBase = (state.MilitaryBase || {})
     this.entryDate = state.EntryDate
     this.entryLocation = state.EntryLocation
     this.priorCitizenship = (state.PriorCitizenship || {}).value
-    this.hasAlienRegistration = ((state.HasAlienRegistration || {}).value || {}).value
-    this.alienRegistrationNumber = (state.AlienRegistrationNumber || {}).value
+    this.hasAlienRegistration = (state.HasAlienRegistration || {}).value
+    this.alienRegistrationNumber = (state.AlienRegistrationNumber || {})
     this.alienRegistrationExpiration = state.AlienRegistrationExpiration
     this.basis = (state.Basis || {}).value
-    this.permanentResidentCardNumber = (state.PermanentResidentCardNumber || {}).value
+    this.permanentResidentCardNumber = (state.PermanentResidentCardNumber || {})
     this.residenceStatus = (state.ResidenceStatus || {}).value
   }
 

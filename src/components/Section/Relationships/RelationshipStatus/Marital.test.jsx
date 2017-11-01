@@ -33,15 +33,20 @@ describe('The relationship status component', () => {
     const expected = {
       name: 'relatives',
       Status: { value: 'Divorced' },
-      DivorcedList: [
-        {
-          Divorce: {
-            Status: { value: 'Divorced' },
-            BirthPlace: { country: 'United States' },
-            Deceased: { value: 'Yes' }
+      DivorcedList: {
+        branch: {
+          value: 'Yes'
+        },
+        items: [
+          {
+            Divorce: {
+              Status: { value: 'Divorced' },
+              BirthPlace: { country: 'United States' },
+              Deceased: { value: 'Yes' }
+            }
           }
-        }
-      ],
+        ]
+      },
       onUpdate: () => { updates++ }
     }
 
