@@ -7,13 +7,13 @@ import OtherNamesValidator, { OtherNameValidator } from './othernames'
 import PassportValidator from './passport'
 import PhysicalValidator from './physical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
-import ResidenceValidator from './residence'
-import EmploymentValidator from './employment'
-import EducationValidator, { EducationItemValidator } from './education'
+import HistoryResidenceValidator, { ResidenceValidator } from './residence'
+import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
+import HistoryEducationValidator, { EducationItemValidator } from './education'
 import FederalServiceValidator, { FederalServiceItemValidator } from './federalservice'
-import SelectiveServiceValidator from './selectiveservice'
+import SelectiveServiceValidator, { hideSelectiveService } from './selectiveservice'
 import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
-import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydisciplinary'
+import MilitaryDisciplinaryValidator, { ProcedureValidator, hideDisciplinaryProcedures } from './militarydisciplinary'
 import MilitaryForeignValidator, { ForeignServiceValidator, ForeignContactValidator } from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
@@ -31,7 +31,7 @@ import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import DiagnosisValidator, { ExistingConditionsDiagnosisValidator } from './diagnosis'
 import ExistingConditionsValidator from './existingconditions'
-import PsychologicalValidator from './psychological'
+import PsychologicalValidator, { hideExistingConditions } from './psychological'
 import CompetenceValidator from './competence'
 import TreatmentValidator from './treatment'
 import CitizenshipValidator from './citizenship'
@@ -108,9 +108,11 @@ export {
   PhysicalValidator,
   GamblingValidator,
   GamblingItemValidator,
+  HistoryResidenceValidator,
   ResidenceValidator,
+  HistoryEmploymentValidator,
   EmploymentValidator,
-  EducationValidator,
+  HistoryEducationValidator,
   EducationItemValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
@@ -247,5 +249,8 @@ export {
   nameIsEmpty,
   OrderValidator,
   CompetenceOrderValidator,
-  ConsultationOrderValidator
+  ConsultationOrderValidator,
+  hideDisciplinaryProcedures,
+  hideExistingConditions,
+  hideSelectiveService
 }

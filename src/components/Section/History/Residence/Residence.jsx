@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ResidenceValidator } from '../../../../validators'
+import { HistoryResidenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
@@ -127,8 +127,6 @@ Residence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return props.value.every(x => {
-      return new ResidenceValidator(x.Item, null).isValid()
-    })
+    return new HistoryResidenceValidator({ List: props.value }).isValid()
   }
 }
