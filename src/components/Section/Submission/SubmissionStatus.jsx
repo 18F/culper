@@ -63,10 +63,13 @@ export default class SubmissionStatus extends React.Component {
         { text }
         <div className="progress-container">
           <div className="review-icon">
-            <Show when={!this.props.transition || this.props.valid}>
+            <Show when={this.props.transition}>
+              <img src="/img/review-checking.svg" />
+            </Show>
+            <Show when={!this.props.transition && this.props.valid}>
               <img src="/img/review-correct-all.svg" />
             </Show>
-            <Show when={this.props.transition && !this.props.valid}>
+            <Show when={!this.props.transition && !this.props.valid}>
               <img src="/img/review-error.svg" />
             </Show>
           </div>
