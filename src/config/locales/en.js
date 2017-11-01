@@ -36,6 +36,10 @@ const en = {
       username: 'Username',
       password: 'Password'
     },
+    show: {
+      title: 'Show password',
+      text: 'Show password'
+    },
     forgot: {
       title: 'Forgot password',
       text: 'Forgot password'

@@ -64,34 +64,26 @@ a:focus {
       width: 21%;
       height: 100vh;
       min-width: 32rem;
-
-      // @media screen and (max-width: 768px) {
-      //   width: 29.8%;
-      // }
     }
 
     .eapp-structure-right {
       width: 79%;
       padding: 0 17.5%;
 
-      // @media screen and (max-width: 1380px) {
-      //   padding: 0 12%;
-      // }
-
-      // @media screen and (max-width: 1024px) {
-      //   padding: 0 5.5%;
-      // }
-
       &.eapp-title {
         vertical-align: bottom;
       }
 
-      > .eapp-form,
+      .eapp-form,
       > .title {
         width: 100%;
         max-width: 106rem;
         min-width: 70rem;
         margin: 0 auto 2rem auto;
+      }
+
+      .eapp-form {
+        padding-bottom: 2rem;
       }
     }
   }
@@ -178,6 +170,15 @@ a:focus {
         }
       }
     }
+  }
+}
+
+.header-container {
+  // This is necessary to make sure the header is always on top of content
+  .header {
+    position: relative;
+    z-index: 1000;
+    overflow: hidden;
   }
 }
 

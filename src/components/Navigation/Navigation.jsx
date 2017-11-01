@@ -7,6 +7,19 @@ import { isActive, isValid, hasErrors } from './navigation-helpers'
 import { ToggleItem } from './ToggleItem'
 
 class Navigation extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      selected: navigation[0].name
+    }
+
+    this.onToggle = this.onToggle.bind(this)
+  }
+
+  onToggle (item) {
+    this.setState({ selected: item.visible ? item.title : '' })
+  }
+
   /**
    * Get the classes to be applied to a link. This includes the following:
    *  - active
@@ -95,12 +108,14 @@ class Navigation extends React.Component {
 
       // Collapsed state properties
       if (section.subsections) {
+        const visible = this.state.selected === section.name
         return (
           <ToggleItem title={section.name}
                       section={true}
                       number={sectionNum}
                       className={sectionClass}
-                      visible={isActive(url, pathname)}>
+                      visible={visible}
+                      onToggle={this.onToggle}>
             {this.subsectionWalker(section, url)}
           </ToggleItem>
         )
