@@ -140,6 +140,6 @@ Employment.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return HistoryEmploymentValidator(props)
+    return new HistoryEmploymentValidator(props).isValid()
   }
 }
