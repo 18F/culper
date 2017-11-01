@@ -63,7 +63,6 @@ export default class UnlawfulItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.unlawful.heading.incident')}
-          help="legal.technology.unlawful.help.incident"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Incident"
@@ -94,7 +93,6 @@ export default class UnlawfulItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.technology.unlawful.heading.action')}
-          help="legal.technology.unlawful.help.action"
           adjustFor="textarea"
           scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Action"

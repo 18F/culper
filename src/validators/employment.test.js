@@ -28,7 +28,7 @@ describe('Employment component validation', function () {
             value: 'Station 1'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -44,7 +44,7 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -131,7 +131,7 @@ describe('Employment component validation', function () {
             value: 'Station 1'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -147,7 +147,7 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -243,7 +243,7 @@ describe('Employment component validation', function () {
             value: 'IT Support'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -253,7 +253,7 @@ describe('Employment component validation', function () {
           PhysicalAddress: {
             HasDifferentAddress: 'Yes',
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -273,7 +273,7 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -360,7 +360,7 @@ describe('Employment component validation', function () {
             value: 'US'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -370,7 +370,7 @@ describe('Employment component validation', function () {
           PhysicalAddress: {
             HasDifferentAddress: 'Yes',
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -387,7 +387,7 @@ describe('Employment component validation', function () {
           },
           Supervisor: {
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -505,7 +505,7 @@ describe('Employment component validation', function () {
             value: 'Boss'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -515,7 +515,7 @@ describe('Employment component validation', function () {
           PhysicalAddress: {
             HasDifferentAddress: 'Yes',
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -579,7 +579,7 @@ describe('Employment component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -668,7 +668,7 @@ describe('Employment component validation', function () {
               value: 'user@local.dev'
             },
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -815,7 +815,7 @@ describe('Employment component validation', function () {
           PhysicalAddress: {
             HasDifferentAddress: 'Yes',
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',
@@ -863,7 +863,7 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Address: {
-            country: 'United States',
+            country: { value: 'United States' },
             street: '1234 Some Rd',
             city: 'Arlington',
             state: 'Virginia',
@@ -966,7 +966,7 @@ describe('Employment component validation', function () {
               value: 'homer@simpson.com'
             },
             Address: {
-              country: 'United States',
+              country: { value: 'United States' },
               street: '1234 Some Rd',
               city: 'Arlington',
               state: 'Virginia',

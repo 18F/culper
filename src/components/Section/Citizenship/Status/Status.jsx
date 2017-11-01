@@ -466,7 +466,7 @@ export default class Status extends SubsectionElement {
               scrollIntoView={this.props.scrollIntoView}>
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
-                       value={this.props.PriorCitizenship.first}
+                       {...this.props.PriorCitizenship}
                        multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}
@@ -732,7 +732,7 @@ export default class Status extends SubsectionElement {
               scrollIntoView={this.props.scrollIntoView}>
               <Country name="PriorCitizenship"
                        className="prior-citizenship"
-                       value={this.props.PriorCitizenship.first}
+                       {...this.props.PriorCitizenship}
                        multiple={true}
                        onUpdate={this.updatePriorCitizenship}
                        onError={this.handleError}

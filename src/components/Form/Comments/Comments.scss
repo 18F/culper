@@ -1,13 +1,20 @@
 @import 'eqip-colors';
 
 .comments {
+  margin-top: 1rem;
+
   &.active {
     border-left: 0.75rem solid $eapp-grey-light;
-    padding-left: 1rem;
+    padding-left: 2rem;
+    margin-left: -2.7rem;
   }
 
-  h4 {
-    margin-top: 0;
+  .title {
+    display: block;
+    margin-top: 1rem;
+    font-family: inherit;
+    font-weight: normal;
+    line-height: 1.6;
   }
 
   > a {
@@ -40,7 +47,7 @@
       text-decoration: none;
 
       span {
-        border-bottom: 1px $eapp-red dashed;
+        border-bottom: 1px $eapp-blue dashed;
       }
     }
   }

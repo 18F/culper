@@ -13,7 +13,7 @@ describe('Diagnoses validation', function () {
                 value: 'Circuit Court'
               },
               Address: {
-                country: 'United States',
+                country: { value: 'United States' },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'Virginia',
@@ -92,7 +92,7 @@ describe('Diagnoses validation', function () {
                   value: 'Circuit Court'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
@@ -113,7 +113,7 @@ describe('Diagnoses validation', function () {
                   value: 'Circuit Court'
                 },
                 Address: {
-                  country: 'United States',
+                  country: { value: 'United States' },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'Virginia',
