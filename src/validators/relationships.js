@@ -1,7 +1,7 @@
 import { allHaveStatus, anyHasStatus } from './helpers'
 
 export default class RelationshipsValidator {
-  constructor (state, props = {}) {
+  constructor (state = {}, props = {}) {
     this.completed = props.Completed
     this.relationships = props.Relationships
   }

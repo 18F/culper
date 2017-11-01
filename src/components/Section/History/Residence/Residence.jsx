@@ -127,6 +127,6 @@ Residence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new HistoryResidenceValidator({ List: props.value }).isValid()
+    return new HistoryResidenceValidator(props.value).isValid()
   }
 }

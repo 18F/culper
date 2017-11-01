@@ -6,7 +6,7 @@ import { validGenericMonthYear, validGenericTextfield, validBranch } from './hel
  * Validates an entire Bankruptcy section
  */
 export default class BankruptcyValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.hasBankruptcy = data.HasBankruptcy
     this.list = data.List
     this.listBranch = data.ListBranch

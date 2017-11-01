@@ -1,7 +1,7 @@
 import { validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class ContactInformationValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.emails = state.Emails
     this.phoneNumbers = state.PhoneNumbers
   }
