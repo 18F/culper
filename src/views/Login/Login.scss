@@ -56,25 +56,30 @@
       width: 15rem;
       height: 5rem;
     }
+
+    .peek {
+      width: 100%;
+      text-align: right;
+    }
   }
 
-  .login-oauth {
-    margin-top: 1rem;
-    padding: 1rem;
-    max-width: 48rem;
-    margin-right: auto;
-    margin-left: auto;
+  .login-sso {
     clear: both;
-    float: none;
+    padding: 1rem;
+    width: 100%;
+    text-align: center;
 
-    button {
-      margin-left: 1rem;
+    button,
+    a {
+      i {
+        margin-left: 1rem;
+      }
     }
   }
 
   .login-twofactor {
     margin-top: 1rem;
-    padding: 1rem;
+    padding: 2rem inherit 1rem;
     margin-right: auto;
     margin-left: auto;
     clear: both;

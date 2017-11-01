@@ -38,8 +38,16 @@ func main() {
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
 	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
-	o.HandleFunc("/{service}", handlers.AuthServiceHandler)
-	o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
+
+	if cf.SamlEnabled() {
+		o.HandleFunc("/saml", handlers.SamlServiceHandler)
+		o.HandleFunc("/saml/callback", handlers.SamlCallbackHandler)
+	}
+
+	if cf.OAuthEnabled() {
+		o.HandleFunc("/{service}", handlers.AuthServiceHandler)
+		o.HandleFunc("/{service}/callback", handlers.AuthCallbackHandler)
+	}
 
 	// Account specific actions
 	a := r.PathPrefix("/me").Subrouter().Inject(handlers.JwtTokenValidatorHandler)

@@ -23,6 +23,11 @@ var (
 
 // AuthServiceHandler is the initial entry point for authentication.
 func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
+	if !cf.OAuthEnabled() {
+		http.Error(w, "OAuth is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	vars := mux.Vars(r)
 	service := vars["service"]
 
@@ -36,6 +41,11 @@ func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 // AuthCallbackHandler handles responses from the authentication provider.
 func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
+	if !cf.OAuthEnabled() {
+		http.Error(w, "OAuth is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	vars := mux.Vars(r)
 	service := vars["service"]
 
