@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { OtherNamesValidator, OtherNameValidator } from '../../../../validators'
+import { IdentificationOtherNamesValidator, OtherNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
@@ -141,7 +141,7 @@ OtherNames.defaultProps = {
   subsection: 'othernames',
   dispatch: () => {},
   validator: (state, props) => {
-    return new OtherNamesValidator(props, props).isValid()
+    return new IdentificationOtherNamesValidator(props, props).isValid()
   },
   defaultState: true,
   required: false

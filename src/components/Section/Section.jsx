@@ -36,7 +36,7 @@ class Section extends React.Component {
     let name = props.section
     let sub = props.subsection
     this.props.dispatch(updateSection(name, sub))
-    this.props.dispatch(push(`/form/${props.section}/${props.subsection || ''}`))
+    this.props.dispatch(push(`/form/${props.section}/${props.subsection || 'intro'}`))
   }
 
   render () {

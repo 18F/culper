@@ -1,5 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import { IdentificationSSNValidator } from '../../../../validators'
 import { validSSN } from '../../../../validators/helpers'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, SSN, Show } from '../../../Form'
@@ -133,7 +134,7 @@ ApplicantSSN.defaultProps = {
   dispatch: () => {},
   required: false,
   validator: (state, props) => {
-    return validSSN(props.ssn) && props.verified
+    return new IdentificationSSNValidator(props).isValid()
   }
 }
 

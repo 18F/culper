@@ -9552,6 +9552,9 @@ const en = {
     }
   },
   submission: {
+    destination: {
+      submit: 'Submit'
+    },
     header: [
       '## All required fields are complete',
       'Not a guarantee of acceptance. We are checking that all required fields are complete'

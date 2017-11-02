@@ -1,4 +1,4 @@
-import EducationValidator, { EducationItemValidator } from './education'
+import HistoryEducationValidator, { EducationItemValidator } from './education'
 import Location from '../components/Form/Location'
 
 describe('Education component validation', function () {
@@ -35,7 +35,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new HistoryEducationValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 
@@ -370,7 +370,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validAttendance()).toBe(test.expected)
+      expect(new HistoryEducationValidator(test.state, null).validAttendance()).toBe(test.expected)
     })
   })
 
@@ -465,7 +465,7 @@ describe('Education component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EducationValidator(test.state, null).validList()).toBe(test.expected)
+      expect(new HistoryEducationValidator(test.state, null).validList()).toBe(test.expected)
     })
   })
 })
