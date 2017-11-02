@@ -62,7 +62,7 @@ __snapshots__/
 TAGS
 
 # Test artifacts
-/jest
+/jest*
 /specs/reports
 /specs/screenshots
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { EmploymentValidator } from '../../../../validators'
+import { HistoryEmploymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
@@ -140,8 +140,6 @@ Employment.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return props.List.every(x => {
-      return props.ListBranch === 'No' && new EmploymentValidator(x.Item).isValid()
-    })
+    return new HistoryEmploymentValidator(props).isValid()
   }
 }

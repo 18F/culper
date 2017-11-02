@@ -3,7 +3,7 @@ import { Link } from 'react-router'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation, env } from '../../config'
-import { validations, isActive, isValid, hasErrors } from '../../validators/navigation'
+import { isActive, isValid, hasErrors } from './navigation-helpers'
 import { ToggleItem } from './ToggleItem'
 
 class Navigation extends React.Component {

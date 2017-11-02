@@ -1,8 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { navigation } from '../../config'
 import AuthenticatedView from '../../views/AuthenticatedView'
-import { sectionsTotal, sectionsCompleted } from '../../validators/navigation'
+import { sectionsTotal, sectionsCompleted } from '../Navigation/navigation-helpers'
 
 class ProgressBar extends React.Component {
   render () {

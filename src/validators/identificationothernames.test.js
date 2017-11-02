@@ -1,5 +1,4 @@
-import OtherNamesValidator from './othernames'
-import { OtherNameValidator } from './othernames'
+import IdentificationOtherNamesValidator, { OtherNameValidator } from './identificationothernames'
 
 describe('OtherNames validation', function () {
   it('should validate has other names', function () {
@@ -31,7 +30,7 @@ describe('OtherNames validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherNamesValidator(test.state, null).validHasOtherNames()).toBe(test.expected)
+      expect(new IdentificationOtherNamesValidator(test.state, null).validHasOtherNames()).toBe(test.expected)
     })
   })
 
@@ -116,7 +115,7 @@ describe('OtherNames validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new OtherNamesValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new IdentificationOtherNamesValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 
@@ -205,7 +204,7 @@ describe('OtherNames validation', function () {
             },
             to: {
               date: new Date('1/1/2012')
-            },
+            }
           }
         },
         expected: false
@@ -218,7 +217,7 @@ describe('OtherNames validation', function () {
             },
             to: {
               date: null
-            },
+            }
           }
         },
         expected: false

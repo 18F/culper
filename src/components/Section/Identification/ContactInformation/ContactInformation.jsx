@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ContactInformationValidator, ContactEmailValidator, ContactPhoneNumberValidator } from '../../../../validators'
+import { IdentificationContactInformationValidator, ContactEmailValidator, ContactPhoneNumberValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Email, Accordion, Telephone } from '../../../Form'
 import { Summary, TelephoneSummary } from '../../../Summary'
@@ -166,7 +166,7 @@ ContactInformation.defaultProps = {
   subsection: 'contacts',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ContactInformationValidator(props, props).isValid()
+    return new IdentificationContactInformationValidator(props).isValid()
   },
   defaultState: true
 }
