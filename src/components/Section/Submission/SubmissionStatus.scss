@@ -3,11 +3,17 @@
 
   .progress-container {
     display: table;
+    table-layout: fixed;
     margin-bottom: 4.1rem;
+    width: 100%;
+    max-width: 64rem;
+    @media only screen and (max-width: 1000px) {
+      max-width: 100%;
+    }
 
     .review-icon {
       display: table-cell;
-      width: 12%;
+      width: 7.5rem;
       height: 109px;
 
       img {
@@ -32,7 +38,7 @@
     .progress-outline {
       display: table-cell;
       position: relative;
-      width: 88%;
+      width: 82%;
       height: 2rem;
       border-radius: 4px;
       vertical-align: middle;
