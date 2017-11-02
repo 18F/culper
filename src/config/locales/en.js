@@ -9567,7 +9567,7 @@ const en = {
     },
     invalidForm: [
       '### List of incomplete sections',
-      'Use the list below to complete all incomplete sections or sections with errors'
+      'Use the list below to complete all incomplete sections or sections with errors.'
     ],
     submissionStatus: {
       validating: [
@@ -9576,7 +9576,10 @@ const en = {
       ],
       valid: [
         '## All required fields are complete',
-        'Not a guarantee of acceptance, but all required fields are complete. Please sign the releases below and submit your form.'
+        'Not a guarantee of acceptance, but all required fields are complete.'
+      ],
+      valid2: [
+        'Please sign the releases below and submit your form.'
       ],
       invalid: [
         '## Some required fields are incomplete',

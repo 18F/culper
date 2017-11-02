@@ -8,7 +8,6 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
-import Print from '../Print/Print'
 import { push } from '../../../middleware/history'
 import { Link } from 'react-router'
 
@@ -29,7 +28,7 @@ class Submission extends SectionElement {
   onSubmit () {
     // TODO: Generate has code here and send to print screen when
     // merged with persistence updates
-    this.props.dispatch(push('/form/submit/print'))
+    this.props.dispatch(push('/form/print'))
   }
 
   /**
@@ -76,10 +75,6 @@ class Submission extends SectionElement {
             />
           </SubmissionStatus>
         </SectionView>
-        <SectionView name="print">
-          <Print />
-        </SectionView>
-
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
             <InvalidForm sections={sectionsStatus} />

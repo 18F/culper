@@ -8,10 +8,26 @@
     .review-icon {
       display: table-cell;
       width: 12%;
+      height: 109px;
+
+      img {
+        transition: opacity 0.1s;
+      }
+      img.opacity-1 {
+        opacity: 1;
+      }
+      img.opacity-0 {
+        opacity: 0;
+      }
     }
 
     .review-icon img {
       width: 7rem;
+      opacity: 1;
+      position: absolute;
+    }
+    .review-icon .transition {
+      transition: opacity 0.3s;
     }
     .progress-outline {
       display: table-cell;
@@ -45,9 +61,23 @@
         display: inline-block;
         position: relative;
         left: -0.6rem;
+        svg {
+          transition: transform 0.1s;
+        }
+        .scale-up {
+          svg {
+            transform: scale(1)
+          }
+        }
+        .scale-down {
+          svg {
+            transform: scale(0)
+          }
+        }
       }
       .icon svg {
         fill: #5b606b;
+        position: absolute;
       }
     }
   }
