@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { EducationValidator, EducationItemValidator } from '../../../../validators'
+import { HistoryEducationValidator, EducationItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
@@ -78,6 +78,6 @@ Education.defaultProps = {
   subsection: 'education',
   dispatch: () => {},
   validator: (state, props) => {
-    return new EducationValidator(props.value, props.value).isValid()
+    return new HistoryEducationValidator(props).isValid()
   }
 }

@@ -19,7 +19,7 @@ export const hideSelectiveService = (store = {}) => {
 }
 
 export default class SelectiveServiceValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.wasBornAfter = data.WasBornAfter
     this.hasRegistered = data.HasRegistered
     this.registrationNumber = data.RegistrationNumber
