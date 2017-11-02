@@ -171,7 +171,7 @@ class Print extends SectionElement {
         </div>
         <div className="print-view">
           <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-            <SectionView name=""
+            <SectionView name="intro"
               back=""
               backLabel=""
               next=""
