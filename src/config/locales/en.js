@@ -228,17 +228,17 @@ const en = {
       month: {
         notfound: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         min: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         max: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         }
       },
