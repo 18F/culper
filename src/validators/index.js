@@ -1,3 +1,4 @@
+import { validateWorld } from './world'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import ContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './contactinformation'
@@ -94,6 +95,7 @@ import { nameIsEmpty } from './helpers'
 import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } from './order'
 
 export {
+  validateWorld,
   BankruptcyValidator,
   BankruptcyItemValidator,
   BirthPlaceValidator,
