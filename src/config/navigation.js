@@ -253,6 +253,14 @@ const navigation = [
     url: 'submit',
     showNumber: false,
     exclude: true
+  },
+  {
+    title: 'Print',
+    name: 'print',
+    url: 'print',
+    showNumber: false,
+    exclude: true,
+    hidden: true
   }
 ]
 

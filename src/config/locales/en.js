@@ -9569,20 +9569,24 @@ const en = {
       creditItem: 'Credit reporting disclosure'
     },
     invalidForm: [
-      '## List of incomplete sections',
-      'Use the list below to complete all incomplete sections or sections with errors'
+      '### List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors.'
     ],
     submissionStatus: {
       validating: [
         '## Verifying your information is complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Checking your form...'
       ],
       valid: [
         '## All required fields are complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Not a guarantee of acceptance, but all required fields are complete.'
+      ],
+      valid2: [
+        'Please sign the releases below and submit your form.'
       ],
       invalid: [
-        '## Some required fields are incomplete'
+        '## Some required fields are incomplete',
+        'Please fix the errors listed below.'
       ]
     },
     submissionComplete: [
