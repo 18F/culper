@@ -1,5 +1,5 @@
 .mobile-visible {
-  display: none !important;
+  display: none;
   visibility: hidden;
 }
 
@@ -165,14 +165,8 @@
   .eapp-structure-wrap > .eapp-structure-row > .eapp-navigation {
     width: 100%;
 
-    .sticky-container {
-      position: relative;
-      top: unset;
-      width: unset;
-      min-width: unset;
-      margin-top: 6rem;
-      padding-left: 0;
-      padding-right: 0;
+    .sticky .contents {
+      width: 100%;
     }
 
     .form-navigation {
@@ -188,7 +182,7 @@
     padding: 1rem !important;
     width: 100%;
 
-    > .eapp-form {
+    .eapp-form {
       width: 100% !important;
       max-width: initial;
       min-width: initial;

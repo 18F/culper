@@ -31,28 +31,12 @@
   padding: 0 5rem 5rem 5rem;
   margin: 0 -17.5%;
 
-  // @media screen and (max-width: 1380px) {
-  //   margin: 0 -12%;
-  // }
-
-  // @media screen and (max-width: 1024px) {
-  //   margin: 0 -5.5%;
-  // }
-
   > .caption {
     display: block;
     padding: 1rem 10%;
     background-color: #fff;
     border-bottom: solid 1px #e5e5e5;
     font-weight: 600;
-
-    // @media screen and (max-width: 1380px) {
-    //   padding: 1rem 7.5%;
-    // }
-
-    // @media screen and (max-width: 1024px) {
-    //   padding: 1rem 5.5%;
-    // }
 
     .svg {
       height: 2.5rem !important;
@@ -65,14 +49,6 @@
     line-height: 5rem;
     min-height: 5rem;
     padding: 0 10%;
-
-    // @media screen and (max-width: 1380px) {
-    //   padding: 0 7.5%;
-    // }
-
-    // @media screen and (max-width: 1024px) {
-    //   padding: 0 5.5%;
-    // }
   }
 
   .items {
@@ -89,14 +65,6 @@
       padding: 1rem 10% 0;
       overflow: hidden;
       border-left: 0.4rem solid $eapp-blue;
-
-      // @media screen and (max-width: 1380px) {
-      //   padding: 1rem 7.5% 0;
-      // }
-
-      // @media screen and (max-width: 1024px) {
-      //   padding: 1rem 5.5% 0;
-      // }
 
       h2 {
         margin-top: 10rem;
@@ -130,14 +98,6 @@
     padding: 1rem 10%;
     transition: border-left-color 0.3s;
     border-right: 0.4rem solid #fff;
-
-    // @media screen and (max-width: 1380px) {
-    //   padding: 1rem 7.5%;
-    // }
-
-    // @media screen and (max-width: 1024px) {
-    //   padding: 1rem 5.5%;
-    // }
 
     &.close {
       border-left: 0.4rem solid #fff;
@@ -196,14 +156,6 @@
       text-overflow: ellipsis;
       transition: border-left-color 0.3s;
       border-left: 0.4rem solid #fff;
-
-      // @media screen and (max-width: 1380px) {
-      //   padding-left: 7.5%;
-      // }
-
-      // @media screen and (max-width: 1024px) {
-      //   padding-left: 5.5%;
-      // }
 
       &.open {
         border-left-color: $eapp-blue;
@@ -275,76 +227,6 @@
           text-align: right;
           height: 4.9rem;
         }
-
-        // @media screen and (max-width: 1800px) {
-        //   > span:nth-of-type(2) {
-        //     > strong,
-        //     > strong * {
-        //       max-width: 48rem;
-        //     }
-
-        //     &.has-content > strong,
-        //     &.has-content > strong * {
-        //       max-width: 32rem;
-        //     }
-        //   }
-        // }
-
-        // @media screen and (max-width: 1380px) {
-        //   > span:nth-of-type(2) {
-        //     > strong,
-        //     > strong * {
-        //       max-width: 38rem;
-        //     }
-
-        //     &.has-content > strong,
-        //     &.has-content > strong * {
-        //       max-width: 28rem;
-        //     }
-        //   }
-        // }
-
-        // @media screen and (max-width: 1025px) {
-        //   > span:nth-of-type(2) {
-        //     > strong,
-        //     > strong * {
-        //       max-width: 32rem;
-        //     }
-
-        //     &.has-content > strong,
-        //     &.has-content > strong * {
-        //       max-width: 22rem;
-        //     }
-        //   }
-        // }
-
-        // @media screen and (max-width: 640px) {
-        //   > span:nth-of-type(2) {
-        //     > strong,
-        //     > strong * {
-        //       max-width: 28rem;
-        //     }
-
-        //     &.has-content > strong,
-        //     &.has-content > strong * {
-        //       max-width: 22rem;
-        //     }
-        //   }
-        // }
-
-        // @media screen and (max-width: 590px) {
-        //   > span:nth-of-type(2) {
-        //     > strong,
-        //     > strong * {
-        //       max-width: 20rem;
-        //     }
-
-        //     &.has-content > strong,
-        //     &.has-content > strong * {
-        //       max-width: 16rem;
-        //     }
-        //   }
-        // }
       }
 
       .svg.incomplete {
@@ -409,14 +291,6 @@
 
   .append-button {
     padding: 0 10%;
-
-    // @media screen and (max-width: 1380px) {
-    //   padding: 0 7.5%;
-    // }
-
-    // @media screen and (max-width: 1024px) {
-    //   padding: 0 5.5%;
-    // }
   }
 }
 
@@ -464,18 +338,20 @@ button.usa-button-outline {
         .left.open {
           width: 90%;
           transition: width 300ms ease-out;
-          //padding-top: 1rem;
+
           > a,
           > span > span > strong,
           > span > span {
             max-height: 3rem;
           }
+
           vertical-align: middle;
           line-height: 3rem;
 
           .button-with-icon {
             margin-top: 0.7rem;
             margin-left: 2rem;
+
             span.toggle {
               width: 4rem;
               border-bottom: 1px dashed #0071bc;
@@ -488,6 +364,7 @@ button.usa-button-outline {
             display: none;
           }
         }
+
         .right.remove {
           /** Allow for sliding in animation **/
           padding: 0;
@@ -497,11 +374,12 @@ button.usa-button-outline {
           height: 0;
         }
       }
-
     }
+
     .details {
       /* Need to compensate for space used up by accordion row */
       padding-top: 8.6rem;
+
       > .close {
         opacity: 0;
         transition: opacity 300ms ease-out;

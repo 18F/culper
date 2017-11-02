@@ -101,8 +101,11 @@ describe('The Dropdown component', () => {
   })
 
   it('enboldens matching text', () => {
-    const expected = <ReactMarkdown containerTagName="div" parserOptions={{}} source="**Germ**any (DE)" />
+    const expected = <ReactMarkdown containerTagName="div" source="**Germ**any (DE)" />
     const actual = renderSuggestion({ text: 'DE', value: 'Germany' }, { query: 'Germ' })
     expect(actual).toEqual(expected)
+
+    const html = '<div><p><strong><!-- react-text: 4 -->Germ<!-- /react-text --></strong><!-- react-text: 5 -->any (DE)<!-- /react-text --></p></div>'
+    expect(mount(expected).html()).toBe(html)
   })
 })
