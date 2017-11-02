@@ -2,7 +2,7 @@ import navigation, { navigationWalker } from './navigation'
 
 describe('The navigation config', () => {
   it('has 12 section', () => {
-    expect(navigation.length).toBe(12)
+    expect(navigation.length).toBe(13)
   })
 
   it('can call a validator', () => {
