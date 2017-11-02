@@ -57,7 +57,7 @@ class Submission extends SectionElement {
     const sectionsStatus = statusForAllSections(this.props.Application)
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-        <SectionView name="">
+        <SectionView name="intro">
           <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
         </SectionView>
         <SectionView name="valid">
