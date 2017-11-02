@@ -1,15 +1,16 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { ValidationElement, Text, DateControl } from '../../Form'
+import { ValidationElement, Show } from '../../Form'
+import { NameSummary, DateSummary } from '../../Summary'
 
 export default class Signature extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.handleError = this.handleError.bind(this)
     this.update = this.update.bind(this)
-    this.updateName = this.updateName.bind(this)
-    this.updateDate = this.updateDate.bind(this)
+    this.addSignature = this.addSignature.bind(this)
+    this.removeSignature = this.removeSignature.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
   update (queue) {
@@ -20,12 +21,20 @@ export default class Signature extends ValidationElement {
     })
   }
 
-  updateName (values) {
-    this.update({ Name: values })
+  addSignature () {
+    this.update({
+      Name: this.props.LegalName,
+      Date: {
+        date: new Date()
+      }
+    })
   }
 
-  updateDate (values) {
-    this.update({ Date: values })
+  removeSignature () {
+    this.update({
+      Name: {},
+      Date: {}
+    })
   }
 
   handleError (value, arr) {
@@ -43,20 +52,22 @@ export default class Signature extends ValidationElement {
   render () {
     return (
       <div className="signature">
-        <Text name="fullname"
-              className="fullname"
-              label={i18n.t('releases.verify.label.name')}
-              {...this.props.Name}
-              onUpdate={this.updateName}
-              onError={this.handleError}
-              />
-        <DateControl name="date"
-                     className="date"
-                     {...this.props.Date}
-                     showEstimated={false}
-                     onUpdate={this.updateDate}
-                     onError={this.handleError}
-                     />
+        <Show when={!this.props.Date || !this.props.Date.date}>
+          <button className="add" onClick={this.addSignature}>Click to sign</button>
+        </Show>
+        <Show when={this.props.Date && this.props.Date.date}>
+          <span className="name wet">{NameSummary(this.props.Name)}</span>
+          <span className="spacer"></span>
+          <span className="date wet">{DateSummary(this.props.Date, '', true)}</span>
+
+          <span className="name muted">Name</span>
+          <span className="spacer"></span>
+          <span className="date muted">Date</span>
+          <a href="javascript:;;" onClick={this.removeSignature} className="remove">
+            <span>Remove signature</span>
+            <i className="fa fa-times-circle"></i>
+          </a>
+        </Show>
       </div>
     )
   }
@@ -65,6 +76,7 @@ export default class Signature extends ValidationElement {
 Signature.defaultProps = {
   Name: {},
   Date: {},
+  LegalName: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

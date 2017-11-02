@@ -70,6 +70,7 @@ class Submission extends SectionElement {
               onUpdate={this.updateSubmission}
               hideHippa={hideHippa(this.props.Application)}
               {...releases}
+              LegalName={this.props.LegalName}
               onSubmit={this.onSubmit}
               Identification={this.props.Identification}
               History={this.props.History}
@@ -247,6 +248,7 @@ function mapStateToProps (state) {
     Financial: financial,
     SubstanceUse: substanceUse,
     Legal: legal,
+    LegalName: identification.ApplicantName || {},
     Errors: errors.releases || [],
     Completed: completed.releases || []
   }

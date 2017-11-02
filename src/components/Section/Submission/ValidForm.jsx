@@ -113,6 +113,7 @@ export default class ValidForm extends ValidationElement {
               <AdditionalComments
                 onUpdate={this.updateComments}
                 {...this.props.AdditionalComments}
+                LegalName={this.props.LegalName}
               />
               <button onClick={this.togglePanel(1)}>Next release</button>
             </div>
@@ -133,6 +134,7 @@ export default class ValidForm extends ValidationElement {
               <hr />
               <General
                 {...this.props.General}
+                LegalName={this.props.LegalName}
                 onUpdate={this.updateGeneral}
               />
               <Show when={!this.props.hideHippa}>
@@ -140,6 +142,7 @@ export default class ValidForm extends ValidationElement {
                   <hr />
                   <Medical
                     {...this.props.Medical}
+                    LegalName={this.props.LegalName}
                     onUpdate={this.updateMedical}
                   />
                 </div>
@@ -159,6 +162,7 @@ export default class ValidForm extends ValidationElement {
               <Credit
                 onUpdate={this.updateCredit}
                 {...this.props.Credit}
+                LegalName={this.props.LegalName}
               />
             </div>
           )
@@ -189,6 +193,7 @@ export default class ValidForm extends ValidationElement {
 
 ValidForm.defaultProps = {
   hideHippa: true,
+  LegalName: {},
   AdditionalComments: {
     Signature: {}
   },
