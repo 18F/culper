@@ -55,7 +55,6 @@ export class ToggleItem extends React.Component {
     const notInView = (winHeight < bottom)
 
     if (notInView) {
-      // this.refs.item.scrollIntoView({ behavior: 'smooth' })
       window.scrollBy({ top: (bottom - winHeight), left: 0, behavior: 'smooth' })
     }
   }
