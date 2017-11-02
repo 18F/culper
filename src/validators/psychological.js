@@ -1,7 +1,7 @@
 import { allHaveStatus, anyHasStatus } from './helpers'
 
 export default class PsychologicalValidator {
-  constructor (state, props = {}) {
+  constructor (state = {}, props = {}) {
     this.completed = props.Completed
     this.psychological = props.Psychological
   }

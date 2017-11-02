@@ -2,7 +2,7 @@ import LocationValidator from './location'
 import { validGenericTextfield, validGenericMonthYear, BranchCollection } from './helpers'
 
 export default class OrderValidator {
-  constructor (state = {}, props) {
+  constructor (state = {}, props = {}) {
     this.prefix = (props || {}).prefix || 'order'
     this.courtAddress = state.CourtAddress
     this.courtName = state.CourtName

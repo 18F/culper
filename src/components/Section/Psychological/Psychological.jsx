@@ -77,7 +77,7 @@ class Psychological extends SectionElement {
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')}
+                          onUpdate={this.handleUpdate.bind(this, 'Consultations')}
                           scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
@@ -91,7 +91,7 @@ class Psychological extends SectionElement {
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')}
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')}
                               scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
@@ -152,7 +152,7 @@ class Psychological extends SectionElement {
                           onError={this.handleError}
                           required={true}
                           scrollIntoView={false}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+                          onUpdate={this.handleUpdate.bind(this, 'Consultations')} />
 
             <hr />
             <Hospitalizations name="Hospitalizations"
@@ -163,7 +163,7 @@ class Psychological extends SectionElement {
                               onError={this.handleError}
                               required={true}
                               scrollIntoView={false}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')} />
 
             <hr />
             <Diagnoses name="Diagnoses"
