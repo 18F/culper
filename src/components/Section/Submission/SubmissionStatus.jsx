@@ -55,6 +55,7 @@ export default class SubmissionStatus extends React.Component {
     const style = {
       width: `${this.state.width}%`
     }
+
     // When transition class is applied, css3 transition is triggered
     const progressClass = [ 'progress', this.props.transition ? 'transition' : '' ]
     return (
@@ -104,6 +105,7 @@ export class AnimateReviewIcon extends React.Component {
       this.setState({ initial: false })
     })
   }
+
   render () {
     let reviewClass = ''
     if (this.state.initial) {
@@ -142,6 +144,7 @@ export class AnimateCheckmarkIcon extends React.Component {
       this.setState({ initial: false })
     })
   }
+
   onInitialTransitionEnd () {
     this.setState({ initial: false, done: true })
   }
@@ -177,6 +180,7 @@ export class AnimateCheckmarkIcon extends React.Component {
     )
   }
 }
+
 SubmissionStatus.defaultProps = {
   transition: false,
   onTransitionEnd: () => {}
