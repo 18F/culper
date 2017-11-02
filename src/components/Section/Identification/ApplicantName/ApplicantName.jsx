@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import NameValidator from '../../../../validators/name'
+import { IdentificationNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Name, Field } from '../../../Form'
 
@@ -36,7 +36,7 @@ ApplicantName.defaultProps = {
   dispatch: () => {},
   required: false,
   validator: (state, props) => {
-    return new NameValidator(props.value, null).isValid()
+    return new IdentificationNameValidator(props).isValid()
   }
 }
 

@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { validDateField } from '../../../../validators/helpers'
+import { IdentificationBirthDateValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, DateControl } from '../../../Form'
 import { now } from '../../History/dateranges'
@@ -95,7 +95,7 @@ ApplicantBirthDate.defaultProps = {
   subsection: 'birthdate',
   dispatch: () => {},
   validator: (state, props) => {
-    return !!state && !!state.value && !isNaN(state.value)
+    return new IdentificationBirthDateValidator(state).isValid()
   }
 }
 

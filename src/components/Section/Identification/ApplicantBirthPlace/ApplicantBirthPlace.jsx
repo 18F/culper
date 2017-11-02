@@ -1,5 +1,5 @@
 import React from 'react'
-import LocationValidator from '../../../../validators/location'
+import { IdentificationBirthPlaceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Location, Field } from '../../../Form'
 import { i18n } from '../../../../config'
@@ -43,7 +43,7 @@ ApplicantBirthPlace.defaultProps = {
   subsection: 'birthplace',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LocationValidator(props.value, props).isValid()
+    return new IdentificationBirthPlaceValidator(props).isValid()
   }
 }
 

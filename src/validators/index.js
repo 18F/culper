@@ -1,12 +1,16 @@
 import { validateWorld } from './world'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
-import ContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './contactinformation'
+import IdentificationContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './identificationcontacts'
 import IdentificationValidator from './identification'
+import IdentificationNameValidator from './identificationname'
+import IdentificationBirthDateValidator from './identificationbirthdate'
+import IdentificationBirthPlaceValidator from './identificationbirthplace'
+import IdentificationSSNValidator from './identificationssn'
 import NameValidator from './name'
-import OtherNamesValidator, { OtherNameValidator } from './othernames'
+import IdentificationOtherNamesValidator, { OtherNameValidator } from './identificationothernames'
 import PassportValidator from './passport'
-import PhysicalValidator from './physical'
+import IdentificationPhysicalValidator from './identificationphysical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
 import HistoryResidenceValidator, { ResidenceValidator } from './residence'
 import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
@@ -96,18 +100,22 @@ import OrderValidator, { CompetenceOrderValidator, ConsultationOrderValidator } 
 
 export {
   validateWorld,
+  IdentificationNameValidator,
+  IdentificationBirthDateValidator,
+  IdentificationBirthPlaceValidator,
+  IdentificationSSNValidator,
   BankruptcyValidator,
   BankruptcyItemValidator,
   BirthPlaceValidator,
-  ContactInformationValidator,
+  IdentificationContactInformationValidator,
   ContactEmailValidator,
   ContactPhoneNumberValidator,
   IdentificationValidator,
   NameValidator,
-  OtherNamesValidator,
+  IdentificationOtherNamesValidator,
   OtherNameValidator,
   PassportValidator,
-  PhysicalValidator,
+  IdentificationPhysicalValidator,
   GamblingValidator,
   GamblingItemValidator,
   HistoryResidenceValidator,

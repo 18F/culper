@@ -17,6 +17,6 @@ describe('The navigation config', () => {
         expect(valid).toBe(false)
       }
     })
-    expect(count).toBe(73)
+    expect(count).toBe(78)
   })
 })
