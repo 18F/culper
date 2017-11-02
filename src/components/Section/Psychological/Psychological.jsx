@@ -129,7 +129,9 @@ class Psychological extends SectionElement {
                        para={i18n.m('review.para')}
                        showTop={true}
                        back={this.props.ShowExistingConditions ? 'psychological/conditions' : 'psychological/diagnoses'}
-                       backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}>
+                       backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}
+                       next="submit"
+                       nextLabel={ i18n.t('submission.destination.submit') }>
 
             <Competence name="Competence"
                         {...this.props.Competence}
