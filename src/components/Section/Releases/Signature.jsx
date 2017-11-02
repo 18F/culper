@@ -25,7 +25,7 @@ export default class Signature extends ValidationElement {
     this.update({
       Name: this.props.LegalName,
       Date: {
-        date: new Date()
+        value: new Date()
       }
     })
   }
@@ -52,19 +52,19 @@ export default class Signature extends ValidationElement {
   render () {
     return (
       <div className="signature">
-        <Show when={!this.props.Date || !this.props.Date.date}>
-          <button className="add" onClick={this.addSignature}>Click to sign</button>
+        <Show when={!this.props.Date || !this.props.Date.value}>
+          <button className="add" onClick={this.addSignature}>{i18n.t('signature.add')}</button>
         </Show>
-        <Show when={this.props.Date && this.props.Date.date}>
+        <Show when={this.props.Date && this.props.Date.value}>
           <span className="name wet">{NameSummary(this.props.Name)}</span>
           <span className="spacer"></span>
           <span className="date wet">{DateSummary(this.props.Date, '', true)}</span>
 
-          <span className="name muted">Name</span>
+          <span className="name muted">{i18n.t('signature.name')}</span>
           <span className="spacer"></span>
-          <span className="date muted">Date</span>
+          <span className="date muted">{i18n.t('signature.date')}</span>
           <a href="javascript:;;" onClick={this.removeSignature} className="remove">
-            <span>Remove signature</span>
+            <span>{i18n.t('signature.remove')}</span>
             <i className="fa fa-times-circle"></i>
           </a>
         </Show>

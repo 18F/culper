@@ -20,8 +20,8 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
     const component = mount(<ReleaseOfGeneralAndMedical {...props} />)
     expect(component.find('.general-release').length).toBe(1)
     expect(component.find('.medical-release').length).toBe(1)
-    component.find('.general-release .fullname input').simulate('change')
-    component.find('.medical-release .fullname input').simulate('change')
+    component.find('.general-release .signature button').simulate('click')
+    component.find('.medical-release .signature button').simulate('click')
     expect(updates).toBe(2)
   })
 

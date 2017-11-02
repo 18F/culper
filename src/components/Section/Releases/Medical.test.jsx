@@ -10,7 +10,7 @@ describe('The Medical Release component', () => {
     }
     const component = mount(<Medical {...expected} />)
     expect(component.find('.medical-release').length).toBe(1)
-    component.find('.fullname input').simulate('change')
+    component.find('.signature button').simulate('click')
     expect(updates).toBe(1)
   })
 })
