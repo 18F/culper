@@ -29,10 +29,11 @@ export class Introduction extends React.Component {
 
   render () {
     const klass = `introduction-modal ${this.props.forceOpen ? 'closeable' : ''}`.trim()
+    const accepted = this.props.settings.acceptedTerms === 'Yes'
     return (
       <div className={klass}>
         <Modal className="introduction-content"
-               show={this.props.settings.acceptedTerms !== 'Yes' || this.props.forceOpen}
+               show={!accepted || this.props.forceOpen}
                closeable={this.props.forceOpen}
                onDismiss={this.props.onDismiss}>
           <div>
@@ -43,6 +44,7 @@ export class Introduction extends React.Component {
               <Branch name="acceptance_of_terms"
                       label={i18n.t('introduction.acceptance.title')}
                       labelSize="h3"
+                      optional={true}
                       className="introduction-acceptance"
                       value={this.props.settings.acceptedTerms}
                       onUpdate={this.updateBranch}>

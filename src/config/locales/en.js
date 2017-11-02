@@ -36,6 +36,10 @@ const en = {
       username: 'Username',
       password: 'Password'
     },
+    show: {
+      title: 'Show password',
+      text: 'Show password'
+    },
     forgot: {
       title: 'Forgot password',
       text: 'Forgot password'
@@ -84,7 +88,7 @@ const en = {
     label: {
       first: 'First name',
       last: 'Last name',
-      middle: 'Middle name or initial',
+      middle: 'Middle name',
       initialOnly: 'Initial only',
       noMiddle: 'No middle name',
       other: 'Other',
@@ -224,17 +228,17 @@ const en = {
       month: {
         notfound: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         min: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         max: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         }
       },
@@ -585,7 +589,7 @@ const en = {
           notfound: {
             title: 'This country is not on our current list',
             message: [
-              'Indicate the country that currently governs the geographic location you are indicating. As necessary provide a comment below to clarify.'
+              'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
             ],
             note: ''
           }
@@ -982,7 +986,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to information about you?'
     },
     destination: {
       intro: 'Identification intro',
@@ -1303,7 +1308,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with identification at once'
+      para: 'View all the sections associated with identification at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your financial record?'
     },
     destination: {
       intro: 'Financial intro',
@@ -1925,7 +1931,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with citizenship at once'
+      para: 'View all the sections associated with citizenship at once',
+      comments: 'Would you like to add a comment about any of your responses relating to citizenship?'
     },
     destination: {
       intro: 'Citizenship intro',
@@ -2312,7 +2319,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with relationships at once'
+      para: 'View all the sections associated with relationships at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your relationships?'
     },
     destination: {
       intro: 'Relationships intro',
@@ -2941,8 +2949,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help deciding whether or not you have had a cohabitant?',
-          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
+          title: 'Need help deciding whether or not you have a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "Yes".',
           note: ''
         },
         citizenship: {
@@ -3215,7 +3223,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with military history at once'
+      para: 'View all the sections associated with military history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your military history?'
     },
     destination: {
       intro: 'Military intro',
@@ -3379,7 +3388,7 @@ const en = {
         outcome: 'Provide the description of the final outcome of the disciplinary procedure'
       },
       para: {
-        info: '**In the last 7 years**, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+        info: 'In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
       },
       label: {
         name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
@@ -3451,7 +3460,7 @@ const en = {
         }
       },
       para: {
-        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
+        served: 'Have you ever served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
         contact: 'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.'
       },
       label: {
@@ -3565,7 +3574,8 @@ const en = {
     review: {
       title: 'Full section view',
       para: 'View all the sections associated with your history at once',
-      button: 'Show me the full section'
+      button: 'Show me the full section',
+      comments: 'Would you like to add a comment about any of your responses relating to your history?'
     },
     timeline: {
       title: 'Let\'s cover your last 10 years',
@@ -5225,7 +5235,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with foreign activities at once'
+      para: 'View all the sections associated with foreign activities at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your foreign activities?'
     },
     destination: {
       intro: 'Foreign intro',
@@ -6861,7 +6872,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with investigative & criminal history at once'
+      para: 'View all the sections associated with investigative & criminal history at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your investigative and criminal history?'
     },
     destination: {
       intro: 'Investigative and criminal history intro',
@@ -7759,7 +7771,8 @@ const en = {
     },
     review: {
       title: 'Let\'s make sure everything looks right',
-      para: 'View all the sections associated with substance abuse'
+      para: 'View all the sections associated with substance abuse',
+      comments: 'Would you like to add a comment about any of your responses relating to your substance use?'
     },
     destination: {
       intro: 'Substance use intro',
@@ -8517,7 +8530,7 @@ const en = {
       label: {
         first: 'First name',
         last: 'Last name',
-        middle: 'Middle name or initial',
+        middle: 'Middle name',
         initialOnly: 'Initial only',
         noMiddle: 'No middle name',
         other: 'Other',
@@ -8605,7 +8618,8 @@ const en = {
       para: 'Take a guided tour through the section'
     },
     review: {
-      para: 'View all the sections associated with psychological and emotional health at once'
+      para: 'View all the sections associated with psychological and emotional health at once',
+      comments: 'Would you like to add a comment about any of your responses relating to your psychological and emotional health?'
     },
     competence: {
       heading: {
@@ -9534,6 +9548,57 @@ const en = {
         'In accordance with HIPAA, I understand that I have the right to revoke this authorization at any time by writing to my health care provider/entity. Revocation of this authorization is not effective until received by my health care provider/entity. I understand that I may revoke this authorization, except to the extent that action has already been taken based on this authorization. Further, I understand that this authorization is voluntary. My treatment, payment, enrollment in a health plan, or eligibility for benefits will not be conditioned upon my authorization of this disclosure.',
         'I understand the information disclosed pursuant to this authorization for use by the Federal Government only for purposes provided in the Standard Form 86 will no longer be covered by the HIPAA Privacy Rule, and that the Federal Government may redisclose the information as authorized by law, subject to Privacy Act safeguards.',
         'Photocopies of this authorization with my signature are valid. This authorization is valid for one (1) year from the date signed or upon termination of my affiliation with the Federal Government, whichever is sooner.'
+      ]
+    }
+  },
+  submission: {
+    destination: {
+      submit: 'Submit'
+    },
+    header: [
+      '## All required fields are complete',
+      'Not a guarantee of acceptance. We are checking that all required fields are complete'
+    ],
+    additional: [
+      '### Additional comments',
+      'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the following release(s). You will not be able to submit until each release below is signed'
+    ],
+    validForm: {
+      certificationItem: 'Certification',
+      generalItem: 'Release of Information & HIPAA',
+      creditItem: 'Credit reporting disclosure'
+    },
+    invalidForm: [
+      '## List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors'
+    ],
+    submissionStatus: {
+      validating: [
+        '## Verifying your information is complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      valid: [
+        '## All required fields are complete',
+        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+      ],
+      invalid: [
+        '## Some required fields are incomplete'
+      ]
+    },
+    submissionComplete: [
+      '## You are done!',
+      '### Thanks for submitting your SF-86',
+      'Please print and save your submission below,they will be your only copies'
+    ],
+    print: {
+      title: [
+        '## Please print and save your responses',
+        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen.'
+      ],
+      button: 'Save/Print',
+      done: [
+        '## You are done!',
+        '### Thanks for submitting for your SF-86'
       ]
     }
   }

@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Show, Field } from '../../Form'
 import Competence from './Competence/Competence'
@@ -39,6 +40,7 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('psychological.destination.competence') }>
             <Field title={ i18n.t('psychological.heading.intro') }
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               { i18n.m('psychological.intro.para1') }
               { i18n.m('psychological.intro.para2') }
@@ -61,7 +63,7 @@ class Psychological extends SectionElement {
                         onError={this.handleError}
                         onUpdate={this.handleUpdate.bind(this, 'Competence')}
                         scrollToBottom={this.props.scrollToBottom}
-                      />
+                        />
           </SectionView>
 
           <SectionView name="consultations"
@@ -75,9 +77,9 @@ class Psychological extends SectionElement {
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')}
+                          onUpdate={this.handleUpdate.bind(this, 'Consultations')}
                           scrollToBottom={this.props.scrollToBottom}
-                        />
+                          />
           </SectionView>
           <SectionView name="hospitalizations"
                        back="psychological/consultations"
@@ -89,9 +91,9 @@ class Psychological extends SectionElement {
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')}
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')}
                               scrollToBottom={this.props.scrollToBottom}
-                            />
+                              />
           </SectionView>
           <SectionView name="diagnoses"
                        back="psychological/hospitalizations"
@@ -127,7 +129,9 @@ class Psychological extends SectionElement {
                        para={i18n.m('review.para')}
                        showTop={true}
                        back={this.props.ShowExistingConditions ? 'psychological/conditions' : 'psychological/diagnoses'}
-                       backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}>
+                       backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}
+                       next="submit"
+                       nextLabel={ i18n.t('submission.destination.submit') }>
 
             <Competence name="Competence"
                         {...this.props.Competence}
@@ -148,7 +152,7 @@ class Psychological extends SectionElement {
                           onError={this.handleError}
                           required={true}
                           scrollIntoView={false}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+                          onUpdate={this.handleUpdate.bind(this, 'Consultations')} />
 
             <hr />
             <Hospitalizations name="Hospitalizations"
@@ -159,7 +163,7 @@ class Psychological extends SectionElement {
                               onError={this.handleError}
                               required={true}
                               scrollIntoView={false}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')} />
 
             <hr />
             <Diagnoses name="Diagnoses"
@@ -188,6 +192,17 @@ class Psychological extends SectionElement {
                                     />
               </div>
             </Show>
+
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('psychological.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
         </SectionViews>
       </div>
@@ -205,10 +220,11 @@ function mapStateToProps (state) {
   return {
     Psychological: psychological,
     Competence: psychological.Competence,
-    Consultations: psychological.Consultation,
-    Hospitalizations: psychological.Hospitalization,
+    Consultations: psychological.Consultations,
+    Hospitalizations: psychological.Hospitalizations,
     Diagnoses: psychological.Diagnoses,
     ExistingConditions: psychological.ExistingConditions,
+    Comments: psychological.Comments || {},
     Errors: errors.financial || [],
     Completed: completed.psychological || [],
     ShowExistingConditions: showQuestion21E(psychological),
@@ -229,63 +245,73 @@ export class PsychologicalSections extends React.Component {
     return (
       <div>
         <Competence name="Competence"
-          {...this.props.Competence}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                    {...this.props.Competence}
+                    ApplicantBirthDate={this.props.ApplicantBirthDate}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
+                    onError={this.props.onError}
+                    required={true}
+                    scrollIntoView={false}
+                    />
 
         <hr />
         <Consultation name="Consultations"
-          {...this.props.Consultations}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                      {...this.props.Consultations}
+                      ApplicantBirthDate={this.props.ApplicantBirthDate}
+                      defaultState={false}
+                      dispatch={this.props.dispatch}
+                      onError={this.props.onError}
+                      required={true}
+                      scrollIntoView={false}
+                      />
 
         <hr />
         <Hospitalizations name="Hospitalizations"
-          {...this.props.Hospitalizations}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                          {...this.props.Hospitalizations}
+                          ApplicantBirthDate={this.props.ApplicantBirthDate}
+                          defaultState={false}
+                          dispatch={this.props.dispatch}
+                          onError={this.props.onError}
+                          required={true}
+                          scrollIntoView={false}
+                          />
 
         <hr />
         <Diagnoses name="Diagnoses"
-          {...this.props.Diagnoses}
-          ApplicantBirthDate={this.props.ApplicantBirthDate}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                   {...this.props.Diagnoses}
+                   ApplicantBirthDate={this.props.ApplicantBirthDate}
+                   defaultState={false}
+                   dispatch={this.props.dispatch}
+                   onError={this.props.onError}
+                   required={true}
+                   scrollIntoView={false}
+                   />
 
         <Show when={showExisting}>
           <div>
             <hr />
             <ExistingConditions name="ExistingConditions"
-              {...this.props.ExistingConditions}
-              ApplicantBirthDate={this.props.ApplicantBirthDate}
-              defaultState={false}
-              dispatch={this.props.dispatch}
-              onError={this.props.onError}
-              required={this.props.required}
-              scrollIntoView={false}
-            />
+                                {...this.props.ExistingConditions}
+                                ApplicantBirthDate={this.props.ApplicantBirthDate}
+                                defaultState={false}
+                                dispatch={this.props.dispatch}
+                                onError={this.props.onError}
+                                required={this.props.required}
+                                scrollIntoView={false}
+                                />
           </div>
         </Show>
-    </div>
+
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('psychological.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.handleError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
+      </div>
     )
   }
 }

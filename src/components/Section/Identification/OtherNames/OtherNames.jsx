@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { OtherNamesValidator, OtherNameValidator } from '../../../../validators'
+import { IdentificationOtherNamesValidator, OtherNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
 
@@ -56,6 +56,7 @@ export default class OtherNames extends SubsectionElement {
       <div className="other-names">
         <Field title={i18n.t('identification.othernames.title')}
                titleSize="h2"
+               optional={true}
                help="identification.othernames.branch.help"
                className="no-margin-bottom">
           {i18n.m('identification.othernames.info')}
@@ -82,8 +83,9 @@ export default class OtherNames extends SubsectionElement {
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
 
-           <Field title={i18n.t('identification.othernames.heading.name')}
-             scrollIntoView={this.props.scrollIntoView}>
+            <Field title={i18n.t('identification.othernames.heading.name')}
+                   optional={true}
+                   scrollIntoView={this.props.scrollIntoView}>
               <Name name="Name"
                     key="name"
                     bind={true}
@@ -139,7 +141,7 @@ OtherNames.defaultProps = {
   subsection: 'othernames',
   dispatch: () => {},
   validator: (state, props) => {
-    return new OtherNamesValidator(props, props).isValid()
+    return new IdentificationOtherNamesValidator(props, props).isValid()
   },
   defaultState: true,
   required: false

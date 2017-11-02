@@ -13,11 +13,13 @@ class Login extends React.Component {
       authenticated: this.props.authenticated,
       twofactor: this.props.twofactor,
       username: this.props.username,
-      password: this.props.password
+      password: this.props.password,
+      showPassword: this.props.showPassword
     }
 
     this.onUsernameChange = this.onUsernameChange.bind(this)
     this.onPasswordChange = this.onPasswordChange.bind(this)
+    this.togglePassword = this.togglePassword.bind(this)
     this.login = this.login.bind(this)
     this.mfa = env.MultipleFactorAuthentication()
   }
@@ -33,7 +35,7 @@ class Login extends React.Component {
   redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
-      this.props.dispatch(push('/form/identification/name'))
+      this.props.dispatch(push('/form/identification/intro'))
     }
   }
 
@@ -43,6 +45,10 @@ class Login extends React.Component {
 
   onPasswordChange (e) {
     this.setState({password: e.target.value})
+  }
+
+  togglePassword () {
+    this.setState({showPassword: !this.state.showPassword})
   }
 
   login (event) {
@@ -76,7 +82,7 @@ class Login extends React.Component {
 
   loginForm () {
     const authValid = this.props.error === undefined || this.props.error === ''
-    let pwClass = 'help'
+    let pwClass = 'password help'
     if (!authValid) {
       pwClass += ' usa-input-error'
     }
@@ -105,25 +111,38 @@ class Login extends React.Component {
               </label>
               <input id="password"
                      name="password"
-                     type="password"
+                     type={this.state.showPassword ? 'text' : 'password'}
                      placeholder={i18n.t('login.placeholder.password')}
                      value={this.state.password}
                      onChange={this.onPasswordChange} />
+              <div className="peek">
+                <a id="show-password" onClick={this.togglePassword} href="javascript:;;" title={i18n.t('login.show.title')}>{i18n.t('login.show.text')}</a>
+              </div>
               {this.errorMessage()}
             </div>
             <div>
               <button type="submit">{i18n.t('login.submit')}</button>
-              <a id="forgot-password" href="#" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
+              <a id="forgot-password" href="javascript:;;" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
             </div>
           </form>
         </div>
 
-        <Show when={this.props.oauth}>
-          <div id="oauth" className="login-oauth usa-width-one-whole">
-            <span>Sign in with</span>
+        <Show when={env.OAuthEnabled()}>
+          <div id="oauth" className="login-sso">
+            <span>Sign in with </span>
             <LoginOAuth authenticated={this.state.authenticated}>
               <i className="fa fa-github" aria-hidden="true"></i>
             </LoginOAuth>
+          </div>
+        </Show>
+
+        <Show when={env.SamlEnabled()}>
+          <div id="saml" className="login-sso">
+            <span>Sign in with </span>
+            <a href={env.EndpointSaml()} className="btn btn-outline">
+              <span>CAC or PIV</span>
+              <i className="fa fa-id-card-o" aria-hidden="true"></i>
+            </a>
           </div>
         </Show>
       </div>
@@ -168,11 +187,11 @@ class Login extends React.Component {
 }
 
 Login.defaultProps = {
-  oauth: false,
   authenticated: false,
   twofactor: false,
   username: '',
-  password: ''
+  password: '',
+  showPassword: false
 }
 
 /**

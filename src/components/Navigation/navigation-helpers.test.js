@@ -1,4 +1,4 @@
-import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted } from './navigation'
+import { validations, isActive, hasErrors, isValid, sectionsTotal, sectionsCompleted } from './navigation-helpers'
 
 describe('Navigation component validation', function () {
   it('can count number of validations', () => {

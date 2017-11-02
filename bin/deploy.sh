@@ -21,6 +21,7 @@ if [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "18F" ]; then
   FRONTEND_NAME="eqip-prototype"
   FRONTEND_MANIFEST="manifest-frontend.yml"
 elif [ "$SPACE" = "production" ] && [ "$CIRCLE_PROJECT_USERNAME" = "truetandem" ]; then
+  SPACE="staging"
   API_NAME="eqip-prototype-api-staging"
   API_MANIFEST="manifest-api-staging.yml"
   FRONTEND_NAME="eqip-prototype-staging"

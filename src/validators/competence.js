@@ -1,7 +1,7 @@
 import { CompetenceOrderValidator } from './order'
 
 export default class CompetenceValidator {
-  constructor (state = {}, props) {
+  constructor (state = {}, props = {}) {
     this.list = state.List || []
     this.listBranch = state.ListBranch
     this.isIncompetent = state.IsIncompetent

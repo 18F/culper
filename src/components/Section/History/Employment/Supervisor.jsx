@@ -86,12 +86,13 @@ export default class Supervisor extends ValidationElement {
                    className="text supervisor-email"
                    onUpdate={this.onUpdate.bind(this, 'Email')}
                    onError={this.props.onError}
-                   required={this.props.required}
+                   required={(this.state.EmailNotApplicable || {}).applicable === false ? false : this.props.required}
                    />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.address')}
+               optional={true}
                help="history.employment.default.supervisor.address.help"
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>

@@ -203,6 +203,7 @@ export default class OrderedCounseling extends ValidationElement {
                     />
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderAddress')}
+                   optional={true}
                    help={'substance.alcohol.orderedCounseling.help.treatmentProviderAddress'}
                    adjustFor="address"
                    scrollIntoView={this.props.scrollIntoView}>

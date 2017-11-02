@@ -4,6 +4,7 @@ import { i18n } from '../../../config'
 import { push } from '../../../middleware/history'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
 import Passport from './Passport'
@@ -121,6 +122,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.passport')}>
             <Field title={i18n.t('foreign.intro.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('foreign.intro.body')}
             </Field>
@@ -310,6 +312,16 @@ class Foreign extends SectionElement {
                     required={true}
                     scrollIntoView={false}
                     />
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('foreign.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="passport"
@@ -627,6 +639,7 @@ function mapStateToProps (state) {
     Political: foreign.Political || {},
     Voting: foreign.Voting || {},
     Travel: foreign.Travel || {},
+    Comments: foreign.Comments || {},
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names,
@@ -645,163 +658,172 @@ export class ForeignSections extends React.Component {
     return (
       <div>
         <Passport name="passport"
-          {...this.props.Passport}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.Passport}
+                  dispatch={this.props.dispatch}
+                  onError={this.handleError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
         <hr/>
         <Contacts name="contacts"
-          {...this.props.Contacts}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.Contacts}
+                  defaultState={false}
+                  addressBooks={this.props.AddressBooks}
+                  dispatch={this.props.dispatch}
+                  onError={this.handleError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
         <hr/>
         <DirectActivity name="directActivity"
-          {...this.props.DirectActivity}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                        {...this.props.DirectActivity}
+                        defaultState={false}
+                        addressBooks={this.props.AddressBooks}
+                        dispatch={this.props.dispatch}
+                        onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
+                        />
         <hr/>
         <IndirectActivity name="indirectActivity"
-          {...this.props.IndirectActivity}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                          {...this.props.IndirectActivity}
+                          defaultState={false}
+                          addressBooks={this.props.AddressBooks}
+                          dispatch={this.props.dispatch}
+                          onError={this.handleError}
+                          required={true}
+                          scrollIntoView={false}
+                          />
         <hr/>
         <RealEstateActivity name="realEstateActivity"
-          {...this.props.RealEstateActivity}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                            {...this.props.RealEstateActivity}
+                            defaultState={false}
+                            dispatch={this.props.dispatch}
+                            onError={this.handleError}
+                            required={true}
+                            scrollIntoView={false}
+                            />
         <hr/>
         <BenefitActivity name="benefitActivity"
-          {...this.props.BenefitActivity}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                         {...this.props.BenefitActivity}
+                         defaultState={false}
+                         dispatch={this.props.dispatch}
+                         onError={this.handleError}
+                         required={true}
+                         scrollIntoView={false}
+                         />
         <hr/>
         <Support name="support"
-          {...this.props.Support}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                 {...this.props.Support}
+                 defaultState={false}
+                 addressBooks={this.props.AddressBooks}
+                 dispatch={this.props.dispatch}
+                 onError={this.handleError}
+                 required={true}
+                 scrollIntoView={false}
+                 />
         <hr/>
         <Advice name="advice"
-          {...this.props.Advice}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                {...this.props.Advice}
+                defaultState={false}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                required={true}
+                scrollIntoView={false}
+                />
         <hr/>
         <Family name="family"
-          {...this.props.Family}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                {...this.props.Family}
+                defaultState={false}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                required={true}
+                scrollIntoView={false}
+                />
         <hr/>
         <Employment name="employment"
-          {...this.props.Employment}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                    {...this.props.Employment}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
+                    onError={this.handleError}
+                    required={true}
+                    scrollIntoView={false}
+                    />
         <hr/>
         <Ventures name="ventures"
-          {...this.props.Ventures}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.Ventures}
+                  defaultState={false}
+                  addressBooks={this.props.AddressBooks}
+                  dispatch={this.props.dispatch}
+                  onError={this.handleError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
         <hr/>
         <Conferences name="Conferences"
-          {...this.props.Conferences}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                     {...this.props.Conferences}
+                     defaultState={false}
+                     dispatch={this.props.dispatch}
+                     onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
+                     />
         <hr/>
         <Contact name="Contact"
-          {...this.props.Contact}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                 {...this.props.Contact}
+                 defaultState={false}
+                 addressBooks={this.props.AddressBooks}
+                 dispatch={this.props.dispatch}
+                 onError={this.handleError}
+                 required={true}
+                 scrollIntoView={false}
+                 />
         <hr/>
         <Sponsorship name="Sponsorship"
-          {...this.props.Sponsorship}
-          defaultState={false}
-          addressBooks={this.props.AddressBooks}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                     {...this.props.Sponsorship}
+                     defaultState={false}
+                     addressBooks={this.props.AddressBooks}
+                     dispatch={this.props.dispatch}
+                     onError={this.handleError}
+                     required={true}
+                     scrollIntoView={false}
+                     />
         <hr/>
         <Political name="Political"
-          {...this.props.Political}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                   {...this.props.Political}
+                   defaultState={false}
+                   dispatch={this.props.dispatch}
+                   onError={this.handleError}
+                   required={true}
+                   scrollIntoView={false}
+                   />
         <hr/>
         <Voting name="Voting"
-          {...this.props.Voting}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                {...this.props.Voting}
+                defaultState={false}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                required={true}
+                scrollIntoView={false}
+                />
         <hr/>
         <Travel name="Travel"
-          {...this.props.Travel}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.handleError}
-          required={true}
-          scrollIntoView={false}
-        />
+                {...this.props.Travel}
+                defaultState={false}
+                dispatch={this.props.dispatch}
+                onError={this.handleError}
+                required={true}
+                scrollIntoView={false}
+                />
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('foreign.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.handleError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }

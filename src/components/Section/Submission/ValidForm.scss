@@ -1,0 +1,11 @@
+.valid-form {
+  .submit.usa-button {
+    padding: 3rem 6rem 3rem 6rem;
+    i {
+      margin-left: 0.6rem;
+    }
+  }
+  .submit.usa-button:disabled {
+    background-color: #0071bc;
+  }
+}

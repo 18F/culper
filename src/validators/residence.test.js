@@ -1,4 +1,4 @@
-import ResidenceValidator from './residence'
+import { ResidenceValidator } from './residence'
 import Location from '../components/Form/Location'
 
 describe('Residence component validation', function () {

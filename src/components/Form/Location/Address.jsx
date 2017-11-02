@@ -251,7 +251,7 @@ export default class Address extends ValidationElement {
             <Show when={this.props.country.value === 'United States'}>
               <div>
                 <Street name="address"
-                        className="mailing street"
+                        className="mailing street required"
                         label={this.props.streetLabel}
                         placeholder={this.props.streetPlaceholder}
                         value={this.props.street}
@@ -272,7 +272,7 @@ export default class Address extends ValidationElement {
                         onBlur={this.props.onBlur}
                         />
                 <City name="city"
-                      className="city"
+                      className="city required"
                       label={this.props.cityLabel}
                       value={this.props.city}
                       onChange={this.updateCity}
@@ -283,7 +283,7 @@ export default class Address extends ValidationElement {
                       />
                 <div className="state-zip-wrap">
                   <MilitaryState name="state"
-                                 className="state"
+                                 className="state required"
                                  label={this.props.stateLabel}
                                  value={this.props.state}
                                  includeStates="true"
@@ -296,7 +296,7 @@ export default class Address extends ValidationElement {
                   <ZipCode name="zipcode"
                            ref="us_zipcode"
                            key="us_zipcode"
-                           className="zipcode"
+                           className="zipcode required"
                            label={this.props.zipcodeLabel}
                            value={this.props.zipcode}
                            onChange={this.updateZipcode}
@@ -313,7 +313,7 @@ export default class Address extends ValidationElement {
                 <Street name="address"
                         label={this.props.streetLabel}
                         placeholder={this.props.streetPlaceholder}
-                        className="mailing street"
+                        className="mailing street required"
                         value={this.props.street}
                         onChange={this.updateStreet}
                         onError={this.handleError}
@@ -332,7 +332,7 @@ export default class Address extends ValidationElement {
                         onBlur={this.props.onBlur}
                         />
                 <City name="city"
-                      className="city"
+                      className="city required"
                       label={this.props.cityLabel}
                       value={this.props.city}
                       onChange={this.updateCity}
@@ -342,6 +342,7 @@ export default class Address extends ValidationElement {
                       required={this.props.required}
                       />
                 <Country name="country"
+                         className="required"
                          label={this.props.countryLabel}
                          {...this.props.country}
                          excludeUnitedStates="true"
@@ -358,7 +359,7 @@ export default class Address extends ValidationElement {
                 <Street name="address"
                         label={i18n.t('address.apoFpo.street.label')}
                         placeholder={this.props.postOfficeStreetPlaceholder}
-                        className="mailing street"
+                        className="mailing street required"
                         value={this.props.street}
                         onChange={this.updateStreet}
                         onError={this.handleError}
@@ -398,7 +399,7 @@ export default class Address extends ValidationElement {
                 </RadioGroup>
                 <div className="state-zip-wrap">
                   <ApoFpo name="apoFpo"
-                          className="state"
+                          className="state required"
                           label={this.props.postOfficeStateLabel}
                           value={this.props.state}
                           onChange={this.updateState}
@@ -411,7 +412,7 @@ export default class Address extends ValidationElement {
                     <ZipCode name="zipcode"
                              ref="apo_zipcode"
                              key="apo_zipcode"
-                             className="zipcode"
+                             className="zipcode required"
                              label={this.props.postOfficeZipcodeLabel}
                              value={this.props.zipcode}
                              onChange={this.updateZipcode}

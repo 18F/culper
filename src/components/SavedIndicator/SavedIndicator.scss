@@ -17,12 +17,6 @@ $border-size: 5px;
   height: 11rem;
   width: 12rem;
 
-  @media only screen and (max-width: 850px) {
-    position: static;
-    width: 100%;
-    z-index: -1;
-  }
-
   &.active,
   &:active,
   &:hover {

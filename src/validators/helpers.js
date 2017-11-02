@@ -88,6 +88,9 @@ export const validDateField = (obj = {}) => {
   if (!obj) {
     return false
   }
+  if (obj.value && !isNaN(obj.value)) {
+    return true
+  }
   if (!obj.day) {
     return false
   }

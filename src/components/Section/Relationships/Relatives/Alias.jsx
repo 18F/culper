@@ -51,8 +51,9 @@ export default class Alias extends ValidationElement {
     return (
       <div className="relative-alias">
         <Field title={i18n.t('relationships.relatives.heading.alias.title')}
-               scrollIntoView={this.props.scrollIntoView}
-               titleSize="h3">
+               titleSize="h3"
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('relationships.relatives.para.alias')}
           <Name name="Name"
                 className="alias-name"
@@ -77,10 +78,8 @@ export default class Alias extends ValidationElement {
           </Branch>
         </Show>
 
-        <Field help="relationships.relatives.help.aliasdates"
-               adjustFor="daterange"
-               scrollIntoView={this.props.scrollIntoView}
-               shrink={true}>
+        <Field optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      className="alias-dates"
                      {...this.props.Dates}

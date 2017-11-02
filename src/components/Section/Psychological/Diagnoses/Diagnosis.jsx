@@ -70,7 +70,7 @@ export default class Diagnosis extends ValidationElement {
     return (
       <div className="diagnosis">
         <Field title={i18n.t(`psychological.${prefix}.heading.condition`)}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Show when={this.props.prefix === 'existingConditions.diagnosis'}>
             <Text name="Condition"
                   className="diagnosis-condition"
@@ -155,6 +155,7 @@ export default class Diagnosis extends ValidationElement {
 
         <Field title={i18n.t(`psychological.${prefix}.heading.healthcareProfessional`)}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom"
                />
         <div className="person">
@@ -172,6 +173,7 @@ export default class Diagnosis extends ValidationElement {
 
         <Field title={i18n.t(`psychological.${prefix}.heading.facility`)}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom"
                />
         <div className="facility">
