@@ -20,12 +20,14 @@ class Citizenship extends SectionElement {
                        backLabel={i18n.t('history.destination.review')}
                        next="citizenship/status"
                        nextLabel={i18n.t('citizenship.destination.status')}>
-            <Field title={i18n.t('citizenship.intro.title')}
-                   titleSize="h2"
-                   optional={true}
-                   className="no-margin-bottom">
-              {i18n.m('citizenship.intro.body')}
-            </Field>
+            <div>
+              <Field title={i18n.t('citizenship.intro.title')}
+                     titleSize="h2"
+                     optional={true}
+                     className="no-margin-bottom">
+                {i18n.m('citizenship.intro.body')}
+              </Field>
+            </div>
           </SectionView>
 
           <SectionView name="review"
