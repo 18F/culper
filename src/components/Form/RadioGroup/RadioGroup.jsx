@@ -69,7 +69,13 @@ export default class RadioGroup extends ValidationElement {
       }
 
       return (
-        <child.type {...child.props} name={name || child.props.name} checked={checked} onUpdate={onUpdate}></child.type>
+        <child.type
+          {...child.props}
+          name={name || child.props.name}
+          disabled={this.props.disabled}
+          checked={checked}
+          onUpdate={onUpdate}>
+        </child.type>
       )
     })
 
