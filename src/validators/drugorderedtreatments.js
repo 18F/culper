@@ -61,9 +61,9 @@ export class DrugOrderedTreatmentValidator {
     switch (this.actionTaken) {
       case 'Yes':
         return validGenericTextfield(this.treatmentProvider) &&
-          new LocationValidator(this.treatmentProviderAddress) &&
+          new LocationValidator(this.treatmentProviderAddress).isValid() &&
           validPhoneNumber(this.treatmentProviderTelephone) &&
-          new DateRangeValidator(this.treatmentDates) &&
+          new DateRangeValidator(this.treatmentDates).isValid() &&
           this.validTreatmentCompleted()
       case 'No':
         return validGenericTextfield(this.noActionTakenExplanation)

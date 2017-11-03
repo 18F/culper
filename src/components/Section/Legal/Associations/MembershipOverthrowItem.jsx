@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
+import { ValidationElement, Field, DateRange, Location, Currency, Text, Textarea, NotApplicable } from '../../../Form'
 
 export default class MembershipOverthrowItem extends ValidationElement {
   constructor (props) {
@@ -157,13 +157,13 @@ export default class MembershipOverthrowItem extends ValidationElement {
                          or={i18n.m('legal.associations.overthrow.para.or')}
                          label={i18n.t('legal.associations.overthrow.label.nocontribs')}
                          required={this.props.required}>
-            <Text name="Contributions"
-                  {...this.props.Contributions}
-                  onUpdate={this.updateContributions}
-                  onError={this.props.onError}
-                  className="legal-associations-overthrow-contributions"
-                  required={this.props.required}
-                  />
+            <Currency name="Contributions"
+                      {...this.props.Contributions}
+                      onUpdate={this.updateContributions}
+                      onError={this.props.onError}
+                      className="legal-associations-overthrow-contributions"
+                      required={this.props.required}
+                      />
           </NotApplicable>
         </Field>
 
