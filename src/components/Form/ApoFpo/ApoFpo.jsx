@@ -44,19 +44,6 @@ export default class ApoFpo extends ValidationElement {
     )
   }
 }
-      // <Text name={this.props.name}
-      //       label={this.props.label}
-      //       className={klass}
-      //       placeholder={this.props.placeholder}
-      //       maxlength="2"
-      //       pattern="[a-zA-Z]{2}"
-      //       value={this.props.value}
-      //       onChange={this.props.onChange}
-      //       onError={this.handleError}
-      //       tabBack={this.props.tabBack}
-      //       tabNext={this.props.tabNext}
-      //       required={this.props.required}
-      //       />
 
 ApoFpo.defaultProps = {
   tabBack: () => {},
