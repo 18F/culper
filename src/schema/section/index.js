@@ -77,6 +77,7 @@ import { historyEducation } from './history-education'
 import { historyEmployment } from './history-employment'
 import { historyFederal } from './history-federal'
 import { historyResidence } from './history-residence'
+import { submission } from './submission'
 
 export {
   identificationName,
@@ -157,5 +158,6 @@ export {
   historyEducation,
   historyEmployment,
   historyFederal,
-  historyResidence
+  historyResidence,
+  submission
 }

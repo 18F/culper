@@ -37,11 +37,11 @@ class Submission extends SectionElement {
     // merged with persistence updates
     api.hash().then(r => {
       this.setState({ hashCode: r.data || '' }, () => {
-        this.props.dispatch(push('/form/submit/print'))
+        this.props.dispatch(push('/form/submission/print'))
       })
     })
     .catch(() => {
-      this.props.dispatch(push('/form/submit/print'))
+      this.props.dispatch(push('/form/submission/print'))
     })
   }
 
@@ -53,9 +53,9 @@ class Submission extends SectionElement {
     const sectionsStatus = statusForAllSections(this.props.Application)
     const valid = allSectionsValid(sectionsStatus)
     if (valid) {
-      this.props.dispatch(push('/form/submit/releases'))
+      this.props.dispatch(push('/form/submission/releases'))
     } else {
-      this.props.dispatch(push('/form/submit/errors'))
+      this.props.dispatch(push('/form/submission/errors'))
     }
   }
 
@@ -63,7 +63,7 @@ class Submission extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/submit/releases'))
+    this.props.dispatch(push('/form/submission/releases'))
   }
 
   render () {
@@ -78,7 +78,7 @@ class Submission extends SectionElement {
           <SubmissionStatus transition={true} onTransitionEnd={this.goToReleases}/>
         </SectionView>
         <SectionView name="releases">
-          <SubmissionStatus valid={true} transition={false}>
+          <SubmissionStatus name="status" valid={true} transition={false}>
             <ValidForm
               onUpdate={this.updateSubmission}
               hideHippa={hideHippa(this.props.Application)}
@@ -99,7 +99,7 @@ class Submission extends SectionElement {
           <SubmissionStatus valid={false} transition={false}>
             <InvalidForm sections={sectionsStatus} />
           </SubmissionStatus>
-          <Link to="/form/submit/valid">
+          <Link to="/form/submission/valid">
             Show valid scenario
           </Link>
         </SectionView>

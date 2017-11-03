@@ -31,6 +31,7 @@ import { supervisor } from './supervisor'
 import { telephone } from './telephone'
 import { text } from './text'
 import { textarea } from './textarea'
+import { signature } from './signature'
 
 export {
   benefit,
@@ -65,5 +66,6 @@ export {
   supervisor,
   telephone,
   text,
-  textarea
+  textarea,
+  signature
 }

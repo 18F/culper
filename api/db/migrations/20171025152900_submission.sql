@@ -3,9 +3,9 @@
 -- SQL in section 'Up' is executed when this migration is applied
 
 CREATE TABLE signatures (
-    id         bigint NOT NULL PRIMARY KEY,
-    accound_id bigint REFERENCES accounts(id) NOT NULL,
-    name_id    bigint REFERENCES names(id),
+    id         bigserial PRIMARY KEY,
+    account_id bigint REFERENCES accounts(id) NOT NULL,
+    name_id    bigint REFERENCES texts(id),
     date_id    bigint REFERENCES date_controls(id)
 );
 

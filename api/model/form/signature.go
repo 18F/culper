@@ -9,12 +9,12 @@ import (
 
 // Signature is a basic input.
 type Signature struct {
-	PayloadName Payload `json:"Name"`
-	PayloadDate Payload `json:"Date"`
+	PayloadName Payload `json:"Name" sql:"-"`
+	PayloadDate Payload `json:"Date" sql:"-"`
 
 	// Validator specific fields
-	Name *Name        `json:"-"`
-	Date *DateControl `json:"-"`
+	Name *Text        `json:"-" sql:"-"`
+	Date *DateControl `json:"-" sql:"-"`
 
 	// Persister specific fields
 	ID        int `json:"-"`
@@ -34,7 +34,7 @@ func (entity *Signature) Unmarshal(raw []byte) error {
 	if err != nil {
 		return err
 	}
-	entity.Name = name.(*Name)
+	entity.Name = name.(*Text)
 
 	date, err := entity.PayloadDate.Entity()
 	if err != nil {
@@ -135,7 +135,7 @@ func (entity *Signature) Get(context *db.DatabaseContext, account int) (int, err
 	}
 
 	if entity.NameID != 0 {
-		entity.Name = &Name{ID: entity.NameID}
+		entity.Name = &Text{ID: entity.NameID}
 		if _, err := entity.Name.Get(context, account); err != nil {
 			return entity.ID, err
 		}

@@ -175,6 +175,8 @@ export const sectionData = (section, subsection, application = {}) => {
       return wrap(application.Psychological).Diagnoses
     case 'psycholigical/hospitalizations':
       return wrap(application.Psychological).Hospitalizations
+    case 'submission/releases':
+      return wrap(application.Submission).Releases
   }
 
   return null

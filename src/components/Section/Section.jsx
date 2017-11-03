@@ -77,7 +77,7 @@ class Section extends React.Component {
         <SectionView name="releases">
           <Releases subsection={this.props.subsection} />
         </SectionView>
-        <SectionView name="submit">
+        <SectionView name="submission">
           <Submission subsection={this.props.subsection} />
         </SectionView>
       </SectionViews>
