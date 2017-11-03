@@ -9605,6 +9605,12 @@ const en = {
         '### Thanks for submitting for your SF-86'
       ]
     }
+  },
+  signature: {
+    add: 'Click to sign',
+    remove: 'Remove signature',
+    name: 'Name',
+    date: 'Date'
   }
 }
 

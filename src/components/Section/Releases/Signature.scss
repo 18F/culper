@@ -1,0 +1,49 @@
+@import 'eqip-fonts';
+@import 'eqip-colors';
+
+.signature {
+  .wet {
+    font-family: $eapp-cursive;
+    font-size: 26pt;
+    line-height: 1;
+    margin-bottom: -2rem;
+  }
+
+  .name {
+    display: inline-block;
+    width: 70%;
+  }
+
+  .spacer {
+    display: inline-block;
+    width: 10%;
+  }
+
+  .date {
+    display: inline-block;
+    width: 20%;
+  }
+
+  .muted {
+    text-align: left;
+    color: $eapp-grey-darker;
+    border-top: 1px #000 solid;
+    margin-top: -1rem;
+    font-size: 11pt;
+  }
+
+  .remove {
+    display: block;
+    color: $eapp-red;
+    text-decoration: none;
+    margin-top: 2rem;
+
+    span {
+      border-bottom: 1px $eapp-red dashed;
+    }
+
+    i {
+      margin-left: 1rem;
+    }
+  }
+}
