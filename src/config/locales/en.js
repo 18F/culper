@@ -541,7 +541,7 @@ const en = {
           }
         },
         apofpo: {
-          pattern: {
+          notfound: {
             title: 'There is a problem with the State Code',
             message: 'APO/FPO state code must be 2 letters',
             note: 'Note: Typically the value is either AA, AE, or AP.'
@@ -595,7 +595,7 @@ const en = {
           }
         },
         apofpo: {
-          pattern: {
+          notfound: {
             title: 'There is a problem with the State Code',
             message: 'APO/FPO state code must be 2 letters',
             note: 'Note: Typically the value is either AA, AE, or AP.'
