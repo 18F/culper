@@ -56,17 +56,17 @@
 
     &.sidebar-top-fixed {
       top: 5.4rem;
-      animation-name: navigation-top-fix;
-      animation-duration: 0.5s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: 1;
+      // animation-name: navigation-top-fix;
+      // animation-duration: 0.5s;
+      // animation-fill-mode: forwards;
+      // animation-iteration-count: 1;
     }
 
     &.sidebar-bottom-fixed {
-      animation-name: navigation-bottom-fix;
-      animation-duration: 0.5s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: 1;
+      // animation-name: navigation-bottom-fix;
+      // animation-duration: 0.5s;
+      // animation-fill-mode: forwards;
+      // animation-iteration-count: 1;
     }
   }
 }
@@ -93,21 +93,25 @@
 
 .eapp-core {
   .sticky .contents {
-    margin: 0 auto 2rem auto;
+    // &.sidebar-scrolling-up,
+    // &.sidebar-scrolling-down,
+    &.sidebar-top-fixed,
+    &.sidebar-bottom-fixed {
+      position: fixed !important;
+      width: 44%;
+      transition: top 100ms ease-in;
+      transition: bottom 100ms ease-in;
+    }
 
     &.sidebar-top-fixed {
-      top: 10rem;
-      animation-name: core-top-fix;
-      animation-duration: 0.5s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: 1;
+      position: fixed !important;
+      top: 10.5rem;
+      bottom: unset;
     }
 
     &.sidebar-bottom-fixed {
-      animation-name: core-bottom-fix;
-      animation-duration: 0.5s;
-      animation-fill-mode: forwards;
-      animation-iteration-count: 1;
+      top: unset;
+      bottom: 0;
     }
   }
 }
