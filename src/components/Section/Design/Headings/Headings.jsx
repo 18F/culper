@@ -116,6 +116,7 @@ export default class Headings extends ValidationElement {
                    appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
                    onUpdate={this.updateList}>
           <Field help="identification.contacts.help.phoneNumber"
+                 className="override-required"
                  optional={true}
                  adjustFor="telephone">
             <Telephone name="Telephone" bind={true} />
