@@ -6,6 +6,9 @@ import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Consent, Text, Show } from '../../components/Form'
 
+// TODO: Remove this after usability testing
+import { preload } from './loadTestScenario'
+
 class Login extends React.Component {
   constructor (props) {
     super(props)
@@ -53,7 +56,10 @@ class Login extends React.Component {
 
   login (event) {
     event.preventDefault()
-    this.props.dispatch(login(this.state.username, this.state.password))
+    this.props.dispatch(login(this.state.username, this.state.password, () => {
+      // TODO: Remove this code when done with usability testing!!!
+      preload(this.state.username, this.props.dispatch)
+    }))
   }
 
   errorMessage () {
