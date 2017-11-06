@@ -1,5 +1,5 @@
 {
-  "type": "submission",
+  "type": "submission.releases",
   "props": {
     "AdditionalComments": {
       "type": "submission.additionalcomments",
@@ -14,17 +14,9 @@
           "type": "signature",
           "props": {
             "Name": {
-              "type": "name",
+              "type": "text",
               "props": {
-                "first": "John",
-                "firstInitialOnly": false,
-                "last": "Smith",
-                "lastInitialOnly": false,
-                "middle": "H",
-                "middleInitialOnly": true,
-                "noMiddleName": false,
-                "suffix": "Other",
-                "suffixOther": "XX"
+                "value": "John Doe"
               }
             },
             "Date": {
@@ -49,17 +41,9 @@
           "type": "signature",
           "props": {
             "Name": {
-              "type": "name",
+              "type": "text",
               "props": {
-                "first": "John",
-                "firstInitialOnly": false,
-                "last": "Smith",
-                "lastInitialOnly": false,
-                "middle": "H",
-                "middleInitialOnly": true,
-                "noMiddleName": false,
-                "suffix": "Other",
-                "suffixOther": "XX"
+                "value": "John Doe"
               }
             },
             "Date": {
@@ -84,17 +68,9 @@
           "type": "signature",
           "props": {
             "Name": {
-              "type": "name",
+              "type": "text",
               "props": {
-                "first": "John",
-                "firstInitialOnly": false,
-                "last": "Smith",
-                "lastInitialOnly": false,
-                "middle": "H",
-                "middleInitialOnly": true,
-                "noMiddleName": false,
-                "suffix": "Other",
-                "suffixOther": "XX"
+                "value": "John Doe"
               }
             },
             "Date": {
@@ -119,17 +95,9 @@
           "type": "signature",
           "props": {
             "Name": {
-              "type": "name",
+              "type": "text",
               "props": {
-                "first": "John",
-                "firstInitialOnly": false,
-                "last": "Smith",
-                "lastInitialOnly": false,
-                "middle": "H",
-                "middleInitialOnly": true,
-                "noMiddleName": false,
-                "suffix": "Other",
-                "suffixOther": "XX"
+                "value": "John Doe"
               }
             },
             "Date": {

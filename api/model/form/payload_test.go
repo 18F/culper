@@ -250,6 +250,7 @@ func TestPayloadValidate(t *testing.T) {
 			t.Fatalf("Failed to deserialize JSON: %v\n:Error: %v\n", string(raw), err)
 		}
 
+		fmt.Println(test.Data)
 		// Extract the entity interface of the payload and validate it
 		entity, err := payload.Entity()
 		if err != nil {
