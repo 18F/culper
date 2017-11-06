@@ -158,7 +158,7 @@ export default class Person extends React.Component {
                   {...this.props.Rank}
                   onUpdate={this.updateRank}
                   onError={this.props.onError}
-                  required={this.props.required}
+                  required={(this.props.RankNotApplicable || {}).applicable && this.props.required}
                   />
           </NotApplicable>
         </Field>
