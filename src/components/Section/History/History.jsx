@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reportCompletion } from '../../../actions/ApplicationActions'
-import { EducationValidator } from '../../../validators'
+import { HistoryEducationValidator } from '../../../validators'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -101,7 +101,7 @@ class History extends SectionElement {
     education.HasDegree10 = values === 'No' ? education.HasDegree10 : ''
     education.List = values === 'Yes' ? education.List : []
     this.handleUpdate('Education', education)
-    this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
+    this.props.dispatch(reportCompletion('history', 'education', new HistoryEducationValidator(education, education).isValid()))
   }
 
   updateBranchDegree10 (values) {
