@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { Link } from 'react-router'
+import { navigationWalker } from '../../../config'
 
 export default class InvalidForm extends React.Component {
   constructor (props) {
@@ -9,13 +10,50 @@ export default class InvalidForm extends React.Component {
       valid: null,
       width: 0
     }
+    this.errors = this.errors.bind(this)
   }
 
   errors () {
+    let tally = {}
+
+    navigationWalker((path, child) => {
+      if (path.length && path[0].store && child.store && child.validator) {
+        if (child.hidden || (child.hiddenFunc && child.hiddenFunc(this.props.application))) {
+          return
+        }
+
+        const sectionName = path[0].url
+        const data = (this.props.application[path[0].store] || {})[child.store] || {}
+
+        let subsectionName = child.url
+        if (path.length > 1) {
+          for (let i = path.length - 1; i > 0; i--) {
+            subsectionName = `${path[i].url}/${subsectionName}`
+          }
+        }
+
+        let valid = null
+        try {
+          valid = new child.validator(data, data).isValid()
+        } catch (e) {
+          valid = null
+        }
+
+        if (!tally[sectionName]) {
+          tally[sectionName] = {}
+        }
+
+        tally[sectionName].section = path[0]
+        tally[sectionName].errors = (tally[sectionName].errors || 0) + (valid === false ? 1 : 0)
+        tally[sectionName].subsections = [...(tally[sectionName].subsections || []), child]
+      }
+    })
+
     let errors = []
-    for (let section of this.props.sections) {
-      if (!section.complete) {
-        errors.push(<InvalidSection key={section.url} section={section} />)
+    for (const sectionName in tally) {
+      const mark = tally[sectionName]
+      if (mark.errors) {
+        errors.push(<InvalidSection key={mark.section.url} mark={mark} />)
       }
     }
     return errors
@@ -33,11 +71,8 @@ export default class InvalidForm extends React.Component {
 }
 
 export class InvalidSection extends React.Component {
-
   render () {
-    const incompleteSubsections = this.props.section.subsections
-      .filter(subsection => !subsection.complete)
-    const incompleteSubsectionsElements = incompleteSubsections
+    const incompleteSubsections = this.props.mark.subsections
       .map(subsection => {
         return (<div key={subsection.url}>{ subsection.name }</div>)
       })
@@ -48,9 +83,9 @@ export class InvalidSection extends React.Component {
           <span className="messages error-messages">
             <div className="message error">
               <i className="fa fa-exclamation"></i>
-              <h3>{ this.props.section.title }</h3>
-              { incompleteSubsectionsElements }
-              <Link to={`/form/${this.props.section.url}/review`}>
+              <h3>{ this.props.mark.section.title }</h3>
+              { incompleteSubsections }
+              <Link to={`/form/${this.props.mark.section.url}/review`}>
                 <button className="back usa-button-outline">Back to section</button>
               </Link>
             </div>
@@ -62,4 +97,5 @@ export class InvalidSection extends React.Component {
 }
 
 InvalidForm.defaultProps = {
+  application: {}
 }

@@ -78,11 +78,8 @@ class Submission extends SectionElement {
         </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
-            <InvalidForm sections={sectionsStatus} />
+            <InvalidForm sections={sectionsStatus} application={this.props.Application} />
           </SubmissionStatus>
-          <Link to="/form/submit/valid">
-            Show valid scenario
-          </Link>
         </SectionView>
       </SectionViews>
     )
