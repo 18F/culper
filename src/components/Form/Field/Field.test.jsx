@@ -1,7 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
 import Field from './Field'
-import Number from '../Number'
 
 describe('The field component', () => {
   it('help renders with default state closed', () => {
@@ -92,5 +91,24 @@ describe('The field component', () => {
     component.find('.comments-button.add').simulate('click')
     expect(component.find('textarea').length).toEqual(1)
     expect(updates).toBe(1)
+  })
+
+  it('does not displays optional text if nothing was specified', () => {
+    const props = {
+      title: 'Test field',
+      optional: true
+    }
+    const component = mount(<Field {...props} />)
+    expect(component.find('.optional').length).toBe(0)
+  })
+
+  it('does displays optional text if specified', () => {
+    const props = {
+      title: 'Test field',
+      optional: true,
+      optionalText: '(Optional)'
+    }
+    const component = mount(<Field {...props} />)
+    expect(component.find('.optional').length).toBe(1)
   })
 })
