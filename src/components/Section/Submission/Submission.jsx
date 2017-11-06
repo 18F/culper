@@ -29,7 +29,7 @@ class Submission extends SectionElement {
   onSubmit () {
     // TODO: Generate has code here and send to print screen when
     // merged with persistence updates
-    this.props.dispatch(push('/form/print'))
+    this.props.dispatch(push('/form/print/intro'))
   }
 
   /**

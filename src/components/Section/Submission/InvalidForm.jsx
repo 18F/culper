@@ -60,5 +60,5 @@ export class InvalidSection extends React.Component {
 }
 
 InvalidForm.defaultProps = {
-  application: {}
+  tally: {}
 }
