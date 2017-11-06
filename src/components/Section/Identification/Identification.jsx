@@ -268,9 +268,9 @@ export class IdentificationSections extends React.Component {
                     />
         <hr />
         <ApplicantBirthDate name="birthdate"
+                            {...this.props.ApplicantBirthDate}
                             dispatch={this.props.dispatch}
                             onError={this.props.onError}
-                            {...this.props.ApplicantBirthDate}
                             required={true}
                             scrollIntoView={false}
                             />
