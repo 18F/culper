@@ -1,4 +1,4 @@
-import ContactInformationValidator from './contactinformation'
+import IdentificationContactInformationValidator from './identificationcontacts'
 
 describe('Contact Information validation', function () {
   it('should validate emails', function () {
@@ -64,7 +64,7 @@ describe('Contact Information validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContactInformationValidator(test.state, null).validEmails()).toBe(test.expected)
+      expect(new IdentificationContactInformationValidator(test.state, null).validEmails()).toBe(test.expected)
     })
   })
 
@@ -133,7 +133,7 @@ describe('Contact Information validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContactInformationValidator(test.state, null).validPhoneNumbers()).toBe(test.expected)
+      expect(new IdentificationContactInformationValidator(test.state, null).validPhoneNumbers()).toBe(test.expected)
     })
   })
 
@@ -193,7 +193,7 @@ describe('Contact Information validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new ContactInformationValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new IdentificationContactInformationValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 })

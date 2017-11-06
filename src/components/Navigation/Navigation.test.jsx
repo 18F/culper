@@ -31,6 +31,7 @@ describe('The navigation component', () => {
     const store = mockStore({ authentication: { authenticated: true, twofactor: true } })
     const location = () => { return { pathname: '/form/legal/associations/engaged-in-terrorism' } }
     const component = mount(<Provider store={store}><MemoryRouter><Navigation location={location} /></MemoryRouter></Provider>)
+    component.find('a[title="Investigative and criminal history"]').simulate('click')
     expect(component.find('.fa-angle-up').length).toBe(2)
     expect(component.find('.fa-angle-down').length).toBeGreaterThan(1)
   })

@@ -42,8 +42,9 @@ export default class OtherName extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}>
-          <Name name="OtherName"
+          <Name name="Othername"
                 {...this.props.OtherName}
                 onUpdate={this.updateOtherName}
                 onError={this.props.onError}

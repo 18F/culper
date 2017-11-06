@@ -44,6 +44,7 @@ export class Introduction extends React.Component {
               <Branch name="acceptance_of_terms"
                       label={i18n.t('introduction.acceptance.title')}
                       labelSize="h3"
+                      optional={true}
                       className="introduction-acceptance"
                       {...this.props.settings.acceptedTerms}
                       onUpdate={this.updateBranch}>

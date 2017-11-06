@@ -6,7 +6,7 @@ import { validAccordion, validGenericMonthYear, validGenericTextfield, validBran
  * Validates an entire Bankruptcy section
  */
 export default class BankruptcyValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.hasBankruptcy = (data.HasBankruptcy || {}).value
     this.list = data.List || {}
   }

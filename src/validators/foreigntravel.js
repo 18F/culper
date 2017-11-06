@@ -17,6 +17,10 @@ export default class ForeignTravelValidator {
       return true
     }
 
+    if (this.hasForeignTravelOfficial === 'Yes') {
+      return true
+    }
+
     return validAccordion(this.list, (item) => {
       return new TravelValidator(item).isValid()
     })

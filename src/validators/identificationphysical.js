@@ -29,7 +29,7 @@ const hairColors = [
 ]
 
 export default class PhysicalValidator {
-  constructor (state, props) {
+  constructor (state = {}) {
     this.height = state.Height
     this.weight = (state.Weight || {}).value
     this.hairColor = (state.HairColor || {}).value

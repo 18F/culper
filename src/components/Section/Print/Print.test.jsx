@@ -1,5 +1,4 @@
 import React from 'react'
-import MockAdapter from 'axios-mock-adapter'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import { Provider } from 'react-redux'
@@ -17,8 +16,8 @@ describe('The print section', () => {
   const mockStore = configureMockStore(middlewares)
 
   it('visible when authenticated', () => {
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
-    const component = mount(<Provider store={store}><Print /></Provider>)
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
+    const component = mount(<Provider store={store}><Print subsection="intro" /></Provider>)
     expect(component.find('.section-print-container').length).toBe(10)
   })
 
@@ -27,8 +26,8 @@ describe('The print section', () => {
     window.print = function () {
       printed = true
     }
-    const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
-    const component = mount(<Provider store={store}><Print /></Provider>)
+    const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: applicationState })
+    const component = mount(<Provider store={store}><Print subsection="intro" /></Provider>)
     component.find('.print-btn').simulate('click')
     expect(printed).toBe(true)
   })

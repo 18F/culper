@@ -419,15 +419,16 @@ export default class Relative extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.name')}
-               scrollIntoView={this.props.scrollIntoView}>
-          <Name name="Name"
-                className="relative-name"
-                {...this.props.Name}
-                onError={this.props.onError}
-                onUpdate={this.updateName}
-                required={this.props.required}
-                scrollIntoView={this.props.scrollIntoView}
-                />
+          optional={true}
+          scrollIntoView={this.props.scrollIntoView}>
+            <Name name="Name"
+                  className="relative-name"
+                  {...this.props.Name}
+                  onError={this.props.onError}
+                  onUpdate={this.updateName}
+                  required={this.props.required}
+                  scrollIntoView={this.props.scrollIntoView}
+                  />
         </Field>
         <Field title={i18n.t('relationships.relatives.heading.birthdate')}
                help="relationships.relatives.help.birthdate"
@@ -490,7 +491,8 @@ export default class Relative extends ValidationElement {
                     onError={this.props.onError}>
             </Branch>
             <Show when={this.props.MaidenSameAsListed.value === 'No'}>
-              <Field scrollIntoView={this.props.scrollIntoView}>
+              <Field optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Name name="MaidenName"
                       className="relative-maidenname eapp-field-wrap"
                       {...this.props.MaidenName}
@@ -516,6 +518,7 @@ export default class Relative extends ValidationElement {
                             scrollIntoView={this.props.scrollIntoView}>
             <div>
               <Field title={i18n.t('relationships.relatives.heading.needmore')}
+                     optional={true}
                      className="more title"
                      scrollIntoView={this.props.scrollIntoView}>
                 <Svg src="/img/date-down-arrow.svg" className="more arrow" />
@@ -542,6 +545,7 @@ export default class Relative extends ValidationElement {
         </Branch>
         <Show when={this.props.IsDeceased.value === 'No'}>
           <Field title={i18n.t('relationships.relatives.heading.deceased.address')}
+                 optional={true}
                  help="relationships.relatives.help.address"
                  scrollIntoView={this.props.scrollIntoView}
                  adjustFor="address">
@@ -690,6 +694,7 @@ export default class Relative extends ValidationElement {
 
             <Field title={i18n.t('relationships.relatives.heading.us.address')}
                    titleSize="h3"
+                   optional={true}
                    scrollIntoView={this.props.scrollIntoView}
                    help="relationships.relatives.help.courtaddress"
                    adjustFor="labels">

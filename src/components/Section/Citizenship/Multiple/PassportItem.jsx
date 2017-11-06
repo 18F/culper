@@ -139,6 +139,7 @@ export default class PassportItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('citizenship.multiple.heading.passport.name')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}

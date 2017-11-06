@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, Field, DateRange, Location, Text, Textarea, NotApplicable } from '../../../Form'
+import { ValidationElement, Field, DateRange, Location, Currency, Text, Textarea, NotApplicable } from '../../../Form'
 
 export default class MembershipViolenceItem extends ValidationElement {
   constructor (props) {
@@ -82,100 +82,101 @@ export default class MembershipViolenceItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('legal.associations.violence.heading.organization')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Organization"
-            {...this.props.Organization}
-            onUpdate={this.updateOrganization}
-            onError={this.props.onError}
-            className="legal-associations-violence-organization"
-            required={this.props.required}
-          />
+                {...this.props.Organization}
+                onUpdate={this.updateOrganization}
+                onError={this.props.onError}
+                className="legal-associations-violence-organization"
+                required={this.props.required}
+                />
         </Field>
 
         <Field title={i18n.t('legal.associations.violence.heading.address')}
-          help="legal.associations.violence.help.address"
-          adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               help="legal.associations.violence.help.address"
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
-            {...this.props.Address}
-            onUpdate={this.updateAddress}
-            onError={this.props.onError}
-            className="legal-associations-violence-address"
-            layout={Location.ADDRESS}
-            geocode={true}
-            addressBooks={this.props.addressBooks}
-            addressBook="Organization"
-            dispatch={this.props.dispatch}
-            required={this.props.required}
-          />
+                    {...this.props.Address}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    className="legal-associations-violence-address"
+                    layout={Location.ADDRESS}
+                    geocode={true}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Organization"
+                    dispatch={this.props.dispatch}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('legal.associations.violence.heading.dates')}
-          help="legal.associations.violence.help.dates"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.associations.violence.help.dates"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
-            {...this.props.Dates}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            className="legal-associations-violence-dates"
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     className="legal-associations-violence-dates"
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('legal.associations.violence.heading.positions')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="PositionsNotApplicable"
-            {...this.props.PositionsNotApplicable}
-            className="legal-associations-violence-positions-na"
-            onUpdate={this.updatePositionsNotApplicable}
-            onError={this.props.onError}
-            or={i18n.m('legal.associations.violence.para.or')}
-            label={i18n.t('legal.associations.violence.label.noposition')}
-            required={this.props.required}>
+                         {...this.props.PositionsNotApplicable}
+                         className="legal-associations-violence-positions-na"
+                         onUpdate={this.updatePositionsNotApplicable}
+                         onError={this.props.onError}
+                         or={i18n.m('legal.associations.violence.para.or')}
+                         label={i18n.t('legal.associations.violence.label.noposition')}
+                         required={this.props.required}>
             <Text name="Positions"
-              {...this.props.Positions}
-              onUpdate={this.updatePositions}
-              onError={this.props.onError}
-              className="legal-associations-violence-positions"
-              required={this.props.required}
-            />
+                  {...this.props.Positions}
+                  onUpdate={this.updatePositions}
+                  onError={this.props.onError}
+                  className="legal-associations-violence-positions"
+                  required={this.props.required}
+                  />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('legal.associations.violence.heading.contributions')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="ContributionsNotApplicable"
-            {...this.props.ContributionsNotApplicable}
-            className="legal-associations-violence-contributions-na"
-            onUpdate={this.updateContributionsNotApplicable}
-            onError={this.props.onError}
-            or={i18n.m('legal.associations.violence.para.or')}
-            label={i18n.t('legal.associations.violence.label.nocontribs')}
-            required={this.props.required}>
-            <Text name="Contributions"
-              {...this.props.Contributions}
-              onUpdate={this.updateContributions}
-              onError={this.props.onError}
-              className="legal-associations-violence-contributions"
-              required={this.props.required}
-            />
+                         {...this.props.ContributionsNotApplicable}
+                         className="legal-associations-violence-contributions-na"
+                         onUpdate={this.updateContributionsNotApplicable}
+                         onError={this.props.onError}
+                         or={i18n.m('legal.associations.violence.para.or')}
+                         label={i18n.t('legal.associations.violence.label.nocontribs')}
+                         required={this.props.required}>
+            <Currency name="Contributions"
+                      {...this.props.Contributions}
+                      onUpdate={this.updateContributions}
+                      onError={this.props.onError}
+                      className="legal-associations-violence-contributions"
+                      required={this.props.required}
+                      />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('legal.associations.violence.heading.reasons')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"
-            {...this.props.Reasons}
-            onUpdate={this.updateReasons}
-            onError={this.props.onError}
-            className="legal-associations-violence-reasons"
-            required={this.props.required}
-          />
+                    {...this.props.Reasons}
+                    onUpdate={this.updateReasons}
+                    onError={this.props.onError}
+                    className="legal-associations-violence-reasons"
+                    required={this.props.required}
+                    />
         </Field>
       </div>
     )

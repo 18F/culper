@@ -159,3 +159,21 @@ func FlushStorage() bool {
 	}
 	return true
 }
+
+// OAuthEnabled returns a boolean indicating whether the system allows
+// OAuth authentication.
+func OAuthEnabled() bool {
+	if os.Getenv("OAUTH_ENABLED") == "" {
+		return false
+	}
+	return true
+}
+
+// SamlEnabled returns a boolean indicating whether the system allows
+// SAML authentication.
+func SamlEnabled() bool {
+	if os.Getenv("SAML_ENABLED") == "" {
+		return false
+	}
+	return true
+}

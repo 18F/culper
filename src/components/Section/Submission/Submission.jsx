@@ -5,22 +5,15 @@ import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
 import AuthenticatedView from '../../../views/AuthenticatedView'
-import { Field } from '../../Form'
 import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
-import Print from '../Print/Print'
 import { push } from '../../../middleware/history'
-import { Link } from 'react-router-dom'
-import { api } from '../../../services'
+import { Link } from 'react-router'
 
 class Submission extends SectionElement {
   constructor (props) {
     super(props)
-    this.state = {
-      hashCode: ''
-    }
-
     this.updateSubmission = this.updateSubmission.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onTransitionEnd = this.onTransitionEnd.bind(this)
@@ -35,14 +28,7 @@ class Submission extends SectionElement {
   onSubmit () {
     // TODO: Generate has code here and send to print screen when
     // merged with persistence updates
-    api.hash().then(r => {
-      this.setState({ hashCode: r.data || '' }, () => {
-        this.props.dispatch(push('/form/submission/print'))
-      })
-    })
-    .catch(() => {
-      this.props.dispatch(push('/form/submission/print'))
-    })
+    this.props.dispatch(push('/form/print'))
   }
 
   /**
@@ -53,9 +39,9 @@ class Submission extends SectionElement {
     const sectionsStatus = statusForAllSections(this.props.Application)
     const valid = allSectionsValid(sectionsStatus)
     if (valid) {
-      this.props.dispatch(push('/form/submission/releases'))
+      this.props.dispatch(push('/form/submit/releases'))
     } else {
-      this.props.dispatch(push('/form/submission/errors'))
+      this.props.dispatch(push('/form/submit/errors'))
     }
   }
 
@@ -63,7 +49,7 @@ class Submission extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/submission/releases'))
+    this.props.dispatch(push('/form/submit/releases'))
   }
 
   render () {
@@ -71,35 +57,30 @@ class Submission extends SectionElement {
     const sectionsStatus = statusForAllSections(this.props.Application)
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-        <SectionView name="">
+        <SectionView name="intro">
           <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
         </SectionView>
         <SectionView name="valid">
           <SubmissionStatus transition={true} onTransitionEnd={this.goToReleases}/>
         </SectionView>
         <SectionView name="releases">
-          <SubmissionStatus name="status" valid={true} transition={false}>
+          <SubmissionStatus valid={true} transition={false}>
             <ValidForm
               onUpdate={this.updateSubmission}
               hideHippa={hideHippa(this.props.Application)}
               {...releases}
+              LegalName={this.props.LegalName}
               onSubmit={this.onSubmit}
+              Identification={this.props.Identification}
+              History={this.props.History}
             />
           </SubmissionStatus>
         </SectionView>
-        <SectionView name="print">
-          <Print />
-          <Field title="Data hash code"
-                 titleSize="h4">
-            <p className="hash">{this.state.hashCode}</p>
-          </Field>
-        </SectionView>
-
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
             <InvalidForm sections={sectionsStatus} />
           </SubmissionStatus>
-          <Link to="/form/submission/valid">
+          <Link to="/form/submit/valid">
             Show valid scenario
           </Link>
         </SectionView>
@@ -262,6 +243,7 @@ function mapStateToProps (state) {
     Financial: financial,
     SubstanceUse: substanceUse,
     Legal: legal,
+    LegalName: identification.ApplicantName || {},
     Errors: errors.releases || [],
     Completed: completed.releases || []
   }

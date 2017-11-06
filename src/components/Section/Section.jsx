@@ -15,6 +15,7 @@ import SubstanceUse from './SubstanceUse'
 import Design from './Design'
 import Releases from './Releases'
 import Submission from './Submission/Submission'
+import Print from './Print/Print'
 import { SectionView, SectionViews } from './SectionView'
 
 class Section extends React.Component {
@@ -35,7 +36,7 @@ class Section extends React.Component {
     let name = props.section
     let sub = props.subsection
     this.props.dispatch(updateSection(name, sub))
-    this.props.dispatch(push(`/form/${props.section}/${props.subsection || ''}`))
+    this.props.dispatch(push(`/form/${props.section}/${props.subsection || 'intro'}`))
   }
 
   render () {
@@ -79,6 +80,9 @@ class Section extends React.Component {
         </SectionView>
         <SectionView name="submission">
           <Submission subsection={this.props.subsection} />
+        </SectionView>
+        <SectionView name="print">
+          <Print subsection={this.props.subsection} />
         </SectionView>
       </SectionViews>
     )

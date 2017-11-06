@@ -40,6 +40,7 @@ class Psychological extends SectionElement {
                        nextLabel={ i18n.t('psychological.destination.competence') }>
             <Field title={ i18n.t('psychological.heading.intro') }
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               { i18n.m('psychological.intro.para1') }
               { i18n.m('psychological.intro.para2') }
@@ -76,7 +77,7 @@ class Psychological extends SectionElement {
                           addressBooks={this.props.AddressBooks}
                           dispatch={this.props.dispatch}
                           onError={this.handleError}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')}
+                          onUpdate={this.handleUpdate.bind(this, 'Consultations')}
                           scrollToBottom={this.props.scrollToBottom}
                           />
           </SectionView>
@@ -90,7 +91,7 @@ class Psychological extends SectionElement {
                               ApplicantBirthDate={this.props.ApplicantBirthDate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')}
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')}
                               scrollToBottom={this.props.scrollToBottom}
                               />
           </SectionView>
@@ -128,7 +129,9 @@ class Psychological extends SectionElement {
                        para={i18n.m('review.para')}
                        showTop={true}
                        back={this.props.ShowExistingConditions ? 'psychological/conditions' : 'psychological/diagnoses'}
-                       backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}>
+                       backLabel={i18n.t(this.props.ShowExistingConditions ? 'psychological.destination.existingConditions' : 'psychological.destination.diagnoses')}
+                       next="submit"
+                       nextLabel={ i18n.t('submission.destination.submit') }>
 
             <Competence name="Competence"
                         {...this.props.Competence}
@@ -149,7 +152,7 @@ class Psychological extends SectionElement {
                           onError={this.handleError}
                           required={true}
                           scrollIntoView={false}
-                          onUpdate={this.handleUpdate.bind(this, 'Consultation')} />
+                          onUpdate={this.handleUpdate.bind(this, 'Consultations')} />
 
             <hr />
             <Hospitalizations name="Hospitalizations"
@@ -160,7 +163,7 @@ class Psychological extends SectionElement {
                               onError={this.handleError}
                               required={true}
                               scrollIntoView={false}
-                              onUpdate={this.handleUpdate.bind(this, 'Hospitalization')} />
+                              onUpdate={this.handleUpdate.bind(this, 'Hospitalizations')} />
 
             <hr />
             <Diagnoses name="Diagnoses"
@@ -217,8 +220,8 @@ function mapStateToProps (state) {
   return {
     Psychological: psychological,
     Competence: psychological.Competence,
-    Consultations: psychological.Consultation,
-    Hospitalizations: psychological.Hospitalization,
+    Consultations: psychological.Consultations,
+    Hospitalizations: psychological.Hospitalizations,
     Diagnoses: psychological.Diagnoses,
     ExistingConditions: psychological.ExistingConditions,
     Comments: psychological.Comments || {},

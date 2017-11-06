@@ -139,6 +139,7 @@ export default class People extends SubsectionElement {
       <div className="people">
         <Field title={i18n.t('relationships.people.heading.title')}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom">
           {i18n.m('relationships.people.para.intro')}
         </Field>

@@ -257,8 +257,8 @@ export default class MilitaryService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.history.heading.number')}
-          help="military.history.help.number"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="military.history.help.number"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="ServiceNumber"
                 {...this.props.ServiceNumber}
                 className="service-number"
@@ -298,6 +298,7 @@ export default class MilitaryService extends ValidationElement {
           <div>
             <Field title={i18n.t('military.history.heading.details')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom"
                    />
 

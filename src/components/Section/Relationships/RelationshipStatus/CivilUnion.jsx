@@ -189,6 +189,7 @@ export default class CivilUnion extends ValidationElement {
           <p>{i18n.t('relationships.civilUnion.para.never')}</p>
 
           <Field title={i18n.t('relationships.civilUnion.heading.name')}
+                 optional={true}
                  scrollIntoView={this.props.scrollIntoView}>
             <Name name="Name"
                   className="civil"
@@ -257,6 +258,7 @@ export default class CivilUnion extends ValidationElement {
                             scrollIntoView={this.props.scrollIntoView}>
 
             <Field title={i18n.t('relationships.civilUnion.othernames.heading.name')}
+                   optional={true}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="Othername"
                     bind={true}
@@ -332,6 +334,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.address')}
+                 optional={true}
                  help="relationships.civilUnion.help.address"
                  scrollIntoView={this.props.scrollIntoView}
                  adjustFor="address">

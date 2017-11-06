@@ -53,6 +53,7 @@ export default class CoOwner extends ValidationElement {
       <div className="co-owner">
 
         <Field title={i18n.t(`foreign.${prefix}.heading.name`)}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}
@@ -64,6 +65,7 @@ export default class CoOwner extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.${prefix}.heading.address`)}
+               optional={true}
                adjustFor="address"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>

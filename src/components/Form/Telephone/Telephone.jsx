@@ -176,7 +176,7 @@ export default class Telephone extends ValidationElement {
         name: this.props.name,
         timeOfDay: this.state.timeOfDay,
         type: this.state.type,
-        numberType: this.state.numberType,
+        numberType: this.props.showNumberType ? this.state.numberType : 'NA',
         number: this.getFormattedNumber(),
         extension: this.state.extension,
         noNumber: this.state.noNumber,
@@ -312,7 +312,7 @@ export default class Telephone extends ValidationElement {
               maxlength="3"
               minlength="3"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={this.required()}
               value={this.state.dsn.first}
               onChange={this.handleNumberChange('dsn', 'first').bind(this)}
               onError={this.handleErrorDsnFirst}
@@ -329,7 +329,7 @@ export default class Telephone extends ValidationElement {
               minlengh="4"
               maxlength="4"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={this.required()}
               step="1"
               value={this.state.dsn.second}
               onChange={this.handleNumberChange('dsn', 'second').bind(this)}
@@ -367,7 +367,7 @@ export default class Telephone extends ValidationElement {
               maxlength="3"
               pattern="\d{3}"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={this.required()}
               value={this.state.domestic.first}
               onChange={this.handleNumberChange('domestic', 'first').bind(this)}
               onError={this.handleErrorDomesticFirst}
@@ -383,7 +383,7 @@ export default class Telephone extends ValidationElement {
               maxlength="3"
               pattern="\d{3}"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={this.required()}
               value={this.state.domestic.second}
               onChange={this.handleNumberChange('domestic', 'second').bind(this)}
               onError={this.handleErrorDomesticSecond}
@@ -401,7 +401,7 @@ export default class Telephone extends ValidationElement {
               maxlength="4"
               pattern="\d{4}"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={this.required()}
               value={this.state.domestic.third}
               onChange={this.handleNumberChange('domestic', 'third').bind(this)}
               onError={this.handleErrorDomesticThird}
@@ -454,7 +454,7 @@ export default class Telephone extends ValidationElement {
               maxlength="3"
               pattern="\d{3}"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={this.required()}
               value={this.state.international.first}
               onChange={this.handleNumberChange('international', 'first').bind(this)}
               onError={this.handleErrorInternationalFirst}
@@ -470,7 +470,7 @@ export default class Telephone extends ValidationElement {
               maxlength="10"
               pattern="\d{10}"
               readonly={this.props.readonly}
-              required={this.props.required}
+              required={this.required()}
               value={this.state.international.second}
               onChange={this.handleNumberChange('international', 'second').bind(this)}
               onError={this.handleErrorInternationalSecond}
@@ -506,6 +506,13 @@ export default class Telephone extends ValidationElement {
         </Show>
       </div>
     )
+  }
+
+  required () {
+    if (this.props.allowNotApplicable && this.props.noNumber === 'NA') {
+      return false
+    }
+    return this.props.required
   }
 
   render () {
@@ -584,39 +591,39 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.showNumberType}>
           <div className="phonetype">
             <label className={this.state.noNumber ? 'disabled' : ''}>Select phone number type</label>
-            <RadioGroup selectedValue={this.state.numberType} required={this.props.required} onError={this.handleErrorNumberType}>
+            <RadioGroup selectedValue={this.state.numberType} required={this.required()} onError={this.handleErrorNumberType}>
               <Radio name="numbertype-cell"
-                    className="phonetype-option cell"
-                    label={i18n.t('telephone.numberType.cell')}
-                    value="Cell"
-                    disabled={this.state.noNumber}
-                    onUpdate={this.handleNumberTypeChange}
-                    onError={this.handleErrorType}
-                    />
+                     className="phonetype-option cell"
+                     label={i18n.t('telephone.numberType.cell')}
+                     value="Cell"
+                     disabled={this.state.noNumber}
+                     onUpdate={this.handleNumberTypeChange}
+                     onError={this.handleErrorType}
+                     />
               <Radio name="numbertype-home"
-                    className="phonetype-option home"
-                    label={i18n.t('telephone.numberType.home')}
-                    value="Home"
-                    disabled={this.state.noNumber}
-                    onUpdate={this.handleNumberTypeChange}
-                    onError={this.handleErrorType}
-                    />
+                     className="phonetype-option home"
+                     label={i18n.t('telephone.numberType.home')}
+                     value="Home"
+                     disabled={this.state.noNumber}
+                     onUpdate={this.handleNumberTypeChange}
+                     onError={this.handleErrorType}
+                     />
               <Radio name="numbertype-work"
-                    className="phonetype-option work"
-                    label={i18n.t('telephone.numberType.work')}
-                    value="Work"
-                    disabled={this.state.noNumber}
-                    onUpdate={this.handleNumberTypeChange}
-                    onError={this.handleErrorType}
-                    />
+                     className="phonetype-option work"
+                     label={i18n.t('telephone.numberType.work')}
+                     value="Work"
+                     disabled={this.state.noNumber}
+                     onUpdate={this.handleNumberTypeChange}
+                     onError={this.handleErrorType}
+                     />
               <Radio name="numbertype-other"
-                    className="phonetype-option other"
-                    label={i18n.t('telephone.numberType.other')}
-                    value="Other"
-                    disabled={this.state.noNumber}
-                    onUpdate={this.handleNumberTypeChange}
-                    onError={this.handleErrorType}
-                    />
+                     className="phonetype-option other"
+                     label={i18n.t('telephone.numberType.other')}
+                     value="Other"
+                     disabled={this.state.noNumber}
+                     onUpdate={this.handleNumberTypeChange}
+                     onError={this.handleErrorType}
+                     />
             </RadioGroup>
           </div>
         </Show>
@@ -645,24 +652,24 @@ Telephone.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required) {
-        if (props.showNumberType && !props.numberType) {
-          return false
-        }
         if (props.allowNotApplicable && props.noNumber === 'NA') {
           return true
+        }
+        if (props.showNumberType && !props.numberType) {
+          return false
         }
         switch (props.type) {
           case 'Domestic':
             return !!props.domestic.first &&
-              !!props.domestic.second &&
-              !!props.domestic.third
+            !!props.domestic.second &&
+            !!props.domestic.third
           case 'DSN':
             return !!props.dsn.first &&
-              !!props.dsn.second
+            !!props.dsn.second
           case 'International':
             return !!props.international.first &&
-              !!props.international.second &&
-              !!props.international.third
+            !!props.international.second &&
+            !!props.international.third
           default:
             return false
         }

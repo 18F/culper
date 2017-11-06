@@ -97,25 +97,25 @@ const validators = {
     return logic.validGenericTextfield(data)
   },
   'identification.birthdate': (data) => {
-    return new logic.DateControlValidator(data).isValid()
+    return new logic.IdentificationBirthDateValidator(data.date).isValid()
   },
   'identification.birthplace': (data) => {
-    return new logic.BirthPlaceValidator(data).isValid()
+    return new logic.IdentificationBirthPlaceValidator(data.location).isValid()
   },
   'identification.contacts': (data) => {
-    return new logic.ContactInformationValidator(data).isValid()
+    return new logic.IdentificationContactInformationValidator(data).isValid()
   },
   'identification.name': (data) => {
-    return new logic.NameValidator(data).isValid()
+    return new logic.IdentificationNameValidator(data).isValid()
   },
   'identification.othernames': (data) => {
-    return new logic.OtherNamesValidator(data).isValid()
+    return new logic.IdentificationOtherNamesValidator(data).isValid()
   },
   'identification.physical': (data) => {
-    return new logic.PhysicalValidator(data).isValid()
+    return new logic.IdentificationPhysicalValidator(data).isValid()
   },
   'identification.ssn': (data) => {
-    return logic.validSSN(data.ssn) && data.verified
+    return new logic.IdentificationSSNValidator(data).isValid() && data.verified
   },
   'financial.bankruptcy': (data) => {
     return new logic.BankruptcyValidator(data).isValid()
@@ -139,20 +139,22 @@ const validators = {
     return new logic.NonpaymentValidator(data).isValid()
   },
   'history.education': (data) => {
-    return new logic.EducationValidator(data).isValid()
+    return new logic.HistoryEducationValidator(data).isValid()
   },
   'history.employment': (data) => {
-    return ((data.List || {}).items || []).every(x => {
-      return (data.List || {}).branch === 'No' && new logic.EmploymentValidator(x.Item).isValid()
-    })
+    return new logic.HistoryEmploymentValidator(data).isValid()
+    //TODO: return ((data.List || {}).items || []).every(x => {
+      //return (data.List || {}).branch === 'No' && new logic.EmploymentValidator(x.Item).isValid()
+    //})
   },
   'history.federal': (data) => {
     return new logic.FederalServiceValidator(data).isValid()
   },
   'history.residence': (data) => {
-    return ((data.List || {}).items || []).every(x => {
-      return new logic.ResidenceValidator(x.Item, null).isValid()
-    })
+    return new logic.HistoryResidenceValidator(data).isValid()
+    //TODO: return ((data.List || {}).items || []).every(x => {
+      //return new logic.ResidenceValidator(x.Item, null).isValid()
+    //})
   },
   'relationships.status.cohabitant': (data) => {
     return new logic.CohabitantsValidator(data).isValid()

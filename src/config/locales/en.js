@@ -36,6 +36,10 @@ const en = {
       username: 'Username',
       password: 'Password'
     },
+    show: {
+      title: 'Show password',
+      text: 'Show password'
+    },
     forgot: {
       title: 'Forgot password',
       text: 'Forgot password'
@@ -84,7 +88,7 @@ const en = {
     label: {
       first: 'First name',
       last: 'Last name',
-      middle: 'Middle name or initial',
+      middle: 'Middle name',
       initialOnly: 'Initial only',
       noMiddle: 'No middle name',
       other: 'Other',
@@ -224,17 +228,17 @@ const en = {
       month: {
         notfound: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         min: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         max: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         }
       },
@@ -585,7 +589,7 @@ const en = {
           notfound: {
             title: 'This country is not on our current list',
             message: [
-              'Indicate the country that currently governs the geographic location you are indicating. As necessary provide a comment below to clarify.'
+              'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
             ],
             note: ''
           }
@@ -2945,8 +2949,8 @@ const en = {
           note: ''
         },
         hasCohabitant: {
-          title: 'Need help deciding whether or not you have had a cohabitant?',
-          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "No".',
+          title: 'Need help deciding whether or not you have a cohabitant?',
+          message: 'If you live with your cohabitant for reasons of convenience (e.g. a roommate) your answer would be "No". If you share any type of bonds of affection, obligation, or other commitment your answer would be "Yes".',
           note: ''
         },
         citizenship: {
@@ -3384,7 +3388,7 @@ const en = {
         outcome: 'Provide the description of the final outcome of the disciplinary procedure'
       },
       para: {
-        info: '**In the last 7 years**, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+        info: 'In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
       },
       label: {
         name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
@@ -3456,7 +3460,7 @@ const en = {
         }
       },
       para: {
-        served: 'Have you **ever** served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
+        served: 'Have you ever served, as a civilian or military member in a foreign country\'s military, intelligence, diplomatic, security forces, militia, other defense force, or government agency?',
         contact: 'Please provide full name, address (if known), official title, length of association, and frequency of contact for each former associate, colleague or acquaintance with whom you maintain contact.'
       },
       label: {
@@ -8526,7 +8530,7 @@ const en = {
       label: {
         first: 'First name',
         last: 'Last name',
-        middle: 'Middle name or initial',
+        middle: 'Middle name',
         initialOnly: 'Initial only',
         noMiddle: 'No middle name',
         other: 'Other',
@@ -9548,6 +9552,9 @@ const en = {
     }
   },
   submission: {
+    destination: {
+      submit: 'Submit'
+    },
     header: [
       '## All required fields are complete',
       'Not a guarantee of acceptance. We are checking that all required fields are complete'
@@ -9562,20 +9569,24 @@ const en = {
       creditItem: 'Credit reporting disclosure'
     },
     invalidForm: [
-      '## List of incomplete sections',
-      'Use the list below to complete all incomplete sections or sections with errors'
+      '### List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors.'
     ],
     submissionStatus: {
       validating: [
         '## Verifying your information is complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Checking your form...'
       ],
       valid: [
         '## All required fields are complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Not a guarantee of acceptance, but all required fields are complete.'
+      ],
+      valid2: [
+        'Please sign the releases below and submit your form.'
       ],
       invalid: [
-        '## Some required fields are incomplete'
+        '## Some required fields are incomplete',
+        'Please fix the errors listed below.'
       ]
     },
     submissionComplete: [
@@ -9594,6 +9605,12 @@ const en = {
         '### Thanks for submitting for your SF-86'
       ]
     }
+  },
+  signature: {
+    add: 'Click to sign',
+    remove: 'Remove signature',
+    name: 'Name',
+    date: 'Date'
   }
 }
 

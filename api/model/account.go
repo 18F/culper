@@ -11,11 +11,12 @@ import (
 )
 
 var (
-	JwtSecret         = []byte("more secrets!")
-	Issuer            = "eqip"
-	BasicAuthAudience = "Basic"
-	TwoFactorAudience = "2FA"
-	Expiration        = time.Hour * 1
+	JwtSecret            = []byte("more secrets!")
+	Issuer               = "eqip"
+	BasicAuthAudience    = "Basic"
+	TwoFactorAudience    = "2FA"
+	SingleSignOnAudience = "SSO"
+	Expiration           = time.Hour * 1
 
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")

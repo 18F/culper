@@ -53,6 +53,7 @@ export default class Relatives extends SubsectionElement {
       <div className="relatives">
         <Field title={i18n.t('relationships.relatives.heading.title')}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom">
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>

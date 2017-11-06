@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate, { validSSN } from '../../../../validators'
+import validate from '../../../../validators'
+import { validSSN } from '../../../../validators/helpers'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, SSN, Show } from '../../../Form'
 

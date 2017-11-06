@@ -59,6 +59,7 @@ export default class Multiple extends SubsectionElement {
       <div className="multiple">
         <Field title={i18n.t('citizenship.multiple.heading.title')}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom"
                />
 

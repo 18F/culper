@@ -7,7 +7,7 @@ import Verify from './Verify'
 describe('The verify component', () => {
   it('displays name', () => {
     const props = {
-      identification: {
+      Identification: {
         ApplicantName: {
           first: 'Bob',
           middle: 'Joe',
@@ -22,7 +22,7 @@ describe('The verify component', () => {
 
   it('displays other names used', () => {
     const props = {
-      identification: {
+      Identification: {
         OtherNames: {
           List: [
             {
@@ -56,7 +56,7 @@ describe('The verify component', () => {
 
   it('displays date of birth with day', () => {
     const props = {
-      identification: {
+      Identification: {
         ApplicantBirthDate: {
           date: new Date('1/1/1982')
         }
@@ -69,7 +69,7 @@ describe('The verify component', () => {
 
   it('displays social security number', () => {
     const props = {
-      identification: {
+      Identification: {
         ApplicantSSN: {
           first: '123',
           middle: '45',
@@ -84,7 +84,7 @@ describe('The verify component', () => {
 
   it('displays phone number(s)', () => {
     const props = {
-      identification: {
+      Identification: {
         Contacts: {
           PhoneNumbers: [
             {
@@ -113,8 +113,8 @@ describe('The verify component', () => {
 
   it('displays current address', () => {
     const props = {
-      identification: {},
-      history: {
+      Identification: {},
+      History: {
         Residence: [
           {
             Item: {
@@ -181,8 +181,8 @@ describe('The verify component', () => {
 
   it('displays text when nothing is found', () => {
     const props = {
-      identification: {},
-      history: {}
+      Identification: {},
+      History: {}
     }
     const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-name .component > span').text()).toBe('Not entered')

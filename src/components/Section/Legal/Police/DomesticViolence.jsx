@@ -93,6 +93,7 @@ export default class DomesticViolence extends ValidationElement {
 
         <Field title={i18n.t('legal.police.heading.domesticCourtAddress')}
                titleSize="h3"
+               optional={true}
                help="legal.police.help.courtaddress"
                adjustFor="address"
                shrink={true}

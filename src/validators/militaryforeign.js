@@ -4,7 +4,7 @@ import NameValidator from './name'
 import { validAccordion, BranchCollection, validGenericTextfield } from './helpers'
 
 export default class MilitaryForeignValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.list = data.List || {}
   }
 

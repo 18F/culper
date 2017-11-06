@@ -32,6 +32,7 @@ export default class ApplicantName extends SubsectionElement {
       <div className={klass}>
         <Field title={i18n.t('identification.name.title')}
                titleSize="h2"
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="name"
                 {...this.props.Name}
@@ -56,7 +57,7 @@ ApplicantName.defaultProps = {
   dispatch: () => {},
   required: false,
   validator: (state, props = {}) => {
-    return validate(schema('identification.name', props.Name))
+    return validate(schema('identification.name', props))
   }
 }
 

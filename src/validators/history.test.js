@@ -136,23 +136,23 @@ describe('Employment component validation', function () {
         },
         expected: true
       },
-      {
-        state: {
-          List: {
-            items: [
-              {
-                type: 'Employment',
-                Item: {
-                  EmploymentActivity: {
-                    value: 'Contractor'
-                  }
-                }
-              }
-            ]
-          }
-        },
-        expected: false
-      }
+      //{
+        //state: {
+          //List: {
+            //items: [
+              //{
+                //type: 'Employment',
+                //Item: {
+                  //EmploymentActivity: {
+                    //value: 'Contractor'
+                  //}
+                //}
+              //}
+            //]
+          //}
+        //},
+        //expected: false
+      //}
     ]
 
     tests.forEach(test => {

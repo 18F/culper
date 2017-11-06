@@ -28,6 +28,7 @@ export default class General extends ValidationElement {
       <div className="general-release">
         { i18n.m('releases.general.contents') }
         <Signature {...this.props.Signature}
+                   LegalName={this.props.LegalName}
                    onUpdate={this.updateSignature}
                    onError={this.props.onError}
                    />
@@ -38,6 +39,7 @@ export default class General extends ValidationElement {
 
 General.defaultProps = {
   Signature: {},
+  LegalName: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

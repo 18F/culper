@@ -171,11 +171,11 @@ class Print extends SectionElement {
         </div>
         <div className="print-view">
           <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-            <SectionView name=""
-              back=""
-              backLabel=""
-              next=""
-              nextLabel="">
+            <SectionView name="intro"
+                         back=""
+                         backLabel=""
+                         next=""
+                         nextLabel="">
               { this.sections() }
             </SectionView>
           </SectionViews>
@@ -229,6 +229,7 @@ function mapStateToProps (state) {
 
 Print.defaultProps = {
   section: 'print',
+  subsection: 'intro',
   store: 'Print'
 }
 

@@ -75,6 +75,7 @@ export default class SupportItem extends ValidationElement {
     return (
       <div className="support-item">
         <Field title={i18n.t('foreign.activities.support.heading.name')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 {...this.props.Name}
@@ -87,6 +88,7 @@ export default class SupportItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.support.heading.address')}
+               optional={true}
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"

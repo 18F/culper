@@ -58,6 +58,7 @@ class Relationships extends SectionElement {
                        nextLabel={i18n.t('relationships.destination.marital')}>
             <Field title={i18n.t('relationships.intro.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('relationships.intro.body')}
             </Field>

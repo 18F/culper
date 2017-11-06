@@ -271,6 +271,7 @@ export default class DelinquentItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('financial.delinquent.heading.courtaddress')}
+               optional={true}
                help="financial.delinquent.help.courtaddress"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="address">

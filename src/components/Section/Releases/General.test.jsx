@@ -11,7 +11,7 @@ describe('The General Release component', () => {
     }
     const component = mount(<MemoryRouter><General {...expected} /></MemoryRouter>)
     expect(component.find('.general-release').length).toBe(1)
-    component.find('.fullname input').simulate('change')
+    component.find('.signature button').simulate('click')
     expect(updates).toBe(1)
   })
 })

@@ -55,19 +55,19 @@ export default class SubmissionStatus extends React.Component {
     const style = {
       width: `${this.state.width}%`
     }
+
     // When transition class is applied, css3 transition is triggered
     const progressClass = [ 'progress', this.props.transition ? 'transition' : '' ]
-
     return (
       <div className={classes.join(' ')}>
         { text }
         <div className="progress-container">
           <div className="review-icon">
-            <Show when={!this.props.transition || this.props.valid}>
-              <img src="/img/review-correct-all.svg" />
+            <Show when={this.props.transition}>
+              <img src="/img/review-checking.svg" />
             </Show>
-            <Show when={this.props.transition && !this.props.valid}>
-              <img src="/img/review-error.svg" />
+            <Show when={!this.props.transition}>
+              <AnimateReviewIcon {...this.props} />
             </Show>
           </div>
           <div className="progress-outline">
@@ -78,19 +78,105 @@ export default class SubmissionStatus extends React.Component {
           <div className="icon-container">
             <span className="icon">
               <Show when={this.props.transition}>
-                <Svg className="checkmark" src="/img/checkmark.svg" />
-              </Show>
-              <Show when={!this.props.transition && this.props.valid}>
                 <Svg src="/img/checkmark.svg" />
               </Show>
-              <Show when={!this.props.transition && !this.props.valid}>
-                <Svg src="/img/exclamation.svg" />
+              <Show when={!this.props.transition}>
+                <AnimateCheckmarkIcon {...this.props} />
               </Show>
             </span>
           </div>
         </div>
         { this.props.children }
       </div>
+    )
+  }
+}
+
+export class AnimateReviewIcon extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      initial: true
+    }
+  }
+
+  componentDidMount () {
+    window.setTimeout(() => {
+      this.setState({ initial: false })
+    })
+  }
+
+  render () {
+    let reviewClass = ''
+    if (this.state.initial) {
+      reviewClass = 'opacity-0'
+    } else {
+      reviewClass = 'opacity-1'
+    }
+    let image = null
+    if (this.props.valid) {
+      image = (<img src="/img/review-correct-all.svg" style={{zIndex: '100'}} className={reviewClass} />)
+    } else {
+      image = (<img src="/img/review-error.svg" style={{zIndex: '100'}} className={reviewClass} />)
+    }
+    return (
+      <div>
+        <img src="/img/review-checking.svg" style={{zIndex: '10'}} />
+        {image}
+      </div>
+    )
+  }
+}
+
+export class AnimateCheckmarkIcon extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      initial: true,
+      done: false
+    }
+
+    this.onInitialTransitionEnd = this.onInitialTransitionEnd.bind(this)
+  }
+
+  componentDidMount () {
+    window.setTimeout(() => {
+      this.setState({ initial: false })
+    })
+  }
+
+  onInitialTransitionEnd () {
+    this.setState({ initial: false, done: true })
+  }
+
+  render () {
+    let defaultClass = {}
+    let reviewClass = {}
+    let image = null
+
+    if (this.props.valid) {
+      image = <Svg src="/img/checkmark.svg" />
+    } else {
+      image = <Svg src="/img/submit-error.svg" />
+    }
+    if (!this.state.initial) {
+      defaultClass = 'scale-down'
+    }
+    if (this.state.done) {
+      reviewClass = 'scale-up'
+    } else {
+      reviewClass = 'scale-down'
+    }
+
+    return (
+      <span>
+        <span className={defaultClass} onTransitionEnd={this.onInitialTransitionEnd}>
+          <Svg className="checkmark" src="/img/checkmark.svg" />
+        </span>
+        <span className={reviewClass}>
+          {image}
+        </span>
+      </span>
     )
   }
 }

@@ -88,6 +88,9 @@ export const validDateField = (obj = {}) => {
   if (!obj) {
     return false
   }
+  if (obj.value && !isNaN(obj.value)) {
+    return true
+  }
   if (!obj.day) {
     return false
   }
@@ -129,7 +132,6 @@ export const validAccordion = (collection, valid, ignoreBranch = false) => {
         ? { value: 'No' }
         : (collection || {}).branch || {}
   const items = (collection || {}).items || []
-
   if (branch.value !== 'No') {
     return false
   }

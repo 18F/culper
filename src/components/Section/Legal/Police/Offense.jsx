@@ -203,8 +203,8 @@ export default class Offense extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('legal.police.heading.description')}
-          help="legal.police.help.description"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="legal.police.help.description"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
                     {...this.props.Description}
                     className="offense-description"
@@ -250,6 +250,7 @@ export default class Offense extends ValidationElement {
         </Branch>
 
         <Field title={i18n.t('legal.police.heading.address')}
+               optional={true}
                adjustFor="address"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
@@ -283,13 +284,15 @@ export default class Offense extends ValidationElement {
         <Show when={this.props.WasCited.value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
-              className="more title"
-              scrollIntoView={this.props.scrollIntoView}>
+                   optional={true}
+                   className="more title"
+                   scrollIntoView={this.props.scrollIntoView}>
               <Svg src="/img/date-down-arrow.svg" className="more arrow" />
             </Field>
 
             <Field title={i18n.t('legal.police.heading.citedagency')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom"
                    />
             <Field title={i18n.t('legal.police.heading.citedby')}
@@ -304,6 +307,7 @@ export default class Offense extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('legal.police.heading.agencyaddress')}
+                   optional={true}
                    help="legal.police.help.agencyaddress"
                    adjustFor="address"
                    shrink={true}
@@ -353,6 +357,7 @@ export default class Offense extends ValidationElement {
         <Show when={this.props.WasCharged.value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
+                   optional={true}
                    className="more title"
                    scrollIntoView={this.props.scrollIntoView}>
               <Svg src="/img/date-down-arrow.svg" className="more arrow" />
@@ -372,6 +377,7 @@ export default class Offense extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('legal.police.heading.courtaddress')}
+                   optional={true}
                    help="legal.police.help.courtaddress"
                    adjustFor="address"
                    shrink={true}
@@ -393,6 +399,7 @@ export default class Offense extends ValidationElement {
 
             <Field title={i18n.t('legal.police.heading.chargedetails')}
                    titleSize="h3"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('legal.police.para.chargedetails')}
             </Field>
@@ -477,6 +484,7 @@ export default class Offense extends ValidationElement {
             <Show when={this.props.WasSentenced.value === 'Yes'}>
               <div>
                 <Field title={i18n.t('legal.police.heading.needmore')}
+                       optional={true}
                        className="more title"
                        scrollIntoView={this.props.scrollIntoView}>
                   <Svg src="/img/date-down-arrow.svg" className="more arrow" />

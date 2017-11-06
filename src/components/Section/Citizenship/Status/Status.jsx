@@ -2,7 +2,6 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate from '../../../../validators'
-import { CitizenshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Field, RadioGroup, Radio, Textarea,
          Text, Name, DateControl, Country, Location } from '../../../Form'
@@ -225,6 +224,7 @@ export default class Status extends SubsectionElement {
       <div className="status">
         <Field title={i18n.t('citizenship.status.heading.title')}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom"
                />
 
@@ -365,6 +365,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.documentname')}
+                   optional={true}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="DocumentName"
                     className="document-name"
@@ -400,6 +401,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.foreignborn')}
+                   optional={true}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
@@ -523,6 +525,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatecourtaddress')}
+                   optional={true}
                    help="citizenship.status.help.certificatecourtaddress"
                    scrollIntoView={this.props.scrollIntoView}
                    adjustFor="label">
@@ -551,6 +554,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.naturalized')}
+                   optional={true}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
@@ -639,6 +643,7 @@ export default class Status extends SubsectionElement {
             </Field>
 
             <Field title={i18n.t('citizenship.status.heading.certificatename.derived')}
+                   optional={true}
                    scrollIntoView={this.props.scrollIntoView}>
               <Name name="CertificateName"
                     className="certificate-name"
@@ -849,7 +854,8 @@ export default class Status extends SubsectionElement {
                     />
             </Field>
 
-            <Field title={i18n.t('citizenship.status.heading.documentname')}>
+            <Field title={i18n.t('citizenship.status.heading.documentname')}
+                   optional={true}>
               <Name name="DocumentName"
                     className="document-name"
                     {...this.props.DocumentName}

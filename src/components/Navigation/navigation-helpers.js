@@ -1,7 +1,7 @@
-import { navigation } from '../config'
+import { navigation } from '../../config'
 
 export const validations = (section, props = {}) => {
-  if (!section.subsections) {
+  if (!section || !section.subsections) {
     return 1
   }
 

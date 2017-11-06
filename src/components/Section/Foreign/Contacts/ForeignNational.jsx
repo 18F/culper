@@ -239,6 +239,7 @@ export default class ForeignNational extends ValidationElement {
     return (
       <div className="foreign-national">
         <Field title={i18n.t('foreign.contacts.heading.name')}
+               optional={true}
                className={this.props.NameNotApplicable.applicable ? '' : 'no-margin-bottom'}
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="NameNotApplicable"
@@ -493,6 +494,7 @@ export default class ForeignNational extends ValidationElement {
                           onError={this.props.onError}
                           scrollIntoView={this.props.scrollIntoView}>
           <Field title={i18n.t('foreign.contacts.heading.aliasname')}
+                 optional={true}
                  scrollIntoView={this.props.scrollIntoView}>
             <Name name="Alias" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </Field>
@@ -557,6 +559,7 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.address')}
+               optional={true}
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="AddressNotApplicable"
@@ -603,6 +606,7 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.employeraddress')}
+               optional={true}
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmployerAddressNotApplicable"

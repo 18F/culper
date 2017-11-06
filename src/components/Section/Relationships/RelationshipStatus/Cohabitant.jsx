@@ -157,6 +157,7 @@ export default class Cohabitant extends ValidationElement {
                      onSuggestion={this.onSpouseSuggestion}
                      />
         <Field title={i18n.t('relationships.cohabitant.heading.name')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
                 className="cohabitant-name"

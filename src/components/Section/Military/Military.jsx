@@ -52,6 +52,7 @@ class Military extends SectionElement {
                        nextLabel={showSelectiveService ? i18n.t('military.destination.selective') : i18n.t('military.destination.history')}>
             <Field title={i18n.t('military.intro.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('military.intro.body')}
             </Field>

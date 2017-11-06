@@ -93,7 +93,7 @@ ApplicantBirthDate.defaultProps = {
   onUpdate: (queue) => {},
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schema('identification.birthdate', props.date))
+    return validate(schema('identification.birthdate', props))
   }
 }
 

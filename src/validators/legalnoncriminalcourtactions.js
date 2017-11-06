@@ -2,7 +2,7 @@ import LocationValidator from './location'
 import { validAccordion, validBranch, validDateField, validGenericTextfield } from './helpers'
 
 export default class NonCriminalCourtActionsValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.hasCourtActions = (data.HasCourtActions || {}).value
     this.list = data.List || {}
   }

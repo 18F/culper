@@ -22,9 +22,8 @@ export default class Foreign extends SubsectionElement {
       <div className="foreign">
         <BranchCollection {...this.props.List}
                           branchName="has_foreign"
-                          label={i18n.t('military.foreign.heading.title')}
+                          label={i18n.t('military.foreign.para.served')}
                           labelSize="h2"
-                          content={i18n.m('military.foreign.para.served')}
                           appendLabel={i18n.t('military.foreign.collection.foreign.appendTitle')}
                           appendSize="h2"
                           onUpdate={this.updateList}

@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { ResidenceValidator } from '../../../../validators'
+import validate, { HistoryResidenceValidator, ResidenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
@@ -129,6 +128,6 @@ Residence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return validate(schema('history.residence', props))
+    return new HistoryResidenceValidator(props.value).isValid()
   }
 }

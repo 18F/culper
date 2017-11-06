@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validAccordion, validNotApplicable, validDateField, validPhoneNumber, validGenericTextfield } from './helpers'
+import { validAccordion, validNotApplicable, validPhoneNumber, validGenericTextfield } from './helpers'
 import LocationValidator from './location'
 import NameValidator from './name'
 

@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 import { validAccordion } from './helpers'
 
 export default class GamblingValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.hasGamblingDebt = (data.HasGamblingDebt || {}).value
     this.list = data.List || {}
   }

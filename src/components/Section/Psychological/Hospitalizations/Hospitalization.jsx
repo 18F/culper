@@ -123,6 +123,7 @@ export default class Hospitalization extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`psychological.hospitalization.heading.address`)}
+               optional={true}
                help="psychological.hospitalization.help.address"
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>

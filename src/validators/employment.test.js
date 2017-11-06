@@ -1,4 +1,4 @@
-import EmploymentValidator from './employment'
+import { EmploymentValidator } from './employment'
 import Location from '../components/Form/Location'
 
 describe('Employment component validation', function () {

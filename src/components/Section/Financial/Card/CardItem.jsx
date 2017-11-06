@@ -85,6 +85,7 @@ export default class CardItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('financial.card.heading.address')}
+               optional={true}
                help="financial.card.help.address"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="address">

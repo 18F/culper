@@ -106,6 +106,7 @@ export default class Divorce extends React.Component {
     return (
       <div className="divorce">
         <Field title={i18n.t('relationships.civilUnion.heading.name')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Name name="Name"
@@ -167,6 +168,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.address')}
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="labels">
           <Location name="address"
@@ -254,6 +256,7 @@ export default class Divorce extends React.Component {
 
             <Show when={(this.props.Deceased || {}).value === 'Yes'}>
               <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}
+                     optional={true}
                      scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
                                className="deceased-notapplicable"

@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { ContactEmailValidator, ContactPhoneNumberValidator } from '../../../../validators'
+import validate, { ContactEmailValidator, ContactPhoneNumberValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Email, Accordion, AccordionItem, Telephone } from '../../../Form'
 import { Summary, TelephoneSummary } from '../../../Summary'
@@ -73,26 +72,27 @@ export default class ContactInformation extends SubsectionElement {
     const klass = `${this.props.className || ''}`.trim()
     const phoneNumberItems = (this.props.PhoneNumbers || {}).items || []
     let phoneNumbers = this.props.filterEmpty
-        ? phoneNumberItems.filter(x => {
-          const item = x.Item || {}
-          return item.number || item.noNumber
-        })
-        : phoneNumberItems
+      ? phoneNumberItems.filter(x => {
+        const item = x.Item || {}
+        return item.number || item.noNumber
+      })
+      : phoneNumberItems
 
     if (phoneNumbers.length < this.props.minimumPhoneNumbers) {
       phoneNumbers = phoneNumberItems.slice(0, this.props.minimumPhoneNumbers)
     }
-
     return (
       <div className="contact">
         <Field title={i18n.t('identification.contacts.title')}
                titleSize="h2"
                className="no-margin-bottom"
+               optional={true}
                />
 
         <Field title={i18n.t('identification.contacts.heading.email')}
                titleSize="h3"
                help="identification.contacts.help.email"
+               optional={true}
                className="no-margin-bottom">
           {i18n.m('identification.contacts.para.email')}
         </Field>
@@ -124,6 +124,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <Field title={i18n.t('identification.contacts.heading.phoneNumber')}
                titleSize="h3"
+               optional={true}
                help="identification.contacts.help.phoneNumber"
                className="no-margin-bottom">
           {i18n.m('identification.contacts.para.phoneNumber')}
@@ -158,10 +159,10 @@ export default class ContactInformation extends SubsectionElement {
 }
 
 ContactInformation.defaultProps = {
-  Emails: {},
-  PhoneNumbers: {},
+  Emails: [],
+  PhoneNumbers: [],
   minimumPhoneNumbers: 2,
-  filterEmpty: false,
+  shouldFilterEmptyNumbers: false,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',

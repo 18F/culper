@@ -1,21 +1,26 @@
 import { validate, walkValidationTree } from './validate'
 import DateControlValidator from './datecontrol'
+import { validateWorld } from './world'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
-import ContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './contactinformation'
+import IdentificationContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './identificationcontacts'
 import IdentificationValidator from './identification'
+import IdentificationNameValidator from './identificationname'
+import IdentificationBirthDateValidator from './identificationbirthdate'
+import IdentificationBirthPlaceValidator from './identificationbirthplace'
+import IdentificationSSNValidator from './identificationssn'
 import NameValidator from './name'
-import OtherNamesValidator, { OtherNameValidator } from './othernames'
+import IdentificationOtherNamesValidator, { OtherNameValidator } from './identificationothernames'
 import PassportValidator from './passport'
-import PhysicalValidator from './physical'
+import IdentificationPhysicalValidator from './identificationphysical'
 import GamblingValidator, { GamblingItemValidator } from './gambling'
-import ResidenceValidator from './residence'
-import EmploymentValidator from './employment'
-import EducationValidator, { EducationItemValidator } from './education'
+import HistoryResidenceValidator, { ResidenceValidator } from './residence'
+import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
+import HistoryEducationValidator, { EducationItemValidator } from './education'
 import FederalServiceValidator, { FederalServiceItemValidator } from './federalservice'
-import SelectiveServiceValidator from './selectiveservice'
+import SelectiveServiceValidator, { hideSelectiveService } from './selectiveservice'
 import MilitaryHistoryValidator, { MilitaryServiceValidator} from './militaryhistory'
-import MilitaryDisciplinaryValidator, { ProcedureValidator } from './militarydisciplinary'
+import MilitaryDisciplinaryValidator, { ProcedureValidator, hideDisciplinaryProcedures } from './militarydisciplinary'
 import MilitaryForeignValidator, { ForeignServiceValidator, ForeignContactValidator } from './militaryforeign'
 import PoliceOffensesValidator from './policeoffenses'
 import PoliceOtherOffensesValidator from './policeotheroffenses'
@@ -33,7 +38,7 @@ import DelinquentValidator, { DelinquentItemValidator } from './delinquent'
 import DiagnosesValidator from './diagnoses'
 import DiagnosisValidator, { ExistingConditionsDiagnosisValidator } from './diagnosis'
 import ExistingConditionsValidator from './existingconditions'
-import PsychologicalValidator from './psychological'
+import PsychologicalValidator, { hideExistingConditions } from './psychological'
 import CompetenceValidator from './competence'
 import TreatmentValidator from './treatment'
 import CitizenshipValidator from './citizenship'
@@ -99,23 +104,30 @@ export default validate
 export {
   walkValidationTree,
   DateControlValidator,
+  validateWorld,
+  IdentificationNameValidator,
+  IdentificationBirthDateValidator,
+  IdentificationBirthPlaceValidator,
+  IdentificationSSNValidator,
   BankruptcyValidator,
   BankruptcyItemValidator,
   BirthPlaceValidator,
-  ContactInformationValidator,
+  IdentificationContactInformationValidator,
   ContactEmailValidator,
   ContactPhoneNumberValidator,
   IdentificationValidator,
   NameValidator,
-  OtherNamesValidator,
+  IdentificationOtherNamesValidator,
   OtherNameValidator,
   PassportValidator,
-  PhysicalValidator,
+  IdentificationPhysicalValidator,
   GamblingValidator,
   GamblingItemValidator,
+  HistoryResidenceValidator,
   ResidenceValidator,
+  HistoryEmploymentValidator,
   EmploymentValidator,
-  EducationValidator,
+  HistoryEducationValidator,
   EducationItemValidator,
   SelectiveServiceValidator,
   MilitaryHistoryValidator,
@@ -253,5 +265,8 @@ export {
   validSSN,
   OrderValidator,
   CompetenceOrderValidator,
-  ConsultationOrderValidator
+  ConsultationOrderValidator,
+  hideDisciplinaryProcedures,
+  hideExistingConditions,
+  hideSelectiveService
 }

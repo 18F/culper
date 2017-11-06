@@ -41,8 +41,17 @@ class Env {
     }
   }
 
+  OAuthEnabled () {
+    return (process.env.OAUTH_ENABLED || '').length
+  }
+
+  SamlEnabled () {
+    return (process.env.SAML_ENABLED || '').length
+  }
+
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointRefresh () { return '/refresh' }
+  EndpointSaml () { return `${this.ApiBaseURL()}/auth/saml` }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }

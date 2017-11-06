@@ -234,7 +234,8 @@ export default class Bankruptcy extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('financial.bankruptcy.heading.nameDebt')}
-               titleSize="h3">
+               titleSize="h3"
+               optional={true}>
           <Name name="NameDebt"
                 className="namedebt"
                 {...this.props.NameDebt}
@@ -257,6 +258,7 @@ export default class Bankruptcy extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('financial.bankruptcy.heading.courtAddress')}
+               optional={true}
                help="financial.bankruptcy.courtAddress.help"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="address">
@@ -288,6 +290,7 @@ export default class Bankruptcy extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('financial.bankruptcy.trustee.address.title')}
+                   optional={true}
                    help="financial.bankruptcy.trustee.address.help"
                    scrollIntoView={this.props.scrollIntoView}
                    adjustFor="address">
