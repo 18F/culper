@@ -28,6 +28,7 @@ export default class SectionComments extends SubsectionElement {
       <Field title={this.props.title}
              titleSize="h4"
              optional={true}
+             optionalText={i18n.t('app.optional')}
              className="section-comment">
         <Text name="Comments"
               {...this.props.Comments}

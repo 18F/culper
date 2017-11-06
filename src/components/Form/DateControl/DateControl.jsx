@@ -195,17 +195,11 @@ export default class DateControl extends ValidationElement {
   }
 
   updateEstimated (values) {
-    let day = `${this.state.day}`
-    if (values.checked) {
-      if (!day) {
-        day = '15'
-      }
-    }
     this.update(
       this.refs.estimated.refs.checkbox,
       this.state.year,
       this.state.month,
-      day,
+      this.state.day,
       values.checked)
   }
 
@@ -361,7 +355,7 @@ export default class DateControl extends ValidationElement {
                     onError={this.handleErrorDay}
                     tabBack={() => { this.props.tab(this.refs.month.refs.number.refs.input) }}
                     tabNext={() => { this.props.tab(this.refs.year.refs.number.refs.input) }}
-                    required={this.props.required}
+                    required={!this.props.hideDay && this.props.required}
                     />
           </div>
           <div className="usa-form-group year">

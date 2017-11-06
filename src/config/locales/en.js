@@ -17,7 +17,8 @@ const en = {
       witty: 'The .gov means it\'s official.',
       extension: 'Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you\'re on a .gov or .mil site by inspecting your browser\'s address (or "location") bar.',
       ssl: 'This site is also protected by an SSL (Secure Sockets Layer) certificate that\'s been signed by the U.S. government. The <strong>https://</strong> means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.'
-    }
+    },
+    optional: '(Optional)'
   },
   login: {
     title: 'Login',
@@ -93,7 +94,7 @@ const en = {
       noMiddle: 'No middle name',
       other: 'Other',
       suffix: 'Suffix',
-      optional: 'Optional',
+      optional: '(Optional)',
       jr: 'Jr',
       sr: 'Sr',
       i: 'I',
@@ -281,7 +282,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date are required even if it is **estimated**.'
       }
     },
     daterange: {
@@ -404,7 +405,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date(s) are required even if it is **estimated**.'
       }
     },
     weight: {
