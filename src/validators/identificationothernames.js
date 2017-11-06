@@ -4,8 +4,8 @@ import DateRangeValidator from './daterange'
 
 export default class IdentificationOtherNamesValidator {
   constructor (data = {}) {
-    this.hasOtherNames = data.HasOtherNames
-    this.list = data.List
+    this.hasOtherNames = data.HasOtherNames || ''
+    this.list = data.List || []
   }
 
   /**

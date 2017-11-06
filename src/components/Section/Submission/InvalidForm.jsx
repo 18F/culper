@@ -18,7 +18,7 @@ export default class InvalidForm extends React.Component {
 
     navigationWalker((path, child) => {
       if (path.length && path[0].store && child.store && child.validator) {
-        if (child.hidden || (child.hiddenFunc && child.hiddenFunc(this.props.application))) {
+        if (child.excluded || child.hidden || (child.hiddenFunc && child.hiddenFunc(this.props.application))) {
           return
         }
 
@@ -44,8 +44,10 @@ export default class InvalidForm extends React.Component {
         }
 
         tally[sectionName].section = path[0]
-        tally[sectionName].errors = (tally[sectionName].errors || 0) + (valid === false ? 1 : 0)
-        tally[sectionName].subsections = [...(tally[sectionName].subsections || []), child]
+        if (valid === false) {
+          tally[sectionName].errors = (tally[sectionName].errors || 0) + (valid === false ? 1 : 0)
+          tally[sectionName].subsections = [...(tally[sectionName].subsections || []), child]
+        }
       }
     })
 
