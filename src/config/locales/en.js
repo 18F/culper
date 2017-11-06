@@ -282,7 +282,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date are required even if it is **estimated**.'
       }
     },
     daterange: {
@@ -405,7 +405,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date(s) are required even if it is **estimated**.'
       }
     },
     weight: {
