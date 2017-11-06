@@ -1,7 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { Link } from 'react-router'
-import { navigationWalker } from '../../../config'
 
 export default class InvalidForm extends React.Component {
   constructor (props) {
@@ -14,46 +13,9 @@ export default class InvalidForm extends React.Component {
   }
 
   errors () {
-    let tally = {}
-
-    navigationWalker((path, child) => {
-      if (path.length && path[0].store && child.store && child.validator) {
-        if (child.excluded || child.hidden || (child.hiddenFunc && child.hiddenFunc(this.props.application))) {
-          return
-        }
-
-        const sectionName = path[0].url
-        const data = (this.props.application[path[0].store] || {})[child.store] || {}
-
-        let subsectionName = child.url
-        if (path.length > 1) {
-          for (let i = path.length - 1; i > 0; i--) {
-            subsectionName = `${path[i].url}/${subsectionName}`
-          }
-        }
-
-        let valid = null
-        try {
-          valid = new child.validator(data, data).isValid()
-        } catch (e) {
-          valid = null
-        }
-
-        if (!tally[sectionName]) {
-          tally[sectionName] = {}
-        }
-
-        tally[sectionName].section = path[0]
-        if (valid === false) {
-          tally[sectionName].errors = (tally[sectionName].errors || 0) + (valid === false ? 1 : 0)
-          tally[sectionName].subsections = [...(tally[sectionName].subsections || []), child]
-        }
-      }
-    })
-
     let errors = []
-    for (const sectionName in tally) {
-      const mark = tally[sectionName]
+    for (const sectionName in this.props.tally) {
+      const mark = this.props.tally[sectionName]
       if (mark.errors) {
         errors.push(<InvalidSection key={mark.section.url} mark={mark} />)
       }
@@ -62,11 +24,10 @@ export default class InvalidForm extends React.Component {
   }
 
   render () {
-    const errors = this.errors()
     return (
       <div className="invalid-form">
         { i18n.m(`submission.invalidForm`) }
-        { errors }
+        { this.errors() }
       </div>
     )
   }
