@@ -6,9 +6,14 @@ export default class MultipleDropdown extends ValidationElement {
   constructor (props) {
     super(props)
 
+    this.state = {
+      uid: `${this.props.name}-${super.guid()}`
+    }
+
     this.remove = this.remove.bind(this)
     this.update = this.update.bind(this)
     this.updateToken = this.updateToken.bind(this)
+    this.handleError = this.handleError.bind(this)
   }
 
   update (queue) {
@@ -39,6 +44,18 @@ export default class MultipleDropdown extends ValidationElement {
     })
   }
 
+  handleError (value, arr) {
+    const local = this.constructor.errors.map(err => {
+      return {
+        code: err.code,
+        valid: err.func(value, this.props),
+        uid: this.state.uid
+      }
+    })
+
+    return this.props.onError(value, local.concat(arr))
+  }
+
   render () {
     const klass = `multiple-dropdown ${this.props.className || ''}`.trim()
     const tokens = (this.props.value || []).map((x, i) => {
@@ -59,10 +76,10 @@ export default class MultipleDropdown extends ValidationElement {
                   comments={this.props.comments}
                   placeholder={this.props.placeholder}
                   disabled={this.props.disabled}
-                  required={this.props.required}
+                  required={false}
                   clearOnSelection={true}
                   onSuggestionSelected={this.updateToken}
-                  onError={this.props.onError}>
+                  onError={this.handleError}>
           { this.props.children }
         </Dropdown>
         <span className="tokens">{tokens}</span>
