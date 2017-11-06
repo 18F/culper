@@ -405,7 +405,8 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'This field is required',
+        note: 'Note: All parts of the date(s) must be provided even if **estimated**.'
       }
     },
     weight: {
