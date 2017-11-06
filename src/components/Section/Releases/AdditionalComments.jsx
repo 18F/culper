@@ -43,6 +43,7 @@ export default class AdditionalComments extends SubsectionElement {
 
         { i18n.m('releases.additionalComments.certificationContents') }
         <Signature {...this.props.Signature}
+                   LegalName={this.props.LegalName}
                    onUpdate={this.updateSignature}
                    onError={this.handleError}
                    />
@@ -54,6 +55,7 @@ export default class AdditionalComments extends SubsectionElement {
 AdditionalComments.defaultProps = {
   AdditionalComments: {},
   Signature: {},
+  LegalName: {},
   section: 'releases',
   subsection: 'comments',
   dispatch: () => {},

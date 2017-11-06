@@ -8,13 +8,13 @@ const navigation = [
     store: 'Identification',
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
-      { name: 'Full name', url: 'name', store: 'ApplicantName', validator: validators.NameValidator },
-      { name: 'Your contact information', url: 'contacts', store: 'Contacts', validator: null },
-      { name: 'Other names used', url: 'othernames', store: 'Othernames', validator: null },
-      { name: 'Date of birth', url: 'birthdate', store: 'ApplicantBirthDate', validator: null },
-      { name: 'Place of birth', url: 'birthplace', store: 'ApplicantBirthPlace', validator: null },
-      { name: 'Social security number', url: 'ssn', store: 'ApplicantSSN', validator: null },
-      { name: 'Your identifying information', url: 'physical', store: 'Physical', validator: null },
+      { name: 'Full name', url: 'name', store: 'ApplicantName', validator: validators.IdentificationNameValidator },
+      { name: 'Your contact information', url: 'contacts', store: 'Contacts', validator: validators.IdentificationContactsValidator },
+      { name: 'Other names used', url: 'othernames', store: 'Othernames', validator: validators.IdentificationOtherNamesValidator },
+      { name: 'Date of birth', url: 'birthdate', store: 'ApplicantBirthDate', validator: validators.IdentificationBirthDateValidator },
+      { name: 'Place of birth', url: 'birthplace', store: 'ApplicantBirthPlace', validator: validators.IdentificationBirthPlaceValidator },
+      { name: 'Social security number', url: 'ssn', store: 'ApplicantSSN', validator: validators.IdentificationSSNValidator },
+      { name: 'Your identifying information', url: 'physical', store: 'Physical', validator: validators.IdentificationPhysicalValidator },
       { exclude: true, name: 'Review', url: 'review' }
     ]
   },
@@ -253,6 +253,14 @@ const navigation = [
     url: 'submit',
     showNumber: false,
     exclude: true
+  },
+  {
+    title: 'Print',
+    name: 'print',
+    url: 'print',
+    showNumber: false,
+    exclude: true,
+    hidden: true
   }
 ]
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import { ValidationElement, Show } from '../../Form'
+import { NameValidator } from '../../../validators'
 import { validDateField } from '../../../validators/helpers'
 import BasicAccordion from './BasicAccordion'
 import AdditionalComments from '../Releases/AdditionalComments'
@@ -16,6 +17,7 @@ export default class ValidForm extends ValidationElement {
     this.update = this.update.bind(this)
     this.updateComments = this.updateComments.bind(this)
     this.updateGeneral = this.updateGeneral.bind(this)
+    this.updateMedical = this.updateMedical.bind(this)
     this.updateCredit = this.updateCredit.bind(this)
     this.accordionItems = this.accordionItems.bind(this)
     this.submit = this.submit.bind(this)
@@ -113,8 +115,11 @@ export default class ValidForm extends ValidationElement {
               <AdditionalComments
                 onUpdate={this.updateComments}
                 {...this.props.AdditionalComments}
-              />
-              <button onClick={this.togglePanel(1)}>Next release</button>
+                LegalName={this.props.LegalName}
+                />
+              <Show when={validSignature(this.props.AdditionalComments)}>
+                <button onClick={this.togglePanel(1)}>Next release</button>
+              </Show>
             </div>
           )
         },
@@ -129,22 +134,26 @@ export default class ValidForm extends ValidationElement {
               <Verify
                 Identification={this.props.Identification}
                 History={this.props.History}
-              />
+                />
               <hr />
               <General
                 {...this.props.General}
+                LegalName={this.props.LegalName}
                 onUpdate={this.updateGeneral}
-              />
+                />
               <Show when={!this.props.hideHippa}>
                 <div>
                   <hr />
                   <Medical
                     {...this.props.Medical}
+                    LegalName={this.props.LegalName}
                     onUpdate={this.updateMedical}
-                  />
+                    />
                 </div>
               </Show>
-              <button onClick={this.togglePanel(2)}>Next release</button>
+              <Show when={validSignature(this.props.General) && (this.props.hideHippa || (!this.hideHippa && validSignature(this.props.Medical)))}>
+                <button onClick={this.togglePanel(2)}>Next release</button>
+              </Show>
             </div>
           )
         },
@@ -159,7 +168,8 @@ export default class ValidForm extends ValidationElement {
               <Credit
                 onUpdate={this.updateCredit}
                 {...this.props.Credit}
-              />
+                LegalName={this.props.LegalName}
+                />
             </div>
           )
         },
@@ -175,6 +185,7 @@ export default class ValidForm extends ValidationElement {
     const accordionItems = this.state.accordionItems
     return (
       <div className="valid-form">
+        { i18n.m(`submission.submissionStatus.valid2`) }
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
           <button onClick={this.submit} className="submit usa-button" disabled={!enableSubmit(this.props)}>
@@ -189,6 +200,7 @@ export default class ValidForm extends ValidationElement {
 
 ValidForm.defaultProps = {
   hideHippa: true,
+  LegalName: {},
   AdditionalComments: {
     Signature: {}
   },
@@ -212,7 +224,9 @@ export const validSignature = (el) => {
   if (!signature) {
     return false
   }
-  if (!signature.Name || !signature.Name.value) {
+
+  const nameValidator = new NameValidator(signature.Name)
+  if (!nameValidator.isValid()) {
     return false
   }
   if (!validDateField(signature.Date)) {
@@ -225,14 +239,14 @@ export const enableSubmit = (props) => {
   if (props.hideHippa) {
     return (
       validSignature(props.AdditionalComments) &&
-      validSignature(props.General) &&
-      validSignature(props.Credit)
+        validSignature(props.General) &&
+        validSignature(props.Credit)
     )
   }
   return (
-    validSignature(props.Comments) &&
-    validSignature(props.General) &&
-    validSignature(props.Credit) &&
-    validSignature(props.Medical)
+    validSignature(props.AdditionalComments) &&
+      validSignature(props.General) &&
+      validSignature(props.Credit) &&
+      validSignature(props.Medical)
   )
 }

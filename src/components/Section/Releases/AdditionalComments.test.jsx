@@ -15,7 +15,7 @@ describe('The AdditionalComments Release component', () => {
     expect(component.find('.additional-comments').length).toBe(1)
     updates = 0
     component.find('.comments textarea').simulate('change')
-    component.find('.fullname input').simulate('change')
+    component.find('.signature button').simulate('click')
     expect(updates).toBe(2)
   })
 })

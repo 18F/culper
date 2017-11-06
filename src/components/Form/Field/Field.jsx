@@ -107,10 +107,13 @@ export default class Field extends ValidationElement {
   /**
    * Render the title as needed
    */
-  title () {
+  title (required = false) {
     if (this.props.title) {
       const klassTitle = `title ${this.props.titleSize}`.trim()
-      return <span className={klassTitle}>{this.props.title}</span>
+      const optional = !required && this.props.optionalText
+            ? <span className="optional">{this.props.optionalText}</span>
+            : null
+      return <span className={klassTitle}>{this.props.title}{optional}</span>
     }
 
     return null
@@ -298,7 +301,7 @@ export default class Field extends ValidationElement {
 
     return (
       <div className={klass} ref="field">
-        {this.title()}
+        {this.title(required)}
         <span className="icon">
           {this.icon()}
         </span>
@@ -342,6 +345,7 @@ Field.defaultProps = {
   commentsAdd: 'comments.add',
   commentsRemove: 'comments.remove',
   optional: false,
+  optionalText: '',
   validate: true,
   shrink: false,
   scrollIntoView: true,

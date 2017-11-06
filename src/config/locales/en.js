@@ -17,7 +17,8 @@ const en = {
       witty: 'The .gov means it\'s official.',
       extension: 'Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you\'re on a .gov or .mil site by inspecting your browser\'s address (or "location") bar.',
       ssl: 'This site is also protected by an SSL (Secure Sockets Layer) certificate that\'s been signed by the U.S. government. The <strong>https://</strong> means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.'
-    }
+    },
+    optional: '(Optional)'
   },
   login: {
     title: 'Login',
@@ -93,7 +94,7 @@ const en = {
       noMiddle: 'No middle name',
       other: 'Other',
       suffix: 'Suffix',
-      optional: 'Optional',
+      optional: '(Optional)',
       jr: 'Jr',
       sr: 'Sr',
       i: 'I',
@@ -228,17 +229,17 @@ const en = {
       month: {
         notfound: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         min: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         },
         max: {
           title: 'There is a problem with the Month',
-          message: 'The month should be between 1(January) and 12(December).',
+          message: 'The month should be between 01 (January) and 12 (December).',
           note: ''
         }
       },
@@ -541,7 +542,7 @@ const en = {
           }
         },
         apofpo: {
-          pattern: {
+          notfound: {
             title: 'There is a problem with the State Code',
             message: 'APO/FPO state code must be 2 letters',
             note: 'Note: Typically the value is either AA, AE, or AP.'
@@ -595,7 +596,7 @@ const en = {
           }
         },
         apofpo: {
-          pattern: {
+          notfound: {
             title: 'There is a problem with the State Code',
             message: 'APO/FPO state code must be 2 letters',
             note: 'Note: Typically the value is either AA, AE, or AP.'
@@ -9552,6 +9553,9 @@ const en = {
     }
   },
   submission: {
+    destination: {
+      submit: 'Submit'
+    },
     header: [
       '## All required fields are complete',
       'Not a guarantee of acceptance. We are checking that all required fields are complete'
@@ -9566,20 +9570,24 @@ const en = {
       creditItem: 'Credit reporting disclosure'
     },
     invalidForm: [
-      '## List of incomplete sections',
-      'Use the list below to complete all incomplete sections or sections with errors'
+      '### List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors.'
     ],
     submissionStatus: {
       validating: [
         '## Verifying your information is complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Checking your form...'
       ],
       valid: [
         '## All required fields are complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Not a guarantee of acceptance, but all required fields are complete.'
+      ],
+      valid2: [
+        'Please sign the releases below and submit your form.'
       ],
       invalid: [
-        '## Some required fields are incomplete'
+        '## Some required fields are incomplete',
+        'Please fix the errors listed below.'
       ]
     },
     submissionComplete: [
@@ -9598,6 +9606,12 @@ const en = {
         '### Thanks for submitting for your SF-86'
       ]
     }
+  },
+  signature: {
+    add: 'Click to sign',
+    remove: 'Remove signature',
+    name: 'Name',
+    date: 'Date'
   }
 }
 
