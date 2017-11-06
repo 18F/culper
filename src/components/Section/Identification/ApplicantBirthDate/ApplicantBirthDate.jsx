@@ -11,8 +11,6 @@ export default class ApplicantBirthDate extends SubsectionElement {
 
     this.state = {
       uid: `${this.props.name}-${super.guid()}`,
-      value: props.value,
-      estimated: props.estimated,
       error: false
     }
 
@@ -24,21 +22,19 @@ export default class ApplicantBirthDate extends SubsectionElement {
    * Handle the change event.
    */
   onUpdate (value) {
-    this.setState({ value: value.date }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          month: value.month,
-          day: value.day,
-          year: value.year,
-          estimated: value.estimated,
-          date: value.date
-        })
+    this.props.onUpdate({
+      date: {
+        month: value.month,
+        day: value.day,
+        year: value.year,
+        estimated: value.estimated,
+        date: value.date
       }
     })
   }
 
   handleError (value, arr) {
-    const then = new Date(this.state.value)
+    const then = new Date(value)
     let local = []
     if (isNaN(then.getFullYear()) || then.getFullYear() < 1000 || arr.some(x => x.valid === false)) {
       local = this.constructor.errors.map(err => {
@@ -76,9 +72,8 @@ export default class ApplicantBirthDate extends SubsectionElement {
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name={this.props.name}
-                       value={this.state.value}
+                       {...this.props.date}
                        className={klassError}
-                       estimated={this.state.estimated}
                        onUpdate={this.onUpdate}
                        onError={this.handleError}
                        required={this.props.required}
@@ -90,9 +85,11 @@ export default class ApplicantBirthDate extends SubsectionElement {
 }
 
 ApplicantBirthDate.defaultProps = {
+  date: {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'birthdate',
+  onUpdate: (queue) => {},
   dispatch: () => {},
   validator: (state, props) => {
     return new IdentificationBirthDateValidator(state).isValid()
