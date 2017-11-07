@@ -98,17 +98,10 @@ export default class ForeignNational extends ValidationElement {
   }
 
   updateMethods (values) {
-    let selected = values.value
-    let list = [...(this.props.Methods || [])]
-
-    if (list.includes(selected)) {
-      list.splice(list.indexOf(selected), 1)
-    } else {
-      list.push(selected)
-    }
+    const list = Checkbox.select(values, this.props.Methods)
 
     this.update({
-      Methods: { value: list }
+      Methods: { values: list }
     })
   }
 
@@ -131,17 +124,17 @@ export default class ForeignNational extends ValidationElement {
   }
 
   updateRelationship (values) {
-    let selected = values.value
-    let list = [...(this.props.Relationship || [])]
+    //let selected = values.value
+    //let list = [...(this.props.Relationship || [])]
 
-    if (list.includes(selected)) {
-      list.splice(list.indexOf(selected), 1)
-    } else {
-      list.push(selected)
-    }
-
+    //if (list.includes(selected)) {
+      //list.splice(list.indexOf(selected), 1)
+    //} else {
+      //list.push(selected)
+    //}
+    const list = Checkbox.select(values, this.props.Relationship)
     this.update({
-      Relationship: { value: list }
+      Relationship: { values: list }
     })
   }
 
@@ -300,7 +293,7 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.methods')}
-               className={((this.props.Methods || {}).value || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
+               className={((this.props.Methods || {}).values || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
                help="foreign.contacts.help.methods"
                adjustFor="p"
                scrollIntoView={this.props.scrollIntoView}>
@@ -308,7 +301,7 @@ export default class ForeignNational extends ValidationElement {
           <CheckboxGroup className="methods"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={(this.props.Methods || {}).value}>
+                         selectedValues={(this.props.Methods || {}).values}>
             <Checkbox name="methods-inperson"
                       label={i18n.m('foreign.contacts.label.inperson')}
                       value="In person"
@@ -430,14 +423,14 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               className={((this.props.Relationship || {}).value || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
+               className={((this.props.Relationship || {}).values || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
                adjustFor="p"
                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
                          required={this.props.required}
                          onError={this.props.onError}
-                         selectedValues={(this.props.Relationship || {}).value}>
+                         selectedValues={(this.props.Relationship || {}).values}>
             <Checkbox name="relationship-professional"
                       label={i18n.m('foreign.contacts.label.professional')}
                       value="Professional"
