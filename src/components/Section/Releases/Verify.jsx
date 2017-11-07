@@ -26,17 +26,22 @@ export default class Verify extends React.Component {
     // Identification section
     const identification = this.props.Identification || {}
     const name = NameSummary(identification.ApplicantName || {}, i18n.t('releases.verify.label.none'))
-    const othernames = ((identification.OtherNames || {}).List || []).map(n => { return NameSummary(n.Name, i18n.t('releases.verify.label.none')) })
+    const othernamesList = (identification.OtherNames || {}).List || []
+    const othernames = othernamesList.length
+          ? othernamesList.map(n => { return NameSummary(n.Name, i18n.t('releases.verify.label.none')) })
+          : i18n.t('releases.verify.label.none')
     const dob = DateSummary(identification.ApplicantBirthDate || {}, i18n.t('releases.verify.label.none'), true) || <span>{i18n.t('releases.verify.label.none')}</span>
     const ssn = SSN(identification.ApplicantSSN || {}, i18n.t('releases.verify.label.none'))
-    const phoneNumbers = ((identification.Contacts || {}).PhoneNumbers || [])
-          .filter(x => {
+    const phoneNumbersList = (identification.Contacts || {}).PhoneNumbers || []
+    const phoneNumbers = phoneNumbersList.length
+          ? phoneNumbersList.filter(x => {
             const item = x.Item || {}
             return item.number || item.noNumber
           })
           .map(n => {
             return TelephoneSummary(n, i18n.t('releases.verify.label.none'))
           })
+          : i18n.t('releases.verify.label.none')
 
     // History section
     const residence = ((this.props.History || {}).Residence || [{ Item: {} }])
