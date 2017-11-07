@@ -173,15 +173,6 @@ export default class Country extends ValidationElement {
     )
   }
 }
-        // <Show when={this.state.showComments || this.props.comments.length > 0}>
-        //   <Textarea name={`${this.props.name}Comments`}
-        //             ref="comments"
-        //             label={i18n.t('country.comments')}
-        //             value={this.props.comments}
-        //             onUpdate={this.updateComments}
-        //             disabled={this.props.disabled}
-        //             required={this.props.required} />
-        // </Show>
 
 Country.defaultProps = {
   name: 'country',

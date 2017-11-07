@@ -21,6 +21,10 @@ export default class MultipleDropdown extends ValidationElement {
       value: this.props.value,
       ...queue
     })
+
+    setTimeout(() => {
+      this.handleError(queue, [])
+    }, 1000)
   }
 
   updateToken (event, options) {
@@ -53,12 +57,13 @@ export default class MultipleDropdown extends ValidationElement {
       }
     })
 
-    return this.props.onError(value, local.concat(arr))
+    return this.props.onError(value, arr.filter(x => x.code.indexOf('required') === -1).concat(local))
   }
 
   render () {
-    const klass = `multiple-dropdown ${this.props.className || ''}`.trim()
-    const tokens = (this.props.value || []).map((x, i) => {
+    const values = this.props.value || []
+    const klass = `multiple-dropdown ${this.props.className || ''} ${values.length ? 'has-tokens' : ''}`.trim()
+    const tokens = values.map((x, i) => {
       return (
         <span className="token" key={`${this.props.name}-${x}`}>
           {x}
