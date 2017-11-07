@@ -11,10 +11,11 @@ import (
 // Collection represents a structure composed of items in a structured
 // format.
 type Collection struct {
-	PayloadBranch Payload `json:"branch,omitempty" sql:"-"`
+	//PayloadBranch Payload `json:"branch,omitempty" sql:"-"`
+	PayloadBranch Payload `json:"branch" sql:"-"`
 
 	// Validator specific fields
-	Branch *Branch           `json:"-"`
+	Branch *Branch           `json:"branch" sql:"-"`
 	Items  []*CollectionItem `json:"items" sql:"-"`
 
 	// Persister specific fields
@@ -29,7 +30,7 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 	if err != nil {
 		return err
 	}
-
+	log.Println(entity.PayloadBranch.Type)
 	if entity.PayloadBranch.Type != "" {
 		branch, err := entity.PayloadBranch.Entity()
 		if err != nil {
@@ -38,6 +39,7 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 		entity.Branch = branch.(*Branch)
 	}
 
+	log.Println(entity.Branch)
 	log.Println("collection items:", len(entity.Items))
 
 	return err

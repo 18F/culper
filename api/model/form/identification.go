@@ -752,8 +752,8 @@ type IdentificationOtherNames struct {
 
 	// Persister specific fields
 	ID              int `json:"-"`
-	HasOtherNamesID int `json:"-" pg:", fk:Branch"`
-	ListID          int `json:"-" pg:", fk:Collection"`
+	HasOtherNamesID int `json:"-" pg:", fk:HasOtherNames"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.

@@ -14,7 +14,9 @@ describe('The other names section', () => {
   it('Renders form when yes is selected', () => {
     const props = {
       HasOtherNames: { value: 'Yes' },
-      List: [{}]
+      List: {
+        items: [{Item: {}}]
+      }
     }
     const component = mount(<OtherNames {...props} />)
     expect(component.find('.details').length).toBeGreaterThan(0)
@@ -30,7 +32,9 @@ describe('The other names section', () => {
   it('Adds a name when button is clicked then collapses', () => {
     const props = {
       HasOtherNames: { value: 'Yes' },
-      List: [{}]
+      List: {
+        items: [{Item: {}}]
+      }
     }
     const component = mount(<OtherNames {...props} />)
     component.find('.add').simulate('click')
@@ -39,7 +43,9 @@ describe('The other names section', () => {
   it('displays fields when "yes" is selected', () => {
     const props = {
       HasOtherNames: { value: 'Yes' },
-      List: [{}]
+      List: {
+        items: [{Item: {}}]
+      }
     }
     const component = mount(<OtherNames {...props} />)
     expect(component.find('.first input').length).toEqual(1)

@@ -49,7 +49,7 @@ export default class OtherNamesValidator {
  * Validates a single instance of an other name
  */
 export class OtherNameValidator {
-  constructor (data) {
+  constructor (data = {}) {
     this.name = data.Name
     this.maidenName = data.MaidenName
     this.datesUsed = data.DatesUsed
