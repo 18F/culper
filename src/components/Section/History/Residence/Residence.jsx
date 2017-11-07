@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { HistoryResidenceValidator } from '../../../../validators'
+import { HistoryResidenceValidator, ResidenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
