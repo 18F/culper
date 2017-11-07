@@ -272,7 +272,7 @@ export const preload = (username, dispatch) => {
   validate(dispatch)
 }
 
-const application_test =
+const application =
   {
     'Settings': {
       'mobileNavigation': false,
@@ -12826,7 +12826,7 @@ const application_test =
     }
   }
 
-const application = {
+const application_dev = {
   'Settings': {
     'consented': 'Yes',
     'mobileNavigation': false,
