@@ -58,35 +58,42 @@ export default class Verify extends React.Component {
       <div className="verify">
         <Field title={i18n.t('releases.verify.heading.title')}
                titleSize="h2"
+               optional={true}
                className="release-title no-margin-bottom" />
 
         <Field title={i18n.t('releases.verify.heading.name')}
+               optional={true}
                className="release-name verify-data no-margin-bottom">
           {wrapSpans(name)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.otherNamesUsed')}
+               optional={true}
                className="release-aliases verify-data no-margin-bottom">
           {wrapSpans(othernames)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.dateOfBirth')}
+               optional={true}
                className="release-dob verify-data no-margin-bottom">
           {wrapSpans(dob)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.ssn')}
+               optional={true}
                className="release-ssn verify-data no-margin-bottom">
           {wrapSpans(ssn)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.telephoneNumber')}
+               optional={true}
                className="release-telephone verify-data no-margin-bottom">
           {wrapSpans(phoneNumbers)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.changeInformation')}
                titleSize="h2"
+               optional={true}
                className="release-fix-information">
           <Link to="/form/identification" className="usa-button">
             <span>{i18n.t('releases.verify.label.changeInformation')}</span>
@@ -95,12 +102,14 @@ export default class Verify extends React.Component {
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.currentAddress')}
+               optional={true}
                className="release-current-address verify-data no-margin-bottom">
           {wrapSpans(currentResidence)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.changeAddress')}
                titleSize="h2"
+               optional={true}
                className="release-fix-current-address">
           <Link to="/form/history/residence" className="usa-button">
             <span>{i18n.t('releases.verify.label.changeAddress')}</span>
