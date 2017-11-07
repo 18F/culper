@@ -22,7 +22,7 @@ const defaultNumbers = {
   }
 }
 
-const padleft = (str, len, char = '0') => {
+const padleft = (str, len, char = ' ') => {
   let padding = ''
   for (let i = 0; i < len; i++) {
     padding += char
@@ -31,13 +31,7 @@ const padleft = (str, len, char = '0') => {
 }
 
 const trimleading = (str) => {
-  if (str) {
-    const i = parseInt(str, 10)
-    if (i > 0) {
-      return `${i}`
-    }
-  }
-  return ''
+  return (str || '').trim()
 }
 
 export default class Telephone extends ValidationElement {
@@ -209,20 +203,19 @@ export default class Telephone extends ValidationElement {
     switch (this.state.type) {
       case 'Domestic':
         return [
-          this.state.domestic.first,
-          this.state.domestic.second,
-          this.state.domestic.third
+          padleft(this.state.domestic.first, 3),
+          padleft(this.state.domestic.second, 3),
+          padleft(this.state.domestic.third, 4)
         ].join('')
       case 'DSN':
         return [
-          this.state.dsn.first,
-          this.state.dsn.second
+          padleft(this.state.dsn.first, 3),
+          padleft(this.state.dsn.second, 4)
         ].join('')
       case 'International':
         return [
           padleft(this.state.international.first, 3),
-          this.state.international.second,
-          this.state.international.third
+          this.state.international.second
         ].join('')
       default:
         return ''
@@ -686,8 +679,7 @@ Telephone.errors = [
             !!props.dsn.second
           case 'International':
             return !!props.international.first &&
-            !!props.international.second &&
-            !!props.international.third
+            !!props.international.second
           default:
             return false
         }
