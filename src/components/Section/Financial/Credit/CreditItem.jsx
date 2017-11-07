@@ -59,72 +59,73 @@ export default class CreditItem extends ValidationElement {
     return (
       <div className="credit-item">
         <Field title={i18n.t('financial.credit.heading.explanation')}
-          scrollIntoView={this.props.scrollIntoView}
-          help="financial.credit.help.explanation">
+               scrollIntoView={this.props.scrollIntoView}
+               help="financial.credit.help.explanation">
           <Textarea name="Explanation"
-            {...this.props.Explanation}
-            className="credit-explanation"
-            onUpdate={this.updateExplanation}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    {...this.props.Explanation}
+                    className="credit-explanation"
+                    onUpdate={this.updateExplanation}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('financial.credit.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
-            {...this.props.Name}
-            className="credit-name"
-            required={this.props.required}
-            onUpdate={this.updateName}
-            onError={this.props.onError}
-          />
+                {...this.props.Name}
+                className="credit-name"
+                required={this.props.required}
+                onUpdate={this.updateName}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field title={i18n.t('financial.credit.heading.telephone')}
-          help="financial.credit.help.telephone"
-          scrollIntoView={this.props.scrollIntoView}
-          adjustFor="telephone">
+               className="override-required"
+               help="financial.credit.help.telephone"
+               scrollIntoView={this.props.scrollIntoView}
+               adjustFor="telephone">
           <Telephone name="Telephone"
-            {...this.props.Telephone}
-            className="credit-telephone"
-            required={this.props.required}
-            onUpdate={this.updateTelephone}
-            onError={this.props.onError}
-          />
+                     {...this.props.Telephone}
+                     className="credit-telephone"
+                     required={this.props.required}
+                     onUpdate={this.updateTelephone}
+                     onError={this.props.onError}
+                     />
         </Field>
 
         <Field title={i18n.t('financial.credit.heading.address')}
-          help="financial.credit.help.address"
-          scrollIntoView={this.props.scrollIntoView}
-          adjustFor="label">
+               help="financial.credit.help.address"
+               scrollIntoView={this.props.scrollIntoView}
+               adjustFor="label">
           <Location name="Location"
-            {...this.props.Location}
-            layout={Location.CITY_STATE}
-            className="credit-location"
-            dispatch={this.props.dispatch}
-            addressBooks={this.props.addressBooks}
-            addressBook="Agency"
-            bind={true}
-            help=""
-            statePlaceholder={i18n.t('financial.credit.placeholder.state')}
-            cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
-            required={this.props.required}
-            onUpdate={this.updateLocation}
-            onError={this.props.onError}
-          />
+                    {...this.props.Location}
+                    layout={Location.CITY_STATE}
+                    className="credit-location"
+                    dispatch={this.props.dispatch}
+                    addressBooks={this.props.addressBooks}
+                    addressBook="Agency"
+                    bind={true}
+                    help=""
+                    statePlaceholder={i18n.t('financial.credit.placeholder.state')}
+                    cityPlaceholder={i18n.t('financial.credit.placeholder.city')}
+                    required={this.props.required}
+                    onUpdate={this.updateLocation}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('financial.credit.heading.description')}
-          scrollIntoView={this.props.scrollIntoView}
-          help="financial.credit.help.description">
+               scrollIntoView={this.props.scrollIntoView}
+               help="financial.credit.help.description">
           <Textarea name="Description"
-            {...this.props.Description}
-            className="credit-description"
-            required={this.props.required}
-            onUpdate={this.updateDescription}
-            onError={this.props.onError}
-          />
+                    {...this.props.Description}
+                    className="credit-description"
+                    required={this.props.required}
+                    onUpdate={this.updateDescription}
+                    onError={this.props.onError}
+                    />
         </Field>
       </div>
     )

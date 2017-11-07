@@ -282,7 +282,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date are required even if it is **estimated**.'
       }
     },
     daterange: {
@@ -405,7 +405,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date(s) are required even if it is **estimated**.'
       }
     },
     weight: {
@@ -537,7 +537,9 @@ const en = {
           },
           notfound: {
             title: 'This country is not on our current list',
-            message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
+            message: [
+              'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
+            ],
             note: ''
           }
         },
@@ -643,7 +645,9 @@ const en = {
       },
       notfound: {
         title: 'This Country is not on our current list',
-        message: 'Indicate the country that currently governs the geographic location you are indicating. As necessary provide comments below to clarify.',
+        message: [
+          'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
+        ],
         note: ''
       }
     },

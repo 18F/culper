@@ -22,6 +22,12 @@ describe('Contact Information validation', function () {
       },
       {
         state: {
+          Emails: []
+        },
+        expected: false
+      },
+      {
+        state: {
           Emails: [
             {
               Item: {
@@ -30,7 +36,7 @@ describe('Contact Information validation', function () {
             }
           ]
         },
-        expected: false
+        expected: true
       },
       {
         state: {
@@ -45,7 +51,7 @@ describe('Contact Information validation', function () {
             }
           ]
         },
-        expected: false
+        expected: true
       }
     ]
 

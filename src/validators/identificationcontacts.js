@@ -10,18 +10,20 @@ export default class IdentificationContactInformationValidator {
    * Validates a collection of emails
    */
   validEmails () {
-    const required = 2
+    const required = 1
     if (!this.emails || this.emails.length < required) {
       return false
     }
 
+    let successful = 0
     for (const email of this.emails) {
       if (!new ContactEmailValidator(email.Item).isValid()) {
-        return false
+        continue
       }
+      successful++
     }
 
-    return true
+    return successful >= required
   }
 
   /**

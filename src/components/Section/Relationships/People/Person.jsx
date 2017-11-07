@@ -237,7 +237,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
-               className="mobile-telephone"
+               className="mobile-telephone override-required"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="MobileTelephone"
@@ -249,7 +249,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
-               className="other-telephone"
+               className="other-telephone override-required"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="OtherTelephone"
