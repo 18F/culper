@@ -144,17 +144,21 @@ describe('The foreign section', () => {
             HasOtherNames: {
               value: 'Yes'
             },
-            List: [
-              {
-                first: 'johnathan',
-                last: 'smith'
-              }
-            ]
+            List: {
+              items: [
+                {
+                  Item: {
+                    first: 'johnathan',
+                    last: 'smith'
+                  }
+                }
+              ]
+            }
           }
         }
       }
     })
     const component = mount(<Provider store={store}><Foreign subsection="passport" /></Provider>)
-    expect(component.find(Passport).props().suggestedNames.length).toBe(2)
+    expect(component.find(Passport).props().suggestedNames.length).toBe(1)
   })
 })

@@ -12,6 +12,7 @@ import Contacts from './Contacts'
 import Travel from './Travel'
 import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political, Voting } from './Business'
+import { extractOtherNames } from '../extractors'
 
 class Foreign extends SectionElement {
   constructor (props) {
@@ -606,20 +607,9 @@ function mapStateToProps (state) {
   const foreign = app.Foreign || {}
   const errors = app.Errors || {}
   const completed = app.Completed || {}
-  const identification = app.Identification || {}
   const addressBooks = app.AddressBooks || {}
 
-  let names = []
-  if (identification.ApplicantName) {
-    names.push((identification.ApplicantName || {}).Name)
-  }
-
-  if (identification.OtherNames && identification.OtherNames.List) {
-    for (let item of identification.OtherNames.List) {
-      names.push(item.Name)
-    }
-  }
-
+  let names = extractOtherNames(app)
   return {
     Foreign: foreign,
     Passport: foreign.Passport || {},

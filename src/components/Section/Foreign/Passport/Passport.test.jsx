@@ -18,7 +18,7 @@ describe('The passport component', () => {
   it('display passport field if "Yes" is selected', () => {
     const expected = {
       name: 'passport',
-      HasPassport: { value: 'Yes' }
+      HasPassports: { value: 'Yes' }
     }
     const component = mount(<Passport {...expected} />)
     expect(component.find('.passport-card').length).toEqual(1)
@@ -30,7 +30,7 @@ describe('The passport component', () => {
   it('display no passport information if "No" is selected', () => {
     const expected = {
       name: 'passport',
-      HasPassport: { value: 'No' }
+      HasPassports: { value: 'No' }
     }
     const component = mount(<Passport name={expected.name} HasPassport="No" />)
     expect(component.find('.passport-card').length).toEqual(0)
@@ -44,7 +44,7 @@ describe('The passport component', () => {
     let first = ''
     const expected = {
       name: 'passport',
-      HasPassport: { value: 'Yes' },
+      HasPassports: { value: 'Yes' },
       onUpdate: (values) => {
         first = values.Name.first
       },
@@ -83,7 +83,7 @@ describe('The passport component', () => {
         name: 'expiration',
         year: '2004'
       },
-      HasPassport: { value: 'Yes' },
+      HasPassports: { value: 'Yes' },
       Name: {
         first: 'John',
         last: 'Doe',
@@ -110,7 +110,7 @@ describe('The passport component', () => {
 
   it('can render with regular expression for passport card', () => {
     const props = {
-      HasPassport: { value: 'Yes' },
+      HasPassports: { value: 'Yes' },
       Card: { value: 'Card' },
       reCard: 'test'
     }

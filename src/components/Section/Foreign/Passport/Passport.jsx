@@ -30,7 +30,7 @@ export default class Passport extends SubsectionElement {
       Issued: this.props.Issued,
       Expiration: this.props.Expiration,
       Comments: this.props.Comments,
-      HasPassport: this.props.HasPassport,
+      HasPassports: this.props.HasPassports,
       suggestedNames: this.props.suggestedNames,
       ...queue
     })
@@ -59,7 +59,7 @@ export default class Passport extends SubsectionElement {
    */
   updateBranch (values) {
     this.update({
-      HasPassport: values,
+      HasPassports: values,
       Name: values.value === 'Yes' ? this.props.Name : {},
       Number: values.value === 'Yes' ? this.props.Number : '',
       Issued: values.value === 'Yes' ? this.props.Issued : {},
@@ -146,7 +146,7 @@ export default class Passport extends SubsectionElement {
         <Branch name="has_passport"
                 label={i18n.t('foreign.passport.question.title')}
                 labelSize="h3"
-                {...this.props.HasPassport}
+                {...this.props.HasPassports}
                 warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}
@@ -154,7 +154,7 @@ export default class Passport extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 >
         </Branch>
-        <Show when={this.props.HasPassport.value === 'Yes'}>
+        <Show when={this.props.HasPassports.value === 'Yes'}>
           <div>
             <Field title={i18n.t('foreign.passport.name')}
                    titleSize="h3"
@@ -272,7 +272,7 @@ Passport.defaultProps = {
   Issued: {},
   Expiration: {},
   Comments: {},
-  HasPassport: {},
+  HasPassports: {},
   suggestedNames: [],
   reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
   reCard: '^[cC]{1}[0-9]{8}$',
