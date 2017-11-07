@@ -56,7 +56,8 @@ export default class Treatment extends ValidationElement {
                 />
         </Field>
 
-        <Field adjustFor="telephone"
+        <Field className="override-required"
+               adjustFor="telephone"
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="Phone"
                      label={i18n.t(`psychological.${prefix}.label.phone`)}

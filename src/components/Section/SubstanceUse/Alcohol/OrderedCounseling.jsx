@@ -222,7 +222,7 @@ export default class OrderedCounseling extends ValidationElement {
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderTelephone')}
                    help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}
-                   adjustFor="telephone"
+                   className="override-required"
                    scrollIntoView={this.props.scrollIntoView}>
               <Telephone name="TreatmentProviderTelephone"
                          className="provider-telephone"
