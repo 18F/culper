@@ -75,6 +75,12 @@ export class RelativeValidator {
     const international = (((this.birthplace || {}).country || {}).value !== 'United States')
     const mailingCountry = ((this.address || {}).country || {}).value
 
+    // If no citizenship information has been given we don't know if documentation
+    // is required.
+    if (((this.citizenship || {}).value || []).length === 0) {
+      return false
+    }
+
     if (this.relation && relations.includes(this.relation) && citizen && international && this.isDeceased === 'Yes') {
       return true
     }
