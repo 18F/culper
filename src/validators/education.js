@@ -4,11 +4,12 @@ import { validAccordion, validNotApplicable, validPhoneNumber, validGenericTextf
 import LocationValidator from './location'
 import NameValidator from './name'
 
-export default class EducationValidator {
-  constructor (state = {}, props = {}) {
-    this.hasAttended = (state.HasAttended || {}).value
-    this.hasDegree10 = (state.HasDegree10 || {}).value
-    this.list = state.List || {}
+export default class HistoryEducationValidator {
+  constructor (data = {}) {
+    data = data.value || data || {}
+    this.hasAttended = (data.HasAttended || {}).value
+    this.hasDegree10 = (data.HasDegree10 || {}).value
+    this.list = data.List || []
   }
 
   validAttendance () {

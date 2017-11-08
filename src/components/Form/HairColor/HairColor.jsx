@@ -219,7 +219,7 @@ export default class HairColor extends ValidationElement {
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  >
-            <div className="hair-icon">
+            <div className="hair-icon purple">
               <Svg src="/img/hair.svg" />
             </div>
           </Radio>

@@ -158,7 +158,7 @@ export default class Person extends React.Component {
                   {...this.props.Rank}
                   onUpdate={this.updateRank}
                   onError={this.props.onError}
-                  required={this.props.required}
+                  required={(this.props.RankNotApplicable || {}).applicable && this.props.required}
                   />
           </NotApplicable>
         </Field>
@@ -237,7 +237,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
-               className="mobile-telephone"
+               className="mobile-telephone override-required"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="MobileTelephone"
@@ -249,7 +249,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
-               className="other-telephone"
+               className="other-telephone override-required"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="OtherTelephone"
@@ -274,7 +274,7 @@ export default class Person extends React.Component {
                    {...this.props.Email}
                    onUpdate={this.updateEmail}
                    onError={this.props.onError}
-                   required={this.props.required}
+                   required={(this.props.EmailNotApplicable || {}).applicable && this.props.required}
                    />
           </NotApplicable>
         </Field>

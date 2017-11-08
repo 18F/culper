@@ -1,15 +1,44 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router'
+
+export default class InvalidForm extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      valid: null,
+      width: 0
+    }
+    this.errors = this.errors.bind(this)
+  }
+
+  errors () {
+    let errors = []
+    for (const sectionName in this.props.tally) {
+      const mark = this.props.tally[sectionName]
+      if (mark.errors) {
+        errors.push(<InvalidSection key={mark.section.url} mark={mark} />)
+      }
+    }
+    return errors
+  }
+
+  render () {
+    return (
+      <div className="invalid-form">
+        { i18n.m(`submission.invalidForm`) }
+        { this.errors() }
+      </div>
+    )
+  }
+}
 
 export class InvalidSection extends React.Component {
   render () {
-    const incompleteSubsections = this.props.section.subsections
-          .filter(subsection => !subsection.complete)
-    const incompleteSubsectionsElements = incompleteSubsections
-          .map(subsection => {
-            return (<div key={subsection.url}>{ subsection.name }</div>)
-          })
+    const incompleteSubsections = this.props.mark.subsections
+      .map(subsection => {
+        return (<div key={subsection.url}>{ subsection.name }</div>)
+      })
 
     return (
       <div className="field">
@@ -17,9 +46,9 @@ export class InvalidSection extends React.Component {
           <span className="messages error-messages">
             <div className="message error">
               <i className="fa fa-exclamation"></i>
-              <h3>{ this.props.section.title }</h3>
-              { incompleteSubsectionsElements }
-              <Link to={`/form/${this.props.section.url}/review`}>
+              <h3>{ this.props.mark.section.title }</h3>
+              { incompleteSubsections }
+              <Link to={`/form/${this.props.mark.section.url}/review`}>
                 <button className="back usa-button-outline">Back to section</button>
               </Link>
             </div>
@@ -30,35 +59,6 @@ export class InvalidSection extends React.Component {
   }
 }
 
-export default class InvalidForm extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = {
-      valid: null,
-      width: 0
-    }
-  }
-
-  errors () {
-    let errors = []
-    for (let section of this.props.sections) {
-      if (!section.complete) {
-        errors.push(<InvalidSection key={section.url} section={section} />)
-      }
-    }
-    return errors
-  }
-
-  render () {
-    const errors = this.errors()
-    return (
-      <div className="invalid-form">
-        { i18n.m(`submission.invalidForm`) }
-        { errors }
-      </div>
-    )
-  }
-}
-
 InvalidForm.defaultProps = {
+  tally: {}
 }

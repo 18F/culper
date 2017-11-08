@@ -98,7 +98,7 @@ export default class VoluntaryCounseling extends ValidationElement {
         </Field>
         <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone')}
                help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone'}
-               adjustFor="telephone"
+               className="override-required"
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="TreatmentProviderTelephone"
                      className="provider-telephone"

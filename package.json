@@ -71,10 +71,11 @@
     "react-autosuggest": "^9.3.2",
     "react-markdown": "^2.4.4",
     "react-test-renderer": "^15.6.1",
+    "react-tokeninput": "^2.4.0",
     "smoothscroll-polyfill": "^0.3.6",
-    "uswds": "^0.13.1",
     "webpack": "^3.6.0",
-    "webpack-stream": "^4.0.0"
+    "webpack-stream": "^4.0.0",
+    "uswds": "^1.4.0"
   },
   "jest": {
     "coverageDirectory": "./coverage/",

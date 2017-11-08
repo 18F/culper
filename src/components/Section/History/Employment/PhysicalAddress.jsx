@@ -100,6 +100,7 @@ export default class PhysicalAddress extends ValidationElement {
 
           <Field title={i18n.t('history.employment.default.physicalAddress.heading.telephone')}
                  titleSize="h4"
+                 className="override-required"
                  help="history.employment.default.physicalAddress.telephone.help"
                  adjustFor="telephone"
                  scrollIntoView={this.props.scrollIntoView}>

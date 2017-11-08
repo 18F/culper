@@ -82,6 +82,7 @@ export default class CreditItem extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('financial.credit.heading.telephone')}
+               className="override-required"
                help="financial.credit.help.telephone"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">

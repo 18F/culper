@@ -361,6 +361,7 @@ export default class CivilUnion extends ValidationElement {
           </Field>
 
           <Field title={i18n.t('relationships.civilUnion.heading.telephone')}
+                 className="override-required"
                  scrollIntoView={this.props.scrollIntoView}
                  adjustFor="telephone">
             <Telephone name="Telephone"

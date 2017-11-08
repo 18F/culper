@@ -69,13 +69,18 @@ export const validPhoneNumber = (phone) => {
   if (!phone.timeOfDay) {
     return false
   }
+  if (!phone.number) {
+    return false
+  }
+
+  const trimmed = `${parseInt(phone.number, 10)}`
   switch (phone.type) {
     case 'Domestic':
-      return phone.number.length === 10
+      return trimmed.length === 10
     case 'DSN':
-      return phone.number.length === 7
+      return trimmed.length === 7
     case 'International':
-      return phone.number.length > 10
+      return trimmed.length > 10
     default:
       return false
   }

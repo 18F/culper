@@ -11,11 +11,11 @@ export const TelephoneSummary = (props, unknown = '') => {
 
     switch (props.Item.type) {
       case 'DSN':
-        number = `${number.slice(0, 3)}-${number.slice(3, 7)}`
+        number = `${number.slice(0, 3).trim()}-${number.slice(3, 7).trim()}`
         break
 
       case 'International':
-        number = `+${number.slice(0, 3)} ${number.slice(3, 13)}`
+        number = `+${number.slice(0, 3).trim()} ${number.slice(3, 13).trim()}`
         if (props.Item.extension) {
           number += ` x${props.Item.extension}`
         }
@@ -23,7 +23,7 @@ export const TelephoneSummary = (props, unknown = '') => {
 
       case 'Domestic':
       default:
-        number = `(${number.slice(0, 3)}) ${number.slice(3, 6)}-${number.slice(6, 10)}`
+        number = `(${number.slice(0, 3).trim()}) ${number.slice(3, 6).trim()}-${number.slice(6, 10).trim()}`
         if (props.Item.extension) {
           number += ` x${props.Item.extension}`
         }

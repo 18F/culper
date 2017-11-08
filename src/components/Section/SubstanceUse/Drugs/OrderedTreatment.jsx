@@ -229,7 +229,7 @@ export default class OrderedTreatment extends ValidationElement {
             </Field>
 
             <Field title={i18n.t('substance.drugs.ordered.heading.treatmentProviderTelephone')}
-                   className="treatment-provider-telephone"
+                   className="treatment-provider-telephone override-required"
                    help={'substance.drugs.ordered.help.treatmentProviderTelephone'}
                    adjustFor="telephone"
                    scrollIntoView={this.props.scrollIntoView}>

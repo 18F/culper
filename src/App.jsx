@@ -165,7 +165,7 @@ class App extends React.Component {
                             dispatch={this.props.dispatch} />
               <Sticky container=".eapp-navigation .sticky > .contents"
                       content=".eapp-core .sticky > .contents"
-                      options={{ignoreWindowComparison: true}}>
+                      options={{tolerance: 400, ignoreWindowComparison: true}}>
                 {this.props.children}
               </Sticky>
               &nbsp;

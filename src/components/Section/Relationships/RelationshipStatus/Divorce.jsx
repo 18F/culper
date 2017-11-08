@@ -144,6 +144,7 @@ export default class Divorce extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
+               className="override-required"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="Telephone"

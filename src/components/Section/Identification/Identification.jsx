@@ -50,7 +50,8 @@ class Identification extends SectionElement {
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 minimumPhoneNumbers={1}
-                                shouldFilterEmptyNumbers={true}
+                                minimumEmails={1}
+                                shouldFilterEmptyItems={true}
                                 defaultState={false}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.handleUpdate.bind(this, 'Contacts')}
@@ -251,6 +252,9 @@ export class IdentificationSections extends React.Component {
         <hr />
         <ContactInformation name="contacts"
                             {...this.props.Contacts}
+                            minimumPhoneNumbers={1}
+                            minimumEmails={1}
+                            shouldFilterEmptyItems={true}
                             defaultState={false}
                             dispatch={this.props.dispatch}
                             onError={this.props.onError}

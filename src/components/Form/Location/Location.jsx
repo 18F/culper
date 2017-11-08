@@ -95,15 +95,16 @@ export default class Location extends ValidationElement {
   }
 
   appendToAddressBook (books, name, address) {
+    const addressCountry = (address.country || {}).value
     let book = books[name] || []
 
     // If this is a full address and domestic then it must be validate
-    if (address.layout === Layouts.US_ADDRESS && address.country === 'United States' && !address.validated) {
+    if (address.layout === Layouts.US_ADDRESS && addressCountry === 'United States' && !address.validated) {
       return book
     }
 
     // Make sure there are **some values** at least
-    switch (address.country) {
+    switch (addressCountry) {
       case 'United States':
       case 'POSTOFFICE':
         if (!address.street || !address.city || !address.state || !address.zipcode) {
@@ -112,7 +113,7 @@ export default class Location extends ValidationElement {
         break
 
       default:
-        if (!address.street || !address.city | !address.country) {
+        if (!address.street || !address.city | !addressCountry) {
           return book
         }
         break
@@ -132,7 +133,8 @@ export default class Location extends ValidationElement {
     // to append to the address book.
     let skip = true
     book = book.filter(a => {
-      switch (address.country) {
+      const country = (a.country || {}).value
+      switch (addressCountry) {
         case 'United States':
         case 'POSTOFFICE':
           if (a.street.toLowerCase() === address.street.toLowerCase() &&
@@ -151,7 +153,7 @@ export default class Location extends ValidationElement {
         default:
           if (a.street.toLowerCase() === address.street.toLowerCase() &&
               a.city.toLowerCase() === address.city.toLowerCase() &&
-              a.country.toLowerCase() === address.country.toLowerCase()) {
+              country.toLowerCase() === addressCountry.toLowerCase()) {
             updated = true
             if (skip) {
               skip = false
