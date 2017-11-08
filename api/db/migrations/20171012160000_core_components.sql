@@ -50,7 +50,7 @@ CREATE TABLE contacts (
 
 CREATE TABLE countries (
     id       bigserial PRIMARY KEY,
-    value    text,
+    value    text[],
     comments text
 );
 

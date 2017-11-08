@@ -11,10 +11,8 @@ export default class Country extends ValidationElement {
   constructor (props) {
     super(props)
 
-    // For the typical Dropdown component a string value is expected.
-    // However, for the MultiDropdown, the value must be an array of objects.
     this.state = {
-      value: props.value,
+      value: simpleValue,
       showComents: props.showComments
     }
 
@@ -35,7 +33,13 @@ export default class Country extends ValidationElement {
   }
 
   updateCountry (values) {
-    this.update({ value: values.value })
+    let arr = []
+    if (Array.isArray(values.value)) {
+      arr = values.value
+    } else {
+      arr = [values.value]
+    }
+    this.update({ value: arr })
   }
 
   updateComments (values) {
@@ -115,10 +119,39 @@ export default class Country extends ValidationElement {
     return options.map(x => { return x })
   }
 
+  appropriateValue (value, multiple = false) {
+    if (!value) {
+      if (multiple) {
+        return []
+      }
+      return ''
+    }
+
+    // For the typical Dropdown component a string value is expected.
+    // However, for the MultiDropdown, the value must be an array of objects.
+    let simpleValue
+    const isArray = Array.isArray(value)
+    if (multiple) {
+      if (isArray) {
+        simpleValue = value
+      } else {
+        simpleValue = [value]
+      }
+    } else {
+      if (isArray) {
+        simpleValue = value[0]
+      } else {
+        simpleValue = value
+      }
+    }
+
+    return simpleValue
+  }
+
   render () {
     const klass = `country ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
-    const value = this.props.value || (this.props.multiple ? [] : '')
+    const value = this.appropriateValue(this.props.value, this.props.multiple)
 
     return (
       <Comments title={i18n.t('country.comments')}
@@ -176,6 +209,8 @@ export default class Country extends ValidationElement {
 
 Country.defaultProps = {
   name: 'country',
+  value: [],
+  multiple: false,
   comments: '',
   showComments: false,
   excludeUnitedStates: false,
