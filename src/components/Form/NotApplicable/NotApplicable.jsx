@@ -14,15 +14,16 @@ export default class NotApplicable extends React.Component {
   }
 
   onUpdate (values) {
-    this.setState({ applicable: !this.state.applicable }, () => {
+    const next = !this.state.applicable
+    this.setState({ applicable: next }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          applicable: this.state.applicable
+          applicable: next
         })
 
         let lastErrors = [...this.errors]
-        if (!this.state.applicable) {
+        if (!next) {
           // If not applicable, we set all validators to valid
           // since we shouldn't take into account their values
           lastErrors = lastErrors.map(err => {
