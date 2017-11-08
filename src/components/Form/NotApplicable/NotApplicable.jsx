@@ -46,6 +46,7 @@ export default class NotApplicable extends React.Component {
     return React.Children.map(this.props.children, (child) => {
       let extendedProps = {
         disabled: !this.state.applicable,
+        required: this.state.applicable && (child.props.required || false),
         onError: (value, arr) => {
           let errors = [...this.errors]
           for (const e of arr) {
