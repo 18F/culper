@@ -9,35 +9,33 @@ export default class InvalidForm extends React.Component {
       valid: null,
       width: 0
     }
+    this.errors = this.errors.bind(this)
   }
 
   errors () {
     let errors = []
-    for (let section of this.props.sections) {
-      if (!section.complete) {
-        errors.push(<InvalidSection key={section.url} section={section} />)
+    for (const sectionName in this.props.tally) {
+      const mark = this.props.tally[sectionName]
+      if (mark.errors) {
+        errors.push(<InvalidSection key={mark.section.url} mark={mark} />)
       }
     }
     return errors
   }
 
   render () {
-    const errors = this.errors()
     return (
       <div className="invalid-form">
         { i18n.m(`submission.invalidForm`) }
-        { errors }
+        { this.errors() }
       </div>
     )
   }
 }
 
 export class InvalidSection extends React.Component {
-
   render () {
-    const incompleteSubsections = this.props.section.subsections
-      .filter(subsection => !subsection.complete)
-    const incompleteSubsectionsElements = incompleteSubsections
+    const incompleteSubsections = this.props.mark.subsections
       .map(subsection => {
         return (<div key={subsection.url}>{ subsection.name }</div>)
       })
@@ -48,9 +46,9 @@ export class InvalidSection extends React.Component {
           <span className="messages error-messages">
             <div className="message error">
               <i className="fa fa-exclamation"></i>
-              <h3>{ this.props.section.title }</h3>
-              { incompleteSubsectionsElements }
-              <Link to={`/form/${this.props.section.url}/review`}>
+              <h3>{ this.props.mark.section.title }</h3>
+              { incompleteSubsections }
+              <Link to={`/form/${this.props.mark.section.url}/review`}>
                 <button className="back usa-button-outline">Back to section</button>
               </Link>
             </div>
@@ -62,4 +60,5 @@ export class InvalidSection extends React.Component {
 }
 
 InvalidForm.defaultProps = {
+  tally: {}
 }

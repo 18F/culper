@@ -9,7 +9,7 @@ import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import { push } from '../../../middleware/history'
-import { Link } from 'react-router'
+import { navigationWalker } from '../../../config'
 
 class Submission extends SectionElement {
   constructor (props) {
@@ -19,6 +19,7 @@ class Submission extends SectionElement {
     this.onTransitionEnd = this.onTransitionEnd.bind(this)
     // TODO: Remove after testing
     this.goToReleases = this.goToReleases.bind(this)
+    this.errorCheck = this.errorCheck.bind(this)
   }
 
   updateSubmission (values) {
@@ -28,7 +29,7 @@ class Submission extends SectionElement {
   onSubmit () {
     // TODO: Generate has code here and send to print screen when
     // merged with persistence updates
-    this.props.dispatch(push('/form/print'))
+    this.props.dispatch(push('/form/print/intro'))
   }
 
   /**
@@ -36,13 +37,17 @@ class Submission extends SectionElement {
    * releases or errors based on whether the form is valid
    */
   onTransitionEnd () {
-    const sectionsStatus = statusForAllSections(this.props.Application)
-    const valid = allSectionsValid(sectionsStatus)
-    if (valid) {
-      this.props.dispatch(push('/form/submit/releases'))
-    } else {
-      this.props.dispatch(push('/form/submit/errors'))
+    const tally = this.errorCheck()
+    for (const sectionName in tally) {
+      const mark = tally[sectionName]
+      if (mark.errors > 0) {
+        this.props.dispatch(push('/form/submit/errors'))
+        return
+      }
     }
+
+    this.props.dispatch(push('/form/submit/releases'))
+    return
   }
 
   /**
@@ -52,9 +57,50 @@ class Submission extends SectionElement {
     this.props.dispatch(push('/form/submit/releases'))
   }
 
+  errorCheck () {
+    let tally = {}
+
+    navigationWalker((path, child) => {
+      if (path.length && path[0].store && child.store && child.validator) {
+        if (child.excluded || child.hidden || (child.hiddenFunc && child.hiddenFunc(this.props.Application))) {
+          return
+        }
+
+        const sectionName = path[0].url
+        const data = (this.props.Application[path[0].store] || {})[child.store] || {}
+
+        let subsectionName = child.url
+        if (path.length > 1) {
+          for (let i = path.length - 1; i > 0; i--) {
+            subsectionName = `${path[i].url}/${subsectionName}`
+          }
+        }
+
+        let valid = null
+        try {
+          valid = new child.validator(data, data).isValid()
+        } catch (e) {
+          valid = null
+        }
+
+        if (!tally[sectionName]) {
+          tally[sectionName] = {}
+        }
+
+        tally[sectionName].section = path[0]
+        if (valid === false) {
+          tally[sectionName].errors = (tally[sectionName].errors || 0) + (valid === false ? 1 : 0)
+          tally[sectionName].subsections = [...(tally[sectionName].subsections || []), child]
+        }
+      }
+    })
+
+    return tally
+  }
+
   render () {
+    const tally = this.errorCheck()
     const releases = (this.props.Submission || {}).Releases
-    const sectionsStatus = statusForAllSections(this.props.Application)
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
         <SectionView name="intro">
@@ -78,11 +124,8 @@ class Submission extends SectionElement {
         </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
-            <InvalidForm sections={sectionsStatus} />
+            <InvalidForm tally={tally} />
           </SubmissionStatus>
-          <Link to="/form/submit/valid">
-            Show valid scenario
-          </Link>
         </SectionView>
       </SectionViews>
     )

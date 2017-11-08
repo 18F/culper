@@ -78,11 +78,11 @@ export class SectionViews extends React.Component {
           <div className="section-view">
             {title}
             {child.props.para}
-            {topButtons}
             <div className="view">
+              {topButtons}
               {child}
+              {bottomButtons}
             </div>
-            {bottomButtons}
           </div>
         )
       }

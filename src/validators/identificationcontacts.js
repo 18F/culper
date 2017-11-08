@@ -2,8 +2,8 @@ import { validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class IdentificationContactInformationValidator {
   constructor (data = {}) {
-    this.emails = data.Emails
-    this.phoneNumbers = data.PhoneNumbers
+    this.emails = data.Emails || []
+    this.phoneNumbers = data.PhoneNumbers || []
   }
 
   /**

@@ -189,6 +189,28 @@ describe('Helpers for validators', function () {
       {
         phone: {
           noNumber: '',
+          number: '0007031112222',
+          numberType: 'Home',
+          timeOfDay: 'Both',
+          type: 'International',
+          extension: ''
+        },
+        expected: false
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '   7031112222',
+          numberType: 'Home',
+          timeOfDay: 'Both',
+          type: 'International',
+          extension: ''
+        },
+        expected: false
+      },
+      {
+        phone: {
+          noNumber: '',
           number: '1234567',
           numberType: 'Home',
           timeOfDay: 'Both',

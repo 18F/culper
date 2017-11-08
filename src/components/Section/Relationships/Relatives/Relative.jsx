@@ -711,7 +711,7 @@ export default class Relative extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased === 'No'}>
+        <Show when={((this.props.Citizenship || {}).value || []).length && !validator.citizen() && this.props.IsDeceased === 'No'}>
           <div>
             <Show when={this.props.Address && (this.props.Address.country || {}).value === 'United States'}>
               <div>

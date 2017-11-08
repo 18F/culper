@@ -6,6 +6,7 @@ import NameValidator from './name'
 
 export default class HistoryEducationValidator {
   constructor (data = {}) {
+    data = data.value || data || {}
     this.hasAttended = data.HasAttended
     this.hasDegree10 = data.HasDegree10
     this.list = data.List || []

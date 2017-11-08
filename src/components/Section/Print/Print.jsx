@@ -72,7 +72,7 @@ class Print extends SectionElement {
           sectionComponent = (
             <MilitarySections
               {...this.props.Military}
-              {...this.props.Application}
+              application={this.props.Application}
               dispatch={this.props.dispatch}
               onError={this.handleError}
             />
