@@ -12,7 +12,7 @@ export default class Country extends ValidationElement {
     super(props)
 
     this.state = {
-      value: simpleValue,
+      value: props.simpleValue,
       showComents: props.showComments
     }
 

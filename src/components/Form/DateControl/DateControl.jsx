@@ -160,7 +160,7 @@ export default class DateControl extends ValidationElement {
           name: this.props.name,
           month: `${month}`,
           day: `${day}`,
-          year: `${year},
+          year: `${year}`,
           estimated: estimated,
           date: date
         })
