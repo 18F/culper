@@ -63,7 +63,7 @@ export default class DateControl extends ValidationElement {
       valid: props.valid,
       maxDate: props.maxDate,
       month: props.month || datePart('m', props.value),
-      day: props.hideDay ? 1 : (props.day || datePart('d', props.value)),
+      day: props.hideDay ? '1' : (props.day || datePart('d', props.value)),
       year: props.year || datePart('y', props.value),
       errors: []
     }
@@ -158,9 +158,9 @@ export default class DateControl extends ValidationElement {
 
         this.props.onUpdate({
           name: this.props.name,
-          month: month,
-          day: day,
-          year: year,
+          month: `${month}`,
+          day: `${day}`,
+          year: `${year},
           estimated: estimated,
           date: date
         })
