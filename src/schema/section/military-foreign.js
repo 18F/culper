@@ -5,6 +5,7 @@ export const militaryForeign = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
+        Has: form.branch(xitem.Has),
         Organization: form.radio(xitem.Organization),
         Name: form.text(xitem.Name),
         Dates: form.daterange(xitem.Dates),
@@ -18,6 +19,7 @@ export const militaryForeign = (data = {}) => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               Name: form.name(yitem.Name),
               Address: form.location(yitem.Address),
               Title: form.text(yitem.Title),

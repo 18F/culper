@@ -39,9 +39,9 @@ export default class ForeignService extends ValidationElement {
     })
   }
 
-  updateOrganization (event) {
+  updateOrganization (cb) {
     this.update({
-      Organization: event.target.value
+      Organization: cb.value
     })
   }
 
@@ -91,15 +91,13 @@ export default class ForeignService extends ValidationElement {
     // If there is no history clear out any previously entered data
     this.update({
       MaintainsContact: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -135,49 +133,49 @@ export default class ForeignService extends ValidationElement {
                    className="organization-military"
                    label={i18n.m('military.foreign.label.organization.military')}
                    value="Military"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-intelligence"
                    className="organization-intelligence"
                    label={i18n.m('military.foreign.label.organization.intelligence')}
                    value="Intelligence"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-diplomatic"
                    className="organization-diplomatic"
                    label={i18n.m('military.foreign.label.organization.diplomatic')}
                    value="Diplomatic"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-security"
                    className="organization-security"
                    label={i18n.m('military.foreign.label.organization.security')}
                    value="Security"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-militia"
                    className="organization-militia"
                    label={i18n.m('military.foreign.label.organization.militia')}
                    value="Militia"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-defense"
                    className="organization-defense"
                    label={i18n.m('military.foreign.label.organization.defense')}
                    value="Defense"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-other"
                    className="organization-other"
                    label={i18n.m('military.foreign.label.organization.other')}
                    value="Other"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
           </RadioGroup>

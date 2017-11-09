@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { MilitaryHistoryValidator, MilitaryServiceValidator } from '../../../../validators'
+import validate, { MilitaryHistoryValidator, MilitaryServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -37,13 +36,13 @@ export default class History extends SubsectionElement {
     this.update = this.update.bind(this)
     this.updateServed = this.updateServed.bind(this)
     this.updateList = this.updateList.bind(this)
+    this.summary = this.summary.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       HasServed: this.props.HasServed,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -51,16 +50,13 @@ export default class History extends SubsectionElement {
   updateServed (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      HasServed: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      HasServed: values
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -98,10 +94,9 @@ export default class History extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasServed.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -124,6 +119,7 @@ export default class History extends SubsectionElement {
 }
 
 History.defaultProps = {
+  List: { items: [] },
   HasServed: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -134,5 +130,6 @@ History.defaultProps = {
   validator: (state, props) => {
     return validate(schema('military.history', props))
   },
-  defaultState: true
+  defaultState: true,
+  required: false
 }
