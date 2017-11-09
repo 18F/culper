@@ -44,8 +44,7 @@ export default class Employment extends SubsectionElement {
 
   updateList (values) {
     this.props.onUpdate({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -64,8 +63,7 @@ export default class Employment extends SubsectionElement {
     })
 
     this.props.onUpdate({
-      List: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
-      ListBranch: ''
+      List: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort)
     })
   }
 
@@ -95,8 +93,7 @@ export default class Employment extends SubsectionElement {
       <div className="employment">
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.List}
-                   branch={this.props.ListBranch}
+                   {...this.props.List}
                    sort={this.props.sort}
                    inject={this.inject}
                    realtime={this.props.realtime}
@@ -125,9 +122,7 @@ export default class Employment extends SubsectionElement {
 }
 
 Employment.defaultProps = {
-  value: [],
-  List: [],
-  ListBranch: '',
+  List: { items: [] },
   scrollToTop: '',
   defaultState: true,
   realtime: false,

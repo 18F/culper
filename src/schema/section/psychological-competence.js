@@ -12,6 +12,7 @@ export const psychologicalCompetence = (data = {}) => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               CourtName: form.text(yitem.CourtName),
               CourtAddress: form.location(yitem.CourtAddress),
               Disposition: form.text(yitem.Disposition)

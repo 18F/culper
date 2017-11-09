@@ -5,6 +5,7 @@ export const legalPoliceDomesticViolence = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
+        Has: form.branch(xitem.Has),
         Explanation: form.textarea(xitem.Explanation),
         Issued: form.datecontrol(xitem.Issued),
         CourtName: form.text(xitem.CourtName),

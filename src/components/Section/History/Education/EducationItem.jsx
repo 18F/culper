@@ -245,12 +245,12 @@ export default class EducationItem extends ValidationElement {
           <BranchCollection label={i18n.t('history.education.heading.degree')}
                             appendLabel={i18n.t('history.education.heading.degreeTail')}
                             className="receive-degree"
-                            {...(this.state.Diplomas || {})}
+                            {...this.state.Diplomas}
                             onUpdate={this.updateDiplomas}
                             onError={this.props.onError}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}>
-            <DiplomaItem name="Diploma" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <DiplomaItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
           </BranchCollection>
         </div>
       </div>
@@ -267,7 +267,7 @@ export default class EducationItem extends ValidationElement {
 }
 
 EducationItem.defaultProps = {
-  Diplomas: {},
+  Diplomas: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

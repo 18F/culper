@@ -14,28 +14,31 @@ export default class BranchCollection extends React.Component {
    */
   onBranchClick (item, index, values) {
     let items = [...this.props.items]
-    item[this.props.valueKey] = values
-    items[index] = item
-    if (!items[index].Item) {
-      items[index].Item = {}
-    }
-
-    if (values.value !== 'Yes') {
-      if (index + 1 < this.props.items.length && this.props.removable) {
-        // If it's not the last item being marked as No, then remove it. This addresses the issue
-        // where the user must click No twice on the last item.
-        items.splice(index, 1)
-      } else if (index === 0 && items.length === 1) {
-        // If this is the first and last item, and "no" has been selected, then clear out
-        // any persisted data **except** the branch value.
-        items[index] = {
-          Item: {
-            ...items[index].Item,
-            [this.props.valueKey]: item[this.props.valueKey]
-          },
-          index: item.index
+    switch (values.value) {
+      case 'Yes':
+        if (!items[index].Item) {
+          items[index].Item = {}
         }
-      }
+        items[index].Item = {
+          ...items[index].Item,
+          [this.props.valueKey]: values
+        }
+        break
+      default:
+        if (index + 1 < this.props.items.length && this.props.removable) {
+          // If it's not the last item being marked as No, then remove it. This addresses the issue
+          // where the user must click No twice on the last item.
+          items = items.splice(index, 1)
+        } else if (index === 0 && items.length === 1) {
+          // If this is the first and last item, and "no" has been selected, then clear out
+          // any persisted data **except** the branch value.
+          items[index] = {
+            Item: {
+              [this.props.valueKey]: values
+            },
+            index: item.index
+          }
+        }
     }
 
     this.props.onUpdate({ items: items })
@@ -88,7 +91,11 @@ export default class BranchCollection extends React.Component {
           childProps = {...field}
           childProps.onUpdate = (value) => {
             let items = [...this.props.items]
-            items[index][child.props.name] = value
+            const item = items[index][child.props.name]
+            items[index][child.props.name] = {
+              ...item,
+              ...value
+            }
             this.props.onUpdate({ items: items })
           }
           childProps.onError = this.props.onError

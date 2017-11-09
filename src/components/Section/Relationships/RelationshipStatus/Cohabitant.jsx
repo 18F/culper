@@ -219,7 +219,7 @@ export default class Cohabitant extends ValidationElement {
         <BranchCollection label={i18n.t('relationships.cohabitant.heading.othernames')}
                           className="cohabitant-othernames"
                           appendLabel={i18n.t('relationships.cohabitant.heading.appendOthernames')}
-                          {...(this.props.OtherNames || {})}
+                          {...this.props.OtherNames}
                           onError={this.props.onError}
                           onUpdate={this.updateOtherNames}
                           required={this.props.required}
@@ -268,7 +268,7 @@ Cohabitant.defaultProps = {
   BirthPlace: {},
   ForeignBornDocument: {},
   SSN: {},
-  OtherNames: {},
+  OtherNames: { items: [] },
   Citizenship: {},
   CohabitationBegan: {},
   SameSpouse: false,

@@ -15,6 +15,7 @@ export const historyEducation = (data = {}) => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               Diploma: form.radio(yitem.Diploma),
               DiplomaOther: form.text(yitem.DiplomaOther),
               Date: form.datecontrol(yitem.Date)

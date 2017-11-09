@@ -76,6 +76,9 @@ export const utc = (date) => {
   if (!date) {
     return null
   }
+  if (Object.prototype.toString.call(date) === '[object String]') {
+    return null
+  }
 
   return new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()))
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { reportCompletion } from '../../../actions/ApplicationActions'
-import { HistoryEducationValidator } from '../../../validators'
+import { HistoryEducationValidator, EducationValidator } from '../../../validators'
 import { i18n } from '../../../config'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -82,7 +82,9 @@ class History extends SectionElement {
   }
 
   updateResidence (values) {
-    this.handleUpdate('Residence', values.items)
+    this.handleUpdate('Residence', {
+      List: values
+    })
   }
 
   updateEmployment (values) {
@@ -91,7 +93,7 @@ class History extends SectionElement {
 
   updateEducation (values) {
     let education = this.props.Education || {}
-    education.List = values.items
+    education.List = values
     this.handleUpdate('Education', education)
   }
 
@@ -142,11 +144,11 @@ class History extends SectionElement {
    */
   residenceRangeList () {
     let dates = []
-    if (!this.props.Residence) {
+    if (!this.props.Residence || !this.props.Residence.List || !this.props.Residence.List.items) {
       return dates
     }
 
-    for (const i of this.excludeGaps(this.props.Residence)) {
+    for (const i of this.excludeGaps(this.props.Residence.List.items)) {
       if (!i.Item) {
         continue
       }
@@ -164,11 +166,11 @@ class History extends SectionElement {
    */
   employmentRangesList () {
     let dates = []
-    if (!this.props.Employment) {
+    if (!this.props.Employment || !this.props.Employment.List || !this.props.Employment.List.items) {
       return dates
     }
 
-    for (const i of this.excludeGaps(this.props.Employment.List)) {
+    for (const i of this.excludeGaps(this.props.Employment.List.items)) {
       if (!i.Item) {
         continue
       }
@@ -187,7 +189,7 @@ class History extends SectionElement {
       return dates
     }
 
-    for (const i of this.props.Education.List) {
+    for (const i of this.props.Education.List.items) {
       if (!i.Item || !i.Item.Dates || !i.Item.Dates.to || !i.Item.Dates.from) {
         continue
       }
@@ -204,13 +206,13 @@ class History extends SectionElement {
       return dates
     }
 
-    for (const i of this.props.Education.List) {
+    for (const i of this.props.Education.List.items) {
       if (!i.Item) {
         continue
       }
 
-      if (i.Item.Diplomas) {
-        for (const d of i.Item.Diplomas) {
+      if (i.Item.Diplomas.items) {
+        for (const d of i.Item.Diplomas.items) {
           if (!d.Diploma || !d.Diploma.Date || !d.Diploma.Date.date) {
             continue
           }
@@ -279,9 +281,10 @@ class History extends SectionElement {
       for (const t of types) {
         let items = []
         if (t === 'Employment') {
-          items = ((this.props.History[t] && this.props.History[t].List) || [])
+          items = ((this.props.History[t] && this.props.History[t].List) || {}).items
         } else {
-          items = this.props.History[t]
+          // Move?
+          items = ((this.props.History[t] && this.props.History[t].List) || {}).items
         }
 
         // If there is no history it should still display the exiting message
@@ -368,7 +371,7 @@ class History extends SectionElement {
               { this.educationSummaryProgress() }
             </Show>
 
-            <Residence value={this.props.Residence}
+            <Residence {...this.props.Residence}
                        defaultState={false}
                        realtime={true}
                        sort={sort}
@@ -382,8 +385,7 @@ class History extends SectionElement {
                        required={true}
                        />
 
-            <Employment value={this.props.Employment}
-                        {...this.props.Employment}
+            <Employment {...this.props.Employment}
                         defaultState={false}
                         realtime={true}
                         sort={sort}
@@ -398,7 +400,7 @@ class History extends SectionElement {
                         />
 
             <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
-              <Education value={this.props.Education}
+              <Education {...this.props.Education}
                          defaultState={false}
                          realtime={true}
                          sort={sort}
@@ -460,7 +462,7 @@ class History extends SectionElement {
 
             <span id="scrollToHistory"></span>
             { this.residenceSummaryProgress() }
-            <Residence value={this.props.Residence}
+            <Residence {...this.props.Residence}
                        scrollToTop="scrollToHistory"
                        realtime={true}
                        sort={sort}
@@ -500,7 +502,7 @@ class History extends SectionElement {
 
             <span id="scrollToHistory"></span>
             { this.employmentSummaryProgress() }
-            <Employment value={this.props.Employment}
+            <Employment
                         {...this.props.Employment}
                         scrollToTop="scrollToHistory"
                         sort={sort}
@@ -561,7 +563,7 @@ class History extends SectionElement {
               <div>
                 <span id="scrollToHistory"></span>
                 { this.educationSummaryProgress() }
-                <Education value={this.props.Education}
+                <Education {...this.props.Education}
                            scrollToTop="scrollToHistory"
                            sort={sort}
                            totalYears={this.totalYears()}
@@ -618,9 +620,9 @@ function mapStateToProps (state) {
 
   return {
     History: history,
-    Residence: history.Residence || [],
-    Employment: history.Employment || { List: [], ListBranch: '' },
-    Education: history.Education || { HasAttended: '', HasDegree10: '', List: [] },
+    Residence: history.Residence || { List: { items: [] } },
+    Employment: history.Employment || { items: [] },
+    Education: history.Education || { HasAttended: '', HasDegree10: '', List: { items: [] } },
     Federal: history.Federal || {},
     Comments: history.Comments || {},
     Errors: errors.history || [],
@@ -640,7 +642,7 @@ export class HistorySections extends React.Component {
     const noOverride = () => { return false }
     return (
       <div>
-        <Residence value={this.props.Residence}
+        <Residence {...this.props.Residence}
                    defaultState={false}
                    realtime={true}
                    sort={sort}
@@ -653,7 +655,7 @@ export class HistorySections extends React.Component {
                    required={true}
                    />
 
-        <Employment value={this.props.Employment}
+        <Employment {...this.props.Employment}
                     {...this.props.Employment}
                     defaultState={false}
                     realtime={true}
@@ -668,7 +670,7 @@ export class HistorySections extends React.Component {
                     />
 
         <Show when={this.props.Education.HasAttended.value === 'Yes' || this.props.Education.HasDegree10.value === 'Yes'}>
-          <Education value={this.props.Education}
+          <Education {...this.props.Education}
                      defaultState={false}
                      realtime={true}
                      sort={sort}

@@ -40,7 +40,7 @@ export default class DomesticViolenceList extends SubsectionElement {
                           required={this.props.required}
                           onUpdate={this.updateList}
                           scrollIntoView={this.props.scrollIntoView}>
-          <DomesticViolence name="domestic"
+          <DomesticViolence name="Item"
                             addressBooks={this.props.addressBooks}
                             dispatch={this.props.dispatch}
                             bind={true}
@@ -55,7 +55,7 @@ export default class DomesticViolenceList extends SubsectionElement {
 }
 
 DomesticViolenceList.defaultProps = {
-  List: [],
+  List: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',

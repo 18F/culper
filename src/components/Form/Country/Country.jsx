@@ -3,7 +3,6 @@ import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Show from '../Show'
 import Comments from '../Comments'
-import Textarea from '../Textarea'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
 

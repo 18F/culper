@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { FederalServiceValidator, FederalServiceItemValidator } from '../../../../validators'
+import validate, { FederalServiceValidator, FederalServiceItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -21,7 +20,6 @@ export default class Federal extends SubsectionElement {
     this.props.onUpdate({
       HasFederalService: this.props.HasFederalService,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -29,15 +27,13 @@ export default class Federal extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasFederalService: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -73,8 +69,7 @@ export default class Federal extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
         <Show when={this.props.HasFederalService.value === 'Yes'}>
-          <Accordion items={this.props.List}
-                     branch={this.props.ListBranch}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -100,8 +95,7 @@ export default class Federal extends SubsectionElement {
 
 Federal.defaultProps = {
   HasFederalService: {},
-  List: [],
-  ListBranch: '',
+  List: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'history',

@@ -35,7 +35,7 @@ export default class CoOwners extends ValidationElement {
                           required={this.props.required}
                           onUpdate={this.updateList}
                           scrollIntoView={this.props.scrollIntoView}>
-          <CoOwner name="CoOwner"
+          <CoOwner name="Item"
                    bind={true}
                    prefix={`${this.props.prefix}.coOwner`}
                    addressBooks={this.props.addressBooks}

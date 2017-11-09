@@ -28,7 +28,7 @@ export default class Reprimand extends ValidationElement {
       <BranchCollection label={i18n.t('history.employment.default.reprimand.label')}
                         appendLabel={i18n.t('history.employment.default.reprimand.append')}
                         help="history.employment.default.reprimand.help"
-                        {...(this.props.Reasons || {})}
+                        {...this.props.Reasons}
                         className="reprimand-branch"
                         onUpdate={this.updateReasons}
                         onError={this.props.onError}
@@ -45,7 +45,7 @@ export default class Reprimand extends ValidationElement {
 }
 
 Reprimand.defaultProps = {
-  Reasons: {},
+  Reasons: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

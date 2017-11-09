@@ -16,6 +16,7 @@ export const historyEmployment = (data = {}) => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               Position: form.text(yitem.Position),
               Supervisor: form.text(yitem.Supervisor),
               DatesEmployed: form.daterange(yitem.DatesEmployed)
@@ -29,6 +30,7 @@ export const historyEmployment = (data = {}) => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               Text: form.textarea(yitem.Text),
               Date: form.datecontrol(yitem.Date)
             }

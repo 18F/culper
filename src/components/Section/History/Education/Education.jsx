@@ -40,7 +40,7 @@ export default class Education extends SubsectionElement {
       <div className="education">
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.value.List}
+                   {...this.props.List}
                    sort={this.props.sort}
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
@@ -66,7 +66,7 @@ export default class Education extends SubsectionElement {
 }
 
 Education.defaultProps = {
-  value: [],
+  List: { items: [] },
   scrollToTop: '',
   defaultState: true,
   realtime: false,
