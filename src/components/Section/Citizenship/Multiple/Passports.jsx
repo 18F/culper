@@ -54,7 +54,7 @@ export default class Passports extends SubsectionElement {
 }
 
 Passports.defaultProps = {
-  Passports: {},
+  Passports: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',

@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
+import validate, { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -14,12 +13,12 @@ export default class Multiple extends SubsectionElement {
 
     this.update = this.update.bind(this)
     this.updateHasMultiple = this.updateHasMultiple.bind(this)
-    this.updateCitizenships = this.updateCitizenships.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
-      Citizenships: this.props.Citizenships,
+      List: this.props.List,
       HasMultiple: this.props.HasMultiple,
       ...queue
     })
@@ -28,17 +27,17 @@ export default class Multiple extends SubsectionElement {
   updateHasMultiple (values) {
     this.update({
       HasMultiple: values,
-      Citizenships: values.value === 'Yes' ? this.props.Citizenships : []
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  updateCitizenships (values) {
+  updateList (values) {
     this.update({
-      Citizenships: values
+      List: values
     })
   }
 
-  summaryCitizenships (item, index) {
+  summaryList (item, index) {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Dates)
     const country = itemProperties.Country && itemProperties.Country.value
@@ -76,13 +75,13 @@ export default class Multiple extends SubsectionElement {
                 />
 
         <Show when={this.props.HasMultiple.value === 'Yes'}>
-          <Accordion {...this.props.Citizenships}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     onUpdate={this.updateCitizenships}
+                     onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={CitizenshipItemValidator}
-                     summary={this.summaryCitizenships}
+                     summary={this.summaryList}
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
                      appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}
@@ -98,7 +97,7 @@ export default class Multiple extends SubsectionElement {
 
 Multiple.defaultProps = {
   HasMultiple: {},
-  Citizenships: { items: [], branch: {} },
+  List: { items: [], branch: {} },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',

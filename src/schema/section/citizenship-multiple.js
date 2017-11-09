@@ -1,7 +1,7 @@
 import * as form from '../form'
 
 export const citizenshipMultiple = (data = {}) => {
-  const items = ((data.Citizenships || {}).items || []).map(x => {
+  const items = ((data.List || {}).items || []).map(x => {
     const xitem = x.Item || {}
     return {
       Item: {
@@ -17,6 +17,6 @@ export const citizenshipMultiple = (data = {}) => {
   })
   return {
     HasMultiple: form.branch(data.HasMultiple),
-    List: form.collection(items, (data.Citizenships || {}).branch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }
