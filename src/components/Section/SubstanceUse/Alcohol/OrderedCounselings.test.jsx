@@ -24,39 +24,41 @@ describe('The OrderedCounselings component', () => {
       onUpdate: () => { updates++ },
       HasBeenOrdered: { value: 'Yes' },
       ListBranch: 'No',
-      List: [{
-        Item: {
-          ActionTaken: { value: 'Yes' },
-          CounselingDates: {
-            from: {
-              date: new Date('1/1/2010')
+      List: {
+        items: [{
+          Item: {
+            ActionTaken: { value: 'Yes' },
+            CounselingDates: {
+              from: {
+                date: new Date('1/1/2010')
+              },
+              to: {
+                date: new Date('1/1/2012')
+              },
+              present: false
             },
-            to: {
-              date: new Date('1/1/2012')
+            TreatmentProviderName: {
+              value: 'The name'
             },
-            present: false
-          },
-          TreatmentProviderName: {
-            value: 'The name'
-          },
-          TreatmentProviderAddress: {
-            country: 'United States',
-            street: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202',
-            layout: Location.ADDRESS
-          },
-          TreatmentProviderTelephone: {
-            noNumber: '',
-            number: '7031112222',
-            numberType: 'Home',
-            timeOfDay: 'Both',
-            extension: ''
-          },
-          CompletedTreatment: { value: 'Yes' }
-        }
-      }]
+            TreatmentProviderAddress: {
+              country: 'United States',
+              street: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202',
+              layout: Location.ADDRESS
+            },
+            TreatmentProviderTelephone: {
+              noNumber: '',
+              number: '7031112222',
+              numberType: 'Home',
+              timeOfDay: 'Both',
+              extension: ''
+            },
+            CompletedTreatment: { value: 'Yes' }
+          }
+        }]
+      }
     }
     const component = mount(<OrderedCounselings {...expected} />)
     component.find('.seekers .seekers-employer input').simulate('change')
@@ -67,11 +69,13 @@ describe('The OrderedCounselings component', () => {
     const expected = {
       HasBeenOrdered: { value: 'Yes' },
       ListBranch: 'No',
-      List: [{
-        Item: {
-          Seekers: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'CourtOfficial', 'NotOrdered', 'Other']
-        }
-      }]
+      List: {
+        items: [{
+          Item: {
+            Seekers: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'CourtOfficial', 'NotOrdered', 'Other']
+          }
+        }]
+      }
     }
     const component = mount(<OrderedCounselings {...expected} />)
     const text = component.find('.item').text()

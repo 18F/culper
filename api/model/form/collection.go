@@ -2,7 +2,6 @@ package form
 
 import (
 	"encoding/json"
-	"log"
 
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
@@ -30,7 +29,6 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 	if err != nil {
 		return err
 	}
-	log.Println(entity.PayloadBranch.Type)
 	if entity.PayloadBranch.Type != "" {
 		branch, err := entity.PayloadBranch.Entity()
 		if err != nil {
@@ -38,10 +36,6 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 		}
 		entity.Branch = branch.(*Branch)
 	}
-
-	log.Println(entity.Branch)
-	log.Println("collection items:", len(entity.Items))
-
 	return err
 }
 
@@ -89,12 +83,10 @@ func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, e
 	}
 
 	if err := context.CheckTable(entity); err != nil {
-		log.Println("0.1")
 		return entity.ID, err
 	}
 
 	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
-		log.Println("0.2")
 		previous := result.(*Collection)
 		// Handle if there is a branch
 		if previous.BranchID != 0 {
@@ -108,33 +100,24 @@ func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, e
 
 	// Custom errors
 	if entity.PayloadBranch.Type != "" {
-		log.Println("0.3")
 		branchID, err := entity.Branch.Save(context, account)
 		if err != nil {
-			log.Println("0.4")
 			return 0, err
 		}
 		entity.BranchID = branchID
-		log.Println("branchID:", branchID)
 	}
 
-	log.Println("collection items:", len(entity.Items))
 	if err := context.Save(entity); err != nil {
-		log.Println("0.5")
 		return entity.ID, err
 	}
-	log.Println("collection items:", len(entity.Items))
 
 	// Iterate through each property in `Items` saving them as we go.
 	for i, item := range entity.Items {
-		log.Println("0.6")
 		if _, err := item.Save(context, account, entity.ID, i+1); err != nil {
-			log.Println("0.7")
 			return entity.ID, err
 		}
 	}
 
-	log.Println("0.8")
 	return entity.ID, nil
 }
 

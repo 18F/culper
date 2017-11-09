@@ -1,12 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
+import validate, { DrugInvolvementValidator } from '../../../../validators'
 import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import DrugInvolvement from './DrugInvolvement'
-import { DrugInvolvementsValidator, DrugInvolvementValidator } from '../../../../validators'
 
 export default class DrugInvolvements extends SubsectionElement {
   constructor (props) {
@@ -22,7 +21,6 @@ export default class DrugInvolvements extends SubsectionElement {
       this.props.onUpdate({
         Involved: this.props.Involved,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -30,16 +28,14 @@ export default class DrugInvolvements extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateInvolved (values) {
     this.update({
       Involved: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -76,9 +72,8 @@ export default class DrugInvolvements extends SubsectionElement {
 
         <Show when={this.props.Involved.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -98,8 +93,7 @@ export default class DrugInvolvements extends SubsectionElement {
 
 DrugInvolvements.defaultProps = {
   Involved: {},
-  List: [],
-  ListBranch: '',
+  List: { items: [], branch: {} },
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/purchase',

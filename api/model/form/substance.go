@@ -51,7 +51,7 @@ func (entity *SubstanceDrugUsage) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("substance.drug.usage", entity)
+	return MarshalPayloadEntity("substance.drugs.usage", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -224,7 +224,7 @@ func (entity *SubstanceDrugPurchase) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("substance.drug.purchase", entity)
+	return MarshalPayloadEntity("substance.drugs.purchase", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -397,7 +397,7 @@ func (entity *SubstanceDrugClearance) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("substance.drug.clearance", entity)
+	return MarshalPayloadEntity("substance.drugs.clearance", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -570,7 +570,7 @@ func (entity *SubstanceDrugPublicSafety) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("substance.drug.publicsafety", entity)
+	return MarshalPayloadEntity("substance.drugs.publicsafety", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -700,7 +700,7 @@ func (entity *SubstanceDrugPublicSafety) SetID(id int) {
 }
 
 type SubstanceDrugMisuse struct {
-	PayloadUsedDrugs Payload `json:"UsedDrugs" sql:"-"`
+	PayloadUsedDrugs Payload `json:"MisusedDrugs" sql:"-"`
 	PayloadList      Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
@@ -709,7 +709,7 @@ type SubstanceDrugMisuse struct {
 
 	// Persister specific fields
 	ID          int `json:"-"`
-	UsedDrugsID int `json:"-" pg:", fk:UsedDrugs"`
+	UsedDrugsID int `json:"-" pg:", fk:MisusedDrugs"`
 	ListID      int `json:"-" pg:", fk:List"`
 }
 
@@ -743,7 +743,7 @@ func (entity *SubstanceDrugMisuse) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("substance.drug.misuse", entity)
+	return MarshalPayloadEntity("substance.drugs.misuse", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -873,7 +873,7 @@ func (entity *SubstanceDrugMisuse) SetID(id int) {
 }
 
 type SubstanceDrugOrdered struct {
-	PayloadInvolved Payload `json:"Involved" sql:"-"`
+	PayloadInvolved Payload `json:"TreatmentOrdered" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
@@ -882,7 +882,7 @@ type SubstanceDrugOrdered struct {
 
 	// Persister specific fields
 	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:Involved"`
+	InvolvedID int `json:"-" pg:", fk:TreatmentOrdered"`
 	ListID     int `json:"-" pg:", fk:List"`
 }
 
@@ -916,7 +916,7 @@ func (entity *SubstanceDrugOrdered) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("substance.drug.ordered", entity)
+	return MarshalPayloadEntity("substance.drugs.ordered", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -1046,7 +1046,7 @@ func (entity *SubstanceDrugOrdered) SetID(id int) {
 }
 
 type SubstanceDrugVoluntary struct {
-	PayloadInvolved Payload `json:"Involved" sql:"-"`
+	PayloadInvolved Payload `json:"TreatmentVoluntary" sql:"-"`
 	PayloadList     Payload `json:"List" sql:"-"`
 
 	// Validator specific fields
@@ -1055,7 +1055,7 @@ type SubstanceDrugVoluntary struct {
 
 	// Persister specific fields
 	ID         int `json:"-"`
-	InvolvedID int `json:"-" pg:", fk:Involved"`
+	InvolvedID int `json:"-" pg:", fk:TreatmentVoluntary"`
 	ListID     int `json:"-" pg:", fk:List"`
 }
 
@@ -1089,7 +1089,7 @@ func (entity *SubstanceDrugVoluntary) Marshal() Payload {
 	if entity.List != nil {
 		entity.PayloadList = entity.List.Marshal()
 	}
-	return MarshalPayloadEntity("substance.drug.voluntary", entity)
+	return MarshalPayloadEntity("substance.drugs.voluntary", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.

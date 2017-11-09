@@ -24,36 +24,38 @@ describe('The NonCriminalCourtActions component', () => {
       onUpdate: () => { updates++ },
       HasCourtActions: { value: 'Yes' },
       ListBranch: 'No',
-      List: [{
-        Item: {
-          CivilActionDate: {
-            day: '1',
-            month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
-          },
-          CourtName: {
-            value: 'The name'
-          },
-          CourtAddress: {
-            country: 'United States',
-            street: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202',
-            layout: Location.ADDRESS
-          },
-          NatureOfAction: {
-            value: 'Nature of action'
-          },
-          ResultsOfAction: {
-            value: 'Results of action'
-          },
-          PrincipalPartyNames: {
-            value: 'John Doe'
+      List: {
+        items: [{
+          Item: {
+            CivilActionDate: {
+              day: '1',
+              month: '1',
+              year: '2016',
+              date: new Date('1/1/2016')
+            },
+            CourtName: {
+              value: 'The name'
+            },
+            CourtAddress: {
+              country: 'United States',
+              street: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202',
+              layout: Location.ADDRESS
+            },
+            NatureOfAction: {
+              value: 'Nature of action'
+            },
+            ResultsOfAction: {
+              value: 'Results of action'
+            },
+            PrincipalPartyNames: {
+              value: 'John Doe'
+            }
           }
-        }
-      }]
+        }]
+      }
     }
     const component = mount(<NonCriminalCourtActions {...expected} />)
     component.find('.court-name input').simulate('change')

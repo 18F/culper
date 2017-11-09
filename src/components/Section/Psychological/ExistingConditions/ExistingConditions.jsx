@@ -27,7 +27,6 @@ export default class ExistingConditions extends SubsectionElement {
       ReceivedTreatment: this.props.ReceivedTreatment,
       Explanation: this.props.Explanation,
       TreatmentList: this.props.TreatmentList,
-      TreatmentListBranch: this.props.TreatmentListBranch,
       DidNotFollow: this.props.DidNotFollow,
       DidNotFollowExplanation: this.props.DidNotFollowExplanation,
       ...queue
@@ -40,7 +39,6 @@ export default class ExistingConditions extends SubsectionElement {
       ReceivedTreatment: values.value === 'Yes' ? this.props.ReceivedTreatment : '',
       Explanation: values.value === 'Yes' ? this.props.Explanation : {},
       TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
-      TreatmentListBranch: values.value === 'Yes' ? this.props.TreatmentListBranch : '',
       DidNotFollow: values.value === 'Yes' ? this.props.DidNotFollow : '',
       DidNotFollowExplanation: values.value === 'Yes' ? this.props.DidNotFollowExplanation : {}
     })
@@ -55,8 +53,7 @@ export default class ExistingConditions extends SubsectionElement {
 
   updateTreatmentList (values) {
     this.update({
-      TreatmentList: values.items,
-      TreatmentListBranch: values.branch
+      TreatmentList: values
     })
   }
 
@@ -159,8 +156,7 @@ export default class ExistingConditions extends SubsectionElement {
 
             <Show when={this.props.ReceivedTreatment.value === 'Yes'}>
               <Accordion defaultState={this.props.defaultState}
-                         items={this.props.TreatmentList}
-                         branch={this.props.TreatmentListBranch}
+                         {...this.props.TreatmentList}
                          onUpdate={this.updateTreatmentList}
                          summary={this.summary}
                          onError={this.handleError}

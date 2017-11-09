@@ -35,7 +35,7 @@ export default class ContactInformation extends SubsectionElement {
 
   updatePhoneNumbers (values) {
     this.update({
-      PhoneNumbers: values.items
+      PhoneNumbers: values
     })
   }
 
@@ -79,23 +79,24 @@ export default class ContactInformation extends SubsectionElement {
     const klass = `${this.props.className || ''}`.trim()
     let emails = this.props.Emails
     let phoneNumbers = this.props.PhoneNumbers
+
     if (this.props.shouldFilterEmptyItems) {
-      emails = emails.filter(x => {
+      emails = emails.items.filter(x => {
         const item = x.Item || {}
         return item.value
       })
-      phoneNumbers = phoneNumbers.filter(x => {
+      phoneNumbers = phoneNumbers.items.filter(x => {
         const item = x.Item || {}
         return item.number || item.noNumber
       })
     }
 
-    if (emails.items.length < this.props.minimumEmails) {
+    if (emails.length < this.props.minimumEmails) {
       emails = this.props.Emails.items.slice(0, this.props.minimumEmails)
     }
 
     if (phoneNumbers.length < this.props.minimumPhoneNumbers) {
-      phoneNumbers = this.props.PhoneNumbers.slice(0, this.props.minimumPhoneNumbers)
+      phoneNumbers = this.props.PhoneNumbers.items.slice(0, this.props.minimumPhoneNumbers)
     }
 
     return (
@@ -149,7 +150,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <div className={klass + ' telephone-collection'}>
           <Accordion minimum={this.props.minimumPhoneNumbers}
-                     items={phoneNumbers}
+                     {...phoneNumbers}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updatePhoneNumbers}
                      onError={this.handleError}
@@ -176,10 +177,8 @@ export default class ContactInformation extends SubsectionElement {
 }
 
 ContactInformation.defaultProps = {
-  Emails: {
-    items: []
-  },
-  PhoneNumbers: [],
+  Emails: Accordion.defaultList,
+  PhoneNumbers: Accordion.defaultList,
   minimumPhoneNumbers: 2,
   minimumEmails: 2,
   shouldFilterEmptyItems: false,

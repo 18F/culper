@@ -680,31 +680,31 @@ describe('Schema', function () {
         data: {}
       },
       {
-        type: 'substance.drug.clearance',
+        type: 'substance.drugs.clearance',
         data: {}
       },
       {
-        type: 'substance.drug.misuse',
+        type: 'substance.drugs.misuse',
         data: {}
       },
       {
-        type: 'substance.drug.ordered',
+        type: 'substance.drugs.ordered',
         data: {}
       },
       {
-        type: 'substance.drug.publicsafety',
+        type: 'substance.drugs.publicsafety',
         data: {}
       },
       {
-        type: 'substance.drug.purchase',
+        type: 'substance.drugs.purchase',
         data: {}
       },
       {
-        type: 'substance.drug.usage',
+        type: 'substance.drugs.usage',
         data: {}
       },
       {
-        type: 'substance.drug.voluntary',
+        type: 'substance.drugs.voluntary',
         data: {}
       },
       {

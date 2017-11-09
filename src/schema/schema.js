@@ -301,25 +301,25 @@ const transform = {
   'substance.alcohol.voluntary': (data) => {
     return section.substanceAlcoholVoluntary(data)
   },
-  'substance.drug.clearance': (data) => {
+  'substance.drugs.clearance': (data) => {
     return section.substanceDrugClearance(data)
   },
-  'substance.drug.misuse': (data) => {
+  'substance.drugs.misuse': (data) => {
     return section.substanceDrugMisuse(data)
   },
-  'substance.drug.ordered': (data) => {
+  'substance.drugs.ordered': (data) => {
     return section.substanceDrugOrdered(data)
   },
-  'substance.drug.publicsafety': (data) => {
+  'substance.drugs.publicsafety': (data) => {
     return section.substanceDrugPublicSafety(data)
   },
-  'substance.drug.purchase': (data) => {
+  'substance.drugs.purchase': (data) => {
     return section.substanceDrugPurchase(data)
   },
-  'substance.drug.usage': (data) => {
+  'substance.drugs.usage': (data) => {
     return section.substanceDrugUsage(data)
   },
-  'substance.drug.voluntary': (data) => {
+  'substance.drugs.voluntary': (data) => {
     return section.substanceDrugVoluntary(data)
   },
   'legal.associations.activities-to-overthrow': (data) => {

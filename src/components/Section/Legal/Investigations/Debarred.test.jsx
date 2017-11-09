@@ -27,19 +27,20 @@ describe('The legal investigations debarred component', () => {
   it('renders summary', () => {
     const props = {
       HasDebarment: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            Agency: {
-              value: 'U.S. Department of Defense'
-            },
-            Date: {
-              date: new Date('1/1/2010')
+      List: {
+        items: [
+          {
+            Item: {
+              Agency: {
+                value: 'U.S. Department of Defense'
+              },
+              Date: {
+                date: new Date('1/1/2010')
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<Debarred {...props} />)
     const text = component.find('.accordion .summary .left').text()

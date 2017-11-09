@@ -22,7 +22,6 @@ export default class ReceivedCounselings extends SubsectionElement {
       this.props.onUpdate({
         ReceivedTreatment: this.props.ReceivedTreatment,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -30,16 +29,14 @@ export default class ReceivedCounselings extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateReceivedTreatment (values) {
     this.update({
       ReceivedTreatment: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -77,7 +74,7 @@ export default class ReceivedCounselings extends SubsectionElement {
 
         <Show when={this.props.ReceivedTreatment.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -99,8 +96,7 @@ export default class ReceivedCounselings extends SubsectionElement {
 
 ReceivedCounselings.defaultProps = {
   ReceivedTreatment: {},
-  List: [],
-  ListBranch: '',
+  List: Accordion.defaultList,
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/additional',

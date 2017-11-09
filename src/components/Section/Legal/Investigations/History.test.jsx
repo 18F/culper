@@ -27,19 +27,20 @@ describe('The legal investigations history component', () => {
   it('renders summary', () => {
     const props = {
       HasHistory: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            Agency: {
-              Agency: 'U.S. Department of Defense'
-            },
-            Granted: {
-              date: new Date('1/1/2010')
+      List: {
+        items: [
+          {
+            Item: {
+              Agency: {
+                Agency: 'U.S. Department of Defense'
+              },
+              Granted: {
+                date: new Date('1/1/2010')
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<History {...props} />)
     const text = component.find('.accordion .summary .left').text()

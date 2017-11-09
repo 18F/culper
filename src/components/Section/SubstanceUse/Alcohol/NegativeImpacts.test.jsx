@@ -23,29 +23,31 @@ describe('The NegativeImpacts component', () => {
       onUpdate: () => { updates++ },
       HasImpacts: { value: 'Yes' },
       ListBranch: 'No',
-      List: [{
-        Item: {
-          Occurred: {
-            month: '1',
-            year: '2010'
-          },
-          Circumstances: {
-            value: 'Foo'
-          },
-          NegativeImpact: {
-            value: 'Bar'
-          },
-          Used: {
-            from: {
-              date: new Date('1/1/2010')
+      List: {
+        items: [{
+          Item: {
+            Occurred: {
+              month: '1',
+              year: '2010'
             },
-            to: {
-              date: new Date('1/1/2012')
+            Circumstances: {
+              value: 'Foo'
             },
-            present: false
+            NegativeImpact: {
+              value: 'Bar'
+            },
+            Used: {
+              from: {
+                date: new Date('1/1/2010')
+              },
+              to: {
+                date: new Date('1/1/2012')
+              },
+              present: false
+            }
           }
-        }
-      }]
+        }]
+      }
     }
     const component = mount(<NegativeImpacts {...expected} />)
     component.find('textarea[name="Circumstances"]').simulate('change')

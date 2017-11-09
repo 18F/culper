@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { PoliceOtherOffensesValidator, OtherOffenseValidator } from '../../../../validators'
+import validate, { OtherOffenseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -20,7 +19,6 @@ export default class OtherOffenses extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasOtherOffenses: this.props.HasOtherOffenses,
       ...queue
     })
@@ -28,16 +26,14 @@ export default class OtherOffenses extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasOtherOffenses (values) {
     this.update({
       HasOtherOffenses: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -95,10 +91,9 @@ export default class OtherOffenses extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasOtherOffenses.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={OtherOffenseValidator}
@@ -124,6 +119,7 @@ export default class OtherOffenses extends SubsectionElement {
 }
 
 OtherOffenses.defaultProps = {
+  List: Accordion.defaultList,
   HasOtherOffenses: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { PoliceOffensesValidator, OffenseValidator } from '../../../../validators'
+import validate, { OffenseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -20,7 +19,6 @@ export default class Offenses extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasOffenses: this.props.HasOffenses,
       ...queue
     })
@@ -29,15 +27,13 @@ export default class Offenses extends SubsectionElement {
   updateHasOffenses (values) {
     this.update({
       HasOffenses: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -81,10 +77,9 @@ export default class Offenses extends SubsectionElement {
         </Branch>
         <Show when={this.props.HasOffenses.value === 'Yes'}>
           <div>
-            <Accordion items={this.props.List}
+            <Accordion {...this.props.List}
                        defaultState={this.props.defaultState}
                        scrollToBottom={this.props.scrollToBottom}
-                       branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.handleError}
                        validator={OffenseValidator}
@@ -111,6 +106,7 @@ export default class Offenses extends SubsectionElement {
 }
 
 Offenses.defaultProps = {
+  List: Accordion.defaultList,
   HasOffenses: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

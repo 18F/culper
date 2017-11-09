@@ -12,7 +12,9 @@ describe('The Competence component', () => {
     let updates = 0
     const props = {
       IsIncompetent: { value: 'Yes' },
-      List: [{}],
+      List: {
+        items: [{}]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Competence {...props} />)

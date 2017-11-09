@@ -1,9 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsTerrorismValidator } from '../../../../validators'
+import validate from '../../../../validators'
 import { Branch, Show, Field, Textarea } from '../../../Form'
 
 export default class TerrorismAssociation extends SubsectionElement {
@@ -73,8 +72,6 @@ export default class TerrorismAssociation extends SubsectionElement {
 TerrorismAssociation.defaultProps = {
   name: 'terrorism',
   HasTerrorism: {},
-  List: [],
-  ListBranch: '',
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

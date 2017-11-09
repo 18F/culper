@@ -1,12 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
+import validate, { DrugOrderedTreatmentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import OrderedTreatment from './OrderedTreatment'
-import { DrugOrderedTreatmentsValidator, DrugOrderedTreatmentValidator } from '../../../../validators'
 
 export default class OrderedTreatments extends SubsectionElement {
   constructor (props) {
@@ -22,7 +21,6 @@ export default class OrderedTreatments extends SubsectionElement {
       this.props.onUpdate({
         TreatmentOrdered: this.props.TreatmentOrdered,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -30,16 +28,14 @@ export default class OrderedTreatments extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateTreatmentOrdered (values) {
     this.update({
       TreatmentOrdered: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -74,9 +70,8 @@ export default class OrderedTreatments extends SubsectionElement {
 
         <Show when={this.props.TreatmentOrdered.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -101,8 +96,7 @@ export default class OrderedTreatments extends SubsectionElement {
 
 OrderedTreatments.defaultProps = {
   TreatmentOrdered: {},
-  List: [],
-  ListBranch: '',
+  List: { items: [], branch: {} },
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/ordered',

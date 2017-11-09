@@ -27,19 +27,20 @@ describe('The legal technology unauthorized access component', () => {
   it('renders summary', () => {
     const props = {
       HasUnauthorized: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            Date: {
-              date: new Date('1/1/2010')
-            },
-            Incident: {
-              value: 'Looked over the shoulder'
+      List: {
+        items: [
+          {
+            Item: {
+              Date: {
+                date: new Date('1/1/2010')
+              },
+              Incident: {
+                value: 'Looked over the shoulder'
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<Unauthorized {...props} />)
     const text = component.find('.accordion .summary .left').text()

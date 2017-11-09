@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import schema from '../../../schema'
-import validate from '../../../validators'
-import { LegalNonCriminalCourtActionsValidator, NonCriminalCourtActionValidator } from '../../../validators'
+import validate, { NonCriminalCourtActionValidator } from '../../../validators'
 import SubsectionElement from '../SubsectionElement'
 import { Accordion, Branch, Show } from '../../Form'
 import NonCriminalCourtAction from './NonCriminalCourtAction'
@@ -20,23 +19,20 @@ export default class NonCriminalCourtActions extends SubsectionElement {
     this.props.onUpdate({
       HasCourtActions: this.props.HasCourtActions,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasCourtActions (values) {
     this.update({
       HasCourtActions: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -71,9 +67,8 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 
         <Show when={this.props.HasCourtActions.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -98,8 +93,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 
 NonCriminalCourtActions.defaultProps = {
   HasCourtActions: {},
-  List: [],
-  ListBranch: '',
+  List: Accordion.defaultList,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',

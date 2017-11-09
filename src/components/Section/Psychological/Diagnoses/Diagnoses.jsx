@@ -1,9 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { DiagnosesValidator, DiagnosisValidator, TreatmentValidator } from '../../../../validators'
+import validate, { DiagnosisValidator, TreatmentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import Diagnosis from './Diagnosis'
@@ -27,24 +26,20 @@ export default class Diagnoses extends SubsectionElement {
       DidNotConsult: this.props.DidNotConsult,
       InTreatment: this.props.InTreatment,
       DiagnosisList: this.props.DiagnosisList,
-      DiagnosisListBranch: this.props.DiagnosisListBranch,
       TreatmentList: this.props.TreatmentList,
-      TreatmentListBranch: this.props.TreatmentListBranch,
       ...queue
     })
   }
 
   updateDiagnosisList (values) {
     this.update({
-      DiagnosisList: values.items,
-      DiagnosisListBranch: values.branch
+      DiagnosisList: values
     })
   }
 
   updateTreatmentList (values) {
     this.update({
-      TreatmentList: values.items,
-      TreatmentListBranch: values.branch
+      TreatmentList: values
     })
   }
 
@@ -52,11 +47,9 @@ export default class Diagnoses extends SubsectionElement {
     this.update({
       Diagnosed: values,
       DiagnosisList: values.value === 'Yes' ? this.props.DiagnosisList : [],
-      DiagnosisListBranch: values.value === 'Yes' ? this.props.DiagnosisListBranch : '',
       DidNotConsult: values.value === 'Yes' ? this.props.DidNotConsult : '',
       InTreatment: values.value === 'Yes' ? this.props.InTreatment : '',
-      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
-      TreatmentListBranch: values.value === 'Yes' ? this.props.TreatmentListBranch : ''
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : []
     })
   }
 
@@ -69,8 +62,7 @@ export default class Diagnoses extends SubsectionElement {
   updateInTreatment (values) {
     this.update({
       InTreatment: values,
-      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
-      TreatmentListBranch: values.value === 'Yes' ? this.props.TreatmentListBranch : ''
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : []
     })
   }
 
@@ -124,8 +116,7 @@ export default class Diagnoses extends SubsectionElement {
           <div>
             <Accordion className="diagnosis-collection"
                        defaultState={this.props.defaultState}
-                       items={this.props.DiagnosisList}
-                       branch={this.props.DiagnosisListBranch}
+                       {...this.props.DiagnosisList}
                        onUpdate={this.updateDiagnosisList}
                        summary={this.summary}
                        onError={this.handleError}
@@ -172,9 +163,8 @@ export default class Diagnoses extends SubsectionElement {
 
             <Show when={this.props.InTreatment.value === 'Yes'}>
               <Accordion defaultState={this.props.defaultState}
-                         items={this.props.TreatmentList}
+                         {...this.props.TreatmentList}
                          scrollToBottom={this.props.scrollToBottom}
-                         branch={this.props.TreatmentListBranch}
                          onUpdate={this.updateTreatmentList}
                          summary={this.treatmentSummary}
                          onError={this.handleError}
@@ -205,9 +195,7 @@ Diagnoses.defaultProps = {
   DidNotConsult: {},
   InTreatment: {},
   DiagnosisList: [],
-  DiagnosisListBranch: {},
   TreatmentList: [],
-  TreatmentListBranch: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

@@ -27,19 +27,20 @@ describe('The legal technology manipulating access component', () => {
   it('renders summary', () => {
     const props = {
       HasManipulating: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            Date: {
-              date: new Date('1/1/2010')
-            },
-            Incident: {
-              value: 'Looked over the shoulder'
+      List: {
+        items: [
+          {
+            Item: {
+              Date: {
+                date: new Date('1/1/2010')
+              },
+              Incident: {
+                value: 'Looked over the shoulder'
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<Manipulating {...props} />)
     const text = component.find('.accordion .summary .left').text()

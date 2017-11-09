@@ -76,7 +76,7 @@ export default combineReducers({
   TBD: reducer('Tbd'),
   Legal: reducer('Legal'),
   Psychological: reducer('Psychological'),
-  SubstanceUse: reducer('SubstanceUse'),
+  Substance: reducer('Substance'),
   Submission: reducer('Submission'),
   Completed: errorReducer('Completed'),
   Errors: errorReducer('Errors'),

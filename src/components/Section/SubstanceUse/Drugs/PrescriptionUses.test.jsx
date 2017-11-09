@@ -20,28 +20,30 @@ describe('The PrescriptionUses component', () => {
   it('Performs updates to accordion', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const list = [
-      {
-        DrugPrescriptionUse: {
-          InvolvementDates: {
-            from: {
-              date: new Date('1/1/2010')
+    const list = {
+      items: [
+        {
+          DrugPrescriptionUse: {
+            InvolvementDates: {
+              from: {
+                date: new Date('1/1/2010')
+              },
+              to: {
+                date: new Date('1/1/2012')
+              }
             },
-            to: {
-              date: new Date('1/1/2012')
-            }
-          },
-          PrescriptionName: {
-            value: 'Foo'
-          },
-          Reason: {
-            value: 'The reason'
-          },
-          UseWhileEmployed: 'Yes',
-          UseWithClearance: 'Yes'
+            PrescriptionName: {
+              value: 'Foo'
+            },
+            Reason: {
+              value: 'The reason'
+            },
+            UseWhileEmployed: 'Yes',
+            UseWithClearance: 'Yes'
+          }
         }
-      }
-    ]
+      ]
+    }
     const component = mount(<PrescriptionUses onUpdate={onUpdate} MisusedDrugs={{ value: 'Yes' }} List={list} />)
     expect(component.find('.prescription-uses').length).toBe(1)
     component.find('.reason textarea').first().simulate('change')

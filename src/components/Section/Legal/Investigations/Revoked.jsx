@@ -1,9 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalInvestigationsRevokedValidator, RevokedValidator } from '../../../../validators'
+import validate, { RevokedValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import RevokedItem from './RevokedItem'
@@ -20,7 +19,6 @@ export default class Revoked extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasRevocations: this.props.HasRevocations,
       ...queue
     })
@@ -28,16 +26,14 @@ export default class Revoked extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasRevocations: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -73,9 +69,8 @@ export default class Revoked extends SubsectionElement {
 
         <Show when={this.props.HasRevocations.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -100,8 +95,7 @@ export default class Revoked extends SubsectionElement {
 Revoked.defaultProps = {
   name: 'revoked',
   HasRevocations: {},
-  List: [],
-  ListBranch: '',
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

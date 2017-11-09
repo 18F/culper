@@ -20,7 +20,6 @@ export default class Unauthorized extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasUnauthorized: this.props.HasUnauthorized,
       ...queue
     })
@@ -28,16 +27,14 @@ export default class Unauthorized extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasUnauthorized: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -74,9 +71,8 @@ export default class Unauthorized extends SubsectionElement {
 
         <Show when={this.props.HasUnauthorized.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -103,8 +99,7 @@ export default class Unauthorized extends SubsectionElement {
 Unauthorized.defaultProps = {
   name: 'unauthorized',
   HasUnauthorized: {},
-  List: [],
-  ListBranch: '',
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

@@ -27,20 +27,21 @@ describe('The legal associations overthrow component', () => {
   it('renders summary', () => {
     const props = {
       HasOverthrow: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            Dates: {
-              from: { date: new Date('1/1/2010') },
-              to: { date: new Date('1/1/2011') }
-            },
-            Organization: {
-              value: 'Donut Brigade'
+      List: {
+        items: [
+          {
+            Item: {
+              Dates: {
+                from: { date: new Date('1/1/2010') },
+                to: { date: new Date('1/1/2011') }
+              },
+              Organization: {
+                value: 'Donut Brigade'
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<MembershipOverthrow {...props} />)
     const text = component.find('.accordion .summary .left').text()

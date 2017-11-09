@@ -31,33 +31,35 @@ describe('The Offenses record component', () => {
       name: 'police-record',
       HasOffenses: { value: 'Yes' },
       onUpdate: () => { updates++ },
-      List: [
-        {
-          Item: {
-            Date: {
-              day: '1',
-              month: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
-            },
-            Description: {
-              value: 'Description of the offense'
-            },
-            InvolvedViolence: { value: 'No' },
-            InvolvedFirearms: { value: 'No' },
-            InvolvedSubstances: { value: 'No' },
-            Address: {
-              country: 'United States',
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            },
-            WasCited: { value: 'No' }
+      List: {
+        items: [
+          {
+            Item: {
+              Date: {
+                day: '1',
+                month: '1',
+                year: '2016',
+                date: new Date('1/1/2016')
+              },
+              Description: {
+                value: 'Description of the offense'
+              },
+              InvolvedViolence: { value: 'No' },
+              InvolvedFirearms: { value: 'No' },
+              InvolvedSubstances: { value: 'No' },
+              Address: {
+                country: 'United States',
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202',
+                layout: Location.ADDRESS
+              },
+              WasCited: { value: 'No' }
+            }
           }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<Offenses {...expected} />)
     component.find('.has-offenses .no input').simulate('change')
@@ -68,33 +70,35 @@ describe('The Offenses record component', () => {
     const expected = {
       name: 'police-record',
       HasOffenses: { value: 'Yes' },
-      List: [
-        {
-          Item: {
-            Date: {
-              day: '1',
-              month: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
-            },
-            Description: {
-              value: 'Description of the offense'
-            },
-            InvolvedViolence: { value: 'No' },
-            InvolvedFirearms: { value: 'No' },
-            InvolvedSubstances: { value: 'No' },
-            Address: {
-              country: 'United States',
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            },
-            WasCited: { value: 'No' }
+      List: {
+        items: [
+          {
+            Item: {
+              Date: {
+                day: '1',
+                month: '1',
+                year: '2016',
+                date: new Date('1/1/2016')
+              },
+              Description: {
+                value: 'Description of the offense'
+              },
+              InvolvedViolence: { value: 'No' },
+              InvolvedFirearms: { value: 'No' },
+              InvolvedSubstances: { value: 'No' },
+              Address: {
+                country: 'United States',
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202',
+                layout: Location.ADDRESS
+              },
+              WasCited: { value: 'No' }
+            }
           }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<Offenses {...expected} />)
     expect(component.find('.accordion').length).toEqual(1)

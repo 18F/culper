@@ -108,27 +108,27 @@ export const sectionData = (section, subsection, application = {}) => {
       return wrap(application.Foreign).Travel
 
     case 'substance/alcohol/additional':
-      return wrap(application.SubstanceUse).ReceivedCounselings
+      return wrap(application.Substance).ReceivedCounselings
     case 'substance/alcohol/negative':
-      return wrap(application.SubstanceUse).NegativeImpacts
+      return wrap(application.Substance).NegativeImpacts
     case 'substance/alcohol/ordered':
-      return wrap(application.SubstanceUse).OrderedCounselings
+      return wrap(application.Substance).OrderedCounselings
     case 'substance/alcohol/voluntary':
-      return wrap(application.SubstanceUse).VoluntaryCounselings
+      return wrap(application.Substance).VoluntaryCounselings
     case 'substance/drugs/clearance':
-      return wrap(application.SubstanceUse).DrugClearanceUses
+      return wrap(application.Substance).DrugClearanceUses
     case 'substance/drugs/misuse':
-      return wrap(application.SubstanceUse).PrescriptionUses
+      return wrap(application.Substance).PrescriptionUses
     case 'substance/drugs/ordered':
-      return wrap(application.SubstanceUse).OrderedTreatments
+      return wrap(application.Substance).OrderedTreatments
     case 'substance/drugs/publicsafety':
-      return wrap(application.SubstanceUse).DrugPublicSafetyUses
+      return wrap(application.Substance).DrugPublicSafetyUses
     case 'substance/drugs/purchase':
-      return wrap(application.SubstanceUse).DrugInvolvements
+      return wrap(application.Substance).DrugInvolvements
     case 'substance/drugs/usage':
-      return wrap(application.SubstanceUse).DrugUses
+      return wrap(application.Substance).DrugUses
     case 'substance/drugs/voluntary':
-      return wrap(application.SubstanceUse).VoluntaryTreatments
+      return wrap(application.Substance).VoluntaryTreatments
 
     case 'legal/associations/activities-to-overthrow':
       return wrap(application.Legal).ActivitiesToOverthrow

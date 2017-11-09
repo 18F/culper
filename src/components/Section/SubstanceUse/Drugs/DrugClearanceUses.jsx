@@ -1,12 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
+import validate, { DrugClearanceUseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import DrugClearanceUse from './DrugClearanceUse'
-import { DrugClearanceUsesValidator, DrugClearanceUseValidator } from '../../../../validators'
 
 export default class DrugClearanceUses extends SubsectionElement {
   constructor (props) {
@@ -22,7 +21,6 @@ export default class DrugClearanceUses extends SubsectionElement {
       this.props.onUpdate({
         UsedDrugs: this.props.UsedDrugs,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -30,16 +28,14 @@ export default class DrugClearanceUses extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateUsedDrugs (values) {
     this.update({
       UsedDrugs: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -74,9 +70,8 @@ export default class DrugClearanceUses extends SubsectionElement {
 
         <Show when={this.props.UsedDrugs.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -96,8 +91,7 @@ export default class DrugClearanceUses extends SubsectionElement {
 
 DrugClearanceUses.defaultProps = {
   UsedDrugs: {},
-  List: [],
-  ListBranch: '',
+  List: { items: [], branch: {} },
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/clearance',

@@ -65,7 +65,7 @@ describe('Retrieving section data', () => {
         Voting: true,
         Travel: true
       },
-      SubstanceUse: {
+      Substance: {
         DrugUses: true,
         DrugInvolvements: true,
         DrugClearanceUses: true,

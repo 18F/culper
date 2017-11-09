@@ -3,7 +3,7 @@ import { validGenericTextfield, validPhoneNumber } from './helpers'
 export default class IdentificationContactInformationValidator {
   constructor (data = {}) {
     this.emails = (data.Emails || { items: [] }).items
-    this.phoneNumbers = data.PhoneNumbers || []
+    this.phoneNumbers = (data.PhoneNumbers || { items: [] }).items
   }
 
   /**

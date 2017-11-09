@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { AlcoholVoluntaryCounselingsValidator, VoluntaryCounselingValidator } from '../../../../validators'
+import validate, { VoluntaryCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import VoluntaryCounseling from './VoluntaryCounseling'
@@ -22,7 +21,6 @@ export default class VoluntaryCounselings extends SubsectionElement {
       this.props.onUpdate({
         SoughtTreatment: this.props.SoughtTreatment,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -30,8 +28,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -74,9 +71,8 @@ export default class VoluntaryCounselings extends SubsectionElement {
 
         <Show when={this.props.SoughtTreatment.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -101,8 +97,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
 
 VoluntaryCounselings.defaultProps = {
   SoughtTreatment: {},
-  List: [],
-  ListBranch: '',
+  List: Accordion.defaultList,
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/voluntary',

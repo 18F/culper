@@ -549,3 +549,5 @@ Accordion.defaultProps = {
     return callback()
   }
 }
+
+Accordion.defaultList = { items: [], branch: {} }

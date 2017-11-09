@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { AlcoholOrderedCounselingsValidator, OrderedCounselingValidator } from '../../../../validators'
+import validate, { OrderedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import OrderedCounseling from './OrderedCounseling'
@@ -22,7 +21,6 @@ export default class OrderedCounselings extends SubsectionElement {
       this.props.onUpdate({
         HasBeenOrdered: this.props.HasBeenOrdered,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -30,16 +28,14 @@ export default class OrderedCounselings extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasBeenOrdered (values) {
     this.update({
       HasBeenOrdered: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -97,9 +93,8 @@ export default class OrderedCounselings extends SubsectionElement {
 
         <Show when={this.props.HasBeenOrdered.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -124,8 +119,7 @@ export default class OrderedCounselings extends SubsectionElement {
 
 OrderedCounselings.defaultProps = {
   HasBeenOrdered: {},
-  List: [],
-  ListBranch: '',
+  List: Accordion.defaultList,
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/ordered',

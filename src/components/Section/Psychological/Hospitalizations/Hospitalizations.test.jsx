@@ -13,9 +13,11 @@ describe('The Hospitalizations component', () => {
     let updates = 0
     const props = {
       Hospitalized: { value: 'Yes' },
-      List: [{
-        Admission: 'Voluntary'
-      }],
+      List: {
+        items: [{
+          Admission: 'Voluntary'
+        }]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Hospitalizations {...props} />)
@@ -37,50 +39,32 @@ describe('The Hospitalizations component', () => {
   })
 })
 
-const List = [
-  {
-    type: 'Employment',
-    Item: {
-      EmploymentActivity: {
-        value: 'FederalContractor'
-      },
-      Dates: {
-        from: {
-          date: new Date('1/1/2010')
+const List = {
+  items: [
+    {
+      type: 'Employment',
+      Item: {
+        EmploymentActivity: {
+          value: 'FederalContractor'
         },
-        to: {
-          date: new Date('1/1/2012')
+        Dates: {
+          from: {
+            date: new Date('1/1/2010')
+          },
+          to: {
+            date: new Date('1/1/2012')
+          },
+          present: false
         },
-        present: false
-      },
-      Employment: {
-        value: 'SW'
-      },
-      Status: {
-        value: 'Some status'
-      },
-      Title: {
-        value: 'Dev'
-      },
-      Address: {
-        country: 'United States',
-        street: '1234 Some Rd',
-        city: 'Arlington',
-        state: 'Virginia',
-        zipcode: '22202',
-        layout: Location.ADDRESS
-      },
-      Additional: {
-        HasAdditionalActivity: 'No',
-        List: []
-      },
-      Telephone: {
-        noNumber: '',
-        number: '2028675309',
-        numberType: 'Cell',
-        timeOfDay: 'Day'
-      },
-      Supervisor: {
+        Employment: {
+          value: 'SW'
+        },
+        Status: {
+          value: 'Some status'
+        },
+        Title: {
+          value: 'Dev'
+        },
         Address: {
           country: 'United States',
           street: '1234 Some Rd',
@@ -89,54 +73,74 @@ const List = [
           zipcode: '22202',
           layout: Location.ADDRESS
         },
-        Email: {
-          value: 'foo@local.dev'
-        },
-        SupervisorName: {
-          value: 'John Doe'
+        Additional: {
+          HasAdditionalActivity: 'No',
+          List: []
         },
         Telephone: {
           noNumber: '',
-          number: '2021112222',
+          number: '2028675309',
           numberType: 'Cell',
           timeOfDay: 'Day'
         },
-        Title: {
-          value: 'The Foo'
+        Supervisor: {
+          Address: {
+            country: 'United States',
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202',
+            layout: Location.ADDRESS
+          },
+          Email: {
+            value: 'foo@local.dev'
+          },
+          SupervisorName: {
+            value: 'John Doe'
+          },
+          Telephone: {
+            noNumber: '',
+            number: '2021112222',
+            numberType: 'Cell',
+            timeOfDay: 'Day'
+          },
+          Title: {
+            value: 'The Foo'
+          }
+        },
+        ReasonLeft: {
+          Reasons: [
+            {
+              Has: 'Yes',
+              Reason: 'Fired',
+              Date: {
+                date: new Date('1/1/2016'),
+                day: '1',
+                month: '1',
+                year: '2016'
+              },
+              Text: {
+                value: 'Some excuse'
+              }
+            }
+          ]
+        },
+        Reprimand: {
+          Reasons: [
+            {
+              Date: {
+                date: new Date('1/1/2015'),
+                month: '1',
+                year: '2015'
+              },
+              Has: 'Yes',
+              Text: {
+                value: 'Foo'
+              }
+            }
+          ]
         }
-      },
-      ReasonLeft: {
-        Reasons: [
-          {
-            Has: 'Yes',
-            Reason: 'Fired',
-            Date: {
-              date: new Date('1/1/2016'),
-              day: '1',
-              month: '1',
-              year: '2016'
-            },
-            Text: {
-              value: 'Some excuse'
-            }
-          }
-        ]
-      },
-      Reprimand: {
-        Reasons: [
-          {
-            Date: {
-              date: new Date('1/1/2015'),
-              month: '1',
-              year: '2015'
-            },
-            Has: 'Yes',
-            Text: {
-              value: 'Foo'
-            }
-          }
-        ]
       }
     }
-  }
-]
+  ]
+}

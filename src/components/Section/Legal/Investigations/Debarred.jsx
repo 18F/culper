@@ -1,9 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalInvestigationsDebarredValidator, DebarredValidator } from '../../../../validators'
+import validate, { DebarredValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import DebarredItem from './DebarredItem'
@@ -20,7 +19,6 @@ export default class Debarred extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasDebarment: this.props.HasDebarment,
       ...queue
     })
@@ -28,16 +26,14 @@ export default class Debarred extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasDebarment: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -72,9 +68,8 @@ export default class Debarred extends SubsectionElement {
 
         <Show when={this.props.HasDebarment.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -99,7 +94,7 @@ export default class Debarred extends SubsectionElement {
 Debarred.defaultProps = {
   name: 'debarred',
   HasDebarment: {},
-  List: [],
+  List: Accordion.defaultList,
   ListBranch: '',
   defaultState: true,
   onUpdate: (queue) => {},
