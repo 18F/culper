@@ -41,7 +41,7 @@ export default class ForeignService extends ValidationElement {
 
   updateOrganization (cb) {
     this.update({
-      Organization: cb.value
+      Organization: cb
     })
   }
 
@@ -128,7 +128,7 @@ export default class ForeignService extends ValidationElement {
           <RadioGroup className="organization option-list"
                       onError={this.props.onError}
                       required={this.props.required}
-                      selectedValue={this.props.Organization}>
+                      selectedValue={(this.props.Organization || {}).value}>
             <Radio name="organization-military"
                    className="organization-military"
                    label={i18n.m('military.foreign.label.organization.military')}
