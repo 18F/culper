@@ -20,6 +20,7 @@ export const foreignContacts = (data = {}) => {
           const yitem = y.Item || {}
           return {
             Item: {
+              Has: form.branch(yitem.Has),
               Alias: form.name(yitem.Alias)
             }
           }

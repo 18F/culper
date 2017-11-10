@@ -13,7 +13,7 @@ export const relationshipsPeople = (data = {}) => {
         OtherTelephone: form.telephone(xitem.OtherTelephone),
         Rank: form.text(xitem.Rank),
         RankNotApplicable: form.notapplicable(xitem.RankNotApplicable),
-        Relationship: form.checkbox(xitem.Relationship),
+        Relationship: form.checkboxgroup(xitem.Relationship),
         RelationshipOther: form.text(xitem.RelationshipOther)
       }
     }

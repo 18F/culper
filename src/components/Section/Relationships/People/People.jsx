@@ -191,7 +191,7 @@ export default class People extends SubsectionElement {
 }
 
 People.defaultProps = {
-  List: {},
+  List: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
