@@ -56,7 +56,9 @@ describe('RealEstate Interest validation', function () {
             applicable: true
           },
           CoOwners: {
-            List: [{ Has: 'No' }]
+            List: {
+              items: [{ Item: { Has: { value: 'No' } } }]
+            }
           }
         },
         expected: true

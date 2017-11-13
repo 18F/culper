@@ -4,10 +4,10 @@ import "time"
 
 type OAuthMembership struct {
 	tableName  struct{} `sql:"oauth_membership"`
-	ID         int64
+	ID         int
 	Identifier string
 	Provider   string
 	Account    *Account
-	AccountID  int64
+	AccountID  int
 	Created    time.Time
 }

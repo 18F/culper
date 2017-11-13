@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { FederalServiceValidator, FederalServiceItemValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { FederalServiceValidator, FederalServiceItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -19,23 +20,20 @@ export default class Federal extends SubsectionElement {
     this.props.onUpdate({
       HasFederalService: this.props.HasFederalService,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
-  updateBranch (value, event) {
+  updateBranch (values) {
     this.update({
-      HasFederalService: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasFederalService: values,
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -63,16 +61,15 @@ export default class Federal extends SubsectionElement {
                 label={i18n.t('history.federal.heading.branch')}
                 labelSize="h2"
                 help="history.federal.help.branch"
-                value={this.props.HasFederalService}
+                {...this.props.HasFederalService}
                 warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
-        <Show when={this.props.HasFederalService === 'Yes'}>
-          <Accordion items={this.props.List}
-                     branch={this.props.ListBranch}
+        <Show when={this.props.HasFederalService.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -97,9 +94,8 @@ export default class Federal extends SubsectionElement {
 }
 
 Federal.defaultProps = {
-  HasFederalService: '',
-  List: [],
-  ListBranch: '',
+  HasFederalService: {},
+  List: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'history',
@@ -107,7 +103,7 @@ Federal.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new FederalServiceValidator(props).isValid()
+    return validate(schema('history.federal', props))
   },
   defaultState: true
 }

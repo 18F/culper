@@ -18,7 +18,7 @@ describe('The legal investigations history component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasHistory: 'Yes'
+      HasHistory: { value: 'Yes' }
     }
     const component = mount(<History {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,20 +26,21 @@ describe('The legal investigations history component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasHistory: 'Yes',
-      List: [
-        {
-          Item: {
-            Agency: {
-              Agency: 'U.S. Department of Defense'
-            },
-            Granted: {
-              date: new Date('1/1/2010')
+      HasHistory: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              Agency: {
+                Agency: 'U.S. Department of Defense'
+              },
+              Granted: {
+                date: new Date('1/1/2010')
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<History {...props} />)
     const text = component.find('.accordion .summary .left').text()

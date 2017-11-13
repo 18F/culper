@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsTerrorismValidator } from '../../../../validators'
+import validate from '../../../../validators'
 import { Branch, Show, Field, Textarea } from '../../../Form'
 
 export default class TerrorismAssociation extends SubsectionElement {
@@ -30,7 +31,7 @@ export default class TerrorismAssociation extends SubsectionElement {
   updateBranch (values) {
     this.update({
       HasTerrorism: values,
-      Explanation: values === 'Yes' ? this.props.Explanation : {}
+      Explanation: values.value === 'Yes' ? this.props.Explanation : {}
     })
   }
 
@@ -41,7 +42,7 @@ export default class TerrorismAssociation extends SubsectionElement {
                 label={i18n.t('legal.associations.terrorism.heading.title')}
                 labelSize="h2"
                 className="legal-associations-terrorism-has-terrorism"
-                value={this.props.HasTerrorism}
+                {...this.props.HasTerrorism}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -49,7 +50,7 @@ export default class TerrorismAssociation extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasTerrorism === 'Yes'}>
+        <Show when={this.props.HasTerrorism.value === 'Yes'}>
           <Field title={i18n.t('legal.associations.terrorism.heading.explanation')}
                   help="legal.associations.terrorism.help.explanation"
                   adjustFor="textarea"
@@ -70,9 +71,7 @@ export default class TerrorismAssociation extends SubsectionElement {
 
 TerrorismAssociation.defaultProps = {
   name: 'terrorism',
-  HasTerrorism: '',
-  List: [],
-  ListBranch: '',
+  HasTerrorism: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -80,6 +79,6 @@ TerrorismAssociation.defaultProps = {
   subsection: 'associations/terrorism-association',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsTerrorismValidator(state, props).isValid()
+    return validate(schema('legal.associations.terrorism-association', props))
   }
 }

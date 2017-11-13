@@ -1,5 +1,6 @@
 import React from 'react'
 import { push } from '../../middleware/history'
+import { getApplicationState } from '../../actions/ApplicationActions'
 import AuthenticatedView from '../AuthenticatedView'
 import { Section, SavedIndicator } from '../../components'
 
@@ -10,8 +11,8 @@ import { Section, SavedIndicator } from '../../components'
 //  3. The section and subsection are known so the section will
 //     display the subsection only.
 class Form extends React.Component {
-
   componentWillMount () {
+    this.props.dispatch(getApplicationState())
     this.defaultRedirect()
   }
 
@@ -20,22 +21,25 @@ class Form extends React.Component {
   }
 
   defaultRedirect () {
-    if (!this.props.params.section) {
-      this.props.dispatch(push('form/identification'))
+    const params = this.props.params || this.props.match.params
+    if (!params.section) {
+      this.props.dispatch(push('form/identification/intro'))
     }
   }
 
   render () {
-    if (!this.props.params.section) {
+    const params = this.props.params || this.props.match.params
+    if (!params.section) {
       return null
     }
+
     // Splat is a react-router param added when wildcard (/**/) route paths are designated
-    const splat = this.props.params.splat ? `/${this.props.params.splat}` : ''
-    const subsection = `${this.props.params.subsection || ''}${splat}`.trim()
+    const splat = params.splat ? `/${params.splat}` : ''
+    const subsection = `${params.subsection || ''}${splat}`.trim()
     return (
       <div id="eapp-form" className="eapp-form">
         <div id="info">
-          <Section section={this.props.params.section} subsection={subsection} />
+          <Section section={params.section} subsection={subsection} />
           <SavedIndicator interval="30000" />
         </div>
       </div>

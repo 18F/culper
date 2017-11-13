@@ -55,7 +55,9 @@ describe('Direct Interest validation', function () {
             value: 'Bar'
           },
           CoOwners: {
-            List: [{ Has: 'No' }]
+            List: {
+              items: [{ Item: { Has: { value: 'No' } } }]
+            }
           }
         },
         expected: true

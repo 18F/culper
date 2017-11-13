@@ -14,15 +14,16 @@ export default class NotApplicable extends React.Component {
   }
 
   onUpdate (values) {
-    this.setState({ applicable: !this.state.applicable }, () => {
+    const next = !this.state.applicable
+    this.setState({ applicable: next }, () => {
       if (this.props.onUpdate) {
         this.props.onUpdate({
           name: this.props.name,
-          applicable: this.state.applicable
+          applicable: next
         })
 
         let lastErrors = [...this.errors]
-        if (!this.state.applicable) {
+        if (!next) {
           // If not applicable, we set all validators to valid
           // since we shouldn't take into account their values
           lastErrors = lastErrors.map(err => {
@@ -46,6 +47,7 @@ export default class NotApplicable extends React.Component {
     return React.Children.map(this.props.children, (child) => {
       let extendedProps = {
         disabled: !this.state.applicable,
+        required: this.state.applicable && (child.props.required || false),
         onError: (value, arr) => {
           let errors = [...this.errors]
           for (const e of arr) {

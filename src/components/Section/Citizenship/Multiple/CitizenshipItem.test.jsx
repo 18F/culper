@@ -35,7 +35,7 @@ describe('The citizenship item component', () => {
     let updates = 0
     const expected = {
       name: 'citizenshipItem',
-      Renounced: 'Yes',
+      Renounced: { value: 'Yes' },
       Dates: {
         from: {
           date: new Date('1/1/2010')
@@ -45,7 +45,7 @@ describe('The citizenship item component', () => {
         },
         present: false
       },
-      Current: 'Yes',
+      Current: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<CitizenshipItem {...expected} />)

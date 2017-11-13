@@ -220,7 +220,7 @@ const DiplomaSummary = (item, errors) => {
     return []
   }
 
-  return item.Diplomas.map((degree, index) => {
+  return item.Diplomas.items.map((degree, index) => {
     const dd = degree.Diploma || {}
     const other = (dd.DiplomaOther || {}).value || ''
     const diploma = dd.Diploma || ''
@@ -286,6 +286,10 @@ export const InjectGaps = (list = [], start) => {
 
   const equalDates = (first, second) => {
     if (!first || !second) {
+      return false
+    }
+    // TODO Remove
+    if (!(first instanceof Date) || !(second instanceof Date)) {
       return false
     }
     return first.toDateString() === second.toDateString()

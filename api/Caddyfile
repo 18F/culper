@@ -3,11 +3,7 @@
     gzip
     log stdout
     errors stdout
-
-    proxy /api http://api:3000 {
-        without /api
-        transparent
-    }
+    timeouts none
 
     browse /srv
     index index.html
@@ -15,5 +11,10 @@
     rewrite {
         if {path} not_has api/
         to {path} /index.html
+    }
+
+    proxy /api/ http://api:3000 {
+        without /api
+        transparent
     }
 }

@@ -12,7 +12,7 @@ export default class PassportValidator {
     this.issued = state.Issued
     this.expiration = state.Expiration
     this.comments = state.Comments
-    this.hasPassport = state.HasPassport
+    this.hasPassport = (state.HasPassport || {}).value
     this.card = state.Card
   }
 

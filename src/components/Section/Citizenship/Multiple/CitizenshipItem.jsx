@@ -124,7 +124,7 @@ export default class CitizenshipItem extends ValidationElement {
                 label={i18n.t('citizenship.multiple.heading.citizenship.renounced')}
                 labelSize="h3"
                 className="citizenship-renounced no-margin-bottom"
-                value={this.props.Renounced}
+                {...this.props.Renounced}
                 onUpdate={this.updateRenounced}
                 onError={this.props.onError}
                 required={this.props.required}
@@ -149,7 +149,7 @@ export default class CitizenshipItem extends ValidationElement {
                     label={i18n.t('citizenship.multiple.heading.citizenship.current')}
                     labelSize="h3"
                     className="citizenship-current no-margin-bottom"
-                    value={this.props.Current}
+                    {...this.props.Current}
                     onUpdate={this.updateCurrent}
                     onError={this.props.onError}
                     required={this.props.required}
@@ -178,9 +178,9 @@ CitizenshipItem.defaultProps = {
   Country: {},
   Dates: {},
   How: {},
-  Renounced: '',
+  Renounced: {},
   RenouncedExplanation: {},
-  Current: '',
+  Current: {},
   CurrentExplanation: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

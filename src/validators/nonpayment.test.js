@@ -310,25 +310,25 @@ describe('nonpayment component validation', function () {
     const tests = [
       {
         state: {
-          HasNonpayment: ''
+          HasNonpayment: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'Unicorn'
+          HasNonpayment: { value: 'Unicorn' }
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'No'
+          HasNonpayment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasNonpayment: 'Yes'
+          HasNonpayment: { value: 'Yes' }
         },
         expected: true
       }
@@ -343,77 +343,85 @@ describe('nonpayment component validation', function () {
     const tests = [
       {
         state: {
-          HasNonpayment: 'No',
-          List: [],
-          ListBranch: ''
+          HasNonpayment: { value: 'No' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          HasNonpayment: 'Yes',
-          List: [],
-          ListBranch: ''
+          HasNonpayment: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasNonpayment: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasNonpayment: 'Yes',
-          List: [
-            {
-              Item: {
-                Name: {
-                  value: 'The name'
-                },
-                Infractions: [],
-                AccountNumber: {
-                  value: 'ABC1234567890'
-                },
-                PropertyType: {
-                  value: 'ABC1234567890'
-                },
-                Amount: {
-                  value: '20000'
-                },
-                Reason: {
-                  value: 'Completely forgot'
-                },
-                Status: {
-                  value: 'Paid'
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016'),
-                  present: false
-                },
-                ResolvedNotApplicable: {
-                  applicable: true
-                },
-                Resolved: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016'),
-                  present: false
-                },
-                Description: {
-                  value: 'The description'
+          HasNonpayment: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: 'The name'
+                  },
+                  Infractions: [],
+                  AccountNumber: {
+                    value: 'ABC1234567890'
+                  },
+                  PropertyType: {
+                    value: 'ABC1234567890'
+                  },
+                  Amount: {
+                    value: '20000'
+                  },
+                  Reason: {
+                    value: 'Completely forgot'
+                  },
+                  Status: {
+                    value: 'Paid'
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016'),
+                    present: false
+                  },
+                  ResolvedNotApplicable: {
+                    applicable: true
+                  },
+                  Resolved: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016'),
+                    present: false
+                  },
+                  Description: {
+                    value: 'The description'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

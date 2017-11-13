@@ -21,7 +21,9 @@ export default class Weight extends ValidationElement {
     this.setState({ value: event.target.value }, () => {
       super.handleChange(event)
       if (this.props.onUpdate) {
-        this.props.onUpdate(parseInt(this.state.value))
+        this.props.onUpdate({
+          value: parseInt(this.state.value)
+        })
       }
     })
   }

@@ -103,56 +103,62 @@ describe('Legal technology unauthorized component validation', function () {
       },
       {
         state: {
-          HasUnauthorized: 'No'
+          HasUnauthorized: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasUnauthorized: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasUnauthorized: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasUnauthorized: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasUnauthorized: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasUnauthorized: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  date: new Date('1/1/2010'),
-                  day: '1',
-                  month: '1',
-                  year: '2010'
-                },
-                Incident: {
-                  value: 'this is an incident'
-                },
-                Location: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Action: {
-                  value: 'this is an action'
+          HasUnauthorized: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2010'),
+                    day: '1',
+                    month: '1',
+                    year: '2010'
+                  },
+                  Incident: {
+                    value: 'this is an incident'
+                  },
+                  Location: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Action: {
+                    value: 'this is an action'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

@@ -1,3 +1,24 @@
+import { api } from '../services'
+import { unschema } from '../schema'
+
+export function getApplicationState () {
+  return function (dispatch, getState) {
+    api.form().then(r => {
+      const form = r.data
+      for (const section in form) {
+        for (const subsection in form[section]) {
+          dispatch(updateApplication(section, subsection, unschema(form[section][subsection])))
+        }
+      }
+    })
+    .catch(() => {
+      if (console && console.warn) {
+        console.warn('Failed to retrieve form saved data')
+      }
+    })
+  }
+}
+
 export function updateApplication (section, property, values) {
   return {
     type: `${section}.${property}`,

@@ -6,7 +6,7 @@ describe('The contacts component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-contacts',
-      HasForeignContacts: 'No'
+      HasForeignContacts: { value: 'No' }
     }
     const component = mount(<Contacts {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The contacts component', () => {
   it('display accordion when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-contacts',
-      HasForeignContacts: 'Yes'
+      HasForeignContacts: { value: 'Yes' }
     }
     const component = mount(<Contacts {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

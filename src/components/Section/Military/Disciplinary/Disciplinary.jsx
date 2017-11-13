@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { MilitaryDisciplinaryValidator, ProcedureValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -24,12 +26,12 @@ export default class Disciplinary extends SubsectionElement {
     })
   }
 
-  updateDisciplinary (value, event) {
+  updateDisciplinary (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      HasDisciplinary: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasDisciplinary: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -63,7 +65,7 @@ export default class Disciplinary extends SubsectionElement {
         <Branch name="has_disciplinary"
                 label={i18n.t('military.disciplinary.para.info')}
                 labelSize="h2"
-                value={this.props.HasDisciplinary}
+                {...this.props.HasDisciplinary}
                 weight={true}
                 onUpdate={this.updateDisciplinary}
                 required={this.props.required}
@@ -71,7 +73,7 @@ export default class Disciplinary extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasDisciplinary === 'Yes'}>
+        <Show when={this.props.HasDisciplinary.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -98,13 +100,14 @@ export default class Disciplinary extends SubsectionElement {
 }
 
 Disciplinary.defaultProps = {
+  HasDisciplinary: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'disciplinary',
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryDisciplinaryValidator(props).isValid()
+    return validate(schema('military.disciplinary', props))
   },
   defaultState: true
 }

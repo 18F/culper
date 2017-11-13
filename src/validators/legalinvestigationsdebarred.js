@@ -1,10 +1,9 @@
-import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField, validNotApplicable } from './helpers'
 
 export default class LegalInvestigationsDebarredValidator {
   constructor (data = {}) {
-    this.hasDebarment = data.HasDebarment
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasDebarment = (data.HasDebarment || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -12,19 +11,9 @@ export default class LegalInvestigationsDebarredValidator {
       return true
     }
 
-    if (this.hasDebarment === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new DebarredValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new DebarredValidator(item).isValid()
+    })
   }
 
   isValid () {

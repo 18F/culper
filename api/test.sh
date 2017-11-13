@@ -1,4 +1,4 @@
 #! /bin/bash
 
 ./build.sh
-go test $(go list ./... | grep -v /vendor/)
+GOLANG_ENV=test go test $(go list ./... | grep -v /vendor/)

@@ -6,91 +6,105 @@ describe('Consultation validation', function () {
     const tests = [
       {
         state: {
-          Consulted: 'Yes',
-          List: [
-            {
-              Item: {
-                CourtName: {
-                  value: 'Circuit Court'
-                },
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Disposition: {
-                  value: 'Stuff'
-                },
-                Occurred: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Appeals: [{ Has: 'No' }]
+          Consulted: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CourtName: {
+                    value: 'Circuit Court'
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Disposition: {
+                    value: 'Stuff'
+                  },
+                  Occurred: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Appeals: {
+                    items: [{ Item: { Has: { value: 'No' } } }]
+                  }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          List: [],
-          Consulted: 'Yes',
-          ListBranch: 'No'
+          Consulted: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          List: [],
-          Consulted: 'No',
-          ListBranch: 'No'
+          Consulted: { value: 'No' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          List: [],
-          Consulted: 'Nope',
-          ListBranch: 'No'
+          Consulted: { value: 'Nope' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          Consulted: 'Yes',
-          List: [
-            {
-              Item: {
-                CourtName: null,
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Disposition: {
-                  value: 'Stuff'
-                },
-                Occurred: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Appeals: [{ Has: 'No' }]
+          Consulted: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CourtName: null,
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Disposition: {
+                    value: 'Stuff'
+                  },
+                  Occurred: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Appeals: {
+                    items: [{ Item: { Has: { value: 'No' } } }]
+                  }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       }

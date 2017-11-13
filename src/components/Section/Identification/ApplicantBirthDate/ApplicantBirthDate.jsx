@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { IdentificationBirthDateValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, DateControl } from '../../../Form'
 import { now } from '../../History/dateranges'
@@ -92,7 +93,7 @@ ApplicantBirthDate.defaultProps = {
   onUpdate: (queue) => {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new IdentificationBirthDateValidator(state).isValid()
+    return validate(schema('identification.birthdate', props))
   }
 }
 

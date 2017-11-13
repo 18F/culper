@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalInvestigationsDebarredValidator, DebarredValidator } from '../../../../validators'
+import validate, { DebarredValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import DebarredItem from './DebarredItem'
@@ -18,7 +19,6 @@ export default class Debarred extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasDebarment: this.props.HasDebarment,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class Debarred extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasDebarment: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -60,7 +58,7 @@ export default class Debarred extends SubsectionElement {
                 label={i18n.t('legal.investigations.debarred.heading.title')}
                 labelSize="h2"
                 className="legal-investigations-debarred-has-debarment"
-                value={this.props.HasDebarment}
+                {...this.props.HasDebarment}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -68,11 +66,10 @@ export default class Debarred extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasDebarment === 'Yes'}>
+        <Show when={this.props.HasDebarment.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -96,8 +93,8 @@ export default class Debarred extends SubsectionElement {
 
 Debarred.defaultProps = {
   name: 'debarred',
-  HasDebarment: '',
-  List: [],
+  HasDebarment: {},
+  List: Accordion.defaultList,
   ListBranch: '',
   defaultState: true,
   onUpdate: (queue) => {},
@@ -106,7 +103,7 @@ Debarred.defaultProps = {
   subsection: 'investigations/debarred',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalInvestigationsDebarredValidator(props).isValid()
+    return validate(schema('legal.investigations.debarred', props))
   },
   scrollToBottom: ''
 }

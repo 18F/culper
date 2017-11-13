@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { HistoryEducationValidator, EducationItemValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { EducationItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
@@ -39,7 +40,7 @@ export default class Education extends SubsectionElement {
       <div className="education">
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.value.List}
+                   {...this.props.List}
                    sort={this.props.sort}
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
@@ -65,7 +66,7 @@ export default class Education extends SubsectionElement {
 }
 
 Education.defaultProps = {
-  value: [],
+  List: { items: [] },
   scrollToTop: '',
   defaultState: true,
   realtime: false,
@@ -78,6 +79,6 @@ Education.defaultProps = {
   subsection: 'education',
   dispatch: () => {},
   validator: (state, props) => {
-    return new HistoryEducationValidator(props).isValid()
+    return validate(schema('history.education', props))
   }
 }

@@ -18,7 +18,7 @@ describe('The legal technology unlawful access component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasUnlawful: 'Yes'
+      HasUnlawful: { value: 'Yes' }
     }
     const component = mount(<Unlawful {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,20 +26,21 @@ describe('The legal technology unlawful access component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasUnlawful: 'Yes',
-      List: [
-        {
-          Item: {
-            Date: {
-              date: new Date('1/1/2010')
-            },
-            Incident: {
-              value: 'Looked over the shoulder'
+      HasUnlawful: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              Date: {
+                date: new Date('1/1/2010')
+              },
+              Incident: {
+                value: 'Looked over the shoulder'
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<Unlawful {...props} />)
     const text = component.find('.accordion .summary .left').text()

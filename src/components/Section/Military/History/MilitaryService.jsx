@@ -65,13 +65,13 @@ export default class MilitaryService extends ValidationElement {
     })
   }
 
-  updateDischarged (value, event) {
+  updateDischarged (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      HasBeenDischarged: value,
-      DischargeType: value !== 'Yes' ? null : this.props.DischargeType,
-      DischargeReason: value !== 'Yes' ? null : this.props.DischargeReason,
-      DischargeDate: value !== 'Yes' ? null : this.props.DischargeDate
+      HasBeenDischarged: values,
+      DischargeType: values.value !== 'Yes' ? null : this.props.DischargeType,
+      DischargeReason: values.value !== 'Yes' ? null : this.props.DischargeReason,
+      DischargeDate: values.value !== 'Yes' ? null : this.props.DischargeDate
     })
   }
 
@@ -287,14 +287,14 @@ export default class MilitaryService extends ValidationElement {
                 label={i18n.t('military.history.heading.discharged')}
                 labelSize="h3"
                 className="discharged"
-                value={this.props.HasBeenDischarged}
+                {...this.props.HasBeenDischarged}
                 onUpdate={this.updateDischarged}
                 required={this.props.required}
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasBeenDischarged === 'Yes'}>
+        <Show when={this.props.HasBeenDischarged.value === 'Yes'}>
           <div>
             <Field title={i18n.t('military.history.heading.details')}
                    titleSize="h2"
@@ -406,6 +406,7 @@ export default class MilitaryService extends ValidationElement {
 }
 
 MilitaryService.defaultProps = {
+  HasBeenDischarged: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

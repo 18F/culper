@@ -59,21 +59,21 @@ export default class OtherOffense extends ValidationElement {
     })
   }
 
-  updateInvolvedViolence (value, event) {
+  updateInvolvedViolence (values) {
     this.update({
-      InvolvedViolence: value
+      InvolvedViolence: values
     })
   }
 
-  updateInvolvedFirearms (value, event) {
+  updateInvolvedFirearms (values) {
     this.update({
-      InvolvedFirearms: value
+      InvolvedFirearms: values
     })
   }
 
-  updateInvolvedSubstances (value, event) {
+  updateInvolvedSubstances (values) {
     this.update({
-      InvolvedSubstances: value
+      InvolvedSubstances: values
     })
   }
 
@@ -113,15 +113,15 @@ export default class OtherOffense extends ValidationElement {
     })
   }
 
-  updateWasSentenced (value, event) {
+  updateWasSentenced (values) {
     this.update({
-      WasSentenced: value
+      WasSentenced: values
     })
   }
 
-  updateSentence (value, event) {
+  updateSentence (values) {
     this.update({
-      Sentence: value
+      Sentence: values
     })
   }
 
@@ -170,7 +170,7 @@ export default class OtherOffense extends ValidationElement {
                 label={i18n.t('legal.police.heading.involvement')}
                 labelSize="h3"
                 className="offense-violence"
-                value={this.props.InvolvedViolence}
+                {...this.props.InvolvedViolence}
                 onUpdate={this.updateInvolvedViolence}
                 required={this.props.required}
                 onError={this.props.onError}
@@ -180,7 +180,7 @@ export default class OtherOffense extends ValidationElement {
 
         <Branch name="involved_firearms"
                 className="offense-firearms"
-                value={this.props.InvolvedFirearms}
+                {...this.props.InvolvedFirearms}
                 onUpdate={this.updateInvolvedFirearms}
                 required={this.props.required}
                 onError={this.props.onError}
@@ -190,7 +190,7 @@ export default class OtherOffense extends ValidationElement {
 
         <Branch name="involved_substances"
                 className="offense-substances"
-                value={this.props.InvolvedSubstances}
+                {...this.props.InvolvedSubstances}
                 onUpdate={this.updateInvolvedSubstances}
                 required={this.props.required}
                 onError={this.props.onError}
@@ -307,14 +307,14 @@ export default class OtherOffense extends ValidationElement {
                 label={i18n.t('legal.police.heading.otherOffenseSentenced')}
                 labelSize="h3"
                 className="offense-sentenced"
-                value={this.props.WasSentenced}
+                {...this.props.WasSentenced}
                 onUpdate={this.updateWasSentenced}
                 required={this.props.required}
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.WasSentenced === 'Yes'}>
+        <Show when={this.props.WasSentenced.value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -331,13 +331,13 @@ export default class OtherOffense extends ValidationElement {
                       />
           </div>
         </Show>
-        <Show when={this.props.WasSentenced === 'No'}>
+        <Show when={this.props.WasSentenced.value === 'No'}>
           <div>
             <Branch name="awaiting_trial"
                     label={i18n.t('legal.police.heading.awaitingTrial')}
                     labelSize="h4"
                     className="awaiting-trial no-margin-bottom"
-                    value={this.props.AwaitingTrial}
+                    {...this.props.AwaitingTrial}
                     onError={this.props.onError}
                     required={this.props.required}
                     onUpdate={this.updateAwaitingTrial}
@@ -361,6 +361,10 @@ export default class OtherOffense extends ValidationElement {
 }
 
 OtherOffense.defaultProps = {
+  InvolvedViolence: {},
+  InvolvedFirearms: {},
+  InvolvedSubstances: {},
+  WasSentenced: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

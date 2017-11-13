@@ -22,40 +22,42 @@ describe('The VoluntaryCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      SoughtTreatment: 'Yes',
+      SoughtTreatment: { value: 'Yes' },
       ListBranch: 'No',
-      List: [{
-        Item: {
-          CounselingDates: {
-            from: {
-              date: new Date('1/1/2010')
+      List: {
+        items: [{
+          Item: {
+            CounselingDates: {
+              from: {
+                date: new Date('1/1/2010')
+              },
+              to: {
+                date: new Date('1/1/2012')
+              },
+              present: false
             },
-            to: {
-              date: new Date('1/1/2012')
+            TreatmentProviderName: {
+              value: 'The name'
             },
-            present: false
-          },
-          TreatmentProviderName: {
-            value: 'The name'
-          },
-          TreatmentProviderAddress: {
-            country: 'United States',
-            street: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202',
-            layout: Location.ADDRESS
-          },
-          TreatmentProviderTelephone: {
-            noNumber: '',
-            number: '7031112222',
-            numberType: 'Home',
-            timeOfDay: 'Both',
-            extension: ''
-          },
-          CompletedTreatment: 'Yes'
-        }
-      }]
+            TreatmentProviderAddress: {
+              country: 'United States',
+              street: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202',
+              layout: Location.ADDRESS
+            },
+            TreatmentProviderTelephone: {
+              noNumber: '',
+              number: '7031112222',
+              numberType: 'Home',
+              timeOfDay: 'Both',
+              extension: ''
+            },
+            CompletedTreatment: { value: 'Yes' }
+          }
+        }]
+      }
     }
     const component = mount(<VoluntaryCounselings {...expected} />)
     component.find('input[name="TreatmentProviderName"]').simulate('change')

@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { Field, DateControl, Name, BranchCollection, ForeignBornDocuments, SSN,
-         MaidenName, DateRange, ValidationElement,
-         Suggestions, Show, Country, Location } from '../../../Form'
+import { Field, DateControl, Name, BranchCollection, ForeignBornDocuments,
+         SSN, ValidationElement, Suggestions, Show, Country, Location } from '../../../Form'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 import OtherName from './OtherName'
 
@@ -137,6 +136,10 @@ export default class Cohabitant extends ValidationElement {
   }
 
   render () {
+    const birthCountry = ((this.props.BirthPlace || {}).country || {}).value
+    const showForeignBornDocumentation = birthCountry
+          ? birthCountry !== 'United States'
+          : false
     return (
       <div className="cohabitant">
         <Suggestions className="spouse-suggestion"
@@ -192,7 +195,7 @@ export default class Cohabitant extends ValidationElement {
                     />
         </Field>
 
-        <Show when={this.props.BirthPlace && this.props.BirthPlace.country !== 'United States'}>
+        <Show when={showForeignBornDocumentation}>
           <ForeignBornDocuments name="foreignBornDocument"
                                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
                                 {...this.props.ForeignBornDocument}
@@ -215,8 +218,8 @@ export default class Cohabitant extends ValidationElement {
 
         <BranchCollection label={i18n.t('relationships.cohabitant.heading.othernames')}
                           className="cohabitant-othernames"
-                          appendLabel={i18n.m('relationships.cohabitant.heading.appendOthernames')}
-                          items={this.props.OtherNames}
+                          appendLabel={i18n.t('relationships.cohabitant.heading.appendOthernames')}
+                          {...this.props.OtherNames}
                           onError={this.props.onError}
                           onUpdate={this.updateOtherNames}
                           required={this.props.required}
@@ -265,7 +268,7 @@ Cohabitant.defaultProps = {
   BirthPlace: {},
   ForeignBornDocument: {},
   SSN: {},
-  OtherNames: [],
+  OtherNames: { items: [] },
   Citizenship: {},
   CohabitationBegan: {},
   SameSpouse: false,

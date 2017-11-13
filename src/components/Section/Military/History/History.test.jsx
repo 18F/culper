@@ -15,7 +15,7 @@ describe('The military history component', () => {
   it('selecting no to military service does nothing', () => {
     const expected = {
       name: 'military-history',
-      HasServed: 'No'
+      HasServed: { value: 'No' }
     }
     const component = mount(<History {...expected} />)
     expect(component.find('.served').length).toEqual(1)
@@ -25,7 +25,7 @@ describe('The military history component', () => {
   it('selecting yes to military service displays the form', () => {
     const expected = {
       name: 'military-history',
-      HasServed: 'Yes'
+      HasServed: { value: 'Yes' }
     }
     const component = mount(<History {...expected} />)
     expect(component.find('.served').length).toEqual(1)

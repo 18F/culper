@@ -29,8 +29,8 @@ describe('The offense component', () => {
   it('asks for explanation if not charged for a citation', () => {
     const expected = {
       name: 'offense',
-      WasCited: 'Yes',
-      WasCharged: 'No'
+      WasCited: { value: 'Yes' },
+      WasCharged: { value: 'No' }
     }
     const component = mount(<Offense {...expected} />)
     expect(component.find('.offense-explanation').length).toEqual(1)
@@ -45,8 +45,8 @@ describe('The offense component', () => {
   it('asks for court information if charged for a citation', () => {
     const expected = {
       name: 'offense',
-      WasCited: 'Yes',
-      WasCharged: 'Yes'
+      WasCited: { value: 'Yes' },
+      WasCharged: { value: 'Yes' }
     }
     const component = mount(<Offense {...expected} />)
     expect(component.find('.offense-courtname').length).toEqual(1)
@@ -62,9 +62,9 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      WasCited: 'Yes',
-      WasCharged: 'Yes',
-      WasSentenced: 'Yes',
+      WasCited: { value: 'Yes' },
+      WasCharged: { value: 'Yes' },
+      WasSentenced: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Offense {...expected} />)
@@ -98,10 +98,10 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      WasCited: 'Yes',
-      WasCharged: 'Yes',
-      WasSentenced: 'No',
-      AwaitingTrial: 'Yes',
+      WasCited: { value: 'Yes' },
+      WasCharged: { value: 'Yes' },
+      WasSentenced: { value: 'No' },
+      AwaitingTrial: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Offense {...expected} />)
@@ -134,8 +134,8 @@ describe('The offense component', () => {
     let updates = 0
     const expected = {
       name: 'offense',
-      WasCited: 'Yes',
-      WasCharged: 'No',
+      WasCited: { value: 'Yes' },
+      WasCharged: { value: 'No' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Offense {...expected} />)

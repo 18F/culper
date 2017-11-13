@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsActivitiesValidator, ActivitiesValidator } from '../../../../validators'
+import validate, { ActivitiesValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import ActivitiesToOverthrowItem from './ActivitiesToOverthrowItem'
@@ -18,7 +19,6 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasActivities: this.props.HasActivities,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasActivities: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -60,7 +58,7 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                 label={i18n.t('legal.associations.activities.heading.title')}
                 labelSize="h2"
                 className="legal-associations-activities-has-activities"
-                value={this.props.HasActivities}
+                {...this.props.HasActivities}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -68,11 +66,10 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasActivities === 'Yes'}>
+        <Show when={this.props.HasActivities.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -97,9 +94,8 @@ export default class ActivitiesToOverthrow extends SubsectionElement {
 
 ActivitiesToOverthrow.defaultProps = {
   name: 'activities',
-  HasActivities: '',
-  List: [],
-  ListBranch: '',
+  HasActivities: {},
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -107,7 +103,7 @@ ActivitiesToOverthrow.defaultProps = {
   subsection: 'associations/activities-to-overthrow',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsActivitiesValidator(props).isValid()
+    return validate(schema('legal.associations.activities-to-overthrow', props))
   },
   scrollToBottom: ''
 }

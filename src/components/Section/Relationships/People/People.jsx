@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Field, Accordion, Svg } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import Person from './Person'
@@ -28,20 +30,18 @@ export default class People extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   excludeGaps (items) {
-    return items.filter(item => !item.type || (item.type && item.type !== 'Gap'))
+    return (items || []).filter(item => !item.type || (item.type && item.type !== 'Gap'))
   }
 
   sort (a, b) {
@@ -63,7 +63,7 @@ export default class People extends SubsectionElement {
   }
 
   fillGap (dates) {
-    let items = [...this.props.List]
+    let items = [...(this.props.List || {}).items]
     items.push({
       uuid: newGuid(),
       open: true,
@@ -76,7 +76,12 @@ export default class People extends SubsectionElement {
       }
     })
 
-    this.update('List', this.inject(items).sort(this.sort))
+    this.update({
+      List: {
+        ...this.props.List,
+        items: this.inject(items).sort(this.sort)
+      }
+    })
   }
 
   summary (item, index) {
@@ -112,7 +117,7 @@ export default class People extends SubsectionElement {
   }
 
   peopleSummaryList () {
-    return this.excludeGaps(this.props.List).reduce((dates, item) => {
+    return this.excludeGaps(this.props.List.items).reduce((dates, item) => {
       if (!item || !item.Item || !item.Item.Dates) {
         return dates
       }
@@ -157,13 +162,12 @@ export default class People extends SubsectionElement {
         </div>
 
         <Accordion scrollTo="scrollToPeople"
-                   items={this.props.List}
+                   {...this.props.List}
                    defaultState={this.props.defaultState}
                    scrollToBottom={this.props.scrollToBottom}
                    realtime={true}
                    sort={this.sort}
                    inject={this.inject}
-                   branch={this.props.ListBranch}
                    summary={this.summary}
                    customDetails={this.customDetails}
                    validator={PersonValidator}
@@ -187,8 +191,7 @@ export default class People extends SubsectionElement {
 }
 
 People.defaultProps = {
-  List: [],
-  ListBranch: '',
+  List: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
@@ -196,7 +199,7 @@ People.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new PeopleValidator(props, props).isValid()
+    return validate(schema('relationships.people', props))
   },
   defaultState: true,
   totalYears: 7,

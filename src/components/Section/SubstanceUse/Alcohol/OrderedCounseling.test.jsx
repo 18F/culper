@@ -22,7 +22,7 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      ActionTaken: 'Yes'
+      ActionTaken: { value: 'Yes' }
     }
     const component = mount(<OrderedCounseling {...expected} />)
     expect(component.find('.ordered-counseling').length).toBe(1)
@@ -38,8 +38,8 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      ActionTaken: 'Yes',
-      CompletedTreatment: 'No'
+      ActionTaken: { value: 'Yes' },
+      CompletedTreatment: { value: 'No' }
     }
     const component = mount(<OrderedCounseling {...expected} />)
     expect(component.find('.ordered-counseling').length).toBe(1)
@@ -51,7 +51,7 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      ActionTaken: 'No',
+      ActionTaken: { value: 'No' },
       Seekers: ['Employer']
     }
     const component = mount(<OrderedCounseling {...expected} />)
@@ -65,7 +65,7 @@ describe('The OrderedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      ActionTaken: 'No',
+      ActionTaken: { value: 'No' },
       Seekers: ['Other']
     }
     const component = mount(<OrderedCounseling {...expected} />)

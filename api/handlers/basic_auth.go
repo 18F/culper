@@ -2,10 +2,13 @@ package handlers
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 
+	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
+	"github.com/18F/e-QIP-prototype/api/model/form"
 )
 
 // BasicAuth processes a users request to login with a Username and Password
@@ -35,7 +38,8 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Associate with a database context.
-	account.WithContext(db.NewDB())
+	context := db.NewDB()
+	account.WithContext(context)
 	if err := account.Get(); err != nil {
 		Error(w, r, err)
 		return
@@ -52,6 +56,12 @@ func BasicAuth(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		Error(w, r, err)
 		return
+	}
+
+	// If we need to flush the storage first then do so now.
+	if cf.FlushStorage() {
+		log.Println("Purging account storage")
+		form.PurgeAccountStorage(context, account.ID)
 	}
 
 	EncodeJSON(w, signedToken)

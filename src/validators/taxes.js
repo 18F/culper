@@ -1,11 +1,10 @@
 import DateRangeValidator from './daterange'
-import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
+import { validAccordion, validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class TaxesValidator {
   constructor (data = {}) {
-    this.hasTaxes = data.HasTaxes
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasTaxes = (data.HasTaxes || {}).value
+    this.list = data.List || {}
   }
 
   validHasTaxes () {
@@ -25,21 +24,9 @@ export default class TaxesValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      if (new TaxValidator(item.Item, null).isValid() === false) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new TaxValidator(item).isValid()
+    })
   }
 
   isValid () {

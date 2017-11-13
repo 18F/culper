@@ -1,6 +1,7 @@
 import React from 'react'
 import { push } from '../../middleware/history'
 import { updateApplication, reportErrors, save } from '../../actions/ApplicationActions'
+import schema from '../../schema'
 
 export default class SectionElement extends React.Component {
   constructor (props) {
@@ -8,11 +9,6 @@ export default class SectionElement extends React.Component {
 
     this.handleError = this.handleError.bind(this)
     this.handleUpdate = this.handleUpdate.bind(this)
-  }
-
-  doSave () {
-    const d = new Date()
-    this.props.dispatch(save(d))
   }
 
   handleError (value, arr) {
@@ -31,6 +27,8 @@ export default class SectionElement extends React.Component {
   }
 
   handleUpdate (field, values) {
+    // const id = `${this.props.section}/${this.props.subsection}`.replace(/\//g, '.')
+    // this.props.dispatch(updateApplication(this.props.store, field, schema(id, values, false)))
     this.props.dispatch(updateApplication(this.props.store, field, values))
   }
 }

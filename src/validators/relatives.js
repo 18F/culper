@@ -1,30 +1,17 @@
 import NameValidator from './name'
 import LocationValidator, { isInternational } from './location'
 import DateRangeValidator from './daterange'
-import { validDateField, validGenericTextfield } from './helpers'
+import { validAccordion, validDateField, validGenericTextfield } from './helpers'
 
 export default class RelativesValidator {
   constructor (data = {}) {
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validItems () {
-    if (this.list.length === 0) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const relative of this.list) {
-      if (new RelativeValidator(relative.Item, null).isValid() !== true) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new RelativeValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -39,10 +26,10 @@ export class RelativeValidator {
     this.birthdate = data.Birthdate
     this.birthplace = data.Birthplace
     this.citizenship = data.Citizenship
-    this.maidenSameAsListed = data.MaidenSameAsListed
+    this.maidenSameAsListed = (data.MaidenSameAsListed || {}).value
     this.maidenName = data.MaidenName
     this.aliases = data.Aliases || []
-    this.isDeceased = data.IsDeceased
+    this.isDeceased = (data.IsDeceased || {}).value
     this.address = data.Address
     this.citizenshipDocumentation = data.CitizenshipDocumentation
     this.otherCitizenshipDocumentation = data.OtherCitizenshipDocumentation
@@ -61,7 +48,7 @@ export class RelativeValidator {
     this.frequencyComments = data.FrequencyComments
     this.employer = data.Employer
     this.employerAddress = data.EmployerAddress
-    this.hasAffiliation = data.HasAffiliation
+    this.hasAffiliation = (data.HasAffiliation || {}).value
     this.employerRelationship = data.EmployerRelationship
   }
 
@@ -376,7 +363,7 @@ export class RelativeValidator {
 export class AliasValidator {
   constructor (state = {}, props = {}) {
     this.name = state.Name
-    this.maidenName = state.MaidenName
+    this.maidenName = (state.MaidenName || {}).value
     this.dates = state.Dates
     this.reason = state.Reason
     this.hideMaiden = props.hideMaiden

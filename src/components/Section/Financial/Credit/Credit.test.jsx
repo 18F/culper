@@ -15,7 +15,7 @@ describe('The credit component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'credit-counseling',
-      HasCreditCounseling: 'Yes'
+      HasCreditCounseling: { value: 'Yes' }
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The credit component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'credit-counseling',
-      HasCreditCounseling: 'No'
+      HasCreditCounseling: { value: 'No' }
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -34,14 +34,16 @@ describe('The credit component', () => {
     let updates = 0
     const expected = {
       name: 'credit-counseling',
+      HasCreditCounseling: { value: 'Yes' },
+      List: { branch: { value: 'No' }, items: [{}] },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Credit {...expected} />)
-    component.find('.branch .yes input').simulate('change')
-    expect(updates).toBe(2) // This triggers two updates
-
+    component.find('.branch .yes input').first().simulate('change')
+    expect(updates).toBe(2)
+    expect(component.find('.accordion').length).toBe(1)
     updates = 0
     component.find('.credit-explanation textarea').simulate('change', { target: { value: 'IRS' } })
     component.find('.credit-name input').simulate('change', { target: { value: 'IRS' } })

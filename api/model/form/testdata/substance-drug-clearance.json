@@ -1,5 +1,5 @@
 {
-  "type": "substance.drug.clearance",
+  "type": "substance.drugs.clearance",
   "props": {
     "UsedDrugs": {
       "type": "branch",

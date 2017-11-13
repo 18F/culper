@@ -109,19 +109,19 @@ describe('Foreign business employment component validation', function () {
       },
       {
         state: {
-          Accepted: 'No'
+          Accepted: { value: 'No' }
         },
         expected: false
       },
       {
         state: {
-          Accepted: 'Yes'
+          Accepted: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          Accepted: 'Yes',
+          Accepted: { value: 'Yes' },
           Explanation: {
             value: 'this is the explanation'
           }
@@ -130,7 +130,7 @@ describe('Foreign business employment component validation', function () {
       },
       {
         state: {
-          Accepted: 'No',
+          Accepted: { value: 'No' },
           Explanation: {
             value: 'this is the explanation'
           }
@@ -150,56 +150,60 @@ describe('Foreign business employment component validation', function () {
       },
       {
         state: {
-          HasForeignEmployment: 'No'
+          HasForeignEmployment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignEmployment: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasForeignEmployment: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasForeignEmployment: 'Yes',
-          List: [
-            {
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Description: {
-                  value: 'this is the description'
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Address: {
-                  city: 'Munich',
-                  country: { value: 'Germany' },
-                  layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
-                },
-                Accepted: 'Yes',
-                Explanation: {
-                  value: 'This is an explanation'
+          HasForeignEmployment: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Description: {
+                    value: 'this is the description'
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Address: {
+                    city: 'Munich',
+                    country: { value: 'Germany' },
+                    layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+                  },
+                  Accepted: { value: 'Yes' },
+                  Explanation: {
+                    value: 'This is an explanation'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

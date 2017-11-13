@@ -6,9 +6,9 @@ export default class OtherOffenseValidator {
   constructor (data = {}) {
     this.date = data.Date
     this.description = data.Description
-    this.involvedViolence = data.InvolvedViolence
-    this.involvedFirearms = data.InvolvedFirearms
-    this.involvedSubstances = data.InvolvedSubstances
+    this.involvedViolence = (data.InvolvedViolence || {}).value
+    this.involvedFirearms = (data.InvolvedFirearms || {}).value
+    this.involvedSubstances = (data.InvolvedSubstances || {}).value
     this.agencyAddress = data.AgencyAddress
     this.explanation = data.Explanation
     this.courtName = data.CourtName
@@ -18,8 +18,8 @@ export default class OtherOffenseValidator {
     this.courtOutcome = data.CourtOutcome
     this.courtDate = data.CourtDate
     this.sentence = data.Sentence
-    this.wasSentenced = data.WasSentenced
-    this.awaitingTrial = data.AwaitingTrial
+    this.wasSentenced = (data.WasSentenced || {}).value
+    this.awaitingTrial = (data.AwaitingTrial || {}).value
     this.awaitingTrialExplanation = data.AwaitingTrialExplanation
   }
 

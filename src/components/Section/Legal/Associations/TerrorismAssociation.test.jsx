@@ -19,7 +19,7 @@ describe('The legal associations terrorism component', () => {
   it('list displayed if "yes" is clicked', () => {
     let updates = 0
     const props = {
-      HasTerrorism: 'Yes',
+      HasTerrorism: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<TerrorismAssociation {...props} />)

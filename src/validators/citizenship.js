@@ -4,32 +4,31 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class CitizenshipValidator {
   constructor (state = {}, props = {}) {
-    this.citizenshipStatus = state.CitizenshipStatus
-
-    this.abroadDocumentation = state.AbroadDocumentation
-    this.explanation = state.Explanation
-    this.documentNumber = state.DocumentNumber
+    this.citizenshipStatus = (state.CitizenshipStatus || {}).value
+    this.abroadDocumentation = (state.AbroadDocumentation || {}).value
+    this.explanation = (state.Explanation || {})
+    this.documentNumber = (state.DocumentNumber || {}).value
     this.documentIssued = state.DocumentIssued
     this.documentName = state.DocumentName
     this.documentExpiration = state.DocumentExpiration
-    this.documentType = state.DocumentType
+    this.documentType = (state.DocumentType || {}).value
     this.placeIssued = state.PlaceIssued
-    this.certificateNumber = state.CertificateNumber
+    this.certificateNumber = (state.CertificateNumber || {})
     this.certificateIssued = state.CertificateIssued
     this.certificateName = state.CertificateName
-    this.certificateCourtName = state.CertificateCourtName
+    this.certificateCourtName = (state.CertificateCourtName || {})
     this.certificateCourtAddress = state.CertificateCourtAddress
-    this.bornOnMilitaryInstallation = state.BornOnMilitaryInstallation
-    this.militaryBase = state.MilitaryBase
+    this.bornOnMilitaryInstallation = (state.BornOnMilitaryInstallation || {}).value
+    this.militaryBase = (state.MilitaryBase || {})
     this.entryDate = state.EntryDate
     this.entryLocation = state.EntryLocation
-    this.priorCitizenship = state.PriorCitizenship
-    this.hasAlienRegistration = state.HasAlienRegistration
-    this.alienRegistrationNumber = state.AlienRegistrationNumber
+    this.priorCitizenship = (state.PriorCitizenship || {}).value
+    this.hasAlienRegistration = (state.HasAlienRegistration || {}).value
+    this.alienRegistrationNumber = (state.AlienRegistrationNumber || {})
     this.alienRegistrationExpiration = state.AlienRegistrationExpiration
-    this.basis = state.Basis
-    this.permanentResidentCardNumber = state.PermanentResidentCardNumber
-    this.residenceStatus = state.ResidenceStatus
+    this.basis = (state.Basis || {}).value
+    this.permanentResidentCardNumber = (state.PermanentResidentCardNumber || {})
+    this.residenceStatus = (state.ResidenceStatus || {}).value
   }
 
   validCitizenshipStatus () {

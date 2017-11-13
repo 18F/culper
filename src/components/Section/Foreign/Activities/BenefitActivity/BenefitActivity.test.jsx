@@ -20,36 +20,38 @@ describe('The BenefitActivity component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      HasBenefits: 'Yes',
-      List: [
-        {
-          Item: {
-            InterestTypes: ['Yourself'],
-            BenefitType: 'Educational',
-            BenefitFrequency: 'OneTime',
-            OneTimeBenefit: {
-              Received: {
-                month: '1',
-                day: '1',
-                year: '2010'
-              },
-              Country: {
-                value: 'Germany'
-              },
-              Value: {
-                value: '2000'
-              },
-              Reason: {
-                value: 'Foo'
-              },
-              Obligated: 'Yes',
-              ObligatedExplanation: {
-                value: 'Because'
+      HasBenefits: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              InterestTypes: ['Yourself'],
+              BenefitType: 'Educational',
+              BenefitFrequency: 'OneTime',
+              OneTimeBenefit: {
+                Received: {
+                  month: '1',
+                  day: '1',
+                  year: '2010'
+                },
+                Country: {
+                  value: 'Germany'
+                },
+                Value: {
+                  value: '2000'
+                },
+                Reason: {
+                  value: 'Foo'
+                },
+                Obligated: { value: 'Yes' },
+                ObligatedExplanation: {
+                  value: 'Because'
+                }
               }
             }
           }
-        }
-      ]
+        ]
+      }
     }
 
     const component = mount(<BenefitActivity {...expected} />)
@@ -62,66 +64,72 @@ describe('The BenefitActivity component', () => {
     const tests = [
       {
         expected: 'Yourself - Germany',
-        HasBenefits: 'Yes',
-        List: [
-          {
-            Item: {
-              InterestTypes: ['Yourself'],
-              BenefitFrequency: 'OneTime',
-              OneTimeBenefit: {
-                Received: {
-                  month: '1',
-                  day: '1',
-                  year: '2010'
-                },
-                Country: {
-                  value: 'Germany'
+        HasBenefits: { value: 'Yes' },
+        List: {
+          items: [
+            {
+              Item: {
+                InterestTypes: ['Yourself'],
+                BenefitFrequency: 'OneTime',
+                OneTimeBenefit: {
+                  Received: {
+                    month: '1',
+                    day: '1',
+                    year: '2010'
+                  },
+                  Country: {
+                    value: 'Germany'
+                  }
                 }
               }
             }
-          }
-        ]
+          ]
+        }
       },
       {
         expected: 'Yourself - Germany',
-        HasBenefits: 'Yes',
-        List: [
-          {
-            Item: {
-              InterestTypes: ['Yourself'],
-              BenefitFrequency: 'Future',
-              FutureBenefit: {
-                Received: {
-                  month: '1',
-                  day: '1',
-                  year: '2010'
-                },
-                Country: {
-                  value: 'Germany'
+        HasBenefits: { value: 'Yes' },
+        List: {
+          items: [
+            {
+              Item: {
+                InterestTypes: ['Yourself'],
+                BenefitFrequency: 'Future',
+                FutureBenefit: {
+                  Received: {
+                    month: '1',
+                    day: '1',
+                    year: '2010'
+                  },
+                  Country: {
+                    value: 'Germany'
+                  }
                 }
               }
             }
-          }
-        ]
+          ]
+        }
       },
       {
         expected: 'Yourself',
-        HasBenefits: 'Yes',
-        List: [
-          {
-            Item: {
-              InterestTypes: ['Yourself'],
-              BenefitFrequency: 'Continuing',
-              ContinuingBenefit: {
-                Received: {
-                  month: '1',
-                  day: '1',
-                  year: '2010'
+        HasBenefits: { value: 'Yes' },
+        List: {
+          items: [
+            {
+              Item: {
+                InterestTypes: ['Yourself'],
+                BenefitFrequency: 'Continuing',
+                ContinuingBenefit: {
+                  Received: {
+                    month: '1',
+                    day: '1',
+                    year: '2010'
+                  }
                 }
               }
             }
-          }
-        ]
+          ]
+        }
       }
     ]
 

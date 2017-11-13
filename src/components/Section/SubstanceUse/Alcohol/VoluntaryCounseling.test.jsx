@@ -27,7 +27,7 @@ describe('The VoluntaryCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      CompletedTreatment: 'No'
+      CompletedTreatment: { value: 'No' }
     }
     const component = mount(<VoluntaryCounseling {...expected} />)
     expect(component.find('.voluntary-counseling').length).toBe(1)

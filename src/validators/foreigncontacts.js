@@ -1,14 +1,13 @@
 import LocationValidator from './location'
 import NameValidator from './name'
 import BirthPlaceValidator from './birthplace'
-import { validNotApplicable, validGenericTextfield, validDateField,
+import { validAccordion, validNotApplicable, validGenericTextfield, validDateField,
          BranchCollection } from './helpers'
 
 export default class ForeignContactsValidator {
   constructor (state = {}, props = {}) {
-    this.hasForeignContacts = state.HasForeignContacts
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+    this.hasForeignContacts = (state.HasForeignContacts || {}).value
+    this.list = state.List || {}
   }
 
   validList () {
@@ -16,19 +15,9 @@ export default class ForeignContactsValidator {
       return true
     }
 
-    if (this.hasForeignContacts === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new ForeignNationalValidator(item.Item, null).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new ForeignNationalValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -49,7 +38,7 @@ export class ForeignNationalValidator {
     this.frequencyExplanation = state.FrequencyExplanation
     this.relationship = state.Relationship || []
     this.relationshipExplanation = state.RelationshipExplanation
-    this.aliases = state.Aliases || []
+    this.aliases = state.Aliases || {}
     this.citizenship = state.Citizenship
     this.birthdate = state.Birthdate
     this.birthdateNotApplicable = state.BirthdateNotApplicable
@@ -61,7 +50,7 @@ export class ForeignNationalValidator {
     this.employerNotApplicable = state.EmployerNotApplicable
     this.employerAddress = state.EmployerAddress
     this.employerAddressNotApplicable = state.EmployerAddressNotApplicable
-    this.hasAffiliations = state.HasAffiliations
+    this.hasAffiliations = (state.HasAffiliations || {}).value
     this.affiliations = state.Affiliations
   }
 

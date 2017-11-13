@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { HistoryResidenceValidator, ResidenceValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { HistoryResidenceValidator, ResidenceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
@@ -58,7 +59,7 @@ export default class Residence extends SubsectionElement {
   }
 
   fillGap (dates) {
-    let items = [...this.props.value]
+    let items = [...this.props.List.items]
     items.push({
       uuid: newGuid(),
       open: true,
@@ -72,8 +73,10 @@ export default class Residence extends SubsectionElement {
     })
 
     this.props.onUpdate({
-      items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
-      branch: ''
+      List: {
+        items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+        branch: ''
+      }
     })
   }
 
@@ -86,7 +89,7 @@ export default class Residence extends SubsectionElement {
       <div className="residence">
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.value}
+                   {...this.props.List}
                    sort={this.props.sort}
                    inject={this.inject}
                    realtime={this.props.realtime}
@@ -113,7 +116,7 @@ export default class Residence extends SubsectionElement {
 }
 
 Residence.defaultProps = {
-  value: [],
+  List: { items: [] },
   scrollToTop: '',
   defaultState: true,
   realtime: false,

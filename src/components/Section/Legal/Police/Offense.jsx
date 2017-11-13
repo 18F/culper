@@ -71,21 +71,21 @@ export default class Offense extends ValidationElement {
     })
   }
 
-  updateInvolvedViolence (value, event) {
+  updateInvolvedViolence (values) {
     this.update({
-      InvolvedViolence: value
+      InvolvedViolence: values
     })
   }
 
-  updateInvolvedFirearms (value, event) {
+  updateInvolvedFirearms (values) {
     this.update({
-      InvolvedFirearms: value
+      InvolvedFirearms: values
     })
   }
 
-  updateInvolvedSubstances (value, event) {
+  updateInvolvedSubstances (values) {
     this.update({
-      InvolvedSubstances: value
+      InvolvedSubstances: values
     })
   }
 
@@ -95,9 +95,9 @@ export default class Offense extends ValidationElement {
     })
   }
 
-  updateWasCited (value, event) {
+  updateWasCited (values) {
     this.update({
-      WasCited: value
+      WasCited: values
     })
   }
 
@@ -113,9 +113,9 @@ export default class Offense extends ValidationElement {
     })
   }
 
-  updateWasCharged (value, event) {
+  updateWasCharged (values) {
     this.update({
-      WasCharged: value
+      WasCharged: values
     })
   }
 
@@ -161,15 +161,15 @@ export default class Offense extends ValidationElement {
     })
   }
 
-  updateWasSentenced (value, event) {
+  updateWasSentenced (values) {
     this.update({
-      WasSentenced: value
+      WasSentenced: values
     })
   }
 
-  updateSentence (value, event) {
+  updateSentence (values) {
     this.update({
-      Sentence: value
+      Sentence: values
     })
   }
 
@@ -219,7 +219,7 @@ export default class Offense extends ValidationElement {
                 labelSize="h3"
                 adjustFor="p"
                 className="offense-violence"
-                value={this.props.InvolvedViolence}
+                {...this.props.InvolvedViolence}
                 onUpdate={this.updateInvolvedViolence}
                 required={this.props.required}
                 onError={this.props.onError}
@@ -230,7 +230,7 @@ export default class Offense extends ValidationElement {
         <Branch name="involved_firearms"
                 adjustFor="p"
                 className="offense-firearms"
-                value={this.props.InvolvedFirearms}
+                {...this.props.InvolvedFirearms}
                 onUpdate={this.updateInvolvedFirearms}
                 required={this.props.required}
                 onError={this.props.onError}
@@ -241,7 +241,7 @@ export default class Offense extends ValidationElement {
         <Branch name="involved_substances"
                 adjustFor="p"
                 className="offense-substances"
-                value={this.props.InvolvedSubstances}
+                {...this.props.InvolvedSubstances}
                 onUpdate={this.updateInvolvedSubstances}
                 required={this.props.required}
                 onError={this.props.onError}
@@ -274,14 +274,14 @@ export default class Offense extends ValidationElement {
                 labelSize="h3"
                 adjustFor="p"
                 className="offense-cited"
-                value={this.props.WasCited}
+                {...this.props.WasCited}
                 onUpdate={this.updateWasCited}
                 required={this.props.required}
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.WasCited === 'Yes'}>
+        <Show when={this.props.WasCited.value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -331,7 +331,7 @@ export default class Offense extends ValidationElement {
                     label={i18n.t('legal.police.heading.charged')}
                     labelSize="h3"
                     className="offense-charged no-margin-bottom"
-                    value={this.props.WasCharged}
+                    {...this.props.WasCharged}
                     onUpdate={this.updateWasCharged}
                     required={this.props.required}
                     onError={this.props.onError}
@@ -340,7 +340,7 @@ export default class Offense extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.props.WasCharged === 'No'}>
+        <Show when={this.props.WasCharged.value === 'No'}>
           <Field title={i18n.t('legal.police.label.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -354,7 +354,7 @@ export default class Offense extends ValidationElement {
           </Field>
         </Show>
 
-        <Show when={this.props.WasCharged === 'Yes'}>
+        <Show when={this.props.WasCharged.value === 'Yes'}>
           <div>
             <Field title={i18n.t('legal.police.heading.needmore')}
                    optional={true}
@@ -474,14 +474,14 @@ export default class Offense extends ValidationElement {
                     label={i18n.t('legal.police.heading.sentenced')}
                     labelSize="h3"
                     className="offense-sentenced"
-                    value={this.props.WasSentenced}
+                    {...this.props.WasSentenced}
                     onUpdate={this.updateWasSentenced}
                     required={this.props.required}
                     onError={this.props.onError}
                     scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.props.WasSentenced === 'Yes'}>
+            <Show when={this.props.WasSentenced.value === 'Yes'}>
               <div>
                 <Field title={i18n.t('legal.police.heading.needmore')}
                        optional={true}
@@ -499,13 +499,13 @@ export default class Offense extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.props.WasSentenced === 'No'}>
+            <Show when={this.props.WasSentenced.value === 'No'}>
               <div>
                 <Branch name="awaiting_trial"
                         label={i18n.t('legal.police.heading.awaitingTrial')}
                         labelSize="h4"
                         className="awaiting-trial no-margin-bottom"
-                        value={this.props.AwaitingTrial}
+                        {...this.props.AwaitingTrial}
                         onError={this.props.onError}
                         required={this.props.required}
                         onUpdate={this.updateAwaitingTrial}
@@ -533,14 +533,14 @@ export default class Offense extends ValidationElement {
 Offense.defaultProps = {
   Date: {},
   Description: {},
-  InvolvedViolence: '',
-  InvolvedFirearms: '',
-  InvolvedSubstances: '',
+  InvolvedViolence: {},
+  InvolvedFirearms: {},
+  InvolvedSubstances: {},
   Address: {},
-  WasCited: '',
+  WasCited: {},
   CitedBy: {},
   AgencyAddress: {},
-  WasCharged: '',
+  WasCharged: {},
   Explanation: {},
   CourtName: {},
   CourtAddress: {},
@@ -548,9 +548,9 @@ Offense.defaultProps = {
   CourtCharge: {},
   CourtOutcome: {},
   CourtDate: {},
-  WasSentenced: '',
+  WasSentenced: {},
   Sentence: {},
-  AwaitingTrial: '',
+  AwaitingTrial: {},
   AwaitingTrialExplanation: {},
   addressBooks: {},
   dispatch: (action) => {},

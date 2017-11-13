@@ -15,9 +15,9 @@ describe('The reprimand component', () => {
     let updates = 0
     const expected = {
       name: 'bad_dog',
-      Reasons: [{
-        Has: 'Yes'
-      }],
+      Reasons: {
+        items: [{ Item: {Has: { value: 'Yes' }}}]
+      },
       onUpdate: () => {
         updates++
       }

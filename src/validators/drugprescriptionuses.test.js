@@ -5,66 +5,74 @@ describe('Drug Prescription Validation', function () {
     const tests = [
       {
         state: {
-          MisusedDrugs: 'Nope'
+          MisusedDrugs: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          MisusedDrugs: 'No'
+          MisusedDrugs: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
-          List: [],
-          ListBranch: ''
+          MisusedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
-          List: [{DrugUse: {}}],
-          ListBranch: 'Nope'
+          MisusedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
-          List: [{DrugUse: {}}],
-          ListBranch: 'No'
+          MisusedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          MisusedDrugs: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                InvolvementDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          MisusedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  InvolvementDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  }
-                },
-                PrescriptionName: {
-                  value: 'Foo'
-                },
-                Reason: {
-                  value: 'The reason'
-                },
-                UseWhileEmployed: 'Yes',
-                UseWithClearance: 'Yes'
+                  PrescriptionName: {
+                    value: 'Foo'
+                  },
+                  Reason: {
+                    value: 'The reason'
+                  },
+                  UseWhileEmployed: { value: 'Yes' },
+                  UseWithClearance: { value: 'Yes' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

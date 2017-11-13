@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validBranch, validGenericTextfield, validDateField } from './helpers'
+import { validAccordion, validBranch, validGenericTextfield, validDateField } from './helpers'
 
 export default class ReceivedCounselingsValidator {
   constructor (data = {}) {
-    this.receivedTreatment = data.ReceivedTreatment
-    this.list = data.List
-    this.listBranch = data.ListBranch
+    this.receivedTreatment = (data.ReceivedTreatment || {}).value
+    this.list = data.List || {}
   }
 
   validReceivedTreatment () {
@@ -18,22 +17,9 @@ export default class ReceivedCounselingsValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new ReceivedCounselingValidator(item.Item).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new ReceivedCounselingValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -48,10 +34,10 @@ export class ReceivedCounselingValidator {
     this.treatmentProviderAddress = data.TreatmentProviderAddress
     this.agencyName = data.AgencyName
     this.agencyAddress = data.AgencyAddress
-    this.useSameAddress = data.UseSameAddress
+    this.useSameAddress = (data.UseSameAddress || {}).value
     this.treatmentBeganDate = data.TreatmentBeganDate
     this.treatmentEndDate = data.TreatmentEndDate
-    this.completedTreatment = data.CompletedTreatment
+    this.completedTreatment = (data.CompletedTreatment || {}).value
     this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 

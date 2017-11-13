@@ -2,7 +2,7 @@ import { validGenericTextfield } from './helpers'
 
 export default class LegalAssociationTerrorismValidator {
   constructor (state = {}, props = {}) {
-    this.hasTerrorism = props.HasTerrorism
+    this.hasTerrorism = (props.HasTerrorism || {}).value
     this.explanation = props.Explanation
   }
 
