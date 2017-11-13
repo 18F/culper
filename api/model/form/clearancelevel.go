@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // ClearanceLevel is a basic input.
@@ -17,10 +16,10 @@ type ClearanceLevel struct {
 	Explanation *Textarea `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	LevelID       int
-	ExplanationID int
+	ID            int `json:"-"`
+	AccountID     int `json:"-"`
+	LevelID       int `json:"-"`
+	ExplanationID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -45,6 +44,17 @@ func (entity *ClearanceLevel) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *ClearanceLevel) Marshal() Payload {
+	if entity.Level != nil {
+		entity.PayloadLevel = entity.Level.Marshal()
+	}
+	if entity.Explanation != nil {
+		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
+	return MarshalPayloadEntity("clearancelevel", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *ClearanceLevel) Valid() (bool, error) {
 	if ok, err := entity.Level.Valid(); !ok {
@@ -60,17 +70,27 @@ func (entity *ClearanceLevel) Valid() (bool, error) {
 	return true, nil
 }
 
-func (entity *ClearanceLevel) Save(context *pg.DB, account int64) (int, error) {
+// Save the ClearanceLevel entity.
+func (entity *ClearanceLevel) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&ClearanceLevel{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ClearanceLevel{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ClearanceLevel)
+		if entity.Level == nil {
+			entity.Level = &Radio{}
+		}
+		entity.Level.ID = previous.LevelID
+		entity.LevelID = previous.LevelID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
+		entity.Explanation.ID = previous.ExplanationID
+		entity.ExplanationID = previous.ExplanationID
+	})
 
 	levelID, err := entity.Level.Save(context, account)
 	if err != nil {
@@ -84,58 +104,78 @@ func (entity *ClearanceLevel) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ExplanationID = explanationID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *ClearanceLevel) Delete(context *pg.DB, account int64) (int, error) {
+// Delete the ClearanceLevel entity.
+func (entity *ClearanceLevel) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ClearanceLevel{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Level.Delete(context, account); err != nil {
+	context.Find(&ClearanceLevel{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ClearanceLevel)
+		if entity.Level == nil {
+			entity.Level = &Radio{}
+		}
+		entity.Level.ID = previous.LevelID
+		entity.LevelID = previous.LevelID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
+		entity.Explanation.ID = previous.ExplanationID
+		entity.ExplanationID = previous.ExplanationID
+	})
+
+	if _, err := entity.Level.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Explanation.Delete(context, account); err != nil {
+	if _, err := entity.Explanation.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *ClearanceLevel) Get(context *pg.DB, account int64) (int, error) {
+// Get the ClearanceLevel entity.
+func (entity *ClearanceLevel) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ClearanceLevel{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
+	context.Find(&ClearanceLevel{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*ClearanceLevel)
+		if entity.Level == nil {
+			entity.Level = &Radio{}
+		}
+		entity.Level.ID = previous.LevelID
+		entity.LevelID = previous.LevelID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
+		entity.Explanation.ID = previous.ExplanationID
+		entity.ExplanationID = previous.ExplanationID
+	})
+
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.LevelID != 0 {
@@ -150,5 +190,15 @@ func (entity *ClearanceLevel) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *ClearanceLevel) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ClearanceLevel) SetID(id int) {
+	entity.ID = id
 }

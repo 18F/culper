@@ -1,11 +1,10 @@
 import LocationValidator from './location'
-import { validBranch, validDateField, validGenericTextfield } from './helpers'
+import { validAccordion, validBranch, validDateField, validGenericTextfield } from './helpers'
 
 export default class NonCriminalCourtActionsValidator {
   constructor (data = {}) {
-    this.hasCourtActions = data.HasCourtActions
-    this.list = data.List
-    this.listBranch = data.ListBranch
+    this.hasCourtActions = (data.HasCourtActions || {}).value
+    this.list = data.List || {}
   }
 
   validHasCourtActions () {
@@ -17,22 +16,9 @@ export default class NonCriminalCourtActionsValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new NonCriminalCourtActionValidator(item.Item).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new NonCriminalCourtActionValidator(item).isValid()
+    })
   }
 
   isValid () {

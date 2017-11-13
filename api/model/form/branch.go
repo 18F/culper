@@ -4,21 +4,24 @@ import (
 	"encoding/json"
 	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // Branch is a basic yes/no input.
 type Branch struct {
-	ID    int
+	ID    int    `json:"-"`
 	Value string `json:"value"`
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *Branch) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
+}
+
+// Marshal to payload structure
+func (entity *Branch) Marshal() Payload {
+	return MarshalPayloadEntity("branch", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -37,58 +40,55 @@ func (entity *Branch) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *Branch) Save(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Branch{}, options); err != nil {
+// Save the Branch entity.
+func (entity *Branch) Save(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Branch) Delete(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Branch{}, options); err != nil {
+// Delete the Branch entity.
+func (entity *Branch) Delete(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Branch) Get(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Branch{}, options); err != nil {
+// Get the Branch entity.
+func (entity *Branch) Get(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Branch) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Branch) SetID(id int) {
+	entity.ID = id
 }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { LegalNonCriminalCourtActionsValidator, NonCriminalCourtActionValidator } from '../../../validators'
+import schema from '../../../schema'
+import validate, { NonCriminalCourtActionValidator } from '../../../validators'
 import SubsectionElement from '../SubsectionElement'
 import { Accordion, Branch, Show } from '../../Form'
 import NonCriminalCourtAction from './NonCriminalCourtAction'
@@ -18,23 +19,20 @@ export default class NonCriminalCourtActions extends SubsectionElement {
     this.props.onUpdate({
       HasCourtActions: this.props.HasCourtActions,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasCourtActions (values) {
     this.update({
       HasCourtActions: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -59,7 +57,7 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                 label={i18n.t('legal.nonCriminalAction.heading.hasCourtActions')}
                 labelSize="h2"
                 className="has-court-actions"
-                value={this.props.HasCourtActions}
+                {...this.props.HasCourtActions}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -67,11 +65,10 @@ export default class NonCriminalCourtActions extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasCourtActions === 'Yes'}>
+        <Show when={this.props.HasCourtActions.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -95,8 +92,8 @@ export default class NonCriminalCourtActions extends SubsectionElement {
 }
 
 NonCriminalCourtActions.defaultProps = {
-  List: [],
-  ListBranch: '',
+  HasCourtActions: {},
+  List: Accordion.defaultList,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
@@ -104,7 +101,7 @@ NonCriminalCourtActions.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalNonCriminalCourtActionsValidator(props).isValid()
+    return validate(schema('legal.court', props))
   },
   scrollToBottom: ''
 }

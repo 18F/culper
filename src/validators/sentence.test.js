@@ -5,22 +5,22 @@ describe('Sentence record validation', function () {
     const tests = [
       {
         state: {
-          ExceedsYear: 'Yes',
-          Incarcerated: 'Yes'
+          ExceedsYear: { value: 'Yes' },
+          Incarcerated: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          ExceedsYear: 'Nope',
-          Incarcerated: 'Yes'
+          ExceedsYear: { value: 'Nope' },
+          Incarcerated: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          ExceedsYear: 'Yes',
-          Incarcerated: 'Nope'
+          ExceedsYear: { value: 'Yes' },
+          Incarcerated: { value: 'Nope' }
         },
         expected: false
       }
@@ -97,8 +97,8 @@ describe('Sentence record validation', function () {
     const tests = [
       {
         state: {
-          ExceedsYear: 'Yes',
-          Incarcerated: 'Yes',
+          ExceedsYear: { value: 'Yes' },
+          Incarcerated: { value: 'Yes' },
           IncarcerationDates: {
             from: {
               date: new Date('1/1/2000')

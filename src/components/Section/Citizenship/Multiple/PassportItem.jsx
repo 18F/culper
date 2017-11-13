@@ -180,15 +180,15 @@ export default class PassportItem extends ValidationElement {
                 label={i18n.t('citizenship.multiple.heading.passport.used')}
                 labelSize="h3"
                 className="passport-used"
-                value={this.props.Used}
+                {...this.props.Used}
                 onUpdate={this.updateUsed}
                 onError={this.props.onError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.Used === 'Yes'}>
-          <Accordion items={this.props.Countries}
+        <Show when={this.props.Used.value === 'Yes'}>
+          <Accordion {...this.props.Countries}
                      className="foreign-countries"
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateCountries}
@@ -214,8 +214,8 @@ PassportItem.defaultProps = {
   Name: {},
   Number: {},
   Expiration: {},
-  Used: '',
-  Countries: [],
+  Used: {},
+  Countries: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true

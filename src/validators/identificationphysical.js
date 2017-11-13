@@ -28,13 +28,13 @@ const hairColors = [
   'Unknown'
 ]
 
-export default class IdentificationPhysicalValidator {
-  constructor (data = {}) {
-    this.height = data.Height
-    this.weight = data.Weight
-    this.hairColor = data.HairColor
-    this.eyeColor = data.EyeColor
-    this.sex = data.Sex
+export default class PhysicalValidator {
+  constructor (state = {}) {
+    this.height = state.Height
+    this.weight = (state.Weight || {}).value
+    this.hairColor = (state.HairColor || {}).value
+    this.eyeColor = (state.EyeColor || {}).value
+    this.sex = (state.Sex || {}).value
   }
 
   /**

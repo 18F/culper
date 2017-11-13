@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalTechnologyManipulatingValidator, ManipulatingValidator } from '../../../../validators'
+import validate, { ManipulatingValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import ManipulatingItem from './ManipulatingItem'
@@ -18,7 +19,6 @@ export default class Manipulating extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasManipulating: this.props.HasManipulating,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class Manipulating extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasManipulating: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -60,7 +58,7 @@ export default class Manipulating extends SubsectionElement {
                 label={i18n.t('legal.technology.manipulating.heading.title')}
                 labelSize="h2"
                 className="legal-technology-manipulating-has-manipulating"
-                value={this.props.HasManipulating}
+                {...this.props.HasManipulating}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -68,11 +66,10 @@ export default class Manipulating extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasManipulating === 'Yes'}>
+        <Show when={this.props.HasManipulating.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -98,9 +95,8 @@ export default class Manipulating extends SubsectionElement {
 
 Manipulating.defaultProps = {
   name: 'manipulating',
-  HasManipulating: '',
-  List: [],
-  ListBranch: '',
+  HasManipulating: {},
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -109,7 +105,7 @@ Manipulating.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalTechnologyManipulatingValidator(props).isValid()
+    return validate(schema('legal.technology.manipulating', props))
   },
   scrollToBottom: ''
 }

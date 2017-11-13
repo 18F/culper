@@ -38,31 +38,35 @@ describe('Domestic Violence validation', function () {
     const tests = [
       {
         state: {
-          List: [
-            {
-              Has: 'Yes',
-              domestic: {
-                CourtName: {
-                  value: '4th Circuit Court'
-                },
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Explanation: {
-                  value: 'Some content'
-                },
-                Issued: {
-                  month: '1',
-                  year: '2009'
+          List: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  domestic: {
+                    CourtName: {
+                      value: '4th Circuit Court'
+                    },
+                    CourtAddress: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Explanation: {
+                      value: 'Some content'
+                    },
+                    Issued: {
+                      month: '1',
+                      year: '2009'
+                    }
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
@@ -71,15 +75,27 @@ describe('Domestic Violence validation', function () {
         expected: false
       },
       {
-        state: { List: [] },
+        state: {
+          List: {
+            items: []
+          }
+        },
         expected: false
       },
       {
-        state: { List: [{ Has: 'No' }] },
+        state: {
+          List: {
+            items: [{ Item: { Has: { value: 'No' } } }]
+          }
+        },
         expected: true
       },
       {
-        state: { List: [{ Has: 'Yes' }] },
+        state: {
+          List: {
+            items: [{ Item: { Has: { value: 'Yes' } } }]
+          }
+        },
         expected: false
       }
     ]

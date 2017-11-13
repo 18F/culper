@@ -6,173 +6,187 @@ describe('Drug Ordered Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentOrdered: 'Nope'
+          TreatmentOrdered: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentOrdered: 'No'
+          TreatmentOrdered: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
-          List: [],
-          ListBranch: ''
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
-          List: [{OrderedTreatment: {}}],
-          ListBranch: 'Nope'
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'Nope' },
+            items: [{OrderedTreatment: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
-          List: [{OrderedTreatment: {}}],
-          ListBranch: 'No'
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{OrderedTreatment: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                OrderedBy: ['Employer'],
-                Explanation: {
-                  value: 'The explanation'
-                },
-                ActionTaken: 'Yes',
-                DrugType: 'Cocaine',
-                TreatmentProvider: {
-                  value: 'Provider'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                TreatmentProviderTelephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
-                },
-                TreatmentDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  OrderedBy: ['Employer'],
+                  Explanation: {
+                    value: 'The explanation'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  }
-                },
-                TreatmentCompleted: 'Yes'
-              }
-            }
-          ]
-        },
-        expected: true
-      },
-      {
-        state: {
-          TreatmentOrdered: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                OrderedBy: ['Employer'],
-                Explanation: {
-                  value: 'The explanation'
-                },
-                ActionTaken: 'Yes',
-                DrugType: 'Cocaine',
-                TreatmentProvider: {
-                  value: 'Provider'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                TreatmentProviderTelephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
-                },
-                TreatmentDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+                  ActionTaken: { value: 'Yes' },
+                  DrugType: 'Cocaine',
+                  TreatmentProvider: {
+                    value: 'Provider'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  }
-                },
-                TreatmentCompleted: 'No',
-                NoTreatmentExplanation: {
-                  value: 'No treatment'
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  TreatmentProviderTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  },
+                  TreatmentDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
+                  },
+                  TreatmentCompleted: { value: 'Yes' }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                OrderedBy: ['Employer'],
-                Explanation: {
-                  value: 'The explanation'
-                },
-                ActionTaken: 'No',
-                NoActionTakenExplanation: {
-                  value: 'No action taken'
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  OrderedBy: ['Employer'],
+                  Explanation: {
+                    value: 'The explanation'
+                  },
+                  ActionTaken: { value: 'Yes' },
+                  DrugType: 'Cocaine',
+                  TreatmentProvider: {
+                    value: 'Provider'
+                  },
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  TreatmentProviderTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  },
+                  TreatmentDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
+                  },
+                  TreatmentCompleted: { value: 'No' },
+                  NoTreatmentExplanation: {
+                    value: 'No treatment'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          TreatmentOrdered: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                OrderedBy: ['Employer'],
-                Explanation: {
-                  value: 'The explanation'
-                },
-                ActionTaken: 'Nope'
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  OrderedBy: ['Employer'],
+                  Explanation: {
+                    value: 'The explanation'
+                  },
+                  ActionTaken: { value: 'No' },
+                  NoActionTakenExplanation: {
+                    value: 'No action taken'
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
+        },
+        expected: true
+      },
+      {
+        state: {
+          TreatmentOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  OrderedBy: ['Employer'],
+                  Explanation: {
+                    value: 'The explanation'
+                  },
+                  ActionTaken: { value: 'Nope' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       }
@@ -186,13 +200,13 @@ describe('Drug Ordered Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentCompleted: 'Nope'
+          TreatmentCompleted: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentCompleted: 'No',
+          TreatmentCompleted: { value: 'No' },
           NoTreatmentExplanation: {
             value: 'Nothing'
           }
@@ -201,7 +215,7 @@ describe('Drug Ordered Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentCompleted: 'Yes'
+          TreatmentCompleted: { value: 'Yes' }
         },
         expected: true
       }

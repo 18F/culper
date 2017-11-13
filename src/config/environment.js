@@ -1,9 +1,12 @@
-import { hashHistory, browserHistory } from 'react-router'
+import { createHashHistory, createBrowserHistory } from 'history'
 
 class Env {
   History () {
     const useHashRouting = process.env.HASH_ROUTING || ''
-    return useHashRouting ? hashHistory : browserHistory
+    if (!this.history) {
+      this.history = useHashRouting ? createHashHistory() : createBrowserHistory()
+    }
+    return this.history
   }
 
   ApiBaseURL () {
@@ -58,6 +61,9 @@ class Env {
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointOAuth (service) { return `/auth/${service}` }
   EndpointSave (payload) { return '/me/save' }
+  EndpointSection (type) { return `/me/section?type=${type || ''}` }
+  EndpointForm () { return '/me/form' }
+  EndpointFormHash () { return '/me/form/hash' }
   EndpointValidate (payload) { return '/me/validate' }
 }
 

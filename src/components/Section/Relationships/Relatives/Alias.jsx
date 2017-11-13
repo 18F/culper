@@ -70,7 +70,7 @@ export default class Alias extends ValidationElement {
                   label={i18n.t('relationships.relatives.heading.alias.maiden')}
                   labelSize="h4"
                   className="alias-maiden"
-                  value={this.props.MaidenName}
+                  {...this.props.MaidenName}
                   onUpdate={this.updateMaidenName}
                   required={this.props.required}
                   scrollIntoView={this.props.scrollIntoView}
@@ -107,7 +107,7 @@ export default class Alias extends ValidationElement {
 
 Alias.defaultProps = {
   Name: {},
-  MaidenName: '',
+  MaidenName: {},
   Dates: {},
   Reason: {},
   hideMaiden: false,

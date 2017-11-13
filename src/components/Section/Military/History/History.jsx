@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { MilitaryHistoryValidator, MilitaryServiceValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { MilitaryHistoryValidator, MilitaryServiceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -35,30 +36,27 @@ export default class History extends SubsectionElement {
     this.update = this.update.bind(this)
     this.updateServed = this.updateServed.bind(this)
     this.updateList = this.updateList.bind(this)
+    this.summary = this.summary.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       HasServed: this.props.HasServed,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
-  updateServed (value, event) {
+  updateServed (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      HasServed: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasServed: values
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -86,7 +84,7 @@ export default class History extends SubsectionElement {
                 label={i18n.t('military.history.heading.served')}
                 labelSize="h2"
                 className="served"
-                value={this.props.HasServed}
+                {...this.props.HasServed}
                 help="military.history.help.served"
                 warning={true}
                 onUpdate={this.updateServed}
@@ -95,11 +93,10 @@ export default class History extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasServed === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasServed.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -122,6 +119,8 @@ export default class History extends SubsectionElement {
 }
 
 History.defaultProps = {
+  List: { items: [] },
+  HasServed: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
@@ -129,7 +128,8 @@ History.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new MilitaryHistoryValidator(props).isValid()
+    return validate(schema('military.history', props))
   },
-  defaultState: true
+  defaultState: true,
+  required: false
 }

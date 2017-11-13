@@ -7,8 +7,6 @@ describe('The family item component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-family',
-      HasForeignFamily: 'Yes',
-      List: [{}],
       onUpdate: () => { updates++ }
     }
     const component = mount(<FamilyItem {...expected} />)

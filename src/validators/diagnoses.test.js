@@ -6,55 +6,63 @@ describe('Diagnoses validation', function () {
     const tests = [
       {
         state: {
-          InTreatment: 'Yes',
-          TreatmentList: [{
-            Item: {
-              Name: {
-                value: 'Circuit Court'
-              },
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Phone: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                timeOfDay: 'Both',
-                type: 'Domestic',
-                extension: ''
+          InTreatment: { value: 'Yes' },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: [{
+              Item: {
+                Name: {
+                  value: 'Circuit Court'
+                },
+                Address: {
+                  country: { value: 'United States' },
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Phone: {
+                  noNumber: '',
+                  number: '7031112222',
+                  numberType: 'Home',
+                  timeOfDay: 'Both',
+                  type: 'Domestic',
+                  extension: ''
+                }
               }
-            }
-          }],
-          TreatmentListBranch: 'No'
+            }]
+          }
         },
         expected: true
       },
       {
         state: {
-          InTreatment: 'No',
-          TreatmentList: [],
-          TreatmentListBranch: 'No'
+          InTreatment: { value: 'No' },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          InTreatment: 'Yes',
-          TreatmentList: [],
-          TreatmentListBranch: 'No'
+          InTreatment: { value: 'Yes' },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          InTreatment: 'Yes',
-          TreatmentList: [{}],
-          TreatmentListBranch: 'No'
+          InTreatment: { value: 'Yes' },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       }
@@ -68,94 +76,102 @@ describe('Diagnoses validation', function () {
     const tests = [
       {
         state: {
-          Diagnosed: 'Yes',
-          DiagnosisList: [{
-            Item: {
-              Condition: {
-                value: 'Test'
-              },
-              Effective: 'Yes',
-              Explanation: {
-                value: null
-              },
-              Diagnosed: {
-                from: {
-                  date: new Date('1/1/2010')
+          Diagnosed: { value: 'Yes' },
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: [{
+              Item: {
+                Condition: {
+                  value: 'Test'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Effective: { value: 'Yes' },
+                Explanation: {
+                  value: null
                 },
-                present: false
-              },
-              Treatment: {
-                Name: {
-                  value: 'Circuit Court'
+                Diagnosed: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
                 },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
+                Treatment: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  }
                 },
-                Phone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
-                }
-              },
-              TreatmentFacility: {
-                Name: {
-                  value: 'Circuit Court'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Phone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
+                TreatmentFacility: {
+                  Name: {
+                    value: 'Circuit Court'
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Phone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  }
                 }
               }
-            }
-          }],
-          DiagnosisListBranch: 'No'
+            }]
+          }
         },
         expected: true
       },
       {
         state: {
-          Diagnosed: 'No',
-          DiagnosisList: [],
-          DiagnosisListBranch: 'No'
+          Diagnosed: { value: 'No' },
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          Diagnosed: 'Yes',
-          DiagnosisList: [],
-          DiagnosisListBranch: 'No'
+          Diagnosed: { value: 'Yes' },
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          Diagnosed: 'Yes',
-          DiagnosisList: [{}],
-          DiagnosisListBranch: 'No'
+          Diagnosed: { value: 'Yes' },
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       }
@@ -169,13 +185,17 @@ describe('Diagnoses validation', function () {
     const tests = [
       {
         state: {
-          Diagnosed: 'No',
-          InTreatment: 'No',
-          DidNotConsult: 'Yes',
-          DiagnosisList: [],
-          DiagnosisListBranch: 'No',
-          TreatmentList: [],
-          TreatmentListBranch: 'No'
+          Diagnosed: { value: 'No' },
+          InTreatment: { value: 'No' },
+          DidNotConsult: { value: 'Yes' },
+          DiagnosisList: {
+            branch: { value: 'No' },
+            items: []
+          },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       }]

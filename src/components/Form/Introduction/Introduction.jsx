@@ -15,8 +15,8 @@ export class Introduction extends React.Component {
   }
 
   updateBranch (values) {
-    if (values === 'No') {
-      this.props.dispatch(updateApplication('Settings', 'acceptedTerms', ''))
+    if (values.value === 'No') {
+      this.props.dispatch(updateApplication('Settings', 'acceptedTerms', { value: '' }))
       this.props.dispatch(logout())
       if (window && window.location) {
         window.location = window.location.pathname
@@ -29,7 +29,7 @@ export class Introduction extends React.Component {
 
   render () {
     const klass = `introduction-modal ${this.props.forceOpen ? 'closeable' : ''}`.trim()
-    const accepted = this.props.settings.acceptedTerms === 'Yes'
+    const accepted = (this.props.settings.acceptedTerms || {}).value === 'Yes'
     return (
       <div className={klass}>
         <Modal className="introduction-content"
@@ -46,7 +46,7 @@ export class Introduction extends React.Component {
                       labelSize="h3"
                       optional={true}
                       className="introduction-acceptance"
-                      value={this.props.settings.acceptedTerms}
+                      {...this.props.settings.acceptedTerms}
                       onUpdate={this.updateBranch}>
                 {i18n.m('introduction.acceptance.para')}
               </Branch>
@@ -59,7 +59,7 @@ export class Introduction extends React.Component {
 }
 
 Introduction.defaultProps = {
-  settings: { acceptedTerms: '' },
+  settings: { acceptedTerms: { value: '' } },
   forceOpen: false,
   onDismiss: () => {},
   dispatch: (action) => {}
@@ -67,7 +67,7 @@ Introduction.defaultProps = {
 
 function mapStateToProps (state) {
   const app = state.application || {}
-  const settings = app.Settings || { acceptedTerms: '' }
+  const settings = app.Settings || { acceptedTerms: { value: '' } }
 
   return {
     settings: settings

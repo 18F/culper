@@ -72,7 +72,10 @@ class Api {
       token = this.getQueryValue('token')
     }
 
+    //if (token === null && env && env.IsTest()) {
+//=======
     if (env && env.IsTest()) {
+//>>>>>>> 898afc7f81174e37e7a0ec1210b5a34c3d8f6aca
       token = window.token
     }
 
@@ -135,6 +138,18 @@ class Api {
 
   save (payload) {
     return this.post(env.EndpointSave(), payload)
+  }
+
+  section (type) {
+    return this.get(env.EndpointSection(type))
+  }
+
+  form () {
+    return this.get(env.EndpointForm())
+  }
+
+  hash () {
+    return this.get(env.EndpointFormHash())
   }
 
   validate (payload) {

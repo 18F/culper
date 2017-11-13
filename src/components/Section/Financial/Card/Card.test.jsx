@@ -15,7 +15,7 @@ describe('The card component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'card-abuse',
-      HasCardAbuse: 'Yes'
+      HasCardAbuse: { value: 'Yes' }
     }
     const component = mount(<Card {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The card component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'card-abuse',
-      HasCardAbuse: 'No'
+      HasCardAbuse: { value: 'No' }
     }
     const component = mount(<Card {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -34,12 +34,14 @@ describe('The card component', () => {
     let updates = 0
     const expected = {
       name: 'card-abuse',
+      HasCardAbuse: { value: 'Yes' },
+      List: { branch: { value: 'No' }, items: [{}] },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Card {...expected} />)
-    component.find('.branch .yes input').simulate('change')
+    component.find('.branch .yes input').first().simulate('change')
     component.find('.card-agency input').simulate('change', { target: { value: 'IRS' } })
     component.find('.card-address .mailing input').simulate('change', { target: { value: '123 Some Rd' } })
     component.find('.card-date .day input').simulate('change', { target: { name: 'day', value: '1' } })

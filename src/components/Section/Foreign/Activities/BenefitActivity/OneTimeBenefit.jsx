@@ -47,9 +47,9 @@ export default class OneTimeBenefit extends ValidationElement {
     })
   }
 
-  updateValueEstimated (cb) {
+  updateValueEstimated (values) {
     this.update({
-      ValueEstimated: cb.checked
+      ValueEstimated: values
     })
   }
 
@@ -90,7 +90,7 @@ export default class OneTimeBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.country')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
@@ -100,7 +100,7 @@ export default class OneTimeBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.value')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
@@ -113,7 +113,7 @@ export default class OneTimeBenefit extends ValidationElement {
             <Checkbox name="ValueEstimated"
                       label={i18n.t('foreign.activities.benefit.oneTime.label.valueEstimated')}
                       toggle="false"
-                      checked={this.props.ValueEstimated}
+                      {...this.props.ValueEstimated}
                       onUpdate={this.updateValueEstimated}
                       onError={this.props.onError}
                       />
@@ -121,7 +121,7 @@ export default class OneTimeBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.oneTime.heading.reason')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
                     className="reason"
                     {...this.props.Reason}
@@ -135,14 +135,14 @@ export default class OneTimeBenefit extends ValidationElement {
                 className="obligated no-margin-bottom"
                 label={i18n.t('foreign.activities.benefit.oneTime.heading.obligated')}
                 labelSize="h3"
-                value={this.props.Obligated}
+                {...this.props.Obligated}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateObligated}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.Obligated === 'Yes'}>
+        <Show when={(this.props.Obligated || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.activities.benefit.oneTime.label.obligatedExplanation')}
                  titleSize="label"
                  adjustFor="textarea"
@@ -162,6 +162,7 @@ export default class OneTimeBenefit extends ValidationElement {
 }
 
 OneTimeBenefit.defaultProps = {
+  Obligated: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

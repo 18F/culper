@@ -6,34 +6,43 @@ describe('Military foreign validation', function () {
     const tests = [
       {
         props: {
-          List: [
-            {
-              Has: ''
-            }
-          ],
-          ListBranch: ''
+          List: {
+            items: [
+              {
+                Item: {
+                  Has: { value: '' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       },
       {
         props: {
-          List: [
-            {
-              Has: 'No'
-            }
-          ],
-          ListBranch: ''
+          List: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
+              }
+            ]
+          }
         },
         expected: true
       },
       {
         props: {
-          List: [
-            {
-              Has: 'Yes'
-            }
-          ],
-          ListBranch: ''
+          List: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       }
@@ -48,126 +57,132 @@ describe('Military foreign validation', function () {
     const tests = [
       {
         props: {
-          List: [
-            {
-              Has: 'Yes'
-            }
-          ],
-          ListBranch: ''
+          List: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       },
       {
         props: {
-          List: [
-            {
-              Has: 'Yes',
-              Item: {
-                Organization: 'Military',
-                Name: {
-                  value: 'Army'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          List: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Organization: 'Military',
+                  Name: {
+                    value: 'Army'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                Country: {
-                  value: 'Germany'
-                },
-                Rank: {
-                  value: 'Captain'
-                },
-                Division: {
-                  value: 'Luftwaffe'
-                },
-                Circumstances: {
-                  value: 'Mandatory service'
-                },
-                ReasonLeft: {
-                  value: 'Moved'
-                },
-                MaintainsContact: 'Yes',
-                List: [
-                  {
-                    Item: {
-                      Name: {
-                        first: 'Foo',
-                        firstInitialOnly: false,
-                        middle: 'J',
-                        middleInitialOnly: true,
-                        noMiddleName: false,
-                        last: 'Bar',
-                        lastInitialOnly: false,
-                        suffix: 'Jr'
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Rank: {
+                    value: 'Captain'
+                  },
+                  Division: {
+                    value: 'Luftwaffe'
+                  },
+                  Circumstances: {
+                    value: 'Mandatory service'
+                  },
+                  ReasonLeft: {
+                    value: 'Moved'
+                  },
+                  MaintainsContact: { value: 'Yes' },
+                  List: {
+                    items: [
+                      {
+                        Item: {
+                          Name: {
+                            first: 'Foo',
+                            firstInitialOnly: false,
+                            middle: 'J',
+                            middleInitialOnly: true,
+                            noMiddleName: false,
+                            last: 'Bar',
+                            lastInitialOnly: false,
+                            suffix: 'Jr'
+                          },
+                          Address: {
+                            street: '1234 Some Rd',
+                            city: 'Munich',
+                            country: { value: 'Germany' },
+                            layout: Location.ADDRESS
+                          },
+                          Title: {
+                            value: 'Mr.'
+                          },
+                          Dates: {
+                            from: {
+                              date: new Date('1/1/2010')
+                            },
+                            to: {
+                              date: new Date('1/1/2012')
+                            },
+                            present: false
+                          },
+                          Frequency: {
+                            value: 'Monthly'
+                          }
+                        }
                       },
-                      Address: {
-                        street: '1234 Some Rd',
-                        city: 'Munich',
-                        country: { value: 'Germany' },
-                        layout: Location.ADDRESS
-                      },
-                      Title: {
-                        value: 'Mr.'
-                      },
-                      Dates: {
-                        from: {
-                          date: new Date('1/1/2010')
-                        },
-                        to: {
-                          date: new Date('1/1/2012')
-                        },
-                        present: false
-                      },
-                      Frequency: {
-                        value: 'Monthly'
+                      {
+                        Item: {
+                          Name: {
+                            first: 'Foo',
+                            firstInitialOnly: false,
+                            middle: 'J',
+                            middleInitialOnly: true,
+                            noMiddleName: false,
+                            last: 'Bar',
+                            lastInitialOnly: false,
+                            suffix: 'Jr'
+                          },
+                          Address: {
+                            street: '1234 Some Rd',
+                            city: 'Munich',
+                            country: { value: 'Germany' },
+                            layout: Location.ADDRESS
+                          },
+                          Title: {
+                            value: null
+                          },
+                          Dates: {
+                            from: {
+                              date: new Date('1/1/2010')
+                            },
+                            to: {
+                              date: new Date('1/1/2012')
+                            },
+                            present: false
+                          },
+                          Frequency: {
+                            value: 'Monthly'
+                          }
+                        }
                       }
-                    }
-                  },
-                  {
-                    Item: {
-                      Name: {
-                        first: 'Foo',
-                        firstInitialOnly: false,
-                        middle: 'J',
-                        middleInitialOnly: true,
-                        noMiddleName: false,
-                        last: 'Bar',
-                        lastInitialOnly: false,
-                        suffix: 'Jr'
-                      },
-                      Address: {
-                        street: '1234 Some Rd',
-                        city: 'Munich',
-                        country: { value: 'Germany' },
-                        layout: Location.ADDRESS
-                      },
-                      Title: {
-                        value: null
-                      },
-                      Dates: {
-                        from: {
-                          date: new Date('1/1/2010')
-                        },
-                        to: {
-                          date: new Date('1/1/2012')
-                        },
-                        present: false
-                      },
-                      Frequency: {
-                        value: 'Monthly'
-                      }
-                    }
+                    ]
                   }
-                ],
-                ListBranch: 'No'
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       }
@@ -188,57 +203,61 @@ describe('Military foreign validation', function () {
       },
       {
         state: {
-          MaintainsContact: 'No'
+          MaintainsContact: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          MaintainsContact: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          MaintainsContact: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          MaintainsContact: 'Yes',
-          List: [{
-            Item: {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              Address: {
-                street: '1234 Some Rd',
-                city: 'Munich',
-                country: { value: 'Germany' },
-                layout: Location.ADDRESS
-              },
-              Title: {
-                value: 'Test'
-              },
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
+          MaintainsContact: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{
+              Item: {
+                Name: {
+                  first: 'Foo',
+                  firstInitialOnly: false,
+                  middle: 'J',
+                  middleInitialOnly: true,
+                  noMiddleName: false,
+                  last: 'Bar',
+                  lastInitialOnly: false,
+                  suffix: 'Jr'
                 },
-                to: {
-                  date: new Date('1/1/2012')
+                Address: {
+                  street: '1234 Some Rd',
+                  city: 'Munich',
+                  country: { value: 'Germany' },
+                  layout: Location.ADDRESS
                 },
-                present: false
-              },
-              Frequency: {
-                value: 'Monthly'
+                Title: {
+                  value: 'Test'
+                },
+                Dates: {
+                  from: {
+                    date: new Date('1/1/2010')
+                  },
+                  to: {
+                    date: new Date('1/1/2012')
+                  },
+                  present: false
+                },
+                Frequency: {
+                  value: 'Monthly'
+                }
               }
-            }
-          }],
-          ListBranch: 'No'
+            }]
+          }
         },
         expected: true
       }

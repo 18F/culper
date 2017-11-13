@@ -37,16 +37,16 @@ describe('Psychologicalvalidation', function () {
         props: {
           Psychological: {
             Competence: {
-              IsIncompetent: 'No'
+              IsIncompetent: { value: 'No' }
             },
             Consultation: {
-              Consulted: 'No'
+              Consulted: { value: 'No' }
             },
             Diagnoses: {
-              Diagnosed: 'No'
+              Diagnosed: { value: 'No' }
             },
             Hospitalization: {
-              Hospitalized: 'No'
+              Hospitalized: { value: 'No' }
             }
           },
           Completed: {
@@ -114,16 +114,16 @@ describe('Psychologicalvalidation', function () {
         props: {
           Psychological: {
             Competence: {
-              IsIncompetent: 'No'
+              IsIncompetent: { value: 'No' }
             },
             Consultation: {
-              Consulted: 'No'
+              Consulted: { value: 'No' }
             },
             Diagnoses: {
-              Diagnosed: 'No'
+              Diagnosed: { value: 'No' }
             },
             Hospitalization: {
-              Hospitalized: 'No'
+              Hospitalized: { value: 'No' }
             }
           },
           Completed: {
@@ -138,16 +138,16 @@ describe('Psychologicalvalidation', function () {
         props: {
           Psychological: {
             Competence: {
-              IsIncompetent: 'Yes'
+              IsIncompetent: { value: 'Yes' }
             },
             Consultation: {
-              Consulted: 'No'
+              Consulted: { value: 'No' }
             },
             Diagnoses: {
-              Diagnosed: 'No'
+              Diagnosed: { value: 'No' }
             },
             Hospitalization: {
-              Hospitalized: 'No'
+              Hospitalized: { value: 'No' }
             }
           },
           Completed: {

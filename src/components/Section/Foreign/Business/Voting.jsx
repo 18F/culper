@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessVotingValidator, VotingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -26,8 +28,8 @@ export default class Voting extends SubsectionElement {
   updateHasForeignVoting (values) {
     this.update({
       HasForeignVoting: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -58,7 +60,7 @@ export default class Voting extends SubsectionElement {
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignVoting}
+                {...this.props.HasForeignVoting}
                 warning={true}
                 onUpdate={this.updateHasForeignVoting}
                 required={this.props.required}
@@ -66,7 +68,7 @@ export default class Voting extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasForeignVoting === 'Yes'}>
+        <Show when={this.props.HasForeignVoting.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -94,7 +96,7 @@ export default class Voting extends SubsectionElement {
 
 Voting.defaultProps = {
   name: 'Voting',
-  HasForeignVoting: '',
+  HasForeignVoting: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},
@@ -103,7 +105,7 @@ Voting.defaultProps = {
   subsection: 'business/voting',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessVotingValidator(props).isValid()
+    return validate(schema('foreign.business.voting', props))
   },
   defaultState: true,
   scrollToBottom: ''

@@ -6,79 +6,87 @@ describe('Drug Voluntary Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentVoluntary: 'Nope'
+          TreatmentVoluntary: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentVoluntary: 'No'
+          TreatmentVoluntary: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
-          List: [],
-          ListBranch: ''
+          TreatmentVoluntary: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
-          List: [{VoluntaryTreatment: {}}],
-          ListBranch: 'Nope'
+          TreatmentVoluntary: { value: 'Yes' },
+          List: {
+            branch: { value: 'Nope' },
+            items: [{VoluntaryTreatment: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
-          List: [{VoluntaryTreatment: {}}],
-          ListBranch: 'No'
+          TreatmentVoluntary: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{VoluntaryTreatment: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          TreatmentVoluntary: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                DrugType: 'Cocaine',
-                TreatmentProvider: {
-                  value: 'Provider'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                TreatmentProviderTelephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
-                },
-                TreatmentDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          TreatmentVoluntary: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  DrugType: 'Cocaine',
+                  TreatmentProvider: {
+                    value: 'Provider'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  }
-                },
-                TreatmentCompleted: 'Yes'
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  TreatmentProviderTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  },
+                  TreatmentDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
+                  },
+                  TreatmentCompleted: { value: 'Yes' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }
@@ -92,13 +100,13 @@ describe('Drug Voluntary Treatment Validation', function () {
     const tests = [
       {
         state: {
-          TreatmentCompleted: 'Nope'
+          TreatmentCompleted: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          TreatmentCompleted: 'No',
+          TreatmentCompleted: { value: 'No' },
           NoTreatmentExplanation: {
             value: 'Nothing'
           }
@@ -107,7 +115,7 @@ describe('Drug Voluntary Treatment Validation', function () {
       },
       {
         state: {
-          TreatmentCompleted: 'Yes'
+          TreatmentCompleted: { value: 'Yes' }
         },
         expected: true
       }

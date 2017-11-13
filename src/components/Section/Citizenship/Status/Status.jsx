@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { CitizenshipValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Field, RadioGroup, Radio, Textarea,
          Text, Name, DateControl, Country, Location } from '../../../Form'
@@ -68,15 +69,15 @@ export default class Status extends SubsectionElement {
     })
   }
 
-  updateCitizenshipStatus (event) {
+  updateCitizenshipStatus (values) {
     this.update({
-      CitizenshipStatus: event.target.value
+      CitizenshipStatus: values
     })
   }
 
-  updateAbroadDocumentation (event) {
+  updateAbroadDocumentation (values) {
     this.update({
-      AbroadDocumentation: event.target.value
+      AbroadDocumentation: values
     })
   }
 
@@ -188,9 +189,9 @@ export default class Status extends SubsectionElement {
     })
   }
 
-  updateBasis (event) {
+  updateBasis (values) {
     this.update({
-      Basis: event.target.value
+      Basis: values
     })
   }
 
@@ -206,9 +207,9 @@ export default class Status extends SubsectionElement {
     })
   }
 
-  updateDocumentType (event) {
+  updateDocumentType (values) {
     this.update({
-      DocumentType: event.target.value
+      DocumentType: values
     })
   }
 
@@ -233,46 +234,46 @@ export default class Status extends SubsectionElement {
           <RadioGroup className="citizenship-status"
                       required={this.props.required}
                       onError={this.handleError}
-                      selectedValue={this.props.CitizenshipStatus}>
+                      selectedValue={(this.props.CitizenshipStatus || {}).value}>
             <Radio name="citizenship-status-citizen"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.citizen')}
                    value="Citizen"
                    className="citizenship-status-citizen"
-                   onChange={this.updateCitizenshipStatus}
+                   onUpdate={this.updateCitizenshipStatus}
                    onError={this.handleError}
                    />
             <Radio name="citizenship-status-foreignborn"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.foreignborn')}
                    value="ForeignBorn"
                    className="citizenship-status-foreignborn"
-                   onChange={this.updateCitizenshipStatus}
+                   onUpdate={this.updateCitizenshipStatus}
                    onError={this.handleError}
                    />
             <Radio name="citizenship-status-naturalized"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.naturalized')}
                    value="Naturalized"
                    className="citizenship-status-naturalized"
-                   onChange={this.updateCitizenshipStatus}
+                   onUpdate={this.updateCitizenshipStatus}
                    onError={this.handleError}
                    />
             <Radio name="citizenship-status-derived"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.derived')}
                    value="Derived"
                    className="citizenship-status-derived"
-                   onChange={this.updateCitizenshipStatus}
+                   onUpdate={this.updateCitizenshipStatus}
                    onError={this.handleError}
                    />
             <Radio name="citizenship-status-notcitizen"
                    label={i18n.m('citizenship.status.label.citizenshipstatus.notcitizen')}
                    value="NotCitizen"
                    className="citizenship-status-notcitizen"
-                   onChange={this.updateCitizenshipStatus}
+                   onUpdate={this.updateCitizenshipStatus}
                    onError={this.handleError}
                    />
           </RadioGroup>
         </Field>
 
-        <Show when={this.props.CitizenshipStatus === 'ForeignBorn'}>
+        <Show when={(this.props.CitizenshipStatus || {}).value === 'ForeignBorn'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.abroad')}
                    adjustFor="buttons"
@@ -280,38 +281,38 @@ export default class Status extends SubsectionElement {
               <RadioGroup className="citizenship-abroad"
                           required={this.props.required}
                           onError={this.handleError}
-                          selectedValue={this.props.AbroadDocumentation}>
+                          selectedValue={(this.props.AbroadDocumentation || {}).value}>
                 <Radio name="citizenship-abroad-fs240"
                        label={i18n.t('citizenship.status.label.abroad.fs240')}
                        value="FS-240"
                        className="citizenship-abroad-fs240"
-                       onChange={this.updateAbroadDocumentation}
+                       onUpdate={this.updateAbroadDocumentation}
                        onError={this.handleError}
                        />
                 <Radio name="citizenship-abroad-ds1350"
                        label={i18n.t('citizenship.status.label.abroad.ds1350')}
                        value="DS-1350"
                        className="citizenship-abroad-ds1350"
-                       onChange={this.updateAbroadDocumentation}
+                       onUpdate={this.updateAbroadDocumentation}
                        onError={this.handleError}
                        />
                 <Radio name="citizenship-abroad-fs545"
                        label={i18n.t('citizenship.status.label.abroad.fs545')}
                        value="FS-545"
                        className="citizenship-abroad-fs545"
-                       onChange={this.updateAbroadDocumentation}
+                       onUpdate={this.updateAbroadDocumentation}
                        onError={this.handleError}
                        />
                 <Radio name="citizenship-abroad-other"
                        label={i18n.t('citizenship.status.label.abroad.other')}
                        value="Other"
                        className="citizenship-abroad-other"
-                       onChange={this.updateAbroadDocumentation}
+                       onUpdate={this.updateAbroadDocumentation}
                        onError={this.handleError}
                        />
               </RadioGroup>
 
-              <Show when={this.props.AbroadDocumentation === 'Other'}>
+              <Show when={(this.props.AbroadDocumentation || {}).value === 'Other'}>
                 <Field title={i18n.t('citizenship.status.label.explanation')}
                        titleSize="label"
                        adjustFor="textarea">
@@ -414,14 +415,14 @@ export default class Status extends SubsectionElement {
                     label={i18n.t('citizenship.status.heading.bornonmilitaryinstallation')}
                     labelSize="h3"
                     className="born-on-military-installation"
-                    value={this.props.BornOnMilitaryInstallation}
+                    {...this.props.BornOnMilitaryInstallation}
                     onUpdate={this.updateBornOnMilitaryInstallation}
                     onError={this.handleError}
                     required={this.props.required}
                     scrollIntoView={this.props.scrollIntoView}
                     />
 
-            <Show when={this.props.BornOnMilitaryInstallation === 'Yes'}>
+            <Show when={(this.props.BornOnMilitaryInstallation || {}).value === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.militarybase')}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Text name="MilitaryBase"
@@ -436,7 +437,7 @@ export default class Status extends SubsectionElement {
           </div>
         </Show>
 
-        <Show when={this.props.CitizenshipStatus === 'Naturalized'}>
+        <Show when={(this.props.CitizenshipStatus || {}).value === 'Naturalized'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.entrydate')}
                    help="citizenship.status.help.entrydate"
@@ -481,14 +482,14 @@ export default class Status extends SubsectionElement {
                     label={i18n.t('citizenship.status.heading.hasalienregistration')}
                     labelSize="h3"
                     className="has-alien-registration"
-                    value={this.props.HasAlienRegistration}
+                    {...this.props.HasAlienRegistration}
                     onUpdate={this.updateHasAlienRegistration}
                     onError={this.handleError}
                     required={this.props.required}
                     scrollIntoView={this.props.scrollIntoView}
                     />
 
-            <Show when={this.props.HasAlienRegistration === 'Yes'}>
+            <Show when={(this.props.HasAlienRegistration || {}).value === 'Yes'}>
               <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.naturalized')}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Text name="AlienRegistrationNumber"
@@ -588,7 +589,7 @@ export default class Status extends SubsectionElement {
                        />
               </RadioGroup>
 
-              <Show when={this.props.Basis === 'Other'}>
+              <Show when={(this.props.Basis || {}).value === 'Other'}>
                 <Field title={i18n.t('citizenship.status.label.explanation')}
                        titleSize="label"
                        adjustFor="textarea"
@@ -606,7 +607,7 @@ export default class Status extends SubsectionElement {
           </div>
         </Show>
 
-        <Show when={this.props.CitizenshipStatus === 'Derived'}>
+        <Show when={(this.props.CitizenshipStatus || {}).value === 'Derived'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.alienregistrationnumber.derived')}
                    scrollIntoView={this.props.scrollIntoView}>
@@ -672,24 +673,24 @@ export default class Status extends SubsectionElement {
               <RadioGroup className="citizenship-basis"
                           required={this.props.required}
                           onError={this.props.onError}
-                          selectedValue={this.props.Basis}>
+                          selectedValue={(this.props.Basis || {}).value}>
                 <Radio name="citizenship-basis-individual"
                        label={i18n.m('citizenship.status.label.basis.derived')}
                        value="Individual"
                        className="citizenship-basis-individual"
-                       onChange={this.updateBasis}
+                       onUpdate={this.updateBasis}
                        onError={this.handleError}
                        />
                 <Radio name="citizenship-basis-other"
                        label={i18n.m('citizenship.status.label.basis.other')}
                        value="Other"
                        className="citizenship-basis-other"
-                       onChange={this.updateBasis}
+                       onUpdate={this.updateBasis}
                        onError={this.handleError}
                        />
               </RadioGroup>
 
-              <Show when={this.props.Basis === 'Other'}>
+              <Show when={(this.props.Basis || {}).value === 'Other'}>
                 <Field title={i18n.t('citizenship.status.label.explanation')}
                        titleSize="label"
                        adjustFor="textarea"
@@ -707,7 +708,7 @@ export default class Status extends SubsectionElement {
           </div>
         </Show>
 
-        <Show when={this.props.CitizenshipStatus === 'NotCitizen'}>
+        <Show when={(this.props.CitizenshipStatus || {}).value === 'NotCitizen'}>
           <div>
             <Field title={i18n.t('citizenship.status.heading.residencestatus')}
                    scrollIntoView={this.props.scrollIntoView}>
@@ -788,45 +789,45 @@ export default class Status extends SubsectionElement {
               <RadioGroup className="citizenship-document-type"
                           required={this.props.required}
                           onError={this.handleError}
-                          selectedValue={this.props.DocumentType}>
+                          selectedValue={(this.props.DocumentType || {}).value}>
                 <Radio name="document-type-i94"
                        label={i18n.t('citizenship.status.label.documenttype.i94')}
                        value="I-94"
                        className="document-type-i94"
-                       onChange={this.updateDocumentType}
+                       onUpdate={this.updateDocumentType}
                        onError={this.handleError}
                        />
                 <Radio name="document-type-visa"
                        label={i18n.t('citizenship.status.label.documenttype.visa')}
                        value="U.S. Visa"
                        className="document-type-visa"
-                       onChange={this.updateDocumentType}
+                       onUpdate={this.updateDocumentType}
                        onError={this.handleError}
                        />
                 <Radio name="document-type-i20"
                        label={i18n.t('citizenship.status.label.documenttype.i20')}
                        value="I-20"
                        className="document-type-i20"
-                       onChange={this.updateDocumentType}
+                       onUpdate={this.updateDocumentType}
                        onError={this.handleError}
                        />
                 <Radio name="document-type-ds2019"
                        label={i18n.t('citizenship.status.label.documenttype.ds2019')}
                        value="DS-2019"
                        className="document-type-ds2019"
-                       onChange={this.updateDocumentType}
+                       onUpdate={this.updateDocumentType}
                        onError={this.handleError}
                        />
                 <Radio name="document-type-other"
                        label={i18n.t('citizenship.status.label.documenttype.other')}
                        value="Other"
                        className="document-type-other"
-                       onChange={this.updateDocumentType}
+                       onUpdate={this.updateDocumentType}
                        onError={this.handleError}
                        />
               </RadioGroup>
 
-              <Show when={this.props.DocumentType === 'Other'}>
+              <Show when={(this.props.DocumentType || {}).value === 'Other'}>
                 <Field title={i18n.t('citizenship.status.label.explanation')}
                        titleSize="label"
                        adjustFor="textarea"
@@ -896,8 +897,8 @@ export default class Status extends SubsectionElement {
 }
 
 Status.defaultProps = {
-  CitizenshipStatus: '',
-  AbroadDocumentation: '',
+  CitizenshipStatus: {},
+  AbroadDocumentation: {},
   Explanation: {},
   DocumentNumber: {},
   DocumentIssued: {},
@@ -906,20 +907,20 @@ Status.defaultProps = {
   CertificateNumber: {},
   CertificateIssued: {},
   CertificateName: {},
-  BornOnMilitaryInstallation: '',
+  BornOnMilitaryInstallation: {},
   MilitaryBase: {},
   EntryDate: {},
   EntryLocation: {},
   PriorCitizenship: {},
-  HasAlienRegistration: '',
+  HasAlienRegistration: {},
   AlienRegistrationNumber: {},
   AlienRegistrationExpiration: {},
   CertificateCourtName: {},
   CertificateCourtAddress: {},
-  Basis: '',
+  Basis: {},
   PermanentResidentCardNumber: {},
   ResidenceStatus: {},
-  DocumentType: '',
+  DocumentType: {},
   DocumentExpiration: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -927,6 +928,6 @@ Status.defaultProps = {
   subsection: 'status',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipValidator(props, props).isValid()
+    return validate(schema('citizenship.status', props))
   }
 }

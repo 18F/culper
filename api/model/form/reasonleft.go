@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // ReasonLeft is a basic input.
@@ -19,11 +18,11 @@ type ReasonLeft struct {
 	ReasonDescription *Textarea   `json:"-"`
 
 	// Persister specific fields
-	ID                  int
-	AccountID           int64
-	CommentsID          int
-	ReasonsID           int
-	ReasonDescriptionID int
+	ID                  int `json:"-"`
+	AccountID           int `json:"-"`
+	CommentsID          int `json:"-"`
+	ReasonsID           int `json:"-"`
+	ReasonDescriptionID int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -54,6 +53,20 @@ func (entity *ReasonLeft) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *ReasonLeft) Marshal() Payload {
+	if entity.Comments != nil {
+		entity.PayloadComments = entity.Comments.Marshal()
+	}
+	if entity.Reasons != nil {
+		entity.PayloadReasons = entity.Reasons.Marshal()
+	}
+	if entity.ReasonDescription != nil {
+		entity.PayloadReasonDescription = entity.ReasonDescription.Marshal()
+	}
+	return MarshalPayloadEntity("reasonleft", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *ReasonLeft) Valid() (bool, error) {
 	if ok, err := entity.ReasonDescription.Valid(); !ok {
@@ -67,17 +80,32 @@ func (entity *ReasonLeft) Valid() (bool, error) {
 	return true, nil
 }
 
-func (entity *ReasonLeft) Save(context *pg.DB, account int64) (int, error) {
+// Save the ReasonLeft entity.
+func (entity *ReasonLeft) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&ReasonLeft{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&ReasonLeft{ID: account}, func(result interface{}) {
+		previous := result.(*ReasonLeft)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.Reasons == nil {
+			entity.Reasons = &Collection{}
+		}
+		entity.Reasons.ID = previous.ReasonsID
+		entity.ReasonsID = previous.ReasonsID
+		if entity.ReasonDescription == nil {
+			entity.ReasonDescription = &Textarea{}
+		}
+		entity.ReasonDescription.ID = previous.ReasonDescriptionID
+		entity.ReasonDescriptionID = previous.ReasonDescriptionID
+	})
 
 	commentsID, err := entity.Comments.Save(context, account)
 	if err != nil {
@@ -97,62 +125,92 @@ func (entity *ReasonLeft) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ReasonDescriptionID = reasonDescriptionID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *ReasonLeft) Delete(context *pg.DB, account int64) (int, error) {
+// Delete the ReasonLeft entity.
+func (entity *ReasonLeft) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ReasonLeft{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.Comments.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.Reasons.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.ReasonDescription.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&ReasonLeft{ID: account}, func(result interface{}) {
+		previous := result.(*ReasonLeft)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.Reasons == nil {
+			entity.Reasons = &Collection{}
+		}
+		entity.Reasons.ID = previous.ReasonsID
+		entity.ReasonsID = previous.ReasonsID
+		if entity.ReasonDescription == nil {
+			entity.ReasonDescription = &Textarea{}
+		}
+		entity.ReasonDescription.ID = previous.ReasonDescriptionID
+		entity.ReasonDescriptionID = previous.ReasonDescriptionID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.Comments.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Reasons.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.ReasonDescription.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
-func (entity *ReasonLeft) Get(context *pg.DB, account int64) (int, error) {
+// Get the ReasonLeft entity.
+func (entity *ReasonLeft) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&ReasonLeft{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
+	context.Find(&ReasonLeft{ID: account}, func(result interface{}) {
+		previous := result.(*ReasonLeft)
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
+		entity.Comments.ID = previous.CommentsID
+		entity.CommentsID = previous.CommentsID
+		if entity.Reasons == nil {
+			entity.Reasons = &Collection{}
+		}
+		entity.Reasons.ID = previous.ReasonsID
+		entity.ReasonsID = previous.ReasonsID
+		if entity.ReasonDescription == nil {
+			entity.ReasonDescription = &Textarea{}
+		}
+		entity.ReasonDescription.ID = previous.ReasonDescriptionID
+		entity.ReasonDescriptionID = previous.ReasonDescriptionID
+	})
+
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.CommentsID != 0 {
@@ -173,5 +231,15 @@ func (entity *ReasonLeft) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *ReasonLeft) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *ReasonLeft) SetID(id int) {
+	entity.ID = id
 }

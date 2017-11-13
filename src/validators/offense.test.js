@@ -57,13 +57,13 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          InvolvedViolence: 'No'
+          InvolvedViolence: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvedViolence: 'Yes'
+          InvolvedViolence: { value: 'Yes' }
         },
         expected: true
       },
@@ -84,13 +84,13 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          InvolvedFirearms: 'No'
+          InvolvedFirearms: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvedFirearms: 'Yes'
+          InvolvedFirearms: { value: 'Yes' }
         },
         expected: true
       },
@@ -111,13 +111,13 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          InvolvedSubstances: 'No'
+          InvolvedSubstances: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvedSubstances: 'Yes'
+          InvolvedSubstances: { value: 'Yes' }
         },
         expected: true
       },
@@ -166,13 +166,13 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'No'
+          WasCited: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes'
+          WasCited: { value: 'Yes' }
         },
         expected: true
       },
@@ -193,13 +193,13 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'No'
+          WasCited: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
+          WasCited: { value: 'Yes' },
           CitedBy: {
             value: ''
           }
@@ -208,7 +208,7 @@ describe('Offense validation', function () {
       },
       {
         state: {
-          WasCited: 'Yes',
+          WasCited: { value: 'Yes' },
           CitedBy: {
             value: 'Somebody'
           }
@@ -226,20 +226,20 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'No'
+          WasCited: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
+          WasCited: { value: 'Yes' },
           AgencyAddress: null
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
+          WasCited: { value: 'Yes' },
           AgencyAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -262,27 +262,27 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'No'
+          WasCited: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes'
+          WasCited: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: true
       }
@@ -297,42 +297,42 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'No'
+          WasCited: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes'
+          WasCited: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' },
           Explanation: null
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' },
           Explanation: {
             value: 'Some explanation'
           }
@@ -350,22 +350,22 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
           CourtName: {
             value: 'court name'
           }
@@ -383,22 +383,22 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
           CourtAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -421,30 +421,30 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
           ChargeType: 'Does not exit'
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
           ChargeType: 'Felony'
         },
         expected: true
@@ -460,22 +460,22 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
           CourtCharge: {
             value: 'Some charge'
           }
@@ -493,22 +493,22 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
           CourtOutcome: {
             value: 'Some outcome'
           }
@@ -526,22 +526,22 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
           CourtDate: {
             day: '1',
             month: '1',
@@ -562,13 +562,13 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'No',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'No' },
           Sentence: {
-            AwaitingTrial: 'Yes',
+            AwaitingTrial: { value: 'Yes' },
             AwaitingTrialExplanation: 'Yes',
-            ExceedsYear: 'Yes',
-            Incarcerated: 'Yes',
+            ExceedsYear: { value: 'Yes' },
+            Incarcerated: { value: 'Yes' },
             IncarcerationDates: {
               from: {
                 date: new Date('1/1/2000')
@@ -596,14 +596,14 @@ describe('Offense validation', function () {
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
-          WasSentenced: 'No',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
+          WasSentenced: { value: 'No' },
           Sentence: {
-            AwaitingTrial: 'Yes',
+            AwaitingTrial: { value: 'Yes' },
             AwaitingTrialExplanation: 'Yes',
-            ExceedsYear: 'Yes',
-            Incarcerated: 'Yes',
+            ExceedsYear: { value: 'Yes' },
+            Incarcerated: { value: 'Yes' },
             IncarcerationDates: {
               from: {
                 date: new Date('1/1/2000')
@@ -631,14 +631,14 @@ describe('Offense validation', function () {
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
-          WasSentenced: 'Yes',
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
+          WasSentenced: { value: 'Yes' },
           Sentence: {
-            AwaitingTrial: 'Yes',
+            AwaitingTrial: { value: 'Yes' },
             AwaitingTrialExplanation: 'Yes',
-            ExceedsYear: 'Yes',
-            Incarcerated: 'Yes',
+            ExceedsYear: { value: 'Yes' },
+            Incarcerated: { value: 'Yes' },
             IncarcerationDates: {
               from: {
                 date: new Date('1/1/2000')
@@ -666,17 +666,17 @@ describe('Offense validation', function () {
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
-          WasSentenced: 'No'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
+          WasSentenced: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
-          WasSentenced: 'Nope'
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
+          WasSentenced: { value: 'Nope' }
         },
         expected: false
       }
@@ -700,9 +700,9 @@ describe('Offense validation', function () {
           Description: {
             value: 'Some description'
           },
-          InvolvedViolence: 'No',
-          InvolvedFirearms: 'Yes',
-          InvolvedSubstances: 'No',
+          InvolvedViolence: { value: 'No' },
+          InvolvedFirearms: { value: 'Yes' },
+          InvolvedSubstances: { value: 'No' },
           Address: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -711,7 +711,7 @@ describe('Offense validation', function () {
             zipcode: '22202',
             layout: Location.ADDRESS
           },
-          WasCited: 'No'
+          WasCited: { value: 'No' }
         },
         expected: true
       }
@@ -726,22 +726,22 @@ describe('Offense validation', function () {
     const tests = [
       {
         state: {
-          WasSentenced: 'No'
+          WasSentenced: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasSentenced: 'Yes'
+          WasSentenced: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          WasSentenced: 'No',
-          WasCited: 'Yes',
-          WasCharged: 'Yes',
-          AwaitingTrial: 'Yes',
+          WasSentenced: { value: 'No' },
+          WasCited: { value: 'Yes' },
+          WasCharged: { value: 'Yes' },
+          AwaitingTrial: { value: 'Yes' },
           AwaitingTrialExplanation: {
             value: 'Trial explanation'
           }
@@ -768,9 +768,9 @@ describe('Offense validation', function () {
           Description: {
             value: 'Some description'
           },
-          InvolvedViolence: 'No',
-          InvolvedFirearms: 'No',
-          InvolvedSubstances: 'No',
+          InvolvedViolence: { value: 'No' },
+          InvolvedFirearms: { value: 'No' },
+          InvolvedSubstances: { value: 'No' },
           Address: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -779,11 +779,11 @@ describe('Offense validation', function () {
             zipcode: '22202',
             layout: Location.ADDRESS
           },
-          WasCited: 'Yes',
+          WasCited: { value: 'Yes' },
           CitedBy: {
             value: 'Somebody'
           },
-          WasCharged: 'No',
+          WasCharged: { value: 'No' },
           Explanation: {
             value: 'Some explanation'
           },
@@ -795,9 +795,8 @@ describe('Offense validation', function () {
             zipcode: '22202',
             layout: Location.ADDRESS
           },
-
-          WasSentenced: 'No',
-          AwaitingTrial: 'Yes',
+          WasSentenced: { value: 'No' },
+          AwaitingTrial: { value: 'Yes' },
           AwaitingTrialExplanation: {
             value: 'Yessss'
           }
@@ -806,14 +805,14 @@ describe('Offense validation', function () {
       },
       {
         state: {
-          WasSentenced: 'Yes'
+          WasSentenced: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          WasSentenced: 'No',
-          AwaitingTrial: 'Yes',
+          WasSentenced: { value: 'No' },
+          AwaitingTrial: { value: 'Yes' },
           AwaitingTrialExplanation: null
         },
         expected: true

@@ -40,4 +40,12 @@ export default class DateControlValidator {
     }
     return (new Date(`${this.month}/${this.day}/${this.year}`) >= this.minDate)
   }
+
+  isValid () {
+    if ((!this.day && !this.hideDay) || !this.month || !this.year) {
+      return false
+    }
+
+    return true
+  }
 }

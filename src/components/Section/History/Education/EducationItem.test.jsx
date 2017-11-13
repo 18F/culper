@@ -40,26 +40,28 @@ describe('The education component', () => {
   it('should ask for diplomas/degrees if we say "yes"', () => {
     const expected = {
       name: 'education',
-      Diplomas: [
-        {
-          Has: 'Yes',
-          Diploma: {
-            Diploma: 'Other',
-            DiplomaOther: 'PhD in awesomeness',
-            Date: {
-              date: new Date()
+      Diplomas: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Diploma: 'Other',
+              DiplomaOther: 'PhD in awesomeness',
+              Date: {
+                date: new Date()
+              }
+            }
+          },
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              Diploma: 'High School Diploma',
+              DiplomaOther: '',
+              Date: {}
             }
           }
-        },
-        {
-          Has: 'Yes',
-          Diploma: {
-            Diploma: 'High School Diploma',
-            DiplomaOther: '',
-            Date: {}
-          }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<EducationItem {...expected} />)
     expect(component.find('.diploma').length).toEqual(2)
@@ -68,8 +70,8 @@ describe('The education component', () => {
   it('should not ask for diplomas/degrees if we say "no"', () => {
     const expected = {
       name: 'education',
-      HasAttended: 'Yes',
-      HasDegree: 'No'
+      HasAttended: { value: 'Yes' },
+      HasDegree: { value: 'No' }
     }
     const component = mount(<EducationItem {...expected} />)
     expect(component.find('.diploma').length).toEqual(0)
@@ -79,6 +81,7 @@ describe('The education component', () => {
     let updates = 0
     const expected = {
       name: 'education',
+      Diplomas: { items: [] },
       Dates: {
         from: {
           date: new Date('1/1/2010')

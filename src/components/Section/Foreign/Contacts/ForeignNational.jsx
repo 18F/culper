@@ -97,18 +97,11 @@ export default class ForeignNational extends ValidationElement {
     })
   }
 
-  updateMethods (response) {
-    let selected = response.value
-    let list = [...(this.props.Methods || [])]
-
-    if (list.includes(selected)) {
-      list.splice(list.indexOf(selected), 1)
-    } else {
-      list.push(selected)
-    }
+  updateMethods (values) {
+    const list = Checkbox.select(values, this.props.Methods)
 
     this.update({
-      Methods: list
+      Methods: { values: list }
     })
   }
 
@@ -118,9 +111,9 @@ export default class ForeignNational extends ValidationElement {
     })
   }
 
-  updateFrequency (response) {
+  updateFrequency (values) {
     this.update({
-      Frequency: response.value
+      Frequency: values
     })
   }
 
@@ -130,18 +123,18 @@ export default class ForeignNational extends ValidationElement {
     })
   }
 
-  updateRelationship (response) {
-    let selected = response.value
-    let list = [...(this.props.Relationship || [])]
+  updateRelationship (values) {
+    //let selected = values.value
+    //let list = [...(this.props.Relationship || [])]
 
-    if (list.includes(selected)) {
-      list.splice(list.indexOf(selected), 1)
-    } else {
-      list.push(selected)
-    }
-
+    //if (list.includes(selected)) {
+      //list.splice(list.indexOf(selected), 1)
+    //} else {
+      //list.push(selected)
+    //}
+    const list = Checkbox.select(values, this.props.Relationship)
     this.update({
-      Relationship: list
+      Relationship: { values: list }
     })
   }
 
@@ -225,7 +218,7 @@ export default class ForeignNational extends ValidationElement {
 
   updateHasAffiliations (response) {
     this.update({
-      HasAffiliations: response.value
+      HasAffiliations: response
     })
   }
 
@@ -259,7 +252,7 @@ export default class ForeignNational extends ValidationElement {
           </NotApplicable>
         </Field>
 
-        <Show when={this.props.NameNotApplicable.applicable === false}>
+        <Show when={(this.props.NameNotApplicable || {}).applicable === false}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -300,7 +293,7 @@ export default class ForeignNational extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.contacts.heading.methods')}
-               className={this.props.Methods.some(x => x === 'Other') ? 'no-margin-bottom' : ''}
+               className={((this.props.Methods || {}).values || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
                help="foreign.contacts.help.methods"
                adjustFor="p"
                scrollIntoView={this.props.scrollIntoView}>
@@ -308,7 +301,7 @@ export default class ForeignNational extends ValidationElement {
           <CheckboxGroup className="methods"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={this.props.Methods}>
+                         selectedValues={(this.props.Methods || {}).values}>
             <Checkbox name="methods-inperson"
                       label={i18n.m('foreign.contacts.label.inperson')}
                       value="In person"
@@ -347,7 +340,7 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={this.props.Methods.some(x => x === 'Other')}>
+        <Show when={((this.props.Methods || {}).value || []).some(x => x === 'Other')}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -368,7 +361,7 @@ export default class ForeignNational extends ValidationElement {
           <RadioGroup className="frequency"
                       required={this.props.required}
                       onError={this.props.onError}
-                      selectedValue={this.props.Frequency}>
+                      selectedValue={(this.props.Frequency || {}).value}>
             <Radio name="frequency-daily"
                    label={i18n.m('foreign.contacts.label.daily')}
                    value="Daily"
@@ -414,7 +407,7 @@ export default class ForeignNational extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Show when={this.props.Frequency === 'Other'}>
+        <Show when={(this.props.Frequency || {}).value === 'Other'}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  adjustFor="textarea"
@@ -430,14 +423,14 @@ export default class ForeignNational extends ValidationElement {
         </Show>
 
         <Field title={i18n.t('foreign.contacts.heading.relationship')}
-               className={this.props.Relationship.some(x => x === 'Other') ? 'no-margin-bottom' : ''}
+               className={((this.props.Relationship || {}).values || []).some(x => x === 'Other') ? 'no-margin-bottom' : ''}
                adjustFor="p"
                scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.contacts.para.checkall')}
           <CheckboxGroup className="relationship"
                          required={this.props.required}
                          onError={this.props.onError}
-                         selectedValues={this.props.Relationship}>
+                         selectedValues={(this.props.Relationship || {}).values}>
             <Checkbox name="relationship-professional"
                       label={i18n.m('foreign.contacts.label.professional')}
                       value="Professional"
@@ -469,7 +462,7 @@ export default class ForeignNational extends ValidationElement {
           </CheckboxGroup>
         </Field>
 
-        <Show when={this.props.Relationship.some(x => x === 'Other' || x === 'Obligation')}>
+        <Show when={((this.props.Relationship || {}).value || []).some(x => x === 'Other' || x === 'Obligation')}>
           <Field title={i18n.t('foreign.contacts.heading.explanation')}
                  titleSize="label"
                  adjustFor="textarea"
@@ -488,7 +481,7 @@ export default class ForeignNational extends ValidationElement {
                           appendLabel={i18n.t('foreign.contacts.heading.aliases2')}
                           help="foreign.contacts.help.aliases"
                           className="aliases"
-                          items={this.props.Aliases}
+                          {...this.props.Aliases}
                           onUpdate={this.updateAliases}
                           required={this.props.required}
                           onError={this.props.onError}
@@ -638,7 +631,7 @@ export default class ForeignNational extends ValidationElement {
           <RadioGroup className="has-affiliations"
                       required={this.props.required}
                       onError={this.props.onError}
-                      selectedValue={this.props.HasAffiliations}>
+                      selectedValue={(this.props.HasAffiliations || {}).value}>
             <Radio name="affiliation_yes"
                    label={i18n.t('foreign.contacts.label.yes')}
                    value="Yes"
@@ -663,7 +656,7 @@ export default class ForeignNational extends ValidationElement {
           </RadioGroup>
         </Field>
 
-        <Show when={this.props.HasAffiliations === 'Yes'}>
+        <Show when={(this.props.HasAffiliations || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.contacts.heading.affiliations')}
                  scrollIntoView={this.props.scrollIntoView}>
             <Textarea name="Affiliations"
@@ -688,15 +681,15 @@ ForeignNational.defaultProps = {
   NameExplanation: {},
   FirstContact: {},
   LastContact: {},
-  Methods: [],
+  Methods: {},
   MethodsNotApplicable: {},
   MethodsExplanation: {},
-  Frequency: '',
+  Frequency: {},
   FrequencyExplanation: {},
-  Relationship: [],
+  Relationship: {},
   RelationshipExplanation: {},
-  Aliases: [],
-  Citizenship: [],
+  Aliases: {},
+  Citizenship: {},
   Birthdate: {},
   BirthdateNotApplicable: {},
   Birthplace: {},
@@ -706,7 +699,7 @@ ForeignNational.defaultProps = {
   Employer: {},
   EmployerNotApplicable: {},
   EmployerAddress: {},
-  HasAffiliations: '',
+  HasAffiliations: {},
   Affiliations: {},
   addressBooks: {},
   dispatch: (action) => {},

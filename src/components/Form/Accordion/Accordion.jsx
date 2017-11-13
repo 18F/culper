@@ -108,7 +108,7 @@ export default class Accordion extends ValidationElement {
     })
 
     if (dirty) {
-      this.update(items)
+      this.update(items, this.props.branch)
     }
   }
 
@@ -192,12 +192,10 @@ export default class Accordion extends ValidationElement {
    * Send the updated list of items back to the parent component.
    */
   update (items, branch) {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        branch: branch,
-        items: items
-      })
-    }
+    this.props.onUpdate({
+      branch: branch,
+      items: items
+    })
   }
 
   /**
@@ -233,7 +231,7 @@ export default class Accordion extends ValidationElement {
 
     const item = this.newItem()
     items = items.concat([item])
-    this.update(items, '')
+    this.update(items, { value: '' })
     this.setState({ initial: false, scrollToId: item.uuid })
   }
 
@@ -251,7 +249,7 @@ export default class Accordion extends ValidationElement {
         items.push(this.newItem())
       }
 
-      this.update(items, '')
+      this.update(items, { value: '' })
       this.setState({ initial: false, scrollToId: '' })
     }
   }
@@ -269,8 +267,8 @@ export default class Accordion extends ValidationElement {
   /**
    * Update the accordion addendum branch value.
    */
-  updateAddendum (value) {
-    if (value === 'Yes') {
+  updateAddendum (values) {
+    if (values.value === 'Yes') {
       this.add()
       return
     }
@@ -278,7 +276,7 @@ export default class Accordion extends ValidationElement {
     if (this.props.scrollToBottom) {
       scrollToBottom(this.props.scrollToBottom)
     }
-    this.update(this.props.items, value)
+    this.update(this.props.items, values)
   }
 
   /**
@@ -438,7 +436,7 @@ export default class Accordion extends ValidationElement {
               labelSize="h3"
               className={klassAppend}
               help={this.props.appendHelp}
-              value={this.props.branch}
+              value={(this.props.branch || {}).value}
               onUpdate={this.updateAddendum}
               onError={this.props.onError}
               required={this.props.required}
@@ -499,7 +497,7 @@ Accordion.defaultProps = {
   minimum: 1,
   defaultState: true,
   items: [],
-  branch: '',
+  branch: { value: '' },
   className: '',
   appendTitle: '',
   appendMessage: null,
@@ -518,7 +516,7 @@ Accordion.defaultProps = {
   sort: null,
   realtime: true,
   inject: (items) => { return items },
-  onUpdate: () => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   summary: (item, index, initial = false) => {
     return (
@@ -551,3 +549,5 @@ Accordion.defaultProps = {
     return callback()
   }
 }
+
+Accordion.defaultList = { items: [], branch: {} }

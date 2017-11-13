@@ -1,10 +1,9 @@
-import { validNotApplicable, validDateField, validGenericTextfield } from './helpers'
+import { validAccordion, validNotApplicable, validDateField, validGenericTextfield } from './helpers'
 
 export default class NonpaymentValidator {
   constructor (data = {}) {
-    this.hasNonpayment = data.HasNonpayment
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasNonpayment = (data.HasNonpayment || {}).value
+    this.list = data.List || {}
   }
 
   validHasNonpayment () {
@@ -24,21 +23,9 @@ export default class NonpaymentValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const row of this.list) {
-      if (new NonpaymentItemValidator(row.Item, null).isValid() === false) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new NonpaymentItemValidator(item).isValid()
+    })
   }
 
   isValid () {

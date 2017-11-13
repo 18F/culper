@@ -4,6 +4,12 @@
     "items": [
       {
         "Item": {
+          "Has": {
+            "type": "branch",
+            "props": {
+              "value": "Yes"
+            }
+          },
           "CourtName": {
             "type": "text",
             "props": {
@@ -34,6 +40,16 @@
                 }
               },
               "present": false
+            }
+          }
+        }
+      },
+      {
+        "Item": {
+          "Has": {
+            "type": "branch",
+            "props": {
+              "value": "No"
             }
           }
         }

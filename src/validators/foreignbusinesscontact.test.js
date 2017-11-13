@@ -183,11 +183,15 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           SubsequentContacts: {
-            List: [
-              {
-                Has: 'No'
-              }
-            ]
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' }
+                  }
+                }
+              ]
+            }
           }
         },
         expected: true
@@ -195,48 +199,60 @@ describe('Foreign business contact component validation', function () {
       {
         state: {
           SubsequentContacts: {
-            List: [
-              {
-                Has: 'Yes'
-              }
-            ]
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          SubsequentContacts: {
-            List: [
-              {
-                Has: 'Yes',
-                Explanation: {}
-              }
-            ]
-          }
-        },
-        expected: false
-      },
-      {
-        state: {
-          SubsequentContacts: {
-            List: [
-              {
-                Has: 'Yes',
-                Subsequent: {
-                  value: 'This is the subsequent purpose'
-                },
-                Recent: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Future: {
-                  value: 'This is the subsequent future meetings'
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' }
+                  }
                 }
-              }
-            ]
+              ]
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          SubsequentContacts: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Explanation: {}
+                  }
+                }
+              ]
+            }
+          }
+        },
+        expected: false
+      },
+      {
+        state: {
+          SubsequentContacts: {
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Subsequent: {
+                      value: 'This is the subsequent purpose'
+                    },
+                    Recent: {
+                      day: '1',
+                      month: '1',
+                      year: '2016',
+                      date: new Date('1/1/2016')
+                    },
+                    Future: {
+                      value: 'This is the subsequent future meetings'
+                    }
+                  }
+                }
+              ]
+            }
           }
         },
         expected: true
@@ -254,78 +270,82 @@ describe('Foreign business contact component validation', function () {
       },
       {
         state: {
-          HasForeignContact: 'No'
+          HasForeignContact: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignContact: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasForeignContact: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasForeignContact: 'Yes',
-          List: [{}],
-          ListBranch: 'No'
+          HasForeignContact: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasForeignContact: 'Yes',
-          List: [
-            {
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Location: {
-                  country: { value: 'United States' },
-                  city: 'Arlington',
-                  zipcode: '22202',
-                  state: 'VA',
-                  layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Governments: {
-                  value: [{ name: 'Germany', value: 'Germany' }]
-                },
-                Establishment: {
-                  value: 'this is the establishment'
-                },
-                Representatives: {
-                  value: 'this is the representatives'
-                },
-                Purpose: {
-                  value: 'this is the purpose'
-                },
-                SubsequentContacts: {
-                  List: [
-                    {
-                      Has: 'No'
+          HasForeignContact: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  Location: {
+                    country: { value: 'United States' },
+                    city: 'Arlington',
+                    zipcode: '22202',
+                    state: 'VA',
+                    layout: Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Governments: {
+                    value: [{ name: 'Germany', value: 'Germany' }]
+                  },
+                  Establishment: {
+                    value: 'this is the establishment'
+                  },
+                  Representatives: {
+                    value: 'this is the representatives'
+                  },
+                  Purpose: {
+                    value: 'this is the purpose'
+                  },
+                  SubsequentContacts: {
+                    List: {
+                      items: [{ Item: { Has: { value: 'No' } } }]
                     }
-                  ]
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

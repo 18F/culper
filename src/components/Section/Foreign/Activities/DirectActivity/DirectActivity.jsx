@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import schema from '../../../../../schema'
+import validate from '../../../../../validators'
 import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignDirectActivityValidator, ForeignDirectInterestValidator } from '../../../../../validators'
@@ -19,23 +21,20 @@ export default class DirectActivity extends SubsectionElement {
     this.props.onUpdate({
       HasInterests: this.props.HasInterests,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasInterests (values) {
     this.update({
       HasInterests: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -66,7 +65,7 @@ export default class DirectActivity extends SubsectionElement {
         <Branch name="has_interests"
                 label={i18n.t('foreign.activities.direct.heading.title')}
                 labelSize="h2"
-                value={this.props.HasInterests}
+                {...this.props.HasInterests}
                 help="foreign.activities.direct.help.directControl"
                 warning={true}
                 onError={this.handleError}
@@ -76,11 +75,10 @@ export default class DirectActivity extends SubsectionElement {
           {i18n.m('foreign.activities.direct.para.intro')}
         </Branch>
 
-        <Show when={this.props.HasInterests === 'Yes'}>
+        <Show when={this.props.HasInterests.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -106,9 +104,8 @@ export default class DirectActivity extends SubsectionElement {
 
 DirectActivity.defaultProps = {
   name: 'direct',
-  HasInterests: '',
-  List: [],
-  ListBranch: '',
+  HasInterests: {},
+  List: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -117,6 +114,6 @@ DirectActivity.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignDirectActivityValidator(state, props).isValid()
+    return validate(schema('foreign.activities.direct', props))
   }
 }

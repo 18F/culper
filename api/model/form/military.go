@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 type MilitarySelective struct {
@@ -22,12 +20,11 @@ type MilitarySelective struct {
 	Explanation        *Textarea `json:"-"`
 
 	// Persister specific fields
-	ID                   int
-	AccountID            int64
-	WasBornAfterID       int
-	HasRegisteredID      int
-	RegistrationNumberID int
-	ExplanationID        int
+	ID                   int `json:"-"`
+	WasBornAfterID       int `json:"-" pg:", fk:WasBornAfter"`
+	HasRegisteredID      int `json:"-" pg:", fk:HasRegistered"`
+	RegistrationNumberID int `json:"-" pg:", fk:RegistrationNumber"`
+	ExplanationID        int `json:"-" pg:", fk:Explanation"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -64,6 +61,23 @@ func (entity *MilitarySelective) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *MilitarySelective) Marshal() Payload {
+	if entity.WasBornAfter != nil {
+		entity.PayloadWasBornAfter = entity.WasBornAfter.Marshal()
+	}
+	if entity.HasRegistered != nil {
+		entity.PayloadHasRegistered = entity.HasRegistered.Marshal()
+	}
+	if entity.RegistrationNumber != nil {
+		entity.PayloadRegistrationNumber = entity.RegistrationNumber.Marshal()
+	}
+	if entity.Explanation != nil {
+		entity.PayloadExplanation = entity.Explanation.Marshal()
+	}
+	return MarshalPayloadEntity("military.selective", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *MilitarySelective) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -92,10 +106,25 @@ func (entity *MilitarySelective) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitarySelective) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitarySelective) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&MilitarySelective{ID: account}, func(result interface{}) {
+		previous := result.(*MilitarySelective)
+		entity.WasBornAfterID = previous.WasBornAfterID
+		entity.WasBornAfter.ID = previous.WasBornAfterID
+		entity.HasRegisteredID = previous.HasRegisteredID
+		entity.HasRegistered.ID = previous.HasRegisteredID
+		entity.RegistrationNumberID = previous.RegistrationNumberID
+		entity.RegistrationNumber.ID = previous.RegistrationNumberID
+		entity.ExplanationID = previous.ExplanationID
+		entity.Explanation.ID = previous.ExplanationID
+	})
+
 	wasBornAfterID, err := entity.WasBornAfter.Save(context, account)
 	if err != nil {
 		return wasBornAfterID, err
@@ -120,103 +149,111 @@ func (entity *MilitarySelective) Save(context *pg.DB, account int64) (int, error
 	}
 	entity.ExplanationID = explanationID
 
-	err = context.CreateTable(&MilitarySelective{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitarySelective) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitarySelective) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitarySelective{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.WasBornAfter.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.HasRegistered.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.RegistrationNumber.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.Explanation.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&MilitarySelective{ID: account}, func(result interface{}) {
+		previous := result.(*MilitarySelective)
+		entity.WasBornAfterID = previous.WasBornAfterID
+		entity.WasBornAfter.ID = previous.WasBornAfterID
+		entity.HasRegisteredID = previous.HasRegisteredID
+		entity.HasRegistered.ID = previous.HasRegisteredID
+		entity.RegistrationNumberID = previous.RegistrationNumberID
+		entity.RegistrationNumber.ID = previous.RegistrationNumberID
+		entity.ExplanationID = previous.ExplanationID
+		entity.Explanation.ID = previous.ExplanationID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.WasBornAfter.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.HasRegistered.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.RegistrationNumber.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Explanation.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitarySelective) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitarySelective) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitarySelective{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.WasBornAfterID != 0 {
+		entity.WasBornAfter = &Branch{ID: entity.WasBornAfterID}
 		if _, err := entity.WasBornAfter.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.HasRegisteredID != 0 {
+		entity.HasRegistered = &Branch{ID: entity.HasRegisteredID}
 		if _, err := entity.HasRegistered.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.RegistrationNumberID != 0 {
+		entity.RegistrationNumber = &Text{ID: entity.RegistrationNumberID}
 		if _, err := entity.RegistrationNumber.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ExplanationID != 0 {
+		entity.Explanation = &Textarea{ID: entity.ExplanationID}
 		if _, err := entity.Explanation.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *MilitarySelective) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitarySelective) SetID(id int) {
+	entity.ID = id
 }
 
 type MilitaryHistory struct {
@@ -228,10 +265,9 @@ type MilitaryHistory struct {
 	List      *Collection `json:"-"`
 
 	// Persister specific fields
-	ID          int
-	AccountID   int64
-	HasServedID int
-	ListID      int
+	ID          int `json:"-"`
+	HasServedID int `json:"-" pg:", fk:HasServed"`
+	ListID      int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -256,6 +292,17 @@ func (entity *MilitaryHistory) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *MilitaryHistory) Marshal() Payload {
+	if entity.HasServed != nil {
+		entity.PayloadHasServed = entity.HasServed.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("military.history", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *MilitaryHistory) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -274,10 +321,21 @@ func (entity *MilitaryHistory) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryHistory) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryHistory) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&MilitaryHistory{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryHistory)
+		entity.HasServedID = previous.HasServedID
+		entity.HasServed.ID = previous.HasServedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasServedID, err := entity.HasServed.Save(context, account)
 	if err != nil {
 		return hasServedID, err
@@ -290,83 +348,85 @@ func (entity *MilitaryHistory) Save(context *pg.DB, account int64) (int, error) 
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&MilitaryHistory{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryHistory) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryHistory) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitaryHistory{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasServed.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&MilitaryHistory{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryHistory)
+		entity.HasServedID = previous.HasServedID
+		entity.HasServed.ID = previous.HasServedID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasServed.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryHistory) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryHistory) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitaryHistory{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasServedID != 0 {
+		entity.HasServed = &Branch{ID: entity.HasServedID}
 		if _, err := entity.HasServed.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *MilitaryHistory) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitaryHistory) SetID(id int) {
+	entity.ID = id
 }
 
 type MilitaryDisciplinary struct {
@@ -378,10 +438,9 @@ type MilitaryDisciplinary struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	HasDisciplinaryID int
-	ListID            int
+	ID                int `json:"-"`
+	HasDisciplinaryID int `json:"-" pg:", fk:HasDisciplinary"`
+	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -406,6 +465,17 @@ func (entity *MilitaryDisciplinary) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *MilitaryDisciplinary) Marshal() Payload {
+	if entity.HasDisciplinary != nil {
+		entity.PayloadHasDisciplinary = entity.HasDisciplinary.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("military.disciplinary", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -424,10 +494,21 @@ func (entity *MilitaryDisciplinary) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryDisciplinary) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryDisciplinary) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&MilitaryDisciplinary{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryDisciplinary)
+		entity.HasDisciplinaryID = previous.HasDisciplinaryID
+		entity.HasDisciplinary.ID = previous.HasDisciplinaryID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasDisciplinaryID, err := entity.HasDisciplinary.Save(context, account)
 	if err != nil {
 		return hasDisciplinaryID, err
@@ -440,83 +521,85 @@ func (entity *MilitaryDisciplinary) Save(context *pg.DB, account int64) (int, er
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&MilitaryDisciplinary{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryDisciplinary) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryDisciplinary) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitaryDisciplinary{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasDisciplinary.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&MilitaryDisciplinary{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryDisciplinary)
+		entity.HasDisciplinaryID = previous.HasDisciplinaryID
+		entity.HasDisciplinary.ID = previous.HasDisciplinaryID
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasDisciplinary.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryDisciplinary) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryDisciplinary) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitaryDisciplinary{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasDisciplinaryID != 0 {
+		entity.HasDisciplinary = &Branch{ID: entity.HasDisciplinaryID}
 		if _, err := entity.HasDisciplinary.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *MilitaryDisciplinary) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitaryDisciplinary) SetID(id int) {
+	entity.ID = id
 }
 
 type MilitaryForeign struct {
@@ -526,9 +609,8 @@ type MilitaryForeign struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID     int `json:"-"`
+	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -547,6 +629,14 @@ func (entity *MilitaryForeign) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *MilitaryForeign) Marshal() Payload {
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("military.foreign", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *MilitaryForeign) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -559,81 +649,89 @@ func (entity *MilitaryForeign) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *MilitaryForeign) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryForeign) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&MilitaryForeign{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryForeign)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&MilitaryForeign{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *MilitaryForeign) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryForeign) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitaryForeign{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&MilitaryForeign{ID: account}, func(result interface{}) {
+		previous := result.(*MilitaryForeign)
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *MilitaryForeign) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *MilitaryForeign) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&MilitaryForeign{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *MilitaryForeign) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *MilitaryForeign) SetID(id int) {
+	entity.ID = id
 }

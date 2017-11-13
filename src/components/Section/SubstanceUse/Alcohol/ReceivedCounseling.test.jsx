@@ -12,7 +12,7 @@ describe('The ReceivedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      UseSameAddress: 'No'
+      UseSameAddress: { value: 'No' }
     }
     const component = mount(<ReceivedCounseling {...expected} />)
     component.find('.treatment-began-date .datecontrol .year input').first().simulate('change', { target: { value: '2010' } })
@@ -30,7 +30,7 @@ describe('The ReceivedCounseling component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      CompletedTreatment: 'No'
+      CompletedTreatment: { value: 'No' }
     }
     const component = mount(<ReceivedCounseling {...expected} />)
     component.find('textarea[name="NoCompletedTreatmentExplanation"]').simulate('change')

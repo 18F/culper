@@ -1,7 +1,0 @@
-export default const email = {
-  type: 'email',
-  props: {
-    name: '',
-    value: ''
-  }
-}

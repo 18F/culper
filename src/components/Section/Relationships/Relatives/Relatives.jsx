@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { RelativesValidator, RelativeValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -17,15 +19,13 @@ export default class Relatives extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -58,10 +58,9 @@ export default class Relatives extends SubsectionElement {
           {i18n.m('relationships.relatives.para.opportunity')}
         </Field>
 
-        <Accordion items={this.props.List}
+        <Accordion {...this.props.List}
                    defaultState={this.props.defaultState}
                    scrollToBottom={this.props.scrollToBottom}
-                   branch={this.props.ListBranch}
                    onUpdate={this.updateList}
                    onError={this.handleError}
                    summary={this.summary}
@@ -85,8 +84,7 @@ export default class Relatives extends SubsectionElement {
 }
 
 Relatives.defaultProps = {
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
@@ -94,7 +92,7 @@ Relatives.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new RelativesValidator(props).isValid()
+    return validate(schema('relationships.relatives', props))
   },
   defaultState: true,
   scrollToBottom: ''

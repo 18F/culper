@@ -1,6 +1,6 @@
 import { validSSN } from './helpers'
 
-export default class IdentificationBirthPlaceValidator {
+export default class IdentificationSSNValidator {
   constructor (data = {}) {
     this.ssn = data.ssn || {}
     this.verified = data.verified || false

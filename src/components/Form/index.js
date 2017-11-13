@@ -16,7 +16,7 @@ import DateControl from './DateControl'
 import Svg from './Svg'
 import Suggestions from './Suggestions'
 import NotApplicable from './NotApplicable'
-import Accordion from './Accordion'
+import Accordion, { AccordionItem } from './Accordion'
 import Field from './Field'
 
 // Composite components
@@ -35,7 +35,6 @@ import Weight from './Weight'
 import HairColor from './HairColor'
 import EyeColor from './EyeColor'
 import Sex from './Sex'
-import IntroHeader from './IntroHeader'
 import Introduction from './Introduction'
 import Consent from './Consent'
 import Branch from './Branch'
@@ -78,7 +77,6 @@ export {
   Sex,
   Introduction,
   Consent,
-  IntroHeader,
   Branch,
   Reference,
   Show,
@@ -87,6 +85,7 @@ export {
   Suggestions,
   NotApplicable,
   Accordion,
+  AccordionItem,
   Field,
   SSN,
   ForeignBornDocuments,

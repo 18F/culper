@@ -18,7 +18,7 @@ describe('The legal investigations debarred component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasDebarment: 'Yes'
+      HasDebarment: { value: 'Yes' }
     }
     const component = mount(<Debarred {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,20 +26,21 @@ describe('The legal investigations debarred component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasDebarment: 'Yes',
-      List: [
-        {
-          Item: {
-            Agency: {
-              value: 'U.S. Department of Defense'
-            },
-            Date: {
-              date: new Date('1/1/2010')
+      HasDebarment: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              Agency: {
+                value: 'U.S. Department of Defense'
+              },
+              Date: {
+                date: new Date('1/1/2010')
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<Debarred {...props} />)
     const text = component.find('.accordion .summary .left').text()

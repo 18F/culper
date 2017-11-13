@@ -1,9 +1,9 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield, BranchCollection } from './helpers'
+import { validAccordion, validGenericTextfield, BranchCollection } from './helpers'
 
 export default class ForeignBusinessConferencesValidator {
   constructor (data = {}) {
-    this.hasForeignConferences = data.HasForeignConferences
+    this.hasForeignConferences = (data.HasForeignConferences || {}).value
     this.list = data.List || []
     this.listBranch = data.ListBranch
   }
@@ -13,19 +13,9 @@ export default class ForeignBusinessConferencesValidator {
       return true
     }
 
-    if (this.hasForeignConferences === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new ConferencesValidator(item.Item, null).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new ConferencesValidator(item).isValid()
+    })
   }
 
   isValid () {

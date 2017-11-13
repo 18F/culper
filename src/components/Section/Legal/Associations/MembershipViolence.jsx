@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsViolenceValidator, ViolenceValidator } from '../../../../validators'
+import validate, { ViolenceValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import MembershipViolenceItem from './MembershipViolenceItem'
@@ -18,7 +19,6 @@ export default class MembershipViolence extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasViolence: this.props.HasViolence,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class MembershipViolence extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasViolence: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -60,7 +58,7 @@ export default class MembershipViolence extends SubsectionElement {
                 label={i18n.t('legal.associations.violence.heading.title')}
                 labelSize="h2"
                 className="legal-associations-violence-has-violence"
-                value={this.props.HasViolence}
+                {...this.props.HasViolence}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -68,11 +66,10 @@ export default class MembershipViolence extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasViolence === 'Yes'}>
+        <Show when={this.props.HasViolence.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -98,9 +95,8 @@ export default class MembershipViolence extends SubsectionElement {
 
 MembershipViolence.defaultProps = {
   name: 'violence',
-  HasViolence: '',
-  List: [],
-  ListBranch: '',
+  HasViolence: {},
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -109,7 +105,7 @@ MembershipViolence.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalAssociationsViolenceValidator(props).isValid()
+    return validate(schema('legal.associations.membership-violence-or-force', props))
   },
   scrollToBottom: ''
 }

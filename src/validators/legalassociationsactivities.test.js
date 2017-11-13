@@ -58,48 +58,54 @@ describe('Legal associations activities component validation', function () {
       },
       {
         state: {
-          HasActivities: 'No'
+          HasActivities: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasActivities: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasActivities: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasActivities: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasActivities: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasActivities: 'Yes',
-          List: [
-            {
-              Item: {
-                Reasons: {
-                  value: 'this is the reasons'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          HasActivities: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Reasons: {
+                    value: 'this is the reasons'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
-                  },
-                  present: false
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

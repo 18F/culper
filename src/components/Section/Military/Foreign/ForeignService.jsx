@@ -39,9 +39,9 @@ export default class ForeignService extends ValidationElement {
     })
   }
 
-  updateOrganization (event) {
+  updateOrganization (cb) {
     this.update({
-      Organization: event.target.value
+      Organization: cb
     })
   }
 
@@ -87,19 +87,17 @@ export default class ForeignService extends ValidationElement {
     })
   }
 
-  updateMaintainsContact (value, event) {
+  updateMaintainsContact (values) {
     // If there is no history clear out any previously entered data
     this.update({
-      MaintainsContact: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      MaintainsContact: values,
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -130,54 +128,54 @@ export default class ForeignService extends ValidationElement {
           <RadioGroup className="organization option-list"
                       onError={this.props.onError}
                       required={this.props.required}
-                      selectedValue={this.props.Organization}>
+                      selectedValue={(this.props.Organization || {}).value}>
             <Radio name="organization-military"
                    className="organization-military"
                    label={i18n.m('military.foreign.label.organization.military')}
                    value="Military"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-intelligence"
                    className="organization-intelligence"
                    label={i18n.m('military.foreign.label.organization.intelligence')}
                    value="Intelligence"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-diplomatic"
                    className="organization-diplomatic"
                    label={i18n.m('military.foreign.label.organization.diplomatic')}
                    value="Diplomatic"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-security"
                    className="organization-security"
                    label={i18n.m('military.foreign.label.organization.security')}
                    value="Security"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-militia"
                    className="organization-militia"
                    label={i18n.m('military.foreign.label.organization.militia')}
                    value="Militia"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-defense"
                    className="organization-defense"
                    label={i18n.m('military.foreign.label.organization.defense')}
                    value="Defense"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
             <Radio name="organization-other"
                    className="organization-other"
                    label={i18n.m('military.foreign.label.organization.other')}
                    value="Other"
-                   onChange={this.updateOrganization}
+                   onUpdate={this.updateOrganization}
                    onError={this.props.onError}
                    />
           </RadioGroup>
@@ -274,7 +272,7 @@ export default class ForeignService extends ValidationElement {
                 label={i18n.t('military.foreign.heading.maintainscontact')}
                 labelSize="h3"
                 className="maintainscontact"
-                value={this.props.MaintainsContact}
+                {...this.props.MaintainsContact}
                 help="military.foreign.help.maintainscontact"
                 onUpdate={this.updateMaintainsContact}
                 required={this.props.required}
@@ -282,7 +280,7 @@ export default class ForeignService extends ValidationElement {
                 onError={this.props.onError}>
         </Branch>
 
-        <Show when={this.props.MaintainsContact === 'Yes'}>
+        <Show when={this.props.MaintainsContact.value === 'Yes'}>
           <div>
             <Field title={i18n.t('military.foreign.heading.contact.details')}
                    titleSize="h2"
@@ -320,6 +318,7 @@ export default class ForeignService extends ValidationElement {
 }
 
 ForeignService.defaultProps = {
+  MaintainsContact: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

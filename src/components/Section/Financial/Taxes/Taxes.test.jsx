@@ -15,7 +15,7 @@ describe('The taxes component', () => {
   it('displays fields when "yes" is selected', () => {
     const expected = {
       name: 'taxes',
-      HasTaxes: 'Yes'
+      HasTaxes: { value: 'Yes' }
     }
     const component = mount(<Taxes {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -24,7 +24,7 @@ describe('The taxes component', () => {
   it('does not display any fields when "no" is selected', () => {
     const expected = {
       name: 'taxes',
-      HasTaxes: 'No'
+      HasTaxes: { value: 'No' }
     }
     const component = mount(<Taxes {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -34,12 +34,14 @@ describe('The taxes component', () => {
     let updates = 0
     const expected = {
       name: 'taxes',
+      HasTaxes: { value: 'Yes' },
+      List: { branch: { value: 'Yes' }, items: [{}] },
       onUpdate: (obj) => {
         updates++
       }
     }
     const component = mount(<Taxes {...expected} />)
-    component.find('.branch .yes input').simulate('change')
+    component.find('.branch .yes input').first().simulate('change')
     component.find('.failure-file input').simulate('change')
     component.find('.taxes-year input[type="text"]').simulate('change', { target: { value: '2000' } })
     component.find('.taxes-reason textarea').simulate('change', { target: { value: 'Reason for not filing' } })

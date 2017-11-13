@@ -3,7 +3,6 @@ package handlers
 import (
 	"errors"
 	"fmt"
-	"log"
 	"net/http"
 	"regexp"
 
@@ -17,8 +16,6 @@ var (
 )
 
 func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
-	log.Println("Checking Session Token")
-
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
@@ -33,8 +30,6 @@ func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
 }
 
 func JwtTokenRefresh(w http.ResponseWriter, r *http.Request) {
-	log.Println("Refreshing Session Token")
-
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 

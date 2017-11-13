@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { ForeignActivitiesSupportValidator, SupportValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
@@ -18,23 +20,20 @@ export default class Support extends SubsectionElement {
     this.props.onUpdate({
       HasForeignSupport: this.props.HasForeignSupport,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
-  updateHasForeignSupport (value) {
+  updateHasForeignSupport (values) {
     this.update({
-      HasForeignSupport: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignSupport: values,
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -57,7 +56,7 @@ export default class Support extends SubsectionElement {
         <Branch name="has_foreign_support"
                 label={i18n.t('foreign.activities.support.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignSupport}
+                {...this.props.HasForeignSupport}
                 warning={true}
                 onUpdate={this.updateHasForeignSupport}
                 onError={this.handleError}
@@ -65,10 +64,9 @@ export default class Support extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasForeignSupport === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignSupport.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={SupportValidator}
@@ -79,13 +77,13 @@ export default class Support extends SubsectionElement {
                      required={this.props.required}
                      scrollToBottom={this.props.scrollToBottom}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <SupportItem name="Item"
-                       bind={true}
-                       dispatch={this.props.dispatch}
-                       addressBooks={this.props.addressBooks}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <SupportItem name="Item"
+                         bind={true}
+                         dispatch={this.props.dispatch}
+                         addressBooks={this.props.addressBooks}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
+                         />
           </Accordion>
         </Show>
       </div>
@@ -95,9 +93,8 @@ export default class Support extends SubsectionElement {
 
 Support.defaultProps = {
   name: 'Support',
-  HasForeignSupport: '',
-  List: [],
-  ListBranch: '',
+  HasForeignSupport: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
@@ -105,7 +102,7 @@ Support.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignActivitiesSupportValidator(props, props).isValid()
+    return validate(schema('foreign.activities.support', props))
   },
   defaultState: true
 }

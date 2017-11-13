@@ -6,19 +6,19 @@ describe('CivilUnion validation', function () {
     const tests = [
       {
         state: {
-          Separated: 'No'
+          Separated: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Separated: 'Nope'
+          Separated: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          Separated: 'Yes',
+          Separated: { value: 'Yes' },
           AddressSeparatedNotApplicable: true,
           DateSeparated: {
             day: '1',
@@ -31,7 +31,7 @@ describe('CivilUnion validation', function () {
       },
       {
         state: {
-          Separated: 'Yes',
+          Separated: { value: 'Yes' },
           AddressSeparatedNotApplicable: false,
           AddressSeparated: {
             country: { value: 'United States' },
@@ -59,62 +59,78 @@ describe('CivilUnion validation', function () {
     const tests = [
       {
         state: {
-          OtherNames: []
+          OtherNames: {
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Yes',
-              Othername: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Othername: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  MaidenName: {
+                    value: 'No'
+                  },
+                  DatesUsed: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  }
+                }
               },
-              MaidenName: {
-                value: 'No'
-              },
-              DatesUsed: {
-                from: {
-                  date: new Date('1/1/2010')
-                },
-                to: {
-                  date: new Date('1/1/2016')
-                },
-                present: false
+              {
+                Item: {
+                  Has: { value: 'No' }
+                }
               }
-            },
-            {
-              Has: 'No'
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Nope'
-            }
-          ]
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Nope' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
-          OtherNames: [
-            {
-              Has: 'Yes'
-            }
-          ]
+          OtherNames: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' }
+                }
+              }
+            ]
+          }
         },
         expected: false
       }
@@ -251,8 +267,8 @@ describe('CivilUnion validation', function () {
             last: '1111',
             applicable: true
           },
-          Divorced: 'No',
-          Separated: 'No',
+          Divorced: { value: 'No' },
+          Separated: { value: 'No' },
           OtherNameNotApplicable: false,
           OtherName: {
             first: 'Foo',

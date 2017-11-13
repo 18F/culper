@@ -2,7 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
 import { Login, Help, Form } from './views'
-import { Router, Route, IndexRedirect } from 'react-router'
+import { Router, Switch, Route } from 'react-router'
 import { Provider } from 'react-redux'
 import { env } from './config'
 import store from './store'
@@ -15,14 +15,33 @@ smoothscroll.polyfill()
 
 const app = document.getElementById('app')
 
+class Main extends React.Component {
+  render () {
+    return this.props.children
+  }
+}
+
+class AppWithForm extends React.Component {
+  render () {
+    return (
+      <App {...this.props}>
+        <Form {...this.props} />
+      </App>
+    )
+  }
+}
+
 ReactDOM.render(
   <Provider store={store}>
     <Router history={env.History()}>
-      <Route path="/" component={App} onEnter={onEnter}>
-        <Route path="/help" component={Help} />
-        <Route path="/form(/:section(/:subsection(/**)))" component={Form} />
-      </Route>
-      <Route path="/login" component={Login} />
+      <Main>
+        <Switch>
+          <Route exact path="/" component={App} onEnter={onEnter} />
+          <Route exact path="/form/:section/:subsection*" component={AppWithForm} onEnter={onEnter} />
+          <Route exact path="/help" component={Help} />
+          <Route exact path="/login" component={Login} />
+        </Switch>
+      </Main>
     </Router>
   </Provider>
     , app)
@@ -35,6 +54,10 @@ function onEnter () {
   const token = api.getToken()
   if (token && token.length) {
     store.dispatch(handleLoginSuccess())
-    store.dispatch(handleTwoFactorSuccess())
+
+    const mfa = env.MultipleFactorAuthentication()
+    if (mfa.enabled) {
+      store.dispatch(handleTwoFactorSuccess())
+    }
   }
 }

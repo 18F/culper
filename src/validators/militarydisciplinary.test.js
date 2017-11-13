@@ -19,7 +19,7 @@ describe('Military disciplinary validation', function () {
         store: {
           Military: {
             History: {
-              HasServed: 'No'
+              HasServed: { value: 'No' }
             }
           }
         },
@@ -29,7 +29,7 @@ describe('Military disciplinary validation', function () {
         store: {
           Military: {
             History: {
-              HasServed: 'Yes'
+              HasServed: { value: 'Yes' }
             }
           }
         },
@@ -46,19 +46,19 @@ describe('Military disciplinary validation', function () {
     const tests = [
       {
         state: {
-          HasDisciplinary: ''
+          HasDisciplinary: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasDisciplinary: 'No'
+          HasDisciplinary: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasDisciplinary: 'Yes'
+          HasDisciplinary: { value: 'Yes' }
         },
         expected: true
       }
@@ -73,60 +73,66 @@ describe('Military disciplinary validation', function () {
     const tests = [
       {
         state: {
-          HasDisciplinary: 'Yes'
+          HasDisciplinary: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasDisciplinary: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasDisciplinary: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasDisciplinary: 'Yes',
-          List: [{}],
-          ListBranch: 'No'
+          HasDisciplinary: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasDisciplinary: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2012')
-                },
-                Offenses: {
-                  value: 'Littering'
-                },
-                Name: {
-                  value: 'Local law'
-                },
-                Court: {
-                  value: 'In the Congo'
-                },
-                Outcome: {
-                  value: 'Lost my right hand'
+          HasDisciplinary: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2012')
+                  },
+                  Offenses: {
+                    value: 'Littering'
+                  },
+                  Name: {
+                    value: 'Local law'
+                  },
+                  Court: {
+                    value: 'In the Congo'
+                  },
+                  Outcome: {
+                    value: 'Lost my right hand'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          HasDisciplinary: 'No'
+          HasDisciplinary: { value: 'No' }
         },
         expected: true
       }

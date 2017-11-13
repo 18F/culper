@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsOverthrowValidator, OverthrowValidator } from '../../../../validators'
+import validate, { OverthrowValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import MembershipOverthrowItem from './MembershipOverthrowItem'
@@ -18,7 +19,6 @@ export default class MembershipOverthrow extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasOverthrow: this.props.HasOverthrow,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class MembershipOverthrow extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasOverthrow: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -60,7 +58,7 @@ export default class MembershipOverthrow extends SubsectionElement {
                 label={i18n.t('legal.associations.overthrow.heading.title')}
                 labelSize="h2"
                 className="legal-associations-overthrow-has-overthrow"
-                value={this.props.HasOverthrow}
+                {...this.props.HasOverthrow}
                 warning={true}
                 onError={this.handleError}
                 validator={OverthrowValidator}
@@ -69,11 +67,10 @@ export default class MembershipOverthrow extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasOverthrow === 'Yes'}>
+        <Show when={this.props.HasOverthrow.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -98,9 +95,8 @@ export default class MembershipOverthrow extends SubsectionElement {
 
 MembershipOverthrow.defaultProps = {
   name: 'overthrow',
-  HasOverthrow: '',
-  List: [],
-  ListBranch: '',
+  HasOverthrow: {},
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -109,7 +105,7 @@ MembershipOverthrow.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new LegalAssociationsOverthrowValidator(props).isValid()
+    return validate(schema('legal.associations.membership-overthrow', props))
   },
   scrollToBottom: ''
 }

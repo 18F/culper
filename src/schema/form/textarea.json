@@ -1,7 +1,0 @@
-export default const textarea = {
-  type: 'textarea',
-  props: {
-    name: '',
-    value: ''
-  }
-}
