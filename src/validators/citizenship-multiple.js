@@ -1,11 +1,10 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class CitizenshipMultipleValidator {
   constructor (data = {}) {
-    this.hasMultiple = data.HasMultiple
-    this.citizenships = data.Citizenships || []
-    this.citizenshipsBranch = data.CitizenshipsBranch
+    this.hasMultiple = (data.HasMultiple || {}).value
+    this.list = data.Citizenships || {}
   }
 
   validHasMultiple () {
@@ -17,21 +16,9 @@ export default class CitizenshipMultipleValidator {
       return true
     }
 
-    if (this.citizenships.length === 0) {
-      return false
-    }
-
-    if (this.citizenshipsBranch !== 'No') {
-      return false
-    }
-
-    for (const citizenship of this.citizenships) {
-      if (new CitizenshipItemValidator(citizenship.Item).isValid() !== true) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new CitizenshipItemValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -45,9 +32,9 @@ export class CitizenshipItemValidator {
     this.country = data.Country
     this.dates = data.Dates
     this.how = data.How
-    this.renounced = data.Renounced
+    this.renounced = (data.Renounced || {}).value
     this.renouncedExplanation = data.RenouncedExplanation
-    this.current = data.Current
+    this.current = (data.Current || {}).value
     this.currentExplanation = data.CurrentExplanation
   }
 

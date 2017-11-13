@@ -1,4 +1,6 @@
 import React from 'react'
+import { env } from '../../../config'
+import { newGuid } from '../ValidationElement'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -9,6 +11,13 @@ import ZipCode from '../ZipCode'
 import Show from '../Show'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
+import { country } from './Location'
+
+const mappingWarning = (property) => {
+  if (!env.IsTest()) {
+    console.warn(`Could not map location property '${property}' in ToggleableLocation `)
+  }
+}
 
 export default class ToggleableLocation extends ValidationElement {
   constructor (props) {
@@ -97,93 +106,93 @@ export default class ToggleableLocation extends ValidationElement {
       switch (field) {
         case 'street':
           return (
-            <Street name="street"
-              className="mailing street"
-              key={key}
-              placeholder={this.props.streetPlaceholder}
-              value={this.props.street}
-              onChange={this.updateStreet}
-              onError={this.onError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-            />
+          <Street name="street"
+                  className="mailing street"
+                  key={key}
+                  placeholder={this.props.streetPlaceholder}
+                  value={this.props.street}
+                  onChange={this.updateStreet}
+                  onError={this.onError}
+                  onFocus={this.props.onFocus}
+                  onBlur={this.props.onBlur}
+                  required={this.props.required}
+                  />
           )
         case 'city':
           return (
-            <City name="city"
-              className="city"
-              key={key}
-              label={this.props.cityLabel}
-              placeholder={this.props.cityPlaceholder}
-              value={this.props.city}
-              onChange={this.updateCity}
-              onError={this.onError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-            />
+          <City name="city"
+                className="city"
+                key={key}
+                label={this.props.cityLabel}
+                placeholder={this.props.cityPlaceholder}
+                value={this.props.city}
+                onChange={this.updateCity}
+                onError={this.onError}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                required={this.props.required}
+                />
           )
         case 'county':
           return (
-            <County name="county"
-              key={key}
-              label={this.props.countyLabel}
-              value={this.props.county}
-              className="county"
-              placeholder={this.props.countyPlaceholder}
-              maxlength="255"
-              onChange={this.updateCounty}
-              onError={this.onError}
-              onBlur={this.props.onBlur}
-              onFocus={this.props.onFocus}
-              required={this.props.required}
-            />
+          <County name="county"
+                  key={key}
+                  label={this.props.countyLabel}
+                  value={this.props.county}
+                  className="county"
+                  placeholder={this.props.countyPlaceholder}
+                  maxlength="255"
+                  onChange={this.updateCounty}
+                  onError={this.onError}
+                  onBlur={this.props.onBlur}
+                  onFocus={this.props.onFocus}
+                  required={this.props.required}
+                  />
           )
         case 'state':
           return (
-            <MilitaryState name="state"
-              key={key}
-              className="state"
-              label={this.props.stateLabel}
-              placeholder={this.props.statePlaceholder}
-              value={this.props.state}
-              includeStates="true"
-              onChange={this.updateState}
-              onError={this.onError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-            />
+          <MilitaryState name="state"
+                         key={key}
+                         className="state"
+                         label={this.props.stateLabel}
+                         placeholder={this.props.statePlaceholder}
+                         value={this.props.state}
+                         includeStates="true"
+                         onChange={this.updateState}
+                         onError={this.onError}
+                         onFocus={this.props.onFocus}
+                         onBlur={this.props.onBlur}
+                         required={this.props.required}
+                         />
           )
         case 'stateZipcode':
           return (
-            <div className="state-zip-wrap">
-              <MilitaryState name="state"
-                className="state"
-                label={this.props.stateLabel}
-                placeholder={this.props.statePlaceholder}
-                value={this.props.state}
-                includeStates="true"
-                onChange={this.updateState}
-                onError={this.onError}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                required={this.props.required}
-              />
-              <ZipCode name="zipcode"
-                key="us_zipcode"
-                className="zipcode"
-                label={this.props.zipcodeLabel}
-                placeholder={this.props.zipcodePlaceholder}
-                value={this.props.zipcode}
-                onChange={this.updateZipcode}
-                onError={this.onError}
-                onFocus={this.props.onFocus}
-                onBlur={this.props.onBlur}
-                required={this.props.required}
-              />
-            </div>
+          <div className="state-zip-wrap" key={key}>
+            <MilitaryState name="state"
+                           className="state"
+                           label={this.props.stateLabel}
+                           placeholder={this.props.statePlaceholder}
+                           value={this.props.state}
+                           includeStates="true"
+                           onChange={this.updateState}
+                           onError={this.onError}
+                           onFocus={this.props.onFocus}
+                           onBlur={this.props.onBlur}
+                           required={this.props.required}
+                           />
+            <ZipCode name="zipcode"
+                     key="us_zipcode"
+                     className="zipcode"
+                     label={this.props.zipcodeLabel}
+                     placeholder={this.props.zipcodePlaceholder}
+                     value={this.props.zipcode}
+                     onChange={this.updateZipcode}
+                     onError={this.onError}
+                     onFocus={this.props.onFocus}
+                     onBlur={this.props.onBlur}
+                     required={this.props.required}
+                     />
+          </div>
           )
       }
     })
@@ -193,38 +202,39 @@ export default class ToggleableLocation extends ValidationElement {
       switch (field) {
         case 'city':
           return (
-            <City name="city"
-              key={key}
-              label={this.props.cityLabel}
-              placeholder={this.props.cityPlaceholder}
-              value={this.props.city}
-              onChange={this.updateCity}
-              onError={this.onError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-            />
+          <City name="city"
+                key={key}
+                label={this.props.cityLabel}
+                placeholder={this.props.cityPlaceholder}
+                value={this.props.city}
+                onChange={this.updateCity}
+                onError={this.onError}
+                onFocus={this.props.onFocus}
+                onBlur={this.props.onBlur}
+                required={this.props.required}
+                />
           )
         case 'country':
           return (
-            <Country name="country"
-              key={key}
-              label={this.props.countryLabel}
-              {...this.props.country}
-              className="country"
-              placeholder={this.props.countryPlaceholder}
-              excludeUnitedStates="true"
-              disabled={this.props.disabledCountry}
-              onUpdate={this.updateCountry}
-              onError={this.onError}
-              onFocus={this.props.onFocus}
-              onBlur={this.props.onBlur}
-              required={this.props.required}
-            />
+          <Country name="country"
+                   key={key}
+                   label={this.props.countryLabel}
+                   {...this.props.country}
+                   className="country"
+                   placeholder={this.props.countryPlaceholder}
+                   excludeUnitedStates="true"
+                   disabled={this.props.disabledCountry}
+                   onUpdate={this.updateCountry}
+                   onError={this.onError}
+                   onFocus={this.props.onFocus}
+                   onBlur={this.props.onBlur}
+                   required={this.props.required}
+                   />
           )
       }
     })
 
+    const countryName = country(this.props.country)
     return (
       <div className="toggleable-location">
         <RadioGroup
@@ -253,10 +263,10 @@ export default class ToggleableLocation extends ValidationElement {
                  />
         </RadioGroup>
 
-        <Show when={this.props.country !== null && this.props.country.value === 'United States'}>
+        <Show when={countryName !== null && countryName === 'United States'}>
           {domesticFields}
         </Show>
-        <Show when={this.props.country !== null && this.props.country.value !== null && this.props.country.value !== 'United States'}>
+        <Show when={countryName !== null && countryName !== 'United States'}>
           {internationalFields}
         </Show>
       </div>
@@ -298,18 +308,19 @@ export default class ToggleableLocation extends ValidationElement {
   }
 }
 
-const branchValue = (country) => {
-  if (country === null || country.value === null) {
+const branchValue = (value) => {
+  const countryName = country(value)
+  if (countryName === null) {
     // Neutral state
     return ''
   }
 
-  switch (country.value) {
+  switch (countryName) {
     case 'United States':
       return 'Yes'
     default:
-      // For all other cases, country is an empty string (user intends to select country) or
-      // user has selected a country
+    // For all other cases, country is an empty string (user intends to select country) or
+    // user has selected a country
       return 'No'
   }
 }
@@ -349,6 +360,7 @@ ToggleableLocation.errors = [
                   valid = valid && !!props.country && !!props.country.value
                   break
                 default:
+                  mappingWarning(f)
                   valid = false
               }
             }
@@ -363,6 +375,7 @@ ToggleableLocation.errors = [
                   valid = valid && !!props.country && !!props.country.value
                   break
                 default:
+                  mappingWarning(f)
                   valid = false
               }
             }

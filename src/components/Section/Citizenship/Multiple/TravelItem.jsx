@@ -35,7 +35,7 @@ export default class TravelItem extends ValidationElement {
     return (
       <div className="citizenship-item">
         <Field title={i18n.t('citizenship.multiple.heading.travel.country')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    className="travel-item-country"
                    {...this.props.Country}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { env } from '../config'
 import { api } from '../services/api'
 import { push } from '../middleware/history'
 
@@ -10,7 +11,7 @@ import { push } from '../middleware/history'
  *
  * Note that we wrap with connect to include access to dispatcher.
  */
-function AuthenticatedView (WrappedComponent) {
+const AuthenticatedView = (WrappedComponent) => {
   return connect(mapStateToProps)(class RequiresAuth extends React.Component {
     componentWillReceiveProps (nextProps) {
       this.checkAuthentication()
@@ -21,13 +22,17 @@ function AuthenticatedView (WrappedComponent) {
     }
 
     checkAuthentication () {
-      if (!api.getToken() || !this.props.authenticated || !this.props.twofactor) {
+      const token = api.getToken()
+      const mfa = this.props.mfa || env.MultipleFactorAuthentication()
+      if (!token || !this.props.authenticated || !(mfa.enabled ? this.props.twofactor : true)) {
         this.props.dispatch(push('/login'))
       }
     }
 
     render () {
-      if (api.getToken() && this.props.authenticated && this.props.twofactor) {
+      const token = api.getToken()
+      const mfa = this.props.mfa || env.MultipleFactorAuthentication()
+      if (token && this.props.authenticated && (mfa.enabled ? this.props.twofactor : true)) {
         return (<WrappedComponent {...this.props} />)
       }
       return null

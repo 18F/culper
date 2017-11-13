@@ -27,10 +27,10 @@ func PublicURI() string {
 
 // DatabaseURI is the URI used to establish the database connection
 func DatabaseURI(label string) string {
-	current, err := cfenv.Current()
-	if err != nil {
-		log.Printf("Error retrieving the current Cloud Foundry environment: %v", err)
-	}
+	current, _ := cfenv.Current()
+	// if err != nil {
+	// 	log.Println("Cloud Foundry environment not found")
+	// }
 	return getDatabase(current, label)
 }
 
@@ -75,7 +75,7 @@ func getDatabase(current *cfenv.App, label string) string {
 		services, err := current.Services.WithLabel(label)
 		if err == nil {
 			for _, s := range services {
-				log.Println(s.Credentials["uri"].(string))
+				// log.Println(s.Credentials["uri"].(string))
 				return s.Credentials["uri"].(string)
 			}
 		}
@@ -128,7 +128,7 @@ func getDatabase(current *cfenv.App, label string) string {
 // TwofactorDisabled returns a boolean indicating whether the system allows for
 // multiple factor authentication.
 func TwofactorDisabled() bool {
-	if os.Getenv("DISABLE_2FA") == "" {
+	if UserService("DISABLE", "2FA") == "" {
 		return false
 	}
 	return true
@@ -137,7 +137,24 @@ func TwofactorDisabled() bool {
 // TwofactorResettable returns a boolean indicating whether the system allows
 // for an account to reset the multiple factor authentication assigned to it.
 func TwofactorResettable() bool {
-	if os.Getenv("ALLOW_2FA_RESET") == "" {
+	if UserService("ALLOW", "2FA_RESET") == "" {
+		return false
+	}
+	return true
+}
+
+// IsTest returns if the environment is in a test environment
+func IsTest() bool {
+	e := UserService("GOLANG", "ENV")
+	if e == "test" || e == "development" {
+		return true
+	}
+	return false
+}
+
+// FlushStorage returns whether the data should be flushed per use.
+func FlushStorage() bool {
+	if UserService("FLUSH", "STORAGE") == "" {
 		return false
 	}
 	return true

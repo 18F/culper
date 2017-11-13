@@ -6,7 +6,7 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          DidNotFollow: 'Yes',
+          DidNotFollow: { value: 'Yes' },
           DidNotFollowExplanation: {
             value: 'Stuff'
           }
@@ -15,19 +15,19 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          DidNotFollow: 'No'
+          DidNotFollow: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          DidNotFollow: 'Nope'
+          DidNotFollow: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          DidNotFollow: 'Yes',
+          DidNotFollow: { value: 'Yes' },
           DidNotFollowExplanation: {
             value: null
           }
@@ -44,76 +44,78 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          ReceivedTreatment: 'Yes',
-          TreatmentList: [
-            {
-              Item: {
-                Condition: 'Test',
-                Effective: 'Yes',
-                Explanation: {
-                  value: null
-                },
-                Diagnosed: {
-                  from: {
-                    date: new Date('1/1/2010')
+          ReceivedTreatment: { value: 'Yes' },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Condition: 'Test',
+                  Effective: { value: 'Yes' },
+                  Explanation: {
+                    value: null
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Diagnosed: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                Treatment: {
-                  Name: {
-                    value: 'Circuit Court'
+                  Treatment: {
+                    Name: {
+                      value: 'Circuit Court'
+                    },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Phone: {
+                      noNumber: '',
+                      number: '7031112222',
+                      numberType: 'Home',
+                      type: 'Domestic',
+                      timeOfDay: 'Both',
+                      extension: ''
+                    }
                   },
-                  Address: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'Virginia',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
-                  },
-                  Phone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    type: 'Domestic',
-                    timeOfDay: 'Both',
-                    extension: ''
-                  }
-                },
-                TreatmentFacility: {
-                  Name: {
-                    value: 'Circuit Court'
-                  },
-                  Address: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'Virginia',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
-                  },
-                  Phone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    type: 'Domestic',
-                    timeOfDay: 'Both',
-                    extension: ''
+                  TreatmentFacility: {
+                    Name: {
+                      value: 'Circuit Court'
+                    },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Phone: {
+                      noNumber: '',
+                      number: '7031112222',
+                      numberType: 'Home',
+                      type: 'Domestic',
+                      timeOfDay: 'Both',
+                      extension: ''
+                    }
                   }
                 }
               }
-            }
-          ],
-          TreatmentListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          ReceivedTreatment: 'No',
+          ReceivedTreatment: { value: 'No' },
           Explanation: {
             value: 'Testing'
           }
@@ -122,35 +124,39 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          ReceivedTreatment: 'Yes'
+          ReceivedTreatment: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          ReceivedTreatment: 'Yes',
-          TreatmentList: [{Treatment: {}}],
-          TreatmentListBranch: 'No'
+          ReceivedTreatment: { value: 'Yes' },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: [{Treatment: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          ReceivedTreatment: 'Yes',
-          TreatmentList: [],
-          TreatmentListBranch: 'No'
+          ReceivedTreatment: { value: 'Yes' },
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          ReceivedTreatment: 'Decline'
+          ReceivedTreatment: { value: 'Decline' }
         },
         expected: true
       },
       {
         state: {
-          ReceivedTreatment: 'Nope'
+          ReceivedTreatment: { value: 'Nope' }
         },
         expected: false
       }
@@ -164,84 +170,86 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          HasCondition: 'Yes',
-          ReceivedTreatment: 'Yes',
-          DidNotFollow: 'No',
+          HasCondition: { value: 'Yes' },
+          ReceivedTreatment: { value: 'Yes' },
+          DidNotFollow: { value: 'No' },
           DidNotFollowExplanation: {
             value: 'Stuff'
           },
           Explanation: null,
-          TreatmentList: [
-            {
-              Item: {
-                Condition: {
-                  value: 'Test'
-                },
-                Effective: 'Yes',
-                Explanation: {
-                  value: null
-                },
-                Diagnosed: {
-                  from: {
-                    date: new Date('1/1/2010')
+          TreatmentList: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Condition: {
+                    value: 'Test'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Effective: { value: 'Yes' },
+                  Explanation: {
+                    value: null
                   },
-                  present: false
-                },
-                Treatment: {
-                  Name: {
-                    value: 'Circuit Court'
+                  Diagnosed: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  Address: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'Virginia',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
+                  Treatment: {
+                    Name: {
+                      value: 'Circuit Court'
+                    },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Phone: {
+                      noNumber: '',
+                      number: '7031112222',
+                      numberType: 'Home',
+                      type: 'Domestic',
+                      timeOfDay: 'Both',
+                      extension: ''
+                    }
                   },
-                  Phone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    type: 'Domestic',
-                    timeOfDay: 'Both',
-                    extension: ''
-                  }
-                },
-                TreatmentFacility: {
-                  Name: {
-                    value: 'Circuit Court'
-                  },
-                  Address: {
-                    country: { value: 'United States' },
-                    street: '1234 Some Rd',
-                    city: 'Arlington',
-                    state: 'Virginia',
-                    zipcode: '22202',
-                    layout: Location.ADDRESS
-                  },
-                  Phone: {
-                    noNumber: '',
-                    number: '7031112222',
-                    numberType: 'Home',
-                    type: 'Domestic',
-                    timeOfDay: 'Both',
-                    extension: ''
+                  TreatmentFacility: {
+                    Name: {
+                      value: 'Circuit Court'
+                    },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Phone: {
+                      noNumber: '',
+                      number: '7031112222',
+                      numberType: 'Home',
+                      type: 'Domestic',
+                      timeOfDay: 'Both',
+                      extension: ''
+                    }
                   }
                 }
               }
-            }
-          ],
-          TreatmentListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          HasCondition: 'No'
+          HasCondition: { value: 'No' }
         },
         expected: true
       }

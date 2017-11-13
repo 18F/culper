@@ -75,49 +75,59 @@ describe('CoOwner validation', function () {
     const tests = [
       {
         props: {
-          List: []
+          List: {
+            items: []
+          }
         },
         expected: false
       },
       {
         props: {
-          List: [{ Has: 'No' }]
+          List: {
+            items: [{ Item: { Has: { value: 'No' } } }]
+          }
         },
         expected: true
       },
       {
         props: {
-          List: [
-            {
-              Has: 'Yes',
-              CoOwner: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Countries: {
-                  value: ['Germany']
-                },
-                RelationshipNature: {
-                  value: 'Some stuff'
+          List: {
+            items: [
+              {
+                Item: {
+                  Has: {
+                    value: 'Yes'
+                  },
+                  CoOwner: {
+                    Name: {
+                      first: 'Foo',
+                      firstInitialOnly: false,
+                      middle: 'J',
+                      middleInitialOnly: true,
+                      noMiddleName: false,
+                      last: 'Bar',
+                      lastInitialOnly: false,
+                      suffix: 'Jr'
+                    },
+                    Address: {
+                      country: { value: 'United States' },
+                      street: '1234 Some Rd',
+                      city: 'Arlington',
+                      state: 'Virginia',
+                      zipcode: '22202',
+                      layout: Location.ADDRESS
+                    },
+                    Countries: {
+                      value: ['Germany']
+                    },
+                    RelationshipNature: {
+                      value: 'Some stuff'
+                    }
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

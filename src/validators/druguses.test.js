@@ -5,73 +5,81 @@ describe('Drug Use Validation', function () {
     const tests = [
       {
         state: {
-          UsedDrugs: 'Nope'
+          UsedDrugs: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'No'
+          UsedDrugs: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          List: [],
-          ListBranch: ''
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          List: [{DrugUse: {}}],
-          ListBranch: 'Nope'
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          List: [{DrugUse: {}}],
-          ListBranch: 'No'
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null
-                },
-                FirstUse: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                RecentUse: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                NatureOfUse: {
-                  value: 'Some use'
-                },
-                UseWhileEmployed: 'Yes',
-                UseWithClearance: 'Yes',
-                UseInFuture: 'No',
-                Explanation: {
-                  value: 'Foo'
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  DrugType: {
+                    DrugType: 'Cocaine',
+                    DrugTypeOther: null
+                  },
+                  FirstUse: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  RecentUse: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  NatureOfUse: {
+                    value: 'Some use'
+                  },
+                  UseWhileEmployed: { value: 'Yes' },
+                  UseWithClearance: { value: 'Yes' },
+                  UseInFuture: { value: 'No' },
+                  Explanation: {
+                    value: 'Foo'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

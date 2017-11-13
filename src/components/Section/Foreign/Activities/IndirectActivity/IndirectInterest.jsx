@@ -46,8 +46,8 @@ export default class IndirectInterest extends ValidationElement {
     })
   }
 
-  updateInterestTypes (event) {
-    let interestType = event.target.value
+  updateInterestTypes (values) {
+    let interestType = values.value
     let selected = [...(this.props.InterestTypes || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
@@ -102,9 +102,9 @@ export default class IndirectInterest extends ValidationElement {
     })
   }
 
-  updateCostEstimated (cb) {
+  updateCostEstimated (values) {
     this.update({
-      CostEstimated: cb.checked
+      CostEstimated: values
     })
   }
 
@@ -114,9 +114,9 @@ export default class IndirectInterest extends ValidationElement {
     })
   }
 
-  updateValueEstimated (cb) {
+  updateValueEstimated (values) {
     this.update({
-      ValueEstimated: cb.checked
+      ValueEstimated: values
     })
   }
 
@@ -149,47 +149,47 @@ export default class IndirectInterest extends ValidationElement {
     return (
       <div className="interest">
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.interestTypes`)}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
 
           <p>{i18n.t(`foreign.activities.indirect.interest.para.checkAll`)}</p>
           <CheckboxGroup className="interest-types option-list"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={this.props.InterestTypes}>
+                         selectedValues={(this.props.InterestTypes || {}).value}>
             <Checkbox name="interest-type"
                       label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.yourself`)}
                       value="Yourself"
                       className="yourself"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.spouse`)}
                       value="Spouse"
                       className="spouse"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.cohabitant`)}
                       value="Cohabitant"
                       className="cohabitant"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m(`foreign.activities.indirect.interest.label.interestTypes.dependentChildren`)}
                       value="DependentChildren"
                       className="dependent-children"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
           </CheckboxGroup>
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.interestType`)}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="InterestType"
                 className="interest-type"
                 {...this.props.InterestType}
@@ -200,7 +200,7 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.name`)}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Firstname"
                 label={i18n.t(`foreign.activities.indirect.interest.label.firstname`)}
                 {...this.props.Firstname}
@@ -218,8 +218,8 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.relationship`)}
-          help={`foreign.activities.indirect.interest.help.relationship`}
-          scrollIntoView={this.props.scrollIntoView}>
+               help={`foreign.activities.indirect.interest.help.relationship`}
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Relationship"
                     {...this.props.Relationship}
                     onUpdate={this.updateRelationship}
@@ -229,8 +229,8 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.acquired`)}
-          adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Acquired"
                        className="acquired"
                        {...this.props.Acquired}
@@ -242,8 +242,8 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.cost`)}
-          help={`foreign.activities.indirect.interest.help.cost`}
-          scrollIntoView={this.props.scrollIntoView}>
+               help={`foreign.activities.indirect.interest.help.cost`}
+               scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Cost"
                     className="cost"
                     {...this.props.Cost}
@@ -256,7 +256,7 @@ export default class IndirectInterest extends ValidationElement {
             <Checkbox name="CostEstimated"
                       label={i18n.t('foreign.activities.indirect.interest.label.costEstimated')}
                       toggle="false"
-                      checked={this.props.CostEstimated}
+                      {...this.props.CostEstimated}
                       onUpdate={this.updateCostEstimated}
                       onError={this.props.onError}
                       />
@@ -264,8 +264,8 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.howAcquired`)}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           <p>{i18n.t(`foreign.activities.indirect.interest.para.howAcquired`)}</p>
           <Textarea name="HowAcquired"
                     className="how-acquired"
@@ -277,8 +277,8 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.value`)}
-          help={`foreign.activities.indirect.interest.help.value`}
-          scrollIntoView={this.props.scrollIntoView}>
+               help={`foreign.activities.indirect.interest.help.value`}
+               scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
@@ -291,7 +291,7 @@ export default class IndirectInterest extends ValidationElement {
             <Checkbox name="ValueEstimated"
                       label={i18n.t('foreign.activities.indirect.interest.label.valueEstimated')}
                       toggle="false"
-                      checked={this.props.ValueEstimated}
+                      {...this.props.ValueEstimated}
                       onUpdate={this.updateValueEstimated}
                       onError={this.props.onError}
                       />
@@ -322,8 +322,8 @@ export default class IndirectInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`foreign.activities.indirect.interest.heading.explanation`)}
-          help={`foreign.activities.indirect.interest.help.explanation`}
-          scrollIntoView={this.props.scrollIntoView}>
+               help={`foreign.activities.indirect.interest.help.explanation`}
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Explanation"
                     className="explanation"
                     {...this.props.Explanation}

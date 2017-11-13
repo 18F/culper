@@ -1,9 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
-import { IdentificationOtherNamesValidator, OtherNameValidator } from '../../../../validators'
+import validate, { OtherNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, Accordion, MaidenName, Name, Textarea, DateRange, Branch, Show } from '../../../Form'
+import { Field, Accordion, Textarea, DateRange, Branch, Show } from '../../../Form'
+import OtherNameItem from './OtherNameItem'
 
 export default class OtherNames extends SubsectionElement {
   constructor (props) {
@@ -22,16 +24,18 @@ export default class OtherNames extends SubsectionElement {
     })
   }
 
-  updateBranch (value) {
+  updateBranch (values) {
     this.update({
-      HasOtherNames: value,
-      List: value === 'Yes' ? this.props.List : []
+      HasOtherNames: values,
+      List: values.value === 'Yes' ? this.props.List : { items: [] }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items
+      List: {
+        items: values.items
+      }
     })
   }
 
@@ -65,15 +69,15 @@ export default class OtherNames extends SubsectionElement {
         <Branch name="has_othernames"
                 label={i18n.t('identification.othernames.branch.question')}
                 labelSize="h3"
-                value={this.props.HasOtherNames}
+                {...this.props.HasOtherNames}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.props.HasOtherNames === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasOtherNames.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -82,49 +86,11 @@ export default class OtherNames extends SubsectionElement {
                      summary={this.summary}
                      description={i18n.t('identification.othernames.collection.summary.title')}
                      appendLabel={i18n.t('identification.othernames.collection.append')}>
-
-            <Field title={i18n.t('identification.othernames.heading.name')}
-                   optional={true}
-                   scrollIntoView={this.props.scrollIntoView}>
-              <Name name="Name"
-                    key="name"
-                    bind={true}
-                    required={this.props.required}
-                    scrollIntoView={this.props.scrollIntoView}
-                    />
-            </Field>
-
-            <Field title={i18n.t('identification.othernames.heading.maiden')}
-                   help="alias.maiden.help"
-                   adjustFor="buttons"
-                   scrollIntoView={this.props.scrollIntoView}
-                   shrink={true}>
-              <MaidenName name="MaidenName"
-                          bind={true}
-                          required={this.props.required}
-                          />
-            </Field>
-
-            <Field title={i18n.t('identification.othernames.heading.used')}
-                   help="alias.used.help"
-                   adjustFor="daterange"
-                   scrollIntoView={this.props.scrollIntoView}
-                   shrink={true}>
-              <DateRange name="DatesUsed"
-                         bind={true}
-                         required={this.props.required}
-                         />
-            </Field>
-
-            <Field title={i18n.t('identification.othernames.heading.reason')}
-                   scrollIntoView={this.props.scrollIntoView}
-                   help="alias.reason.help">
-              <Textarea name="Reason"
-                        className="reason"
-                        bind={true}
-                        required={this.props.required}
-                        />
-            </Field>
+                     <OtherNameItem name="Item"
+                       required={this.props.required}
+                       scrollIntoView={this.props.scrollIntoView}
+                       bind={true}
+                     />
           </Accordion>
         </Show>
       </div>
@@ -133,15 +99,17 @@ export default class OtherNames extends SubsectionElement {
 }
 
 OtherNames.defaultProps = {
-  List: [],
-  HasOtherNames: '',
+  List: {
+    items: []
+  },
+  HasOtherNames: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'othernames',
   dispatch: () => {},
   validator: (state, props) => {
-    return new IdentificationOtherNamesValidator(props, props).isValid()
+    return validate(schema('identification.othernames', props))
   },
   defaultState: true,
   required: false

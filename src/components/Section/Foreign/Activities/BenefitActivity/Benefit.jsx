@@ -34,8 +34,8 @@ export default class Benefit extends ValidationElement {
     })
   }
 
-  updateInterestTypes (event) {
-    let interestType = event.target.value
+  updateInterestTypes (values) {
+    let interestType = values.value
     let selected = [...(this.props.InterestTypes || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
@@ -48,9 +48,9 @@ export default class Benefit extends ValidationElement {
     })
   }
 
-  updateBenefitType (cb) {
+  updateBenefitType (values) {
     this.update({
-      BenefitType: cb.target.value
+      BenefitType: values
     })
   }
 
@@ -60,9 +60,9 @@ export default class Benefit extends ValidationElement {
     })
   }
 
-  updateBenefitFrequency (cb) {
+  updateBenefitFrequency (values) {
     this.update({
-      BenefitFrequency: cb.target.value
+      BenefitFrequency: values
     })
   }
 
@@ -94,79 +94,79 @@ export default class Benefit extends ValidationElement {
     return (
       <div className="benefit">
         <Field title={i18n.t('foreign.activities.benefit.heading.interestTypes')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
 
           <p>{i18n.t('foreign.activities.benefit.para.checkAll')}</p>
           <CheckboxGroup className="interest-types"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={this.props.InterestTypes}>
+                         selectedValues={(this.props.InterestTypes || {}).value}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.benefit.label.interestTypes.yourself')}
                       value="Yourself"
                       className="yourself"
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       onError={this.props.onError}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.benefit.label.interestTypes.spouse')}
                       value="Spouse"
                       className="spouse"
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       onError={this.props.onError}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.benefit.label.interestTypes.cohabitant')}
                       value="Cohabitant"
                       className="cohabitant"
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       onError={this.props.onError}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.benefit.label.interestTypes.dependentChildren')}
                       value="DependentChildren"
                       className="dependent-children"
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       onError={this.props.onError}
                       />
           </CheckboxGroup>
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitType')}
-          adjustFor="big-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
-               <RadioGroup className="benefit-types"
-                 onError={this.props.onError}
-                 required={this.props.required}
-                 selectedValue={this.props.BenefitType}>
+               adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup className="benefit-types"
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      selectedValue={(this.props.BenefitType || {}).value}>
             <Radio name="benefit_type"
                    label={i18n.m('foreign.activities.benefit.label.benefitTypes.educational')}
                    value="Educational"
-                   onChange={this.updateBenefitType}
+                   onUpdate={this.updateBenefitType}
                    onError={this.props.onError}
                    />
             <Radio name="benefit_type"
                    label={i18n.m('foreign.activities.benefit.label.benefitTypes.medical')}
                    value="Medical"
-                   onChange={this.updateBenefitType}
+                   onUpdate={this.updateBenefitType}
                    onError={this.props.onError}
                    />
             <Radio name="benefit_type"
                    label={i18n.m('foreign.activities.benefit.label.benefitTypes.retirement')}
                    value="Retirement"
-                   onChange={this.updateBenefitType}
+                   onUpdate={this.updateBenefitType}
                    onError={this.props.onError}
                    />
             <Radio name="benefit_type"
                    label={i18n.m('foreign.activities.benefit.label.benefitTypes.other')}
                    value="Other"
                    className="benefit-other"
-                   onChange={this.updateBenefitType}
+                   onUpdate={this.updateBenefitType}
                    onError={this.props.onError}
                    />
           </RadioGroup>
-          <Show when={this.props.BenefitType === 'Other'}>
+          <Show when={(this.props.BenefitType || {}).value === 'Other'}>
             <div>
               {i18n.m('foreign.activities.benefit.label.otherBenefitType')}
               <Textarea name="OtherBenefitType"
@@ -180,38 +180,38 @@ export default class Benefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.heading.benefitFrequency')}
-          adjustFor="big-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
-               <RadioGroup className="benefit-frequency"
-                 onError={this.props.onError}
-                 required={this.props.required}
-                 selectedValue={this.props.BenefitFrequency}>
+               adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}>
+          <RadioGroup className="benefit-frequency"
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      selectedValue={(this.props.BenefitFrequency || {}).value}>
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.label.benefitFrequency.oneTime')}
                    value="OneTime"
-                   onChange={this.updateBenefitFrequency}
+                   onUpdate={this.updateBenefitFrequency}
                    onError={this.props.onError}
                    />
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.label.benefitFrequency.future')}
                    value="Future"
-                   onChange={this.updateBenefitFrequency}
+                   onUpdate={this.updateBenefitFrequency}
                    onError={this.props.onError}
                    />
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.label.benefitFrequency.continuing')}
                    value="Continuing"
-                   onChange={this.updateBenefitFrequency}
+                   onUpdate={this.updateBenefitFrequency}
                    onError={this.props.onError}
                    />
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.label.benefitFrequency.other')}
                    value="Other"
-                   onChange={this.updateBenefitFrequency}
+                   onUpdate={this.updateBenefitFrequency}
                    onError={this.props.onError}
                    />
           </RadioGroup>
-          <Show when={this.props.BenefitFrequency === 'Other'}>
+          <Show when={(this.props.BenefitFrequency || {}).value === 'Other'}>
             <div>
               {i18n.m('foreign.activities.benefit.label.otherBenefit')}
               <Textarea name="OtherBenefit"
@@ -224,7 +224,7 @@ export default class Benefit extends ValidationElement {
           </Show>
         </Field>
 
-        <Show when={this.props.BenefitFrequency === 'OneTime'}>
+        <Show when={(this.props.BenefitFrequency || {}).value === 'OneTime'}>
           <OneTimeBenefit name="OneTimeBenefit"
                           {...this.props.OneTimeBenefit}
                           onUpdate={this.updateOneTimeBenefit}
@@ -234,7 +234,7 @@ export default class Benefit extends ValidationElement {
                           />
         </Show>
 
-        <Show when={this.props.BenefitFrequency === 'Future'}>
+        <Show when={(this.props.BenefitFrequency || {}).value === 'Future'}>
           <FutureBenefit name="FutureBenefit"
                          {...this.props.FutureBenefit}
                          onUpdate={this.updateFutureBenefit}
@@ -244,7 +244,7 @@ export default class Benefit extends ValidationElement {
                          />
         </Show>
 
-        <Show when={this.props.BenefitFrequency === 'Continuing'}>
+        <Show when={(this.props.BenefitFrequency || {}).value === 'Continuing'}>
           <ContinuingBenefit name="ContinuingBenefit"
                              {...this.props.ContinuingBenefit}
                              onUpdate={this.updateContinuingBenefit}
@@ -259,9 +259,9 @@ export default class Benefit extends ValidationElement {
 }
 
 Benefit.defaultProps = {
-  InterestTypes: [],
-  BenefitType: '',
-  BenefitFrequency: '',
+  InterestTypes: {},
+  BenefitType: {},
+  BenefitFrequency: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

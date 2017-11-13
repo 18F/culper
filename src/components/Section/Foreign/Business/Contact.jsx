@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator, ContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -27,8 +29,8 @@ export default class Contact extends SubsectionElement {
   updateHasForeignContact (values) {
     this.update({
       HasForeignContact: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -64,7 +66,7 @@ export default class Contact extends SubsectionElement {
                 label={i18n.t('foreign.business.contact.heading.title')}
                 labelSize="h2"
                 help="foreign.business.contact.help.branch"
-                value={this.props.HasForeignContact}
+                {...this.props.HasForeignContact}
                 warning={true}
                 onUpdate={this.updateHasForeignContact}
                 required={this.props.required}
@@ -73,7 +75,7 @@ export default class Contact extends SubsectionElement {
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignContact === 'Yes'}>
+        <Show when={this.props.HasForeignContact.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -102,7 +104,7 @@ export default class Contact extends SubsectionElement {
 
 Contact.defaultProps = {
   name: 'Contact',
-  HasForeignContact: '',
+  HasForeignContact: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},
@@ -112,7 +114,7 @@ Contact.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessContactValidator(props).isValid()
+    return validate(schema('foreign.business.contact', props))
   },
   defaultState: true,
   scrollToBottom: ''

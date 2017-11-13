@@ -20,27 +20,29 @@ describe('The DrugPublicSafetyUses component', () => {
   it('Performs updates to accordion', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const list = [
-      {
-        DrugPublicSafetyUse: {
-          InvolvementDates: {
-            from: {
-              date: new Date('1/1/2010')
+    const list = {
+      items: [
+        {
+          DrugPublicSafetyUse: {
+            InvolvementDates: {
+              from: {
+                date: new Date('1/1/2010')
+              },
+              to: {
+                date: new Date('1/1/2012')
+              }
             },
-            to: {
-              date: new Date('1/1/2012')
+            Description: {
+              value: 'Foo'
+            },
+            EstimatedUse: {
+              value: 'Foo'
             }
-          },
-          Description: {
-            value: 'Foo'
-          },
-          EstimatedUse: {
-            value: 'Foo'
           }
         }
-      }
-    ]
-    const component = mount(<DrugPublicSafetyUses onUpdate={onUpdate} UsedDrugs={'Yes'} List={list} />)
+      ]
+    }
+    const component = mount(<DrugPublicSafetyUses onUpdate={onUpdate} UsedDrugs={{ value: 'Yes' }} List={list} />)
     expect(component.find('.drug-public-safety-uses').length).toBe(1)
     component.find('.description textarea').first().simulate('change')
     expect(updates).toBe(2)

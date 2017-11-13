@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessSponsorshipValidator, SponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -26,8 +28,8 @@ export default class Sponsorship extends SubsectionElement {
   updateHasForeignSponsorship (values) {
     this.update({
       HasForeignSponsorship: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -59,7 +61,7 @@ export default class Sponsorship extends SubsectionElement {
                 label={i18n.t('foreign.business.sponsorship.heading.title')}
                 labelSize="h2"
                 help="foreign.business.sponsorship.help.branch"
-                value={this.props.HasForeignSponsorship}
+                {...this.props.HasForeignSponsorship}
                 warning={true}
                 onUpdate={this.updateHasForeignSponsorship}
                 required={this.props.required}
@@ -67,7 +69,7 @@ export default class Sponsorship extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasForeignSponsorship === 'Yes'}>
+        <Show when={this.props.HasForeignSponsorship.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -95,7 +97,7 @@ export default class Sponsorship extends SubsectionElement {
 
 Sponsorship.defaultProps = {
   name: 'Sponsorship',
-  HasForeignSponsorship: '',
+  HasForeignSponsorship: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},
@@ -105,7 +107,7 @@ Sponsorship.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessSponsorshipValidator(props).isValid()
+    return validate(schema('foreign.business.sponsorship', props))
   },
   defaultState: true,
   scrollToBottom: ''

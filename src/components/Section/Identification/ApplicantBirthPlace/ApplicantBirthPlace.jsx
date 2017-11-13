@@ -1,10 +1,30 @@
 import React from 'react'
-import { IdentificationBirthPlaceValidator } from '../../../../validators'
+import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Location, Field } from '../../../Form'
-import { i18n } from '../../../../config'
 
 export default class ApplicantBirthPlace extends SubsectionElement {
+  constructor (props) {
+    super(props)
+    this.update = this.update.bind(this)
+    this.updateLocation = this.updateLocation.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      location: this.props.location,
+      ...queue
+    })
+  }
+
+  updateLocation (values) {
+    this.update({
+      location: values
+    })
+  }
+
   render () {
     const klass = `applicant-birthplace ${this.props.className || ''}`.trim()
 
@@ -25,8 +45,8 @@ export default class ApplicantBirthPlace extends SubsectionElement {
                     countyPlaceholder={i18n.t('identification.birthplace.placeholder.county')}
                     countryLabel={i18n.t('identification.birthplace.label.country')}
                     countryPlaceholder={i18n.t('identification.birthplace.placeholder.country')}
-                    {...this.props.value}
-                    onUpdate={this.props.onUpdate}
+                    {...this.props.location}
+                    onUpdate={this.updateLocation}
                     onError={this.handleError}
                     required={this.props.required}
                     />
@@ -37,13 +57,14 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 }
 
 ApplicantBirthPlace.defaultProps = {
-  value: {},
+  location: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'birthplace',
   dispatch: () => {},
   validator: (state, props) => {
-    return new IdentificationBirthPlaceValidator(props).isValid()
+    return validate(schema('identification.birthplace', props))
   }
 }
 

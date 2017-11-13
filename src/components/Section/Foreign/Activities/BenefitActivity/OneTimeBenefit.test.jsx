@@ -27,7 +27,7 @@ describe('The OneTimeBenefit component', () => {
   it('Performs an obligatedExplanation update', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const obligated = 'Yes'
+    const obligated = { value: 'Yes' }
     const component = mount(<OneTimeBenefit onUpdate={onUpdate} Obligated={obligated} />)
     expect(component.find('.onetime-benefit').length).toBe(1)
     component.find('.explanation textarea[name="Explanation"]').simulate('change')

@@ -7,7 +7,7 @@ export default class DiagnosisValidator {
     this.condition = state.Condition || ''
     this.diagnosed = state.Diagnosed || {}
     this.treatment = state.Treatment || {}
-    this.effective = state.Effective || {}
+    this.effective = (state.Effective || {}).value
     this.treatmentFacility = state.TreatmentFacility || {}
     this.explanation = state.Explanation || {}
     this.prefix = (props || {}).prefix

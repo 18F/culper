@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { AlcoholNegativeImpactsValidator, NegativeImpactValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { AlcoholNegativeImpactsValidator, NegativeImpactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import NegativeImpact from './NegativeImpact'
@@ -20,7 +21,6 @@ export default class NegativeImpacts extends SubsectionElement {
       this.props.onUpdate({
         HasImpacts: this.props.HasImpacts,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -28,16 +28,14 @@ export default class NegativeImpacts extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasImpacts (values) {
     this.update({
       HasImpacts: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -61,7 +59,7 @@ export default class NegativeImpacts extends SubsectionElement {
                 label={i18n.t('substance.alcohol.heading.negativeImpact')}
                 labelSize="h2"
                 className="has-impacts"
-                value={this.props.HasImpacts}
+                {...this.props.HasImpacts}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -69,11 +67,10 @@ export default class NegativeImpacts extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasImpacts === 'Yes'}>
+        <Show when={this.props.HasImpacts.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -92,14 +89,14 @@ export default class NegativeImpacts extends SubsectionElement {
 }
 
 NegativeImpacts.defaultProps = {
-  List: [],
-  ListBranch: '',
+  HasImpacts: {},
+  List: Accordion.defaultList,
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/negative',
   dispatch: () => {},
   validator: (state, props) => {
-    return new AlcoholNegativeImpactsValidator(props).isValid()
+    return validate(schema('substance.alcohol.negative', props))
   },
   scrollToBottom: ''
 }

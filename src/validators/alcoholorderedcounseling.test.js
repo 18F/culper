@@ -6,7 +6,7 @@ describe('ordered counseling component validation', function () {
     const tests = [
       {
         state: {
-          ActionTaken: 'No',
+          ActionTaken: { value: 'No' },
           NoActionTakenExplanation: {
             value: 'Foo'
           }
@@ -15,7 +15,7 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          ActionTaken: 'Nope'
+          ActionTaken: { value: 'Nope' }
         },
         expected: false
       },
@@ -25,7 +25,7 @@ describe('ordered counseling component validation', function () {
           OtherSeeker: {
             value: 'Other'
           },
-          ActionTaken: 'Yes',
+          ActionTaken: { value: 'Yes' },
           CounselingDates: {
             from: {
               date: new Date('1/1/2010')
@@ -54,7 +54,7 @@ describe('ordered counseling component validation', function () {
             type: 'Domestic',
             extension: ''
           },
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         },
         expected: true
       }
@@ -68,13 +68,13 @@ describe('ordered counseling component validation', function () {
     const tests = [
       {
         state: {
-          CompletedTreatment: 'Yes'
+          CompletedTreatment: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          CompletedTreatment: 'No',
+          CompletedTreatment: { value: 'No' },
           NoCompletedTreatmentExplanation: {
             value: 'Foo'
           }
@@ -83,7 +83,7 @@ describe('ordered counseling component validation', function () {
       },
       {
         state: {
-          CompletedTreatment: 'Nope'
+          CompletedTreatment: { value: 'Nope' }
         },
         expected: false
       }
@@ -97,72 +97,82 @@ describe('ordered counseling component validation', function () {
     const tests = [
       {
         state: {
-          ListBranch: 'No',
-          HasBeenOrdered: 'Yes',
-          List: [
-            {
-              Item: {
-                ActionTaken: 'Yes',
-                CounselingDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          HasBeenOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  ActionTaken: { value: 'Yes' },
+                  CounselingDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  TreatmentProviderName: {
+                    value: 'The name'
                   },
-                  present: false
-                },
-                TreatmentProviderName: {
-                  value: 'The name'
-                },
-                TreatmentProviderAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                TreatmentProviderTelephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  type: 'Domestic',
-                  extension: ''
-                },
-                CompletedTreatment: 'Yes'
+                  TreatmentProviderAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  TreatmentProviderTelephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    type: 'Domestic',
+                    extension: ''
+                  },
+                  CompletedTreatment: { value: 'Yes' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          HasBeenOrdered: 'No'
+          HasBeenOrdered: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasBeenOrdered: 'Yes',
-          List: []
+          HasBeenOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasBeenOrdered: 'Yes',
-          List: [{}]
+          HasBeenOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasBeenOrdered: 'Yes',
-          ListBranch: 'No',
-          List: [{Item: {}}]
+          HasBeenOrdered: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       }

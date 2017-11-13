@@ -19,7 +19,7 @@ describe('The ForeignBornDocuments component', () => {
   it('renders and updates', () => {
     let updates = 0
     const props = {
-      DocumentType: 'Other',
+      DocumentType: { value: 'Other' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<ForeignBornDocuments {...props} />)

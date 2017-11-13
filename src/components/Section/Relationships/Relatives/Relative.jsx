@@ -86,9 +86,9 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateRelation (event) {
+  updateRelation (values) {
     this.update({
-      Relation: event.target.value
+      Relation: values
     })
   }
 
@@ -146,9 +146,9 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateCitizenshipDocumentation (event) {
+  updateCitizenshipDocumentation (values) {
     this.update({
-      CitizenshipDocumentation: event.target.value
+      CitizenshipDocumentation: values
     })
   }
 
@@ -176,9 +176,9 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateDocument (event) {
+  updateDocument (values) {
     this.update({
-      Document: event.target.value
+      Document: values
     })
   }
 
@@ -212,8 +212,8 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateMethods (event) {
-    let method = event.target.value
+  updateMethods (values) {
+    let method = values.value
     let selected = [...(this.props.Methods || [])]
 
     if (selected.includes(method)) {
@@ -225,7 +225,7 @@ export default class Relative extends ValidationElement {
     }
 
     this.update({
-      Methods: selected
+      Methods: { value: selected }
     })
   }
 
@@ -235,9 +235,9 @@ export default class Relative extends ValidationElement {
     })
   }
 
-  updateFrequency (event) {
+  updateFrequency (values) {
     this.update({
-      Frequency: event.target.value
+      Frequency: values
     })
   }
 
@@ -291,8 +291,8 @@ export default class Relative extends ValidationElement {
 
   render () {
     const validator = new RelativeValidator(this.props, null)
-    const mother = this.props.Relation === 'Mother'
-    const immediateFamily = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes(this.props.Relation)
+    const mother = (this.props.Relation || {}).value === 'Mother'
+    const immediateFamily = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather'].includes((this.props.Relation || {}).value)
 
     return (
       <div className="relative-item">
@@ -302,124 +302,124 @@ export default class Relative extends ValidationElement {
           <RadioGroup className="relative-relation option-list"
                       required={this.props.required}
                       onError={this.props.onError}
-                      selectedValue={this.props.Relation}>
+                      selectedValue={this.props.Relation.value}>
             <Radio name="relation-mother"
                    label={i18n.m('relationships.relatives.label.relation.mother')}
                    value="Mother"
                    className="relation-mother"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-father"
                    label={i18n.m('relationships.relatives.label.relation.father')}
                    value="Father"
                    className="relation-father"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-stepmother"
                    label={i18n.m('relationships.relatives.label.relation.stepmother')}
                    value="Stepmother"
                    className="relation-stepmother"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-stepfather"
                    label={i18n.m('relationships.relatives.label.relation.stepfather')}
                    value="Stepfather"
                    className="relation-stepfather"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-fosterparent"
                    label={i18n.m('relationships.relatives.label.relation.fosterparent')}
                    value="Fosterparent"
                    className="relation-fosterparent"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-child"
                    label={i18n.m('relationships.relatives.label.relation.child')}
                    value="Child"
                    className="relation-child"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-stepchild"
                    label={i18n.m('relationships.relatives.label.relation.stepchild')}
                    value="Stepchild"
                    className="relation-stepchild"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-brother"
                    label={i18n.m('relationships.relatives.label.relation.brother')}
                    value="Brother"
                    className="relation-brother"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-sister"
                    label={i18n.m('relationships.relatives.label.relation.sister')}
                    value="Sister"
                    className="relation-sister"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-stepbrother"
                    label={i18n.m('relationships.relatives.label.relation.stepbrother')}
                    value="Stepbrother"
                    className="relation-stepbrother"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-stepsister"
                    label={i18n.m('relationships.relatives.label.relation.stepsister')}
                    value="Stepsister"
                    className="relation-stepsister"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-halfbrother"
                    label={i18n.m('relationships.relatives.label.relation.halfbrother')}
                    value="Half-brother"
                    className="relation-halfbrother"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-halfsister"
                    label={i18n.m('relationships.relatives.label.relation.halfsister')}
                    value="Half-sister"
                    className="relation-halfsister"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-fatherinlaw"
                    label={i18n.m('relationships.relatives.label.relation.fatherinlaw')}
                    value="Father-in-law"
                    className="relation-fatherinlaw"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-montherinlaw"
                    label={i18n.m('relationships.relatives.label.relation.montherinlaw')}
                    value="Monther-in-law"
                    className="relation-montherinlaw"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
             <Radio name="relation-guardian"
                    label={i18n.m('relationships.relatives.label.relation.guardian')}
                    value="Guardian"
                    className="relation-guardian"
                    onError={this.props.onError}
-                   onChange={this.updateRelation}
+                   onUpdate={this.updateRelation}
                    />
           </RadioGroup>
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.name')}
-               optional={true}
+          optional={true}
           scrollIntoView={this.props.scrollIntoView}>
             <Name name="Name"
                   className="relative-name"
@@ -482,7 +482,7 @@ export default class Relative extends ValidationElement {
                     label={i18n.t('relationships.relatives.heading.maiden')}
                     labelSize="h3"
                     className="eapp-field-wrap relative-maiden-diff"
-                    value={this.props.MaidenSameAsListed}
+                    {...this.props.MaidenSameAsListed}
                     yesLabel={i18n.t('relationships.relatives.label.maiden.same')}
                     noLabel={i18n.t('relationships.relatives.label.maiden.diff')}
                     onUpdate={this.updateMaidenSameAsListed}
@@ -490,7 +490,7 @@ export default class Relative extends ValidationElement {
                     scrollIntoView={this.props.scrollIntoView}
                     onError={this.props.onError}>
             </Branch>
-            <Show when={this.props.MaidenSameAsListed === 'No'}>
+            <Show when={this.props.MaidenSameAsListed.value === 'No'}>
               <Field optional={true}
                      scrollIntoView={this.props.scrollIntoView}>
                 <Name name="MaidenName"
@@ -501,13 +501,13 @@ export default class Relative extends ValidationElement {
                       required={this.props.required}
                       scrollIntoView={this.props.scrollIntoView}
                       />
-                </Field>
+              </Field>
             </Show>
           </div>
         </Show>
 
         <Show when={immediateFamily}>
-          <BranchCollection items={this.props.Aliases}
+          <BranchCollection {...(this.props.Aliases || {})}
                             branchName="has_alias"
                             label={i18n.t('relationships.relatives.heading.alias.branch')}
                             appendLabel={i18n.t('relationships.relatives.heading.alias.branch')}
@@ -524,11 +524,11 @@ export default class Relative extends ValidationElement {
                 <Svg src="/img/date-down-arrow.svg" className="more arrow" />
               </Field>
               <Alias name="Item"
-                      onError={this.props.onError}
-                      hideMaiden={mother}
-                      required={this.props.required}
-                      scrollIntoView={this.props.scrollIntoView}
-                      bind={true} />
+                     onError={this.props.onError}
+                     hideMaiden={mother}
+                     required={this.props.required}
+                     scrollIntoView={this.props.scrollIntoView}
+                     bind={true} />
             </div>
           </BranchCollection>
         </Show>
@@ -537,13 +537,13 @@ export default class Relative extends ValidationElement {
                 label={i18n.t('relationships.relatives.heading.deceased.branch')}
                 labelSize="h3"
                 className="relative-deceased"
-                value={this.props.IsDeceased}
+                {...this.props.IsDeceased}
                 onUpdate={this.updateIsDeceased}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.props.onError}>
         </Branch>
-        <Show when={this.props.IsDeceased === 'No'}>
+        <Show when={this.props.IsDeceased.value === 'No'}>
           <Field title={i18n.t('relationships.relatives.heading.deceased.address')}
                  optional={true}
                  help="relationships.relatives.help.address"
@@ -578,20 +578,20 @@ export default class Relative extends ValidationElement {
               <RadioGroup className="relative-abroad option-list"
                           required={this.props.required}
                           onError={this.props.onError}
-                          selectedValue={this.props.CitizenshipDocumentation}>
+                          selectedValue={(this.props.CitizenshipDocumentation || {}).value}>
                 <Radio name="abroad-fs"
                        label={i18n.m('relationships.relatives.label.abroad.fs')}
                        value="FS"
                        className="abroad-fs"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
                 <Radio name="abroad-ds"
                        label={i18n.m('relationships.relatives.label.abroad.ds')}
                        value="DS"
                        className="abroad-ds"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
               </RadioGroup>
 
@@ -599,27 +599,27 @@ export default class Relative extends ValidationElement {
               <RadioGroup className="relative-naturalized option-list"
                           required={this.props.required}
                           onError={this.props.onError}
-                          selectedValue={this.props.CitizenshipDocumentation}>
+                          selectedValue={(this.props.CitizenshipDocumentation || {}).value}>
                 <Radio name="naturalized-alien"
                        label={i18n.m('relationships.relatives.label.naturalized.alien')}
                        value="NaturalizedAlien"
                        className="naturalized-alien"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
                 <Radio name="naturalized-permanent"
                        label={i18n.m('relationships.relatives.label.naturalized.permanent')}
                        value="NaturalizedPermanent"
                        className="naturalized-permanent"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
                 <Radio name="naturalized-certificate"
                        label={i18n.m('relationships.relatives.label.naturalized.certificate')}
                        value="NaturalizedCertificate"
                        className="naturalized-certificate"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
               </RadioGroup>
 
@@ -627,37 +627,37 @@ export default class Relative extends ValidationElement {
               <RadioGroup className="relative-derived option-list"
                           required={this.props.required}
                           onError={this.props.onError}
-                          selectedValue={this.props.CitizenshipDocumentation}>
+                          selectedValue={(this.props.CitizenshipDocumentation || {}).value}>
                 <Radio name="derived-alien"
                        label={i18n.m('relationships.relatives.label.derived.alien')}
                        value="DerivedAlien"
                        className="derived-alien"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
                 <Radio name="derived-permanent"
                        label={i18n.m('relationships.relatives.label.derived.permanent')}
                        value="DerivedPermanent"
                        className="derived-permanent"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
                 <Radio name="derived-certificate"
                        label={i18n.m('relationships.relatives.label.derived.certificate')}
                        value="DerivedCertificate"
                        className="derived-certificate"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
                 <Radio name="derived-other"
                        label={i18n.m('relationships.relatives.label.derived.other')}
                        value="Other"
                        className="derived-other"
                        onError={this.props.onError}
-                       onChange={this.updateCitizenshipDocumentation}
+                       onUpdate={this.updateCitizenshipDocumentation}
                        />
               </RadioGroup>
-              <Show when={this.props.CitizenshipDocumentation === 'Other'}>
+              <Show when={(this.props.CitizenshipDocumentation || {}).value === 'Other'}>
                 <Textarea name="OtherCitizenshipDocumentation"
                           className="derived-other-explanation"
                           {...this.props.OtherCitizenshipDocumentation}
@@ -711,7 +711,7 @@ export default class Relative extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={((this.props.Citizenship || {}).value || []).length && !validator.citizen() && this.props.IsDeceased === 'No'}>
+        <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased.value === 'No'}>
           <div>
             <Show when={this.props.Address && (this.props.Address.country || {}).value === 'United States'}>
               <div>
@@ -724,59 +724,59 @@ export default class Relative extends ValidationElement {
                     <RadioGroup className="relative-document option-list"
                                 required={this.props.required}
                                 onError={this.props.onError}
-                                selectedValue={this.props.Document}>
+                                selectedValue={(this.props.Document || {}).value}>
                       <Radio name="document-permanent"
                              label={i18n.m('relationships.relatives.label.document.permanent')}
                              value="Permanent"
                              className="document-permanent"
                              onError={this.props.onError}
-                             onChange={this.updateDocument}
+                             onUpdate={this.updateDocument}
                              />
                       <Radio name="document-employment"
                              label={i18n.m('relationships.relatives.label.document.employment')}
                              value="Employment"
                              className="document-employment"
                              onError={this.props.onError}
-                             onChange={this.updateDocument}
+                             onUpdate={this.updateDocument}
                              />
                       <Radio name="document-arrival"
                              label={i18n.m('relationships.relatives.label.document.arrival')}
                              value="Arrival"
                              className="document-arrival"
                              onError={this.props.onError}
-                             onChange={this.updateDocument}
+                             onUpdate={this.updateDocument}
                              />
                       <Radio name="document-visa"
                              label={i18n.m('relationships.relatives.label.document.visa')}
                              value="Visa"
                              className="document-visa"
                              onError={this.props.onError}
-                             onChange={this.updateDocument}
+                             onUpdate={this.updateDocument}
                              />
                       <Radio name="document-f1"
                              label={i18n.m('relationships.relatives.label.document.f1')}
                              value="F1"
                              className="document-f1"
                              onError={this.props.onError}
-                             onChange={this.updateDocument}
+                             onUpdate={this.updateDocument}
                              />
                       <Radio name="document-j1"
                              label={i18n.m('relationships.relatives.label.document.j1')}
                              value="J1"
                              className="document-j1"
                              onError={this.props.onError}
-                             onChange={this.updateDocument}
+                             onUpdate={this.updateDocument}
                              />
                       <Radio name="document-other"
                              label={i18n.m('relationships.relatives.label.document.other')}
                              value="Other"
                              className="document-other"
                              onError={this.props.onError}
-                             onChange={this.updateDocument}
+                             onUpdate={this.updateDocument}
                              />
                     </RadioGroup>
 
-                    <Show when={this.props.Document === 'Other'}>
+                    <Show when={(this.props.Document || {}).value === 'Other'}>
                       <Textarea name="OtherDocument"
                                 className="relative-other-documentnumber"
                                 {...this.props.OtherDocument}
@@ -789,7 +789,7 @@ export default class Relative extends ValidationElement {
                 </Field>
 
                 <Field title={i18n.t('relationships.relatives.heading.address.number')}
-                  scrollIntoView={this.props.scrollIntoView}>
+                       scrollIntoView={this.props.scrollIntoView}>
                   <Text name="ResidenceDocumentNumber"
                         className="relative-residence-documentnumber"
                         {...this.props.ResidenceDocumentNumber}
@@ -849,7 +849,7 @@ export default class Relative extends ValidationElement {
                        comments={true}
                        commentsName="MethodsComments"
                        commentsValue={this.props.MethodsComments}
-                       commentsActive={(this.props.Methods || []).some(x => x === 'Other')}
+                       commentsActive={((this.props.Methods || {}).value || []).some(x => x === 'Other')}
                        onUpdate={this.updateMethodsComments}
                        onError={this.props.onError}
                        adjustFor="big-buttons"
@@ -859,41 +859,41 @@ export default class Relative extends ValidationElement {
                     <CheckboxGroup className="relative-methods option-list"
                                    required={this.props.required}
                                    onError={this.props.onError}
-                                   selectedValues={this.props.Methods}>
+                                   selectedValues={(this.props.Methods || {}).value}>
                       <Checkbox name="methods-inperson"
                                 label={i18n.m('relationships.relatives.label.methods.inperson')}
                                 value="In person"
                                 className="methods-inperson"
                                 onError={this.props.onError}
-                                onChange={this.updateMethods}
+                                onUpdate={this.updateMethods}
                                 />
                       <Checkbox name="methods-telephone"
                                 label={i18n.m('relationships.relatives.label.methods.telephone')}
                                 value="Telephone"
                                 className="methods-telephone"
                                 onError={this.props.onError}
-                                onChange={this.updateMethods}
+                                onUpdate={this.updateMethods}
                                 />
                       <Checkbox name="methods-electronic"
                                 label={i18n.m('relationships.relatives.label.methods.electronic')}
                                 value="Electronic"
                                 className="methods-electronic"
                                 onError={this.props.onError}
-                                onChange={this.updateMethods}
+                                onUpdate={this.updateMethods}
                                 />
                       <Checkbox name="methods-written"
                                 label={i18n.m('relationships.relatives.label.methods.written')}
                                 value="Written"
                                 className="methods-written"
                                 onError={this.props.onError}
-                                onChange={this.updateMethods}
+                                onUpdate={this.updateMethods}
                                 />
                       <Checkbox name="methods-other"
                                 label={i18n.m('relationships.relatives.label.methods.other')}
                                 value="Other"
                                 className="methods-other"
                                 onError={this.props.onError}
-                                onChange={this.updateMethods}
+                                onUpdate={this.updateMethods}
                                 />
                     </CheckboxGroup>
                   </div>
@@ -911,48 +911,48 @@ export default class Relative extends ValidationElement {
                   <RadioGroup className="relative-frequency option-list"
                               required={this.props.required}
                               onError={this.props.onError}
-                              selectedValue={this.props.Frequency}>
+                              selectedValue={this.props.Frequency.value}>
                     <Radio name="frequency-daily"
                            label={i18n.m('relationships.relatives.label.frequency.daily')}
                            value="Daily"
                            className="frequency-daily"
                            onError={this.props.onError}
-                           onChange={this.updateFrequency}
+                           onUpdate={this.updateFrequency}
                            />
                     <Radio name="frequency-weekly"
                            label={i18n.m('relationships.relatives.label.frequency.weekly')}
                            value="Weekly"
                            className="frequency-weekly"
                            onError={this.props.onError}
-                           onChange={this.updateFrequency}
+                           onUpdate={this.updateFrequency}
                            />
                     <Radio name="frequency-monthly"
                            label={i18n.m('relationships.relatives.label.frequency.monthly')}
                            value="Monthly"
                            className="frequency-monthly"
                            onError={this.props.onError}
-                           onChange={this.updateFrequency}
+                           onUpdate={this.updateFrequency}
                            />
                     <Radio name="frequency-quarterly"
                            label={i18n.m('relationships.relatives.label.frequency.quarterly')}
                            value="Quarterly"
                            className="frequency-quarterly"
                            onError={this.props.onError}
-                           onChange={this.updateFrequency}
+                           onUpdate={this.updateFrequency}
                            />
                     <Radio name="frequency-annually"
                            label={i18n.m('relationships.relatives.label.frequency.annually')}
                            value="Annually"
                            className="frequency-annually"
                            onError={this.props.onError}
-                           onChange={this.updateFrequency}
+                           onUpdate={this.updateFrequency}
                            />
                     <Radio name="frequency-other"
                            label={i18n.m('relationships.relatives.label.frequency.other')}
                            value="Other"
                            className="frequency-other"
                            onError={this.props.onError}
-                           onChange={this.updateFrequency}
+                           onUpdate={this.updateFrequency}
                            />
                   </RadioGroup>
                 </Field>
@@ -1006,15 +1006,15 @@ export default class Relative extends ValidationElement {
                       label={i18n.t('relationships.relatives.heading.employer.affiliated')}
                       labelSize="h3"
                       className="relative-affiliation"
-                      value={this.props.HasAffiliation}
+                      {...this.props.HasAffiliation}
                       onUpdate={this.updateHasAffiliation}
                       required={this.props.required}
                       scrollIntoView={this.props.scrollIntoView}
                       onError={this.props.onError}>
               </Branch>
-              <Show when={this.props.HasAffiliation === 'Yes'}>
+              <Show when={this.props.HasAffiliation.value === 'Yes'}>
                 <Field title={i18n.t('relationships.relatives.heading.employer.relationship')}
-                  scrollIntoView={this.props.scrollIntoView}>
+                       scrollIntoView={this.props.scrollIntoView}>
                   <Textarea name="EmployerRelationship"
                             className="relative-employer-relationship"
                             {...this.props.EmployerRelationship}

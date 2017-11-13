@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate, { DrugPublicSafetyUseValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import DrugPublicSafetyUse from './DrugPublicSafetyUse'
-import { DrugPublicSafetyUsesValidator, DrugPublicSafetyUseValidator } from '../../../../validators'
 
 export default class DrugPublicSafetyUses extends SubsectionElement {
   constructor (props) {
@@ -20,7 +21,6 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
       this.props.onUpdate({
         UsedDrugs: this.props.UsedDrugs,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -28,16 +28,14 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateUsedDrugs (values) {
     this.update({
       UsedDrugs: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -62,7 +60,7 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
                 label={i18n.t('substance.drugs.heading.drugPublicSafetyUses')}
                 labelSize="h2"
                 className="used-drugs"
-                value={this.props.UsedDrugs}
+                {...this.props.UsedDrugs}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,11 +68,10 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.UsedDrugs === 'Yes'}>
+        <Show when={this.props.UsedDrugs.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -93,14 +90,14 @@ export default class DrugPublicSafetyUses extends SubsectionElement {
 }
 
 DrugPublicSafetyUses.defaultProps = {
-  List: [],
-  ListBranch: '',
+  UsedDrugs: {},
+  List: { items: [], branch: {} },
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/publicsafety',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DrugPublicSafetyUsesValidator(props).isValid()
+    return validate(schema('substance.drug.publicsafety', props))
   },
   scrollToBottom: ''
 }

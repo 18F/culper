@@ -2,22 +2,27 @@ package form
 
 import (
 	"encoding/json"
+	"log"
 	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // Text is a basic input.
 type Text struct {
-	ID    int
+	ID    int    `json:"-"`
 	Value string `json:"value"`
 }
 
 // Unmarshal bytes in to the entity properties.
 func (entity *Text) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
+}
+
+// Marshal to payload structure
+func (entity *Text) Marshal() Payload {
+	return MarshalPayloadEntity("text", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -31,58 +36,53 @@ func (entity *Text) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *Text) Save(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Text{}, options); err != nil {
+func (entity *Text) Save(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Text) Delete(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Text{}, options); err != nil {
+func (entity *Text) Delete(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Text) Get(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Text{}, options); err != nil {
+func (entity *Text) Get(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Text) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Text) SetID(id int) {
+	log.Println("Setting text ID to", id)
+	entity.ID = id
 }

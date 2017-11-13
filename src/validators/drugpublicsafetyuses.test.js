@@ -5,64 +5,72 @@ describe('Drug Use Validation', function () {
     const tests = [
       {
         state: {
-          UsedDrugs: 'Nope'
+          UsedDrugs: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'No'
+          UsedDrugs: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          List: [],
-          ListBranch: ''
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          List: [{DrugUse: {}}],
-          ListBranch: 'Nope'
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          List: [{DrugUse: {}}],
-          ListBranch: 'No'
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugUse: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          UsedDrugs: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                InvolvementDates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          UsedDrugs: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  InvolvementDates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Description: {
+                    value: 'Foo'
+                  },
+                  EstimatedUse: {
+                    value: 'Foo'
                   }
-                },
-                Description: {
-                  value: 'Foo'
-                },
-                EstimatedUse: {
-                  value: 'Foo'
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

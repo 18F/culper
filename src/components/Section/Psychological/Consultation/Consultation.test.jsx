@@ -11,8 +11,10 @@ describe('The Consultation component', () => {
   it('Performs updates', () => {
     let updates = 0
     const props = {
-      Consulted: 'Yes',
-      List: [{}],
+      Consulted: { value: 'Yes' },
+      List: {
+        items: [{}]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Consultation {...props} />)

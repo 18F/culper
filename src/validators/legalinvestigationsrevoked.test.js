@@ -76,48 +76,54 @@ describe('Legal investigations revoked component validation', function () {
       },
       {
         state: {
-          HasRevocations: 'No'
+          HasRevocations: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasRevocations: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasRevocations: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasRevocations: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasRevocations: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasRevocations: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  date: new Date('1/1/2010'),
-                  day: '1',
-                  month: '1',
-                  year: '2010'
-                },
-                Agency: {
-                  value: 'U.S. Department of Defense'
-                },
-                Explanation: {
-                  value: 'this is an explanation'
+          HasRevocations: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2010'),
+                    day: '1',
+                    month: '1',
+                    year: '2010'
+                  },
+                  Agency: {
+                    value: 'U.S. Department of Defense'
+                  },
+                  Explanation: {
+                    value: 'this is an explanation'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { AlcoholOrderedCounselingsValidator, OrderedCounselingValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { OrderedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import OrderedCounseling from './OrderedCounseling'
@@ -20,7 +21,6 @@ export default class OrderedCounselings extends SubsectionElement {
       this.props.onUpdate({
         HasBeenOrdered: this.props.HasBeenOrdered,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -28,16 +28,14 @@ export default class OrderedCounselings extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasBeenOrdered (values) {
     this.update({
       HasBeenOrdered: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -85,7 +83,7 @@ export default class OrderedCounselings extends SubsectionElement {
                 label={i18n.t('substance.alcohol.heading.orderedCounseling')}
                 labelSize="h2"
                 className="has-been-ordered"
-                value={this.props.HasBeenOrdered}
+                {...this.props.HasBeenOrdered}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -93,11 +91,10 @@ export default class OrderedCounselings extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasBeenOrdered === 'Yes'}>
+        <Show when={this.props.HasBeenOrdered.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -121,15 +118,15 @@ export default class OrderedCounselings extends SubsectionElement {
 }
 
 OrderedCounselings.defaultProps = {
-  List: [],
-  ListBranch: '',
+  HasBeenOrdered: {},
+  List: Accordion.defaultList,
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/ordered',
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new AlcoholOrderedCounselingsValidator(props).isValid()
+    return validate(schema('substance.alcohol.ordered', props))
   },
   scrollToBottom: ''
 }

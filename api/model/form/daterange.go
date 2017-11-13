@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // DateRange is a basic input.
@@ -20,10 +18,10 @@ type DateRange struct {
 	To   *DateControl `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	FromID    int
-	ToID      int
+	ID        int `json:"-"`
+	AccountID int `json:"-"`
+	FromID    int `json:"-"`
+	ToID      int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -48,6 +46,17 @@ func (entity *DateRange) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *DateRange) Marshal() Payload {
+	if entity.From != nil {
+		entity.PayloadFrom = entity.From.Marshal()
+	}
+	if entity.To != nil {
+		entity.PayloadTo = entity.To.Marshal()
+	}
+	return MarshalPayloadEntity("daterange", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *DateRange) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -67,15 +76,11 @@ func (entity *DateRange) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *DateRange) Save(context *pg.DB, account int64) (int, error) {
+// Save the DateRange entity.
+func (entity *DateRange) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&DateRange{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
@@ -91,71 +96,75 @@ func (entity *DateRange) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ToID = toID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *DateRange) Delete(context *pg.DB, account int64) (int, error) {
+// Delete the DateRange entity.
+func (entity *DateRange) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&DateRange{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.From.Delete(context, account); err != nil {
+	if _, err := entity.From.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.To.Delete(context, account); err != nil {
+	if _, err := entity.To.Delete(context, account); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *DateRange) Get(context *pg.DB, account int64) (int, error) {
+// Get the DateRange entity.
+func (entity *DateRange) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&DateRange{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.FromID != 0 {
+		entity.From = &DateControl{ID: entity.FromID}
 		if _, err := entity.From.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ToID != 0 {
+		entity.To = &DateControl{ID: entity.ToID}
 		if _, err := entity.To.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *DateRange) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *DateRange) SetID(id int) {
+	entity.ID = id
 }

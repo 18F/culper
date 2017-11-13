@@ -13,7 +13,7 @@ export default class ForeignRealEstateInterestValidator {
     this.cost = data.Cost
     this.sold = data.Sold
     this.soldNotApplicable = data.SoldNotApplicable
-    this.coOwners = data.CoOwners
+    this.coOwners = data.CoOwners || {}
   }
 
   validInterestTypes () {

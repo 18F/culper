@@ -18,7 +18,7 @@ describe('The legal investigations revoked component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasRevocations: 'Yes'
+      HasRevocations: { value: 'Yes' }
     }
     const component = mount(<Revoked {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,20 +26,21 @@ describe('The legal investigations revoked component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasRevocations: 'Yes',
-      List: [
-        {
-          Item: {
-            Agency: {
-              value: 'U.S. Department of Defense'
-            },
-            Date: {
-              date: new Date('1/1/2010')
+      HasRevocations: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              Agency: {
+                value: 'U.S. Department of Defense'
+              },
+              Date: {
+                date: new Date('1/1/2010')
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<Revoked {...props} />)
     const text = component.find('.accordion .summary .left').text()

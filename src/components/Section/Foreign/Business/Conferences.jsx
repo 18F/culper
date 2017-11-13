@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessConferencesValidator, ConferencesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -23,11 +25,11 @@ export default class Conferences extends SubsectionElement {
     })
   }
 
-  updateHasForeignConferences (value) {
+  updateHasForeignConferences (values) {
     this.update({
-      HasForeignConferences: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignConferences: values,
+      List: values.value === 'Yes' ? this.props.List : [],
+      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
     })
   }
 
@@ -60,7 +62,7 @@ export default class Conferences extends SubsectionElement {
                 labelSize="h2"
                 adjustFor="p"
                 help="foreign.business.conferences.help.branch"
-                value={this.props.HasForeignConferences}
+                {...this.props.HasForeignConferences}
                 warning={true}
                 onUpdate={this.updateHasForeignConferences}
                 required={this.props.required}
@@ -69,7 +71,7 @@ export default class Conferences extends SubsectionElement {
           {i18n.m('foreign.business.conferences.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignConferences === 'Yes'}>
+        <Show when={this.props.HasForeignConferences.value === 'Yes'}>
           <Accordion items={this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -98,7 +100,7 @@ export default class Conferences extends SubsectionElement {
 
 Conferences.defaultProps = {
   name: 'Conferences',
-  HasForeignConferences: '',
+  HasForeignConferences: {},
   List: [],
   ListBranch: '',
   onUpdate: (queue) => {},
@@ -107,7 +109,7 @@ Conferences.defaultProps = {
   subsection: 'business/conferences',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessConferencesValidator(props).isValid()
+    return validate(schema('foreign.business.conferences', props))
   },
   defaultState: true,
   scrollToBottom: ''

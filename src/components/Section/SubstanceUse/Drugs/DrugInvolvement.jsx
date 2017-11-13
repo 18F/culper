@@ -142,7 +142,7 @@ export default class DrugInvolvement extends ValidationElement {
                 label={i18n.t('substance.drugs.involvement.heading.involvementWhileEmployed')}
                 labelSize="h3"
                 className="involvement-while-employed"
-                value={this.props.InvolvementWhileEmployed}
+                {...this.props.InvolvementWhileEmployed}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateInvolvementWhileEmployed}
@@ -153,7 +153,7 @@ export default class DrugInvolvement extends ValidationElement {
                 label={i18n.t('substance.drugs.involvement.heading.involvementWithClearance')}
                 labelSize="h3"
                 className="involvement-with-clearance"
-                value={this.props.InvolvementWithClearance}
+                {...this.props.InvolvementWithClearance}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateInvolvementWithClearance}
@@ -164,14 +164,14 @@ export default class DrugInvolvement extends ValidationElement {
                 label={i18n.t('substance.drugs.involvement.heading.involvementInFuture')}
                 labelSize="h3"
                 className="involvement-in-future no-margin-bottom"
-                value={this.props.InvolvementInFuture}
+                {...this.props.InvolvementInFuture}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateInvolvementInFuture}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.InvolvementInFuture === 'Yes'}>
+        <Show when={this.props.InvolvementInFuture.value === 'Yes'}>
           <Field title={i18n.t('substance.drugs.involvement.heading.explanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -190,5 +190,8 @@ export default class DrugInvolvement extends ValidationElement {
 }
 
 DrugInvolvement.defaultProps = {
+  InvolvementWhileEmployed: {},
+  InvolvementWithClearance: {},
+  InvolvementInFuture: {},
   onError: (value, arr) => { return arr }
 }

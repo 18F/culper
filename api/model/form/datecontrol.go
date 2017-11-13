@@ -5,15 +5,13 @@ import (
 	"strings"
 	"time"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // DateControl is a basic input.
 type DateControl struct {
-	ID        int
+	ID        int       `json:"-"`
 	Month     string    `json:"month"`
 	Day       string    `json:"day"`
 	Year      string    `json:"year"`
@@ -24,6 +22,11 @@ type DateControl struct {
 // Unmarshal bytes in to the entity properties.
 func (entity *DateControl) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
+}
+
+// Marshal to payload structure
+func (entity *DateControl) Marshal() Payload {
+	return MarshalPayloadEntity("datecontrol", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -49,58 +52,52 @@ func (entity *DateControl) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *DateControl) Save(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	if err := context.CreateTable(&DateControl{}, options); err != nil {
+func (entity *DateControl) Save(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	var err error
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *DateControl) Delete(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&DateControl{}, options); err != nil {
+func (entity *DateControl) Delete(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *DateControl) Get(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&DateControl{}, options); err != nil {
+func (entity *DateControl) Get(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *DateControl) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *DateControl) SetID(id int) {
+	entity.ID = id
 }

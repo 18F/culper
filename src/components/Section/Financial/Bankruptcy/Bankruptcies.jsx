@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { BankruptcyValidator, BankruptcyItemValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { BankruptcyItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import Bankruptcy from './Bankruptcy'
@@ -11,14 +12,13 @@ export default class Bankruptcies extends SubsectionElement {
     super(props)
 
     this.updateList = this.updateList.bind(this)
-    this.updateHasBankrupty = this.updateHasBankrupty.bind(this)
+    this.updateHasBankruptcy = this.updateHasBankruptcy.bind(this)
     this.summary = this.summary.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasBankruptcy: this.props.HasBankruptcy,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class Bankruptcies extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
-  updateHasBankrupty (values) {
+  updateHasBankruptcy (values) {
     this.update({
       HasBankruptcy: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values === 'Yes' ? this.props.List : []
     })
   }
 
@@ -63,19 +61,18 @@ export default class Bankruptcies extends SubsectionElement {
                 label={i18n.t('financial.bankruptcy.title')}
                 labelSize="h2"
                 className="bankruptcy-branch"
-                value={this.props.HasBankruptcy}
+                {...this.props.HasBankruptcy}
                 help="financial.bankruptcy.help"
                 warning={true}
-                onUpdate={this.updateHasBankrupty}
+                onUpdate={this.updateHasBankruptcy}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.props.HasBankruptcy === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={(this.props.HasBankruptcy || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      required={this.props.required}
@@ -99,16 +96,15 @@ export default class Bankruptcies extends SubsectionElement {
 }
 
 Bankruptcies.defaultProps = {
-  List: [],
-  ListBranch: '',
-  HasBankruptcy: '',
+  List: { items: [] },
+  HasBankruptcy: {},
   addressBooks: {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'bankruptcy',
   dispatch: () => {},
   validator: (state, props) => {
-    return new BankruptcyValidator(props).isValid()
+    return validate(schema('financial.bankruptcy', props))
   },
   defaultState: true
 }

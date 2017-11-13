@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalInvestigationsRevokedValidator, RevokedValidator } from '../../../../validators'
+import validate, { RevokedValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import RevokedItem from './RevokedItem'
@@ -18,7 +19,6 @@ export default class Revoked extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasRevocations: this.props.HasRevocations,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class Revoked extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasRevocations: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -60,7 +58,7 @@ export default class Revoked extends SubsectionElement {
                 label={i18n.t('legal.investigations.revoked.heading.title')}
                 labelSize="h2"
                 className="legal-investigations-revoked-has-revocations"
-                value={this.props.HasRevocations}
+                {...this.props.HasRevocations}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -69,11 +67,10 @@ export default class Revoked extends SubsectionElement {
           {i18n.m('legal.investigations.revoked.para.downgrade')}
         </Branch>
 
-        <Show when={this.props.HasRevocations === 'Yes'}>
+        <Show when={this.props.HasRevocations.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -97,9 +94,8 @@ export default class Revoked extends SubsectionElement {
 
 Revoked.defaultProps = {
   name: 'revoked',
-  HasRevocations: '',
-  List: [],
-  ListBranch: '',
+  HasRevocations: {},
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -107,7 +103,7 @@ Revoked.defaultProps = {
   subsection: 'investigations/revoked',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalInvestigationsRevokedValidator(props).isValid()
+    return validate(schema('legal.investigations.revoked', props))
   },
   scrollToBottom: ''
 }

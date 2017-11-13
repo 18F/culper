@@ -1,7 +1,7 @@
 {
-  "type": "substance.drug.voluntary",
+  "type": "substance.drugs.voluntary",
   "props": {
-    "Involved": {
+    "TreatmentVoluntary": {
       "type": "branch",
       "props": {
         "value": "Yes"

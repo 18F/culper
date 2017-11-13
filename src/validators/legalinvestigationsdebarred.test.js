@@ -76,48 +76,54 @@ describe('Legal investigations debarred component validation', function () {
       },
       {
         state: {
-          HasDebarment: 'No'
+          HasDebarment: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasDebarment: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasDebarment: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasDebarment: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasDebarment: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasDebarment: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  date: new Date('1/1/2010'),
-                  day: '1',
-                  month: '1',
-                  year: '2010'
-                },
-                Agency: {
-                  value: 'U.S. Department of Defense'
-                },
-                Explanation: {
-                  value: 'this is an explanation'
+          HasDebarment: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2010'),
+                    day: '1',
+                    month: '1',
+                    year: '2010'
+                  },
+                  Agency: {
+                    value: 'U.S. Department of Defense'
+                  },
+                  Explanation: {
+                    value: 'this is an explanation'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

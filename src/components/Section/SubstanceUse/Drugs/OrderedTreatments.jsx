@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate, { DrugOrderedTreatmentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
 import OrderedTreatment from './OrderedTreatment'
-import { DrugOrderedTreatmentsValidator, DrugOrderedTreatmentValidator } from '../../../../validators'
 
 export default class OrderedTreatments extends SubsectionElement {
   constructor (props) {
@@ -20,7 +21,6 @@ export default class OrderedTreatments extends SubsectionElement {
       this.props.onUpdate({
         TreatmentOrdered: this.props.TreatmentOrdered,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -28,16 +28,14 @@ export default class OrderedTreatments extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateTreatmentOrdered (values) {
     this.update({
       TreatmentOrdered: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -62,7 +60,7 @@ export default class OrderedTreatments extends SubsectionElement {
                 label={i18n.t('substance.drugs.heading.orderedTreatments')}
                 labelSize="h2"
                 className="treatment-ordered"
-                value={this.props.TreatmentOrdered}
+                {...this.props.TreatmentOrdered}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -70,11 +68,10 @@ export default class OrderedTreatments extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.TreatmentOrdered === 'Yes'}>
+        <Show when={this.props.TreatmentOrdered.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -98,15 +95,15 @@ export default class OrderedTreatments extends SubsectionElement {
 }
 
 OrderedTreatments.defaultProps = {
-  List: [],
-  ListBranch: '',
+  TreatmentOrdered: {},
+  List: { items: [], branch: {} },
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/ordered',
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new DrugOrderedTreatmentsValidator(props).isValid()
+    return validate(schema('substance.drug.ordered', props))
   },
   scrollToBottom: ''
 }

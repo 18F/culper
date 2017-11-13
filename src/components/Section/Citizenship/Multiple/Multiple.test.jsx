@@ -15,7 +15,7 @@ describe('The multiple component', () => {
   it('displays accordion for citizenships', () => {
     const expected = {
       name: 'multiple',
-      HasMultiple: 'Yes'
+      HasMultiple: { value: 'Yes' }
     }
     const component = mount(<Multiple {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The multiple component', () => {
     let updates = 0
     const expected = {
       name: 'multiple',
-      HasMultiple: 'Yes',
+      HasMultiple: { value: 'Yes' },
       Citizenships: [{}],
       onUpdate: () => { updates++ }
     }

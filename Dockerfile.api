@@ -1,4 +1,6 @@
 FROM golang:1.8
+RUN apt-get update; apt-get -y install postgresql;
+RUN go get github.com/derekparker/delve/cmd/dlv;
 RUN apt update; \
     apt-get -y install xmlsec1;
 RUN go get -u github.com/Masterminds/glide; \

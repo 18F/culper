@@ -19,16 +19,18 @@ describe('The DirectActivity component', () => {
 
   it('Renders summary information', () => {
     const expected = {
-      HasInterests: 'Yes',
-      List: [{
-        Item: {
-          InterestType: {
-            value: 'Foo'
+      HasInterests: { value: 'Yes' },
+      List: {
+        items: [{
+          Item: {
+            InterestType: {
+              value: 'Foo'
+            },
+            InterestTypes: ['Yourself']
           },
-          InterestTypes: ['Yourself']
-        },
-        open: true
-      }]
+          open: true
+        }]
+      }
     }
     const component = mount(<DirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -37,13 +39,15 @@ describe('The DirectActivity component', () => {
 
   it('Renders interest types summary information', () => {
     const expected = {
-      HasInterests: 'Yes',
-      List: [{
-        Item: {
-          InterestTypes: ['Yourself']
-        },
-        open: true
-      }]
+      HasInterests: { value: 'Yes' },
+      List: {
+        items: [{
+          Item: {
+            InterestTypes: ['Yourself']
+          },
+          open: true
+        }]
+      }
     }
     const component = mount(<DirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -52,7 +56,7 @@ describe('The DirectActivity component', () => {
 
   it('Renders with no', () => {
     const expected = {
-      HasInterests: 'No'
+      HasInterests: { value: 'No' }
     }
     const component = mount(<DirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -65,45 +69,49 @@ describe('The DirectActivity component', () => {
         status = true
         return arr
       },
-      HasInterests: 'Yes',
-      List: [
-        {
-          Item: {
-            InterestTypes: ['Yourself'],
-            InterestType: {
-              value: 'Some type'
-            },
-            Acquired: {
-              day: '1',
-              month: '1',
-              year: '2016'
-            },
-            HowAcquired: {
-              value: 'foo'
-            },
-            Cost: {
-              value: '100'
-            },
-            Value: {
-              value: '100'
-            },
-            Relinquished: {
-              day: '1',
-              month: '1',
-              year: '2016'
-            },
-            ReqlinquishedNotApplicable: {
-              applicable: true
-            },
-            Explanation: {
-              value: 'Bar'
-            },
-            CoOwners: {
-              List: [{ Has: 'No' }]
+      HasInterests: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              InterestTypes: ['Yourself'],
+              InterestType: {
+                value: 'Some type'
+              },
+              Acquired: {
+                day: '1',
+                month: '1',
+                year: '2016'
+              },
+              HowAcquired: {
+                value: 'foo'
+              },
+              Cost: {
+                value: '100'
+              },
+              Value: {
+                value: '100'
+              },
+              Relinquished: {
+                day: '1',
+                month: '1',
+                year: '2016'
+              },
+              ReqlinquishedNotApplicable: {
+                applicable: true
+              },
+              Explanation: {
+                value: 'Bar'
+              },
+              CoOwners: {
+                List: {
+                  items: [{ Item: { Has: { value: 'No' } } }]
+                }
+              }
             }
           }
-        }
-      ],
+        ]
+      },
       ListBranch: 'No'
     }
     const component = mount(<DirectActivity {...expected} />)

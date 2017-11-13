@@ -1,29 +1,30 @@
 package form
 
 import (
-	"github.com/18F/e-QIP-prototype/api/model"
+	"fmt"
 
+	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // CivilUnion is an item of named payloads.
 type CivilUnion struct {
-	Items PayloadProperties `sql:"-"`
+	Items PayloadProperties `json:"," sql:"-"`
 
-	ID        int
-	AccountID int64
-	Name      string
-	Table     string
-	ItemID    int
+	ID        int    `json:"-" sql:",pk"`
+	AccountID int    `json:"-" sql:",pk"`
+	Name      string `json:"-" sql:",pk"`
+	Table     string `json:"-"`
+	ItemID    int    `json:"-"`
 }
 
 // Valid iterates through each named property of an item validating
 // each payload.
-func (entity *CivilUnion) Valid() (bool, error) {
+func (cu *CivilUnion) Valid() (bool, error) {
 	var stack model.ErrorStack
 
-	for k, v := range entity.Items {
+	for k, v := range cu.Items {
 		propertyEntity, err := v.Entity()
 		if err != nil {
 			stack.Append(k, model.ErrFieldInvalid{"Could not deserialize property value"})
@@ -37,109 +38,167 @@ func (entity *CivilUnion) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *CivilUnion) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+// Save the CivilUnion entity.
+func (cu *CivilUnion) Save(context *db.DatabaseContext, account int) (int, error) {
+	cu.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
+	if err := context.CheckTable(cu); err != nil {
+		return cu.ID, err
 	}
 
-	var err error
-	if err = context.CreateTable(&CivilUnion{}, options); err != nil {
-		return entity.ID, err
-	}
-
-	for k, v := range entity.Items {
-		newItem := &CivilUnion{
+	cu.Each(func(name, entityType string, entity Entity, err error) error {
+		item := &CivilUnion{
+			ID:        cu.ID,
 			AccountID: account,
-			Name:      k,
+			Name:      name,
+			Table:     entityType,
 		}
 
-		propertyEntity, err := v.Entity()
-		if err != nil {
-			return entity.ID, err
-		}
+		_ = context.Select(item)
+		exists := item.ItemID != 0
 
-		id, err := propertyEntity.Save(context, account)
-		if err != nil {
-			return entity.ID, err
-		}
-		newItem.ItemID = id
-
-		if newItem.ID == 0 {
-			err = context.Insert(newItem)
+		if exists {
+			entity.SetID(item.ItemID)
+			if err := context.Update(entity); err != nil {
+				return err
+			}
 		} else {
-			err = context.Update(newItem)
+			if err := context.Insert(entity); err != nil {
+				return err
+			}
+		}
+		item.ItemID = entity.GetID()
+
+		if exists {
+			if err := context.Update(item); err != nil {
+				return err
+			}
+		} else {
+			if err := context.Insert(item); err != nil {
+				return err
+			}
 		}
 
-		if err != nil {
-			return entity.ID, err
-		}
-	}
+		return nil
+	})
 
-	return entity.ID, nil
+	return cu.ID, nil
 }
 
-func (entity *CivilUnion) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+// Delete the CivilUnion entity.
+func (cu *CivilUnion) Delete(context *db.DatabaseContext, account int) (int, error) {
+	cu.AccountID = account
 
-	for k, v := range entity.Items {
-		entity.Name = k
-
-		propertyEntity, err := v.Entity()
-		if err != nil {
-			return entity.ID, err
-		}
-
-		id, err := propertyEntity.Delete(context, account)
-		if err != nil {
-			return entity.ID, err
-		}
-		entity.ItemID = id
+	if err := context.CheckTable(cu); err != nil {
+		return cu.ID, err
 	}
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
+	err := cu.Each(func(name, entityType string, entity Entity, err error) error {
+		// If there is no property name skip it.
+		if name == "" {
+			return nil
+		}
+
+		item := &CivilUnion{
+			ID:        cu.ID,
+			AccountID: account,
+			Name:      name,
+			Table:     entityType,
+		}
+
+		// Make sure an entity is there and that it has the proper ID set.
+		if item.Table == "" {
+			if entity == nil {
+				return nil
+			}
+			entity.Get(context, account)
+		} else {
+			entity = transform[item.Table]()
+		}
+		entity.SetID(item.ItemID)
+
+		_, err = entity.Delete(context, account)
+		if err != nil {
+			return err
+		}
+
+		return context.Delete(item)
+	})
+
+	if err != nil {
+		return cu.ID, err
 	}
 
+	return cu.ID, nil
+}
+
+// Get the CivilUnion entity.
+func (cu *CivilUnion) Get(context *db.DatabaseContext, account int) (int, error) {
+	cu.AccountID = account
+
+	if err := context.CheckTable(cu); err != nil {
+		return cu.ID, err
+	}
+
+	cu.getItemPropertyNames(context)
+	err := cu.Each(func(name, entityType string, entity Entity, err error) error {
+		item := &CivilUnion{
+			ID:        cu.ID,
+			AccountID: account,
+			Name:      name,
+			Table:     entityType,
+		}
+
+		if err := context.Select(item); err != nil {
+			return err
+		}
+		entity = transform[item.Table]()
+		entity.SetID(item.ItemID)
+
+		if _, err = entity.Get(context, account); err != nil {
+			return err
+		}
+
+		cu.Items[name] = entity.Marshal()
+		return nil
+	})
+
+	return cu.ID, err
+}
+
+// GetID returns the entity identifier.
+func (cu *CivilUnion) GetID() int {
+	return cu.ID
+}
+
+// SetID sets the entity identifier.
+func (cu *CivilUnion) SetID(id int) {
+	cu.ID = id
+}
+
+// Each loops through each entity in the collection item performing a given action
+func (cu CivilUnion) Each(action func(string, string, Entity, error) error) error {
 	var err error
-	if err = context.CreateTable(&CivilUnion{}, options); err != nil {
-		return entity.ID, err
+
+	for k, v := range cu.Items {
+		entity, err := v.Entity()
+		if err = action(k, v.Type, entity, err); err != nil {
+			break
+		}
 	}
 
-	if entity.ID != 0 {
-		err = context.Delete(entity)
-	}
-
-	return entity.ID, err
+	return err
 }
 
-func (entity *CivilUnion) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
-
-	if entity.ID != 0 {
-		err := context.Select(entity)
-		if err != nil {
-			return entity.ID, err
-		}
+func (cu *CivilUnion) getItemPropertyNames(context *db.DatabaseContext) {
+	propertyNames := []string{}
+	context.Database.
+		Model(&CivilUnion{}).
+		ColumnExpr("array_agg(name)").
+		Where(fmt.Sprintf("id = %d", cu.ID)).
+		Select(pg.Array(&propertyNames))
+	cu.Items = make(map[string]Payload)
+	for _, propertyName := range propertyNames {
+		cu.Items[propertyName] = Payload{}
 	}
-
-	for k, v := range entity.Items {
-		entity.Name = k
-
-		propertyEntity, err := v.Entity()
-		if err != nil {
-			return entity.ID, err
-		}
-
-		id, err := propertyEntity.Get(context, account)
-		if err != nil {
-			return entity.ID, err
-		}
-		entity.ItemID = id
-	}
-
-	return entity.ID, nil
 }

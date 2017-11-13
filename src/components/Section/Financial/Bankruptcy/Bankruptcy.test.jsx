@@ -31,7 +31,7 @@ describe('The Bankruptcy component', () => {
   it('Performs update to having discharge explanation', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const dischargeExplanation = 'Yes'
+    const dischargeExplanation = { value: 'Yes' }
     const component = mount(<Bankruptcy onUpdate={onUpdate} HasDischargeExplanation={dischargeExplanation}/>)
     expect(component.find('.bankruptcy').length).toBe(1)
     component.find('textarea[name="DischargeExplanation"]').simulate('change')
@@ -41,7 +41,7 @@ describe('The Bankruptcy component', () => {
   it('Performs update with chapter 13 selected', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const petitionType = 'Chapter13'
+    const petitionType = { value: 'Chapter13' }
     const component = mount(<Bankruptcy onUpdate={onUpdate} PetitionType={petitionType}/>)
     component.find('input[name="chapter13Trustee"]').simulate('change')
     component.find('.trustee-address input[name="address"]').simulate('change')

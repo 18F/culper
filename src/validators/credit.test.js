@@ -135,25 +135,25 @@ describe('credit component validation', function () {
     const tests = [
       {
         state: {
-          HasCreditCounseling: ''
+          HasCreditCounseling: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasCreditCounseling: 'Unicorn'
+          HasCreditCounseling: { value: 'Unicorn' }
         },
         expected: false
       },
       {
         state: {
-          HasCreditCounseling: 'No'
+          HasCreditCounseling: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasCreditCounseling: 'Yes'
+          HasCreditCounseling: { value: 'Yes' }
         },
         expected: true
       }
@@ -168,73 +168,83 @@ describe('credit component validation', function () {
     const tests = [
       {
         state: {
-          HasCreditCounseling: 'No',
-          List: [],
-          ListBranch: 'No'
+          HasCreditCounseling: { value: 'No' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
-          List: [{
-            Explanation: {
-              value: 'Completely forgot'
-            }
-          }],
-          ListBranch: 'No'
+          HasCreditCounseling: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{
+              Explanation: {
+                value: 'Completely forgot'
+              }
+            }]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
-          List: [],
-          ListBranch: ''
+          HasCreditCounseling: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasCreditCounseling: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasCreditCounseling: 'Yes',
-          List: [
-            {
-              Item: {
-                Explanation: {
-                  value: 'Completely forgot'
-                },
-                Name: {
-                  value: 'The name'
-                },
-                Telephone: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  timeOfDay: 'Both',
-                  extension: '',
-                  type: 'Domestic'
-                },
-                Location: {
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  country: { value: 'United States' },
-                  layout: Location.CITY_STATE
-                },
-                Description: {
-                  value: 'The description'
+          HasCreditCounseling: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Explanation: {
+                    value: 'Completely forgot'
+                  },
+                  Name: {
+                    value: 'The name'
+                  },
+                  Telephone: {
+                    noNumber: '',
+                    number: '7031112222',
+                    numberType: 'Home',
+                    timeOfDay: 'Both',
+                    extension: '',
+                    type: 'Domestic'
+                  },
+                  Location: {
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    country: { value: 'United States' },
+                    layout: Location.CITY_STATE
+                  },
+                  Description: {
+                    value: 'The description'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

@@ -1,4 +1,4 @@
-import { env } from '../config'
+import env  from '../config/environment'
 
 class OAuth {
   constructor (service) {

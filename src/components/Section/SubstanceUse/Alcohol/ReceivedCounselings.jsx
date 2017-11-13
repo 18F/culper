@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { AlcoholReceivedCounselingsValidator, ReceivedCounselingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
@@ -20,7 +22,6 @@ export default class ReceivedCounselings extends SubsectionElement {
       this.props.onUpdate({
         ReceivedTreatment: this.props.ReceivedTreatment,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -28,16 +29,14 @@ export default class ReceivedCounselings extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateReceivedTreatment (values) {
     this.update({
       ReceivedTreatment: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -65,7 +64,7 @@ export default class ReceivedCounselings extends SubsectionElement {
                 label={i18n.t('substance.alcohol.heading.receivedCounseling')}
                 labelSize="h2"
                 className="received-treatment"
-                value={this.props.ReceivedTreatment}
+                {...this.props.ReceivedTreatment}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -73,9 +72,9 @@ export default class ReceivedCounselings extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.ReceivedTreatment === 'Yes'}>
+        <Show when={this.props.ReceivedTreatment.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
                      summary={this.summary}
@@ -96,14 +95,14 @@ export default class ReceivedCounselings extends SubsectionElement {
 }
 
 ReceivedCounselings.defaultProps = {
-  List: [],
-  ListBranch: '',
+  ReceivedTreatment: {},
+  List: Accordion.defaultList,
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'alcohol/additional',
   dispatch: () => {},
   validator: (state, props) => {
-    return new AlcoholReceivedCounselingsValidator(props).isValid()
+    return validate(schema('substance.alcohol.additional', props))
   },
   scrollToBottom: ''
 }

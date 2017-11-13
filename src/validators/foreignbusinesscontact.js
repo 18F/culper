@@ -1,12 +1,11 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
 export default class ForeignBusinessContactValidator {
   constructor (data = {}) {
-    this.hasForeignContact = data.HasForeignContact
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasForeignContact = (data.HasForeignContact || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class ForeignBusinessContactValidator {
       return true
     }
 
-    if (this.hasForeignContact === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new ContactValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new ContactValidator(item).isValid()
+    })
   }
 
   isValid () {

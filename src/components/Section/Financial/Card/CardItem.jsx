@@ -58,9 +58,9 @@ export default class CardItem extends ValidationElement {
     })
   }
 
-  updateAmountEstimated (cb) {
+  updateAmountEstimated (values) {
     this.update({
-      AmountEstimated: cb.checked
+      AmountEstimated: values
     })
   }
 
@@ -143,7 +143,7 @@ export default class CardItem extends ValidationElement {
             <div className="flags">
               <Checkbox name="AmountEstimated"
                         className="card-estimated"
-                        checked={this.props.AmountEstimated}
+                        {...this.props.AmountEstimated}
                         ref="estimated"
                         label={i18n.t('financial.card.label.estimated')}
                         toggle="false"
@@ -165,7 +165,6 @@ export default class CardItem extends ValidationElement {
                     onError={this.props.onError}
                     />
         </Field>
-
       </div>
     )
   }

@@ -6,92 +6,103 @@ describe('Police record validation', function () {
     const tests = [
       {
         state: {
-          HasOffenses: 'No',
-          List: [],
-          ListBranch: 'No'
+          HasOffenses: { value: 'No' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          HasOffenses: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Description: {
-                  value: 'Some description'
-                },
-                InvolvedViolence: 'No',
-                InvolvedFirearms: 'No',
-                InvolvedSubstances: 'No',
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                WasCited: 'Yes',
-                CitedBy: {
-                  value: 'Somebody'
-                },
-                WasCharged: 'No',
-                Explanation: {
-                  value: 'Some explanation'
-                },
-                AgencyAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-
-                WasSentenced: 'No',
-                AwaitingTrial: 'Yes',
-                AwaitingTrialExplanation: {
-                  value: 'Yessss'
+          HasOffenses: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Description: {
+                    value: 'Some description'
+                  },
+                  InvolvedViolence: { value: 'No' },
+                  InvolvedFirearms: { value: 'No' },
+                  InvolvedSubstances: { value: 'No' },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  WasCited: { value: 'Yes' },
+                  CitedBy: {
+                    value: 'Somebody'
+                  },
+                  WasCharged: { value: 'No' },
+                  Explanation: {
+                    value: 'Some explanation'
+                  },
+                  AgencyAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  WasSentenced: { value: 'No' },
+                  AwaitingTrial: { value: 'Yes' },
+                  AwaitingTrialExplanation: {
+                    value: 'Yessss'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          HasOffenses: 'Yes',
-          List: [{Item: {}}]
+          HasOffenses: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasOffenses: 'Yes',
-          List: []
+          HasOffenses: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasOffenses: 'Yes',
-          ListBranch: 'No',
-          List: [{Item: {}}]
+          HasOffenses: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{Item: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasOffenses: 'No'
+          HasOffenses: { value: 'No' }
         },
         expected: true
       }

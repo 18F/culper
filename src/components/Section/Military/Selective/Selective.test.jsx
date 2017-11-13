@@ -15,7 +15,7 @@ describe('The selective service component', () => {
   it('selects no on born after and nothing more', () => {
     const expected = {
       name: 'selective',
-      WasBornAfter: 'No'
+      WasBornAfter: { value: 'No' }
     }
     const component = mount(<Selective {...expected} />)
     component.find('.born .no input').simulate('change')
@@ -25,7 +25,7 @@ describe('The selective service component', () => {
   it('selects yes on born after and asks if registered', () => {
     const expected = {
       name: 'selective',
-      WasBornAfter: 'Yes'
+      WasBornAfter: { value: 'Yes' }
     }
     const component = mount(<Selective {...expected} />)
     component.find('.born .yes input').simulate('change')
@@ -35,8 +35,8 @@ describe('The selective service component', () => {
   it('selects no on registered and is presented with explanation', () => {
     const expected = {
       name: 'selective',
-      WasBornAfter: 'Yes',
-      HasRegistered: 'No'
+      WasBornAfter: { value: 'Yes' },
+      HasRegistered: { value: 'No' }
     }
     const component = mount(<Selective {...expected} />)
     component.find('.born .yes input').simulate('change')
@@ -49,8 +49,8 @@ describe('The selective service component', () => {
   it('selects yes on registered and is presented with registration number', () => {
     const expected = {
       name: 'selective',
-      WasBornAfter: 'Yes',
-      HasRegistered: 'Yes'
+      WasBornAfter: { value: 'Yes' },
+      HasRegistered: { value: 'Yes' }
     }
     const component = mount(<Selective {...expected} />)
     component.find('.born .yes input').simulate('change')

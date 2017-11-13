@@ -1,33 +1,30 @@
 import LocationValidator from './location'
 import DateRangeValidator from './daterange'
 import NameValidator from './name'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, BranchCollection, validGenericTextfield } from './helpers'
 
 export default class MilitaryForeignValidator {
   constructor (data = {}) {
-    this.list = data.List || []
+    this.list = data.List || {}
   }
 
   validItems () {
-    if (this.list.length === 0) {
+    if ((this.list.items || []).length === 0) {
       return false
     }
 
-    for (const service of this.list) {
-      if (!(service.Has === 'Yes' || service.Has === 'No')) {
-        return false
-      }
-
-      if (service.Has === 'Yes' && !service.Item) {
-        return false
-      }
-
-      if (new ForeignServiceValidator(service.Item, null).isValid() === false) {
-        return false
-      }
+    const branchValidator = new BranchCollection(this.list)
+    if (!branchValidator.validKeyValues()) {
+      return false
     }
 
-    return true
+    if (branchValidator.hasNo()) {
+      return true
+    }
+
+    return branchValidator.each(item => {
+      return new ForeignServiceValidator(item.Item, null).isValid()
+    })
   }
 
   isValid () {
@@ -45,9 +42,8 @@ export class ForeignServiceValidator {
     this.division = data.Division
     this.circumstances = data.Circumstances
     this.reasonLeft = data.ReasonLeft
-    this.maintainsContact = data.MaintainsContact
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.maintainsContact = (data.MaintainsContact || {}).value
+    this.list = data.List || {}
   }
 
   validOrganization () {
@@ -92,21 +88,9 @@ export class ForeignServiceValidator {
       return true
     }
 
-    if (this.list.length === 0) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const contact of this.list) {
-      if (new ForeignContactValidator(contact.Item).isValid() === false) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new ForeignContactValidator(item).isValid()
+    })
   }
 
   isValid () {

@@ -84,6 +84,9 @@ export default class OtherName extends ValidationElement {
 }
 
 OtherName.defaultProps = {
+  OtherName: {},
+  MaidenName: {},
+  DatesUsed: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

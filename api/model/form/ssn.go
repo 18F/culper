@@ -4,15 +4,13 @@ import (
 	"encoding/json"
 	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // SSN is a basic input.
 type SSN struct {
-	ID            int
+	ID            int    `json:"-"`
 	First         string `json:"first"`
 	Middle        string `json:"middle"`
 	Last          string `json:"last"`
@@ -22,6 +20,11 @@ type SSN struct {
 // Unmarshal bytes in to the entity properties.
 func (entity *SSN) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
+}
+
+// Marshal to payload structure
+func (entity *SSN) Marshal() Payload {
+	return MarshalPayloadEntity("ssn", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -56,58 +59,52 @@ func (entity *SSN) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *SSN) Save(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	if err := context.CreateTable(&SSN{}, options); err != nil {
+func (entity *SSN) Save(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	var err error
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *SSN) Delete(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&SSN{}, options); err != nil {
+func (entity *SSN) Delete(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *SSN) Get(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&SSN{}, options); err != nil {
+func (entity *SSN) Get(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *SSN) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *SSN) SetID(id int) {
+	entity.ID = id
 }

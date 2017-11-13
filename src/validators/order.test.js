@@ -70,37 +70,45 @@ describe('Order validation', function () {
     const tests = [
       {
         state: {
-          Appeals: [
-            {
-              Has: 'Yes',
-              CourtName: {
-                value: 'Appeals Court'
-              },
-              CourtAddress: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'Virginia',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              },
-              Disposition: {
-                value: 'Stuff'
+          Appeals: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  CourtName: {
+                    value: 'Appeals Court'
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Disposition: {
+                    value: 'Stuff'
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          Appeals: []
+          Appeals: {
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          Appeals: [{ Has: 'No' }]
+          Appeals: {
+            items: [{ Item: { Has: { value: 'No' } } }]
+          }
         },
         expected: true
       }
@@ -134,7 +142,9 @@ describe('Order validation', function () {
             year: '2016',
             date: new Date('1/1/2016')
           },
-          Appeals: [{ Has: 'No' }]
+          Appeals: {
+            items: [{ Item: { Has: { value: 'No' } } }]
+          }
         },
         expected: true
       },

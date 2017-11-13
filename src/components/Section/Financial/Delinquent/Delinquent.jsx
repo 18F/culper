@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { DelinquentValidator, DelinquentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -10,26 +12,26 @@ export default class Delinquent extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasDelinquent: props.HasDelinquent,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateBranch = this.updateBranch.bind(this)
     this.updateList = this.updateList.bind(this)
     this.summary = this.summary.bind(this)
   }
 
+  update (queue) {
+    this.props.onUpdate({
+      HasDelinquent: this.props.HasDelinquent,
+      List: this.props.List,
+      ...queue
+    })
+  }
+
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (val, event) {
-    this.setState({ HasDelinquent: val }, () => {
-      this.updateList({
-        items: val === 'Yes' ? this.state.List : [],
-        branch: ''
-      })
+  updateBranch (values) {
+    this.update({
+      HasDelinquent: values,
+      List: values.value === 'Yes' ? this.props.List : {}
     })
   }
 
@@ -38,14 +40,8 @@ export default class Delinquent extends SubsectionElement {
    * updates to the items.
    */
   updateList (values) {
-    this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasDelinquent: this.state.HasDelinquent
-        })
-      }
+    this.update({
+      List: values
     })
   }
 
@@ -89,7 +85,7 @@ export default class Delinquent extends SubsectionElement {
                 label={i18n.t('financial.delinquent.title')}
                 labelSize="h2"
                 className="delinquent-branch eapp-field-wrap"
-                value={this.state.HasDelinquent}
+                {...this.props.HasDelinquent}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
@@ -103,9 +99,8 @@ export default class Delinquent extends SubsectionElement {
             <li>{i18n.m('financial.delinquent.para.federal')}</li>
           </ul>
         </Branch>
-        <Show when={this.state.HasDelinquent === 'Yes'}>
-          <Accordion items={this.state.List}
-                     branch={this.state.ListBranch}
+        <Show when={(this.props.HasDelinquent || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
                      onUpdate={this.updateList}
@@ -134,15 +129,15 @@ export default class Delinquent extends SubsectionElement {
 }
 
 Delinquent.defaultProps = {
-  HasDelinquent: '',
-  List: [],
-  ListBranch: '',
+  HasDelinquent: {},
+  List: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'delinquent',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DelinquentValidator(state).isValid()
+    return validate(schema('financial.delinquent', props))
   },
   defaultState: true
 }

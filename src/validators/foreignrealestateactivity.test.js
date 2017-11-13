@@ -6,66 +6,72 @@ describe('Foreign RealEstate Activity validation', function () {
     const tests = [
       {
         props: {
-          HasInterests: 'Nope'
+          HasInterests: { value: 'Nope' }
         },
         expected: false
       },
       {
         props: {
-          HasInterests: 'No'
+          HasInterests: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          HasInterests: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasInterests: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         props: {
-          HasInterests: 'Yes',
-          List: [
-            {
-              Item: {
-                InterestTypes: ['Yourself'],
-                RealEstateType: {
-                  value: 'Bar'
-                },
-                Address: {
-                  street: '123 Some rd',
-                  city: 'Arlington',
-                  country: { value: 'United States' },
-                  layout: Location.STREET_CITY_COUNTRY
-                },
-                Acquired: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                HowAcquired: {
-                  value: 'foo'
-                },
-                Cost: {
-                  value: '100'
-                },
-                Sold: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                SoldNotApplicable: {
-                  applicable: true
-                },
-                CoOwners: {
-                  List: [{ Has: 'No' }]
+          HasInterests: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  InterestTypes: ['Yourself'],
+                  RealEstateType: {
+                    value: 'Bar'
+                  },
+                  Address: {
+                    street: '123 Some rd',
+                    city: 'Arlington',
+                    country: { value: 'United States' },
+                    layout: Location.STREET_CITY_COUNTRY
+                  },
+                  Acquired: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  HowAcquired: {
+                    value: 'foo'
+                  },
+                  Cost: {
+                    value: '100'
+                  },
+                  Sold: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  SoldNotApplicable: {
+                    applicable: true
+                  },
+                  CoOwners: {
+                    List: {
+                      items: [{ Item: { Has: { value: 'No' } } }]
+                    }
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

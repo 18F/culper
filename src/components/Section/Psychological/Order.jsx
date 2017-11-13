@@ -124,7 +124,7 @@ export default class Order extends ValidationElement {
         <BranchCollection className="appeals"
                           label={i18n.t(`psychological.${prefix}.heading.appealed`)}
                           appendLabel={i18n.t(`psychological.${prefix}.heading.appealedAnother`)}
-                          items={this.props.Appeals}
+                          {...this.props.Appeals}
                           onError={this.props.onError}
                           required={this.props.required}
                           onUpdate={this.updateAppeals}

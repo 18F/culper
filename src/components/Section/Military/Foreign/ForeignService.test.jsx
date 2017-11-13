@@ -48,7 +48,7 @@ describe('The foreign service component', () => {
       {
         props: {
           name: 'foreign-service',
-          MaintainsContact: 'Yes',
+          MaintainsContact: { value: 'Yes' },
           List: [
             {
               Item: {

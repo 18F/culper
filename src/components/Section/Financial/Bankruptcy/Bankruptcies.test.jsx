@@ -25,56 +25,60 @@ describe('The bankruptcies component', () => {
   })
 
   it('Renders with data loaded', () => {
-    let bankruptcyData = [
-      {
-        Bankruptcy: {
-          PetitionType: 'Chapter7',
-          CourtAddress: {
-            country: 'United States',
-            street: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202',
-            layout: Location.ADDRESS
-          },
-          CourtInvolved: {
-            value: 'Some Court'
-          },
-          CourtNumber: {
-            value: 'C1234'
-          },
-          DateFiled: {
-            month: '1',
-            year: '2010'
-          },
-          DateDischarged: {
-            month: '1',
-            year: '2012'
-          },
-          NameDebt: {
-            first: 'Foo',
-            firstInitialOnly: false,
-            middle: 'J',
-            middleInitialOnly: true,
-            noMiddleName: false,
-            last: 'Bar',
-            lastInitialOnly: false,
-            suffix: 'Jr'
-          },
-          TotalAmount: {
-            value: 200
-          },
-          HasDischargeExplanation: 'Yes',
-          DischargeExplanation: {
-            value: 'Something'
+    let bankruptcyData = {
+      items: [
+        {
+          Item: {
+            PetitionType: 'Chapter7',
+            CourtAddress: {
+              country: 'United States',
+              street: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202',
+              layout: Location.ADDRESS
+            },
+            CourtInvolved: {
+              value: 'Some Court'
+            },
+            CourtNumber: {
+              value: 'C1234'
+            },
+            DateFiled: {
+              month: '1',
+              year: '2010'
+            },
+            DateDischarged: {
+              month: '1',
+              year: '2012'
+            },
+            NameDebt: {
+              first: 'Foo',
+              firstInitialOnly: false,
+              middle: 'J',
+              middleInitialOnly: true,
+              noMiddleName: false,
+              last: 'Bar',
+              lastInitialOnly: false,
+              suffix: 'Jr'
+            },
+            TotalAmount: {
+              value: 200
+            },
+            HasDischargeExplanation: 'Yes',
+            DischargeExplanation: {
+              value: 'Something'
+            }
           }
         }
-      }
-    ]
+      ]
+    }
     let updates = 0
     const expected = {
       name: 'bankrupcty',
-      HasBankruptcy: 'Yes',
+      HasBankruptcy: {
+        value: 'Yes'
+      },
       List: bankruptcyData,
       onUpdate: () => { updates++ }
     }

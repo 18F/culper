@@ -69,40 +69,44 @@ describe('Employment component validation', function () {
             }
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: '2015'
-                  },
-                  Text: {
-                    value: 'Foo'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: 'Foo'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -172,40 +176,44 @@ describe('Employment component validation', function () {
             }
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: '2015'
-                  },
-                  Text: {
-                    value: 'Foo'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: 'Foo'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -251,7 +259,7 @@ describe('Employment component validation', function () {
             layout: Location.ADDRESS
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -262,7 +270,9 @@ describe('Employment component validation', function () {
             }
           },
           Additional: {
-            List: [{ Has: 'No' }]
+            List: {
+              items: [{ Item: { Has: { value: 'No' } } }]
+            }
           },
           Telephone: {
             noNumber: '',
@@ -298,40 +308,44 @@ describe('Employment component validation', function () {
             }
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: '2015'
-                  },
-                  Text: {
-                    value: 'Foo'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: 'Foo'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -368,7 +382,7 @@ describe('Employment component validation', function () {
             layout: Location.ADDRESS
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -412,62 +426,70 @@ describe('Employment component validation', function () {
             }
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: '2015'
-                  },
-                  Text: {
-                    value: 'Foo'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: 'Foo'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           },
           Additional: {
-            List: [
-              {
-                Has: 'Yes',
-                Position: {
-                  value: 'Dev1'
-                },
-                Supervisor: {
-                  value: 'Homer'
-                },
-                DatesEmployed: {
-                  from: {
-                    date: new Date('1/1/2011')
-                  },
-                  to: {
-                    date: new Date('3/1/2011')
-                  },
-                  present: false
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Position: {
+                      value: 'Dev1'
+                    },
+                    Supervisor: {
+                      value: 'Homer'
+                    },
+                    DatesEmployed: {
+                      from: {
+                        date: new Date('1/1/2011')
+                      },
+                      to: {
+                        date: new Date('3/1/2011')
+                      },
+                      present: false
+                    }
+                  }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -513,7 +535,7 @@ describe('Employment component validation', function () {
             layout: Location.ADDRESS
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -531,23 +553,25 @@ describe('Employment component validation', function () {
             timeOfDay: 'Day'
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           },
           Reference: {
             FullName: {
@@ -588,21 +612,23 @@ describe('Employment component validation', function () {
             }
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: '2015'
-                  },
-                  Text: {
-                    value: 'Foo'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: 'Foo'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -632,11 +658,15 @@ describe('Employment component validation', function () {
           },
           ReasonLeft: {
             ReasonDescription: 'Gained employment again',
-            Reasons: [
-              {
-                Has: 'No'
-              }
-            ]
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' }
+                  }
+                }
+              ]
+            }
           },
           Reference: {
             FullName: {
@@ -703,7 +733,9 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            List: [{ Has: 'Yes' }]
+            List: {
+              items: [{ Item: { Has: { value: 'Yes' } } }]
+            }
           }
         },
         expected: false
@@ -714,26 +746,30 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            List: [
-              {
-                Has: 'Yes',
-                Position: {
-                  value: 'Dev1'
-                },
-                Supervisor: {
-                  value: 'Homer'
-                },
-                DatesEmployed: {
-                  from: {
-                    date: new Date('1/1/2011')
-                  },
-                  to: {
-                    date: new Date('3/1/2011')
-                  },
-                  present: false
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Position: {
+                      value: 'Dev1'
+                    },
+                    Supervisor: {
+                      value: 'Homer'
+                    },
+                    DatesEmployed: {
+                      from: {
+                        date: new Date('1/1/2011')
+                      },
+                      to: {
+                        date: new Date('3/1/2011')
+                      },
+                      present: false
+                    }
+                  }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -744,26 +780,30 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            List: [
-              {
-                Has: 'Yes',
-                Position: {
-                  value: ''
-                },
-                Supervisor: {
-                  value: 'Homer'
-                },
-                DatesEmployed: {
-                  from: {
-                    date: new Date('1/1/2011')
-                  },
-                  to: {
-                    date: new Date('3/1/2011')
-                  },
-                  present: false
+            List: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Position: {
+                      value: ''
+                    },
+                    Supervisor: {
+                      value: 'Homer'
+                    },
+                    DatesEmployed: {
+                      from: {
+                        date: new Date('1/1/2011')
+                      },
+                      to: {
+                        date: new Date('3/1/2011')
+                      },
+                      present: false
+                    }
+                  }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: false
@@ -774,26 +814,28 @@ describe('Employment component validation', function () {
             value: 'SelfEmployed'
           },
           Additional: {
-            List: [
-              {
-                Has: 'Foo',
-                Position: {
-                  value: ''
-                },
-                Supervisor: {
-                  value: 'Homer'
-                },
-                DatesEmployed: {
-                  from: {
-                    date: new Date('1/1/2011')
+            List: {
+              items: [
+                {
+                  Has: { value: 'Foo' },
+                  Position: {
+                    value: ''
                   },
-                  to: {
-                    date: new Date('3/1/2011')
+                  Supervisor: {
+                    value: 'Homer'
                   },
-                  present: false
+                  DatesEmployed: {
+                    from: {
+                      date: new Date('1/1/2011')
+                    },
+                    to: {
+                      date: new Date('3/1/2011')
+                    },
+                    present: false
+                  }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: false
@@ -813,7 +855,7 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Yes',
+            HasDifferentAddress: { value: 'Yes' },
             Address: {
               country: { value: 'United States' },
               street: '1234 Some Rd',
@@ -832,7 +874,7 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'No'
+            HasDifferentAddress: { value: 'No' }
           }
         },
         expected: true
@@ -843,7 +885,7 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           PhysicalAddress: {
-            HasDifferentAddress: 'Nope'
+            HasDifferentAddress: { value: 'Nope' }
           }
         },
         expected: false
@@ -1008,23 +1050,25 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -1044,23 +1088,25 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: null,
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Reason: null,
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: false
@@ -1116,23 +1162,25 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: null,
-                    year: '2016'
-                  },
-                  Text: {
-                    value: 'Some excuse'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: null,
+                      year: '2016'
+                    },
+                    Text: {
+                      value: 'Some excuse'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: false
@@ -1152,7 +1200,9 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
-            Reasons: [{Has: 'No'}]
+            Reasons: {
+              items: [{ Item: { Has: { value: 'No' } } }]
+            }
           }
         },
         expected: true
@@ -1172,23 +1222,25 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           ReasonLeft: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Reason: 'Fired',
-                  Date: {
-                    date: new Date('1/1/2016'),
-                    day: '1',
-                    month: '1',
-                    year: '2016'
-                  },
-                  Text: {
-                    value: null
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Reason: 'Fired',
+                    Date: {
+                      date: new Date('1/1/2016'),
+                      day: '1',
+                      month: '1',
+                      year: '2016'
+                    },
+                    Text: {
+                      value: null
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: false
@@ -1217,21 +1269,23 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: '2015'
-                  },
-                  Text: {
-                    value: 'Foo'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: 'Foo'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: true
@@ -1270,21 +1324,23 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: '2015'
-                  },
-                  Text: {
-                    value: null
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: '2015'
+                    },
+                    Text: {
+                      value: null
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: false
@@ -1304,21 +1360,23 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'Yes',
-                Item: {
-                  Date: {
-                    date: new Date('1/1/2015'),
-                    month: '1',
-                    year: null
-                  },
-                  Text: {
-                    value: 'Hello'
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'Yes' },
+                    Date: {
+                      date: new Date('1/1/2015'),
+                      month: '1',
+                      year: null
+                    },
+                    Text: {
+                      value: 'Hello'
+                    }
                   }
                 }
-              }
-            ]
+              ]
+            }
           }
         },
         expected: false
@@ -1338,11 +1396,15 @@ describe('Employment component validation', function () {
             value: 'ActiveMilitary'
           },
           Reprimand: {
-            Reasons: [
-              {
-                Has: 'No'
-              }
-            ]
+            Reasons: {
+              items: [
+                {
+                  Item: {
+                    Has: { value: 'No' }
+                  }
+                }
+              ]
+            }
           }
         },
         expected: true

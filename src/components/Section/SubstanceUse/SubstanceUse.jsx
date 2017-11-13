@@ -414,13 +414,13 @@ class SubstanceUse extends SectionElement {
 
 function mapStateToProps (state) {
   const app = state.application || {}
-  const substance = app.SubstanceUse || {}
+  const substance = app.Substance || {}
   const errors = app.Errors || {}
   const completed = app.Completed || {}
   const addressBooks = app.AddressBooks || {}
 
   return {
-    SubstanceUse: substance,
+    Substance: substance,
     NegativeImpacts: substance.NegativeImpacts || {},
     OrderedCounselings: substance.OrderedCounselings || {},
     VoluntaryCounselings: substance.VoluntaryCounselings || {},
@@ -441,7 +441,7 @@ function mapStateToProps (state) {
 
 SubstanceUse.defaultProps = {
   section: 'substance',
-  store: 'SubstanceUse',
+  store: 'Substance',
   scrollToBottom: SectionView.BottomButtonsSelector
 }
 
