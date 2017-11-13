@@ -9,9 +9,11 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         ApplicantName: {
-          first: 'Bob',
-          middle: 'Joe',
-          last: 'Smith'
+          Name: {
+            first: 'Bob',
+            middle: 'Joe',
+            last: 'Smith'
+          }
         }
       },
       history: {}

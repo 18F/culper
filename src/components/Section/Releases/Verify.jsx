@@ -25,7 +25,7 @@ export default class Verify extends React.Component {
   render () {
     // Identification section
     const identification = this.props.Identification || {}
-    const name = NameSummary(identification.ApplicantName || {}, i18n.t('releases.verify.label.none'))
+    const name = NameSummary((identification.ApplicantName || {}).Name, i18n.t('releases.verify.label.none'))
     const othernamesList = (identification.OtherNames || {}).List || []
     const othernames = othernamesList.length
           ? othernamesList.map(n => { return NameSummary(n.Name, i18n.t('releases.verify.label.none')) })

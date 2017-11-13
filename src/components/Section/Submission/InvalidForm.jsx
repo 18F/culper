@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n, env } from '../../../config'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { Show } from '../../Form'
 
 export default class InvalidForm extends React.Component {
@@ -30,7 +30,7 @@ export default class InvalidForm extends React.Component {
         { i18n.m(`submission.invalidForm`) }
         { this.errors() }
         <Show when={!env.IsProduction()}>
-          <Link to={`/form/submit/releases`}>Simulate valid form</Link>
+          <Link to={`/form/submission/releases`}>Simulate valid form</Link>
         </Show>
       </div>
     )

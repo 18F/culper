@@ -50,13 +50,14 @@ export default class Signature extends ValidationElement {
   }
 
   render () {
+    const name = (this.props.LegalName || {}).Name
     return (
       <div className="signature">
         <Show when={!this.props.Date || !this.props.Date.value}>
           <button className="add" onClick={this.addSignature}>{i18n.t('signature.add')}</button>
         </Show>
         <Show when={this.props.Date && this.props.Date.value}>
-          <span className="name wet">{NameSummary(this.props.Name)}</span>
+          <span className="name wet">{NameSummary(name)}</span>
           <span className="spacer"></span>
           <span className="date wet">{DateSummary(this.props.Date, '', true)}</span>
 

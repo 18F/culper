@@ -41,12 +41,12 @@ class Submission extends SectionElement {
     for (const sectionName in tally) {
       const mark = tally[sectionName]
       if (mark.errors > 0) {
-        this.props.dispatch(push('/form/submit/errors'))
+        this.props.dispatch(push('/form/submission/errors'))
         return
       }
     }
 
-    this.props.dispatch(push('/form/submit/releases'))
+    this.props.dispatch(push('/form/submission/releases'))
     return
   }
 
@@ -54,7 +54,7 @@ class Submission extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/submit/releases'))
+    this.props.dispatch(push('/form/submission/releases'))
   }
 
   errorCheck () {
