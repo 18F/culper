@@ -37,7 +37,7 @@
     "@18f/stylelint-rules": "^2.0.0",
     "axios-mock-adapter": "^1.9.0",
     "babel-core": "^6.26.0",
-    "babel-jest": "^21.0.2",
+    "babel-jest": "^17.0.0",
     "babel-loader": "^7.1.2",
     "babel-plugin-add-module-exports": "^0.2.1",
     "babel-plugin-react-html-attrs": "^2.0.0",
@@ -64,7 +64,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.6.1",
     "http-server": "^0.10.0",
-    "jest": "^21.1.0",
+    "jest": "^19.1.0-alpha.eed82034",
     "jsdoc": "^3.5.5",
     "json-loader": "^0.5.7",
     "react-addons-test-utils": "^15.6.0",
@@ -82,7 +82,7 @@
     "collectCoverage": true
   },
   "scripts": {
-    "test": "./node_modules/.bin/gulp lint && NODE_ENV='test' ./node_modules/.bin/jest -u --logHeapUsage --coverage --ci=true",
+    "test": "./node_modules/.bin/gulp lint && NODE_ENV='test' ./node_modules/.bin/jest -u --logHeapUsage --coverage",
     "lint": "./node_modules/.bin/gulp lint",
     "coverage": "NODE_ENV=test npm install -g codecov && codecov",
     "build": "./node_modules/.bin/gulp build",
