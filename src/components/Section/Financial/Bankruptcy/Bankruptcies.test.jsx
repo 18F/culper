@@ -28,7 +28,7 @@ describe('The bankruptcies component', () => {
     let bankruptcyData = {
       items: [
         {
-          Bankruptcy: {
+          Item: {
             PetitionType: 'Chapter7',
             CourtAddress: {
               country: 'United States',
@@ -76,7 +76,9 @@ describe('The bankruptcies component', () => {
     let updates = 0
     const expected = {
       name: 'bankrupcty',
-      HasBankruptcy: 'Yes',
+      HasBankruptcy: {
+        value: 'Yes'
+      },
       List: bankruptcyData,
       onUpdate: () => { updates++ }
     }

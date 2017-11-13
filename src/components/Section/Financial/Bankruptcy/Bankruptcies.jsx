@@ -1,8 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
-import validate from '../../../../validators'
-import { BankruptcyValidator, BankruptcyItemValidator } from '../../../../validators'
+import validate, { BankruptcyItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import Bankruptcy from './Bankruptcy'
@@ -13,14 +12,13 @@ export default class Bankruptcies extends SubsectionElement {
     super(props)
 
     this.updateList = this.updateList.bind(this)
-    this.updateHasBankrupty = this.updateHasBankrupty.bind(this)
+    this.updateHasBankruptcy = this.updateHasBankruptcy.bind(this)
     this.summary = this.summary.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasBankruptcy: this.props.HasBankruptcy,
       ...queue
     })
@@ -28,16 +26,14 @@ export default class Bankruptcies extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
-  updateHasBankrupty (values) {
+  updateHasBankruptcy (values) {
     this.update({
       HasBankruptcy: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values === 'Yes' ? this.props.List : []
     })
   }
 
@@ -68,12 +64,12 @@ export default class Bankruptcies extends SubsectionElement {
                 {...this.props.HasBankruptcy}
                 help="financial.bankruptcy.help"
                 warning={true}
-                onUpdate={this.updateHasBankrupty}
+                onUpdate={this.updateHasBankruptcy}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 onError={this.handleError}>
         </Branch>
-        <Show when={this.props.HasBankruptcy === 'Yes'}>
+        <Show when={(this.props.HasBankruptcy || {}).value === 'Yes'}>
           <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
@@ -100,7 +96,7 @@ export default class Bankruptcies extends SubsectionElement {
 }
 
 Bankruptcies.defaultProps = {
-  List: {},
+  List: { items: [] },
   HasBankruptcy: {},
   addressBooks: {},
   onError: (value, arr) => { return arr },
