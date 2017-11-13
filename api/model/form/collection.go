@@ -10,11 +10,10 @@ import (
 // Collection represents a structure composed of items in a structured
 // format.
 type Collection struct {
-	//PayloadBranch Payload `json:"branch,omitempty" sql:"-"`
 	PayloadBranch Payload `json:"branch" sql:"-"`
 
 	// Validator specific fields
-	Branch *Branch           `json:"branch" sql:"-"`
+	Branch *Branch           `json:"-" sql:"-"`
 	Items  []*CollectionItem `json:"items" sql:"-"`
 
 	// Persister specific fields

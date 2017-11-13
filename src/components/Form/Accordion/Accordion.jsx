@@ -108,7 +108,7 @@ export default class Accordion extends ValidationElement {
     })
 
     if (dirty) {
-      this.update(items)
+      this.update(items, this.props.branch)
     }
   }
 

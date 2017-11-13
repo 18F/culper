@@ -372,7 +372,7 @@ func TestPayloadPersistence(t *testing.T) {
 		// Get the test data as a byte array
 		raw, err := readBinaryData(test.Data)
 		if err != nil {
-			t.Fatal(err)
+			t.Fatalf("Failed to read binary data: %v", err)
 		}
 
 		// Deserialize the initial payload from a JSON structure
