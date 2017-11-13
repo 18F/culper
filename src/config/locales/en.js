@@ -1306,7 +1306,7 @@ const en = {
   },
   financial: {
     intro: {
-      title: 'Section 2: Financial record',
+      title: 'Section 7: Financial record',
       body: 'You will be asked questions about your financial history and be asked to provide details if necessary.'
     },
     tour: {
@@ -1929,7 +1929,7 @@ const en = {
   },
   citizenship: {
     intro: {
-      title: 'Section 5: Citizenship',
+      title: 'Section 4: Citizenship',
       body: 'You will be asked questions about your citizenship status and history and be asked to provide details if necessary.'
     },
     tour: {
@@ -2317,7 +2317,7 @@ const en = {
   },
   relationships: {
     intro: {
-      title: 'Section 4: Relationships',
+      title: 'Section 2: Relationships',
       body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
     },
     tour: {
@@ -3221,7 +3221,7 @@ const en = {
   },
   military: {
     intro: {
-      title: 'Section 6: Military history',
+      title: 'Section 5: Military history',
       body: 'You will be asked questions about your military history and be asked to provide details if necessary.'
     },
     tour: {
@@ -5233,7 +5233,7 @@ const en = {
   },
   foreign: {
     intro: {
-      title: 'Section 7: Foreign activities',
+      title: 'Section 6: Foreign activities',
       body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
     },
     tour: {
