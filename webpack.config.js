@@ -38,7 +38,7 @@ module.exports = {
       }
     ]
   },
-  devtool: debug ? 'inline-sourcemap' : null,
+  devtool: debug ? 'inline-sourcemap' : false,
   plugins: plugins()
 }
 
