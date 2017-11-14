@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { navigation } from '../../../config'
+import { navigation, navigationWalker } from '../../../config'
 import { hideHippa } from '../../../validators/releases'
 import { SectionViews, SectionView } from '../SectionView'
 import SectionElement from '../SectionElement'
@@ -9,11 +9,11 @@ import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
 import { push } from '../../../middleware/history'
-import { navigationWalker } from '../../../config'
 
 class Submission extends SectionElement {
   constructor (props) {
     super(props)
+
     this.updateSubmission = this.updateSubmission.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onTransitionEnd = this.onTransitionEnd.bind(this)
@@ -41,12 +41,12 @@ class Submission extends SectionElement {
     for (const sectionName in tally) {
       const mark = tally[sectionName]
       if (mark.errors > 0) {
-        this.props.dispatch(push('/form/submit/errors'))
+        this.props.dispatch(push('/form/submission/errors'))
         return
       }
     }
 
-    this.props.dispatch(push('/form/submit/releases'))
+    this.props.dispatch(push('/form/submission/releases'))
     return
   }
 
@@ -54,7 +54,7 @@ class Submission extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/submit/releases'))
+    this.props.dispatch(push('/form/submission/releases'))
   }
 
   errorCheck () {

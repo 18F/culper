@@ -23,6 +23,10 @@ class Env {
     return url
   }
 
+  IsProduction () {
+    return process.env.NODE_ENV === 'production'
+  }
+
   IsTest () {
     return process.env.NODE_ENV === 'test'
   }

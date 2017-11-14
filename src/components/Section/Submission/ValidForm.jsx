@@ -225,7 +225,8 @@ export const validSignature = (el) => {
     return false
   }
 
-  const nameValidator = new NameValidator(signature.Name)
+  const name = (signature.Name || {}).Name
+  const nameValidator = new NameValidator(name)
   if (!nameValidator.isValid()) {
     return false
   }
