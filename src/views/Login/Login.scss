@@ -71,6 +71,16 @@
 
     button,
     a {
+      display: inline-block;
+      color: #0071bc;
+      padding-left: 0.5rem;
+      padding-right: 0.5rem;
+
+      span {
+        text-decoration: none;
+        border-bottom: 1px dotted #0071bc;
+      }
+
       i {
         margin-left: 1rem;
       }
