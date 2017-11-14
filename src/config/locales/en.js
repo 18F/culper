@@ -1168,8 +1168,8 @@ const en = {
         comments: 'Add optional comments'
       },
       para: {
-        email: 'Email addresses may be used as contact method, and identify subject in records.',
-        phoneNumber: 'Provide your phone numbers. At least one number is required, but providing additional numbers may assist in the completion of your background investigation.'
+        email: '**At least one email address is required**, but providing additional email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+        phoneNumber: 'Provide your phone numbers. **At least one number is required**, but providing additional numbers may assist in the completion of your background investigation.'
       },
       label: {
         email: 'Email address',
