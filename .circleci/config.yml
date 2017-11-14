@@ -9,7 +9,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build db api frontend
+            docker-compose build db api
       - run:
           name: Run unit tests for API
           command: |
@@ -19,13 +19,14 @@ jobs:
           name: Run unit tests for the front end
           command: |
             set -x
-            docker-compose run frontend npm test
+            npm install
+            npm test
       - run:
           name: Code coverage
           command: |
             set -x
             echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-            docker-compose run frontend npm run coverage
+            NODE_ENV=test npm install -g codecov && codecov
 
   deploy_development:
     machine: true
@@ -36,7 +37,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build db api frontend
+            docker-compose build db api
       - run:
           name: Run unit tests for API
           command: |
@@ -46,13 +47,14 @@ jobs:
           name: Run unit tests for the front end
           command: |
             set -x
-            docker-compose run frontend npm test
+            npm install
+            npm test
       - run:
           name: Code coverage
           command: |
             set -x
             echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-            docker-compose run frontend npm run coverage
+            NODE_ENV=test npm install -g codecov && codecov
       - deploy:
           command: |
             set -x
@@ -67,7 +69,7 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build db api frontend
+            docker-compose build db api
       - run:
           name: Run unit tests for API
           command: |
@@ -77,13 +79,14 @@ jobs:
           name: Run unit tests for the front end
           command: |
             set -x
-            docker-compose run frontend npm test
+            npm install
+            npm test
       - run:
           name: Code coverage
           command: |
             set -x
             echo CODECOV_TOKEN=$CODECOV_TOKEN >> .env
-            docker-compose run frontend npm run coverage
+            NODE_ENV=test npm install -g codecov && codecov
       - deploy:
           command: |
             set -x
