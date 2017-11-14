@@ -9,7 +9,8 @@ jobs:
           command: |
             set -x
             cp .env.test .env
-            docker-compose build db api frontend
+            # docker-compose build db api frontend
+            docker-compose build db api
       - run:
           name: Run unit tests for API
           command: |
@@ -19,7 +20,9 @@ jobs:
           name: Run unit tests for the front end
           command: |
             set -x
-            docker-compose run frontend npm test
+            # docker-compose run frontend npm test
+            npm install
+            npm test
       - run:
           name: Code coverage
           command: |
