@@ -2,6 +2,7 @@ package handlers
 
 import (
 	"fmt"
+	"log"
 	"net/http"
 	"os"
 
@@ -41,7 +42,13 @@ func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
+	EncodeJSON(w, struct {
+		Base64XML string
+		URL       string
+	}{
+		b64XML,
+		url,
+	})
 }
 
 // SamlCallbackHandler is the returning entry point for authentication.
@@ -113,9 +120,17 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 //  - SPSignRequest:               "true",
 //  - AssertionConsumerServiceURL: "http://localhost:8000/saml_consume",
 func configureSAML() saml.ServiceProviderSettings {
+	log.Println("PublicCertPath:", os.Getenv("SAML_PUBLIC_CERT"))
+	log.Println("PrivateKeyPath:", os.Getenv("SAML_PRIVATE_CERT"))
+	log.Println("IDPSSOURL:", os.Getenv("SAML_IDP_SSO_URL"))
+	log.Println("IDPSSODescriptorURL:", os.Getenv("SAML_IDP_SSO_DESC_URL"))
+	log.Println("IDPPublicCertPath:", os.Getenv("SAML_IDP_PUBLIC_CERT"))
+	log.Println("SPSignRequest:", os.Getenv("SAML_SIGN_REQUEST") != "")
+	log.Println("AssertionConsumerServiceURL:", os.Getenv("SAML_CONSUMER_SERVICE_URL"))
+
 	sp := saml.ServiceProviderSettings{
 		PublicCertPath:              os.Getenv("SAML_PUBLIC_CERT"),
-		PrivateKeyPath:              os.Getenv("SAML_PRIVATE"),
+		PrivateKeyPath:              os.Getenv("SAML_PRIVATE_CERT"),
 		IDPSSOURL:                   os.Getenv("SAML_IDP_SSO_URL"),
 		IDPSSODescriptorURL:         os.Getenv("SAML_IDP_SSO_DESC_URL"),
 		IDPPublicCertPath:           os.Getenv("SAML_IDP_PUBLIC_CERT"),

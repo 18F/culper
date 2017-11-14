@@ -116,6 +116,10 @@ class Api {
     return this.proxy.post(endpoint, params, headers)
   }
 
+  saml () {
+    return this.get(env.EndpointSaml(), false)
+  }
+
   twoFactor (account, token) {
     if (token) {
       return this.post(env.EndpointTwoFactorVerify(account), { token: token })
