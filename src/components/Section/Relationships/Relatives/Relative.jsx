@@ -6,6 +6,7 @@ import { ValidationElement, Branch, Show, Svg, BranchCollection,
          Field, NotApplicable, Location
        } from '../../../Form'
 import { RelativeValidator } from '../../../../validators'
+import { countryString } from '../../../../validators/location'
 import Alias from './Alias'
 
 export default class Relative extends ValidationElement {
@@ -225,7 +226,7 @@ export default class Relative extends ValidationElement {
     }
 
     this.update({
-      Methods: { value: selected }
+      Methods: { values: selected }
     })
   }
 
@@ -419,17 +420,18 @@ export default class Relative extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('relationships.relatives.heading.name')}
-          optional={true}
-          scrollIntoView={this.props.scrollIntoView}>
-            <Name name="Name"
-                  className="relative-name"
-                  {...this.props.Name}
-                  onError={this.props.onError}
-                  onUpdate={this.updateName}
-                  required={this.props.required}
-                  scrollIntoView={this.props.scrollIntoView}
-                  />
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
+          <Name name="Name"
+                className="relative-name"
+                {...this.props.Name}
+                onError={this.props.onError}
+                onUpdate={this.updateName}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
         </Field>
+
         <Field title={i18n.t('relationships.relatives.heading.birthdate')}
                help="relationships.relatives.help.birthdate"
                adjustFor="labels"
@@ -507,7 +509,7 @@ export default class Relative extends ValidationElement {
         </Show>
 
         <Show when={immediateFamily}>
-          <BranchCollection {...(this.props.Aliases || {})}
+          <BranchCollection {...this.props.Aliases}
                             branchName="has_alias"
                             label={i18n.t('relationships.relatives.heading.alias.branch')}
                             appendLabel={i18n.t('relationships.relatives.heading.alias.branch')}
@@ -713,7 +715,7 @@ export default class Relative extends ValidationElement {
 
         <Show when={this.props.Citizenship.value && !validator.citizen() && this.props.IsDeceased.value === 'No'}>
           <div>
-            <Show when={this.props.Address && (this.props.Address.country || {}).value === 'United States'}>
+            <Show when={this.props.Address && countryString(this.props.Address.country || {}) === 'United States'}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.title')}
                        comments={false}
@@ -815,7 +817,7 @@ export default class Relative extends ValidationElement {
               </div>
             </Show>
 
-            <Show when={this.props.Address && !['United States', 'POSTOFFICE'].includes((this.props.Address.country || {}).value)}>
+            <Show when={this.props.Address && !['United States', 'POSTOFFICE'].includes(countryString(this.props.Address.country || {}))}>
               <div>
                 <Field title={i18n.t('relationships.relatives.heading.address.firstcontact')}
                        help="relationships.relatives.help.firstcontact"
@@ -849,7 +851,7 @@ export default class Relative extends ValidationElement {
                        comments={true}
                        commentsName="MethodsComments"
                        commentsValue={this.props.MethodsComments}
-                       commentsActive={((this.props.Methods || {}).value || []).some(x => x === 'Other')}
+                       commentsActive={((this.props.Methods || {}).values || []).some(x => x === 'Other')}
                        onUpdate={this.updateMethodsComments}
                        onError={this.props.onError}
                        adjustFor="big-buttons"
@@ -859,7 +861,7 @@ export default class Relative extends ValidationElement {
                     <CheckboxGroup className="relative-methods option-list"
                                    required={this.props.required}
                                    onError={this.props.onError}
-                                   selectedValues={(this.props.Methods || {}).value}>
+                                   selectedValues={(this.props.Methods || {}).values}>
                       <Checkbox name="methods-inperson"
                                 label={i18n.m('relationships.relatives.label.methods.inperson')}
                                 value="In person"
@@ -903,7 +905,7 @@ export default class Relative extends ValidationElement {
                        comments={true}
                        commentsName="FrequencyComments"
                        commentsValue={this.props.FrequencyComments}
-                       commentsActive={this.props.Frequency === 'Other'}
+                       commentsActive={this.props.Frequency.value === 'Other'}
                        onUpdate={this.updateFrequencyComments}
                        onError={this.props.onError}
                        scrollIntoView={this.props.scrollIntoView}
@@ -963,7 +965,8 @@ export default class Relative extends ValidationElement {
                    adjustFor="buttons"
                    scrollIntoView={this.props.scrollIntoView}
                    shrink={true}>
-              <NotApplicable name="EmployerNotApplicable"
+              <NotApplicable {...this.props.EmployerNotApplicable}
+                             name="EmployerNotApplicable"
                              label={i18n.t('relationships.relatives.label.idk')}
                              or={i18n.m('relationships.relatives.para.or')}
                              onError={this.props.onError}
@@ -981,7 +984,8 @@ export default class Relative extends ValidationElement {
             <Field title={i18n.t('relationships.relatives.heading.employer.address')}
                    scrollIntoView={this.props.scrollIntoView}
                    adjustFor="address">
-              <NotApplicable name="EmployerAddressNotApplicable"
+              <NotApplicable {...this.props.EmployerAddressNotApplicable}
+                             name="EmployerAddressNotApplicable"
                              label={i18n.t('relationships.relatives.label.idk')}
                              or={i18n.m('relationships.relatives.para.or')}
                              onError={this.props.onError}
@@ -997,7 +1001,8 @@ export default class Relative extends ValidationElement {
               </NotApplicable>
             </Field>
 
-            <NotApplicable name="EmployerRelationshipNotApplicable"
+            <NotApplicable {...this.props.EmployerRelationshipNotApplicable}
+                           name="EmployerRelationshipNotApplicable"
                            label={i18n.t('relationships.relatives.label.idk')}
                            or={i18n.m('relationships.relatives.para.or')}
                            onError={this.props.onError}
@@ -1040,8 +1045,8 @@ Relative.defaultProps = {
   Citizenship: {},
   MaidenSameAsListed: '',
   MaidenName: {},
-  Aliases: [],
-  IsDeceased: '',
+  Aliases: {},
+  IsDeceased: {},
   Address: {},
   DocumentNumber: {},
   CourtName: {},
@@ -1052,7 +1057,7 @@ Relative.defaultProps = {
   Expiration: {},
   FirstContact: {},
   LastContact: {},
-  Methods: [],
+  Methods: {},
   MethodsComments: {},
   Frequency: '',
   FrequencyComments: {},

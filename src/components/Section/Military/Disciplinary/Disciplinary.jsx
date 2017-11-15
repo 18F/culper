@@ -21,7 +21,6 @@ export default class Disciplinary extends SubsectionElement {
     this.props.onUpdate({
       HasDisciplinary: this.props.HasDisciplinary,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -30,15 +29,13 @@ export default class Disciplinary extends SubsectionElement {
     // If there is no history clear out any previously entered data
     this.update({
       HasDisciplinary: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values.items
     })
   }
 
@@ -74,10 +71,9 @@ export default class Disciplinary extends SubsectionElement {
                 />
 
         <Show when={this.props.HasDisciplinary.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={ProcedureValidator}
@@ -101,6 +97,7 @@ export default class Disciplinary extends SubsectionElement {
 
 Disciplinary.defaultProps = {
   HasDisciplinary: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',

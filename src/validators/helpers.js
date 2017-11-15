@@ -60,7 +60,7 @@ export const validPhoneNumber = (phone) => {
   if (!phone) {
     return false
   }
-  if (phone.noNumber === 'NA') {
+  if (phone.noNumber) {
     return true
   }
   if (!phone.numberType) {

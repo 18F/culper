@@ -1,5 +1,5 @@
 import NameValidator from './name'
-import LocationValidator, { isInternational } from './location'
+import LocationValidator, { isInternational, countryString } from './location'
 import DateRangeValidator from './daterange'
 import { validAccordion, validDateField, validGenericTextfield } from './helpers'
 
@@ -21,30 +21,30 @@ export default class RelativesValidator {
 
 export class RelativeValidator {
   constructor (data = {}) {
-    this.relation = data.Relation || []
+    this.relation = (data.Relation || {}).value
     this.name = data.Name
     this.birthdate = data.Birthdate
     this.birthplace = data.Birthplace
-    this.citizenship = data.Citizenship
+    this.citizenship = (data.Citizenship || {}).value || []
     this.maidenSameAsListed = (data.MaidenSameAsListed || {}).value
-    this.maidenName = data.MaidenName
-    this.aliases = data.Aliases || []
+    this.maidenName = data.MaidenName || {}
+    this.aliases = data.Aliases || {}
     this.isDeceased = (data.IsDeceased || {}).value
     this.address = data.Address
-    this.citizenshipDocumentation = data.CitizenshipDocumentation
+    this.citizenshipDocumentation = (data.CitizenshipDocumentation || {}).value
     this.otherCitizenshipDocumentation = data.OtherCitizenshipDocumentation
     this.documentNumber = data.DocumentNumber
     this.courtName = data.CourtName
     this.courtAddress = data.CourtAddress
-    this.document = data.Document
+    this.document = (data.Document || {}).value
     this.otherDocument = data.OtherDocument
     this.residenceDocumentNumber = data.ResidenceDocumentNumber
     this.expiration = data.Expiration
     this.firstContact = data.FirstContact
     this.lastContact = data.LastContact
-    this.methods = data.Methods || []
-    this.methodsComments = data.MethodsComments
-    this.frequency = data.Frequency
+    this.methods = (data.Methods || {}).values || []
+    this.methodsComments = (data.MethodsComments || {}).value
+    this.frequency = (data.Frequency || {}).value
     this.frequencyComments = data.FrequencyComments
     this.employer = data.Employer
     this.employerAddress = data.EmployerAddress
@@ -53,18 +53,18 @@ export class RelativeValidator {
   }
 
   citizen () {
-    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.some(x => x === 'United States')
+    return !!this.citizenship && !!this.citizenship.length && this.citizenship.some(x => x === 'United States')
   }
 
   requiresCitizenshipDocumentation () {
     const relations = ['Father', 'Mother', 'Child', 'Stepchild', 'Brother', 'Sister', 'Half-brother', 'Half-sister', 'Stepbrother', 'Stepsister', 'Stepmother', 'Stepfather']
     const citizen = this.citizen()
-    const international = (((this.birthplace || {}).country || {}).value !== 'United States')
-    const mailingCountry = ((this.address || {}).country || {}).value
+    const international = (countryString((this.birthplace || {}).country || {}) !== 'United States')
+    const mailingCountry = countryString((this.address || {}).country || {})
 
     // If no citizenship information has been given we don't know if documentation
     // is required.
-    if (((this.citizenship || {}).value || []).length === 0) {
+    if ((this.citizenship || []).length === 0) {
       return false
     }
 
@@ -104,7 +104,7 @@ export class RelativeValidator {
   }
 
   validCitizenship () {
-    return !!this.citizenship && !!this.citizenship.value && this.citizenship.value.length > 0
+    return !!this.citizenship && this.citizenship.length > 0
   }
 
   validMaidenName () {
@@ -120,18 +120,20 @@ export class RelativeValidator {
   }
 
   validAliases () {
-    if (this.aliases.length === 0) {
+    const items = this.aliases.items || []
+    if (items.length === 0) {
       return false
     }
 
-    for (const alias of this.aliases) {
-      const has = !!alias.Has && (alias.Has === 'No' || alias.Has === 'Yes')
-      if (has && alias.Has === 'No') {
+    for (const alias of items) {
+      const item = alias.Item || {}
+      const has = !!item.Has && (item.Has.value === 'No' || item.Has.value === 'Yes')
+      if (has && item.Has.value === 'No') {
         continue
       }
 
       const props = { hideMaiden: this.relation === 'Mother' }
-      if (has && new AliasValidator(alias.Item, props).isValid() === false) {
+      if (has && new AliasValidator(item, props).isValid() === false) {
         return false
       }
     }
@@ -334,6 +336,30 @@ export class RelativeValidator {
   }
 
   isValid () {
+    console.log('validRelation: ', this.validRelation())
+    console.log('validName: ', this.validName())
+    console.log('validBirthdate: ', this.validBirthdate())
+    console.log('validBirthplace: ', this.validBirthplace())
+    console.log('validCitizenship: ', this.validCitizenship())
+    console.log('validMaidenName: ', this.validMaidenName())
+    console.log('validAliases: ', this.validAliases())
+    console.log('validIsDeceased: ', this.validIsDeceased())
+    console.log('validAddress: ', this.validAddress())
+    console.log('validCitizenshipDocumentation: ', this.validCitizenshipDocumentation())
+    console.log('validDocumentNumber: ', this.validDocumentNumber())
+    console.log('validCourtName: ', this.validCourtName())
+    console.log('validCourtAddress: ', this.validCourtAddress())
+    console.log('validDocument: ', this.validDocument())
+    console.log('validResidenceDocumentNumber: ', this.validResidenceDocumentNumber())
+    console.log('validExpiration: ', this.validExpiration())
+    console.log('validFirstContact: ', this.validFirstContact())
+    console.log('validLastContact: ', this.validLastContact())
+    console.log('validMethods: ', this.validMethods())
+    console.log('validFrequency: ', this.validFrequency())
+    console.log('validEmployer: ', this.validEmployer())
+    console.log('validEmployerAddress: ', this.validEmployerAddress())
+    console.log('validEmployerRelationship: ', this.validEmployerRelationship())
+
     return this.validRelation() &&
       this.validName() &&
       this.validBirthdate() &&

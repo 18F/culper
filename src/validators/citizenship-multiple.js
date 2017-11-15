@@ -4,7 +4,7 @@ import { validAccordion, validGenericTextfield } from './helpers'
 export default class CitizenshipMultipleValidator {
   constructor (data = {}) {
     this.hasMultiple = (data.HasMultiple || {}).value
-    this.list = data.Citizenships || {}
+    this.list = data.List || {}
   }
 
   validHasMultiple () {

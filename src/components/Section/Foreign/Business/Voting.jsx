@@ -19,7 +19,6 @@ export default class Voting extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignVoting: this.props.HasForeignVoting,
       ...queue
     })
@@ -28,15 +27,13 @@ export default class Voting extends SubsectionElement {
   updateHasForeignVoting (values) {
     this.update({
       HasForeignVoting: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -69,7 +66,7 @@ export default class Voting extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignVoting.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
                      branch={this.props.ListBranch}
@@ -82,11 +79,11 @@ export default class Voting extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.voting.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <VotingItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <VotingItem name="Item"
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
           </Accordion>
         </Show>
       </div>
@@ -97,8 +94,7 @@ export default class Voting extends SubsectionElement {
 Voting.defaultProps = {
   name: 'Voting',
   HasForeignVoting: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

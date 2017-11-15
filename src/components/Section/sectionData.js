@@ -165,16 +165,17 @@ export const sectionData = (section, subsection, application = {}) => {
     case 'legal/technology/unlawful':
       return wrap(application.Legal).Unlawful
 
-    case 'psycholigical/competence':
+    case 'psychological/competence':
       return wrap(application.Psychological).Competence
-    case 'psycholigical/conditions':
+    case 'psychological/conditions':
       return wrap(application.Psychological).ExistingConditions
-    case 'psycholigical/consultations':
+    case 'psychological/consultations':
       return wrap(application.Psychological).Consultations
-    case 'psycholigical/diagnoses':
+    case 'psychological/diagnoses':
       return wrap(application.Psychological).Diagnoses
-    case 'psycholigical/hospitalizations':
+    case 'psychological/hospitalizations':
       return wrap(application.Psychological).Hospitalizations
+
     case 'submission/releases':
       return wrap(application.Submission).Releases
   }
