@@ -1,6 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
+-- +goose StatementBegin
 
 CREATE TABLE legal_associations_activities_to_overthrows (
     id                bigint REFERENCES accounts(id) NOT NULL PRIMARY KEY,
@@ -102,9 +103,11 @@ CREATE TABLE legal_technology_unlawfuls (
     has_unlawful_id bigint REFERENCES branches(id),
     list_id         bigint REFERENCES collections(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
 DROP TABLE legal_associations_activities_to_overthrows;
 DROP TABLE legal_associations_advocatings;
 DROP TABLE legal_associations_engaged_in_terrorisms;
@@ -122,3 +125,4 @@ DROP TABLE legal_police_offenses;
 DROP TABLE legal_technology_manipulatings;
 DROP TABLE legal_technology_unauthorizeds;
 DROP TABLE legal_technology_unlawfuls;
+-- +goose StatementEnd

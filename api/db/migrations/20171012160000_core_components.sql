@@ -1,6 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
+-- +goose StatementBegin
 
 CREATE TABLE branches (
     id    bigserial PRIMARY KEY,
@@ -255,9 +256,11 @@ CREATE TABLE supervisors (
     address_id              bigint    REFERENCES locations(id),
     telephone_id            bigint    REFERENCES telephones(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
 DROP TABLE benefits;
 DROP TABLE branches;
 DROP TABLE checkbox_groups;
@@ -290,3 +293,4 @@ DROP TABLE telephones;
 DROP TABLE textareas;
 DROP TABLE texts;
 DROP TABLE treatments;
+-- +goose StatementEnd
