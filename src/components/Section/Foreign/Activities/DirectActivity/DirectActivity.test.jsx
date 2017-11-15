@@ -71,6 +71,9 @@ describe('The DirectActivity component', () => {
       },
       HasInterests: { value: 'Yes' },
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [
           {
             Item: {
@@ -111,8 +114,7 @@ describe('The DirectActivity component', () => {
             }
           }
         ]
-      },
-      ListBranch: 'No'
+      }
     }
     const component = mount(<DirectActivity {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

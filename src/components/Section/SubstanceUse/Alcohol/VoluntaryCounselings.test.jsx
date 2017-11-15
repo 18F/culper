@@ -23,8 +23,10 @@ describe('The VoluntaryCounselings component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       SoughtTreatment: { value: 'Yes' },
-      ListBranch: 'No',
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [{
           Item: {
             CounselingDates: {

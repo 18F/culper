@@ -19,6 +19,6 @@ export const relationshipsPeople = (data = {}) => {
     }
   })
   return {
-    List: form.collection(items, (data.ListBranch || {}).branch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

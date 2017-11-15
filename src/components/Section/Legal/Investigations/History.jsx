@@ -95,7 +95,6 @@ History.defaultProps = {
   name: 'history',
   HasHistory: {},
   List: Accordion.defaultList,
-  ListBranch: '',
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

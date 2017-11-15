@@ -7,7 +7,7 @@ export const sectionData = (section, subsection, application = {}) => {
     return obj || {}
   }
 
-  switch (`${section}/${subsection}`) {
+  switch (`${section.toLowerCase()}/${subsection.toLowerCase()}`) {
     case 'identification/birthdate':
       return wrap(application.Identification).ApplicantBirthDate
     case 'identification/birthplace':

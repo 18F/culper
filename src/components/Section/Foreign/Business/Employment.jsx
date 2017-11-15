@@ -20,7 +20,6 @@ export default class Employment extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignEmployment: this.props.HasForeignEmployment,
       ...queue
     })
@@ -29,15 +28,13 @@ export default class Employment extends SubsectionElement {
   updateHasForeignEmployment (values) {
     this.update({
       HasForeignEmployment: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 

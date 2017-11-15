@@ -49,21 +49,23 @@ describe('The foreign service component', () => {
         props: {
           name: 'foreign-service',
           MaintainsContact: { value: 'Yes' },
-          List: [
-            {
-              Item: {
-                Name: null,
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2015')
-                  },
-                  to: {
-                    date: new Date('1/1/2016')
+          List: {
+            items: [
+              {
+                Item: {
+                  Name: null,
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    }
                   }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: '1/2015 - 1/2016'
       }

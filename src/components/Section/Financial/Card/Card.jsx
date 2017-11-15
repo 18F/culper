@@ -107,7 +107,6 @@ export default class Card extends SubsectionElement {
 Card.defaultProps = {
   HasCardAbuse: {},
   List: {},
-  ListBranch: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',

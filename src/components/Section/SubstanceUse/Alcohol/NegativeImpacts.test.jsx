@@ -22,8 +22,10 @@ describe('The NegativeImpacts component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       HasImpacts: { value: 'Yes' },
-      ListBranch: 'No',
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [{
           Item: {
             Occurred: {

@@ -1,8 +1,9 @@
 import { general } from './general'
+import { countryString } from '../../validators/location'
 
 export const location = (data = {}) => {
   return general('location', {
     ...data,
-    country: data.country && data.country.value ? data.country.value : data.country
+    country: countryString(data.country)
   })
 }
