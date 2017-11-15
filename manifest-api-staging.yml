@@ -14,7 +14,7 @@ applications:
   env:
     GOVERSION: go1.8.5
     ALLOW_2FA_RESET: 1
-    DB_MIGRATION_TARGET: 20171012160000_core_components.sql
+    DB_MIGRATION_TARGET: 20171012160515_identification.sql
     SAML_ENABLED: 1
     SAML_PUBLIC_CERT: eapp.crt
     SAML_PRIVATE_CERT: eapp.key
