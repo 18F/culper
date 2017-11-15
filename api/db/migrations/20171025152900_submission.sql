@@ -43,10 +43,10 @@ CREATE TABLE submissions (
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
 -- +goose StatementBegin
+DROP TABLE submissions;
 DROP TABLE submission_credits;
 DROP TABLE submission_medicals;
 DROP TABLE submission_generals;
 DROP TABLE submission_additional_comments;
-DROP TABLE submissions;
 DROP TABLE signatures;
 -- +goose StatementEnd
