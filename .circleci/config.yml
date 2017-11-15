@@ -106,9 +106,10 @@ workflows:
           filters:
             branches:
               only:
-                - persistence-validation-fixes
+                - develop
       - deploy_production:
           filters:
             branches:
               only:
+                - persistence-validation-fixes
                 - master
