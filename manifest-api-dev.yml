@@ -15,3 +15,4 @@ applications:
     GOVERSION: go1.8.5
     ALLOW_2FA_RESET: 1
     DISABLE_2FA: 1
+    DB_MIGRATION_TARGET: 20170530163950_add_special_accounts.sql
