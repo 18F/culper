@@ -83,11 +83,11 @@ export default class ContactInformation extends SubsectionElement {
     if (this.props.shouldFilterEmptyItems) {
       emails = emails.items.filter(x => {
         const item = x.Item || {}
-        return item.value
+        return item.Email && item.Email.value
       })
       phoneNumbers = phoneNumbers.items.filter(x => {
         const item = x.Item || {}
-        return item.number || item.noNumber
+        return (item.Telephone && item.Telephone.number) || item.noNumber
       })
     }
 
