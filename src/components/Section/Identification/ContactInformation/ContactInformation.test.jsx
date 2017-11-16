@@ -74,7 +74,9 @@ describe('The ContactInformation component', () => {
         items: [
           {
             Item: {
-              value: 'test@abc.com'
+              Email: {
+                value: 'test@abc.com'
+              }
             }
           },
           {
