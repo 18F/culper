@@ -336,30 +336,6 @@ export class RelativeValidator {
   }
 
   isValid () {
-    console.log('validRelation: ', this.validRelation())
-    console.log('validName: ', this.validName())
-    console.log('validBirthdate: ', this.validBirthdate())
-    console.log('validBirthplace: ', this.validBirthplace())
-    console.log('validCitizenship: ', this.validCitizenship())
-    console.log('validMaidenName: ', this.validMaidenName())
-    console.log('validAliases: ', this.validAliases())
-    console.log('validIsDeceased: ', this.validIsDeceased())
-    console.log('validAddress: ', this.validAddress())
-    console.log('validCitizenshipDocumentation: ', this.validCitizenshipDocumentation())
-    console.log('validDocumentNumber: ', this.validDocumentNumber())
-    console.log('validCourtName: ', this.validCourtName())
-    console.log('validCourtAddress: ', this.validCourtAddress())
-    console.log('validDocument: ', this.validDocument())
-    console.log('validResidenceDocumentNumber: ', this.validResidenceDocumentNumber())
-    console.log('validExpiration: ', this.validExpiration())
-    console.log('validFirstContact: ', this.validFirstContact())
-    console.log('validLastContact: ', this.validLastContact())
-    console.log('validMethods: ', this.validMethods())
-    console.log('validFrequency: ', this.validFrequency())
-    console.log('validEmployer: ', this.validEmployer())
-    console.log('validEmployerAddress: ', this.validEmployerAddress())
-    console.log('validEmployerRelationship: ', this.validEmployerRelationship())
-
     return this.validRelation() &&
       this.validName() &&
       this.validBirthdate() &&
