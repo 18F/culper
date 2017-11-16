@@ -102,14 +102,12 @@ workflows:
           filters:
             branches:
               ignore:
-                - persistence-validation-fixes
                 - develop
                 - master
       - deploy_development:
           filters:
             branches:
               only:
-                - persistence-validation-fixes
                 - develop
       - deploy_production:
           filters:
