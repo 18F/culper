@@ -24,7 +24,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
    */
   onUpdate (value) {
     this.props.onUpdate({
-      date: {
+      Date: {
         month: value.month,
         day: value.day,
         year: value.year,
@@ -73,7 +73,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name={this.props.name}
-                       {...this.props.date}
+                       {...this.props.Date}
                        className={klassError}
                        onUpdate={this.onUpdate}
                        onError={this.handleError}
@@ -86,7 +86,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
 }
 
 ApplicantBirthDate.defaultProps = {
-  date: {},
+  Date: {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'birthdate',

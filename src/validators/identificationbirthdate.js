@@ -1,17 +1,13 @@
 import { validDateField } from './helpers'
 import { now } from '../components/Section/History/dateranges'
+import { buildDate } from '../components/Form/DateControl'
 
 export default class IdentificationBirthDateValidator {
   constructor (data = {}) {
-    if (data && data.value && Object.prototype.toString.call(data.value) === '[object Date]') {
-      this.date = {
-        ...data,
-        date: data.value
-      }
-    } else if (data && data.value && Object.prototype.toString.call(data.value) === '[object Object]') {
-      this.date = data.value
-    } else {
-      this.date = data || {}
+    const d = data.Date || {}
+    this.date = {
+      ...d,
+      date: buildDate(d.year, d.month, d.day)
     }
   }
 

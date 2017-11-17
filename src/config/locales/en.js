@@ -9499,8 +9499,8 @@ const en = {
       },
       label: {
         name: 'Type your name below to sign',
-        changeInformation: 'Back to Information about you',
-        changeAddress: 'Back to where you have lived',
+        changeInformation: 'Change your information',
+        changeAddress: 'Change your street address',
         none: 'Not entered'
       }
     },

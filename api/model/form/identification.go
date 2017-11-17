@@ -144,7 +144,7 @@ func (entity *IdentificationName) SetID(id int) {
 
 // IdentificationBirthPlace subsection of identification section.
 type IdentificationBirthPlace struct {
-	Payload Payload `json:"location" sql:"-"`
+	Payload Payload `json:"Location" sql:"-"`
 
 	// Validator specific fields
 	Location *Location `json:"-"`
@@ -279,7 +279,7 @@ func (entity *IdentificationBirthPlace) SetID(id int) {
 
 // IdentificationBirthDate subsection of identification section.
 type IdentificationBirthDate struct {
-	Payload Payload `json:"date" sql:"-"`
+	Payload Payload `json:"Date" sql:"-"`
 
 	// Validator specific fields
 	Date *DateControl `json:"-"`

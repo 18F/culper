@@ -14,14 +14,14 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 
   update (queue) {
     this.props.onUpdate({
-      location: this.props.location,
+      Location: this.props.Location,
       ...queue
     })
   }
 
   updateLocation (values) {
     this.update({
-      location: values
+      Location: values
     })
   }
 
@@ -45,7 +45,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
                     countyPlaceholder={i18n.t('identification.birthplace.placeholder.county')}
                     countryLabel={i18n.t('identification.birthplace.label.country')}
                     countryPlaceholder={i18n.t('identification.birthplace.placeholder.country')}
-                    {...this.props.location}
+                    {...this.props.Location}
                     onUpdate={this.updateLocation}
                     onError={this.handleError}
                     required={this.props.required}

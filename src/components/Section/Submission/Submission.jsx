@@ -17,9 +17,9 @@ class Submission extends SectionElement {
     this.updateSubmission = this.updateSubmission.bind(this)
     this.onSubmit = this.onSubmit.bind(this)
     this.onTransitionEnd = this.onTransitionEnd.bind(this)
+    this.errorCheck = this.errorCheck.bind(this)
     // TODO: Remove after testing
     this.goToReleases = this.goToReleases.bind(this)
-    this.errorCheck = this.errorCheck.bind(this)
   }
 
   updateSubmission (values) {
@@ -143,98 +143,6 @@ export const allSectionsValid = (sections) => {
     }
   }
   return true
-}
-
-/**
- * Generates the status for all sections
- * Has the structure:
- * {
- *  title: '',
- *  url: '',
- *  subsections: [
- *    {
- *        name: '',
- *        url: '',
- *        complete:
- *    }
- *  ]
- * }
- */
-export const statusForAllSections = (application) => {
-  let possibleSections = possibleSectionsToComplete()
-  const completedTopLevelSections = application.Completed
-
-  for (let possibleSection of possibleSections) {
-    const completedSections = completedTopLevelSections[possibleSection.url]
-    if (!completedSections) {
-      return possibleSections
-    }
-
-    let possibleSubsections = possibleSection.subsections
-    for (let possibleSubsection of possibleSubsections) {
-      for (let completedSection of completedSections) {
-        if (possibleSubsection.url === completedSection.code) {
-          possibleSubsection.complete = completedSection.valid
-        }
-      }
-    }
-  }
-  return possibleSections
-}
-
-/**
- * Returns sections that are eligible to be completed. This includes sections that
- * are not hidden or excluded
- */
-export const possibleSectionsToComplete = () => {
-  let sections = [...navigation]
-  let paths = []
-  for (let section of sections) {
-    if (section.exclude || section.hidden) {
-      continue
-    }
-    paths.push({
-      title: section.title,
-      url: section.url,
-      subsections: flattenSectionsComplete(section)
-    })
-  }
-  return paths
-}
-
-/**
- * Flattens subsections that have more than 1 level. Examples include
- * the Foreign activities section. The errors are comprised of
- * top level sections and then their children (2nd and 3rd level subsections).
- */
-export const flattenSectionsComplete = (section, base) => {
-  if (!section.subsections || !section.subsections.length) {
-    return [
-      {
-        url: section.url,
-        name: section.name,
-        complete: false
-      }
-    ]
-  }
-  let paths = []
-  for (let subsection of section.subsections) {
-    if (subsection.exclude || subsection.hidden) {
-      continue
-    }
-
-    let url = `${section.url}`
-    let sPaths = flattenSectionsComplete(subsection).map(i => {
-      return {
-        url: `${url}/${i.url}`,
-        name: i.name,
-        complete: false
-      }
-    })
-    paths = paths.concat(sPaths)
-  }
-
-  return paths
 }
 
 function mapStateToProps (state) {

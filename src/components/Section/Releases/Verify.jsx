@@ -22,37 +22,67 @@ const wrapSpans = (text) => {
 }
 
 export default class Verify extends React.Component {
-  render () {
-    // Identification section
+  primaryName () {
     const identification = this.props.Identification || {}
-    const name = NameSummary((identification.ApplicantName || {}).Name, i18n.t('releases.verify.label.none'))
-    const othernamesList = (identification.OtherNames || {}).List || []
-    const othernames = othernamesList.length
-          ? othernamesList.map(n => { return NameSummary(n.Name, i18n.t('releases.verify.label.none')) })
-          : i18n.t('releases.verify.label.none')
-    const dob = DateSummary(identification.ApplicantBirthDate || {}, i18n.t('releases.verify.label.none'), true) || <span>{i18n.t('releases.verify.label.none')}</span>
-    const ssn = SSN(identification.ApplicantSSN || {}, i18n.t('releases.verify.label.none'))
-    const phoneNumbersList = (identification.Contacts || {}).PhoneNumbers || []
-    const phoneNumbers = phoneNumbersList.length
-          ? phoneNumbersList.filter(x => {
-            const item = x.Item || {}
-            return item.number || item.noNumber
-          })
-          .map(n => {
-            return TelephoneSummary(n, i18n.t('releases.verify.label.none'))
-          })
-          : i18n.t('releases.verify.label.none')
+    return NameSummary((identification.ApplicantName || {}).Name, i18n.t('releases.verify.label.none'))
+  }
 
-    // History section
-    const residence = ((this.props.History || {}).Residence || [{ Item: {} }])
-          .filter(n => !n.type || (n.type && n.type !== 'Gap'))
+  secondaryNames () {
+    const identification = this.props.Identification || {}
+    const items = ((identification.OtherNames || {}).List || { items: [] }).items || []
+    return items.length
+      ? items.map(n => { return NameSummary(n.Item.Name, i18n.t('releases.verify.label.none')) })
+      : i18n.t('releases.verify.label.none')
+  }
+
+  dateOfBirth () {
+    const identification = this.props.Identification || {}
+    const date = (identification.ApplicantBirthDate || {}).Date
+    return DateSummary(date, i18n.t('releases.verify.label.none'), true) || <span>{i18n.t('releases.verify.label.none')}</span>
+  }
+
+  social () {
+    const identification = this.props.Identification || {}
+    const ssn = identification.ApplicantSSN || {}
+    return SSN(ssn, i18n.t('releases.verify.label.none'))
+  }
+
+  telephone () {
+    const identification = this.props.Identification || {}
+    const items = ((identification.Contacts || {}).PhoneNumbers || {}).items || []
+    const filtered = items.filter(x => {
+      const item = x.Item || {}
+      return (item.Telephone && item.Telephone.number) || item.noNumber
+    })
+    return filtered.length
+      ? filtered.map(n => {
+        return TelephoneSummary(n.Item.Telephone, i18n.t('releases.verify.label.none'))
+      })
+      : i18n.t('releases.verify.label.none')
+  }
+
+  residence () {
+    const history = this.props.History || {}
+    const items = ((history.Residence || {}).List || {}).items || []
+    const residences = items
+          .filter(n => !n.Item.type || (n.Item.type && n.Item.type !== 'Gap'))
           .sort(sort)
           .map(n => {
             return AddressSummary(n.Item.Address, i18n.t('releases.verify.label.none'))
           })
-    const currentResidence = residence.length === 0
-          ? <span>{i18n.t('releases.verify.label.none')}</span>
-          : residence[0]
+    return residences.length === 0
+      ? <span>{i18n.t('releases.verify.label.none')}</span>
+      : residences[0]
+  }
+
+  render () {
+    const identification = this.props.Identification || {}
+    const name = this.primaryName()
+    const othernames = this.secondaryNames()
+    const dob = this.dateOfBirth()
+    const ssn = this.social()
+    const phoneNumbers = this.telephone()
+    const currentResidence = this.residence()
 
     return (
       <div className="verify">
@@ -62,38 +92,41 @@ export default class Verify extends React.Component {
                className="release-title no-margin-bottom" />
 
         <Field title={i18n.t('releases.verify.heading.name')}
+               titleSize="h5"
                optional={true}
                className="release-name verify-data no-margin-bottom">
           {wrapSpans(name)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.otherNamesUsed')}
+               titleSize="h5"
                optional={true}
                className="release-aliases verify-data no-margin-bottom">
           {wrapSpans(othernames)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.dateOfBirth')}
+               titleSize="h5"
                optional={true}
                className="release-dob verify-data no-margin-bottom">
           {wrapSpans(dob)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.ssn')}
+               titleSize="h5"
                optional={true}
                className="release-ssn verify-data no-margin-bottom">
           {wrapSpans(ssn)}
         </Field>
 
         <Field title={i18n.t('releases.verify.heading.telephoneNumber')}
+               titleSize="h5"
                optional={true}
                className="release-telephone verify-data no-margin-bottom">
           {wrapSpans(phoneNumbers)}
         </Field>
 
-        <Field title={i18n.t('releases.verify.heading.changeInformation')}
-               titleSize="h2"
-               optional={true}
+        <Field optional={true}
                className="release-fix-information">
           <Link to="/form/identification" className="usa-button">
             <span>{i18n.t('releases.verify.label.changeInformation')}</span>
@@ -107,9 +140,7 @@ export default class Verify extends React.Component {
           {wrapSpans(currentResidence)}
         </Field>
 
-        <Field title={i18n.t('releases.verify.heading.changeAddress')}
-               titleSize="h2"
-               optional={true}
+        <Field optional={true}
                className="release-fix-current-address">
           <Link to="/form/history/residence" className="usa-button">
             <span>{i18n.t('releases.verify.label.changeAddress')}</span>

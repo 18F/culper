@@ -58,7 +58,7 @@ export default class ContactInformation extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   phoneNumberSummary (item, index) {
-    const number = TelephoneSummary(item)
+    const number = TelephoneSummary((item.Item || {}).Telephone)
     return Summary({
       type: i18n.t('identification.contacts.collection.summary.phoneNumber'),
       index: index,
