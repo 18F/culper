@@ -674,6 +674,7 @@ export default class ForeignNational extends ValidationElement {
 }
 
 ForeignNational.defaultProps = {
+  AddressNotApplicable: { applicable: true },
   Name: {},
   NameNotApplicable: {
     applicable: true
@@ -682,7 +683,7 @@ ForeignNational.defaultProps = {
   FirstContact: {},
   LastContact: {},
   Methods: {},
-  MethodsNotApplicable: {},
+  MethodsNotApplicable: { applicable: true },
   MethodsExplanation: {},
   Frequency: {},
   FrequencyExplanation: {},
@@ -691,14 +692,17 @@ ForeignNational.defaultProps = {
   Aliases: {},
   Citizenship: {},
   Birthdate: {},
-  BirthdateNotApplicable: {},
+  BirthdateNotApplicable: { applicable: true },
   Birthplace: {},
-  BirthplaceNotApplicable: {},
+  BirthplaceNotApplicable: { applicable: true },
   Address: {},
-  AddressNotApplicable: {},
+  AddressNotApplicable: { applicable: true },
   Employer: {},
-  EmployerNotApplicable: {},
+  EmployerNotApplicable: { applicable: true },
   EmployerAddress: {},
+  EmployerAddressNotApplicable: { applicable: true },
+  OrganizationNotApplicable: { applicable: true },
+  OrganizationAddressNotApplicable: { applicable: true },
   HasAffiliations: {},
   Affiliations: {},
   addressBooks: {},

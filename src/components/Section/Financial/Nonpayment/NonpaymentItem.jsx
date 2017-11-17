@@ -260,6 +260,7 @@ export default class NonpaymentItem extends ValidationElement {
 }
 
 NonpaymentItem.defaultProps = {
+  ResolvedNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

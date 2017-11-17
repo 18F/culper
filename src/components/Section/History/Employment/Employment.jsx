@@ -14,14 +14,14 @@ import { Gap } from '../Gap'
 const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
     // If item is required and not currently opened and is not valid, show message
-    case required && !item.open && !validator(item.Item):
-    case !item.open && !initial && item.Item && !validator(item.Item):
-      return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.m(translation)}</div>
-      </div>
-      )
-    default:
-      return null
+  case required && !item.open && !validator(item.Item):
+  case !item.open && !initial && item.Item && !validator(item.Item):
+    return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
+            <div className="incomplete">{i18n.m(translation)}</div>
+            </div>
+           )
+  default:
+    return null
   }
 }
 
@@ -109,12 +109,12 @@ export default class Employment extends SubsectionElement {
                    appendLabel={i18n.t('history.employment.default.collection.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
-        <EmploymentItem name="Item"
-                        bind={true}
-                        addressBooks={this.props.addressBooks}
-                        dispatch={this.props.dispatch}
-                        required={this.props.required}
-                        scrollIntoView={this.props.scrollIntoView} />
+          <EmploymentItem name="Item"
+                          bind={true}
+                          addressBooks={this.props.addressBooks}
+                          dispatch={this.props.dispatch}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
       </div>
     )

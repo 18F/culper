@@ -20,7 +20,6 @@ export default class Ventures extends SubsectionElement {
     this.props.onUpdate({
       HasForeignVentures: this.props.HasForeignVentures,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -28,15 +27,13 @@ export default class Ventures extends SubsectionElement {
   updateHasForeignVentures (values) {
     this.update({
       HasForeignVentures: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { branch: {}, items: [] }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -72,10 +69,9 @@ export default class Ventures extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignVentures.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={VenturesValidator}
@@ -86,11 +82,11 @@ export default class Ventures extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.ventures.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <VenturesItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <VenturesItem name="Item"
+                          bind={true}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
+                          />
           </Accordion>
         </Show>
       </div>
@@ -101,8 +97,7 @@ export default class Ventures extends SubsectionElement {
 Ventures.defaultProps = {
   name: 'Ventures',
   HasForeignVentures: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

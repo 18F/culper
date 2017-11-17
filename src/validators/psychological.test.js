@@ -116,13 +116,13 @@ describe('Psychologicalvalidation', function () {
             Competence: {
               IsIncompetent: { value: 'No' }
             },
-            Consultation: {
+            Consultations: {
               Consulted: { value: 'No' }
             },
             Diagnoses: {
               Diagnosed: { value: 'No' }
             },
-            Hospitalization: {
+            Hospitalizations: {
               Hospitalized: { value: 'No' }
             }
           },
@@ -140,13 +140,13 @@ describe('Psychologicalvalidation', function () {
             Competence: {
               IsIncompetent: { value: 'Yes' }
             },
-            Consultation: {
+            Consultations: {
               Consulted: { value: 'No' }
             },
             Diagnoses: {
               Diagnosed: { value: 'No' }
             },
-            Hospitalization: {
+            Hospitalizations: {
               Hospitalized: { value: 'No' }
             }
           },

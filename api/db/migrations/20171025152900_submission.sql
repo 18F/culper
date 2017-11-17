@@ -1,7 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
-
+-- +goose StatementBegin
 CREATE TABLE signatures (
     id         bigserial PRIMARY KEY,
     account_id bigint REFERENCES accounts(id) NOT NULL,
@@ -37,13 +37,16 @@ CREATE TABLE submissions (
     medical_id             bigint REFERENCES submission_medicals(id),
     credit_id              bigint REFERENCES submission_credits(id)
 );
+-- +goose StatementEnd
 
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
+DROP TABLE submissions;
 DROP TABLE submission_credits;
 DROP TABLE submission_medicals;
 DROP TABLE submission_generals;
 DROP TABLE submission_additional_comments;
-DROP TABLE submissions;
 DROP TABLE signatures;
+-- +goose StatementEnd

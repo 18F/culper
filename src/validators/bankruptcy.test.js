@@ -65,7 +65,9 @@ describe('Bankruptcy component validation', function () {
             items: [
               {
                 Item: {
-                  PetitionType: 'Chapter7',
+                  PetitionType: {
+                    value: 'Chapter7'
+                  },
                   CourtAddress: {
                     country: { value: 'United States' },
                     street: '1234 Some Rd',
@@ -120,7 +122,9 @@ describe('Bankruptcy component validation', function () {
             items: [
               {
                 Item: {
-                  PetitionType: 'Chapter7',
+                  PetitionType: {
+                    value: 'Chapter7'
+                  },
                   CourtAddress: {
                     country: { value: 'United States' },
                     street: '1234 Some Rd',
@@ -174,7 +178,9 @@ describe('Bankruptcy component validation', function () {
             items: [
               {
                 Item: {
-                  PetitionType: 'Hello'
+                  PetitionType: {
+                    value: 'Hello'
+                  }
                 }
               }
             ]
@@ -193,19 +199,25 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         props: {
-          PetitionType: 'Chapter7'
+          PetitionType: {
+            value: 'Chapter7'
+          }
         },
         expected: true
       },
       {
         props: {
-          PetitionType: null
+          PetitionType: {
+            value: null
+          }
         },
         expected: false
       },
       {
         props: {
-          PetitionType: ''
+          PetitionType: {
+            value: ''
+          }
         },
         expected: false
       }
@@ -342,8 +354,8 @@ describe('Bankruptcy component validation', function () {
       {
         props: {
           DateFiled: {
-            month: 1,
-            year: 2010
+            month: '1',
+            year: '2010'
           }
         },
         expected: true
@@ -366,8 +378,8 @@ describe('Bankruptcy component validation', function () {
       {
         props: {
           DateDischarged: {
-            month: 1,
-            year: 2010
+            month: '1',
+            year: '2010'
           }
         },
         expected: true
@@ -389,7 +401,9 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         props: {
-          PetitionType: 'Chapter7',
+          PetitionType: {
+            value: 'Chapter7'
+          },
           CourtAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -418,12 +432,12 @@ describe('Bankruptcy component validation', function () {
             value: 100
           },
           DateFiled: {
-            month: 1,
-            year: 2010
+            month: '1',
+            year: '2010'
           },
           DateDischarged: {
-            month: 1,
-            year: 2010
+            month: '1',
+            year: '2010'
           },
           HasDischargeExplanation: { value: 'Yes' },
           DischargeExplanation: {
@@ -443,31 +457,41 @@ describe('Bankruptcy component validation', function () {
     const tests = [
       {
         props: {
-          PetitionType: 'Chapter7'
+          PetitionType: {
+            value: 'Chapter7'
+          }
         },
         expected: true
       },
       {
         props: {
-          PetitionType: 'Chapter11'
+          PetitionType: {
+            value: 'Chapter11'
+          }
         },
         expected: true
       },
       {
         props: {
-          PetitionType: 'Chapter12'
+          PetitionType: {
+            value: 'Chapter12'
+          }
         },
         expected: true
       },
       {
         props: {
-          PetitionType: 'Chapter100'
+          PetitionType: {
+            value: 'Chapter100'
+          }
         },
         expected: false
       },
       {
         props: {
-          PetitionType: 'Chapter13',
+          PetitionType: {
+            value: 'Chapter13'
+          },
           TrusteeAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',

@@ -4,8 +4,7 @@ import { validAccordion, validGenericTextfield, BranchCollection } from './helpe
 export default class ForeignBusinessConferencesValidator {
   constructor (data = {}) {
     this.hasForeignConferences = (data.HasForeignConferences || {}).value
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.list = data.List || {}
   }
 
   validList () {

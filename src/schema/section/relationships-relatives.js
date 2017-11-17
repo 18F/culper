@@ -34,7 +34,7 @@ export const relationshipsRelatives = (data = {}) => {
         Expiration: form.datecontrol(xitem.Expiration),
         FirstContact: form.datecontrol(xitem.FirstContact),
         LastContact: form.datecontrol(xitem.LastContact),
-        Methods: form.checkbox(xitem.Methods),
+        Methods: form.checkboxgroup(xitem.Methods),
         MethodsComments: form.textarea(xitem.MethodsComments),
         Frequency: form.radio(xitem.Frequency),
         EmployerNotApplicable: form.notapplicable(xitem.EmployerNotApplicable),

@@ -214,7 +214,7 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: {
+          List: {
             branch: { value: 'No' },
             items: [
               {
@@ -229,7 +229,7 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: {
+          List: {
             branch: { value: 'No' },
             items: [
               {
@@ -274,7 +274,7 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: {
+          List: {
             branch: { value: '' },
             items: [{}]
           }
@@ -284,7 +284,7 @@ describe('citizenship multiple component validation', function () {
       {
         state: {
           HasMultiple: { value: 'Yes' },
-          Citizenships: {
+          List: {
             branch: { value: 'No' },
             items: [
               {

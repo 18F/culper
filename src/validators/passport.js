@@ -12,16 +12,16 @@ export default class PassportValidator {
     this.issued = state.Issued
     this.expiration = state.Expiration
     this.comments = state.Comments
-    this.hasPassport = (state.HasPassport || {}).value
+    this.hasPassports = (state.HasPassports || {}).value
     this.card = state.Card
   }
 
-  validHasPassport () {
-    if (!this.hasPassport) {
+  validHasPassports () {
+    if (!this.hasPassports) {
       return false
     }
 
-    if (!(this.hasPassport === 'No' || this.hasPassport === 'Yes')) {
+    if (!(this.hasPassports === 'No' || this.hasPassports === 'Yes')) {
       return false
     }
 
@@ -29,7 +29,7 @@ export default class PassportValidator {
   }
 
   validName () {
-    if (this.hasPassport === 'No') {
+    if (this.hasPassports === 'No') {
       return true
     }
 
@@ -37,7 +37,7 @@ export default class PassportValidator {
   }
 
   validPassportNumber () {
-    if (this.hasPassport === 'No') {
+    if (this.hasPassports === 'No') {
       return true
     }
 
@@ -54,7 +54,7 @@ export default class PassportValidator {
   }
 
   validDates () {
-    if (this.hasPassport === 'No') {
+    if (this.hasPassports === 'No') {
       return true
     }
 
@@ -84,7 +84,7 @@ export default class PassportValidator {
   }
 
   isValid () {
-    return this.validHasPassport() &&
+    return this.validHasPassports() &&
       this.validName() &&
       this.validPassportNumber() &&
       this.validDates()

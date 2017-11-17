@@ -5,32 +5,32 @@ describe('Passport component validation', function () {
     const tests = [
       {
         state: {
-          HasPassport: { value: 'Yes' }
+          HasPassports: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasPassport: { value: 'No' }
+          HasPassports: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasPassport: { value: '' }
+          HasPassports: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasPassport: { value: 'Nope' }
+          HasPassports: { value: 'Nope' }
         },
         expected: false
       }
     ]
 
     tests.forEach(test => {
-      expect(new PassportValidator(test.state, null).validHasPassport()).toBe(test.expected)
+      expect(new PassportValidator(test.state, null).validHasPassports()).toBe(test.expected)
     })
   })
 
@@ -211,7 +211,7 @@ describe('Passport component validation', function () {
             lastInitialOnly: false,
             suffix: 'Jr'
           },
-          HasPassport: { value: 'Yes' },
+          HasPassports: { value: 'Yes' },
           Number: {
             value: 'C1234567'
           },

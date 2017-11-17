@@ -23,8 +23,10 @@ describe('The ReceivedCounselings component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       ReceivedTreatment: { value: 'Yes' },
-      ListBranch: 'No',
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [{
           Item: {
             UseSameAddress: 'Yes',

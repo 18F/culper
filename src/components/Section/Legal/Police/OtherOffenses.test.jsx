@@ -34,6 +34,9 @@ describe('The offense component', () => {
         }
       },
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [{Item: {}}]
       }
     }
@@ -46,8 +49,10 @@ describe('The offense component', () => {
     const expected = {
       name: 'offense',
       HasOtherOffenses: { value: 'Yes' },
-      ListBranch: 'No',
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [
           {
             Item: {

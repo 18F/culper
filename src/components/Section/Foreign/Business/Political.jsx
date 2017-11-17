@@ -19,7 +19,6 @@ export default class Political extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignPolitical: this.props.HasForeignPolitical,
       ...queue
     })
@@ -28,15 +27,13 @@ export default class Political extends SubsectionElement {
   updateHasForeignPolitical (values) {
     this.update({
       HasForeignPolitical: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -71,10 +68,9 @@ export default class Political extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignPolitical.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={PoliticalValidator}
@@ -84,11 +80,11 @@ export default class Political extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.political.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <PoliticalItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <PoliticalItem name="Item"
+                           bind={true}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
+                           />
           </Accordion>
         </Show>
       </div>
@@ -99,8 +95,7 @@ export default class Political extends SubsectionElement {
 Political.defaultProps = {
   name: 'Political',
   HasForeignPolitical: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

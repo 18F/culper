@@ -42,19 +42,20 @@ describe('The foreign business contact component', () => {
     const expected = {
       name: 'foreign-business-contact',
       HasForeignContact: { value: 'Yes' },
-      List: [
-        {
-          Name: {},
-          Location: {},
-          Date: {},
-          Governments: {},
-          Establishment: {},
-          Representatives: {},
-          Purpose: {},
-          SubsequentContacts: {}
-        }
-      ],
-      ListBranch: '',
+      List: {
+        items: [
+          {
+            Name: {},
+            Location: {},
+            Date: {},
+            Governments: {},
+            Establishment: {},
+            Representatives: {},
+            Purpose: {},
+            SubsequentContacts: {}
+          }
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Contact {...expected} />)

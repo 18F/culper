@@ -38,7 +38,7 @@ export default class RealEstateInterest extends ValidationElement {
 
   updateInterestTypes (values) {
     let interestType = values.value
-    let selected = [...(this.props.InterestTypes || [])]
+    let selected = [...((this.props.InterestTypes || {}).values || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
     } else {
@@ -46,7 +46,7 @@ export default class RealEstateInterest extends ValidationElement {
     }
 
     this.update({
-      InterestTypes: selected
+      InterestTypes: { values: selected }
     })
   }
 
@@ -116,7 +116,7 @@ export default class RealEstateInterest extends ValidationElement {
           <CheckboxGroup className="interest-types option-list"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={(this.props.InterestTypes || {}).value}>
+                         selectedValues={(this.props.InterestTypes || {}).values}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.realestate.interest.label.interestTypes.yourself')}
                       value="Yourself"
@@ -260,6 +260,7 @@ export default class RealEstateInterest extends ValidationElement {
 }
 
 RealEstateInterest.defaultProps = {
+  SoldNotApplicable: { applicable: true },
   prefix: 'activities.realestate.interest',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

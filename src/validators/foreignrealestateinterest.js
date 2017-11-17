@@ -5,7 +5,7 @@ import LocationValidator from './location'
 export default class ForeignRealEstateInterestValidator {
   constructor (data = {}) {
     data = data || {}
-    this.interestTypes = data.InterestTypes || []
+    this.interestTypes = (data.InterestTypes || {}).values || []
     this.realEstateType = data.RealEstateType || {}
     this.address = data.Address
     this.acquired = data.Acquired

@@ -1,6 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
+-- +goose StatementBegin
 
 CREATE TABLE foreign_activities_benefits (
     id              bigint REFERENCES accounts(id) NOT NULL PRIMARY KEY,
@@ -109,9 +110,11 @@ CREATE TABLE foreign_travels (
     has_foreign_travel_official_id bigint REFERENCES branches(id),
     list_id                        bigint REFERENCES collections(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
 DROP TABLE foreign_activities_benefits;
 DROP TABLE foreign_activities_directs;
 DROP TABLE foreign_activities_indirects;
@@ -129,3 +132,4 @@ DROP TABLE foreign_business_votings;
 DROP TABLE foreign_contacts;
 DROP TABLE foreign_passports;
 DROP TABLE foreign_travels;
+-- +goose StatementEnd

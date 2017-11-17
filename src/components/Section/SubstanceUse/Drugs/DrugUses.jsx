@@ -95,8 +95,7 @@ export default class DrugUses extends SubsectionElement {
 
 DrugUses.defaultProps = {
   UsedDrugs: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/usage',

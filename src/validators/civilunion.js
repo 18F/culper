@@ -1,4 +1,4 @@
-import LocationValidator from './location'
+import LocationValidator, { countryString } from './location'
 import NameValidator from './name'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
@@ -55,7 +55,7 @@ export default class CivilUnionValidator {
     }
 
     let addressValid = true
-    if (!this.addressSeparatedNotApplicable) {
+    if (this.addressSeparatedNotApplicable.applicable) {
       addressValid = new LocationValidator(this.addressSeparated).isValid()
     }
 
@@ -63,7 +63,7 @@ export default class CivilUnionValidator {
   }
 
   validForeignBornDocument () {
-    if (new LocationValidator(this.birthPlace).isValid() && this.birthPlace.country !== 'United States') {
+    if (new LocationValidator(this.birthPlace).isValid() && countryString(this.birthPlace.country) !== 'United States') {
       return new ForeignBornDocument(this.foreignBornDocument).isValid()
     }
     return true
