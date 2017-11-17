@@ -20,7 +20,6 @@ export default class Contact extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignContact: this.props.HasForeignContact,
       ...queue
     })
@@ -29,15 +28,13 @@ export default class Contact extends SubsectionElement {
   updateHasForeignContact (values) {
     this.update({
       HasForeignContact: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -76,10 +73,9 @@ export default class Contact extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignContact.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={ContactValidator}
@@ -90,11 +86,11 @@ export default class Contact extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.contact.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <ContactItem name="Item"
-                       bind={true}
-                       scrollIntoView={this.props.scrollIntoView}
-                       required={this.props.required}
-                     />
+            <ContactItem name="Item"
+                         bind={true}
+                         scrollIntoView={this.props.scrollIntoView}
+                         required={this.props.required}
+                         />
           </Accordion>
         </Show>
       </div>
@@ -105,8 +101,7 @@ export default class Contact extends SubsectionElement {
 Contact.defaultProps = {
   name: 'Contact',
   HasForeignContact: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

@@ -42,21 +42,22 @@ describe('The foreign business sponsorship component', () => {
     const expected = {
       name: 'foreign-business-sponsorship',
       HasForeignSponsorship: { value: 'Yes' },
-      List: [
-        {
-          Name: {},
-          Birthdate: {},
-          Birthplace: {},
-          Address: {},
-          Citizenship: {},
-          Organization: {},
-          Dates: {},
-          Residence: {},
-          Stay: {},
-          Sponsorship: {}
-        }
-      ],
-      ListBranch: '',
+      List: {
+        items: [
+          {
+            Name: {},
+            Birthdate: {},
+            Birthplace: {},
+            Address: {},
+            Citizenship: {},
+            Organization: {},
+            Dates: {},
+            Residence: {},
+            Stay: {},
+            Sponsorship: {}
+          }
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Sponsorship {...expected} />)

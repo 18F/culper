@@ -42,16 +42,17 @@ describe('The foreign business political component', () => {
     const expected = {
       name: 'foreign-business-political',
       HasForeignPolitical: { value: 'Yes' },
-      List: [
-        {
-          Position: {},
-          Dates: {},
-          Country: {},
-          Reason: {},
-          Eligibility: {}
-        }
-      ],
-      ListBranch: '',
+      List: {
+        items: [
+          {
+            Position: {},
+            Dates: {},
+            Country: {},
+            Reason: {},
+            Eligibility: {}
+          }
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Political {...expected} />)

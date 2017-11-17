@@ -76,7 +76,6 @@ export default class ReceivedCounselings extends SubsectionElement {
           <Accordion defaultState={this.props.defaultState}
                      {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}

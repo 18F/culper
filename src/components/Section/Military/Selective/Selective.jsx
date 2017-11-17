@@ -28,21 +28,23 @@ export default class Selective extends SubsectionElement {
   }
 
   updateBornAfter (values) {
+    const emptyValue = { value: '' }
     // If there is no history clear out any previously entered data
     this.update({
       WasBornAfter: values,
-      HasRegistered: values.value === 'Yes' ? this.props.HasRegistered : null,
-      RegistrationNumber: values.value === 'Yes' ? this.props.RegistrationNumber : null,
-      Explanation: values.value === 'Yes' ? this.props.Explanation : null
+      HasRegistered: values.value === 'Yes' ? this.props.HasRegistered : emptyValue,
+      RegistrationNumber: values.value === 'Yes' ? this.props.RegistrationNumber : emptyValue,
+      Explanation: values.value === 'Yes' ? this.props.Explanation : emptyValue
     })
   }
 
   updateRegistered (values) {
+    const emptyValue = { value: '' }
     // If there is no history clear out any previously entered data
     this.update({
       HasRegistered: values,
-      RegistrationNumber: values.value === 'Yes' ? this.props.RegistrationNumber : null,
-      Explanation: values.value === 'Yes' ? null : this.props.Explanation
+      RegistrationNumber: values.value === 'Yes' ? this.props.RegistrationNumber : emptyValue,
+      Explanation: values.value === 'Yes' ? emptyValue : this.props.Explanation
     })
   }
 
@@ -149,7 +151,7 @@ export default class Selective extends SubsectionElement {
 
 Selective.defaultProps = {
   WasBornAfter: {},
-  HasRegistered: {},
+  HasRegistered: { value: '' },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',

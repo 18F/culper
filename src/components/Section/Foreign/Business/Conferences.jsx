@@ -19,7 +19,6 @@ export default class Conferences extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignConferences: this.props.HasForeignConferences,
       ...queue
     })
@@ -28,15 +27,13 @@ export default class Conferences extends SubsectionElement {
   updateHasForeignConferences (values) {
     this.update({
       HasForeignConferences: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -72,10 +69,9 @@ export default class Conferences extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignConferences.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={ConferencesValidator}
@@ -86,11 +82,11 @@ export default class Conferences extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.conferences.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <ConferencesItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <ConferencesItem name="Item"
+                             bind={true}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
+                             />
           </Accordion>
         </Show>
       </div>
@@ -101,8 +97,7 @@ export default class Conferences extends SubsectionElement {
 Conferences.defaultProps = {
   name: 'Conferences',
   HasForeignConferences: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

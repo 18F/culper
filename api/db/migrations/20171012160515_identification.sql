@@ -1,6 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
+-- +goose StatementBegin
 
 CREATE TABLE identification_birth_dates (
     id      bigint REFERENCES accounts(id) NOT NULL PRIMARY KEY,
@@ -44,9 +45,11 @@ CREATE TABLE identification_ssns (
     verified boolean,
     ssnid    bigint REFERENCES ssns(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
 DROP TABLE identification_birth_dates;
 DROP TABLE identification_birth_places;
 DROP TABLE identification_contacts;
@@ -54,3 +57,4 @@ DROP TABLE identification_names;
 DROP TABLE identification_other_names;
 DROP TABLE identification_physicals;
 DROP TABLE identification_ssns;
+-- +goose StatementEnd

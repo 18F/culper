@@ -5,6 +5,17 @@ export const isInternational = (location) => {
   return !['United States', 'POSTOFFICE'].includes((location.country || {}).value)
 }
 
+export const countryString = (country) => {
+  if (country && Object.prototype.toString.call(country) === '[object Object]') {
+    if (country.value && Object.prototype.toString.call(country.value) === '[object Array]') {
+      return country.value[0]
+    } else {
+      return country.value
+    }
+  }
+  return country
+}
+
 export default class LocationValidator {
   constructor (data = {}) {
     data = data || {}
@@ -17,7 +28,16 @@ export default class LocationValidator {
     this.state = data.state
     this.zipcode = data.zipcode
     this.county = data.county
-    this.country = data.country || {}
+
+    if (data && data.country && Object.prototype.toString.call(data.country) === '[object Object]') {
+      if (data.country.value && Object.prototype.toString.call(data.country.value) === '[object Array]') {
+        this.country = data.country.value[0]
+      } else {
+        this.country = data.country.value
+      }
+    } else {
+      this.country = data.country
+    }
   }
 
   canGeocode () {
@@ -70,15 +90,15 @@ export default class LocationValidator {
   }
 
   validCountry () {
-    return !!this.country && !!(this.country || {}).value
+    return !!this.country
   }
 
   isDomestic () {
-    return (this.country || {}).value === 'United States'
+    return this.country === 'United States'
   }
 
   isPostOffice () {
-    return (this.country || {}).value === 'POSTOFFICE'
+    return this.country === 'POSTOFFICE'
   }
 
   isInternational () {

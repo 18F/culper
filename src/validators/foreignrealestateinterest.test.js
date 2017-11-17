@@ -6,13 +6,17 @@ describe('RealEstate Interest validation', function () {
     const tests = [
       {
         props: {
-          InterestTypes: []
+          InterestTypes: {
+            values: []
+          }
         },
         expected: false
       },
       {
         props: {
-          InterestTypes: ['Yourself']
+          InterestTypes: {
+            values: ['Yourself']
+          }
         },
         expected: true
       }
@@ -26,7 +30,9 @@ describe('RealEstate Interest validation', function () {
     const tests = [
       {
         props: {
-          InterestTypes: ['Yourself'],
+          InterestTypes: {
+            values: ['Yourself']
+          },
           RealEstateType: {
             value: 'Bar'
           },

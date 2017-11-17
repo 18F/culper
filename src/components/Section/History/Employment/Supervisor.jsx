@@ -132,7 +132,7 @@ Supervisor.defaultProps = {
   SupervisorName: {},
   Title: {},
   Email: {},
-  EmailNotApplicable: {},
+  EmailNotApplicable: { applicable: true },
   Address: {},
   Telephone: {},
   addressBooks: {},

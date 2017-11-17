@@ -411,7 +411,7 @@ export default class CivilUnion extends ValidationElement {
               <Field title={i18n.t('relationships.civilUnion.heading.addressSeparated')}
                      className="address-separated"
                      scrollIntoView={this.props.scrollIntoView}>
-                <NotApplicable name="OtherNameNotApplicable"
+                <NotApplicable name="AddressSeparatedNotApplicable"
                                {...this.props.AddressSeparatedNotApplicable}
                                label={i18n.t('relationships.civilUnion.notApplicable.label')}
                                or={i18n.m('relationships.civilUnion.notApplicable.or')}
@@ -461,7 +461,9 @@ CivilUnion.defaultProps = {
   Separated: {},
   DateSeparated: {},
   AddressSeparated: {},
-  AddressSeparatedNotApplicable: {},
+  AddressSeparatedNotApplicable: {
+    applicable: true
+  },
   Divorced: {},
   UseCurrentAddress: false,
   addressBooks: {},

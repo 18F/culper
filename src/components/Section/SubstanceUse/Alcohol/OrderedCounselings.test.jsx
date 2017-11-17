@@ -23,8 +23,10 @@ describe('The OrderedCounselings component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       HasBeenOrdered: { value: 'Yes' },
-      ListBranch: 'No',
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [{
           Item: {
             ActionTaken: { value: 'Yes' },
@@ -68,8 +70,10 @@ describe('The OrderedCounselings component', () => {
   it('Summary accordion text for seeker options', () => {
     const expected = {
       HasBeenOrdered: { value: 'Yes' },
-      ListBranch: 'No',
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [{
           Item: {
             Seekers: ['Employer', 'MedicalProfessional', 'MentalHealthProfessional', 'CourtOfficial', 'NotOrdered', 'Other']

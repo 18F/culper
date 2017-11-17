@@ -40,7 +40,7 @@ export default class RealEstateActivity extends SubsectionElement {
 
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const who = (o.InterestTypes || []).join(', ')
+    const who = ((o.InterestTypes || {}).values || []).join(', ')
     const acquired = DateSummary(o.Acquired)
     const address = AddressSummary(o.Address, '')
     const summary = [who, address].reduce((prev, next) => {

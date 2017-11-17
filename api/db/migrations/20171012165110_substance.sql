@@ -1,7 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
-
+-- +goose StatementBegin
 CREATE TABLE substance_alcohol_additionals (
     id                    bigint REFERENCES accounts(id) NOT NULL PRIMARY KEY,
     received_treatment_id bigint REFERENCES branches(id),
@@ -67,9 +67,11 @@ CREATE TABLE substance_drug_voluntaries (
     involved_id bigint REFERENCES branches(id),
     list_id     bigint REFERENCES collections(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
 DROP TABLE substance_alcohol_additionals;
 DROP TABLE substance_alcohol_negatives;
 DROP TABLE substance_alcohol_ordereds;
@@ -81,3 +83,4 @@ DROP TABLE substance_drug_public_safeties;
 DROP TABLE substance_drug_purchases;
 DROP TABLE substance_drug_usages;
 DROP TABLE substance_drug_voluntaries;
+-- +goose StatementEnd

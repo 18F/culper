@@ -349,6 +349,7 @@ export default class IndirectInterest extends ValidationElement {
 }
 
 IndirectInterest.defaultProps = {
+  SoldNotApplicable: { applicable: true },
   prefix: 'activities.indirect.interest',
   addressBooks: {},
   dispatch: (action) => {},

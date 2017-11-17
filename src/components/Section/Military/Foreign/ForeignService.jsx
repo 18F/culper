@@ -34,7 +34,6 @@ export default class ForeignService extends ValidationElement {
       ReasonLeft: this.props.ReasonLeft,
       MaintainsContact: this.props.MaintainsContact,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
@@ -290,9 +289,8 @@ export default class ForeignService extends ValidationElement {
             </Field>
 
             <Accordion className="foreign-contacts-collection"
-                       items={this.props.List}
+                       {...this.props.List}
                        defaultState={this.props.defaultState}
-                       branch={this.props.ListBranch}
                        onUpdate={this.updateList}
                        onError={this.props.onError}
                        validator={ForeignContactValidator}

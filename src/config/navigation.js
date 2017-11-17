@@ -139,7 +139,7 @@ const navigation = [
     name: 'Substance use',
     title: 'Substance use',
     url: 'substance',
-    store: 'SubstanceUse',
+    store: 'Substance',
     subsections: [
       { exclude: true, name: 'Intro', url: 'intro' },
       {

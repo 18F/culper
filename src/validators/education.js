@@ -9,7 +9,7 @@ export default class HistoryEducationValidator {
     data = data.value || data || {}
     this.hasAttended = (data.HasAttended || {}).value
     this.hasDegree10 = (data.HasDegree10 || {}).value
-    this.list = data.List || []
+    this.list = data.List || {}
   }
 
   validAttendance () {

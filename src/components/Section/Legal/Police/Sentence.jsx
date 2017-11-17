@@ -164,8 +164,8 @@ Sentence.defaultProps = {
   Incarcerated: {},
   IncarcerationDates: {},
   ProbationDates: {},
-  IncarcerationDatesNA: {},
-  ProbationDatesNA: {},
+  IncarcerationDatesNA: { applicable: true },
+  ProbationDatesNA: { applicable: true},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -34,7 +34,9 @@ describe('Foreign RealEstate Activity validation', function () {
             items: [
               {
                 Item: {
-                  InterestTypes: ['Yourself'],
+                  InterestTypes: {
+                    values: ['Yourself']
+                  },
                   RealEstateType: {
                     value: 'Bar'
                   },

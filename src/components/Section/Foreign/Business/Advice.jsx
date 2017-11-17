@@ -19,7 +19,6 @@ export default class Advice extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignAdvice: this.props.HasForeignAdvice,
       ...queue
     })
@@ -28,15 +27,13 @@ export default class Advice extends SubsectionElement {
   updateHasForeignAdvice (values) {
     this.update({
       HasForeignAdvice: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -70,10 +67,9 @@ export default class Advice extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignAdvice.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={AdviceValidator}
@@ -101,8 +97,7 @@ export default class Advice extends SubsectionElement {
 Advice.defaultProps = {
   name: 'Advice',
   HasForeignAdvice: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

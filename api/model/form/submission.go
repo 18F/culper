@@ -169,7 +169,7 @@ func (entity *Submission) Delete(context *db.DatabaseContext, account int) (int,
 		return entity.ID, err
 	}
 
-	context.Find(&SubstanceDrugUsage{ID: account}, func(result interface{}) {
+	context.Find(&Submission{ID: account}, func(result interface{}) {
 		previous := result.(*Submission)
 		if entity.AdditionalComments == nil {
 			entity.AdditionalComments = &SubmissionAdditionalComments{}

@@ -16,7 +16,9 @@ describe('The person component', () => {
     let updates = 0
     const expected = {
       name: 'person',
-      Relationship: ['Other'],
+      Relationship: {
+        values: ['Other']
+      },
       onUpdate: () => {
         updates++
       }

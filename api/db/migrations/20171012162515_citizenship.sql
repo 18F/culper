@@ -1,6 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
+-- +goose StatementBegin
 
 CREATE TABLE citizenship_multiples (
     id              bigint REFERENCES accounts(id) NOT NULL PRIMARY KEY,
@@ -41,9 +42,12 @@ CREATE TABLE citizenship_statuses (
     permanent_resident_card_number_id bigint REFERENCES texts(id),
     residence_status_id               bigint REFERENCES texts(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
 DROP TABLE citizenship_multiples;
 DROP TABLE citizenship_passports;
 DROP TABLE citizenship_statuses;
+-- +goose StatementEnd

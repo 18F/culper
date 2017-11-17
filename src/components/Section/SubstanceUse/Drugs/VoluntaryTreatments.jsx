@@ -35,7 +35,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
   updateTreatmentVoluntary (values) {
     this.update({
       TreatmentVoluntary: values,
-      List: values.value === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
@@ -96,8 +96,7 @@ export default class VoluntaryTreatments extends SubsectionElement {
 
 VoluntaryTreatments.defaultProps = {
   TreatmentVoluntary: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/voluntary',

@@ -9,12 +9,16 @@ describe('Contact Information validation', function () {
             items: [
               {
                 Item: {
-                  value: 'foobar@local.dev'
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
                 }
               },
               {
                 Item: {
-                  value: 'foobar@local.dev'
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
                 }
               }
             ]
@@ -24,7 +28,7 @@ describe('Contact Information validation', function () {
       },
       {
         state: {
-          Emails: []
+          Emails: { items: [] }
         },
         expected: false
       },
@@ -34,7 +38,9 @@ describe('Contact Information validation', function () {
             items: [
               {
                 Item: {
-                  value: 'foobar@local.dev'
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
                 }
               }
             ]
@@ -47,11 +53,13 @@ describe('Contact Information validation', function () {
           Emails: {
             items: [
               {
-                Item: null
+                Item: {}
               },
               {
                 Item: {
-                  value: 'foobar@local.dev'
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
                 }
               }
             ]
@@ -74,22 +82,26 @@ describe('Contact Information validation', function () {
             items: [
               {
                 Item: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
                 }
               },
               {
                 Item: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
                 }
               }
             ]
@@ -103,12 +115,14 @@ describe('Contact Information validation', function () {
             items: [
               {
                 Item: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
                 }
               }
             ]
@@ -122,16 +136,18 @@ describe('Contact Information validation', function () {
             items: [
               {
                 Item: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
                 }
               },
               {
-                Telephone: null
+                Telephone: {}
               }
             ]
           }
@@ -140,7 +156,7 @@ describe('Contact Information validation', function () {
       },
       {
         state: {
-          PhoneNumbers: null
+          PhoneNumbers: { items: [] }
         },
         expected: false
       }
@@ -159,12 +175,16 @@ describe('Contact Information validation', function () {
             items: [
               {
                 Item: {
-                  value: 'foobar2@local.dev'
+                  Email: {
+                    value: 'foobar2@local.dev'
+                  }
                 }
               },
               {
                 Item: {
-                  value: 'foobar2@local.dev'
+                  Email: {
+                    value: 'foobar2@local.dev'
+                  }
                 }
               }
             ]
@@ -173,22 +193,26 @@ describe('Contact Information validation', function () {
             items: [
               {
                 Item: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
                 }
               },
               {
                 Item: {
-                  noNumber: '',
-                  number: '7031112222',
-                  numberType: 'Home',
-                  type: 'Domestic',
-                  timeOfDay: 'Both',
-                  extension: ''
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
                 }
               }
             ]

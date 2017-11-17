@@ -1,6 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
+-- +goose StatementBegin
 
 CREATE TABLE branches (
     id    bigserial PRIMARY KEY,
@@ -255,38 +256,41 @@ CREATE TABLE supervisors (
     address_id              bigint    REFERENCES locations(id),
     telephone_id            bigint    REFERENCES telephones(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
-DROP TABLE benefits;
-DROP TABLE branches;
-DROP TABLE checkbox_groups;
-DROP TABLE checkboxes;
-DROP TABLE civil_unions;
-DROP TABLE clearance_levels;
+-- +goose StatementBegin
+DROP TABLE supervisors;
+DROP TABLE sentences;
+DROP TABLE "references";
+DROP TABLE reason_lefts;
+DROP TABLE physical_addresses;
+DROP TABLE foreign_born_documents;
 DROP TABLE co_owners;
+DROP TABLE clearance_levels;
+DROP TABLE benefits;
+DROP TABLE treatments;
+DROP TABLE texts;
+DROP TABLE textareas;
+DROP TABLE telephones;
+DROP TABLE ssns;
+DROP TABLE radios;
+DROP TABLE numbers;
+DROP TABLE not_applicables;
+DROP TABLE names;
+DROP TABLE locations;
+DROP TABLE heights;
+DROP TABLE employment_activities;
+DROP TABLE emails;
+DROP TABLE date_ranges;
+DROP TABLE date_controls;
+DROP TABLE countries;
+DROP TABLE contacts;
 DROP TABLE collection_items;
 DROP TABLE collections;
-DROP TABLE contacts;
-DROP TABLE countries;
-DROP TABLE date_controls;
-DROP TABLE date_ranges;
-DROP TABLE emails;
-DROP TABLE employment_activities;
-DROP TABLE foreign_born_documents;
-DROP TABLE heights;
-DROP TABLE locations;
-DROP TABLE names;
-DROP TABLE not_applicables;
-DROP TABLE numbers;
-DROP TABLE physical_addresses;
-DROP TABLE radios;
-DROP TABLE reason_lefts;
-DROP TABLE "references";
-DROP TABLE sentences;
-DROP TABLE ssns;
-DROP TABLE supervisors;
-DROP TABLE telephones;
-DROP TABLE textareas;
-DROP TABLE texts;
-DROP TABLE treatments;
+DROP TABLE civil_unions;
+DROP TABLE checkboxes;
+DROP TABLE checkbox_groups;
+DROP TABLE branches;
+-- +goose StatementEnd
