@@ -26,28 +26,32 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         OtherNames: {
-          List: [
-            {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              MaidenName: {
-                value: 'Foo'
-              },
-              DatesUsed: {
-                from: new Date('1/1/2015'),
-                to: new Date('1/1/2016'),
-                present: false
+          List: {
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  MaidenName: {
+                    value: 'Foo'
+                  },
+                  DatesUsed: {
+                    from: new Date('1/1/2015'),
+                    to: new Date('1/1/2016'),
+                    present: false
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         }
       },
       history: {}
@@ -60,7 +64,12 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         ApplicantBirthDate: {
-          date: new Date('1/1/1982')
+          Date: {
+            month: '1',
+            day: '1',
+            year: '1982',
+            date: new Date('1/1/1982')
+          }
         }
       },
       history: {}
@@ -73,9 +82,11 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         ApplicantSSN: {
-          first: '123',
-          middle: '45',
-          last: '6789'
+          ssn: {
+            first: '123',
+            middle: '45',
+            last: '6789'
+          }
         }
       },
       history: {}
@@ -88,22 +99,28 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         Contacts: {
-          PhoneNumbers: [
-            {
-              Item: {
-                type: 'Domestic',
-                number: '2028675309',
-                extension: '1234'
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    type: 'Domestic',
+                    number: '2028675309',
+                    extension: '1234'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Telephone: {
+                    type: 'Domestic',
+                    number: '1231231234',
+                    extension: ''
+                  }
+                }
               }
-            },
-            {
-              Item: {
-                type: 'Domestic',
-                number: '1231231234',
-                extension: ''
-              }
-            }
-          ]
+            ]
+          }
         }
       },
       history: {}
@@ -117,64 +134,68 @@ describe('The verify component', () => {
     const props = {
       Identification: {},
       History: {
-        Residence: [
-          {
-            Item: {
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
-                },
-                to: {
-                  date: new Date('1/1/2012')
-                },
-                present: false
+        Residence: {
+          List: {
+            items: [
+              {
+                Item: {
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                }
               },
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'VA',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              }
-            }
-          },
-          {
-            Item: {
-              type: 'Gap',
-              Dates: {
-                from: {
-                  date: new Date('1/1/2012')
-                },
-                to: {
-                  date: new Date('1/1/2015')
-                },
-                present: false
-              }
-            }
-          },
-          {
-            Item: {
-              Dates: {
-                from: {
-                  date: new Date('1/1/2015')
-                },
-                to: {
-                  date: new Date()
-                },
-                present: false
+              {
+                Item: {
+                  type: 'Gap',
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2012')
+                    },
+                    to: {
+                      date: new Date('1/1/2015')
+                    },
+                    present: false
+                  }
+                }
               },
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'New Orleans',
-                state: 'LA',
-                zipcode: '22202',
-                layout: Location.ADDRESS
+              {
+                Item: {
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date()
+                    },
+                    present: false
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'New Orleans',
+                    state: 'LA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                }
               }
-            }
+            ]
           }
-        ]
+        }
       }
     }
     const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
