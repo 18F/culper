@@ -190,12 +190,12 @@ export default class Diagnoses extends SubsectionElement {
 }
 
 Diagnoses.defaultProps = {
-  List: [],
+  List: {},
   Diagnosed: {},
   DidNotConsult: {},
   InTreatment: {},
-  DiagnosisList: [],
-  TreatmentList: [],
+  DiagnosisList: {},
+  TreatmentList: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

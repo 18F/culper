@@ -23,8 +23,10 @@ describe('The NonCriminalCourtActions component', () => {
     const expected = {
       onUpdate: () => { updates++ },
       HasCourtActions: { value: 'Yes' },
-      ListBranch: 'No',
       List: {
+        branch: {
+          value: 'No'
+        },
         items: [{
           Item: {
             CivilActionDate: {

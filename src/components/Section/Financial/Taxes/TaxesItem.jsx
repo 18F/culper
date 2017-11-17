@@ -249,7 +249,7 @@ TaxesItem.defaultProps = {
   TaxType: {},
   Amount: {},
   AmountEstimated: {},
-  DateNotApplicable: {},
+  DateNotApplicable: { applicable: true },
   Date: {},
   Description: {},
   onUpdate: (queue) => {},

@@ -3393,7 +3393,7 @@ const en = {
         outcome: 'Provide the description of the final outcome of the disciplinary procedure'
       },
       para: {
-        info: 'In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+        info: 'In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain\'s mast, Article 135 Court of Inquiry, etc?'
       },
       label: {
         name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
@@ -9571,7 +9571,8 @@ const en = {
     validForm: {
       certificationItem: 'Certification',
       generalItem: 'Release of Information & HIPAA',
-      creditItem: 'Credit reporting disclosure'
+      creditItem: 'Credit reporting disclosure',
+      submit: 'Submit your SF-86'
     },
     invalidForm: [
       '### List of incomplete sections',
@@ -9587,7 +9588,7 @@ const en = {
         'Not a guarantee of acceptance, but all required fields are complete.'
       ],
       valid2: [
-        'Please sign the releases below and submit your form.'
+        '### Please sign the releases below and submit your form.'
       ],
       invalid: [
         '## Some required fields are incomplete',

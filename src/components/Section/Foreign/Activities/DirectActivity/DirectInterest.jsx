@@ -298,6 +298,7 @@ export default class DirectInterest extends ValidationElement {
 DirectInterest.defaultProps = {
   prefix: 'activities.direct.interest',
   addressBooks: {},
+  RelinquishedNotApplicable: { applicable: true },
   dispatch: (action) => {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

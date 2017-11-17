@@ -24,7 +24,7 @@ describe('The RealEstateActivity component', () => {
       List: {
         items: [{
           Item: {
-            InterestTypes: ['Yourself']
+            InterestTypes: { values: ['Yourself'] }
           },
           open: true
         }]
@@ -43,9 +43,9 @@ describe('The RealEstateActivity component', () => {
           List: {
             items: [{
               Item: {
-                InterestTypes: ['Yourself'],
+                InterestTypes: { values: ['Yourself'] },
                 Address: {
-                  country: { value: 'United States' },
+                  country: { value: ['United States'] },
                   street: '1234 Some Rd',
                   city: 'Arlington',
                   state: 'VA',
@@ -65,11 +65,11 @@ describe('The RealEstateActivity component', () => {
           List: {
             items: [{
               Item: {
-                InterestTypes: ['Yourself'],
+                InterestTypes: { values: ['Yourself'] },
                 Address: {
                   street: '1 Rd',
                   city: 'Munich',
-                  country: { value: 'Germany' },
+                  country: { value: ['Germany'] },
                   layout: Location.ADDRESS
                 },
                 open: true
@@ -85,9 +85,9 @@ describe('The RealEstateActivity component', () => {
           List: {
             items: [{
               Item: {
-                InterestTypes: ['Yourself'],
+                InterestTypes: { values: ['Yourself'] },
                 Address: {
-                  country: { value: 'United States' },
+                  country: { value: ['United States'] },
                   street: '1 Rd',
                   city: 'APO',
                   state: 'AA',
@@ -136,7 +136,7 @@ describe('The RealEstateActivity component', () => {
                 value: 'Bar'
               },
               Address: {
-                country: { value: 'United States' },
+                country: { value: ['United States'] },
                 street: '1234 Some Rd',
                 city: 'Arlington',
                 state: 'VA',

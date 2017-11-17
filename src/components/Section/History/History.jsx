@@ -100,8 +100,8 @@ class History extends SectionElement {
   updateBranchAttendance (values) {
     let education = this.props.Education || {}
     education.HasAttended = values
-    education.HasDegree10 = values.value === 'No' ? education.HasDegree10 : ''
-    education.List = values.value === 'Yes' ? education.List : []
+    education.HasDegree10 = values.value === 'No' ? education.HasDegree10 : {}
+    education.List = values.value === 'Yes' ? education.List : { items: [], branch: {} }
     this.handleUpdate('Education', education)
     this.props.dispatch(reportCompletion('history', 'education', new HistoryEducationValidator(education, education).isValid()))
   }
@@ -109,9 +109,9 @@ class History extends SectionElement {
   updateBranchDegree10 (values) {
     let education = this.props.Education || {}
     education.HasDegree10 = values
-    education.List = values.value === 'Yes' ? education.List : []
+    education.List = values.value === 'Yes' ? education.List : { items: [], branch: {} }
     this.handleUpdate('Education', education)
-    this.props.dispatch(reportCompletion('history', 'education', new EducationValidator(education, education).isValid()))
+    this.props.dispatch(reportCompletion('history', 'education', new HistoryEducationValidator(education, education).isValid()))
   }
 
   /**
@@ -503,16 +503,16 @@ class History extends SectionElement {
             <span id="scrollToHistory"></span>
             { this.employmentSummaryProgress() }
             <Employment
-                        {...this.props.Employment}
-                        scrollToTop="scrollToHistory"
-                        sort={sort}
-                        totalYears={this.totalYears()}
-                        overrideInitial={this.overrideInitial}
-                        onUpdate={this.updateEmployment}
-                        onError={this.handleError}
-                        addressBooks={this.props.AddressBooks}
-                        dispatch={this.props.dispatch}
-                        />
+              {...this.props.Employment}
+              scrollToTop="scrollToHistory"
+              sort={sort}
+              totalYears={this.totalYears()}
+              overrideInitial={this.overrideInitial}
+              onUpdate={this.updateEmployment}
+              onError={this.handleError}
+              addressBooks={this.props.AddressBooks}
+              dispatch={this.props.dispatch}
+              />
 
             <Show when={this.hasGaps(['Employment'])}>
               <div className="not-complete">
@@ -548,7 +548,7 @@ class History extends SectionElement {
                     onUpdate={this.updateBranchAttendance}
                     >
             </Branch>
-            <Show when={this.props.Education.HasAttended === 'No'}>
+            <Show when={this.props.Education.HasAttended.value === 'No'}>
               <Branch name="branch_degree10"
                       {...this.props.Education.HasDegree10}
                       help="history.education.help.degree10"

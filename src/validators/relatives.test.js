@@ -6,13 +6,17 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: ''
+          Relation: {
+            value: ''
+          }
         },
         expected: false
       },
       {
         state: {
-          Relation: 'Mother'
+          Relation: {
+            value: 'Mother'
+          }
         },
         expected: true
       }
@@ -63,14 +67,18 @@ describe('Relatives validation', function () {
       {
         state: {
           IsDeceased: { value: 'No' },
-          Document: 'Permanent'
+          Document: {
+            value: 'Permanent'
+          }
         },
         expected: true
       },
       {
         state: {
           IsDeceased: { value: 'No' },
-          Document: 'Other',
+          Document: {
+            value: 'Other'
+          },
           OtherDocument: {
             value: 'Other stuff'
           }
@@ -186,13 +194,17 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Mother'
+          Relation: {
+            value: 'Mother'
+          }
         },
         expected: false
       },
       {
         state: {
-          Relation: 'Mother',
+          Relation: {
+            value: 'Mother'
+          },
           MaidenName: {}
         },
         expected: false
@@ -206,7 +218,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Mother',
+          Relation: {
+            value: 'Mother'
+          },
           MaidenName: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -239,7 +253,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Aliases: []
+          Aliases: {
+            items: []
+          }
         },
         props: {
           hideMaiden: false
@@ -248,11 +264,17 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'No'
-            }
-          ]
+          Aliases: {
+            items: [
+              {
+                Item: {
+                  Has: {
+                    value: 'No'
+                  }
+                }
+              }
+            ]
+          }
         },
         props: {
           hideMaiden: false
@@ -261,11 +283,17 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'Yes'
-            }
-          ]
+          Aliases: {
+            items: [
+              {
+                Item: {
+                  Has: {
+                    value: 'Yes'
+                  }
+                }
+              }
+            ]
+          }
         },
         props: {
           hideMaiden: false
@@ -274,36 +302,40 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'Yes',
-              Item: {
-                Name: {
-                  first: 'Foo',
-                  firstInitialOnly: false,
-                  middle: 'J',
-                  middleInitialOnly: true,
-                  noMiddleName: false,
-                  last: 'Bar',
-                  lastInitialOnly: false,
-                  suffix: 'Jr'
-                },
-                MaidenName: { value: 'No' },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          Aliases: {
+            items: [
+              {
+                Item: {
+                  Has: {
+                    value: 'Yes'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
                   },
-                  present: false
-                },
-                Reason: {
-                  value: 'The reason'
+                  MaidenName: { value: 'No' },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Reason: {
+                    value: 'The reason'
+                  }
                 }
               }
-            }
-          ]
+            ]
+          }
         },
         props: {
           hideMaiden: false
@@ -394,7 +426,9 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -481,21 +515,27 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -514,13 +554,17 @@ describe('Relatives validation', function () {
             zipcode: '22202',
             layout: Location.ADDRESS
           },
-          CitizenshipDocumentation: 'DerivedAlien'
+          CitizenshipDocumentation: {
+            value: 'DerivedAlien'
+          }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -536,17 +580,23 @@ describe('Relatives validation', function () {
             country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
-          Abroad: ''
+          Abroad: {
+            value: ''
+          }
         },
         expected: false
       },
       {
         state: {
-          CitizenshipDocumentation: 'Other',
+          CitizenshipDocumentation: {
+            value: 'Other'
+          },
           OtherCitizenshipDocumentation: {
             value: 'Other docs'
           },
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -562,17 +612,23 @@ describe('Relatives validation', function () {
             country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
-          Abroad: ''
+          Abroad: {
+            value: ''
+          }
         },
         expected: true
       },
       {
         state: {
-          CitizenshipDocumentation: 'FS',
+          CitizenshipDocumentation: {
+            value: 'FS'
+          },
           OtherCitizenshipDocumentation: {
             value: 'Other docs'
           },
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -588,7 +644,9 @@ describe('Relatives validation', function () {
             country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
-          Abroad: ''
+          Abroad: {
+            value: ''
+          }
         },
         expected: true
       }
@@ -603,21 +661,27 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -641,7 +705,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -663,7 +729,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -696,21 +764,27 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'No' },
           Citizenship: {
             value: ['United States']
@@ -734,7 +808,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -756,7 +832,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -789,21 +867,27 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -827,7 +911,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -849,7 +935,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -888,14 +976,18 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -905,23 +997,31 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
-          Document: ''
+          Document: {
+            value: ''
+          }
         },
         expected: false
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['Germany']
           },
           IsDeceased: { value: 'No' },
-          Document: 'Employment'
+          Document: {
+            value: 'Employment'
+          }
         },
         expected: true
       }
@@ -936,14 +1036,18 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -953,7 +1057,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['Germany']
           },
@@ -964,7 +1070,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['Germany']
           },
@@ -986,14 +1094,18 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           IsDeceased: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['United States']
           },
@@ -1003,7 +1115,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['Germany']
           },
@@ -1014,7 +1128,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Relation: 'Father',
+          Relation: {
+            value: 'Father'
+          },
           Citizenship: {
             value: ['Germany']
           },
@@ -1168,7 +1284,9 @@ describe('Relatives validation', function () {
             country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
-          Methods: []
+          Methods: {
+            values: []
+          }
         },
         expected: false
       },
@@ -1181,7 +1299,9 @@ describe('Relatives validation', function () {
             country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
-          Methods: ['In person', 'Electronic']
+          Methods: {
+            values: ['In person', 'Electronic']
+          }
         },
         expected: true
       }
@@ -1230,7 +1350,9 @@ describe('Relatives validation', function () {
             country: { value: 'Germany' },
             layout: Location.ADDRESS
           },
-          Frequency: 'Daily'
+          Frequency: {
+            value: 'Daily'
+          }
         },
         expected: true
       }
@@ -1350,7 +1472,9 @@ describe('Relatives validation', function () {
     const tests = [
       {
         state: {
-          Citizenship: [ 'Germany' ],
+          Citizenship: {
+            value: [ 'Germany' ]
+          },
           IsDeceased: { value: 'No' },
           Address: {
             country: { value: 'United States' },
@@ -1365,7 +1489,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: [ 'Germany' ],
+          Citizenship: {
+            value: [ 'Germany' ]
+          },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1379,7 +1505,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: [ 'Germany' ],
+          Citizenship: {
+            value: [ 'Germany' ]
+          },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1393,7 +1521,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: [ 'Germany' ],
+          Citizenship: {
+            value: [ 'Germany' ]
+          },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1408,7 +1538,9 @@ describe('Relatives validation', function () {
       },
       {
         state: {
-          Citizenship: [ 'Germany' ],
+          Citizenship: {
+            value: [ 'Germany' ]
+          },
           IsDeceased: { value: 'No' },
           Address: {
             street: '1234 Some Rd',
@@ -1439,7 +1571,9 @@ describe('Relatives validation', function () {
             items: [
               {
                 Item: {
-                  Relation: 'Mother'
+                  Relation: {
+                    value: 'Mother'
+                  }
                 }
               }
             ]
@@ -1454,7 +1588,9 @@ describe('Relatives validation', function () {
             items: [
               {
                 Item: {
-                  Relation: 'Mother'
+                  Relation: {
+                    value: 'Mother'
+                  }
                 }
               }
             ]
@@ -1469,7 +1605,9 @@ describe('Relatives validation', function () {
             items: [
               {
                 Item: {
-                  Relation: 'Mother',
+                  Relation: {
+                    value: 'Mother'
+                  },
                   Name: {
                     first: 'Foo',
                     firstInitialOnly: false,
@@ -1489,7 +1627,7 @@ describe('Relatives validation', function () {
                   Birthplace: {
                     city: 'Arlington',
                     state: 'Virginia',
-                    country: { value: 'United States' },
+                    country: { value: ['United States'] },
                     layout: Location.BIRTHPLACE_WITHOUT_COUNTY
                   },
                   Citizenship: {
@@ -1505,36 +1643,40 @@ describe('Relatives validation', function () {
                     lastInitialOnly: false,
                     suffix: 'Jr'
                   },
-                  Aliases: [
-                    {
-                      Has: 'Yes',
-                      Item: {
-                        Name: {
-                          first: 'Foo',
-                          firstInitialOnly: false,
-                          middle: 'J',
-                          middleInitialOnly: true,
-                          noMiddleName: false,
-                          last: 'Bar',
-                          lastInitialOnly: false,
-                          suffix: 'Jr'
-                        },
-                        MaidenName: { value: 'No' },
-                        Dates: {
-                          from: {
-                            date: new Date('1/1/2010')
+                  Aliases: {
+                    items: [
+                      {
+                        Item: {
+                          Has: {
+                            value: 'Yes'
                           },
-                          to: {
-                            date: new Date('1/1/2012')
+                          Name: {
+                            first: 'Foo',
+                            firstInitialOnly: false,
+                            middle: 'J',
+                            middleInitialOnly: true,
+                            noMiddleName: false,
+                            last: 'Bar',
+                            lastInitialOnly: false,
+                            suffix: 'Jr'
                           },
-                          present: false
-                        },
-                        Reason: {
-                          value: 'The reason'
+                          MaidenName: { value: 'No' },
+                          Dates: {
+                            from: {
+                              date: new Date('1/1/2010')
+                            },
+                            to: {
+                              date: new Date('1/1/2012')
+                            },
+                            present: false
+                          },
+                          Reason: {
+                            value: 'The reason'
+                          }
                         }
                       }
-                    }
-                  ],
+                    ]
+                  },
                   IsDeceased: { value: 'No' },
                   Address: {
                     country: { value: 'United States' },

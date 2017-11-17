@@ -181,11 +181,11 @@ describe('Retrieving section data', () => {
       { section: 'legal', subsection: 'associations/membership-violence-or-force', application: application },
       { section: 'legal', subsection: 'associations/activities-to-overthrow', application: application },
       { section: 'legal', subsection: 'associations/terrorism-association', application: application },
-      { section: 'psycholigical', subsection: 'competence', application: application },
-      { section: 'psycholigical', subsection: 'consultations', application: application },
-      { section: 'psycholigical', subsection: 'hospitalizations', application: application },
-      { section: 'psycholigical', subsection: 'diagnoses', application: application },
-      { section: 'psycholigical', subsection: 'conditions', application: application }
+      { section: 'psychological', subsection: 'competence', application: application },
+      { section: 'psychological', subsection: 'consultations', application: application },
+      { section: 'psychological', subsection: 'hospitalizations', application: application },
+      { section: 'psychological', subsection: 'diagnoses', application: application },
+      { section: 'psychological', subsection: 'conditions', application: application }
     ]
 
     tests.forEach(test => {

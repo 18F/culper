@@ -46,7 +46,7 @@ describe('The civil union component', () => {
     component.find('.divorced .yes input').simulate('change')
     component.find('.dateseparated .month input').simulate('change', { target: { value: '12' } })
     component.find('.address-separated .city input').simulate('change')
-    component.find('.address-separated input[name="OtherNameNotApplicable"]').simulate('change')
+    component.find('.address-separated input[name="AddressSeparatedNotApplicable"]').simulate('change')
     expect(updates).toBe(20)
   })
 

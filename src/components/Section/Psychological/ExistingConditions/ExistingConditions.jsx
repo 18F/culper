@@ -36,10 +36,10 @@ export default class ExistingConditions extends SubsectionElement {
   updateHasCondition (values) {
     this.update({
       HasCondition: values,
-      ReceivedTreatment: values.value === 'Yes' ? this.props.ReceivedTreatment : '',
+      ReceivedTreatment: values.value === 'Yes' ? this.props.ReceivedTreatment : {},
       Explanation: values.value === 'Yes' ? this.props.Explanation : {},
-      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : [],
-      DidNotFollow: values.value === 'Yes' ? this.props.DidNotFollow : '',
+      TreatmentList: values.value === 'Yes' ? this.props.TreatmentList : { items: [], branch: {} },
+      DidNotFollow: values.value === 'Yes' ? this.props.DidNotFollow : {},
       DidNotFollowExplanation: values.value === 'Yes' ? this.props.DidNotFollowExplanation : {}
     })
   }
@@ -115,7 +115,7 @@ export default class ExistingConditions extends SubsectionElement {
                    adjustFor="button"
                    scrollIntoView={this.props.scrollIntoView}>
               {i18n.m('psychological.existingConditions.para.receivedTreatment')}
-              <RadioGroup className="treatment-list option-list" selectedValue={this.props.ReceivedTreatment} onError={this.handleError} required={this.props.required}>
+              <RadioGroup className="treatment-list option-list" selectedValue={(this.props.ReceivedTreatment || {}).value} onError={this.handleError} required={this.props.required}>
                 <Radio name="treatment"
                        className="treatment yes"
                        label={i18n.t('psychological.existingConditions.receivedTreatment.label.yes')}
@@ -211,7 +211,6 @@ ExistingConditions.defaultProps = {
   DidNotFollow: {},
   ReceivedTreatment: {},
   TreatmentList: [],
-  TreatmentListBranch: '',
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

@@ -58,6 +58,7 @@ jobs:
       - deploy:
           command: |
             set -x
+            cp .env.dev .env
             ./bin/deploy.sh dev
 
   deploy_production:
@@ -90,6 +91,7 @@ jobs:
       - deploy:
           command: |
             set -x
+            cp .env.production .env
             ./bin/deploy.sh production
 
 workflows:

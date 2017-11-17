@@ -42,15 +42,17 @@ describe('The foreign business voting component', () => {
     const expected = {
       name: 'foreign-business-voting',
       HasForeignVoting: { value: 'Yes' },
-      List: [
-        {
-          Date: {},
-          Country: {},
-          Reason: {},
-          Eligibility: {}
-        }
-      ],
-      ListBranch: '',
+      List: {
+        branch: {},
+        items: [
+          {
+            Date: {},
+            Country: {},
+            Reason: {},
+            Eligibility: {}
+          }
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Voting {...expected} />)

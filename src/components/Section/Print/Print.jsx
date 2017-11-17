@@ -190,9 +190,9 @@ function mapStateToProps (state) {
   const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const history = app.History || {}
-  const historyResidence = history.Residence || []
-  const historyEmployment = history.Employment || { List: [], ListBranch: '' }
-  const historyEducation = history.Education || { HasAttended: '', HasDegree10: '', List: [] }
+  const historyResidence = history.Residence || {}
+  const historyEmployment = history.Employment || { List: {} }
+  const historyEducation = history.Education || { HasAttended: '', HasDegree10: '', List: {} }
   const citizenship = app.Citizenship || {}
   const military = app.Military || {}
   const foreign = app.Foreign || {}

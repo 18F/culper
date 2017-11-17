@@ -89,9 +89,9 @@ export default class DateRange extends ValidationElement {
     if (!this.state.present && futureState.present) {
       futureState.to = {
         date: now,
-        year: now.getFullYear(),
+        year: `${now.getFullYear()}`,
         month: `${now.getMonth() - 1}`,
-        day: now.getDate(),
+        day: `${now.getDate()}`,
         estimated: false
       }
     } else if (this.state.present && !futureState.present) {

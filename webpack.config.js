@@ -15,10 +15,6 @@ module.exports = {
   },
   module: {
     loaders: [
-      // {
-      //   test: /\.json$/,
-      //   loader: 'json'
-      // },
       {
         test: /\.jsx?$/,
         include: [
@@ -51,7 +47,6 @@ function plugins () {
   if (!debug) {
     // Add Prod level plugins
     plugins = [
-      new webpack.optimize.DedupePlugin(),
       new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
     ]

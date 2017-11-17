@@ -51,6 +51,7 @@ __snapshots__/
 # Build artifacts
 .gitmessage
 .projectile
+bin
 /api/api
 /build/
 /doc/

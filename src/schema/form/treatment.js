@@ -1,11 +1,11 @@
 import { general } from './general'
-import { name } from './name'
+import { text } from './text'
 import { telephone } from './telephone'
 import { location } from './location'
 
 export const treatment = (data = {}) => {
   return general('psychological.treatment', {
-    Name: name(data.Name),
+    Name: text(data.Name),
     Phone: telephone(data.Phone),
     Address: location(data.Address)
   })

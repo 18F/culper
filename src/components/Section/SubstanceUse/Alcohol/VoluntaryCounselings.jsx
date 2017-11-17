@@ -35,8 +35,7 @@ export default class VoluntaryCounselings extends SubsectionElement {
   updateSoughtTreatment (values) {
     this.update({
       SoughtTreatment: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 

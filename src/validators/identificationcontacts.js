@@ -55,8 +55,8 @@ export default class IdentificationContactInformationValidator {
 }
 
 export class ContactEmailValidator {
-  constructor (data) {
-    this.email = data
+  constructor (data = {}) {
+    this.email = data.Email
   }
 
   isValid () {
@@ -65,8 +65,8 @@ export class ContactEmailValidator {
 }
 
 export class ContactPhoneNumberValidator {
-  constructor (data) {
-    this.phoneNumber = data
+  constructor (data = {}) {
+    this.phoneNumber = data.Telephone
   }
 
   isValid () {

@@ -6,6 +6,7 @@ export const relationshipsPeople = (data = {}) => {
     return {
       Item: {
         Address: form.location(xitem.Address),
+        Name: form.name(xitem.Name),
         Dates: form.daterange(xitem.Dates),
         Email: form.email(xitem.Email),
         EmailNotApplicable: form.notapplicable(xitem.EmailNotApplicable),
@@ -19,6 +20,6 @@ export const relationshipsPeople = (data = {}) => {
     }
   })
   return {
-    List: form.collection(items, (data.ListBranch || {}).branch)
+    List: form.collection(items, (data.List || {}).branch)
   }
 }

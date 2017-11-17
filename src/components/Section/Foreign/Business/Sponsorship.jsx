@@ -19,7 +19,6 @@ export default class Sponsorship extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignSponsorship: this.props.HasForeignSponsorship,
       ...queue
     })
@@ -28,15 +27,13 @@ export default class Sponsorship extends SubsectionElement {
   updateHasForeignSponsorship (values) {
     this.update({
       HasForeignSponsorship: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -70,10 +67,9 @@ export default class Sponsorship extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignSponsorship.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={SponsorshipValidator}
@@ -98,8 +94,7 @@ export default class Sponsorship extends SubsectionElement {
 Sponsorship.defaultProps = {
   name: 'Sponsorship',
   HasForeignSponsorship: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
