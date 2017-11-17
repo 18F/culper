@@ -14,8 +14,8 @@ describe('The Diagnoses component', () => {
       Diagnosed: { value: 'Yes' },
       DidNotConsult: { value: 'Yes' },
       InTreatment: { value: 'Yes' },
-      DiagnosisList: [{}],
-      TreatmentList: [{}],
+      DiagnosisList: { items: [{}], branch: {} },
+      TreatmentList: { items: [{}], branch: {} },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Diagnoses {...props} />)

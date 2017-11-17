@@ -1,6 +1,7 @@
 
 -- +goose Up
 -- SQL in section 'Up' is executed when this migration is applied
+-- +goose StatementBegin
 
 CREATE TABLE psychological_competences (
     id                bigint REFERENCES accounts(id) NOT NULL PRIMARY KEY,
@@ -38,11 +39,14 @@ CREATE TABLE psychological_hospitalizations (
     hospitalized_id bigint REFERENCES branches(id),
     list_id         bigint REFERENCES collections(id)
 );
+-- +goose StatementEnd
 
 -- +goose Down
 -- SQL section 'Down' is executed when this migration is rolled back
+-- +goose StatementBegin
 DROP TABLE psychological_competences;
 DROP TABLE psychological_consultations;
 DROP TABLE psychological_diagnoses;
 DROP TABLE psychological_existings;
 DROP TABLE psychological_hospitalizations;
+-- +goose StatementEnd

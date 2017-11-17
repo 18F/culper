@@ -184,6 +184,8 @@ export default class MembershipOverthrowItem extends ValidationElement {
 }
 
 MembershipOverthrowItem.defaultProps = {
+  PositionsNotApplicable: { applicable: true },
+  ContributionsNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

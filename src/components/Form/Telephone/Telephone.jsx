@@ -103,7 +103,7 @@ export default class Telephone extends ValidationElement {
       let fieldTypeObj = { ...this.state[fieldType] }
       fieldTypeObj[field] = event.target.value
       this.setState({
-        noNumber: '',
+        noNumber: false,
         [fieldType]: fieldTypeObj
       }, () => {
         this.onUpdate()
@@ -137,7 +137,7 @@ export default class Telephone extends ValidationElement {
 
   handleNoNumberChange (cb) {
     this.setState({
-      noNumber: cb.value,
+      noNumber: cb.value === 'NA',
       timeOfDay: '',
       numberType: '',
       extension: '',
@@ -191,7 +191,7 @@ export default class Telephone extends ValidationElement {
         numberType: this.props.showNumberType ? this.state.numberType : 'NA',
         number: this.getFormattedNumber(),
         extension: this.state.extension,
-        noNumber: this.state.noNumber,
+        noNumber: this.state.noNumber || false,
         ...updated
       }
 
@@ -349,7 +349,7 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.allowNotApplicable}>
           <span>
             <span className="separator extension">or</span>
-            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber ? 'NA' : ''}>
               <Radio name="nonumber"
                      label={i18n.t('telephone.noNumber.label')}
                      value="NA"
@@ -437,7 +437,7 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.allowNotApplicable}>
           <span>
             <span className="separator extension">or</span>
-            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber ? 'NA' : ''}>
               <Radio name="nonumber"
                       label={i18n.t('telephone.noNumber.label')}
                       value="NA"
@@ -506,7 +506,7 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.allowNotApplicable}>
           <span>
             <span className="separator extension">or</span>
-            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber ? 'NA' : ''}>
               <Radio name="nonumber"
                      label={i18n.t('telephone.noNumber.label')}
                      value="NA"
@@ -520,7 +520,7 @@ export default class Telephone extends ValidationElement {
   }
 
   required () {
-    if (this.props.allowNotApplicable && this.props.noNumber === 'NA') {
+    if (this.props.allowNotApplicable && this.props.noNumber) {
       return false
     }
     return this.props.required
@@ -651,7 +651,7 @@ Telephone.defaultProps = {
   timeOfDay: 'Both',
   number: '',
   extension: '',
-  noNumber: '',
+  noNumber: false,
   showNumberType: true,
   allowNotApplicable: true,
   tab: (input) => { input.focus() },
@@ -663,7 +663,7 @@ Telephone.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required) {
-        if (props.allowNotApplicable && props.noNumber === 'NA') {
+        if (props.allowNotApplicable && props.noNumber) {
           return true
         }
         if (props.showNumberType && !props.numberType) {

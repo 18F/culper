@@ -325,6 +325,9 @@ export default class SponsorshipItem extends ValidationElement {
 }
 
 SponsorshipItem.defaultProps = {
+  BirthdateNotApplicable: { applicable: true },
+  OrganizationNotApplicable: { applicable: true },
+  OrganizationAddressNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

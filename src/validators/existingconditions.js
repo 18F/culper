@@ -6,7 +6,7 @@ export default class ExistingConditionsValidator {
     this.hasCondition = (data.HasCondition || {}).value
     this.receivedTreatment = (data.ReceivedTreatment || {}).value
     this.explanation = data.Explanation
-    this.treatmentList = data.TreatmentList || []
+    this.treatmentList = data.TreatmentList || {}
     this.didNotFollow = (data.DidNotFollow || {}).value
     this.didNotFollowExplanation = data.DidNotFollowExplanation
   }
@@ -30,10 +30,6 @@ export default class ExistingConditionsValidator {
       case 'Decline':
         return true
       case 'Yes':
-        if (this.treatmentListBranch === 'No') {
-          return true
-        }
-
         return validAccordion(this.treatmentList, (item) => {
           return new ExistingConditionsDiagnosisValidator(item).isValid()
         })

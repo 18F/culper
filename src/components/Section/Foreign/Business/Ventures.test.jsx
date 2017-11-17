@@ -42,7 +42,7 @@ describe('The foreign business ventures component', () => {
     const expected = {
       name: 'foreign-business-ventures',
       HasForeignVentures: { value: 'Yes' },
-      List: [{}],
+      List: { items: [{}], branch: {} },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Ventures {...expected} />)

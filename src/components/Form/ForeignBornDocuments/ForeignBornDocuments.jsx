@@ -261,7 +261,7 @@ ForeignBornDocuments.defaultProps = {
   OtherExplanation: {},
   DocumentNumber: {},
   DocumentExpiration: {},
-  DocumentExpirationNotApplicable: {},
+  DocumentExpirationNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

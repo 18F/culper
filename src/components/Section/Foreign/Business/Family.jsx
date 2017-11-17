@@ -19,7 +19,6 @@ export default class Family extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignFamily: this.props.HasForeignFamily,
       ...queue
     })
@@ -28,15 +27,13 @@ export default class Family extends SubsectionElement {
   updateHasForeignFamily (values) {
     this.update({
       HasForeignFamily: values,
-      List: values.value === 'Yes' ? this.props.List : [],
-      ListBranch: values.value === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -70,10 +67,9 @@ export default class Family extends SubsectionElement {
         </Branch>
 
         <Show when={this.props.HasForeignFamily.value === 'Yes'}>
-          <Accordion items={this.props.List}
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={FamilyValidator}
@@ -101,8 +97,7 @@ export default class Family extends SubsectionElement {
 Family.defaultProps = {
   name: 'Family',
   HasForeignFamily: {},
-  List: [],
-  ListBranch: '',
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',

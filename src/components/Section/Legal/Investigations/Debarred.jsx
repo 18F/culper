@@ -95,7 +95,6 @@ Debarred.defaultProps = {
   name: 'debarred',
   HasDebarment: {},
   List: Accordion.defaultList,
-  ListBranch: '',
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },

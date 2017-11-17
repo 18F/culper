@@ -33,7 +33,7 @@ export default class Bankruptcies extends SubsectionElement {
   updateHasBankruptcy (values) {
     this.update({
       HasBankruptcy: values,
-      List: values === 'Yes' ? this.props.List : []
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 

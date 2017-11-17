@@ -66,7 +66,7 @@ export class BankruptcyItemValidator {
   }
 
   validPetitionType () {
-    switch (this.petitionType) {
+    switch ((this.petitionType || {}).value) {
       case 'Chapter7':
       case 'Chapter11':
       case 'Chapter12':
