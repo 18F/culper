@@ -24,36 +24,46 @@ describe('The ContactInformation component', () => {
         items: [
           {
             Item: {
-              type: 'Domestic',
-              number: '2028675309',
-              extension: '1234'
+              Telephone: {
+                type: 'Domestic',
+                number: '2028675309',
+                extension: '1234'
+              }
             }
           },
           {
             Item: {
-              type: 'Domestic',
-              number: '2028675309',
-              extension: ''
+              Telephone: {
+                type: 'Domestic',
+                number: '2028675309',
+                extension: ''
+              }
             }
           },
           {
             Item: {
-              type: 'DSN',
-              number: '8675309'
+              Telephone: {
+                type: 'DSN',
+                number: '8675309'
+              }
             }
           },
           {
             Item: {
-              type: 'International',
-              number: '0011234567890',
-              extension: '1234'
+              Telephone: {
+                type: 'International',
+                number: '0011234567890',
+                extension: '1234'
+              }
             }
           },
           {
             Item: {
-              type: 'International',
-              number: '0011234567890',
-              extension: ''
+              Telephone: {
+                type: 'International',
+                number: '0011234567890',
+                extension: ''
+              }
             }
           }
         ]

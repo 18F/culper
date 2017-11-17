@@ -7,46 +7,26 @@ describe('The applicant birth date component', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      value: ''
+      onUpdate: () => {}
     }
-    let onUpdate = () => {}
-    const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} onUpdate={onUpdate} />)
+    const component = mount(<ApplicantBirthDate {...expected} />)
     component.find('.month input').simulate('change')
     expect(component.find('.usa-input-error-label').length).toEqual(0)
-  })
-
-  it('no error on undefined', () => {
-    const expected = {
-      name: 'input-focus',
-      label: 'Text input focused',
-      value: undefined
-    }
-    let onUpdate = () => {}
-    const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} onUpdate={onUpdate} />)
-    component.find('.month input').simulate('change')
-    expect(component.find('.usa-input-error-label').length).toEqual(0)
-  })
-
-  it('populates values', () => {
-    const expected = {
-      name: 'input-focus',
-      label: 'Text input focused',
-      value: '01/01/2015'
-    }
-    const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} />)
-    component.find('.month input').simulate('change')
-    component.find('.day input').simulate('change')
-    component.find('.year input').simulate('change')
   })
 
   it('loads data', () => {
     const expected = {
       name: 'input-focus',
       label: 'Text input focused',
-      value: '01/01/2015'
+      Date: {
+        month: '01',
+        day: '01',
+        year: '2015',
+        date: new Date('01/01/2015')
+      },
+      onUpdate: () => {}
     }
-    let onUpdate = () => {}
-    const component = mount(<ApplicantBirthDate name={expected.name} label={expected.label} value={expected.value} onUpdate={onUpdate} />)
+    const component = mount(<ApplicantBirthDate {...expected} />)
     component.find('.month input').simulate('change')
     component.find('.day input').simulate('change')
     component.find('.year input').simulate('change')

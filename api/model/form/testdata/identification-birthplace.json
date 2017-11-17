@@ -1,7 +1,7 @@
 {
   "type": "identification.birthplace",
   "props": {
-    "location": {
+    "Location": {
       "type": "location",
       "props": {
         "layout": "Address",

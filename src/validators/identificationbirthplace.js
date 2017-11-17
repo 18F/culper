@@ -2,8 +2,7 @@ import LocationValidator from './location'
 
 export default class IdentificationBirthPlaceValidator {
   constructor (data = {}) {
-    this.location = data || {}
-    // TODO: this.location = data.value || data || {}
+    this.location = data.Location
   }
 
   isValid () {

@@ -10,10 +10,8 @@ describe('The telephone summary', () => {
 
   it('display DSN format', () => {
     const phone = {
-      Item: {
-        type: 'DSN',
-        number: '8675309'
-      }
+      type: 'DSN',
+      number: '8675309'
     }
     const summary = TelephoneSummary(phone, 'Unknown')
     expect(summary).toEqual(<span className="title-case">867-5309</span>)
@@ -21,11 +19,9 @@ describe('The telephone summary', () => {
 
   it('display international format', () => {
     const phone = {
-      Item: {
-        type: 'International',
-        number: '0011234567890',
-        extension: '1234'
-      }
+      type: 'International',
+      number: '0011234567890',
+      extension: '1234'
     }
     const summary = TelephoneSummary(phone, 'Unknown')
     expect(summary).toEqual(<span className="title-case">+001 1234567890 x1234</span>)
@@ -33,11 +29,9 @@ describe('The telephone summary', () => {
 
   it('display domestic format', () => {
     const phone = {
-      Item: {
-        type: 'Domestic',
-        number: '2028675309',
-        extension: '1234'
-      }
+      type: 'Domestic',
+      number: '2028675309',
+      extension: '1234'
     }
     const summary = TelephoneSummary(phone, 'Unknown')
     expect(summary).toEqual(<span className="title-case">(202) 867-5309 x1234</span>)

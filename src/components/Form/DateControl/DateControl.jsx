@@ -38,7 +38,7 @@ export const datePart = (part, date) => {
   return ''
 }
 
-const buildDate = (year = '', month = '', day = '') => {
+export const buildDate = (year = '', month = '', day = '') => {
   let d
 
   if (year && year.length > 3 && month && day) {
