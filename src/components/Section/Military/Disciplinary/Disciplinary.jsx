@@ -35,7 +35,7 @@ export default class Disciplinary extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items
+      List: values
     })
   }
 
@@ -97,7 +97,7 @@ export default class Disciplinary extends SubsectionElement {
 
 Disciplinary.defaultProps = {
   HasDisciplinary: {},
-  List: {},
+  List: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'military',
