@@ -189,7 +189,7 @@ export default class ValidForm extends ValidationElement {
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
           <button onClick={this.submit} className="submit usa-button" disabled={!enableSubmit(this.props)}>
-            Submit your SF-86
+            { i18n.t('submission.validForm.submit') }
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </button>
         </div>

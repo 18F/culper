@@ -1137,8 +1137,8 @@ const en = {
       help: {
         email: {
           title: 'Need help with your email addresses?',
-          message: 'Provide at least 2 email addresses, preferably your home (personal) email and your work email.',
-          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation. \nEmail format example: name@example.com'
+          message: 'More than 2 email addresses are not required but may assist in the completion of your background investigation.',
+          note: 'Note: Email format example: name@example.com'
         },
         phoneNumber: {
           title: 'Need help with your phone numbers?',
@@ -1168,8 +1168,8 @@ const en = {
         comments: 'Add optional comments'
       },
       para: {
-        email: 'Email addresses may be used as contact method, and identify subject in records.',
-        phoneNumber: 'Provide your phone numbers. At least one number is required, but providing additional numbers may assist in the completion of your background investigation.'
+        email: '**At least one email address is required**, but providing additional email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+        phoneNumber: 'Provide your phone numbers. **At least one number is required**, but providing additional numbers may assist in the completion of your background investigation.'
       },
       label: {
         email: 'Email address',
@@ -9394,10 +9394,10 @@ const en = {
       '# Questionnaire for National Security Positions',
       '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
       '## Instructions for completing this form ',
-      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
-      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
-      '3. Do not abbreviate the names of cities or foreign countries.',
-      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
+      '1. **Follow the instructions provided to you by the office that gave you this form** and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
+      '2. **All questions on this form must be answered**. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
+      '3. **Do not abbreviate the names of cities or foreign countries**.',
+      '4. **All dates provided in this form must be in Month/Day/Year or Month/Year format**. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
       '---',
       'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
       '---',
@@ -9571,7 +9571,8 @@ const en = {
     validForm: {
       certificationItem: 'Certification',
       generalItem: 'Release of Information & HIPAA',
-      creditItem: 'Credit reporting disclosure'
+      creditItem: 'Credit reporting disclosure',
+      submit: 'Submit your SF-86'
     },
     invalidForm: [
       '### List of incomplete sections',
@@ -9587,7 +9588,7 @@ const en = {
         'Not a guarantee of acceptance, but all required fields are complete.'
       ],
       valid2: [
-        'Please sign the releases below and submit your form.'
+        '### Please sign the releases below and submit your form.'
       ],
       invalid: [
         '## Some required fields are incomplete',
