@@ -9571,7 +9571,8 @@ const en = {
     validForm: {
       certificationItem: 'Certification',
       generalItem: 'Release of Information & HIPAA',
-      creditItem: 'Credit reporting disclosure'
+      creditItem: 'Credit reporting disclosure',
+      submit: 'Submit your SF-86'
     },
     invalidForm: [
       '### List of incomplete sections',
@@ -9587,7 +9588,7 @@ const en = {
         'Not a guarantee of acceptance, but all required fields are complete.'
       ],
       valid2: [
-        'Please sign the releases below and submit your form.'
+        '### Please sign the releases below and submit your form.'
       ],
       invalid: [
         '## Some required fields are incomplete',
