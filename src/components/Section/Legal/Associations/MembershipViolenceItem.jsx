@@ -184,6 +184,8 @@ export default class MembershipViolenceItem extends ValidationElement {
 }
 
 MembershipViolenceItem.defaultProps = {
+  PositionsNotApplicable: { applicable: true },
+  ContributionsNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

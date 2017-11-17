@@ -260,6 +260,7 @@ export default class RealEstateInterest extends ValidationElement {
 }
 
 RealEstateInterest.defaultProps = {
+  SoldNotApplicable: { applicable: true },
   prefix: 'activities.realestate.interest',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

@@ -188,6 +188,8 @@ export default class TerroristOrganizationItem extends ValidationElement {
 }
 
 TerroristOrganizationItem.defaultProps = {
+  PositionsNotApplicable: { applicable: true },
+  ContributionsNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

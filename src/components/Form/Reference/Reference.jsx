@@ -264,7 +264,7 @@ Reference.defaultProps = {
   RelationshipOther: '',
   Phone: {},
   Email: {},
-  EmailNotApplicable: {},
+  EmailNotApplicable: { applicable: true },
   Address: {},
   focus: false,
   error: false,

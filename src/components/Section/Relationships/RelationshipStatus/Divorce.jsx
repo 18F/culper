@@ -285,6 +285,7 @@ export default class Divorce extends React.Component {
 }
 
 Divorce.defaultProps = {
+  DeceasedAddressNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

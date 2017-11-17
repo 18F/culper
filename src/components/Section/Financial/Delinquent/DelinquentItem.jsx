@@ -306,6 +306,7 @@ export default class DelinquentItem extends ValidationElement {
 }
 
 DelinquentItem.defaultProps = {
+  ResolvedNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

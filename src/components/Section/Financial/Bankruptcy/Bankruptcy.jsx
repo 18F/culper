@@ -339,6 +339,7 @@ export default class Bankruptcy extends ValidationElement {
 }
 
 Bankruptcy.defaultProps = {
+  DischargeDateNotApplicable: { applicable: true },
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},
