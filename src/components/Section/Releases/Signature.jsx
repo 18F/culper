@@ -51,19 +51,20 @@ export default class Signature extends ValidationElement {
 
   render () {
     const name = (this.props.LegalName || {}).Name
+    const signed = this.props.Date && this.props.Date.value
+    const button = <button className="add" onClick={this.addSignature}>{i18n.t('signature.add')}</button>
+    const nameSummary = signed ? NameSummary(name) : button
+    const dateSummary = signed ? DateSummary(this.props.Date, '', true) : ''
     return (
       <div className="signature">
-        <Show when={!this.props.Date || !this.props.Date.value}>
-          <button className="add" onClick={this.addSignature}>{i18n.t('signature.add')}</button>
-        </Show>
-        <Show when={this.props.Date && this.props.Date.value}>
-          <span className="name wet">{NameSummary(name)}</span>
-          <span className="spacer"></span>
-          <span className="date wet">{DateSummary(this.props.Date, '', true)}</span>
+        <span className="name wet">{nameSummary}</span>
+        <span className="spacer"></span>
+        <span className="date wet">{dateSummary}</span>
 
-          <span className="name muted">{i18n.t('signature.name')}</span>
-          <span className="spacer"></span>
-          <span className="date muted">{i18n.t('signature.date')}</span>
+        <span className="name muted">{i18n.t('signature.name')}</span>
+        <span className="spacer"></span>
+        <span className="date muted">{i18n.t('signature.date')}</span>
+        <Show when={signed}>
           <a href="javascript:;;" onClick={this.removeSignature} className="remove">
             <span>{i18n.t('signature.remove')}</span>
             <i className="fa fa-times-circle"></i>

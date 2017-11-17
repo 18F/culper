@@ -3,8 +3,10 @@
 
 .signature {
   .wet {
-    font-family: $eapp-cursive;
-    font-size: 26pt;
+    position: relative;
+    font-family: $eapp-sans;
+    font-size: 14pt;
+    font-weight: 600;
     line-height: 1;
     margin-bottom: -2rem;
   }
@@ -30,6 +32,11 @@
     border-top: 1px #000 solid;
     margin-top: -1rem;
     font-size: 11pt;
+  }
+
+  .add {
+    position: absolute;
+    top: -6.25rem;
   }
 
   .remove {
