@@ -5,7 +5,7 @@ const webpack = require('webpack')
 const path = require('path')
 
 module.exports = {
-  entry: './src/boot.jsx',
+  entry: ['babel-polyfill', './src/boot.jsx'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'eqip.js'
