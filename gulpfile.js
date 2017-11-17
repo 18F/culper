@@ -7,7 +7,7 @@ var sasslint = require('@18f/stylelint-rules')
 require('dotenv').config()
 
 var paths = {
-  entry: ['babel-polyfill', './src/boot.jsx'],
+  entry: ['./src/boot.jsx'],
   js: [
     './src/**/*.js*'
   ],
