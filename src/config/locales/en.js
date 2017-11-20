@@ -9603,7 +9603,7 @@ const en = {
     print: {
       title: [
         '## Please print and save your responses',
-        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen.'
+        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen. To save a PDF click the "Save/Print button then change the printer "Destination" to "Save as PDF".'
       ],
       button: 'Save/Print',
       done: [
