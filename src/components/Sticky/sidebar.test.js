@@ -85,61 +85,61 @@ describe('The sidebar stickiness', () => {
     expect(hasClass(content, 'sidebar-top-fixed')).toBe(false)
   })
 
-  // it('can scroll down with nothing', () => {
-  //   let container = document.createElement('div')
-  //   let content = document.createElement('div')
-  //   const world = {
-  //     tolerance: 100,
-  //     lastScrollTop: 0,
-  //     boundaries: {
-  //       containerTop: 0,
-  //       containerBottom: 0,
-  //       containerHeight: 0
-  //     }
-  //   }
-  //   scrollUp(container, content, world)
-  //   expect(hasClass(content, 'sidebar-top-fixed')).toBe(false)
-  //   expect(hasClass(content, 'sidebar-scrolling-up')).toBe(false)
-  // })
+  it('can scroll down with nothing', () => {
+    let container = document.createElement('div')
+    let content = document.createElement('div')
+    const world = {
+      tolerance: 100,
+      lastScrollTop: 0,
+      boundaries: {
+        containerTop: 0,
+        containerBottom: 0,
+        containerHeight: 0
+      }
+    }
+    scrollUp(container, content, world)
+    expect(hasClass(content, 'sidebar-top-fixed')).toBe(false)
+    expect(hasClass(content, 'sidebar-scrolling-up')).toBe(false)
+  })
 
-  // it('can scroll down with after scrolling down', () => {
-  //   let container = document.createElement('div')
-  //   let content = document.createElement('div')
-  //   content.classList.add('sidebar-scrolling-down')
-  //   const world = {
-  //     tolerance: 100,
-  //     lastScrollTop: 0,
-  //     boundaries: {
-  //       containerTop: 0,
-  //       containerBottom: 0,
-  //       containerHeight: 0
-  //     }
-  //   }
-  //   scrollUp(container, content, world)
-  //   expect(hasClass(content, 'sidebar-top-fixed')).toBe(false)
-  //   expect(hasClass(content, 'sidebar-scrolling-down')).toBe(false)
-  //   expect(hasClass(content, 'sidebar-scrolling-up')).toBe(true)
-  // })
+  it('can scroll down with after scrolling down', () => {
+    let container = document.createElement('div')
+    let content = document.createElement('div')
+    content.classList.add('sidebar-scrolling-down')
+    const world = {
+      tolerance: 100,
+      lastScrollTop: 0,
+      boundaries: {
+        containerTop: 0,
+        containerBottom: 0,
+        containerHeight: 0
+      }
+    }
+    scrollUp(container, content, world)
+    expect(hasClass(content, 'sidebar-top-fixed')).toBe(false)
+    expect(hasClass(content, 'sidebar-scrolling-down')).toBe(false)
+    expect(hasClass(content, 'sidebar-scrolling-up')).toBe(true)
+  })
 
-  // it('can scroll down with after bottomed out', () => {
-  //   let container = document.createElement('div')
-  //   let content = document.createElement('div')
-  //   content.classList.add('sidebar-bottom-fixed')
-  //   const world = {
-  //     tolerance: 100,
-  //     lastScrollTop: 0,
-  //     boundaries: {
-  //       containerTop: 0,
-  //       containerBottom: 0,
-  //       containerHeight: 0
-  //     }
-  //   }
-  //   scrollUp(container, content, world)
-  //   expect(hasClass(content, 'sidebar-bottom-fixed')).toBe(false)
-  //   expect(hasClass(content, 'sidebar-top-fixed')).toBe(false)
-  //   expect(hasClass(content, 'sidebar-scrolling-down')).toBe(false)
-  //   expect(hasClass(content, 'sidebar-scrolling-up')).toBe(true)
-  // })
+  it('can scroll down with after bottomed out', () => {
+    let container = document.createElement('div')
+    let content = document.createElement('div')
+    content.classList.add('sidebar-bottom-fixed')
+    const world = {
+      tolerance: 100,
+      lastScrollTop: 0,
+      boundaries: {
+        containerTop: 0,
+        containerBottom: 0,
+        containerHeight: 0
+      }
+    }
+    scrollUp(container, content, world)
+    expect(hasClass(content, 'sidebar-bottom-fixed')).toBe(false)
+    expect(hasClass(content, 'sidebar-top-fixed')).toBe(false)
+    expect(hasClass(content, 'sidebar-scrolling-down')).toBe(false)
+    expect(hasClass(content, 'sidebar-scrolling-up')).toBe(true)
+  })
 
   it('can scroll up with nothing', () => {
     let container = document.createElement('div')
