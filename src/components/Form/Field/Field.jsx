@@ -295,7 +295,7 @@ export default class Field extends ValidationElement {
   }
 
   render () {
-    const required = !this.props.optional || (!this.props.optional && (this.props.children || []).length === 0)
+    const required = !this.props.optional
     const klass = `field ${required ? 'required' : ''} ${this.visibleComments() ? 'with-comments' : ''} ${this.props.className || ''}`.trim()
     const klassComponent = `component ${this.props.shrink ? 'shrink' : ''}`.trim()
 

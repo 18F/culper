@@ -48,8 +48,12 @@ export default class BasicAccordion extends React.Component {
 class BasicAccordionItem extends React.Component {
   componentWillReceiveProps (nextProps) {
     if (nextProps.scrollIntoView !== this.props.scrollIntoView && nextProps.scrollIntoView === true) {
-      console.log(nextProps)
-      this.refs.item.scrollIntoView()
+      const timeout = 350
+      const offset = 100
+      window.setTimeout(() => {
+        const t = this.refs.item.getBoundingClientRect().top
+        window.scrollBy({ top: t - offset, left: 0, behavior: 'smooth' })
+      }, timeout)
     }
   }
 
