@@ -76,6 +76,7 @@ export default class ContactInformation extends SubsectionElement {
     return callback()
   }
 
+
   render () {
     const klass = `${this.props.className || ''}`.trim()
     let emails = this.props.Emails
@@ -95,12 +96,20 @@ export default class ContactInformation extends SubsectionElement {
       phoneNumbers.items = filteredPhoneNumbers
     }
 
-    if (emails.length < this.props.minimumEmails) {
-      emails = this.props.Emails.items.slice(0, this.props.minimumEmails)
+    if (emails.items.length === 0) {
+      if (this.props.shouldFilterEmptyItems) {
+        emails = { items: [{}] }
+      } else {
+        emails = { items: [{}, {}] }
+      }
     }
 
-    if (phoneNumbers.length < this.props.minimumPhoneNumbers) {
-      phoneNumbers = this.props.PhoneNumbers.items.slice(0, this.props.minimumPhoneNumbers)
+    if (phoneNumbers.items.length === 0) {
+      if (this.props.shouldFilterEmptyItems) {
+        phoneNumbers = { items: [{}] }
+      } else {
+        phoneNumbers = { items: [{}, {}] }
+      }
     }
 
     return (
@@ -120,8 +129,7 @@ export default class ContactInformation extends SubsectionElement {
         </Field>
 
         <div className={klass + ' email-collection'}>
-          <Accordion minimum={this.props.minimumEmails}
-                     {...emails}
+          <Accordion {...emails}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateEmails}
                      onError={this.handleError}
@@ -154,8 +162,7 @@ export default class ContactInformation extends SubsectionElement {
         </Field>
 
         <div className={klass + ' telephone-collection'}>
-          <Accordion minimum={this.props.minimumPhoneNumbers}
-                     {...phoneNumbers}
+          <Accordion {...phoneNumbers}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updatePhoneNumbers}
                      onError={this.handleError}
@@ -185,8 +192,8 @@ export default class ContactInformation extends SubsectionElement {
 ContactInformation.defaultProps = {
   Emails: Accordion.defaultList,
   PhoneNumbers: Accordion.defaultList,
-  minimumPhoneNumbers: 2,
-  minimumEmails: 2,
+  minimumPhoneNumbers: 1,
+  minimumEmails: 1,
   shouldFilterEmptyItems: false,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
