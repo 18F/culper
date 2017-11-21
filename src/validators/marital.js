@@ -2,7 +2,7 @@ import CivilUnionValidator from './civilunion'
 import DivorceValidator from './divorce'
 
 export default class MaritalValidator {
-  constructor (state = {}, props) {
+  constructor (state = {}, props = {}) {
     this.civilUnion = state.CivilUnion
     this.status = state.Status
     this.divorcedList = state.DivorcedList

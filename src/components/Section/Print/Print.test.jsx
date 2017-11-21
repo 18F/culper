@@ -29,7 +29,6 @@ describe('The print section', () => {
     }
     const store = mockStore({ authentication: { authenticated: true, twofactor: true, application: applicationState } })
     const component = mount(<Provider store={store}><Print /></Provider>)
-    console.log(component.html())
     component.find('.print-btn').simulate('click')
     expect(printed).toBe(true)
   })

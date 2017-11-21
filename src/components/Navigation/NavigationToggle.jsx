@@ -38,7 +38,7 @@ export class NavigationToggle extends React.Component {
     }
 
     return (
-      <a href="javascript:;;" className="navigation-toggle mobile-visible" onClick={this.toggle}>
+      <a href="javascript:;;" className="navigation-toggle desktop-hidden tablet-hidden mobile-visible" onClick={this.toggle}>
         <i className="fa fa-bars" aria-hidden="true"></i>
         <span>Navigation</span>
       </a>

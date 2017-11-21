@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
 import SectionElement from '../SectionElement'
+import SectionComments from '../SectionComments'
 import { SectionViews, SectionView } from '../SectionView'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { Field } from '../../Form'
@@ -21,6 +22,7 @@ class Citizenship extends SectionElement {
                        nextLabel={i18n.t('citizenship.destination.status')}>
             <Field title={i18n.t('citizenship.intro.title')}
                    titleSize="h2"
+                   optional={true}
                    className="no-margin-bottom">
               {i18n.m('citizenship.intro.body')}
             </Field>
@@ -57,14 +59,24 @@ class Citizenship extends SectionElement {
 
             <hr/>
             <Passports name="passports"
-                      {...this.props.Passports}
-                      defaultState={false}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.handleUpdate.bind(this, 'Passports')}
-                      onError={this.handleError}
-                      required={true}
-                      scrollIntoView={false}
-                      />
+                       {...this.props.Passports}
+                       defaultState={false}
+                       dispatch={this.props.dispatch}
+                       onUpdate={this.handleUpdate.bind(this, 'Passports')}
+                       onError={this.handleError}
+                       required={true}
+                       scrollIntoView={false}
+                       />
+            <hr />
+            <SectionComments name="comments"
+                             {...this.props.Comments}
+                             title={i18n.t('citizenship.review.comments')}
+                             dispatch={this.props.dispatch}
+                             onUpdate={this.handleUpdate.bind(this, 'Comments')}
+                             onError={this.handleError}
+                             required={false}
+                             scrollIntoView={false}
+                             />
           </SectionView>
 
           <SectionView name="status"
@@ -99,12 +111,12 @@ class Citizenship extends SectionElement {
                        next="citizenship/review"
                        nextLabel={i18n.t('citizenship.destination.review')}>
             <Passports name="passports"
-                      {...this.props.Passports}
-                      dispatch={this.props.dispatch}
-                      onUpdate={this.handleUpdate.bind(this, 'Passports')}
-                      onError={this.handleError}
-                      scrollToBottom={this.props.scrollToBottom}
-                      />
+                       {...this.props.Passports}
+                       dispatch={this.props.dispatch}
+                       onUpdate={this.handleUpdate.bind(this, 'Passports')}
+                       onError={this.handleError}
+                       scrollToBottom={this.props.scrollToBottom}
+                       />
           </SectionView>
         </SectionViews>
       </div>
@@ -123,6 +135,7 @@ function mapStateToProps (state) {
     Status: citizenship.Status || {},
     Multiple: citizenship.Multiple || {},
     Passports: citizenship.Passports || {},
+    Comments: citizenship.Comments || {},
     Errors: errors.citizenship || [],
     Completed: completed.citizenship || []
   }
@@ -139,33 +152,42 @@ export class CitizenshipSections extends React.Component {
     return (
       <div>
         <Status name="status"
-          {...this.props.Status}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                {...this.props.Status}
+                defaultState={false}
+                dispatch={this.props.dispatch}
+                onError={this.props.onError}
+                required={true}
+                scrollIntoView={false}
+                />
 
         <hr/>
         <Multiple name="multiple"
-          {...this.props.Multiple}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                  {...this.props.Multiple}
+                  defaultState={false}
+                  dispatch={this.props.dispatch}
+                  onError={this.props.onError}
+                  required={true}
+                  scrollIntoView={false}
+                  />
 
         <hr/>
         <Passports name="passports"
-          {...this.props.Passports}
-          defaultState={false}
-          dispatch={this.props.dispatch}
-          onError={this.props.onError}
-          required={true}
-          scrollIntoView={false}
-        />
+                   {...this.props.Passports}
+                   defaultState={false}
+                   dispatch={this.props.dispatch}
+                   onError={this.props.onError}
+                   required={true}
+                   scrollIntoView={false}
+                   />
+        <hr />
+        <SectionComments name="comments"
+                         {...this.props.Comments}
+                         title={i18n.t('citizenship.review.comments')}
+                         dispatch={this.props.dispatch}
+                         onError={this.props.onError}
+                         required={false}
+                         scrollIntoView={false}
+                         />
       </div>
     )
   }

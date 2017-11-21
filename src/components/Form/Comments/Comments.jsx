@@ -40,7 +40,6 @@ export default class Comments extends ValidationElement {
   }
 
   visible () {
-    // return this.state.value || this.state.visible || this.props.visible
     return this.props.value || this.state.visible
   }
 

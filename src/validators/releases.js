@@ -1,4 +1,4 @@
-import { sectionsTotal, sectionsCompleted } from './navigation'
+import { sectionsTotal, sectionsCompleted } from '../components/Navigation/navigation-helpers'
 import { hideExistingConditions } from './psychological'
 
 export const hideReleases = (store = {}) => {

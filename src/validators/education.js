@@ -4,11 +4,11 @@ import { validNotApplicable, validDateField, validPhoneNumber, validGenericTextf
 import LocationValidator from './location'
 import NameValidator from './name'
 
-export default class EducationValidator {
-  constructor (state = {}, props = {}) {
-    this.hasAttended = state.HasAttended
-    this.hasDegree10 = state.HasDegree10
-    this.list = state.List || []
+export default class HistoryEducationValidator {
+  constructor (data = {}) {
+    this.hasAttended = data.HasAttended
+    this.hasDegree10 = data.HasDegree10
+    this.list = data.List || []
   }
 
   validAttendance () {

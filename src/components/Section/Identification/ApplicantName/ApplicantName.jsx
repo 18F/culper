@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import NameValidator from '../../../../validators/name'
+import { IdentificationNameValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Name, Field } from '../../../Form'
 
@@ -12,6 +12,7 @@ export default class ApplicantName extends SubsectionElement {
       <div className={klass}>
         <Field title={i18n.t('identification.name.title')}
                titleSize="h2"
+               optional={true}
                scrollIntoView={this.props.scrollIntoView}>
           <Name name="name"
                 {...this.props.value}
@@ -35,7 +36,7 @@ ApplicantName.defaultProps = {
   dispatch: () => {},
   required: false,
   validator: (state, props) => {
-    return new NameValidator(props.value, null).isValid()
+    return new IdentificationNameValidator(props).isValid()
   }
 }
 

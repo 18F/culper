@@ -45,7 +45,7 @@ function mapStateToProps (state) {
   const settings = app.Settings || { consented: '' }
 
   return {
-    settings: settings
+    settings
   }
 }
 

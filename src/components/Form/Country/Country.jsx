@@ -54,7 +54,9 @@ export default class Country extends ValidationElement {
       }
     })
 
-    // Take the original and concatenate our new error values to it
+    // Determine if a `notfound` error is present and has a value of `false`.
+    // When this happens we want to change the focus to the appropriate element
+    // dependent on if this is singular or plural.
     const notfound = arr.some(x => x.valid === false && x.code.indexOf('notfound') !== -1)
     if (!this.state.showComments && notfound) {
       if (this.props.multiple) {

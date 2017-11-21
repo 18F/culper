@@ -90,7 +90,8 @@ export default class Reference extends ValidationElement {
     return (
       <div className={klass}>
         <Field title={i18n.t(`${prefix}reference.heading.name`)}
-               titleSize="h3">
+               titleSize="h3"
+               optional={true}>
           <Name name="FullName"
                 prefix={`${this.props.prefix}.name`}
                 className="reference-name"
@@ -195,6 +196,7 @@ export default class Reference extends ValidationElement {
 
         <Field title={i18n.t(`${prefix}reference.heading.correspondence`)}
                titleSize="h2"
+               optional={true}
                className="no-margin-bottom">
           {i18n.m(`${prefix}reference.para.correspondence`)}
         </Field>
@@ -231,6 +233,7 @@ export default class Reference extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.address`)}
+               optional={true}
                help={`${prefix}reference.help.address`}
                adjustFor="address">
           <p>{i18n.t(`${prefix}reference.para.address`)}</p>

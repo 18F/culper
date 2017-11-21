@@ -1,4 +1,4 @@
-import PhysicalValidator from './physical'
+import IdentificationPhysicalValidator from './identificationphysical'
 
 describe('Physical attributes validation', function () {
   it('should validate height', function () {
@@ -39,7 +39,7 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PhysicalValidator(test.state, null).validHeight()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.state, null).validHeight()).toBe(test.expected)
     })
   })
 
@@ -66,7 +66,7 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PhysicalValidator(test.state, null).validWeight()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.state, null).validWeight()).toBe(test.expected)
     })
   })
 
@@ -99,7 +99,7 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PhysicalValidator(test.state, null).validHairColor()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.state, null).validHairColor()).toBe(test.expected)
     })
   })
 
@@ -132,7 +132,7 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PhysicalValidator(test.state, null).validEyeColor()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.state, null).validEyeColor()).toBe(test.expected)
     })
   })
 
@@ -159,7 +159,7 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PhysicalValidator(test.state, null).validSex()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.state, null).validSex()).toBe(test.expected)
     })
   })
 
@@ -194,7 +194,7 @@ describe('Physical attributes validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new PhysicalValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new IdentificationPhysicalValidator(test.state, null).isValid()).toBe(test.expected)
     })
   })
 })

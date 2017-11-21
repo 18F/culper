@@ -5,7 +5,7 @@ const reBook = '^[a-zA-Z]{1}[0-9]{6,9}$'
 const reCard = '^[cC]{1}[0-9]{8}$'
 
 export default class PassportValidator {
-  constructor (state, props) {
+  constructor (state = {}, props = {}) {
     this.name = state.Name
     this.number = state.Number
     this.card = state.Card

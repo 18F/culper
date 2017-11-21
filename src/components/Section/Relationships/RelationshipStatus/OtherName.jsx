@@ -42,40 +42,41 @@ export default class OtherName extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('relationships.cohabitant.othernames.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Name name="Othername"
-            {...this.props.OtherName}
-            onUpdate={this.updateOtherName}
-            onError={this.props.onError}
-            required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}
-          />
+                {...this.props.OtherName}
+                onUpdate={this.updateOtherName}
+                onError={this.props.onError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
         </Field>
 
         <Field title={i18n.t('relationships.cohabitant.othernames.heading.maiden')}
-          help="alias.maiden.help"
-          adjustFor="buttons"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+               help="alias.maiden.help"
+               adjustFor="buttons"
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <MaidenName name="MaidenName"
-            {...this.props.MaidenName}
-            onUpdate={this.updateMaidenName}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                      {...this.props.MaidenName}
+                      onUpdate={this.updateMaidenName}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      />
         </Field>
 
         <Field title={i18n.t('relationships.cohabitant.othernames.heading.used')}
-          adjustFor="daterange"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="daterange"
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="DatesUsed"
-            {...this.props.DatesUsed}
-            onUpdate={this.updateDatesUsed}
-            onError={this.props.onError}
-            className="datesused"
-            required={this.props.required}
-          />
+                     {...this.props.DatesUsed}
+                     onUpdate={this.updateDatesUsed}
+                     onError={this.props.onError}
+                     className="datesused"
+                     required={this.props.required}
+                     />
         </Field>
       </div>
     )
