@@ -65,8 +65,8 @@ describe('The accordion component', () => {
 
   it('can toggle summary item', () => {
     let items = [
-      { uuid: '1', open: true },
-      { uuid: '2', open: true }
+      { uuid: '1', open: false },
+      { uuid: '2', open: false }
     ]
 
     const expected = {
@@ -79,7 +79,7 @@ describe('The accordion component', () => {
     }
     const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
     expect(items.length).toEqual(2)
-    expect(items.every(x => { return x.open })).toBe(true)
+    expect(items.every(x => { return x.open })).toBe(false)
 
     component.find('.toggle').first().simulate('click')
     expect(items.length).toEqual(2)
@@ -345,5 +345,40 @@ describe('The accordion component', () => {
     const component = mount(<Accordion {...expected}><Text name="mytext" bind={true} /></Accordion>)
     expect(component.find('.append-button button').length).toEqual(1)
     expect(component.find('.addendum').length).toEqual(0)
+  })
+
+  it('default state closed if more than one item', () => {
+    let items = [
+      { uuid: '1', open: true },
+      { uuid: '2', open: true }
+    ]
+
+    const expected = {
+      items: items,
+      summary: (item, index) => {
+        return (<div className="table">Item {index}</div>)
+      },
+      onUpdate: (x) => { items = x.items }
+    }
+    const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
+    expect(items.length).toEqual(2)
+    expect(items.every(x => { return x.open })).toBe(false)
+  })
+
+  it('default state open if one item', () => {
+    let items = [
+      { uuid: '1' },
+    ]
+
+    const expected = {
+      items: items,
+      summary: (item, index) => {
+        return (<div className="table">Item {index}</div>)
+      },
+      onUpdate: (x) => { items = x.items }
+    }
+    const component = mount(<Accordion {...expected}><div className="hello">hello</div></Accordion>)
+    expect(items.length).toEqual(1)
+    expect(items.every(x => { return x.open })).toBe(true)
   })
 })
