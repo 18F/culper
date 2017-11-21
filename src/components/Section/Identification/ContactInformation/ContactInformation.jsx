@@ -96,20 +96,14 @@ export default class ContactInformation extends SubsectionElement {
       phoneNumbers.items = filteredPhoneNumbers
     }
 
+    let emailMin = this.props.minimumEmails
     if (emails.items.length === 0) {
-      if (this.props.shouldFilterEmptyItems) {
-        emails = { items: [{}] }
-      } else {
-        emails = { items: [{}, {}] }
-      }
+      emailMin = this.props.shouldFilterEmptyItems ? 1 : 2
     }
 
+    let phoneMin = this.props.minimumPhoneNumbers
     if (phoneNumbers.items.length === 0) {
-      if (this.props.shouldFilterEmptyItems) {
-        phoneNumbers = { items: [{}] }
-      } else {
-        phoneNumbers = { items: [{}, {}] }
-      }
+      phoneMin = this.props.shouldFilterEmptyItems ? 1 : 2
     }
 
     return (
@@ -130,6 +124,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <div className={klass + ' email-collection'}>
           <Accordion {...emails}
+                     minimum={emailMin}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updateEmails}
                      onError={this.handleError}
@@ -163,6 +158,7 @@ export default class ContactInformation extends SubsectionElement {
 
         <div className={klass + ' telephone-collection'}>
           <Accordion {...phoneNumbers}
+                     minimum={phoneMin}
                      defaultState={this.props.defaultState}
                      onUpdate={this.updatePhoneNumbers}
                      onError={this.handleError}
