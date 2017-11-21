@@ -3,7 +3,7 @@ import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate, { EmploymentValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Accordion } from '../../../Form'
+import { Accordion, Branch } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { newGuid } from '../../../Form/ValidationElement'
 import { today, daysAgo } from '../dateranges'
@@ -12,8 +12,8 @@ import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
 
 const byline = (item, index, initial, translation, required, validator) => {
+  // If item is required and not currently opened and is not valid, show message
   switch (true) {
-    // If item is required and not currently opened and is not valid, show message
   case required && !item.open && !validator(item.Item):
   case !item.open && !initial && item.Item && !validator(item.Item):
     return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
@@ -33,7 +33,9 @@ export default class Employment extends SubsectionElement {
     this.customEmploymentDetails = this.customEmploymentDetails.bind(this)
     this.fillGap = this.fillGap.bind(this)
     this.inject = this.inject.bind(this)
+    this.update = this.update.bind(this)
     this.updateList = this.updateList.bind(this)
+    this.updateEmploymentRecord = this.updateEmploymentRecord.bind(this)
   }
 
   customEmploymentByline (item, index, initial) {
@@ -42,9 +44,34 @@ export default class Employment extends SubsectionElement {
     })
   }
 
-  updateList (values) {
+  update (queue) {
     this.props.onUpdate({
+      List: this.props.List,
+      EmploymentRecord: this.props.EmploymentRecord,
+      ...queue
+    })
+  }
+
+  updateList (values) {
+    this.update({
       List: values
+    })
+  }
+
+  updateEmploymentRecord (values) {
+    let list = this.props.List || {}
+    if (values.value === 'Yes') {
+      list.items = [
+        ...(list.items || []),
+        {}
+      ]
+      list.branch = {}
+      values = {}
+    }
+
+    this.update({
+      List: list,
+      EmploymentRecord: values
     })
   }
 
@@ -105,7 +132,6 @@ export default class Employment extends SubsectionElement {
                    customDetails={this.customEmploymentDetails}
                    description={i18n.t('history.employment.default.collection.summary.title')}
                    appendTitle={i18n.t('history.employment.default.collection.appendTitle')}
-                   appendMessage={i18n.m('history.employment.default.collection.appendMessage')}
                    appendLabel={i18n.t('history.employment.default.collection.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
@@ -116,13 +142,24 @@ export default class Employment extends SubsectionElement {
                           required={this.props.required}
                           scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
+        <Branch label={i18n.t('history.employment.default.employmentRecord.title')}
+                labelSize="h3"
+                {...this.props.EmploymentRecord}
+                onUpdate={this.updateEmploymentRecord}
+                onError={this.handleError}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}>
+          {i18n.m('history.employment.default.employmentRecord.list')}
+          {i18n.m('history.employment.default.employmentRecord.para')}
+        </Branch>
       </div>
     )
   }
 }
 
 Employment.defaultProps = {
-  List: { items: [] },
+  List: Accordion.defaultList,
+  EmploymentRecord: {},
   scrollToTop: '',
   defaultState: true,
   realtime: false,

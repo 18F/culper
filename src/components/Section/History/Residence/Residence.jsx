@@ -100,6 +100,7 @@ export default class Residence extends SubsectionElement {
                    customSummary={ResidenceCustomSummary}
                    customDetails={this.customResidenceDetails}
                    description={i18n.t('history.residence.collection.summary.title')}
+                   appendTitle={i18n.t('history.residence.collection.appendTitle')}
                    appendLabel={i18n.t('history.residence.collection.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
@@ -116,7 +117,7 @@ export default class Residence extends SubsectionElement {
 }
 
 Residence.defaultProps = {
-  List: { items: [] },
+  List: Accordion.defaultList,
   scrollToTop: '',
   defaultState: true,
   realtime: false,

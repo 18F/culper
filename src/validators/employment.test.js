@@ -1,4 +1,4 @@
-import { EmploymentValidator } from './employment'
+import HistoryEmploymentValidator, { EmploymentValidator } from './employment'
 import Location from '../components/Form/Location'
 
 describe('Employment component validation', function () {
@@ -1413,6 +1413,184 @@ describe('Employment component validation', function () {
 
     tests.forEach(test => {
       expect(new EmploymentValidator(test.state, null).validReprimand()).toBe(test.expected)
+    })
+  })
+
+  it('should test for second branch logic involving employment record', () => {
+    const list = {
+      items: [
+        {
+          Item: {
+            EmploymentActivity: {
+              value: 'NationalGuard'
+            },
+            Dates: {
+              from: {
+                date: new Date('1/1/2010')
+              },
+              to: {
+                date: new Date('1/1/2016')
+              },
+              present: false
+            },
+            Status: {
+              value: 'Fulltime'
+            },
+            Title: {
+              value: 'IT Support'
+            },
+            DutyStation: {
+              value: 'Station 1'
+            },
+            Address: {
+              country: { value: 'United States' },
+              street: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202',
+              layout: Location.ADDRESS
+            },
+            Telephone: {
+              noNumber: '',
+              number: '2028675309',
+              numberType: 'Cell',
+              type: 'Domestic',
+              timeOfDay: 'Day'
+            },
+            Supervisor: {
+              Address: {
+                country: { value: 'United States' },
+                street: '1234 Some Rd',
+                city: 'Arlington',
+                state: 'Virginia',
+                zipcode: '22202',
+                layout: Location.ADDRESS
+              },
+              Email: {
+                value: 'foo@local.dev'
+              },
+              SupervisorName: {
+                value: 'John Doe'
+              },
+              Telephone: {
+                noNumber: '',
+                number: '2021112222',
+                numberType: 'Cell',
+                type: 'Domestic',
+                timeOfDay: 'Day'
+              },
+              Title: {
+                value: 'The Foo'
+              }
+            },
+            ReasonLeft: {
+              Reasons: {
+                items: [
+                  {
+                    Item: {
+                      Has: { value: 'No' },
+                      Reason: 'Fired',
+                      Date: {
+                        date: new Date('1/1/2016'),
+                        day: '1',
+                        month: '1',
+                        year: '2016'
+                      },
+                      Text: {
+                        value: 'Some excuse'
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            Reprimand: {
+              Reasons: {
+                items: [
+                  {
+                    Item: {
+                      Has: { value: 'No' },
+                      Date: {
+                        date: new Date('1/1/2015'),
+                        month: '1',
+                        year: '2015'
+                      },
+                      Text: {
+                        value: 'Foo'
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          }
+        }
+      ],
+      branch: {
+        value: 'No'
+      }
+    }
+
+    const tests = [
+      {
+        data: {
+          List: list,
+          EmploymentRecord: {
+            value: ''
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          List: list,
+          EmploymentRecord: {
+            value: 'Yes'
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          List: list,
+          EmploymentRecord: {
+            value: 'No'
+          }
+        },
+        expected: true
+      },
+      {
+        data: {
+          List: {
+            ...list,
+            branch: {
+              value: ''
+            }
+          },
+          EmploymentRecord: {
+            value: 'No'
+          }
+        },
+        expected: false
+      },
+      {
+        data: {
+          List: {
+            ...list,
+            branch: {
+              value: 'Yes'
+            }
+          },
+          EmploymentRecord: {
+            value: 'No'
+          }
+        },
+        expected: false
+      }
+    ]
+
+    tests.forEach(test => {
+      expect(new HistoryEmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 })

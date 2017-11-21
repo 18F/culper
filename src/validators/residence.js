@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import ReferenceValidator from './reference'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 // Options for roles
 const roleOptions = ['Other', 'Military', 'Owned', 'Rented']
@@ -17,13 +17,8 @@ export default class HistoryResidenceValidator {
   }
 
   isValid () {
-    const items = this.List.items || []
-    if (items.length === 0) {
-      return false
-    }
-
-    return items.every(x => {
-      return new ResidenceValidator(x.Item, null).isValid()
+    return validAccordion(this.list, (item) => {
+      return new ResidenceValidator(item).isValid()
     })
   }
 }

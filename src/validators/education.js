@@ -31,7 +31,7 @@ export default class HistoryEducationValidator {
 
     return validAccordion(this.list, (item) => {
       return new EducationItemValidator(item).isValid()
-    }, true)
+    })
   }
 
   isValid () {

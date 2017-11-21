@@ -381,6 +381,9 @@ describe('Education component validation', function () {
           HasAttended: { value: 'Yes' },
           HasDegree10: { value: 'Yes' },
           List: {
+            branch: {
+              value: 'No'
+            },
             items: [
               {
                 Item: {
@@ -428,6 +431,9 @@ describe('Education component validation', function () {
           HasAttended: { value: 'Yes' },
           HasDegree10: { value: 'Yes' },
           List: {
+            branch: {
+              value: 'No'
+            },
             items: [
               {
                 Item: {

@@ -49,6 +49,7 @@ export default class Education extends SubsectionElement {
                    byline={this.customEducationByline}
                    customSummary={EducationCustomSummary}
                    description={i18n.t('history.education.collection.school.summary.title')}
+                   appendTitle={i18n.t('history.education.collection.school.appendTitle')}
                    appendLabel={i18n.t('history.education.collection.school.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
@@ -66,7 +67,7 @@ export default class Education extends SubsectionElement {
 }
 
 Education.defaultProps = {
-  List: { items: [] },
+  List: Accordion.defaultList,
   scrollToTop: '',
   defaultState: true,
   realtime: false,
