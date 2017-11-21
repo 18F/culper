@@ -133,6 +133,7 @@ export default class Employment extends SubsectionElement {
                    description={i18n.t('history.employment.default.collection.summary.title')}
                    appendTitle={i18n.t('history.employment.default.collection.appendTitle')}
                    appendLabel={i18n.t('history.employment.default.collection.append')}
+                   appendClass="no-margin-bottom"
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
           <EmploymentItem name="Item"
@@ -142,6 +143,7 @@ export default class Employment extends SubsectionElement {
                           required={this.props.required}
                           scrollIntoView={this.props.scrollIntoView} />
         </Accordion>
+        <hr className="section-divider" />
         <Branch label={i18n.t('history.employment.default.employmentRecord.title')}
                 labelSize="h3"
                 {...this.props.EmploymentRecord}
