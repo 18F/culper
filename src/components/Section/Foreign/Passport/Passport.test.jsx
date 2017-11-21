@@ -88,6 +88,7 @@ describe('The passport component', () => {
         first: 'John',
         last: 'Doe',
         middle: 'S',
+        middleInitialOnly: true,
         name: 'name',
         suffix: 'Jr'
       },
