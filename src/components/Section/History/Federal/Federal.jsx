@@ -95,7 +95,7 @@ export default class Federal extends SubsectionElement {
 
 Federal.defaultProps = {
   HasFederalService: {},
-  List: { items: [] },
+  List: Accordion.defaultList,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'history',
