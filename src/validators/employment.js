@@ -2,20 +2,21 @@ import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import ReferenceValidator from './reference'
 import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear,
-         validDateField, withinSevenYears, BranchCollection } from './helpers'
+         validDateField, withinSevenYears, BranchCollection, validAccordion } from './helpers'
 
 export default class HistoryEmploymentValidator {
   constructor (data = {}) {
-    this.list = ((data.List || { items: [] }).items || [])
+    this.list = (data.List || { items: [] })
+    this.employmentRecord = data.EmploymentRecord || {}
   }
 
   isValid () {
-    if (this.list.length === 0) {
+    if (this.employmentRecord.value !== 'No') {
       return false
     }
 
-    return this.list.every(x => {
-      return new EmploymentValidator(x.Item).isValid()
+    return validAccordion(this.list, (item) => {
+      return new EmploymentValidator(item).isValid()
     })
   }
 }
