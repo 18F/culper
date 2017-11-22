@@ -160,6 +160,15 @@ func FlushStorage() bool {
 	return true
 }
 
+// BasicEnabled returns a boolean indicating whether the system allows
+// basic authentication.
+func BasicEnabled() bool {
+	if os.Getenv("BASIC_ENABLED") == "" {
+		return false
+	}
+	return true
+}
+
 // OAuthEnabled returns a boolean indicating whether the system allows
 // OAuth authentication.
 func OAuthEnabled() bool {

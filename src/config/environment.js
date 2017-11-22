@@ -45,6 +45,10 @@ class Env {
     }
   }
 
+  BasicAuthenticationEnabled () {
+    return (process.env.BASIC_ENABLED || '').length
+  }
+
   OAuthEnabled () {
     return (process.env.OAUTH_ENABLED || '').length
   }
