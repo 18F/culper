@@ -6,13 +6,17 @@ describe('Residence component validation', function () {
     const tests = [
       {
         state: {
-          Role: 'Military'
+          Role: {
+            value: 'Military'
+          }
         },
         expected: true
       },
       {
         state: {
-          Role: 'Other',
+          Role: {
+            value: 'Other'
+          },
           RoleOther: {
             value: 'Hello world'
           }
@@ -21,7 +25,9 @@ describe('Residence component validation', function () {
       },
       {
         state: {
-          Role: 'Other',
+          Role: {
+            value: 'Other'
+          },
           RoleOther: {
             value: ''
           }
@@ -30,13 +36,15 @@ describe('Residence component validation', function () {
       },
       {
         state: {
-          Role: null
+          Role: {}
         },
         expected: false
       },
       {
         state: {
-          Role: 'foo'
+          Role: {
+            value: 'foo'
+          }
         },
         expected: false
       }
@@ -52,14 +60,22 @@ describe('Residence component validation', function () {
         state: {
           Dates: {
             from: {
+              day: '1',
+              month: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              day: '1',
+              month: '1',
+              year: '2012',
               date: new Date('1/1/2012')
             },
             present: false
           },
-          Role: 'Military',
+          Role: {
+            value: 'Military'
+          },
           Address: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -85,7 +101,9 @@ describe('Residence component validation', function () {
               year: '2016',
               date: new Date('1/1/2016')
             },
-            Relationship: 'Friend',
+            Relationship: {
+              value: 'Friend'
+            },
             Phone: {
               noNumber: '',
               number: '7031112222',
@@ -111,7 +129,9 @@ describe('Residence component validation', function () {
       },
       {
         state: {
-          Role: 'Other',
+          Role: {
+            value: 'Other'
+          },
           RoleOther: {
             value: 'Hello world'
           }
@@ -120,7 +140,9 @@ describe('Residence component validation', function () {
       },
       {
         state: {
-          Role: 'Other',
+          Role: {
+            value: 'Other'
+          },
           RoleOther: {
             value: ''
           }
@@ -129,13 +151,15 @@ describe('Residence component validation', function () {
       },
       {
         state: {
-          Role: null
+          Role: {}
         },
         expected: false
       },
       {
         state: {
-          Role: 'foo'
+          Role: {
+            value: 'foo'
+          }
         },
         expected: false
       }

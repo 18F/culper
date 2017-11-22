@@ -24,12 +24,12 @@ export default class HistoryResidenceValidator {
 }
 
 export class ResidenceValidator {
-  constructor (state = {}, props = {}) {
-    this.dates = state.Dates
-    this.address = state.Address
-    this.reference = state.Reference
-    this.role = state.Role
-    this.roleOther = state.RoleOther
+  constructor (data = {}) {
+    this.dates = data.Dates || {}
+    this.address = data.Address || {}
+    this.reference = data.Reference || {}
+    this.role = (data.Role || {}).value
+    this.roleOther = data.RoleOther || {}
   }
 
   validDates () {

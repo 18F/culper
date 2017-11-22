@@ -19,43 +19,65 @@ export default class ResidenceItem extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      Dates: props.Dates,
-      Address: props.Address,
-      Comments: props.Comments,
-      Role: props.Role,
-      RoleOther: props.RoleOther,
-      Reference: props.Reference
-    }
-
-    this.onUpdate = this.onUpdate.bind(this)
-    this.handleRoleChange = this.handleRoleChange.bind(this)
+    this.update = this.update.bind(this)
+    this.updateReference = this.updateReference.bind(this)
+    this.updateComments = this.updateComments.bind(this)
+    this.updateAddress = this.updateAddress.bind(this)
+    this.updateDates = this.updateDates.bind(this)
+    this.updateRole = this.updateRole.bind(this)
+    this.updateRoleOther = this.updateRoleOther.bind(this)
   }
 
   /**
    * Handle any updates and bubble them up.
    */
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          Dates: this.state.Dates,
-          Address: this.state.Address,
-          Comments: this.state.Comments,
-          Role: this.state.Role,
-          RoleOther: this.state.RoleOther,
-          Reference: this.state.Reference
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      Dates: this.props.Dates,
+      Address: this.props.Address,
+      Comments: this.props.Comments,
+      Role: this.props.Role,
+      RoleOther: this.props.RoleOther,
+      Reference: this.props.Reference,
+      ...queue
     })
   }
 
-  /**
-   * Handle the change event for roles.
-   */
-  handleRoleChange (event) {
-    this.onUpdate('Role', event.target.value)
+  updateReference (values) {
+    this.update({
+      Reference: values
+    })
+  }
+
+  updateComments (values) {
+    this.update({
+      Comments: values
+    })
+  }
+
+  updateAddress (values) {
+    this.update({
+      Address: values
+    })
+  }
+
+  updateDates (values) {
+    this.update({
+      Dates: values
+    })
+  }
+
+  updateRole (values) {
+    this.update({
+      Role: values
+    })
+  }
+
+  updateRoleOther (values) {
+    this.update({
+      RoleOther: values
+    })
   }
 
   /**
@@ -64,7 +86,7 @@ export default class ResidenceItem extends ValidationElement {
    */
   reference () {
     // Some shortcuts so our conditional isn't unreadable
-    const dates = this.state.Dates || {}
+    const dates = this.props.Dates || {}
     const from = dates.from
     const to = dates.to
 
@@ -79,10 +101,10 @@ export default class ResidenceItem extends ValidationElement {
           </Field>
 
           <Reference name="Reference"
-                     {...this.state.Reference}
+                     {...this.props.Reference}
                      addressBooks={this.props.addressBooks}
                      dispatch={this.props.dispatch}
-                     onUpdate={this.onUpdate.bind(this, 'Reference')}
+                     onUpdate={this.updateReference}
                      onError={this.props.onError}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
@@ -102,22 +124,22 @@ export default class ResidenceItem extends ValidationElement {
                help="history.residence.help.address"
                comments={false}
                commentsName="Comments"
-               commentsValue={this.state.Comments}
+               commentsValue={this.props.Comments}
                commentsAdd="history.residence.label.comments"
-               onUpdate={this.onUpdate.bind(this, 'Comments')}
+               onUpdate={this.updateComments}
                onError={this.props.onError}
                adjustFor="address"
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
-                    {...this.state.Address}
+                    {...this.props.Address}
                     label={i18n.t('history.residence.label.address')}
                     layout={Location.ADDRESS}
                     geocode={true}
                     addressBook="Residence"
                     addressBooks={this.props.addressBooks}
                     dispatch={this.props.dispatch}
-                    onUpdate={this.onUpdate.bind(this, 'Address')}
+                    onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
                     />
@@ -128,59 +150,58 @@ export default class ResidenceItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <DateRange name="Dates"
-                     {...this.state.Dates}
+                     {...this.props.Dates}
                      label={i18n.t('history.residence.label.dates')}
-                     onUpdate={this.onUpdate.bind(this, 'Dates')}
+                     onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
                      />
         </Field>
 
         <Field title={i18n.t('history.residence.heading.role')}
-               adjustFor="big-buttons"
-               shrink={true}
+               className={(this.props.Role || {}).value === 'Other' ? 'no-margin-bottom' : ''}
                scrollIntoView={this.props.scrollIntoView}>
           <RadioGroup className="role option-list"
                       required={this.props.required}
                       onError={this.props.onError}
-                      selectedValue={this.state.Role}>
+                      selectedValue={(this.props.Role || {}).value}>
             <Radio name="role-owned"
                    label={i18n.m('history.residence.label.role.owned')}
                    value="Owned"
-                   onChange={this.handleRoleChange}
+                   onUpdate={this.updateRole}
                    onError={this.props.onError}
                    />
             <Radio name="role-rented"
                    label={i18n.m('history.residence.label.role.rented')}
                    value="Rented"
-                   onChange={this.handleRoleChange}
+                   onUpdate={this.updateRole}
                    onError={this.props.onError}
                    />
             <Radio name="role-military"
                    label={i18n.m('history.residence.label.role.military')}
                    value="Military"
-                   onChange={this.handleRoleChange}
+                   onUpdate={this.updateRole}
                    onError={this.props.onError}
                    />
             <Radio name="role-other"
                    label={i18n.m('history.residence.label.role.other')}
                    value="Other"
-                   onChange={this.handleRoleChange}
+                   onUpdate={this.updateRole}
                    onError={this.props.onError}
                    />
           </RadioGroup>
         </Field>
-        <Show when={this.state.Role && !['Owned', 'Rented', 'Military'].includes(this.state.Role)}>
+        <Show when={(this.props.Role || {}).value && !['Owned', 'Rented', 'Military'].includes((this.props.Role || {}).value)}>
           <Field title={i18n.t('history.residence.label.role.explanation')}
                  titleSize="label"
                  help="section.subsection.help.field-name"
                  adjustFor="text"
                  scrollIntoView={this.props.scrollIntoView}>
             <Text name="RoleOther"
-                  {...this.state.RoleOther}
+                  {...this.props.RoleOther}
                   className="other"
                   maxlength="100"
-                  onUpdate={this.onUpdate.bind(this, 'RoleOther')}
+                  onUpdate={this.updateRoleOther}
                   onError={this.props.onError}
                   required={this.props.required}
                   />
@@ -194,7 +215,14 @@ export default class ResidenceItem extends ValidationElement {
 }
 
 ResidenceItem.defaultProps = {
+  Dates: {},
+  Address: {},
+  Comments: {},
+  Role: {},
+  RoleOther: {},
+  Reference: {},
   addressBooks: {},
   dispatch: (action) => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
