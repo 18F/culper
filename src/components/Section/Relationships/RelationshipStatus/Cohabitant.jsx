@@ -185,10 +185,10 @@ export default class Cohabitant extends ValidationElement {
         <Field title={i18n.t('relationships.cohabitant.heading.birthplace')}
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
+                    {...this.props.BirthPlace}
                     layout={Location.BIRTHPLACE}
                     className="birthplace"
                     label={i18n.t('relationships.cohabitant.label.birthplace')}
-                    {...this.props.BirthPlace}
                     onUpdate={this.updateBirthPlace}
                     onError={this.props.onError}
                     required={this.props.required}

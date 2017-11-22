@@ -539,8 +539,8 @@ export default class ForeignNational extends ValidationElement {
                          onError={this.props.onError}>
             <Location name="Birthplace"
                       className="birthplace"
-                      layout={Location.CITY_COUNTRY}
                       {...this.props.Birthplace}
+                      layout={Location.CITY_COUNTRY}
                       addressBooks={this.props.addressBooks}
                       addressBook="ForeignNational"
                       dispatch={this.props.dispatch}

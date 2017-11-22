@@ -165,10 +165,10 @@ export default class RealEstateInterest extends ValidationElement {
                adjustFor="address"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
+                    {...this.props.Address}
                     layout={Location.STREET_CITY_COUNTRY}
                     fields={['street', 'city', 'country']}
                     label={i18n.t('foreign.activities.realestate.interest.label.address')}
-                    {...this.props.Address}
                     onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
