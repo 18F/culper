@@ -41,7 +41,7 @@ describe('The employment physical address component', () => {
     const component = mount(<PhysicalAddress {...expected} />)
     expect(component.find('.has-different').length).toBeGreaterThan(0)
     let street = component.find('.mailing input').first()
-    street.simulate('change')
+    // Blur also does a change
     street.simulate('blur')
     expect(counter).toBe(1)
   })

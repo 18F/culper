@@ -70,15 +70,12 @@ describe('The ContactInformation component', () => {
       }
     }
     const component = mount(<ContactInformation {...expected} />)
-    // 5 phone numbers and 2 emails
-    expect(component.find('.index').length).toEqual(5 + 2)
-    expect(component.find('.summary strong').at(0).text()).toEqual('Provide your email address below')
-    expect(component.find('.summary strong').at(1).text()).toEqual('Provide your email address below')
-    expect(component.find('.summary strong').at(2).text()).toEqual('(202) 867-5309 x1234')
-    expect(component.find('.summary strong').at(3).text()).toEqual('(202) 867-5309')
-    expect(component.find('.summary strong').at(4).text()).toEqual('867-5309')
-    expect(component.find('.summary strong').at(5).text()).toEqual('+001 1234567890 x1234')
-    expect(component.find('.summary strong').at(6).text()).toEqual('+001 1234567890')
+    expect(component.find('.index').length).toEqual(5)
+    expect(component.find('.summary strong').at(0).text()).toEqual('(202) 867-5309 x1234')
+    expect(component.find('.summary strong').at(1).text()).toEqual('(202) 867-5309')
+    expect(component.find('.summary strong').at(2).text()).toEqual('867-5309')
+    expect(component.find('.summary strong').at(3).text()).toEqual('+001 1234567890 x1234')
+    expect(component.find('.summary strong').at(4).text()).toEqual('+001 1234567890')
   })
 
   it('formats emails appropriately', () => {
@@ -99,20 +96,44 @@ describe('The ContactInformation component', () => {
       }
     }
     const component = mount(<ContactInformation {...expected} />)
-    // 2 for emails and 2 for phone numbers
-    expect(component.find('.index').length).toEqual(2 + 2)
+    expect(component.find('.index').length).toEqual(2)
     expect(component.find('.summary strong').at(0).text()).toEqual('test@abc.com')
     expect(component.find('.summary strong').at(1).text()).toEqual('Provide your email address below')
   })
 
   it('should filter empty items out leaving only the minimum visible', () => {
+    let emails = {}
+    let phoneNumbers = {}
     const expected = {
-      shouldFilterEmptyItems: true
+      shouldFilterEmptyItems: true,
+      Emails: {
+        items: [
+          {},
+          {
+            Item: {
+              Email: { value: 'test@abc.com' }
+            }
+          }
+        ]
+      },
+      PhoneNumbers: {
+        items: [
+          {},
+          {
+            Item: {
+              Telephone: {
+                type: 'International',
+                number: '0011234567890',
+                extension: ''
+              }
+            }
+          }
+        ]
+      }
     }
     const component = mount(<ContactInformation {...expected} />)
-    // 1 for emails and 1 for phone numbers
     expect(component.find('.index').length).toEqual(1 + 1)
-    expect(component.find('.summary strong').at(0).text()).toEqual('Provide your email address below')
-    expect(component.find('.summary strong').at(1).text()).toEqual('Provide your telephone number below')
+    expect(component.find('.summary strong').at(0).text()).toEqual('test@abc.com')
+    expect(component.find('.summary strong').at(1).text()).toEqual('+001 1234567890')
   })
 })
