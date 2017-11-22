@@ -1,12 +1,12 @@
 export const reference = {
   heading: {
-    name: 'Provide the full name',
+    name: 'Provide this person\'s full name',
     contact: 'Provide date of last contact',
     relationship: 'Relationship',
-    phone: 'Phone numbers',
-    email: 'Email address',
+    phone: 'This person\'s phone numbers',
+    email: 'This person\'s email address',
     correspondence: 'Their contact information',
-    address: 'Street address'
+    address: 'This person\'s street address'
   },
   para: {
     correspondence: 'Provide the following contact information for this person.',

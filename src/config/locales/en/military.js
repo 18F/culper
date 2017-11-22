@@ -236,7 +236,7 @@ export const military = {
       maintainscontact: 'Do you maintain contact with current or former associates, colleagues, or acquaintances from your service in this organization?',
       contact: {
         details: 'Acquaintance contact details',
-        name: 'Provide the full name',
+        name: 'Provide the contact\'s full name',
         address: 'Provide the contact\'s address',
         title: 'Provide the contact\'s official title',
         dates: 'Provide the length of your association with the contact',
