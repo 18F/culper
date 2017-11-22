@@ -13,7 +13,7 @@ describe('The employment supervisor component', () => {
 
     const component = mount(<Supervisor name="ac" onUpdate={expected.onUpdate} onBlur={expected.onBlur} onFocus={expected.onFocus} SupervisorName={'John Doe'} />)
     const selected = component.find({type: 'text', name: 'SupervisorName'})
-    selected.simulate('change')
+    // Blur also does a change
     selected.simulate('blur')
     expect(counter).toBe(1)
   })

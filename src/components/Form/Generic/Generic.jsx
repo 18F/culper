@@ -82,7 +82,8 @@ export default class Generic extends ValidationElement {
    */
   handleBlur (event) {
     event.persist()
-    this.setState({ focus: false }, () => {
+    this.setState({ focus: false, value: `${this.state.value}`.trim() }, () => {
+      super.handleChange(event)
       super.handleBlur(event)
     })
   }
