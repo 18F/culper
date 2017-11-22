@@ -68,4 +68,18 @@ describe('The text component', () => {
     component.find('input').simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
+
+  it('can apply a prefilter prior to storing the value', () => {
+    const props = {
+      prefilter: (value) => {
+        if (!value.match(/^(\s*|\d+)$/)) {
+          value = value.replace(/\D/g, '')
+        }
+        return value
+      }
+    }
+    const component = mount(<Text {...props} />)
+    component.find('input').simulate('change', { target: { value: ' abc 0123 def ' } })
+    expect(component.state('value')).toBe('0123')
+  })
 })

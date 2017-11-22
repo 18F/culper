@@ -42,10 +42,7 @@ export default class Checkbox extends ValidationElement {
       }
 
       super.handleChange(event)
-
-      // HACK: Race condition was found where the majority of the time the `handleError` would
-      // beat the storage routines causing things not to show as valid.
-      window.setTimeout(() => { this.handleError(checked) }, 200)
+      this.handleError(checked)
     })
   }
 
