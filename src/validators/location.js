@@ -2,7 +2,7 @@ import { api } from '../services/api'
 import Layouts from '../components/Form/Location/Layouts'
 
 export const isInternational = (location) => {
-  return !['United States', 'POSTOFFICE'].includes((location.country || {}).value)
+  return !['United States', 'POSTOFFICE'].includes(countryString(location.country || {}))
 }
 
 export const countryString = (country) => {
@@ -28,16 +28,7 @@ export default class LocationValidator {
     this.state = data.state
     this.zipcode = data.zipcode
     this.county = data.county
-
-    if (data && data.country && Object.prototype.toString.call(data.country) === '[object Object]') {
-      if (data.country.value && Object.prototype.toString.call(data.country.value) === '[object Array]') {
-        this.country = data.country.value[0]
-      } else {
-        this.country = data.country.value
-      }
-    } else {
-      this.country = data.country
-    }
+    this.country = countryString(data.country)
   }
 
   canGeocode () {
@@ -61,7 +52,7 @@ export default class LocationValidator {
       state: this.state,
       zipcode: this.zipcode,
       county: this.county,
-      country: (this.country || {}).value || '',
+      country: countryString(this.country) || '',
       validated: false
     })
   }

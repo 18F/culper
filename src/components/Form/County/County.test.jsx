@@ -17,37 +17,20 @@ describe('The County component', () => {
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
 
-  it('bubbles up validate event', () => {
-    let validations = 0
-    const expected = {
-      name: 'input-error',
-      label: 'Text input error',
-      error: true,
-      focus: false,
-      valid: false,
-      handleValidation: function (event) {
-        validations++
-      }
-    }
-    const component = mount(<County name={expected.name} onValidate={expected.handleValidation} />)
-    component.find('input').first().simulate('change')
-    expect(validations > 0).toEqual(true)
-  })
-
   it('bubbles up change event', () => {
-    let changes = 0
+    let updates = 0
     const expected = {
       name: 'input-error',
       label: 'Text input error',
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
-        changes++
+      onUpdate: function (event) {
+        updates++
       }
     }
-    const component = mount(<County name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<County {...expected} />)
     component.find('input').first().simulate('change')
-    expect(changes).toEqual(1)
+    expect(updates).toEqual(1)
   })
 })

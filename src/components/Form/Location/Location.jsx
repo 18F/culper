@@ -12,6 +12,7 @@ import Suggestions from '../Suggestions'
 import Address from './Address'
 import ToggleableLocation from './ToggleableLocation'
 import { LocationValidator } from '../../../validators'
+import { countryString } from '../../../validators/location'
 import { AddressSuggestion } from './AddressSuggestion'
 import Layouts from './Layouts'
 
@@ -254,7 +255,9 @@ export default class Location extends ValidationElement {
             return
           }
 
-          this.setState({ geocodeResult: r })
+          this.setState({ geocodeResult: r }, () => {
+            this.update({ validated: true })
+          })
         })
         .then(() => {
           // Trigger the spinner to complete final animations
@@ -275,58 +278,52 @@ export default class Location extends ValidationElement {
     this.geocodeCancel = true
   }
 
-  updateStreet (event) {
+  updateStreet (values) {
     this.update({
-      street: event.target.value,
-      validated: false
+      street: values.value,
+      validated: this.props.validated && values.value === this.props.street
     })
   }
 
-  updateStreet2 (event) {
+  updateStreet2 (values) {
     this.update({
-      street2: event.target.value,
-      validated: false
+      street2: values.value,
+      validated: this.props.validated && values.value === this.props.street2
     })
   }
 
-  updateCity (event) {
+  updateCity (values) {
     this.update({
-      city: event.target.value,
-      validated: false
+      city: values.value,
+      validated: this.props.validated && values.value === this.props.city
     })
   }
 
-  updateState (event) {
+  updateState (values) {
     this.update({
-      state: event.target.value,
-      validated: false
+      state: values.value,
+      validated: this.props.validated && values.value === this.props.state
     })
   }
 
   updateCountry (values) {
     this.update({
       country: values,
-      validated: false
+      validated: this.props.validated && countryString(values) === countryString(this.props.country)
     })
   }
 
-  updateZipcode (event) {
+  updateZipcode (values) {
     this.update({
-      zipcode: event.target.value,
-      validated: false
+      zipcode: values.value,
+      validated: this.props.validated && values.value === this.props.zipcode
     })
   }
 
   updateAddress (address) {
     this.update({
-      street: address.street,
-      street2: address.street2,
-      city: address.city,
-      state: address.state,
-      zipcode: address.zipcode,
-      country: address.country,
-      addressType: address.addressType,
-      validated: false
+      validated: false,
+      ...address
     })
   }
 
@@ -365,7 +362,7 @@ export default class Location extends ValidationElement {
                     label={this.props.streetLabel}
                     placeholder={this.props.streetPlaceholder}
                     value={this.props.street}
-                    onChange={this.updateStreet}
+                    onUpdate={this.updateStreet}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
                     onBlur={this.handleBlur}
@@ -380,7 +377,7 @@ export default class Location extends ValidationElement {
                     label={this.props.street2Label}
                     optional={true}
                     value={this.props.street2}
-                    onChange={this.updateStreet2}
+                    onUpdate={this.updateStreet2}
                     onError={this.handleError}
                     onFocus={this.props.onFocus}
                     onBlur={this.props.onBlur}
@@ -394,7 +391,7 @@ export default class Location extends ValidationElement {
                   label={this.props.cityLabel}
                   placeholder={this.props.cityPlaceholder}
                   value={this.props.city}
-                  onChange={this.updateCity}
+                  onUpdate={this.updateCity}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.handleBlur}
@@ -410,7 +407,7 @@ export default class Location extends ValidationElement {
                            placeholder={this.props.statePlaceholder}
                            value={this.props.state}
                            includeStates="true"
-                           onChange={this.updateState}
+                           onUpdate={this.updateState}
                            onError={this.handleError}
                            onFocus={this.props.onFocus}
                            onBlur={this.handleBlur}
@@ -426,7 +423,7 @@ export default class Location extends ValidationElement {
                              placeholder={this.props.statePlaceholder}
                              value={this.props.state}
                              includeStates="true"
-                             onChange={this.updateState}
+                             onUpdate={this.updateState}
                              onError={this.handleError}
                              onFocus={this.props.onFocus}
                              onBlur={this.handleBlur}
@@ -437,7 +434,7 @@ export default class Location extends ValidationElement {
                        label={this.props.zipcodeLabel}
                        placeholder={this.props.zipcodePlaceholder}
                        value={this.props.zipcode}
-                       onChange={this.updateZipcode}
+                       onUpdate={this.updateZipcode}
                        onError={this.handleError}
                        onFocus={this.props.onFocus}
                        onBlur={this.handleBlur}
