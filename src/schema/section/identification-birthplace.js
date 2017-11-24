@@ -2,6 +2,6 @@ import * as form from '../form'
 
 export const identificationBirthplace = (data = {}) => {
   return {
-    location: form.location(data.Location)
+    Location: form.location(data.Location)
   }
 }
