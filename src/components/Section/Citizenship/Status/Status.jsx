@@ -355,9 +355,9 @@ export default class Status extends SubsectionElement {
                    scrollIntoView={this.props.scrollIntoView}>
               <Location name="PlaceIssued"
                         label={'Was this issued in the United States?'}
+                        {...this.props.PlaceIssued}
                         layout={Location.CITY_STATE_COUNTRY}
                         className="place-issued"
-                        {...this.props.PlaceIssued}
                         onUpdate={this.updatePlaceIssued}
                         onError={this.handleError}
                         required={this.props.required}
@@ -456,9 +456,9 @@ export default class Status extends SubsectionElement {
                    adjustFor="label"
                    scrollIntoView={this.props.scrollIntoView}>
               <Location name="EntryLocation"
+                        {...this.props.EntryLocation}
                         layout={Location.CITY_STATE}
                         className="entry-location"
-                        {...this.props.EntryLocation}
                         onUpdate={this.updateEntryLocation}
                         onError={this.handleError}
                         required={this.props.required}
@@ -530,10 +530,10 @@ export default class Status extends SubsectionElement {
                    scrollIntoView={this.props.scrollIntoView}
                    adjustFor="label">
               <Location name="CertificateCourtAddress"
+                        {...this.props.CertificateCourtAddress}
                         layout={Location.US_ADDRESS}
                         geocode={true}
                         className="certificate-court-address"
-                        {...this.props.CertificateCourtAddress}
                         onUpdate={this.updateCertificateCourtAddress}
                         onError={this.handleError}
                         required={this.props.required}

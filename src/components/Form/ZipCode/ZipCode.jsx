@@ -19,15 +19,6 @@ export default class ZipCode extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-    })
-  }
-
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
@@ -50,7 +41,7 @@ export default class ZipCode extends ValidationElement {
             pattern="^\d{5}(?:[-\s]\d{4})?$"
             required={this.props.required}
             value={this.state.value}
-            onChange={this.handleChange}
+            onUpdate={this.props.onUpdate}
             onError={this.handleError}
             onFocus={this.props.onFocus}
             onBlur={this.props.onBlur}
@@ -63,6 +54,7 @@ export default class ZipCode extends ValidationElement {
 
 ZipCode.defaultProps = {
   value: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false
 }

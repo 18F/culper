@@ -56,28 +56,28 @@ export default class ToggleableLocation extends ValidationElement {
     }
   }
 
-  updateStreet (event) {
-    this.update({ street: event.target.value })
+  updateStreet (values) {
+    this.update({ street: values.value})
   }
 
-  updateCity (event) {
-    this.update({ city: event.target.value })
+  updateCity (values) {
+    this.update({ city: values.value})
   }
 
-  updateState (event) {
-    this.update({state: event.target.value})
+  updateState (values) {
+    this.update({state: values.value})
   }
 
   updateCountry (values) {
     this.update({country: values})
   }
 
-  updateCounty (event) {
-    this.update({county: event.target.value})
+  updateCounty (values) {
+    this.update({county: values.value})
   }
 
-  updateZipcode (event) {
-    this.update({zipcode: event.target.value})
+  updateZipcode (values) {
+    this.update({zipcode: values.value})
   }
 
   updateToggle (option) {
@@ -111,7 +111,7 @@ export default class ToggleableLocation extends ValidationElement {
                   key={key}
                   placeholder={this.props.streetPlaceholder}
                   value={this.props.street}
-                  onChange={this.updateStreet}
+                  onUpdate={this.updateStreet}
                   onError={this.onError}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
@@ -126,7 +126,7 @@ export default class ToggleableLocation extends ValidationElement {
                 label={this.props.cityLabel}
                 placeholder={this.props.cityPlaceholder}
                 value={this.props.city}
-                onChange={this.updateCity}
+                onUpdate={this.updateCity}
                 onError={this.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
@@ -142,7 +142,7 @@ export default class ToggleableLocation extends ValidationElement {
                   className="county"
                   placeholder={this.props.countyPlaceholder}
                   maxlength="255"
-                  onChange={this.updateCounty}
+                  onUpdate={this.updateCounty}
                   onError={this.onError}
                   onBlur={this.props.onBlur}
                   onFocus={this.props.onFocus}
@@ -158,7 +158,7 @@ export default class ToggleableLocation extends ValidationElement {
                          placeholder={this.props.statePlaceholder}
                          value={this.props.state}
                          includeStates="true"
-                         onChange={this.updateState}
+                         onUpdate={this.updateState}
                          onError={this.onError}
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}
@@ -174,7 +174,7 @@ export default class ToggleableLocation extends ValidationElement {
                            placeholder={this.props.statePlaceholder}
                            value={this.props.state}
                            includeStates="true"
-                           onChange={this.updateState}
+                           onUpdate={this.updateState}
                            onError={this.onError}
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
@@ -186,7 +186,7 @@ export default class ToggleableLocation extends ValidationElement {
                      label={this.props.zipcodeLabel}
                      placeholder={this.props.zipcodePlaceholder}
                      value={this.props.zipcode}
-                     onChange={this.updateZipcode}
+                     onUpdate={this.updateZipcode}
                      onError={this.onError}
                      onFocus={this.props.onFocus}
                      onBlur={this.props.onBlur}
@@ -207,7 +207,7 @@ export default class ToggleableLocation extends ValidationElement {
                 label={this.props.cityLabel}
                 placeholder={this.props.cityPlaceholder}
                 value={this.props.city}
-                onChange={this.updateCity}
+                onUpdate={this.updateCity}
                 onError={this.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}

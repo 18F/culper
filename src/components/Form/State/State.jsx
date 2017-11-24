@@ -28,7 +28,7 @@ export default class State extends ValidationElement {
                 placeholder={this.props.placeholder}
                 className={this.props.className}
                 disabled={this.props.disabled}
-                onChange={this.props.onChange}
+                onUpdate={this.props.onUpdate}
                 onError={this.handleError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -114,6 +114,7 @@ export default class State extends ValidationElement {
 
 State.defaultProps = {
   value: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false
 }
