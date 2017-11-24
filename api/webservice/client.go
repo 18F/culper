@@ -2,7 +2,6 @@ package webservice
 
 import (
 	"encoding/xml"
-	"fmt"
 	"net/http"
 )
 
@@ -32,9 +31,11 @@ func (c *Client) ImportRequest(r *ImportRequest) (*ImportRequestResponse, error)
 		SOAPFault
 		ImportRequestResponse *ImportRequestResponse `xml:"Body>importRequestResponse"`
 	}
+	// Execute request. Errors returned here will be network related
 	if err := c.Execute(r, &importResp); err != nil {
 		return nil, err
 	}
+	// Now check if application level errors were returned in the <Faul> element
 	if err := importResp.SOAPFault.Error(); err != nil {
 		return nil, err
 	}
@@ -61,7 +62,6 @@ func (c *Client) Execute(action Body, response Body) error {
 	}
 
 	if err := xml.NewDecoder(resp.Body).Decode(&response); err != nil {
-		fmt.Println("Fail decoding")
 		return err
 	}
 	return nil
