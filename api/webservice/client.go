@@ -51,11 +51,13 @@ func (c *Client) Execute(action Body, response Body) error {
 	if err != nil {
 		return err
 	}
+
 	envelope := NewSOAPEnvelope(action, unsignedToken, string(signedToken))
 	xmlContent, err := envelope.XML()
 	if err != nil {
 		return err
 	}
+
 	resp, err := http.Post(c.endpointURL, "application/xml", xmlContent)
 	if err != nil {
 		return err

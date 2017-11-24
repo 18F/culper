@@ -15,6 +15,7 @@ func TestImportRequestResponse(t *testing.T) {
 		}
 		w.Write(b)
 	}))
+	defer ts.Close()
 
 	client := NewClient(ts.URL, testPrivateKeyPath)
 	importReq := ImportRequest{}
@@ -45,8 +46,6 @@ func TestImportRequestResponse(t *testing.T) {
 	if !importResponse.Return.UserAleadyExisted {
 		t.Fatal("Expected UserAleadyExisted to be true")
 	}
-
-	defer ts.Close()
 }
 
 func TestImportRequestEqipException(t *testing.T) {
@@ -57,6 +56,8 @@ func TestImportRequestEqipException(t *testing.T) {
 		}
 		w.Write(b)
 	}))
+	defer ts.Close()
+
 	client := NewClient(ts.URL, testPrivateKeyPath)
 	_, err := client.ImportRequest(&ImportRequest{})
 	if err == nil {
@@ -98,6 +99,8 @@ func TestIsAlive(t *testing.T) {
 		}
 		w.Write(b)
 	}))
+	defer ts.Close()
+
 	client := NewClient(ts.URL, testPrivateKeyPath)
 	err := client.IsAlive()
 	if err != nil {
