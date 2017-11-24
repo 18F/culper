@@ -190,9 +190,9 @@ type IsAlive struct {
 //		</xs:sequence>
 //	 </xs:complexType
 type CallerInfo struct {
-	Agency          AgencyKey `xml:"agency"`
-	AgencyUser      UserKey   `xml:"agencyUser"`
-	CallerIPAddress string    `xml:"callerIpAddress"`
+	Agency          *AgencyKey `xml:"agency"`
+	AgencyUser      *UserKey   `xml:"agencyUser"`
+	CallerIPAddress string     `xml:"callerIpAddress"`
 }
 
 // AgencyKey represents the identifier for an Agency in e-QIP
@@ -241,12 +241,12 @@ type UserKey struct {
 //		  </xs:sequence>
 //	  </xs:complexType>
 type Attachment struct {
-	AttachmentBytes       string        `xml:"attachmentBytes"`
-	AttachmentDescription string        `xml:"attachmentDescription"`
-	AttachmentFileName    string        `xml:"attachmentFileName"`
-	AttachmentKey         AttachmentKey `xml:"attachmentKey"`
-	DocumentType          string        `xml:"documentType"`
-	MethodOfTransmission  string        `xml:"methodOfTransmission"`
+	AttachmentBytes       string         `xml:"attachmentBytes"`
+	AttachmentDescription string         `xml:"attachmentDescription"`
+	AttachmentFileName    string         `xml:"attachmentFileName"`
+	AttachmentKey         *AttachmentKey `xml:"attachmentKey"`
+	DocumentType          string         `xml:"documentType"`
+	MethodOfTransmission  string         `xml:"methodOfTransmission"`
 }
 
 // AttachmentKey represents an identifier for an attachment within the e-QIP system

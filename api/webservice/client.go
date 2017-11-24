@@ -31,11 +31,11 @@ func (c *Client) ImportRequest(r *ImportRequest) (*ImportRequestResponse, error)
 		SOAPFault
 		ImportRequestResponse *ImportRequestResponse `xml:"Body>importRequestResponse"`
 	}
-	// Execute request. Errors returned here will be network related
+	// Execute request. Errors returned here will be network, decoder or token generation related
 	if err := c.Execute(r, &importResp); err != nil {
 		return nil, err
 	}
-	// Now check if application level errors were returned in the <Faul> element
+	// Now check if application level errors were returned in the <Fault> element
 	if err := importResp.SOAPFault.Error(); err != nil {
 		return nil, err
 	}
