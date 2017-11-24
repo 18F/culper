@@ -1,8 +1,9 @@
 import { validGenericTextfield, validDateField } from './helpers'
 
 export default class SignatureValidator {
-  constructor (state = {}, props = {}) {
-    this.signature = props.Signature || {}
+  constructor (data = {}) {
+    console.log(data)
+    this.signature = data.Signature || {}
   }
 
   validSignature () {

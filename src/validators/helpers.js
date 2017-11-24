@@ -241,7 +241,15 @@ export const validBranch = (value, yesValue = 'Yes', noValue = 'No') => {
 
 export const battery = (tests, validator, fn) => {
   return tests.forEach((test, index) => {
-    expect(new validator(test.state, test.props)[fn]()).toBe(test.expected)
+    // This allows us to pass whatever test parameters in to the validation
+    // function as we see fit just as long as the match the order in the
+    // function signature
+    let props = []
+    for (let p in test) {
+      props.push(test[p])
+    }
+
+    expect(new validator(...props)[fn]()).toBe(test.expected)
   })
 }
 

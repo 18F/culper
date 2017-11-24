@@ -43,7 +43,7 @@ Credit.defaultProps = {
   subsection: 'credit',
   dispatch: () => {},
   validator: (state, props) => {
-    return new SignatureValidator(props, props).isValid()
+    return new SignatureValidator(props).isValid()
   },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
