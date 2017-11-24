@@ -129,8 +129,8 @@ export default class PassportItem extends ValidationElement {
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="Location"
-                    layout={Location.CITY_COUNTRY}
                     {...this.props.Location}
+                    layout={Location.CITY_COUNTRY}
                     className="passport-location"
                     onUpdate={this.updateLocation}
                     onError={this.props.onError}

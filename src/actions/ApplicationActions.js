@@ -1,15 +1,21 @@
+import { navigationWalker } from '../config'
 import { api } from '../services'
-import { unschema } from '../schema'
+import schema, { unschema } from '../schema'
+import validate from '../validators'
 
 export function getApplicationState () {
   return function (dispatch, getState) {
+    let formData = {}
     api.form().then(r => {
-      const form = r.data
-      for (const section in form) {
-        for (const subsection in form[section]) {
-          dispatch(updateApplication(section, subsection, unschema(form[section][subsection])))
+      formData = r.data
+      for (const section in formData) {
+        for (const subsection in formData[section]) {
+          dispatch(updateApplication(section, subsection, unschema(formData[section][subsection])))
         }
       }
+    })
+    .then(() => {
+      validateApplication(dispatch, formData)
     })
     .catch(() => {
       if (console && console.warn) {
@@ -26,6 +32,34 @@ export function updateApplication (section, property, values) {
     property: property,
     values: values
   }
+}
+
+export function validateApplication (dispatch, application = {}) {
+  navigationWalker((path, child) => {
+    if (path.length && path[0].store && child.store && child.validator) {
+      const sectionName = path[0].url
+      let data = application[path[0].store][child.store] || {}
+
+      let subsectionName = child.url
+      if (path.length > 1) {
+        for (let i = path.length - 1; i > 0; i--) {
+          subsectionName = `${path[i].url}/${subsectionName}`
+        }
+      }
+
+      let valid = null
+      try {
+        if (data.type && data.props) {
+          data = schema(data.type, unschema(data.props))
+        }
+        valid = validate(data)
+      } catch (e) {
+        valid = null
+      }
+
+      dispatch(reportCompletion(sectionName.toLowerCase(), subsectionName.toLowerCase(), valid))
+    }
+  })
 }
 
 export function clearErrors (property, subsection) {
