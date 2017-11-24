@@ -2,7 +2,6 @@ import { validGenericTextfield, validDateField } from './helpers'
 
 export default class SignatureValidator {
   constructor (data = {}) {
-    console.log(data)
     this.signature = data.Signature || {}
   }
 

@@ -38,8 +38,6 @@ export default class AccordionItem extends React.Component {
   }
 
   update (queue) {
-    console.log('dynamic properties:', this.dynamicProperties(this.props.children))
-    console.log('queue:', queue)
     this.props.onUpdate({
       ...this.dynamicProperties(this.props.children),
       ...queue
