@@ -1,6 +1,5 @@
 import { validate, walkValidationTree } from './validate'
 import DateControlValidator from './datecontrol'
-import { validateWorld } from './world'
 import BankruptcyValidator, { BankruptcyItemValidator } from './bankruptcy'
 import BirthPlaceValidator from './birthplace'
 import IdentificationContactInformationValidator, { ContactEmailValidator, ContactPhoneNumberValidator } from './identificationcontacts'
@@ -104,7 +103,6 @@ export default validate
 export {
   walkValidationTree,
   DateControlValidator,
-  validateWorld,
   IdentificationNameValidator,
   IdentificationBirthDateValidator,
   IdentificationBirthPlaceValidator,
