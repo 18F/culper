@@ -12,6 +12,7 @@ import Show from '../Show'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import { country } from './Location'
+import { countryString } from '../../../validators/location'
 
 const mappingWarning = (property) => {
   if (!env.IsTest()) {
@@ -338,53 +339,49 @@ ToggleableLocation.errors = [
   {
     code: 'required',
     func: (value, props) => {
-      if (props.required) {
-        let valid = true
-        switch (branchValue(props.country)) {
-          case 'Yes':
-            for (let f of props.domesticFields) {
-              switch (f) {
-                case 'city':
-                  valid = valid && !!props.city
-                  break
-                case 'state':
-                  valid = valid && !!props.state
-                  break
-                case 'county':
-                  valid = valid && !!props.county
-                  break
-                case 'stateZipcode':
-                  valid = valid && !!props.state && !!props.zipcode
-                  break
-                case 'country':
-                  valid = valid && !!props.country && !!props.country.value
-                  break
-                default:
-                  mappingWarning(f)
-                  valid = false
-              }
-            }
-            break
-          case 'No':
-            for (let f of props.internationalFields) {
-              switch (f) {
-                case 'city':
-                  valid = valid && !!props.city
-                  break
-                case 'country':
-                  valid = valid && !!props.country && !!props.country.value
-                  break
-                default:
-                  mappingWarning(f)
-                  valid = false
-              }
-            }
-            break
-          default:
-            valid = false
-        }
-        return valid
+      if (!props.required) {
+        return true
       }
+
+      // Organizing the validation tests in a structure
+      const branchValidations = {
+        Yes: {
+          fields: (props) => props.domesticFields,
+          city: (props) => !!props.city,
+          state: (props) => !!props.state,
+          county: (props) => !!props.county,
+          stateZipcode: (props) => !!props.state && !!props.zipcode,
+          country: (props) => !!countryString(props.country)
+        },
+        No: {
+          fields: (props) => props.internationalFields,
+          city: (props) => !!props.city,
+          country: (props) => !!countryString(props.country)
+        }
+      }
+
+      // Retrieve the branch value provided. If the value does match the
+      // approved validation tree then return a negative response.
+      const branch = branchValue(props.country)
+      const validations = branchValidations[branch]
+      if (!validations) {
+        return false
+      }
+
+      // Loop through all of the fields based on the branch and test for values.
+      for (let f of validations.fields(props)) {
+        // Retrieve the test and if one is not found print a warning and continue
+        let test = validations[f]
+        if (!test) {
+          mappingWarning(f)
+          return false
+        }
+
+        if (!test(props)) {
+          return false
+        }
+      }
+
       return true
     }
   }
