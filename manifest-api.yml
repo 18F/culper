@@ -14,3 +14,4 @@ applications:
   env:
     PATH: /bin:/usr/bin:$HOME/bin
     GOVERSION: go1.8.5
+    SAML_ENABLED: 1

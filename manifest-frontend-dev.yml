@@ -9,3 +9,4 @@ applications:
   env:
     FORCE_HTTPS: true
     DISABLE_2FA: 1
+    BASIC_ENABLED: 1

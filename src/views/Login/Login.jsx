@@ -47,20 +47,28 @@ class Login extends React.Component {
   }
 
   onUsernameChange (e) {
-    this.setState({username: e.target.value})
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({username: e.target.value})
+    }
   }
 
   onPasswordChange (e) {
-    this.setState({password: e.target.value})
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({password: e.target.value})
+    }
   }
 
   togglePassword () {
-    this.setState({showPassword: !this.state.showPassword})
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({showPassword: !this.state.showPassword})
+    }
   }
 
   login (event) {
     event.preventDefault()
-    this.props.dispatch(login(this.state.username, this.state.password))
+    if (env.BasicAuthenticationEnabled()) {
+      this.props.dispatch(login(this.state.username, this.state.password))
+    }
   }
 
   errorMessage () {
@@ -101,38 +109,40 @@ class Login extends React.Component {
           <p>{i18n.t('login.para')}</p>
         </div>
 
-        <div id="basic" className="login-basic usa-width-one-whole">
-          <form onSubmit={this.login}>
-            <div>
-              <Text name="user"
-                    placeholder="Enter your username"
-                    label="Username"
-                    autoFocus
-                    value={this.state.username}
-                    onChange={this.onUsernameChange} />
-            </div>
-            <div className={pwClass}>
-              <label
-                htmlFor="password">
-                Password
-              </label>
-              <input id="password"
-                     name="password"
-                     type={this.state.showPassword ? 'text' : 'password'}
-                     placeholder={i18n.t('login.placeholder.password')}
-                     value={this.state.password}
-                     onChange={this.onPasswordChange} />
-              <div className="peek">
-                <a id="show-password" onClick={this.togglePassword} href="javascript:;;" title={i18n.t('login.show.title')}>{i18n.t('login.show.text')}</a>
+        <Show when={env.BasicAuthenticationEnabled()}>
+          <div id="basic" className="login-basic usa-width-one-whole">
+            <form onSubmit={this.login}>
+              <div>
+                <Text name="user"
+                      placeholder="Enter your username"
+                      label="Username"
+                      autoFocus
+                      value={this.state.username}
+                      onChange={this.onUsernameChange} />
               </div>
-              {this.errorMessage()}
-            </div>
-            <div>
-              <button type="submit">{i18n.t('login.submit')}</button>
-              <a id="forgot-password" href="javascript:;;" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
-            </div>
-          </form>
-        </div>
+              <div className={pwClass}>
+                <label
+                  htmlFor="password">
+                  Password
+                </label>
+                <input id="password"
+                      name="password"
+                      type={this.state.showPassword ? 'text' : 'password'}
+                      placeholder={i18n.t('login.placeholder.password')}
+                      value={this.state.password}
+                      onChange={this.onPasswordChange} />
+                <div className="peek">
+                  <a id="show-password" onClick={this.togglePassword} href="javascript:;;" title={i18n.t('login.show.title')}>{i18n.t('login.show.text')}</a>
+                </div>
+                {this.errorMessage()}
+              </div>
+              <div>
+                <button type="submit">{i18n.t('login.submit')}</button>
+                <a id="forgot-password" href="javascript:;;" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
+              </div>
+            </form>
+          </div>
+        </Show>
 
         <Show when={env.OAuthEnabled()}>
           <div id="oauth" className="login-sso">
