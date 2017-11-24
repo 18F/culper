@@ -217,10 +217,10 @@ export default class CivilUnion extends ValidationElement {
           <Field title={i18n.t('relationships.civilUnion.heading.birthplace')}
                  scrollIntoView={this.props.scrollIntoView}>
             <Location name="birthplace"
+                      {...this.props.BirthPlace}
                       layout={Location.BIRTHPLACE}
                       className="birthplace"
                       label={i18n.t('relationships.civilUnion.label.birthplace')}
-                      {...this.props.BirthPlace}
                       onUpdate={this.updateBirthPlace}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -324,9 +324,9 @@ export default class CivilUnion extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <Location name="Location"
                       className="civilunion-location"
+                      {...this.props.Location}
                       layout={Location.BIRTHPLACE}
                       label={i18n.t('relationships.civilUnion.label.location')}
-                      {...this.props.Location}
                       onUpdate={this.updateLocation}
                       onError={this.props.onError}
                       required={this.props.required}
@@ -418,9 +418,9 @@ export default class CivilUnion extends ValidationElement {
                                onUpdate={this.updateAddressSeparatedNotApplicable}
                                onError={this.props.onError}>
                   <Location name="addressSeparated"
+                            {...this.props.AddressSeparated}
                             label={i18n.t('relationships.civilUnion.label.addressSeparated')}
                             layout={Location.US_CITY_STATE_ZIP_INTERNATIONAL_CITY}
-                            {...this.props.AddressSeparated}
                             onUpdate={this.updateAddressSeparated}
                             onError={this.props.onError}
                             required={this.props.required}

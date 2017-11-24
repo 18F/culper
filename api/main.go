@@ -40,7 +40,9 @@ func main() {
 
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
-	o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
+	if cf.BasicEnabled() {
+		o.HandleFunc("/basic", handlers.BasicAuth).Methods("POST")
+	}
 
 	if cf.SamlEnabled() {
 		o.HandleFunc("/saml", handlers.SamlServiceHandler)

@@ -8,3 +8,6 @@ applications:
   buildpack: https://github.com/cloudfoundry/staticfile-buildpack.git
   env:
     FORCE_HTTPS: true
+    ALLOW_2FA_RESET: 1
+    BASIC_ENABLED: 1
+    SAML_ENABLED: 1
