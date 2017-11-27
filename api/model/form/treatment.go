@@ -83,10 +83,19 @@ func (entity *Treatment) Save(context *db.DatabaseContext, account int) (int, er
 
 	context.Find(&Treatment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Treatment)
+		if entity.Name == nil {
+			entity.Name = &Text{}
+		}
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID
+		if entity.Phone == nil {
+			entity.Phone = &Telephone{}
+		}
 		entity.PhoneID = previous.PhoneID
 		entity.Phone.ID = previous.PhoneID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
 		entity.AddressID = previous.AddressID
 		entity.Address.ID = previous.AddressID
 	})
@@ -123,10 +132,19 @@ func (entity *Treatment) Delete(context *db.DatabaseContext, account int) (int, 
 
 	context.Find(&Treatment{ID: entity.ID}, func(result interface{}) {
 		previous := result.(*Treatment)
+		if entity.Name == nil {
+			entity.Name = &Text{}
+		}
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID
+		if entity.Phone == nil {
+			entity.Phone = &Telephone{}
+		}
 		entity.PhoneID = previous.PhoneID
 		entity.Phone.ID = previous.PhoneID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
 		entity.AddressID = previous.AddressID
 		entity.Address.ID = previous.AddressID
 	})

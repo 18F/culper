@@ -115,12 +115,24 @@ func (entity *MilitarySelective) Save(context *db.DatabaseContext, account int) 
 
 	context.Find(&MilitarySelective{ID: account}, func(result interface{}) {
 		previous := result.(*MilitarySelective)
+		if entity.WasBornAfter == nil {
+			entity.WasBornAfter = &Branch{}
+		}
 		entity.WasBornAfterID = previous.WasBornAfterID
 		entity.WasBornAfter.ID = previous.WasBornAfterID
+		if entity.HasRegistered == nil {
+			entity.HasRegistered = &Branch{}
+		}
 		entity.HasRegisteredID = previous.HasRegisteredID
 		entity.HasRegistered.ID = previous.HasRegisteredID
+		if entity.RegistrationNumber == nil {
+			entity.RegistrationNumber = &Text{}
+		}
 		entity.RegistrationNumberID = previous.RegistrationNumberID
 		entity.RegistrationNumber.ID = previous.RegistrationNumberID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
 	})
@@ -166,12 +178,24 @@ func (entity *MilitarySelective) Delete(context *db.DatabaseContext, account int
 
 	context.Find(&MilitarySelective{ID: account}, func(result interface{}) {
 		previous := result.(*MilitarySelective)
+		if entity.WasBornAfter == nil {
+			entity.WasBornAfter = &Branch{}
+		}
 		entity.WasBornAfterID = previous.WasBornAfterID
 		entity.WasBornAfter.ID = previous.WasBornAfterID
+		if entity.HasRegistered == nil {
+			entity.HasRegistered = &Branch{}
+		}
 		entity.HasRegisteredID = previous.HasRegisteredID
 		entity.HasRegistered.ID = previous.HasRegisteredID
+		if entity.RegistrationNumber == nil {
+			entity.RegistrationNumber = &Text{}
+		}
 		entity.RegistrationNumberID = previous.RegistrationNumberID
 		entity.RegistrationNumber.ID = previous.RegistrationNumberID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
 	})
@@ -330,8 +354,14 @@ func (entity *MilitaryHistory) Save(context *db.DatabaseContext, account int) (i
 
 	context.Find(&MilitaryHistory{ID: account}, func(result interface{}) {
 		previous := result.(*MilitaryHistory)
+		if entity.HasServed == nil {
+			entity.HasServed = &Branch{}
+		}
 		entity.HasServedID = previous.HasServedID
 		entity.HasServed.ID = previous.HasServedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -365,8 +395,14 @@ func (entity *MilitaryHistory) Delete(context *db.DatabaseContext, account int) 
 
 	context.Find(&MilitaryHistory{ID: account}, func(result interface{}) {
 		previous := result.(*MilitaryHistory)
+		if entity.HasServed == nil {
+			entity.HasServed = &Branch{}
+		}
 		entity.HasServedID = previous.HasServedID
 		entity.HasServed.ID = previous.HasServedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -503,8 +539,14 @@ func (entity *MilitaryDisciplinary) Save(context *db.DatabaseContext, account in
 
 	context.Find(&MilitaryDisciplinary{ID: account}, func(result interface{}) {
 		previous := result.(*MilitaryDisciplinary)
+		if entity.HasDisciplinary == nil {
+			entity.HasDisciplinary = &Branch{}
+		}
 		entity.HasDisciplinaryID = previous.HasDisciplinaryID
 		entity.HasDisciplinary.ID = previous.HasDisciplinaryID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -538,8 +580,14 @@ func (entity *MilitaryDisciplinary) Delete(context *db.DatabaseContext, account 
 
 	context.Find(&MilitaryDisciplinary{ID: account}, func(result interface{}) {
 		previous := result.(*MilitaryDisciplinary)
+		if entity.HasDisciplinary == nil {
+			entity.HasDisciplinary = &Branch{}
+		}
 		entity.HasDisciplinaryID = previous.HasDisciplinaryID
 		entity.HasDisciplinary.ID = previous.HasDisciplinaryID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -658,6 +706,9 @@ func (entity *MilitaryForeign) Save(context *db.DatabaseContext, account int) (i
 
 	context.Find(&MilitaryForeign{ID: account}, func(result interface{}) {
 		previous := result.(*MilitaryForeign)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -685,6 +736,9 @@ func (entity *MilitaryForeign) Delete(context *db.DatabaseContext, account int) 
 
 	context.Find(&MilitaryForeign{ID: account}, func(result interface{}) {
 		previous := result.(*MilitaryForeign)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
