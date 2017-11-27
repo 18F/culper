@@ -15,7 +15,7 @@ import (
 //		<xs:complexType name="Body">...</xs:complexType>
 //	</xs:schema>
 type SOAPEnvelope struct {
-	XMLName xml.Name `xml:"Envelope"`
+	XMLName xml.Name `xml:"S:Envelope"`
 	Header  SOAPHeader
 	Body    SOAPBody
 }
@@ -141,7 +141,6 @@ func (e ErrEqipWSException) Error() string {
 //	</xs:complexType>
 type ImportRequest struct {
 	XMLName        xml.Name       `xml:"ns2:importRequest"`
-	NS             string         `xml:"xmlns:ns2,attr"`
 	CallerInfo     CallerInfo     `xml:"arg0"`
 	User           UserKey        `xml:"arg1>key"`
 	AgencyKey      AgencyKey      `xml:"arg2"`

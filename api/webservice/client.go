@@ -24,7 +24,8 @@ func (c *Client) IsAlive() error {
 	return isAliveResp.SOAPFault.Error()
 }
 
-// ImportRequest is used to import applicant information into eqip
+// ImportRequest is used to import applicant information into eqip. Based on the documentation,
+// error responses possible with this service call include EqipWSException and CharacterEncodingException.
 func (c *Client) ImportRequest(r *ImportRequest) (*ImportRequestResponse, error) {
 	// Use anonymous struct to create temporary structure that pulls out just what we need
 	var importResp struct {
