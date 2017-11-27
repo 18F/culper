@@ -2,6 +2,7 @@ import React from 'react'
 import { i18n } from '../../../../config'
 import schema from '../../../../schema'
 import validate, { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
+import { countryString } from '../../../../validators/location'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -40,10 +41,7 @@ export default class Multiple extends SubsectionElement {
   summaryList (item, index) {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Dates)
-    const country = itemProperties.Country && itemProperties.Country.value
-          ? itemProperties.Country.value
-          : ''
-
+    const country = countryString(itemProperties.Country) || ''
     return Summary({
       type: i18n.t('citizenship.multiple.collection.citizenship.summary.item'),
       index: index,

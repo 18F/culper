@@ -5,7 +5,7 @@ export const identificationContacts = (data = {}) => {
     const xitem = x.Item || {}
     return {
       Item: {
-        Email: form.email(xitem)
+        Email: form.email(xitem.Email)
       }
     }
   })

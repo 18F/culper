@@ -109,7 +109,7 @@ export default class Telephone extends ValidationElement {
       timeOfDay: this.props.timeOfDay,
       type: this.props.type,
       numberType: this.props.showNumberType ? this.props.numberType : 'NA',
-      number: this.props.number,
+      number: this.getFormattedNumber(),
       extension: this.props.extension,
       noNumber: this.props.noNumber || false,
       ...queue
@@ -236,35 +236,6 @@ export default class Telephone extends ValidationElement {
         ].join('')
       default:
         return ''
-    }
-  }
-
-  refreshUI () {
-    switch (this.props.type) {
-    case 'Domestic':
-      this.refs.domestic_first.refs.text.refs.input.focus()
-      this.refs.domestic_first.refs.text.refs.input.blur()
-      this.refs.domestic_second.refs.text.refs.input.focus()
-      this.refs.domestic_second.refs.text.refs.input.blur()
-      this.refs.domestic_third.refs.text.refs.input.focus()
-      this.refs.domestic_third.refs.text.refs.input.blur()
-      this.refs.domestic_extension.refs.text.refs.input.focus()
-      this.refs.domestic_extension.refs.text.refs.input.blur()
-      break
-    case 'DSN':
-      this.refs.dsn_first.refs.text.refs.input.focus()
-      this.refs.dsn_first.refs.text.refs.input.blur()
-      this.refs.dsn_second.refs.text.refs.input.focus()
-      this.refs.dsn_second.refs.text.refs.input.blur()
-      break
-    case 'International':
-      this.refs.int_first.refs.text.refs.input.focus()
-      this.refs.int_first.refs.text.refs.input.blur()
-      this.refs.int_second.refs.text.refs.input.focus()
-      this.refs.int_second.refs.text.refs.input.blur()
-      this.refs.int_extension.refs.text.refs.input.focus()
-      this.refs.int_extension.refs.text.refs.input.blur()
-      break
     }
   }
 
@@ -520,7 +491,7 @@ export default class Telephone extends ValidationElement {
               readonly={this.props.readonly}
               required={this.required()}
               value={trimleading(this.state.international.first)}
-              onUpdate={this.updateInternationFirst}
+              onUpdate={this.updateInternationalFirst}
               onError={this.handleErrorInternationalFirst}
               tabNext={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }} />
         <span className="separator">-</span>
@@ -537,7 +508,7 @@ export default class Telephone extends ValidationElement {
               readonly={this.props.readonly}
               required={this.required()}
               value={trimleading(this.state.international.second)}
-              onUpdate={this.updateInternationSecond}
+              onUpdate={this.updateInternationalSecond}
               onError={this.handleErrorInternationalSecond}
               tabBack={() => { this.props.tab(this.refs.int_first.refs.text.refs.input) }}
               tabNext={() => { this.props.tab(this.refs.int_extension.refs.text.refs.input) }} />
