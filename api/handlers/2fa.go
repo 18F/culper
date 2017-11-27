@@ -125,7 +125,7 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	if cf.TwofactorResettable() {
+	if !cf.TwofactorResettable() {
 		http.Error(w, "Reset two-factor authentication not allowed on this server", http.StatusUnauthorized)
 		return
 	}
