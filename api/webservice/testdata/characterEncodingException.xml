@@ -9,11 +9,11 @@
   <S:Body xmlns:ns2="http://webservice.ws.eqip.opm.gov/">
       <S:Fault>
           <detail>
-              <ns2:EqipWSException>
-                  <message>This is an EqipWSException</message>
+              <ns2:CharacterEncodingException>
+                  <message>This is a CharacterEncodingException</message>
                   <errorMessages>Error1</errorMessages>
                   <errorMessages>Error2</errorMessages>
-              </ns2:EqipWSException>
+              </ns2:CharacterEncodingException>
           </detail>
       </S:Fault>
   </S:Body>

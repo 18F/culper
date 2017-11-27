@@ -99,7 +99,7 @@ type SOAPBody struct {
 // returned (if any errors exist).
 type SOAPFault struct {
 	EqipWSException           *ErrEqipWSException `xml:"Body>Fault>detail>EqipWSException"`
-	CharacerEncodingException *ErrEqipWSException `xml:"Body>Fault>detail>CharacerEncodingException"`
+	CharacerEncodingException *ErrEqipWSException `xml:"Body>Fault>detail>CharacterEncodingException"`
 }
 
 // Error returns the appropriate error that contains the error information if any exist
