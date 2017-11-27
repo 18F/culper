@@ -161,18 +161,39 @@ func (entity *ForeignPassport) Save(context *db.DatabaseContext, account int) (i
 
 	context.Find(&ForeignPassport{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignPassport)
+		if entity.HasPassports == nil {
+			entity.HasPassports = &Branch{}
+		}
 		entity.HasPassportsID = previous.HasPassportsID
 		entity.HasPassports.ID = previous.HasPassportsID
+		if entity.Name == nil {
+			entity.Name = &Name{}
+		}
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID
+		if entity.Card == nil {
+			entity.Card = &Radio{}
+		}
 		entity.CardID = previous.CardID
 		entity.Card.ID = previous.CardID
+		if entity.Number == nil {
+			entity.Number = &Text{}
+		}
 		entity.NumberID = previous.NumberID
 		entity.Number.ID = previous.NumberID
+		if entity.Issued == nil {
+			entity.Issued = &DateControl{}
+		}
 		entity.IssuedID = previous.IssuedID
 		entity.Issued.ID = previous.IssuedID
+		if entity.Expiration == nil {
+			entity.Expiration = &DateControl{}
+		}
 		entity.ExpirationID = previous.ExpirationID
 		entity.Expiration.ID = previous.ExpirationID
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
 		entity.CommentsID = previous.CommentsID
 		entity.Comments.ID = previous.CommentsID
 	})
@@ -236,18 +257,39 @@ func (entity *ForeignPassport) Delete(context *db.DatabaseContext, account int) 
 
 	context.Find(&ForeignPassport{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignPassport)
+		if entity.HasPassports == nil {
+			entity.HasPassports = &Branch{}
+		}
 		entity.HasPassportsID = previous.HasPassportsID
 		entity.HasPassports.ID = previous.HasPassportsID
+		if entity.Name == nil {
+			entity.Name = &Name{}
+		}
 		entity.NameID = previous.NameID
 		entity.Name.ID = previous.NameID
+		if entity.Card == nil {
+			entity.Card = &Radio{}
+		}
 		entity.CardID = previous.CardID
 		entity.Card.ID = previous.CardID
+		if entity.Number == nil {
+			entity.Number = &Text{}
+		}
 		entity.NumberID = previous.NumberID
 		entity.Number.ID = previous.NumberID
+		if entity.Issued == nil {
+			entity.Issued = &DateControl{}
+		}
 		entity.IssuedID = previous.IssuedID
 		entity.Issued.ID = previous.IssuedID
+		if entity.Expiration == nil {
+			entity.Expiration = &DateControl{}
+		}
 		entity.ExpirationID = previous.ExpirationID
 		entity.Expiration.ID = previous.ExpirationID
+		if entity.Comments == nil {
+			entity.Comments = &Textarea{}
+		}
 		entity.CommentsID = previous.CommentsID
 		entity.Comments.ID = previous.CommentsID
 	})
@@ -431,8 +473,14 @@ func (entity *ForeignContacts) Save(context *db.DatabaseContext, account int) (i
 
 	context.Find(&ForeignContacts{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignContacts)
+		if entity.HasForeignContacts == nil {
+			entity.HasForeignContacts = &Branch{}
+		}
 		entity.HasForeignContactsID = previous.HasForeignContactsID
 		entity.HasForeignContacts.ID = previous.HasForeignContactsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -466,8 +514,14 @@ func (entity *ForeignContacts) Delete(context *db.DatabaseContext, account int) 
 
 	context.Find(&ForeignContacts{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignContacts)
+		if entity.HasForeignContacts == nil {
+			entity.HasForeignContacts = &Branch{}
+		}
 		entity.HasForeignContactsID = previous.HasForeignContactsID
 		entity.HasForeignContacts.ID = previous.HasForeignContactsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -612,10 +666,19 @@ func (entity *ForeignTravel) Save(context *db.DatabaseContext, account int) (int
 
 	context.Find(&ForeignTravel{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignTravel)
+		if entity.HasForeignTravelOutside == nil {
+			entity.HasForeignTravelOutside = &Branch{}
+		}
 		entity.HasForeignTravelOutsideID = previous.HasForeignTravelOutsideID
 		entity.HasForeignTravelOutside.ID = previous.HasForeignTravelOutsideID
+		if entity.HasForeignTravelOfficial == nil {
+			entity.HasForeignTravelOfficial = &Branch{}
+		}
 		entity.HasForeignTravelOfficialID = previous.HasForeignTravelOfficialID
 		entity.HasForeignTravelOfficial.ID = previous.HasForeignTravelOfficialID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -655,10 +718,19 @@ func (entity *ForeignTravel) Delete(context *db.DatabaseContext, account int) (i
 
 	context.Find(&ForeignTravel{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignTravel)
+		if entity.HasForeignTravelOutside == nil {
+			entity.HasForeignTravelOutside = &Branch{}
+		}
 		entity.HasForeignTravelOutsideID = previous.HasForeignTravelOutsideID
 		entity.HasForeignTravelOutside.ID = previous.HasForeignTravelOutsideID
+		if entity.HasForeignTravelOfficial == nil {
+			entity.HasForeignTravelOfficial = &Branch{}
+		}
 		entity.HasForeignTravelOfficialID = previous.HasForeignTravelOfficialID
 		entity.HasForeignTravelOfficial.ID = previous.HasForeignTravelOfficialID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -798,13 +870,11 @@ func (entity *ForeignActivitiesBenefits) Save(context *db.DatabaseContext, accou
 
 	context.Find(&ForeignActivitiesBenefits{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesBenefits)
-
 		if entity.HasBenefits == nil {
 			entity.HasBenefits = &Branch{}
 		}
 		entity.HasBenefitsID = previous.HasBenefitsID
 		entity.HasBenefits.ID = previous.HasBenefitsID
-
 		if entity.List == nil {
 			entity.List = &Collection{}
 		}
@@ -841,8 +911,14 @@ func (entity *ForeignActivitiesBenefits) Delete(context *db.DatabaseContext, acc
 
 	context.Find(&ForeignActivitiesBenefits{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesBenefits)
+		if entity.HasBenefits == nil {
+			entity.HasBenefits = &Branch{}
+		}
 		entity.HasBenefitsID = previous.HasBenefitsID
 		entity.HasBenefits.ID = previous.HasBenefitsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -971,8 +1047,14 @@ func (entity *ForeignActivitiesDirect) Save(context *db.DatabaseContext, account
 
 	context.Find(&ForeignActivitiesDirect{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesDirect)
+		if entity.HasInterests == nil {
+			entity.HasInterests = &Branch{}
+		}
 		entity.HasInterestsID = previous.HasInterestsID
 		entity.HasInterests.ID = previous.HasInterestsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1006,8 +1088,14 @@ func (entity *ForeignActivitiesDirect) Delete(context *db.DatabaseContext, accou
 
 	context.Find(&ForeignActivitiesDirect{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesDirect)
+		if entity.HasInterests == nil {
+			entity.HasInterests = &Branch{}
+		}
 		entity.HasInterestsID = previous.HasInterestsID
 		entity.HasInterests.ID = previous.HasInterestsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1136,8 +1224,14 @@ func (entity *ForeignActivitiesIndirect) Save(context *db.DatabaseContext, accou
 
 	context.Find(&ForeignActivitiesIndirect{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesIndirect)
+		if entity.HasInterests == nil {
+			entity.HasInterests = &Branch{}
+		}
 		entity.HasInterestsID = previous.HasInterestsID
 		entity.HasInterests.ID = previous.HasInterestsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1171,8 +1265,14 @@ func (entity *ForeignActivitiesIndirect) Delete(context *db.DatabaseContext, acc
 
 	context.Find(&ForeignActivitiesIndirect{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesIndirect)
+		if entity.HasInterests == nil {
+			entity.HasInterests = &Branch{}
+		}
 		entity.HasInterestsID = previous.HasInterestsID
 		entity.HasInterests.ID = previous.HasInterestsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1301,8 +1401,14 @@ func (entity *ForeignActivitiesRealEstate) Save(context *db.DatabaseContext, acc
 
 	context.Find(&ForeignActivitiesRealEstate{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesRealEstate)
+		if entity.HasInterests == nil {
+			entity.HasInterests = &Branch{}
+		}
 		entity.HasInterestsID = previous.HasInterestsID
 		entity.HasInterests.ID = previous.HasInterestsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1336,8 +1442,14 @@ func (entity *ForeignActivitiesRealEstate) Delete(context *db.DatabaseContext, a
 
 	context.Find(&ForeignActivitiesRealEstate{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesRealEstate)
+		if entity.HasInterests == nil {
+			entity.HasInterests = &Branch{}
+		}
 		entity.HasInterestsID = previous.HasInterestsID
 		entity.HasInterests.ID = previous.HasInterestsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1466,8 +1578,14 @@ func (entity *ForeignActivitiesSupport) Save(context *db.DatabaseContext, accoun
 
 	context.Find(&ForeignActivitiesSupport{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesSupport)
+		if entity.HasForeignSupport == nil {
+			entity.HasForeignSupport = &Branch{}
+		}
 		entity.HasForeignSupportID = previous.HasForeignSupportID
 		entity.HasForeignSupport.ID = previous.HasForeignSupportID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1501,8 +1619,14 @@ func (entity *ForeignActivitiesSupport) Delete(context *db.DatabaseContext, acco
 
 	context.Find(&ForeignActivitiesSupport{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignActivitiesSupport)
+		if entity.HasForeignSupport == nil {
+			entity.HasForeignSupport = &Branch{}
+		}
 		entity.HasForeignSupportID = previous.HasForeignSupportID
 		entity.HasForeignSupport.ID = previous.HasForeignSupportID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1631,8 +1755,14 @@ func (entity *ForeignBusinessAdvice) Save(context *db.DatabaseContext, account i
 
 	context.Find(&ForeignBusinessAdvice{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessAdvice)
+		if entity.HasForeignAdvice == nil {
+			entity.HasForeignAdvice = &Branch{}
+		}
 		entity.HasForeignAdviceID = previous.HasForeignAdviceID
 		entity.HasForeignAdvice.ID = previous.HasForeignAdviceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1666,8 +1796,14 @@ func (entity *ForeignBusinessAdvice) Delete(context *db.DatabaseContext, account
 
 	context.Find(&ForeignBusinessAdvice{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessAdvice)
+		if entity.HasForeignAdvice == nil {
+			entity.HasForeignAdvice = &Branch{}
+		}
 		entity.HasForeignAdviceID = previous.HasForeignAdviceID
 		entity.HasForeignAdvice.ID = previous.HasForeignAdviceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1796,8 +1932,14 @@ func (entity *ForeignBusinessConferences) Save(context *db.DatabaseContext, acco
 
 	context.Find(&ForeignBusinessConferences{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessConferences)
+		if entity.HasForeignConferences == nil {
+			entity.HasForeignConferences = &Branch{}
+		}
 		entity.HasForeignConferencesID = previous.HasForeignConferencesID
 		entity.HasForeignConferences.ID = previous.HasForeignConferencesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1831,8 +1973,14 @@ func (entity *ForeignBusinessConferences) Delete(context *db.DatabaseContext, ac
 
 	context.Find(&ForeignBusinessConferences{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessConferences)
+		if entity.HasForeignConferences == nil {
+			entity.HasForeignConferences = &Branch{}
+		}
 		entity.HasForeignConferencesID = previous.HasForeignConferencesID
 		entity.HasForeignConferences.ID = previous.HasForeignConferencesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1961,8 +2109,14 @@ func (entity *ForeignBusinessContact) Save(context *db.DatabaseContext, account 
 
 	context.Find(&ForeignBusinessContact{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessContact)
+		if entity.HasForeignContact == nil {
+			entity.HasForeignContact = &Branch{}
+		}
 		entity.HasForeignContactID = previous.HasForeignContactID
 		entity.HasForeignContact.ID = previous.HasForeignContactID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1996,8 +2150,14 @@ func (entity *ForeignBusinessContact) Delete(context *db.DatabaseContext, accoun
 
 	context.Find(&ForeignBusinessContact{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessContact)
+		if entity.HasForeignContact == nil {
+			entity.HasForeignContact = &Branch{}
+		}
 		entity.HasForeignContactID = previous.HasForeignContactID
 		entity.HasForeignContact.ID = previous.HasForeignContactID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2126,8 +2286,14 @@ func (entity *ForeignBusinessEmployment) Save(context *db.DatabaseContext, accou
 
 	context.Find(&ForeignBusinessEmployment{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessEmployment)
+		if entity.HasForeignEmployment == nil {
+			entity.HasForeignEmployment = &Branch{}
+		}
 		entity.HasForeignEmploymentID = previous.HasForeignEmploymentID
 		entity.HasForeignEmployment.ID = previous.HasForeignEmploymentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2161,8 +2327,14 @@ func (entity *ForeignBusinessEmployment) Delete(context *db.DatabaseContext, acc
 
 	context.Find(&ForeignBusinessEmployment{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessEmployment)
+		if entity.HasForeignEmployment == nil {
+			entity.HasForeignEmployment = &Branch{}
+		}
 		entity.HasForeignEmploymentID = previous.HasForeignEmploymentID
 		entity.HasForeignEmployment.ID = previous.HasForeignEmploymentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2291,8 +2463,14 @@ func (entity *ForeignBusinessFamily) Save(context *db.DatabaseContext, account i
 
 	context.Find(&ForeignBusinessFamily{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessFamily)
+		if entity.HasForeignFamily == nil {
+			entity.HasForeignFamily = &Branch{}
+		}
 		entity.HasForeignFamilyID = previous.HasForeignFamilyID
 		entity.HasForeignFamily.ID = previous.HasForeignFamilyID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2326,8 +2504,14 @@ func (entity *ForeignBusinessFamily) Delete(context *db.DatabaseContext, account
 
 	context.Find(&ForeignBusinessFamily{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessFamily)
+		if entity.HasForeignFamily == nil {
+			entity.HasForeignFamily = &Branch{}
+		}
 		entity.HasForeignFamilyID = previous.HasForeignFamilyID
 		entity.HasForeignFamily.ID = previous.HasForeignFamilyID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2456,8 +2640,14 @@ func (entity *ForeignBusinessPolitical) Save(context *db.DatabaseContext, accoun
 
 	context.Find(&ForeignBusinessPolitical{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessPolitical)
+		if entity.HasForeignPolitical == nil {
+			entity.HasForeignPolitical = &Branch{}
+		}
 		entity.HasForeignPoliticalID = previous.HasForeignPoliticalID
 		entity.HasForeignPolitical.ID = previous.HasForeignPoliticalID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2491,8 +2681,14 @@ func (entity *ForeignBusinessPolitical) Delete(context *db.DatabaseContext, acco
 
 	context.Find(&ForeignBusinessPolitical{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessPolitical)
+		if entity.HasForeignPolitical == nil {
+			entity.HasForeignPolitical = &Branch{}
+		}
 		entity.HasForeignPoliticalID = previous.HasForeignPoliticalID
 		entity.HasForeignPolitical.ID = previous.HasForeignPoliticalID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2621,8 +2817,14 @@ func (entity *ForeignBusinessSponsorship) Save(context *db.DatabaseContext, acco
 
 	context.Find(&ForeignBusinessSponsorship{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessSponsorship)
+		if entity.HasForeignSponsorship == nil {
+			entity.HasForeignSponsorship = &Branch{}
+		}
 		entity.HasForeignSponsorshipID = previous.HasForeignSponsorshipID
 		entity.HasForeignSponsorship.ID = previous.HasForeignSponsorshipID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2656,8 +2858,14 @@ func (entity *ForeignBusinessSponsorship) Delete(context *db.DatabaseContext, ac
 
 	context.Find(&ForeignBusinessSponsorship{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessSponsorship)
+		if entity.HasForeignSponsorship == nil {
+			entity.HasForeignSponsorship = &Branch{}
+		}
 		entity.HasForeignSponsorshipID = previous.HasForeignSponsorshipID
 		entity.HasForeignSponsorship.ID = previous.HasForeignSponsorshipID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2786,8 +2994,14 @@ func (entity *ForeignBusinessVentures) Save(context *db.DatabaseContext, account
 
 	context.Find(&ForeignBusinessVentures{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessVentures)
+		if entity.HasForeignVentures == nil {
+			entity.HasForeignVentures = &Branch{}
+		}
 		entity.HasForeignVenturesID = previous.HasForeignVenturesID
 		entity.HasForeignVentures.ID = previous.HasForeignVenturesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2821,8 +3035,14 @@ func (entity *ForeignBusinessVentures) Delete(context *db.DatabaseContext, accou
 
 	context.Find(&ForeignBusinessVentures{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessVentures)
+		if entity.HasForeignVentures == nil {
+			entity.HasForeignVentures = &Branch{}
+		}
 		entity.HasForeignVenturesID = previous.HasForeignVenturesID
 		entity.HasForeignVentures.ID = previous.HasForeignVenturesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2951,8 +3171,14 @@ func (entity *ForeignBusinessVoting) Save(context *db.DatabaseContext, account i
 
 	context.Find(&ForeignBusinessVoting{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessVoting)
+		if entity.HasForeignVoting == nil {
+			entity.HasForeignVoting = &Branch{}
+		}
 		entity.HasForeignVotingID = previous.HasForeignVotingID
 		entity.HasForeignVoting.ID = previous.HasForeignVotingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2986,8 +3212,14 @@ func (entity *ForeignBusinessVoting) Delete(context *db.DatabaseContext, account
 
 	context.Find(&ForeignBusinessVoting{ID: account}, func(result interface{}) {
 		previous := result.(*ForeignBusinessVoting)
+		if entity.HasForeignVoting == nil {
+			entity.HasForeignVoting = &Branch{}
+		}
 		entity.HasForeignVotingID = previous.HasForeignVotingID
 		entity.HasForeignVoting.ID = previous.HasForeignVotingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})

@@ -649,7 +649,7 @@ func (entity *SubmissionMedical) Save(context *db.DatabaseContext, account int) 
 		return entity.ID, err
 	}
 
-	context.Find(&SubmissionCredit{ID: account}, func(result interface{}) {
+	context.Find(&SubmissionMedical{ID: account}, func(result interface{}) {
 		previous := result.(*SubmissionMedical)
 		if entity.Signature == nil {
 			entity.Signature = &Signature{}

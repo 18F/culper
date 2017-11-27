@@ -56,6 +56,9 @@ func (entity *HistoryResidence) Save(context *db.DatabaseContext, account int) (
 
 	context.Find(&HistoryResidence{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryResidence)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -83,6 +86,9 @@ func (entity *HistoryResidence) Delete(context *db.DatabaseContext, account int)
 
 	context.Find(&HistoryResidence{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryResidence)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -184,6 +190,9 @@ func (entity *HistoryEmployment) Save(context *db.DatabaseContext, account int) 
 
 	context.Find(&HistoryEmployment{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryEmployment)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -211,6 +220,9 @@ func (entity *HistoryEmployment) Delete(context *db.DatabaseContext, account int
 
 	context.Find(&HistoryEmployment{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryEmployment)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -340,10 +352,19 @@ func (entity *HistoryEducation) Save(context *db.DatabaseContext, account int) (
 
 	context.Find(&HistoryEducation{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryEducation)
+		if entity.HasAttended == nil {
+			entity.HasAttended = &Branch{}
+		}
 		entity.HasAttendedID = previous.HasAttendedID
 		entity.HasAttended.ID = previous.HasAttendedID
+		if entity.HasDegree10 == nil {
+			entity.HasDegree10 = &Branch{}
+		}
 		entity.HasDegree10ID = previous.HasDegree10ID
 		entity.HasDegree10.ID = previous.HasDegree10ID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -383,10 +404,19 @@ func (entity *HistoryEducation) Delete(context *db.DatabaseContext, account int)
 
 	context.Find(&HistoryEducation{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryEducation)
+		if entity.HasAttended == nil {
+			entity.HasAttended = &Branch{}
+		}
 		entity.HasAttendedID = previous.HasAttendedID
 		entity.HasAttended.ID = previous.HasAttendedID
+		if entity.HasDegree10 == nil {
+			entity.HasDegree10 = &Branch{}
+		}
 		entity.HasDegree10ID = previous.HasDegree10ID
 		entity.HasDegree10.ID = previous.HasDegree10ID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -526,8 +556,14 @@ func (entity *HistoryFederal) Save(context *db.DatabaseContext, account int) (in
 
 	context.Find(&HistoryFederal{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryFederal)
+		if entity.HasFederalService == nil {
+			entity.HasFederalService = &Branch{}
+		}
 		entity.HasFederalServiceID = previous.HasFederalServiceID
 		entity.HasFederalService.ID = previous.HasFederalServiceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -561,8 +597,14 @@ func (entity *HistoryFederal) Delete(context *db.DatabaseContext, account int) (
 
 	context.Find(&HistoryFederal{ID: account}, func(result interface{}) {
 		previous := result.(*HistoryFederal)
+		if entity.HasFederalService == nil {
+			entity.HasFederalService = &Branch{}
+		}
 		entity.HasFederalServiceID = previous.HasFederalServiceID
 		entity.HasFederalService.ID = previous.HasFederalServiceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
