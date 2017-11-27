@@ -87,7 +87,7 @@ describe('The Telephone component', () => {
     expect(numberType).toBe('')
   })
 
-  it('handles updates to field values', () => {
+  it('handles updates to domestic field values', () => {
     let updated = 0
     const expected = {
       name: 'telephone-component',
@@ -97,7 +97,7 @@ describe('The Telephone component', () => {
       }
     }
     const component = mount(<Telephone {...expected} />)
-    component.find('a.dsn-number').simulate('click')
+    component.find('a.international-number').simulate('click')
     component.find({ type: 'text', name: 'domestic_first' }).simulate('change', { target: { value: '111' } })
     component.find({ type: 'text', name: 'domestic_second' }).simulate('change', { target: { value: '222' } })
     component.find({ type: 'text', name: 'domestic_third' }).simulate('change', { target: { value: '3333' } })
@@ -106,6 +106,45 @@ describe('The Telephone component', () => {
     component.find('.time.day input').simulate('change')
     component.find('.phonetype-option.work input').simulate('change')
     expect(updated).toBe(8)
+  })
+
+  it('handles updates to DSN field values', () => {
+    let updated = 0
+    const expected = {
+      name: 'telephone-component',
+      type: 'DSN',
+      onUpdate: (values) => {
+        updated++
+      }
+    }
+    const component = mount(<Telephone {...expected} />)
+    component.find('a.domestic-number').simulate('click')
+    component.find({ type: 'text', name: 'dsn_first' }).simulate('change', { target: { value: '111' } })
+    component.find({ type: 'text', name: 'dsn_second' }).simulate('change', { target: { value: '222' } })
+    component.find('.nonumber input').simulate('change')
+    component.find('.time.day input').simulate('change')
+    component.find('.phonetype-option.work input').simulate('change')
+    expect(updated).toBe(6)
+  })
+
+  it('handles updates to international field values', () => {
+    let updated = 0
+    const expected = {
+      name: 'telephone-component',
+      type: 'International',
+      onUpdate: (values) => {
+        updated++
+      }
+    }
+    const component = mount(<Telephone {...expected} />)
+    component.find('a.dsn-number').simulate('click')
+    component.find({ type: 'text', name: 'int_first' }).simulate('change', { target: { value: '111' } })
+    component.find({ type: 'text', name: 'int_second' }).simulate('change', { target: { value: '222' } })
+    component.find({ type: 'text', name: 'int_extension' }).simulate('change', { target: { value: '4444' } })
+    component.find('.nonumber input').simulate('change')
+    component.find('.time.day input').simulate('change')
+    component.find('.phonetype-option.work input').simulate('change')
+    expect(updated).toBe(7)
   })
 
   it('can autotab forward', () => {

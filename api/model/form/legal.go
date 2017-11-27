@@ -73,8 +73,14 @@ func (entity *LegalCourt) Save(context *db.DatabaseContext, account int) (int, e
 
 	context.Find(&LegalCourt{ID: account}, func(result interface{}) {
 		previous := result.(*LegalCourt)
+		if entity.HasCourtActions == nil {
+			entity.HasCourtActions = &Branch{}
+		}
 		entity.HasCourtActionsID = previous.HasCourtActionsID
 		entity.HasCourtActions.ID = previous.HasCourtActionsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -108,8 +114,14 @@ func (entity *LegalCourt) Delete(context *db.DatabaseContext, account int) (int,
 
 	context.Find(&LegalCourt{ID: account}, func(result interface{}) {
 		previous := result.(*LegalCourt)
+		if entity.HasCourtActions == nil {
+			entity.HasCourtActions = &Branch{}
+		}
 		entity.HasCourtActionsID = previous.HasCourtActionsID
 		entity.HasCourtActions.ID = previous.HasCourtActionsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -239,8 +251,14 @@ func (entity *LegalPoliceOffenses) Save(context *db.DatabaseContext, account int
 
 	context.Find(&LegalPoliceOffenses{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceOffenses)
+		if entity.HasOffenses == nil {
+			entity.HasOffenses = &Branch{}
+		}
 		entity.HasOffensesID = previous.HasOffensesID
 		entity.HasOffenses.ID = previous.HasOffensesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -274,8 +292,14 @@ func (entity *LegalPoliceOffenses) Delete(context *db.DatabaseContext, account i
 
 	context.Find(&LegalPoliceOffenses{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceOffenses)
+		if entity.HasOffenses == nil {
+			entity.HasOffenses = &Branch{}
+		}
 		entity.HasOffensesID = previous.HasOffensesID
 		entity.HasOffenses.ID = previous.HasOffensesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -405,8 +429,14 @@ func (entity *LegalPoliceAdditionalOffenses) Save(context *db.DatabaseContext, a
 
 	context.Find(&LegalPoliceAdditionalOffenses{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceAdditionalOffenses)
+		if entity.HasOtherOffenses == nil {
+			entity.HasOtherOffenses = &Branch{}
+		}
 		entity.HasOtherOffensesID = previous.HasOtherOffensesID
 		entity.HasOtherOffenses.ID = previous.HasOtherOffensesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -440,8 +470,14 @@ func (entity *LegalPoliceAdditionalOffenses) Delete(context *db.DatabaseContext,
 
 	context.Find(&LegalPoliceAdditionalOffenses{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceAdditionalOffenses)
+		if entity.HasOtherOffenses == nil {
+			entity.HasOtherOffenses = &Branch{}
+		}
 		entity.HasOtherOffensesID = previous.HasOtherOffensesID
 		entity.HasOtherOffenses.ID = previous.HasOtherOffensesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -555,6 +591,9 @@ func (entity *LegalPoliceDomesticViolence) Save(context *db.DatabaseContext, acc
 
 	context.Find(&LegalPoliceDomesticViolence{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceDomesticViolence)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -582,6 +621,9 @@ func (entity *LegalPoliceDomesticViolence) Delete(context *db.DatabaseContext, a
 
 	context.Find(&LegalPoliceDomesticViolence{ID: account}, func(result interface{}) {
 		previous := result.(*LegalPoliceDomesticViolence)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -700,8 +742,14 @@ func (entity *LegalInvestigationsDebarred) Save(context *db.DatabaseContext, acc
 
 	context.Find(&LegalInvestigationsDebarred{ID: account}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsDebarred)
+		if entity.HasDebarment == nil {
+			entity.HasDebarment = &Branch{}
+		}
 		entity.HasDebarmentID = previous.HasDebarmentID
 		entity.HasDebarment.ID = previous.HasDebarmentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -735,8 +783,14 @@ func (entity *LegalInvestigationsDebarred) Delete(context *db.DatabaseContext, a
 
 	context.Find(&LegalInvestigationsDebarred{ID: account}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsDebarred)
+		if entity.HasDebarment == nil {
+			entity.HasDebarment = &Branch{}
+		}
 		entity.HasDebarmentID = previous.HasDebarmentID
 		entity.HasDebarment.ID = previous.HasDebarmentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -866,8 +920,14 @@ func (entity *LegalInvestigationsHistory) Save(context *db.DatabaseContext, acco
 
 	context.Find(&LegalInvestigationsHistory{ID: account}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsHistory)
+		if entity.HasHistory == nil {
+			entity.HasHistory = &Branch{}
+		}
 		entity.HasHistoryID = previous.HasHistoryID
 		entity.HasHistory.ID = previous.HasHistoryID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -901,8 +961,14 @@ func (entity *LegalInvestigationsHistory) Delete(context *db.DatabaseContext, ac
 
 	context.Find(&LegalInvestigationsHistory{ID: account}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsHistory)
+		if entity.HasHistory == nil {
+			entity.HasHistory = &Branch{}
+		}
 		entity.HasHistoryID = previous.HasHistoryID
 		entity.HasHistory.ID = previous.HasHistoryID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1032,8 +1098,14 @@ func (entity *LegalInvestigationsRevoked) Save(context *db.DatabaseContext, acco
 
 	context.Find(&LegalInvestigationsRevoked{ID: account}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsRevoked)
+		if entity.HasRevocations == nil {
+			entity.HasRevocations = &Branch{}
+		}
 		entity.HasRevocationsID = previous.HasRevocationsID
 		entity.HasRevocations.ID = previous.HasRevocationsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1067,8 +1139,14 @@ func (entity *LegalInvestigationsRevoked) Delete(context *db.DatabaseContext, ac
 
 	context.Find(&LegalInvestigationsRevoked{ID: account}, func(result interface{}) {
 		previous := result.(*LegalInvestigationsRevoked)
+		if entity.HasRevocations == nil {
+			entity.HasRevocations = &Branch{}
+		}
 		entity.HasRevocationsID = previous.HasRevocationsID
 		entity.HasRevocations.ID = previous.HasRevocationsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1198,8 +1276,14 @@ func (entity *LegalTechnologyManipulating) Save(context *db.DatabaseContext, acc
 
 	context.Find(&LegalTechnologyManipulating{ID: account}, func(result interface{}) {
 		previous := result.(*LegalTechnologyManipulating)
+		if entity.HasManipulating == nil {
+			entity.HasManipulating = &Branch{}
+		}
 		entity.HasManipulatingID = previous.HasManipulatingID
 		entity.HasManipulating.ID = previous.HasManipulatingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1233,8 +1317,14 @@ func (entity *LegalTechnologyManipulating) Delete(context *db.DatabaseContext, a
 
 	context.Find(&LegalTechnologyManipulating{ID: account}, func(result interface{}) {
 		previous := result.(*LegalTechnologyManipulating)
+		if entity.HasManipulating == nil {
+			entity.HasManipulating = &Branch{}
+		}
 		entity.HasManipulatingID = previous.HasManipulatingID
 		entity.HasManipulating.ID = previous.HasManipulatingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1364,8 +1454,14 @@ func (entity *LegalTechnologyUnauthorized) Save(context *db.DatabaseContext, acc
 
 	context.Find(&LegalTechnologyUnauthorized{ID: account}, func(result interface{}) {
 		previous := result.(*LegalTechnologyUnauthorized)
+		if entity.HasUnauthorized == nil {
+			entity.HasUnauthorized = &Branch{}
+		}
 		entity.HasUnauthorizedID = previous.HasUnauthorizedID
 		entity.HasUnauthorized.ID = previous.HasUnauthorizedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1399,8 +1495,14 @@ func (entity *LegalTechnologyUnauthorized) Delete(context *db.DatabaseContext, a
 
 	context.Find(&LegalTechnologyUnauthorized{ID: account}, func(result interface{}) {
 		previous := result.(*LegalTechnologyUnauthorized)
+		if entity.HasUnauthorized == nil {
+			entity.HasUnauthorized = &Branch{}
+		}
 		entity.HasUnauthorizedID = previous.HasUnauthorizedID
 		entity.HasUnauthorized.ID = previous.HasUnauthorizedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1530,8 +1632,14 @@ func (entity *LegalTechnologyUnlawful) Save(context *db.DatabaseContext, account
 
 	context.Find(&LegalTechnologyUnlawful{ID: account}, func(result interface{}) {
 		previous := result.(*LegalTechnologyUnlawful)
+		if entity.HasUnlawful == nil {
+			entity.HasUnlawful = &Branch{}
+		}
 		entity.HasUnlawfulID = previous.HasUnlawfulID
 		entity.HasUnlawful.ID = previous.HasUnlawfulID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1565,8 +1673,14 @@ func (entity *LegalTechnologyUnlawful) Delete(context *db.DatabaseContext, accou
 
 	context.Find(&LegalTechnologyUnlawful{ID: account}, func(result interface{}) {
 		previous := result.(*LegalTechnologyUnlawful)
+		if entity.HasUnlawful == nil {
+			entity.HasUnlawful = &Branch{}
+		}
 		entity.HasUnlawfulID = previous.HasUnlawfulID
 		entity.HasUnlawful.ID = previous.HasUnlawfulID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1696,8 +1810,14 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Save(context *db.DatabaseC
 
 	context.Find(&LegalAssociationsActivitiesToOverthrow{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsActivitiesToOverthrow)
+		if entity.HasActivities == nil {
+			entity.HasActivities = &Branch{}
+		}
 		entity.HasActivitiesID = previous.HasActivitiesID
 		entity.HasActivities.ID = previous.HasActivitiesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1731,8 +1851,14 @@ func (entity *LegalAssociationsActivitiesToOverthrow) Delete(context *db.Databas
 
 	context.Find(&LegalAssociationsActivitiesToOverthrow{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsActivitiesToOverthrow)
+		if entity.HasActivities == nil {
+			entity.HasActivities = &Branch{}
+		}
 		entity.HasActivitiesID = previous.HasActivitiesID
 		entity.HasActivities.ID = previous.HasActivitiesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1862,8 +1988,14 @@ func (entity *LegalAssociationsAdvocating) Save(context *db.DatabaseContext, acc
 
 	context.Find(&LegalAssociationsAdvocating{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsAdvocating)
+		if entity.HasAdvocated == nil {
+			entity.HasAdvocated = &Branch{}
+		}
 		entity.HasAdvocatedID = previous.HasAdvocatedID
 		entity.HasAdvocated.ID = previous.HasAdvocatedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1897,8 +2029,14 @@ func (entity *LegalAssociationsAdvocating) Delete(context *db.DatabaseContext, a
 
 	context.Find(&LegalAssociationsAdvocating{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsAdvocating)
+		if entity.HasAdvocated == nil {
+			entity.HasAdvocated = &Branch{}
+		}
 		entity.HasAdvocatedID = previous.HasAdvocatedID
 		entity.HasAdvocated.ID = previous.HasAdvocatedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2028,8 +2166,14 @@ func (entity *LegalAssociationsEngagedInTerrorism) Save(context *db.DatabaseCont
 
 	context.Find(&LegalAssociationsEngagedInTerrorism{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsEngagedInTerrorism)
+		if entity.HasEngaged == nil {
+			entity.HasEngaged = &Branch{}
+		}
 		entity.HasEngagedID = previous.HasEngagedID
 		entity.HasEngaged.ID = previous.HasEngagedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2063,8 +2207,14 @@ func (entity *LegalAssociationsEngagedInTerrorism) Delete(context *db.DatabaseCo
 
 	context.Find(&LegalAssociationsEngagedInTerrorism{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsEngagedInTerrorism)
+		if entity.HasEngaged == nil {
+			entity.HasEngaged = &Branch{}
+		}
 		entity.HasEngagedID = previous.HasEngagedID
 		entity.HasEngaged.ID = previous.HasEngagedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2194,8 +2344,14 @@ func (entity *LegalAssociationsMembershipOverthrow) Save(context *db.DatabaseCon
 
 	context.Find(&LegalAssociationsMembershipOverthrow{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsMembershipOverthrow)
+		if entity.HasOverthrow == nil {
+			entity.HasOverthrow = &Branch{}
+		}
 		entity.HasOverthrowID = previous.HasOverthrowID
 		entity.HasOverthrow.ID = previous.HasOverthrowID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2229,8 +2385,14 @@ func (entity *LegalAssociationsMembershipOverthrow) Delete(context *db.DatabaseC
 
 	context.Find(&LegalAssociationsMembershipOverthrow{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsMembershipOverthrow)
+		if entity.HasOverthrow == nil {
+			entity.HasOverthrow = &Branch{}
+		}
 		entity.HasOverthrowID = previous.HasOverthrowID
 		entity.HasOverthrow.ID = previous.HasOverthrowID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2360,8 +2522,14 @@ func (entity *LegalAssociationsMembershipViolence) Save(context *db.DatabaseCont
 
 	context.Find(&LegalAssociationsMembershipViolence{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsMembershipViolence)
+		if entity.HasViolence == nil {
+			entity.HasViolence = &Branch{}
+		}
 		entity.HasViolenceID = previous.HasViolenceID
 		entity.HasViolence.ID = previous.HasViolenceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2395,8 +2563,14 @@ func (entity *LegalAssociationsMembershipViolence) Delete(context *db.DatabaseCo
 
 	context.Find(&LegalAssociationsMembershipViolence{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsMembershipViolence)
+		if entity.HasViolence == nil {
+			entity.HasViolence = &Branch{}
+		}
 		entity.HasViolenceID = previous.HasViolenceID
 		entity.HasViolence.ID = previous.HasViolenceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2526,8 +2700,14 @@ func (entity *LegalAssociationsTerrorismAssociation) Save(context *db.DatabaseCo
 
 	context.Find(&LegalAssociationsTerrorismAssociation{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsTerrorismAssociation)
+		if entity.HasTerrorism == nil {
+			entity.HasTerrorism = &Branch{}
+		}
 		entity.HasTerrorismID = previous.HasTerrorismID
 		entity.HasTerrorism.ID = previous.HasTerrorismID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
 	})
@@ -2561,8 +2741,14 @@ func (entity *LegalAssociationsTerrorismAssociation) Delete(context *db.Database
 
 	context.Find(&LegalAssociationsTerrorismAssociation{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsTerrorismAssociation)
+		if entity.HasTerrorism == nil {
+			entity.HasTerrorism = &Branch{}
+		}
 		entity.HasTerrorismID = previous.HasTerrorismID
 		entity.HasTerrorism.ID = previous.HasTerrorismID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
 	})
@@ -2692,8 +2878,14 @@ func (entity *LegalAssociationsTerroristOrganization) Save(context *db.DatabaseC
 
 	context.Find(&LegalAssociationsTerroristOrganization{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsTerroristOrganization)
+		if entity.HasTerrorist == nil {
+			entity.HasTerrorist = &Branch{}
+		}
 		entity.HasTerroristID = previous.HasTerroristID
 		entity.HasTerrorist.ID = previous.HasTerroristID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -2727,8 +2919,14 @@ func (entity *LegalAssociationsTerroristOrganization) Delete(context *db.Databas
 
 	context.Find(&LegalAssociationsTerroristOrganization{ID: account}, func(result interface{}) {
 		previous := result.(*LegalAssociationsTerroristOrganization)
+		if entity.HasTerrorist == nil {
+			entity.HasTerrorist = &Branch{}
+		}
 		entity.HasTerroristID = previous.HasTerroristID
 		entity.HasTerrorist.ID = previous.HasTerroristID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})

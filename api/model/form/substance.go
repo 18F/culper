@@ -81,8 +81,14 @@ func (entity *SubstanceDrugUsage) Save(context *db.DatabaseContext, account int)
 
 	context.Find(&SubstanceDrugUsage{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugUsage)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -116,8 +122,14 @@ func (entity *SubstanceDrugUsage) Delete(context *db.DatabaseContext, account in
 
 	context.Find(&SubstanceDrugUsage{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugUsage)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -254,8 +266,14 @@ func (entity *SubstanceDrugPurchase) Save(context *db.DatabaseContext, account i
 
 	context.Find(&SubstanceDrugPurchase{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugPurchase)
+		if entity.Involved == nil {
+			entity.Involved = &Branch{}
+		}
 		entity.InvolvedID = previous.InvolvedID
 		entity.Involved.ID = previous.InvolvedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -289,8 +307,14 @@ func (entity *SubstanceDrugPurchase) Delete(context *db.DatabaseContext, account
 
 	context.Find(&SubstanceDrugPurchase{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugPurchase)
+		if entity.Involved == nil {
+			entity.Involved = &Branch{}
+		}
 		entity.InvolvedID = previous.InvolvedID
 		entity.Involved.ID = previous.InvolvedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -427,8 +451,14 @@ func (entity *SubstanceDrugClearance) Save(context *db.DatabaseContext, account 
 
 	context.Find(&SubstanceDrugClearance{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugClearance)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -462,8 +492,14 @@ func (entity *SubstanceDrugClearance) Delete(context *db.DatabaseContext, accoun
 
 	context.Find(&SubstanceDrugClearance{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugClearance)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -600,8 +636,14 @@ func (entity *SubstanceDrugPublicSafety) Save(context *db.DatabaseContext, accou
 
 	context.Find(&SubstanceDrugPublicSafety{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugPublicSafety)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -635,8 +677,14 @@ func (entity *SubstanceDrugPublicSafety) Delete(context *db.DatabaseContext, acc
 
 	context.Find(&SubstanceDrugPublicSafety{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugPublicSafety)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -773,8 +821,14 @@ func (entity *SubstanceDrugMisuse) Save(context *db.DatabaseContext, account int
 
 	context.Find(&SubstanceDrugMisuse{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugMisuse)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -808,8 +862,14 @@ func (entity *SubstanceDrugMisuse) Delete(context *db.DatabaseContext, account i
 
 	context.Find(&SubstanceDrugMisuse{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugMisuse)
+		if entity.UsedDrugs == nil {
+			entity.UsedDrugs = &Branch{}
+		}
 		entity.UsedDrugsID = previous.UsedDrugsID
 		entity.UsedDrugs.ID = previous.UsedDrugsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -946,8 +1006,14 @@ func (entity *SubstanceDrugOrdered) Save(context *db.DatabaseContext, account in
 
 	context.Find(&SubstanceDrugOrdered{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugOrdered)
+		if entity.Involved == nil {
+			entity.Involved = &Branch{}
+		}
 		entity.InvolvedID = previous.InvolvedID
 		entity.Involved.ID = previous.InvolvedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -981,8 +1047,14 @@ func (entity *SubstanceDrugOrdered) Delete(context *db.DatabaseContext, account 
 
 	context.Find(&SubstanceDrugOrdered{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugOrdered)
+		if entity.Involved == nil {
+			entity.Involved = &Branch{}
+		}
 		entity.InvolvedID = previous.InvolvedID
 		entity.Involved.ID = previous.InvolvedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1119,8 +1191,14 @@ func (entity *SubstanceDrugVoluntary) Save(context *db.DatabaseContext, account 
 
 	context.Find(&SubstanceDrugVoluntary{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugVoluntary)
+		if entity.Involved == nil {
+			entity.Involved = &Branch{}
+		}
 		entity.InvolvedID = previous.InvolvedID
 		entity.Involved.ID = previous.InvolvedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1154,8 +1232,14 @@ func (entity *SubstanceDrugVoluntary) Delete(context *db.DatabaseContext, accoun
 
 	context.Find(&SubstanceDrugVoluntary{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceDrugVoluntary)
+		if entity.Involved == nil {
+			entity.Involved = &Branch{}
+		}
 		entity.InvolvedID = previous.InvolvedID
 		entity.Involved.ID = previous.InvolvedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1292,8 +1376,14 @@ func (entity *SubstanceAlcoholNegative) Save(context *db.DatabaseContext, accoun
 
 	context.Find(&SubstanceAlcoholNegative{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholNegative)
+		if entity.HasImpacts == nil {
+			entity.HasImpacts = &Branch{}
+		}
 		entity.HasImpactsID = previous.HasImpactsID
 		entity.HasImpacts.ID = previous.HasImpactsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1327,8 +1417,14 @@ func (entity *SubstanceAlcoholNegative) Delete(context *db.DatabaseContext, acco
 
 	context.Find(&SubstanceAlcoholNegative{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholNegative)
+		if entity.HasImpacts == nil {
+			entity.HasImpacts = &Branch{}
+		}
 		entity.HasImpactsID = previous.HasImpactsID
 		entity.HasImpacts.ID = previous.HasImpactsID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1465,8 +1561,14 @@ func (entity *SubstanceAlcoholOrdered) Save(context *db.DatabaseContext, account
 
 	context.Find(&SubstanceAlcoholOrdered{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholOrdered)
+		if entity.HasBeenOrdered == nil {
+			entity.HasBeenOrdered = &Branch{}
+		}
 		entity.HasBeenOrderedID = previous.HasBeenOrderedID
 		entity.HasBeenOrdered.ID = previous.HasBeenOrderedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1500,8 +1602,14 @@ func (entity *SubstanceAlcoholOrdered) Delete(context *db.DatabaseContext, accou
 
 	context.Find(&SubstanceAlcoholOrdered{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholOrdered)
+		if entity.HasBeenOrdered == nil {
+			entity.HasBeenOrdered = &Branch{}
+		}
 		entity.HasBeenOrderedID = previous.HasBeenOrderedID
 		entity.HasBeenOrdered.ID = previous.HasBeenOrderedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1638,8 +1746,14 @@ func (entity *SubstanceAlcoholVoluntary) Save(context *db.DatabaseContext, accou
 
 	context.Find(&SubstanceAlcoholVoluntary{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholVoluntary)
+		if entity.SoughtTreatment == nil {
+			entity.SoughtTreatment = &Branch{}
+		}
 		entity.SoughtTreatmentID = previous.SoughtTreatmentID
 		entity.SoughtTreatment.ID = previous.SoughtTreatmentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1673,8 +1787,14 @@ func (entity *SubstanceAlcoholVoluntary) Delete(context *db.DatabaseContext, acc
 
 	context.Find(&SubstanceAlcoholVoluntary{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholVoluntary)
+		if entity.SoughtTreatment == nil {
+			entity.SoughtTreatment = &Branch{}
+		}
 		entity.SoughtTreatmentID = previous.SoughtTreatmentID
 		entity.SoughtTreatment.ID = previous.SoughtTreatmentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1811,8 +1931,14 @@ func (entity *SubstanceAlcoholAdditional) Save(context *db.DatabaseContext, acco
 
 	context.Find(&SubstanceAlcoholAdditional{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholAdditional)
+		if entity.ReceivedTreatment == nil {
+			entity.ReceivedTreatment = &Branch{}
+		}
 		entity.ReceivedTreatmentID = previous.ReceivedTreatmentID
 		entity.ReceivedTreatment.ID = previous.ReceivedTreatmentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1846,8 +1972,14 @@ func (entity *SubstanceAlcoholAdditional) Delete(context *db.DatabaseContext, ac
 
 	context.Find(&SubstanceAlcoholAdditional{ID: account}, func(result interface{}) {
 		previous := result.(*SubstanceAlcoholAdditional)
+		if entity.ReceivedTreatment == nil {
+			entity.ReceivedTreatment = &Branch{}
+		}
 		entity.ReceivedTreatmentID = previous.ReceivedTreatmentID
 		entity.ReceivedTreatment.ID = previous.ReceivedTreatmentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
