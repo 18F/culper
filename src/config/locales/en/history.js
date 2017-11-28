@@ -95,7 +95,7 @@ export const history = {
         rented: 'Rented or leased by you',
         military: 'Military housing',
         other: 'Other',
-        explanation: 'Please provide an explanation...'
+        explanation: 'Please provide an explanation'
       }
     },
     help: {
