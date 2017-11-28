@@ -444,14 +444,8 @@ class History extends SectionElement {
                        backLabel={i18n.t('history.destination.intro')}
                        next="history/employment"
                        nextLabel={i18n.t('history.destination.employment')}>
-            <Field title={i18n.t('history.residence.title')}
-                   titleSize="h2"
-                   optional={true}
-                   className="no-margin-bottom"
-                   />
-
             <Field title={i18n.t('history.residence.info')}
-                   titleSize="h3"
+                   titleSize="h2"
                    optional={true}
                    className="no-margin-bottom">
               {i18n.m('history.residence.info2')}
