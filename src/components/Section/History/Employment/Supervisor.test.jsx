@@ -3,22 +3,7 @@ import { mount } from 'enzyme'
 import Supervisor from './Supervisor'
 
 describe('The employment supervisor component', () => {
-  it('loads a supervisor component with supervisor name', () => {
-    let counter = 0
-    let expected = {
-      onUpdate: () => {
-        counter++
-      }
-    }
-
-    const component = mount(<Supervisor name="ac" onUpdate={expected.onUpdate} onBlur={expected.onBlur} onFocus={expected.onFocus} SupervisorName={'John Doe'} />)
-    const selected = component.find({type: 'text', name: 'SupervisorName'})
-    // Blur also does a change
-    selected.simulate('blur')
-    expect(counter).toBe(1)
-  })
-
-  it('can toggle "I don\'t know" button', () => {
+  it('responds to updates', () => {
     let updates = 0
     const expected = {
       name: 'supervisor',
@@ -27,7 +12,12 @@ describe('The employment supervisor component', () => {
       }
     }
     const component = mount(<Supervisor {...expected} />)
-    component.find({ type: 'checkbox', name: 'EmailNotApplicable' }).simulate('change')
-    expect(updates).toEqual(1)
+    component.find('.supervisor-name input').simulate('change')
+    component.find('.supervisor-title input').simulate('change')
+    component.find('.supervisor-email input').simulate('change')
+    component.find('.supervisor-email-na.button input').simulate('change')
+    component.find('.supervisor-address .street input').at(0).simulate('change')
+    component.find('.supervisor-telephone .number input').at(0).simulate('change')
+    expect(updates).toEqual(6)
   })
 })

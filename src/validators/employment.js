@@ -85,7 +85,7 @@ export class EmploymentValidator {
   }
 
   validPhysicalAddress () {
-    const differentAddress = (this.physicalAddress.HasDifferentAddress || {}).value
+    const differentAddress = ((this.physicalAddress || {}).HasDifferentAddress || {}).value
     if (!this.physicalAddress || !(differentAddress === 'No' || differentAddress === 'Yes')) {
       return false
     }
