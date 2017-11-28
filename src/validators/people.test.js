@@ -6,37 +6,39 @@ describe('Person validator', function () {
     const tests = [
       {
         state: {
-          Relationship: null
+          Relationship: {}
         },
         expected: false
       },
       {
         state: {
-          Relationship: ['Friend']
+          Relationship: {
+            values: ['Friend']
+          }
         },
         expected: true
       },
       {
         state: {
-          Relationship: null
+          Relationship: {
+            values: []
+          }
         },
         expected: false
       },
       {
         state: {
-          Relationship: []
+          Relationship: {
+            values: ['What']
+          }
         },
         expected: false
       },
       {
         state: {
-          Relationship: ['What']
-        },
-        expected: false
-      },
-      {
-        state: {
-          Relationship: ['Other'],
+          Relationship: {
+            values: ['Other']
+          },
           RelationshipOther: {
             value: 'Other relationship'
           }
@@ -64,7 +66,9 @@ describe('Person validator', function () {
             lastInitialOnly: false,
             suffix: 'Jr'
           },
-          Relationship: ['Friend'],
+          Relationship: {
+            values: ['Friend']
+          },
           Dates: {
             from: {
               date: new Date('1/1/2005')
@@ -151,7 +155,9 @@ describe('Person validator', function () {
                     lastInitialOnly: false,
                     suffix: 'Jr'
                   },
-                  Relationship: ['Friend'],
+                  Relationship: {
+                    values: ['Friend']
+                  },
                   Dates: {
                     from: {
                       date: new Date('1/1/2009')
@@ -205,7 +211,9 @@ describe('Person validator', function () {
                     lastInitialOnly: false,
                     suffix: 'Jr'
                   },
-                  Relationship: ['Friend'],
+                  Relationship: {
+                    values: ['Friend']
+                  },
                   Dates: {
                     from: {
                       date: new Date('1/1/2010')
@@ -259,7 +267,9 @@ describe('Person validator', function () {
                     lastInitialOnly: false,
                     suffix: 'Jr'
                   },
-                  Relationship: ['Friend'],
+                  Relationship: {
+                    values: ['Friend']
+                  },
                   Dates: {
                     from: {
                       date: new Date('1/1/2010')
@@ -340,7 +350,9 @@ describe('Person validator', function () {
                   lastInitialOnly: false,
                   suffix: 'Jr'
                 },
-                Relationship: ['Friend'],
+                Relationship: {
+                  values: ['Friend']
+                },
                 Dates: {
                   from: {
                     date: new Date('1/1/2005')
