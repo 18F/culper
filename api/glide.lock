@@ -1,5 +1,5 @@
-hash: 75b8b80a0c8a0eb671e789332c322ff760165467a2127b9e6c75ef6740fca5cd
-updated: 2017-11-08T14:49:27.218291564Z
+hash: 3fd6284e8ac00167ea348b534690f5b3660bf2157e5cd5e8f1def3a33bd4b6cd
+updated: 2017-11-24T11:15:36.087084664-05:00
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -16,7 +16,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: 96977cbd42e27be71f9f731db6634123de7e861a
 - name: github.com/go-pg/pg
-  version: f7825ca79b63ead4417c219bba98a85b198bf605
+  version: 91c6bdd887406878e9bde15f3c4a12c1197da739
   subpackages:
   - internal
   - internal/parser
@@ -63,6 +63,8 @@ imports:
   - util
 - name: github.com/russross/blackfriday
   version: 0b647d0506a698cca42caca173e55559b12a69f2
+- name: github.com/satori/go.uuid
+  version: 879c5887cd475cd7864858769793b2ceb0d44feb
 - name: github.com/shurcooL/sanitized_anchor_name
   version: 86672fcb3f950f35f2e675df2240550f2a50762f
 - name: github.com/skip2/go-qrcode
