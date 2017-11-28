@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
 import SubsectionElement from '../../SubsectionElement'
-import { LegalAssociationsAdvocatingValidator, AdvocatingValidator } from '../../../../validators'
+import validate, { AdvocatingValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { Accordion, Branch, Show } from '../../../Form'
 import AdvocatingItem from './AdvocatingItem'
@@ -18,7 +19,6 @@ export default class Advocating extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasAdvocated: this.props.HasAdvocated,
       ...queue
     })
@@ -26,16 +26,14 @@ export default class Advocating extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateBranch (values) {
     this.update({
       HasAdvocated: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -60,7 +58,7 @@ export default class Advocating extends SubsectionElement {
                 label={i18n.t('legal.associations.advocating.heading.title')}
                 labelSize="h2"
                 className="legal-associations-advocating-has-advocated"
-                value={this.props.HasAdvocated}
+                {...this.props.HasAdvocated}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -68,11 +66,10 @@ export default class Advocating extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasAdvocated === 'Yes'}>
+        <Show when={this.props.HasAdvocated.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -96,9 +93,8 @@ export default class Advocating extends SubsectionElement {
 
 Advocating.defaultProps = {
   name: 'advocating',
-  HasAdvocated: '',
-  List: [],
-  ListBranch: '',
+  HasAdvocated: {},
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -106,7 +102,7 @@ Advocating.defaultProps = {
   subsection: 'associations/advocating',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LegalAssociationsAdvocatingValidator(props).isValid()
+    return validate(schema('legal.associations.advocating', props))
   },
   scrollToBottom: ''
 }

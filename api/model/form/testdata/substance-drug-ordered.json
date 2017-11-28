@@ -1,7 +1,7 @@
 {
-  "type": "substance.drug.ordered",
+  "type": "substance.drugs.ordered",
   "props": {
-    "Involved": {
+    "TreatmentOrdered": {
       "type": "branch",
       "props": {
         "value": "Yes"

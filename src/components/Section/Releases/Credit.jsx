@@ -27,6 +27,7 @@ export default class Credit extends SubsectionElement {
       <div className="credit-release">
         { i18n.m('releases.credit.contents') }
         <Signature {...this.props.Signature}
+                   LegalName={this.props.LegalName}
                    onUpdate={this.updateSignature}
                    onError={this.handleError}
                    />
@@ -37,11 +38,12 @@ export default class Credit extends SubsectionElement {
 
 Credit.defaultProps = {
   Signature: {},
+  LegalName: {},
   section: 'releases',
   subsection: 'credit',
   dispatch: () => {},
   validator: (state, props) => {
-    return new SignatureValidator(props, props).isValid()
+    return new SignatureValidator(props).isValid()
   },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

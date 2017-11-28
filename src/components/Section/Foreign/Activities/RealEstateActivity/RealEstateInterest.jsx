@@ -36,9 +36,9 @@ export default class RealEstateInterest extends ValidationElement {
     })
   }
 
-  updateInterestTypes (event) {
-    let interestType = event.target.value
-    let selected = [...(this.props.InterestTypes || [])]
+  updateInterestTypes (values) {
+    let interestType = values.value
+    let selected = [...((this.props.InterestTypes || {}).values || [])]
     if (selected.includes(interestType)) {
       selected.splice(selected.indexOf(interestType), 1)
     } else {
@@ -46,7 +46,7 @@ export default class RealEstateInterest extends ValidationElement {
     }
 
     this.update({
-      InterestTypes: selected
+      InterestTypes: { values: selected }
     })
   }
 
@@ -80,9 +80,9 @@ export default class RealEstateInterest extends ValidationElement {
     })
   }
 
-  updateCostEstimated (cb) {
+  updateCostEstimated (values) {
     this.update({
-      CostEstimated: cb.checked
+      CostEstimated: values
     })
   }
 
@@ -109,48 +109,48 @@ export default class RealEstateInterest extends ValidationElement {
     return (
       <div className="interest">
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.interestTypes')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.activities.realestate.interest.para.checkAll')}
 
           <CheckboxGroup className="interest-types option-list"
                          onError={this.props.onError}
                          required={this.props.required}
-                         selectedValues={this.props.InterestTypes}>
+                         selectedValues={(this.props.InterestTypes || {}).values}>
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.realestate.interest.label.interestTypes.yourself')}
                       value="Yourself"
                       className="yourself"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.realestate.interest.label.interestTypes.spouse')}
                       value="Spouse"
                       className="spouse"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.realestate.interest.label.interestTypes.cohabitant')}
                       value="Cohabitant"
                       className="cohabitant"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
             <Checkbox name="interest-type"
                       label={i18n.m('foreign.activities.realestate.interest.label.interestTypes.dependentChildren')}
                       value="DependentChildren"
                       className="dependent-children"
                       onError={this.props.onError}
-                      onChange={this.updateInterestTypes}
+                      onUpdate={this.updateInterestTypes}
                       />
           </CheckboxGroup>
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.realEstateType')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           {i18n.m('foreign.activities.realestate.interest.para.realEstateType')}
           <Text name="RealEstateType"
                 className="realestate-type"
@@ -162,22 +162,22 @@ export default class RealEstateInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.address')}
-          adjustFor="address"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="address"
+               scrollIntoView={this.props.scrollIntoView}>
           <Location name="Address"
-                   layout={Location.STREET_CITY_COUNTRY}
-                   fields={['street', 'city', 'country']}
-                   label={i18n.t('foreign.activities.realestate.interest.label.address')}
-                   {...this.props.Address}
-                   onUpdate={this.updateAddress}
-                   onError={this.props.onError}
-                   required={this.props.required}
-                   />
+                    {...this.props.Address}
+                    layout={Location.STREET_CITY_COUNTRY}
+                    fields={['street', 'city', 'country']}
+                    label={i18n.t('foreign.activities.realestate.interest.label.address')}
+                    onUpdate={this.updateAddress}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.acquired')}
-          adjustFor="labels"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="labels"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Acquired"
                        className="acquired"
                        {...this.props.Acquired}
@@ -190,8 +190,8 @@ export default class RealEstateInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.howAcquired')}
-          adjustFor="p"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="p"
+               scrollIntoView={this.props.scrollIntoView}>
           <p>{i18n.t('foreign.activities.realestate.interest.para.howAcquired')}</p>
           <Textarea name="HowAcquired"
                     className="how-acquired"
@@ -225,8 +225,8 @@ export default class RealEstateInterest extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.realestate.interest.heading.cost')}
-          help={'foreign.activities.realestate.interest.help.cost'}
-          scrollIntoView={this.props.scrollIntoView}>
+               help={'foreign.activities.realestate.interest.help.cost'}
+               scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Cost"
                     className="cost"
                     {...this.props.Cost}
@@ -239,7 +239,7 @@ export default class RealEstateInterest extends ValidationElement {
             <Checkbox name="CostEstimated"
                       label={i18n.t('foreign.activities.realestate.interest.label.costEstimated')}
                       toggle="false"
-                      checked={this.props.CostEstimated}
+                      {...this.props.CostEstimated}
                       onUpdate={this.updateCostEstimated}
                       onError={this.props.onError}
                       />
@@ -260,6 +260,7 @@ export default class RealEstateInterest extends ValidationElement {
 }
 
 RealEstateInterest.defaultProps = {
+  SoldNotApplicable: { applicable: true },
   prefix: 'activities.realestate.interest',
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

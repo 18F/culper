@@ -247,47 +247,49 @@ describe('Foreign contacts component validation', function () {
       },
       {
         state: {
-          Aliases: []
+          Aliases: {
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'No'
-            }
-          ]
+          Aliases: {
+            items: [{ Item: { Has: { value: 'No' } } }]
+          }
         },
         expected: true
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'Yes'
-            }
-          ]
+          Aliases: {
+            items: [{ Item: { Has: { value: 'Yes' } } }]
+          }
         },
         expected: false
       },
       {
         state: {
-          Aliases: [
-            {
-              Has: 'Yes',
-              Alias: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
+          Aliases: {
+            items: [
+              {
+                Item: {
+                  Has: { value: 'Yes' },
+                  Alias: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }
@@ -550,26 +552,26 @@ describe('Foreign contacts component validation', function () {
       },
       {
         state: {
-          HasAffiliations: 'No'
+          HasAffiliations: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasAffiliations: 'I don\'t know'
+          HasAffiliations: { value: 'I don\'t know' }
         },
         expected: true
       },
       {
         state: {
-          HasAffiliations: 'Yes',
+          HasAffiliations: { value: 'Yes' },
           Affiliations: {}
         },
         expected: false
       },
       {
         state: {
-          HasAffiliations: 'Yes',
+          HasAffiliations: { value: 'Yes' },
           Affiliations: {
             value: 'list of my affiliations'
           }
@@ -589,71 +591,71 @@ describe('Foreign contacts component validation', function () {
       },
       {
         state: {
-          HasForeignContacts: 'No'
+          HasForeignContacts: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignContacts: 'Yes'
+          HasForeignContacts: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasForeignContacts: 'Yes',
-          List: [
-            {
-              Item: {
-                NameNotApplicable: {
-                  applicable: false
-                },
-                NameExplanation: {
-                  value: 'explanation'
-                },
-                FirstContact: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                LastContact: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Methods: ['In person'],
-                Frequency: 'Weekly',
-                Relationship: ['Personal'],
-                Aliases: [
-                  {
-                    Has: 'No'
-                  }
-                ],
-                Citizenship: {
-                  value: ['United States']
-                },
-                BirthdateNotApplicable: {
-                  applicable: false
-                },
-                BirthplaceNotApplicable: {
-                  applicable: false
-                },
-                AddressNotApplicable: {
-                  applicable: false
-                },
-                EmployerNotApplicable: {
-                  applicable: false
-                },
-                EmployerAddressNotApplicable: {
-                  applicable: false
-                },
-                HasAffiliations: 'No'
+          HasForeignContacts: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  NameNotApplicable: {
+                    applicable: false
+                  },
+                  NameExplanation: {
+                    value: 'explanation'
+                  },
+                  FirstContact: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  LastContact: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Methods: ['In person'],
+                  Frequency: 'Weekly',
+                  Relationship: ['Personal'],
+                  Aliases: {
+                    items: [{ Item: { Has: { value: 'No' } } }]
+                  },
+                  Citizenship: {
+                    value: ['United States']
+                  },
+                  BirthdateNotApplicable: {
+                    applicable: false
+                  },
+                  BirthplaceNotApplicable: {
+                    applicable: false
+                  },
+                  AddressNotApplicable: {
+                    applicable: false
+                  },
+                  EmployerNotApplicable: {
+                    applicable: false
+                  },
+                  EmployerAddressNotApplicable: {
+                    applicable: false
+                  },
+                  HasAffiliations: { value: 'No' }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

@@ -1,9 +1,9 @@
 import { validGenericTextfield } from './helpers'
 
 export default class LegalAssociationTerrorismValidator {
-  constructor (state = {}, props = {}) {
-    this.hasTerrorism = props.HasTerrorism
-    this.explanation = props.Explanation
+  constructor (data = {}) {
+    this.hasTerrorism = (data.HasTerrorism || {}).value
+    this.explanation = data.Explanation
   }
 
   isValid () {

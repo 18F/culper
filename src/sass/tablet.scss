@@ -1,13 +1,33 @@
+.tablet-hidden {
+  display: none !important;
+  visibility: hidden;
+}
+
+.tablet-visible {
+  display: none;
+  visibility: hidden;
+}
+
 @media only screen and (max-width: 1412px) {
+  .tablet-visible {
+    display: block !important;
+    visibility: visible;
+  }
+
   .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
     padding: 0;
 
-    > .title {
-      width: 64rem;
+    .sticky {
+      .contents {
+        width: 100%;
+      }
     }
 
-    > .eapp-form {
-      width: 21%;
+    > .title,
+    .eapp-form {
+      width: 62%;
+      margin-left: 18rem;
+      margin-right: 18rem;
     }
   }
 }
@@ -17,14 +37,47 @@
     margin: 0;
   }
 
-  .section-view .top-btns,
-  .section-view .bottom-btns {
-    margin: 4.6rem 0 !important;
-    padding: 0 !important;
+  .section-view {
+    max-width: 100% !important;
+
+    .top-btns,
+    .bottom-btns {
+      margin: 4.6rem 0 !important;
+      padding: 0 !important;
+    }
   }
 
   .eapp-status-icon-valid,
   .eapp-status-icon-error {
     margin-right: 1rem;
+  }
+
+  .eapp-structure-wrap .eapp-structure-row .eapp-structure-right {
+    > .title,
+    .eapp-form {
+      width: 100%;
+      margin-left: 0;
+      margin-right: 0;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+
+    .sidebar-top-fixed,
+    .sidebar-bottom-fixed {
+      .eapp-form {
+        width: 73%;
+        min-width: unset;
+        max-width: unset;
+      }
+    }
+
+    .sidebar-top-fixed {
+      bottom: unset;
+    }
+
+    .sidebar-bottom-fixed {
+      top: unset;
+      bottom: 0;
+    }
   }
 }

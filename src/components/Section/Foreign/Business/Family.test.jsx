@@ -6,7 +6,7 @@ describe('The foreign business family component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-family',
-      HasForeignFamily: 'No'
+      HasForeignFamily: { value: 'No' }
     }
     const component = mount(<Family {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign business family component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-family',
-      HasForeignFamily: 'Yes'
+      HasForeignFamily: { value: 'Yes' }
     }
     const component = mount(<Family {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign business family component', () => {
     let validated = false
     const expected = {
       name: 'foreign-business-family',
-      HasForeignFamily: 'Yes',
+      HasForeignFamily: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -41,8 +41,8 @@ describe('The foreign business family component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-family',
-      HasForeignFamily: 'Yes',
-      List: [{}],
+      HasForeignFamily: { value: 'Yes' },
+      List: { items: [{}] },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Family {...expected} />)

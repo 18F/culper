@@ -1,12 +1,12 @@
 import CivilUnionValidator from './civilunion'
 import DivorceValidator from './divorce'
+import { validAccordion } from './helpers'
 
 export default class MaritalValidator {
-  constructor (state = {}, props) {
+  constructor (state = {}, props = {}) {
     this.civilUnion = state.CivilUnion
-    this.status = state.Status
-    this.divorcedList = state.DivorcedList
-    this.divorcedListBranch = state.DivorcedListBranch
+    this.status = (state.Status || {}).value
+    this.divorcedList = (state.DivorcedList || [])
   }
 
   validStatus () {
@@ -14,21 +14,13 @@ export default class MaritalValidator {
   }
 
   validDivorce () {
-    if (!this.divorcedList || !this.divorcedList.length) {
+    if (!this.divorcedList || !this.divorcedList.items.length) {
       return false
     }
 
-    if (this.divorcedListBranch !== 'No') {
-      return false
-    }
-
-    for (let item of this.divorcedList) {
-      if (!new DivorceValidator(item.Divorce).isValid()) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.divorcedList, (item) => {
+      return new DivorceValidator(item).isValid()
+    })
   }
 
   isValid () {

@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 // Supervisor is a basic input.
@@ -25,14 +24,14 @@ type Supervisor struct {
 	Telephone          *Telephone     `json:"-"`
 
 	// Persister specific fields
-	ID                   int
-	AccountID            int64
-	SupervisorNameID     int
-	TitleID              int
-	EmailID              int
-	EmailNotApplicableID int
-	AddressID            int
-	TelephoneID          int
+	ID                   int `json:"-"`
+	AccountID            int `json:"-"`
+	SupervisorNameID     int `json:"-"`
+	TitleID              int `json:"-"`
+	EmailID              int `json:"-"`
+	EmailNotApplicableID int `json:"-"`
+	AddressID            int `json:"-"`
+	TelephoneID          int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -81,6 +80,29 @@ func (entity *Supervisor) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *Supervisor) Marshal() Payload {
+	if entity.SupervisorName != nil {
+		entity.PayloadSupervisorName = entity.SupervisorName.Marshal()
+	}
+	if entity.Title != nil {
+		entity.PayloadTitle = entity.Title.Marshal()
+	}
+	if entity.Email != nil {
+		entity.PayloadEmail = entity.Email.Marshal()
+	}
+	if entity.EmailNotApplicable != nil {
+		entity.PayloadEmailNotApplicable = entity.EmailNotApplicable.Marshal()
+	}
+	if entity.Address != nil {
+		entity.PayloadAddress = entity.Address.Marshal()
+	}
+	if entity.Telephone != nil {
+		entity.PayloadTelephone = entity.Telephone.Marshal()
+	}
+	return MarshalPayloadEntity("supervisor", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *Supervisor) Valid() (bool, error) {
 	if ok, err := entity.SupervisorName.Valid(); !ok {
@@ -108,17 +130,47 @@ func (entity *Supervisor) Valid() (bool, error) {
 	return true, nil
 }
 
-func (entity *Supervisor) Save(context *pg.DB, account int64) (int, error) {
+// Save the Supervisor entity.
+func (entity *Supervisor) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&Supervisor{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&Supervisor{ID: account}, func(result interface{}) {
+		previous := result.(*Supervisor)
+		if entity.SupervisorName == nil {
+			entity.SupervisorName = &Text{}
+		}
+		entity.SupervisorName.ID = previous.SupervisorNameID
+		entity.SupervisorNameID = previous.SupervisorNameID
+		if entity.Title == nil {
+			entity.Title = &Text{}
+		}
+		entity.Title.ID = previous.TitleID
+		entity.TitleID = previous.TitleID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	supervisorNameID, err := entity.SupervisorName.Save(context, account)
 	if err != nil {
@@ -156,74 +208,134 @@ func (entity *Supervisor) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.TelephoneID = telephoneID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Supervisor) Delete(context *pg.DB, account int64) (int, error) {
+// Delete the Supervisor entity.
+func (entity *Supervisor) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Supervisor{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.SupervisorName.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.Title.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.Email.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.EmailNotApplicable.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.Address.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.Telephone.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&Supervisor{ID: account}, func(result interface{}) {
+		previous := result.(*Supervisor)
+		if entity.SupervisorName == nil {
+			entity.SupervisorName = &Text{}
+		}
+		entity.SupervisorName.ID = previous.SupervisorNameID
+		entity.SupervisorNameID = previous.SupervisorNameID
+		if entity.Title == nil {
+			entity.Title = &Text{}
+		}
+		entity.Title.ID = previous.TitleID
+		entity.TitleID = previous.TitleID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.SupervisorName.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Title.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Email.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.EmailNotApplicable.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Address.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.Telephone.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
-func (entity *Supervisor) Get(context *pg.DB, account int64) (int, error) {
+// Get the Supervisor entity.
+func (entity *Supervisor) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Supervisor{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
+	context.Find(&Supervisor{ID: account}, func(result interface{}) {
+		previous := result.(*Supervisor)
+		if entity.SupervisorName == nil {
+			entity.SupervisorName = &Text{}
+		}
+		entity.SupervisorName.ID = previous.SupervisorNameID
+		entity.SupervisorNameID = previous.SupervisorNameID
+		if entity.Title == nil {
+			entity.Title = &Text{}
+		}
+		entity.Title.ID = previous.TitleID
+		entity.TitleID = previous.TitleID
+		if entity.Email == nil {
+			entity.Email = &Email{}
+		}
+		entity.Email.ID = previous.EmailID
+		entity.EmailID = previous.EmailID
+		if entity.EmailNotApplicable == nil {
+			entity.EmailNotApplicable = &NotApplicable{}
+		}
+		entity.EmailNotApplicable.ID = previous.EmailNotApplicableID
+		entity.EmailNotApplicableID = previous.EmailNotApplicableID
+		if entity.Address == nil {
+			entity.Address = &Location{}
+		}
+		entity.Address.ID = previous.AddressID
+		entity.AddressID = previous.AddressID
+		if entity.Telephone == nil {
+			entity.Telephone = &Telephone{}
+		}
+		entity.Telephone.ID = previous.TelephoneID
+		entity.TelephoneID = previous.TelephoneID
+	})
+
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.SupervisorNameID != 0 {
@@ -262,5 +374,15 @@ func (entity *Supervisor) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Supervisor) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Supervisor) SetID(id int) {
+	entity.ID = id
 }

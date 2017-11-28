@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 type CoOwners struct {
@@ -14,9 +13,9 @@ type CoOwners struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID        int `json:"-"`
+	AccountID int `json:"-"`
+	ListID    int `json:"-"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -35,22 +34,35 @@ func (entity *CoOwners) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *CoOwners) Marshal() Payload {
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("coowners", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *CoOwners) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
-func (entity *CoOwners) Save(context *pg.DB, account int64) (int, error) {
+// Save the CoOwners entity.
+func (entity *CoOwners) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	var err error
-	err = context.CreateTable(&CoOwners{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
+
+	context.Find(&CoOwners{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*CoOwners)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
 
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
@@ -58,54 +70,64 @@ func (entity *CoOwners) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ListID = listID
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *CoOwners) Delete(context *pg.DB, account int64) (int, error) {
+// Delete the CoOwners entity.
+func (entity *CoOwners) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CoOwners{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&CoOwners{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*CoOwners)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
-func (entity *CoOwners) Get(context *pg.DB, account int64) (int, error) {
+// Get the CoOwners entity.
+func (entity *CoOwners) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&CoOwners{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
+	context.Find(&CoOwners{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*CoOwners)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.List.ID = previous.ListID
+		entity.ListID = previous.ListID
+	})
+
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
@@ -114,5 +136,15 @@ func (entity *CoOwners) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *CoOwners) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *CoOwners) SetID(id int) {
+	entity.ID = id
 }

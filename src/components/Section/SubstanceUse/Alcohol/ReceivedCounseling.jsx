@@ -162,14 +162,14 @@ export default class ReceivedCounseling extends ValidationElement {
                 className={`use-same-address ${this.props.UseSameAddress === 'No' ? 'no-margin-bottom' : ''}`.trim()}
                 yesLabel="Same as above"
                 noLabel="Different address"
-                value={this.props.UseSameAddress}
+                {...this.props.UseSameAddress}
                 onUpdate={this.updateUseSameAddress}
                 required={this.props.required}
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.UseSameAddress === 'No'}>
+        <Show when={this.props.UseSameAddress.value === 'No'}>
           <Field optional={true}
                  scrollIntoView={this.props.scrollIntoView}>
             <Location name="AgencyAddress"
@@ -233,14 +233,14 @@ export default class ReceivedCounseling extends ValidationElement {
                 label={i18n.t('substance.alcohol.receivedCounseling.heading.completedTreatment')}
                 labelSize="h3"
                 className="completed-treatment no-margin-bottom"
-                value={this.props.CompletedTreatment}
+                {...this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
                 required={this.props.required}
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment)}>
+        <Show when={['Yes', 'No'].includes(this.props.CompletedTreatment.value)}>
           <Field title={i18n.t('substance.alcohol.receivedCounseling.heading.noCompletedTreatment')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -259,5 +259,7 @@ export default class ReceivedCounseling extends ValidationElement {
 }
 
 ReceivedCounseling.defaultProps = {
+  UseSameAddress: {},
+  CompletedTreatment: {},
   onError: (value, arr) => { return arr }
 }

@@ -68,19 +68,19 @@ describe('Selective service validation', function () {
     const tests = [
       {
         state: {
-          WasBornAfter: ''
+          WasBornAfter: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          WasBornAfter: 'No'
+          WasBornAfter: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasBornAfter: 'Yes'
+          WasBornAfter: { value: 'Yes' }
         },
         expected: true
       }
@@ -95,22 +95,22 @@ describe('Selective service validation', function () {
     const tests = [
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: ''
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'No'
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'Yes'
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'Yes' }
         },
         expected: true
       }
@@ -125,16 +125,16 @@ describe('Selective service validation', function () {
     const tests = [
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'Yes',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'Yes' },
           RegistrationNumber: null
         },
         expected: false
       },
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'Yes',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'Yes' },
           RegistrationNumber: {
             value: ''
           }
@@ -143,8 +143,8 @@ describe('Selective service validation', function () {
       },
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'Yes',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'Yes' },
           RegistrationNumber: {
             value: '1234567890'
           }
@@ -162,16 +162,16 @@ describe('Selective service validation', function () {
     const tests = [
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'No',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'No' },
           Explanation: null
         },
         expected: false
       },
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'No',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'No' },
           Explanation: {
             value: ''
           }
@@ -180,8 +180,8 @@ describe('Selective service validation', function () {
       },
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'No',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'No' },
           Explanation: {
             value: 'Never knew about it'
           }
@@ -199,8 +199,8 @@ describe('Selective service validation', function () {
     const tests = [
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'Yes',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'Yes' },
           RegistrationNumber: {
             value: '1234567890'
           }
@@ -209,8 +209,8 @@ describe('Selective service validation', function () {
       },
       {
         state: {
-          WasBornAfter: 'Yes',
-          HasRegistered: 'No',
+          WasBornAfter: { value: 'Yes' },
+          HasRegistered: { value: 'No' },
           Explanation: {
             value: 'Never knew about it'
           }

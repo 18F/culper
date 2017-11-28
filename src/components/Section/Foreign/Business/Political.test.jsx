@@ -6,7 +6,7 @@ describe('The foreign business political component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-political',
-      HasForeignPolitical: 'No'
+      HasForeignPolitical: { value: 'No' }
     }
     const component = mount(<Political {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign business political component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-political',
-      HasForeignPolitical: 'Yes'
+      HasForeignPolitical: { value: 'Yes' }
     }
     const component = mount(<Political {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign business political component', () => {
     let validated = false
     const expected = {
       name: 'foreign-business-political',
-      HasForeignPolitical: 'Yes',
+      HasForeignPolitical: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -41,17 +41,18 @@ describe('The foreign business political component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-political',
-      HasForeignPolitical: 'Yes',
-      List: [
-        {
-          Position: {},
-          Dates: {},
-          Country: {},
-          Reason: {},
-          Eligibility: {}
-        }
-      ],
-      ListBranch: '',
+      HasForeignPolitical: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Position: {},
+            Dates: {},
+            Country: {},
+            Reason: {},
+            Eligibility: {}
+          }
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Political {...expected} />)

@@ -10,20 +10,20 @@ describe('Legal associations terrrorism component validation', function () {
       },
       {
         props: {
-          HasTerrorism: 'No'
+          HasTerrorism: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          HasTerrorism: 'Yes',
+          HasTerrorism: { value: 'Yes' },
           Explanation: {}
         },
         expected: false
       },
       {
         props: {
-          HasTerrorism: 'Yes',
+          HasTerrorism: { value: 'Yes' },
           Explanation: {
             value: 'this is the explanation'
           }

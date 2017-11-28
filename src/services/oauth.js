@@ -1,4 +1,4 @@
-import { env } from '../config'
+import env  from '../config/environment'
 
 class OAuth {
   constructor (service) {
@@ -35,7 +35,7 @@ class OAuth {
 
   refreshToken () {
     if (this.token) {
-            // TODO: Just request a refreshed token
+      // TODO: Just request a refreshed token
       return
     }
 

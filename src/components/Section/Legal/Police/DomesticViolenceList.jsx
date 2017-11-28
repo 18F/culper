@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { DomesticViolenceValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { BranchCollection } from '../../../Form'
 import DomesticViolence from './DomesticViolence'
@@ -32,14 +33,14 @@ export default class DomesticViolenceList extends SubsectionElement {
         <BranchCollection label={i18n.t('legal.police.label.domesticViolence')}
                           labelSize="h2"
                           className="has-order"
-                          appendLabel={i18n.t('legal.police.label.domesticViolenceAppend')}
-                          items={this.props.List}
+                          appendLabel={i18n.m('legal.police.label.domesticViolenceAppend')}
+                          {...this.props.List}
                           scrollToBottom={this.props.scrollToBottom}
                           onError={this.handleError}
                           required={this.props.required}
                           onUpdate={this.updateList}
                           scrollIntoView={this.props.scrollIntoView}>
-          <DomesticViolence name="domestic"
+          <DomesticViolence name="Item"
                             addressBooks={this.props.addressBooks}
                             dispatch={this.props.dispatch}
                             bind={true}
@@ -54,7 +55,7 @@ export default class DomesticViolenceList extends SubsectionElement {
 }
 
 DomesticViolenceList.defaultProps = {
-  List: [],
+  List: { items: [] },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'legal',
@@ -62,7 +63,7 @@ DomesticViolenceList.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new DomesticViolenceValidator(props, props).isValid()
+    return validate(schema('legal.police.domesticviolence', props))
   },
   scrollToBottom: ''
 }

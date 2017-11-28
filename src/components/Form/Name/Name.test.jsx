@@ -143,4 +143,80 @@ describe('The Name component', () => {
     component.find('.suffix-other input').simulate('change')
     expect(updates).toBe(9)
   })
+
+  it('error if single letter without initial only', () => {
+    const tests = [
+      {
+        props: {
+          first: 'a',
+          firstInitialOnly: false,
+          middle: 'def',
+          middleInitialOnly: false,
+          last: 'abc',
+          lastInitialOnly: false
+        },
+        expected: false
+      },
+      {
+        props: {
+          first: 'abc',
+          firstInitialOnly: false,
+          middle: 'a',
+          middleInitialOnly: false,
+          last: 'abc',
+          lastInitialOnly: false
+        },
+        expected: false
+      },
+      {
+        props: {
+          first: 'abc',
+          firstInitialOnly: false,
+          middle: 'abc',
+          middleInitialOnly: false,
+          last: 'a',
+          lastInitialOnly: false
+        },
+        expected: false
+      },
+      {
+        props: {
+          first: 'a',
+          firstInitialOnly: true,
+          middle: 'def',
+          middleInitialOnly: false,
+          last: 'abc',
+          lastInitialOnly: false
+        },
+        expected: true
+      },
+      {
+        props: {
+          first: 'abc',
+          firstInitialOnly: false,
+          middle: 'a',
+          middleInitialOnly: true,
+          last: 'abc',
+          lastInitialOnly: false
+        },
+        expected: true
+      },
+      {
+        props: {
+          first: 'abc',
+          firstInitialOnly: false,
+          middle: 'abc',
+          middleInitialOnly: false,
+          last: 'a',
+          lastInitialOnly: true
+        },
+        expected: true
+      }
+    ]
+
+    tests.forEach(test => {
+      const component = mount(<Name {...test.props} />)
+      expect(component.find('.usa-input-error-label').length === 0).toEqual(test.expected)
+    })
+  })
 })

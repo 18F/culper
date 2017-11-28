@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessEmploymentValidator, ForeignBusinessEmploymentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -18,24 +20,21 @@ export default class Employment extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignEmployment: this.props.HasForeignEmployment,
       ...queue
     })
   }
 
-  updateHasForeignEmployment (value) {
+  updateHasForeignEmployment (values) {
     this.update({
-      HasForeignEmployment: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignEmployment: values,
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -59,7 +58,7 @@ export default class Employment extends SubsectionElement {
         <Branch name="has_foreign_employment"
                 label={i18n.t('foreign.business.employment.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignEmployment}
+                {...this.props.HasForeignEmployment}
                 warning={true}
                 onUpdate={this.updateHasForeignEmployment}
                 onError={this.handleError}
@@ -67,11 +66,10 @@ export default class Employment extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasForeignEmployment === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={(this.props.HasForeignEmployment || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      validator={ForeignBusinessEmploymentItemValidator}
                      onError={this.handleError}
@@ -81,11 +79,11 @@ export default class Employment extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.employment.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <JobOffer name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <JobOffer name="Item"
+                      bind={true}
+                      required={this.props.required}
+                      scrollIntoView={this.props.scrollIntoView}
+                      />
           </Accordion>
         </Show>
       </div>
@@ -95,15 +93,15 @@ export default class Employment extends SubsectionElement {
 
 Employment.defaultProps = {
   name: 'Employment',
-  HasForeignEmployment: '',
-  List: [],
+  HasForeignEmployment: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/employment',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessEmploymentValidator(props, props).isValid()
+    return validate(schema('foreign.business.employment', props))
   },
   defaultState: true,
   scrollToBottom: ''

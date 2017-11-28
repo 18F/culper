@@ -1,7 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate, { TravelValidator } from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
-import { ForeignTravelValidator, TravelValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Branch, Show, Accordion } from '../../../Form'
 import TravelQuestions from './TravelQuestions'
@@ -18,7 +19,6 @@ export default class Travel extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignTravelOutside: this.props.HasForeignTravelOutside,
       HasForeignTravelOfficial: this.props.HasForeignTravelOfficial,
       ...queue
@@ -39,8 +39,7 @@ export default class Travel extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -65,7 +64,7 @@ export default class Travel extends SubsectionElement {
                 labelSize="h2"
                 name="has_foreign_travel_outside"
                 className="foreign-travel-outside"
-                value={this.props.HasForeignTravelOutside}
+                {...this.props.HasForeignTravelOutside}
                 warning={true}
                 onUpdate={this.updateHasForeignTravelOutside}
                 required={this.props.required}
@@ -73,24 +72,25 @@ export default class Travel extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Branch label={i18n.t('foreign.travel.heading.official')}
-                labelSize="h3"
-                name="has_foreign_travel_official"
-                className="foreign-travel-official"
-                help="foreign.travel.help.official"
-                value={this.props.HasForeignTravelOfficial}
-                onUpdate={this.updateHasForeignTravelOfficial}
-                required={this.props.required}
-                onError={this.handleError}
-                scrollIntoView={this.props.scrollIntoView}>
-          {i18n.m('foreign.travel.para.personal')}
-        </Branch>
+        <Show when={(this.props.HasForeignTravelOutside || {}).value === 'Yes'}>
+          <Branch label={i18n.t('foreign.travel.heading.official')}
+                  labelSize="h3"
+                  name="has_foreign_travel_official"
+                  className="foreign-travel-official"
+                  help="foreign.travel.help.official"
+                  {...this.props.HasForeignTravelOfficial}
+                  onUpdate={this.updateHasForeignTravelOfficial}
+                  required={this.props.required}
+                  onError={this.handleError}
+                  scrollIntoView={this.props.scrollIntoView}>
+            {i18n.m('foreign.travel.para.personal')}
+          </Branch>
+        </Show>
 
-        <Show when={this.props.HasForeignTravelOutside === 'Yes' && this.props.HasForeignTravelOfficial === 'No'}>
-          <Accordion items={this.props.List}
+        <Show when={(this.props.HasForeignTravelOutside || {}).value === 'Yes' && (this.props.HasForeignTravelOfficial || {}).value === 'No'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={TravelValidator}
@@ -110,17 +110,16 @@ export default class Travel extends SubsectionElement {
 
 Travel.defaultProps = {
   name: 'Travel',
-  HasForeignTravelOutside: '',
-  HasForeignTravelOfficial: '',
-  List: [],
-  ListBranch: '',
+  HasForeignTravelOutside: {},
+  HasForeignTravelOfficial: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'travel',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignTravelValidator(props).isValid()
+    return validate(schema('foreign.travel', props))
   },
   defaultState: true,
   scrollToBottom: ''

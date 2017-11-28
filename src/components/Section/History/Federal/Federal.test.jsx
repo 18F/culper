@@ -6,8 +6,10 @@ describe('The federal component', () => {
   it('selects yes and loads form', () => {
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'Yes',
-      List: [{}]
+      HasFederalService: { value: 'Yes' },
+      List: {
+        items: [{}]
+      }
     }
     const component = mount(<Federal {...expected} />)
     expect(component.find('.accordion').length).toBeGreaterThan(0)
@@ -19,7 +21,7 @@ describe('The federal component', () => {
   it('selects no', () => {
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'No'
+      HasFederalService: { value: 'No' }
     }
     const component = mount(<Federal {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -29,8 +31,10 @@ describe('The federal component', () => {
     let updates = 0
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'Yes',
-      List: [{}],
+      HasFederalService: { value: 'Yes' },
+      List: {
+        items: [{}]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Federal {...expected} />)
@@ -45,45 +49,47 @@ describe('The federal component', () => {
   it('can display a summary', () => {
     const expected = {
       name: 'federal_service',
-      HasFederalService: 'Yes',
-      List: [
-        {
-          Item: {
-            Name: {
-              value: 'Acme'
-            },
-            Position: {
-              value: ' Chief Anvil Engineer'
-            },
-            Dates: {
-              from: {
-                date: new Date(2017, 1, 1)
+      HasFederalService: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              Name: {
+                value: 'Acme'
               },
-              to: {
-                date: new Date(2017, 2, 1)
+              Position: {
+                value: ' Chief Anvil Engineer'
+              },
+              Dates: {
+                from: {
+                  date: new Date(2017, 1, 1)
+                },
+                to: {
+                  date: new Date(2017, 2, 1)
+                }
+              }
+            }
+          },
+          {
+            Item: {
+              Name: {
+                value: 'Quills R Us'
+              },
+              Position: {
+                value: 'I wrote stuff'
+              },
+              Dates: {
+                from: {
+                  date: new Date(2017, 2, 1)
+                },
+                to: {
+                  date: new Date(2017, 3, 1)
+                }
               }
             }
           }
-        },
-        {
-          Item: {
-            Name: {
-              value: 'Quills R Us'
-            },
-            Position: {
-              value: 'I wrote stuff'
-            },
-            Dates: {
-              from: {
-                date: new Date(2017, 2, 1)
-              },
-              to: {
-                date: new Date(2017, 3, 1)
-              }
-            }
-          }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<Federal {...expected} />)
     expect(component.find('.accordion').length).toBe(1)

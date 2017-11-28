@@ -17,7 +17,8 @@ describe('The cohabitant component', () => {
     const expected = {
       name: 'cohabitant',
       SSN: {},
-      ForeignBornDocument: { DocumentType: 'Other' },
+      BirthPlace: { country: { value: 'Germany' } },
+      ForeignBornDocument: { DocumentType: { value: 'Other' } },
       OtherNameMaiden: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
@@ -26,7 +27,7 @@ describe('The cohabitant component', () => {
     expect(component.find('.cohabitant').length).toEqual(1)
     component.find('.cohabitant-name .first input').simulate('change')
     component.find('.birthdate .month input').simulate('change', { target: { value: '12' } })
-    component.find('.birthplace .no input').simulate('change')
+    component.find('.birthplace .city input').simulate('change')
     component.find('.foreign-born-documents input').first().simulate('change')
     component.find('.foreign-born-documents .other input').simulate('change')
     component.find('.foreign-born-documents textarea').simulate('change')

@@ -39,9 +39,9 @@ export default class FutureBenefit extends ValidationElement {
     })
   }
 
-  updateFrequency (cb) {
+  updateFrequency (values) {
     this.update({
-      Frequency: cb.value
+      Frequency: values
     })
   }
 
@@ -63,9 +63,9 @@ export default class FutureBenefit extends ValidationElement {
     })
   }
 
-  updateValueEstimated (cb) {
+  updateValueEstimated (values) {
     this.update({
-      ValueEstimated: cb.checked
+      ValueEstimated: values
     })
   }
 
@@ -107,10 +107,10 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.frequency')}
-          adjustFor="big-buttons"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="big-buttons"
+               scrollIntoView={this.props.scrollIntoView}>
 
-          <RadioGroup className="frequency" selectedValue={this.props.Frequency} onError={this.props.onError} required={this.props.required}>
+          <RadioGroup className="frequency" selectedValue={(this.props.Frequency || {}).value} onError={this.props.onError} required={this.props.required}>
             <Radio name="benefit_frequency"
                    label={i18n.m('foreign.activities.benefit.future.label.frequency.annually')}
                    value="Annually"
@@ -142,7 +142,7 @@ export default class FutureBenefit extends ValidationElement {
                    onError={this.props.onError}
                    />
           </RadioGroup>
-          <Show when={this.props.Frequency === 'Other'}>
+          <Show when={(this.props.Frequency || {}).value === 'Other'}>
             <div>
               {i18n.m('foreign.activities.benefit.future.para.frequencyOther')}
               <Textarea name="OtherFrequency"
@@ -157,7 +157,7 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.country')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    onUpdate={this.updateCountry}
@@ -167,7 +167,7 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.value')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Value"
                     className="value"
                     {...this.props.Value}
@@ -180,7 +180,7 @@ export default class FutureBenefit extends ValidationElement {
             <Checkbox name="ValueEstimated"
                       label={i18n.t('foreign.activities.benefit.future.label.valueEstimated')}
                       toggle="false"
-                      checked={this.props.ValueEstimated}
+                      {...this.props.ValueEstimated}
                       onUpdate={this.updateValueEstimated}
                       onError={this.props.onError}
                       />
@@ -188,7 +188,7 @@ export default class FutureBenefit extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('foreign.activities.benefit.future.heading.reason')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
                     className="reason"
                     {...this.props.Reason}
@@ -202,14 +202,14 @@ export default class FutureBenefit extends ValidationElement {
                 className="obligated no-margin-bottom"
                 label={i18n.t('foreign.activities.benefit.future.heading.obligated')}
                 labelSize="h3"
-                value={this.props.Obligated}
+                {...this.props.Obligated}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateObligated}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.Obligated === 'Yes'}>
+        <Show when={(this.props.Obligated || {}).value === 'Yes'}>
           <Field title={i18n.t('foreign.activities.benefit.future.label.obligatedExplanation')}
                  titleSize="label"
                  adjustFor="textarea">
@@ -228,6 +228,7 @@ export default class FutureBenefit extends ValidationElement {
 }
 
 FutureBenefit.defaultProps = {
+  Obligated: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

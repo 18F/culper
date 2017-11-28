@@ -2,37 +2,26 @@ import NameValidator from './name'
 import LocationValidator from './location'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
-import { validSSN, validDateField, validBranch, BranchCollection } from './helpers'
+import { validAccordion, validSSN, validDateField, validBranch, BranchCollection } from './helpers'
 
 export default class CohabitantsValidator {
   constructor (state = {}) {
-    this.hasCohabitant = state.HasCohabitant
-    this.cohabitantList = state.CohabitantList || []
-    this.cohabitantListBranch = state.CohabitantListBranch
+    this.hasCohabitant = (state.HasCohabitant || {}).value
+    this.list = state.CohabitantList || {}
   }
 
   isValid () {
     if (!validBranch(this.hasCohabitant)) {
       return false
     }
+
     if (this.hasCohabitant === 'No') {
       return true
     }
 
-    if (!this.cohabitantList.length) {
-      return false
-    }
-
-    if (this.cohabitantListBranch !== 'No') {
-      return false
-    }
-
-    for (let item of this.cohabitantList) {
-      if (!new CohabitantValidator(item.Item).isValid()) {
-        return false
-      }
-    }
-    return true
+    return validAccordion(this.list, (item) => {
+      return new CohabitantValidator(item).isValid()
+    })
   }
 }
 
@@ -77,7 +66,7 @@ export class CohabitantValidator {
     }
 
     return branchValidator.each(row => {
-      const item = row.Item
+      const item = row.Item || {}
       return new NameValidator(item.OtherName).isValid() &&
         new DateRangeValidator(item.DatesUsed) &&
         validBranch((item.MaidenName || {}).value)

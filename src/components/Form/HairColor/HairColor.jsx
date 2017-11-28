@@ -19,7 +19,9 @@ export default class HairColor extends ValidationElement {
   handleChange (event) {
     this.setState({value: event.target.value}, () => {
       if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
+        this.props.onUpdate({
+          value: this.state.value
+        })
       }
     })
   }
@@ -217,7 +219,7 @@ export default class HairColor extends ValidationElement {
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
                  >
-            <div className="hair-icon">
+            <div className="hair-icon purple">
               <Svg src="/img/hair.svg" />
             </div>
           </Radio>

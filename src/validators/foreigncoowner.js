@@ -3,7 +3,7 @@ import NameValidator from './name'
 import { validGenericTextfield, BranchCollection } from './helpers'
 
 export default class ForeignCoOwnersValidator {
-  constructor (state, props = {}) {
+  constructor (state = {}, props = {}) {
     this.list = props.List || []
   }
 
@@ -13,9 +13,10 @@ export default class ForeignCoOwnersValidator {
       return false
     }
 
-    if (this.list.length === 1 && validator.hasNo()) {
+    if (this.list.items.length === 1 && validator.hasNo()) {
       return true
     }
+
     return validator.each((item) => {
       return new ForeignCoOwnerValidator(null, item.CoOwner).isValid()
     })

@@ -1,7 +1,7 @@
 {
   "type": "identification.birthdate",
   "props": {
-    "date": {
+    "Date": {
       "type": "datecontrol",
       "props": {
         "month": "7",

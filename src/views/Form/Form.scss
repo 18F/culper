@@ -392,4 +392,30 @@ select {
     color: #981b1e;
     content: '*';
   }
+
+  // Specifically target labels for the requirement token(s).
+  .telephone {
+    .numbers > label,
+    .phonetype > label {
+      &:after {
+        font-family: $eapp-serif;
+        font-size: 1.2rem;
+        font-weight: normal;
+        vertical-align: text-top;
+        margin-left: 0.4rem;
+        color: #981b1e;
+        content: '*';
+      }
+    }
+  }
+
+  // This allows the component to handle its own placement of requirement tokens.
+  // A use case for this is `<Telephone />`. The field title does not have an required token,
+  // but two labels within the component potentially do.
+  &.override-required {
+    .title:after,
+    > label:after {
+      content: none;
+    }
+  }
 }

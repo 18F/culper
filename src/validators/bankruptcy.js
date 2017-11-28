@@ -1,15 +1,14 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validGenericMonthYear, validGenericTextfield, validBranch } from './helpers'
+import { validAccordion, validGenericMonthYear, validGenericTextfield, validBranch } from './helpers'
 
 /**
  * Validates an entire Bankruptcy section
  */
 export default class BankruptcyValidator {
-  constructor (data) {
-    this.hasBankruptcy = data.HasBankruptcy
-    this.list = data.List
-    this.listBranch = data.ListBranch
+  constructor (data = {}) {
+    this.hasBankruptcy = (data.HasBankruptcy || {}).value
+    this.list = data.List || {}
   }
 
   /**
@@ -32,22 +31,9 @@ export default class BankruptcyValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new BankruptcyItemValidator(item.Item).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new BankruptcyItemValidator(item).isValid()
+    })
   }
 
   /**
@@ -73,14 +59,14 @@ export class BankruptcyItemValidator {
     this.dateFiled = data.DateFiled
     this.dateDischarged = data.DateDischarged
     this.dateDischargedNotApplicable = data.DateDischargedNotApplicable
-    this.hasDischargeExplanation = data.HasDischargeExplanation
+    this.hasDischargeExplanation = (data.HasDischargeExplanation || {}).value
     this.dischargeExplanation = data.DischargeExplanation
     this.trustee = data.Trustee
     this.trusteeAddress = data.TrusteeAddress
   }
 
   validPetitionType () {
-    switch (this.petitionType) {
+    switch ((this.petitionType || {}).value) {
       case 'Chapter7':
       case 'Chapter11':
       case 'Chapter12':

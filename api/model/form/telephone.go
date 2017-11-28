@@ -5,9 +5,8 @@ import (
 	"regexp"
 	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 var (
@@ -18,7 +17,7 @@ var (
 
 // Telephone is a basic input.
 type Telephone struct {
-	ID         int
+	ID         int    `json:"-"`
 	TimeOfDay  string `json:"timeOfDay"`
 	Type       string `json:"type"`
 	NumberType string `json:"numberType"`
@@ -30,6 +29,11 @@ type Telephone struct {
 // Unmarshal bytes in to the entity properties.
 func (entity *Telephone) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
+}
+
+// Marshal to payload structure
+func (entity *Telephone) Marshal() Payload {
+	return MarshalPayloadEntity("telephone", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -70,58 +74,52 @@ func (entity *Telephone) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *Telephone) Save(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Telephone{}, options); err != nil {
+func (entity *Telephone) Save(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Telephone) Delete(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Telephone{}, options); err != nil {
+func (entity *Telephone) Delete(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Telephone) Get(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Telephone{}, options); err != nil {
+func (entity *Telephone) Get(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// ID returns the entity identifier.
+func (entity *Telephone) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Telephone) SetID(id int) {
+	entity.ID = id
 }

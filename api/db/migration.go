@@ -16,9 +16,12 @@ func MigrateUp(directory, environment, schema string) error {
 		return err
 	}
 
-	target, err := goose.GetMostRecentDBVersion(conf.MigrationsDir)
+	target, err := goose.NumericComponent(os.Getenv("DB_MIGRATION_TARGET"))
 	if err != nil {
-		return err
+		target, err = goose.GetMostRecentDBVersion(conf.MigrationsDir)
+		if err != nil {
+			return err
+		}
 	}
 
 	return goose.RunMigrations(conf, conf.MigrationsDir, target)

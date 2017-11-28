@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessVotingValidator, VotingValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -17,7 +19,6 @@ export default class Voting extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignVoting: this.props.HasForeignVoting,
       ...queue
     })
@@ -26,15 +27,13 @@ export default class Voting extends SubsectionElement {
   updateHasForeignVoting (values) {
     this.update({
       HasForeignVoting: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -58,7 +57,7 @@ export default class Voting extends SubsectionElement {
         <Branch name="has_foreign_voting"
                 label={i18n.t('foreign.business.voting.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignVoting}
+                {...this.props.HasForeignVoting}
                 warning={true}
                 onUpdate={this.updateHasForeignVoting}
                 required={this.props.required}
@@ -66,11 +65,10 @@ export default class Voting extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasForeignVoting === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignVoting.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={VotingValidator}
@@ -80,11 +78,11 @@ export default class Voting extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.voting.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <VotingItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <VotingItem name="Item"
+                        bind={true}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
           </Accordion>
         </Show>
       </div>
@@ -94,16 +92,15 @@ export default class Voting extends SubsectionElement {
 
 Voting.defaultProps = {
   name: 'Voting',
-  HasForeignVoting: '',
-  List: [],
-  ListBranch: '',
+  HasForeignVoting: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/voting',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessVotingValidator(props).isValid()
+    return validate(schema('foreign.business.voting', props))
   },
   defaultState: true,
   scrollToBottom: ''

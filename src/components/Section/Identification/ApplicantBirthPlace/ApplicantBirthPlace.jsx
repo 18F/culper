@@ -1,10 +1,30 @@
 import React from 'react'
-import LocationValidator from '../../../../validators/location'
+import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Location, Field } from '../../../Form'
-import { i18n } from '../../../../config'
 
 export default class ApplicantBirthPlace extends SubsectionElement {
+  constructor (props) {
+    super(props)
+    this.update = this.update.bind(this)
+    this.updateLocation = this.updateLocation.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      Location: this.props.Location,
+      ...queue
+    })
+  }
+
+  updateLocation (values) {
+    this.update({
+      Location: values
+    })
+  }
+
   render () {
     const klass = `applicant-birthplace ${this.props.className || ''}`.trim()
 
@@ -15,6 +35,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
                className="no-margin-bottom"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
+                    {...this.props.Location}
                     layout={Location.BIRTHPLACE}
                     label={i18n.t('identification.birthplace.label.location')}
                     stateLabel={i18n.t('identification.birthplace.label.state')}
@@ -25,8 +46,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
                     countyPlaceholder={i18n.t('identification.birthplace.placeholder.county')}
                     countryLabel={i18n.t('identification.birthplace.label.country')}
                     countryPlaceholder={i18n.t('identification.birthplace.placeholder.country')}
-                    {...this.props.value}
-                    onUpdate={this.props.onUpdate}
+                    onUpdate={this.updateLocation}
                     onError={this.handleError}
                     required={this.props.required}
                     />
@@ -37,13 +57,14 @@ export default class ApplicantBirthPlace extends SubsectionElement {
 }
 
 ApplicantBirthPlace.defaultProps = {
-  value: {},
+  location: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'identification',
   subsection: 'birthplace',
   dispatch: () => {},
   validator: (state, props) => {
-    return new LocationValidator(props.value, props).isValid()
+    return validate(schema('identification.birthplace', props))
   }
 }
 

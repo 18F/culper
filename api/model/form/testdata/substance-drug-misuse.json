@@ -1,7 +1,7 @@
 {
-  "type": "substance.drug.misuse",
+  "type": "substance.drugs.misuse",
   "props": {
-    "UsedDrugs": {
+    "MisusedDrugs": {
       "type": "branch",
       "props": {
         "value": "Yes"

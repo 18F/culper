@@ -2,7 +2,7 @@ import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import ReferenceValidator from './reference'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 // Options for roles
 const roleOptions = ['Other', 'Military', 'Owned', 'Rented']
@@ -11,13 +11,25 @@ const withinThreeYears = (from, to) => {
   return (from && from >= threeYearsAgo) || (to && to >= threeYearsAgo)
 }
 
-export default class ResidenceValidator {
-  constructor (state = {}, props = {}) {
-    this.dates = state.Dates
-    this.address = state.Address
-    this.reference = state.Reference
-    this.role = state.Role
-    this.roleOther = state.RoleOther
+export default class HistoryResidenceValidator {
+  constructor (data = {}) {
+    this.List = data.List || {}
+  }
+
+  isValid () {
+    return validAccordion(this.list, (item) => {
+      return new ResidenceValidator(item).isValid()
+    })
+  }
+}
+
+export class ResidenceValidator {
+  constructor (data = {}) {
+    this.dates = data.Dates || {}
+    this.address = data.Address || {}
+    this.reference = data.Reference || {}
+    this.role = (data.Role || {}).value
+    this.roleOther = data.RoleOther || {}
   }
 
   validDates () {

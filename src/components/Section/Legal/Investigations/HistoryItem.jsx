@@ -222,9 +222,11 @@ export default class HistoryItem extends ValidationElement {
 }
 
 HistoryItem.defaultProps = {
+  required: false,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
-  AgencyNotApplicable: {
-    applicable: true
-  }
+  AgencyNotApplicable: { applicable: true },
+  CompletedNotApplicable: { applicable: true },
+  GrantedNotApplicable: { applicable: true },
+  ClearanceNotApplicable: { applicable: true }
 }

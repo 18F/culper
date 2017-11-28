@@ -20,15 +20,6 @@ export default class Street extends ValidationElement {
     })
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-    })
-  }
-
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
@@ -42,14 +33,27 @@ export default class Street extends ValidationElement {
     return this.props.onError(value, arr)
   }
 
+  label () {
+    if (this.props.label && this.props.optional) {
+      return (
+        <span>
+          {this.props.label}
+          <span className="optional">{i18n.t('address.us.street2.optional')}</span>
+        </span>
+      )
+    }
+
+    return this.props.label
+  }
+
   render () {
     return (
       <Text name={this.props.name}
             className={this.props.className}
-            label={this.props.label}
+            label={this.label()}
             placeholder={this.props.placeholder}
             value={this.state.value}
-            onChange={this.handleChange}
+            onUpdate={this.props.onUpdate}
             onError={this.handleError}
             onFocus={this.props.onFocus}
             onBlur={this.props.onBlur}
@@ -63,6 +67,7 @@ Street.defaultProps = {
   value: '',
   label: '',
   optional: false,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

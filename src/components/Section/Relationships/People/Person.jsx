@@ -64,7 +64,8 @@ export default class Person extends React.Component {
 
   updateRelationship (event) {
     let relations = event.target.value
-    let selected = [...this.props.Relationship]
+    let currentRelationships = (this.props.Relationship || {}).values || []
+    let selected = [...currentRelationships]
 
     if (selected.includes(relations)) {
       // Remove the relationship if it was previously selected
@@ -75,7 +76,9 @@ export default class Person extends React.Component {
     }
 
     this.update({
-      Relationship: selected
+      Relationship: {
+        values: selected
+      }
     })
   }
 
@@ -158,7 +161,7 @@ export default class Person extends React.Component {
                   {...this.props.Rank}
                   onUpdate={this.updateRank}
                   onError={this.props.onError}
-                  required={this.props.required}
+                  required={(this.props.RankNotApplicable || {}).applicable && this.props.required}
                   />
           </NotApplicable>
         </Field>
@@ -171,7 +174,7 @@ export default class Person extends React.Component {
           <CheckboxGroup className="relationship option-list eapp-extend-labels"
                          required={this.props.required}
                          onError={this.props.onError}
-                         selectedValues={this.props.Relationship}>
+                         selectedValues={this.props.Relationship.values}>
             <Checkbox name="relationship-neighbor"
                       label={i18n.t(`relationships.people.person.label.relationship.neighbor`)}
                       value="Neighbor"
@@ -219,7 +222,7 @@ export default class Person extends React.Component {
             </Checkbox>
           </CheckboxGroup>
 
-          <Show when={this.props.Relationship.includes('Other')}>
+          <Show when={((this.props.Relationship || {}).values || []).includes('Other')}>
             <Field title={i18n.t(`relationships.people.person.label.relationship.explanation`)}
                    titleSize="label"
                    adjustFor="text"
@@ -237,7 +240,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.mobileTelephone')}
-               className="mobile-telephone"
+               className="mobile-telephone override-required"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="MobileTelephone"
@@ -249,7 +252,7 @@ export default class Person extends React.Component {
         </Field>
 
         <Field title={i18n.t('relationships.people.person.heading.otherTelephone')}
-               className="other-telephone"
+               className="other-telephone override-required"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="telephone">
           <Telephone name="OtherTelephone"
@@ -274,7 +277,7 @@ export default class Person extends React.Component {
                    {...this.props.Email}
                    onUpdate={this.updateEmail}
                    onError={this.props.onError}
-                   required={this.props.required}
+                   required={(this.props.EmailNotApplicable || {}).applicable && this.props.required}
                    />
           </NotApplicable>
         </Field>
@@ -304,7 +307,9 @@ export default class Person extends React.Component {
 }
 
 Person.defaultProps = {
-  Relationship: [],
+  Relationship: { values: [] },
+  RankNotApplicable: { applicable: true },
+  EmailNotApplicable: { applicable: true },
   addressBooks: {},
   addressBook: 'Reference',
   dispatch: (action) => {},

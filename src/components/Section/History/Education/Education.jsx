@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { EducationValidator, EducationItemValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { EducationItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
@@ -10,14 +11,14 @@ import EducationItem from './EducationItem'
 const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
     // If item is required and not currently opened and is not valid, show message
-    case required && !item.open && !validator(item.Item):
-    case !item.open && !initial && item.Item && !validator(item.Item):
-      return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
-        <div className="incomplete">{i18n.m(translation)}</div>
-      </div>
-      )
-    default:
-      return null
+  case required && !item.open && !validator(item.Item):
+  case !item.open && !initial && item.Item && !validator(item.Item):
+    return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
+            <div className="incomplete">{i18n.m(translation)}</div>
+            </div>
+           )
+  default:
+    return null
   }
 }
 
@@ -39,7 +40,7 @@ export default class Education extends SubsectionElement {
       <div className="education">
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
-                   items={this.props.value.List}
+                   {...this.props.List}
                    sort={this.props.sort}
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
@@ -48,16 +49,17 @@ export default class Education extends SubsectionElement {
                    byline={this.customEducationByline}
                    customSummary={EducationCustomSummary}
                    description={i18n.t('history.education.collection.school.summary.title')}
+                   appendTitle={i18n.t('history.education.collection.school.appendTitle')}
                    appendLabel={i18n.t('history.education.collection.school.append')}
                    required={this.props.required}
                    scrollIntoView={this.props.scrollIntoView}>
-                   <EducationItem name="Item"
-                     bind={true}
-                     required={this.props.required}
-                     scrollIntoView={this.props.scrollIntoView}
-                     addressBooks={this.props.addressBooks}
-                     dispatch={this.props.dispatch}
-                   />
+          <EducationItem name="Item"
+                         bind={true}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
+                         addressBooks={this.props.addressBooks}
+                         dispatch={this.props.dispatch}
+                         />
         </Accordion>
       </div>
     )
@@ -65,7 +67,7 @@ export default class Education extends SubsectionElement {
 }
 
 Education.defaultProps = {
-  value: [],
+  List: Accordion.defaultList,
   scrollToTop: '',
   defaultState: true,
   realtime: false,
@@ -78,6 +80,6 @@ Education.defaultProps = {
   subsection: 'education',
   dispatch: () => {},
   validator: (state, props) => {
-    return new EducationValidator(props.value, props.value).isValid()
+    return validate(schema('history.education', props))
   }
 }

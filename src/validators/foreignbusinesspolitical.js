@@ -1,11 +1,10 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignBusinessPoliticalValidator {
   constructor (data = {}) {
-    this.hasForeignPolitical = data.HasForeignPolitical
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasForeignPolitical = (data.HasForeignPolitical || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -13,19 +12,9 @@ export default class ForeignBusinessPoliticalValidator {
       return true
     }
 
-    if (this.hasForeignPolitical === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new PoliticalValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new PoliticalValidator(item).isValid()
+    })
   }
 
   isValid () {

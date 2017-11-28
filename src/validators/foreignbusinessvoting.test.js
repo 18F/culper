@@ -97,51 +97,57 @@ describe('Foreign business voting component validation', function () {
       },
       {
         state: {
-          HasForeignVoting: 'No'
+          HasForeignVoting: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignVoting: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasForeignVoting: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasForeignVoting: 'Yes',
-          List: [{}],
-          ListBranch: 'No'
+          HasForeignVoting: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasForeignVoting: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Country: {
-                  value: 'Germany'
-                },
-                Reason: {
-                  value: 'this is the reason'
-                },
-                Eligibility: {
-                  value: 'this is the eligibility'
+          HasForeignVoting: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Reason: {
+                    value: 'this is the reason'
+                  },
+                  Eligibility: {
+                    value: 'this is the eligibility'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

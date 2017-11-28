@@ -90,7 +90,7 @@ export default class Sentence extends ValidationElement {
                 label={i18n.t('legal.police.heading.exceedsYear')}
                 labelSize="h4"
                 className="exceeds-year"
-                value={this.props.ExceedsYear}
+                {...this.props.ExceedsYear}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateExceedsYear}
@@ -101,7 +101,7 @@ export default class Sentence extends ValidationElement {
                 label={i18n.t('legal.police.heading.incarcerated')}
                 labelSize="h4"
                 className="incarcerated"
-                value={this.props.Incarcerated}
+                {...this.props.Incarcerated}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateIncarcerated}
@@ -160,12 +160,12 @@ export default class Sentence extends ValidationElement {
 
 Sentence.defaultProps = {
   Description: {},
-  ExceedsYear: '',
-  Incarcerated: '',
+  ExceedsYear: {},
+  Incarcerated: {},
   IncarcerationDates: {},
   ProbationDates: {},
-  IncarcerationDatesNA: {},
-  ProbationDatesNA: {},
+  IncarcerationDatesNA: { applicable: true },
+  ProbationDatesNA: { applicable: true},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

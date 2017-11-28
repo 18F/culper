@@ -3,8 +3,7 @@ package form
 import (
 	"encoding/json"
 
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
+	"github.com/18F/e-QIP-prototype/api/db"
 )
 
 type HistoryResidence struct {
@@ -14,9 +13,8 @@ type HistoryResidence struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID     int `json:"-"`
+	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -35,89 +33,111 @@ func (entity *HistoryResidence) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *HistoryResidence) Marshal() Payload {
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("history.residence", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *HistoryResidence) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
 // Save will create or update the database.
-func (entity *HistoryResidence) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryResidence) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&HistoryResidence{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryResidence)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&HistoryResidence{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryResidence) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryResidence) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryResidence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&HistoryResidence{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryResidence)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryResidence) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryResidence) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryResidence{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *HistoryResidence) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryResidence) SetID(id int) {
+	entity.ID = id
 }
 
 type HistoryEmployment struct {
@@ -127,9 +147,8 @@ type HistoryEmployment struct {
 	List *Collection `json:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	ListID    int
+	ID     int `json:"-"`
+	ListID int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -148,89 +167,111 @@ func (entity *HistoryEmployment) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *HistoryEmployment) Marshal() Payload {
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("history.employment", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *HistoryEmployment) Valid() (bool, error) {
 	return entity.List.Valid()
 }
 
 // Save will create or update the database.
-func (entity *HistoryEmployment) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryEmployment) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&HistoryEmployment{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryEmployment)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	listID, err := entity.List.Save(context, account)
 	if err != nil {
 		return listID, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&HistoryEmployment{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryEmployment) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryEmployment) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryEmployment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&HistoryEmployment{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryEmployment)
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryEmployment) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryEmployment) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryEmployment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *HistoryEmployment) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryEmployment) SetID(id int) {
+	entity.ID = id
 }
 
 type HistoryEducation struct {
@@ -244,11 +285,10 @@ type HistoryEducation struct {
 	List        *Collection `json:"-"`
 
 	// Persister specific fields
-	ID            int
-	AccountID     int64
-	HasAttendedID int
-	HasDegree10ID int
-	ListID        int
+	ID            int `json:"-"`
+	HasAttendedID int `json:"-" pg:", fk:HasAttended"`
+	HasDegree10ID int `json:"-" pg:", fk:HasDegree10"`
+	ListID        int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -279,6 +319,20 @@ func (entity *HistoryEducation) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *HistoryEducation) Marshal() Payload {
+	if entity.HasAttended != nil {
+		entity.PayloadHasAttended = entity.HasAttended.Marshal()
+	}
+	if entity.HasDegree10 != nil {
+		entity.PayloadHasDegree10 = entity.HasDegree10.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("history.education", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *HistoryEducation) Valid() (bool, error) {
 	if entity.HasAttended.Value == "Yes" || entity.HasDegree10.Value == "Yes" {
@@ -289,10 +343,32 @@ func (entity *HistoryEducation) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryEducation) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryEducation) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&HistoryEducation{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryEducation)
+		if entity.HasAttended == nil {
+			entity.HasAttended = &Branch{}
+		}
+		entity.HasAttendedID = previous.HasAttendedID
+		entity.HasAttended.ID = previous.HasAttendedID
+		if entity.HasDegree10 == nil {
+			entity.HasDegree10 = &Branch{}
+		}
+		entity.HasDegree10ID = previous.HasDegree10ID
+		entity.HasDegree10.ID = previous.HasDegree10ID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasAttendedID, err := entity.HasAttended.Save(context, account)
 	if err != nil {
 		return hasAttendedID, err
@@ -311,93 +387,107 @@ func (entity *HistoryEducation) Save(context *pg.DB, account int64) (int, error)
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&HistoryEducation{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryEducation) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryEducation) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryEducation{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasAttended.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.HasDegree10.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&HistoryEducation{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryEducation)
+		if entity.HasAttended == nil {
+			entity.HasAttended = &Branch{}
+		}
+		entity.HasAttendedID = previous.HasAttendedID
+		entity.HasAttended.ID = previous.HasAttendedID
+		if entity.HasDegree10 == nil {
+			entity.HasDegree10 = &Branch{}
+		}
+		entity.HasDegree10ID = previous.HasDegree10ID
+		entity.HasDegree10.ID = previous.HasDegree10ID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasAttended.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.HasDegree10.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryEducation) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryEducation) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryEducation{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasAttendedID != 0 {
+		entity.HasAttended = &Branch{ID: entity.HasAttendedID}
 		if _, err := entity.HasAttended.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.HasDegree10ID != 0 {
+		entity.HasDegree10 = &Branch{ID: entity.HasDegree10ID}
 		if _, err := entity.HasDegree10.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *HistoryEducation) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryEducation) SetID(id int) {
+	entity.ID = id
 }
 
 type HistoryFederal struct {
@@ -409,10 +499,9 @@ type HistoryFederal struct {
 	List              *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                  int
-	AccountID           int64
-	HasFederalServiceID int
-	ListID              int
+	ID                  int `json:"-"`
+	HasFederalServiceID int `json:"-" pg:", fk:HasFederalService"`
+	ListID              int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -437,6 +526,17 @@ func (entity *HistoryFederal) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *HistoryFederal) Marshal() Payload {
+	if entity.HasFederalService != nil {
+		entity.PayloadHasFederalService = entity.HasFederalService.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("history.federal", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *HistoryFederal) Valid() (bool, error) {
 	if entity.HasFederalService.Value == "No" {
@@ -447,10 +547,27 @@ func (entity *HistoryFederal) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *HistoryFederal) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryFederal) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&HistoryFederal{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryFederal)
+		if entity.HasFederalService == nil {
+			entity.HasFederalService = &Branch{}
+		}
+		entity.HasFederalServiceID = previous.HasFederalServiceID
+		entity.HasFederalService.ID = previous.HasFederalServiceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasFederalServiceID, err := entity.HasFederalService.Save(context, account)
 	if err != nil {
 		return hasFederalServiceID, err
@@ -463,81 +580,89 @@ func (entity *HistoryFederal) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&HistoryFederal{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *HistoryFederal) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryFederal) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryFederal{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasFederalService.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&HistoryFederal{ID: account}, func(result interface{}) {
+		previous := result.(*HistoryFederal)
+		if entity.HasFederalService == nil {
+			entity.HasFederalService = &Branch{}
+		}
+		entity.HasFederalServiceID = previous.HasFederalServiceID
+		entity.HasFederalService.ID = previous.HasFederalServiceID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasFederalService.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *HistoryFederal) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *HistoryFederal) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&HistoryFederal{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasFederalServiceID != 0 {
+		entity.HasFederalService = &Branch{ID: entity.HasFederalServiceID}
 		if _, err := entity.HasFederalService.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *HistoryFederal) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *HistoryFederal) SetID(id int) {
+	entity.ID = id
 }

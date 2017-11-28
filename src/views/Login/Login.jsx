@@ -2,6 +2,7 @@ import React from 'react'
 import { LoginOAuth, TwoFactor } from '../../components'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
+import { api } from '../../services'
 import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Consent, Text, Show } from '../../components/Form'
@@ -13,11 +14,14 @@ class Login extends React.Component {
       authenticated: this.props.authenticated,
       twofactor: this.props.twofactor,
       username: this.props.username,
-      password: this.props.password
+      password: this.props.password,
+      showPassword: this.props.showPassword,
+      saml: {}
     }
 
     this.onUsernameChange = this.onUsernameChange.bind(this)
     this.onPasswordChange = this.onPasswordChange.bind(this)
+    this.togglePassword = this.togglePassword.bind(this)
     this.login = this.login.bind(this)
     this.mfa = env.MultipleFactorAuthentication()
   }
@@ -28,26 +32,43 @@ class Login extends React.Component {
 
   componentWillMount () {
     this.redirect()
+    if (env.SamlEnabled()) {
+      api.saml().then((response) => {
+        this.setState({ saml: response.data || {} })
+      })
+    }
   }
 
   redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
-      this.props.dispatch(push('/form/identification/name'))
+      this.props.dispatch(push('/form/identification/intro'))
     }
   }
 
   onUsernameChange (e) {
-    this.setState({username: e.target.value})
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({username: e.target.value})
+    }
   }
 
   onPasswordChange (e) {
-    this.setState({password: e.target.value})
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({password: e.target.value})
+    }
+  }
+
+  togglePassword () {
+    if (env.BasicAuthenticationEnabled()) {
+      this.setState({showPassword: !this.state.showPassword})
+    }
   }
 
   login (event) {
     event.preventDefault()
-    this.props.dispatch(login(this.state.username, this.state.password))
+    if (env.BasicAuthenticationEnabled()) {
+      this.props.dispatch(login(this.state.username, this.state.password))
+    }
   }
 
   errorMessage () {
@@ -76,7 +97,7 @@ class Login extends React.Component {
 
   loginForm () {
     const authValid = this.props.error === undefined || this.props.error === ''
-    let pwClass = 'help'
+    let pwClass = 'password help'
     if (!authValid) {
       pwClass += ' usa-input-error'
     }
@@ -88,42 +109,60 @@ class Login extends React.Component {
           <p>{i18n.t('login.para')}</p>
         </div>
 
-        <div id="basic" className="login-basic usa-width-one-whole">
-          <form onSubmit={this.login}>
-            <div>
-              <Text name="user"
-                    placeholder="Enter your username"
-                    label="Username"
-                    autoFocus
-                    value={this.state.username}
-                    onChange={this.onUsernameChange} />
-            </div>
-            <div className={pwClass}>
-              <label
-                htmlFor="password">
-                Password
-              </label>
-              <input id="password"
-                     name="password"
-                     type="password"
-                     placeholder={i18n.t('login.placeholder.password')}
-                     value={this.state.password}
-                     onChange={this.onPasswordChange} />
-              {this.errorMessage()}
-            </div>
-            <div>
-              <button type="submit">{i18n.t('login.submit')}</button>
-              <a id="forgot-password" href="#" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
-            </div>
-          </form>
-        </div>
+        <Show when={env.BasicAuthenticationEnabled()}>
+          <div id="basic" className="login-basic usa-width-one-whole">
+            <form onSubmit={this.login}>
+              <div>
+                <Text name="user"
+                      placeholder="Enter your username"
+                      label="Username"
+                      autoFocus
+                      value={this.state.username}
+                      onChange={this.onUsernameChange} />
+              </div>
+              <div className={pwClass}>
+                <label
+                  htmlFor="password">
+                  Password
+                </label>
+                <input id="password"
+                      name="password"
+                      type={this.state.showPassword ? 'text' : 'password'}
+                      placeholder={i18n.t('login.placeholder.password')}
+                      value={this.state.password}
+                      onChange={this.onPasswordChange} />
+                <div className="peek">
+                  <a id="show-password" onClick={this.togglePassword} href="javascript:;;" title={i18n.t('login.show.title')}>{i18n.t('login.show.text')}</a>
+                </div>
+                {this.errorMessage()}
+              </div>
+              <div>
+                <button type="submit">{i18n.t('login.submit')}</button>
+                <a id="forgot-password" href="javascript:;;" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
+              </div>
+            </form>
+          </div>
+        </Show>
 
-        <Show when={this.props.oauth}>
-          <div id="oauth" className="login-oauth usa-width-one-whole">
-            <span>Sign in with</span>
+        <Show when={env.OAuthEnabled()}>
+          <div id="oauth" className="login-sso">
+            <span>Sign in with </span>
             <LoginOAuth authenticated={this.state.authenticated}>
               <i className="fa fa-github" aria-hidden="true"></i>
             </LoginOAuth>
+          </div>
+        </Show>
+
+        <Show when={env.SamlEnabled()}>
+          <div id="saml" className="login-sso">
+            <form method="post" action={this.state.saml.URL}>
+              <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
+              <span>Sign in with </span>
+              <button type="submit" className="usa-button-unstyled">
+                <span>CAC or PIV</span>
+                <i className="fa fa-id-card-o" aria-hidden="true"></i>
+              </button>
+            </form>
           </div>
         </Show>
       </div>
@@ -168,11 +207,11 @@ class Login extends React.Component {
 }
 
 Login.defaultProps = {
-  oauth: false,
   authenticated: false,
   twofactor: false,
   username: '',
-  password: ''
+  password: '',
+  showPassword: false
 }
 
 /**

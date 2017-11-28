@@ -98,7 +98,7 @@ export default class VoluntaryCounseling extends ValidationElement {
         </Field>
         <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.treatmentProviderTelephone')}
                help={'substance.alcohol.voluntaryCounseling.help.treatmentProviderTelephone'}
-               adjustFor="telephone"
+               className="override-required"
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="TreatmentProviderTelephone"
                      className="provider-telephone"
@@ -114,14 +114,14 @@ export default class VoluntaryCounseling extends ValidationElement {
                 label={i18n.t('substance.alcohol.voluntaryCounseling.heading.completedTreatment')}
                 labelSize="h3"
                 className="completed-treatment no-margin-bottom"
-                value={this.props.CompletedTreatment}
+                {...this.props.CompletedTreatment}
                 onUpdate={this.updateCompletedTreatment}
                 required={this.props.required}
                 onError={this.props.onError}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.CompletedTreatment === 'No'}>
+        <Show when={this.props.CompletedTreatment.value === 'No'}>
           <Field title={i18n.t('substance.alcohol.voluntaryCounseling.heading.noCompletedTreatment')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -140,6 +140,7 @@ export default class VoluntaryCounseling extends ValidationElement {
 }
 
 VoluntaryCounseling.defaultProps = {
+  CompletedTreatment: {},
   addressBooks: {},
   dispatch: (action) => {},
   onError: (value, arr) => { return arr }

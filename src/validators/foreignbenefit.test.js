@@ -26,7 +26,7 @@ describe('Foreign Born Benefits', function () {
             Reason: {
               value: 'Foo'
             },
-            Obligated: 'Yes',
+            Obligated: { value: 'Yes' },
             ObligatedExplanation: {
               value: 'Because'
             }
@@ -58,7 +58,7 @@ describe('Foreign Born Benefits', function () {
             Reason: {
               value: 'Foo'
             },
-            Obligated: 'Yes',
+            Obligated: { value: 'Yes' },
             ObligatedExplanation: {
               value: 'Because'
             }
@@ -92,7 +92,7 @@ describe('Foreign Born Benefits', function () {
             Reason: {
               value: 'Foo'
             },
-            Obligated: 'Yes',
+            Obligated: { value: 'Yes' },
             ObligatedExplanation: {
               value: 'Because'
             }
@@ -186,7 +186,7 @@ describe('Foreign Born Benefits', function () {
           Reason: {
             value: 'Foo'
           },
-          Obligated: 'Yes',
+          Obligated: { value: 'Yes' },
           ObligatedExplanation: {
             value: 'Because'
           }
@@ -204,7 +204,7 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          Obligated: 'Yes',
+          Obligated: { value: 'Yes' },
           ObligatedExplanation: {
             value: 'Because'
           }
@@ -213,13 +213,13 @@ describe('Foreign Born Benefits', function () {
       },
       {
         props: {
-          Obligated: 'No'
+          Obligated: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          Obligated: 'Nope'
+          Obligated: { value: 'Nope' }
         },
         expected: false
       }
@@ -249,7 +249,7 @@ describe('Foreign Born Benefits', function () {
           Reason: {
             value: 'Foo'
           },
-          Obligated: 'Yes',
+          Obligated: { value: 'Yes' },
           ObligatedExplanation: {
             value: 'Because'
           }
@@ -267,7 +267,7 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          Obligated: 'Yes',
+          Obligated: { value: 'Yes' },
           ObligatedExplanation: {
             value: 'Because'
           }
@@ -276,13 +276,13 @@ describe('Foreign Born Benefits', function () {
       },
       {
         props: {
-          Obligated: 'No'
+          Obligated: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          Obligated: 'Nope'
+          Obligated: { value: 'Nope' }
         },
         expected: false
       }
@@ -317,7 +317,7 @@ describe('Foreign Born Benefits', function () {
           Reason: {
             value: 'Foo'
           },
-          Obligated: 'Yes',
+          Obligated: { value: 'Yes' },
           ObligatedExplanation: {
             value: 'Because'
           }
@@ -335,7 +335,7 @@ describe('Foreign Born Benefits', function () {
     const tests = [
       {
         props: {
-          Obligated: 'Yes',
+          Obligated: { value: 'Yes' },
           ObligatedExplanation: {
             value: 'Because'
           }
@@ -344,13 +344,13 @@ describe('Foreign Born Benefits', function () {
       },
       {
         props: {
-          Obligated: 'No'
+          Obligated: { value: 'No' }
         },
         expected: true
       },
       {
         props: {
-          Obligated: 'Nope'
+          Obligated: { value: 'Nope' }
         },
         expected: false
       }

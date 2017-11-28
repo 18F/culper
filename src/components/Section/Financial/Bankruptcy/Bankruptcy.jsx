@@ -42,9 +42,9 @@ export default class Bankruptcy extends ValidationElement {
     })
   }
 
-  updatePetitionType (radio) {
+  updatePetitionType (values) {
     this.update({
-      PetitionType: radio.value
+      PetitionType: values
     })
   }
 
@@ -134,7 +134,7 @@ export default class Bankruptcy extends ValidationElement {
                help="financial.bankruptcy.petitionType.help"
                scrollIntoView={this.props.scrollIntoView}
                adjustFor="buttons">
-          <RadioGroup className="petition-chapters" selectedValue={this.props.PetitionType} required={this.props.required} onError={this.props.onError}>
+          <RadioGroup className="petition-chapters" selectedValue={(this.props.PetitionType || {}).value} required={this.props.required} onError={this.props.onError}>
             <Radio name="petition_type"
                    label={i18n.t('financial.bankruptcy.petitionType.label.chapter7')}
                    value="Chapter7"
@@ -276,7 +276,7 @@ export default class Bankruptcy extends ValidationElement {
                     />
         </Field>
 
-        <Show when={this.props.PetitionType === 'Chapter13'}>
+        <Show when={(this.props.PetitionType || {}).value === 'Chapter13'}>
           <div className="chapter13">
             <Field title={i18n.t('financial.bankruptcy.trustee.title')} scrollIntoView={this.props.scrollIntoView}>
               <Text name="chapter13Trustee"
@@ -312,14 +312,14 @@ export default class Bankruptcy extends ValidationElement {
                 label={i18n.t('financial.bankruptcy.heading.dischargeExplanation')}
                 labelSize="h3"
                 className="has-discharge-explanation no-margin-bottom"
-                value={this.props.HasDischargeExplanation}
+                {...this.props.HasDischargeExplanation}
                 onUpdate={this.updateHasDischargeExplanation}
                 onError={this.props.onError}
                 required={this.props.required}
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasDischargeExplanation}>
+        <Show when={(this.props.HasDischargeExplanation || {}).value}>
           <Field title={i18n.t('financial.bankruptcy.label.dischargeExplanation')}
                  titleSize="label"
                  adjustFor="textarea"
@@ -339,6 +339,7 @@ export default class Bankruptcy extends ValidationElement {
 }
 
 Bankruptcy.defaultProps = {
+  DischargeDateNotApplicable: { applicable: true },
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

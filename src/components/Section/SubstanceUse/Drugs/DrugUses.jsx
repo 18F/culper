@@ -1,10 +1,11 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate, { DrugUseValidator } from '../../../../validators'
 import { Summary } from '../../../Summary'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion, Branch, Show } from '../../../Form'
 import DrugUse from './DrugUse'
-import { DrugUsesValidator, DrugUseValidator } from '../../../../validators'
 
 export default class DrugUses extends SubsectionElement {
   constructor (props) {
@@ -20,7 +21,6 @@ export default class DrugUses extends SubsectionElement {
       this.props.onUpdate({
         UsedDrugs: this.props.UsedDrugs,
         List: this.props.List,
-        ListBranch: this.props.ListBranch,
         ...updateValues
       })
     }
@@ -28,16 +28,14 @@ export default class DrugUses extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateUsedDrugs (values) {
     this.update({
       UsedDrugs: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : {}
     })
   }
 
@@ -65,7 +63,7 @@ export default class DrugUses extends SubsectionElement {
                 label={i18n.t('substance.drugs.heading.drugUses')}
                 labelSize="h2"
                 className="used-drugs"
-                value={this.props.UsedDrugs}
+                {...this.props.UsedDrugs}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -74,11 +72,10 @@ export default class DrugUses extends SubsectionElement {
           {i18n.m('substance.drugs.use.para.drugUses')}
         </Branch>
 
-        <Show when={this.props.UsedDrugs === 'Yes'}>
+        <Show when={this.props.UsedDrugs.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -97,14 +94,14 @@ export default class DrugUses extends SubsectionElement {
 }
 
 DrugUses.defaultProps = {
-  List: [],
-  ListBranch: '',
+  UsedDrugs: {},
+  List: {},
   onError: (value, arr) => { return arr },
   section: 'substance',
   subsection: 'drugs/usage',
   dispatch: () => {},
   validator: (state, props) => {
-    return new DrugUsesValidator(props).isValid()
+    return validate(schema('substance.drug.usage', props))
   },
   scrollToBottom: ''
 }

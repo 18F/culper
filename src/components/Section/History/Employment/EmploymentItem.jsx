@@ -295,6 +295,7 @@ export default class EmploymentItem extends ValidationElement {
 
         <Show when={this.showEmployed()}>
           <Field title={i18n.t(`${prefix}.heading.telephone`)}
+                 className="override-required"
                  adjustFor="telephone"
                  scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="Telephone"

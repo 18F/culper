@@ -25,7 +25,7 @@ describe('The VoluntaryTreatment component', () => {
   it('Performs update when no treatment completed', () => {
     let updates = 0
     const onUpdate = () => { updates++ }
-    const component = mount(<VoluntaryTreatment onUpdate={onUpdate} ActionTaken="Yes" TreatmentCompleted="No" />)
+    const component = mount(<VoluntaryTreatment onUpdate={onUpdate} TreatmentCompleted={{ value: 'No' }} />)
 
     component.find('.no-treatment-explanation textarea').simulate('change')
     expect(updates).toBe(1)

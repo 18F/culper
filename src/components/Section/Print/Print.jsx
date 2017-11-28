@@ -72,7 +72,7 @@ class Print extends SectionElement {
           sectionComponent = (
             <MilitarySections
               {...this.props.Military}
-              {...this.props.Application}
+              application={this.props.Application}
               dispatch={this.props.dispatch}
               onError={this.handleError}
             />
@@ -171,11 +171,11 @@ class Print extends SectionElement {
         </div>
         <div className="print-view">
           <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-            <SectionView name=""
-              back=""
-              backLabel=""
-              next=""
-              nextLabel="">
+            <SectionView name="intro"
+                         back=""
+                         backLabel=""
+                         next=""
+                         nextLabel="">
               { this.sections() }
             </SectionView>
           </SectionViews>
@@ -190,9 +190,9 @@ function mapStateToProps (state) {
   const identification = app.Identification || {}
   const relationships = app.Relationships || {}
   const history = app.History || {}
-  const historyResidence = history.Residence || []
-  const historyEmployment = history.Employment || { List: [], ListBranch: '' }
-  const historyEducation = history.Education || { HasAttended: '', HasDegree10: '', List: [] }
+  const historyResidence = history.Residence || {}
+  const historyEmployment = history.Employment || { List: {} }
+  const historyEducation = history.Education || { HasAttended: '', HasDegree10: '', List: {} }
   const citizenship = app.Citizenship || {}
   const military = app.Military || {}
   const foreign = app.Foreign || {}
@@ -229,6 +229,7 @@ function mapStateToProps (state) {
 
 Print.defaultProps = {
   section: 'print',
+  subsection: 'intro',
   store: 'Print'
 }
 

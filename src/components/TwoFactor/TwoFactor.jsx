@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { env, i18n } from '../../config'
-import { login, qrcode, twofactor, twofactorreset } from '../../actions/AuthActions'
+import { qrcode, twofactor, twofactorreset } from '../../actions/AuthActions'
+import { Show } from '../Form'
 
 class TwoFactor extends React.Component {
   constructor (props) {
     super(props)
     this.state = {
-      token: ''
+      code: this.props.code
     }
 
     this.handleChange = this.handleChange.bind(this)
@@ -21,24 +22,27 @@ class TwoFactor extends React.Component {
   }
 
   base64png () {
+    if (!this.props.qrcode) {
+      return ''
+    }
     return 'data:image/png;base64,' + this.props.qrcode
   }
 
   handleChange (event) {
-    this.setState({ token: event.target.value })
+    this.setState({ code: event.target.value })
   }
 
   handleSubmit (event) {
     // Send request to API to validate token
     event.preventDefault()
-    if (this.state.token !== '') {
-      this.props.dispatch(twofactor(this.props.username, this.state.token))
+    if (this.state.code !== '') {
+      this.props.dispatch(twofactor(this.props.username, this.state.code))
     }
   }
 
   handleReset (event) {
     event.preventDefault()
-    this.setState({ token: '' }, () => {
+    this.setState({ code: '' }, () => {
       this.props.dispatch(twofactorreset(this.props.username))
     })
   }
@@ -54,31 +58,22 @@ class TwoFactor extends React.Component {
   }
 
   render () {
-    const mfa = env.MultipleFactorAuthentication()
-    const reset = mfa.enabled && mfa.resettable
-          ? <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
-          : ''
+    const qr = this.base64png()
+    const mfa = this.props.mfa || env.MultipleFactorAuthentication()
 
     if (!mfa.enabled) {
-      return i18n.m('twofactor.disabled')
-    } else if (!this.props.qrcode) {
-      return (
-        <form onSubmit={this.handleSubmit}>
-          <div className="twofactor-component">
-            <input type="text" name="token" value={this.state.token} onChange={this.handleChange} ref="token" aria-label="Token" autoFocus />
-            { reset }
-            { this.errorMessage() }
-            <button type="submit">{i18n.t('twofactor.verify')}</button>
-          </div>
-        </form>
-      )
+      return <div>{i18n.m('twofactor.disabled')}</div>
     } else {
       return (
         <form onSubmit={this.handleSubmit}>
           <div className="twofactor-component">
-            <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={this.base64png()} />
-            <input type="text" name="token" value={this.state.token} onChange={this.handleChange} ref="token" aria-label="Token" autoFocus />
-            { reset }
+            <Show when={qr}>
+              <img width="256" height="256" alt={i18n.t('twofactor.alt')} src={qr} />
+            </Show>
+            <input type="text" name="code" value={this.state.code} onChange={this.handleChange} aria-label="Token" autoFocus />
+            <Show when={mfa.resettable}>
+              <a href="javascript:;;" className="reset" onClick={this.handleReset}>Reset</a>
+            </Show>
             { this.errorMessage() }
             <button type="submit">{i18n.t('twofactor.verify')}</button>
           </div>

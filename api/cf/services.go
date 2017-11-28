@@ -32,28 +32,14 @@ type service struct {
 //  - app-smtp => APP_SMTP
 //  - app-postgres => APP_POSTGRES
 func UserService(name, credential string) string {
-	// If there is not a VCAP_SERVICES environment variable we check
-	// if there is a one by itself.
-	vcap := os.Getenv("VCAP_SERVICES")
-	if vcap == "" {
-		return os.Getenv(slugify(name, credential))
+	// If the environment contains VCAP services pull the credentials
+	serviceCredential := vcap(name, credential)
+	if serviceCredential != "" {
+		return serviceCredential
 	}
 
-	// The VCAP_SERVICES stores a JSON value which we can parse
-	var v vcapService
-	err := json.Unmarshal([]byte(vcap), &v)
-	if err != nil {
-		return ""
-	}
-
-	// Look for the user provided service and it's specific credential
-	for _, s := range v.UserProvided {
-		if s.Name == name {
-			return s.Credentials[credential]
-		}
-	}
-
-	return ""
+	// Fallback to the native environment variable
+	return native(slugify(name, credential))
 }
 
 // slugify provides a concatenation of strings to then perform
@@ -62,4 +48,31 @@ func slugify(slugs ...string) string {
 	s := strings.Join(slugs, "_")
 	s = strings.Replace(s, "-", "_", -1)
 	return strings.ToUpper(s)
+}
+
+// native calls the native environment call for environment variable
+func native(name string) string {
+	return os.Getenv(name)
+}
+
+// vcap extracts the proper service credentials from the VCAP_SERVICES
+func vcap(name, credential string) string {
+	// Return early if there is not a VCAP_SERVICES environment variable
+	services := native("VCAP_SERVICES")
+	if services == "" {
+		return ""
+	}
+
+	// The VCAP_SERVICES stores a JSON value which we can parse
+	var v vcapService
+	if err := json.Unmarshal([]byte(services), &v); err == nil {
+		// Look for the user provided service and it's specific credential
+		for _, s := range v.UserProvided {
+			if s.Name == name {
+				return s.Credentials[credential]
+			}
+		}
+	}
+
+	return ""
 }

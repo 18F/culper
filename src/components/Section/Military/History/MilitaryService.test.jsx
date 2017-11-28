@@ -32,7 +32,7 @@ describe('The military service component', () => {
   it('select no for discharged and no new fields appear', () => {
     const expected = {
       name: 'military-service',
-      HasBeenDischarged: 'No'
+      HasBeenDischarged: { value: 'No' }
     }
     const component = mount(<MilitaryService {...expected} />)
     expect(component.find('.discharge-type').length).toEqual(0)
@@ -44,7 +44,7 @@ describe('The military service component', () => {
   it('select yes for discharged and more information is required', () => {
     const expected = {
       name: 'military-service',
-      HasBeenDischarged: 'Yes'
+      HasBeenDischarged: { value: 'Yes' }
     }
     const component = mount(<MilitaryService {...expected} />)
     expect(component.find('.discharge-type').length).toEqual(1)
@@ -56,7 +56,7 @@ describe('The military service component', () => {
   it('selecting other for discharge type presents textbox', () => {
     const expected = {
       name: 'military-service',
-      HasBeenDischarged: 'Yes',
+      HasBeenDischarged: { value: 'Yes' },
       DischargeType: 'Other'
     }
     const component = mount(<MilitaryService {...expected} />)
@@ -68,7 +68,7 @@ describe('The military service component', () => {
   it('selecting discharge type which is not honorable', () => {
     const expected = {
       name: 'military-service',
-      HasBeenDischarged: 'Yes',
+      HasBeenDischarged: { value: 'Yes' },
       DischargeType: 'General'
     }
     const component = mount(<MilitaryService {...expected} />)
@@ -80,7 +80,7 @@ describe('The military service component', () => {
   it('selecting discharge type which is honorable', () => {
     const expected = {
       name: 'military-service',
-      HasBeenDischarged: 'Yes',
+      HasBeenDischarged: { value: 'Yes' },
       DischargeType: 'Honorable'
     }
     const component = mount(<MilitaryService {...expected} />)
@@ -94,7 +94,7 @@ describe('The military service component', () => {
     const expected = {
       name: 'military-service',
       Service: 'AirNationalGuard',
-      HasBeenDischarged: 'Yes',
+      HasBeenDischarged: { value: 'Yes' },
       DischargeType: 'Other',
       onUpdate: () => { updates++ }
     }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import schema from '../../../../../schema'
+import validate from '../../../../../validators'
 import { Summary, AddressSummary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignRealEstateActivityValidator, ForeignRealEstateInterestValidator } from '../../../../../validators'
@@ -18,7 +20,6 @@ export default class RealEstateActivity extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasInterests: this.props.HasInterests,
       ...queue
     })
@@ -26,22 +27,20 @@ export default class RealEstateActivity extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasInterests (values) {
     this.update({
       HasInterests: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
   summary (item, index) {
     const o = (item || {}).Item || {}
-    const who = (o.InterestTypes || []).join(', ')
+    const who = ((o.InterestTypes || {}).values || []).join(', ')
     const acquired = DateSummary(o.Acquired)
     const address = AddressSummary(o.Address, '')
     const summary = [who, address].reduce((prev, next) => {
@@ -66,7 +65,7 @@ export default class RealEstateActivity extends SubsectionElement {
         <Branch name="has_interests"
                 label={i18n.t('foreign.activities.realestate.heading.title')}
                 labelSize="h2"
-                value={this.props.HasInterests}
+                {...this.props.HasInterests}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -74,11 +73,10 @@ export default class RealEstateActivity extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasInterests === 'Yes'}>
+        <Show when={this.props.HasInterests.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -102,9 +100,8 @@ export default class RealEstateActivity extends SubsectionElement {
 
 RealEstateActivity.defaultProps = {
   name: 'realestate',
-  HasInterests: '',
-  List: [],
-  ListBranch: '',
+  HasInterests: {},
+  List: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -112,7 +109,7 @@ RealEstateActivity.defaultProps = {
   subsection: 'activities/realestate',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignRealEstateActivityValidator(props).isValid()
+    return validate(schema('foreign.activities.realestate', props))
   },
   scrollToBottom: ''
 }

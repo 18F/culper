@@ -6,7 +6,7 @@ describe('The foreign business employment component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'No'
+      HasForeignEmployment: { value: 'No' }
     }
     const component = mount(<Employment {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign business employment component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'Yes'
+      HasForeignEmployment: { value: 'Yes' }
     }
     const component = mount(<Employment {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign business employment component', () => {
     let validated = false
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'Yes',
+      HasForeignEmployment: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -41,13 +41,15 @@ describe('The foreign business employment component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-employment',
-      HasForeignEmployment: 'Yes',
-      List: [{
-        Item: {
-          Address: { country: 'United States' },
-          Accepted: 'Yes'
-        }
-      }],
+      HasForeignEmployment: { value: 'Yes' },
+      List: {
+        items: [{
+          Item: {
+            Address: { country: { value: 'United States' } },
+            Accepted: { value: 'Yes' }
+          }
+        }]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Employment {...expected} />)
@@ -56,7 +58,7 @@ describe('The foreign business employment component', () => {
     component.find('.employment-name .first input').simulate('change')
     component.find('.employment-description textarea').simulate('change')
     component.find('.employment-date .day input').simulate('change')
-    component.find('.employment-address .yes input').simulate('change')
+    component.find('.employment-address .city input').simulate('change')
     component.find('.employment-accepted .yes input').simulate('change')
     component.find('.employment-explanation textarea').simulate('change')
     expect(updates).toBe(6)

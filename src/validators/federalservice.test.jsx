@@ -6,66 +6,78 @@ describe('Federal service component validation', function () {
     const tests = [
       {
         state: {
-          List: []
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasFederalService: 'No',
-          List: []
+          HasFederalService: { value: 'No' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          HasFederalService: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasFederalService: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasFederalService: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasFederalService: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasFederalService: 'Yes',
-          List: [
-            {
-              Item: {
-                Name: {
-                  value: 'FDA'
-                },
-                Position: {
-                  value: 'CTR'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          HasFederalService: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: 'FDA'
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Position: {
+                    value: 'CTR'
                   },
-                  present: false
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

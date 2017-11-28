@@ -1,6 +1,8 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate, { CitizenshipMultipleValidator, CitizenshipItemValidator } from '../../../../validators'
+import { countryString } from '../../../../validators/location'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Branch, Show, Accordion } from '../../../Form'
 import { Summary, DateSummary } from '../../../Summary'
@@ -12,13 +14,12 @@ export default class Multiple extends SubsectionElement {
 
     this.update = this.update.bind(this)
     this.updateHasMultiple = this.updateHasMultiple.bind(this)
-    this.updateCitizenships = this.updateCitizenships.bind(this)
+    this.updateList = this.updateList.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
-      Citizenships: this.props.Citizenships,
-      CitizenshipsBranch: this.props.CitizenshipsBranch,
+      List: this.props.List,
       HasMultiple: this.props.HasMultiple,
       ...queue
     })
@@ -27,25 +28,20 @@ export default class Multiple extends SubsectionElement {
   updateHasMultiple (values) {
     this.update({
       HasMultiple: values,
-      Citizenships: values === 'Yes' ? this.props.Citizenships : [],
-      CitizenshipsBranch: values === 'Yes' ? this.props.CitizenshipsBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
-  updateCitizenships (values) {
+  updateList (values) {
     this.update({
-      Citizenships: values.items,
-      CitizenshipsBranch: values.branch
+      List: values
     })
   }
 
-  summaryCitizenships (item, index) {
+  summaryList (item, index) {
     const itemProperties = (item || {}).Item || {}
     const dates = DateSummary(itemProperties.Dates)
-    const country = itemProperties.Country && itemProperties.Country.value
-          ? itemProperties.Country.value
-          : ''
-
+    const country = countryString(itemProperties.Country) || ''
     return Summary({
       type: i18n.t('citizenship.multiple.collection.citizenship.summary.item'),
       index: index,
@@ -68,7 +64,7 @@ export default class Multiple extends SubsectionElement {
                 label={i18n.t('citizenship.multiple.heading.hasmultiple')}
                 labelSize="h3"
                 className="has-multiple"
-                value={this.props.HasMultiple}
+                {...this.props.HasMultiple}
                 warning={true}
                 onUpdate={this.updateHasMultiple}
                 onError={this.handleError}
@@ -76,15 +72,14 @@ export default class Multiple extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 />
 
-        <Show when={this.props.HasMultiple === 'Yes'}>
-          <Accordion items={this.props.Citizenships}
+        <Show when={this.props.HasMultiple.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.CitizenshipsBranch}
-                     onUpdate={this.updateCitizenships}
+                     onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={CitizenshipItemValidator}
-                     summary={this.summaryCitizenships}
+                     summary={this.summaryList}
                      description={i18n.t('citizenship.multiple.collection.citizenship.summary.title')}
                      appendTitle={i18n.t('citizenship.multiple.collection.citizenship.appendTitle')}
                      appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}
@@ -99,17 +94,15 @@ export default class Multiple extends SubsectionElement {
 }
 
 Multiple.defaultProps = {
-  HasMultiple: '',
-  Citizenships: [],
-  CitizenshipsBranch: '',
-  Passports: [],
+  HasMultiple: {},
+  List: { items: [], branch: {} },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'citizenship',
   subsection: 'multiple',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CitizenshipMultipleValidator(props).isValid()
+    return validate(schema('citizenship.multiple', props))
   },
   defaultState: true
 }

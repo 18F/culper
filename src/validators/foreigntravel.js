@@ -1,32 +1,29 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class ForeignTravelValidator {
   constructor (data = {}) {
-    this.hasForeignTravelOutside = data.HasForeignTravelOutside
-    this.hasForeignTravelOfficial = data.HasForeignTravelOfficial
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasForeignTravelOutside = (data.HasForeignTravelOutside || {}).value
+    this.hasForeignTravelOfficial = (data.HasForeignTravelOfficial || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
-    if (this.hasForeignTravelOutside === 'No' && this.hasForeignTravelOfficial === 'Yes') {
+    if (this.hasForeignTravelOutside === 'No') {
       return true
     }
 
-    if (this.hasForeignTravelOutside === 'Yes' && this.hasForeignTravelOfficial === 'No') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new TravelValidator(item.Item).isValid())
+    if (this.hasForeignTravelOfficial === 'Yes') {
+      return true
     }
 
-    return false
+    if (this.hasForeignTravelOfficial === 'Yes') {
+      return true
+    }
+
+    return validAccordion(this.list, (item) => {
+      return new TravelValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -40,19 +37,19 @@ export class TravelValidator {
     this.country = data.Country
     this.days = data.Days || []
     this.purpose = data.Purpose || []
-    this.questioned = data.Questioned
+    this.questioned = (data.Questioned || {}).value
     this.questionedExplanation = data.QuestionedExplanation
-    this.encounter = data.Encounter
+    this.encounter = (data.Encounter || {}).value
     this.encounterExplanation = data.EncounterExplanation
-    this.contacted = data.Contacted
+    this.contacted = (data.Contacted || {}).value
     this.contactedExplanation = data.ContactedExplanation
-    this.counter = data.Counter
+    this.counter = (data.Counter || {}).value
     this.counterExplanation = data.CounterExplanation
-    this.interest = data.Interest
+    this.interest = (data.Interest || {}).value
     this.interestExplanation = data.InterestExplanation
-    this.sensitive = data.Sensitive
+    this.sensitive = (data.Sensitive || {}).value
     this.sensitiveExplanation = data.SensitiveExplanation
-    this.threatened = data.Threatened
+    this.threatened = (data.Threatened || {}).value
     this.threatenedExplanation = data.ThreatenedExplanation
   }
 

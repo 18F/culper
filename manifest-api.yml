@@ -12,4 +12,6 @@ applications:
     - eqip-postgres
     - usps-api
   env:
-    GOVERSION: go1.8.3
+    PATH: /bin:/usr/bin:$HOME/bin
+    GOVERSION: go1.8.5
+    SAML_ENABLED: 1

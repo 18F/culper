@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<S:Envelope xmlns:S="http://schemas.xmlsoap.org/soap/envelope/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/">
+  <SOAP-ENV:Header>
+    <eqipws-auth:Authentication xmlns:eqipws-auth="urn:gov.opm.eqip.ws/Authentication">
+      <UnencryptedSecurityToken xmlns="">WS_1511361719158_3263a325-c6d6-4d43-9268-342109e8acee-3845f341-f17b-3851-96e4-eef56ada8082</UnencryptedSecurityToken>
+      <EncryptedSecurityToken xmlns="">34ef41b1507edc068f27fd5886ff43fe223976ba13f7c11be35d28eedaeacfd6de4417c502567a3c789650c4bf3db1b865a5cf4e134c2c219aa652db89b1d6fb7a9135ab88e4402c35770ef4af25719fd1b7097058953ab11afce68ccad92a52d80006d5433e544b9a2707ed2978aaf1a43475e9290911b35f5526fde5d5c8f8138bec05ec11d05338a9b8a1d54d7eb16a0b01aa35debb0701b01c1b91bde615e861a15ce63ec6d1e5442af950000123b0ab051ef158793625cc3efb0f2248a787bb747bda0522423da7d26a5626eb4251e8726c94aabeb31e2a51748fba967fb805412e8e976090b0fb3dd103c2e1e456e3aa7fada09f08c6153559039adf6d</EncryptedSecurityToken>
+    </eqipws-auth:Authentication>
+  </SOAP-ENV:Header>
+  <S:Body xmlns:ns2="http://webservice.ws.eqip.opm.gov/">
+      <S:Fault>
+          <detail>
+              <ns2:CharacterEncodingException>
+                  <message>This is a CharacterEncodingException</message>
+                  <errorMessages>Error1</errorMessages>
+                  <errorMessages>Error2</errorMessages>
+              </ns2:CharacterEncodingException>
+          </detail>
+      </S:Fault>
+  </S:Body>
+</S:Envelope>

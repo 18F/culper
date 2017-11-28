@@ -6,41 +6,61 @@ export default class Supervisor extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      SupervisorName: props.SupervisorName,
-      Title: props.Title,
-      Email: props.Email,
-      EmailNotApplicable: props.EmailNotApplicable,
-      Address: props.Address,
-      Telephone: props.Telephone
-    }
-
+    this.update = this.update.bind(this)
+    this.updateSupervisorName = this.updateSupervisorName.bind(this)
+    this.updateTitle = this.updateTitle.bind(this)
     this.updateEmailNotApplicable = this.updateEmailNotApplicable.bind(this)
+    this.updateEmail = this.updateEmail.bind(this)
+    this.updateAddress = this.updateAddress.bind(this)
+    this.updateTelephone = this.updateTelephone.bind(this)
   }
 
-  doUpdate () {
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        name: this.props.name,
-        SupervisorName: this.state.SupervisorName,
-        Title: this.state.Title,
-        Email: this.state.Email,
-        EmailNotApplicable: this.state.EmailNotApplicable,
-        Address: this.state.Address,
-        Telephone: this.state.Telephone
-      })
-    }
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      SupervisorName: this.props.SupervisorName,
+      Title: this.props.Title,
+      Email: this.props.Email,
+      EmailNotApplicable: this.props.EmailNotApplicable,
+      Address: this.props.Address,
+      Telephone: this.props.Telephone,
+      ...queue
+    })
   }
 
-  onUpdate (field, value) {
-    this.setState({ [field]: value }, () => {
-      this.doUpdate()
+  updateSupervisorName (values) {
+    this.update({
+      SupervisorName: values
+    })
+  }
+
+  updateTitle (values) {
+    this.update({
+      Title: values
     })
   }
 
   updateEmailNotApplicable (values) {
-    this.setState({ EmailNotApplicable: values }, () => {
-      this.doUpdate()
+    this.update({
+      EmailNotApplicable: values
+    })
+  }
+
+  updateEmail (values) {
+    this.update({
+      Email: values
+    })
+  }
+
+  updateAddress (values) {
+    this.update({
+      Address: values
+    })
+  }
+
+  updateTelephone (values) {
+    this.update({
+      Telephone: values
     })
   }
 
@@ -51,10 +71,10 @@ export default class Supervisor extends ValidationElement {
                adjustFor="labels"
                scrollIntoView={this.props.scrollIntoView}>
           <Text name="SupervisorName"
-                className="text full-width"
+                className="text full-width supervisor-name"
                 {...this.props.SupervisorName}
                 onError={this.props.onError}
-                onUpdate={this.onUpdate.bind(this, 'SupervisorName')}
+                onUpdate={this.updateSupervisorName}
                 required={this.props.required}
                 />
         </Field>
@@ -65,7 +85,7 @@ export default class Supervisor extends ValidationElement {
           <Text name="Title"
                 {...this.props.Title}
                 className="text full-width supervisor-title"
-                onUpdate={this.onUpdate.bind(this, 'Title')}
+                onUpdate={this.updateTitle}
                 onError={this.props.onError}
                 required={this.props.required}
                 />
@@ -76,7 +96,8 @@ export default class Supervisor extends ValidationElement {
                shrink={true}
                scrollIntoView={this.props.scrollIntoView}>
           <NotApplicable name="EmailNotApplicable"
-                         {...this.state.EmailNotApplicable}
+                         {...this.props.EmailNotApplicable}
+                         className="supervisor-email-na"
                          label={i18n.t('reference.label.idk')}
                          or={i18n.m('reference.para.or')}
                          onUpdate={this.updateEmailNotApplicable}
@@ -84,9 +105,9 @@ export default class Supervisor extends ValidationElement {
             <Email name="Email"
                    {...this.props.Email}
                    className="text supervisor-email"
-                   onUpdate={this.onUpdate.bind(this, 'Email')}
+                   onUpdate={this.updateEmail}
                    onError={this.props.onError}
-                   required={this.props.required}
+                   required={(this.props.EmailNotApplicable || {}).applicable === false ? false : this.props.required}
                    />
           </NotApplicable>
         </Field>
@@ -105,19 +126,20 @@ export default class Supervisor extends ValidationElement {
                     addressBooks={this.props.addressBooks}
                     addressBook={this.props.addressBook}
                     dispatch={this.props.dispatch}
-                    onUpdate={this.onUpdate.bind(this, 'Address')}
+                    onUpdate={this.updateAddress}
                     onError={this.props.onError}
                     required={this.props.required}
                     />
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.telephone')}
+               className="override-required"
                adjustFor="telephone"
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="Telephone"
                      {...this.props.Telephone}
                      className="supervisor-telephone"
-                     onUpdate={this.onUpdate.bind(this, 'Telephone')}
+                     onUpdate={this.updateTelephone}
                      onError={this.props.onError}
                      required={this.props.required}
                      />
@@ -131,11 +153,12 @@ Supervisor.defaultProps = {
   SupervisorName: {},
   Title: {},
   Email: {},
-  EmailNotApplicable: {},
+  EmailNotApplicable: { applicable: true },
   Address: {},
   Telephone: {},
   addressBooks: {},
-  addressBook: 'Supervisor',
+  addressBook: 'Employment',
   dispatch: (action) => {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

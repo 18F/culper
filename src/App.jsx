@@ -79,7 +79,7 @@ class App extends React.Component {
         this.props.dispatch(logout())
       })
 
-    const logoutButton = this.props.authenticated && this.props.twofactor
+    const logoutButton = this.props.authenticated || this.props.twofactor
         ? (<a href="#" onClick={this.logout} className="logout">{i18n.t('app.logout')}</a>)
         : null
     const klassApp = `${this.designClass()} ${this.props.settings.modalOpen ? 'modal-open' : ''}`.trim()
@@ -153,7 +153,7 @@ class App extends React.Component {
         <main id="main-content" className="eapp-structure-wrap">
           <div className="eapp-structure-row">
             <div className={klassNavigation}>
-              <Sticky>
+              <Sticky options={{tolerance: 400, ignoreWindowComparison: true}}>
                 <ScoreCard />
                 <Navigation />
               </Sticky>
@@ -163,7 +163,11 @@ class App extends React.Component {
               <Introduction forceOpen={this.state.instructions}
                             onDismiss={this.dismissInstructions}
                             dispatch={this.props.dispatch} />
-              {this.props.children}
+              <Sticky container=".eapp-navigation .sticky > .contents"
+                      content=".eapp-core .sticky > .contents"
+                      options={{tolerance: 400, ignoreWindowComparison: true}}>
+                {this.props.children}
+              </Sticky>
               &nbsp;
             </div>
           </div>

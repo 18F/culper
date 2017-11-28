@@ -87,17 +87,17 @@ describe('The Telephone component', () => {
     expect(numberType).toBe('')
   })
 
-  it('handles updates to field values', () => {
+  it('handles updates to domestic field values', () => {
     let updated = 0
     const expected = {
       name: 'telephone-component',
+      type: 'Domestic',
       onUpdate: (values) => {
         updated++
       }
     }
     const component = mount(<Telephone {...expected} />)
-    component.find('a.dsn-number').simulate('click')
-    component.find('a.domestic-number').simulate('click')
+    component.find('a.international-number').simulate('click')
     component.find({ type: 'text', name: 'domestic_first' }).simulate('change', { target: { value: '111' } })
     component.find({ type: 'text', name: 'domestic_second' }).simulate('change', { target: { value: '222' } })
     component.find({ type: 'text', name: 'domestic_third' }).simulate('change', { target: { value: '3333' } })
@@ -105,7 +105,46 @@ describe('The Telephone component', () => {
     component.find('.nonumber input').simulate('change')
     component.find('.time.day input').simulate('change')
     component.find('.phonetype-option.work input').simulate('change')
-    expect(updated).toBeGreaterThan(8)
+    expect(updated).toBe(8)
+  })
+
+  it('handles updates to DSN field values', () => {
+    let updated = 0
+    const expected = {
+      name: 'telephone-component',
+      type: 'DSN',
+      onUpdate: (values) => {
+        updated++
+      }
+    }
+    const component = mount(<Telephone {...expected} />)
+    component.find('a.domestic-number').simulate('click')
+    component.find({ type: 'text', name: 'dsn_first' }).simulate('change', { target: { value: '111' } })
+    component.find({ type: 'text', name: 'dsn_second' }).simulate('change', { target: { value: '222' } })
+    component.find('.nonumber input').simulate('change')
+    component.find('.time.day input').simulate('change')
+    component.find('.phonetype-option.work input').simulate('change')
+    expect(updated).toBe(6)
+  })
+
+  it('handles updates to international field values', () => {
+    let updated = 0
+    const expected = {
+      name: 'telephone-component',
+      type: 'International',
+      onUpdate: (values) => {
+        updated++
+      }
+    }
+    const component = mount(<Telephone {...expected} />)
+    component.find('a.dsn-number').simulate('click')
+    component.find({ type: 'text', name: 'int_first' }).simulate('change', { target: { value: '111' } })
+    component.find({ type: 'text', name: 'int_second' }).simulate('change', { target: { value: '222' } })
+    component.find({ type: 'text', name: 'int_extension' }).simulate('change', { target: { value: '4444' } })
+    component.find('.nonumber input').simulate('change')
+    component.find('.time.day input').simulate('change')
+    component.find('.phonetype-option.work input').simulate('change')
+    expect(updated).toBe(7)
   })
 
   it('can autotab forward', () => {
@@ -114,37 +153,35 @@ describe('The Telephone component', () => {
       name: 'telephone',
       tab: () => { tabbed = true }
     }
-    const component = mount(<Telephone {...expected} />)
 
     // Domestic
+    const componentDomestic = mount(<Telephone {...expected} type="Domestic" />)
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
+    componentDomestic.find({ type: 'text', name: 'domestic_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_second' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
+    componentDomestic.find({ type: 'text', name: 'domestic_second' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_third' }).simulate('keydown', { keyCode: 48, target: { value: '1234' } })
+    componentDomestic.find({ type: 'text', name: 'domestic_third' }).simulate('keydown', { keyCode: 48, target: { value: '1234' } })
     expect(tabbed).toBe(true)
 
     // DSN
-    component.find('a.dsn-number').simulate('click')
-
+    const componentDsn = mount(<Telephone {...expected} type="DSN" />)
     tabbed = false
-    component.find({ type: 'text', name: 'dsn_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
+    componentDsn.find({ type: 'text', name: 'dsn_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     // International
-    component.find('a.international-number').simulate('click')
-
+    const componentInternational = mount(<Telephone {...expected} type="International" />)
     tabbed = false
-    component.find({ type: 'text', name: 'int_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
+    componentInternational.find({ type: 'text', name: 'int_first' }).simulate('keydown', { keyCode: 48, target: { value: '123' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 48, target: { value: '1234567890' } })
+    componentInternational.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 48, target: { value: '1234567890' } })
     expect(tabbed).toBe(true)
   })
 
@@ -154,37 +191,35 @@ describe('The Telephone component', () => {
       name: 'telephone',
       tab: () => { tabbed = true }
     }
-    const component = mount(<Telephone {...expected} />)
 
     // Domestic
+    const componentDomestic = mount(<Telephone {...expected} type="Domestic" />)
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_extension' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
+    componentDomestic.find({ type: 'text', name: 'domestic_extension' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_third' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
+    componentDomestic.find({ type: 'text', name: 'domestic_third' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'domestic_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
+    componentDomestic.find({ type: 'text', name: 'domestic_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     // DSN
-    component.find('a.dsn-number').simulate('click')
-
+    const componentDsn = mount(<Telephone {...expected} type="DSN" />)
     tabbed = false
-    component.find({ type: 'text', name: 'dsn_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
+    componentDsn.find({ type: 'text', name: 'dsn_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     // International
-    component.find('a.international-number').simulate('click')
-
+    const componentInternational = mount(<Telephone {...expected} type="International" />)
     tabbed = false
-    component.find({ type: 'text', name: 'int_extension' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
+    componentInternational.find({ type: 'text', name: 'int_extension' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
 
     tabbed = false
-    component.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
+    componentInternational.find({ type: 'text', name: 'int_second' }).simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
 

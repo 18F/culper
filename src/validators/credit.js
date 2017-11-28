@@ -1,11 +1,10 @@
 import LocationValidator from './location'
-import { validPhoneNumber, validGenericTextfield } from './helpers'
+import { validAccordion, validPhoneNumber, validGenericTextfield } from './helpers'
 
 export default class CreditValidator {
   constructor (data = {}) {
-    this.hasCreditCounseling = data.HasCreditCounseling
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasCreditCounseling = (data.HasCreditCounseling || {}).value
+    this.list = data.List || {}
   }
 
   validHasCreditCounseling () {
@@ -25,21 +24,9 @@ export default class CreditValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      if (new CreditItemValidator(item.Item, null).isValid() === false) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new CreditItemValidator(item).isValid()
+    })
   }
 
   isValid () {

@@ -1,12 +1,25 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 import AuthenticatedView from '../../views/AuthenticatedView'
 import { navigation, env } from '../../config'
-import { validations, isActive, isValid, hasErrors } from '../../validators/navigation'
+import { isActive, isValid, hasErrors } from './navigation-helpers'
 import { ToggleItem } from './ToggleItem'
 
 class Navigation extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      selected: navigation[0].name
+    }
+
+    this.onToggle = this.onToggle.bind(this)
+  }
+
+  onToggle (item) {
+    this.setState({ selected: item.visible ? item.title : '' })
+  }
+
   /**
    * Get the classes to be applied to a link. This includes the following:
    *  - active
@@ -36,7 +49,7 @@ class Navigation extends React.Component {
 
     const pathname = this.props.location().pathname
 
-    return section.subsections.map(subsection => {
+    const subsections = section.subsections.map(subsection => {
       if (subsection.hidden) {
         return ''
       }
@@ -61,7 +74,7 @@ class Navigation extends React.Component {
       }
 
       return (
-        <div key={subsection.name} className="subsection" >
+        <div key={subsection.name} className="subsection">
           <Link to={subUrl} className={subClass}>
             <span className="section-name">
               {subsection.name}
@@ -72,6 +85,12 @@ class Navigation extends React.Component {
         </div>
       )
     })
+
+    return (
+      <div key={`top-${url}`}>
+        {subsections}
+      </div>
+    )
   }
 
   render () {
@@ -80,11 +99,11 @@ class Navigation extends React.Component {
 
     const nav = navigation.map((section) => {
       if (section.hidden) {
-        return ''
+        return null
       }
 
       if (section.hiddenFunc && section.hiddenFunc(this.props.application)) {
-        return ''
+        return null
       }
 
       const url = `/form/${section.url}`
@@ -95,12 +114,14 @@ class Navigation extends React.Component {
 
       // Collapsed state properties
       if (section.subsections) {
+        const visible = this.state.selected === section.name
         return (
           <ToggleItem title={section.name}
                       section={true}
                       number={sectionNum}
                       className={sectionClass}
-                      visible={isActive(url, pathname)}>
+                      visible={visible}
+                      onToggle={this.onToggle}>
             {this.subsectionWalker(section, url)}
           </ToggleItem>
         )
@@ -124,14 +145,16 @@ class Navigation extends React.Component {
 
     return (
       <div className="form-navigation">
-        {nav}
+        {nav.filter(x => !!x)}
       </div>
     )
   }
 }
 
 Navigation.defaultProps = {
-  location: () => { return env.History().getCurrentLocation() }
+  location: () => {
+    return env.History().location
+  }
 }
 
 function mapStateToProps (state) {

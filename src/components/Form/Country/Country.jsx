@@ -3,7 +3,6 @@ import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Show from '../Show'
 import Comments from '../Comments'
-import Textarea from '../Textarea'
 import Dropdown from '../Dropdown'
 import MultipleDropdown from '../MultipleDropdown'
 
@@ -11,10 +10,8 @@ export default class Country extends ValidationElement {
   constructor (props) {
     super(props)
 
-    // For the typical Dropdown component a string value is expected.
-    // However, for the MultiDropdown, the value must be an array of objects.
     this.state = {
-      value: props.value,
+      value: props.simpleValue,
       showComents: props.showComments
     }
 
@@ -35,7 +32,13 @@ export default class Country extends ValidationElement {
   }
 
   updateCountry (values) {
-    this.update({ value: values.value })
+    let arr = []
+    if (Array.isArray(values.value)) {
+      arr = values.value
+    } else {
+      arr = [values.value]
+    }
+    this.update({ value: arr })
   }
 
   updateComments (values) {
@@ -54,7 +57,9 @@ export default class Country extends ValidationElement {
       }
     })
 
-    // Take the original and concatenate our new error values to it
+    // Determine if a `notfound` error is present and has a value of `false`.
+    // When this happens we want to change the focus to the appropriate element
+    // dependent on if this is singular or plural.
     const notfound = arr.some(x => x.valid === false && x.code.indexOf('notfound') !== -1)
     if (!this.state.showComments && notfound) {
       if (this.props.multiple) {
@@ -113,10 +118,39 @@ export default class Country extends ValidationElement {
     return options.map(x => { return x })
   }
 
+  appropriateValue (value, multiple = false) {
+    if (!value) {
+      if (multiple) {
+        return []
+      }
+      return ''
+    }
+
+    // For the typical Dropdown component a string value is expected.
+    // However, for the MultiDropdown, the value must be an array of objects.
+    let simpleValue
+    const isArray = Array.isArray(value)
+    if (multiple) {
+      if (isArray) {
+        simpleValue = value
+      } else {
+        simpleValue = [value]
+      }
+    } else {
+      if (isArray) {
+        simpleValue = value[0]
+      } else {
+        simpleValue = value
+      }
+    }
+
+    return simpleValue
+  }
+
   render () {
     const klass = `country ${this.props.className || ''}`.trim()
     const options = this.renderOptions()
-    const value = this.props.value || (this.props.multiple ? [] : '')
+    const value = this.appropriateValue(this.props.value, this.props.multiple)
 
     return (
       <Comments title={i18n.t('country.comments')}
@@ -171,18 +205,11 @@ export default class Country extends ValidationElement {
     )
   }
 }
-        // <Show when={this.state.showComments || this.props.comments.length > 0}>
-        //   <Textarea name={`${this.props.name}Comments`}
-        //             ref="comments"
-        //             label={i18n.t('country.comments')}
-        //             value={this.props.comments}
-        //             onUpdate={this.updateComments}
-        //             disabled={this.props.disabled}
-        //             required={this.props.required} />
-        // </Show>
 
 Country.defaultProps = {
   name: 'country',
+  value: [],
+  multiple: false,
   comments: '',
   showComments: false,
   excludeUnitedStates: false,

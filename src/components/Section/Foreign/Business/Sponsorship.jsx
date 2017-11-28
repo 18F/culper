@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessSponsorshipValidator, SponsorshipValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -17,7 +19,6 @@ export default class Sponsorship extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignSponsorship: this.props.HasForeignSponsorship,
       ...queue
     })
@@ -26,15 +27,13 @@ export default class Sponsorship extends SubsectionElement {
   updateHasForeignSponsorship (values) {
     this.update({
       HasForeignSponsorship: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -59,7 +58,7 @@ export default class Sponsorship extends SubsectionElement {
                 label={i18n.t('foreign.business.sponsorship.heading.title')}
                 labelSize="h2"
                 help="foreign.business.sponsorship.help.branch"
-                value={this.props.HasForeignSponsorship}
+                {...this.props.HasForeignSponsorship}
                 warning={true}
                 onUpdate={this.updateHasForeignSponsorship}
                 required={this.props.required}
@@ -67,11 +66,10 @@ export default class Sponsorship extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasForeignSponsorship === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignSponsorship.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={SponsorshipValidator}
@@ -95,9 +93,8 @@ export default class Sponsorship extends SubsectionElement {
 
 Sponsorship.defaultProps = {
   name: 'Sponsorship',
-  HasForeignSponsorship: '',
-  List: [],
-  ListBranch: '',
+  HasForeignSponsorship: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
@@ -105,7 +102,7 @@ Sponsorship.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessSponsorshipValidator(props).isValid()
+    return validate(schema('foreign.business.sponsorship', props))
   },
   defaultState: true,
   scrollToBottom: ''

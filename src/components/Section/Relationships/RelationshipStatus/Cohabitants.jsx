@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { CohabitantsValidator } from '../../../../validators'
 import { CohabitantValidator } from '../../../../validators/cohabitant'
 import SubsectionElement from '../../SubsectionElement'
@@ -19,7 +21,6 @@ export default class Cohabitants extends SubsectionElement {
     this.props.onUpdate({
       HasCohabitant: this.props.HasCohabitant,
       CohabitantList: this.props.CohabitantList,
-      CohabitantListBranch: this.props.CohabitantListBranch,
       ...queue
     })
   }
@@ -27,15 +28,13 @@ export default class Cohabitants extends SubsectionElement {
   updateHasCohabitant (values) {
     this.update({
       HasCohabitant: values,
-      CohabitantList: values === 'Yes' ? values.items : [],
-      CohabitantListBranch: values === 'Yes' ? values.branch : ''
+      CohabitantList: values.value === 'Yes' ? this.props.CohabitantsList : {}
     })
   }
 
   updateCohabitantList (values) {
     this.update({
-      CohabitantList: values.items,
-      CohabitantListBranch: values.branch
+      CohabitantList: values
     })
   }
 
@@ -61,7 +60,7 @@ export default class Cohabitants extends SubsectionElement {
                 label={i18n.t('relationships.cohabitant.heading.hasCohabitant')}
                 labelSize="h3"
                 className="has-cohabitant"
-                value={this.props.HasCohabitant}
+                {...this.props.HasCohabitant}
                 warning={true}
                 help="relationships.cohabitant.help.hasCohabitant"
                 onUpdate={this.updateHasCohabitant}
@@ -70,11 +69,10 @@ export default class Cohabitants extends SubsectionElement {
                 onError={this.handleError}>
         </Branch>
 
-        <Show when={this.props.HasCohabitant === 'Yes'}>
-          <Accordion items={this.props.CohabitantList}
+        <Show when={this.props.HasCohabitant.value === 'Yes'}>
+          <Accordion {...this.props.CohabitantList}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.CohabitantListBranch}
                      summary={this.summary}
                      onUpdate={this.updateCohabitantList}
                      onError={this.handleError}
@@ -84,11 +82,11 @@ export default class Cohabitants extends SubsectionElement {
                      appendTitle={i18n.t('relationships.cohabitant.collection.appendTitle')}
                      appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <Cohabitant name="Item"
-                       spouse={this.props.spouse}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       bind={true} />
+            <Cohabitant name="Item"
+                        spouse={this.props.spouse}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        bind={true} />
           </Accordion>
         </Show>
       </div>
@@ -97,16 +95,15 @@ export default class Cohabitants extends SubsectionElement {
 }
 
 Cohabitants.defaultProps = {
-  HasCohabitant: '',
-  CohabitantList: [],
-  CohabitantListBranch: '',
+  HasCohabitant: {},
+  CohabitantList: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/cohabitant',
   dispatch: () => {},
   validator: (state, props) => {
-    return new CohabitantsValidator(props, props).isValid()
+    return validate(schema('relationships.status.cohabitant', props))
   },
   defaultState: true,
   scrollToBottom: ''

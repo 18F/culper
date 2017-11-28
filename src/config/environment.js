@@ -1,9 +1,12 @@
-import { hashHistory, browserHistory } from 'react-router'
+import { createHashHistory, createBrowserHistory } from 'history'
 
 class Env {
   History () {
     const useHashRouting = process.env.HASH_ROUTING || ''
-    return useHashRouting ? hashHistory : browserHistory
+    if (!this.history) {
+      this.history = useHashRouting ? createHashHistory() : createBrowserHistory()
+    }
+    return this.history
   }
 
   ApiBaseURL () {
@@ -18,6 +21,10 @@ class Env {
     }
 
     return url
+  }
+
+  IsProduction () {
+    return process.env.NODE_ENV === 'production'
   }
 
   IsTest () {
@@ -38,13 +45,29 @@ class Env {
     }
   }
 
+  BasicAuthenticationEnabled () {
+    return (process.env.BASIC_ENABLED || '').length
+  }
+
+  OAuthEnabled () {
+    return (process.env.OAUTH_ENABLED || '').length
+  }
+
+  SamlEnabled () {
+    return (process.env.SAML_ENABLED || '').length
+  }
+
   EndpointBasicAuthentication () { return '/auth/basic' }
   EndpointRefresh () { return '/refresh' }
+  EndpointSaml () { return `${this.ApiBaseURL()}/auth/saml` }
   EndpointTwoFactor (account) { return `/2fa/${account}` }
   EndpointTwoFactorVerify (account) { return `/2fa/${account}/verify` }
   EndpointTwoFactorReset (account) { return `/2fa/${account}/reset` }
   EndpointOAuth (service) { return `/auth/${service}` }
   EndpointSave (payload) { return '/me/save' }
+  EndpointSection (type) { return `/me/section?type=${type || ''}` }
+  EndpointForm () { return '/me/form' }
+  EndpointFormHash () { return '/me/form/hash' }
   EndpointValidate (payload) { return '/me/validate' }
 }
 

@@ -10,7 +10,7 @@ describe('The Valid form submission component', () => {
     }
     const component = mount(<ValidForm {...expected} />)
     expect(component.find('.valid-form').length).toBe(1)
-    component.find('.additional-comments .fullname input').simulate('change')
+    component.find('.additional-comments .signature button').simulate('click')
     expect(updates).toBe(1)
   })
 
@@ -22,8 +22,7 @@ describe('The Valid form submission component', () => {
     }
     const component = mount(<ValidForm {...expected} />)
     expect(component.find('.valid-form').length).toBe(1)
-    component.find('.additional-comments .fullname input').simulate('change')
+    component.find('.additional-comments .signature button').simulate('click')
     expect(updates).toBe(1)
   })
 })
-

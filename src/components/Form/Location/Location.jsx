@@ -1,6 +1,6 @@
 import React from 'react'
 import { updateApplication } from '../../../actions/ApplicationActions'
-import { i18n } from '../../../config'
+import { i18n, env } from '../../../config'
 import ValidationElement from '../ValidationElement'
 import Street from '../Street'
 import MilitaryState from '../MilitaryState'
@@ -12,6 +12,7 @@ import Suggestions from '../Suggestions'
 import Address from './Address'
 import ToggleableLocation from './ToggleableLocation'
 import { LocationValidator } from '../../../validators'
+import { countryString } from '../../../validators/location'
 import { AddressSuggestion } from './AddressSuggestion'
 import Layouts from './Layouts'
 
@@ -21,6 +22,20 @@ export const timeout = (fn, milliseconds = 400, w = window) => {
   }
 
   w.setTimeout(fn, milliseconds)
+}
+
+export const country = (obj) => {
+  if (obj === null) {
+    return null
+  }
+
+  if (obj instanceof Object) {
+    if ('value' in obj) {
+      return obj.value
+    }
+  }
+
+  return obj
 }
 
 export default class Location extends ValidationElement {
@@ -81,15 +96,16 @@ export default class Location extends ValidationElement {
   }
 
   appendToAddressBook (books, name, address) {
+    const addressCountry = (address.country || {}).value
     let book = books[name] || []
 
     // If this is a full address and domestic then it must be validate
-    if (address.layout === Layouts.US_ADDRESS && address.country === 'United States' && !address.validated) {
+    if (address.layout === Layouts.US_ADDRESS && addressCountry === 'United States' && !address.validated) {
       return book
     }
 
     // Make sure there are **some values** at least
-    switch (address.country) {
+    switch (addressCountry) {
       case 'United States':
       case 'POSTOFFICE':
         if (!address.street || !address.city || !address.state || !address.zipcode) {
@@ -98,7 +114,7 @@ export default class Location extends ValidationElement {
         break
 
       default:
-        if (!address.street || !address.city | !address.country) {
+        if (!address.street || !address.city | !addressCountry) {
           return book
         }
         break
@@ -118,7 +134,8 @@ export default class Location extends ValidationElement {
     // to append to the address book.
     let skip = true
     book = book.filter(a => {
-      switch (address.country) {
+      const country = (a.country || {}).value
+      switch (addressCountry) {
         case 'United States':
         case 'POSTOFFICE':
           if (a.street.toLowerCase() === address.street.toLowerCase() &&
@@ -137,7 +154,7 @@ export default class Location extends ValidationElement {
         default:
           if (a.street.toLowerCase() === address.street.toLowerCase() &&
               a.city.toLowerCase() === address.city.toLowerCase() &&
-              a.country.toLowerCase() === address.country.toLowerCase()) {
+              country.toLowerCase() === addressCountry.toLowerCase()) {
             updated = true
             if (skip) {
               skip = false
@@ -238,7 +255,9 @@ export default class Location extends ValidationElement {
             return
           }
 
-          this.setState({ geocodeResult: r })
+          this.setState({ geocodeResult: r }, () => {
+            this.update({ validated: true })
+          })
         })
         .then(() => {
           // Trigger the spinner to complete final animations
@@ -259,58 +278,52 @@ export default class Location extends ValidationElement {
     this.geocodeCancel = true
   }
 
-  updateStreet (event) {
+  updateStreet (values) {
     this.update({
-      street: event.target.value,
-      validated: false
+      street: values.value,
+      validated: this.props.validated && values.value === this.props.street
     })
   }
 
-  updateStreet2 (event) {
+  updateStreet2 (values) {
     this.update({
-      street2: event.target.value,
-      validated: false
+      street2: values.value,
+      validated: this.props.validated && values.value === this.props.street2
     })
   }
 
-  updateCity (event) {
+  updateCity (values) {
     this.update({
-      city: event.target.value,
-      validated: false
+      city: values.value,
+      validated: this.props.validated && values.value === this.props.city
     })
   }
 
-  updateState (event) {
+  updateState (values) {
     this.update({
-      state: event.target.value,
-      validated: false
+      state: values.value,
+      validated: this.props.validated && values.value === this.props.state
     })
   }
 
   updateCountry (values) {
     this.update({
       country: values,
-      validated: false
+      validated: this.props.validated && countryString(values) === countryString(this.props.country)
     })
   }
 
-  updateZipcode (event) {
+  updateZipcode (values) {
     this.update({
-      zipcode: event.target.value,
-      validated: false
+      zipcode: values.value,
+      validated: this.props.validated && values.value === this.props.zipcode
     })
   }
 
   updateAddress (address) {
     this.update({
-      street: address.street,
-      street2: address.street2,
-      city: address.city,
-      state: address.state,
-      zipcode: address.zipcode,
-      country: address.country,
-      addressType: address.addressType,
-      validated: false
+      validated: false,
+      ...address
     })
   }
 
@@ -343,92 +356,91 @@ export default class Location extends ValidationElement {
       switch (field) {
         case 'street':
           return (
-          <Street name="street"
+            <Street name="street"
+                    key={field}
+                    className="street"
+                    label={this.props.streetLabel}
+                    placeholder={this.props.streetPlaceholder}
+                    value={this.props.street}
+                    onUpdate={this.updateStreet}
+                    onError={this.handleError}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.handleBlur}
+                    required={this.props.required}
+                    />
+          )
+        case 'street2':
+          return (
+            <Street name="street2"
+                    key={field}
+                    className="street2"
+                    label={this.props.street2Label}
+                    optional={true}
+                    value={this.props.street2}
+                    onUpdate={this.updateStreet2}
+                    onError={this.handleError}
+                    onFocus={this.props.onFocus}
+                    onBlur={this.props.onBlur}
+                    />
+          )
+        case 'city':
+          return (
+            <City name="city"
+                  className="city"
                   key={field}
-                  className="street"
-                  label={this.props.streetLabel}
-                  placeholder={this.props.streetPlaceholder}
-                  value={this.props.street}
-                  onChange={this.updateStreet}
+                  label={this.props.cityLabel}
+                  placeholder={this.props.cityPlaceholder}
+                  value={this.props.city}
+                  onUpdate={this.updateCity}
                   onError={this.handleError}
                   onFocus={this.props.onFocus}
                   onBlur={this.handleBlur}
                   required={this.props.required}
                   />
           )
-        case 'street2':
-          return (
-          <Street name="street2"
-                  className="street2"
-                  label={this.props.street2Label}
-                  optional={true}
-                  value={this.props.street2}
-                  onChange={this.updateStreet2}
-                  onError={this.handleError}
-                  onFocus={this.props.onFocus}
-                  onBlur={this.props.onBlur}
-                  />
-          )
-        case 'city':
-          return (
-          <City name="city"
-                className="city"
-                key={field}
-                label={this.props.cityLabel}
-                placeholder={this.props.cityPlaceholder}
-                value={this.props.city}
-                onChange={this.updateCity}
-                onError={this.handleError}
-                onFocus={this.props.onFocus}
-                onBlur={this.handleBlur}
-                required={this.props.required}
-                />
-          )
         case 'state':
           return (
-          <MilitaryState name="state"
-                         key={field}
-                         className="state"
-                         label={this.props.stateLabel}
-                         placeholder={this.props.statePlaceholder}
-                         value={this.props.state}
-                         includeStates="true"
-                         onChange={this.updateState}
-                         onError={this.handleError}
-                         onFocus={this.props.onFocus}
-                         onBlur={this.handleBlur}
-                         required={this.props.required}
-                         />
-          )
-        case 'stateZipcode':
-          return (
-          <div className="state-zip-wrap">
             <MilitaryState name="state"
-                           key={`state-${field}`}
+                           key={field}
                            className="state"
                            label={this.props.stateLabel}
                            placeholder={this.props.statePlaceholder}
                            value={this.props.state}
                            includeStates="true"
-                           onChange={this.updateState}
+                           onUpdate={this.updateState}
                            onError={this.handleError}
                            onFocus={this.props.onFocus}
                            onBlur={this.handleBlur}
                            required={this.props.required}
                            />
-            <ZipCode name="zipcode"
-                     key={`zip-${field}`}
-                     className="zipcode"
-                     label={this.props.zipcodeLabel}
-                     placeholder={this.props.zipcodePlaceholder}
-                     value={this.props.zipcode}
-                     onChange={this.updateZipcode}
-                     onError={this.handleError}
-                     onFocus={this.props.onFocus}
-                     onBlur={this.handleBlur}
-                     required={this.props.required}
-                     />
-          </div>
+          )
+        case 'stateZipcode':
+          return (
+            <div className="state-zip-wrap" key={`state-zip-${field}`}>
+              <MilitaryState name="state"
+                             className="state"
+                             label={this.props.stateLabel}
+                             placeholder={this.props.statePlaceholder}
+                             value={this.props.state}
+                             includeStates="true"
+                             onUpdate={this.updateState}
+                             onError={this.handleError}
+                             onFocus={this.props.onFocus}
+                             onBlur={this.handleBlur}
+                             required={this.props.required}
+                             />
+              <ZipCode name="zipcode"
+                       className="zipcode"
+                       label={this.props.zipcodeLabel}
+                       placeholder={this.props.zipcodePlaceholder}
+                       value={this.props.zipcode}
+                       onUpdate={this.updateZipcode}
+                       onError={this.handleError}
+                       onFocus={this.props.onFocus}
+                       onBlur={this.handleBlur}
+                       required={this.props.required}
+                       />
+            </div>
           )
         case 'country':
           return (
@@ -519,7 +531,9 @@ export default class Location extends ValidationElement {
       case null:
       case undefined:
       default:
-        console.warn('Location layout not specified. Add one please')
+        if (!env.IsTest()) {
+          console.warn('Location layout not specified. Add one please')
+        }
         return null
     }
   }

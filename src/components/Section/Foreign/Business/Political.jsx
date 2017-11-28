@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { ForeignBusinessPoliticalValidator, PoliticalValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -17,7 +19,6 @@ export default class Political extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignPolitical: this.props.HasForeignPolitical,
       ...queue
     })
@@ -26,15 +27,13 @@ export default class Political extends SubsectionElement {
   updateHasForeignPolitical (values) {
     this.update({
       HasForeignPolitical: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -60,7 +59,7 @@ export default class Political extends SubsectionElement {
         <Branch name="has_foreign_political"
                 label={i18n.t('foreign.business.political.heading.title')}
                 labelSize="h2"
-                value={this.props.HasForeignPolitical}
+                {...this.props.HasForeignPolitical}
                 warning={true}
                 onUpdate={this.updateHasForeignPolitical}
                 required={this.props.required}
@@ -68,11 +67,10 @@ export default class Political extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasForeignPolitical === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignPolitical.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={PoliticalValidator}
@@ -82,11 +80,11 @@ export default class Political extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.political.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <PoliticalItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <PoliticalItem name="Item"
+                           bind={true}
+                           required={this.props.required}
+                           scrollIntoView={this.props.scrollIntoView}
+                           />
           </Accordion>
         </Show>
       </div>
@@ -96,16 +94,15 @@ export default class Political extends SubsectionElement {
 
 Political.defaultProps = {
   name: 'Political',
-  HasForeignPolitical: '',
-  List: [],
-  ListBranch: '',
+  HasForeignPolitical: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/political',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessPoliticalValidator(props).isValid()
+    return validate(schema('foreign.business.political', props))
   },
   defaultState: true,
   scrollToBottom: ''

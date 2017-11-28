@@ -190,6 +190,7 @@ export default class Name extends ValidationElement {
           <Text name="first"
                 ref="first"
                 pattern="^[a-zA-Z\-\.' ]*$"
+                minlength={this.props.firstInitialOnly ? 1 : 2}
                 maxlength={maxFirst}
                 className="first"
                 value={this.props.first}
@@ -222,6 +223,7 @@ export default class Name extends ValidationElement {
           <Text name="middle"
                 ref="middle"
                 minlength="0"
+                minlength={this.props.middleInitialOnly ? 1 : 2}
                 maxlength={maxMiddle}
                 className="middle"
                 value={this.props.middle}
@@ -264,6 +266,7 @@ export default class Name extends ValidationElement {
                adjustFor="labels">
           <Text name="last"
                 ref="last"
+                minlength={this.props.lastInitialOnly ? 1 : 2}
                 maxlength={maxLast}
                 className="last"
                 pattern="^[a-zA-Z\-\.' ]*$"
@@ -292,7 +295,8 @@ export default class Name extends ValidationElement {
                help="identification.name.suffix.help"
                errorPrefix="name"
                scrollIntoView={this.props.scrollIntoView}
-               optional={true}>
+               optional={true}
+               optionalText={i18n.t(`${prefix}.label.optional`)}>
           <RadioGroup className="option-list suffix" selectedValue={this.props.suffix}>
             <Radio name="suffix"
                    label={i18n.t(`${prefix}.label.jr`)}

@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import { MemoryRouter } from 'react-router'
 import ReleaseOfGeneralAndMedical from './ReleaseOfGeneralAndMedical'
 
 describe('The ReleaseOfGeneralAndMedical Release component', () => {
@@ -17,11 +18,11 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
       },
       onUpdate: () => { updates++ }
     }
-    const component = mount(<ReleaseOfGeneralAndMedical {...props} />)
+    const component = mount(<MemoryRouter><ReleaseOfGeneralAndMedical {...props} /></MemoryRouter>)
     expect(component.find('.general-release').length).toBe(1)
     expect(component.find('.medical-release').length).toBe(1)
-    component.find('.general-release .fullname input').simulate('change')
-    component.find('.medical-release .fullname input').simulate('change')
+    component.find('.general-release .signature button').simulate('click')
+    component.find('.medical-release .signature button').simulate('click')
     expect(updates).toBe(2)
   })
 
@@ -37,7 +38,7 @@ describe('The ReleaseOfGeneralAndMedical Release component', () => {
         }
       }
     }
-    const component = mount(<ReleaseOfGeneralAndMedical {...props} />)
+    const component = mount(<MemoryRouter><ReleaseOfGeneralAndMedical {...props} /></MemoryRouter>)
     expect(component.find('.medical-release').length).toBe(0)
   })
 })

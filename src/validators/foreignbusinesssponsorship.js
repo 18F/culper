@@ -1,13 +1,12 @@
 import NameValidator from './name'
 import LocationValidator from './location'
 import DateRangeValidator from './daterange'
-import { validGenericTextfield, validDateField, validNotApplicable } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField, validNotApplicable } from './helpers'
 
 export default class ForeignBusinessSponsorshipValidator {
   constructor (data = {}) {
-    this.hasForeignSponsorship = data.HasForeignSponsorship
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasForeignSponsorship = (data.HasForeignSponsorship || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -15,19 +14,9 @@ export default class ForeignBusinessSponsorshipValidator {
       return true
     }
 
-    if (this.hasForeignSponsorship === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new SponsorshipValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new SponsorshipValidator(item).isValid()
+    })
   }
 
   isValid () {

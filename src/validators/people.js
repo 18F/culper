@@ -1,7 +1,7 @@
 import DateRangeValidator from './daterange'
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validGenericTextfield, validPhoneNumber, validNotApplicable } from './helpers'
+import { validAccordion, validGenericTextfield, validPhoneNumber, validNotApplicable } from './helpers'
 import { decimalAdjust, rangeSorter, julian, findPercentage, today, daysAgo, julianNow } from '../components/Section/History/dateranges'
 
 const minimumYears = 7
@@ -9,18 +9,17 @@ const minimumPeople = 3
 
 export default class PeopleValidator {
   constructor (state = {}) {
-    this.people = state.List || []
-    this.listBranch = state.ListBranch
+    this.list = state.List || {}
   }
 
   validCount () {
-    return this.people.length
+    return ((this.list || {}).items || []).length
   }
 
   validYearRange () {
     const julianMax = julian(daysAgo(today, 365 * minimumYears))
 
-    const dates = this.people.reduce((dates, item) => {
+    const dates = this.list.items.reduce((dates, item) => {
       if (!item || !item.Item || !item.Item.Dates) {
         return dates
       }
@@ -74,33 +73,31 @@ export default class PeopleValidator {
   }
 
   isValid () {
-    if (this.listBranch !== 'No') {
+    if ((this.list.branch || {}).value !== 'No') {
       return false
     }
 
-    for (const item of this.people) {
-      if (!new PersonValidator(item.Item).isValid()) {
-        return false
-      }
-    }
+    const valid = validAccordion(this.list, (item) => {
+      return new PersonValidator(item).isValid()
+    })
 
-    return this.validCount() >= minimumPeople && this.validYearRange()
+    return valid && this.validCount() >= minimumPeople && this.validYearRange()
   }
 }
 
 export class PersonValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.dates = state.Dates
-    this.rank = state.Rank
-    this.rankNotApplicable = state.RankNotApplicable
-    this.relationship = state.Relationship
-    this.relationshipOther = state.RelationshipOther
-    this.mobileTelephone = state.MobileTelephone
-    this.otherTelephone = state.OtherTelephone
-    this.email = state.Email
-    this.emailNotApplicable = state.EmailNotApplicable
-    this.address = state.Address
+  constructor (data = {}) {
+    this.name = data.Name
+    this.dates = data.Dates
+    this.rank = data.Rank
+    this.rankNotApplicable = data.RankNotApplicable
+    this.relationship = (data.Relationship || {}).values || []
+    this.relationshipOther = data.RelationshipOther
+    this.mobileTelephone = data.MobileTelephone
+    this.otherTelephone = data.OtherTelephone
+    this.email = data.Email
+    this.emailNotApplicable = data.EmailNotApplicable
+    this.address = data.Address
   }
 
   validRelationship () {

@@ -3,10 +3,8 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 type FinancialBankruptcy struct {
@@ -18,10 +16,9 @@ type FinancialBankruptcy struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasBankruptcyID int
-	ListID          int
+	ID              int `json:"-"`
+	HasBankruptcyID int `json:"-" pg:", fk:HasBankruptcy"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -46,6 +43,17 @@ func (entity *FinancialBankruptcy) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialBankruptcy) Marshal() Payload {
+	if entity.HasBankruptcy != nil {
+		entity.PayloadHasBankruptcy = entity.HasBankruptcy.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("financial.bankruptcy", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialBankruptcy) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -64,10 +72,27 @@ func (entity *FinancialBankruptcy) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialBankruptcy) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialBankruptcy) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&FinancialBankruptcy{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialBankruptcy)
+		if entity.HasBankruptcy == nil {
+			entity.HasBankruptcy = &Branch{}
+		}
+		entity.HasBankruptcyID = previous.HasBankruptcyID
+		entity.HasBankruptcy.ID = previous.HasBankruptcyID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasBankruptcyID, err := entity.HasBankruptcy.Save(context, account)
 	if err != nil {
 		return hasBankruptcyID, err
@@ -80,83 +105,91 @@ func (entity *FinancialBankruptcy) Save(context *pg.DB, account int64) (int, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&FinancialBankruptcy{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialBankruptcy) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialBankruptcy) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialBankruptcy{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasBankruptcy.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&FinancialBankruptcy{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialBankruptcy)
+		if entity.HasBankruptcy == nil {
+			entity.HasBankruptcy = &Branch{}
+		}
+		entity.HasBankruptcyID = previous.HasBankruptcyID
+		entity.HasBankruptcy.ID = previous.HasBankruptcyID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasBankruptcy.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialBankruptcy) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialBankruptcy) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialBankruptcy{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasBankruptcyID != 0 {
+		entity.HasBankruptcy = &Branch{ID: entity.HasBankruptcyID}
 		if _, err := entity.HasBankruptcy.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialBankruptcy) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialBankruptcy) SetID(id int) {
+	entity.ID = id
 }
 
 type FinancialGambling struct {
@@ -168,10 +201,9 @@ type FinancialGambling struct {
 	List            *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                int
-	AccountID         int64
-	HasGamblingDebtID int
-	ListID            int
+	ID                int `json:"-"`
+	HasGamblingDebtID int `json:"-" pg:", fk:HasGamblingDebt"`
+	ListID            int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -196,6 +228,17 @@ func (entity *FinancialGambling) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialGambling) Marshal() Payload {
+	if entity.HasGamblingDebt != nil {
+		entity.PayloadHasGamblingDebt = entity.HasGamblingDebt.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("financial.gambling", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialGambling) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -214,10 +257,27 @@ func (entity *FinancialGambling) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialGambling) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialGambling) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&FinancialGambling{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialGambling)
+		if entity.HasGamblingDebt == nil {
+			entity.HasGamblingDebt = &Branch{}
+		}
+		entity.HasGamblingDebtID = previous.HasGamblingDebtID
+		entity.HasGamblingDebt.ID = previous.HasGamblingDebtID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasGamblingDebtID, err := entity.HasGamblingDebt.Save(context, account)
 	if err != nil {
 		return hasGamblingDebtID, err
@@ -230,83 +290,91 @@ func (entity *FinancialGambling) Save(context *pg.DB, account int64) (int, error
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&FinancialGambling{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialGambling) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialGambling) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialGambling{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasGamblingDebt.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&FinancialGambling{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialGambling)
+		if entity.HasGamblingDebt == nil {
+			entity.HasGamblingDebt = &Branch{}
+		}
+		entity.HasGamblingDebtID = previous.HasGamblingDebtID
+		entity.HasGamblingDebt.ID = previous.HasGamblingDebtID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasGamblingDebt.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialGambling) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialGambling) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialGambling{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasGamblingDebtID != 0 {
+		entity.HasGamblingDebt = &Branch{ID: entity.HasGamblingDebtID}
 		if _, err := entity.HasGamblingDebt.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialGambling) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialGambling) SetID(id int) {
+	entity.ID = id
 }
 
 type FinancialTaxes struct {
@@ -318,10 +386,9 @@ type FinancialTaxes struct {
 	List     *Collection `json:"-"`
 
 	// Persister specific fields
-	ID         int
-	AccountID  int64
-	HasTaxesID int
-	ListID     int
+	ID         int `json:"-"`
+	HasTaxesID int `json:"-" pg:", fk:HasTaxes"`
+	ListID     int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -346,6 +413,17 @@ func (entity *FinancialTaxes) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialTaxes) Marshal() Payload {
+	if entity.HasTaxes != nil {
+		entity.PayloadHasTaxes = entity.HasTaxes.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("financial.taxes", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialTaxes) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -364,10 +442,27 @@ func (entity *FinancialTaxes) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialTaxes) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialTaxes) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&FinancialTaxes{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialTaxes)
+		if entity.HasTaxes == nil {
+			entity.HasTaxes = &Branch{}
+		}
+		entity.HasTaxesID = previous.HasTaxesID
+		entity.HasTaxes.ID = previous.HasTaxesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasTaxesID, err := entity.HasTaxes.Save(context, account)
 	if err != nil {
 		return hasTaxesID, err
@@ -380,83 +475,95 @@ func (entity *FinancialTaxes) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&FinancialTaxes{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialTaxes) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialTaxes) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialTaxes{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasTaxes.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&FinancialTaxes{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialTaxes)
+		if entity.HasTaxes == nil {
+			entity.HasTaxes = &Branch{}
+		}
+		entity.HasTaxesID = previous.HasTaxesID
+		entity.HasTaxes.ID = previous.HasTaxesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasTaxes.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialTaxes) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialTaxes) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialTaxes{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasTaxesID != 0 {
+		entity.HasTaxes = &Branch{ID: entity.HasTaxesID}
 		if _, err := entity.HasTaxes.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialTaxes) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialTaxes) SetID(id int) {
+	entity.ID = id
 }
 
 type FinancialCard struct {
@@ -468,10 +575,9 @@ type FinancialCard struct {
 	List         *Collection `json:"-"`
 
 	// Persister specific fields
-	ID             int
-	AccountID      int64
-	HasCardAbuseID int
-	ListID         int
+	ID             int `json:"-"`
+	HasCardAbuseID int `json:"-" pg:", fk:HasCardAbuse"`
+	ListID         int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -496,6 +602,17 @@ func (entity *FinancialCard) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialCard) Marshal() Payload {
+	if entity.HasCardAbuse != nil {
+		entity.PayloadHasCardAbuse = entity.HasCardAbuse.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("financial.card", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialCard) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -514,10 +631,27 @@ func (entity *FinancialCard) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialCard) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialCard) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&FinancialCard{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCard)
+		if entity.HasCardAbuse == nil {
+			entity.HasCardAbuse = &Branch{}
+		}
+		entity.HasCardAbuseID = previous.HasCardAbuseID
+		entity.HasCardAbuse.ID = previous.HasCardAbuseID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasCardAbuseID, err := entity.HasCardAbuse.Save(context, account)
 	if err != nil {
 		return hasCardAbuseID, err
@@ -530,83 +664,95 @@ func (entity *FinancialCard) Save(context *pg.DB, account int64) (int, error) {
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&FinancialCard{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialCard) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialCard) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialCard{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasCardAbuse.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&FinancialCard{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCard)
+		if entity.HasCardAbuse == nil {
+			entity.HasCardAbuse = &Branch{}
+		}
+		entity.HasCardAbuseID = previous.HasCardAbuseID
+		entity.HasCardAbuse.ID = previous.HasCardAbuseID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasCardAbuse.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialCard) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialCard) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialCard{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasCardAbuseID != 0 {
+		entity.HasCardAbuse = &Branch{ID: entity.HasCardAbuseID}
 		if _, err := entity.HasCardAbuse.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialCard) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialCard) SetID(id int) {
+	entity.ID = id
 }
 
 type FinancialCredit struct {
@@ -618,10 +764,9 @@ type FinancialCredit struct {
 	List                *Collection `json:"-"`
 
 	// Persister specific fields
-	ID                    int
-	AccountID             int64
-	HasCreditCounselingID int
-	ListID                int
+	ID                    int `json:"-"`
+	HasCreditCounselingID int `json:"-" pg:", fk:HasCreditCounseling"`
+	ListID                int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -646,6 +791,17 @@ func (entity *FinancialCredit) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialCredit) Marshal() Payload {
+	if entity.HasCreditCounseling != nil {
+		entity.PayloadHasCreditCounseling = entity.HasCreditCounseling.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("financial.credit", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialCredit) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -664,10 +820,27 @@ func (entity *FinancialCredit) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialCredit) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialCredit) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&FinancialCredit{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCredit)
+		if entity.HasCreditCounseling == nil {
+			entity.HasCreditCounseling = &Branch{}
+		}
+		entity.HasCreditCounselingID = previous.HasCreditCounselingID
+		entity.HasCreditCounseling.ID = previous.HasCreditCounselingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasCreditCounselingID, err := entity.HasCreditCounseling.Save(context, account)
 	if err != nil {
 		return hasCreditCounselingID, err
@@ -680,83 +853,95 @@ func (entity *FinancialCredit) Save(context *pg.DB, account int64) (int, error) 
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&FinancialCredit{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialCredit) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialCredit) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialCredit{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasCreditCounseling.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&FinancialCredit{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialCredit)
+		if entity.HasCreditCounseling == nil {
+			entity.HasCreditCounseling = &Branch{}
+		}
+		entity.HasCreditCounselingID = previous.HasCreditCounselingID
+		entity.HasCreditCounseling.ID = previous.HasCreditCounselingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasCreditCounseling.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialCredit) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialCredit) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialCredit{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasCreditCounselingID != 0 {
+		entity.HasCreditCounseling = &Branch{ID: entity.HasCreditCounselingID}
 		if _, err := entity.HasCreditCounseling.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialCredit) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialCredit) SetID(id int) {
+	entity.ID = id
 }
 
 type FinancialDelinquent struct {
@@ -768,10 +953,9 @@ type FinancialDelinquent struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasDelinquentID int
-	ListID          int
+	ID              int `json:"-"`
+	HasDelinquentID int `json:"-" pg:", fk:HasDelinquent"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -796,6 +980,17 @@ func (entity *FinancialDelinquent) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialDelinquent) Marshal() Payload {
+	if entity.HasDelinquent != nil {
+		entity.PayloadHasDelinquent = entity.HasDelinquent.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("financial.delinquent", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialDelinquent) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -814,10 +1009,27 @@ func (entity *FinancialDelinquent) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialDelinquent) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialDelinquent) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&FinancialDelinquent{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialDelinquent)
+		if entity.HasDelinquent == nil {
+			entity.HasDelinquent = &Branch{}
+		}
+		entity.HasDelinquentID = previous.HasDelinquentID
+		entity.HasDelinquent.ID = previous.HasDelinquentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasDelinquentID, err := entity.HasDelinquent.Save(context, account)
 	if err != nil {
 		return hasDelinquentID, err
@@ -830,83 +1042,91 @@ func (entity *FinancialDelinquent) Save(context *pg.DB, account int64) (int, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&FinancialDelinquent{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialDelinquent) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialDelinquent) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialDelinquent{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasDelinquent.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&FinancialDelinquent{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialDelinquent)
+		if entity.HasDelinquent == nil {
+			entity.HasDelinquent = &Branch{}
+		}
+		entity.HasDelinquentID = previous.HasDelinquentID
+		entity.HasDelinquent.ID = previous.HasDelinquentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasDelinquent.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialDelinquent) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialDelinquent) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialDelinquent{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasDelinquentID != 0 {
+		entity.HasDelinquent = &Branch{ID: entity.HasDelinquentID}
 		if _, err := entity.HasDelinquent.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialDelinquent) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialDelinquent) SetID(id int) {
+	entity.ID = id
 }
 
 type FinancialNonpayment struct {
@@ -918,10 +1138,9 @@ type FinancialNonpayment struct {
 	List          *Collection `json:"-"`
 
 	// Persister specific fields
-	ID              int
-	AccountID       int64
-	HasNonpaymentID int
-	ListID          int
+	ID              int `json:"-"`
+	HasNonpaymentID int `json:"-" pg:", fk:HasNonpayment"`
+	ListID          int `json:"-" pg:", fk:List"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -946,6 +1165,17 @@ func (entity *FinancialNonpayment) Unmarshal(raw []byte) error {
 	return err
 }
 
+// Marshal to payload structure
+func (entity *FinancialNonpayment) Marshal() Payload {
+	if entity.HasNonpayment != nil {
+		entity.PayloadHasNonpayment = entity.HasNonpayment.Marshal()
+	}
+	if entity.List != nil {
+		entity.PayloadList = entity.List.Marshal()
+	}
+	return MarshalPayloadEntity("financial.nonpayment", entity)
+}
+
 // Valid checks the value(s) against an battery of tests.
 func (entity *FinancialNonpayment) Valid() (bool, error) {
 	var stack model.ErrorStack
@@ -964,10 +1194,27 @@ func (entity *FinancialNonpayment) Valid() (bool, error) {
 }
 
 // Save will create or update the database.
-func (entity *FinancialNonpayment) Save(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialNonpayment) Save(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	var err error
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&FinancialNonpayment{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialNonpayment)
+		if entity.HasNonpayment == nil {
+			entity.HasNonpayment = &Branch{}
+		}
+		entity.HasNonpaymentID = previous.HasNonpaymentID
+		entity.HasNonpayment.ID = previous.HasNonpaymentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
+
 	hasNonpaymentID, err := entity.HasNonpayment.Save(context, account)
 	if err != nil {
 		return hasNonpaymentID, err
@@ -980,81 +1227,89 @@ func (entity *FinancialNonpayment) Save(context *pg.DB, account int64) (int, err
 	}
 	entity.ListID = listID
 
-	err = context.CreateTable(&FinancialNonpayment{}, &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	})
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Delete will remove the entity from the database.
-func (entity *FinancialNonpayment) Delete(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialNonpayment) Delete(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialNonpayment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	if _, err = entity.HasNonpayment.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
-
-	if _, err = entity.List.Delete(context, account); err != nil {
-		return entity.ID, err
-	}
+	context.Find(&FinancialNonpayment{ID: account}, func(result interface{}) {
+		previous := result.(*FinancialNonpayment)
+		if entity.HasNonpayment == nil {
+			entity.HasNonpayment = &Branch{}
+		}
+		entity.HasNonpaymentID = previous.HasNonpaymentID
+		entity.HasNonpayment.ID = previous.HasNonpaymentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
+		entity.ListID = previous.ListID
+		entity.List.ID = previous.ListID
+	})
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	if _, err := entity.HasNonpayment.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	if _, err := entity.List.Delete(context, account); err != nil {
+		return entity.ID, err
+	}
+
+	return entity.ID, nil
 }
 
 // Get will retrieve the entity from the database.
-func (entity *FinancialNonpayment) Get(context *pg.DB, account int64) (int, error) {
-	entity.AccountID = account
+func (entity *FinancialNonpayment) Get(context *db.DatabaseContext, account int) (int, error) {
+	entity.ID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&FinancialNonpayment{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.HasNonpaymentID != 0 {
+		entity.HasNonpayment = &Branch{ID: entity.HasNonpaymentID}
 		if _, err := entity.HasNonpayment.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
 	if entity.ListID != 0 {
+		entity.List = &Collection{ID: entity.ListID}
 		if _, err := entity.List.Get(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *FinancialNonpayment) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *FinancialNonpayment) SetID(id int) {
+	entity.ID = id
 }

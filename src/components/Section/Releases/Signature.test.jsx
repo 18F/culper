@@ -10,8 +10,7 @@ describe('The Signature Release component', () => {
     }
     const component = mount(<Signature {...expected} />)
     expect(component.find('.signature').length).toBe(1)
-    component.find('.fullname input').simulate('change')
-    component.find('.date .day input').simulate('change')
-    expect(updates).toBe(2)
+    component.find('button').simulate('click')
+    expect(updates).toBe(1)
   })
 })

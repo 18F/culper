@@ -9,13 +9,6 @@ export default class County extends ValidationElement {
     this.handleError = this.handleError.bind(this)
   }
 
-  /**
-   * Handle the change event.
-   */
-  handleChange (event) {
-    super.handleChange(event)
-  }
-
   handleError (value, arr) {
     arr = arr.map(err => {
       return {
@@ -39,7 +32,7 @@ export default class County extends ValidationElement {
             required={this.props.required}
             className={this.props.className}
             value={this.props.value}
-            onChange={this.handleChange}
+            onUpdate={this.props.onUpdate}
             onError={this.handleError}
             onFocus={this.props.onFocus}
             onBlur={this.props.onBlur}
@@ -51,6 +44,7 @@ export default class County extends ValidationElement {
 County.defaultProps = {
   name: 'county',
   value: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false
 }

@@ -7,7 +7,7 @@ export default class Text extends ValidationElement {
     super(props)
 
     this.state = {
-      value: props.value
+      value: props.prefilter(props.value)
     }
 
     this.handleError = this.handleError.bind(this)
@@ -17,7 +17,7 @@ export default class Text extends ValidationElement {
     if (this.state.value === nextProps.value) {
       return
     }
-    this.setState({ value: nextProps.value })
+    this.setState({ value: this.props.prefilter(nextProps.value) })
   }
 
   /**
@@ -25,14 +25,12 @@ export default class Text extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-    this.setState({ value: event.target.value }, () => {
+    this.setState({ value: this.props.prefilter(event.target.value) }, () => {
       super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          value: this.state.value,
-          name: this.props.name
-        })
-      }
+      this.props.onUpdate({
+        value: this.state.value,
+        name: this.props.name
+      })
     })
   }
 
@@ -89,6 +87,8 @@ Text.defaultProps = {
   value: '',
   prefix: '',
   required: false,
+  prefilter: (value) => { return value },
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

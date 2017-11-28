@@ -12,6 +12,8 @@ applications:
     - eqip-postgres
     - usps-api
   env:
-    GOVERSION: go1.8.3
+    PATH: /bin:/usr/bin:$HOME/bin
+    GOVERSION: go1.8.5
     ALLOW_2FA_RESET: 1
     DISABLE_2FA: 1
+    BASIC_ENABLED: 1

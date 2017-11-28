@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validGenericTextfield, validBranch } from './helpers'
+import { validAccordion, validGenericTextfield, validBranch } from './helpers'
 
 export default class HospitalizationsValidator {
   constructor (data = {}) {
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
-    this.hospitalized = data.Hospitalized
+    this.list = data.List || {}
+    this.hospitalized = (data.Hospitalized || {}).value
   }
 
   validList () {
@@ -14,20 +13,9 @@ export default class HospitalizationsValidator {
       return true
     }
 
-    if (this.hospitalized === 'Yes' && this.list.length === 0) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (let item of this.list) {
-      if (!new HospitalizationValidator(item.Item).isValid()) {
-        return false
-      }
-    }
-    return true
+    return validAccordion(this.list, (item) => {
+      return new HospitalizationValidator(item).isValid()
+    })
   }
 
   validHospitalization () {

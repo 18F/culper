@@ -1,4 +1,5 @@
 import React from 'react'
+import { countryString } from '../../validators/location'
 
 export const AddressSummary = (props, unknown = '') => {
   if (!props) {
@@ -6,15 +7,15 @@ export const AddressSummary = (props, unknown = '') => {
   }
 
   const address1 = `${props.street || ''} ${props.street2 || ''}`.trim()
-  const country = props.country || {}
+  const country = countryString(props.country)
   let address2 = ''
 
-  if (country.value === 'United States') {
+  if (country === 'United States') {
     address2 = `${(props.city || '').toLowerCase()}, ${(props.state || '').toUpperCase()} ${props.zipcode || ''}`.trim()
-  } else if (country.value === 'POSTOFFICE') {
+  } else if (country === 'POSTOFFICE') {
     address2 = `${(props.apoFpoType || '').toUpperCase()}, ${(props.apoFpo || '').toUpperCase()} ${props.zipcode || ''}`.trim()
-  } else if (country.value !== '') {
-    address2 = `${(props.city || '').toLowerCase()}, ${(country.value || '').toLowerCase()}`.trim()
+  } else if (country !== '') {
+    address2 = `${(props.city || '').toLowerCase()}, ${(country || '').toLowerCase()}`.trim()
   }
 
   if (address1.length === 0 || address2.length === 1) {

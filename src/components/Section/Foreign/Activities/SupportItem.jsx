@@ -135,7 +135,7 @@ export default class SupportItem extends ValidationElement {
                       className="foreign-activities-support-amount-estimated"
                       label={i18n.t('foreign.activities.support.label.estimated')}
                       toggle="false"
-                      checked={this.props.AmountEstimated}
+                      {...this.props.AmountEstimated}
                       onUpdate={this.updateAmountEstimated}
                       onError={this.props.onError}
                       />

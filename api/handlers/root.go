@@ -61,6 +61,16 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			Verbs:       []string{"GET"},
 		},
 		endpoint{
+			Path:        "/auth/saml",
+			Description: "SAML entrypoint",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/auth/saml/callback",
+			Description: "SAML callback",
+			Verbs:       []string{"GET", "POST"},
+		},
+		endpoint{
 			Path:        "/me",
 			Description: "me",
 			Verbs:       []string{"GET"},
@@ -74,6 +84,21 @@ func RootHandler(w http.ResponseWriter, r *http.Request) {
 			Path:        "/me/save",
 			Description: "save",
 			Verbs:       []string{"POST", "PUT"},
+		},
+		endpoint{
+			Path:        "/me/form",
+			Description: "returns the form in its entirety",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/me/form/hash",
+			Description: "returns the form hash code",
+			Verbs:       []string{"GET"},
+		},
+		endpoint{
+			Path:        "/me/section?:id",
+			Description: "returns the form section",
+			Verbs:       []string{"GET"},
 		},
 		endpoint{
 			Path:        "/me/attachment",
