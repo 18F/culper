@@ -146,8 +146,8 @@ class Identification extends SectionElement {
           <SectionView name="birthdate"
                        next="identification/birthplace"
                        nextLabel={i18n.t('identification.destination.birthplace')}
-                       back="identification/othernames"
-                       backLabel={i18n.t('identification.destination.othernames')}>
+                       back="identification/contacts"
+                       backLabel={i18n.t('identification.destination.contacts')}>
             <ApplicantBirthDate name="birthdate"
                                 {...this.props.ApplicantBirthDate}
                                 dispatch={this.props.dispatch}
