@@ -42,6 +42,8 @@ func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	authnRequestXML, _ := authnRequest.String()
+	log.Println("SAML Authentication Request:", authnRequestXML)
 	EncodeJSON(w, struct {
 		Base64XML string
 		URL       string
@@ -66,6 +68,8 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	response, err := saml.ParseEncodedResponse(encodedXML)
+	authnResponseXML, _ := response.String()
+	log.Println("SAML Authentication Response:", authnResponseXML)
 	if err != nil {
 		http.Error(w, "SAML response parse: "+err.Error(), http.StatusBadRequest)
 		return
@@ -74,7 +78,9 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	sp := configureSAML()
 	err = response.Validate(&sp)
 	if err != nil {
-		http.Error(w, "SAML response validation: "+err.Error(), http.StatusBadRequest)
+		errorMessage := fmt.Sprintf("SAML response validation: %s\n\n%s\n", err.Error(), authnResponseXML)
+		http.Error(w, errorMessage, http.StatusBadRequest)
+		// http.Error(w, "SAML response validation: "+err.Error(), http.StatusBadRequest)
 		return
 	}
 
