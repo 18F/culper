@@ -209,8 +209,37 @@ a:focus {
       .usa-header.usa-header-basic {
         .eapp-structure-wrap.eapp-header > .eapp-structure-row {
           .eapp-structure-right {
+            @keyframes fadeIn {
+              0% { opacity: 0; }
+              50% { opacity: 0.5; }
+              100% { opacity: 1; }
+            }
+
+            @-moz-keyframes fadeIn {
+              0% { opacity: 0; }
+              50% { opacity: 0.5; }
+              100% { opacity: 1; }
+            }
+
+            @-webkit-keyframes fadeIn {
+              0% { opacity: 0; }
+              50% { opacity: 0.5; }
+              100% { opacity: 1; }
+            }
+
+            @-o-keyframes fadeIn {
+              0% { opacity: 0; }
+              50% { opacity: 0.5; }
+              100% { opacity: 1; }
+            }
+
             .eapp-logout {
-              display: none;
+              position: absolute;
+              top: 0;
+              animation: fadeIn 0.3s;
+              -moz-animation: fadeIn 0.3s;
+              -webkit-animation: fadeIn 0.3s;
+              -o-animation: fadeIn 0.3s;
             }
 
             .title {
