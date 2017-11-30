@@ -47,6 +47,16 @@ class Identification extends SectionElement {
                            scrollIntoView={false}
                            />
             <hr />
+            <OtherNames name="othernames"
+                        {...this.props.OtherNames}
+                        defaultState={false}
+                        dispatch={this.props.dispatch}
+                        onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
+                        onError={this.handleError}
+                        required={true}
+                        scrollIntoView={false}
+                        />
+            <hr />
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 minimumPhoneNumbers={1}
@@ -59,16 +69,6 @@ class Identification extends SectionElement {
                                 required={true}
                                 scrollIntoView={false}
                                 />
-            <hr />
-            <OtherNames name="othernames"
-                        {...this.props.OtherNames}
-                        defaultState={false}
-                        dispatch={this.props.dispatch}
-                        onUpdate={this.handleUpdate.bind(this, 'OtherNames')}
-                        onError={this.handleError}
-                        required={true}
-                        scrollIntoView={false}
-                        />
             <hr />
             <ApplicantBirthDate name="birthdate"
                                 {...this.props.ApplicantBirthDate}
@@ -120,8 +120,8 @@ class Identification extends SectionElement {
           <SectionView name="name"
                        back="identification/intro"
                        backLabel={i18n.t('identification.destination.intro')}
-                       next="identification/contacts"
-                       nextLabel={i18n.t('identification.destination.contacts')}>
+                       next="identification/othernames"
+                       nextLabel={i18n.t('identification.destination.othernames')}>
             <ApplicantName name="name"
                            {...this.props.ApplicantName}
                            dispatch={this.props.dispatch}
@@ -131,10 +131,10 @@ class Identification extends SectionElement {
           </SectionView>
 
           <SectionView name="othernames"
-                       back="identification/contacts"
-                       backLabel={i18n.t('identification.destination.contacts')}
-                       next="identification/birthdate"
-                       nextLabel={i18n.t('identification.destination.birthdate')}>
+                       back="identification/name"
+                       backLabel={i18n.t('identification.destination.name')}
+                       next="identification/contacts"
+                       nextLabel={i18n.t('identification.destination.contacts')}>
             <OtherNames name="othernames"
                         {...this.props.OtherNames}
                         dispatch={this.props.dispatch}
@@ -146,8 +146,8 @@ class Identification extends SectionElement {
           <SectionView name="birthdate"
                        next="identification/birthplace"
                        nextLabel={i18n.t('identification.destination.birthplace')}
-                       back="identification/othernames"
-                       backLabel={i18n.t('identification.destination.othernames')}>
+                       back="identification/contacts"
+                       backLabel={i18n.t('identification.destination.contacts')}>
             <ApplicantBirthDate name="birthdate"
                                 {...this.props.ApplicantBirthDate}
                                 dispatch={this.props.dispatch}
@@ -170,10 +170,10 @@ class Identification extends SectionElement {
           </SectionView>
 
           <SectionView name="contacts"
-                       back="identification/name"
-                       backLabel={i18n.t('identification.destination.name')}
-                       next="identification/othernames"
-                       nextLabel={i18n.t('identification.destination.othernames')}>
+                       back="identification/othernames"
+                       backLabel={i18n.t('identification.destination.othernames')}
+                       next="identification/birthdate"
+                       nextLabel={i18n.t('identification.destination.birthdate')}>
             <ContactInformation name="contacts"
                                 {...this.props.Contacts}
                                 dispatch={this.props.dispatch}
@@ -250,6 +250,15 @@ export class IdentificationSections extends React.Component {
                        scrollIntoView={false}
                        />
         <hr />
+        <OtherNames name="othernames"
+                    {...this.props.OtherNames}
+                    defaultState={false}
+                    dispatch={this.props.dispatch}
+                    onError={this.props.onError}
+                    required={true}
+                    scrollIntoView={false}
+                    />
+        <hr />
         <ContactInformation name="contacts"
                             {...this.props.Contacts}
                             minimumPhoneNumbers={1}
@@ -261,15 +270,6 @@ export class IdentificationSections extends React.Component {
                             required={true}
                             scrollIntoView={false}
                             />
-        <hr />
-        <OtherNames name="othernames"
-                    {...this.props.OtherNames}
-                    defaultState={false}
-                    dispatch={this.props.dispatch}
-                    onError={this.props.onError}
-                    required={true}
-                    scrollIntoView={false}
-                    />
         <hr />
         <ApplicantBirthDate name="birthdate"
                             {...this.props.ApplicantBirthDate}
