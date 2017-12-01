@@ -12,7 +12,7 @@ describe('OAuth', () => {
 
   it('OAuth checks if user is authentiated', () => {
     GithubOAuth.token = 'faketoken'
-    GithubOAuth.expiration = new Date('2017-12-01')
+    GithubOAuth.expiration = new Date('2018-12-01')
     expect(GithubOAuth.authenticated()).toEqual(true)
   })
 
@@ -24,7 +24,7 @@ describe('OAuth', () => {
 
   it('OAuth logs out an authenticated user', () => {
     GithubOAuth.token = 'faketoken'
-    GithubOAuth.expiration = new Date('2017-12-01')
+    GithubOAuth.expiration = new Date('2018-12-01')
     expect(GithubOAuth.authenticated()).toEqual(true)
 
     GithubOAuth.logout()

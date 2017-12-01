@@ -13,14 +13,14 @@ describe('The login button', () => {
     expect(login.text()).toEqual('Login')
 
     GithubOAuth.token = 'faketoken'
-    GithubOAuth.expiration = new Date('2017-12-01')
+    GithubOAuth.expiration = new Date('2018-12-01')
     login.find('button').simulate('click')
     expect(login.text()).toEqual('Logout')
   })
 
   it('renders logout button if authenticated', () => {
     GithubOAuth.token = 'faketoken'
-    GithubOAuth.expiration = new Date('2017-12-01')
+    GithubOAuth.expiration = new Date('2018-12-01')
 
     const logout = shallow(<LoginOAuth>Login</LoginOAuth>)
     expect(logout.text()).toEqual('Logout')
