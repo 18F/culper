@@ -468,7 +468,7 @@ export default class ResidenceItem extends ValidationElement {
                           layout={Location.ADDRESS}
                           geocode={true}
                           addressBooks={this.props.addressBooks}
-                          addressBook={this.props.addressBook}
+                          addressBook="Reference"
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateReferenceAddress}
                           onError={this.props.onError}
@@ -488,7 +488,17 @@ ResidenceItem.defaultProps = {
   Comments: {},
   Role: {},
   RoleOther: {},
-  Reference: {},
+  ReferenceName: {},
+  ReferenceLastContact: {},
+  ReferenceRelationshipComments: {},
+  ReferenceRelationship: {},
+  ReferenceRelationshipOther: {},
+  ReferencePhoneEvening: {},
+  ReferencePhoneDay: {},
+  ReferencePhoneMobile: {},
+  ReferenceEmailNotApplicable: {},
+  ReferenceEmail: {},
+  ReferenceAddress: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

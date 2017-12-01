@@ -403,7 +403,7 @@ export default class EmploymentItem extends ValidationElement {
                           layout={Location.ADDRESS}
                           geocode={true}
                           addressBooks={this.props.addressBooks}
-                          addressBook={this.props.addressBook}
+                          addressBook="Reference"
                           dispatch={this.props.dispatch}
                           onUpdate={this.updateReferenceAddress}
                           onError={this.props.onError}
