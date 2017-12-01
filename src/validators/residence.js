@@ -17,7 +17,7 @@ const withinThreeYears = (from, to) => {
 
 export default class HistoryResidenceValidator {
   constructor (data = {}) {
-    this.List = data.List || {}
+    this.list = data.List || {}
   }
 
   isValid () {

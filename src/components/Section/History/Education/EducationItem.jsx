@@ -268,7 +268,7 @@ export default class EducationItem extends ValidationElement {
                                or={i18n.m('reference.para.or')}
                                onUpdate={this.updateReferenceNameNotApplicable}>
                   <Name name="ReferenceName"
-                        prefix={'.name'}
+                        prefix={'name'}
                         className="reference-name"
                         {...this.props.ReferenceName}
                         onUpdate={this.updateReferenceName}
@@ -286,7 +286,7 @@ export default class EducationItem extends ValidationElement {
                   {i18n.m('reference.para.correspondence')}
                 </Field>
 
-                <Field title={i18n.t('reference.heading.phone')}
+                <Field title={i18n.t('reference.heading.phone.default')}
                        className="override-required"
                        help={'reference.help.phone'}
                        adjustFor="telephone"

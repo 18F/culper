@@ -361,7 +361,7 @@ export default class EmploymentItem extends ValidationElement {
                      titleSize="h3"
                      optional={true}>
                 <Name name="ReferenceName"
-                      prefix={'.name'}
+                      prefix={'name'}
                       className="reference-name"
                       {...this.props.ReferenceName}
                       onUpdate={this.updateReferenceName}
@@ -377,7 +377,7 @@ export default class EmploymentItem extends ValidationElement {
                 {i18n.m('reference.para.correspondence')}
               </Field>
 
-              <Field title={i18n.t('reference.heading.phone')}
+              <Field title={i18n.t('reference.heading.phone.default')}
                      className="override-required"
                      help={'reference.help.phone'}
                      adjustFor="telephone"

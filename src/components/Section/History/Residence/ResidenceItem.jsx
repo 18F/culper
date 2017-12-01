@@ -86,7 +86,7 @@ export default class ResidenceItem extends ValidationElement {
 
   updateReferenceRelationship (values) {
     let relations = event.target.value
-    let selected = [...this.state.Relationship]
+    let selected = [...((this.props.Relationship || {}).values || [])]
 
     if (selected.includes(relations)) {
       // Remove the relationship if it was previously selected
@@ -288,7 +288,7 @@ export default class ResidenceItem extends ValidationElement {
                      titleSize="h3"
                      optional={true}>
                 <Name name="ReferenceName"
-                      prefix={'.name'}
+                      prefix={'name'}
                       className="reference-name"
                       {...this.props.ReferenceName}
                       onUpdate={this.updateReferenceName}
@@ -396,7 +396,7 @@ export default class ResidenceItem extends ValidationElement {
                 {i18n.m('reference.para.correspondence')}
               </Field>
 
-              <Field title={i18n.t('reference.heading.phone')}
+              <Field title={i18n.t('reference.heading.phone.evening')}
                      className="override-required"
                      help={'reference.help.phone'}
                      adjustFor="telephone"
@@ -410,7 +410,7 @@ export default class ResidenceItem extends ValidationElement {
                            />
               </Field>
 
-              <Field title={i18n.t('reference.heading.phone')}
+              <Field title={i18n.t('reference.heading.phone.day')}
                      className="override-required"
                      help={'reference.help.phone'}
                      adjustFor="telephone"
@@ -424,7 +424,7 @@ export default class ResidenceItem extends ValidationElement {
                            />
               </Field>
 
-              <Field title={i18n.t('reference.heading.phone')}
+              <Field title={i18n.t('reference.heading.phone.mobile')}
                      className="override-required"
                      help={'reference.help.phone'}
                      adjustFor="telephone"
