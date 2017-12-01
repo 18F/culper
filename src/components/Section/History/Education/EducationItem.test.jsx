@@ -79,15 +79,33 @@ describe('The education component', () => {
 
   it('can trigger updates', () => {
     let updates = 0
+    const today = new Date()
     const expected = {
       name: 'education',
-      Diplomas: { items: [] },
+      HasAttended: { value: 'Yes' },
+      HasDegree: { value: 'Yes' },
+      Diplomas: {
+        items: [{
+          Item: {
+            Has: { value: 'Yes' },
+            Diploma: { value: 'Other' }
+          }
+        }]
+      },
       Dates: {
         from: {
+          month: '1',
+          day: '1',
+          year: '2010',
+          present: false,
           date: new Date('1/1/2010')
         },
         to: {
-          date: new Date()
+          month: `${today.getMonth() + 1}`,
+          day: `${today.getDate()}`,
+          year: `${today.getFullYear()}`,
+          present: true,
+          date: today
         }
       },
       onUpdate: () => { updates++ }

@@ -127,9 +127,6 @@ const transform = {
   'reasonleft': (data) => {
     return form.reasonleft(data)
   },
-  'reference': (data) => {
-    return form.reference(data)
-  },
   'sentence': (data) => {
     return form.sentence(data)
   },

@@ -75,9 +75,6 @@ const validators = {
   'reasonleft': (data) => {
     return false
   },
-  'reference': (data) => {
-    return new logic.Reference(data).isValid()
-  },
   'sentence': (data) => {
     return new logic.SentenceValidator(data).isValid()
   },

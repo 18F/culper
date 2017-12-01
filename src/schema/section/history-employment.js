@@ -37,7 +37,9 @@ export const historyEmployment = (data = {}) => {
           }
         })),
         Supervisor: form.supervisor(xitem.Supervisor),
-        Reference: form.reference(xitem.Reference)
+        ReferenceName: form.name(xitem.ReferenceName),
+        ReferencePhone: form.telephone(xitem.ReferencePhone),
+        ReferenceAddress: form.location(xitem.ReferenceAddress)
       }
     }
   })
