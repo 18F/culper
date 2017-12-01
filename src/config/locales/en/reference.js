@@ -3,10 +3,10 @@ export const reference = {
     name: 'Provide this person\'s full name',
     contact: 'Provide date of last contact',
     relationship: 'Relationship',
-    phone: 'This person\'s phone numbers',
-    email: 'This person\'s email address',
+    phone: 'Provide this person\'s phone numbers',
+    email: 'Provide this person\'s email address',
     correspondence: 'Their contact information',
-    address: 'This person\'s street address'
+    address: 'Provide this person\'s street address'
   },
   para: {
     correspondence: 'Provide the following contact information for this person.',
