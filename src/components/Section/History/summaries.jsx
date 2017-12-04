@@ -72,11 +72,11 @@ export const ResidenceSummary = (item, errors, open) => {
 }
 
 const PersonSummary = (item, errors) => {
-  if (!item.Reference) {
+  if (!item.ReferenceName) {
     return null
   }
 
-  const name = NameSummary(item.Reference.FullName, '')
+  const name = NameSummary(item.ReferenceName, '')
 
   return (
     <span>
