@@ -95,7 +95,30 @@ class Login extends React.Component {
     )
   }
 
-  loginForm () {
+  authSAML () {
+    if (!env.SamlEnabled()) {
+      return null
+    }
+
+    return (
+      <div id="saml" className="auth saml">
+        <form method="post" action={this.state.saml.URL}>
+          <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
+          <h2>{i18n.t('login.saml.title')}</h2>
+          {i18n.m('login.saml.para')}
+          <button type="submit">
+            <span>{i18n.t('login.saml.button')}</span>
+          </button>
+        </form>
+      </div>
+    )
+  }
+
+  authBasic () {
+    if (!env.BasicAuthenticationEnabled()) {
+      return null
+    }
+
     const authValid = this.props.error === undefined || this.props.error === ''
     let pwClass = 'password help'
     if (!authValid) {
@@ -103,84 +126,110 @@ class Login extends React.Component {
     }
 
     return (
-      <div>
-        <div id="info" className="login-info usa-width-one-whole">
-          <h2>{i18n.t('login.title')}</h2>
-          <p>{i18n.t('login.para')}</p>
-        </div>
-
-        <Show when={env.BasicAuthenticationEnabled()}>
-          <div id="basic" className="login-basic usa-width-one-whole">
-            <form onSubmit={this.login}>
-              <div>
-                <Text name="user"
-                      placeholder="Enter your username"
-                      label="Username"
-                      autoFocus
-                      value={this.state.username}
-                      onChange={this.onUsernameChange} />
-              </div>
-              <div className={pwClass}>
-                <label
-                  htmlFor="password">
-                  Password
-                </label>
-                <input id="password"
-                      name="password"
-                      type={this.state.showPassword ? 'text' : 'password'}
-                      placeholder={i18n.t('login.placeholder.password')}
-                      value={this.state.password}
-                      onChange={this.onPasswordChange} />
-                <div className="peek">
-                  <a id="show-password" onClick={this.togglePassword} href="javascript:;;" title={i18n.t('login.show.title')}>{i18n.t('login.show.text')}</a>
-                </div>
-                {this.errorMessage()}
-              </div>
-              <div>
-                <button type="submit">{i18n.t('login.submit')}</button>
-                <a id="forgot-password" href="javascript:;;" title={i18n.t('login.forgot.title')}>{i18n.t('login.forgot.text')}</a>
-              </div>
-            </form>
+      <div id="basic" className="auth basic">
+        <h2>{i18n.t('login.basic.title')}</h2>
+        <p>{i18n.t('login.basic.para')}</p>
+        <form onSubmit={this.login}>
+          <div>
+            <Text name="user"
+                  placeholder="Enter your username"
+                  label="Username"
+                  autoFocus
+                  value={this.state.username}
+                  onChange={this.onUsernameChange} />
           </div>
-        </Show>
-
-        <Show when={env.OAuthEnabled()}>
-          <div id="oauth" className="login-sso">
-            <span>Sign in with </span>
-            <LoginOAuth authenticated={this.state.authenticated}>
-              <i className="fa fa-github" aria-hidden="true"></i>
-            </LoginOAuth>
+          <div className={pwClass}>
+            <label htmlFor="password">
+              {i18n.t('login.basic.password')}
+            </label>
+            <input id="password"
+                   name="password"
+                   type={this.state.showPassword ? 'text' : 'password'}
+                   placeholder={i18n.t('login.basic.password')}
+                   value={this.state.password}
+                   onChange={this.onPasswordChange} />
+            <div className="peek">
+              <a id="show-password"
+                 onClick={this.togglePassword}
+                 href="javascript:;;"
+                 title={i18n.t(`login.basic.${this.state.showPassword ? 'hide' : 'show'}.title`)}>
+                {i18n.t(`login.basic.${this.state.showPassword ? 'hide' : 'show'}.text`)}
+              </a>
+            </div>
+            {this.errorMessage()}
           </div>
-        </Show>
-
-        <Show when={env.SamlEnabled()}>
-          <div id="saml" className="login-sso">
-            <form method="post" action={this.state.saml.URL}>
-              <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
-              <span>Sign in with </span>
-              <button type="submit" className="usa-button-unstyled">
-                <span>CAC or PIV</span>
-                <i className="fa fa-id-card-o" aria-hidden="true"></i>
-              </button>
-            </form>
+          <div>
+            <button type="submit">{i18n.t('login.basic.button')}</button>
+            <a id="forgot-password"
+               href="javascript:;;"
+               title={i18n.t('login.basic.forgot.title')}>
+              {i18n.t('login.basic.forgot.text')}
+            </a>
           </div>
-        </Show>
+        </form>
+      </div>
+    )
+  }
+
+  authOAuth () {
+    if (!env.OAuthEnabled()) {
+      return null
+    }
+
+    return (
+      <div id="oauth" className="auth ouath">
+        <span>Sign in with </span>
+        <LoginOAuth authenticated={this.state.authenticated}>
+          <i className="fa fa-github" aria-hidden="true"></i>
+        </LoginOAuth>
+      </div>
+    )
+  }
+
+  loginFormClass (auths) {
+    let count = 0
+    for (const auth of auths) {
+      if (auth) {
+        count++
+      }
+    }
+
+    switch (count) {
+    case 3:
+      return 'table three'
+    case 2:
+      return 'table two'
+    case 1:
+      return 'table one'
+    default:
+      return 'table zero'
+    }
+  }
+
+  loginForm () {
+    const saml = this.authSAML()
+    const basic = this.authBasic()
+    const oauth = this.authOAuth()
+
+    return (
+      <div className={this.loginFormClass([saml, basic, oauth])}>
+        {saml}
+        {basic}
+        {oauth}
       </div>
     )
   }
 
   twofactorForm () {
     return (
-      <div>
-        <div id="info" className="login-info usa-width-one-whole">
+      <div className="table one">
+        <div id="info" className="auth two-factor">
           <h2>{i18n.t('login.twofactor.title')}</h2>
-          <p>{i18n.t('login.twofactor.para')}</p>
+          {i18n.m('login.twofactor.para')}
           <ul>
             <li><a href="https://play.google.com/store/apps/details?id=com.google.android.apps.authenticator2&hl=en">Download Google authenticator for Android</a></li>
             <li><a href="https://itunes.apple.com/us/app/google-authenticator/id388497605?mt=8">Download Google authenticator for iOS</a></li>
           </ul>
-        </div>
-        <div id="twofactor" className="login-twofactor usa-width-one-whole">
           <TwoFactor username={this.state.username} />
         </div>
       </div>
@@ -194,7 +243,7 @@ class Login extends React.Component {
         <div id="seal-header" className="seal-header text-center">
           <div className="content">
             <img src="/img/US-OfficeOfPersonnelManagement-Seal.svg" alt="U.S. Office of Personnel Management" />
-            <h2>Welcome to the Questionnaire for National Security Positions</h2>
+            <h2>{i18n.t('login.title')}</h2>
           </div>
         </div>
         <div className="content">
