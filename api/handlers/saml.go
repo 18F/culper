@@ -64,6 +64,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 
 	if encodedXML == "" {
 		http.Error(w, "SAML response form value missing", http.StatusBadRequest)
+		redirectAccessDenied(w, r)
 		return
 	}
 
@@ -72,6 +73,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	log.Println("SAML Authentication Response:", authnResponseXML)
 	if err != nil {
 		http.Error(w, "SAML response parse: "+err.Error(), http.StatusBadRequest)
+		redirectAccessDenied(w, r)
 		return
 	}
 
@@ -81,18 +83,23 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 		errorMessage := fmt.Sprintf("SAML response validation: %s\n\n%s\n", err.Error(), authnResponseXML)
 		http.Error(w, errorMessage, http.StatusBadRequest)
 		// http.Error(w, "SAML response validation: "+err.Error(), http.StatusBadRequest)
+		redirectAccessDenied(w, r)
 		return
 	}
 
-	samlID := response.GetAttribute("uid")
-	if samlID == "" {
-		http.Error(w, "SAML attribute identifier uid missing", http.StatusBadRequest)
-		return
-	}
+	// samlID := response.Assertion.Subject.NameID.Value
+	// samlID := response.GetAttribute("uid")
+	// if samlID == "" {
+	// 	http.Error(w, "SAML attribute identifier uid missing", http.StatusBadRequest)
+	// 	redirectAccessDenied(w, r)
+	// 	return
+	// }
 
-	username := response.GetAttribute("username")
-	if samlID == "" {
+	username := response.Assertion.Subject.NameID.Value
+	// username := response.GetAttribute("username")
+	if username == "" {
 		http.Error(w, "SAML attribute identifier username missing", http.StatusBadRequest)
+		redirectAccessDenied(w, r)
 		return
 	}
 
@@ -103,6 +110,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 	if err := account.Get(); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		redirectAccessDenied(w, r)
 		return
 	}
 
@@ -110,10 +118,16 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	signedToken, _, err := account.NewJwtToken(model.SingleSignOnAudience)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
+		redirectAccessDenied(w, r)
 		return
 	}
 
 	url := fmt.Sprintf("%s?token=%s", redirectTo, signedToken)
+	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
+}
+
+func redirectAccessDenied(w http.ResponseWriter, r *http.Request) {
+	url := fmt.Sprintf("%s?error=access_denied", redirectTo)
 	http.Redirect(w, r, url, http.StatusTemporaryRedirect)
 }
 

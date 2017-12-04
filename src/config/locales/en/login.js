@@ -32,5 +32,13 @@ export const login = {
       title: 'Forgot password',
       text: 'Forgot password'
     }
+  },
+  denied: {
+    title: 'We couldn\'t log you in',
+    para: [
+      'Looks like your access hasn\'t been approved for this form.',
+      'If this message was received in error contact [email@gov.gov](mailto:email@gov.gov) or try loggin in again below.'
+    ],
+    button: 'Log in with CAC'
   }
 }

@@ -39,10 +39,39 @@ class Login extends React.Component {
     }
   }
 
+  getQueryValue (key) {
+    let query = this.props.location.search.substring(1)
+    let vars = query.split('&')
+    let values = []
+
+    for (let i = 0; i < vars.length; i++) {
+      let pair = vars[i].split('=')
+      if (pair[0] === key) {
+        values.push(pair[1])
+      }
+    }
+
+    if (values.length === 0) {
+      return null
+    } else if (values.length === 1) {
+      return values[0]
+    }
+
+    return values
+  }
+
   redirect () {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
       this.props.dispatch(push('/form/identification/intro'))
+    }
+
+    const err = this.getQueryValue('error')
+    if (err) {
+      switch (err) {
+      case 'access_denied':
+        this.props.dispatch(push('/accessdenied'))
+      }
     }
   }
 
@@ -260,7 +289,8 @@ Login.defaultProps = {
   twofactor: false,
   username: '',
   password: '',
-  showPassword: false
+  showPassword: false,
+  // location: () => { return window.location }
 }
 
 /**

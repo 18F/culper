@@ -119,5 +119,12 @@
         width: 100%;
       }
     }
+
+    &.denied {
+      .usa-button-primary {
+        width: 20rem;
+        padding: 1.5rem 0;
+      }
+    }
   }
 }
