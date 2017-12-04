@@ -115,6 +115,27 @@
       width: 100% !important;
       padding: 3rem 2rem 2rem 2rem;
     }
+
+    .table.zero,
+    .table.one,
+    .table.two,
+    .table.three {
+      display: block;
+
+      .auth {
+        display: block !important;
+        min-width: 45rem;
+        height: auto;
+        margin-left: auto;
+        margin-right: auto;
+        border-right: none;
+        border-bottom: 1px #eee solid;
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+      }
+    }
   }
 
   // General header information

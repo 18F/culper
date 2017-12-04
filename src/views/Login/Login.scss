@@ -7,17 +7,9 @@
 }
 
 .login {
-  a {
-    color: $eapp-blue;
-    text-decoration: none;
-    border-bottom: 1px dotted $eapp-blue;
-  }
-
-  .content {
-    width: 64rem;
-    margin: 0 auto;
-    padding-top: 3rem;
-    padding-bottom: 2rem;
+  h2 {
+    margin-top: 1rem;
+    font-size: 3rem;
   }
 
   input {
@@ -25,15 +17,13 @@
     max-width: 100%;
   }
 
-  h2 {
-    margin-top: 1rem;
-    font-size: 3rem;
-  }
-
   .seal-header {
     background-color: $eapp-blue-darkest;
 
     h2 {
+      margin: 1rem auto;
+      max-width: 64rem;
+      text-align: center;
       color: #fff;
     }
 
@@ -42,14 +32,59 @@
     }
   }
 
-  .login-info {
-    margin-bottom: 1rem;
+  a {
+    color: $eapp-blue;
+    text-decoration: none;
+    border-bottom: 1px dotted $eapp-blue;
   }
 
-  .login-basic {
-    margin-right: auto;
-    margin-left: auto;
-    clear: both;
+  .content {
+    width: 80%;
+    margin: 0 auto;
+    padding: 3rem 0 2rem;
+  }
+
+  .table {
+    display: table;
+
+    &.zero,
+    &.one {
+      display: block;
+
+      .auth {
+        display: block;
+        max-width: 64rem;
+        margin-right: auto;
+        margin-left: auto;
+      }
+    }
+
+    &.two {
+      .auth {
+        display: table-cell;
+        width: 50%;
+        padding-left: 2.6rem;
+      }
+    }
+
+    &.three {
+      .auth {
+        display: table-cell;
+        width: 33%;
+        padding-left: 2.6rem;
+      }
+    }
+  }
+
+  .auth {
+    display: inline-block;
+    vertical-align: top;
+    width: 48%;
+    height: 50vh;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    margin-right: 2rem;
+    border-right: 1px #eee solid;
 
     button {
       text-align: center;
@@ -57,42 +92,39 @@
       height: 5rem;
     }
 
-    .peek {
-      width: 100%;
-      text-align: right;
+    &:last-of-type {
+      border-right: none;
+      margin-right: 0;
     }
-  }
 
-  .login-sso {
-    clear: both;
-    padding: 1rem;
-    width: 100%;
-    text-align: center;
-
-    button,
-    a {
-      display: inline-block;
-      color: #0071bc;
-      padding-left: 0.5rem;
-      padding-right: 0.5rem;
-
-      span {
-        text-decoration: none;
-        border-bottom: 1px dotted #0071bc;
-      }
-
-      i {
-        margin-left: 1rem;
+    &.basic {
+      .peek {
+        width: 100%;
+        text-align: right;
       }
     }
-  }
 
-  .login-twofactor {
-    margin-top: 1rem;
-    padding: 2rem inherit 1rem;
-    margin-right: auto;
-    margin-left: auto;
-    clear: both;
-    float: none;
+    &.saml {
+      button {
+        width: 21rem;
+      }
+    }
+
+    &.two-factor {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    &.denied {
+      .usa-button-primary {
+        width: 20rem;
+        padding: 1.5rem 0;
+      }
+    }
   }
 }
