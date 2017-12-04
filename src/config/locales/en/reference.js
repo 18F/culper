@@ -3,7 +3,12 @@ export const reference = {
     name: 'Provide this person\'s full name',
     contact: 'Provide date of last contact',
     relationship: 'Relationship',
-    phone: 'This person\'s phone numbers',
+    phone: {
+      default: 'Provide telephone number for this person',
+      evening: 'Provide evening phone number for this person',
+      day: 'Provide daytime phone number for this person',
+      mobile: 'Provide cell/mobile phone number for this person'
+    },
     email: 'This person\'s email address',
     correspondence: 'Their contact information',
     address: 'This person\'s street address'

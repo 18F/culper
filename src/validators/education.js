@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import { daysAgo, today } from '../components/Section/History/dateranges'
-import { validAccordion, validNotApplicable, validPhoneNumber, validGenericTextfield } from './helpers'
+import { validDateField, validAccordion, validNotApplicable, validPhoneNumber, validGenericTextfield } from './helpers'
 import LocationValidator from './location'
 import NameValidator from './name'
 
@@ -40,14 +40,18 @@ export default class HistoryEducationValidator {
 }
 
 export class EducationItemValidator {
-  constructor (state = {}, props = {}) {
-    this.list = state.List
-    this.dates = state.Dates
-    this.address = state.Address
-    this.name = state.Name
-    this.type = state.Type
-    this.reference = state.Reference
-    this.diplomas = state.Diplomas
+  constructor (data = {}) {
+    this.dates = data.Dates || {}
+    this.address = data.Address || {}
+    this.name = data.Name || {}
+    this.type = (data.Type || {}).value
+    this.referenceName = data.ReferenceName || {}
+    this.referenceNameNotApplicable = data.ReferenceNameNotApplicable || { applicable: true }
+    this.referencePhone = data.ReferencePhone || {}
+    this.referenceEmailNotApplicable = data.ReferenceEmailNotApplicable || {}
+    this.referenceEmail = data.ReferenceEmail || {}
+    this.referenceAddress = data.ReferenceAddress || {}
+    this.diplomas = data.Diplomas || { items: [] }
   }
 
   validDates () {
@@ -69,37 +73,50 @@ export class EducationItemValidator {
   validReference () {
     const threeYearsAgo = daysAgo(today, 365 * 3)
     if ((this.dates.from.date && this.dates.from.date >= threeYearsAgo) || (this.dates.to.date && this.dates.to.date >= threeYearsAgo)) {
-      return this.reference && new ReferenceValidator(this.reference, null).isValid()
+      if ((this.referenceNameNotApplicable || {}).applicable === false) {
+        return true
+      }
+
+      return validNotApplicable(this.referenceNameNotApplicable, () => { return new NameValidator(this.referenceName).isValid() }) &&
+        validPhoneNumber(this.referencePhone) &&
+        validNotApplicable(this.referenceEmailNotApplicable, () => { return validGenericTextfield(this.referenceEmail) }) &&
+        new LocationValidator(this.referenceAddress).isValid()
     }
 
     return true
   }
 
   hasDegree () {
-    return this.diplomas.filter(diploma => { return diploma.Has === 'Yes' }).length
+    return ((this.diplomas || {}).items || []).filter(diploma => {
+      return ((diploma.Item || {}).Has || {}).value === 'Yes'
+    }).length
   }
 
   validDiplomas () {
+    const items = (this.diplomas || {}).items || []
+
     // Check if we have valid yes/no values
-    if (!this.diplomas || !this.diplomas.length) {
+    if (!items.length) {
       return false
     }
 
     if (this.hasDegree()) {
-      for (const item of this.diplomas) {
-        if (item.Has !== 'Yes') {
+      for (const diploma of items) {
+        const item = diploma.Item || {}
+        if ((item.Has || {}).value === 'No') {
           continue
         }
-        const diploma = item.Diploma
-        if (!diploma) {
+
+        const diplomaType = (item.Diploma || {}).value
+        if (!diplomaType) {
           return false
         }
 
-        if (diploma.Diploma === 'Other' && !validGenericTextfield(diploma.DiplomaOther)) {
+        if (diplomaType === 'Other' && !validGenericTextfield(item.DiplomaOther)) {
           return false
         }
 
-        if (!diploma.Date || !diploma.Date.date) {
+        if (!validDateField(item.Date)) {
           return false
         }
       }
@@ -115,44 +132,5 @@ export class EducationItemValidator {
       this.validType() &&
       this.validReference() &&
       this.validDiplomas()
-  }
-}
-
-export class ReferenceValidator {
-  constructor (data = {}) {
-    this.fullName = data.FullName
-    this.fullNameNotApplicable = data.FullNameNotApplicable
-    this.phone = data.Phone
-    this.email = data.Email
-    this.emailNotApplicable = data.EmailNotApplicable
-    this.address = data.Address
-  }
-
-  validFullName () {
-    return validNotApplicable(this.fullNameNotApplicable, () => {
-      return new NameValidator(this.fullName).isValid()
-    })
-  }
-
-  validPhone () {
-    return validPhoneNumber(this.phone)
-  }
-
-  validEmail () {
-    return validNotApplicable(this.emailNotApplicable, () => { return validGenericTextfield(this.email) })
-  }
-
-  validAddress () {
-    return new LocationValidator(this.address).isValid()
-  }
-
-  isValid () {
-    if (this.fullNameNotApplicable && !this.fullNameNotApplicable.applicable) {
-      return true
-    }
-    return this.validFullName() &&
-      this.validPhone() &&
-      this.validEmail() &&
-      this.validAddress()
   }
 }

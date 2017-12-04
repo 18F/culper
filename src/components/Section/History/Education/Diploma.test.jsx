@@ -14,7 +14,7 @@ describe('The diploma component', () => {
   it('display textbox if "Other" is selected', () => {
     const expected = {
       name: 'diploma',
-      Diploma: 'Other'
+      Diploma: { value: 'Other' }
     }
     const component = mount(<DiplomaItem {...expected} />)
     expect(component.find('.other').length).toEqual(1)
@@ -23,7 +23,7 @@ describe('The diploma component', () => {
   it('not display textbox if "Other" is not selected', () => {
     const expected = {
       name: 'diploma',
-      Diploma: 'Doctorate'
+      Diploma: { value: 'Doctorate' }
     }
     const component = mount(<DiplomaItem {...expected} />)
     expect(component.find('.other').length).toEqual(0)
@@ -33,6 +33,7 @@ describe('The diploma component', () => {
     let updates = 0
     const expected = {
       name: 'diploma',
+      Diploma: { value: 'Other' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<DiplomaItem {...expected} />)

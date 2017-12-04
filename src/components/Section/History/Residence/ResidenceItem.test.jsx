@@ -29,10 +29,8 @@ describe('The residence component', () => {
           date: new Date()
         }
       },
-      Reference: {
-        Email: {
-          value: 'test@abc.com'
-        }
+      ReferenceEmail: {
+        value: 'test@abc.com'
       }
     }
     const component = mount(<ResidenceItem {...expected} />)
