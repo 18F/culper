@@ -22,7 +22,7 @@ func TestGenerateSecurityToken(t *testing.T) {
 	}
 
 	if err := verifySecurityToken([]byte(token), encryptedToken, publicCertPath); err != nil {
-		log.Fatal("Expected security token to be validated but received %v", err)
+		log.Fatalf("Expected security token to be validated but received %v", err)
 	}
 
 }
