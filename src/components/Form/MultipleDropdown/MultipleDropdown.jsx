@@ -22,9 +22,7 @@ export default class MultipleDropdown extends ValidationElement {
       ...queue
     })
 
-    setTimeout(() => {
-      this.handleError(queue, [])
-    }, 1000)
+    this.handleError(queue, [])
   }
 
   updateToken (event, options) {
