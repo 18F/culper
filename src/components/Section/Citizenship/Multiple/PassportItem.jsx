@@ -78,7 +78,7 @@ export default class PassportItem extends ValidationElement {
 
   updateCountries (values) {
     this.update({
-      Countries: values.items
+      Countries: values
     })
   }
 

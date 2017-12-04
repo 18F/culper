@@ -98,7 +98,7 @@ func (entity *Location) Valid() (bool, error) {
 	}
 
 	var stack model.ErrorStack
-	domestic := entity.Country == "United States"
+	domestic := entity.Country == "United States" || entity.Layout == LayoutUSAddress
 	postoffice := entity.Country == "POSTOFFICE"
 	international := !domestic && !postoffice
 

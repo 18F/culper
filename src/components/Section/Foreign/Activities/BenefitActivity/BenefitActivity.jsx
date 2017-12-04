@@ -4,7 +4,7 @@ import schema from '../../../../../schema'
 import validate from '../../../../../validators'
 import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
-import { ForeignBenefitActivityValidator, ForeignBenefitValidator } from '../../../../../validators'
+import { ForeignBenefitValidator } from '../../../../../validators'
 import SubsectionElement from '../../../SubsectionElement'
 import Benefit from './Benefit'
 
@@ -27,7 +27,7 @@ export default class BenefitActivity extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items
+      List: values
     })
   }
 
