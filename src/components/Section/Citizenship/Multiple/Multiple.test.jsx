@@ -47,7 +47,7 @@ describe('The multiple component', () => {
                 from: {
                   month: '1',
                   day: '1',
-                  year: '2010',
+                  year: '2000',
                   date: new Date('1/1/2000')
                 },
                 to: {

@@ -4,14 +4,14 @@ export const reference = {
     contact: 'Provide date of last contact',
     relationship: 'Relationship',
     phone: {
-      default: 'Provide telephone number for this person',
-      evening: 'Provide evening phone number for this person',
-      day: 'Provide daytime phone number for this person',
-      mobile: 'Provide cell/mobile phone number for this person'
+      default: 'Provide this person\'s phone number',
+      evening: 'Provide this person\'s evening phone number',
+      day: 'Provide this person\'s daytime phone number',
+      mobile: 'Provide this person\'s cell/mobile phone number'
     },
-    email: 'This person\'s email address',
+    email: 'Provide this person\'s email address',
     correspondence: 'Their contact information',
-    address: 'This person\'s street address'
+    address: 'Provide this person\'s street address'
   },
   para: {
     correspondence: 'Provide the following contact information for this person.',

@@ -43,8 +43,9 @@ export default class OtherNames extends SubsectionElement {
    * Assists in rendering the summary section.
    */
   summary (item, index) {
-    const dates = DateSummary(item.DatesUsed)
-    const name = NameSummary(item.Name)
+    const itemObj = item.Item || {}
+    const dates = DateSummary(itemObj.DatesUsed)
+    const name = NameSummary(itemObj.Name)
 
     return Summary({
       type: i18n.t('identification.othernames.collection.summary.name'),
