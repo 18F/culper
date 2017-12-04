@@ -62,6 +62,9 @@ bin
 /img/
 /doc/
 TAGS
+*.cer
+*.crt
+*.key
 
 # Test artifacts
 /jest*

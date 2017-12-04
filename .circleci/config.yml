@@ -5,6 +5,11 @@ jobs:
     steps:
       - checkout
       - run:
+          name: Create test certificates
+          command: |
+            set -x
+            ./bin/gen-test-certificates.sh
+      - run:
           name: Build docker images
           command: |
             set -x
@@ -32,6 +37,11 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run:
+          name: Create test certificates
+          command: |
+            set -x
+            ./bin/gen-test-certificates.sh
       - run:
           name: Build docker images
           command: |
@@ -65,6 +75,11 @@ jobs:
     machine: true
     steps:
       - checkout
+      - run:
+          name: Create test certificates
+          command: |
+            set -x
+            ./bin/gen-test-certificates.sh
       - run:
           name: Build docker images
           command: |
