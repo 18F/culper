@@ -88,7 +88,7 @@ export const legal = {
       or: 'or'
     },
     label: {
-      summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was than $300 and did not include alcohol or drugs.',
+      summons: '**In the last seven (7) years** have you been issued a summons, citation, or ticket to appear in court in a criminal proceeding against you? Do not check if all the citations involved traffic infractions where the fine was less than $300 and did not include alcohol or drugs.',
       arrests: '**In the last seven (7) years** have you been arrested by any police officer, sheriff, marshal or any other type of law enforcement official?',
       charges: '**In the last seven (7) years** have you been charged with, convicted of, or sentenced for a crime in any court? Include all qualifying charges, convictions or sentences in any federal, state, local, military, or non-U.S. court, even if previously listed on this form.',
       probation: '**In the last seven (7) years** have you been or are you currently on probation or parole?',

@@ -452,10 +452,6 @@ describe('Schema', function () {
         data: {}
       },
       {
-        type: 'reference',
-        data: {}
-      },
-      {
         type: 'sentence',
         data: {}
       },

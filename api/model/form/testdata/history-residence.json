@@ -53,82 +53,105 @@
                   "value": "my comments"
                 }
               },
-              "Reference": {
-                "type": "reference",
+              "ReferenceFullName": {
+                "type": "name",
                 "props": {
-                  "FullName": {
-                    "type": "name",
-                    "props": {
-                      "first": "John",
-                      "firstInitialOnly": false,
-                      "last": "Smith",
-                      "lastInitialOnly": false,
-                      "middle": "H",
-                      "middleInitialOnly": true,
-                      "noMiddleName": false,
-                      "suffix": "Other",
-                      "suffixOther": "XX"
-                    }
-                  },
-                  "LastContact": {
-                    "type": "datecontrol",
-                    "props": {
-                      "month": "7",
-                      "day": "25",
-                      "year": "2017",
-                      "estimated": false,
-                      "date": "2017-07-25T00:00:00Z"
-                    }
-                  },
-                  "Relationship": {
-                    "type": "checkboxgroup",
-                    "props": {
-                      "values": ["Other"]
-                    }
-                  },
-                  "RelationshipOther": {
-                    "type": "text",
-                    "props": {
-                      "value": "other type of relationship"
-                    }
-                  },
-                  "Phone": {
-                    "type": "telephone",
-                    "props": {
-                      "timeOfDay": "Both",
-                      "type": "Domestic",
-                      "numberType": "Cell",
-                      "number": "2128675309",
-                      "extension": "",
-                      "noNumber": false
-                    }
-                  },
-                  "Email": {
-                    "type": "email",
-                    "props": {
-                      "value": "test@abc.com"
-                    }
-                  },
-                  "EmailNotApplicable": {
-                    "type": "notapplicable",
-                    "props": {
-                      "applicable": true
-                    }
-                  },
-                  "Address": {
-                    "type": "location",
-                    "props": {
-                      "layout": "Address",
-                      "street": "123 Some Rd",
-                      "street2": "",
-                      "city": "Arlington",
-                      "state": "VA",
-                      "zipcode": "22202",
-                      "county": "",
-                      "country": "United States",
-                      "validated": false
-                    }
-                  }
+                  "first": "John",
+                  "firstInitialOnly": false,
+                  "last": "Smith",
+                  "lastInitialOnly": false,
+                  "middle": "H",
+                  "middleInitialOnly": true,
+                  "noMiddleName": false,
+                  "suffix": "Other",
+                  "suffixOther": "XX"
+                }
+              },
+              "ReferenceLastContact": {
+                "type": "datecontrol",
+                "props": {
+                  "month": "7",
+                  "day": "25",
+                  "year": "2017",
+                  "estimated": false,
+                  "date": "2017-07-25T00:00:00Z"
+                }
+              },
+              "ReferenceRelationshipComments": {
+                "type": "text",
+                "props": {
+                  "value": "just some comments"
+                }
+              },
+              "ReferenceRelationship": {
+                "type": "checkboxgroup",
+                "props": {
+                  "values": ["Other"]
+                }
+              },
+              "ReferenceRelationshipOther": {
+                "type": "text",
+                "props": {
+                  "value": "other type of relationship"
+                }
+              },
+              "ReferencePhoneEvening": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "Cell",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
+              "ReferencePhoneDay": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "Cell",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
+              "ReferencePhoneMobile": {
+                "type": "telephone",
+                "props": {
+                  "timeOfDay": "Both",
+                  "type": "Domestic",
+                  "numberType": "Cell",
+                  "number": "2128675309",
+                  "extension": "",
+                  "noNumber": false
+                }
+              },
+              "ReferenceEmail": {
+                "type": "email",
+                "props": {
+                  "value": "test@abc.com"
+                }
+              },
+              "ReferenceEmailNotApplicable": {
+                "type": "notapplicable",
+                "props": {
+                  "applicable": true
+                }
+              },
+              "ReferenceAddress": {
+                "type": "location",
+                "props": {
+                  "layout": "Address",
+                  "street": "123 Some Rd",
+                  "street2": "",
+                  "city": "Arlington",
+                  "state": "VA",
+                  "zipcode": "22202",
+                  "county": "",
+                  "country": "United States",
+                  "validated": false
                 }
               },
               "Role": {

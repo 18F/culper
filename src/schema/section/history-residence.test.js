@@ -17,17 +17,18 @@ describe('Schema for financial taxes', () => {
               country: null
             },
             Comments: {},
-            Reference: {
-              FullName: {},
-              LastContact: {},
-              Relationship: {},
-              RelationshipOther: {},
-              Phone: {},
-              Email: {},
-              EmailNotApplicable: {},
-              Address: {
-                country: null
-              }
+            ReferenceName: {},
+            ReferenceLastContact: {},
+            ReferenceRelationshipComments: {},
+            ReferenceRelationship: {},
+            ReferenceRelationshipOther: {},
+            ReferencePhoneEvening: {},
+            ReferencePhoneDay: {},
+            ReferencePhoneMobile: {},
+            ReferenceEmail: {},
+            ReferenceEmailNotApplicable: {},
+            ReferenceAddress: {
+              country: null
             },
             Role: {},
             RoleOther: {}

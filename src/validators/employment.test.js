@@ -5,15 +5,21 @@ describe('Employment component validation', function () {
   it('should validate active military, national guard and USPHS', function () {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -74,7 +80,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'No' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -98,6 +104,7 @@ describe('Employment component validation', function () {
                     Date: {
                       date: new Date('1/1/2015'),
                       month: '1',
+                      day: '1',
                       year: '2015'
                     },
                     Text: {
@@ -112,15 +119,21 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'NationalGuard'
           },
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -181,7 +194,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'No' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -205,6 +218,7 @@ describe('Employment component validation', function () {
                     Date: {
                       date: new Date('1/1/2015'),
                       month: '1',
+                      day: '1',
                       year: '2015'
                     },
                     Text: {
@@ -221,22 +235,28 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('should validate federal employment, state government, federal contractor, non-government and other', function () {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'FederalContractor'
           },
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -313,7 +333,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'No' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -337,6 +357,7 @@ describe('Employment component validation', function () {
                     Date: {
                       date: new Date('1/1/2015'),
                       month: '1',
+                      day: '1',
                       year: '2015'
                     },
                     Text: {
@@ -351,15 +372,21 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'StateGovernment'
           },
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -431,7 +458,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'No' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -455,6 +482,7 @@ describe('Employment component validation', function () {
                     Date: {
                       date: new Date('1/1/2015'),
                       month: '1',
+                      day: '1',
                       year: '2015'
                     },
                     Text: {
@@ -479,9 +507,15 @@ describe('Employment component validation', function () {
                     },
                     DatesEmployed: {
                       from: {
+                        month: '1',
+                        day: '1',
+                        year: '2011',
                         date: new Date('1/1/2011')
                       },
                       to: {
+                        month: '3',
+                        day: '1',
+                        year: '2011',
                         date: new Date('3/1/2011')
                       },
                       present: false
@@ -497,22 +531,28 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('should validate self employment', function () {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'SelfEmployment'
           },
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -558,7 +598,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'No' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -573,43 +613,31 @@ describe('Employment component validation', function () {
               ]
             }
           },
-          Reference: {
-            FullName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              lastInitialOnly: false,
-              suffix: 'Jr'
-            },
-            LastContact: {
-              day: '1',
-              month: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
-            },
-            Relationship: ['Friend'],
-            Phone: {
-              noNumber: '',
-              number: '7031112222',
-              numberType: 'Home',
-              type: 'Domestic',
-              timeOfDay: 'Both',
-              extension: ''
-            },
-            Email: {
-              value: 'user@local.dev'
-            },
-            Address: {
-              country: { value: 'United States' },
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            }
+          ReferenceName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            lastInitialOnly: false,
+            suffix: 'Jr'
+          },
+          ReferencePhone: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            type: 'Domestic',
+            timeOfDay: 'Both',
+            extension: ''
+          },
+          ReferenceAddress: {
+            country: { value: 'United States' },
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202',
+            layout: Location.ADDRESS
           },
           Reprimand: {
             Reasons: {
@@ -620,6 +648,7 @@ describe('Employment component validation', function () {
                     Date: {
                       date: new Date('1/1/2015'),
                       month: '1',
+                      day: '1',
                       year: '2015'
                     },
                     Text: {
@@ -636,28 +665,34 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('should validate unemployment', function () {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'Unemployment'
           },
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
           },
           ReasonLeft: {
-            ReasonDescription: 'Gained employment again',
+            ReasonDescription: { value: 'Gained employment again' },
             Reasons: {
               items: [
                 {
@@ -668,43 +703,31 @@ describe('Employment component validation', function () {
               ]
             }
           },
-          Reference: {
-            FullName: {
-              first: 'Foo',
-              firstInitialOnly: false,
-              middle: 'J',
-              middleInitialOnly: true,
-              noMiddleName: false,
-              last: 'Bar',
-              lastInitialOnly: false,
-              suffix: 'Jr'
-            },
-            LastContact: {
-              day: '1',
-              month: '1',
-              year: '2016',
-              date: new Date('1/1/2016')
-            },
-            Relationship: ['Friend'],
-            Phone: {
-              noNumber: '',
-              number: '7031112222',
-              numberType: 'Home',
-              timeOfDay: 'Both',
-              type: 'Domestic',
-              extension: ''
-            },
-            Email: {
-              value: 'user@local.dev'
-            },
-            Address: {
-              country: { value: 'United States' },
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            }
+          ReferenceName: {
+            first: 'Foo',
+            firstInitialOnly: false,
+            middle: 'J',
+            middleInitialOnly: true,
+            noMiddleName: false,
+            last: 'Bar',
+            lastInitialOnly: false,
+            suffix: 'Jr'
+          },
+          ReferencePhone: {
+            noNumber: '',
+            number: '7031112222',
+            numberType: 'Home',
+            timeOfDay: 'Both',
+            type: 'Domestic',
+            extension: ''
+          },
+          ReferenceAddress: {
+            country: { value: 'United States' },
+            street: '1234 Some Rd',
+            city: 'Arlington',
+            state: 'Virginia',
+            zipcode: '22202',
+            layout: Location.ADDRESS
           }
         },
         expected: true
@@ -712,14 +735,14 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).isValid()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).isValid()).toBe(test.expected)
     })
   })
 
   it('should validate additional activity', function () {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'SelfEmployed'
           },
@@ -728,7 +751,7 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'SelfEmployed'
           },
@@ -741,7 +764,7 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'SelfEmployed'
           },
@@ -759,9 +782,15 @@ describe('Employment component validation', function () {
                     },
                     DatesEmployed: {
                       from: {
+                        month: '1',
+                        day: '1',
+                        year: '2011',
                         date: new Date('1/1/2011')
                       },
                       to: {
+                        month: '3',
+                        day: '1',
+                        year: '2011',
                         date: new Date('3/1/2011')
                       },
                       present: false
@@ -775,7 +804,7 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'SelfEmployed'
           },
@@ -793,9 +822,15 @@ describe('Employment component validation', function () {
                     },
                     DatesEmployed: {
                       from: {
+                        month: '1',
+                        day: '1',
+                        year: '2011',
                         date: new Date('1/1/2011')
                       },
                       to: {
+                        month: '3',
+                        day: '1',
+                        year: '2011',
                         date: new Date('3/1/2011')
                       },
                       present: false
@@ -809,7 +844,7 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'SelfEmployed'
           },
@@ -826,9 +861,15 @@ describe('Employment component validation', function () {
                   },
                   DatesEmployed: {
                     from: {
+                      month: '1',
+                      day: '1',
+                      year: '2011',
                       date: new Date('1/1/2011')
                     },
                     to: {
+                      month: '3',
+                      day: '1',
+                      year: '2011',
                       date: new Date('3/1/2011')
                     },
                     present: false
@@ -843,14 +884,14 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validAdditionalActivity()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validAdditionalActivity()).toBe(test.expected)
     })
   })
 
   it('can validate physical address', () => {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
@@ -869,7 +910,7 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
@@ -880,7 +921,7 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
@@ -893,14 +934,14 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validPhysicalAddress()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validPhysicalAddress()).toBe(test.expected)
     })
   })
 
   it('can validate address', () => {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
@@ -918,14 +959,14 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validAddress()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validAddress()).toBe(test.expected)
     })
   })
 
   it('can validate title', () => {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
@@ -936,7 +977,7 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Title: {
             value: 'Dev'
           }
@@ -946,14 +987,14 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validTitle()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validTitle()).toBe(test.expected)
     })
   })
 
   it('can validate status', () => {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
@@ -966,14 +1007,14 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validStatus()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validStatus()).toBe(test.expected)
     })
   })
 
   it('can validate telephone', () => {
     const tests = [
       {
-        state: {
+        data: {
           Telephone: {
             noNumber: '',
             number: '2028675309',
@@ -987,13 +1028,13 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validTelephone()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validTelephone()).toBe(test.expected)
     })
   })
   it('can validate supervisor', () => {
     const tests = [
       {
-        state: {
+        data: {
           EmploymentActivity: {
             value: 'ActiveMilitary'
           },
@@ -1029,19 +1070,25 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validSupervisor()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validSupervisor()).toBe(test.expected)
     })
   })
 
   it('can validate reasons left entries', () => {
     const tests = [
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1055,7 +1102,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'No' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -1074,12 +1121,18 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1093,7 +1146,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'Yes' },
-                    Reason: null,
+                    Reason: {},
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -1112,12 +1165,18 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1130,12 +1189,18 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1148,12 +1213,18 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1167,7 +1238,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'Yes' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -1186,12 +1257,18 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1208,12 +1285,18 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1227,7 +1310,7 @@ describe('Employment component validation', function () {
                 {
                   Item: {
                     Has: { value: 'Yes' },
-                    Reason: 'Fired',
+                    Reason: { value: 'Fired' },
                     Date: {
                       date: new Date('1/1/2016'),
                       day: '1',
@@ -1248,19 +1331,25 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validReasonLeft()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validReasonLeft()).toBe(test.expected)
     })
   })
 
   it('can validate reprimand entries', () => {
     const tests = [
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1291,12 +1380,18 @@ describe('Employment component validation', function () {
         expected: true
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1310,12 +1405,18 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1346,12 +1447,18 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1382,12 +1489,18 @@ describe('Employment component validation', function () {
         expected: false
       },
       {
-        state: {
+        data: {
           Dates: {
             from: {
+              month: '1',
+              day: '1',
+              year: '2010',
               date: new Date('1/1/2010')
             },
             to: {
+              month: '1',
+              day: '1',
+              year: '2016',
               date: new Date('1/1/2016')
             },
             present: false
@@ -1412,7 +1525,7 @@ describe('Employment component validation', function () {
     ]
 
     tests.forEach(test => {
-      expect(new EmploymentValidator(test.state, null).validReprimand()).toBe(test.expected)
+      expect(new EmploymentValidator(test.data).validReprimand()).toBe(test.expected)
     })
   })
 
@@ -1426,9 +1539,15 @@ describe('Employment component validation', function () {
             },
             Dates: {
               from: {
+                month: '1',
+                day: '1',
+                year: '2010',
                 date: new Date('1/1/2010')
               },
               to: {
+                month: '1',
+                day: '1',
+                year: '2016',
                 date: new Date('1/1/2016')
               },
               present: false
@@ -1489,7 +1608,7 @@ describe('Employment component validation', function () {
                   {
                     Item: {
                       Has: { value: 'No' },
-                      Reason: 'Fired',
+                      Reason: { value: 'Fired' },
                       Date: {
                         date: new Date('1/1/2016'),
                         day: '1',
