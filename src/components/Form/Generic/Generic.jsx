@@ -53,6 +53,10 @@ export default class Generic extends ValidationElement {
     if (nextProps.value !== this.state.value) {
       updates = { ...updates, value: nextProps.value }
     }
+    // If disabled, we clear the value and clear state
+    if (nextProps.disabled) {
+      updates = { value: '', valid: null, error: null }
+    }
 
     this.setState(updates)
   }

@@ -90,7 +90,7 @@ export default class DateRange extends ValidationElement {
       futureState.to = {
         date: now,
         year: `${now.getFullYear()}`,
-        month: `${now.getMonth() - 1}`,
+        month: `${now.getMonth() + 1}`,
         day: `${now.getDate()}`,
         estimated: false
       }
