@@ -114,7 +114,6 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/physicaladdress.json"},
 		{Data: "testdata/radio.json"},
 		{Data: "testdata/reasonleft.json"},
-		{Data: "testdata/reference.json"},
 		{Data: "testdata/sentence.json"},
 		{Data: "testdata/signature.json"},
 		{Data: "testdata/ssn.json"},
