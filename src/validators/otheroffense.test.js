@@ -57,13 +57,13 @@ describe('OtherOffense validation', function () {
     const tests = [
       {
         state: {
-          InvolvedViolence: 'No'
+          InvolvedViolence: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvedViolence: 'Yes'
+          InvolvedViolence: { value: 'Yes' }
         },
         expected: true
       },
@@ -84,13 +84,13 @@ describe('OtherOffense validation', function () {
     const tests = [
       {
         state: {
-          InvolvedFirearms: 'No'
+          InvolvedFirearms: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvedFirearms: 'Yes'
+          InvolvedFirearms: { value: 'Yes' }
         },
         expected: true
       },
@@ -111,13 +111,13 @@ describe('OtherOffense validation', function () {
     const tests = [
       {
         state: {
-          InvolvedSubstances: 'No'
+          InvolvedSubstances: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvedSubstances: 'Yes'
+          InvolvedSubstances: { value: 'Yes' }
         },
         expected: true
       },
@@ -246,24 +246,24 @@ describe('OtherOffense validation', function () {
     const tests = [
       {
         state: {
-          WasSentenced: 'Nope'
+          WasSentenced: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          WasSentenced: 'No'
+          WasSentenced: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          WasSentenced: 'Yes',
+          WasSentenced: { value: 'Yes' },
           Sentence: {
-            AwaitingTrial: 'Yes',
+            AwaitingTrial: { value: 'Yes' },
             AwaitingTrialExplanation: 'Yes',
-            ExceedsYear: 'Yes',
-            Incarcerated: 'Yes',
+            ExceedsYear: { value: 'Yes' },
+            Incarcerated: { value: 'Yes' },
             IncarcerationDates: {
               from: {
                 date: new Date('1/1/2000')
@@ -309,9 +309,9 @@ describe('OtherOffense validation', function () {
           Description: {
             value: 'Some description'
           },
-          InvolvedViolence: 'No',
-          InvolvedFirearms: 'Yes',
-          InvolvedSubstances: 'No',
+          InvolvedViolence: { value: 'No' },
+          InvolvedFirearms: { value: 'Yes' },
+          InvolvedSubstances: { value: 'No' },
           ChargeType: 'Felony',
           CourtAddress: {
             country: { value: 'United States' },
@@ -336,12 +336,12 @@ describe('OtherOffense validation', function () {
           CourtOutcome: {
             value: 'Some outcome'
           },
-          WasSentenced: 'Yes',
+          WasSentenced: { value: 'Yes' },
           Sentence: {
-            AwaitingTrial: 'Yes',
+            AwaitingTrial: { value: 'Yes' },
             AwaitingTrialExplanation: 'Yes',
-            ExceedsYear: 'Yes',
-            Incarcerated: 'Yes',
+            ExceedsYear: { value: 'Yes' },
+            Incarcerated: { value: 'Yes' },
             IncarcerationDates: {
               from: {
                 date: new Date('1/1/2000')
@@ -378,9 +378,9 @@ describe('OtherOffense validation', function () {
           Description: {
             value: 'Some description'
           },
-          InvolvedViolence: 'No',
-          InvolvedFirearms: 'Yes',
-          InvolvedSubstances: 'No',
+          InvolvedViolence: { value: 'No' },
+          InvolvedFirearms: { value: 'Yes' },
+          InvolvedSubstances: { value: 'No' },
           ChargeType: 'Felony',
           CourtAddress: {
             country: { value: 'United States' },
@@ -405,7 +405,7 @@ describe('OtherOffense validation', function () {
           CourtOutcome: {
             value: 'Some outcome'
           },
-          WasSentenced: 'No',
+          WasSentenced: { value: 'No' },
           Sentenced: null
         },
         expected: false

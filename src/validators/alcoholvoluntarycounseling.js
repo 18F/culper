@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
+import { validAccordion, validBranch, validGenericTextfield, validPhoneNumber } from './helpers'
 
 export default class VoluntaryCounselingsValidator {
   constructor (data = {}) {
-    this.soughtTreatment = data.SoughtTreatment
-    this.list = data.List
-    this.listBranch = data.ListBranch
+    this.soughtTreatment = (data.SoughtTreatment || {}).value
+    this.list = data.List || {}
   }
 
   validSoughtTreatment () {
@@ -18,22 +17,9 @@ export default class VoluntaryCounselingsValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new VoluntaryCounselingValidator(item.Item).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new VoluntaryCounselingValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -48,7 +34,7 @@ export class VoluntaryCounselingValidator {
     this.treatmentProviderName = data.TreatmentProviderName
     this.treatmentProviderAddress = data.TreatmentProviderAddress
     this.treatmentProviderTelephone = data.TreatmentProviderTelephone
-    this.completedTreatment = data.CompletedTreatment
+    this.completedTreatment = (data.CompletedTreatment || {}).value
     this.noCompletedTreatmentExplanation = data.NoCompletedTreatmentExplanation
   }
 

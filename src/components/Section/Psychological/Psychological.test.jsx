@@ -40,7 +40,7 @@ describe('The psych section', () => {
     const appState = {
       Psychological: {
         Competence: {
-          IsIncompetent: 'Yes'
+          IsIncompetent: { value: 'Yes' }
         }
       }
     }
@@ -53,22 +53,22 @@ describe('The psych section', () => {
     const appState = {
       Psychological: {
         Competence: {
-          IsIncompetent: 'No'
+          IsIncompetent: { value: 'No' }
         },
         Consultation: {
-          Consulted: 'No'
+          Consulted: { value: 'No' }
         },
         Diagnoses: {
-          Diagnosed: 'Yes',
-          DidNotConsult: 'No',
-          InTreatment: 'No'
+          Diagnosed: { value: 'Yes' },
+          DidNotConsult: { value: 'No' },
+          InTreatment: { value: 'No' }
         },
         Hospitalization: {
-          Hospitalized: 'No'
+          Hospitalized: { value: 'No' }
         },
         ExistingConditions: {
-          HasCondition: 'No',
-          ReceivedTreatment: 'Decline'
+          HasCondition: { value: 'No' },
+          ReceivedTreatment: { value: 'Decline' }
         }
       }
     }
@@ -87,19 +87,19 @@ describe('The psych section', () => {
     const appState = {
       Psychological: {
         Competence: {
-          IsIncompetent: 'No'
+          IsIncompetent: { value: 'No' }
         },
-        Consultation: {
-          Consulted: 'No'
+        Consultations: {
+          Consulted: { value: 'No' }
         },
         Diagnoses: {
-          Diagnosed: 'No'
+          Diagnosed: { value: 'No' }
         },
-        Hospitalization: {
-          Hospitalized: 'No'
+        Hospitalizations: {
+          Hospitalized: { value: 'No' }
         },
         ExistingConditions: {
-          HasCondition: 'No'
+          HasCondition: { value: 'No' }
         }
       }
     }

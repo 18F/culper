@@ -11,11 +11,11 @@ describe('The Diagnoses component', () => {
   it('Performs updates', () => {
     let updates = 0
     const props = {
-      Diagnosed: 'Yes',
-      DidNotConsult: 'Yes',
-      InTreatment: 'Yes',
-      DiagnosisList: [{}],
-      TreatmentList: [{}],
+      Diagnosed: { value: 'Yes' },
+      DidNotConsult: { value: 'Yes' },
+      InTreatment: { value: 'Yes' },
+      DiagnosisList: { items: [{}], branch: {} },
+      TreatmentList: { items: [{}], branch: {} },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Diagnoses {...props} />)

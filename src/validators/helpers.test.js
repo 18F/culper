@@ -189,6 +189,28 @@ describe('Helpers for validators', function () {
       {
         phone: {
           noNumber: '',
+          number: '0007031112222',
+          numberType: 'Home',
+          timeOfDay: 'Both',
+          type: 'International',
+          extension: ''
+        },
+        expected: false
+      },
+      {
+        phone: {
+          noNumber: '',
+          number: '   7031112222',
+          numberType: 'Home',
+          timeOfDay: 'Both',
+          type: 'International',
+          extension: ''
+        },
+        expected: false
+      },
+      {
+        phone: {
+          noNumber: '',
           number: '1234567',
           numberType: 'Home',
           timeOfDay: 'Both',
@@ -333,23 +355,21 @@ describe('Helpers for validators', function () {
   it('should validate if branch collection is empty', function () {
     const tests = [
       {
-        Collection: [
-          {
-            Has: 'Yes'
-          }
-        ],
+        Collection: {
+          items: [{ Item: { Has: { value: 'Yes' } } }]
+        },
         expected: false
       },
       {
-        Collection: [
-          {
-            Has: 'No'
-          }
-        ],
+        Collection: {
+          items: [{ Item: { Has: { value: 'No' } } }]
+        },
         expected: false
       },
       {
-        Collection: [],
+        Collection: {
+          items: []
+        },
         expected: true
       },
       {
@@ -367,25 +387,23 @@ describe('Helpers for validators', function () {
   it('should validate if branch collection has a key', function () {
     const tests = [
       {
-        Collection: [
-          {
-            Has: 'Yes'
-          }
-        ],
+        Collection: {
+          items: [{ Item: { Has: { value: 'Yes' } } }]
+        },
         value: 'Yes',
         expected: true
       },
       {
-        Collection: [
-          {
-            Has: 'No'
-          }
-        ],
+        Collection: {
+          items: [{ Item: { Has: { value: 'No' } } }]
+        },
         value: 'No',
         expected: true
       },
       {
-        Collection: [],
+        Collection: {
+          items: []
+        },
         expected: false,
         value: 'No'
       },
@@ -408,25 +426,27 @@ describe('Helpers for validators', function () {
         Function: (item) => {
           return true
         },
-        Collection: [
-          {
-            Has: 'Yes'
-          }
-        ],
+        Collection: {
+          items: [{ Item: { Has: { value: 'Yes' } } }]
+        },
         expected: true
       },
       {
         Function: (item) => {
           return true
         },
-        Collection: [],
+        Collection: {
+          items: []
+        },
         expected: false
       },
       {
         Function: (item) => {
           return false
         },
-        Collection: [{ Has: 'Yes' }],
+        Collection: {
+          items: [{ Item: { Has: { value: 'Yes' } } }]
+        },
         expected: false
       }
     ]

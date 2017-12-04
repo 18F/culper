@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary } from '../../../Summary'
 import { CompetenceValidator, CompetenceOrderValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -18,7 +20,6 @@ export default class Competence extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       IsIncompetent: this.props.IsIncompetent,
       ...queue
     })
@@ -26,16 +27,14 @@ export default class Competence extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateIsIncompentent (values) {
     this.update({
       IsIncompetent: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -59,7 +58,7 @@ export default class Competence extends SubsectionElement {
         <Branch name="is_incompetent"
                 label={i18n.t('psychological.heading.competence')}
                 labelSize="h2"
-                value={this.props.IsIncompetent}
+                {...this.props.IsIncompetent}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -67,11 +66,10 @@ export default class Competence extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.IsIncompetent === 'Yes'}>
+        <Show when={this.props.IsIncompetent.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -97,9 +95,8 @@ export default class Competence extends SubsectionElement {
 }
 
 Competence.defaultProps = {
-  IsIncompetent: '',
-  List: [],
-  ListBranch: '',
+  IsIncompetent: {},
+  List: Accordion.defaultList,
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -108,7 +105,7 @@ Competence.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new CompetenceValidator(props).isValid()
+    return validate(schema('psychological.competence', props))
   },
   scrollToBottom: ''
 }

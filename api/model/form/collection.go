@@ -3,25 +3,23 @@ package form
 import (
 	"encoding/json"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // Collection represents a structure composed of items in a structured
 // format.
 type Collection struct {
-	PayloadBranch Payload `json:"branch,omitempty" sql:"-"`
+	PayloadBranch Payload `json:"branch" sql:"-"`
 
 	// Validator specific fields
-	Branch *Branch           `json:"-"`
+	Branch *Branch           `json:"-" sql:"-"`
 	Items  []*CollectionItem `json:"items" sql:"-"`
 
 	// Persister specific fields
-	ID        int
-	AccountID int64
-	BranchID  int
+	ID        int `json:"-"`
+	AccountID int `json:"-"`
+	BranchID  int `json:"-" pg:",fk:Branch"`
 }
 
 // Unmarshal bytes in to the entity properties.
@@ -30,7 +28,6 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 	if err != nil {
 		return err
 	}
-
 	if entity.PayloadBranch.Type != "" {
 		branch, err := entity.PayloadBranch.Entity()
 		if err != nil {
@@ -38,8 +35,15 @@ func (entity *Collection) Unmarshal(raw []byte) error {
 		}
 		entity.Branch = branch.(*Branch)
 	}
-
 	return err
+}
+
+// Marshal to payload structure
+func (entity *Collection) Marshal() Payload {
+	if entity.Branch != nil {
+		entity.PayloadBranch = entity.Branch.Marshal()
+	}
+	return MarshalPayloadEntity("collection", entity)
 }
 
 // Valid checks the value(s) against an battery of tests.
@@ -67,16 +71,33 @@ func (entity *Collection) Valid() (bool, error) {
 	return !stack.HasErrors(), stack
 }
 
-func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
+// Save the Collection entity.
+func (entity *Collection) Save(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
+	// If there is a branch payload but the branch if non-existent
+	// create one so it may be assigned to.
+	if entity.PayloadBranch.Type != "" && entity.Branch == nil {
+		entity.Branch = &Branch{}
 	}
 
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
+	}
+
+	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Collection)
+		// Handle if there is a branch
+		if previous.BranchID != 0 {
+			if entity.Branch == nil {
+				entity.Branch = &Branch{}
+			}
+			entity.Branch.ID = previous.BranchID
+			entity.BranchID = previous.BranchID
+		}
+	})
+
 	// Custom errors
-	var err error
 	if entity.PayloadBranch.Type != "" {
 		branchID, err := entity.Branch.Save(context, account)
 		if err != nil {
@@ -85,77 +106,86 @@ func (entity *Collection) Save(context *pg.DB, account int64) (int, error) {
 		entity.BranchID = branchID
 	}
 
-	if err = context.CreateTable(&Collection{}, options); err != nil {
-		return entity.ID, err
-	}
-
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
-	}
-
-	if err != nil {
+	if err := context.Save(entity); err != nil {
 		return entity.ID, err
 	}
 
 	// Iterate through each property in `Items` saving them as we go.
-	for _, item := range entity.Items {
-		if _, err := item.Save(context, account, entity.ID); err != nil {
+	for i, item := range entity.Items {
+		if _, err := item.Save(context, account, entity.ID, i+1); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Collection) Delete(context *pg.DB, account int64) (int, error) {
+// Delete the Collection entity.
+func (entity *Collection) Delete(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
+	if err := context.CheckTable(entity); err != nil {
+		return entity.ID, err
 	}
 
-	var err error
-	if err = context.CreateTable(&Collection{}, options); err != nil {
-		return entity.ID, err
+	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Collection)
+		// Handle if there is a branch
+		if previous.BranchID != 0 {
+			if entity.Branch == nil {
+				entity.Branch = &Branch{}
+			}
+			entity.Branch.ID = previous.BranchID
+			entity.BranchID = previous.BranchID
+		}
+	})
+
+	entity.collectionItemIDs(context)
+	for i, item := range entity.Items {
+		if _, err := item.Delete(context, account, entity.ID, i+1); err != nil {
+			return entity.ID, err
+		}
+	}
+
+	if entity.ID != 0 {
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.PayloadBranch.Type != "" {
-		if _, err = entity.Branch.Delete(context, account); err != nil {
+		if _, err := entity.Branch.Delete(context, account); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	for _, item := range entity.Items {
-		if _, err = item.Delete(context, account, entity.ID); err != nil {
-			return entity.ID, err
-		}
-	}
-
-	if entity.ID != 0 {
-		err = context.Delete(entity)
-	}
-
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Collection) Get(context *pg.DB, account int64) (int, error) {
+// Get the Collection entity.
+func (entity *Collection) Get(context *db.DatabaseContext, account int) (int, error) {
 	entity.AccountID = account
 
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Collection{}, options); err != nil {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
+	context.Find(&Collection{ID: entity.ID, AccountID: account}, func(result interface{}) {
+		previous := result.(*Collection)
+		// Handle if there is a branch
+		if previous.BranchID != 0 {
+			if entity.Branch == nil {
+				entity.Branch = &Branch{}
+			}
+			entity.Branch.ID = previous.BranchID
+			entity.BranchID = previous.BranchID
+		}
+	})
+
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
 	if entity.BranchID != 0 {
@@ -164,11 +194,36 @@ func (entity *Collection) Get(context *pg.DB, account int64) (int, error) {
 		}
 	}
 
-	for _, item := range entity.Items {
-		if _, err = item.Get(context, account, entity.ID); err != nil {
+	entity.collectionItemIDs(context)
+	for i, item := range entity.Items {
+		if _, err := item.Get(context, account, entity.ID, i+1); err != nil {
 			return entity.ID, err
 		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
+}
+
+// GetID returns the entity identifier.
+func (entity *Collection) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Collection) SetID(id int) {
+	entity.ID = id
+}
+
+// collectionItemIDs the Collection item identifiers.
+func (entity *Collection) collectionItemIDs(context *db.DatabaseContext) {
+	var count int
+	context.Database.
+		Model(&CollectionItem{}).
+		ColumnExpr("max(index) as max").
+		Where("id = ?", entity.ID).
+		Select(&count)
+	entity.Items = []*CollectionItem{}
+	for i := 0; i < count; i++ {
+		entity.Items = append(entity.Items, &CollectionItem{ID: entity.ID, Index: i + 1})
+	}
 }

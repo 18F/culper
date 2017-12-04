@@ -6,91 +6,105 @@ describe('Competence validation', function () {
     const tests = [
       {
         state: {
-          IsIncompetent: 'Yes',
-          List: [
-            {
-              Item: {
-                CourtName: {
-                  value: 'Circuit Court'
-                },
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Disposition: {
-                  value: 'Stuff'
-                },
-                Occurred: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Appeals: [{ Has: 'No' }]
+          IsIncompetent: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CourtName: {
+                    value: 'Circuit Court'
+                  },
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Disposition: {
+                    value: 'Stuff'
+                  },
+                  Occurred: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Appeals: {
+                    items: [{ Item: { Has: { value: 'No' } } }]
+                  }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          List: [],
-          ListBranch: 'No',
-          IsIncompetent: 'Yes'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          },
+          IsIncompetent: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          List: [],
-          ListBranch: 'No',
-          IsIncompetent: 'No'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          },
+          IsIncompetent: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          List: [],
-          ListBranch: 'No',
-          IsIncompetent: 'Nope'
+          List: {
+            branch: { value: 'No' },
+            items: []
+          },
+          IsIncompetent: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          IsIncompetent: 'Yes',
-          List: [
-            {
-              Item: {
-                CourtName: null,
-                CourtAddress: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Disposition: {
-                  value: 'Stuff'
-                },
-                Occurred: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016')
-                },
-                Appeals: [{ Has: 'No' }]
+          IsIncompetent: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  CourtName: null,
+                  CourtAddress: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Disposition: {
+                    value: 'Stuff'
+                  },
+                  Occurred: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016')
+                  },
+                  Appeals: {
+                    items: [{ Item: { Has: { value: 'No' } } }]
+                  }
+                }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: false
       }

@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { ForeignBusinessAdviceValidator, AdviceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -17,24 +19,21 @@ export default class Advice extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignAdvice: this.props.HasForeignAdvice,
       ...queue
     })
   }
 
-  updateHasForeignAdvice (value) {
+  updateHasForeignAdvice (values) {
     this.update({
-      HasForeignAdvice: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignAdvice: values,
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -58,7 +57,7 @@ export default class Advice extends SubsectionElement {
                 label={i18n.t('foreign.business.advice.heading.title')}
                 labelSize="h2"
                 adjustFor="p"
-                value={this.props.HasForeignAdvice}
+                {...this.props.HasForeignAdvice}
                 warning={true}
                 onUpdate={this.updateHasForeignAdvice}
                 required={this.props.required}
@@ -67,11 +66,10 @@ export default class Advice extends SubsectionElement {
           {i18n.m('foreign.business.advice.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignAdvice === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignAdvice.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={AdviceValidator}
@@ -98,16 +96,15 @@ export default class Advice extends SubsectionElement {
 
 Advice.defaultProps = {
   name: 'Advice',
-  HasForeignAdvice: '',
-  List: [],
-  ListBranch: '',
+  HasForeignAdvice: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/advice',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessAdviceValidator(props).isValid()
+    return validate(schema('foreign.business.advice', props))
   },
   defaultState: true,
   scrollToBottom: ''

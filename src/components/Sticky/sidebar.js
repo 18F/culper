@@ -174,8 +174,10 @@ export const scrollDown = (container, content, world, options) => {
   } else if (hasClass(content, 'sidebar-top-fixed')) {
     contentOffsetTop = top(content) + world.boundaries.containerTop
     removeClass(content, 'sidebar-top-fixed')
-    content.style.position = 'absolute'
-    content.style.top = '' + contentOffsetTop + 'px'
+    if (world.tearing) {
+      content.style.position = 'absolute'
+      content.style.top = '' + contentOffsetTop + 'px'
+    }
     addClass(content, 'sidebar-scrolling-down')
   }
 
@@ -195,9 +197,11 @@ export const scrollDown = (container, content, world, options) => {
   } else {
     if (world.tearing && windowScroll > world.boundaries.containerBottom) {
       removeClass(content, 'sidebar-bottom-fixed')
-      content.style.position = 'absolute'
-      contentOffsetTop = world.boundaries.containerHeight - world.boundaries.contentHeight
-      content.style.top = '' + contentOffsetTop + 'px'
+      if (world.tearing) {
+        content.style.position = 'absolute'
+        contentOffsetTop = world.boundaries.containerHeight - world.boundaries.contentHeight
+        content.style.top = '' + contentOffsetTop + 'px'
+      }
     } else if (windowScroll > world.tolerance + world.boundaries.contentHeight + world.boundaries.containerTop) {
       content.style.position = ''
       content.style.top = ''

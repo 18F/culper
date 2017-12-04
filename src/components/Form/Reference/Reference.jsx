@@ -202,6 +202,7 @@ export default class Reference extends ValidationElement {
         </Field>
 
         <Field title={i18n.t(`${prefix}reference.heading.phone`)}
+               className="override-required"
                help={`${prefix}reference.help.phone`}
                adjustFor="telephone"
                scrollIntoView={this.props.scrollIntoView}>
@@ -263,7 +264,7 @@ Reference.defaultProps = {
   RelationshipOther: '',
   Phone: {},
   Email: {},
-  EmailNotApplicable: {},
+  EmailNotApplicable: { applicable: true },
   Address: {},
   focus: false,
   error: false,

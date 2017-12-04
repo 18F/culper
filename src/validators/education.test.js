@@ -6,22 +6,22 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'No',
-          HasDegree10: 'No'
+          HasAttended: { value: 'No' },
+          HasDegree10: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasAttended: 'Yes',
-          HasDegree10: 'No'
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'No' }
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'No',
-          HasDegree10: 'Yes'
+          HasAttended: { value: 'No' },
+          HasDegree10: { value: 'Yes' }
         },
         expected: false
       },
@@ -43,7 +43,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2000')
@@ -58,7 +58,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2004')
@@ -82,7 +82,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Address: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -105,7 +105,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Name: {
             value: 'Hubert Humphrey High'
           }
@@ -123,7 +123,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Type: 'High School'
         },
         expected: true
@@ -139,7 +139,7 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2000')
@@ -192,7 +192,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Dates: {
             from: {
               date: new Date('1/1/2000')
@@ -217,28 +217,28 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [ { Has: 'No' } ]
         },
         expected: true
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: []
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: null
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -258,7 +258,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -276,7 +276,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -288,7 +288,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -318,7 +318,7 @@ describe('Education component validation', function () {
       },
       {
         state: {
-          HasAttended: 'Yes',
+          HasAttended: { value: 'Yes' },
           Diplomas: [
             {
               Has: 'Yes',
@@ -348,22 +348,22 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
-          hasDegree10: 'Yes'
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasAttended: 'Nope',
-          hasDegree10: 'Yes'
+          HasAttended: { value: 'Nope' },
+          HasDegree10: { value: 'Yes' }
         },
         expected: false
       },
       {
         state: {
-          HasAttended: 'No',
-          hasDegree10: 'Nope'
+          HasAttended: { value: 'No' },
+          HasDegree10: { value: 'Nope' }
         },
         expected: false
       }
@@ -378,87 +378,97 @@ describe('Education component validation', function () {
     const tests = [
       {
         state: {
-          HasAttended: 'Yes',
-          hasDegree10: 'Yes',
-          List: [
-            {
-              Item: {
-                Name: {
-                  value: 'School name'
-                },
-                Reference: {
-                  FullNameNotApplicable: {
-                    applicable: false
-                  }
-                },
-                Type: 'High School',
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'Yes' },
+          List: {
+            branch: {
+              value: 'No'
+            },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: 'School name'
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Reference: {
+                    FullNameNotApplicable: {
+                      applicable: false
+                    }
                   },
-                  present: false
-                },
-                Diplomas: [
-                  {
-                    Has: 'No',
-                    Diploma: null
-                  }
-                ]
+                  Type: 'High School',
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  },
+                  Diplomas: [
+                    {
+                      Has: 'No',
+                      Diploma: null
+                    }
+                  ]
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          HasAttended: 'Yes',
-          hasDegree10: 'Yes',
-          List: [
-            {
-              Item: {
-                Name: {
-                  value: ''
-                },
-                Reference: null,
-                Type: 'High School',
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          HasAttended: { value: 'Yes' },
+          HasDegree10: { value: 'Yes' },
+          List: {
+            branch: {
+              value: 'No'
+            },
+            items: [
+              {
+                Item: {
+                  Name: {
+                    value: ''
                   },
-                  to: {
-                    date: new Date('1/1/2016')
+                  Reference: null,
+                  Type: 'High School',
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
                   },
-                  present: false
-                },
-                Diplomas: [
-                  {
-                    Has: 'No',
-                    Diploma: null
-                  }
-                ]
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2016')
+                    },
+                    present: false
+                  },
+                  Diplomas: [
+                    {
+                      Has: 'No',
+                      Diploma: null
+                    }
+                  ]
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       }

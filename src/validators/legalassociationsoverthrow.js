@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validGenericTextfield, validNotApplicable } from './helpers'
+import { validAccordion, validGenericTextfield, validNotApplicable } from './helpers'
 
 export default class LegalAssociationOverthrowValidator {
   constructor (data = {}) {
-    this.hasOverthrow = data.HasOverthrow
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasOverthrow = (data.HasOverthrow || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class LegalAssociationOverthrowValidator {
       return true
     }
 
-    if (this.hasOverthrow === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new OverthrowValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new OverthrowValidator(item).isValid()
+    })
   }
 
   isValid () {

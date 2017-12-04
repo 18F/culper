@@ -1,5 +1,5 @@
 {
-  "type": "substance.drug.purchase",
+  "type": "substance.drugs.purchase",
   "props": {
     "Involved": {
       "type": "branch",

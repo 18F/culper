@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, DateSummary, NameSummary } from '../../../Summary'
 import { ForeignBusinessVenturesValidator, VenturesValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -18,23 +20,20 @@ export default class Ventures extends SubsectionElement {
     this.props.onUpdate({
       HasForeignVentures: this.props.HasForeignVentures,
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       ...queue
     })
   }
 
-  updateHasForeignVentures (value) {
+  updateHasForeignVentures (values) {
     this.update({
-      HasForeignVentures: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignVentures: values,
+      List: values.value === 'Yes' ? this.props.List : { branch: {}, items: [] }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -60,7 +59,7 @@ export default class Ventures extends SubsectionElement {
                 labelSize="h2"
                 adjustFor="p"
                 help="foreign.business.ventures.help.branch"
-                value={this.props.HasForeignVentures}
+                {...this.props.HasForeignVentures}
                 warning={true}
                 onUpdate={this.updateHasForeignVentures}
                 required={this.props.required}
@@ -69,11 +68,10 @@ export default class Ventures extends SubsectionElement {
           {i18n.m('foreign.business.ventures.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignVentures === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignVentures.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={VenturesValidator}
@@ -84,11 +82,11 @@ export default class Ventures extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.ventures.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <VenturesItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <VenturesItem name="Item"
+                          bind={true}
+                          required={this.props.required}
+                          scrollIntoView={this.props.scrollIntoView}
+                          />
           </Accordion>
         </Show>
       </div>
@@ -98,9 +96,8 @@ export default class Ventures extends SubsectionElement {
 
 Ventures.defaultProps = {
   name: 'Ventures',
-  HasForeignVentures: '',
-  List: [],
-  ListBranch: '',
+  HasForeignVentures: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
@@ -108,7 +105,7 @@ Ventures.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessVenturesValidator(props).isValid()
+    return validate(schema('foreign.business.ventures', props))
   },
   defaultState: true,
   scrollToBottom: ''

@@ -6,7 +6,7 @@ describe('Diagnosis validation', function () {
     const tests = [
       {
         state: {
-          Effective: 'Yes',
+          Effective: { value: 'Yes' },
           Explanation: {
             value: null
           }
@@ -15,7 +15,7 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          Effective: 'No',
+          Effective: { value: 'No' },
           Explanation: {
             value: null
           }
@@ -24,7 +24,7 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          Effective: 'No',
+          Effective: { value: 'No' },
           Explanation: {
             value: 'The explanation'
           }
@@ -33,7 +33,7 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          Effective: 'Nope',
+          Effective: { value: 'Nope' },
           Explanation: {
             value: 'The explanation'
           }
@@ -42,7 +42,7 @@ describe('Diagnosis validation', function () {
       },
       {
         state: {
-          Effective: 'Nope',
+          Effective: { value: 'Nope' },
           Explanation: {
             value: 'The explanation'
           }
@@ -63,7 +63,7 @@ describe('Diagnosis validation', function () {
       {
         state: {
           Condition: 'Test',
-          Effective: 'Yes',
+          Effective: { value: 'Yes' },
           Explanation: {
             value: null
           },

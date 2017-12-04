@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { MaritalValidator, DivorceValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -22,14 +24,13 @@ export default class Marital extends SubsectionElement {
       Status: this.props.Status,
       CivilUnion: this.props.CivilUnion,
       DivorcedList: this.props.DivorcedList,
-      DivorcedListBranch: this.props.DivorcedListBranch,
       ...queue
     })
   }
 
   updateStatus (values) {
     this.update({
-      Status: values.target.value
+      Status: values
     })
   }
 
@@ -41,8 +42,7 @@ export default class Marital extends SubsectionElement {
 
   updateDivorcedList (values) {
     this.update({
-      DivorcedList: values.items,
-      DivorcedListBranch: values.branch
+      DivorcedList: values
     })
   }
 
@@ -60,9 +60,12 @@ export default class Marital extends SubsectionElement {
   }
 
   showDivorce () {
-    if (['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)) {
-      return (this.props.CivilUnion || {}).Divorced === 'Yes'
-    } else if (['Annulled', 'Divorced', 'Widowed'].includes(this.props.Status)) {
+    const status = (this.props.Status || {}).value
+    const divorced = ((this.props.CivilUnion || {}).Divorced || {}).value
+
+    if (['Married', 'InCivilUnion', 'Separated'].includes(status)) {
+      return divorced === 'Yes'
+    } else if (['Annulled', 'Divorced', 'Widowed'].includes(status)) {
       return true
     }
 
@@ -74,73 +77,71 @@ export default class Marital extends SubsectionElement {
       <div className="marital">
         <Field title={i18n.t('relationships.marital.heading.title')}
           scrollIntoView={this.props.scrollIntoView}>
-          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status} required={this.props.required} onError={this.props.onError}>
+          <RadioGroup name="status" className="status-options" selectedValue={this.props.Status.value} required={this.props.required} onError={this.handleError}>
             <Radio label={i18n.m('relationships.marital.label.status.never')}
                    className="status-never"
                    value="Never"
-                   onChange={this.updateStatus}
+                   onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.married')}
                    className="status-married"
                    value="Married"
-                   onChange={this.updateStatus}
+                   onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.inCivilUnion')}
                    className="status-civil-union"
                    value="InCivilUnion"
-                   onChange={this.updateStatus}
+                   onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.separated')}
                    className="status-separated"
                    value="Separated"
-                   onChange={this.updateStatus}
+                   onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.annulled')}
                    className="status-annulled"
                    value="Annulled"
-                   onChange={this.updateStatus}
+                   onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.divorced')}
                    className="status-divorced"
                    value="Divorced"
-                   onChange={this.updateStatus}
+                   onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />
             <Radio label={i18n.m('relationships.marital.label.status.widowed')}
                    className="status-widowed"
                    value="Widowed"
-                   onChange={this.updateStatus}
+                   onUpdate={this.updateStatus}
                    onError={this.handleError}
                    />
           </RadioGroup>
         </Field>
 
-        <Show when={['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status)}>
+        <Show when={['Married', 'InCivilUnion', 'Separated'].includes(this.props.Status.value)}>
           <CivilUnion name="civilUnion"
                       {...this.props.CivilUnion}
-                      addressBooks={this.props.addressBooks}
-                      dispatch={this.props.dispatch}
                       onUpdate={this.updateCivilUnion}
                       onError={this.handleError}
                       onSpouseUpdate={this.props.onSpouseUpdate}
+                      addressBooks={this.props.addressBooks}
                       currentAddress={this.props.currentAddress}
+                      dispatch={this.props.dispatch}
                       defaultState={this.props.defaultState}
                       required={this.props.required}
                       scrollIntoView={this.props.scrollIntoView}
                       />
         </Show>
         <Show when={this.showDivorce()}>
-          <span id="scrollToDivorce"></span>
           <Accordion scrollTo="scrollToDivorce"
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     items={this.props.DivorcedList}
-                     branch={this.props.DivorcedListBranch}
+                     {...(this.props.DivorcedList || {})}
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
                      required={this.props.required}
@@ -163,10 +164,9 @@ export default class Marital extends SubsectionElement {
 }
 
 Marital.defaultProps = {
-  Status: '',
+  Status: {},
   CivilUnion: {},
-  DivorcedList: [],
-  DivorcedListBranch: '',
+  DivorcedList: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
@@ -174,7 +174,7 @@ Marital.defaultProps = {
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {
-    return new MaritalValidator(props, props).isValid()
+    return validate(schema('relationships.status.marital', props))
   },
   defaultState: true,
   scrollToBottom: ''

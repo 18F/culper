@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { PassportValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, Show, Text, Suggestions, Name,
          DateControl, Branch, Radio, RadioGroup } from '../../../Form'
@@ -29,7 +30,7 @@ export default class Passport extends SubsectionElement {
       Issued: this.props.Issued,
       Expiration: this.props.Expiration,
       Comments: this.props.Comments,
-      HasPassport: this.props.HasPassport,
+      HasPassports: this.props.HasPassports,
       suggestedNames: this.props.suggestedNames,
       ...queue
     })
@@ -42,9 +43,9 @@ export default class Passport extends SubsectionElement {
   /**
    * Handle the change event.
    */
-  updateCard (event) {
+  updateCard (values) {
     this.update({
-      Card: event.target.value
+      Card: values
     }, () => {
       // This allows us to force a blur/validation using
       // the new regular expression
@@ -56,13 +57,13 @@ export default class Passport extends SubsectionElement {
   /**
    * Handle when the yes/no option has been changed
    */
-  updateBranch (val, event) {
+  updateBranch (values) {
     this.update({
-      HasPassport: val,
-      Name: val === 'Yes' ? this.props.Name : {},
-      Number: val === 'Yes' ? this.props.Number : '',
-      Issued: val === 'Yes' ? this.props.Issued : {},
-      Expired: val === 'Yes' ? this.props.Expired : {}
+      HasPassports: values,
+      Name: values.value === 'Yes' ? this.props.Name : {},
+      Number: values.value === 'Yes' ? this.props.Number : '',
+      Issued: values.value === 'Yes' ? this.props.Issued : {},
+      Expired: values.value === 'Yes' ? this.props.Expired : {}
     })
   }
 
@@ -121,7 +122,7 @@ export default class Passport extends SubsectionElement {
 
   render () {
     let re = this.props.reBook
-    if (this.props.Card === 'Card') {
+    if ((this.props.Card || {}).value === 'Card') {
       re = this.props.reCard
     }
 
@@ -145,7 +146,7 @@ export default class Passport extends SubsectionElement {
         <Branch name="has_passport"
                 label={i18n.t('foreign.passport.question.title')}
                 labelSize="h3"
-                value={this.props.HasPassport}
+                {...this.props.HasPassports}
                 warning={true}
                 onUpdate={this.updateBranch}
                 onError={this.handleError}
@@ -153,7 +154,7 @@ export default class Passport extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}
                 >
         </Branch>
-        <Show when={this.props.HasPassport === 'Yes'}>
+        <Show when={this.props.HasPassports.value === 'Yes'}>
           <div>
             <Field title={i18n.t('foreign.passport.name')}
                    titleSize="h3"
@@ -193,24 +194,24 @@ export default class Passport extends SubsectionElement {
                 <RadioGroup className="option-list"
                             onError={this.handleError}
                             required={this.props.required}
-                            selectedValue={this.props.Card}>
+                            selectedValue={(this.props.Card || {}).value}>
                   <Radio name="passport-book"
                          className="passport-book"
                          label={i18n.t('foreign.passport.label.book')}
                          value="Book"
-                         onChange={this.updateCard}
+                         onUpdate={this.updateCard}
                          onError={this.handleError}
                          />
                   <Radio name="passport-card"
                          className="passport-card"
                          label={i18n.t('foreign.passport.label.card')}
                          value="Card"
-                         onChange={this.updateCard}
+                         onUpdate={this.updateCard}
                          onError={this.handleError}
                          />
                 </RadioGroup>
                 <Text name="number"
-                      value={this.props.Number.value}
+                      {...this.props.Number}
                       label={i18n.t('foreign.passport.label.number')}
                       placeholder={i18n.t('foreign.passport.placeholder.number')}
                       pattern={re}
@@ -266,12 +267,12 @@ export default class Passport extends SubsectionElement {
 // https://e-verify-uscis.gov/esp/help/EvHelpPassportandPassportCardNbr.htm
 Passport.defaultProps = {
   Name: {},
-  Number: '',
-  Card: 'Book',
+  Number: {},
+  Card: { value: 'Book' },
   Issued: {},
   Expiration: {},
-  Comments: '',
-  HasPassport: '',
+  Comments: {},
+  HasPassports: {},
   suggestedNames: [],
   reBook: '^[a-zA-Z]{1}[0-9]{6,9}$',
   reCard: '^[cC]{1}[0-9]{8}$',
@@ -281,6 +282,6 @@ Passport.defaultProps = {
   subsection: 'passport',
   dispatch: () => {},
   validator: (state, props) => {
-    return new PassportValidator(props, props).isValid()
+    return validate(schema('foreign.passport', props))
   }
 }

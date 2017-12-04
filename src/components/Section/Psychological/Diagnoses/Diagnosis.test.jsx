@@ -22,8 +22,13 @@ describe('The Diagnosis component', () => {
 
   it('Performs updates and shows explanation', () => {
     let updates = 0
-    const onUpdate = () => { updates++ }
-    const component = mount(<Diagnosis onUpdate={onUpdate} Effective={'No'} />)
+    const props = {
+      Effective: {
+        value: 'No'
+      },
+      onUpdate: () => { updates++ }
+    }
+    const component = mount(<Diagnosis {...props} />)
     component.find('textarea').simulate('change')
     expect(updates).toBe(1)
   })

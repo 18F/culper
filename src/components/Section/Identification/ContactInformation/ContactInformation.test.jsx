@@ -7,8 +7,8 @@ describe('The ContactInformation component', () => {
     let blurs = 0
     const expected = {
       name: 'input-focus',
-      Emails: [{}],
-      PhoneNumbers: [{}],
+      Emails: { items: [{}] },
+      PhoneNumbers: { items: [{}] },
       onBlur: function (event) {
         blurs++
       }
@@ -20,68 +20,99 @@ describe('The ContactInformation component', () => {
 
   it('formats phone numbers appropriately', () => {
     const expected = {
-      PhoneNumbers: [
-        {
-          Item: {
-            type: 'Domestic',
-            number: '2028675309',
-            extension: '1234'
+      PhoneNumbers: {
+        items: [
+          {
+            Item: {
+              Telephone: {
+                type: 'Domestic',
+                number: '2028675309',
+                extension: '1234'
+              }
+            }
+          },
+          {
+            Item: {
+              Telephone: {
+                type: 'Domestic',
+                number: '2028675309',
+                extension: ''
+              }
+            }
+          },
+          {
+            Item: {
+              Telephone: {
+                type: 'DSN',
+                number: '8675309'
+              }
+            }
+          },
+          {
+            Item: {
+              Telephone: {
+                type: 'International',
+                number: '0011234567890',
+                extension: '1234'
+              }
+            }
+          },
+          {
+            Item: {
+              Telephone: {
+                type: 'International',
+                number: '0011234567890',
+                extension: ''
+              }
+            }
           }
-        },
-        {
-          Item: {
-            type: 'Domestic',
-            number: '2028675309',
-            extension: ''
-          }
-        },
-        {
-          Item: {
-            type: 'DSN',
-            number: '8675309'
-          }
-        },
-        {
-          Item: {
-            type: 'International',
-            number: '0011234567890',
-            extension: '1234'
-          }
-        },
-        {
-          Item: {
-            type: 'International',
-            number: '0011234567890',
-            extension: ''
-          }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(5)
-    expect(component.find('.summary strong').at(0).text()).toEqual('(202) 867-5309 x1234')
-    expect(component.find('.summary strong').at(1).text()).toEqual('(202) 867-5309')
-    expect(component.find('.summary strong').at(2).text()).toEqual('867-5309')
-    expect(component.find('.summary strong').at(3).text()).toEqual('+001 1234567890 x1234')
-    expect(component.find('.summary strong').at(4).text()).toEqual('+001 1234567890')
+    // 5 phone numbers and 2 emails
+    expect(component.find('.index').length).toEqual(5 + 2)
+    expect(component.find('.summary strong').at(0).text()).toEqual('Provide your email address below')
+    expect(component.find('.summary strong').at(1).text()).toEqual('Provide your email address below')
+    expect(component.find('.summary strong').at(2).text()).toEqual('(202) 867-5309 x1234')
+    expect(component.find('.summary strong').at(3).text()).toEqual('(202) 867-5309')
+    expect(component.find('.summary strong').at(4).text()).toEqual('867-5309')
+    expect(component.find('.summary strong').at(5).text()).toEqual('+001 1234567890 x1234')
+    expect(component.find('.summary strong').at(6).text()).toEqual('+001 1234567890')
   })
 
   it('formats emails appropriately', () => {
     const expected = {
-      Emails: [
-        {
-          Item: {
-            value: 'test@abc.com'
+      Emails: {
+        items: [
+          {
+            Item: {
+              Email: {
+                value: 'test@abc.com'
+              }
+            }
+          },
+          {
+            Item: {}
           }
-        },
-        {
-          Item: {}
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<ContactInformation {...expected} />)
-    expect(component.find('.index').length).toEqual(2)
+    // 2 for emails and 2 for phone numbers
+    expect(component.find('.index').length).toEqual(2 + 2)
     expect(component.find('.summary strong').at(0).text()).toEqual('test@abc.com')
     expect(component.find('.summary strong').at(1).text()).toEqual('Provide your email address below')
+  })
+
+  it('should filter empty items out leaving only the minimum visible', () => {
+    const expected = {
+      shouldFilterEmptyItems: true
+    }
+    const component = mount(<ContactInformation {...expected} />)
+    // 1 for emails and 1 for phone numbers
+    expect(component.find('.index').length).toEqual(1 + 1)
+    expect(component.find('.summary strong').at(0).text()).toEqual('Provide your email address below')
+    expect(component.find('.summary strong').at(1).text()).toEqual('Provide your telephone number below')
   })
 })

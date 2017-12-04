@@ -27,34 +27,37 @@ describe('The DomesticViolenceList  component', () => {
     const expected = {
       name: 'sentence',
       onUpdate: () => {},
-      List: [
-        {
-          Has: 'Yes',
-          domestic: {
-            CourtName: {
-              value: '4th Circuit Court'
-            },
-            CourtAddress: {
-              country: 'United States',
-              street: '1234 Some Rd',
-              city: 'Arlington',
-              state: 'Virginia',
-              zipcode: '22202',
-              layout: Location.ADDRESS
-            },
-            Explanation: {
-              value: 'Some content'
-            },
-            Issued: {
-              month: '1',
-              year: '2009'
+      List: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' },
+              domestic: {
+                CourtName: {
+                  value: '4th Circuit Court'
+                },
+                CourtAddress: {
+                  country: 'United States',
+                  street: '1234 Some Rd',
+                  city: 'Arlington',
+                  state: 'Virginia',
+                  zipcode: '22202',
+                  layout: Location.ADDRESS
+                },
+                Explanation: {
+                  value: 'Some content'
+                },
+                Issued: {
+                  month: '1',
+                  year: '2009'
+                }
+              }
             }
           }
-        }
-      ]
+        ]
+      }
     }
     const component = mount(<DomesticViolenceList {...expected} />)
     expect(component.find('.domestic-violence').length).toBe(1)
   })
 })
-

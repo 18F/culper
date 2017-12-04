@@ -1,12 +1,12 @@
 hash: 75b8b80a0c8a0eb671e789332c322ff760165467a2127b9e6c75ef6740fca5cd
-updated: 2017-10-31T13:36:58.607115431Z
+updated: 2017-11-08T14:49:27.218291564Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
   subpackages:
   - lib/goose
 - name: cloud.google.com/go
-  version: fa9c7cafa442499dc3026b8a0077f52e02f557d1
+  version: 8dff92c85f4225d90bdd100ea741d9903acc259e
   subpackages:
   - compute/metadata
 - name: github.com/cloudfoundry-community/go-cfenv
@@ -16,7 +16,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: 96977cbd42e27be71f9f731db6634123de7e861a
 - name: github.com/go-pg/pg
-  version: 7d77324e5a031dbddae4716ecae22540ad8bf9dd
+  version: f7825ca79b63ead4417c219bba98a85b198bf605
   subpackages:
   - internal
   - internal/parser
@@ -77,19 +77,19 @@ imports:
   - mysql
   - native
 - name: golang.org/x/crypto
-  version: 2509b142fb2b797aa7587dad548f113b2c0f20ce
+  version: 6a293f2d4b14b8e6d3f0539e383f6d0d30fce3fd
   subpackages:
   - bcrypt
   - blowfish
 - name: golang.org/x/net
-  version: 4b14673ba32bee7f5ac0f990a48f033919fd418b
+  version: a337091b0525af65de94df2eb7e98bd9962dcbe2
   subpackages:
   - context
   - context/ctxhttp
   - html
   - html/atom
 - name: golang.org/x/oauth2
-  version: bb50c06baba3d0c76f9d125c0719093e315b5b44
+  version: 9ff8ebcc8e241d46f52ecc5bff0e5a2f2dbef402
   subpackages:
   - facebook
   - github
@@ -99,7 +99,7 @@ imports:
   - jwt
   - linkedin
 - name: google.golang.org/appengine
-  version: a2e0dc829727a4f957a7428b1f322805cfc1f362
+  version: 9d8544a6b2c7df9cff240fcf92d7b2f59bc13416
   subpackages:
   - internal
   - internal/app_identity

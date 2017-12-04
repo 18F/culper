@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link } from 'react-router'
+import { Link } from 'react-router-dom'
 import { i18n } from '../../config'
 import { GithubOAuth } from '../../services'
 

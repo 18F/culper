@@ -1,5 +1,5 @@
 {
-  "type": "substance.drug.usage",
+  "type": "substance.drugs.usage",
   "props": {
     "UsedDrugs": {
       "type": "branch",

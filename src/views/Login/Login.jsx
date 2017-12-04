@@ -2,6 +2,7 @@ import React from 'react'
 import { LoginOAuth, TwoFactor } from '../../components'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
+import { api } from '../../services'
 import { login } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Consent, Text, Show } from '../../components/Form'
@@ -14,7 +15,8 @@ class Login extends React.Component {
       twofactor: this.props.twofactor,
       username: this.props.username,
       password: this.props.password,
-      showPassword: this.props.showPassword
+      showPassword: this.props.showPassword,
+      saml: {}
     }
 
     this.onUsernameChange = this.onUsernameChange.bind(this)
@@ -30,6 +32,11 @@ class Login extends React.Component {
 
   componentWillMount () {
     this.redirect()
+    if (env.SamlEnabled()) {
+      api.saml().then((response) => {
+        this.setState({ saml: response.data || {} })
+      })
+    }
   }
 
   redirect () {
@@ -138,11 +145,14 @@ class Login extends React.Component {
 
         <Show when={env.SamlEnabled()}>
           <div id="saml" className="login-sso">
-            <span>Sign in with </span>
-            <a href={env.EndpointSaml()} className="btn btn-outline">
-              <span>CAC or PIV</span>
-              <i className="fa fa-id-card-o" aria-hidden="true"></i>
-            </a>
+            <form method="post" action={this.state.saml.URL}>
+              <input type="hidden" name="SAMLRequest" value={this.state.saml.Base64XML} />
+              <span>Sign in with </span>
+              <button type="submit" className="usa-button-unstyled">
+                <span>CAC or PIV</span>
+                <i className="fa fa-id-card-o" aria-hidden="true"></i>
+              </button>
+            </form>
           </div>
         </Show>
       </div>

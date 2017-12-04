@@ -5,47 +5,67 @@ describe('Contact Information validation', function () {
     const tests = [
       {
         state: {
-          Emails: [
-            {
-              Item: {
-                value: 'foobar@local.dev'
+          Emails: {
+            items: [
+              {
+                Item: {
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
+                }
               }
-            },
-            {
-              Item: {
-                value: 'foobar@local.dev'
-              }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          Emails: [
-            {
-              Item: {
-                value: 'foobar@local.dev'
-              }
-            }
-          ]
+          Emails: { items: [] }
         },
         expected: false
       },
       {
         state: {
-          Emails: [
-            {
-              Item: null
-            },
-            {
-              Item: {
-                value: 'foobar@local.dev'
+          Emails: {
+            items: [
+              {
+                Item: {
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
-        expected: false
+        expected: true
+      },
+      {
+        state: {
+          Emails: {
+            items: [
+              {
+                Item: {}
+              },
+              {
+                Item: {
+                  Email: {
+                    value: 'foobar@local.dev'
+                  }
+                }
+              }
+            ]
+          }
+        },
+        expected: true
       }
     ]
 
@@ -58,71 +78,85 @@ describe('Contact Information validation', function () {
     const tests = [
       {
         state: {
-          PhoneNumbers: [
-            {
-              Item: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                type: 'Domestic',
-                timeOfDay: 'Both',
-                extension: ''
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              },
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
               }
-            },
-            {
-              Item: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                type: 'Domestic',
-                timeOfDay: 'Both',
-                extension: ''
-              }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          PhoneNumbers: [
-            {
-              Item: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                type: 'Domestic',
-                timeOfDay: 'Both',
-                extension: ''
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          PhoneNumbers: [
-            {
-              Item: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                type: 'Domestic',
-                timeOfDay: 'Both',
-                extension: ''
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              },
+              {
+                Telephone: {}
               }
-            },
-            {
-              Telephone: null
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          PhoneNumbers: null
+          PhoneNumbers: { items: [] }
         },
         expected: false
       }
@@ -137,40 +171,52 @@ describe('Contact Information validation', function () {
     const tests = [
       {
         state: {
-          Emails: [
-            {
-              Item: {
-                value: 'foobar2@local.dev'
+          Emails: {
+            items: [
+              {
+                Item: {
+                  Email: {
+                    value: 'foobar2@local.dev'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Email: {
+                    value: 'foobar2@local.dev'
+                  }
+                }
               }
-            },
-            {
-              Item: {
-                value: 'foobar2@local.dev'
+            ]
+          },
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
+              },
+              {
+                Item: {
+                  Telephone: {
+                    noNumber: false,
+                    number: '7031112222',
+                    numberType: 'Home',
+                    type: 'Domestic',
+                    timeOfDay: 'Both',
+                    extension: ''
+                  }
+                }
               }
-            }
-          ],
-          PhoneNumbers: [
-            {
-              Item: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                type: 'Domestic',
-                timeOfDay: 'Both',
-                extension: ''
-              }
-            },
-            {
-              Item: {
-                noNumber: '',
-                number: '7031112222',
-                numberType: 'Home',
-                type: 'Domestic',
-                timeOfDay: 'Both',
-                extension: ''
-              }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }

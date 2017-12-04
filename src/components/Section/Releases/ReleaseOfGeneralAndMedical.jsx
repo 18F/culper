@@ -39,6 +39,7 @@ export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
                 />
         <hr />
         <General {...this.props.General}
+                 LegalName={this.props.LegalName}
                  onUpdate={this.updateGeneral}
                  onError={this.handleError}
                  />
@@ -46,9 +47,10 @@ export default class ReleaseOfGeneralAndMedical extends SubsectionElement {
           <div>
             <hr />
             <Medical {...this.props.Medical}
-                    onUpdate={this.updateMedical}
-                    onError={this.handleError}
-                    />
+                     LegalName={this.props.LegalName}
+                     onUpdate={this.updateMedical}
+                     onError={this.handleError}
+                     />
           </div>
         </Show>
       </div>
@@ -62,6 +64,7 @@ ReleaseOfGeneralAndMedical.defaultProps = {
   History: {},
   General: {},
   Medical: {},
+  LegalName: {},
   section: 'releases',
   subsection: 'general',
   dispatch: () => {},

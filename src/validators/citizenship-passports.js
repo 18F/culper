@@ -1,7 +1,7 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
 import NameValidator from './name'
-import { validGenericTextfield, validDateField, BranchCollection } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField, BranchCollection } from './helpers'
 
 export default class CitizenshipPassportsValidator {
   constructor (data = {}) {
@@ -36,8 +36,8 @@ export class PassportItemValidator {
     this.name = data.Name
     this.number = data.Number
     this.expiration = data.Expiration
-    this.used = data.Used
-    this.countries = data.Countries
+    this.used = (data.Used || {}).value
+    this.countries = data.Countries || {}
   }
 
   validCountry () {
@@ -73,17 +73,9 @@ export class PassportItemValidator {
       return true
     }
 
-    if (this.countries.length === 0) {
-      return false
-    }
-
-    for (const country of this.countries) {
-      if (new TravelItemValidator(country.Item, null).isValid() !== true) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.countries, (item) => {
+      return new TravelItemValidator(item).isValid()
+    }, true)
   }
 
   isValid () {

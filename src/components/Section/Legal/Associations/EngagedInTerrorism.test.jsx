@@ -18,7 +18,7 @@ describe('The legal associations engaged in terrorism component', () => {
 
   it('list displayed if "yes" is clicked', () => {
     const props = {
-      HasEngaged: 'Yes'
+      HasEngaged: { value: 'Yes' }
     }
     const component = mount(<EngagedInTerrorism {...props} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -26,21 +26,22 @@ describe('The legal associations engaged in terrorism component', () => {
 
   it('renders summary', () => {
     const props = {
-      HasEngaged: 'Yes',
-      List: [
-        {
-          Item: {
-            Dates: {
-              from: { date: new Date('1/1/2010') },
-              to: { date: new Date('1/1/2011') }
-            },
-            Reasons: {
-              value: 'It was a tuesday'
+      HasEngaged: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Item: {
+              Dates: {
+                from: { date: new Date('1/1/2010') },
+                to: { date: new Date('1/1/2011') }
+              },
+              Reasons: {
+                value: 'It was a tuesday'
+              }
             }
           }
-        }
-      ],
-      ListBranch: ''
+        ]
+      }
     }
     const component = mount(<EngagedInTerrorism {...props} />)
     const text = component.find('.accordion .summary .left').text()

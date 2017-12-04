@@ -103,56 +103,62 @@ describe('Legal technology unlawful component validation', function () {
       },
       {
         state: {
-          HasUnlawful: 'No'
+          HasUnlawful: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasUnlawful: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasUnlawful: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasUnlawful: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasUnlawful: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasUnlawful: 'Yes',
-          List: [
-            {
-              Item: {
-                Date: {
-                  date: new Date('1/1/2010'),
-                  day: '1',
-                  month: '1',
-                  year: '2010'
-                },
-                Incident: {
-                  value: 'this is an incident'
-                },
-                Location: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Action: {
-                  value: 'this is an action'
+          HasUnlawful: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Date: {
+                    date: new Date('1/1/2010'),
+                    day: '1',
+                    month: '1',
+                    year: '2010'
+                  },
+                  Incident: {
+                    value: 'this is an incident'
+                  },
+                  Location: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  },
+                  Action: {
+                    value: 'this is an action'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

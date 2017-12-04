@@ -22,43 +22,47 @@ describe('The ReceivedCounselings component', () => {
     let updates = 0
     const expected = {
       onUpdate: () => { updates++ },
-      ReceivedTreatment: 'Yes',
-      ListBranch: 'No',
-      List: [{
-        Item: {
-          UseSameAddress: 'Yes',
-          TreatmentProviderName: {
-            value: 'The name'
-          },
-          TreatmentProviderAddress: {
-            country: 'United States',
-            street: '1234 Some Rd',
-            city: 'Arlington',
-            state: 'Virginia',
-            zipcode: '22202',
-            layout: Location.ADDRESS
-          },
-          TreatmentBeganDate: {
-            day: '1',
-            month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
-          },
-          AgencyName: {
-            value: 'The agency name'
-          },
-          TreatmentEndDate: {
-            day: '1',
-            month: '1',
-            year: '2016',
-            date: new Date('1/1/2016')
-          },
-          CompletedTreatment: 'Yes',
-          NoCompletedTreatmentExplanation: {
-            value: 'Foo'
+      ReceivedTreatment: { value: 'Yes' },
+      List: {
+        branch: {
+          value: 'No'
+        },
+        items: [{
+          Item: {
+            UseSameAddress: 'Yes',
+            TreatmentProviderName: {
+              value: 'The name'
+            },
+            TreatmentProviderAddress: {
+              country: 'United States',
+              street: '1234 Some Rd',
+              city: 'Arlington',
+              state: 'Virginia',
+              zipcode: '22202',
+              layout: Location.ADDRESS
+            },
+            TreatmentBeganDate: {
+              day: '1',
+              month: '1',
+              year: '2016',
+              date: new Date('1/1/2016')
+            },
+            AgencyName: {
+              value: 'The agency name'
+            },
+            TreatmentEndDate: {
+              day: '1',
+              month: '1',
+              year: '2016',
+              date: new Date('1/1/2016')
+            },
+            CompletedTreatment: 'Yes',
+            NoCompletedTreatmentExplanation: {
+              value: 'Foo'
+            }
           }
-        }
-      }]
+        }]
+      }
     }
     const component = mount(<ReceivedCounselings {...expected} />)
     component.find('input[name="TreatmentProviderName"]').simulate('change')

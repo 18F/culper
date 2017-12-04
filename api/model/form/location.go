@@ -2,14 +2,11 @@ package form
 
 import (
 	"encoding/json"
-	"log"
 	"strings"
 
+	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/geo"
 	"github.com/18F/e-QIP-prototype/api/model"
-
-	"github.com/go-pg/pg"
-	"github.com/go-pg/pg/orm"
 )
 
 // Different potential layouts used by the frontend.
@@ -32,7 +29,7 @@ const (
 
 // Location is a basic input.
 type Location struct {
-	ID        int
+	ID        int    `json:"-"`
 	Layout    string `json:"layout"`
 	Street1   string `json:"street,omitempty"`
 	Street2   string `json:"street2,omitempty"`
@@ -49,65 +46,53 @@ func (entity *Location) Unmarshal(raw []byte) error {
 	return json.Unmarshal(raw, entity)
 }
 
-func (entity *Location) Save(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
+// Marshal to payload structure
+func (entity *Location) Marshal() Payload {
+	return MarshalPayloadEntity("location", entity)
+}
 
-	if err := context.CreateTable(&Location{}, options); err != nil {
+func (entity *Location) Save(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
-	var err error
-	if entity.ID == 0 {
-		err = context.Insert(entity)
-	} else {
-		err = context.Update(entity)
+	if err := context.Save(entity); err != nil {
+		return entity.ID, err
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Location) Delete(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Location{}, options); err != nil {
+func (entity *Location) Delete(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Delete(entity)
+		if err := context.Delete(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
-func (entity *Location) Get(context *pg.DB, account int64) (int, error) {
-	options := &orm.CreateTableOptions{
-		Temp:        false,
-		IfNotExists: true,
-	}
-
-	var err error
-	if err = context.CreateTable(&Location{}, options); err != nil {
+func (entity *Location) Get(context *db.DatabaseContext, account int) (int, error) {
+	if err := context.CheckTable(entity); err != nil {
 		return entity.ID, err
 	}
 
 	if entity.ID != 0 {
-		err = context.Select(entity)
+		if err := context.Select(entity); err != nil {
+			return entity.ID, err
+		}
 	}
 
-	return entity.ID, err
+	return entity.ID, nil
 }
 
 // Valid checks the value(s) against an battery of tests.
 func (entity *Location) Valid() (bool, error) {
-	log.Printf("location: %v", entity)
 	if entity.Validated {
 		return true, nil
 	}
@@ -582,3 +567,13 @@ var (
 		"Zimbabwe",
 	}
 )
+
+// ID returns the entity identifier.
+func (entity *Location) GetID() int {
+	return entity.ID
+}
+
+// SetID sets the entity identifier.
+func (entity *Location) SetID(id int) {
+	entity.ID = id
+}

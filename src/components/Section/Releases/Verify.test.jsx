@@ -1,5 +1,6 @@
 import React from 'react'
 import { mount } from 'enzyme'
+import { MemoryRouter } from 'react-router'
 import Location from '../../../components/Form/Location'
 import Verify from './Verify'
 
@@ -8,14 +9,16 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         ApplicantName: {
-          first: 'Bob',
-          middle: 'Joe',
-          last: 'Smith'
+          Name: {
+            first: 'Bob',
+            middle: 'Joe',
+            last: 'Smith'
+          }
         }
       },
       history: {}
     }
-    const component = mount(<Verify {...props} />)
+    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-name .component span.title-case').text()).toBe('Bob Joe Smith')
   })
 
@@ -23,33 +26,37 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         OtherNames: {
-          List: [
-            {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              MaidenName: {
-                value: 'Foo'
-              },
-              DatesUsed: {
-                from: new Date('1/1/2015'),
-                to: new Date('1/1/2016'),
-                present: false
+          List: {
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  MaidenName: {
+                    value: 'Foo'
+                  },
+                  DatesUsed: {
+                    from: new Date('1/1/2015'),
+                    to: new Date('1/1/2016'),
+                    present: false
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         }
       },
       history: {}
     }
-    const component = mount(<Verify {...props} />)
+    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-aliases .component span.title-case').text()).toBe('Foo J Bar Jr')
   })
 
@@ -57,12 +64,17 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         ApplicantBirthDate: {
-          date: new Date('1/1/1982')
+          Date: {
+            month: '1',
+            day: '1',
+            year: '1982',
+            date: new Date('1/1/1982')
+          }
         }
       },
       history: {}
     }
-    const component = mount(<Verify {...props} />)
+    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-dob .component > span').text()).toBe('1/1/1982')
   })
 
@@ -70,14 +82,16 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         ApplicantSSN: {
-          first: '123',
-          middle: '45',
-          last: '6789'
+          ssn: {
+            first: '123',
+            middle: '45',
+            last: '6789'
+          }
         }
       },
       history: {}
     }
-    const component = mount(<Verify {...props} />)
+    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-ssn .component > span').text()).toBe('123-45-6789')
   })
 
@@ -85,27 +99,33 @@ describe('The verify component', () => {
     const props = {
       Identification: {
         Contacts: {
-          PhoneNumbers: [
-            {
-              Item: {
-                type: 'Domestic',
-                number: '2028675309',
-                extension: '1234'
+          PhoneNumbers: {
+            items: [
+              {
+                Item: {
+                  Telephone: {
+                    type: 'Domestic',
+                    number: '2028675309',
+                    extension: '1234'
+                  }
+                }
+              },
+              {
+                Item: {
+                  Telephone: {
+                    type: 'Domestic',
+                    number: '1231231234',
+                    extension: ''
+                  }
+                }
               }
-            },
-            {
-              Item: {
-                type: 'Domestic',
-                number: '1231231234',
-                extension: ''
-              }
-            }
-          ]
+            ]
+          }
         }
       },
       history: {}
     }
-    const component = mount(<Verify {...props} />)
+    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-telephone .component span.title-case').at(0).text()).toBe('(202) 867-5309 x1234')
     expect(component.find('.release-telephone .component span.title-case').at(1).text()).toBe('(123) 123-1234')
   })
@@ -114,67 +134,71 @@ describe('The verify component', () => {
     const props = {
       Identification: {},
       History: {
-        Residence: [
-          {
-            Item: {
-              Dates: {
-                from: {
-                  date: new Date('1/1/2010')
-                },
-                to: {
-                  date: new Date('1/1/2012')
-                },
-                present: false
+        Residence: {
+          List: {
+            items: [
+              {
+                Item: {
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'VA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                }
               },
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'Arlington',
-                state: 'VA',
-                zipcode: '22202',
-                layout: Location.ADDRESS
-              }
-            }
-          },
-          {
-            Item: {
-              type: 'Gap',
-              Dates: {
-                from: {
-                  date: new Date('1/1/2012')
-                },
-                to: {
-                  date: new Date('1/1/2015')
-                },
-                present: false
-              }
-            }
-          },
-          {
-            Item: {
-              Dates: {
-                from: {
-                  date: new Date('1/1/2015')
-                },
-                to: {
-                  date: new Date()
-                },
-                present: false
+              {
+                Item: {
+                  type: 'Gap',
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2012')
+                    },
+                    to: {
+                      date: new Date('1/1/2015')
+                    },
+                    present: false
+                  }
+                }
               },
-              Address: {
-                country: { value: 'United States' },
-                street: '1234 Some Rd',
-                city: 'New Orleans',
-                state: 'LA',
-                zipcode: '22202',
-                layout: Location.ADDRESS
+              {
+                Item: {
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2015')
+                    },
+                    to: {
+                      date: new Date()
+                    },
+                    present: false
+                  },
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'New Orleans',
+                    state: 'LA',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
+                  }
+                }
               }
-            }
+            ]
           }
-        ]
+        }
       }
     }
-    const component = mount(<Verify {...props} />)
+    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-current-address .component span.title-case').text()).toBe('1234 some rd, new orleans, LA 22202')
   })
 
@@ -183,7 +207,7 @@ describe('The verify component', () => {
       Identification: {},
       History: {}
     }
-    const component = mount(<Verify {...props} />)
+    const component = mount(<MemoryRouter><Verify {...props} /></MemoryRouter>)
     expect(component.find('.release-name .component > span').text()).toBe('Not entered')
     expect(component.find('.release-aliases .component > span').text()).toBe('Not entered')
     expect(component.find('.release-dob .component > span').text()).toBe('Not entered')

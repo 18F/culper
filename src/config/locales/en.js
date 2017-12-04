@@ -17,7 +17,8 @@ const en = {
       witty: 'The .gov means it\'s official.',
       extension: 'Federal government websites always use a .gov or .mil domain. Before sharing sensitive information online, make sure you\'re on a .gov or .mil site by inspecting your browser\'s address (or "location") bar.',
       ssl: 'This site is also protected by an SSL (Secure Sockets Layer) certificate that\'s been signed by the U.S. government. The <strong>https://</strong> means all transmitted data is encrypted  — in other words, any information or browsing history that you provide is transmitted securely.'
-    }
+    },
+    optional: '(Optional)'
   },
   login: {
     title: 'Login',
@@ -93,7 +94,7 @@ const en = {
       noMiddle: 'No middle name',
       other: 'Other',
       suffix: 'Suffix',
-      optional: 'Optional',
+      optional: '(Optional)',
       jr: 'Jr',
       sr: 'Sr',
       i: 'I',
@@ -281,7 +282,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date are required even if it is **estimated**.'
       }
     },
     daterange: {
@@ -404,7 +405,7 @@ const en = {
       },
       required: {
         title: 'There is a problem with this field',
-        message: 'This field is required'
+        message: 'All parts of the date(s) are required even if it is **estimated**.'
       }
     },
     weight: {
@@ -536,12 +537,14 @@ const en = {
           },
           notfound: {
             title: 'This country is not on our current list',
-            message: 'Indicate the country that currently governs the geographic location where you were born. As necessary provide comments below to clarify.',
+            message: [
+              'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
+            ],
             note: ''
           }
         },
         apofpo: {
-          pattern: {
+          notfound: {
             title: 'There is a problem with the State Code',
             message: 'APO/FPO state code must be 2 letters',
             note: 'Note: Typically the value is either AA, AE, or AP.'
@@ -595,7 +598,7 @@ const en = {
           }
         },
         apofpo: {
-          pattern: {
+          notfound: {
             title: 'There is a problem with the State Code',
             message: 'APO/FPO state code must be 2 letters',
             note: 'Note: Typically the value is either AA, AE, or AP.'
@@ -642,7 +645,9 @@ const en = {
       },
       notfound: {
         title: 'This Country is not on our current list',
-        message: 'Indicate the country that currently governs the geographic location you are indicating. As necessary provide comments below to clarify.',
+        message: [
+          'If you don\'t see your country in the list, select the country that presently governs the location you are referring to. Add a comment to clarify your response.'
+        ],
         note: ''
       }
     },
@@ -1132,8 +1137,8 @@ const en = {
       help: {
         email: {
           title: 'Need help with your email addresses?',
-          message: 'Provide at least 2 email addresses, preferably your home (personal) email and your work email.',
-          note: 'Note: More than 2 email addresses are not required but may assist in the completion of your background investigation. \nEmail format example: name@example.com'
+          message: 'More than 2 email addresses are not required but may assist in the completion of your background investigation.',
+          note: 'Note: Email format example: name@example.com'
         },
         phoneNumber: {
           title: 'Need help with your phone numbers?',
@@ -1163,8 +1168,8 @@ const en = {
         comments: 'Add optional comments'
       },
       para: {
-        email: 'Email addresses may be used as contact method, and identify subject in records.',
-        phoneNumber: 'Provide your phone numbers. At least one number is required, but providing additional numbers may assist in the completion of your background investigation.'
+        email: '**At least one email address is required**, but providing additional email addresses may assist in the completion of your background investigation. Email addresses may be used as contact method, and identify subject in records.',
+        phoneNumber: 'Provide your phone numbers. **At least one number is required**, but providing additional numbers may assist in the completion of your background investigation.'
       },
       label: {
         email: 'Email address',
@@ -1301,7 +1306,7 @@ const en = {
   },
   financial: {
     intro: {
-      title: 'Section 2: Financial record',
+      title: 'Section 7: Financial record',
       body: 'You will be asked questions about your financial history and be asked to provide details if necessary.'
     },
     tour: {
@@ -1924,7 +1929,7 @@ const en = {
   },
   citizenship: {
     intro: {
-      title: 'Section 5: Citizenship',
+      title: 'Section 4: Citizenship',
       body: 'You will be asked questions about your citizenship status and history and be asked to provide details if necessary.'
     },
     tour: {
@@ -2312,7 +2317,7 @@ const en = {
   },
   relationships: {
     intro: {
-      title: 'Section 4: Relationships',
+      title: 'Section 2: Relationships',
       body: 'You will be asked questions about your personal relationships and be asked to provide details if necessary.'
     },
     tour: {
@@ -3216,7 +3221,7 @@ const en = {
   },
   military: {
     intro: {
-      title: 'Section 6: Military history',
+      title: 'Section 5: Military history',
       body: 'You will be asked questions about your military history and be asked to provide details if necessary.'
     },
     tour: {
@@ -3388,7 +3393,7 @@ const en = {
         outcome: 'Provide the description of the final outcome of the disciplinary procedure'
       },
       para: {
-        info: 'In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc?'
+        info: 'In the last 7 years, have you been subject to court martial or other disciplinary procedure under the Uniform Code of Military Justice (UCMJ), such as Article 15, Captain\'s mast, Article 135 Court of Inquiry, etc?'
       },
       label: {
         name: 'Such as Court Martial, Article 15, Captain&rsquo;s mast, Article 135 Court of Inquiry, etc.',
@@ -3627,7 +3632,8 @@ const en = {
           incomplete: 'This residence\'s information is incomplete',
           item2: 'Person'
         },
-        append: 'Add another residence'
+        append: 'Add another residence',
+        appendTitle: 'Do you have an additional residence to report?'
       },
       gap: {
         title: 'Residence gap',
@@ -3711,14 +3717,7 @@ const en = {
         collection: {
           caption: 'Employment activities',
           append: 'Add another employer',
-          appendTitle: 'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
-          appendMessage: [
-            '- Fired from a job?',
-            '- Quit a job after being told you would be fired?',
-            '- Have you left a job by mutual agreement following charges or allegations of misconduct?',
-            '- Left a job by mutual agreement following notice of unsatisfactory performance?',
-            '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?'
-          ],
+          appendTitle: 'Do you have an additional employment activity to enter?',
           summary: {
             title: 'Summary of your work history',
             employer: 'Employer',
@@ -3726,6 +3725,17 @@ const en = {
             unknown: '*Provide employer details*',
             item2: 'Title'
           }
+        },
+        employmentRecord: {
+          title: 'Have any of the following happened to you in the last seven (7) years at employment activities that you have not previously listed?',
+          list: [
+            '- Fired from a job?',
+            '- Quit a job after being told you would be fired?',
+            '- Have you left a job by mutual agreement following charges or allegations of misconduct?',
+            '- Left a job by mutual agreement following notice of unsatisfactory performance?',
+            '- Received a written warning, been officially reprimanded, suspended, or disciplined for misconduct in the workplace, such as violation of security policy?'
+          ],
+          para: 'If you answer "Yes", you will be required to add an additional employment record above.'
         },
         activity: {
           title: 'Government employment',
@@ -5074,7 +5084,8 @@ const en = {
             incomplete: 'This education\'s information is incomplete',
             item2: 'Diploma'
           },
-          append: 'Add another school'
+          append: 'Add another school',
+          appendTitle: 'Do you have additional education (include education within the last 10 years, as well as degrees or diplomas more than 10 years ago)?'
         },
         diploma: {
           summary: {
@@ -5228,7 +5239,7 @@ const en = {
   },
   foreign: {
     intro: {
-      title: 'Section 7: Foreign activities',
+      title: 'Section 6: Foreign activities',
       body: 'You will be asked questions about your current and previous foreign activities and be asked to provide details if necessary.'
     },
     tour: {
@@ -9389,10 +9400,10 @@ const en = {
       '# Questionnaire for National Security Positions',
       '**Follow instructions completely or your form will be unable to be processed. If you have any questions, contact the office that provided you the form.**',
       '## Instructions for completing this form ',
-      '1. Follow the instructions provided to you by the office that gave you this form and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
-      '2. All questions on this form must be answered. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
-      '3. Do not abbreviate the names of cities or foreign countries.',
-      '4. All dates provided in this form must be in Month/Day/Year or Month/Year format. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
+      '1. **Follow the instructions provided to you by the office that gave you this form** and any other clarifying instructions, provided by that office, to assist you with completion of this form. You should retain a copy of the completed form for your records.',
+      '2. **All questions on this form must be answered**. If no response is necessary or applicable, indicate this on the form by checking the associated "Not Applicable" box, unless otherwise noted.',
+      '3. **Do not abbreviate the names of cities or foreign countries**.',
+      '4. **All dates provided in this form must be in Month/Day/Year or Month/Year format**. The year should be entered as a four character number (e.g., 1978 or 2001). If you are unable to report an exact date, approximate or estimate the date to the best of your ability, and indicate this by checking the "Estimated" box.',
       '---',
       'All questions on this form must be answered **completely and truthfully** in order that the Government may make the determinations described below on a complete record. Penalties for inaccurate or false statements are discussed below. **If you are a current civilian employee of the federal government:** failure to answer any questions completely and truthfully could result in an adverse personnel action against you, including loss of employment; with respect to these sections: Illegal Use of Drugs and Drug Activity, Use of Information Technology Systems, and Association Record, however, neither your truthful responses nor information derived from those responses will be used as evidence against you in a subsequent criminal proceeding.',
       '---',
@@ -9494,8 +9505,8 @@ const en = {
       },
       label: {
         name: 'Type your name below to sign',
-        changeInformation: 'Back to Information about you',
-        changeAddress: 'Back to where you have lived',
+        changeInformation: 'Change your information',
+        changeAddress: 'Change your street address',
         none: 'Not entered'
       }
     },
@@ -9566,23 +9577,28 @@ const en = {
     validForm: {
       certificationItem: 'Certification',
       generalItem: 'Release of Information & HIPAA',
-      creditItem: 'Credit reporting disclosure'
+      creditItem: 'Credit reporting disclosure',
+      submit: 'Submit your SF-86'
     },
     invalidForm: [
-      '## List of incomplete sections',
-      'Use the list below to complete all incomplete sections or sections with errors'
+      '### List of incomplete sections',
+      'Use the list below to complete all incomplete sections or sections with errors.'
     ],
     submissionStatus: {
       validating: [
         '## Verifying your information is complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Checking your form...'
       ],
       valid: [
         '## All required fields are complete',
-        'Not a guarantee of acceptance. We are checking that all required fields are complete'
+        'Not a guarantee of acceptance, but all required fields are complete.'
+      ],
+      valid2: [
+        '### Please sign the releases below and submit your form.'
       ],
       invalid: [
-        '## Some required fields are incomplete'
+        '## Some required fields are incomplete',
+        'Please fix the errors listed below.'
       ]
     },
     submissionComplete: [
@@ -9593,7 +9609,7 @@ const en = {
     print: {
       title: [
         '## Please print and save your responses',
-        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen.'
+        '**This will be your only opportunity.** Be sure to print and save your results before leaving this screen. To save a PDF click the Save/Print button then change the printer "Destination" to "Save as PDF".'
       ],
       button: 'Save/Print',
       done: [
@@ -9601,6 +9617,12 @@ const en = {
         '### Thanks for submitting for your SF-86'
       ]
     }
+  },
+  signature: {
+    add: 'Click to sign',
+    remove: 'Remove signature',
+    name: 'Name',
+    date: 'Date'
   }
 }
 

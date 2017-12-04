@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { NonpaymentValidator, NonpaymentItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Summary, DateSummary } from '../../../Summary'
@@ -10,26 +12,26 @@ export default class Nonpayment extends SubsectionElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasNonpayment: props.HasNonpayment,
-      List: props.List,
-      ListBranch: props.ListBranch
-    }
-
     this.updateBranch = this.updateBranch.bind(this)
     this.updateList = this.updateList.bind(this)
     this.summary = this.summary.bind(this)
   }
 
+  update (queue) {
+    this.props.onUpdate({
+      HasNonpayment: this.props.HasNonpayment,
+      List: this.props.List,
+      ...queue
+    })
+  }
+
   /**
    * Updates triggered by the branching component.
    */
-  updateBranch (val, event) {
-    this.setState({ HasNonpayment: val }, () => {
-      this.updateList({
-        items: val === 'Yes' ? this.state.List : [],
-        branch: ''
-      })
+  updateBranch (values) {
+    this.update({
+      HasNonpayment: values,
+      List: values.value === 'Yes' ? this.props.List : {}
     })
   }
 
@@ -38,14 +40,8 @@ export default class Nonpayment extends SubsectionElement {
    * updates to the items.
    */
   updateList (values) {
-    this.setState({ List: values.items, ListBranch: values.branch }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          List: this.state.List,
-          ListBranch: this.state.ListBranch,
-          HasNonpayment: this.state.HasNonpayment
-        })
-      }
+    this.update({
+      List: values
     })
   }
 
@@ -92,7 +88,7 @@ export default class Nonpayment extends SubsectionElement {
                 label={i18n.t('financial.nonpayment.title')}
                 labelSize="h2"
                 className="nonpayment-branch"
-                value={this.state.HasNonpayment}
+                {...this.props.HasNonpayment}
                 warning={true}
                 onUpdate={this.updateBranch}
                 required={this.props.required}
@@ -109,11 +105,10 @@ export default class Nonpayment extends SubsectionElement {
             <li>{i18n.m('financial.nonpayment.para.any')}</li>
           </ul>
         </Branch>
-        <Show when={this.state.HasNonpayment === 'Yes'}>
-          <Accordion items={this.state.List}
+        <Show when={(this.props.HasNonpayment || {}).value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.state.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      summary={this.summary}
@@ -137,14 +132,14 @@ export default class Nonpayment extends SubsectionElement {
 }
 
 Nonpayment.defaultProps = {
-  HasNonpayment: '',
-  List: [],
-  ListBranch: '',
+  HasNonpayment: {},
+  List: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'financial',
   subsection: 'nonpayment',
   dispatch: () => {},
   validator: (state, props) => {
-    return new NonpaymentValidator(state).isValid()
+    return validate(schema('financial.nonpayment', props))
   }
 }

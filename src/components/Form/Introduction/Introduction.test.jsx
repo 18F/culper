@@ -41,7 +41,7 @@ describe('The Introduction component', () => {
       },
       application: {
         Settings: {
-          acceptedTerms: ''
+          acceptedTerms: { value: '' }
         }
       }
     })
@@ -59,7 +59,7 @@ describe('The Introduction component', () => {
       },
       application: {
         Settings: {
-          acceptedTerms: 'Yes'
+          acceptedTerms: { value: 'Yes' }
         }
       }
     })
@@ -76,7 +76,7 @@ describe('The Introduction component', () => {
       authentication: {},
       application: {
         Settings: {
-          acceptedTerms: ''
+          acceptedTerms: { value: '' }
         }
       }
     })

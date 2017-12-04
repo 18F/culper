@@ -76,7 +76,7 @@ export default class DelinquentItem extends ValidationElement {
 
   updateAmountEstimated (values) {
     this.update({
-      AmountEstimated: values.checked
+      AmountEstimated: values
     })
   }
 
@@ -195,7 +195,7 @@ export default class DelinquentItem extends ValidationElement {
                         toggle="false"
                         onUpdate={this.updateAmountEstimated}
                         onError={this.props.onError}
-                        checked={this.props.AmountEstimated}
+                        {...this.props.AmountEstimated}
                         />
             </div>
           </div>
@@ -306,6 +306,7 @@ export default class DelinquentItem extends ValidationElement {
 }
 
 DelinquentItem.defaultProps = {
+  ResolvedNotApplicable: { applicable: true },
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

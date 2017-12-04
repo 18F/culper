@@ -12,4 +12,5 @@ applications:
     - eqip-postgres
     - usps-api
   env:
+    PATH: /bin:/usr/bin:$HOME/bin
     GOVERSION: go1.8.5

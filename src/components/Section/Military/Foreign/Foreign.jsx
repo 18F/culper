@@ -1,8 +1,9 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { MilitaryForeignValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
-import { Field, BranchCollection } from '../../../Form'
+import { BranchCollection } from '../../../Form'
 import ForeignService from './ForeignService'
 
 export default class Foreign extends SubsectionElement {
@@ -19,7 +20,7 @@ export default class Foreign extends SubsectionElement {
   render () {
     return (
       <div className="foreign">
-        <BranchCollection items={this.props.List}
+        <BranchCollection {...this.props.List}
                           branchName="has_foreign"
                           label={i18n.t('military.foreign.para.served')}
                           labelSize="h2"
@@ -53,7 +54,7 @@ Foreign.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new MilitaryForeignValidator(props).isValid()
+    return validate(schema('military.foreign', props))
   },
   defaultState: true
 }

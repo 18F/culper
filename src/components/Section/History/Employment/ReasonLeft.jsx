@@ -6,13 +6,6 @@ import ReasonOptions from './ReasonOptions'
 export default class ReasonLeft extends ValidationElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      ReasonDescription: props.ReasonDescription,
-      Comments: props.Comments,
-      Reasons: props.Reasons
-    }
-
     this.updateReasonDescription = this.updateReasonDescription.bind(this)
     this.updateComments = this.updateComments.bind(this)
     this.updateReasons = this.updateReasons.bind(this)
@@ -21,29 +14,26 @@ export default class ReasonLeft extends ValidationElement {
   /**
    * Handle any updates and bubble them up.
    */
-  onUpdate (name, values) {
-    this.setState({ [name]: values }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          Comments: this.state.Comments,
-          Reasons: this.state.Reasons,
-          ReasonDescription: this.state.ReasonDescription
-        })
-      }
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      Comments: this.props.Comments,
+      Reasons: this.props.Reasons,
+      ReasonDescription: this.props.ReasonDescription,
+      ...queue
     })
   }
 
   updateReasonDescription (values) {
-    this.onUpdate('ReasonDescription', values)
+    this.update({ ReasonDescription: values })
   }
 
   updateComments (values) {
-    this.onUpdate('Comments', values)
+    this.update({ Comments: values })
   }
 
   updateReasons (values) {
-    this.onUpdate('Reasons', values)
+    this.update({ Reasons: values })
   }
 
   render () {
@@ -53,10 +43,10 @@ export default class ReasonLeft extends ValidationElement {
                titleSize="h3"
                comments={true}
                commentsName="comments"
-               commentsValue={this.state.Comments}
+               commentsValue={this.props.Comments}
                scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="reason_description"
-                    {...this.state.ReasonDescription}
+                    {...this.props.ReasonDescription}
                     className="reason-description"
                     onUpdate={this.updateReasonDescription}
                     onError={this.props.onError}
@@ -67,7 +57,7 @@ export default class ReasonLeft extends ValidationElement {
         <BranchCollection label={i18n.t('history.employment.default.left.branch')}
                           appendLabel={i18n.t('history.employment.default.left.append')}
                           content={i18n.m('history.employment.default.left.list')}
-                          items={this.state.Reasons}
+                          {...(this.props.Reasons || {})}
                           onUpdate={this.updateReasons}
                           onError={this.props.onError}
                           required={this.props.required}
@@ -81,5 +71,9 @@ export default class ReasonLeft extends ValidationElement {
 }
 
 ReasonLeft.defaultProps = {
+  Comments: {},
+  ReasonDescription: {},
+  Reasons: {},
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

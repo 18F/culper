@@ -6,7 +6,7 @@ describe('The foreign business voting component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-voting',
-      HasForeignVoting: 'No'
+      HasForeignVoting: { value: 'No' }
     }
     const component = mount(<Voting {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign business voting component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-voting',
-      HasForeignVoting: 'Yes'
+      HasForeignVoting: { value: 'Yes' }
     }
     const component = mount(<Voting {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign business voting component', () => {
     let validated = false
     const expected = {
       name: 'foreign-business-voting',
-      HasForeignVoting: 'Yes',
+      HasForeignVoting: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -41,16 +41,18 @@ describe('The foreign business voting component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-voting',
-      HasForeignVoting: 'Yes',
-      List: [
-        {
-          Date: {},
-          Country: {},
-          Reason: {},
-          Eligibility: {}
-        }
-      ],
-      ListBranch: '',
+      HasForeignVoting: { value: 'Yes' },
+      List: {
+        branch: {},
+        items: [
+          {
+            Date: {},
+            Country: {},
+            Reason: {},
+            Eligibility: {}
+          }
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Voting {...expected} />)

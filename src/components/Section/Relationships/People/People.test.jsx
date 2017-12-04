@@ -16,11 +16,9 @@ describe('The relative alias component', () => {
     let updates = 0
     const expected = {
       name: 'people',
-      List: [
-        {
-          Item: { Relationship: 'Other' }
-        }
-      ],
+      List: {
+        items: [{ Item: { Relationship: { values: ['Other'] } } }]
+      },
       onUpdate: () => {
         updates++
       }
@@ -39,7 +37,6 @@ describe('The relative alias component', () => {
     component.find('.address input[name="city"]').simulate('change')
     component.find('.relationships input[name="relationship-other"]').simulate('change')
     component.find('.relationship-other input').simulate('change')
-    component.find('.relationships input[name="relationship-other"]').simulate('change')
-    expect(updates).toBe(13)
+    expect(updates).toBe(12)
   })
 })

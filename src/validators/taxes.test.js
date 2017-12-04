@@ -286,25 +286,25 @@ describe('taxes component validation', function () {
     const tests = [
       {
         state: {
-          HasTaxes: ''
+          HasTaxes: { value: '' }
         },
         expected: false
       },
       {
         state: {
-          HasTaxes: 'Unicorn'
+          HasTaxes: { value: 'Unicorn' }
         },
         expected: false
       },
       {
         state: {
-          HasTaxes: 'No'
+          HasTaxes: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasTaxes: 'Yes'
+          HasTaxes: { value: 'Yes' }
         },
         expected: true
       }
@@ -319,69 +319,77 @@ describe('taxes component validation', function () {
     const tests = [
       {
         state: {
-          HasTaxes: 'No',
-          List: [],
-          ListBranch: 'No'
+          HasTaxes: { value: 'No' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: true
       },
       {
         state: {
-          HasTaxes: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasTaxes: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasTaxes: 'Yes',
-          List: [{}],
-          ListBranch: 'No'
+          HasTaxes: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasTaxes: 'Yes',
-          List: [
-            {
-              Item: {
-                Failure: {
-                  value: 'File'
-                },
-                Year: {
-                  value: '2000'
-                },
-                Reason: {
-                  value: 'Completely forgot'
-                },
-                Agency: {
-                  value: 'IRS'
-                },
-                TaxType: {
-                  value: 'Income'
-                },
-                Amount: {
-                  value: '20000'
-                },
-                DateNotApplicable: {
-                  applicable: true
-                },
-                Date: {
-                  day: '1',
-                  month: '1',
-                  year: '2016',
-                  date: new Date('1/1/2016'),
-                  present: false
-                },
-                Description: {
-                  value: 'The description'
+          HasTaxes: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Failure: {
+                    value: 'File'
+                  },
+                  Year: {
+                    value: '2000'
+                  },
+                  Reason: {
+                    value: 'Completely forgot'
+                  },
+                  Agency: {
+                    value: 'IRS'
+                  },
+                  TaxType: {
+                    value: 'Income'
+                  },
+                  Amount: {
+                    value: '20000'
+                  },
+                  DateNotApplicable: {
+                    applicable: true
+                  },
+                  Date: {
+                    day: '1',
+                    month: '1',
+                    year: '2016',
+                    date: new Date('1/1/2016'),
+                    present: false
+                  },
+                  Description: {
+                    value: 'The description'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

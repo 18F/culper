@@ -60,7 +60,7 @@ export const validPhoneNumber = (phone) => {
   if (!phone) {
     return false
   }
-  if (phone.noNumber === 'NA') {
+  if (phone.noNumber) {
     return true
   }
   if (!phone.numberType) {
@@ -69,13 +69,18 @@ export const validPhoneNumber = (phone) => {
   if (!phone.timeOfDay) {
     return false
   }
+  if (!phone.number) {
+    return false
+  }
+
+  const trimmed = `${parseInt(phone.number, 10)}`
   switch (phone.type) {
     case 'Domestic':
-      return phone.number.length === 10
+      return trimmed.length === 10
     case 'DSN':
-      return phone.number.length === 7
+      return trimmed.length === 7
     case 'International':
-      return phone.number.length > 10
+      return trimmed.length > 10
     default:
       return false
   }
@@ -127,6 +132,24 @@ export const withinSevenYears = (from, to) => {
   return false
 }
 
+export const validAccordion = (collection, valid, ignoreBranch = false) => {
+  const branch = ignoreBranch
+        ? { value: 'No' }
+        : (collection || {}).branch || {}
+  const items = (collection || {}).items || []
+  if (branch.value !== 'No') {
+    return false
+  }
+
+  if (items.length === 0) {
+    return false
+  }
+
+  return items.every(x => {
+    return valid(x.Item || {})
+  })
+}
+
 /**
  * Helper for testing components using the branch collection
  */
@@ -140,7 +163,7 @@ export class BranchCollection {
    * Returns if the collection is empty
    */
   empty () {
-    if (!this.collection || !this.collection.length) {
+    if (!this.collection || !this.collection.items || !this.collection.items.length) {
       return true
     }
     return false
@@ -180,11 +203,12 @@ export class BranchCollection {
       return false
     }
 
-    for (let item of this.collection) {
-      if (item[this.key] === 'No') {
+    for (let item of (this.collection || {}).items) {
+      const key = (item.Item || {})[this.key] || {}
+      if (key.value === 'No') {
         continue
       }
-      if (!isValidFunc(item)) {
+      if (!isValidFunc(item.Item || {})) {
         return false
       }
     }
@@ -194,12 +218,13 @@ export class BranchCollection {
   /**
    * Helper function that checks if a given key exists at the root level of a branch collection item
    */
-  hasKeyValue (key) {
+  hasKeyValue (value) {
     if (this.empty()) {
       return false
     }
-    for (let item of this.collection) {
-      if (item[this.key] === key) {
+    for (let item of (this.collection || {}).items) {
+      const key = (item.Item || {})[this.key] || {}
+      if (key.value === value) {
         return true
       }
     }

@@ -5,25 +5,25 @@ describe('OtherNames validation', function () {
     const tests = [
       {
         state: {
-          HasOtherNames: 'Yes'
+          HasOtherNames: { value: 'Yes' }
         },
         expected: true
       },
       {
         state: {
-          HasOtherNames: 'No'
+          HasOtherNames: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasOtherNames: 'Blah'
+          HasOtherNames: { value: 'Blah' }
         },
         expected: false
       },
       {
         state: {
-          HasOtherNames: 'foo'
+          HasOtherNames: { value: 'foo' }
         },
         expected: false
       }
@@ -38,77 +38,90 @@ describe('OtherNames validation', function () {
     const tests = [
       {
         state: {
-          HasOtherNames: 'Yes',
-          List: [
-            {
-              Name: {
-                first: 'Foo',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              MaidenName: {
-                value: 'Foo'
-              },
-              DatesUsed: {
-                from: {
-                  date: new Date('1/1/2010')
-                },
-                to: {
-                  date: new Date('1/1/2012')
+          HasOtherNames: { value: 'Yes' },
+          List: {
+            branch: null,
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: 'Foo',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  MaidenName: {
+                    value: 'Foo'
+                  },
+                  DatesUsed: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    }
+                  },
+                  Reason: {
+                    value: 'Testing'
+                  }
                 }
-              },
-              Reason: {
-                value: 'Testing'
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       },
       {
         state: {
-          HasOtherNames: 'Yes',
-          List: [
-            {
-              Name: {
-                first: '',
-                firstInitialOnly: false,
-                middle: 'J',
-                middleInitialOnly: true,
-                noMiddleName: false,
-                last: 'Bar',
-                lastInitialOnly: false,
-                suffix: 'Jr'
-              },
-              MaidenName: {
-                value: 'Foo'
-              },
-              DatesUsed: {
-                from: {
-                  date: new Date('1/1/2010')
-                },
-                to: {
-                  date: new Date('1/1/2012')
-                },
-                present: false
-              },
-              Reason: {
-                value: 'Testing'
+          HasOtherNames: { value: 'Yes' },
+          List: {
+            branch: null,
+            items: [
+              {
+                Item: {
+                  Name: {
+                    first: '',
+                    firstInitialOnly: false,
+                    middle: 'J',
+                    middleInitialOnly: true,
+                    noMiddleName: false,
+                    last: 'Bar',
+                    lastInitialOnly: false,
+                    suffix: 'Jr'
+                  },
+                  MaidenName: {
+                    value: 'Foo'
+                  },
+                  DatesUsed: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  Reason: {
+                    value: 'Testing'
+                  }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasOtherNames: 'Foo',
-          List: []
+          HasOtherNames: { value: 'Foo' },
+          List: {
+            branch: null,
+            items: []
+          }
         },
         expected: false
       }

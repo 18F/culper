@@ -3,22 +3,21 @@ package model
 import (
 	"time"
 
-	"github.com/go-pg/pg"
-
+	"github.com/18F/e-QIP-prototype/api/db"
 	"golang.org/x/crypto/bcrypt"
 )
 
 type BasicAuthMembership struct {
-	ID           int64
-	AccountID    int64
+	ID           int
+	AccountID    int
 	Account      *Account
 	PasswordHash string
 	Created      time.Time
-	db           *pg.DB
+	db           *db.DatabaseContext
 }
 
 // WithContext sets a db connection for a particular model
-func (b *BasicAuthMembership) WithContext(ctx *pg.DB) {
+func (b *BasicAuthMembership) WithContext(ctx *db.DatabaseContext) {
 	b.db = ctx
 }
 

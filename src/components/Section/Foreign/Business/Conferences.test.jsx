@@ -6,7 +6,7 @@ describe('The foreign business conferences component', () => {
   it('display nothing when "no" is clicked', () => {
     const expected = {
       name: 'foreign-business-conferences',
-      HasForeignConferences: 'No'
+      HasForeignConferences: { value: 'No' }
     }
     const component = mount(<Conferences {...expected} />)
     expect(component.find('.accordion').length).toBe(0)
@@ -15,7 +15,7 @@ describe('The foreign business conferences component', () => {
   it('display content when "yes" is clicked', () => {
     const expected = {
       name: 'foreign-business-conferences',
-      HasForeignConferences: 'Yes'
+      HasForeignConferences: { value: 'Yes' }
     }
     const component = mount(<Conferences {...expected} />)
     expect(component.find('.accordion').length).toBe(1)
@@ -25,7 +25,7 @@ describe('The foreign business conferences component', () => {
     let validated = false
     const expected = {
       name: 'foreign-business-conferences',
-      HasForeignConferences: 'Yes',
+      HasForeignConferences: { value: 'Yes' },
       onError: (value, arr) => {
         validated = true
         return arr
@@ -41,14 +41,16 @@ describe('The foreign business conferences component', () => {
     let updates = 0
     const expected = {
       name: 'foreign-business-conferences',
-      HasForeignConferences: 'Yes',
-      List: [
-        {
-          Contacts: {
-            List: [{ Has: 'Yes' }]
+      HasForeignConferences: { value: 'Yes' },
+      List: {
+        items: [
+          {
+            Contacts: {
+              List: { items: [{ Has: { value: 'Yes' } }] }
+            }
           }
-        }
-      ],
+        ]
+      },
       onUpdate: () => { updates++ }
     }
     const component = mount(<Conferences {...expected} />)

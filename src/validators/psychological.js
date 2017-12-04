@@ -37,18 +37,18 @@ const defaultPsychologicalState = {
  *   - Diagnoses
  */
 export const showQuestion21E = (psychological = defaultPsychologicalState) => {
-  const { Competence, Consultation, Diagnoses, Hospitalization } = psychological
+  const { Competence, Consultations, Diagnoses, Hospitalizations } = psychological
 
   // We need values for everything before we can do anything
-  if (!Competence || !Consultation || !Diagnoses || !Hospitalization) {
+  if (!Competence || !Consultations || !Diagnoses || !Hospitalizations) {
     return false
   }
 
   // We show question 21 if all other subsections have been marked with No
-  return (Competence.IsIncompetent === 'No' &&
-    Consultation.Consulted === 'No' &&
-    Diagnoses.Diagnosed === 'No' &&
-    Hospitalization.Hospitalized === 'No')
+  return (Competence.IsIncompetent.value === 'No' &&
+    Consultations.Consulted.value === 'No' &&
+    Diagnoses.Diagnosed.value === 'No' &&
+    Hospitalizations.Hospitalized.value === 'No')
 }
 
 export const hideExistingConditions = (application = {}) => {

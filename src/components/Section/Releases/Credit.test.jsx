@@ -10,8 +10,7 @@ describe('The Credit Release component', () => {
     }
     const component = mount(<Credit {...expected} />)
     expect(component.find('.credit-release').length).toBe(1)
-    component.find('.fullname input').simulate('change')
-    component.find('.date .day input').simulate('change')
-    expect(updates).toBe(2)
+    component.find('.signature button').simulate('click')
+    expect(updates).toBe(1)
   })
 })

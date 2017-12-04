@@ -51,6 +51,7 @@ __snapshots__/
 # Build artifacts
 .gitmessage
 .projectile
+bin
 /api/api
 /build/
 /doc/
@@ -59,7 +60,11 @@ __snapshots__/
 /css/
 /fonts/
 /img/
+/doc/
 TAGS
+*.cer
+*.crt
+*.key
 
 # Test artifacts
 /jest*

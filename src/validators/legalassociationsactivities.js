@@ -1,11 +1,10 @@
 import DateRangeValidator from './daterange'
-import { validGenericTextfield } from './helpers'
+import { validAccordion, validGenericTextfield } from './helpers'
 
 export default class LegalAssociationActivitiesValidator {
   constructor (data = {}) {
-    this.hasActivities = data.HasActivities
-    this.list = data.List || []
-    this.listBranch = data.ListBranch
+    this.hasActivities = (data.HasActivities || {}).value
+    this.list = data.List || {}
   }
 
   validList () {
@@ -13,19 +12,9 @@ export default class LegalAssociationActivitiesValidator {
       return true
     }
 
-    if (this.hasActivities === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new ActivitiesValidator(item.Item).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new ActivitiesValidator(item).isValid()
+    })
   }
 
   isValid () {

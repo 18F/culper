@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary } from '../../../Summary'
 import { ForeignBusinessFamilyValidator, FamilyValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -17,24 +19,21 @@ export default class Family extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignFamily: this.props.HasForeignFamily,
       ...queue
     })
   }
 
-  updateHasForeignFamily (value) {
+  updateHasForeignFamily (values) {
     this.update({
-      HasForeignFamily: value,
-      List: value === 'Yes' ? this.props.List : [],
-      ListBranch: value === 'Yes' ? this.props.ListBranch : ''
+      HasForeignFamily: values,
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -58,7 +57,7 @@ export default class Family extends SubsectionElement {
                 label={i18n.t('foreign.business.family.heading.title')}
                 labelSize="h2"
                 adjustFor="p"
-                value={this.props.HasForeignFamily}
+                {...this.props.HasForeignFamily}
                 warning={true}
                 onUpdate={this.updateHasForeignFamily}
                 required={this.props.required}
@@ -67,11 +66,10 @@ export default class Family extends SubsectionElement {
           {i18n.m('foreign.business.family.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignFamily === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignFamily.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={FamilyValidator}
@@ -98,16 +96,15 @@ export default class Family extends SubsectionElement {
 
 Family.defaultProps = {
   name: 'Family',
-  HasForeignFamily: '',
-  List: [],
-  ListBranch: '',
+  HasForeignFamily: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/family',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBusinessFamilyValidator(props).isValid()
+    return validate(schema('foreign.business.family', props))
   },
   defaultState: true,
   scrollToBottom: ''

@@ -1,19 +1,20 @@
-let production = process.env.NODE_ENV === 'production'
-let staging = process.env.NODE_ENV === 'staging'
-let debug = !production && !staging
-let webpack = require('webpack')
+const production = process.env.NODE_ENV === 'production'
+const staging = process.env.NODE_ENV === 'staging'
+const debug = !production && !staging
+const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
-  devtool: debug ? 'inline-sourcemap' : null,
+  entry: ['babel-polyfill', './src/boot.jsx'],
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'eqip.js'
+  },
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['*', '.js', '.jsx']
   },
   module: {
     loaders: [
-      {
-        test: /\.json$/,
-        loader: 'json'
-      },
       {
         test: /\.jsx?$/,
         include: [
@@ -33,9 +34,7 @@ module.exports = {
       }
     ]
   },
-  output: {
-    filename: 'eqip.js'
-  },
+  devtool: debug ? 'inline-sourcemap' : false,
   plugins: plugins()
 }
 
@@ -48,8 +47,7 @@ function plugins () {
   if (!debug) {
     // Add Prod level plugins
     plugins = [
-      new webpack.optimize.DedupePlugin(),
-      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.OccurrenceOrderPlugin(),
       new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false })
     ]
   }

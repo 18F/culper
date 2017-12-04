@@ -1,12 +1,11 @@
 import NameValidator from './name'
 import LocationValidator from './location'
-import { validGenericTextfield, validDateField } from './helpers'
+import { validAccordion, validGenericTextfield, validDateField } from './helpers'
 
 export default class ForeignBusinessEmploymentValidator {
   constructor (state = {}, props = {}) {
-    this.hasForeignEmployment = state.HasForeignEmployment
-    this.list = state.List || []
-    this.listBranch = state.ListBranch
+    this.hasForeignEmployment = (state.HasForeignEmployment || {}).value
+    this.list = state.List || {}
   }
 
   validList () {
@@ -14,19 +13,9 @@ export default class ForeignBusinessEmploymentValidator {
       return true
     }
 
-    if (this.hasForeignEmployment === 'Yes') {
-      if (!this.list || this.list.length === 0) {
-        return false
-      }
-
-      if (this.listBranch !== 'No') {
-        return false
-      }
-
-      return this.list.every(item => new ForeignBusinessEmploymentItemValidator(item.Item, null).isValid())
-    }
-
-    return false
+    return validAccordion(this.list, (item) => {
+      return new ForeignBusinessEmploymentItemValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -40,7 +29,7 @@ export class ForeignBusinessEmploymentItemValidator {
     this.description = state.Description
     this.date = state.Date
     this.address = state.Address
-    this.accepted = state.Accepted
+    this.accepted = (state.Accepted || {}).value
     this.explanation = state.Explanation
   }
 

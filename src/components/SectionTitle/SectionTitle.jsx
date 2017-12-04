@@ -52,10 +52,10 @@ const breadcrumbs = (urls, node) => {
 const trail = (crumbs) => {
   return crumbs.map((crumb, i, arr) => {
     if (arr.length === i + 1) {
-      return <span className="title-text">{crumb}</span>
+      return <span key={`crumb-${i}`} className="title-text">{crumb}</span>
     }
 
-    return <span className="crumb">{crumb} &gt; </span>
+    return <span key={`crumb-${i}`} className="crumb">{crumb} &gt; </span>
   })
 }
 

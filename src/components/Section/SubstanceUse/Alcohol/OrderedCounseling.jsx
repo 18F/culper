@@ -171,14 +171,14 @@ export default class OrderedCounseling extends ValidationElement {
                 label={i18n.t('substance.alcohol.orderedCounseling.heading.actionTaken')}
                 labelSize="h3"
                 className={`action-taken ${this.props.ActionTaken === 'No' ? 'no-margin-bottom' : ''}`}
-                value={this.props.ActionTaken}
+                {...this.props.ActionTaken}
                 onError={this.props.onError}
                 required={this.props.required}
                 onUpdate={this.updateActionTaken}
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.ActionTaken === 'Yes'}>
+        <Show when={this.props.ActionTaken.value === 'Yes'}>
           <div>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.counselingDates')}
                    help={'substance.alcohol.orderedCounseling.help.counselingDates'}
@@ -222,7 +222,7 @@ export default class OrderedCounseling extends ValidationElement {
             </Field>
             <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.treatmentProviderTelephone')}
                    help={'substance.alcohol.orderedCounseling.help.treatmentProviderTelephone'}
-                   adjustFor="telephone"
+                   className="override-required"
                    scrollIntoView={this.props.scrollIntoView}>
               <Telephone name="TreatmentProviderTelephone"
                          className="provider-telephone"
@@ -238,14 +238,14 @@ export default class OrderedCounseling extends ValidationElement {
                     label={i18n.t('substance.alcohol.orderedCounseling.heading.completedTreatment')}
                     labelSize="h3"
                     className="completed-treatment no-margin-bottom"
-                    value={this.props.CompletedTreatment}
+                    {...this.props.CompletedTreatment}
                     onError={this.props.onError}
                     required={this.props.required}
                     onUpdate={this.updateCompletedTreatment}
                     scrollIntoView={this.props.scrollIntoView}>
             </Branch>
 
-            <Show when={this.props.CompletedTreatment === 'No'}>
+            <Show when={this.props.CompletedTreatment.value === 'No'}>
               <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noCompletedTreatment')}
                      titleSize="label"
                      scrollIntoView={this.props.scrollIntoView}>
@@ -261,7 +261,7 @@ export default class OrderedCounseling extends ValidationElement {
           </div>
         </Show>
 
-        <Show when={this.props.ActionTaken === 'No'}>
+        <Show when={this.props.ActionTaken.value === 'No'}>
           <Field title={i18n.t('substance.alcohol.orderedCounseling.heading.noActionTakenExplanation')}
                  titleSize="label"
                  scrollIntoView={this.props.scrollIntoView}>
@@ -279,6 +279,8 @@ export default class OrderedCounseling extends ValidationElement {
 }
 
 OrderedCounseling.defaultProps = {
+  ActionTaken: {},
+  CompletedTreatment: {},
   addressBooks: {},
   dispatch: (action) => {},
   onError: (value, arr) => { return arr }

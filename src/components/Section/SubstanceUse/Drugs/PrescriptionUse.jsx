@@ -89,7 +89,7 @@ export default class PrescriptionUse extends ValidationElement {
                 label={i18n.t('substance.drugs.prescription.heading.useWhileEmployed')}
                 labelSize="h3"
                 className="use-while-employed"
-                value={this.props.UseWhileEmployed}
+                {...this.props.UseWhileEmployed}
                 onError={this.props.onError}
                 onUpdate={this.updateUseWhileEmployed}
                 required={this.props.required}
@@ -100,7 +100,7 @@ export default class PrescriptionUse extends ValidationElement {
                 label={i18n.t('substance.drugs.prescription.heading.useWithClearance')}
                 labelSize="h3"
                 className="use-with-clearance"
-                value={this.props.UseWithClearance}
+                {...this.props.UseWithClearance}
                 onError={this.props.onError}
                 onUpdate={this.updateUseWithClearance}
                 required={this.props.required}
@@ -112,5 +112,7 @@ export default class PrescriptionUse extends ValidationElement {
 }
 
 PrescriptionUse.defaultProps = {
+  UseWhileEmployed: {},
+  UseWhileClearance: {},
   onError: (value, arr) => { return arr }
 }

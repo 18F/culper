@@ -204,3 +204,16 @@ Checkbox.defaultProps = {
 }
 
 Checkbox.errors = []
+
+Checkbox.select = (selectedObj, listObj) => {
+  let selected = selectedObj.value
+  let list = [...((listObj || {}).values || [])]
+
+  if (list.includes(selected)) {
+    list.splice(list.indexOf(selected), 1)
+  } else {
+    list.push(selected)
+  }
+
+  return list
+}

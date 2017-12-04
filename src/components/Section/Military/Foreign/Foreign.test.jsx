@@ -15,11 +15,15 @@ describe('The military foreign component', () => {
   it('selecting no to military foreign does nothing', () => {
     const expected = {
       name: 'military-foreign',
-      List: [
-        {
-          Has: 'No'
-        }
-      ]
+      List: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'No' }
+            }
+          }
+        ]
+      }
     }
     const component = mount(<Foreign {...expected} />)
     expect(component.find('.foreign-service').length).toEqual(0)
@@ -28,11 +32,15 @@ describe('The military foreign component', () => {
   it('selecting yes to military foreign displays the form', () => {
     const expected = {
       name: 'military-foreign',
-      List: [
-        {
-          Has: 'Yes'
-        }
-      ]
+      List: {
+        items: [
+          {
+            Item: {
+              Has: { value: 'Yes' }
+            }
+          }
+        ]
+      }
     }
     const component = mount(<Foreign {...expected} />)
     expect(component.find('.foreign-service').length).toEqual(1)

@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { IdentificationSSNValidator } from '../../../../validators'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { validSSN } from '../../../../validators/helpers'
 import SubsectionElement from '../../SubsectionElement'
 import { Field, SSN, Show } from '../../../Form'
@@ -114,6 +115,7 @@ export default class ApplicantSSN extends SubsectionElement {
         </Show>
         <Show when={this.props.verified}>
           <Field title={i18n.t('identification.ssn.heading.verified')}
+                 optional={true}
                  scrollIntoView={this.props.scrollIntoView}
                  titleSize="h4">
           </Field>
@@ -134,7 +136,7 @@ ApplicantSSN.defaultProps = {
   dispatch: () => {},
   required: false,
   validator: (state, props) => {
-    return new IdentificationSSNValidator(props).isValid()
+    return validate(schema('identification.ssn', props))
   }
 }
 
@@ -145,7 +147,7 @@ ApplicantSSN.errors = [
       if (!value) {
         return null
       }
-      return validSSN(value) &&
+      return validate(schema('ssn', value)) &&
         props.ssn.first === value.first &&
         props.ssn.middle === value.middle &&
         props.ssn.last === value.last

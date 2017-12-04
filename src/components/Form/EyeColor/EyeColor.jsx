@@ -19,7 +19,9 @@ export default class EyeColor extends ValidationElement {
   handleChange (event) {
     this.setState({value: event.target.value}, () => {
       if (this.props.onUpdate) {
-        this.props.onUpdate(this.state.value)
+        this.props.onUpdate({
+          value: this.state.value
+        })
       }
     })
   }

@@ -22,6 +22,18 @@ const defaultNumbers = {
   }
 }
 
+const padleft = (str, len, char = ' ') => {
+  let padding = ''
+  for (let i = 0; i < len; i++) {
+    padding += char
+  }
+  return padding.substring(0, padding.length - str.length) + str
+}
+
+const trimleading = (str) => {
+  return (str || '').trim()
+}
+
 export default class Telephone extends ValidationElement {
   constructor (props) {
     super(props)
@@ -91,7 +103,7 @@ export default class Telephone extends ValidationElement {
       let fieldTypeObj = { ...this.state[fieldType] }
       fieldTypeObj[field] = event.target.value
       this.setState({
-        noNumber: '',
+        noNumber: false,
         [fieldType]: fieldTypeObj
       }, () => {
         this.onUpdate()
@@ -125,7 +137,7 @@ export default class Telephone extends ValidationElement {
 
   handleNoNumberChange (cb) {
     this.setState({
-      noNumber: cb.value,
+      noNumber: cb.value === 'NA',
       timeOfDay: '',
       numberType: '',
       extension: '',
@@ -176,10 +188,10 @@ export default class Telephone extends ValidationElement {
         name: this.props.name,
         timeOfDay: this.state.timeOfDay,
         type: this.state.type,
-        numberType: this.state.numberType,
+        numberType: this.props.showNumberType ? this.state.numberType : 'NA',
         number: this.getFormattedNumber(),
         extension: this.state.extension,
-        noNumber: this.state.noNumber,
+        noNumber: this.state.noNumber || false,
         ...updated
       }
 
@@ -191,20 +203,19 @@ export default class Telephone extends ValidationElement {
     switch (this.state.type) {
       case 'Domestic':
         return [
-          this.state.domestic.first,
-          this.state.domestic.second,
-          this.state.domestic.third
+          padleft(this.state.domestic.first, 3),
+          padleft(this.state.domestic.second, 3),
+          padleft(this.state.domestic.third, 4)
         ].join('')
       case 'DSN':
         return [
-          this.state.dsn.first,
-          this.state.dsn.second
+          padleft(this.state.dsn.first, 3),
+          padleft(this.state.dsn.second, 4)
         ].join('')
       case 'International':
         return [
-          this.state.international.first,
-          this.state.international.second,
-          this.state.international.third
+          padleft(this.state.international.first, 3),
+          this.state.international.second
         ].join('')
       default:
         return ''
@@ -313,7 +324,7 @@ export default class Telephone extends ValidationElement {
               minlength="3"
               readonly={this.props.readonly}
               required={this.required()}
-              value={this.state.dsn.first}
+              value={trimleading(this.state.dsn.first)}
               onChange={this.handleNumberChange('dsn', 'first').bind(this)}
               onError={this.handleErrorDsnFirst}
               tabNext={() => { this.props.tab(this.refs.dsn_second.refs.text.refs.input) }} />
@@ -331,14 +342,14 @@ export default class Telephone extends ValidationElement {
               readonly={this.props.readonly}
               required={this.required()}
               step="1"
-              value={this.state.dsn.second}
+              value={trimleading(this.state.dsn.second)}
               onChange={this.handleNumberChange('dsn', 'second').bind(this)}
               onError={this.handleErrorDsnSecond}
               tabBack={() => { this.props.tab(this.refs.dsn_first.refs.text.refs.input) }} />
         <Show when={this.props.allowNotApplicable}>
           <span>
             <span className="separator extension">or</span>
-            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber ? 'NA' : ''}>
               <Radio name="nonumber"
                      label={i18n.t('telephone.noNumber.label')}
                      value="NA"
@@ -368,7 +379,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{3}"
               readonly={this.props.readonly}
               required={this.required()}
-              value={this.state.domestic.first}
+              value={trimleading(this.state.domestic.first)}
               onChange={this.handleNumberChange('domestic', 'first').bind(this)}
               onError={this.handleErrorDomesticFirst}
               tabNext={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }} />
@@ -384,7 +395,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{3}"
               readonly={this.props.readonly}
               required={this.required()}
-              value={this.state.domestic.second}
+              value={trimleading(this.state.domestic.second)}
               onChange={this.handleNumberChange('domestic', 'second').bind(this)}
               onError={this.handleErrorDomesticSecond}
               tabBack={() => { this.props.tab(this.refs.domestic_first.refs.text.refs.input) }}
@@ -402,7 +413,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{4}"
               readonly={this.props.readonly}
               required={this.required()}
-              value={this.state.domestic.third}
+              value={trimleading(this.state.domestic.third)}
               onChange={this.handleNumberChange('domestic', 'third').bind(this)}
               onError={this.handleErrorDomesticThird}
               tabBack={() => { this.props.tab(this.refs.domestic_second.refs.text.refs.input) }}
@@ -426,7 +437,7 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.allowNotApplicable}>
           <span>
             <span className="separator extension">or</span>
-            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber ? 'NA' : ''}>
               <Radio name="nonumber"
                       label={i18n.t('telephone.noNumber.label')}
                       value="NA"
@@ -452,10 +463,10 @@ export default class Telephone extends ValidationElement {
               aria-describedby=""
               disabled={this.state.noNumber}
               maxlength="3"
-              pattern="\d{3}"
+              pattern="\d{1,3}"
               readonly={this.props.readonly}
               required={this.required()}
-              value={this.state.international.first}
+              value={trimleading(this.state.international.first)}
               onChange={this.handleNumberChange('international', 'first').bind(this)}
               onError={this.handleErrorInternationalFirst}
               tabNext={() => { this.props.tab(this.refs.int_second.refs.text.refs.input) }} />
@@ -471,7 +482,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{10}"
               readonly={this.props.readonly}
               required={this.required()}
-              value={this.state.international.second}
+              value={trimleading(this.state.international.second)}
               onChange={this.handleNumberChange('international', 'second').bind(this)}
               onError={this.handleErrorInternationalSecond}
               tabBack={() => { this.props.tab(this.refs.int_first.refs.text.refs.input) }}
@@ -495,7 +506,7 @@ export default class Telephone extends ValidationElement {
         <Show when={this.props.allowNotApplicable}>
           <span>
             <span className="separator extension">or</span>
-            <RadioGroup className="nonumber" selectedValue={this.state.noNumber}>
+            <RadioGroup className="nonumber" selectedValue={this.state.noNumber ? 'NA' : ''}>
               <Radio name="nonumber"
                      label={i18n.t('telephone.noNumber.label')}
                      value="NA"
@@ -509,7 +520,7 @@ export default class Telephone extends ValidationElement {
   }
 
   required () {
-    if (this.props.allowNotApplicable && this.props.noNumber === 'NA') {
+    if (this.props.allowNotApplicable && this.props.noNumber) {
       return false
     }
     return this.props.required
@@ -640,7 +651,7 @@ Telephone.defaultProps = {
   timeOfDay: 'Both',
   number: '',
   extension: '',
-  noNumber: '',
+  noNumber: false,
   showNumberType: true,
   allowNotApplicable: true,
   tab: (input) => { input.focus() },
@@ -652,7 +663,7 @@ Telephone.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required) {
-        if (props.allowNotApplicable && props.noNumber === 'NA') {
+        if (props.allowNotApplicable && props.noNumber) {
           return true
         }
         if (props.showNumberType && !props.numberType) {
@@ -668,8 +679,7 @@ Telephone.errors = [
             !!props.dsn.second
           case 'International':
             return !!props.international.first &&
-            !!props.international.second &&
-            !!props.international.third
+            !!props.international.second
           default:
             return false
         }

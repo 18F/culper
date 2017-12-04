@@ -275,7 +275,7 @@ describe('The accordion component', () => {
     let items = [
       { uuid: '1', open: false }
     ]
-    let branch = ''
+    let branch = { value: '' }
     const expected = {
       minimum: 1,
       items: items,
@@ -291,14 +291,14 @@ describe('The accordion component', () => {
     expect(component.find('.addendum').length).toEqual(1)
     component.find('.addendum .no input').simulate('change')
     expect(items.length).toBe(1)
-    expect(branch).toBe('No')
+    expect(branch.value).toBe('No')
   })
 
   it('clicking on addendum "yes" adds a new item', () => {
     let items = [
       { uuid: '1', open: false }
     ]
-    let branch = ''
+    let branch = { value: '' }
     const expected = {
       minimum: 1,
       items: items,
@@ -314,7 +314,7 @@ describe('The accordion component', () => {
     expect(component.find('.addendum').length).toEqual(1)
     component.find('.addendum .yes input').simulate('change')
     expect(items.length).toBe(2)
-    expect(branch).toBe('')
+    expect(branch.value).toBe('')
   })
 
   it('append button is not rendered if it has an addendum', () => {

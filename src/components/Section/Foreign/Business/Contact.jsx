@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
+import schema from '../../../../schema'
+import validate from '../../../../validators'
 import { Summary, NameSummary, DateSummary } from '../../../Summary'
 import { ForeignBusinessContactValidator, ContactValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
@@ -18,7 +20,6 @@ export default class Contact extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasForeignContact: this.props.HasForeignContact,
       ...queue
     })
@@ -27,15 +28,13 @@ export default class Contact extends SubsectionElement {
   updateHasForeignContact (values) {
     this.update({
       HasForeignContact: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : { items: [], branch: {} }
     })
   }
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
@@ -64,7 +63,7 @@ export default class Contact extends SubsectionElement {
                 label={i18n.t('foreign.business.contact.heading.title')}
                 labelSize="h2"
                 help="foreign.business.contact.help.branch"
-                value={this.props.HasForeignContact}
+                {...this.props.HasForeignContact}
                 warning={true}
                 onUpdate={this.updateHasForeignContact}
                 required={this.props.required}
@@ -73,11 +72,10 @@ export default class Contact extends SubsectionElement {
           {i18n.m('foreign.business.contact.para.branch')}
         </Branch>
 
-        <Show when={this.props.HasForeignContact === 'Yes'}>
-          <Accordion items={this.props.List}
+        <Show when={this.props.HasForeignContact.value === 'Yes'}>
+          <Accordion {...this.props.List}
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      onUpdate={this.updateList}
                      onError={this.handleError}
                      validator={ContactValidator}
@@ -88,11 +86,11 @@ export default class Contact extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.contact.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <ContactItem name="Item"
-                       bind={true}
-                       scrollIntoView={this.props.scrollIntoView}
-                       required={this.props.required}
-                     />
+            <ContactItem name="Item"
+                         bind={true}
+                         scrollIntoView={this.props.scrollIntoView}
+                         required={this.props.required}
+                         />
           </Accordion>
         </Show>
       </div>
@@ -102,9 +100,8 @@ export default class Contact extends SubsectionElement {
 
 Contact.defaultProps = {
   name: 'Contact',
-  HasForeignContact: '',
-  List: [],
-  ListBranch: '',
+  HasForeignContact: {},
+  List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'foreign',
@@ -112,7 +109,7 @@ Contact.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignBusinessContactValidator(props).isValid()
+    return validate(schema('foreign.business.contact', props))
   },
   defaultState: true,
   scrollToBottom: ''

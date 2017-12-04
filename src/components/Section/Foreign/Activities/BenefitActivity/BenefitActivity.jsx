@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import schema from '../../../../../schema'
+import validate from '../../../../../validators'
 import { Summary, DateSummary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignBenefitActivityValidator, ForeignBenefitValidator } from '../../../../../validators'
@@ -18,7 +20,6 @@ export default class BenefitActivity extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasBenefits: this.props.HasBenefits,
       ...queue
     })
@@ -26,16 +27,14 @@ export default class BenefitActivity extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values.items
     })
   }
 
   updateHasBenefits (values) {
     this.update({
       HasBenefits: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -86,7 +85,7 @@ export default class BenefitActivity extends SubsectionElement {
                 className="has-benefits"
                 label={i18n.t('foreign.activities.benefit.heading.title')}
                 labelSize="h2"
-                value={this.props.HasBenefits}
+                {...this.props.HasBenefits}
                 warning={true}
                 onError={this.handleError}
                 required={this.props.required}
@@ -94,11 +93,10 @@ export default class BenefitActivity extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasBenefits === 'Yes'}>
+        <Show when={this.props.HasBenefits.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -122,9 +120,8 @@ export default class BenefitActivity extends SubsectionElement {
 
 BenefitActivity.defaultProps = {
   name: 'benefit',
-  HasBenefits: '',
-  List: [],
-  ListBranch: '',
+  HasBenefits: {},
+  List: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -132,7 +129,7 @@ BenefitActivity.defaultProps = {
   subsection: 'activities/benefits',
   dispatch: () => {},
   validator: (state, props) => {
-    return new ForeignBenefitActivityValidator(props).isValid()
+    return validate(schema('foreign.activities.benefits', props))
   },
   scrollToBottom: ''
 }

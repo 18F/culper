@@ -94,13 +94,13 @@ export default class TaxesItem extends ValidationElement {
 
   updateYearEstimated (values) {
     this.update({
-      YearEstimated: values.checked
+      YearEstimated: values
     })
   }
 
   updateAmountEstimated (values) {
     this.update({
-      AmountEstimated: values.checked
+      AmountEstimated: values
     })
   }
 
@@ -108,131 +108,131 @@ export default class TaxesItem extends ValidationElement {
     return (
       <div className="taxes-item">
         <Field title={i18n.t('financial.taxes.heading.failure')}
-          adjustFor="buttons"
-          scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
+               adjustFor="buttons"
+               scrollIntoView={this.props.scrollIntoView}
+               shrink={true}>
           <FailureType name="Failure"
-            {...this.props.Failure}
-            className="taxes-failure"
-            required={this.props.required}
-            onUpdate={this.updateFailure}
-            onError={this.props.onError}
-          />
+                       {...this.props.Failure}
+                       className="taxes-failure"
+                       required={this.props.required}
+                       onUpdate={this.updateFailure}
+                       onError={this.props.onError}
+                       />
         </Field>
 
         <Field title={i18n.t('financial.taxes.heading.year')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Number name="Year"
-            {...this.props.Year}
-            className="taxes-year"
-            placeholder={i18n.t('financial.taxes.placeholder.year')}
-            min="1000"
-            required={this.props.required}
-            onUpdate={this.updateYear}
-            onError={this.props.onError}
+                  {...this.props.Year}
+                  className="taxes-year"
+                  placeholder={i18n.t('financial.taxes.placeholder.year')}
+                  min="1000"
+                  required={this.props.required}
+                  onUpdate={this.updateYear}
+                  onError={this.props.onError}
 
-          />
+                  />
           <div className="flags">
             <Checkbox name="YearEstimated"
-              ref="estimated"
-              label={i18n.t('financial.taxes.label.estimated')}
-              toggle="false"
-              checked={this.props.YearEstimated}
-              onUpdate={this.updateYearEstimated}
-              onError={this.props.onError}
-            />
+                      ref="estimated"
+                      label={i18n.t('financial.taxes.label.estimated')}
+                      toggle="false"
+                      {...this.props.YearEstimated}
+                      onUpdate={this.updateYearEstimated}
+                      onError={this.props.onError}
+                      />
           </div>
         </Field>
 
         <Field title={i18n.t('financial.taxes.heading.reason')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
-            {...this.props.Reason}
-            className="taxes-reason"
-            required={this.props.required}
-            onUpdate={this.updateReason}
-            onError={this.props.onError}
-          />
+                    {...this.props.Reason}
+                    className="taxes-reason"
+                    required={this.props.required}
+                    onUpdate={this.updateReason}
+                    onError={this.props.onError}
+                    />
         </Field>
 
         <Field title={i18n.t('financial.taxes.heading.agency')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Agency"
-            {...this.props.Agency}
-            className="taxes-agency"
-            required={this.props.required}
-            onUpdate={this.updateAgency}
-            onError={this.props.onError}
-          />
+                {...this.props.Agency}
+                className="taxes-agency"
+                required={this.props.required}
+                onUpdate={this.updateAgency}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field title={i18n.t('financial.taxes.heading.taxtype')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="TaxType"
-            {...this.props.TaxType}
-            className="taxes-taxtype"
-            required={this.props.required}
-            onUpdate={this.updateTaxType}
-            onError={this.props.onError}
-          />
+                {...this.props.TaxType}
+                className="taxes-taxtype"
+                required={this.props.required}
+                onUpdate={this.updateTaxType}
+                onError={this.props.onError}
+                />
         </Field>
 
         <Field title={i18n.t('financial.taxes.heading.amount')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <div>
             <Currency name="Amount"
-              {...this.props.Amount}
-              className="taxes-amount"
-              placeholder={i18n.t('financial.taxes.placeholder.amount')}
-              min="1"
-              required={this.props.required}
-              onUpdate={this.updateAmount}
-              onError={this.props.onError}
-            />
+                      {...this.props.Amount}
+                      className="taxes-amount"
+                      placeholder={i18n.t('financial.taxes.placeholder.amount')}
+                      min="1"
+                      required={this.props.required}
+                      onUpdate={this.updateAmount}
+                      onError={this.props.onError}
+                      />
             <div className="flags">
               <Checkbox name="AmountEstimated"
-                ref="estimated"
-                label={i18n.t('financial.taxes.label.estimated')}
-                toggle="false"
-                checked={this.props.AmountEstimated}
-                onUpdate={this.updateAmountEstimated}
-                onError={this.props.onError}
-              />
+                        ref="estimated"
+                        label={i18n.t('financial.taxes.label.estimated')}
+                        toggle="false"
+                        {...this.props.AmountEstimated}
+                        onUpdate={this.updateAmountEstimated}
+                        onError={this.props.onError}
+                        />
             </div>
           </div>
         </Field>
 
         <Field title={i18n.t('financial.taxes.heading.date')}
-          adjustFor="label"
-          scrollIntoView={this.props.scrollIntoView}
-          className="taxes-date-notapplicable"
-          shrink={true}>
+               adjustFor="label"
+               scrollIntoView={this.props.scrollIntoView}
+               className="taxes-date-notapplicable"
+               shrink={true}>
           <NotApplicable name="DateNotApplicable"
-            {...this.props.DateNotApplicable}
-            label={i18n.t('financial.taxes.label.notapplicable')}
-            or={i18n.m('financial.taxes.para.or')}
-            onUpdate={this.updateDateNotApplicable}
-            onError={this.props.onError}>
+                         {...this.props.DateNotApplicable}
+                         label={i18n.t('financial.taxes.label.notapplicable')}
+                         or={i18n.m('financial.taxes.para.or')}
+                         onUpdate={this.updateDateNotApplicable}
+                         onError={this.props.onError}>
             <DateControl name="Date"
-              {...this.props.Date}
-              className="taxes-date"
-              hideDay={true}
-              required={this.props.required}
-              onUpdate={this.updateDate}
-              onError={this.props.onError}
-            />
+                         {...this.props.Date}
+                         className="taxes-date"
+                         hideDay={true}
+                         required={this.props.required}
+                         onUpdate={this.updateDate}
+                         onError={this.props.onError}
+                         />
           </NotApplicable>
         </Field>
 
         <Field title={i18n.t('financial.taxes.heading.description')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
-            {...this.props.Description}
-            className="taxes-description"
-            required={this.props.required}
-            onUpdate={this.updateDescription}
-            onError={this.props.onError}
-          />
+                    {...this.props.Description}
+                    className="taxes-description"
+                    required={this.props.required}
+                    onUpdate={this.updateDescription}
+                    onError={this.props.onError}
+                    />
         </Field>
 
       </div>
@@ -241,6 +241,17 @@ export default class TaxesItem extends ValidationElement {
 }
 
 TaxesItem.defaultProps = {
+  Failure: {},
+  Year: {},
+  YearEstimated: {},
+  Reason: {},
+  Agency: {},
+  TaxType: {},
+  Amount: {},
+  AmountEstimated: {},
+  DateNotApplicable: { applicable: true },
+  Date: {},
+  Description: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

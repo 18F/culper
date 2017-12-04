@@ -1,5 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../../config'
+import schema from '../../../../../schema'
+import validate from '../../../../../validators'
 import { Summary } from '../../../../Summary'
 import { Accordion, Branch, Show } from '../../../../Form'
 import { ForeignIndirectActivityValidator, ForeignIndirectInterestValidator } from '../../../../../validators'
@@ -18,7 +20,6 @@ export default class IndirectActivity extends SubsectionElement {
   update (queue) {
     this.props.onUpdate({
       List: this.props.List,
-      ListBranch: this.props.ListBranch,
       HasInterests: this.props.HasInterests,
       ...queue
     })
@@ -26,16 +27,14 @@ export default class IndirectActivity extends SubsectionElement {
 
   updateList (values) {
     this.update({
-      List: values.items,
-      ListBranch: values.branch
+      List: values
     })
   }
 
   updateHasInterests (values) {
     this.update({
       HasInterests: values,
-      List: values === 'Yes' ? this.props.List : [],
-      ListBranch: values === 'Yes' ? this.props.ListBranch : ''
+      List: values.value === 'Yes' ? this.props.List : []
     })
   }
 
@@ -68,7 +67,7 @@ export default class IndirectActivity extends SubsectionElement {
         <Branch name="has_interests"
                 label={i18n.t('foreign.activities.indirect.heading.title')}
                 labelSize="h2"
-                value={this.props.HasInterests}
+                {...this.props.HasInterests}
                 help="foreign.activities.indirect.help.indirectControl"
                 warning={true}
                 onError={this.handleError}
@@ -77,11 +76,10 @@ export default class IndirectActivity extends SubsectionElement {
                 scrollIntoView={this.props.scrollIntoView}>
         </Branch>
 
-        <Show when={this.props.HasInterests === 'Yes'}>
+        <Show when={this.props.HasInterests.value === 'Yes'}>
           <Accordion defaultState={this.props.defaultState}
-                     items={this.props.List}
+                     {...this.props.List}
                      scrollToBottom={this.props.scrollToBottom}
-                     branch={this.props.ListBranch}
                      summary={this.summary}
                      onUpdate={this.updateList}
                      onError={this.handleError}
@@ -107,9 +105,8 @@ export default class IndirectActivity extends SubsectionElement {
 
 IndirectActivity.defaultProps = {
   name: 'indirect',
-  HasInterests: '',
-  List: [],
-  ListBranch: '',
+  HasInterests: {},
+  List: {},
   defaultState: true,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
@@ -118,7 +115,7 @@ IndirectActivity.defaultProps = {
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {
-    return new ForeignIndirectActivityValidator(props).isValid()
+    return validate(schema('foreign.activities.indirect', props))
   },
   scrollToBottom: ''
 }

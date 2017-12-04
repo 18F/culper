@@ -112,6 +112,7 @@ export default class Supervisor extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('history.employment.default.supervisor.heading.telephone')}
+               className="override-required"
                adjustFor="telephone"
                scrollIntoView={this.props.scrollIntoView}>
           <Telephone name="Telephone"
@@ -131,7 +132,7 @@ Supervisor.defaultProps = {
   SupervisorName: {},
   Title: {},
   Email: {},
-  EmailNotApplicable: {},
+  EmailNotApplicable: { applicable: true },
   Address: {},
   Telephone: {},
   addressBooks: {},

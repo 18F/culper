@@ -5,73 +5,81 @@ describe('Drug Involvement Validation', function () {
     const tests = [
       {
         state: {
-          Involved: 'Nope'
+          Involved: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          Involved: 'No'
+          Involved: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Involved: 'Yes',
-          List: [],
-          ListBranch: ''
+          Involved: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          Involved: 'Yes',
-          List: [{DrugInvolvement: {}}],
-          ListBranch: 'Nope'
+          Involved: { value: 'Yes' },
+          List: {
+            branch: { value: 'Nope' },
+            items: [{DrugInvolvement: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          Involved: 'Yes',
-          List: [{DrugInvolvement: {}}],
-          ListBranch: 'No'
+          Involved: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{DrugInvolvement: {}}]
+          }
         },
         expected: false
       },
       {
         state: {
-          Involved: 'Yes',
-          ListBranch: 'No',
-          List: [
-            {
-              Item: {
-                DrugType: {
-                  DrugType: 'Cocaine',
-                  DrugTypeOther: null
-                },
-                FirstInvolvement: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                RecentInvolvement: {
-                  day: '1',
-                  month: '1',
-                  year: '2016'
-                },
-                NatureOfInvolvement: {
-                  value: 'Some involvement'
-                },
-                Reasons: {
-                  value: 'Some reason'
-                },
-                InvolvementWhileEmployed: 'Yes',
-                InvolvementWithClearance: 'Yes',
-                InvolvementInFuture: 'No'
+          Involved: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  DrugType: {
+                    DrugType: 'Cocaine',
+                    DrugTypeOther: null
+                  },
+                  FirstInvolvement: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  RecentInvolvement: {
+                    day: '1',
+                    month: '1',
+                    year: '2016'
+                  },
+                  NatureOfInvolvement: {
+                    value: 'Some involvement'
+                  },
+                  Reasons: {
+                    value: 'Some reason'
+                  },
+                  InvolvementWhileEmployed: { value: 'Yes' },
+                  InvolvementWithClearance: { value: 'Yes' },
+                  InvolvementInFuture: { value: 'No' }
+                }
               }
-            }
-          ]
+            ]
+          }
         },
         expected: true
       }
@@ -85,7 +93,7 @@ describe('Drug Involvement Validation', function () {
     const tests = [
       {
         state: {
-          InvolvementInFuture: 'Yes',
+          InvolvementInFuture: { value: 'Yes' },
           Explanation: {
             value: 'Because'
           }
@@ -94,13 +102,13 @@ describe('Drug Involvement Validation', function () {
       },
       {
         state: {
-          InvolvementInFuture: 'No'
+          InvolvementInFuture: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          InvolvementInFuture: 'Nope'
+          InvolvementInFuture: { value: 'Nope' }
         },
         expected: false
       }

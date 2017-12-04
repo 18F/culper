@@ -27,16 +27,18 @@ describe('The employment physical address component', () => {
 
   it('loads data', () => {
     let counter = 0
-    let expected = {
+    const expected = {
       onUpdate: () => {
         counter++
       },
+      name: 'ac',
       address: {
         address: '1234 Some Rd'
-      }
+      },
+      HasDifferentAddress: { value: 'Yes' }
     }
 
-    const component = mount(<PhysicalAddress name="ac" onUpdate={expected.onUpdate} onBlur={expected.onBlur} onFocus={expected.onFocus} HasDifferentAddress="Yes" Address={expected.address} />)
+    const component = mount(<PhysicalAddress {...expected} />)
     expect(component.find('.has-different').length).toBeGreaterThan(0)
     let street = component.find('.mailing input').first()
     street.simulate('change')

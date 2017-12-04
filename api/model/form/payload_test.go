@@ -3,6 +3,7 @@ package form
 import (
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -27,6 +28,67 @@ func readBinaryData(filepath string) ([]byte, error) {
 		return nil, err
 	}
 	return b, nil
+}
+
+func TestCollections(t *testing.T) {
+	tests := []struct {
+		Data string
+	}{
+		{Data: "testdata/accordion.json"},
+		// {Data: "testdata/branchcollection.json"},
+	}
+
+	for _, test := range tests {
+		// Get the test data as a byte array
+		raw, err := readBinaryData(test.Data)
+		if err != nil {
+			t.Fatal(err)
+		}
+
+		// Deserialize the initial payload from a JSON structure
+		payload := &Payload{}
+		if err := payload.Unmarshal(raw); err != nil {
+			t.Fatalf("Failed to deserialize JSON: %v\n:Error: %v\n", string(raw), err)
+		}
+
+		// Extract the entity interface of the payload and validate it
+		entity, err := payload.Entity()
+		if err != nil {
+			t.Fatalf("Failed to unpackage the payload for [%s]: %v", test.Data, err)
+		}
+		if ok, err := entity.Valid(); !ok {
+			t.Fatalf("Error with [%s]: %v\n\nEntity: %v", test.Data, err, entity)
+		}
+
+		account := 1
+		context := db.NewDB()
+		id, err := entity.Save(context, account)
+		if err != nil {
+			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)
+		}
+		savedEntity := &Collection{ID: id}
+		if _, err := savedEntity.Get(context, account); err != nil {
+			t.Fatalf("Error getting [%s]: %v\n\nEntity: %v", test.Data, err, savedEntity)
+		}
+		if savedEntity.BranchID == 0 {
+			t.Fatalf("Collection branch ID was not returned")
+		} else {
+			log.Println("collection branch id", savedEntity.Branch.ID)
+			log.Println("collection branch value", savedEntity.Branch.Value)
+		}
+		savedItems := len(savedEntity.Items)
+		if savedItems != 1 {
+			t.Fatalf("Collection did not have 1 items but was %d", savedItems)
+		}
+		// prettyOriginal, _ := json.MarshalIndent(entity.Marshal(), "", "  ")
+		// prettySaved, _ := json.MarshalIndent(savedEntity.Marshal(), "", "  ")
+		// if bytes.EqualFold(prettyOriginal, prettySaved) {
+		// 	t.Fatalf("The original entity does not match the retrieved copy.\nOriginal => %s\nReceived => %s", string(prettyOriginal), string(prettySaved))
+		// }
+		if _, err := savedEntity.Delete(context, account); err != nil {
+			t.Fatalf("Error deleting [%s]: %v\n\nEntity: %v", test.Data, err, savedEntity)
+		}
+	}
 }
 
 func TestPayloadValidate(t *testing.T) {
@@ -54,6 +116,7 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/reasonleft.json"},
 		{Data: "testdata/reference.json"},
 		{Data: "testdata/sentence.json"},
+		{Data: "testdata/signature.json"},
 		{Data: "testdata/ssn.json"},
 		{Data: "testdata/supervisor.json"},
 		{Data: "testdata/telephone.json"},
@@ -85,8 +148,8 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/history-federal.json"},
 
 		// Section: Relationships
-		{Data: "testdata/relationships-marital.json"},
-		{Data: "testdata/relationships-cohabitants.json"},
+		{Data: "testdata/relationships-status-marital.json"},
+		{Data: "testdata/relationships-status-cohabitant.json"},
 		{Data: "testdata/relationships-people.json"},
 		{Data: "testdata/relationships-relatives.json"},
 
@@ -157,7 +220,10 @@ func TestPayloadValidate(t *testing.T) {
 		{Data: "testdata/psychological-consultations.json"},
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
-		{Data: "testdata/psychological-existing.json"},
+		{Data: "testdata/psychological-conditions.json"},
+
+		// Section: Submission
+		{Data: "testdata/submission.json"},
 	}
 
 	// HTTP test server to field any third party requests
@@ -224,8 +290,8 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/history-federal.json"},
 
 		// Section: Relationships
-		{Data: "testdata/relationships-marital.json"},
-		{Data: "testdata/relationships-cohabitants.json"},
+		{Data: "testdata/relationships-status-marital.json"},
+		{Data: "testdata/relationships-status-cohabitant.json"},
 		{Data: "testdata/relationships-people.json"},
 		{Data: "testdata/relationships-relatives.json"},
 
@@ -296,14 +362,17 @@ func TestPayloadPersistence(t *testing.T) {
 		{Data: "testdata/psychological-consultations.json"},
 		{Data: "testdata/psychological-hospitalizations.json"},
 		{Data: "testdata/psychological-diagnoses.json"},
-		{Data: "testdata/psychological-existing.json"},
+		{Data: "testdata/psychological-conditions.json"},
+
+		// Section: Submission
+		{Data: "testdata/submission.json"},
 	}
 
 	for _, test := range tests {
 		// Get the test data as a byte array
 		raw, err := readBinaryData(test.Data)
 		if err != nil {
-			t.Fatal(err)
+			t.Fatalf("Failed to read binary data: %v", err)
 		}
 
 		// Deserialize the initial payload from a JSON structure
@@ -318,7 +387,7 @@ func TestPayloadPersistence(t *testing.T) {
 			t.Fatalf("Failed to unpackage the payload for [%s]: %v", test.Data, err)
 		}
 
-		var account int64 = 1
+		account := 1
 		context := db.NewDB()
 		if _, err := entity.Save(context, account); err != nil {
 			t.Fatalf("Error saving [%s]: %v\n\nEntity: %v", test.Data, err, entity)

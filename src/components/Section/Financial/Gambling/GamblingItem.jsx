@@ -50,53 +50,53 @@ export default class GamblingItem extends ValidationElement {
     return (
       <div className="gambling-item">
         <Field title={i18n.t('financial.gambling.heading.dates')}
-          scrollIntoView={this.props.scrollIntoView}
-          adjustFor="daterange">
+               scrollIntoView={this.props.scrollIntoView}
+               adjustFor="daterange">
           <DateRange name="Dates"
-            {...this.props.Dates}
-            className="dates"
-            label={i18n.t('financial.gambling.label.dates')}
-            onUpdate={this.updateDates}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                     {...this.props.Dates}
+                     className="dates"
+                     label={i18n.t('financial.gambling.label.dates')}
+                     onUpdate={this.updateDates}
+                     onError={this.props.onError}
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('financial.gambling.heading.losses')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Currency name="Losses"
-            {...this.props.Losses}
-            className="losses"
-            placeholder={i18n.t('financial.gambling.placeholder.losses')}
-            min="1"
-            onUpdate={this.updateLosses}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    {...this.props.Losses}
+                    className="losses"
+                    placeholder={i18n.t('financial.gambling.placeholder.losses')}
+                    min="1"
+                    onUpdate={this.updateLosses}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('financial.gambling.heading.description')}
-          scrollIntoView={this.props.scrollIntoView}
-          help="financial.gambling.help.description">
+               scrollIntoView={this.props.scrollIntoView}
+               help="financial.gambling.help.description">
           <Textarea name="Description"
-            {...this.props.Description}
-            className="description"
-            onUpdate={this.updateDescription}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    {...this.props.Description}
+                    className="description"
+                    onUpdate={this.updateDescription}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('financial.gambling.heading.actions')}
-          scrollIntoView={this.props.scrollIntoView}
-          help="financial.gambling.help.actions">
+               scrollIntoView={this.props.scrollIntoView}
+               help="financial.gambling.help.actions">
           <Textarea name="Actions"
-            {...this.props.Actions}
-            className="actions"
-            onUpdate={this.updateActions}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    {...this.props.Actions}
+                    className="actions"
+                    onUpdate={this.updateActions}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
       </div>
     )

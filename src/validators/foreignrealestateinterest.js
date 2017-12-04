@@ -5,7 +5,7 @@ import LocationValidator from './location'
 export default class ForeignRealEstateInterestValidator {
   constructor (data = {}) {
     data = data || {}
-    this.interestTypes = data.InterestTypes || []
+    this.interestTypes = (data.InterestTypes || {}).values || []
     this.realEstateType = data.RealEstateType || {}
     this.address = data.Address
     this.acquired = data.Acquired
@@ -13,7 +13,7 @@ export default class ForeignRealEstateInterestValidator {
     this.cost = data.Cost
     this.sold = data.Sold
     this.soldNotApplicable = data.SoldNotApplicable
-    this.coOwners = data.CoOwners
+    this.coOwners = data.CoOwners || {}
   }
 
   validInterestTypes () {

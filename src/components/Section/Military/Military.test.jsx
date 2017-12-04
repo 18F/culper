@@ -91,7 +91,7 @@ describe('The military section', () => {
 
   it('hides disciplinary procedures if no valid military history', () => {
     const modifiedState = {
-      Military: { History: { HasServed: 'No' } }
+      Military: { History: { HasServed: { value: 'No' } } }
     }
     const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
     const component = mount(<Provider store={store}><Military subsection="history" /></Provider>)
@@ -100,7 +100,7 @@ describe('The military section', () => {
 
   it('displays disciplinary procedures if military history is "Yes"', () => {
     const modifiedState = {
-      Military: { History: { HasServed: 'Yes' } }
+      Military: { History: { HasServed: { value: 'Yes' } } }
     }
     const store = mockStore({ authentication: { authenticated: true, twofactor: true }, application: modifiedState })
     const component = mount(<Provider store={store}><Military subsection="history" /></Provider>)

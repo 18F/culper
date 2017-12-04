@@ -1,12 +1,11 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import { validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
+import { validAccordion, validPhoneNumber, validBranch, validGenericTextfield } from './helpers'
 
 export default class DrugOrderedTreatmentsValidator {
   constructor (data = {}) {
-    this.involved = data.TreatmentOrdered
+    this.involved = (data.TreatmentOrdered || {}).value
     this.list = data.List
-    this.listBranch = data.ListBranch
   }
 
   validTreatmentOrdered () {
@@ -18,22 +17,9 @@ export default class DrugOrderedTreatmentsValidator {
       return true
     }
 
-    if (!this.list || !this.list.length) {
-      return false
-    }
-
-    if (this.listBranch !== 'No') {
-      return false
-    }
-
-    for (const item of this.list) {
-      const result = new DrugOrderedTreatmentValidator(item.Item, null).isValid()
-      if (!result) {
-        return false
-      }
-    }
-
-    return true
+    return validAccordion(this.list, (item) => {
+      return new DrugOrderedTreatmentValidator(item).isValid()
+    })
   }
 
   isValid () {
@@ -46,14 +32,14 @@ export class DrugOrderedTreatmentValidator {
   constructor (data = {}) {
     this.orderedBy = data.OrderedBy
     this.explanation = data.Explanation
-    this.actionTaken = data.ActionTaken
+    this.actionTaken = (data.ActionTaken || {}).value
     this.noActionTakenExplanation = data.NoActionTakenExplanation
     this.drugType = data.DrugType
     this.treatmentProvider = data.TreatmentProvider
     this.treatmentProviderAddress = data.TreatmentProviderAddress
     this.treatmentProviderTelephone = data.TreatmentProviderTelephone
     this.treatmentDates = data.TreatmentDates
-    this.treatmentCompleted = data.TreatmentCompleted
+    this.treatmentCompleted = (data.TreatmentCompleted || {}).value
     this.noTreatmentExplanation = data.NoTreatmentExplanation
   }
 
@@ -61,9 +47,9 @@ export class DrugOrderedTreatmentValidator {
     switch (this.actionTaken) {
       case 'Yes':
         return validGenericTextfield(this.treatmentProvider) &&
-          new LocationValidator(this.treatmentProviderAddress) &&
+          new LocationValidator(this.treatmentProviderAddress).isValid() &&
           validPhoneNumber(this.treatmentProviderTelephone) &&
-          new DateRangeValidator(this.treatmentDates) &&
+          new DateRangeValidator(this.treatmentDates).isValid() &&
           this.validTreatmentCompleted()
       case 'No':
         return validGenericTextfield(this.noActionTakenExplanation)

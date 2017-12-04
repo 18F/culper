@@ -121,57 +121,63 @@ describe('Foreign business political component validation', function () {
       },
       {
         state: {
-          HasForeignPolitical: 'No'
+          HasForeignPolitical: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasForeignPolitical: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasForeignPolitical: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasForeignPolitical: 'Yes',
-          List: [{}],
-          ListBranch: 'No'
+          HasForeignPolitical: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasForeignPolitical: 'Yes',
-          List: [
-            {
-              Item: {
-                Position: {
-                  value: 'this is the position'
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          HasForeignPolitical: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Position: {
+                    value: 'this is the position'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
                   },
-                  present: false
-                },
-                Country: {
-                  value: 'Germany'
-                },
-                Reason: {
-                  value: 'this is the reason'
-                },
-                Eligibility: {
-                  value: 'this is the eligibility'
+                  Country: {
+                    value: 'Germany'
+                  },
+                  Reason: {
+                    value: 'this is the reason'
+                  },
+                  Eligibility: {
+                    value: 'this is the eligibility'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }

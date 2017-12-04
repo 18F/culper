@@ -11,9 +11,9 @@ describe('The ExistingConditions component', () => {
   it('Performs updates', () => {
     let updates = 0
     const props = {
-      HasCondition: 'Yes',
-      ReceivedTreatment: 'No',
-      DidNotFollow: 'Yes',
+      HasCondition: { value: 'Yes' },
+      ReceivedTreatment: { value: 'No' },
+      DidNotFollow: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<ExistingConditions {...props} />)
@@ -29,10 +29,10 @@ describe('The ExistingConditions component', () => {
   it('updates with recv treatments', () => {
     let updates = 0
     const props = {
-      HasCondition: 'Yes',
-      ReceivedTreatment: 'Yes',
+      HasCondition: { value: 'Yes' },
+      ReceivedTreatment: { value: 'Yes' },
       TreatmentList: [{}],
-      DidNotFollow: 'Yes',
+      DidNotFollow: { value: 'Yes' },
       onUpdate: () => { updates++ }
     }
     const component = mount(<ExistingConditions {...props} />)
@@ -46,9 +46,9 @@ describe('The ExistingConditions component', () => {
 
   it('Selects no to everything', () => {
     const props = {
-      HasCondition: 'No',
-      ReceivedTreatment: 'No',
-      DidNotFollow: 'No'
+      HasCondition: { value: 'No' },
+      ReceivedTreatment: { value: 'No' },
+      DidNotFollow: { value: 'No' }
     }
     const component = mount(<ExistingConditions {...props} />)
     expect(component.find('.existing-condition-explanation textarea').length).toBe(0)

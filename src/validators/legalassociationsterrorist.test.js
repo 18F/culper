@@ -166,67 +166,73 @@ describe('Legal associations terrorist component validation', function () {
       },
       {
         state: {
-          HasTerrorist: 'No'
+          HasTerrorist: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          HasTerrorist: 'Yes',
-          List: [],
-          ListBranch: 'No'
+          HasTerrorist: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: []
+          }
         },
         expected: false
       },
       {
         state: {
-          HasTerrorist: 'Yes',
-          List: [{}],
-          ListBranch: ''
+          HasTerrorist: { value: 'Yes' },
+          List: {
+            branch: { value: '' },
+            items: [{}]
+          }
         },
         expected: false
       },
       {
         state: {
-          HasTerrorist: 'Yes',
-          List: [
-            {
-              Item: {
-                Organization: {
-                  value: 'this is an organization'
-                },
-                Address: {
-                  country: { value: 'United States' },
-                  street: '1234 Some Rd',
-                  city: 'Arlington',
-                  state: 'Virginia',
-                  zipcode: '22202',
-                  layout: Location.ADDRESS
-                },
-                Dates: {
-                  from: {
-                    date: new Date('1/1/2010')
+          HasTerrorist: { value: 'Yes' },
+          List: {
+            branch: { value: 'No' },
+            items: [
+              {
+                Item: {
+                  Organization: {
+                    value: 'this is an organization'
                   },
-                  to: {
-                    date: new Date('1/1/2012')
+                  Address: {
+                    country: { value: 'United States' },
+                    street: '1234 Some Rd',
+                    city: 'Arlington',
+                    state: 'Virginia',
+                    zipcode: '22202',
+                    layout: Location.ADDRESS
                   },
-                  present: false
-                },
-                PositionsNotApplicable: {
-                  applicable: false
-                },
-                Positions: {},
-                ContributionsNotApplicable: {
-                  applicable: false
-                },
-                Contributions: {},
-                Reasons: {
-                  value: 'this is the reasons'
+                  Dates: {
+                    from: {
+                      date: new Date('1/1/2010')
+                    },
+                    to: {
+                      date: new Date('1/1/2012')
+                    },
+                    present: false
+                  },
+                  PositionsNotApplicable: {
+                    applicable: false
+                  },
+                  Positions: {},
+                  ContributionsNotApplicable: {
+                    applicable: false
+                  },
+                  Contributions: {},
+                  Reasons: {
+                    value: 'this is the reasons'
+                  }
                 }
               }
-            }
-          ],
-          ListBranch: 'No'
+            ]
+          }
         },
         expected: true
       }
