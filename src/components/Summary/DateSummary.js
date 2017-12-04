@@ -7,31 +7,31 @@ export const DateSummary = (props, unknown = i18n.t('history.employment.default.
   }
 
   const noDateLabel = unknown
-  function format (d) {
-    if (Object.prototype.toString.call(d) === '[object Date]') {
-      if (full) {
-        return `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()}`
-      }
-
-      return `${d.getMonth() + 1}/${d.getFullYear()}`
+  function format (dateControl = {}) {
+    if (!dateControl.day || !dateControl.month || !dateControl.year) {
+      return null
     }
 
-    return ''
+    if (full) {
+      return `${dateControl.month}/${dateControl.day}/${dateControl.year}`
+    }
+    return `${dateControl.month}/${dateControl.year}`
   }
 
   // Handle date range
   if (props.to || props.from) {
-    const from = props.from && props.from.date ? format(props.from.date) : noDateLabel
-    const to = props.to && props.to.date ? format(props.to.date) : noDateLabel
-    return from === noDateLabel && to === noDateLabel
-      ? ''
-      : <span>{`${from} - ${to}`}</span>
+    const from = format(props.from, full)
+    const to = format(props.to, full)
+    if (!from && !to) {
+      return ''
+    }
+    return <span>{`${from || noDateLabel} - ${to || noDateLabel}`}</span>
   }
 
   // Handle single date
   if (props.date || props.value) {
-    const singleDate = format(props.date || props.value)
-    if (singleDate !== '') {
+    const singleDate = format(props)
+    if (singleDate) {
       return <span>{singleDate}</span>
     }
   }

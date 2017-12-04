@@ -62,10 +62,16 @@ describe('The federal component', () => {
               },
               Dates: {
                 from: {
-                  date: new Date(2017, 1, 1)
+                  date: new Date(2017, 1, 1),
+                  year: '2017',
+                  month: '1',
+                  day: '1'
                 },
                 to: {
-                  date: new Date(2017, 2, 1)
+                  date: new Date(2017, 2, 1),
+                  year: '2017',
+                  month: '2',
+                  day: '1'
                 }
               }
             }
@@ -80,10 +86,16 @@ describe('The federal component', () => {
               },
               Dates: {
                 from: {
-                  date: new Date(2017, 2, 1)
+                  date: new Date(2017, 2, 1),
+                  year: '2017',
+                  month: '2',
+                  day: '1'
                 },
                 to: {
-                  date: new Date(2017, 3, 1)
+                  date: new Date(2017, 3, 1),
+                  year: '2017',
+                  month: '3',
+                  day: '1'
                 }
               }
             }

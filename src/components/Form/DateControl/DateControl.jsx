@@ -108,21 +108,25 @@ export default class DateControl extends ValidationElement {
   }
 
   handleDisable (nextProps) {
+    let updates = {}
     let errors = [...this.errors] || []
     // If disabling component, set all errors to null
     if (nextProps.disabled) {
-      errors = errors.map(err => {
+      this.errors = errors.map(err => {
         return {
           code: err.code,
           valid: null,
           uid: err.uid
         }
       })
+      updates = { month: '', day: '', year: '' }
     }
     this.props.onError('', errors)
-    this.setState({
-      disabled: nextProps.disabled
-    })
+    updates = {
+      disabled: nextProps.disabled,
+      ...updates
+    }
+    this.setState(updates)
   }
 
   update (el, year, month, day, estimated) {
