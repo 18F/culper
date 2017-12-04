@@ -7,7 +7,7 @@ export const consent = {
     'Protect your data by only using secure, encrypted connections.',
     '# Standard mandatory notice and consent provision for all DOD information system user agreements',
     'By signing this document, you acknowledge and consent that when you access Department of Defense (DoD) information systems:',
-    '  * You are accessing a U.S. Government (USG) information system (IS) (which includes any device attached to this information system) that is provided for U.S. Governmentauthorized use only.',
+    '  * You are accessing a U.S. Government (USG) information system (IS) (which includes any device attached to this information system) that is provided for U.S. Government authorized use only.',
     '  * You consent to the following conditions:',
     '    - The U.S. Government routinely intercepts and monitors communications on this information system for purposes including, but not limited to, penetration testing, communications security (COMSEC) monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.',
     '    - At any time, the U.S. Government may inspect and seize data stored on this information system.',
