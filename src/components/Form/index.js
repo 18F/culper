@@ -38,7 +38,6 @@ import Sex from './Sex'
 import Introduction from './Introduction'
 import Consent from './Consent'
 import Branch from './Branch'
-import Reference from './Reference'
 import Show from './Show'
 import BranchCollection from './BranchCollection'
 import SSN from './SSN'
@@ -78,7 +77,6 @@ export {
   Introduction,
   Consent,
   Branch,
-  Reference,
   Show,
   Svg,
   BranchCollection,

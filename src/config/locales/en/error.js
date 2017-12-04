@@ -352,6 +352,15 @@ export const error = {
       required: {
         title: 'There is a problem with this field',
         message: 'This field is required'
+      },
+      notfound: {
+        title: 'There is a problem with the State',
+        message: [
+          'State name must be one of the available options.',
+          '*and/or*',
+          'The state name is too long.'
+        ],
+        note: ''
       }
     },
     city: {

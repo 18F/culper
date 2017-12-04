@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
-import { ValidationElement, DateRange, Location, Text, Field, Reference, Telephone, Show } from '../../../Form'
+import { ValidationElement, DateRange, Location, Text,
+         Field, Telephone, Show, Name } from '../../../Form'
 import EmploymentActivity from './EmploymentActivity'
 import EmploymentStatus from './EmploymentStatus'
 import PhysicalAddress from './PhysicalAddress'
@@ -23,7 +24,9 @@ export default class EmploymentItem extends ValidationElement {
     this.updateAddress = this.updateAddress.bind(this)
     this.updateTelephone = this.updateTelephone.bind(this)
     this.updateSupervisor = this.updateSupervisor.bind(this)
-    this.updateReference = this.updateReference.bind(this)
+    this.updateReferenceName = this.updateReferenceName.bind(this)
+    this.updateReferencePhone = this.updateReferencePhone.bind(this)
+    this.updateReferenceAddress = this.updateReferenceAddress.bind(this)
     this.updatePhysicalAddress = this.updatePhysicalAddress.bind(this)
     this.updateAdditional = this.updateAdditional.bind(this)
     this.updateReasonLeft = this.updateReasonLeft.bind(this)
@@ -41,7 +44,9 @@ export default class EmploymentItem extends ValidationElement {
       Address: this.props.Address,
       Telephone: this.props.Telephone,
       Supervisor: this.props.Supervisor,
-      Reference: this.props.Reference,
+      ReferenceName: this.props.ReferenceName,
+      ReferencePhone: this.props.ReferencePhone,
+      ReferenceAddress: this.props.ReferenceAddress,
       PhysicalAddress: this.props.PhysicalAddress,
       Additional: this.props.Additional,
       ReasonLeft: this.props.ReasonLeft,
@@ -104,9 +109,21 @@ export default class EmploymentItem extends ValidationElement {
     })
   }
 
-  updateReference (values) {
+  updateReferenceName (values) {
     this.update({
-      Reference: values
+      ReferenceName: values
+    })
+  }
+
+  updateReferencePhone (values) {
+    this.update({
+      ReferencePhone: values
+    })
+  }
+
+  updateReferenceAddress (values) {
+    this.update({
+      ReferenceAddress: values
     })
   }
 
@@ -339,15 +356,60 @@ export default class EmploymentItem extends ValidationElement {
                    className="no-margin-bottom"
                    />
 
-            <Reference name="Reference"
-                       {...this.props.Reference}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                       onUpdate={this.updateReference}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       />
+            <div className="reference">
+              <Field title={i18n.t('reference.heading.name')}
+                     titleSize="h3"
+                     optional={true}>
+                <Name name="ReferenceName"
+                      prefix={'name'}
+                      className="reference-name"
+                      {...this.props.ReferenceName}
+                      onUpdate={this.updateReferenceName}
+                      onError={this.props.onError}
+                      required={this.props.required}
+                      />
+              </Field>
+
+              <Field title={i18n.t('reference.heading.correspondence')}
+                     titleSize="h2"
+                     optional={true}
+                     className="no-margin-bottom">
+                {i18n.m('reference.para.correspondence')}
+              </Field>
+
+              <Field title={i18n.t('reference.heading.phone.default')}
+                     className="override-required"
+                     help={'reference.help.phone'}
+                     adjustFor="telephone"
+                     scrollIntoView={this.props.scrollIntoView}>
+                <Telephone name="ReferencePhone"
+                           className="reference-phone"
+                           {...this.props.ReferencePhone}
+                           onUpdate={this.updateReferencePhone}
+                           onError={this.props.onError}
+                           required={this.props.required}
+                           />
+              </Field>
+
+              <Field title={i18n.t('reference.heading.address')}
+                     optional={true}
+                     help={'reference.help.address'}
+                     adjustFor="address">
+                <p>{i18n.t('reference.para.address')}</p>
+                <Location name="ReferenceAddress"
+                          className="reference-address"
+                          {...this.props.ReferenceAddress}
+                          label={i18n.t('reference.label.address')}
+                          layout={Location.ADDRESS}
+                          geocode={true}
+                          addressBooks={this.props.addressBooks}
+                          addressBook="Reference"
+                          dispatch={this.props.dispatch}
+                          onUpdate={this.updateReferenceAddress}
+                          onError={this.props.onError}
+                          />
+              </Field>
+            </div>
           </div>
         </Show>
 
@@ -395,6 +457,22 @@ export default class EmploymentItem extends ValidationElement {
 }
 
 EmploymentItem.defaultProps = {
+  EmploymentActivity: {},
+  Employment: {},
+  Dates: {},
+  Title: {},
+  DutyStation: {},
+  Status: {},
+  Address: {},
+  Telephone: {},
+  Supervisor: {},
+  ReferenceName: {},
+  ReferencePhone: {},
+  ReferenceAddress: {},
+  PhysicalAddress: {},
+  Additional: {},
+  ReasonLeft: {},
+  Reprimand: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

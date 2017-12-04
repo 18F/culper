@@ -24,7 +24,6 @@ import { physicaladdress } from './physicaladdress'
 import { treatment } from './treatment'
 import { radio } from './radio'
 import { reasonleft } from './reasonleft'
-import { reference } from './reference'
 import { sentence } from './sentence'
 import { ssn } from './ssn'
 import { supervisor } from './supervisor'
@@ -60,7 +59,6 @@ export {
   treatment,
   radio,
   reasonleft,
-  reference,
   sentence,
   ssn,
   supervisor,
