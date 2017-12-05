@@ -11,7 +11,18 @@ export class Gap extends React.Component {
       return null
     }
 
-    const dates = DateSummary(this.props.dates)
+    const dates = DateSummary({
+      from: {
+        day: `${this.props.dates.from.date.getDate()}`,
+        month: `${this.props.dates.from.date.getMonth()+1}`,
+        year: `${this.props.dates.from.date.getFullYear()}`
+      },
+      to: {
+        day: `${this.props.dates.to.date.getDate()}`,
+        month: `${this.props.dates.to.date.getMonth()+1}`,
+        year: `${this.props.dates.to.date.getFullYear()}`
+      }
+    })
 
     return (
       <div className="gap details open">
