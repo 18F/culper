@@ -88,13 +88,13 @@ export default class Divorce extends React.Component {
 
   updateStatus (values) {
     this.update({
-      Status: values.value
+      Status: values
     })
   }
 
   updateDeceased (values) {
     this.update({
-      Deceased: values.value
+      Deceased: values
     })
   }
 

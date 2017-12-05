@@ -3,40 +3,52 @@ import LocationValidator from './location'
 import { validDateField, validPhoneNumber } from './helpers'
 
 export default class DivorceValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.birthdate = state.Birthdate
-    this.birthplace = state.BirthPlace
-    this.telephone = state.Telephone
-    this.recognized = state.Recognized
-    this.address = state.Address
-    this.dateDivorced = state.DateDivorced
-    this.status = state.Status
-    this.deceased = state.Deceased
-    this.deceasedAddress = state.DeceasedAddress
+  constructor (data = {}) {
+    this.name = data.Name || {}
+    this.birthdate = data.Birthdate || {}
+    this.birthplace = data.BirthPlace || {}
+    this.citizenship = data.Citizenship || {}
+    this.telephone = data.Telephone || {}
+    this.recognized = data.Recognized || {}
+    this.address = data.Address || {}
+    this.dateDivorced = data.DateDivorced || {}
+    this.status = data.Status || {}
+    this.deceased = data.Deceased || {}
+    this.deceasedAddress = data.DeceasedAddress || {}
   }
 
   validStatus () {
-    return ['Divorced', 'Widowed', 'Annulled'].includes(this.status)
+    const statusValue = this.status.value || ''
+    return ['Divorced', 'Widowed', 'Annulled'].includes(statusValue)
   }
 
   validDeceased () {
-    if (this.status === 'Widowed') {
+    const statusValue = this.status.value || ''
+    if (statusValue === 'Widowed') {
       return true
     }
-    if (!['Yes', 'No', 'DK'].includes(this.deceased)) {
+
+    const deceasedValue = this.deceased.value || ''
+    if (!['Yes', 'No', 'DK'].includes(deceasedValue)) {
       return false
     }
-    if (this.deceased === 'Yes') {
+    if (deceasedValue === 'Yes') {
       return new LocationValidator(this.deceasedAddress).isValid()
     }
+
     return true
+  }
+
+  validCitizenship () {
+    const countries = this.citizenship.value || []
+    return countries.length > 0
   }
 
   isValid () {
     return new NameValidator(this.name).isValid() &&
       validDateField(this.birthdate) &&
       new LocationValidator(this.birthplace).isValid() &&
+      this.validCitizenship() &&
       validPhoneNumber(this.telephone) &&
       validDateField(this.recognized) &&
       new LocationValidator(this.address).isValid() &&

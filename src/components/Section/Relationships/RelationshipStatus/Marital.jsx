@@ -141,7 +141,7 @@ export default class Marital extends SubsectionElement {
           <Accordion scrollTo="scrollToDivorce"
                      defaultState={this.props.defaultState}
                      scrollToBottom={this.props.scrollToBottom}
-                     {...(this.props.DivorcedList || {})}
+                     {...this.props.DivorcedList}
                      onUpdate={this.updateDivorcedList}
                      onError={this.handleError}
                      required={this.props.required}
@@ -166,7 +166,7 @@ export default class Marital extends SubsectionElement {
 Marital.defaultProps = {
   Status: {},
   CivilUnion: {},
-  DivorcedList: {},
+  DivorcedList: Accordion.defaultList,
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   section: 'relationships',
