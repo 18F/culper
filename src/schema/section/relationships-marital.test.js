@@ -58,6 +58,7 @@ describe('Schema for financial taxes', () => {
             BirthPlace: {
               country: null
             },
+            Citizenship: {},
             Telephone: {},
             Recognized: {},
             Address: {

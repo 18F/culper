@@ -6,13 +6,13 @@ describe('Divorce validation', function () {
     const tests = [
       {
         state: {
-          Status: 'Divorced'
+          Status: { value: 'Divorced' }
         },
         expected: true
       },
       {
         state: {
-          Status: 'nope'
+          Status: { value: 'nope' }
         },
         expected: false
       }
@@ -26,28 +26,28 @@ describe('Divorce validation', function () {
     const tests = [
       {
         state: {
-          Status: 'Widowed'
+          Status: { value: 'Widowed' }
         },
         expected: true
       },
       {
         state: {
-          Status: 'Divorced',
-          Deceased: 'No'
+          Status: { value: 'Divorced' },
+          Deceased: { value: 'No' }
         },
         expected: true
       },
       {
         state: {
-          Status: 'Divorced',
-          Deceased: 'Nope'
+          Status: { value: 'Divorced' },
+          Deceased: { value: 'Nope' }
         },
         expected: false
       },
       {
         state: {
-          Status: 'Divorced',
-          Deceased: 'Yes',
+          Status: { value: 'Divorced' },
+          Deceased: { value: 'Yes' },
           DeceasedAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',
@@ -69,7 +69,7 @@ describe('Divorce validation', function () {
     const tests = [
       {
         state: {
-          Status: 'Widowed',
+          Status: { value: 'Widowed' },
           Name: {
             first: 'Foo',
             firstInitialOnly: false,
@@ -98,6 +98,9 @@ describe('Divorce validation', function () {
             county: 'Arlington',
             state: 'VA',
             layout: Location.BIRTHPLACE
+          },
+          Citizenship: {
+            value: ['Germany']
           },
           Telephone: {
             noNumber: '',

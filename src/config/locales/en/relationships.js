@@ -384,6 +384,7 @@ export const relationships = {
         name: 'Provide this person\'s full name',
         address: 'Provide the location',
         birthdate: 'Provide this person\'s date of birth',
+        citizenship: 'Provide the country(ies) of citizenship',
         telephone: 'Provide this person\'s telephone number',
         birthplace: 'Provide this person\'s place of birth',
         dateDivorced: 'Provide the date divorced/dissolved, annulled or widowed',

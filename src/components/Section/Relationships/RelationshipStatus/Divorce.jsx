@@ -1,7 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../../config'
 import { Location, Field, DateControl, Show, RadioGroup, Radio,
-         Telephone, Name, NotApplicable } from '../../../Form'
+         Telephone, Name, NotApplicable, Country } from '../../../Form'
 
 export default class Divorce extends React.Component {
   constructor (props) {
@@ -10,6 +10,7 @@ export default class Divorce extends React.Component {
     this.updateName = this.updateName.bind(this)
     this.updateBirthdate = this.updateBirthdate.bind(this)
     this.updateBirthPlace = this.updateBirthPlace.bind(this)
+    this.updateCitizenship = this.updateCitizenship.bind(this)
     this.updateTelephone = this.updateTelephone.bind(this)
     this.updateRecognized = this.updateRecognized.bind(this)
     this.updateAddress = this.updateAddress.bind(this)
@@ -25,6 +26,7 @@ export default class Divorce extends React.Component {
       Name: this.props.Name,
       Birthdate: this.props.Birthdate,
       BirthPlace: this.props.BirthPlace,
+      Citizenship: this.props.Citizenship,
       Telephone: this.props.Telephone,
       Recognized: this.props.Recognized,
       Address: this.props.Address,
@@ -54,6 +56,12 @@ export default class Divorce extends React.Component {
     })
   }
 
+  updateCitizenship (values) {
+    this.update({
+      Citizenship: values
+    })
+  }
+
   updateTelephone (values) {
     this.update({
       Telephone: values
@@ -80,13 +88,13 @@ export default class Divorce extends React.Component {
 
   updateStatus (values) {
     this.update({
-      Status: values.value
+      Status: values
     })
   }
 
   updateDeceased (values) {
     this.update({
-      Deceased: values.value
+      Deceased: values
     })
   }
 
@@ -141,6 +149,18 @@ export default class Divorce extends React.Component {
                     onError={this.props.onError}
                     required={this.props.required}
                     />
+        </Field>
+
+        <Field title={i18n.t('relationships.civilUnion.divorce.heading.citizenship')}
+                scrollIntoView={this.props.scrollIntoView}>
+          <Country name="Citizenship"
+                   multiple={true}
+                   {...this.props.Citizenship}
+                   className="citizenship"
+                   onError={this.props.onError}
+                   onUpdate={this.updateCitizenship}
+                   required={this.props.required}
+                   />
         </Field>
 
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.telephone')}
