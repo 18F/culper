@@ -3,7 +3,6 @@ import * as form from '../form'
 export const submission = (data = {}) => {
   return {
     AdditionalComments: form.general('submission.additionalcomments', {
-      AdditionalComments: form.textarea((data.AdditionalComments || {}).AdditionalComments),
       Signature: form.signature((data.AdditionalComments || {}).Signature)
     }),
     General: form.general('submission.general', {

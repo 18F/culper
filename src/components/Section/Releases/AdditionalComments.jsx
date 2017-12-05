@@ -11,13 +11,11 @@ export default class AdditionalComments extends SubsectionElement {
 
     this.update = this.update.bind(this)
     this.updateSignature = this.updateSignature.bind(this)
-    this.updateAdditionalComments = this.updateAdditionalComments.bind(this)
   }
 
   update (queue) {
     this.props.onUpdate({
       Signature: this.props.Signature,
-      AdditionalComments: this.props.AdditionalComments,
       ...queue
     })
   }
@@ -26,21 +24,10 @@ export default class AdditionalComments extends SubsectionElement {
     this.update({ Signature: values })
   }
 
-  updateAdditionalComments (values) {
-    this.update({ AdditionalComments: values })
-  }
-
   render () {
     return (
       <div className="additional-comments">
-        <Field comments={true}
-               commentsName="AdditionalComments"
-               commentsValue={this.props.AdditionalComments}
-               onUpdate={this.updateAdditionalComments}
-               onError={this.handleError}>
-          { i18n.m('releases.additionalComments.contents') }
-        </Field>
-
+        { i18n.m('releases.additionalComments.contents') }
         { i18n.m('releases.additionalComments.certificationContents') }
         <Signature {...this.props.Signature}
                    LegalName={this.props.LegalName}
@@ -53,7 +40,6 @@ export default class AdditionalComments extends SubsectionElement {
 }
 
 AdditionalComments.defaultProps = {
-  AdditionalComments: {},
   Signature: {},
   LegalName: {},
   section: 'releases',
