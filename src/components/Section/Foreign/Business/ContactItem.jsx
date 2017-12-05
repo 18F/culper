@@ -194,6 +194,14 @@ export default class ContactItem extends ValidationElement {
 }
 
 ContactItem.defaultProps = {
+  Name: {},
+  Location: {},
+  Date: {},
+  Governments: {},
+  Establishment: {},
+  Representatives: {},
+  Purpose: {},
+  SubsequentContacts: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
