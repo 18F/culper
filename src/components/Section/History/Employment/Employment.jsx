@@ -76,21 +76,27 @@ export default class Employment extends SubsectionElement {
   }
 
   fillGap (dates) {
-    let items = [...this.props.value]
+    let items = [...this.props.List.items]
     items.push({
       uuid: newGuid(),
       open: true,
       Item: {
+        name: 'Item',
         Dates: {
+          name: 'Dates',
           receiveProps: true,
+          present: false,
           from: dates.from,
           to: dates.to
         }
       }
     })
 
-    this.props.onUpdate({
-      List: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort)
+    this.update({
+      List: {
+        items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+        branch: {}
+      }
     })
   }
 
