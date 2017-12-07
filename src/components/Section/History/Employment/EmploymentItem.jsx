@@ -375,13 +375,6 @@ export default class EmploymentItem extends ValidationElement {
                       />
               </Field>
 
-              <Field title={i18n.t('reference.heading.correspondence')}
-                     titleSize="h2"
-                     optional={true}
-                     className="no-margin-bottom">
-                {i18n.m('reference.para.correspondence')}
-              </Field>
-
               <Field title={i18n.t('reference.heading.phone.default')}
                      className="override-required"
                      help={'reference.help.phone'}

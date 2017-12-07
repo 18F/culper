@@ -5,7 +5,7 @@ import validate, { EducationItemValidator } from '../../../../validators'
 import SubsectionElement from '../../SubsectionElement'
 import { Accordion } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
-import { EducationCustomSummary, EducationCaption } from '../summaries'
+import { EducationCustomSummary } from '../summaries'
 import EducationItem from './EducationItem'
 
 const byline = (item, index, initial, translation, required, validator) => {
@@ -45,7 +45,7 @@ export default class Education extends SubsectionElement {
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
                    onError={this.handleError}
-                   caption={EducationCaption}
+                   caption={this.props.caption}
                    byline={this.customEducationByline}
                    customSummary={EducationCustomSummary}
                    description={i18n.t('history.education.collection.school.summary.title')}
@@ -74,6 +74,7 @@ Education.defaultProps = {
   sort: null,
   totalYears: 10,
   overrideInitial: (initial) => { return initial },
+  caption: null,
   onUpdate: () => {},
   onError: (value, arr) => { return arr },
   section: 'history',
