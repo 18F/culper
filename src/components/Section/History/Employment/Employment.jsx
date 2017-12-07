@@ -7,7 +7,7 @@ import { Accordion, Branch } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { newGuid } from '../../../Form/ValidationElement'
 import { today, daysAgo } from '../dateranges'
-import { InjectGaps, EmploymentCustomSummary, EmploymentCaption } from '../summaries'
+import { InjectGaps, EmploymentCustomSummary } from '../summaries'
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
 
@@ -132,7 +132,7 @@ export default class Employment extends SubsectionElement {
                    realtime={this.props.realtime}
                    onUpdate={this.updateList}
                    onError={this.handleError}
-                   caption={EmploymentCaption}
+                   caption={this.props.caption}
                    byline={this.customEmploymentByline}
                    customSummary={EmploymentCustomSummary}
                    customDetails={this.customEmploymentDetails}
@@ -174,6 +174,7 @@ Employment.defaultProps = {
   sort: null,
   totalYears: 10,
   overrideInitial: (initial) => { return initial },
+  caption: null,
   onUpdate: () => {},
   onError: (value, arr) => { return arr },
   section: 'history',
