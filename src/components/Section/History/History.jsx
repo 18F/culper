@@ -12,7 +12,7 @@ import SummaryProgress from './SummaryProgress'
 import SummaryCounter from './SummaryCounter'
 import Federal from './Federal'
 import { utc, today, daysAgo, daysBetween, gaps } from './dateranges'
-import { InjectGaps } from './summaries'
+import { InjectGaps, ResidenceCaption, EmploymentCaption, EducationCaption } from './summaries'
 import Residence from './Residence'
 import Employment from './Employment'
 import Education from './Education'
@@ -342,7 +342,7 @@ class History extends SectionElement {
                        nextLabel={i18n.t('citizenship.destination.intro')}>
             { this.residenceSummaryProgress() }
             { this.employmentSummaryProgress() }
-            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+            <Show when={(this.props.Education.HasAttended || {}).value === 'Yes' || (this.props.Education.HasDegree10 || {}).value === 'Yes'}>
               { this.educationSummaryProgress() }
             </Show>
 
@@ -352,6 +352,7 @@ class History extends SectionElement {
                        sort={sort}
                        totalYears={this.totalYears()}
                        overrideInitial={this.overrideInitial}
+                       caption={ResidenceCaption}
                        onUpdate={this.updateResidence}
                        onError={this.handleError}
                        addressBooks={this.props.AddressBooks}
@@ -366,6 +367,7 @@ class History extends SectionElement {
                         sort={sort}
                         totalYears={this.totalYears()}
                         overrideInitial={this.overrideInitial}
+                        caption={EmploymentCaption}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
                         addressBooks={this.props.AddressBooks}
@@ -374,13 +376,14 @@ class History extends SectionElement {
                         required={true}
                         />
 
-            <Show when={this.props.Education.HasAttended === 'Yes' || this.props.Education.HasDegree10 === 'Yes'}>
+            <Show when={(this.props.Education.HasAttended || {}).value === 'Yes' || (this.props.Education.HasDegree10 || {}).value === 'Yes'}>
               <Education {...this.props.Education}
                          defaultState={false}
                          realtime={true}
                          sort={sort}
                          totalYears={this.totalYears()}
                          overrideInitial={this.overrideInitial}
+                         caption={EducationCaption}
                          onUpdate={this.updateEducation}
                          onError={this.handleError}
                          dispatch={this.props.dispatch}

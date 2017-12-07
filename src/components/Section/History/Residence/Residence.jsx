@@ -7,7 +7,7 @@ import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { today, daysAgo } from '../dateranges'
-import { InjectGaps, ResidenceCustomSummary, ResidenceCaption } from '../summaries'
+import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
@@ -95,7 +95,7 @@ export default class Residence extends SubsectionElement {
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
                    onError={this.handleError}
-                   caption={ResidenceCaption}
+                   caption={this.props.caption}
                    byline={this.customResidenceByline}
                    customSummary={ResidenceCustomSummary}
                    customDetails={this.customResidenceDetails}
@@ -124,6 +124,7 @@ Residence.defaultProps = {
   sort: null,
   totalYears: 10,
   overrideInitial: (initial) => { return initial },
+  caption: null,
   onUpdate: () => {},
   onError: (value, arr) => { return arr },
   section: 'history',
