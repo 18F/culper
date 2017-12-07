@@ -452,7 +452,7 @@ export default class Accordion extends ValidationElement {
    */
   caption () {
     return this.props.caption
-      ? <div className="caption">{this.props.caption()}</div>
+      ? <div className="caption">{this.props.caption(this.props)}</div>
       : null
   }
 
