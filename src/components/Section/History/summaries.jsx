@@ -77,6 +77,9 @@ const PersonSummary = (item, errors) => {
   }
 
   const name = NameSummary(item.ReferenceName, '')
+  if (!name) {
+    return null
+  }
 
   return (
     <span>

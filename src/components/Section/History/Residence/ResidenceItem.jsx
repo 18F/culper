@@ -159,8 +159,23 @@ export default class ResidenceItem extends ValidationElement {
   }
 
   updateDates (values) {
+    const dates = this.props.Dates || {}
+    const from = dates.from
+    const to = dates.to
+    const zeroReference = !withinThreeYears(from, to)
     this.update({
-      Dates: values
+      Dates: values,
+      ReferenceName: zeroReference ? {} : this.props.ReferenceName,
+      ReferenceLastContact: zeroReference ? {} : this.props.ReferenceLastContact,
+      ReferenceRelationshipComments: zeroReference ? {} : this.props.ReferenceRelationshipComments,
+      ReferenceRelationship: zeroReference ? {} : this.props.ReferenceRelationship,
+      ReferenceRelationshipOther: zeroReference ? {} : this.props.ReferenceRelationshipOther,
+      ReferencePhoneEvening: zeroReference ? {} : this.props.ReferencePhoneEvening,
+      ReferencePhoneDay: zeroReference ? {} : this.props.ReferencePhoneDay,
+      ReferencePhoneMobile: zeroReference ? {} : this.props.ReferencePhoneMobile,
+      ReferenceEmailNotApplicable: zeroReference ? {} : this.props.ReferenceEmailNotApplicable,
+      ReferenceEmail: zeroReference ? {} : this.props.ReferenceEmail,
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
     })
   }
 

@@ -56,8 +56,13 @@ export default class EmploymentItem extends ValidationElement {
   }
 
   updateEmploymentActivity (values) {
+    const activity = (this.props.EmploymentActivity || {}).value
+    const zeroReference = activity && !['SelfEmployment', 'Unemployment'].includes(activity)
     this.update({
-      EmploymentActivity: values
+      EmploymentActivity: values,
+      ReferenceName: zeroReference ? {} : this.props.ReferenceName,
+      ReferencePhone: zeroReference ? {} : this.props.ReferencePhone,
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
     })
   }
 
