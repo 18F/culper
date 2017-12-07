@@ -159,4 +159,29 @@ describe('The SSN component', () => {
     component.find('.middle input').simulate('keydown', { keyCode: 8, target: { value: '' } })
     expect(tabbed).toBe(true)
   })
+
+  it('tests for invalid values', () => {
+    const tests = [
+      // Legacy system checks
+      { valid: false, props: { first: '123', middle: '45', last: '6789' } },
+      { valid: false, props: { first: '999', middle: '99', last: '9999' } },
+
+      // Checks using randomization
+      { valid: false, props: { first: '000', middle: '00', last: '0000' } },
+      { valid: false, props: { first: '666', middle: '00', last: '0000' } },
+      { valid: false, props: { first: '900', middle: '00', last: '0000' } },
+      { valid: false, props: { first: '950', middle: '00', last: '0000' } },
+      { valid: false, props: { first: '999', middle: '00', last: '0000' } },
+      { valid: true, props: { first: '123',  middle: '99', last: '9999' } },
+      { valid: true, props: { first: '555',  middle: '55', last: '5555' } },
+
+      // Empty value(s) should not diplay an error
+      { valid: true, props: { first: '', second: '', third: '' } },
+    ]
+
+    const fn = SSN.errors.find(x => x.code === 'invalid').func
+    tests.forEach((t) => {
+      expect(fn(null, t.props)).toBe(t.valid)
+    })
+  })
 })
