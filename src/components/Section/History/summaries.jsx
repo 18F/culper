@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { gaps, gaps2 } from './dateranges'
+import { gaps } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
@@ -282,7 +282,7 @@ export const InjectGaps = (list = [], start) => {
             to: new Date(item.Item.Dates.to.date)
           }
         })
-  let holes = gaps2(ranges, start)
+  let holes = gaps(ranges, start)
 
   const equalDates = (first, second) => {
     if (!first || !second) {
@@ -311,8 +311,18 @@ export const InjectGaps = (list = [], start) => {
           open: false,
           Item: {
             Dates: {
-              from: { date: g.from },
-              to: { date: g.to }
+              from: {
+                date: g.from,
+                month: `${g.from.getMonth()+1}`,
+                day: `${g.from.getDate()}`,
+                year: `${g.from.getFullYear()}`
+              },
+              to: {
+                date: g.to,
+                month: `${g.to.getMonth()+1}`,
+                day: `${g.to.getDate()}`,
+                year: `${g.to.getFullYear()}`
+              }
             }
           }
         })
@@ -324,8 +334,18 @@ export const InjectGaps = (list = [], start) => {
           open: false,
           Item: {
             Dates: {
-              from: { date: g.from },
-              to: { date: g.to }
+              from: {
+                date: g.from,
+                month: `${g.from.getMonth()+1}`,
+                day: `${g.from.getDate()}`,
+                year: `${g.from.getFullYear()}`
+              },
+              to: {
+                date: g.to,
+                month: `${g.to.getMonth()+1}`,
+                day: `${g.to.getDate()}`,
+                year: `${g.to.getFullYear()}`
+              }
             }
           }
         })

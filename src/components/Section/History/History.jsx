@@ -311,31 +311,6 @@ class History extends SectionElement {
     return holes > 0
   }
 
-  customSummary (item, index, initial, callback, toggle, openText, remove, byline) {
-    if (item.type === 'Gap') {
-      return null
-    }
-
-    return callback()
-  }
-
-  fillGap (field, dates) {
-    let items = [...this.props.History[field]]
-    items.push({
-      uuid: super.guid(),
-      open: true,
-      Item: {
-        Dates: {
-          receiveProps: true,
-          from: dates.from,
-          to: dates.to
-        }
-      }
-    })
-
-    this.handleUpdate(field, InjectGaps(items, daysAgo(365 * this.totalYears())).sort(sort))
-  }
-
   overrideInitial (initial) {
     return this.props.subsection === 'review' ? false : initial
   }

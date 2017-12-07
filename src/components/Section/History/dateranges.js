@@ -39,18 +39,10 @@ export const decimalAdjust = (type, value, exp) => {
  *   }
  */
 export const rangeSorter = (a, b) => {
-  if (a.from.date < b.from.date) {
-    return -1
+  if ((a.from || {}).date || (b.from || {}).date) {
+    return rangeSorter({ from: a.from.date }, { from: b.from.date })
   }
 
-  if (a.from.date > b.from.date) {
-    return 1
-  }
-
-  return 0
-}
-
-export const rangeSorter2 = (a, b) => {
   if (a.from < b.from) {
     return -1
   }
@@ -181,8 +173,8 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
   const fullStop = today
   const length = ranges.length - 1
 
-  // Set the day to the last of the month
-  start = endOfMonth(start)
+  // // Set the day to the last of the month
+  // start = endOfMonth(start)
 
   ranges.sort(rangeSorter).forEach((range, i) => {
     if (!range.from || !range.to) {
@@ -190,83 +182,71 @@ export const gaps = (ranges = [], start = ten, buffer = 30) => {
     }
 
     // Finds the gaps from the past to the present
-    const stop = new Date(range.from.date)
+    // const stop = new Date(range.from.date)
+    const stop = new Date(range.from)
     if (stop > start && daysBetween(start, stop) > buffer) {
-      holes.push({
-        from: {
-          date: start
-        },
-        to: {
-          date: range.from.date
-        }
-      })
+      holes.push({ from: start, to: range.from })
     }
 
     // Set the next start position
-    start = endOfMonth(range.to.date)
+    // start = endOfMonth(range.to.date)
+    // start = endOfMonth(range.to)
+    start = range.to
 
     // If this is the last date range check for gaps in the future
     if (i === length && start < fullStop && daysBetween(start, fullStop) > buffer) {
-      holes.push({
-        from: {
-          date: range.to.date
-        },
-        to: {
-          date: fullStop
-        }
-      })
+      holes.push({ from: range.to, to: fullStop })
     }
   })
 
   return holes
 }
 
-export const gaps2 = (ranges = [], start = ten, buffer = 30) => {
-  // Start off with a gap covering the entire span of available dates
-  let gaps = [{ from: start, to: today }]
+// export const gaps2 = (ranges = [], start = ten, buffer = 30) => {
+//   // Start off with a gap covering the entire span of available dates
+//   let gaps = [{ from: start, to: today }]
 
-  for (const range of ranges.sort(rangeSorter2)) {
-    for (let i = gaps.length - 1; i > -1; i--) {
-      const gap = gaps[i]
+//   const sorted = ranges.sort(rangeSorter)
+//   for (const range of sorted) {
+//     for (let i = gaps.length - 1; i > -1; i--) {
+//       const gap = gaps[i]
 
-      if (range.from <= gap.from && range.to >= gap.to) {
-        // The range cover the gap so we must remove it
-        gaps.splice(i, 1)
-        continue
-      }
+//       if (range.from <= gap.from && range.to >= gap.to) {
+//         // The range cover the gap so we must remove it
+//         gaps.splice(i, 1)
+//         continue
+//       }
 
-      if (range.from > gap.from) {
-        // This is effectively inside of the gap based on the `from`
+//       if (range.from > gap.from) {
+//         // This is effectively inside of the gap based on the `from`
+//         if (range.to <= gap.to) {
+//           // We are completely inside of the gap.
+//           // This means we now have to split the gap in to two parts
+//           gaps.push({ from: range.to, to: gap.to })
+//           gaps[i].to = range.from
+//         } else {
+//           // We now have to shrink the gap
+//           gaps[i].to = range.from
+//         }
+//       }
 
-        if (range.to <= gap.to) {
-          // We are completely inside of the gap.
-          // This means we now have to split the gap in to two parts
-          gaps.push({ from: range.to, to: gap.to })
-          gaps[i].to = range.from
-        } else {
-          // We now have to shrink the gap
-          gaps[i].to = range.from
-        }
-      }
+//       if (range.to < gap.to) {
+//         // This is inside the gap based on the `to`
+//         if (range.from >= gap.from) {
+//           // We are completely inside of the gap.
+//           // This means we now have to split the gap in to two parts
+//           gaps[i].from = range.to
+//           gaps.push({ from: range.to, to: gap.to })
+//         } else {
+//           // We now have to shrink the gap
+//           gaps[i].from = range.to
+//         }
+//       }
+//     }
+//   }
 
-      if (range.to < gap.to) {
-        // This is inside the gap based on the `to`
-
-        if (range.from >= gap.from) {
-          // We are completely inside of the gap.
-          // This means we now have to split the gap in to two parts
-          gaps[i].from = range.to
-          gaps.push({ from: range.to, to: gap.to })
-        } else {
-          // We now have to shrink the gap
-          gaps[i].from = range.to
-        }
-      }
-    }
-  }
-
-  return gaps.filter(gap => daysBetween(gap.from, gap.to) > buffer)
-}
+//   return gaps.filter(gap => daysBetween(gap.from, gap.to) > buffer)
+// }
 
 /**
  * Common dates used in calculations
