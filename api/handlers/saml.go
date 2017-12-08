@@ -72,7 +72,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	authnResponseXML, _ := response.String()
 	log.Println("SAML Authentication Response:", authnResponseXML)
 	if err != nil {
-		http.Error(w, "SAML response parse: "+err.Error(), http.StatusBadRequest)
+		log.Println("[ERROR] SAML response parse: ", err.Error())
 		redirectAccessDenied(w, r)
 		return
 	}
@@ -80,25 +80,15 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	sp := configureSAML()
 	err = response.Validate(&sp)
 	if err != nil {
-		errorMessage := fmt.Sprintf("SAML response validation: %s\n\n%s\n", err.Error(), authnResponseXML)
-		http.Error(w, errorMessage, http.StatusBadRequest)
-		// http.Error(w, "SAML response validation: "+err.Error(), http.StatusBadRequest)
+		errorMessage := fmt.Sprintf("%s\n\n%s\n", err.Error(), authnResponseXML)
+		log.Println("[ERROR] SAML response validation: ", errorMessage)
 		redirectAccessDenied(w, r)
 		return
 	}
 
-	// samlID := response.Assertion.Subject.NameID.Value
-	// samlID := response.GetAttribute("uid")
-	// if samlID == "" {
-	// 	http.Error(w, "SAML attribute identifier uid missing", http.StatusBadRequest)
-	// 	redirectAccessDenied(w, r)
-	// 	return
-	// }
-
 	username := response.Assertion.Subject.NameID.Value
-	// username := response.GetAttribute("username")
 	if username == "" {
-		http.Error(w, "SAML attribute identifier username missing", http.StatusBadRequest)
+		log.Println("[ERROR] SAML attribute identifier username missing")
 		redirectAccessDenied(w, r)
 		return
 	}
@@ -109,7 +99,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	account.WithContext(db.NewDB())
 	if err := account.Get(); err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Println("[ERROR] Retrieving database context: ", err.Error())
 		redirectAccessDenied(w, r)
 		return
 	}
@@ -117,7 +107,7 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	// Generate jwt token
 	signedToken, _, err := account.NewJwtToken(model.SingleSignOnAudience)
 	if err != nil {
-		http.Error(w, err.Error(), http.StatusInternalServerError)
+		log.Println("[ERROR] Signing token: ", err.Error())
 		redirectAccessDenied(w, r)
 		return
 	}
