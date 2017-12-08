@@ -120,13 +120,36 @@ export const EmploymentCaption = (props) => {
   )
 }
 
+const employmentTitle = (activity, item, unk) => {
+  switch (activity) {
+  case 'ActiveMilitary':
+  case 'NationalGuard':
+  case 'USPHS':
+    return item.Title && item.Title.value
+      ? item.Title.value
+      : unk
+  case 'OtherFederal':
+  case 'StateGovernment':
+  case 'FederalContractor':
+  case 'NonGovernment':
+  case 'SelfEmployment':
+  case 'Other':
+    return item.Employment && item.Employment.value
+      ? item.Employment.value
+      : unk
+  case 'Unemployment':
+    return i18n.t('history.employment.default.activity.type.unemployment')
+  default:
+    return unk
+  }
+}
+
 /**
  * Renders a formatted summary information for an employment row
  */
 export const EmploymentSummary = (item, errors, open) => {
-  const employer = item.Employment && item.Employment.value
-        ? item.Employment.value
-        : i18n.m('history.employment.default.collection.summary.unknown')
+  const activity = (item.EmploymentActivity || {}).value
+  const employer = employmentTitle(activity, item, i18n.m('history.employment.default.collection.summary.unknown'))
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
