@@ -16,10 +16,11 @@ const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
   case required && !item.open && !validator(item.Item):
   case !item.open && !initial && item.Item && !validator(item.Item):
-    return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
-            <div className="incomplete">{i18n.m(translation)}</div>
-            </div>
-           )
+    return (
+      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="incomplete">{i18n.m(translation)}</div>
+      </div>
+    )
   default:
     return null
   }
@@ -59,18 +60,12 @@ export default class Employment extends SubsectionElement {
   }
 
   updateEmploymentRecord (values) {
-    let list = this.props.List || {}
     if (values.value === 'Yes') {
-      list.items = [
-        ...(list.items || []),
-        {}
-      ]
-      list.branch = {}
-      values = {}
+      this.refs.employment.add()
+      return
     }
 
     this.update({
-      List: list,
       EmploymentRecord: values
     })
   }
@@ -127,6 +122,7 @@ export default class Employment extends SubsectionElement {
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
                    {...this.props.List}
+                   ref="employment"
                    sort={this.props.sort}
                    inject={this.inject}
                    realtime={this.props.realtime}
