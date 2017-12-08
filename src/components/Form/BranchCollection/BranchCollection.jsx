@@ -25,10 +25,11 @@ export default class BranchCollection extends React.Component {
         }
         break
       default:
-        if (index + 1 < this.props.items.length && this.props.removable) {
+        const isLastItem = index + 1 >= this.props.items.length
+        if (!isLastItem && this.props.removable) {
           // If it's not the last item being marked as No, then remove it. This addresses the issue
           // where the user must click No twice on the last item.
-          items = items.splice(index, 1)
+          items.splice(index, 1)
         } else if (index === 0 && items.length === 1) {
           // If this is the first and last item, and "no" has been selected, then clear out
           // any persisted data **except** the branch value.
@@ -38,6 +39,9 @@ export default class BranchCollection extends React.Component {
             },
             index: item.index
           }
+        } else {
+          // If this is the last item then we still need to remove it.
+          items.splice(index, 1)
         }
     }
 
