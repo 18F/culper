@@ -8,7 +8,7 @@ export const foreign = {
   },
   review: {
     para: 'View all the sections associated with foreign activities at once',
-    comments: 'Would you like to add a comment about any of your responses relating to your foreign activities?'
+    comments: 'Add a comment to clarify any of your responses in the foreign activities section'
   },
   destination: {
     intro: 'Foreign intro',
