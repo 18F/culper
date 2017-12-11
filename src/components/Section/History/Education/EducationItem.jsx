@@ -57,8 +57,18 @@ export default class EducationItem extends ValidationElement {
   }
 
   updateDates (values) {
+    const dates = this.props.Dates || {}
+    const from = dates.from
+    const to = dates.to
+    const zeroReference = !withinThreeYears(from, to)
     this.update({
-      Dates: values
+      Dates: values,
+      ReferenceName: zeroReference ? {} : this.props.ReferenceName,
+      ReferenceNameNotApplicable: zeroReference ? {} : this.props.ReferenceNameNotApplicable,
+      ReferencePhone: zeroReference ? {} : this.props.ReferencePhone,
+      ReferenceEmail: zeroReference ? {} : this.props.ReferenceEmail,
+      ReferenceEmailNotApplicable: zeroReference ? {} : this.props.ReferenceEmailNotApplicable,
+      ReferenceAddress: zeroReference ? {} : this.props.ReferenceAddress
     })
   }
 

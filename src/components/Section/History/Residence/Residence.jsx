@@ -7,7 +7,7 @@ import { Accordion } from '../../../Form'
 import { newGuid } from '../../../Form/ValidationElement'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { today, daysAgo } from '../dateranges'
-import { InjectGaps, ResidenceCustomSummary, ResidenceCaption } from '../summaries'
+import { InjectGaps, ResidenceCustomSummary } from '../summaries'
 import ResidenceItem from './ResidenceItem'
 import { Gap } from '../Gap'
 
@@ -18,8 +18,7 @@ const byline = (item, index, initial, translation, required, validator) => {
     case !item.open && !initial && item.Item && !validator(item.Item):
       return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
         <div className="incomplete">{i18n.m(translation)}</div>
-      </div>
-      )
+      </div>)
     default:
       return null
   }
@@ -64,7 +63,10 @@ export default class Residence extends SubsectionElement {
       uuid: newGuid(),
       open: true,
       Item: {
+        name: 'Item',
         Dates: {
+          name: 'Dates',
+          present: false,
           receiveProps: true,
           from: dates.from,
           to: dates.to
@@ -73,10 +75,8 @@ export default class Residence extends SubsectionElement {
     })
 
     this.props.onUpdate({
-      List: {
-        items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
-        branch: ''
-      }
+      items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+      branch: {}
     })
   }
 
@@ -95,7 +95,7 @@ export default class Residence extends SubsectionElement {
                    realtime={this.props.realtime}
                    onUpdate={this.props.onUpdate}
                    onError={this.handleError}
-                   caption={ResidenceCaption}
+                   caption={this.props.caption}
                    byline={this.customResidenceByline}
                    customSummary={ResidenceCustomSummary}
                    customDetails={this.customResidenceDetails}
@@ -124,6 +124,7 @@ Residence.defaultProps = {
   sort: null,
   totalYears: 10,
   overrideInitial: (initial) => { return initial },
+  caption: null,
   onUpdate: () => {},
   onError: (value, arr) => { return arr },
   section: 'history',

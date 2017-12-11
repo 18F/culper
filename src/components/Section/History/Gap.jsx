@@ -12,7 +12,6 @@ export class Gap extends React.Component {
     }
 
     const dates = DateSummary(this.props.dates)
-
     return (
       <div className="gap details open">
         <div className="message error">

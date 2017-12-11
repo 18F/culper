@@ -8,7 +8,7 @@ export const relationships = {
   },
   review: {
     para: 'View all the sections associated with relationships at once',
-    comments: 'Would you like to add a comment about any of your responses relating to your relationships?'
+    comments: 'Add a comment to clarify any of your responses in the relationships section'
   },
   destination: {
     intro: 'Relationships intro',

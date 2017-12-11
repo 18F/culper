@@ -1,6 +1,6 @@
 import React from 'react'
 import { i18n } from '../../../config'
-import { gaps, gaps2 } from './dateranges'
+import { gaps } from './dateranges'
 import { Svg } from '../../Form'
 import { newGuid } from '../../Form/ValidationElement'
 import { AddressSummary, DateSummary, NameSummary } from '../../Summary'
@@ -77,6 +77,9 @@ const PersonSummary = (item, errors) => {
   }
 
   const name = NameSummary(item.ReferenceName, '')
+  if (!name) {
+    return null
+  }
 
   return (
     <span>
@@ -117,13 +120,36 @@ export const EmploymentCaption = (props) => {
   )
 }
 
+const employmentTitle = (activity, item, unk) => {
+  switch (activity) {
+  case 'ActiveMilitary':
+  case 'NationalGuard':
+  case 'USPHS':
+    return item.Title && item.Title.value
+      ? item.Title.value
+      : unk
+  case 'OtherFederal':
+  case 'StateGovernment':
+  case 'FederalContractor':
+  case 'NonGovernment':
+  case 'SelfEmployment':
+  case 'Other':
+    return item.Employment && item.Employment.value
+      ? item.Employment.value
+      : unk
+  case 'Unemployment':
+    return i18n.t('history.employment.default.activity.type.unemployment')
+  default:
+    return unk
+  }
+}
+
 /**
  * Renders a formatted summary information for an employment row
  */
 export const EmploymentSummary = (item, errors, open) => {
-  const employer = item.Employment && item.Employment.value
-        ? item.Employment.value
-        : i18n.m('history.employment.default.collection.summary.unknown')
+  const activity = (item.EmploymentActivity || {}).value
+  const employer = employmentTitle(activity, item, i18n.m('history.employment.default.collection.summary.unknown'))
   const dates = DateSummary(item.Dates, i18n.t('history.employment.default.noDate.label'))
   const svg = errors && !open
         ? <Svg src="/img/exclamation-point.svg" className="incomplete" />
@@ -282,7 +308,7 @@ export const InjectGaps = (list = [], start) => {
             to: new Date(item.Item.Dates.to.date)
           }
         })
-  let holes = gaps2(ranges, start)
+  let holes = gaps(ranges, start)
 
   const equalDates = (first, second) => {
     if (!first || !second) {
@@ -311,8 +337,18 @@ export const InjectGaps = (list = [], start) => {
           open: false,
           Item: {
             Dates: {
-              from: { date: g.from },
-              to: { date: g.to }
+              from: {
+                date: g.from,
+                month: `${g.from.getMonth()+1}`,
+                day: `${g.from.getDate()}`,
+                year: `${g.from.getFullYear()}`
+              },
+              to: {
+                date: g.to,
+                month: `${g.to.getMonth()+1}`,
+                day: `${g.to.getDate()}`,
+                year: `${g.to.getFullYear()}`
+              }
             }
           }
         })
@@ -324,8 +360,18 @@ export const InjectGaps = (list = [], start) => {
           open: false,
           Item: {
             Dates: {
-              from: { date: g.from },
-              to: { date: g.to }
+              from: {
+                date: g.from,
+                month: `${g.from.getMonth()+1}`,
+                day: `${g.from.getDate()}`,
+                year: `${g.from.getFullYear()}`
+              },
+              to: {
+                date: g.to,
+                month: `${g.to.getMonth()+1}`,
+                day: `${g.to.getDate()}`,
+                year: `${g.to.getFullYear()}`
+              }
             }
           }
         })

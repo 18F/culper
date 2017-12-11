@@ -7,7 +7,7 @@ import { Accordion, Branch } from '../../../Form'
 import { openState } from '../../../Form/Accordion/Accordion'
 import { newGuid } from '../../../Form/ValidationElement'
 import { today, daysAgo } from '../dateranges'
-import { InjectGaps, EmploymentCustomSummary, EmploymentCaption } from '../summaries'
+import { InjectGaps, EmploymentCustomSummary } from '../summaries'
 import EmploymentItem from './EmploymentItem'
 import { Gap } from '../Gap'
 
@@ -16,10 +16,11 @@ const byline = (item, index, initial, translation, required, validator) => {
   switch (true) {
   case required && !item.open && !validator(item.Item):
   case !item.open && !initial && item.Item && !validator(item.Item):
-    return (<div className={`byline ${openState(item, initial)} fade in`.trim()}>
-            <div className="incomplete">{i18n.m(translation)}</div>
-            </div>
-           )
+    return (
+      <div className={`byline ${openState(item, initial)} fade in`.trim()}>
+        <div className="incomplete">{i18n.m(translation)}</div>
+      </div>
+    )
   default:
     return null
   }
@@ -59,38 +60,38 @@ export default class Employment extends SubsectionElement {
   }
 
   updateEmploymentRecord (values) {
-    let list = this.props.List || {}
     if (values.value === 'Yes') {
-      list.items = [
-        ...(list.items || []),
-        {}
-      ]
-      list.branch = {}
-      values = {}
+      this.refs.employment.add()
+      return
     }
 
     this.update({
-      List: list,
       EmploymentRecord: values
     })
   }
 
   fillGap (dates) {
-    let items = [...this.props.value]
+    let items = [...this.props.List.items]
     items.push({
       uuid: newGuid(),
       open: true,
       Item: {
+        name: 'Item',
         Dates: {
+          name: 'Dates',
           receiveProps: true,
+          present: false,
           from: dates.from,
           to: dates.to
         }
       }
     })
 
-    this.props.onUpdate({
-      List: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort)
+    this.update({
+      List: {
+        items: InjectGaps(items, daysAgo(365 * this.props.totalYears)).sort(this.sort),
+        branch: {}
+      }
     })
   }
 
@@ -121,12 +122,13 @@ export default class Employment extends SubsectionElement {
         <Accordion scrollToTop={this.props.scrollToTop}
                    defaultState={this.props.defaultState}
                    {...this.props.List}
+                   ref="employment"
                    sort={this.props.sort}
                    inject={this.inject}
                    realtime={this.props.realtime}
                    onUpdate={this.updateList}
                    onError={this.handleError}
-                   caption={EmploymentCaption}
+                   caption={this.props.caption}
                    byline={this.customEmploymentByline}
                    customSummary={EmploymentCustomSummary}
                    customDetails={this.customEmploymentDetails}
@@ -168,6 +170,7 @@ Employment.defaultProps = {
   sort: null,
   totalYears: 10,
   overrideInitial: (initial) => { return initial },
+  caption: null,
   onUpdate: () => {},
   onError: (value, arr) => { return arr },
   section: 'history',

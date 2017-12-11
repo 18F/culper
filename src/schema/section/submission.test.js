@@ -5,7 +5,6 @@ describe('Schema for financial taxes', () => {
   it('can wrap in schema', () => {
     const data = {
       AdditionalComments: {
-        AdditionalComments: {},
         Signature: {
           Name: {},
           Date: {}

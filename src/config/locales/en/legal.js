@@ -8,7 +8,7 @@ export const legal = {
   },
   review: {
     para: 'View all the sections associated with investigative & criminal history at once',
-    comments: 'Would you like to add a comment about any of your responses relating to your investigative and criminal history?'
+    comments: 'Add a comment to clarify any of your responses in the investigative and criminal history section'
   },
   destination: {
     intro: 'Investigative and criminal history intro',

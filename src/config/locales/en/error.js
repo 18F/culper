@@ -106,6 +106,10 @@ export const error = {
     required: {
       title: 'There is a problem with this field',
       message: 'This field is required'
+    },
+    invalid: {
+      title: 'Invalid social security number',
+      message: 'The social security number is considered invalid.'
     }
   },
   date: {

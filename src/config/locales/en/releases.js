@@ -25,7 +25,6 @@ export const releases = {
   },
   additionalComments: {
     contents: [
-      '## Additional Comments',
       'After completing this form and any attachments, you should review your answers to all questions to make sure the form is complete and accurate, and then sign and date the following certification and the attached release(s).'
     ],
     certificationContents: [
