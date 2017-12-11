@@ -33,3 +33,5 @@ import:
 - package: github.com/kardianos/osext
 - package: github.com/satori/go.uuid
   version: v1.1.0
+- package: github.com/sirupsen/logrus
+  version: ^1.0.4

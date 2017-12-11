@@ -6,7 +6,6 @@ import (
 	"encoding/base32"
 	"encoding/base64"
 	"errors"
-	"log"
 	"net/url"
 	"os"
 	"strconv"
@@ -18,6 +17,7 @@ import (
 	"github.com/keighl/mandrill"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
+	log "github.com/sirupsen/logrus"
 	qr "github.com/skip2/go-qrcode"
 )
 
@@ -77,7 +77,7 @@ func Authenticate(token, secret string) (ok bool, err error) {
 		i, e := strconv.Atoi(os.Getenv("WINDOW_SIZE"))
 		if e == nil {
 			size = i
-			log.Println("Setting window size of", i)
+			log.Debug("Setting window size of", i)
 		}
 	}
 

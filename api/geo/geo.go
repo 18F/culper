@@ -2,9 +2,10 @@ package geo
 
 import (
 	"errors"
-	"log"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
+	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -19,11 +20,10 @@ var (
 func init() {
 	uspsUserID := cf.UserService("usps-api", "api_key")
 	if uspsUserID == "" {
-		log.Print("WARNING: USPS API Key has not been set")
+		log.Warn(logmsg.USPSMissingKey)
 	}
 
 	Geocode = NewUSPSGeocoder(uspsUserID)
-	//Geocode = NewGoogleGeocoder(gmapAPIKey)
 }
 
 // Geocoder is an interface for geocoding implementations

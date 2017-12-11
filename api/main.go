@@ -2,14 +2,14 @@ package main
 
 import (
 	"flag"
-	"fmt"
-	"log"
 	"net/http"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/handlers"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 	// middleware "github.com/18F/e-QIP-prototype/api/middleware"
 )
 
@@ -21,7 +21,7 @@ func main() {
 	flag.Parse()
 	if !*flagSkipMigration {
 		if err := db.MigrateUp("db", "environment", ""); err != nil {
-			log.Println("Failed to migrate database:", err)
+			log.WithError(err).Warn(logmsg.WarnFailedMigration)
 		}
 	}
 
@@ -32,11 +32,16 @@ func main() {
 	r.HandleFunc("/refresh", handlers.JwtTokenRefresh).Methods("POST")
 
 	// Two-factor authentication
-	s := r.PathPrefix("/2fa").Subrouter()
-	s.HandleFunc("/{account}", handlers.TwofactorHandler)
-	s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
-	s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
-	s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
+	if !cf.TwofactorDisabled() {
+		s := r.PathPrefix("/2fa").Subrouter()
+		s.HandleFunc("/{account}", handlers.TwofactorHandler)
+		s.HandleFunc("/{account}/verify", handlers.TwofactorVerifyHandler)
+		s.HandleFunc("/{account}/email", handlers.TwofactorEmailHandler)
+
+		if cf.TwofactorResettable() {
+			s.HandleFunc("/{account}/reset", handlers.TwofactorResetHandler)
+		}
+	}
 
 	// Authentication schemes
 	o := r.PathPrefix("/auth").Subrouter()
@@ -65,8 +70,11 @@ func main() {
 	a.HandleFunc("/attachment/{id}", inject(handlers.GetAttachment, handlers.JwtTokenValidatorHandler))
 	a.HandleFunc("/attachment/{id}/delete", inject(handlers.DeleteAttachment, handlers.JwtTokenValidatorHandler)).Methods("POST", "DELETE")
 
-	log.Println("Starting API server")
-	fmt.Println(http.ListenAndServe(cf.PublicAddress(), handlers.CORS(r)))
+	address := cf.PublicAddress()
+	log.WithFields(log.Fields{
+		"address": address,
+	}).Info(logmsg.StartingServer)
+	log.Fatal(http.ListenAndServe(address, handlers.CORS(r)))
 }
 
 type Handler func(w http.ResponseWriter, r *http.Request) error
@@ -75,7 +83,7 @@ func inject(handler http.HandlerFunc, middleware ...Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		for _, shim := range middleware {
 			if err := shim(w, r); err != nil {
-				log.Println(err)
+				log.WithError(err).Warn(logmsg.MiddlewareError)
 				return
 			}
 		}

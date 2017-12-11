@@ -2,11 +2,11 @@ package cf
 
 import (
 	"fmt"
-	"log"
 	"net/url"
 	"os"
 
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
+	log "github.com/sirupsen/logrus"
 )
 
 // PublicAddress is a bindable address to host the server
@@ -27,10 +27,10 @@ func PublicURI() string {
 
 // DatabaseURI is the URI used to establish the database connection
 func DatabaseURI(label string) string {
-	current, _ := cfenv.Current()
-	// if err != nil {
-	// 	log.Println("Cloud Foundry environment not found")
-	// }
+	current, err := cfenv.Current()
+	if err != nil {
+		log.WithError(err).Debug("Cloud Foundry environment not found")
+	}
 	return getDatabase(current, label)
 }
 
@@ -75,13 +75,12 @@ func getDatabase(current *cfenv.App, label string) string {
 		services, err := current.Services.WithLabel(label)
 		if err == nil {
 			for _, s := range services {
-				// log.Println(s.Credentials["uri"].(string))
 				return s.Credentials["uri"].(string)
 			}
 		}
 
 		// Anything else log the error and continue
-		log.Printf("Could not parse VCAP_SERVICES for %s. Error: %s", label, err)
+		log.WithError(err).WithField("label", label).Debug("Could not parse VCAP_SERVICES")
 	}
 
 	// If the URI is set then use this as it is preferred

@@ -7,15 +7,18 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/db"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/twofactor"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 // TwofactorHandler is the initial entry and subscription for two-factor
 // authentication.
 func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 	if cf.TwofactorDisabled() {
+		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
 	}
@@ -35,8 +38,10 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 
 	png := ""
 	if !account.TokenUsed {
+		log.Info(logmsg.GenerateQRCode)
 		png, err = twofactor.Generate(account.Username, account.Token)
 		if err != nil {
+			log.WithError(err).Warn(logmsg.QRCodeError)
 			http.Error(w, err.Error(), http.StatusInternalServerError)
 			return
 		}
@@ -48,6 +53,7 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 // TwofactorVerifyHandler verifies a token provided by the end user.
 func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	if cf.TwofactorDisabled() {
+		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
 	}
@@ -72,17 +78,20 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 
 	ok, err := twofactor.Authenticate(body.Token, account.Token)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.MFAError)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	if !ok {
+		log.Warn(logmsg.MFAInvalid)
 		http.Error(w, "Failed two-factor authentication", http.StatusUnauthorized)
 		return
 	}
 
 	account.TokenUsed = true
 	if err := account.Save(); err != nil {
+		log.WithError(err).Warn(logmsg.AccountUpdateError)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -90,6 +99,7 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 	// Generate a new token
 	signedToken, _, err := account.NewJwtToken(model.TwoFactorAudience)
 	if err != nil {
+		log.WithError(err).Warn(logmsg.JWTError)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -101,6 +111,7 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 // TwofactorEmailHandler sends a token to the user by email.
 func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 	if cf.TwofactorDisabled() {
+		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
 	}
@@ -112,6 +123,7 @@ func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	if err = twofactor.Email(account.Email, account.Token); err != nil {
+		log.WithError(err).Warn(logmsg.MFAEmailError)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -121,11 +133,13 @@ func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 
 func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 	if cf.TwofactorDisabled() {
+		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
 		return
 	}
 
 	if !cf.TwofactorResettable() {
+		log.Warn(logmsg.MFAResetAttempt)
 		http.Error(w, "Reset two-factor authentication not allowed on this server", http.StatusUnauthorized)
 		return
 	}
@@ -145,9 +159,11 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// Make sure the account does not have a token assigned
+	log.Info(logmsg.ResetMFA)
 	account.Token = ""
 	account.TokenUsed = false
 	if err := account.Save(); err != nil {
+		log.WithError(err).Warn(logmsg.AccountUpdateError)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
@@ -156,10 +172,13 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAccountFromRequest(r *http.Request) (*model.Account, error) {
+	log.Info(logmsg.RetrievingAccount)
+
 	// Sanity check for username
 	vars := mux.Vars(r)
 	username := vars["account"]
 	if username == "" {
+		log.Warn(logmsg.NoUsername)
 		return &model.Account{}, errors.New("No username provided")
 	}
 
@@ -171,6 +190,7 @@ func getAccountFromRequest(r *http.Request) (*model.Account, error) {
 	dbContext := db.NewDB()
 	account.WithContext(dbContext)
 	if err := account.Get(); err != nil {
+		log.WithError(err).Warn(logmsg.NoAccount)
 		return account, err
 	}
 
@@ -178,6 +198,7 @@ func getAccountFromRequest(r *http.Request) (*model.Account, error) {
 	if account.Token == "" {
 		account.Token = twofactor.Secret()
 		if err := account.Save(); err != nil {
+			log.WithError(err).Warn(logmsg.AccountUpdateError)
 			return account, err
 		}
 	}

@@ -1,7 +1,6 @@
 package db
 
 import (
-	"log"
 	"net/url"
 	"strings"
 	"time"
@@ -9,6 +8,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
+	log "github.com/sirupsen/logrus"
 )
 
 // DatabaseContext to help abstract the technical implementation per driver used.
@@ -43,7 +43,10 @@ func NewDB() *DatabaseContext {
 	db.OnQueryProcessed(func(event *pg.QueryProcessedEvent) {
 		query, err := event.FormattedQuery()
 		if err == nil {
-			log.Printf("%s %s", time.Since(event.StartTime), query)
+			log.WithFields(log.Fields{
+				"elapsed": time.Since(event.StartTime),
+				"query":   query,
+			}).Debug("Excuted database query")
 		}
 	})
 

@@ -1,10 +1,11 @@
 package middleware
 
 import (
-	"log"
 	"net/http"
 
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
+	log "github.com/sirupsen/logrus"
 )
 
 // Handler is an injectable function which returns an error
@@ -74,7 +75,7 @@ func wrapper(f http.HandlerFunc, mf ...Handler) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		for _, h := range mf {
 			if err := h(w, r); err != nil {
-				log.Println(err)
+				log.WithError(err).Warn(logmsg.MiddlewareError)
 				return
 			}
 		}
