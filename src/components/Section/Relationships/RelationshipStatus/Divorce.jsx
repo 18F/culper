@@ -275,15 +275,15 @@ export default class Divorce extends React.Component {
               </RadioGroup>
             </Field>
 
-            <Show when={(this.props.Deceased || {}).value === 'Yes'}>
+            <Show when={(this.props.Deceased || {}).value === 'No'}>
               <Field title={i18n.t('relationships.civilUnion.divorce.heading.deceasedAddress')}
                      optional={true}
                      scrollIntoView={this.props.scrollIntoView}>
                 <NotApplicable name="DeceasedAddressNotApplicable"
                                className="deceased-notapplicable"
                                {...this.props.DeceasedAddressNotApplicable}
-                               label={i18n.t('relationships.civilUnion.notApplicable.label')}
-                               or={i18n.m('relationships.civilUnion.notApplicable.or')}
+                               label={i18n.t('relationships.civilUnion.deceasedAddressNotApplicable.label')}
+                               or={i18n.m('relationships.civilUnion.deceasedAddressNotApplicable.or')}
                                onError={this.props.onError}
                                onUpdate={this.updateDeceasedAddressNotApplicable}>
                   <Location className="address-deceased"

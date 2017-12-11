@@ -32,7 +32,7 @@ export default class DivorceValidator {
     if (!['Yes', 'No', 'DK'].includes(deceasedValue)) {
       return false
     }
-    if (deceasedValue === 'Yes') {
+    if (deceasedValue === 'No') {
       return new LocationValidator(this.deceasedAddress).isValid()
     }
 

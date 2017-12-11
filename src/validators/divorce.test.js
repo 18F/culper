@@ -33,7 +33,7 @@ describe('Divorce validation', function () {
       {
         state: {
           Status: { value: 'Divorced' },
-          Deceased: { value: 'No' }
+          Deceased: { value: 'Yes' }
         },
         expected: true
       },
@@ -47,7 +47,7 @@ describe('Divorce validation', function () {
       {
         state: {
           Status: { value: 'Divorced' },
-          Deceased: { value: 'Yes' },
+          Deceased: { value: 'No' },
           DeceasedAddress: {
             country: { value: 'United States' },
             street: '1234 Some Rd',

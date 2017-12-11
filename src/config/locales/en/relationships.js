@@ -370,6 +370,10 @@ export const relationships = {
       or: 'or',
       label: 'Not applicable'
     },
+    deceasedAddressNotApplicable: {
+      or: 'or',
+      label: 'I don\'t know'
+    },
     para: {
       never: 'Complete the following about the person with whom you are in a civil marriage, legally recognized civil union, or legally recognized domestic partnership, or the person from whom you are currently separated.',
       othernames: 'Such as maiden name, names by other marriages, civil marriages, legally recognized civil unions, or legally recognized domestic partnerships, nicknames, etc., and provide dates used for each name.'
