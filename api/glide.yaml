@@ -35,3 +35,5 @@ import:
   version: v1.1.0
 - package: github.com/sirupsen/logrus
   version: ^1.0.4
+- package: github.com/rifflock/lfshook
+  version: ^2.0.0

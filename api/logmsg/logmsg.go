@@ -1,5 +1,102 @@
 package logmsg
 
+import (
+	"log/syslog"
+	"net/url"
+	"os"
+	"path"
+
+	"github.com/rifflock/lfshook"
+	"github.com/sirupsen/logrus"
+	logrus_syslog "github.com/sirupsen/logrus/hooks/syslog"
+)
+
+func NewLogger() *logrus.Logger {
+	log := logrus.New()
+
+	// Standard logging
+	log.Out = os.Stdout
+
+	// Apply environment specific hooks
+	hookLocalFile(log)
+	hookLocalDirectory(log)
+	hookSyslog(log)
+
+	// Return the logger with dynamic hooks
+	return log
+}
+
+// Support for logging to an append only log file.
+func hookLocalFile(log *logrus.Logger) {
+	logFile := os.Getenv("LOG_FILE")
+	if logFile == "" {
+		return
+	}
+
+	hook := lfshook.NewHook(lfshook.PathMap{
+		logrus.InfoLevel:  logFile,
+		logrus.WarnLevel:  logFile,
+		logrus.ErrorLevel: logFile,
+	}, nil)
+	log.AddHook(hook)
+}
+
+// Support for logging to multiple files within a given directory.
+func hookLocalDirectory(log *logrus.Logger) {
+	logDir := os.Getenv("LOG_DIRECTORY")
+	if logDir == "" {
+		return
+	}
+
+	hook := lfshook.NewHook(lfshook.PathMap{
+		logrus.InfoLevel:  path.Join(logDir, "info.log"),
+		logrus.WarnLevel:  path.Join(logDir, "warning.log"),
+		logrus.ErrorLevel: path.Join(logDir, "error.log"),
+	}, nil)
+	log.AddHook(hook)
+}
+
+// Support for logging to a syslog server.
+func hookSyslog(log *logrus.Logger) {
+	connectionString := os.Getenv("LOG_SYSLOG")
+	if connectionString == "" {
+		return
+	}
+
+	protocol := ""
+	host := ""
+	uri, err := url.Parse(connectionString)
+	if err == nil {
+		protocol = uri.Scheme
+		host = uri.Host
+	}
+
+	connectionCert := os.Getenv("LOG_SYSLOG_CERT")
+	if connectionCert == "" {
+		hook, err := logrus_syslog.NewSyslogHook(protocol, host, syslog.LOG_INFO, "")
+		if err == nil {
+			log.AddHook(hook)
+		}
+	} else {
+		// Currently this is not implemented due to a dependency conflict. The Go standard
+		// library implementation of syslog does not implement TLS.
+		//
+		// To use the folling we require these libraries to be imported:
+		//
+		//   syslog "github.com/RackSec/srslog"
+		//   logrus_syslog "github.com/shinji62/logrus-syslog-ng"
+		//
+		// hook, err := logrus_syslog.NewSyslogHookTLS(host, syslog.LOG_INFO, "", connectionCert)
+		// if err == nil {
+		// 	log.AddHook(hook)
+		// }
+	}
+
+	if err != nil {
+		log.WithError(err).Error("Unable to connect to syslog daemon")
+	}
+}
+
 // Warning messages
 const (
 	WarnFailedMigration      = "Failed to migrate database"
