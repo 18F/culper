@@ -5,8 +5,8 @@ import (
 	"net/url"
 	"os"
 
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	cfenv "github.com/cloudfoundry-community/go-cfenv"
-	log "github.com/sirupsen/logrus"
 )
 
 // PublicAddress is a bindable address to host the server
@@ -27,6 +27,7 @@ func PublicURI() string {
 
 // DatabaseURI is the URI used to establish the database connection
 func DatabaseURI(label string) string {
+	log := logmsg.NewLogger()
 	current, err := cfenv.Current()
 	if err != nil {
 		log.WithError(err).Debug("Cloud Foundry environment not found")
@@ -63,6 +64,8 @@ func getURI(current *cfenv.App) string {
 }
 
 func getDatabase(current *cfenv.App, label string) string {
+	log := logmsg.NewLogger()
+
 	// Attempt to pull from CloudFoundry settings first
 	if current != nil {
 		// First, try finding it by name

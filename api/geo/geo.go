@@ -5,7 +5,6 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
-	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -18,6 +17,7 @@ var (
 )
 
 func init() {
+	log := logmsg.NewLogger()
 	uspsUserID := cf.UserService("usps-api", "api_key")
 	if uspsUserID == "" {
 		log.Warn(logmsg.USPSMissingKey)

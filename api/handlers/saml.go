@@ -10,11 +10,13 @@ import (
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	saml "github.com/RobotsAndPencils/go-saml"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // SamlServiceHandler is the initial entry point for authentication.
 func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	if !cf.SamlEnabled() {
 		log.Warn(logmsg.SamlAttemptDenied)
 		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
@@ -59,6 +61,8 @@ func SamlServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 // SamlCallbackHandler is the returning entry point for authentication.
 func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	if !cf.SamlEnabled() {
 		log.Warn(logmsg.SamlAttemptDenied)
 		http.Error(w, "SAML is not implemented", http.StatusInternalServerError)
@@ -133,7 +137,8 @@ func redirectAccessDenied(w http.ResponseWriter, r *http.Request) {
 //  - SPSignRequest:               "true",
 //  - AssertionConsumerServiceURL: "http://localhost:8000/saml_consume",
 func configureSAML() saml.ServiceProviderSettings {
-	log.WithFields(log.Fields{
+	log := logmsg.NewLogger()
+	log.WithFields(logrus.Fields{
 		"PublicCertPath":              os.Getenv("SAML_PUBLIC_CERT"),
 		"PrivateKeyPath":              os.Getenv("SAML_PRIVATE_CERT"),
 		"IDPSSOURL":                   os.Getenv("SAML_IDP_SSO_URL"),

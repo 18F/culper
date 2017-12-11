@@ -6,11 +6,12 @@ import (
 
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model/form"
-	log "github.com/sirupsen/logrus"
 )
 
 // Validate checks if an entire address is valid
 func Validate(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	// Read the body of the request (which should be in JSON)
 	body, err := ioutil.ReadAll(r.Body)
 	if err != nil {

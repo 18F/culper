@@ -6,9 +6,10 @@ import (
 	"time"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/go-pg/pg"
 	"github.com/go-pg/pg/orm"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 // DatabaseContext to help abstract the technical implementation per driver used.
@@ -18,6 +19,7 @@ type DatabaseContext struct {
 
 // NewDB establishes a new database connection
 func NewDB() *DatabaseContext {
+	log := logmsg.NewLogger()
 	addr := cf.DatabaseURI("aws-rds")
 
 	// Parse the address as a URI. If it fails return an empty connection
@@ -43,7 +45,7 @@ func NewDB() *DatabaseContext {
 	db.OnQueryProcessed(func(event *pg.QueryProcessedEvent) {
 		query, err := event.FormattedQuery()
 		if err == nil {
-			log.WithFields(log.Fields{
+			log.WithFields(logrus.Fields{
 				"elapsed": time.Since(event.StartTime),
 				"query":   query,
 			}).Debug("Excuted database query")

@@ -15,7 +15,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/cf"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
-	log "github.com/sirupsen/logrus"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -25,6 +25,8 @@ var (
 
 // AuthServiceHandler is the initial entry point for authentication.
 func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	if !cf.OAuthEnabled() {
 		log.Warn(logmsg.OAuthAttemptDenied)
 		http.Error(w, "OAuth is not implemented", http.StatusInternalServerError)
@@ -44,6 +46,8 @@ func AuthServiceHandler(w http.ResponseWriter, r *http.Request) {
 
 // AuthCallbackHandler handles responses from the authentication provider.
 func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	if !cf.OAuthEnabled() {
 		log.Warn(logmsg.OAuthAttemptDenied)
 		http.Error(w, "OAuth is not implemented", http.StatusInternalServerError)
@@ -60,7 +64,7 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 
 	state := r.FormValue("state")
 	if state != oauthStateString {
-		log.WithFields(log.Fields{
+		log.WithFields(logrus.Fields{
 			"expected": oauthStateString,
 			"actual":   state,
 		}).Warn(logmsg.OAuthStateError)
@@ -83,6 +87,7 @@ func AuthCallbackHandler(w http.ResponseWriter, r *http.Request) {
 // ConfigureAuthentication takes a service name and configures the OAuth 2.0 with
 // appropriate endpoints and scopes.
 func configureAuthentication(service string) (*oauth2.Config, bool) {
+	log := logmsg.NewLogger()
 	ok := true
 	config := &oauth2.Config{
 		RedirectURL:  fmt.Sprintf("%s/auth/%s/callback", cf.PublicURI(), strings.ToLower(service)),

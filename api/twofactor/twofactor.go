@@ -13,11 +13,11 @@ import (
 	"text/template"
 
 	"github.com/18F/e-QIP-prototype/api/cf"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/dgryski/dgoogauth"
 	"github.com/keighl/mandrill"
 	"github.com/microcosm-cc/bluemonday"
 	"github.com/russross/blackfriday"
-	log "github.com/sirupsen/logrus"
 	qr "github.com/skip2/go-qrcode"
 )
 
@@ -71,6 +71,8 @@ func Generate(account, secret string) (string, error) {
 // Authenticate validates the initial token generated when configuring two-factor
 // authentication for the first time.
 func Authenticate(token, secret string) (ok bool, err error) {
+	log := logmsg.NewLogger()
+
 	// Get the adjustable window size
 	size := 3
 	if os.Getenv("WINDOW_SIZE") != "" {

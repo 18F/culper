@@ -10,7 +10,6 @@ import (
 	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/logmsg"
-	log "github.com/sirupsen/logrus"
 )
 
 var (
@@ -46,6 +45,7 @@ func (g USPSGeocoder) Validate(geoValues Values) (Results, error) {
 
 // query creates and executes http requests and populates a Results object
 func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
+	log := logmsg.NewLogger()
 
 	// Prepare uri used to query
 	uri := g.prepareQueryURI(geoValues)
@@ -124,6 +124,7 @@ func (g USPSGeocoder) query(geoValues Values) (results Results, err error) {
 //		  <Source>USPSCOM::DoAuth</Source>
 //	  </Error>
 func decode(r io.Reader, addressResp *USPSAddressValidateResponse) error {
+	log := logmsg.NewLogger()
 	body, _ := ioutil.ReadAll(r)
 
 	// First attempt to unmarshal to typical AddressValidateResponse element

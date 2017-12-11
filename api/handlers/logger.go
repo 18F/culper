@@ -3,11 +3,13 @@ package handlers
 import (
 	"net/http"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
+	"github.com/sirupsen/logrus"
 )
 
 func LoggerHandler(w http.ResponseWriter, r *http.Request) error {
-	log.WithFields(log.Fields{
+	log := logmsg.NewLogger()
+	log.WithFields(logrus.Fields{
 		"method": r.Method,
 		"url":    r.URL.String(),
 		"ip":     r.RemoteAddr,

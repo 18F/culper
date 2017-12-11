@@ -11,12 +11,12 @@ import (
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/twofactor"
 	"github.com/gorilla/mux"
-	log "github.com/sirupsen/logrus"
 )
 
 // TwofactorHandler is the initial entry and subscription for two-factor
 // authentication.
 func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	if cf.TwofactorDisabled() {
 		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
@@ -52,6 +52,7 @@ func TwofactorHandler(w http.ResponseWriter, r *http.Request) {
 
 // TwofactorVerifyHandler verifies a token provided by the end user.
 func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	if cf.TwofactorDisabled() {
 		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
@@ -110,6 +111,7 @@ func TwofactorVerifyHandler(w http.ResponseWriter, r *http.Request) {
 
 // TwofactorEmailHandler sends a token to the user by email.
 func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	if cf.TwofactorDisabled() {
 		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
@@ -132,6 +134,7 @@ func TwofactorEmailHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	if cf.TwofactorDisabled() {
 		log.Warn(logmsg.MFAAttemptDenied)
 		http.Error(w, "Multiple factor authentication is disabled", http.StatusInternalServerError)
@@ -172,6 +175,7 @@ func TwofactorResetHandler(w http.ResponseWriter, r *http.Request) {
 }
 
 func getAccountFromRequest(r *http.Request) (*model.Account, error) {
+	log := logmsg.NewLogger()
 	log.Info(logmsg.RetrievingAccount)
 
 	// Sanity check for username

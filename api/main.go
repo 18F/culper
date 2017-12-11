@@ -9,8 +9,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/handlers"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/gorilla/mux"
-	log "github.com/sirupsen/logrus"
-	// middleware "github.com/18F/e-QIP-prototype/api/middleware"
+	"github.com/sirupsen/logrus"
 )
 
 var (
@@ -18,6 +17,8 @@ var (
 )
 
 func main() {
+	log := logmsg.NewLogger()
+
 	flag.Parse()
 	if !*flagSkipMigration {
 		if err := db.MigrateUp("db", "environment", ""); err != nil {
@@ -71,7 +72,7 @@ func main() {
 	a.HandleFunc("/attachment/{id}/delete", inject(handlers.DeleteAttachment, handlers.JwtTokenValidatorHandler)).Methods("POST", "DELETE")
 
 	address := cf.PublicAddress()
-	log.WithFields(log.Fields{
+	log.WithFields(logrus.Fields{
 		"address": address,
 	}).Info(logmsg.StartingServer)
 	log.Fatal(http.ListenAndServe(address, handlers.CORS(r)))
@@ -80,6 +81,7 @@ func main() {
 type Handler func(w http.ResponseWriter, r *http.Request) error
 
 func inject(handler http.HandlerFunc, middleware ...Handler) http.HandlerFunc {
+	log := logmsg.NewLogger()
 	return func(w http.ResponseWriter, r *http.Request) {
 		for _, shim := range middleware {
 			if err := shim(w, r); err != nil {

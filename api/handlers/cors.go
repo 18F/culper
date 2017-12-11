@@ -3,12 +3,13 @@ package handlers
 import (
 	"net/http"
 
-	log "github.com/sirupsen/logrus"
+	"github.com/18F/e-QIP-prototype/api/logmsg"
 )
 
 // CORS Wraps an http handler with logic to handle cors requests.
 // Specifies the allowed origins, methods and headers.
 func CORS(h http.Handler) http.Handler {
+	log := logmsg.NewLogger()
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		if origin := r.Header.Get("Origin"); origin != "" {
 			log.Debug("Setting allowed CORS parameters")

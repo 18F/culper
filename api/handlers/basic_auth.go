@@ -9,11 +9,12 @@ import (
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/model/form"
-	log "github.com/sirupsen/logrus"
 )
 
 // BasicAuth processes a users request to login with a Username and Password
 func BasicAuth(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
+
 	if !cf.BasicEnabled() {
 		log.Warn(logmsg.BasicAuthAttemptDenied)
 		http.Error(w, "Basic authentication is not implemented", http.StatusInternalServerError)

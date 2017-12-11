@@ -10,10 +10,10 @@ import (
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
 	"github.com/18F/e-QIP-prototype/api/model/form"
-	log "github.com/sirupsen/logrus"
 )
 
 func AllSections(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
@@ -38,6 +38,7 @@ func AllSections(w http.ResponseWriter, r *http.Request) {
 }
 
 func Hash(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
@@ -63,6 +64,7 @@ func Hash(w http.ResponseWriter, r *http.Request) {
 }
 
 func Section(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
@@ -109,6 +111,7 @@ func Section(w http.ResponseWriter, r *http.Request) {
 }
 
 func Save(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	account := &model.Account{}
 	account.WithContext(db.NewDB())
 
@@ -163,13 +166,16 @@ func Save(w http.ResponseWriter, r *http.Request) {
 }
 
 func SaveAttachment(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	log.Debug("Not implemented: /me/attachment")
 }
 
 func GetAttachment(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	log.Debug("Not implemented: /me/attachment/{id}")
 }
 
 func DeleteAttachment(w http.ResponseWriter, r *http.Request) {
+	log := logmsg.NewLogger()
 	log.Debug("Not implemented: /me/attachment/{id}/delete")
 }

@@ -4,11 +4,11 @@ package db
 
 import (
 	"github.com/18F/e-QIP-prototype/api/logmsg"
-	log "github.com/sirupsen/logrus"
 )
 
 // MigrateUp attempts to push any pending updates to the database
 func MigrateUp(directory, environment, schema string) error {
+	log := logmsg.NewLogger()
 	log.Warn(logmsg.MigrationUnsupported)
 	return nil
 }
