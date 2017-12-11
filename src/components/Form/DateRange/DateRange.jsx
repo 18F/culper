@@ -287,7 +287,7 @@ DateRange.errors = [
     func: (value, props) => {
       if (props.required && !props.disabled) {
         const hasParts = (dateObj) => {
-          return !!dateObj && !!dateObj.day && !!dateObj.month && !!dateObj.year
+          return Boolean(dateObj.day && dateObj.month && dateObj.year)
         }
         return hasParts(value.from) && hasParts(value.to)
       }

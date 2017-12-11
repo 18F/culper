@@ -1,5 +1,5 @@
-hash: 3fd6284e8ac00167ea348b534690f5b3660bf2157e5cd5e8f1def3a33bd4b6cd
-updated: 2017-11-24T11:15:36.087084664-05:00
+hash: dec4ed27ce74b26083a41489b395d3b21cc0df3998f0ad6d0176cc31064dcec6
+updated: 2017-12-11T17:08:17.682945279Z
 imports:
 - name: bitbucket.org/liamstask/goose
   version: 8488cc47d90c8a502b1c41a462a6d9cc8ee0a895
@@ -16,7 +16,7 @@ imports:
 - name: github.com/dgryski/dgoogauth
   version: 96977cbd42e27be71f9f731db6634123de7e861a
 - name: github.com/go-pg/pg
-  version: 91c6bdd887406878e9bde15f3c4a12c1197da739
+  version: 3c1185357351683b9445c12cca38c63acccb1a28
   subpackages:
   - internal
   - internal/parser
@@ -57,6 +57,8 @@ imports:
   version: 06020f85339e21b2478f756a78e295255ffa4d6a
 - name: github.com/nu7hatch/gouuid
   version: 179d4d0c4d8d407a32af483c2354df1d2c91e6c3
+- name: github.com/rifflock/lfshook
+  version: 765177c893cc46c565c1c4c774d3a25967bbb547
 - name: github.com/RobotsAndPencils/go-saml
   version: fb13cb52a46b55a9f20e6d497658dd494c7c1ef1
   subpackages:
@@ -67,6 +69,10 @@ imports:
   version: 879c5887cd475cd7864858769793b2ceb0d44feb
 - name: github.com/shurcooL/sanitized_anchor_name
   version: 86672fcb3f950f35f2e675df2240550f2a50762f
+- name: github.com/sirupsen/logrus
+  version: d682213848ed68c0a260ca37d6dd5ace8423f5ba
+  subpackages:
+  - hooks/syslog
 - name: github.com/skip2/go-qrcode
   version: 695fc75a09738f9be56aaa3aecfd7dac28e66b63
   subpackages:
@@ -83,6 +89,7 @@ imports:
   subpackages:
   - bcrypt
   - blowfish
+  - ssh/terminal
 - name: golang.org/x/net
   version: a337091b0525af65de94df2eb7e98bd9962dcbe2
   subpackages:
@@ -100,6 +107,11 @@ imports:
   - jws
   - jwt
   - linkedin
+- name: golang.org/x/sys
+  version: b8f5ef32195cae6470b728e8ca677f0dbed1a004
+  subpackages:
+  - unix
+  - windows
 - name: google.golang.org/appengine
   version: 9d8544a6b2c7df9cff240fcf92d7b2f59bc13416
   subpackages:

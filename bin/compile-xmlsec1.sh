@@ -12,7 +12,22 @@ then
     cd ./xmlsec;
 
     # Create the configuration and make files
-    ./autogen.sh --enable-static="yes" --enable-shared="no" --enable-static-linking="yes";
+    if [ "$GOOS" = "windows" ]; then
+        ./autogen.sh \
+            --build="x86_64-w64-mingw32" \
+            --host="x86_64-w64-mingw32" \
+            --enable-mscrypto \
+            --enable-static="yes" \
+            --enable-shared="no" \
+            --enable-static-linking="yes";
+    else
+        ./autogen.sh \
+            --enable-static="yes" \
+            --enable-shared="no" \
+            --enable-static-linking="yes";
+    fi
+
+    make clean;
     make;
 
     # Move the binary to where we need it
