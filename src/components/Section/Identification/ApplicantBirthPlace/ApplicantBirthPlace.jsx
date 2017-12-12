@@ -35,6 +35,7 @@ export default class ApplicantBirthPlace extends SubsectionElement {
                className="no-margin-bottom"
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
+                    {...this.props.Location}
                     layout={Location.BIRTHPLACE}
                     label={i18n.t('identification.birthplace.label.location')}
                     stateLabel={i18n.t('identification.birthplace.label.state')}
@@ -45,7 +46,6 @@ export default class ApplicantBirthPlace extends SubsectionElement {
                     countyPlaceholder={i18n.t('identification.birthplace.placeholder.county')}
                     countryLabel={i18n.t('identification.birthplace.label.country')}
                     countryPlaceholder={i18n.t('identification.birthplace.placeholder.country')}
-                    {...this.props.Location}
                     onUpdate={this.updateLocation}
                     onError={this.handleError}
                     required={this.props.required}

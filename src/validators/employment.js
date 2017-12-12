@@ -1,6 +1,6 @@
 import DateRangeValidator from './daterange'
 import LocationValidator from './location'
-import ReferenceValidator from './reference'
+import NameValidator from './name'
 import { validNotApplicable, validGenericTextfield, validPhoneNumber, validGenericMonthYear,
          validDateField, withinSevenYears, BranchCollection, validAccordion } from './helpers'
 
@@ -22,21 +22,23 @@ export default class HistoryEmploymentValidator {
 }
 
 export class EmploymentValidator {
-  constructor (state = {}, props = {}) {
-    this.employmentActivity = state.EmploymentActivity || { value: null }
-    this.dates = state.Dates
-    this.employment = state.Employment
-    this.status = state.Status
-    this.title = state.Title
-    this.dutyStation = state.DutyStation
-    this.address = state.Address
-    this.additional = state.Additional
-    this.telephone = state.Telephone
-    this.physicalAddress = state.PhysicalAddress
-    this.reasonLeft = state.ReasonLeft
-    this.reprimand = state.Reprimand || {}
-    this.supervisor = state.Supervisor
-    this.reference = state.Reference
+  constructor (data = {}) {
+    this.employmentActivity = data.EmploymentActivity || { value: null }
+    this.dates = data.Dates || {}
+    this.employment = data.Employment || {}
+    this.status = data.Status || {}
+    this.title = data.Title || {}
+    this.dutyStation = data.DutyStation || {}
+    this.address = data.Address || {}
+    this.additional = data.Additional || {}
+    this.telephone = data.Telephone || {}
+    this.physicalAddress = data.PhysicalAddress || {}
+    this.reasonLeft = data.ReasonLeft || {}
+    this.reprimand = data.Reprimand || {}
+    this.supervisor = data.Supervisor || {}
+    this.referenceName = data.ReferenceName || {}
+    this.referencePhone = data.ReferencePhone || {}
+    this.referenceAddress = data.ReferenceAddress || {}
   }
 
   validDates () {
@@ -85,7 +87,7 @@ export class EmploymentValidator {
   }
 
   validPhysicalAddress () {
-    const differentAddress = (this.physicalAddress.HasDifferentAddress || {}).value
+    const differentAddress = ((this.physicalAddress || {}).HasDifferentAddress || {}).value
     if (!this.physicalAddress || !(differentAddress === 'No' || differentAddress === 'Yes')) {
       return false
     }
@@ -138,7 +140,9 @@ export class EmploymentValidator {
   }
 
   validReference () {
-    return this.reference && new ReferenceValidator(this.reference, null).isValid()
+    return new NameValidator(this.referenceName).isValid() &&
+      validPhoneNumber(this.referencePhone) &&
+      new LocationValidator(this.referenceAddress).isValid()
   }
 
   validReprimand () {
@@ -180,10 +184,10 @@ export class EmploymentValidator {
   isValid () {
     switch (this.employmentActivity.value) {
       // Active Duty, National Guard/Reserve, or USPHS Commissioned Corps
-      case 'ActiveMilitary':
-      case 'NationalGuard':
-      case 'USPHS':
-        return this.validDates() &&
+    case 'ActiveMilitary':
+    case 'NationalGuard':
+    case 'USPHS':
+      return this.validDates() &&
         this.validTitle() &&
         this.validAssignedDuty() &&
         this.validStatus() &&
@@ -194,12 +198,12 @@ export class EmploymentValidator {
         this.validReprimand()
 
       // Other Federal employment, State Government, Federal Contractor, Non-government employment, or Other
-      case 'OtherFederal':
-      case 'StateGovernment':
-      case 'FederalContractor':
-      case 'NonGovernment':
-      case 'Other':
-        return this.validDates() &&
+    case 'OtherFederal':
+    case 'StateGovernment':
+    case 'FederalContractor':
+    case 'NonGovernment':
+    case 'Other':
+      return this.validDates() &&
         this.validTitle() &&
         this.validEmployment() &&
         this.validStatus() &&
@@ -212,8 +216,8 @@ export class EmploymentValidator {
         this.validReprimand()
 
       // Self employment
-      case 'SelfEmployment':
-        return this.validDates() &&
+    case 'SelfEmployment':
+      return this.validDates() &&
         this.validTitle() &&
         this.validEmployment() &&
         this.validStatus() &&
@@ -225,12 +229,13 @@ export class EmploymentValidator {
         this.validReprimand()
 
       // Unemployment
-      case 'Unemployment':
-        return this.validDates() &&
+    case 'Unemployment':
+      return this.validDates() &&
         this.validReference() &&
         this.validReasonLeft()
-      default:
-        return false
+
+    default:
+      return false
     }
   }
 }

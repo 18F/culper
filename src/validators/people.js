@@ -86,18 +86,18 @@ export default class PeopleValidator {
 }
 
 export class PersonValidator {
-  constructor (state = {}, props = {}) {
-    this.name = state.Name
-    this.dates = state.Dates
-    this.rank = state.Rank
-    this.rankNotApplicable = state.RankNotApplicable
-    this.relationship = state.Relationship
-    this.relationshipOther = state.RelationshipOther
-    this.mobileTelephone = state.MobileTelephone
-    this.otherTelephone = state.OtherTelephone
-    this.email = state.Email
-    this.emailNotApplicable = state.EmailNotApplicable
-    this.address = state.Address
+  constructor (data = {}) {
+    this.name = data.Name
+    this.dates = data.Dates
+    this.rank = data.Rank
+    this.rankNotApplicable = data.RankNotApplicable
+    this.relationship = (data.Relationship || {}).values || []
+    this.relationshipOther = data.RelationshipOther
+    this.mobileTelephone = data.MobileTelephone
+    this.otherTelephone = data.OtherTelephone
+    this.email = data.Email
+    this.emailNotApplicable = data.EmailNotApplicable
+    this.address = data.Address
   }
 
   validRelationship () {

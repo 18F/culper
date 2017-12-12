@@ -103,7 +103,7 @@ export default class Accordion extends ValidationElement {
         dirty = true
       }
 
-      item.open = this.props.defaultState
+      item.open = this.props.items.length > 1 ? false : this.props.defaultState
       return item
     })
 
@@ -492,7 +492,7 @@ export default class Accordion extends ValidationElement {
 }
 
 Accordion.defaultProps = {
-  initial: false,
+  initial: true,
   skipWarning: false,
   minimum: 1,
   defaultState: true,

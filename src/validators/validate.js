@@ -75,9 +75,6 @@ const validators = {
   'reasonleft': (data) => {
     return false
   },
-  'reference': (data) => {
-    return new logic.Reference(data).isValid()
-  },
   'sentence': (data) => {
     return new logic.SentenceValidator(data).isValid()
   },
@@ -97,10 +94,10 @@ const validators = {
     return logic.validGenericTextfield(data)
   },
   'identification.birthdate': (data) => {
-    return new logic.IdentificationBirthDateValidator(data.date).isValid()
+    return new logic.IdentificationBirthDateValidator(data).isValid()
   },
   'identification.birthplace': (data) => {
-    return new logic.IdentificationBirthPlaceValidator(data.location).isValid()
+    return new logic.IdentificationBirthPlaceValidator(data).isValid()
   },
   'identification.contacts': (data) => {
     return new logic.IdentificationContactInformationValidator(data).isValid()

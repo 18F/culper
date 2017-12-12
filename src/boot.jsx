@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './App'
-import { Login, Help, Form } from './views'
+import { Login, AccessDenied, Help, Form } from './views'
 import { Router, Switch, Route } from 'react-router'
 import { Provider } from 'react-redux'
 import { env } from './config'
@@ -36,15 +36,15 @@ ReactDOM.render(
     <Router history={env.History()}>
       <Main>
         <Switch>
-          <Route exact path="/" component={App} onEnter={onEnter} />
+          <Route exact path="/" component={Login} onEnter={onEnter} />
           <Route exact path="/form/:section/:subsection*" component={AppWithForm} onEnter={onEnter} />
           <Route exact path="/help" component={Help} />
           <Route exact path="/login" component={Login} />
+          <Route exact path="/accessdenied" component={AccessDenied} />
         </Switch>
       </Main>
     </Router>
-  </Provider>
-    , app)
+  </Provider>, app)
 
 /**
  * Check if we have a token in our base Route so that it gets called once

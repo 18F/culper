@@ -12,6 +12,7 @@ import Show from '../Show'
 import Radio from '../Radio'
 import RadioGroup from '../RadioGroup'
 import { country } from './Location'
+import { countryString } from '../../../validators/location'
 
 const mappingWarning = (property) => {
   if (!env.IsTest()) {
@@ -56,28 +57,28 @@ export default class ToggleableLocation extends ValidationElement {
     }
   }
 
-  updateStreet (event) {
-    this.update({ street: event.target.value })
+  updateStreet (values) {
+    this.update({ street: values.value})
   }
 
-  updateCity (event) {
-    this.update({ city: event.target.value })
+  updateCity (values) {
+    this.update({ city: values.value})
   }
 
-  updateState (event) {
-    this.update({state: event.target.value})
+  updateState (values) {
+    this.update({state: values.value})
   }
 
   updateCountry (values) {
     this.update({country: values})
   }
 
-  updateCounty (event) {
-    this.update({county: event.target.value})
+  updateCounty (values) {
+    this.update({county: values.value})
   }
 
-  updateZipcode (event) {
-    this.update({zipcode: event.target.value})
+  updateZipcode (values) {
+    this.update({zipcode: values.value})
   }
 
   updateToggle (option) {
@@ -111,7 +112,7 @@ export default class ToggleableLocation extends ValidationElement {
                   key={key}
                   placeholder={this.props.streetPlaceholder}
                   value={this.props.street}
-                  onChange={this.updateStreet}
+                  onUpdate={this.updateStreet}
                   onError={this.onError}
                   onFocus={this.props.onFocus}
                   onBlur={this.props.onBlur}
@@ -126,7 +127,7 @@ export default class ToggleableLocation extends ValidationElement {
                 label={this.props.cityLabel}
                 placeholder={this.props.cityPlaceholder}
                 value={this.props.city}
-                onChange={this.updateCity}
+                onUpdate={this.updateCity}
                 onError={this.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
@@ -142,7 +143,7 @@ export default class ToggleableLocation extends ValidationElement {
                   className="county"
                   placeholder={this.props.countyPlaceholder}
                   maxlength="255"
-                  onChange={this.updateCounty}
+                  onUpdate={this.updateCounty}
                   onError={this.onError}
                   onBlur={this.props.onBlur}
                   onFocus={this.props.onFocus}
@@ -158,7 +159,7 @@ export default class ToggleableLocation extends ValidationElement {
                          placeholder={this.props.statePlaceholder}
                          value={this.props.state}
                          includeStates="true"
-                         onChange={this.updateState}
+                         onUpdate={this.updateState}
                          onError={this.onError}
                          onFocus={this.props.onFocus}
                          onBlur={this.props.onBlur}
@@ -174,7 +175,7 @@ export default class ToggleableLocation extends ValidationElement {
                            placeholder={this.props.statePlaceholder}
                            value={this.props.state}
                            includeStates="true"
-                           onChange={this.updateState}
+                           onUpdate={this.updateState}
                            onError={this.onError}
                            onFocus={this.props.onFocus}
                            onBlur={this.props.onBlur}
@@ -186,7 +187,7 @@ export default class ToggleableLocation extends ValidationElement {
                      label={this.props.zipcodeLabel}
                      placeholder={this.props.zipcodePlaceholder}
                      value={this.props.zipcode}
-                     onChange={this.updateZipcode}
+                     onUpdate={this.updateZipcode}
                      onError={this.onError}
                      onFocus={this.props.onFocus}
                      onBlur={this.props.onBlur}
@@ -207,7 +208,7 @@ export default class ToggleableLocation extends ValidationElement {
                 label={this.props.cityLabel}
                 placeholder={this.props.cityPlaceholder}
                 value={this.props.city}
-                onChange={this.updateCity}
+                onUpdate={this.updateCity}
                 onError={this.onError}
                 onFocus={this.props.onFocus}
                 onBlur={this.props.onBlur}
@@ -338,53 +339,49 @@ ToggleableLocation.errors = [
   {
     code: 'required',
     func: (value, props) => {
-      if (props.required) {
-        let valid = true
-        switch (branchValue(props.country)) {
-          case 'Yes':
-            for (let f of props.domesticFields) {
-              switch (f) {
-                case 'city':
-                  valid = valid && !!props.city
-                  break
-                case 'state':
-                  valid = valid && !!props.state
-                  break
-                case 'county':
-                  valid = valid && !!props.county
-                  break
-                case 'stateZipcode':
-                  valid = valid && !!props.state && !!props.zipcode
-                  break
-                case 'country':
-                  valid = valid && !!props.country && !!props.country.value
-                  break
-                default:
-                  mappingWarning(f)
-                  valid = false
-              }
-            }
-            break
-          case 'No':
-            for (let f of props.internationalFields) {
-              switch (f) {
-                case 'city':
-                  valid = valid && !!props.city
-                  break
-                case 'country':
-                  valid = valid && !!props.country && !!props.country.value
-                  break
-                default:
-                  mappingWarning(f)
-                  valid = false
-              }
-            }
-            break
-          default:
-            valid = false
-        }
-        return valid
+      if (!props.required) {
+        return true
       }
+
+      // Organizing the validation tests in a structure
+      const branchValidations = {
+        Yes: {
+          fields: (props) => props.domesticFields,
+          city: (props) => !!props.city,
+          state: (props) => !!props.state,
+          county: (props) => !!props.county,
+          stateZipcode: (props) => !!props.state && !!props.zipcode,
+          country: (props) => !!countryString(props.country)
+        },
+        No: {
+          fields: (props) => props.internationalFields,
+          city: (props) => !!props.city,
+          country: (props) => !!countryString(props.country)
+        }
+      }
+
+      // Retrieve the branch value provided. If the value does match the
+      // approved validation tree then return a negative response.
+      const branch = branchValue(props.country)
+      const validations = branchValidations[branch]
+      if (!validations) {
+        return false
+      }
+
+      // Loop through all of the fields based on the branch and test for values.
+      for (let f of validations.fields(props)) {
+        // Retrieve the test and if one is not found print a warning and continue
+        let test = validations[f]
+        if (!test) {
+          mappingWarning(f)
+          return false
+        }
+
+        if (!test(props)) {
+          return false
+        }
+      }
+
       return true
     }
   }

@@ -6,45 +6,40 @@ export default class PhysicalAddress extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      HasDifferentAddress: props.HasDifferentAddress,
-      Address: props.Address,
-      Telephone: props.Telephone
-    }
-
-    this.doUpdate = this.doUpdate.bind(this)
-    this.onBranchUpdate = this.onBranchUpdate.bind(this)
-    this.handleAddressChange = this.handleAddressChange.bind(this)
+    this.update = this.update.bind(this)
+    this.updateBranch = this.updateBranch.bind(this)
+    this.updateAddress = this.updateAddress.bind(this)
     this.updateTelephone = this.updateTelephone.bind(this)
+  }
+
+  update (queue) {
+    this.props.onUpdate({
+      name: this.props.name,
+      HasDifferentAddress: this.props.HasDifferentAddress,
+      Address: this.props.Address,
+      Telephone: this.props.Telephone,
+      ...queue
+    })
   }
 
   /**
    * Handle the change event.
    */
-  onBranchUpdate (values) {
-    this.setState({ HasDifferentAddress: values }, () => {
-      this.doUpdate()
+  updateBranch (values) {
+    this.update({
+      HasDifferentAddress: values
     })
   }
 
-  doUpdate () {
-    this.props.onUpdate({
-      name: this.props.name,
-      HasDifferentAddress: this.state.HasDifferentAddress,
-      Address: this.state.Address,
-      Telephone: this.state.Telephone
+  updateAddress (values) {
+    this.update({
+      Address: values
     })
   }
 
-  handleAddressChange (value) {
-    this.setState({ Address: value }, () => {
-      this.doUpdate()
-    })
-  }
-
-  updateTelephone (value) {
-    this.setState({ Telephone: value }, () => {
-      this.doUpdate()
+  updateTelephone (values) {
+    this.update({
+      Telephone: values
     })
   }
 
@@ -53,10 +48,10 @@ export default class PhysicalAddress extends ValidationElement {
       <Branch label={this.props.title}
               labelSize="h3"
               name="physicalAddress"
-              {...this.state.HasDifferentAddress}
+              {...this.props.HasDifferentAddress}
               className="has-different-address"
               help="history.employment.default.physicalAddress.help"
-              onUpdate={this.onBranchUpdate}
+              onUpdate={this.updateBranch}
               onError={this.props.onError}
               required={this.props.required}
               scrollIntoView={this.props.scrollIntoView}>
@@ -68,7 +63,7 @@ export default class PhysicalAddress extends ValidationElement {
     const klass = `physical ${this.props.className || ''}`.trim()
     let options = this.options()
 
-    if (this.state.HasDifferentAddress.value === 'Yes') {
+    if ((this.props.HasDifferentAddress || {}).value === 'Yes') {
       return (
         <div className="has-different">
           <div className={klass + ' physical-address'}>
@@ -83,7 +78,7 @@ export default class PhysicalAddress extends ValidationElement {
                  shrink={true}
                  scrollIntoView={this.props.scrollIntoView}>
             <Location name="address"
-                      className="address"
+                      className="physical-address-address"
                       {...this.props.Address}
                       label={i18n.t('history.employment.default.physicalAddress.address.label')}
                       placeholder={i18n.t('history.employment.default.physicalAddress.address.placeholder')}
@@ -92,7 +87,7 @@ export default class PhysicalAddress extends ValidationElement {
                       addressBooks={this.props.addressBooks}
                       addressBook={this.props.addressBook}
                       dispatch={this.props.dispatch}
-                      onUpdate={this.handleAddressChange}
+                      onUpdate={this.updateAddress}
                       onError={this.props.onError}
                       required={this.props.required}
                       />
@@ -106,6 +101,7 @@ export default class PhysicalAddress extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <Telephone name="telephone"
                        {...this.props.Telephone}
+                       className="physical-address-telephone"
                        label={i18n.t('history.employment.default.physicalAddress.telephone.label')}
                        onUpdate={this.updateTelephone}
                        onError={this.props.onError}

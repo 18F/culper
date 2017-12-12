@@ -133,10 +133,10 @@ export default class Divorce extends React.Component {
         <Field title={i18n.t('relationships.civilUnion.divorce.heading.birthplace')}
                scrollIntoView={this.props.scrollIntoView}>
           <Location name="birthplace"
+                    {...this.props.BirthPlace}
                     layout={Location.BIRTHPLACE}
                     label={i18n.t('relationships.civilUnion.divorce.label.birthplace')}
                     className="birthplace"
-                    {...this.props.BirthPlace}
                     onUpdate={this.updateBirthPlace}
                     onError={this.props.onError}
                     required={this.props.required}

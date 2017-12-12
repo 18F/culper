@@ -137,15 +137,9 @@ describe('The date component', () => {
       onUpdate: () => { updates++ }
     }
     const component = mount(<DateControl {...expected} />)
-    component.find('.month input').simulate('focus')
     component.find('.month input').simulate('change', { target: { value: '1' } })
-    component.find('.month input').simulate('blur')
     component.find('.day input').simulate('change', { target: { value: '10' } })
-    component.find('.day input').simulate('focus')
-    component.find('.day input').simulate('blur')
     component.find('.year input').simulate('change', { target: { value: '1999' } })
-    component.find('.year input').simulate('focus')
-    component.find('.year input').simulate('blur')
     expect(updates).toBe(3)
   })
 

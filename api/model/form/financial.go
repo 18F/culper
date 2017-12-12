@@ -81,8 +81,14 @@ func (entity *FinancialBankruptcy) Save(context *db.DatabaseContext, account int
 
 	context.Find(&FinancialBankruptcy{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialBankruptcy)
+		if entity.HasBankruptcy == nil {
+			entity.HasBankruptcy = &Branch{}
+		}
 		entity.HasBankruptcyID = previous.HasBankruptcyID
 		entity.HasBankruptcy.ID = previous.HasBankruptcyID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -116,8 +122,14 @@ func (entity *FinancialBankruptcy) Delete(context *db.DatabaseContext, account i
 
 	context.Find(&FinancialBankruptcy{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialBankruptcy)
+		if entity.HasBankruptcy == nil {
+			entity.HasBankruptcy = &Branch{}
+		}
 		entity.HasBankruptcyID = previous.HasBankruptcyID
 		entity.HasBankruptcy.ID = previous.HasBankruptcyID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -254,8 +266,14 @@ func (entity *FinancialGambling) Save(context *db.DatabaseContext, account int) 
 
 	context.Find(&FinancialGambling{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialGambling)
+		if entity.HasGamblingDebt == nil {
+			entity.HasGamblingDebt = &Branch{}
+		}
 		entity.HasGamblingDebtID = previous.HasGamblingDebtID
 		entity.HasGamblingDebt.ID = previous.HasGamblingDebtID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -289,8 +307,14 @@ func (entity *FinancialGambling) Delete(context *db.DatabaseContext, account int
 
 	context.Find(&FinancialGambling{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialGambling)
+		if entity.HasGamblingDebt == nil {
+			entity.HasGamblingDebt = &Branch{}
+		}
 		entity.HasGamblingDebtID = previous.HasGamblingDebtID
 		entity.HasGamblingDebt.ID = previous.HasGamblingDebtID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -427,8 +451,14 @@ func (entity *FinancialTaxes) Save(context *db.DatabaseContext, account int) (in
 
 	context.Find(&FinancialTaxes{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialTaxes)
+		if entity.HasTaxes == nil {
+			entity.HasTaxes = &Branch{}
+		}
 		entity.HasTaxesID = previous.HasTaxesID
 		entity.HasTaxes.ID = previous.HasTaxesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -466,8 +496,14 @@ func (entity *FinancialTaxes) Delete(context *db.DatabaseContext, account int) (
 
 	context.Find(&FinancialTaxes{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialTaxes)
+		if entity.HasTaxes == nil {
+			entity.HasTaxes = &Branch{}
+		}
 		entity.HasTaxesID = previous.HasTaxesID
 		entity.HasTaxes.ID = previous.HasTaxesID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -604,8 +640,14 @@ func (entity *FinancialCard) Save(context *db.DatabaseContext, account int) (int
 
 	context.Find(&FinancialCard{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialCard)
+		if entity.HasCardAbuse == nil {
+			entity.HasCardAbuse = &Branch{}
+		}
 		entity.HasCardAbuseID = previous.HasCardAbuseID
 		entity.HasCardAbuse.ID = previous.HasCardAbuseID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -643,8 +685,14 @@ func (entity *FinancialCard) Delete(context *db.DatabaseContext, account int) (i
 
 	context.Find(&FinancialCard{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialCard)
+		if entity.HasCardAbuse == nil {
+			entity.HasCardAbuse = &Branch{}
+		}
 		entity.HasCardAbuseID = previous.HasCardAbuseID
 		entity.HasCardAbuse.ID = previous.HasCardAbuseID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -781,8 +829,14 @@ func (entity *FinancialCredit) Save(context *db.DatabaseContext, account int) (i
 
 	context.Find(&FinancialCredit{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialCredit)
+		if entity.HasCreditCounseling == nil {
+			entity.HasCreditCounseling = &Branch{}
+		}
 		entity.HasCreditCounselingID = previous.HasCreditCounselingID
 		entity.HasCreditCounseling.ID = previous.HasCreditCounselingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -820,8 +874,14 @@ func (entity *FinancialCredit) Delete(context *db.DatabaseContext, account int) 
 
 	context.Find(&FinancialCredit{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialCredit)
+		if entity.HasCreditCounseling == nil {
+			entity.HasCreditCounseling = &Branch{}
+		}
 		entity.HasCreditCounselingID = previous.HasCreditCounselingID
 		entity.HasCreditCounseling.ID = previous.HasCreditCounselingID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -958,8 +1018,14 @@ func (entity *FinancialDelinquent) Save(context *db.DatabaseContext, account int
 
 	context.Find(&FinancialDelinquent{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialDelinquent)
+		if entity.HasDelinquent == nil {
+			entity.HasDelinquent = &Branch{}
+		}
 		entity.HasDelinquentID = previous.HasDelinquentID
 		entity.HasDelinquent.ID = previous.HasDelinquentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -993,8 +1059,14 @@ func (entity *FinancialDelinquent) Delete(context *db.DatabaseContext, account i
 
 	context.Find(&FinancialDelinquent{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialDelinquent)
+		if entity.HasDelinquent == nil {
+			entity.HasDelinquent = &Branch{}
+		}
 		entity.HasDelinquentID = previous.HasDelinquentID
 		entity.HasDelinquent.ID = previous.HasDelinquentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1131,8 +1203,14 @@ func (entity *FinancialNonpayment) Save(context *db.DatabaseContext, account int
 
 	context.Find(&FinancialNonpayment{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialNonpayment)
+		if entity.HasNonpayment == nil {
+			entity.HasNonpayment = &Branch{}
+		}
 		entity.HasNonpaymentID = previous.HasNonpaymentID
 		entity.HasNonpayment.ID = previous.HasNonpaymentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -1166,8 +1244,14 @@ func (entity *FinancialNonpayment) Delete(context *db.DatabaseContext, account i
 
 	context.Find(&FinancialNonpayment{ID: account}, func(result interface{}) {
 		previous := result.(*FinancialNonpayment)
+		if entity.HasNonpayment == nil {
+			entity.HasNonpayment = &Branch{}
+		}
 		entity.HasNonpaymentID = previous.HasNonpaymentID
 		entity.HasNonpayment.ID = previous.HasNonpaymentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})

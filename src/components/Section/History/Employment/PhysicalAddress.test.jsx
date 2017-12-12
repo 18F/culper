@@ -8,41 +8,21 @@ describe('The employment physical address component', () => {
     expect(component.find('.has-different').length).toBe(0)
   })
 
-  it('selects yes then no to having different address', () => {
-    let counter = 0
-    let expected = {
+  it('responds to updates', () => {
+    let updates = 0
+    const expected = {
+      HasDifferentAddress: { value: 'Yes' },
+      Address: {},
+      Telephone: {},
       onUpdate: () => {
-        counter++
+        updates++
       }
     }
 
-    const component = mount(<PhysicalAddress name="ac" onUpdate={expected.onUpdate} onBlur={expected.onBlur} onFocus={expected.onFocus} />)
-    const selected = component.find('.has-different-address .yes input')
-    selected.simulate('change')
-    expect(component.find('.has-different').length).toBeGreaterThan(0)
-    expect(counter).toBe(1)
-    component.find('.has-different-address .no input').simulate('change')
-    expect(component.find('.has-different').length).toBe(0)
-  })
-
-  it('loads data', () => {
-    let counter = 0
-    const expected = {
-      onUpdate: () => {
-        counter++
-      },
-      name: 'ac',
-      address: {
-        address: '1234 Some Rd'
-      },
-      HasDifferentAddress: { value: 'Yes' }
-    }
-
     const component = mount(<PhysicalAddress {...expected} />)
-    expect(component.find('.has-different').length).toBeGreaterThan(0)
-    let street = component.find('.mailing input').first()
-    street.simulate('change')
-    street.simulate('blur')
-    expect(counter).toBe(1)
+    component.find('.has-different-address .yes input').simulate('change')
+    component.find('.physical-address-address .street input').at(0).simulate('change')
+    component.find('.physical-address-telephone .number input').at(0).simulate('change')
+    expect(updates).toBe(3)
   })
 })

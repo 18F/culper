@@ -13,6 +13,11 @@ import (
 
 // BasicAuth processes a users request to login with a Username and Password
 func BasicAuth(w http.ResponseWriter, r *http.Request) {
+	if !cf.BasicEnabled() {
+		http.Error(w, "Basic authentication is not implemented", http.StatusInternalServerError)
+		return
+	}
+
 	var respBody struct {
 		Username string
 		Password string

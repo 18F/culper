@@ -10,7 +10,12 @@ export const historyEducation = (data = {}) => {
         Name: form.name(xitem.Name),
         Address: form.location(xitem.Address),
         Comments: form.textarea(xitem.Comments),
-        Reference: form.reference(xitem.Reference),
+        ReferenceName: form.name(xitem.ReferenceName),
+        ReferenceNameNotApplicable: form.notapplicable(xitem.ReferenceNameNotApplicable),
+        ReferencePhone: form.telephone(xitem.ReferencePhone),
+        ReferenceEmailNotApplicable: form.notapplicable(xitem.ReferenceEmailNotApplicable),
+        ReferenceEmail: form.email(xitem.ReferenceEmail),
+        ReferenceAddress: form.location(xitem.ReferenceAddress),
         Diplomas: form.collection(((xitem.Diplomas || {}).items || []).map(y => {
           const yitem = y.Item || {}
           return {

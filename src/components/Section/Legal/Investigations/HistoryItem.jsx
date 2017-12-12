@@ -53,7 +53,8 @@ export default class HistoryItem extends ValidationElement {
 
   updateCompletedNotApplicable (values) {
     this.update({
-      CompletedNotApplicable: values
+      CompletedNotApplicable: values,
+      Completed: null
     })
   }
 
@@ -77,7 +78,8 @@ export default class HistoryItem extends ValidationElement {
 
   updateGrantedNotApplicable (values) {
     this.update({
-      GrantedNotApplicable: values
+      GrantedNotApplicable: values,
+      Granted: null
     })
   }
 

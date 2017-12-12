@@ -81,8 +81,14 @@ func (entity *PsychologicalCompetence) Save(context *db.DatabaseContext, account
 
 	context.Find(&PsychologicalCompetence{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalCompetence)
+		if entity.IsIncompetent == nil {
+			entity.IsIncompetent = &Branch{}
+		}
 		entity.IsIncompetentID = previous.IsIncompetentID
 		entity.IsIncompetent.ID = previous.IsIncompetentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -116,8 +122,14 @@ func (entity *PsychologicalCompetence) Delete(context *db.DatabaseContext, accou
 
 	context.Find(&PsychologicalCompetence{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalCompetence)
+		if entity.IsIncompetent == nil {
+			entity.IsIncompetent = &Branch{}
+		}
 		entity.IsIncompetentID = previous.IsIncompetentID
 		entity.IsIncompetent.ID = previous.IsIncompetentID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -254,8 +266,14 @@ func (entity *PsychologicalConsultations) Save(context *db.DatabaseContext, acco
 
 	context.Find(&PsychologicalConsultations{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalConsultations)
+		if entity.Consulted == nil {
+			entity.Consulted = &Branch{}
+		}
 		entity.ConsultedID = previous.ConsultedID
 		entity.Consulted.ID = previous.ConsultedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -289,8 +307,14 @@ func (entity *PsychologicalConsultations) Delete(context *db.DatabaseContext, ac
 
 	context.Find(&PsychologicalConsultations{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalConsultations)
+		if entity.Consulted == nil {
+			entity.Consulted = &Branch{}
+		}
 		entity.ConsultedID = previous.ConsultedID
 		entity.Consulted.ID = previous.ConsultedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -477,14 +501,29 @@ func (entity *PsychologicalDiagnoses) Save(context *db.DatabaseContext, account 
 
 	context.Find(&PsychologicalDiagnoses{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalDiagnoses)
+		if entity.Diagnosed == nil {
+			entity.Diagnosed = &Branch{}
+		}
 		entity.DiagnosedID = previous.DiagnosedID
 		entity.Diagnosed.ID = previous.DiagnosedID
+		if entity.DidNotConsult == nil {
+			entity.DidNotConsult = &Branch{}
+		}
 		entity.DidNotConsultID = previous.DidNotConsultID
 		entity.DidNotConsult.ID = previous.DidNotConsultID
+		if entity.DiagnosisList == nil {
+			entity.DiagnosisList = &Collection{}
+		}
 		entity.DiagnosisListID = previous.DiagnosisListID
 		entity.DiagnosisList.ID = previous.DiagnosisListID
+		if entity.InTreatment == nil {
+			entity.InTreatment = &Branch{}
+		}
 		entity.InTreatmentID = previous.InTreatmentID
 		entity.InTreatment.ID = previous.InTreatmentID
+		if entity.TreatmentList == nil {
+			entity.TreatmentList = &Collection{}
+		}
 		entity.TreatmentListID = previous.TreatmentListID
 		entity.TreatmentList.ID = previous.TreatmentListID
 	})
@@ -536,14 +575,29 @@ func (entity *PsychologicalDiagnoses) Delete(context *db.DatabaseContext, accoun
 
 	context.Find(&PsychologicalDiagnoses{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalDiagnoses)
+		if entity.Diagnosed == nil {
+			entity.Diagnosed = &Branch{}
+		}
 		entity.DiagnosedID = previous.DiagnosedID
 		entity.Diagnosed.ID = previous.DiagnosedID
+		if entity.DidNotConsult == nil {
+			entity.DidNotConsult = &Branch{}
+		}
 		entity.DidNotConsultID = previous.DidNotConsultID
 		entity.DidNotConsult.ID = previous.DidNotConsultID
+		if entity.DiagnosisList == nil {
+			entity.DiagnosisList = &Collection{}
+		}
 		entity.DiagnosisListID = previous.DiagnosisListID
 		entity.DiagnosisList.ID = previous.DiagnosisListID
+		if entity.InTreatment == nil {
+			entity.InTreatment = &Branch{}
+		}
 		entity.InTreatmentID = previous.InTreatmentID
 		entity.InTreatment.ID = previous.InTreatmentID
+		if entity.TreatmentList == nil {
+			entity.TreatmentList = &Collection{}
+		}
 		entity.TreatmentListID = previous.TreatmentListID
 		entity.TreatmentList.ID = previous.TreatmentListID
 	})
@@ -713,8 +767,14 @@ func (entity *PsychologicalHospitalizations) Save(context *db.DatabaseContext, a
 
 	context.Find(&PsychologicalHospitalizations{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalHospitalizations)
+		if entity.Hospitalized == nil {
+			entity.Hospitalized = &Branch{}
+		}
 		entity.HospitalizedID = previous.HospitalizedID
 		entity.Hospitalized.ID = previous.HospitalizedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -748,8 +808,14 @@ func (entity *PsychologicalHospitalizations) Delete(context *db.DatabaseContext,
 
 	context.Find(&PsychologicalHospitalizations{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalHospitalizations)
+		if entity.Hospitalized == nil {
+			entity.Hospitalized = &Branch{}
+		}
 		entity.HospitalizedID = previous.HospitalizedID
 		entity.Hospitalized.ID = previous.HospitalizedID
+		if entity.List == nil {
+			entity.List = &Collection{}
+		}
 		entity.ListID = previous.ListID
 		entity.List.ID = previous.ListID
 	})
@@ -956,16 +1022,34 @@ func (entity *PsychologicalExisting) Save(context *db.DatabaseContext, account i
 
 	context.Find(&PsychologicalExisting{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalExisting)
+		if entity.HasCondition == nil {
+			entity.HasCondition = &Branch{}
+		}
 		entity.HasConditionID = previous.HasConditionID
 		entity.HasCondition.ID = previous.HasConditionID
+		if entity.ReceivedTreatment == nil {
+			entity.ReceivedTreatment = &Radio{}
+		}
 		entity.ReceivedTreatmentID = previous.ReceivedTreatmentID
 		entity.ReceivedTreatment.ID = previous.ReceivedTreatmentID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
+		if entity.TreatmentList == nil {
+			entity.TreatmentList = &Collection{}
+		}
 		entity.TreatmentListID = previous.TreatmentListID
 		entity.TreatmentList.ID = previous.TreatmentListID
+		if entity.DidNotFollow == nil {
+			entity.DidNotFollow = &Branch{}
+		}
 		entity.DidNotFollowID = previous.DidNotFollowID
 		entity.DidNotFollow.ID = previous.DidNotFollowID
+		if entity.DidNotFollowExplanation == nil {
+			entity.DidNotFollowExplanation = &Textarea{}
+		}
 		entity.DidNotFollowExplanationID = previous.DidNotFollowExplanationID
 		entity.DidNotFollowExplanation.ID = previous.DidNotFollowExplanationID
 	})
@@ -1023,16 +1107,34 @@ func (entity *PsychologicalExisting) Delete(context *db.DatabaseContext, account
 
 	context.Find(&PsychologicalExisting{ID: account}, func(result interface{}) {
 		previous := result.(*PsychologicalExisting)
+		if entity.HasCondition == nil {
+			entity.HasCondition = &Branch{}
+		}
 		entity.HasConditionID = previous.HasConditionID
 		entity.HasCondition.ID = previous.HasConditionID
+		if entity.ReceivedTreatment == nil {
+			entity.ReceivedTreatment = &Radio{}
+		}
 		entity.ReceivedTreatmentID = previous.ReceivedTreatmentID
 		entity.ReceivedTreatment.ID = previous.ReceivedTreatmentID
+		if entity.Explanation == nil {
+			entity.Explanation = &Textarea{}
+		}
 		entity.ExplanationID = previous.ExplanationID
 		entity.Explanation.ID = previous.ExplanationID
+		if entity.TreatmentList == nil {
+			entity.TreatmentList = &Collection{}
+		}
 		entity.TreatmentListID = previous.TreatmentListID
 		entity.TreatmentList.ID = previous.TreatmentListID
+		if entity.DidNotFollow == nil {
+			entity.DidNotFollow = &Branch{}
+		}
 		entity.DidNotFollowID = previous.DidNotFollowID
 		entity.DidNotFollow.ID = previous.DidNotFollowID
+		if entity.DidNotFollowExplanation == nil {
+			entity.DidNotFollowExplanation = &Textarea{}
+		}
 		entity.DidNotFollowExplanationID = previous.DidNotFollowExplanationID
 		entity.DidNotFollowExplanation.ID = previous.DidNotFollowExplanationID
 	})

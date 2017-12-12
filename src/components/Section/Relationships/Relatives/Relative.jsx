@@ -451,6 +451,7 @@ export default class Relative extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}
                validate={false}>
           <Location name="Birthplace"
+                    {...this.props.Birthplace}
                     label={i18n.t('relationships.relatives.label.birthplace')}
                     layout={Location.BIRTHPLACE_WITHOUT_COUNTY}
                     help=""
@@ -458,7 +459,6 @@ export default class Relative extends ValidationElement {
                     countryPlaceholder={i18n.t('relationships.relatives.placeholder.country')}
                     hideCounty={true}
                     className="relative-birthplace"
-                    {...this.props.Birthplace}
                     onError={this.props.onError}
                     onUpdate={this.updateBirthplace}
                     required={this.props.required}
@@ -701,10 +701,10 @@ export default class Relative extends ValidationElement {
                    help="relationships.relatives.help.courtaddress"
                    adjustFor="labels">
               <Location name="CourtAddress"
+                        {...this.props.CourtAddress}
                         layout={Location.US_ADDRESS}
                         geocode={true}
                         className="relative-courtaddress"
-                        {...this.props.CourtAddress}
                         onError={this.props.onError}
                         onUpdate={this.updateCourtAddress}
                         required={this.props.required}
@@ -991,9 +991,9 @@ export default class Relative extends ValidationElement {
                              onError={this.props.onError}
                              onUpdate={this.updateEmployerAddressNotApplicable}>
                 <Location name="EmployerAddress"
+                          {...this.props.EmployerAddress}
                           layout={Location.STREET_CITY}
                           className="relative-employer-address"
-                          {...this.props.EmployerAddress}
                           onError={this.props.onError}
                           onUpdate={this.updateEmployerAddress}
                           required={this.props.required}

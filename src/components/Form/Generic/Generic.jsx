@@ -53,6 +53,10 @@ export default class Generic extends ValidationElement {
     if (nextProps.value !== this.state.value) {
       updates = { ...updates, value: nextProps.value }
     }
+    // If disabled, we clear the value and clear state
+    if (nextProps.disabled) {
+      updates = { value: '', valid: null, error: null }
+    }
 
     this.setState(updates)
   }
@@ -82,7 +86,8 @@ export default class Generic extends ValidationElement {
    */
   handleBlur (event) {
     event.persist()
-    this.setState({ focus: false }, () => {
+    this.setState({ focus: false, value: `${this.state.value}`.trim() }, () => {
+      super.handleChange(event)
       super.handleBlur(event)
     })
   }

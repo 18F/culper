@@ -90,7 +90,7 @@ export default class DateRange extends ValidationElement {
       futureState.to = {
         date: now,
         year: `${now.getFullYear()}`,
-        month: `${now.getMonth() - 1}`,
+        month: `${now.getMonth() + 1}`,
         day: `${now.getDate()}`,
         estimated: false
       }
@@ -286,14 +286,10 @@ DateRange.errors = [
     code: 'required',
     func: (value, props) => {
       if (props.required && !props.disabled) {
-        return !!value.from &&
-          !!value.from.day &&
-          !!value.from.month &&
-          !!value.from.year &&
-          !!value.to &&
-          !!value.to.day &&
-          !!value.to.month &&
-          !!value.to.year
+        const hasParts = (dateObj) => {
+          return Boolean(dateObj.day && dateObj.month && dateObj.year)
+        }
+        return hasParts(value.from) && hasParts(value.to)
       }
       return true
     }
