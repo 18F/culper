@@ -17,6 +17,12 @@ func NewLogger() *logrus.Logger {
 	// Standard logging
 	log.Out = os.Stdout
 
+	// Set log level
+	level, err := logrus.ParseLevel(os.Getenv("LOG_LEVEL"))
+	if err == nil {
+		log.SetLevel(level)
+	}
+
 	// Apply environment specific hooks
 	hookLocalFile(log)
 	hookLocalDirectory(log)
