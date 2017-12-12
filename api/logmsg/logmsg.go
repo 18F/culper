@@ -5,7 +5,6 @@ import (
 	"net/url"
 	"os"
 	"path"
-	"strconv"
 
 	"github.com/rifflock/lfshook"
 	"github.com/sirupsen/logrus"
@@ -19,12 +18,10 @@ func NewLogger() *logrus.Logger {
 	log.Out = os.Stdout
 
 	// Set log level
-	logLevel := os.Getenv("LOG_LEVEL")
-	level, err := strconv.ParseUint(logLevel, 10, 32)
-	if err != nil {
-		level = logrus.WarnLevel
+	level, err := logrus.ParseLevel(os.Getenv("LOG_LEVEL"))
+	if err == nil {
+		log.SetLevel(level)
 	}
-	log.SetLevel(level)
 
 	// Apply environment specific hooks
 	hookLocalFile(log)
