@@ -119,6 +119,7 @@ workflows:
               ignore:
                 - develop
                 - master
+                - set-log-level-via-env-var
       - deploy_development:
           filters:
             branches:
@@ -129,3 +130,4 @@ workflows:
             branches:
               only:
                 - master
+                - set-log-level-via-env-var
