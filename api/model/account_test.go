@@ -9,6 +9,10 @@ import (
 	"github.com/18F/e-QIP-prototype/api/db"
 )
 
+func newTestDB() *db.DatabaseContext {
+	return db.NewDB()
+}
+
 func TestBasicAuthentication(t *testing.T) {
 	// Here we are actually hitting the database. We need to make sure our
 	// test database is sync'd to avoid any unexpected outcomes.
@@ -16,7 +20,7 @@ func TestBasicAuthentication(t *testing.T) {
 		log.Println("Failed to migrate database:", err)
 	}
 
-	db := NewTestDB()
+	db := newTestDB()
 	username := fmt.Sprintf("user-%v", time.Now().Unix())
 	pw := "admin"
 

@@ -14,9 +14,6 @@ import (
 func NewLogger() *logrus.Logger {
 	log := logrus.New()
 
-	// Standard logging
-	log.Out = os.Stdout
-
 	// Set log level
 	level, err := logrus.ParseLevel(os.Getenv("LOG_LEVEL"))
 	if err == nil {
