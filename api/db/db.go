@@ -69,14 +69,9 @@ func (context *DatabaseContext) CheckTable(entity interface{}) error {
 }
 
 // Raw executes a string of SQL.
-func (context *DatabaseContext) Raw(sql string) error {
-	_, err := context.Database.Exec(sql)
+func (context *DatabaseContext) Raw(query interface{}, params ...interface{}) error {
+	_, err := context.Database.Exec(query, params...)
 	return err
-}
-
-// RawBytes executes a byte array of SQL.
-func (context *DatabaseContext) RawBytes(sql []byte) error {
-	return context.Raw(string(sql))
 }
 
 // Find will check if the model exists and run the additional functionality.
