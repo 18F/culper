@@ -53,7 +53,7 @@ func (payload Payload) Entity() (Entity, error) {
 // based on its type.
 func (payload Payload) UnmarshalEntity(raw []byte) (Entity, error) {
 	// Deserialize the initial payload from a JSON structure
-	if err := payload.Unmarshal(body); err != nil {
+	if err := payload.Unmarshal(raw); err != nil {
 		return nil, err
 	}
 
