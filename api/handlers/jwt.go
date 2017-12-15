@@ -96,17 +96,21 @@ func extractToken(r *http.Request) string {
 }
 
 func currentAudience(r *http.Request) string {
+	log := logmsg.NewLogger()
 	rawToken := extractToken(r)
 	token, err := jwt.ParseWithClaims(rawToken, &jwt.StandardClaims{}, keyFunc)
 	if err != nil {
+		log.WithError(err).Debug("Failed to parse JWT with standard claims")
 		return ""
 	}
 
 	if token.Valid {
 		claims := token.Claims.(*jwt.StandardClaims)
+		log.WithField("audience", claims.Audience).Debug("Current audience found")
 		return claims.Audience
 	}
 
+	log.WithError(err).Debug("JWT is invalid")
 	return ""
 }
 
@@ -125,7 +129,7 @@ func targetAudiences() []string {
 	}
 
 	if !cf.TwofactorDisabled() {
-		audiences = append(audiences, model.BasicAuthAudience)
+		audiences = append(audiences, model.TwoFactorAudience)
 	}
 
 	if cf.SamlEnabled() {
@@ -135,6 +139,9 @@ func targetAudiences() []string {
 	if cf.OAuthEnabled() {
 		audiences = append(audiences, model.SingleSignOnAudience)
 	}
+
+	log := logmsg.NewLogger()
+	log.WithField("audiences", audiences).Debug("Found audiences")
 
 	return audiences
 }
