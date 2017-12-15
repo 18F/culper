@@ -579,3 +579,15 @@ func (entity *Location) GetID() int {
 func (entity *Location) SetID(id int) {
 	entity.ID = id
 }
+
+func (entity *Location) IsDomestic() bool {
+	return entity.Country == "United States" || entity.Layout == LayoutUSAddress
+}
+
+func (entity *Location) IsPostOffice() bool {
+	return entity.Country == "POSTOFFICE"
+}
+
+func (entity *Location) IsInternational() bool {
+	return !entity.IsDomestic() && !entity.IsPostOffice()
+}

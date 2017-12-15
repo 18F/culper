@@ -49,6 +49,18 @@ func (payload Payload) Entity() (Entity, error) {
 	return entity, nil
 }
 
+// UnmarshalEntity returns the appropriate entity as an interface
+// based on its type.
+func (payload Payload) UnmarshalEntity(raw []byte) (Entity, error) {
+	// Deserialize the initial payload from a JSON structure
+	if err := payload.Unmarshal(raw); err != nil {
+		return nil, err
+	}
+
+	// Extract the entity interface of the payload and validate it
+	return payload.Entity()
+}
+
 func (payload Payload) Valid() (bool, error) {
 	entity, err := payload.Entity()
 	if err != nil {

@@ -1,0 +1,3 @@
+<Financial>
+  {{template "financial-bankruptcy" .Financial.Bankruptcies}}
+</Financial>

@@ -1,0 +1,3 @@
+<Street>{{.street}} {{.street2}}</Street>
+<City>{{.city}}</City>
+<Country>{{.country}}</Country>

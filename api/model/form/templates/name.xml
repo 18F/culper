@@ -1,0 +1,5 @@
+<Last {{if .lastInitialOnly}}Type="IO"{{end}}>{{.last}}</Last>
+<First {{if .firstInitialOnly}}Type="IO"{{end}}>{{.first}}</First>
+<Middle {{if .middleInitialOnly}}Type="IO"{{else if .noMiddleName}}Type="NMN"{{end}}>{{.middle}}</Middle>
+<Suffix>{{.suffix}}</Suffix>
+<Suffix_Other>{{.suffixOther}}</Suffix_Other>
