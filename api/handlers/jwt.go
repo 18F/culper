@@ -10,6 +10,7 @@ import (
 	"github.com/18F/e-QIP-prototype/api/db"
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 	"github.com/18F/e-QIP-prototype/api/model"
+	jwt "github.com/dgrijalva/jwt-go"
 )
 
 var (
@@ -21,8 +22,8 @@ func JwtTokenValidatorHandler(w http.ResponseWriter, r *http.Request) error {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience
-	audience := targetAudience()
-	_, err := checkToken(r, account, audience)
+	audiences := targetAudiences()
+	_, err := checkToken(r, account, audiences...)
 	if err != nil {
 		return fmt.Errorf("Invalid authorization token: %v", err)
 	}
@@ -36,15 +37,15 @@ func JwtTokenRefresh(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience
-	audience := targetAudience()
-	_, err := checkToken(r, account, audience)
+	audiences := targetAudiences()
+	_, err := checkToken(r, account, audiences...)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
 
 	// Generate a new token
-	signedToken, _, err := account.NewJwtToken(audience)
+	signedToken, _, err := account.NewJwtToken(currentAudience(r))
 	if err != nil {
 		log.WithError(err).Warn(logmsg.JWTError)
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -55,19 +56,24 @@ func JwtTokenRefresh(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprintf(w, signedToken)
 }
 
-func checkToken(r *http.Request, account *model.Account, audience string) (string, error) {
+func checkToken(r *http.Request, account *model.Account, audiences ...string) (string, error) {
 	log := logmsg.NewLogger()
 	log.Info(logmsg.ValidatingJWT)
 
-	authHeader := r.Header.Get("Authorization")
-	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
-	if len(matches) == 0 {
-		log.Warn(logmsg.NoAuthorizationToken)
+	jwtToken := extractToken(r)
+	if jwtToken == "" {
 		return "", errors.New("No authorization token header found")
 	}
 
-	jwtToken := matches[1]
-	if valid, err := account.ValidJwtToken(jwtToken, audience); !valid {
+	valid := false
+	var err error
+	for _, audience := range audiences {
+		if valid, err = account.ValidJwtToken(jwtToken, audience); valid {
+			break
+		}
+	}
+
+	if !valid {
 		log.WithError(err).Warn(logmsg.InvalidJWT)
 		return jwtToken, err
 	}
@@ -75,9 +81,60 @@ func checkToken(r *http.Request, account *model.Account, audience string) (strin
 	return jwtToken, nil
 }
 
-func targetAudience() string {
-	if cf.TwofactorDisabled() {
-		return model.BasicAuthAudience
+func extractToken(r *http.Request) string {
+	log := logmsg.NewLogger()
+	log.Info(logmsg.ValidatingJWT)
+
+	authHeader := r.Header.Get("Authorization")
+	matches := AuthBearerRegexp.FindStringSubmatch(authHeader)
+	if len(matches) == 0 {
+		log.Warn(logmsg.NoAuthorizationToken)
+		return ""
 	}
-	return model.TwoFactorAudience
+
+	return matches[1]
+}
+
+func currentAudience(r *http.Request) string {
+	rawToken := extractToken(r)
+	token, err := jwt.ParseWithClaims(rawToken, &jwt.StandardClaims{}, keyFunc)
+	if err != nil {
+		return ""
+	}
+
+	if token.Valid {
+		claims := token.Claims.(*jwt.StandardClaims)
+		return claims.Audience
+	}
+
+	return ""
+}
+
+func keyFunc(token *jwt.Token) (interface{}, error) {
+	if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+		return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+	}
+	return model.JwtSecret, nil
+}
+
+func targetAudiences() []string {
+	audiences := []string{}
+
+	if cf.BasicEnabled() {
+		audiences = append(audiences, model.BasicAuthAudience)
+	}
+
+	if !cf.TwofactorDisabled() {
+		audiences = append(audiences, model.BasicAuthAudience)
+	}
+
+	if cf.SamlEnabled() {
+		audiences = append(audiences, model.SingleSignOnAudience)
+	}
+
+	if cf.OAuthEnabled() {
+		audiences = append(audiences, model.SingleSignOnAudience)
+	}
+
+	return audiences
 }

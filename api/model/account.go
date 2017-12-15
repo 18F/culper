@@ -3,6 +3,7 @@ package model
 import (
 	"errors"
 	"fmt"
+	"os"
 	"strconv"
 	"time"
 
@@ -10,13 +11,16 @@ import (
 	jwt "github.com/dgrijalva/jwt-go"
 )
 
-var (
-	JwtSecret            = []byte("more secrets!")
+const (
 	Issuer               = "eqip"
 	BasicAuthAudience    = "Basic"
 	TwoFactorAudience    = "2FA"
 	SingleSignOnAudience = "SSO"
-	Expiration           = time.Hour * 1
+)
+
+var (
+	JwtSecret  = []byte(os.Getenv("JWT_SECRET"))
+	Expiration = time.Hour * 1
 
 	// ErrPasswordDoesNotMatch is an error when a user inputs an invalid password
 	ErrPasswordDoesNotMatch = errors.New("Password does not match")
