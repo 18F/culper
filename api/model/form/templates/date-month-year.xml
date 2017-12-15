@@ -1,2 +1,2 @@
-<Month>{{.month}}</Month>
-<Year>{{.year}}</Year>
+<Month>{{.props.month}}</Month>
+<Year>{{.props.year}}</Year>

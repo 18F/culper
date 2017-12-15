@@ -2,7 +2,7 @@ package form
 
 import (
 	"bytes"
-	"encoding/gob"
+	"encoding/json"
 	"html/template"
 	"path"
 
@@ -59,12 +59,11 @@ func xmlTemplateWithFuncs(name string, data map[string]interface{}) template.HTM
 }
 
 func getInterfaceAsBytes(anon interface{}) []byte {
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	if err := enc.Encode(anon); err != nil {
+	js, err := json.Marshal(anon)
+	if err != nil {
 		return nil
 	}
-	return buf.Bytes()
+	return js
 }
 
 // Put simple structures here where they only output a string
@@ -107,7 +106,7 @@ func dateEstimated(data map[string]interface{}) string {
 	payload := &Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "dateEstimated").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
@@ -125,7 +124,7 @@ func notApplicable(data map[string]interface{}) string {
 	payload := &Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "notApplicable").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
@@ -143,7 +142,7 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 	payload := &Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "checkboxTrueFalse").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
@@ -170,9 +169,10 @@ func location(data map[string]interface{}) template.HTML {
 
 	// Deserialize the initial payload from a JSON structure
 	payload := &Payload{}
+	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "location").Warn(logmsg.PayloadEntityError)
 		return template.HTML("")
 	}
 
