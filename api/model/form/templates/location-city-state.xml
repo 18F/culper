@@ -1,0 +1,2 @@
+<City>{{.city}}</City>
+<State>{{.state}}</State>

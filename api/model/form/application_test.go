@@ -25,3 +25,14 @@ func TestHash(t *testing.T) {
 		t.Fatal("Failed to get application data hash")
 	}
 }
+
+// func TestPackage(t *testing.T) {
+// 	// Do something here
+// 	account := 1
+// 	context := db.NewDB()
+
+// 	js := Package(context, account, false)
+// 	if len(js) == 0 {
+// 		t.Fatal("Failed to get application state")
+// 	}
+// }
