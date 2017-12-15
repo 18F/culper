@@ -17,6 +17,7 @@ var (
 	fmap = template.FuncMap{
 		"branch":            branch,
 		"text":              text,
+		"textarea":          textarea,
 		"number":            number,
 		"location":          location,
 		"monthYear":         monthYear,
@@ -80,6 +81,21 @@ func text(data interface{}) string {
 
 	text := entity.(*Text)
 	return text.Value
+}
+
+func textarea(data interface{}) string {
+	log := logmsg.NewLogger()
+
+	// Deserialize the initial payload from a JSON structure
+	payload := &Payload{}
+	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
+	if err != nil {
+		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		return ""
+	}
+
+	textarea := entity.(*Textarea)
+	return textarea.Value
 }
 
 func number(data interface{}) string {

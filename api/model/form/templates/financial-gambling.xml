@@ -1,0 +1,32 @@
+<ProblemsDueToGambling>
+  <Answer>{{branch .HasGamblingDebt}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .List.Branch}}</HaveAdditionalEntryAnswer>
+  <Incidents>
+    {{range $index, $item := .List.Items}}
+    <Incident ID="{{$index}}">
+      <!--Optional:-->
+      <Actions>string</Actions>
+      <Amount>{{number $item.Losses}}</Amount>
+      <Comment></Comment>
+      <!--Optional:-->
+      <DateRange>
+        <From>
+          <Date Type="Estimated">
+            <Month>01</Month>
+            <Year>token</Year>
+          </Date>
+        </From>
+        <To>
+          <Date Type="Present">
+            <Month>03</Month>
+            <Year>token</Year>
+          </Date>
+        </To>
+      </DateRange>
+      <Description>{{textarea $item.Description}}</Description>
+    </Incident>
+    {{end}}
+  </Incidents>
+  <SummaryComment></SummaryComment>
+</ProblemsDueToGambling>

@@ -1,0 +1,21 @@
+<ViolatedCorporateCardAgreement>
+  <Answer>{{branch .HasCardAbuse}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .List.Branch}}</HaveAdditionalEntryAnswer>
+  <Incidents>
+    {{range $index, $item := .List.Items}}
+    <Incident ID="{{$index}}">
+      <Actions>{{textarea $item.Description}}</Actions>
+      <Agency>
+        <Address>{{location $item.Address}}</Address>
+        <Name>{{text $item.Name}}</Name>
+      </Agency>
+      <Amount Estimated="{{checkboxTrueFalse $item.AmountEstimated}}">{{number $item.Amount}}</Amount>
+      <Comment></Comment>
+      <Date Type="{{dateEstimated $item.Date}}">{{monthYear $item.Date}}</Date>
+      <Reason>{{textarea $item.Reason}}</Reason>
+    </Incident>
+    {{end}}
+  </Incidents>
+  <SummaryComment></SummaryComment>
+</ViolatedCorporateCardAgreement>
