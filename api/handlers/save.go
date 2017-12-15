@@ -18,7 +18,7 @@ func AllSections(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := checkToken(r, account, targetAudiences()...)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -43,7 +43,7 @@ func Hash(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := checkToken(r, account, targetAudiences()...)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -69,7 +69,7 @@ func Section(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := checkToken(r, account, targetAudiences()...)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
@@ -116,7 +116,7 @@ func Save(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 
 	// Valid token and audience while populating the audience ID
-	_, err := checkToken(r, account, targetAudience())
+	_, err := checkToken(r, account, targetAudiences()...)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return

@@ -3,7 +3,7 @@ import { LoginOAuth, TwoFactor } from '../../components'
 import { connect } from 'react-redux'
 import { i18n, env } from '../../config'
 import { api } from '../../services'
-import { login } from '../../actions/AuthActions'
+import { login, handleLoginSuccess } from '../../actions/AuthActions'
 import { push } from '../../middleware/history'
 import { Consent, Text, Show } from '../../components/Form'
 
@@ -64,6 +64,15 @@ class Login extends React.Component {
     // If user is authenticated, redirect to home page
     if (this.props.authenticated && this.props.twofactor) {
       this.props.dispatch(push('/form/identification/intro'))
+      return
+    }
+
+    const token = this.getQueryValue('token')
+    if (token) {
+      api.setToken(token)
+      this.props.dispatch(handleLoginSuccess())
+      this.props.dispatch(push('/form/identification/intro'))
+      return
     }
 
     const err = this.getQueryValue('error')
@@ -71,6 +80,7 @@ class Login extends React.Component {
       switch (err) {
       case 'access_denied':
         this.props.dispatch(push('/accessdenied'))
+        return
       }
     }
   }
