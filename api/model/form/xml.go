@@ -3,7 +3,6 @@ package form
 import (
 	"bytes"
 	"encoding/gob"
-	"fmt"
 	"html/template"
 	"path"
 
@@ -27,11 +26,26 @@ var (
 		"radio":             radio,
 		"checkboxTrueFalse": checkboxTrueFalse,
 	}
+
+	fattrmap = template.FuncMap{}
 )
+
+func xmlTemplate(name string, data map[string]interface{}) template.HTML {
+	log := logmsg.NewLogger()
+
+	path := path.Join("templates", name)
+	tmpl := template.Must(template.New(name).ParseFiles(path))
+
+	var output bytes.Buffer
+	if err := tmpl.Execute(&output, data); err != nil {
+		log.WithError(err).WithField("name", name).Warn("Failed to execute XML template")
+	}
+	return template.HTML(output.String())
+}
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
 // given entity.
-func xmlTemplateWithFuncs(name string, data map[string]interface{}) []byte {
+func xmlTemplateWithFuncs(name string, data map[string]interface{}) template.HTML {
 	log := logmsg.NewLogger()
 
 	path := path.Join("templates", name)
@@ -41,7 +55,7 @@ func xmlTemplateWithFuncs(name string, data map[string]interface{}) []byte {
 	if err := tmpl.Execute(&output, data); err != nil {
 		log.WithError(err).WithField("name", name).Warn("Failed to execute XML template")
 	}
-	return output.Bytes()
+	return template.HTML(output.String())
 }
 
 func getInterfaceAsBytes(anon interface{}) []byte {
@@ -53,145 +67,40 @@ func getInterfaceAsBytes(anon interface{}) []byte {
 	return buf.Bytes()
 }
 
-func branch(data interface{}) string {
-	log := logmsg.NewLogger()
+// Put simple structures here where they only output a string
 
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
+// simpleValue returns the value property of a basic payload type.
+func simpleValue(data map[string]interface{}) string {
+	props, ok := data["props"]
+	if ok {
+		return (props.(map[string]interface{}))["value"].(string)
 	}
-
-	branch := entity.(*Branch)
-	return branch.Value
+	return ""
 }
 
-func text(data interface{}) string {
-	log := logmsg.NewLogger()
-
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
-	}
-
-	text := entity.(*Text)
-	return text.Value
+func branch(data map[string]interface{}) string {
+	return simpleValue(data)
 }
 
-func textarea(data interface{}) string {
-	log := logmsg.NewLogger()
-
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
-	}
-
-	textarea := entity.(*Textarea)
-	return textarea.Value
+func text(data map[string]interface{}) string {
+	return simpleValue(data)
 }
 
-func number(data interface{}) string {
-	log := logmsg.NewLogger()
-
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
-	}
-
-	number := entity.(*Text)
-	return number.Value
+func textarea(data map[string]interface{}) string {
+	return simpleValue(data)
 }
 
-func location(data interface{}) string {
-	log := logmsg.NewLogger()
-
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
-	}
-
-	location := entity.(*Location)
-	domestic := location.IsDomestic()
-	postoffice := location.IsPostOffice()
-
-	switch location.Layout {
-	case LayoutBirthPlace:
-		if domestic {
-			return fmt.Sprintf("<City>%s</City><State>%s</State><County>%s</County>", location.City, location.State, location.County)
-		}
-		return fmt.Sprintf("<City>%s</City><County>%s</County>", location.City, location.County)
-	case LayoutBirthPlaceWithoutCounty:
-		if domestic {
-			return fmt.Sprintf("<City>%s</City><State>%s</State>", location.City, location.State)
-		}
-		return fmt.Sprintf("<City>%s</City><County>%s</County>", location.City, location.County)
-	case LayoutCountry:
-		return fmt.Sprintf("<Country>%s</Country>", location.Country)
-	case LayoutUSCityStateInternationalCity:
-		if domestic {
-			return fmt.Sprintf("<City>%s</City><State>%s</State>", location.City, location.State)
-		}
-		return fmt.Sprintf("<City>%s</City><Country>%s</Country>", location.City, location.Country)
-	case LayoutUSCityStateInternationalCityCountry:
-		if domestic {
-			return fmt.Sprintf("<City>%s</City><State>%s</State>", location.City, location.State)
-		}
-		return fmt.Sprintf("<City>%s</City><Country>%s</Country>", location.City, location.Country)
-	case LayoutCityState:
-		return fmt.Sprintf("<City>%s</City><State>%s</State>", location.City, location.State)
-	case LayoutStreetCityCountry:
-		return fmt.Sprintf("<Street>%s</Street><City>%s</City><Country>%s</Country>", location.Street1, location.City, location.Country)
-	case LayoutCityCountry:
-		return fmt.Sprintf("<City>%s</City><Country>%s</Country>", location.City, location.Country)
-	case LayoutUSCityStateZipcodeInternationalCity:
-		if domestic {
-			return fmt.Sprintf("<City>%s</City><State>%s</State><ZipCode>%s</ZipCode>", location.City, location.State, location.Zipcode)
-		}
-		return fmt.Sprintf("<City>%s</City><Country>%s</Country>", location.City, location.Country)
-	case LayoutCityStateCountry:
-		return fmt.Sprintf("<City>%s</City><State>%s</State><Country>%s</Country>", location.City, location.State, location.Country)
-	case LayoutUSAddress:
-		return fmt.Sprintf("<Street>%s</Street><City>%s</City><State>%s</State><ZipCode>%s</ZipCode>", location.Street1, location.City, location.State, location.Zipcode)
-	case LayoutStreetCity:
-		return fmt.Sprintf("<Street>%s</Street><City>%s</City>", location.Street1, location.City)
-	default:
-		if domestic || postoffice {
-			return fmt.Sprintf("<Street>%s</Street><City>%s</City><State>%s</State><ZipCode>%s</ZipCode>", location.Street1, location.City, location.State, location.Zipcode)
-		}
-		return fmt.Sprintf("<Street>%s</Street><City>%s</City><Country>%s</Country>", location.Street1, location.City, location.Country)
-	}
+func number(data map[string]interface{}) string {
+	return simpleValue(data)
 }
 
-func monthYear(data interface{}) string {
-	log := logmsg.NewLogger()
-
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
-	}
-
-	date := entity.(*DateControl)
-	return fmt.Sprintf("<Month>%s</Month><Year>%s</Year>", date.Month, date.Year)
+func radio(data map[string]interface{}) string {
+	return simpleValue(data)
 }
 
-func dateEstimated(data interface{}) string {
+// Put attribute helpers here
+
+func dateEstimated(data map[string]interface{}) string {
 	log := logmsg.NewLogger()
 
 	// Deserialize the initial payload from a JSON structure
@@ -209,7 +118,7 @@ func dateEstimated(data interface{}) string {
 	return ""
 }
 
-func notApplicable(data interface{}) string {
+func notApplicable(data map[string]interface{}) string {
 	log := logmsg.NewLogger()
 
 	// Deserialize the initial payload from a JSON structure
@@ -227,38 +136,7 @@ func notApplicable(data interface{}) string {
 	return "True"
 }
 
-func name(data interface{}) string {
-	log := logmsg.NewLogger()
-
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
-	}
-
-	name := entity.(*Name)
-	tmpl := "<Last>%s</Last><First Type=\"IO\">%s</First><Middle Type=\"NMN\">%s</Middle><Suffix>%s</Suffix><Suffix_Other>%s</Suffix_Other>"
-	return fmt.Sprintf(tmpl, name.Last, name.First, name.Middle, name.Suffix, name.SuffixOther)
-}
-
-func radio(data interface{}) string {
-	log := logmsg.NewLogger()
-
-	// Deserialize the initial payload from a JSON structure
-	payload := &Payload{}
-	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
-	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
-		return ""
-	}
-
-	radio := entity.(*Radio)
-	return radio.Value
-}
-
-func checkboxTrueFalse(data interface{}) string {
+func checkboxTrueFalse(data map[string]interface{}) string {
 	log := logmsg.NewLogger()
 
 	// Deserialize the initial payload from a JSON structure
@@ -274,4 +152,78 @@ func checkboxTrueFalse(data interface{}) string {
 		return "true"
 	}
 	return "false"
+}
+
+// Put "complex" XML structures here where they output from another template
+
+func name(data map[string]interface{}) template.HTML {
+	return xmlTemplate("name.xml", data)
+}
+
+func monthYear(data map[string]interface{}) template.HTML {
+	return xmlTemplate("date-month-year.xml", data)
+}
+
+// location assumes the data comes in as the props
+func location(data map[string]interface{}) template.HTML {
+	log := logmsg.NewLogger()
+
+	// Deserialize the initial payload from a JSON structure
+	payload := &Payload{}
+	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
+	if err != nil {
+		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		return template.HTML("")
+	}
+
+	location := entity.(*Location)
+	domestic := location.IsDomestic()
+	postoffice := location.IsPostOffice()
+
+	switch location.Layout {
+	case LayoutBirthPlace:
+		if domestic {
+			return xmlTemplate("location-city-state-county.xml", data)
+		}
+		return xmlTemplate("location-city-county.xml", data)
+	case LayoutBirthPlaceWithoutCounty:
+		if domestic {
+			return xmlTemplate("location-city-state.xml", data)
+		}
+		return xmlTemplate("location-city-country.xml", data)
+	case LayoutCountry:
+		return xmlTemplate("location-country.xml", data)
+	case LayoutUSCityStateInternationalCity:
+		if domestic {
+			return xmlTemplate("location-city-state.xml", data)
+		}
+		return xmlTemplate("location-city-country.xml", data)
+	case LayoutUSCityStateInternationalCityCountry:
+		if domestic {
+			return xmlTemplate("location-city-state.xml", data)
+		}
+		return xmlTemplate("location-city-country.xml", data)
+	case LayoutCityState:
+		return xmlTemplate("location-city-state.xml", data)
+	case LayoutStreetCityCountry:
+		return xmlTemplate("location-street-city-country.xml", data)
+	case LayoutCityCountry:
+		return xmlTemplate("location-city-country.xml", data)
+	case LayoutUSCityStateZipcodeInternationalCity:
+		if domestic {
+			return xmlTemplate("location-city-state-zipcode.xml", data)
+		}
+		return xmlTemplate("location-city-country.xml", data)
+	case LayoutCityStateCountry:
+		return xmlTemplate("location-city-state-country.xml", data)
+	case LayoutUSAddress:
+		return xmlTemplate("location-street-city-state-zipcode.xml", data)
+	case LayoutStreetCity:
+		return xmlTemplate("location-street-city.xml", data)
+	default:
+		if domestic || postoffice {
+			return xmlTemplate("location-street-city-state-zipcode.xml", data)
+		}
+		return xmlTemplate("location-street-city-country.xml", data)
+	}
 }

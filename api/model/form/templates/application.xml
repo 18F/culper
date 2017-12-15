@@ -15,5 +15,7 @@
     </FormInstanceSpecific>
     <Pooled>
         <!-- Section elements go here -->
+        {{template "identification" .}}
+        {{template "financial" .}}
     </Pooled>
 </Responses>

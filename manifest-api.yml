@@ -14,4 +14,6 @@ applications:
   env:
     PATH: /bin:/usr/bin:$HOME/bin
     GOVERSION: go1.8.5
+    API_REDIRECT: https://eqip-prototype.fr.cloud.gov
+    API_BASE_URL: https://eqip-prototype-api.fr.cloud.gov
     SAML_ENABLED: 1

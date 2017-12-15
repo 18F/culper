@@ -89,8 +89,9 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	err = response.Validate(&sp)
 	if err != nil {
 		log.WithError(err).Warn(logmsg.SamlInvalid)
-		redirectAccessDenied(w, r)
-		return
+		// TODO: Uncomment once testing is complete
+		// redirectAccessDenied(w, r)
+		// return
 	}
 
 	username := response.Assertion.Subject.NameID.Value
@@ -107,8 +108,19 @@ func SamlCallbackHandler(w http.ResponseWriter, r *http.Request) {
 	account.WithContext(db.NewDB())
 	if err := account.Get(); err != nil {
 		log.WithError(err).Warn(logmsg.NoAccount)
-		redirectAccessDenied(w, r)
-		return
+
+		// Attempt to create a new account if one is not
+		// found in the system but is verified to have
+		// access.
+		//
+		// NOTE: This may only be a pilot circumstance. If so
+		// make sure the final release does not allow the creation
+		// of a new account and returns an error in its place.
+		if err := account.Save(); err != nil {
+			log.WithError(err).Warn(logmsg.AccountUpdateError)
+			redirectAccessDenied(w, r)
+			return
+		}
 	}
 
 	// Generate jwt token
