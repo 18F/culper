@@ -2,6 +2,7 @@ package form
 
 import (
 	"encoding/json"
+	"fmt"
 	"log"
 	"testing"
 )
@@ -11,7 +12,8 @@ func TestPackage(t *testing.T) {
 		Schema string
 		Data   string
 	}{
-		{Schema: "financial-bankruptcy.xml", Data: "testdata/financial-bankruptcy.json"},
+		//{Schema: "financial-bankruptcy.xml", Data: "testdata/financial-bankruptcy.json"},
+		{Schema: "identification.xml", Data: "testdata/identification.json"},
 	}
 
 	for _, test := range tests {
@@ -20,7 +22,7 @@ func TestPackage(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-
+		fmt.Println(string(raw))
 		var js map[string]interface{}
 		if err := json.Unmarshal(raw, &js); err != nil {
 			t.Fatalf("Failed to unmarshal XML schema %s", test.Data)
