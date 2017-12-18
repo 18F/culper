@@ -1,31 +1,18 @@
 <ProblemsDueToGambling>
-  <Answer>{{branch .HasGamblingDebt}}</Answer>
+  <Answer>{{branch .props.HasGamblingDebt}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .List.Branch}}</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
-    {{range $index, $item := .List.Items}}
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Incident ID="{{$index}}">
-      <!--Optional:-->
-      <Actions>string</Actions>
-      <Amount>{{number $item.Losses}}</Amount>
+      <Actions>{{textarea $Item.Actions}}</Actions>
+      <Amount>{{number $Item.Losses}}</Amount>
       <Comment></Comment>
-      <!--Optional:-->
-      <DateRange>
-        <From>
-          <Date Type="Estimated">
-            <Month>01</Month>
-            <Year>token</Year>
-          </Date>
-        </From>
-        <To>
-          <Date Type="Present">
-            <Month>03</Month>
-            <Year>token</Year>
-          </Date>
-        </To>
-      </DateRange>
-      <Description>{{textarea $item.Description}}</Description>
+      <DateRange>{{daterange $Item.Dates}}</DateRange>
+      <Description>{{textarea $Item.Description}}</Description>
     </Incident>
+    {{end}}
     {{end}}
   </Incidents>
   <SummaryComment></SummaryComment>

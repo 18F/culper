@@ -1,28 +1,21 @@
 <UtilizingOrSeekingCreditCounseling>
-  <Answer>{{branch .HasCreditCounseling}}</Answer>
+  <Answer>{{branch .props.HasCreditCounseling}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .List.Branch}}</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
-    {{range $index, $item := .List.Items}}
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Incident ID="{{$index}}">
-      <Actions>{{textarea $item.Description}}</Actions>
+      <Actions>{{textarea $Item.Description}}</Actions>
       <Comment></Comment>
-      <Explanation>{{textarea $item.Explanation}}</Explanation>
+      <Explanation>{{textarea $Item.Explanation}}</Explanation>
       <Organization>
-        <Location>{{location $item.Location}}</Location>
-        <Name>{{text $item.Name}}</Name>
-        <Telephone>
-          <!--Optional:-->
-          <International>International</International>
-          <!--Optional:-->
-          <Number>string</Number>
-          <!--Optional:-->
-          <Extension>string</Extension>
-          <!--Optional:-->
-          <Time>Both</Time>
-        </Telephone>
+        <Location>{{location $Item.Location}}</Location>
+        <Name>{{text $Item.Name}}</Name>
+        <Telephone>{{telephone $Item.Telephone}}</Telephone>
       </Organization>
     </Incident>
+    {{end}}
     {{end}}
   </Incidents>
   <SummaryComment></SummaryComment>
