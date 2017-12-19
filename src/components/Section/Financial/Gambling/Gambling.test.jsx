@@ -2,29 +2,32 @@ import React from 'react'
 import { mount } from 'enzyme'
 import Gambling from './Gambling'
 
-let gamblingData = [
-  {
-    Actions: {
-      name: 'Actions',
-      value: 'No actions'
-    },
-    Dates: {
-      from: new Date(),
-      name: 'Dates',
-      present: null,
-      title: 'Date Range',
-      to: new Date()
-    },
-    Description: {
-      name: 'Description',
-      value: 'Hello'
-    },
-    Losses: {
-      name: 'Losses',
-      value: '1000'
+let gamblingData = {
+  branch: {},
+  items: [
+    {
+      Actions: {
+        name: 'Actions',
+        value: 'No actions'
+      },
+      Dates: {
+        from: new Date(),
+        name: 'Dates',
+        present: null,
+        title: 'Date Range',
+        to: new Date()
+      },
+      Description: {
+        name: 'Description',
+        value: 'Hello'
+      },
+      Losses: {
+        name: 'Losses',
+        value: '1000'
+      }
     }
-  }
-]
+  ]
+}
 
 describe('The gambling component', () => {
   it('no error on empty', () => {
@@ -65,7 +68,8 @@ describe('The gambling component', () => {
       onUpdate: () => { update++ }
     }
     const component = mount(<Gambling {...expected} />)
-    component.find('.addendum .yes input').simulate('click')
+    update = 0
+    component.find('.addendum .yes input').simulate('change')
     expect(update).toBe(1)
   })
 

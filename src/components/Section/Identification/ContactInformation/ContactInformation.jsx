@@ -83,14 +83,28 @@ export default class ContactInformation extends SubsectionElement {
     let phoneNumbers = this.props.PhoneNumbers
 
     if (this.props.shouldFilterEmptyItems) {
+      let filtered = emails.items.length
       const filteredEmails = emails.items.filter(x => {
         const item = x.Item || {}
+        if (!item.Email || !item.Email.value) {
+          filtered--
+          if (filtered < 1) {
+            return item
+          }
+        }
         return item.Email && item.Email.value
       })
       emails.items = filteredEmails
 
+      filtered = phoneNumbers.items.length
       const filteredPhoneNumbers = phoneNumbers.items.filter(x => {
         const item = x.Item || {}
+        if (!item.Telephone || !item.Telephone.value) {
+          filtered--
+          if (filtered < 1) {
+            return item
+          }
+        }
         return (item.Telephone && item.Telephone.number) || item.noNumber
       })
       phoneNumbers.items = filteredPhoneNumbers
@@ -118,7 +132,8 @@ export default class ContactInformation extends SubsectionElement {
                titleSize="h3"
                help="identification.contacts.help.email"
                optional={true}
-               className="no-margin-bottom">
+               className="no-margin-bottom"
+               scrollIntoView={false}>
           {i18n.m('identification.contacts.para.email')}
         </Field>
 
@@ -133,12 +148,14 @@ export default class ContactInformation extends SubsectionElement {
                      customDetails={this.firstItemRequired}
                      validator={ContactEmailValidator}
                      description={i18n.t('identification.contacts.collection.summary.title')}
-                     appendLabel={i18n.t('identification.contacts.collection.append')}>
+                     appendLabel={i18n.t('identification.contacts.collection.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <AccordionItem scrollIntoView={this.props.scrollIntoView}
                            required={this.props.required}>
               <Field title={i18n.t('identification.contacts.label.email')}
                      titleSize="label"
-                     optional={true}>
+                     optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Email name="Email"
                        placeholder={i18n.t('identification.contacts.placeholder.email')}
                        bind={true}
@@ -152,7 +169,8 @@ export default class ContactInformation extends SubsectionElement {
                titleSize="h3"
                optional={true}
                help="identification.contacts.help.phoneNumber"
-               className="no-margin-bottom">
+               className="no-margin-bottom"
+               scrollIntoView={false}>
           {i18n.m('identification.contacts.para.phoneNumber')}
         </Field>
 
@@ -167,10 +185,12 @@ export default class ContactInformation extends SubsectionElement {
                      validator={ContactPhoneNumberValidator}
                      summary={this.phoneNumberSummary}
                      description={i18n.t('identification.contacts.collection.phoneNumbers.summary.title')}
-                     appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}>
+                     appendLabel={i18n.t('identification.contacts.collection.phoneNumbers.append')}
+                     scrollIntoView={this.props.scrollIntoView}>
             <AccordionItem scrollIntoView={this.props.scrollIntoView}
                            required={this.props.required}>
-              <Field optional={true}>
+              <Field optional={true}
+                     scrollIntoView={this.props.scrollIntoView}>
                 <Telephone name="Telephone"
                            placeholder={i18n.t('identification.contacts.placeholder.telephone')}
                            allowNotApplicable={false}

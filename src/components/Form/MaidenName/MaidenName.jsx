@@ -7,25 +7,17 @@ export default class MaidenName extends ValidationElement {
   constructor (props) {
     super(props)
 
-    this.state = {
-      value: props.value
-    }
-
+    this.handleUpdate = this.handleUpdate.bind(this)
     this.handleError = this.handleError.bind(this)
   }
 
   /**
    * Handle the change event.
    */
-  handleChange (event) {
-    this.setState({ value: event.target.value }, () => {
-      super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: this.state.value
-        })
-      }
+  handleUpdate (values) {
+    this.props.onUpdate({
+      name: this.props.name,
+      value: values.value
     })
   }
 
@@ -48,11 +40,10 @@ export default class MaidenName extends ValidationElement {
     return (
       <div className={klass}>
         <label>{this.props.label}</label>
-        <RadioGroup
-          className="option-list"
-          selectedValue={this.state.value}
-          onError={this.props.onError}
-          required={this.props.required}>
+        <RadioGroup className="option-list"
+                    selectedValue={this.props.value}
+                    onError={this.props.onError}
+                    required={this.props.required}>
           <Radio name="maiden-name"
                  label="Yes"
                  value="Yes"
@@ -60,7 +51,7 @@ export default class MaidenName extends ValidationElement {
                  disabled={this.props.disabled}
                  readonly={this.props.readonly}
                  required={this.props.required}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.handleError}
                  />
           <Radio name="maiden-name"
@@ -70,7 +61,7 @@ export default class MaidenName extends ValidationElement {
                  disabled={this.props.disabled}
                  readonly={this.props.readonly}
                  required={this.props.required}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.handleError}
                  />
         </RadioGroup>
@@ -81,6 +72,7 @@ export default class MaidenName extends ValidationElement {
 
 MaidenName.defaultProps = {
   value: '',
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

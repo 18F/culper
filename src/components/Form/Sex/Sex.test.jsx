@@ -12,11 +12,11 @@ describe('The Sex component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleValidation: function (event) {
+      onValidate: function (event) {
         validations++
       }
     }
-    const component = mount(<Sex name={expected.name} onValidate={expected.handleValidation} />)
+    const component = mount(<Sex {...expected} />)
     component.find('input').first().simulate('change')
     expect(validations > 0).toEqual(true)
   })
@@ -31,14 +31,10 @@ describe('The Sex component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
-        changes++
-      },
       onUpdate: () => { updates++ }
     }
-    const component = mount(<Sex name={expected.name} onChange={expected.handleChange} onUpdate={expected.onUpdate} />)
+    const component = mount(<Sex {...expected} />)
     component.find('input').first().simulate('change')
-    expect(changes).toEqual(1)
     expect(updates).toEqual(updates)
   })
 })

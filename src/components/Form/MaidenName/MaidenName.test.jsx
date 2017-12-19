@@ -18,7 +18,7 @@ describe('The MaidenName component', () => {
       },
       onChange: () => {}
     }
-    const component = mount(<MaidenName name={expected.name} onError={expected.onError} onChange={expected.onChange} />)
+    const component = mount(<MaidenName {...expected} />)
     component.find('input').first().simulate('blur')
     expect(hit > 0).toEqual(true)
   })
@@ -32,11 +32,11 @@ describe('The MaidenName component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      onUpdate: function (queue) {
         changes++
       }
     }
-    const component = mount(<MaidenName name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<MaidenName {...expected} />)
     component.find('input').first().simulate('change')
     expect(changes).toEqual(1)
   })
