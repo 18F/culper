@@ -98,8 +98,8 @@ func (entity *Location) Valid() (bool, error) {
 	}
 
 	var stack model.ErrorStack
-	domestic := entity.Country == "United States" || entity.Layout == LayoutUSAddress
-	postoffice := entity.Country == "POSTOFFICE"
+	domestic := entity.IsDomestic()
+	postoffice := entity.IsPostOffice()
 	international := !domestic && !postoffice
 
 	switch entity.Layout {
@@ -132,7 +132,6 @@ func (entity *Location) Valid() (bool, error) {
 	case LayoutCityState:
 		stack = validateFields(entity, "city", "state")
 	case LayoutStreetCityCountry:
-		stack = validateFields(entity, "city", "country")
 		stack = validateFields(entity, "street", "city", "country")
 	case LayoutCityCountry:
 		stack = validateFields(entity, "city", "country")

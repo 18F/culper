@@ -10,6 +10,12 @@
     "List": {
       "type": "collection",
       "props": {
+        "branch": {
+          "type": "branch",
+          "props": {
+            "value": "No"
+          }
+        },
         "items": [
           {
             "Item": {
@@ -64,6 +70,12 @@
                 "type": "number",
                 "props": {
                   "value": "1000"
+                }
+              },
+              "TotalAmountEstimated": {
+                "type": "checkbox",
+                "props": {
+                  "checked": true
                 }
               },
               "DateFiled": {
