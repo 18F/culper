@@ -8,21 +8,12 @@ import RadioGroup from '../RadioGroup'
 export default class EyeColor extends ValidationElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      value: props.value
-    }
-
-    this.handleChange = this.handleChange.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
-  handleChange (event) {
-    this.setState({value: event.target.value}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          value: this.state.value
-        })
-      }
+  handleUpdate (values) {
+    this.props.onUpdate({
+      value: values.value
     })
   }
 
@@ -34,17 +25,16 @@ export default class EyeColor extends ValidationElement {
     return (
       <div className={this.divClass()}>
         <label>{this.props.label}</label>
-        <RadioGroup
-          className="option-list eapp-extend-labels"
-          selectedValue={this.state.value}
-          required={this.props.required}
-          onError={this.props.onError}>
+        <RadioGroup className="option-list eapp-extend-labels"
+                    selectedValue={this.props.value}
+                    required={this.props.required}
+                    onError={this.props.onError}>
           <Radio name={`${this.props.name}-black`}
                  label={i18n.t('identification.traits.eye.black')}
                  value="Black"
                  className="black"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -58,7 +48,7 @@ export default class EyeColor extends ValidationElement {
                  value="Blue"
                  className="blue"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -72,7 +62,7 @@ export default class EyeColor extends ValidationElement {
                  value="Brown"
                  className="brown"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -86,7 +76,7 @@ export default class EyeColor extends ValidationElement {
                  value="Gray"
                  className="gray"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -100,7 +90,7 @@ export default class EyeColor extends ValidationElement {
                  value="Green"
                  className="green"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -114,7 +104,7 @@ export default class EyeColor extends ValidationElement {
                  value="Hazel"
                  className="hazel"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -128,7 +118,7 @@ export default class EyeColor extends ValidationElement {
                  value="Maroon"
                  className="maroon"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -142,7 +132,7 @@ export default class EyeColor extends ValidationElement {
                  value="Multicolored"
                  className="multi"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -156,7 +146,7 @@ export default class EyeColor extends ValidationElement {
                  value="Pink"
                  className="pink"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -170,7 +160,7 @@ export default class EyeColor extends ValidationElement {
                  value="Unknown"
                  className="unknown"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -186,7 +176,9 @@ export default class EyeColor extends ValidationElement {
 }
 
 EyeColor.defaultProps = {
-  name: 'eye'
+  name: 'eye',
+  onUpdate: (queue) => {},
+  onError: (value, arr) => { return arr }
 }
 
 EyeColor.errors = []

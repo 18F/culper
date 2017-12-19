@@ -66,6 +66,7 @@ describe('The status component', () => {
       }
     }
     const component = mount(<Status {...expected} />)
+    updates = 0
     component.find('.entry-date .day input').simulate('change', { target: { name: 'day', value: '1' } })
     component.find('.entry-location .city input').simulate('change', { target: { name: 'city', value: 'City name' } })
     component.find('.prior-citizenship input').simulate('change', { target: { value: 'United States' } })
