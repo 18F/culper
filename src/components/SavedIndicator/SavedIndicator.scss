@@ -17,6 +17,11 @@ $border-size: 5px;
   height: 11rem;
   width: 12rem;
 
+  &:focus {
+    outline: none;
+    outline-offset: initial;
+  }
+
   &.active,
   &:active,
   &:hover {
@@ -33,11 +38,13 @@ $border-size: 5px;
     }
 
     .spinner {
+      top: -0.75rem;
+
       .spinner-icon,
       .spinner-icon:after {
         top: -0.15rem;
-        width: 6.25rem;
-        height: 6.25rem;
+        width: 6rem;
+        height: 6rem;
         border-top: $border-size solid rgba(32, 84, 147, 0.2);
         border-right: $border-size solid rgba(32, 84, 147, 0.2);
         border-bottom: $border-size solid rgba(32, 84, 147, 0.2);
@@ -102,7 +109,7 @@ $border-size: 5px;
 
   .spinner-label {
     position: relative;
-    top: -7.5rem;
+    top: -7.15rem;
 
     .one-line {
       color: $eapp-blue;
