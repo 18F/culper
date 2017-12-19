@@ -2,9 +2,10 @@ package form
 
 import (
 	"bytes"
-	"encoding/gob"
+	"encoding/json"
 	"html/template"
 	"path"
+	"strings"
 
 	"github.com/18F/e-QIP-prototype/api/logmsg"
 )
@@ -13,17 +14,21 @@ var (
 	// fmap is a mapping of functions to be used within the XML template execution.
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
-	fmap = template.FuncMap{
+	DefaultFuncMap = template.FuncMap{
 		"branch":            branch,
 		"text":              text,
 		"textarea":          textarea,
 		"number":            number,
 		"location":          location,
+		"daterange":         daterange,
 		"monthYear":         monthYear,
 		"dateEstimated":     dateEstimated,
 		"notApplicable":     notApplicable,
+		"telephone":         telephone,
 		"name":              name,
 		"radio":             radio,
+		"checkbox":          checkbox,
+		"checkboxHas":       checkboxHas,
 		"checkboxTrueFalse": checkboxTrueFalse,
 	}
 
@@ -45,7 +50,7 @@ func xmlTemplate(name string, data map[string]interface{}) template.HTML {
 
 // xmlTemplateWithFuncs executes an XML template with mapped functions to be used with the
 // given entity.
-func xmlTemplateWithFuncs(name string, data map[string]interface{}) template.HTML {
+func xmlTemplateWithFuncs(name string, data map[string]interface{}, fmap template.FuncMap) template.HTML {
 	log := logmsg.NewLogger()
 
 	path := path.Join("templates", name)
@@ -59,12 +64,11 @@ func xmlTemplateWithFuncs(name string, data map[string]interface{}) template.HTM
 }
 
 func getInterfaceAsBytes(anon interface{}) []byte {
-	var buf bytes.Buffer
-	enc := gob.NewEncoder(&buf)
-	if err := enc.Encode(anon); err != nil {
+	js, err := json.Marshal(anon)
+	if err != nil {
 		return nil
 	}
-	return buf.Bytes()
+	return js
 }
 
 // Put simple structures here where they only output a string
@@ -98,6 +102,32 @@ func radio(data map[string]interface{}) string {
 	return simpleValue(data)
 }
 
+func checkbox(data map[string]interface{}) string {
+	props, ok := data["props"]
+	if ok {
+		values := (props.(map[string]interface{}))["values"].([]interface{})
+		ss := []string{}
+		for _, v := range values {
+			ss = append(ss, v.(string))
+		}
+		return strings.Join(ss, ",")
+	}
+	return ""
+}
+
+func checkboxHas(data map[string]interface{}, target string) string {
+	props, ok := data["props"]
+	if ok {
+		values := (props.(map[string]interface{}))["values"].([]interface{})
+		for _, s := range values {
+			if s == target {
+				return "True"
+			}
+		}
+	}
+	return "False"
+}
+
 // Put attribute helpers here
 
 func dateEstimated(data map[string]interface{}) string {
@@ -107,7 +137,7 @@ func dateEstimated(data map[string]interface{}) string {
 	payload := &Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "dateEstimated").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
@@ -125,7 +155,7 @@ func notApplicable(data map[string]interface{}) string {
 	payload := &Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "notApplicable").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
@@ -143,7 +173,7 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 	payload := &Payload{}
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "checkboxTrueFalse").Warn(logmsg.PayloadEntityError)
 		return ""
 	}
 
@@ -156,8 +186,24 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 
 // Put "complex" XML structures here where they output from another template
 
+func telephone(data map[string]interface{}) template.HTML {
+	return xmlTemplate("telephone.xml", data)
+}
+
 func name(data map[string]interface{}) template.HTML {
 	return xmlTemplate("name.xml", data)
+}
+
+func daterange(data map[string]interface{}) template.HTML {
+	fmap := template.FuncMap{
+		"date":          date,
+		"dateEstimated": dateEstimated,
+	}
+	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
+}
+
+func date(data map[string]interface{}) template.HTML {
+	return xmlTemplate("date-month-day-year.xml", data)
 }
 
 func monthYear(data map[string]interface{}) template.HTML {
@@ -170,9 +216,10 @@ func location(data map[string]interface{}) template.HTML {
 
 	// Deserialize the initial payload from a JSON structure
 	payload := &Payload{}
+	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
 	if err != nil {
-		log.WithError(err).Warn(logmsg.PayloadEntityError)
+		log.WithError(err).WithField("funcMap", "location").Warn(logmsg.PayloadEntityError)
 		return template.HTML("")
 	}
 

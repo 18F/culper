@@ -1,0 +1,12 @@
+<DateRange>
+  <From>
+    <Date Type="{{dateEstimated .props.from}}">{{date .props.from}}</Date>
+  </From>
+  <To>
+    {{if .props.present}}
+    <Date Type="Present">{{date .props.to}}</Date>
+    {{else}}
+    <Date Type="{{dateEstimated .props.to}}">{{date .props.to}}</Date>
+    {{end}}
+  </To>
+</DateRange>

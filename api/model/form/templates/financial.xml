@@ -1,3 +1,9 @@
 <Financial>
-  {{template "financial-bankruptcy" .Financial.Bankruptcies}}
+  {{template "financial-bankruptcy" .Financial.Bankruptcy}}
+  {{template "financial-card" .Financial.Card}}
+  {{template "financial-credit" .Financial.Credit}}
+  {{template "financial-delinquent" .Financial.Delinquent}}
+  {{template "financial-gambling" .Financial.Gambling}}
+  {{template "financial-nonpayment" .Financial.Nonpayment}}
+  {{template "financial-taxes" .Financial.Taxes}}
 </Financial>

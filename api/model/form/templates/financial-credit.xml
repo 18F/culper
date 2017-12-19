@@ -1,0 +1,22 @@
+<UtilizingOrSeekingCreditCounseling>
+  <Answer>{{branch .props.HasCreditCounseling}}</Answer>
+  <Comment></Comment>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
+  <Incidents>
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
+    <Incident ID="{{$index}}">
+      <Actions>{{textarea $Item.Description}}</Actions>
+      <Comment></Comment>
+      <Explanation>{{textarea $Item.Explanation}}</Explanation>
+      <Organization>
+        <Location>{{location $Item.Location}}</Location>
+        <Name>{{text $Item.Name}}</Name>
+        <Telephone>{{telephone $Item.Telephone}}</Telephone>
+      </Organization>
+    </Incident>
+    {{end}}
+    {{end}}
+  </Incidents>
+  <SummaryComment></SummaryComment>
+</UtilizingOrSeekingCreditCounseling>
