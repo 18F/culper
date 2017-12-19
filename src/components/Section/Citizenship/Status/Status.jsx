@@ -577,14 +577,14 @@ export default class Status extends SubsectionElement {
                        label={i18n.m('citizenship.status.label.basis.naturalized')}
                        value="Individual"
                        className="citizenship-basis-individual"
-                       onChange={this.updateBasis}
+                       onUpdate={this.updateBasis}
                        onError={this.handleError}
                        />
                 <Radio name="citizenship-basis-other"
                        label={i18n.m('citizenship.status.label.basis.other')}
                        value="Other"
                        className="citizenship-basis-other"
-                       onChange={this.updateBasis}
+                       onUpdate={this.updateBasis}
                        onError={this.handleError}
                        />
               </RadioGroup>

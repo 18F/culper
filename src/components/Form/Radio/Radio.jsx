@@ -12,20 +12,21 @@ export default class Radio extends ValidationElement {
       focus: props.focus,
       error: props.error,
       valid: props.valid,
-      native: props.native,
-      clicked: false
+      native: props.native
     }
 
     this.handleChange = this.handleChange.bind(this)
-    this.handleError = this.handleError.bind(this)
+    this.handleClick = this.handleClick.bind(this)
+    this.handleKeyPress = this.handleKeyPress.bind(this)
   }
 
   componentWillReceiveProps (newProps) {
-    if (this.refs.radio && newProps.checked != this.state.checked) {
-      this.setState({
-        checked: newProps.checked
-      })
+    if (!this.refs.radio) {
+      // The component has not mounted yet
+      return
     }
+
+    this.setState({ checked: newProps.checked })
   }
 
   /**
@@ -33,26 +34,41 @@ export default class Radio extends ValidationElement {
    */
   handleChange (event) {
     event.persist()
-
-    const clicked = this.state.clicked
     const futureChecked = !this.state.checked
     const futureValue = futureChecked ? this.props.value : ''
 
     this.setState({ checked: futureChecked, value: futureValue }, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: this.state.value,
-          checked: this.state.checked
-        })
+      this.props.onUpdate({
+        name: this.props.name,
+        value: futureValue,
+        checked: futureChecked
+      })
+
+
+      // Toggling the focus of the element serves two purposes
+      //  1. On a value change it removes the race condition caused
+      //     when passing the updates via `onUpdate` and passing values
+      //     via `onError` overwriting each other.
+      //  2. When the radio button is `clicked` then the validation/errors
+      //     is triggered in the proper order.
+      if (this.refs.radio) {
+        this.refs.radio.blur()
+        this.refs.radio.focus()
       }
-
-      super.handleChange(event)
-
-      // HACK: Race condition was found where the majority of the time the `handleError` would
-      // beat the storage routines causing things not to show as valid.
-      window.setTimeout(() => { this.handleError(this.state.value) }, 200)
     })
+  }
+
+  handleClick (event) {
+    this.handleChange(event)
+  }
+
+  handleKeyPress (event) {
+    const allowedKeys = [' ', 'Enter']
+    if (allowedKeys.includes(event.key)) {
+      event.preventDefault()
+      event.stopPropagation()
+      this.handleChange(event)
+    }
   }
 
   /**
@@ -75,7 +91,11 @@ export default class Radio extends ValidationElement {
     })
   }
 
-  handleError (value, arr = []) {
+  /**
+   * Execute validation checks on the value.
+   */
+  handleValidation (event) {
+    const value = this.state.value
     const errors = this.props.onError(value, this.constructor.errors.map(err => {
       return {
         code: err.code,
@@ -85,13 +105,6 @@ export default class Radio extends ValidationElement {
     })) || []
 
     this.setState({ error: errors.some(x => !x.valid), valid: errors.every(x => x.valid) })
-  }
-
-  /**
-   * Execute validation checks on the value.
-   */
-  handleValidation (event) {
-    this.handleError(this.state.value)
   }
 
   /**
@@ -198,6 +211,8 @@ export default class Radio extends ValidationElement {
                  readOnly={this.props.readonly}
                  value={this.state.value}
                  onChange={this.handleChange}
+                 onClick={this.handleClick}
+                 onKeyDown={this.handleKeyPress}
                  onFocus={this.handleFocus}
                  onBlur={this.handleBlur}
                  checked={this.state.checked}
@@ -219,6 +234,7 @@ Radio.defaultProps = {
   error: false,
   valid: false,
   native: false,
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
 

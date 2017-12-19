@@ -5,37 +5,29 @@ import { ValidationElement, Textarea, Field, Radio, RadioGroup, Show } from '../
 export default class EmploymentActivity extends ValidationElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      value: props.value,
-      otherExplanation: props.otherExplanation
-    }
-
     this.updateActivity = this.updateActivity.bind(this)
     this.updateExplanation = this.updateExplanation.bind(this)
   }
 
-  updateActivity (event) {
-    this.setState({ value: event.target.value, otherExplanation: '' }, () => {
-      this.onUpdate(event)
+  update (queue) {
+    this.props.onUpdate({
+      value: this.props.value,
+      otherExplanation: this.props.otherExplanation,
+      ...queue
     })
   }
 
-  updateExplanation (event) {
-    this.setState({ otherExplanation: event.target.value }, () => {
-      this.onUpdate(event)
+  updateActivity (values) {
+    this.update({
+      value: values.value,
+      otherExplanation: ''
     })
   }
 
-  onUpdate (event) {
-    super.handleChange(event)
-    if (this.props.onUpdate) {
-      this.props.onUpdate({
-        name: this.props.name,
-        value: this.state.value,
-        otherExplanation: this.state.otherExplanation
-      })
-    }
+  updateExplanation (values) {
+    this.update({
+      otherExplanation: values.value
+    })
   }
 
   render () {
@@ -45,21 +37,21 @@ export default class EmploymentActivity extends ValidationElement {
           <Field title={i18n.t(`history.employment.default.heading.activity`)}
                  titleSize="h3"
                  help="history.employment.default.activity.help"
-                 className={this.state.value === 'Other' ? 'no-margin-bottom' : ''}
+                 className={this.props.value === 'Other' ? 'no-margin-bottom' : ''}
                  adjustFor="p"
                  scrollIntoView={this.props.scrollIntoView}>
             <RadioGroup name="employment_activity"
                         className="option-list"
                         required={this.props.required}
                         onError={this.props.onError}
-                        selectedValue={this.state.value}>
+                        selectedValue={this.props.value}>
               <div>{i18n.t('history.employment.default.activity.title')}</div>
               <Radio
                 label={i18n.t('history.employment.default.activity.type.activeMilitary')}
                 value="ActiveMilitary"
                 className="employment-activity-active"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -69,7 +61,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="NationalGuard"
                 className="employment-activity-national"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -79,7 +71,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="USPHS"
                 className="employment-activity-usphs"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -89,7 +81,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="OtherFederal"
                 className="employment-activity-other-federal"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -99,7 +91,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="StateGovernment"
                 className="employment-activity-state-government"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -109,7 +101,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="FederalContractor"
                 className="employment-activity-federal-contractor"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -120,7 +112,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="NonGovernment"
                 className="employment-activity-nongovernment"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -130,7 +122,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="SelfEmployment"
                 className="employment-activity-self"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -140,7 +132,7 @@ export default class EmploymentActivity extends ValidationElement {
                 value="Unemployment"
                 className="employment-activity-unemployment"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
@@ -150,14 +142,14 @@ export default class EmploymentActivity extends ValidationElement {
                 value="Other"
                 className="employment-activity-other"
                 disabled={this.props.disabled}
-                onChange={this.updateActivity}
+                onUpdate={this.updateActivity}
                 onError={this.props.onError}
                 onBlur={this.props.onBlur}
                 onFocus={this.props.onFocus}
                 />
             </RadioGroup>
           </Field>
-          <Show when={this.state.value === 'Other'}>
+          <Show when={this.props.value === 'Other'}>
             <Field title={i18n.t('history.employment.default.activity.other.label')}
                    titleSize="label"
                    help="history.employment.other.activity.other.help"
@@ -165,8 +157,8 @@ export default class EmploymentActivity extends ValidationElement {
                    scrollIntoView={this.props.scrollIntoView}>
               <Textarea name="otherExplanation"
                         className="other"
-                        value={this.state.otherExplanation}
-                        onChange={this.updateExplanation}
+                        value={this.props.otherExplanation}
+                        onUpdate={this.updateExplanation}
                         onError={this.props.onError}
                         required={this.props.required}
                         />
@@ -179,5 +171,6 @@ export default class EmploymentActivity extends ValidationElement {
 }
 
 EmploymentActivity.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

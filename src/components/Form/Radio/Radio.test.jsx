@@ -11,7 +11,7 @@ describe('The radio component', () => {
       focus: true,
       valid: false
     }
-    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Radio {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input').length).toEqual(1)
     expect(component.find('input').hasClass('usa-input-focus')).toEqual(true)
@@ -26,7 +26,7 @@ describe('The radio component', () => {
       focus: false,
       valid: true
     }
-    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Radio {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
   })
@@ -39,7 +39,7 @@ describe('The radio component', () => {
       focus: false,
       valid: false
     }
-    const component = mount(<Radio name={expected.name} label={expected.label} error={expected.error} focus={expected.focus} valid={expected.valid} />)
+    const component = mount(<Radio {...expected} />)
     expect(component.find('label').text()).toEqual(expected.label)
     expect(component.find('input').length).toEqual(1)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -53,11 +53,11 @@ describe('The radio component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleChange: function (event) {
+      onUpdate: function (event) {
         changes++
       }
     }
-    const component = mount(<Radio name={expected.name} onChange={expected.handleChange} />)
+    const component = mount(<Radio {...expected} />)
     component.find('input').simulate('change')
     expect(changes).toEqual(1)
   })
@@ -70,11 +70,11 @@ describe('The radio component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleFocus: function (event) {
+      onFocus: function (event) {
         foci++
       }
     }
-    const component = mount(<Radio name={expected.name} onFocus={expected.handleFocus} />)
+    const component = mount(<Radio {...expected} />)
     component.find('input').simulate('focus')
     expect(foci).toEqual(1)
   })
@@ -87,11 +87,11 @@ describe('The radio component', () => {
       error: true,
       focus: false,
       valid: false,
-      handleBlur: function (event) {
+      onBlur: function (event) {
         blurs++
       }
     }
-    const component = mount(<Radio name={expected.name} onBlur={expected.handleBlur} />)
+    const component = mount(<Radio {...expected} />)
     component.find('input').simulate('blur')
     expect(blurs).toEqual(1)
   })
