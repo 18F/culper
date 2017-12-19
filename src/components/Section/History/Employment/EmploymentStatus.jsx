@@ -5,39 +5,31 @@ import { ValidationElement, Radio, RadioGroup } from '../../../Form'
 export default class EmploymentStatus extends ValidationElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      value: props.value
-    }
-
     this.handleFieldChange = this.handleFieldChange.bind(this)
   }
 
   /**
    * Handle the change event.
    */
-  handleFieldChange (event) {
-    let value = event.target.value
-    this.setState({ value: value }, () => {
-      super.handleChange(event)
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          name: this.props.name,
-          value: this.state.value
-        })
-      }
+  handleFieldChange (values) {
+    this.props.onUpdate({
+      name: this.props.name,
+      value: values.value
     })
   }
 
   render () {
     return (
-      <RadioGroup className="employment-status option-list" selectedValue={this.state.value} required={this.props.required} onError={this.props.onError}>
+      <RadioGroup className="employment-status option-list"
+                  selectedValue={this.props.value}
+                  required={this.props.required}
+                  onError={this.props.onError}>
         <Radio name="employment_status"
                label={i18n.t('history.employment.default.status.fullTime')}
                value="Fulltime"
                className="fulltime"
                disabled={this.props.disabled}
-               onChange={this.handleFieldChange}
+               onUpdate={this.handleFieldChange}
                onError={this.props.onError}
                />
         <Radio name="employment_status"
@@ -45,7 +37,7 @@ export default class EmploymentStatus extends ValidationElement {
                value="Parttime"
                className="parttime"
                disabled={this.props.disabled}
-               onChange={this.handleFieldChange}
+               onUpdate={this.handleFieldChange}
                onError={this.props.onError}
                />
       </RadioGroup>
@@ -54,5 +46,6 @@ export default class EmploymentStatus extends ValidationElement {
 }
 
 EmploymentStatus.defaultProps = {
+  onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
