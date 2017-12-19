@@ -1,33 +1,34 @@
 <DelinquencyInvolvingEnforcement>
-  <Answer>{{branch .HasDelinquent}}</Answer>
+  <Answer>{{branch .props.HasDelinquent}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .List.Branch}}</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
-    {{range $index, $item := .List.Items}}
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Incident ID="{{$index}}">
-      <AccountNumber>{{text $item.AccountNumber}}</AccountNumber>
+      <AccountNumber>{{text $Item.AccountNumber}}</AccountNumber>
       <Agency>
-        <Name>{{text $item.Name}}</Name>
+        <Name>{{text $Item.Name}}</Name>
       </Agency>
-      <Amount Estimated="{{checkboxTrueFalse $item.AmountEstimated}}">{{number $item.Amount}}</Amount>
+      <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
       <Comment></Comment>
       <Court>
-        <Address>{{location $item.CourtAddress}}</Address>
-        <Name>{{text $item.CourtName}}</Name>
+        <Address>{{location $Item.CourtAddress}}</Address>
+        <Name>{{text $Item.CourtName}}</Name>
       </Court>
-      <DateBegan Type="{{dateEstimated $item.Date}}">{{monthYear $item.Date}}</DateBegan>
-      <DateResolved Type="{{dateEstimated $item.Resolved}}" NotResolved="{{notApplicable $item.ResolvedNotApplicable}}">{{monthYear $item.Resolved}}</DateResolved>
-      <Description>{{textarea $item.Description}}</Description>
+      <DateBegan Type="{{dateEstimated $Item.Date}}">{{monthYear $Item.Date}}</DateBegan>
+      <DateResolved Type="{{dateEstimated $Item.Resolved}}" NotResolved="{{notApplicable $Item.ResolvedNotApplicable}}">{{monthYear $Item.Resolved}}</DateResolved>
+      <Description>{{textarea $Item.Description}}</Description>
       <IssueType>
-        <!--Optional:-->
-        <Answer>No</Answer>
-        <!--Optional:-->
-        <Options Alimony="True" Judgment="True" Lien="True" FederalDebt="True"/>
+        <Answer>{{if checkbox $Item.Infractions}}Yes{{else}}No{{end}}</Answer>
+        <Options Alimony="{{checkboxHas $Item.Infractions "Alimony"}}" Judgment="{{checkboxHas $Item.Infractions "Judgement"}}" Lien="{{checkboxHas $Item.Infractions "Lien"}}" FederalDebt="{{checkboxHas $Item.Infractions "Federal"}}"/>
       </IssueType>
-      <PropertyType>{{text $item.PropertyType}}</PropertyType>
-      <Reason>{{textarea $item.Reason}}</Reason>
-      <Status>{{text $item.Status}}</Status>
+      <PropertyType>{{text $Item.PropertyType}}</PropertyType>
+      <Reason>{{textarea $Item.Reason}}</Reason>
+      <Status>{{text $Item.Status}}</Status>
     </Incident>
+    {{end}}
+    {{end}}
   </Incidents>
   <SummaryComment></SummaryComment>
 </DelinquencyInvolvingEnforcement>

@@ -1,23 +1,25 @@
 <UnpaidTaxes>
-  <Answer>{{branch .HasTaxes}}</Answer>
+  <Answer>{{branch .props.HasTaxes}}</Answer>
   <Comment></Comment>
-  <HaveAdditionalEntryAnswer>{{branch .List.Branch}}</HaveAdditionalEntryAnswer>
+  <HaveAdditionalEntryAnswer>{{branch .props.List.props.branch}}</HaveAdditionalEntryAnswer>
   <Incidents>
-    {{range $index, $item := .List.Items}}
+    {{range $index, $item := .props.List.props.items}}
+    {{with $Item := $item.Item}}
     <Incident ID="{{$index}}">
       <!--Optional:-->
-      <Actions>string</Actions>
-      <Agency>{{text $item.Agency}}</Agency>
-      <Amount Estimated="{{checkboxTrueFalse $item.AmountEstimated}}">{{number $item.Amount}}</Amount>
+      <Actions>{{textarea $Item.Description}}</Actions>
+      <Agency>{{text $Item.Agency}}</Agency>
+      <Amount Estimated="{{checkboxTrueFalse $Item.AmountEstimated}}">{{number $Item.Amount}}</Amount>
       <Comment></Comment>
-      <DateFailedToPay Type="{{dateEstimated $item.YearEstimated}}">
-        <Year>{{number $item.Year}}</Year>
+      <DateFailedToPay Type={{if checkboxTrueFalse $Item.YearEstimated | eq "true" }}"Estimated"{{else}}""{{end}}>
+        <Year>{{number $Item.Year}}</Year>
       </DateFailedToPay>
-      <DateSatisfied Type="{{dateEstimated $item.Date}}" NotApplicable="{{notApplicable $item.DateNotApplicable}}">{{monthYear $item.Date}}</DateSatisfied>
-      <Reason>{{textarea $item.Reason}}</Reason>
-      <TaxType>{{text $item.TaxType}}</TaxType>
-      <Type>{{radio $item.Failure}}</Type>
+      <DateSatisfied Type="{{dateEstimated $Item.Date}}" NotApplicable="{{notApplicable $Item.DateNotApplicable}}">{{monthYear $Item.Date}}</DateSatisfied>
+      <Reason>{{textarea $Item.Reason}}</Reason>
+      <TaxType>{{text $Item.TaxType}}</TaxType>
+      <Type>{{radio $Item.Failure}}</Type>
     </Incident>
+    {{end}}
     {{end}}
   </Incidents>
   <SummaryComment></SummaryComment>

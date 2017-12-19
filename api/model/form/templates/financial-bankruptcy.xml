@@ -21,15 +21,13 @@
       <Comment></Comment>
       <DischargeDate Type="{{dateEstimated $Item.DateDischarged}}" NotApplicable="{{notApplicable $Item.DateDischargedNotApplicable}}">{{monthYear $Item.DateDischarged}}</DischargeDate>
       <DischargedOfAllDebts>
-        <Answer>Yes</Answer>
-        <AnswerComment>string</AnswerComment>
+        <Answer>{{branch $Item.HasDischargedExplanation}}</Answer>
+        <AnswerComment></AnswerComment>
       </DischargedOfAllDebts>
-      <Explanation>string</Explanation>
+      <Explanation>{{textarea $Item.DischargeExplanation}}</Explanation>
       <FiledDate Type="{{dateEstimated $Item.DateFiled}}">{{monthYear $Item.DateFiled}}</FiledDate>
       <Record>
-        <Name>
-          {{name $Item.NameDebt}}
-        </Name>
+        <Name>{{name $Item.NameDebt}}</Name>
       </Record>
       <Type>{{radio $Item.PetitionType}}</Type>
     </Activity>

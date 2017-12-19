@@ -8,21 +8,12 @@ import RadioGroup from '../RadioGroup'
 export default class HairColor extends ValidationElement {
   constructor (props) {
     super(props)
-
-    this.state = {
-      value: props.value
-    }
-
-    this.handleChange = this.handleChange.bind(this)
+    this.handleUpdate = this.handleUpdate.bind(this)
   }
 
-  handleChange (event) {
-    this.setState({value: event.target.value}, () => {
-      if (this.props.onUpdate) {
-        this.props.onUpdate({
-          value: this.state.value
-        })
-      }
+  handleUpdate (values) {
+    this.props.onUpdate({
+      value: values.value
     })
   }
 
@@ -36,7 +27,7 @@ export default class HairColor extends ValidationElement {
         <label>{this.props.label}</label>
         <RadioGroup
           className="option-list eapp-extend-labels"
-          selectedValue={this.state.value}
+          selectedValue={this.props.value}
           onError={this.props.onError}
           required={this.props.required}>
           <Radio name="hair-bald"
@@ -45,7 +36,7 @@ export default class HairColor extends ValidationElement {
                  className="bald"
                  labelClass="black"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -60,7 +51,7 @@ export default class HairColor extends ValidationElement {
                  value="Black"
                  className="black"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -74,7 +65,7 @@ export default class HairColor extends ValidationElement {
                  value="Blonde"
                  className="blonde"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -88,7 +79,7 @@ export default class HairColor extends ValidationElement {
                  value="Brown"
                  className="brown"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -102,7 +93,7 @@ export default class HairColor extends ValidationElement {
                  value="Gray"
                  className="gray"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -116,7 +107,7 @@ export default class HairColor extends ValidationElement {
                  value="Red"
                  className="red"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -130,7 +121,7 @@ export default class HairColor extends ValidationElement {
                  value="Sandy"
                  className="sandy"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -144,7 +135,7 @@ export default class HairColor extends ValidationElement {
                  value="White"
                  className="white"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -158,7 +149,7 @@ export default class HairColor extends ValidationElement {
                  value="Blue"
                  className="blue"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -172,7 +163,7 @@ export default class HairColor extends ValidationElement {
                  value="Green"
                  className="green"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -186,7 +177,7 @@ export default class HairColor extends ValidationElement {
                  value="Orange"
                  className="orange"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -200,7 +191,7 @@ export default class HairColor extends ValidationElement {
                  value="Pink"
                  className="pink"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -214,7 +205,7 @@ export default class HairColor extends ValidationElement {
                  value="Purple"
                  className="purple"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -228,7 +219,7 @@ export default class HairColor extends ValidationElement {
                  value="Unknown"
                  className="unknown"
                  disabled={this.props.disabled}
-                 onChange={this.handleChange}
+                 onUpdate={this.handleUpdate}
                  onError={this.props.onError}
                  onBlur={this.props.onBlur}
                  onFocus={this.props.onFocus}
@@ -245,7 +236,9 @@ export default class HairColor extends ValidationElement {
 
 HairColor.defaultProps = {
   name: 'hair',
-  value: ''
+  value: '',
+  onUpdate: (queue) => {},
+  onError: (value, arr) => { return arr }
 }
 
 HairColor.errors = []

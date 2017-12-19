@@ -9,7 +9,7 @@ describe('The EyeColor component', () => {
       label: 'Text input focused',
       value: ''
     }
-    const component = mount(<EyeColor name={expected.name} label={expected.label} value={expected.value} />)
+    const component = mount(<EyeColor {...expected} />)
     component.find('.eye-colors input').first().simulate('change')
     expect(component.find('.eye-colors input').length).toEqual(10)
     expect(component.find('.usa-input-error-label').length).toEqual(0)
@@ -23,7 +23,7 @@ describe('The EyeColor component', () => {
       value: '',
       onUpdate: () => { updates++ }
     }
-    const component = mount(<EyeColor name={expected.name} label={expected.label} value={expected.value} onUpdate={expected.onUpdate} />)
+    const component = mount(<EyeColor {...expected} />)
     component.find('.eye-colors input').first().simulate('change')
     expect(updates).toBeGreaterThan(0)
   })
