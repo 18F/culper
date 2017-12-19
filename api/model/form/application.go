@@ -562,7 +562,7 @@ func Package(context *db.DatabaseContext, account int, hashable bool) template.H
 		// NOTE: Maybe do something else here.
 		return template.HTML("")
 	}
-	return xmlTemplateWithFuncs("application.xml", js)
+	return xmlTemplateWithFuncs("application.xml", js, DefaultFuncMap)
 }
 
 // PurgeAccountStorage removes all data associated with an account
