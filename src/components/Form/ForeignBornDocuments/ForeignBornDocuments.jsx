@@ -34,7 +34,7 @@ export default class ForeignBornDocuments extends ValidationElement {
 
   updateDocumentType (values) {
     this.update({
-      DocumentType: values.value
+      DocumentType: values
     })
   }
 
@@ -65,7 +65,6 @@ export default class ForeignBornDocuments extends ValidationElement {
   render () {
     return (
       <div className="foreign-born-documents">
-
         <Field help="relationships.civilUnion.help.foreignBornDocument"
                title={i18n.t('relationships.civilUnion.heading.foreignBornDocument')}
                scrollIntoView={this.props.scrollIntoView}
