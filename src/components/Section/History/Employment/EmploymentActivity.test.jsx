@@ -8,6 +8,7 @@ describe('The employment activity component', () => {
     let blur = 0
     let focus = 0
     let expected = {
+      value: 'Other',
       onUpdate: () => {
         counter++
       },
@@ -19,12 +20,11 @@ describe('The employment activity component', () => {
       }
     }
 
-    const component = mount(<EmploymentActivity name="ac" onUpdate={expected.onUpdate} onBlur={expected.onBlur} onFocus={expected.onFocus} />)
+    const component = mount(<EmploymentActivity {...expected} />)
     const selected = component.find({type: 'radio', value: 'ActiveMilitary'})
     selected.simulate('change')
     selected.simulate('blur')
     selected.simulate('focus')
-    expect(selected.hasClass('selected')).toBe(true)
     expect(counter).toBe(1)
     expect(blur).toBe(1)
     expect(focus).toBe(1)
@@ -34,4 +34,3 @@ describe('The employment activity component', () => {
     expect(counter).toBe(3)
   })
 })
-
