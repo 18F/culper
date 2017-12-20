@@ -1,5 +1,5 @@
 {{ $ssn := .props.ssn }}
-<SSN NotApplicable="{{ $ssn.props.ssn.notApplicable }}">
+<SSN NotApplicable="{{ $ssn.props.notApplicable }}">
     <FirstThree>
         {{ $ssn.props.first }}
     </FirstThree>

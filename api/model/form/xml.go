@@ -22,7 +22,6 @@ var (
 		"location":          location,
 		"date":              date,
 		"daterange":         daterange,
-		"datecontrol":       datecontrol,
 		"monthYear":         monthYear,
 		"dateEstimated":     dateEstimated,
 		"notApplicable":     notApplicable,
@@ -202,14 +201,6 @@ func daterange(data map[string]interface{}) template.HTML {
 		"dateEstimated": dateEstimated,
 	}
 	return xmlTemplateWithFuncs("date-range.xml", data, fmap)
-}
-
-func datecontrol(data map[string]interface{}) template.HTML {
-	fmap := template.FuncMap{
-		"date":          date,
-		"dateEstimated": dateEstimated,
-	}
-	return xmlTemplateWithFuncs("datecontrol.xml", data, fmap)
 }
 
 func date(data map[string]interface{}) template.HTML {
