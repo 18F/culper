@@ -1,71 +1,11 @@
 <IdentifyingInformation>
-    {{ $name := .Identification.ApplicantName }}
-    {{ $physical := .Identification.Physical }}
-    {{ $ssn := .Identification.ApplicantSSN }}
-    {{ $otherNames := .Identification.OtherNames }}
-    {{ $birthDate := .Identification.ApplicantBirthDate }}
-    {{ $birthPlace := .Identification.ApplicantBirthPlace }}
-    <Birth>
-        {{ dateEstimated $birthDate.props.Date }}
-        <BirthPlace>
-            {{ location $birthPlace.props.Location }}
-        </BirthPlace>
-    </Birth>
-    <EyeColor>
-            {{ text $physical.props.EyeColor }}
-    </EyeColor>
-    <FullName>
-        <LegalName>
-            {{ name $name.props.Name }}
-        </LegalName>
-    </FullName>
-    <HairColor>
-            {{ text $physical.props.HairColor }}
-    </HairColor>
-    <Height>
-        <Feet>{{ $physical.props.Height.props.feet }}</Feet>
-        <Inches>{{ $physical.props.Height.props.inches }}</Inches>
-    </Height>
-
-    <OtherNamesUsed>
-        <Answer>{{ branch $otherNames.props.HasOtherNames }}</Answer>
-        <Comment></Comment>
-        <HaveAdditionalEntryAnswer></HaveAdditionalEntryAnswer>
-        {{ $otherNames.props.List.items }}
-        {{ range $key, $item := $otherNames.props.List.props.items }}
-        <OtherName>
-            <LegalName>
-                {{ name $item.Item.Name }}
-            </LegalName>
-        </OtherName>
-        <Maiden>
-            {{ text $item.Item.MaidenName }}
-        </Maiden>
-        <Reason>
-            {{ textarea $item.Item.Reason }}
-        </Reason>
-        {{ end }}
-    </OtherNamesUsed>
-
-    <SSN NotApplicable="True">
-        <FirstThree>
-            {{ $ssn.props.ssn.props.first }}
-        </FirstThree>
-        <NextTwo>
-            {{ $ssn.props.ssn.props.middle }}
-        </NextTwo>
-        <LastFour>
-            {{ $ssn.props.ssn.props.last }}
-        </LastFour>
-    </SSN>
-    <Sex>
-        {{ text $physical.props.Sex }}
-    </Sex>
-    <Weight>
-        <Pounds>
-            {{ number $physical.props.Weight }}
-        </Pounds>
-    </Weight>
-
-    <YourInfoComment></YourInfoComment>
+    {{template "identification-birth" . }}
+    {{template "identification-eyecolor" .Physical.EyeColor }}
+    {{template "identification-name" .ApplicantName }}
+    {{template "identification-haircolor" .Physical.HairColor }}
+    {{template "identification-height" .Physical.Height }}
+    {{template "identification-othernames" .OtherNames}}
+    {{template "identification-ssn" .ApplicantSSN}}
+    {{template "identification-sex" .Physical.Sex }}
+    {{template "identification-weight" .Physical.Weight}}
 </IdentifyingInformation>
