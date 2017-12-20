@@ -2,7 +2,6 @@ package form
 
 import (
 	"encoding/json"
-	"fmt"
 	"log"
 	"testing"
 )
@@ -35,7 +34,6 @@ func TestPackage(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-		fmt.Println(string(raw))
 		var js map[string]interface{}
 		if err := json.Unmarshal(raw, &js); err != nil {
 			t.Fatalf("Failed to unmarshal XML schema %s", test.Data)
