@@ -16,6 +16,7 @@ func TestPackage(t *testing.T) {
 		{Schema: "identification-birth.xml", Data: "testdata/identification-birth.json"},
 		{Schema: "identification-eyecolor.xml", Data: "testdata/identification-eyecolor.json"},
 		{Schema: "identification-height.xml", Data: "testdata/identification-height.json"},
+		{Schema: "identification-othernames.xml", Data: "testdata/identification-othernames.json"},
 		{Schema: "identification-ssn.xml", Data: "testdata/identification-ssn.json"},
 		{Schema: "identification-sex.xml", Data: "testdata/identification-sex.json"},
 		{Schema: "identification-weight.xml", Data: "testdata/identification-weight.json"},
