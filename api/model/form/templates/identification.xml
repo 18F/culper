@@ -1,0 +1,11 @@
+<IdentifyingInformation>
+    {{template "identification-birth" . }}
+    {{template "identification-eyecolor" .Physical.EyeColor }}
+    {{template "identification-name" .ApplicantName }}
+    {{template "identification-haircolor" .Physical.HairColor }}
+    {{template "identification-height" .Physical.Height }}
+    {{template "identification-othernames" .OtherNames}}
+    {{template "identification-ssn" .ApplicantSSN}}
+    {{template "identification-sex" .Physical.Sex }}
+    {{template "identification-weight" .Physical.Weight}}
+</IdentifyingInformation>
