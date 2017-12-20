@@ -5,13 +5,13 @@ describe('Foreign Born Document Validator', function () {
     const tests = [
       {
         state: {
-          DocumentType: 'FS240'
+          DocumentType: { value: 'FS240' }
         },
         expected: true
       },
       {
         state: {
-          DocumentType: 'What'
+          DocumentType: { value: 'What' }
         },
         expected: false
       }
@@ -26,13 +26,13 @@ describe('Foreign Born Document Validator', function () {
     const tests = [
       {
         state: {
-          DocumentType: 'FS240'
+          DocumentType: { value: 'FS240' }
         },
         expected: true
       },
       {
         state: {
-          DocumentType: 'Other',
+          DocumentType: { value: 'Other' },
           OtherExplanation: {
             value: 'Cool'
           }
@@ -41,7 +41,7 @@ describe('Foreign Born Document Validator', function () {
       },
       {
         state: {
-          DocumentType: 'Other',
+          DocumentType: { value: 'Other' },
           OtherExplanation: {
             value: null
           }
@@ -59,13 +59,13 @@ describe('Foreign Born Document Validator', function () {
     const tests = [
       {
         state: {
-          DocumentExpirationNotApplicable: true
+          DocumentExpirationNotApplicable: { applicable: true }
         },
         expected: true
       },
       {
         state: {
-          DocumentExpirationNotApplicable: false,
+          DocumentExpirationNotApplicable: { applicable: false },
           DocumentExpiration: {
             day: '1',
             month: '1',
@@ -86,8 +86,8 @@ describe('Foreign Born Document Validator', function () {
     const tests = [
       {
         state: {
-          DocumentType: 'FS240',
-          DocumentExpirationNotApplicable: true,
+          DocumentType: { value: 'FS240' },
+          DocumentExpirationNotApplicable: { applicable: true },
           DocumentNumber: {
             value: 'A1234'
           }
