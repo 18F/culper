@@ -293,8 +293,8 @@ describe('CivilUnion validation', function () {
             value: ['Germany', 'United States']
           },
           ForeignBornDocument: {
-            DocumentType: 'FS240',
-            DocumentExpirationNotApplicable: true,
+            DocumentType: { value: 'FS240' },
+            DocumentExpirationNotApplicable: { applicable: true },
             DocumentNumber: {
               value: 'A1234'
             }
@@ -319,8 +319,8 @@ describe('CivilUnion validation', function () {
             layout: Location.BIRTHPLACE
           },
           ForeignBornDocument: {
-            DocumentType: 'FS240',
-            DocumentExpirationNotApplicable: true,
+            DocumentType: { value: 'FS240' },
+            DocumentExpirationNotApplicable: { applicable: true },
             DocumentNumber: {
               value: 'A1234'
             }
