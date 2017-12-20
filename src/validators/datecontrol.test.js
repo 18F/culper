@@ -31,7 +31,7 @@ describe('date control validator', function () {
         props: {
           hideDay: true
         },
-        expected: false
+        expected: true
       },
     ]
 
