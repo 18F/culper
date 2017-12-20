@@ -1,5 +1,5 @@
 import NameValidator from './name'
-import LocationValidator from './location'
+import LocationValidator, { countryString } from './location'
 import DateRangeValidator from './daterange'
 import ForeignBornDocument from './foreignborndocument'
 import { validAccordion, validSSN, validDateField, validBranch, BranchCollection } from './helpers'
@@ -49,7 +49,8 @@ export class CohabitantValidator {
   }
 
   validForeignBornDocument () {
-    if (new LocationValidator(this.birthPlace).isValid() && this.birthPlace.country !== 'United States') {
+    const country = countryString(this.birthPlace.country)
+    if (new LocationValidator(this.birthPlace).isValid() && country !== 'United States') {
       return new ForeignBornDocument(this.foreignBornDocument).isValid()
     }
     return true
