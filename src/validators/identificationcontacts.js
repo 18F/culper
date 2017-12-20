@@ -10,7 +10,7 @@ export default class IdentificationContactInformationValidator {
    * Validates a collection of emails
    */
   validEmails () {
-    const required = 1
+    const required = 0
     if (!this.emails || this.emails.length < required) {
       return false
     }
