@@ -145,13 +145,12 @@ export default class ContactInformation extends SubsectionElement {
                      onError={this.handleError}
                      required={this.props.required}
                      summary={this.emailSummary}
-                     customDetails={this.firstItemRequired}
                      validator={ContactEmailValidator}
                      description={i18n.t('identification.contacts.collection.summary.title')}
                      appendLabel={i18n.t('identification.contacts.collection.append')}
                      scrollIntoView={this.props.scrollIntoView}>
             <AccordionItem scrollIntoView={this.props.scrollIntoView}
-                           required={this.props.required}>
+                           required={false}>
               <Field title={i18n.t('identification.contacts.label.email')}
                      titleSize="label"
                      optional={true}
