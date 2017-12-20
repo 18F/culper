@@ -83,6 +83,7 @@ export default class Cohabitants extends SubsectionElement {
                      appendLabel={i18n.t('relationships.cohabitant.collection.appendLabel')}
                      scrollIntoView={this.props.scrollIntoView}>
             <Cohabitant name="Item"
+                        applicantBirthdate={this.props.applicantBirthdate}
                         spouse={this.props.spouse}
                         required={this.props.required}
                         scrollIntoView={this.props.scrollIntoView}
@@ -101,6 +102,7 @@ Cohabitants.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'relationships',
   subsection: 'status/cohabitant',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('relationships.status.cohabitant', props))

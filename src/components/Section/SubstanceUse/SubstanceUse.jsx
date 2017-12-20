@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { i18n } from '../../../config'
+import { extractApplicantBirthdate } from '../extractors'
 import { push } from '../../../middleware/history'
 import AuthenticatedView from '../../../views/AuthenticatedView'
 import { SectionViews, SectionView } from '../SectionView'
@@ -116,6 +117,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.purchase')}>
             <DrugUses name="druguses"
                       {...this.props.DrugUses}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       dispatch={this.props.dispatch}
                       onError={this.handleError}
                       onUpdate={this.updateDrugUses}
@@ -130,6 +132,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.clearance')}>
             <DrugInvolvements name="druginvolvements"
                               {...this.props.DrugInvolvements}
+                              applicantBirthdate={this.props.applicantBirthdate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updateDrugInvolvements}
@@ -144,6 +147,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.publicsafety')}>
             <DrugClearanceUses name="drugclearanceuses"
                                {...this.props.DrugClearanceUses}
+                               applicantBirthdate={this.props.applicantBirthdate}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
                                onUpdate={this.updateDrugClearanceUses}
@@ -158,6 +162,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.misuse')}>
             <DrugPublicSafetyUses name="drugpublicsafety"
                                   {...this.props.DrugPublicSafetyUses}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateDrugPublicSafetyUses}
@@ -172,6 +177,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.ordered')}>
             <PrescriptionUses name="prescriptionuses"
                               {...this.props.PrescriptionUses}
+                              applicantBirthdate={this.props.applicantBirthdate}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
                               onUpdate={this.updatePrescriptionUses}
@@ -186,6 +192,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.drugs.voluntary')}>
             <OrderedTreatments name="ordered"
                                {...this.props.OrderedTreatments}
+                               applicantBirthdate={this.props.applicantBirthdate}
                                addressBooks={this.props.AddressBooks}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
@@ -201,6 +208,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={i18n.t('substance.destination.police.negative')}>
             <VoluntaryTreatments name="voluntary"
                                  {...this.props.VoluntaryTreatments}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  addressBooks={this.props.AddressBooks}
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
@@ -216,6 +224,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.police.ordered') }>
             <NegativeImpacts name="negative"
                              {...this.props.NegativeImpacts}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              dispatch={this.props.dispatch}
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
@@ -230,6 +239,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.police.voluntary') }>
             <OrderedCounselings name="ordered"
                                 {...this.props.OrderedCounselings}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 addressBooks={this.props.AddressBooks}
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
@@ -245,6 +255,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.police.additional') }>
             <VoluntaryCounselings name="voluntary"
                                   {...this.props.VoluntaryCounselings}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   addressBooks={this.props.AddressBooks}
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
@@ -260,6 +271,7 @@ class SubstanceUse extends SectionElement {
                        nextLabel={ i18n.t('substance.destination.review') }>
             <ReceivedCounselings name="additional"
                                  {...this.props.ReceivedCounselings}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateReceivedCounselings}
@@ -277,6 +289,7 @@ class SubstanceUse extends SectionElement {
 
             <DrugUses name="druguses"
                       {...this.props.DrugUses}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       defaultState={false}
                       dispatch={this.props.dispatch}
                       onError={this.handleError}
@@ -288,6 +301,7 @@ class SubstanceUse extends SectionElement {
             <hr />
             <DrugInvolvements name="druginvolvements"
                               {...this.props.DrugInvolvements}
+                              applicantBirthdate={this.props.applicantBirthdate}
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
@@ -299,6 +313,7 @@ class SubstanceUse extends SectionElement {
             <hr />
             <DrugClearanceUses name="drugclearanceuses"
                                {...this.props.DrugClearanceUses}
+                               applicantBirthdate={this.props.applicantBirthdate}
                                defaultState={false}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
@@ -310,6 +325,7 @@ class SubstanceUse extends SectionElement {
             <hr />
             <DrugPublicSafetyUses name="drugpublicsafety"
                                   {...this.props.DrugPublicSafetyUses}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   defaultState={false}
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
@@ -321,6 +337,7 @@ class SubstanceUse extends SectionElement {
             <hr />
             <PrescriptionUses name="prescriptionuses"
                               {...this.props.PrescriptionUses}
+                              applicantBirthdate={this.props.applicantBirthdate}
                               defaultState={false}
                               dispatch={this.props.dispatch}
                               onError={this.handleError}
@@ -332,6 +349,7 @@ class SubstanceUse extends SectionElement {
             <hr />
             <OrderedTreatments name="ordered"
                                {...this.props.OrderedTreatments}
+                               applicantBirthdate={this.props.applicantBirthdate}
                                defaultState={false}
                                dispatch={this.props.dispatch}
                                onError={this.handleError}
@@ -343,6 +361,7 @@ class SubstanceUse extends SectionElement {
             <hr />
             <VoluntaryTreatments name="voluntary"
                                  {...this.props.VoluntaryTreatments}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  defaultState={false}
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
@@ -355,6 +374,7 @@ class SubstanceUse extends SectionElement {
             <NegativeImpacts name="negative"
                              defaultState={false}
                              {...this.props.NegativeImpacts}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              dispatch={this.props.dispatch}
                              onError={this.handleError}
                              onUpdate={this.updateNegativeImpacts}
@@ -366,6 +386,7 @@ class SubstanceUse extends SectionElement {
             <OrderedCounselings name="ordered"
                                 defaultState={false}
                                 {...this.props.OrderedCounselings}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onError={this.handleError}
                                 onUpdate={this.updateOrderedCounselings}
@@ -377,6 +398,7 @@ class SubstanceUse extends SectionElement {
             <VoluntaryCounselings name="voluntary"
                                   defaultState={false}
                                   {...this.props.VoluntaryCounselings}
+                                  applicantBirthdate={this.props.applicantBirthdate}
                                   dispatch={this.props.dispatch}
                                   onError={this.handleError}
                                   onUpdate={this.updateVoluntaryCounselings}
@@ -388,6 +410,7 @@ class SubstanceUse extends SectionElement {
             <ReceivedCounselings name="additional"
                                  defaultState={false}
                                  {...this.props.ReceivedCounselings}
+                                 applicantBirthdate={this.props.applicantBirthdate}
                                  dispatch={this.props.dispatch}
                                  onError={this.handleError}
                                  onUpdate={this.updateReceivedCounselings}
@@ -435,6 +458,7 @@ function mapStateToProps (state) {
     Comments: substance.Comments || {},
     Errors: errors.substance || [],
     Completed: completed.substance || [],
+    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }

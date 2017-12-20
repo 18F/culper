@@ -66,6 +66,7 @@ export default class Order extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Occurred"
                        {...this.props.Occurred}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t(`psychological${prefix}.label.occurred`)}
                        hideDay={true}
                        prefix="order"
@@ -181,6 +182,7 @@ export default class Order extends ValidationElement {
 Order.defaultProps = {
   List: [],
   prefix: 'order',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

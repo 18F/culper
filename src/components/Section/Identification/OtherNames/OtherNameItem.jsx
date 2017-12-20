@@ -50,49 +50,50 @@ export default class OtherNameItem extends React.Component {
     return (
       <div className="other-name">
         <Field title={i18n.t('identification.othernames.heading.name')}
-          optional={true}
-          scrollIntoView={this.props.scrollIntoView}>
+               optional={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <Name name="Name"
-            {...this.props.Name}
-            onUpdate={this.updateName}
-            required={this.props.required}
-            scrollIntoView={this.props.scrollIntoView}
-          />
+                {...this.props.Name}
+                onUpdate={this.updateName}
+                required={this.props.required}
+                scrollIntoView={this.props.scrollIntoView}
+                />
         </Field>
 
         <Field title={i18n.t('identification.othernames.heading.maiden')}
-          help="alias.maiden.help"
-          adjustFor="buttons"
-          scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
+               help="alias.maiden.help"
+               adjustFor="buttons"
+               scrollIntoView={this.props.scrollIntoView}
+               shrink={true}>
           <MaidenName name="MaidenName"
-            required={this.props.required}
-            {...this.props.MaidenName}
-            onUpdate={this.updateMaidenName}
-          />
+                      required={this.props.required}
+                      {...this.props.MaidenName}
+                      onUpdate={this.updateMaidenName}
+                      />
         </Field>
 
         <Field title={i18n.t('identification.othernames.heading.used')}
-          help="alias.used.help"
-          adjustFor="daterange"
-          scrollIntoView={this.props.scrollIntoView}
-          shrink={true}>
+               help="alias.used.help"
+               adjustFor="daterange"
+               scrollIntoView={this.props.scrollIntoView}
+               shrink={true}>
           <DateRange name="DatesUsed"
-            {...this.props.DatesUsed}
-            onUpdate={this.updateDatesUsed}
-            required={this.props.required}
-          />
+                     {...this.props.DatesUsed}
+                     applicantBirthdate={this.props.applicantBirthdate}
+                     onUpdate={this.updateDatesUsed}
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('identification.othernames.heading.reason')}
-          scrollIntoView={this.props.scrollIntoView}
-          help="alias.reason.help">
+               scrollIntoView={this.props.scrollIntoView}
+               help="alias.reason.help">
           <Textarea name="Reason"
-            {...this.props.Reason}
-            onUpdate={this.updateReason}
-            className="reason"
-            required={this.props.required}
-          />
+                    {...this.props.Reason}
+                    onUpdate={this.updateReason}
+                    className="reason"
+                    required={this.props.required}
+                    />
         </Field>
       </div>
     )
@@ -100,6 +101,7 @@ export default class OtherNameItem extends React.Component {
 }
 
 OtherNameItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   required: false

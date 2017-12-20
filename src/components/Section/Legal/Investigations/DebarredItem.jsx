@@ -59,6 +59,7 @@ export default class DebarredItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        className="legal-investigations-debarred-date"
@@ -84,6 +85,7 @@ export default class DebarredItem extends ValidationElement {
 }
 
 DebarredItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

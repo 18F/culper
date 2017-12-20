@@ -1,5 +1,4 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
@@ -51,7 +50,7 @@ export const buildDate = (year = '', month = '', day = '') => {
   return d
 }
 
-export class DateControl extends ValidationElement {
+export default class DateControl extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -418,6 +417,7 @@ DateControl.defaultProps = {
   day: '',
   year: '',
   prefix: '',
+  applicantBirthdate: {},
   noMaxDate: false,
   maxDate: null,
   minDate: null,
@@ -470,15 +470,3 @@ DateControl.errors = [
     }
   }
 ]
-
-function mapStateToProps (state) {
-  const app = state.application || {}
-  const identification = app.Identification || {}
-  const applicantBirthdate = identification.ApplicantBirthDate || {}
-  const date = applicantBirthdate.Date || {}
-  return {
-    applicantBirthdate: date
-  }
-}
-
-export default connect(mapStateToProps)(DateControl)

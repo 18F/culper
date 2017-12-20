@@ -276,6 +276,7 @@ export default class MilitaryService extends ValidationElement {
           <DateRange name="Dates"
                      className="dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      label={i18n.t('military.history.label.dates')}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -391,6 +392,7 @@ export default class MilitaryService extends ValidationElement {
                    scrollIntoView={this.props.scrollIntoView}>
               <DateControl name="DischargeDate"
                            {...this.props.DischargeDate}
+                           applicantBirthdate={this.props.applicantBirthdate}
                            className="discharge-date"
                            hideDay={true}
                            onUpdate={this.updateDischargeDate}
@@ -407,6 +409,7 @@ export default class MilitaryService extends ValidationElement {
 
 MilitaryService.defaultProps = {
   HasBeenDischarged: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

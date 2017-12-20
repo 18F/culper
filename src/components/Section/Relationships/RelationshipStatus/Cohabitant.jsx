@@ -176,6 +176,7 @@ export default class Cohabitant extends ValidationElement {
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        relationship="Other"
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
@@ -200,6 +201,7 @@ export default class Cohabitant extends ValidationElement {
           <ForeignBornDocuments name="foreignBornDocument"
                                 title={i18n.t('relationships.cohabitant.heading.foreignBornDocument')}
                                 {...this.props.ForeignBornDocument}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 onUpdate={this.updateForeignBornDocument}
                                 onError={this.props.onError}
                                 required={this.props.required}
@@ -227,6 +229,7 @@ export default class Cohabitant extends ValidationElement {
                           scrollIntoView={this.props.scrollIntoView}>
           <OtherName name="Item"
                      bind={true}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}
                      />
@@ -253,6 +256,7 @@ export default class Cohabitant extends ValidationElement {
           <DateControl name="cohabitationBegan"
                        className="cohabitation-began"
                        {...this.props.CohabitationBegan}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateCohabitationBegan}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -273,6 +277,7 @@ Cohabitant.defaultProps = {
   Citizenship: {},
   CohabitationBegan: {},
   SameSpouse: false,
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

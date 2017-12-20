@@ -186,6 +186,7 @@ export default class Bankruptcy extends ValidationElement {
                        onUpdate={this.updateDateFiled}
                        onError={this.props.onError}
                        {...this.props.DateFiled}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="datefiled"
                        prefix="bankruptcy.datefiled"
                        required={this.props.required}
@@ -204,6 +205,7 @@ export default class Bankruptcy extends ValidationElement {
                          onUpdate={this.updateDateDischarged}
                          onError={this.props.onError}
                          {...this.props.DateDischarged}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          prefix="bankruptcy.datedischarged"
                          required={this.props.required}
                          hideDay={true} />
@@ -340,6 +342,7 @@ export default class Bankruptcy extends ValidationElement {
 
 Bankruptcy.defaultProps = {
   DischargeDateNotApplicable: { applicable: true },
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

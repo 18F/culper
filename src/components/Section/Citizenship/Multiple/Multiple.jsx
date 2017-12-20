@@ -85,7 +85,11 @@ export default class Multiple extends SubsectionElement {
                      appendLabel={i18n.t('citizenship.multiple.collection.citizenship.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-            <CitizenshipItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <CitizenshipItem name="Item"
+                             bind={true}
+                             applicantBirthdate={this.props.applicantBirthdate}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView} />
           </Accordion>
         </Show>
       </div>
@@ -100,6 +104,7 @@ Multiple.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'citizenship',
   subsection: 'multiple',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('citizenship.multiple', props))

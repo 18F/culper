@@ -102,6 +102,7 @@ export default class CitizenshipItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      className="citizenship-dates"
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -182,6 +183,7 @@ CitizenshipItem.defaultProps = {
   RenouncedExplanation: {},
   Current: {},
   CurrentExplanation: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

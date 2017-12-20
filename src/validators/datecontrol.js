@@ -2,9 +2,9 @@ import { today, daysAgo } from '../components/Section/History/dateranges'
 
 export default class DateControlValidator {
   constructor (state = {}, props = {}) {
-    this.month = state.month
-    this.day = state.day
-    this.year = state.year
+    this.month = state.month || props.month
+    this.day = state.day || props.day
+    this.year = state.year || props.year
     this.hideDay = props.hideDay
     this.noMaxDate = props.noMaxDate
     this.relationship = props.relationship || ''
@@ -60,9 +60,14 @@ export default class DateControlValidator {
 }
 
 const extractDate = (dateObj) => {
-  if (!dateObj.month || !dateObj.day || !dateObj.year) {
+  if (dateObj instanceof Date) {
+    return dateObj
+  }
+
+  if (!dateObj || !dateObj.month || !dateObj.day || !dateObj.year) {
     return null
   }
+
   return new Date(`${dateObj.month}/${dateObj.day}/${dateObj.year}`)
 }
 
@@ -77,11 +82,10 @@ export const dateLimits = (relationship, birthdate) => {
     break
   case 'Mother':
   case 'Father':
-    max = birthdate
+    max = min
     min = daysAgo(today, 365 * 200)
     break
   case 'Child':
-    min = birthdate
     break
   case 'Stepmother':
   case 'Stepfather':
