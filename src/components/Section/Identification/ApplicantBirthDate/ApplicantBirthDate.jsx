@@ -75,6 +75,7 @@ export default class ApplicantBirthDate extends SubsectionElement {
           <DateControl name={this.props.name}
                        {...this.props.Date}
                        className={klassError}
+                       relationship="Self"
                        onUpdate={this.onUpdate}
                        onError={this.handleError}
                        required={this.props.required}

@@ -176,6 +176,7 @@ export default class Cohabitant extends ValidationElement {
           <DateControl name="birthdate"
                        className="birthdate"
                        {...this.props.Birthdate}
+                       relationship="Other"
                        onUpdate={this.updateBirthdate}
                        onError={this.props.onError}
                        required={this.props.required}

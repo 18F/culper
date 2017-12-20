@@ -50,52 +50,52 @@ export default class VotingItem extends ValidationElement {
     return (
       <div className="foreign-business-voting-item">
         <Field title={i18n.t('foreign.business.voting.heading.date')}
-          help="foreign.business.voting.help.date"
-          adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+               help="foreign.business.voting.help.date"
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
-            {...this.props.Date}
-            onUpdate={this.updateDate}
-            onError={this.props.onError}
-            className="foreign-business-voting-date"
-            required={this.props.required}
-          />
+                       {...this.props.Date}
+                       onUpdate={this.updateDate}
+                       onError={this.props.onError}
+                       className="foreign-business-voting-date"
+                       required={this.props.required}
+                       />
         </Field>
 
         <Field title={i18n.t('foreign.business.voting.heading.country')}
-          adjustFor="country"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="country"
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
-            {...this.props.Country}
-            onUpdate={this.updateCountry}
-            onError={this.props.onError}
-            className="foreign-business-voting-country"
-            required={this.props.required}
-          />
+                   {...this.props.Country}
+                   onUpdate={this.updateCountry}
+                   onError={this.props.onError}
+                   className="foreign-business-voting-country"
+                   required={this.props.required}
+                   />
         </Field>
 
         <Field title={i18n.t('foreign.business.voting.heading.reason')}
-          adjustFor="textarea"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="textarea"
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reason"
-            {...this.props.Reason}
-            onUpdate={this.updateReason}
-            onError={this.props.onError}
-            className="foreign-business-voting-reason"
-            required={this.props.required}
-          />
+                    {...this.props.Reason}
+                    onUpdate={this.updateReason}
+                    onError={this.props.onError}
+                    className="foreign-business-voting-reason"
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('foreign.business.voting.heading.eligibility')}
-          adjustFor="text"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="text"
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Eligibility"
-            {...this.props.Eligibility}
-            onUpdate={this.updateEligibility}
-            onError={this.props.onError}
-            className="foreign-business-voting-eligibility"
-            required={this.props.required}
-          />
+                {...this.props.Eligibility}
+                onUpdate={this.updateEligibility}
+                onError={this.props.onError}
+                className="foreign-business-voting-eligibility"
+                required={this.props.required}
+                />
         </Field>
       </div>
     )

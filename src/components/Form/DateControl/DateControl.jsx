@@ -1,9 +1,10 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Show from '../Show'
-import { daysInMonth, validDate } from '../../Section/History/dateranges'
+import { today, daysAgo, daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
 export const datePart = (part, date) => {
@@ -50,7 +51,7 @@ export const buildDate = (year = '', month = '', day = '') => {
   return d
 }
 
-export default class DateControl extends ValidationElement {
+export class DateControl extends ValidationElement {
   constructor (props) {
     super(props)
 
@@ -417,8 +418,10 @@ DateControl.defaultProps = {
   day: '',
   year: '',
   prefix: '',
-  maxDate: new Date(),
+  noMaxDate: false,
+  maxDate: null,
   minDate: null,
+  relationship: '',
   toggleFocus: (w, changed, el, day, month) => {
     day.focus()
     day.blur()
@@ -467,3 +470,15 @@ DateControl.errors = [
     }
   }
 ]
+
+function mapStateToProps (state) {
+  const app = state.application || {}
+  const identification = app.Identification || {}
+  const applicantBirthdate = identification.ApplicantBirthDate || {}
+  const date = applicantBirthdate.Date || {}
+  return {
+    applicantBirthdate: date
+  }
+}
+
+export default connect(mapStateToProps)(DateControl)

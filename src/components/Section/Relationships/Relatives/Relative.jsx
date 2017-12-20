@@ -7,6 +7,7 @@ import { ValidationElement, Branch, Show, Svg, BranchCollection,
        } from '../../../Form'
 import { RelativeValidator } from '../../../../validators'
 import { countryString } from '../../../../validators/location'
+import { today, daysAgo } from '../../History/dateranges'
 import Alias from './Alias'
 
 export default class Relative extends ValidationElement {
@@ -290,6 +291,7 @@ export default class Relative extends ValidationElement {
     })
   }
 
+
   render () {
     const validator = new RelativeValidator(this.props, null)
     const mother = (this.props.Relation || {}).value === 'Mother'
@@ -440,6 +442,7 @@ export default class Relative extends ValidationElement {
           <DateControl name="Birthdate"
                        className="relative-birthdate"
                        {...this.props.Birthdate}
+                       relationship={(this.props.Relation || {}).value}
                        onError={this.props.onError}
                        onUpdate={this.updateBirthdate}
                        required={this.props.required}
@@ -810,7 +813,7 @@ export default class Relative extends ValidationElement {
                                {...this.props.Expiration}
                                onError={this.props.onError}
                                onUpdate={this.updateExpiration}
-                               maxDate={null}
+                               noMaxDate={true}
                                required={this.props.required}
                                />
                 </Field>

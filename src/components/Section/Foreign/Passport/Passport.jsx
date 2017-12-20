@@ -248,7 +248,7 @@ export default class Passport extends SubsectionElement {
               <DateControl name="expiration"
                            className="passport-expiration"
                            {...this.props.Expiration}
-                           maxDate={null}
+                           noMaxDate={true}
                            onUpdate={this.updateExpiration}
                            onError={this.handleError}
                            required={this.props.required}

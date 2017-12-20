@@ -158,6 +158,7 @@ export default class SponsorshipItem extends ValidationElement {
                          required={this.props.required}>
             <DateControl name="Birthdate"
                          {...this.props.Birthdate}
+                         relationship="Other"
                          onUpdate={this.updateBirthdate}
                          onError={this.props.onError}
                          className="foreign-business-sponsorship-birthdate"

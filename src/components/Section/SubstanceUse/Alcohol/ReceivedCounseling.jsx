@@ -114,7 +114,7 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   render () {
-    const maxDate = (this.props.TreatmentEndDate || {}).date || new Date()
+    const maxDate = (this.props.TreatmentEndDate || {}).date || null
     const minDate = (this.props.TreatmentBeganDate || {}).date || null
     return (
       <div className="received-counseling">
