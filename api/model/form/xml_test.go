@@ -11,6 +11,14 @@ func TestPackage(t *testing.T) {
 		Schema string
 		Data   string
 	}{
+		{Schema: "identification-name.xml", Data: "testdata/identification-name.json"},
+		{Schema: "identification-birth.xml", Data: "testdata/identification-birth.json"},
+		{Schema: "identification-eyecolor.xml", Data: "testdata/identification-eyecolor.json"},
+		{Schema: "identification-height.xml", Data: "testdata/identification-height.json"},
+		{Schema: "identification-othernames.xml", Data: "testdata/identification-othernames.json"},
+		{Schema: "identification-ssn.xml", Data: "testdata/identification-ssn.json"},
+		{Schema: "identification-sex.xml", Data: "testdata/identification-sex.json"},
+		{Schema: "identification-weight.xml", Data: "testdata/identification-weight.json"},
 		{Schema: "financial-bankruptcy.xml", Data: "testdata/financial-bankruptcy.json"},
 		{Schema: "financial-card.xml", Data: "testdata/financial-card.json"},
 		{Schema: "financial-credit.xml", Data: "testdata/financial-credit.json"},
@@ -26,7 +34,6 @@ func TestPackage(t *testing.T) {
 		if err != nil {
 			t.Fatal(err)
 		}
-
 		var js map[string]interface{}
 		if err := json.Unmarshal(raw, &js); err != nil {
 			t.Fatalf("Failed to unmarshal XML schema %s", test.Data)

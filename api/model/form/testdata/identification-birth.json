@@ -1,0 +1,36 @@
+{
+  "ApplicantBirthDate": {
+    "type": "identification.birthdate",
+    "props": {
+      "Date": {
+        "type": "datecontrol",
+        "props": {
+          "month": "7",
+          "day": "1",
+          "year": "2017",
+          "estimated": false,
+          "date": "2017-07-01T00:00:00Z"
+        }
+      }
+    }
+  },
+  "ApplicantBirthPlace": {
+    "type": "identification.birthplace",
+    "props": {
+      "Location": {
+        "type": "location",
+        "props": {
+          "layout": "Address",
+          "street": "123 Some Rd",
+          "street2": "",
+          "city": "Arlington",
+          "state": "VA",
+          "zipcode": "22202",
+          "county": "",
+          "country": "United States",
+          "validated": false
+        }
+      }
+    }
+  }
+}

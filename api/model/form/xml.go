@@ -20,6 +20,7 @@ var (
 		"textarea":          textarea,
 		"number":            number,
 		"location":          location,
+		"date":              date,
 		"daterange":         daterange,
 		"monthYear":         monthYear,
 		"dateEstimated":     dateEstimated,

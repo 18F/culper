@@ -85,15 +85,16 @@ export default class ResidenceItem extends ValidationElement {
   }
 
   updateReferenceRelationship (values) {
-    let relations = event.target.value
-    let selected = [...((this.props.Relationship || {}).values || [])]
+    let selected = [...((this.props.ReferenceRelationship || {}).values || [])]
 
-    if (selected.includes(relations)) {
-      // Remove the relationship if it was previously selected
-      selected.splice(selected.indexOf(relations), 1)
-    } else {
+    if (values.checked) {
       // Add the new relationship
-      selected.push(relations)
+      selected.push(values.value)
+    } else {
+      if (selected.includes(values.value)) {
+        // Remove the relationship if it was previously selected
+        selected.splice(selected.indexOf(values.value), 1)
+      }
     }
 
     this.update({
