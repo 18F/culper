@@ -15,22 +15,26 @@ var (
 	// These can be helper functions for formatting or even to process complex structure
 	// types.
 	DefaultFuncMap = template.FuncMap{
-		"branch":            branch,
-		"text":              text,
-		"textarea":          textarea,
-		"number":            number,
-		"location":          location,
-		"date":              date,
-		"daterange":         daterange,
-		"monthYear":         monthYear,
-		"dateEstimated":     dateEstimated,
-		"notApplicable":     notApplicable,
-		"telephone":         telephone,
-		"name":              name,
-		"radio":             radio,
-		"checkbox":          checkbox,
-		"checkboxHas":       checkboxHas,
-		"checkboxTrueFalse": checkboxTrueFalse,
+		"branch":               branch,
+		"email":                email,
+		"text":                 text,
+		"textarea":             textarea,
+		"number":               number,
+		"location":             location,
+		"locationIsPostOffice": locationIsPostOffice,
+		"date":                 date,
+		"daterange":            daterange,
+		"monthYear":            monthYear,
+		"dateEstimated":        dateEstimated,
+		"notApplicable":        notApplicable,
+		"telephone":            telephone,
+		"telephoneNoNumber":    telephoneNoNumber,
+		"name":                 name,
+		"nameLastFirst":        nameLastFirst,
+		"radio":                radio,
+		"checkbox":             checkbox,
+		"checkboxHas":          checkboxHas,
+		"checkboxTrueFalse":    checkboxTrueFalse,
 	}
 
 	fattrmap = template.FuncMap{}
@@ -84,6 +88,10 @@ func simpleValue(data map[string]interface{}) string {
 }
 
 func branch(data map[string]interface{}) string {
+	return simpleValue(data)
+}
+
+func email(data map[string]interface{}) string {
 	return simpleValue(data)
 }
 
@@ -167,6 +175,24 @@ func notApplicable(data map[string]interface{}) string {
 	return "True"
 }
 
+func telephoneNoNumber(data map[string]interface{}) string {
+	log := logmsg.NewLogger()
+
+	// Deserialize the initial payload from a JSON structure
+	payload := &Payload{}
+	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
+	if err != nil {
+		log.WithError(err).WithField("funcMap", "notApplicable").Warn(logmsg.PayloadEntityError)
+		return ""
+	}
+
+	telephone := entity.(*Telephone)
+	if telephone.NoNumber {
+		return "False"
+	}
+	return "True"
+}
+
 func checkboxTrueFalse(data map[string]interface{}) string {
 	log := logmsg.NewLogger()
 
@@ -185,6 +211,25 @@ func checkboxTrueFalse(data map[string]interface{}) string {
 	return "false"
 }
 
+func locationIsPostOffice(data map[string]interface{}) string {
+	log := logmsg.NewLogger()
+
+	// Deserialize the initial payload from a JSON structure
+	payload := &Payload{}
+	// entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
+	entity, err := payload.UnmarshalEntity(getInterfaceAsBytes(data))
+	if err != nil {
+		log.WithError(err).WithField("funcMap", "location").Warn(logmsg.PayloadEntityError)
+		return ""
+	}
+
+	location := entity.(*Location)
+	if location.IsPostOffice() {
+		return "True"
+	}
+	return ""
+}
+
 // Put "complex" XML structures here where they output from another template
 
 func telephone(data map[string]interface{}) template.HTML {
@@ -193,6 +238,10 @@ func telephone(data map[string]interface{}) template.HTML {
 
 func name(data map[string]interface{}) template.HTML {
 	return xmlTemplate("name.xml", data)
+}
+
+func nameLastFirst(data map[string]interface{}) template.HTML {
+	return xmlTemplate("name-last-first.xml", data)
 }
 
 func daterange(data map[string]interface{}) template.HTML {
