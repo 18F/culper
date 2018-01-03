@@ -147,6 +147,7 @@ export default class OtherOffense extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="offense-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -295,6 +296,7 @@ export default class OtherOffense extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="CourtDate"
                        {...this.props.CourtDate}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        className="offense-courtdate"
                        onUpdate={this.updateCourtDate}
@@ -324,6 +326,7 @@ export default class OtherOffense extends ValidationElement {
             </Field>
             <Sentence name="Sentence"
                       {...this.props.Sentence}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       onError={this.props.onError}
                       required={this.props.required}
                       onUpdate={this.updateSentence}
@@ -365,6 +368,7 @@ OtherOffense.defaultProps = {
   InvolvedFirearms: {},
   InvolvedSubstances: {},
   WasSentenced: {},
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

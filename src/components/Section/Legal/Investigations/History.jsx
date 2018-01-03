@@ -79,11 +79,12 @@ export default class History extends SubsectionElement {
                      appendLabel={i18n.t('legal.investigations.history.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <HistoryItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <HistoryItem name="Item"
+                         bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView}
+                         />
           </Accordion>
         </Show>
       </div>
@@ -100,6 +101,7 @@ History.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/history',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('legal.investigations.history', props))

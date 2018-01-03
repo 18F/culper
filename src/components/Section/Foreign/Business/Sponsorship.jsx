@@ -79,11 +79,12 @@ export default class Sponsorship extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.sponsorship.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <SponsorshipItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <SponsorshipItem name="Item"
+                             bind={true}
+                             applicantBirthdate={this.props.applicantBirthdate}
+                             required={this.props.required}
+                             scrollIntoView={this.props.scrollIntoView}
+                             />
           </Accordion>
         </Show>
       </div>
@@ -99,6 +100,7 @@ Sponsorship.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/sponsorship',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

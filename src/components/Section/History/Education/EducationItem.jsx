@@ -190,6 +190,7 @@ export default class EducationItem extends ValidationElement {
             <label className="info-label">{i18n.t('history.education.label.dates')}</label>
             <DateRange name="Dates"
                        {...this.props.Dates}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        label={i18n.t('history.education.label.dates')}
                        onUpdate={this.updateDates}
                        onError={this.props.onError}
@@ -358,7 +359,11 @@ export default class EducationItem extends ValidationElement {
                             onError={this.props.onError}
                             required={this.props.required}
                             scrollIntoView={this.props.scrollIntoView}>
-            <DiplomaItem name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+            <DiplomaItem name="Item"
+                         bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView} />
           </BranchCollection>
         </div>
       </div>
@@ -379,6 +384,7 @@ EducationItem.defaultProps = {
   ReferenceEmailNotApplicable: {},
   ReferenceAddress: {},
   Diplomas: { items: [] },
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -96,6 +96,7 @@ export default class JobOffer extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="employment-date"
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
@@ -154,6 +155,7 @@ JobOffer.defaultProps = {
   Address: {},
   Accepted: {},
   Explanation: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }
