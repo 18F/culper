@@ -1,6 +1,7 @@
 import React from 'react'
 import { i18n } from '../../../config'
 import ValidationElement from '../ValidationElement'
+import Generic from '../Generic'
 import Text from '../Text'
 import Checkbox from '../Checkbox'
 import Radio from '../Radio'
@@ -94,6 +95,7 @@ export default class Telephone extends ValidationElement {
     this.handleErrorTime = this.handleErrorTime.bind(this)
     this.handleErrorType = this.handleErrorType.bind(this)
     this.handleErrorNumberType = this.handleErrorNumberType.bind(this)
+    this.errors = []
   }
 
   parseNumber (start, end, number) {
@@ -304,7 +306,7 @@ export default class Telephone extends ValidationElement {
   }
 
   handleError (code, value, arr) {
-    arr = arr.map(err => {
+    let localErr = arr.map(err => {
       return {
         code: `telephone.${code}.${err.code}`,
         valid: err.valid,
@@ -312,7 +314,27 @@ export default class Telephone extends ValidationElement {
       }
     })
 
-    const requiredErr = arr.concat(this.constructor.errors.map(err => {
+    // Replace errors with new values
+    for (let err of localErr) {
+      const idx = this.errors.findIndex(x => x.code === err.code)
+      if (idx > -1) {
+        this.errors[idx] = err
+      } else {
+        this.errors.push(err)
+      }
+    }
+
+    // Nullify unused codes
+    const allowedTypes = ['Domestic', 'DSN', 'International']
+    allowedTypes.filter(x => x !== this.props.type).forEach(x => {
+      console.log(this.errors.filter(err => err.code.indexOf(`telephone.${x.toLowerCase()}.`) > -1))
+      this.errors.filter(err => err.code.indexOf(`telephone.${x.toLowerCase()}.`) > -1).forEach(err => {
+        err.valid = null
+      })
+      console.log(this.errors.filter(err => err.code.indexOf(`telephone.${x.toLowerCase()}.`) > -1))
+    })
+
+    const requiredErr = this.errors.concat(this.constructor.errors.map(err => {
       return {
         code: `telephone.${err.code}`,
         valid: err.func(value, {...this.props, ...this.state}),
@@ -322,7 +344,7 @@ export default class Telephone extends ValidationElement {
 
     // Take the original and concatenate our new error values to it
     this.props.onError(value, requiredErr)
-    return arr
+    return localErr
   }
 
   dsn () {
@@ -341,7 +363,7 @@ export default class Telephone extends ValidationElement {
               maxlength="3"
               minlength="3"
               readonly={this.props.readonly}
-              required={this.required()}
+              required={this.required('DSN')}
               value={trimleading(this.state.dsn.first)}
               onUpdate={this.updateDsnFirst}
               onError={this.handleErrorDsnFirst}
@@ -359,7 +381,7 @@ export default class Telephone extends ValidationElement {
               minlengh="4"
               maxlength="4"
               readonly={this.props.readonly}
-              required={this.required()}
+              required={this.required('DSN')}
               step="1"
               value={trimleading(this.state.dsn.second)}
               onUpdate={this.updateDsnSecond}
@@ -398,7 +420,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{3}"
               prefilter={digitsOnly}
               readonly={this.props.readonly}
-              required={this.required()}
+              required={this.required('Domestic')}
               value={trimleading(this.state.domestic.first)}
               onUpdate={this.updateDomesticFirst}
               onError={this.handleErrorDomesticFirst}
@@ -415,7 +437,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{3}"
               prefilter={digitsOnly}
               readonly={this.props.readonly}
-              required={this.required()}
+              required={this.required('Domestic')}
               value={trimleading(this.state.domestic.second)}
               onUpdate={this.updateDomesticSecond}
               onError={this.handleErrorDomesticSecond}
@@ -434,7 +456,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{4}"
               prefilter={digitsOnly}
               readonly={this.props.readonly}
-              required={this.required()}
+              required={this.required('Domestic')}
               value={trimleading(this.state.domestic.third)}
               onUpdate={this.updateDomesticThird}
               onError={this.handleErrorDomesticThird}
@@ -489,7 +511,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{1,3}"
               prefilter={digitsOnly}
               readonly={this.props.readonly}
-              required={this.required()}
+              required={this.required('International')}
               value={trimleading(this.state.international.first)}
               onUpdate={this.updateInternationalFirst}
               onError={this.handleErrorInternationalFirst}
@@ -506,7 +528,7 @@ export default class Telephone extends ValidationElement {
               pattern="\d{10}"
               prefilter={digitsOnly}
               readonly={this.props.readonly}
-              required={this.required()}
+              required={this.required('International')}
               value={trimleading(this.state.international.second)}
               onUpdate={this.updateInternationalSecond}
               onError={this.handleErrorInternationalSecond}
@@ -545,10 +567,15 @@ export default class Telephone extends ValidationElement {
     )
   }
 
-  required () {
+  required (type) {
+    if (type && type !== this.props.type) {
+      return false
+    }
+
     if (this.props.allowNotApplicable && this.props.noNumber) {
       return false
     }
+
     return this.props.required
   }
 
@@ -698,9 +725,11 @@ Telephone.errors = [
         if (props.allowNotApplicable && props.noNumber) {
           return true
         }
+
         if (props.showNumberType && !props.numberType) {
           return false
         }
+
         switch (props.type) {
         case 'Domestic':
           return !!props.domestic.first &&
@@ -716,6 +745,7 @@ Telephone.errors = [
           return false
         }
       }
+
       return true
     }
   }
