@@ -181,7 +181,7 @@ export default class ForeignService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.name')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Name"
                 {...this.props.Name}
                 className="foreign-service-name"
@@ -200,6 +200,7 @@ export default class ForeignService extends ValidationElement {
           <DateRange name="Dates"
                      className="foreign-service-dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      required={this.props.required}
@@ -207,8 +208,8 @@ export default class ForeignService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.country')}
-              adjustFor="country"
-              scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="country"
+               scrollIntoView={this.props.scrollIntoView}>
           <Country name="Country"
                    {...this.props.Country}
                    className="foreign-service-country"
@@ -220,7 +221,7 @@ export default class ForeignService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.rank')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Rank"
                 {...this.props.Rank}
                 className="foreign-service-rank"
@@ -232,7 +233,7 @@ export default class ForeignService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.division')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="Division"
                 {...this.props.Division}
                 className="foreign-service-division"
@@ -244,7 +245,7 @@ export default class ForeignService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.circumstances')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Circumstances"
                     {...this.props.Circumstances}
                     className="foreign-service-circumstances"
@@ -256,7 +257,7 @@ export default class ForeignService extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('military.foreign.heading.left')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="ReasonLeft"
                     {...this.props.ReasonLeft}
                     className="foreign-service-left"
@@ -302,6 +303,7 @@ export default class ForeignService extends ValidationElement {
                        scrollIntoView={this.props.scrollIntoView}>
               <ForeignContact name="Item"
                               bind={true}
+                              applicantBirthdate={this.props.applicantBirthdate}
                               addressBooks={this.props.addressBooks}
                               dispatch={this.props.dispatch}
                               required={this.props.required}
@@ -317,6 +319,7 @@ export default class ForeignService extends ValidationElement {
 
 ForeignService.defaultProps = {
   MaintainsContact: {},
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

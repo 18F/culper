@@ -79,11 +79,12 @@ export default class Debarred extends SubsectionElement {
                      appendLabel={i18n.t('legal.investigations.debarred.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <DebarredItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <DebarredItem name="Item"
+                          bind={true}
+                          required={this.props.required}
+                          applicantBirthdate={this.props.applicantBirthdate}
+                          scrollIntoView={this.props.scrollIntoView}
+                          />
           </Accordion>
         </Show>
       </div>
@@ -100,6 +101,7 @@ Debarred.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'investigations/debarred',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('legal.investigations.debarred', props))

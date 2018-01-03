@@ -114,7 +114,7 @@ export default class ReceivedCounseling extends ValidationElement {
   }
 
   render () {
-    const maxDate = (this.props.TreatmentEndDate || {}).date || new Date()
+    const maxDate = (this.props.TreatmentEndDate || {}).date || null
     const minDate = (this.props.TreatmentBeganDate || {}).date || null
     return (
       <div className="received-counseling">
@@ -191,6 +191,7 @@ export default class ReceivedCounseling extends ValidationElement {
           <DateControl name="TreatmentBeganDate"
                        className="treatment-began-date"
                        {...this.props.TreatmentBeganDate}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        prefix="treatment.began"
                        maxDate={maxDate}
                        onUpdate={this.updateTreatmentBeganDate}
@@ -206,6 +207,7 @@ export default class ReceivedCounseling extends ValidationElement {
           <DateControl name="TreatmentEndDate"
                        className="treatment-end-date"
                        {...this.state.TreatmentEndDate}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        receiveProps={this.state.presentClicked}
                        prefix="treatment.end"
                        minDate={minDate}
@@ -261,5 +263,6 @@ export default class ReceivedCounseling extends ValidationElement {
 ReceivedCounseling.defaultProps = {
   UseSameAddress: {},
   CompletedTreatment: {},
+  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

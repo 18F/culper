@@ -34,33 +34,34 @@ export default class ReprimandItem extends ValidationElement {
     return (
       <div>
         <Field title={i18n.t('history.employment.default.reprimand.description.label')}
-          titleSize="h4"
-          className="explanation-left"
-          required={this.props.required}
-          scrollIntoView={this.props.scrollIntoView}>
+               titleSize="h4"
+               className="explanation-left"
+               required={this.props.required}
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Text"
-            {...this.props.Text}
-            onUpdate={this.updateText}
-            onError={this.props.onError}
-            maxlength="100"
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    {...this.props.Text}
+                    onUpdate={this.updateText}
+                    onError={this.props.onError}
+                    maxlength="100"
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
         <Field title={i18n.t('history.employment.default.reprimand.date.label')}
-          titleSize="h4"
-          className="date-left"
-          adjustFor="labels"
-          shrink={true}
-          scrollIntoView={this.props.scrollIntoView}>
+               titleSize="h4"
+               className="date-left"
+               adjustFor="labels"
+               shrink={true}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
-            {...this.props.Date}
-            onUpdate={this.updateDate}
-            onError={this.props.onError}
-            hideDay={true}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                       {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
+                       onUpdate={this.updateDate}
+                       onError={this.props.onError}
+                       hideDay={true}
+                       onError={this.props.onError}
+                       required={this.props.required}
+                       />
         </Field>
       </div>
     )
@@ -68,6 +69,7 @@ export default class ReprimandItem extends ValidationElement {
 }
 
 ReprimandItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

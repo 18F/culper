@@ -108,6 +108,7 @@ export default class History extends SubsectionElement {
                      scrollIntoView={this.props.scrollIntoView}>
             <MilitaryService name="Item"
                              bind={true}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              required={this.props.required}
                              scrollIntoView={this.props.scrollIntoView}
                              />
@@ -125,6 +126,7 @@ History.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'military',
   subsection: 'history',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

@@ -109,6 +109,7 @@ export default class BenefitActivity extends SubsectionElement {
             <Benefit name="Item"
                      bind={true}
                      required={this.props.required}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      scrollIntoView={this.props.scrollIntoView}
                      />
           </Accordion>
@@ -127,6 +128,7 @@ BenefitActivity.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'activities/benefits',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.activities.benefits', props))

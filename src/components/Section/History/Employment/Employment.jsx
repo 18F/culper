@@ -140,6 +140,7 @@ export default class Employment extends SubsectionElement {
                    scrollIntoView={this.props.scrollIntoView}>
           <EmploymentItem name="Item"
                           bind={true}
+                          applicantBirthdate={this.props.applicantBirthdate}
                           addressBooks={this.props.addressBooks}
                           dispatch={this.props.dispatch}
                           required={this.props.required}
@@ -175,6 +176,7 @@ Employment.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'history',
   subsection: 'employment',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: () => {},
   validator: (state, props) => {

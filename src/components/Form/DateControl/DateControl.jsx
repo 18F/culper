@@ -3,7 +3,7 @@ import ValidationElement from '../ValidationElement'
 import Number from '../Number'
 import Checkbox from '../Checkbox'
 import Show from '../Show'
-import { daysInMonth, validDate } from '../../Section/History/dateranges'
+import { today, daysAgo, daysInMonth, validDate } from '../../Section/History/dateranges'
 import DateControlValidator from '../../../validators/datecontrol'
 
 export const datePart = (part, date) => {
@@ -417,8 +417,11 @@ DateControl.defaultProps = {
   day: '',
   year: '',
   prefix: '',
-  maxDate: new Date(),
+  applicantBirthdate: {},
+  noMaxDate: false,
+  maxDate: null,
   minDate: null,
+  relationship: '',
   toggleFocus: (w, changed, el, day, month) => {
     day.focus()
     day.blur()

@@ -80,13 +80,13 @@ export default class Family extends SubsectionElement {
                      appendLabel={i18n.t('foreign.business.family.collection.append')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <FamilyItem
-                       name="Item"
-                       bind={true}
-                       onError={this.props.onError}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <FamilyItem name="Item"
+                        bind={true}
+                        applicantBirthdate={this.props.applicantBirthdate}
+                        onError={this.props.onError}
+                        required={this.props.required}
+                        scrollIntoView={this.props.scrollIntoView}
+                        />
           </Accordion>
         </Show>
       </div>
@@ -102,6 +102,7 @@ Family.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'foreign',
   subsection: 'business/family',
+  applicantBirthdate: {},
   dispatch: () => {},
   validator: (state, props) => {
     return validate(schema('foreign.business.family', props))

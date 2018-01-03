@@ -79,13 +79,14 @@ export default class Manipulating extends SubsectionElement {
                      appendLabel={i18n.t('legal.technology.manipulating.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <ManipulatingItem name="Item"
-                       bind={true}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                     />
+            <ManipulatingItem name="Item"
+                              bind={true}
+                              applicantBirthdate={this.props.applicantBirthdate}
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
+                              required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView}
+                              />
           </Accordion>
         </Show>
       </div>
@@ -102,6 +103,7 @@ Manipulating.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/manipulating',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

@@ -55,6 +55,7 @@ export default class UnauthorizedItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Date"
                        {...this.props.Date}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateDate}
                        onError={this.props.onError}
                        className="legal-technology-unauthorized-date"
@@ -110,6 +111,7 @@ export default class UnauthorizedItem extends ValidationElement {
 }
 
 UnauthorizedItem.defaultProps = {
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

@@ -63,7 +63,11 @@ export default class ReasonLeft extends ValidationElement {
                           required={this.props.required}
                           scrollIntoView={this.props.scrollIntoView}
                           >
-          <ReasonOptions name="Item" bind={true} required={this.props.required} scrollIntoView={this.props.scrollIntoView} />
+          <ReasonOptions name="Item"
+                         bind={true}
+                         applicantBirthdate={this.props.applicantBirthdate}
+                         required={this.props.required}
+                         scrollIntoView={this.props.scrollIntoView} />
         </BranchCollection>
       </div>
     )
@@ -74,6 +78,7 @@ ReasonLeft.defaultProps = {
   Comments: {},
   ReasonDescription: {},
   Reasons: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

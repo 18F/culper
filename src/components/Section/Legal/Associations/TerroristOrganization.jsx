@@ -81,12 +81,13 @@ export default class TerroristOrganization extends SubsectionElement {
                      appendLabel={i18n.t('legal.associations.terrorist.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <TerroristOrganizationItem name="Item"
-                       bind={true}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                       required={this.props.required}
-                     />
+            <TerroristOrganizationItem name="Item"
+                                       bind={true}
+                                       applicantBirthdate={this.props.applicantBirthdate}
+                                       addressBooks={this.props.addressBooks}
+                                       dispatch={this.props.dispatch}
+                                       required={this.props.required}
+                                       />
 
           </Accordion>
         </Show>
@@ -104,6 +105,7 @@ TerroristOrganization.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'associations/terrorist-organization',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

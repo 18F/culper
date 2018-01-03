@@ -118,6 +118,7 @@ export default class MembershipViolenceItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
                      className="legal-associations-violence-dates"
@@ -186,6 +187,7 @@ export default class MembershipViolenceItem extends ValidationElement {
 MembershipViolenceItem.defaultProps = {
   PositionsNotApplicable: { applicable: true },
   ContributionsNotApplicable: { applicable: true },
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

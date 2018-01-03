@@ -69,6 +69,7 @@ export default class DomesticViolence extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Issued"
                        {...this.props.Issued}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        className="issued"
                        onUpdate={this.updateIssued}
@@ -118,6 +119,7 @@ export default class DomesticViolence extends ValidationElement {
 }
 
 DomesticViolence.defaultProps = {
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

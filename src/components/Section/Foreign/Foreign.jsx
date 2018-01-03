@@ -12,7 +12,7 @@ import Contacts from './Contacts'
 import Travel from './Travel'
 import { DirectActivity, IndirectActivity, RealEstateActivity, BenefitActivity, Support } from './Activities'
 import { Advice, Family, Employment, Ventures, Conferences, Contact, Sponsorship, Political, Voting } from './Business'
-import { extractOtherNames } from '../extractors'
+import { extractOtherNames, extractApplicantBirthdate } from '../extractors'
 
 class Foreign extends SectionElement {
   constructor (props) {
@@ -140,6 +140,7 @@ class Foreign extends SectionElement {
                        >
             <Passport name="passport"
                       {...this.props.Passport}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
@@ -150,6 +151,7 @@ class Foreign extends SectionElement {
             <Contacts name="contacts"
                       {...this.props.Contacts}
                       defaultState={false}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
@@ -161,6 +163,7 @@ class Foreign extends SectionElement {
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
                             defaultState={false}
+                            applicantBirthdate={this.props.applicantBirthdate}
                             addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
@@ -172,6 +175,7 @@ class Foreign extends SectionElement {
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
                               defaultState={false}
+                              applicantBirthdate={this.props.applicantBirthdate}
                               addressBooks={this.props.AddressBooks}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
@@ -183,6 +187,7 @@ class Foreign extends SectionElement {
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
                                 defaultState={false}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
@@ -193,6 +198,7 @@ class Foreign extends SectionElement {
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
                              defaultState={false}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
@@ -203,6 +209,7 @@ class Foreign extends SectionElement {
             <Support name="support"
                      {...this.props.Support}
                      defaultState={false}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
@@ -214,6 +221,7 @@ class Foreign extends SectionElement {
             <Advice name="advice"
                     {...this.props.Advice}
                     defaultState={false}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
@@ -224,6 +232,7 @@ class Foreign extends SectionElement {
             <Family name="family"
                     {...this.props.Family}
                     defaultState={false}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
@@ -234,6 +243,7 @@ class Foreign extends SectionElement {
             <Employment name="employment"
                         {...this.props.Employment}
                         defaultState={false}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
@@ -244,6 +254,7 @@ class Foreign extends SectionElement {
             <Ventures name="ventures"
                       {...this.props.Ventures}
                       defaultState={false}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
@@ -255,6 +266,7 @@ class Foreign extends SectionElement {
             <Conferences name="Conferences"
                          {...this.props.Conferences}
                          defaultState={false}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
@@ -265,6 +277,7 @@ class Foreign extends SectionElement {
             <Contact name="Contact"
                      {...this.props.Contact}
                      defaultState={false}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
@@ -276,6 +289,7 @@ class Foreign extends SectionElement {
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
                          defaultState={false}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          addressBooks={this.props.AddressBooks}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
@@ -287,6 +301,7 @@ class Foreign extends SectionElement {
             <Political name="Political"
                        {...this.props.Political}
                        defaultState={false}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
@@ -297,6 +312,7 @@ class Foreign extends SectionElement {
             <Voting name="Voting"
                     {...this.props.Voting}
                     defaultState={false}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
@@ -307,6 +323,7 @@ class Foreign extends SectionElement {
             <Travel name="Travel"
                     {...this.props.Travel}
                     defaultState={false}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
@@ -334,6 +351,7 @@ class Foreign extends SectionElement {
                       dispatch={this.props.dispatch}
                       suggestedNames={this.props.suggestedNames}
                       {...this.props.Passport}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       onUpdate={this.updatePassport}
                       onError={this.handleError}
                       />
@@ -346,6 +364,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.activity')}>
             <Contacts name="contacts"
                       {...this.props.Contacts}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateContacts}
@@ -361,6 +380,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            applicantBirthdate={this.props.applicantBirthdate}
                             addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
@@ -375,6 +395,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.indirect')}>
             <DirectActivity name="directActivity"
                             {...this.props.DirectActivity}
+                            applicantBirthdate={this.props.applicantBirthdate}
                             addressBooks={this.props.AddressBooks}
                             dispatch={this.props.dispatch}
                             onUpdate={this.updateDirectActivity}
@@ -390,6 +411,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.realestate')}>
             <IndirectActivity name="indirectActivity"
                               {...this.props.IndirectActivity}
+                              applicantBirthdate={this.props.applicantBirthdate}
                               addressBooks={this.props.AddressBooks}
                               dispatch={this.props.dispatch}
                               onUpdate={this.updateIndirectActivity}
@@ -405,6 +427,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.benefits')}>
             <RealEstateActivity name="realEstateActivity"
                                 {...this.props.RealEstateActivity}
+                                applicantBirthdate={this.props.applicantBirthdate}
                                 dispatch={this.props.dispatch}
                                 onUpdate={this.updateRealEstateActivity}
                                 onError={this.handleError}
@@ -419,6 +442,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.activities.support')}>
             <BenefitActivity name="benefitActivity"
                              {...this.props.BenefitActivity}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              dispatch={this.props.dispatch}
                              onUpdate={this.updateBenefitActivity}
                              onError={this.handleError}
@@ -432,6 +456,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.advice')}>
             <Support name="support"
                      {...this.props.Support}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateSupport}
@@ -447,6 +472,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.family')}>
             <Advice name="advice"
                     {...this.props.Advice}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
@@ -461,6 +487,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.family')}>
             <Advice name="advice"
                     {...this.props.Advice}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateAdvice}
                     onError={this.handleError}
@@ -475,6 +502,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.employment')}>
             <Family name="family"
                     {...this.props.Family}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateFamily}
                     onError={this.handleError}
@@ -489,6 +517,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.ventures')}>
             <Employment name="employment"
                         {...this.props.Employment}
+                        applicantBirthdate={this.props.applicantBirthdate}
                         dispatch={this.props.dispatch}
                         onUpdate={this.updateEmployment}
                         onError={this.handleError}
@@ -503,6 +532,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.events')}>
             <Ventures name="ventures"
                       {...this.props.Ventures}
+                      applicantBirthdate={this.props.applicantBirthdate}
                       addressBooks={this.props.AddressBooks}
                       dispatch={this.props.dispatch}
                       onUpdate={this.updateVentures}
@@ -518,6 +548,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.contact')}>
             <Conferences name="Conferences"
                          {...this.props.Conferences}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateConferences}
                          onError={this.handleError}
@@ -532,6 +563,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.sponsorship')}>
             <Contact name="Contact"
                      {...this.props.Contact}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      addressBooks={this.props.AddressBooks}
                      dispatch={this.props.dispatch}
                      onUpdate={this.updateContact}
@@ -547,6 +579,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.political')}>
             <Sponsorship name="Sponsorship"
                          {...this.props.Sponsorship}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          addressBooks={this.props.AddressBooks}
                          dispatch={this.props.dispatch}
                          onUpdate={this.updateSponsorship}
@@ -562,6 +595,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.business.voting')}>
             <Political name="Political"
                        {...this.props.Political}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        dispatch={this.props.dispatch}
                        onUpdate={this.updatePolitical}
                        onError={this.handleError}
@@ -576,6 +610,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.travel')}>
             <Voting name="Voting"
                     {...this.props.Voting}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateVoting}
                     onError={this.handleError}
@@ -590,6 +625,7 @@ class Foreign extends SectionElement {
                        nextLabel={i18n.t('foreign.destination.review')}>
             <Travel name="Travel"
                     {...this.props.Travel}
+                    applicantBirthdate={this.props.applicantBirthdate}
                     dispatch={this.props.dispatch}
                     onUpdate={this.updateTravel}
                     onError={this.handleError}
@@ -633,6 +669,7 @@ function mapStateToProps (state) {
     Errors: errors.foreign || [],
     Completed: completed.foreign || [],
     suggestedNames: names,
+    applicantBirthdate: extractApplicantBirthdate(app),
     AddressBooks: addressBooks
   }
 }

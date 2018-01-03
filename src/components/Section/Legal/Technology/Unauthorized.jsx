@@ -82,13 +82,14 @@ export default class Unauthorized extends SubsectionElement {
                      appendLabel={i18n.t('legal.technology.unauthorized.collection.appendLabel')}
                      required={this.props.required}
                      scrollIntoView={this.props.scrollIntoView}>
-                     <UnauthorizedItem name="Item"
-                       bind={true}
-                       required={this.props.required}
-                       scrollIntoView={this.props.scrollIntoView}
-                       addressBooks={this.props.addressBooks}
-                       dispatch={this.props.dispatch}
-                     />
+            <UnauthorizedItem name="Item"
+                              bind={true}
+                              applicantBirthdate={this.props.applicantBirthdate}
+                              required={this.props.required}
+                              scrollIntoView={this.props.scrollIntoView}
+                              addressBooks={this.props.addressBooks}
+                              dispatch={this.props.dispatch}
+                              />
           </Accordion>
         </Show>
       </div>
@@ -105,6 +106,7 @@ Unauthorized.defaultProps = {
   onError: (value, arr) => { return arr },
   section: 'legal',
   subsection: 'technology/unauthorized',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   validator: (state, props) => {

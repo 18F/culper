@@ -89,11 +89,12 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.firstInvolvement')}
-          adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="FirstInvolvement"
                        className="first-involvement"
                        {...this.props.FirstInvolvement}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateFirstInvolvement}
@@ -103,11 +104,12 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.recentInvolvement')}
-          adjustFor="datecontrol"
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="datecontrol"
+               scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="RecentInvolvement"
                        className="recent-involvement"
                        {...this.props.RecentInvolvement}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        hideDay={true}
                        showEstimated={false}
                        onUpdate={this.updateRecentInvolvement}
@@ -117,7 +119,7 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.natureOfInvolvement')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="NatureOfInvolvement"
                     className="nature-of-involvement"
                     {...this.props.NatureOfInvolvement}
@@ -128,7 +130,7 @@ export default class DrugInvolvement extends ValidationElement {
         </Field>
 
         <Field title={i18n.t('substance.drugs.involvement.heading.reasons')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Reasons"
                     className="reasons"
                     {...this.props.Reasons}
@@ -193,5 +195,6 @@ DrugInvolvement.defaultProps = {
   InvolvementWhileEmployed: {},
   InvolvementWithClearance: {},
   InvolvementInFuture: {},
+  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }

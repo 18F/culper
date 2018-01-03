@@ -144,10 +144,11 @@ export default class Diagnosis extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="Diagnosed"
                      {...this.props.Diagnosed}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      receiveProps={this.props.receiveProps}
                      onUpdate={this.updateDiagnosed}
                      prefix={prefix}
-                     minDate={this.props.ApplicantBirthDate}
+                     minDate={this.props.applicantBirthdate}
                      onError={this.props.onError}
                      required={this.props.required}
                      />
@@ -239,6 +240,7 @@ export default class Diagnosis extends ValidationElement {
 
 Diagnosis.defaultProps = {
   prefix: 'diagnosis',
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

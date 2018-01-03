@@ -39,38 +39,39 @@ export default class DrugClearanceUse extends ValidationElement {
     return (
       <div className="drug-clearance-use">
         <Field title={i18n.t('substance.drugs.clearance.heading.description')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Textarea name="Description"
-            className="description"
-            {...this.props.Description}
-            onUpdate={this.updateDescription}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                    className="description"
+                    {...this.props.Description}
+                    onUpdate={this.updateDescription}
+                    onError={this.props.onError}
+                    required={this.props.required}
+                    />
         </Field>
 
         <Field title={i18n.t('substance.drugs.clearance.heading.involvementDates')}
-          adjustFor="daterange"
-          help={'substance.drugs.clearance.help.involvementDates'}
-          scrollIntoView={this.props.scrollIntoView}>
+               adjustFor="daterange"
+               help={'substance.drugs.clearance.help.involvementDates'}
+               scrollIntoView={this.props.scrollIntoView}>
           <DateRange name="InvolvementDates"
-            className="involvement-dates"
-            {...this.props.InvolvementDates}
-            onUpdate={this.updateInvolvementDates}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                     className="involvement-dates"
+                     {...this.props.InvolvementDates}
+                     applicantBirthdate={this.props.applicantBirthdate}
+                     onUpdate={this.updateInvolvementDates}
+                     onError={this.props.onError}
+                     required={this.props.required}
+                     />
         </Field>
 
         <Field title={i18n.t('substance.drugs.clearance.heading.estimatedUse')}
-          scrollIntoView={this.props.scrollIntoView}>
+               scrollIntoView={this.props.scrollIntoView}>
           <Text name="EstimatedUse"
-            className="estimated-use"
-            {...this.props.EstimatedUse}
-            onUpdate={this.updateEstimatedUse}
-            onError={this.props.onError}
-            required={this.props.required}
-          />
+                className="estimated-use"
+                {...this.props.EstimatedUse}
+                onUpdate={this.updateEstimatedUse}
+                onError={this.props.onError}
+                required={this.props.required}
+                />
         </Field>
       </div>
     )
@@ -78,5 +79,6 @@ export default class DrugClearanceUse extends ValidationElement {
 }
 
 DrugClearanceUse.defaultProps = {
+  applicantBirthdate: {},
   onError: (value, arr) => { return arr }
 }
