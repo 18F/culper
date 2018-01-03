@@ -4,9 +4,10 @@ services:
   db:
     image: postgres:9.6.5
     volumes:
-      - ./conf/postgres.conf:/var/lib/postgresql/data/postgresql.conf
-      - ./api/eapp.crt:/var/lib/postgresql/data/server.crt
-      - ./api/eapp.key:/var/lib/postgresql/data/server.key
+      - ./conf/postgres-configure.sh:/docker-entrypoint-initdb.d/postgres-configure.sh
+      - ./conf/postgres.conf:/srv/postgresql.conf
+      - ./api/eapp.crt:/srv/server.crt
+      - ./api/eapp.key:/srv/server.key
     expose:
       - '5432'
     networks:
