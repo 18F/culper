@@ -49,6 +49,7 @@ export default class SubsequentContacts extends ValidationElement {
                  adjustFor="datecontrol"
                  scrollIntoView={this.props.scrollIntoView}>
             <DateControl name="Recent"
+                         applicantBirthdate={this.props.applicantBirthdate}
                          className="foreign-business-contact-recent"
                          bind={true}
                          required={this.props.required}
@@ -73,6 +74,7 @@ export default class SubsequentContacts extends ValidationElement {
 
 SubsequentContacts.defaultProps = {
   name: 'SubsequentContacts',
+  applicantBirthdate: {},
   List: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }

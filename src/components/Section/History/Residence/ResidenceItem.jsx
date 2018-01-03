@@ -233,6 +233,7 @@ export default class ResidenceItem extends ValidationElement {
           <label className="info-label">{i18n.t('history.residence.label.dates')}</label>
           <DateRange name="Dates"
                      {...this.props.Dates}
+                     applicantBirthdate={this.props.applicantBirthdate}
                      label={i18n.t('history.residence.label.dates')}
                      onUpdate={this.updateDates}
                      onError={this.props.onError}
@@ -321,6 +322,7 @@ export default class ResidenceItem extends ValidationElement {
                 <DateControl name="ReferenceLastContact"
                              className="reference-last-contact"
                              {...this.props.ReferenceLastContact}
+                             applicantBirthdate={this.props.applicantBirthdate}
                              onUpdate={this.updateReferenceLastContact}
                              onError={this.props.onError}
                              required={this.props.required}
@@ -515,6 +517,7 @@ ResidenceItem.defaultProps = {
   ReferenceEmailNotApplicable: {},
   ReferenceEmail: {},
   ReferenceAddress: {},
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onUpdate: (queue) => {},

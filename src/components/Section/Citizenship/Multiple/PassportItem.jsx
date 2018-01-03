@@ -118,6 +118,7 @@ export default class PassportItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Issued"
                        {...this.props.Issued}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="passport-issued"
                        onUpdate={this.updateIssued}
                        onError={this.props.onError}
@@ -168,10 +169,12 @@ export default class PassportItem extends ValidationElement {
                scrollIntoView={this.props.scrollIntoView}>
           <DateControl name="Expiration"
                        {...this.props.Expiration}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        className="passport-expiration"
                        onUpdate={this.updateExpiration}
                        onError={this.props.onError}
-                       maxDate={null}
+                       minDate={(this.props.Issued || {}).date}
+                       noMaxDate={true}
                        required={this.props.required}
                        />
         </Field>
@@ -216,6 +219,7 @@ PassportItem.defaultProps = {
   Expiration: {},
   Used: {},
   Countries: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr },
   defaultState: true

@@ -124,6 +124,7 @@ export default class Sentence extends ValidationElement {
             <DateRange name="IncarcerationDates"
                        className="incarceration-dates"
                        {...this.props.IncarcerationDates}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateIncarcerationDates}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -147,6 +148,7 @@ export default class Sentence extends ValidationElement {
             <DateRange name="ProbationDates"
                        className="probation-dates"
                        {...this.props.ProbationDates}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        onUpdate={this.updateProbationDates}
                        onError={this.props.onError}
                        required={this.props.required}
@@ -166,6 +168,7 @@ Sentence.defaultProps = {
   ProbationDates: {},
   IncarcerationDatesNA: { applicable: true },
   ProbationDatesNA: { applicable: true},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

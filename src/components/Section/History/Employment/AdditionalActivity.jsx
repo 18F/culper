@@ -64,6 +64,7 @@ export default class AdditionalActivity extends ValidationElement {
                  scrollIntoView={this.props.scrollIntoView}>
             <DateRange name="DatesEmployed"
                        bind={true}
+                       applicantBirthdate={this.props.applicantBirthdate}
                        required={this.props.required}
                        />
           </Field>
@@ -75,6 +76,7 @@ export default class AdditionalActivity extends ValidationElement {
 
 AdditionalActivity.defaultProps = {
   List: {},
+  applicantBirthdate: {},
   onUpdate: (queue) => {},
   onError: (value, arr) => { return arr }
 }

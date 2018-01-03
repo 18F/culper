@@ -249,6 +249,7 @@ export default class OrderedTreatment extends ValidationElement {
               <DateRange name="TreatmentDates"
                          className="treatment-dates"
                          {...this.props.TreatmentDates}
+                         applicantBirthdate={this.props.applicantBirthdate}
                          onUpdate={this.updateTreatmentDates}
                          onError={this.props.onError}
                          required={this.props.required}
@@ -291,6 +292,7 @@ OrderedTreatment.defaultProps = {
   ActionTaken: {},
   TreatmentCompleted: {},
   OrderedBy: [],
+  applicantBirthdate: {},
   addressBooks: {},
   dispatch: (action) => {},
   onError: (value, arr) => { return arr }
