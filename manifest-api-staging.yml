@@ -15,6 +15,7 @@ applications:
     PATH: /bin:/usr/bin:$HOME/bin
     GOVERSION: go1.8.5
     LOG_LEVEL: debug
+    CORS_ALLOWED: https://eqip-prototype-staging.fr.cloud.gov
     API_REDIRECT: https://eqip-prototype-staging.fr.cloud.gov
     API_BASE_URL: https://eqip-prototype-api-staging.fr.cloud.gov
     ALLOW_2FA_RESET: 1
