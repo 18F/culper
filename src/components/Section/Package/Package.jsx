@@ -8,9 +8,10 @@ import AuthenticatedView from '../../../views/AuthenticatedView'
 import ValidForm from './ValidForm'
 import InvalidForm from './InvalidForm'
 import SubmissionStatus from './SubmissionStatus'
+import Print from './Print'
 import { push } from '../../../middleware/history'
 
-class Submission extends SectionElement {
+class Package extends SectionElement {
   constructor (props) {
     super(props)
 
@@ -29,7 +30,7 @@ class Submission extends SectionElement {
   onSubmit () {
     // TODO: Generate has code here and send to print screen when
     // merged with persistence updates
-    this.props.dispatch(push('/form/print/intro'))
+    this.props.dispatch(push('/form/package/print'))
   }
 
   /**
@@ -41,12 +42,12 @@ class Submission extends SectionElement {
     for (const sectionName in tally) {
       const mark = tally[sectionName]
       if (mark.errors > 0) {
-        this.props.dispatch(push('/form/submission/errors'))
+        this.props.dispatch(push('/form/package/errors'))
         return
       }
     }
 
-    this.props.dispatch(push('/form/submission/releases'))
+    this.props.dispatch(push('/form/package/submit'))
     return
   }
 
@@ -54,7 +55,7 @@ class Submission extends SectionElement {
    * TODO: Remove after testing. Hook to get to releases form
    */
   goToReleases () {
-    this.props.dispatch(push('/form/submission/releases'))
+    this.props.dispatch(push('/form/package/submit'))
   }
 
   errorCheck () {
@@ -103,29 +104,31 @@ class Submission extends SectionElement {
     const releases = (this.props.Submission || {}).Releases
     return (
       <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-        <SectionView name="intro">
+        <SectionView name="review">
           <SubmissionStatus transition={true} onTransitionEnd={this.onTransitionEnd}/>
         </SectionView>
         <SectionView name="valid">
           <SubmissionStatus transition={true} onTransitionEnd={this.goToReleases}/>
         </SectionView>
-        <SectionView name="releases">
-          <SubmissionStatus valid={true} transition={false}>
-            <ValidForm
-              onUpdate={this.updateSubmission}
-              hideHippa={hideHippa(this.props.Application)}
-              {...releases}
-              LegalName={this.props.LegalName}
-              onSubmit={this.onSubmit}
-              Identification={this.props.Identification}
-              History={this.props.History}
-            />
-          </SubmissionStatus>
-        </SectionView>
         <SectionView name="errors">
           <SubmissionStatus valid={false} transition={false}>
             <InvalidForm tally={tally} />
           </SubmissionStatus>
+        </SectionView>
+        <SectionView name="submit">
+          <SubmissionStatus valid={true} transition={false}>
+            <ValidForm {...releases}
+                       onUpdate={this.updateSubmission}
+                       hideHippa={hideHippa(this.props.Application)}
+                       LegalName={this.props.LegalName}
+                       onSubmit={this.onSubmit}
+                       Identification={this.props.Identification}
+                       History={this.props.History}
+                       />
+          </SubmissionStatus>
+        </SectionView>
+        <SectionView name="print">
+          <Print />
         </SectionView>
       </SectionViews>
     )
@@ -200,9 +203,9 @@ function mapStateToProps (state) {
   }
 }
 
-Submission.defaultProps = {
+Package.defaultProps = {
   section: 'submission',
   store: 'Submission'
 }
 
-export default connect(mapStateToProps)(AuthenticatedView(Submission))
+export default connect(mapStateToProps)(AuthenticatedView(Package))

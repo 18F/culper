@@ -27,10 +27,10 @@ export default class InvalidForm extends React.Component {
   render () {
     return (
       <div className="invalid-form">
-        { i18n.m(`submission.invalidForm`) }
+        { i18n.m(`application.invalidForm`) }
         { this.errors() }
         <Show when={!env.IsProduction()}>
-          <Link to={`/form/submission/releases`}>Simulate valid form</Link>
+          <Link to={`/form/package/submit`}>Simulate valid form</Link>
         </Show>
       </div>
     )
@@ -39,10 +39,9 @@ export default class InvalidForm extends React.Component {
 
 export class InvalidSection extends React.Component {
   render () {
-    const incompleteSubsections = this.props.mark.subsections
-      .map(subsection => {
-        return (<div key={subsection.url}>{ subsection.name }</div>)
-      })
+    const incompleteSubsections = this.props.mark.subsections.map(subsection => {
+      return (<div key={subsection.url}>{ subsection.name }</div>)
+    })
 
     return (
       <div className="field">

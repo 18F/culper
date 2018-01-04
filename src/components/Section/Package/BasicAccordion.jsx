@@ -1,5 +1,4 @@
 import React from 'react'
-import { i18n } from '../../../config'
 import { Show } from '../../Form'
 
 export default class BasicAccordion extends React.Component {
@@ -61,8 +60,8 @@ class BasicAccordionItem extends React.Component {
     return (
       <li ref="item">
         <button className="usa-accordion-button"
-          onClick={this.props.onClick}
-          aria-expanded={this.props.open}>
+                onClick={this.props.onClick}
+                aria-expanded={this.props.open}>
           {this.props.title}
           {this.props.validIcon}
         </button>

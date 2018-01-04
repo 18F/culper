@@ -1,4 +1,4 @@
-export const submission = {
+export const application = {
   destination: {
     submit: 'Submit'
   },

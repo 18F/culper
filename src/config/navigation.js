@@ -248,19 +248,16 @@ const navigation = [
     hidden: true
   },
   {
-    title: 'Submit',
-    name: 'Submit',
-    url: 'submission',
-    showNumber: false,
-    exclude: true
-  },
-  {
-    title: 'Print',
-    name: 'print',
-    url: 'print',
+    title: 'Review and submit',
+    name: 'Review and submit',
+    url: 'package',
     showNumber: false,
     exclude: true,
-    hidden: true
+    subsections: [
+      { name: 'Review', url: 'review' },
+      { name: 'Submit', url: 'submit' },
+      { name: 'Print', url: 'print' }
+    ]
   }
 ]
 

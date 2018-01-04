@@ -4,11 +4,11 @@ import { ValidationElement, Show } from '../../Form'
 import { NameValidator } from '../../../validators'
 import { validDateField } from '../../../validators/helpers'
 import BasicAccordion from './BasicAccordion'
-import AdditionalComments from '../Releases/AdditionalComments'
-import General from '../Releases/General'
-import Medical from '../Releases/Medical'
-import Credit from '../Releases/Credit'
-import Verify from '../Releases/Verify'
+import AdditionalComments from './AdditionalComments'
+import General from './General'
+import Medical from './Medical'
+import Credit from  './Credit'
+import Verify from  './Verify'
 
 export default class ValidForm extends ValidationElement {
   constructor (props) {
@@ -108,7 +108,7 @@ export default class ValidForm extends ValidationElement {
   accordionItems () {
     let accordionItems = [
       {
-        title: i18n.t('submission.validForm.certificationItem'),
+        title: i18n.t('application.validForm.certificationItem'),
         component: () => {
           return (
             <div>
@@ -118,7 +118,7 @@ export default class ValidForm extends ValidationElement {
                 LegalName={this.props.LegalName}
                 />
               <Show when={validSignature(this.props.AdditionalComments)}>
-                <button onClick={this.togglePanel(1)}>{i18n.t('submission.validForm.next')}</button>
+                <button onClick={this.togglePanel(1)}>{i18n.t('application.validForm.next')}</button>
               </Show>
             </div>
           )
@@ -127,7 +127,7 @@ export default class ValidForm extends ValidationElement {
         open: true
       },
       {
-        title: i18n.t('submission.validForm.generalItem'),
+        title: i18n.t('application.validForm.generalItem'),
         component: () => {
           return (
             <div>
@@ -152,7 +152,7 @@ export default class ValidForm extends ValidationElement {
                 </div>
               </Show>
               <Show when={validSignature(this.props.General) && (this.props.hideHippa || (!this.hideHippa && validSignature(this.props.Medical)))}>
-                <button onClick={this.togglePanel(2)}>{i18n.t('submission.validForm.next')}</button>
+                <button onClick={this.togglePanel(2)}>{i18n.t('application.validForm.next')}</button>
               </Show>
             </div>
           )
@@ -161,7 +161,7 @@ export default class ValidForm extends ValidationElement {
         open: false
       },
       {
-        title: i18n.t('submission.validForm.creditItem'),
+        title: i18n.t('application.validForm.creditItem'),
         component: () => {
           return (
             <div>
@@ -185,11 +185,11 @@ export default class ValidForm extends ValidationElement {
     const accordionItems = this.state.accordionItems
     return (
       <div className="valid-form">
-        { i18n.m(`submission.submissionStatus.valid2`) }
+        { i18n.m(`application.submissionStatus.valid2`) }
         <BasicAccordion items={accordionItems} />
         <div className="text-right">
           <button onClick={this.submit} className="submit usa-button" disabled={!enableSubmit(this.props)}>
-            { i18n.t('submission.validForm.submit') }
+            { i18n.t('application.validForm.submit') }
             <i className="fa fa-arrow-circle-right" aria-hidden="true"></i>
           </button>
         </div>

@@ -152,7 +152,7 @@ class Print extends SectionElement {
         <span className="icon">
           <Svg src="/img/checkmark.svg" />
         </span>
-        { i18n.m('submission.print.done') }
+        { i18n.m('application.print.done') }
       </div>
     )
   }
@@ -161,24 +161,16 @@ class Print extends SectionElement {
     return (
       <div className="pre-print-view">
         <div className="text-center">
-          { i18n.m('submission.print.title') }
+          { i18n.m('application.print.title') }
           <button className="print-btn" onClick={this.handlePrint}>
-            { i18n.t('submission.print.button') }
+            { i18n.t('application.print.button') }
           </button>
           <Show when={this.state.printed}>
             { this.done() }
           </Show>
         </div>
         <div className="print-view">
-          <SectionViews current={this.props.subsection} dispatch={this.props.dispatch}>
-            <SectionView name="intro"
-                         back=""
-                         backLabel=""
-                         next=""
-                         nextLabel="">
-              { this.sections() }
-            </SectionView>
-          </SectionViews>
+          { this.sections() }
         </div>
       </div>
     )
